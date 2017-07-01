@@ -4,7 +4,7 @@
 
 
 OR_CI = function(matrix2x2) {
-  # OR_CI_strata.source
+  # source("https://github.com/mkim0710/tidystat/raw/master/OR_CI_strata.source.r")
   # version 170630
   library(tidyverse)
   out = list()
@@ -22,7 +22,7 @@ OR_CI = function(matrix2x2) {
 
 
 OR_CI_strata = function(array3d_R_C_strata) {
-  # OR_CI_strata.source
+  # source("https://github.com/mkim0710/tidystat/raw/master/OR_CI_strata.source.r")
   # version 170630
   library(tidyverse)
   if( length(dim(array3d_R_C_strata)) == 3 & dim(array3d_R_C_strata)[1] == 2 & dim(array3d_R_C_strata)[2] == 2 ) {
