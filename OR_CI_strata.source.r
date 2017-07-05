@@ -22,10 +22,11 @@ OR_CI = function(matrix2x2) {
 
 
 
-OR_CI_strata = function(array3d_R_C_strata) {
+OR_CI_strata = function(df_x1_x2_z = NULL, array3d_R_C_strata = NULL) {
   # source("https://github.com/mkim0710/tidystat/raw/master/OR_CI_strata.source.r")
   # version 170704
   library(tidyverse)
+  if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)
   if( length(dim(array3d_R_C_strata)) == 3 & dim(array3d_R_C_strata)[1] == 2 & dim(array3d_R_C_strata)[2] == 2 ) {
     out = list()
     OR_CI_crude = OR_CI(apply(array3d_R_C_strata, 1:2, sum)) %>% as.tibble %>% rownames_to_column()
