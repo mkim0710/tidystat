@@ -5,6 +5,7 @@
 
 
 x1x2z.patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
+  # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.source.r")
   library(tidyverse)
   resid1 = lm(x1 ~ z)$residuals
   resid2 = lm(x2 ~ z)$residuals
