@@ -28,7 +28,7 @@ matrix2x2.cor = function(matrix2x2) {
 }
 
 matrix2x2.OR_CI_phi = function(matrix2x2) {
-  # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.source.r")
+  # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.OR_CI_phi.source.r")
   # version 170630
   library(tidyverse)
   out = list()
