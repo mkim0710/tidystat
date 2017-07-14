@@ -1,10 +1,9 @@
 # OR_CI_strata.source
+# array3d_R_C_strata.OR_CI_strata.source
 # 170630 170704 170713
 
-
-
 matrix2x2.OR_CI = function(matrix2x2) {
-  # source("https://github.com/mkim0710/tidystat/raw/master/OR_CI_strata.source.r")
+  # source("https://github.com/mkim0710/tidystat/raw/master/array3d_R_C_strata.OR_CI_strata.source.r")
   # version 170630
   library(tidyverse)
   out = list()
@@ -20,9 +19,8 @@ matrix2x2.OR_CI = function(matrix2x2) {
   out %>% as.tibble
 }
 
-
 array3d_R_C_strata.OR_CI_strata = function(array3d_R_C_strata) {
-  # source("https://github.com/mkim0710/tidystat/raw/master/OR_CI_strata.source.r")
+  # source("https://github.com/mkim0710/tidystat/raw/master/array3d_R_C_strata.OR_CI_strata.source.r")
   # version 170713
   library(tidyverse)
   # if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)
@@ -55,9 +53,11 @@ array3d_R_C_strata.OR_CI_strata = function(array3d_R_C_strata) {
 
     #@ ------
     array3d_R_C_strata.rename = array3d_R_C_strata
-    names(dimnames(array3d_R_C_strata.rename)) = c("Row", "Col", "Strata")
-    dimnames(array3d_R_C_strata.rename)$Row = paste0("Row", 1:2)
-    dimnames(array3d_R_C_strata.rename)$Col = paste0("Col", 1:2)
+    dimnames(array3d_R_C_strata.rename) = list(
+      Row = paste0("Row", 1:2)
+      , Col = paste0("Col", 1:2)
+      , Strata = paste0("Strata", 1:(dim(array3d_R_C_strata.rename)[3]))
+    )
     N_spread = full_join(
       apply(array3d_R_C_strata.rename, 1:2, sum) %>% as.table %>% as.tibble() %>%
         unite(Row, Col, col = "Row_Col", sep = "_") %>%
@@ -75,10 +75,34 @@ array3d_R_C_strata.OR_CI_strata = function(array3d_R_C_strata) {
     print("error: not array3d_R_C_strata")
   }
   bind_rows(N_spread[1,], N_spread)
+  
+  if(is.null(dimnames(array3d_R_C_strata))) {
+    dimnames(array3d_R_C_strata) = list(
+      Row = paste0("Row", 1:2)
+      , Col = paste0("Col", 1:2)
+      , Strata = paste0("Strata", 1:(dim(array3d_R_C_strata)[3]))
+    )
+  } else if( is.null( dimnames(array3d_R_C_strata) [[3]] ) ) {
+    dimnames(array3d_R_C_strata) [[3]] = paste0("Strata", 1:(dim(array3d_R_C_strata)[3]))
+  }
 
   out$rowname = c("OR_crude", "OR_MH", dimnames(array3d_R_C_strata)[[3]])
   out = bind_cols(out, out2)
   out
 }
+
+
+#@ test -------
+# > array3d_R_C_strata.OR_CI_strata( array(1:12, dim = c(2, 2, 3)) )
+# # A tibble: 5 x 10
+#    rowname        OR OR_LowerLimit OR_UpperLimit MHWeight  R1C1  R1C2  R2C1  R2C2  Ntot
+#      <chr>     <dbl>         <dbl>         <dbl>    <dbl> <int> <int> <int> <int> <int>
+# 1 OR_crude 0.9523810    0.38666600      2.345770       NA    15    21    18    24    78
+# 2    OR_MH 0.9328686    0.37651087      2.311338       NA    15    21    18    24    78
+# 3  Strata1 0.6666667    0.03938062     11.285867 0.600000     1     3     2     4    10
+# 4  Strata2 0.9523810    0.19987414      4.538003 1.615385     5     7     6     8    26
+# 5  Strata3 0.9818182    0.29081865      3.314667 2.619048     9    11    10    12    42
+
+
 
 
