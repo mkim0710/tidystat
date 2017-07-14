@@ -93,6 +93,25 @@ array3d_R_C_strata.OR_CI_strata = function(array3d_R_C_strata) {
 
 
 #@ test -------
+# > array(1:12, dim = c(2, 2, 3))
+# , , 1
+# 
+#      [,1] [,2]
+# [1,]    1    3
+# [2,]    2    4
+# 
+# , , 2
+# 
+#      [,1] [,2]
+# [1,]    5    7
+# [2,]    6    8
+# 
+# , , 3
+# 
+#      [,1] [,2]
+# [1,]    9   11
+# [2,]   10   12
+                 
 # > array3d_R_C_strata.OR_CI_strata( array(1:12, dim = c(2, 2, 3)) )
 # # A tibble: 5 x 10
 #    rowname        OR OR_LowerLimit OR_UpperLimit MHWeight  R1C1  R1C2  R2C1  R2C2  Ntot
@@ -103,6 +122,48 @@ array3d_R_C_strata.OR_CI_strata = function(array3d_R_C_strata) {
 # 4  Strata2 0.9523810    0.19987414      4.538003 1.615385     5     7     6     8    26
 # 5  Strata3 0.9818182    0.29081865      3.314667 2.619048     9    11    10    12    42
 
+                 
+#@ test2 ------
+# > array(
+# +   c( 2, 90, 2, 660
+# +      , 16,360,13,1250
+# +      , 41,557, 7, 774
+# +      ,35,449, 5, 173)
+# +   , dim = c(2,2,4)
+# +   , dimnames = map2(
+# +     list(Row = "R", Col = "C", Strata = "S")
+# +     , c(2,2,4)
+# +     , function(x, y) paste0(x,1:y)
+# +   )
+# + )
+# , , Strata = S1
+# 
+#     Col
+# Row  C1  C2
+#   R1  2   2
+#   R2 90 660
+# 
+# , , Strata = S2
+# 
+#     Col
+# Row   C1   C2
+#   R1  16   13
+#   R2 360 1250
+# 
+# , , Strata = S3
+# 
+#     Col
+# Row   C1  C2
+#   R1  41   7
+#   R2 557 774
+# 
+# , , Strata = S4
+# 
+#     Col
+# Row   C1  C2
+#   R1  35   5
+#   R2 449 173
+                 
 # > array3d_R_C_strata.OR_CI_strata(
 # +   array(
 # +     c( 2, 90, 2, 660
