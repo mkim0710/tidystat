@@ -4,7 +4,7 @@
 
 
 
-patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
+x1x2z.patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
   library(tidyverse)
   resid1 = lm(x1 ~ z)$residuals
   resid2 = lm(x2 ~ z)$residuals
@@ -23,4 +23,9 @@ patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "
   out
 }
 
-
+#@ test ------
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
+#          unadjusted_cor partial_cor
+# pearson       0.7818523   0.7356413
+# spearman      0.7330699   0.5976564
+# kendall       0.5955500   0.4455219
