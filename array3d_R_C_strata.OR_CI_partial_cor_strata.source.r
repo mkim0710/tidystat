@@ -35,8 +35,8 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 }
 
 
-
-array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = c("pearson", "spearman", "kendall")) {
+# array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = c("pearson", "spearman", "kendall")) {
+array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = "pearson") {
   # source("https://github.com/mkim0710/tidystat/raw/master/array3d_R_C_strata.OR_CI_partial_cor_strata.source.r")
   # version 170713
   library(tidyverse)
