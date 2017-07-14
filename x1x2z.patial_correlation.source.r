@@ -25,6 +25,13 @@ x1x2z.patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearm
 }
 
 #@ test ------
+# > str(stackloss)
+# 'data.frame':	21 obs. of  4 variables:
+#  $ Air.Flow  : num  80 80 75 62 62 62 62 62 58 58 ...
+#  $ Water.Temp: num  27 27 25 24 22 23 24 24 23 18 ...
+#  $ Acid.Conc.: num  89 88 90 87 87 87 93 93 87 80 ...
+#  $ stack.loss: num  42 37 37 28 18 18 19 20 15 14 ...
+
 # > x1x2z.partial_correlation(
 # x1 = stackloss$Air.Flow
 # , x2 = stackloss$Water.Temp
