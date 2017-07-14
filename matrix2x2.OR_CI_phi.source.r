@@ -12,20 +12,20 @@ matrix2x2.phi = function(matrix2x2) {
   phi
 }
 
-matrix2x2.cor = function(matrix2x2) {
-  library(tidyverse)
-  if(length(matrix2x2) == 4) {
-    out = list()
-    tmp.df = matrix2x2 %>% as.table %>% as.data.frame
-    tmp.df2 = tmp.df[unlist(map(1:4, function(i) rep(i, tmp.df$Freq[i]))), ] %>% map_df(as.numeric)
-    out$pearson = cor(tmp.df2$Var1, tmp.df2$Var2, method = "pearson")
-    out$kendall = cor(tmp.df2$Var1, tmp.df2$Var2, method = "kendall")
-    out$spearman = cor(tmp.df2$Var1, tmp.df2$Var2, method = "spearman")
-  } else {
-    print("error: not matrix2x2")
-  }
-  out
-}
+# matrix2x2.cor = function(matrix2x2) {
+#   library(tidyverse)
+#   if(length(matrix2x2) == 4) {
+#     out = list()
+#     tmp.df = matrix2x2 %>% as.table %>% as.data.frame
+#     tmp.df2 = tmp.df[unlist(map(1:4, function(i) rep(i, tmp.df$Freq[i]))), ] %>% map_df(as.numeric)
+#     out$pearson = cor(tmp.df2$Var1, tmp.df2$Var2, method = "pearson")
+#     out$kendall = cor(tmp.df2$Var1, tmp.df2$Var2, method = "kendall")
+#     out$spearman = cor(tmp.df2$Var1, tmp.df2$Var2, method = "spearman")
+#   } else {
+#     print("error: not matrix2x2")
+#   }
+#   out
+# }
 
 matrix2x2.OR_CI_phi = function(matrix2x2) {
   # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.OR_CI_phi.source.r")
