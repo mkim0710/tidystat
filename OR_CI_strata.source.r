@@ -1,9 +1,9 @@
 # OR_CI_strata.source
-# 170630 170704
+# 170630 170704 170713
 
 
 
-OR_CI = function(matrix2x2) {
+matrix2x2.OR_CI = function(matrix2x2) {
   # source("https://github.com/mkim0710/tidystat/raw/master/OR_CI_strata.source.r")
   # version 170630
   library(tidyverse)
@@ -21,15 +21,14 @@ OR_CI = function(matrix2x2) {
 }
 
 
-
-OR_CI_strata = function(df_x1_x2_z = NULL, array3d_R_C_strata = NULL) {
+array3d_R_C_strata.OR_CI_strata = function(array3d_R_C_strata) {
   # source("https://github.com/mkim0710/tidystat/raw/master/OR_CI_strata.source.r")
-  # version 170704
+  # version 170713
   library(tidyverse)
-  if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)
+  # if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)
   if( length(dim(array3d_R_C_strata)) == 3 & dim(array3d_R_C_strata)[1] == 2 & dim(array3d_R_C_strata)[2] == 2 ) {
     out = list()
-    OR_CI_crude = OR_CI(apply(array3d_R_C_strata, 1:2, sum)) %>% as.tibble %>% rownames_to_column()
+    OR_CI_crude = matrix2x2.OR_CI(apply(array3d_R_C_strata, 1:2, sum)) %>% as.tibble %>% rownames_to_column()
 
     Ri = array3d_R_C_strata[1,1,] * array3d_R_C_strata[2,2,] / apply(array3d_R_C_strata, 3, sum)
     Si = array3d_R_C_strata[1,2,] * array3d_R_C_strata[2,1,] / apply(array3d_R_C_strata, 3, sum)
@@ -46,7 +45,7 @@ OR_CI_strata = function(df_x1_x2_z = NULL, array3d_R_C_strata = NULL) {
 
     OR_CI_MH = data_frame(OR = OR_MH, OR_LowerLimit = OR_MH_LowerLimit, OR_UpperLimit = OR_MH_UpperLimit) %>% rownames_to_column()
 
-    OR_CI_strata = map_df(1:dim(array3d_R_C_strata)[3], function(i) {OR_CI(array3d_R_C_strata[,,i])}) %>% rownames_to_column()
+    OR_CI_strata = map_df(1:dim(array3d_R_C_strata)[3], function(i) {matrix2x2.OR_CI(array3d_R_C_strata[,,i])}) %>% rownames_to_column()
 
     out = reduce(list(OR_CI_crude = OR_CI_crude, OR_CI_MH = OR_CI_MH, OR_CI_strata= OR_CI_strata), function(x, y) full_join(x, y, by = c("rowname", "OR", "OR_LowerLimit", "OR_UpperLimit")))
     out$MHWeight =
@@ -81,4 +80,5 @@ OR_CI_strata = function(df_x1_x2_z = NULL, array3d_R_C_strata = NULL) {
   out = bind_cols(out, out2)
   out
 }
+
 
