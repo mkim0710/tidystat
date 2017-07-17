@@ -151,7 +151,35 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
   out
 }
 
+        
+#@ test) array3d_R_C_strata2df() --------
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
+# # A tibble: 78 x 4
+#      Var1   Var2   Var3  Freq
+#  * <fctr> <fctr> <fctr> <int>
+#  1      A      A      A     1
+#  2      B      A      A     2
+#  3      B      A      A     2
+#  4      A      B      A     3
+#  5      A      B      A     3
+#  6      A      B      A     3
+#  7      B      B      A     4
+#  8      B      B      A     4
+#  9      B      B      A     4
+# 10      B      B      A     4
+# # ... with 68 more rows        
 
+
+#@ test) x1x2z.partial_correlation() ------
+# > tmp.df.numeric = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% map_df(as.numeric)
+# > x1x2z.partial_correlation(x1 = tmp.df.numeric[[1]], x2 = tmp.df.numeric[[2]], z = tmp.df.numeric[[3]])
+#          unadjusted_cor partial_cor
+# pearson      -0.0120125 -0.01615193
+# spearman     -0.0120125  0.16380120
+# kendall      -0.0120125  0.14719397
+
+        
+        
 #@ test) array3d_R_C_strata.OR_CI_partial_cor_strata() -------
 # > array(1:12, dim = c(2, 2, 3))
 # , , 1
