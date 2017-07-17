@@ -12,7 +12,8 @@ function.binary2numeric = function(x) {
   x
 }
 
-#@ test ----
+
+#@ test) function.binary2numeric() ----
 # > function.binary2numeric(c(T, F ,T))
 # [1] 1 0 1
 # > function.binary2numeric(c("A", "A", "B", "B", "A"))
