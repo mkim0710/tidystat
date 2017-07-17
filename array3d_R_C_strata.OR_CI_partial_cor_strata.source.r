@@ -241,12 +241,12 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
 # 10      B      B      A     4
 # # ... with 68 more rows
         
-# > array3d_R_C_strata.OR_CI_partial_cor_strata( array(1:12, dim = c(2, 2, 3)) )
+# > array3d_R_C_strata.OR_CI_partial_cor_strata( array(1:12, dim = c(2, 2, 3)), .cor_method = c("pearson", "spearman", "kendall"))
 # # A tibble: 5 x 13
 #             rowname        OR OR_LowerLimit OR_UpperLimit MHWeight     pearson    spearman     kendall  R1C1  R1C2  R2C1  R2C2  Ntot
 #               <chr>     <dbl>         <dbl>         <dbl>    <dbl>       <dbl>       <dbl>       <dbl> <int> <int> <int> <int> <int>
 # 1    Crude Estimate 0.9523810    0.38666600      2.345770       NA -0.01201250 -0.01201250 -0.01201250    15    21    18    24    78
-# 2 Adjusted Estimate 0.9328686    0.37651087      2.311338       NA -0.01615193  0.16380120  0.14719397    15    21    18    24    78
+# 2 Adjusted Estimate 0.9328686    0.37651087      2.311338       NA -0.01699817  0.16198062  0.14541024    15    21    18    24    78
 # 3           Strata1 0.6666667    0.03938062     11.285867 0.600000 -0.08908708 -0.08908708 -0.08908708     1     3     2     4    10
 # 4           Strata2 0.9523810    0.19987414      4.538003 1.615385 -0.01201250 -0.01201250 -0.01201250     5     7     6     8    26
 # 5           Strata3 0.9818182    0.29081865      3.314667 2.619048 -0.00456103 -0.00456103 -0.00456103     9    11    10    12    42
