@@ -27,6 +27,23 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
   # out = out %>% map_df(as.numeric)
   out
 }
+              
+#@ test) array3d_R_C_strata2df() --------
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
+# # A tibble: 78 x 4
+#      Var1   Var2   Var3  Freq
+#  * <fctr> <fctr> <fctr> <int>
+#  1      A      A      A     1
+#  2      B      A      A     2
+#  3      B      A      A     2
+#  4      A      B      A     3
+#  5      A      B      A     3
+#  6      A      B      A     3
+#  7      B      B      A     4
+#  8      B      B      A     4
+#  9      B      B      A     4
+# 10      B      B      A     4
+# # ... with 68 more rows
 
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
@@ -55,6 +72,29 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
   out
 }
 
+#@ test) x1x2z.partial_correlation() ------
+# > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
+# > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
+#          unadjusted_cor partial_cor
+# pearson      -0.0120125 -0.01699817
+# spearman     -0.0120125  0.16198062
+# kendall      -0.0120125  0.14541024
+
+
+#@ test: stackloss) x1x2z.partial_correlation() ------
+# > str(stackloss)
+# 'data.frame':	21 obs. of  4 variables:
+#  $ Air.Flow  : num  80 80 75 62 62 62 62 62 58 58 ...
+#  $ Water.Temp: num  27 27 25 24 22 23 24 24 23 18 ...
+#  $ Acid.Conc.: num  89 88 90 87 87 87 93 93 87 80 ...
+#  $ stack.loss: num  42 37 37 28 18 18 19 20 15 14 ...
+
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
+#          unadjusted_cor partial_cor
+# pearson       0.7818523   0.7356413
+# spearman      0.7330699   0.5976564
+# kendall       0.5955500   0.4455219
+
               
 
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson") {
@@ -75,52 +115,7 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson") {
   out = unlist(out)
   out
 }
-  
-              
-              
-#@ test) array3d_R_C_strata2df() --------
-# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
-# # A tibble: 78 x 4
-#      Var1   Var2   Var3  Freq
-#  * <fctr> <fctr> <fctr> <int>
-#  1      A      A      A     1
-#  2      B      A      A     2
-#  3      B      A      A     2
-#  4      A      B      A     3
-#  5      A      B      A     3
-#  6      A      B      A     3
-#  7      B      B      A     4
-#  8      B      B      A     4
-#  9      B      B      A     4
-# 10      B      B      A     4
-# # ... with 68 more rows
-
-#@ test) x1x2z.partial_correlation() ------
-# > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
-# > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
-#          unadjusted_cor partial_cor
-# pearson      -0.0120125 -0.01699817
-# spearman     -0.0120125  0.16198062
-# kendall      -0.0120125  0.14541024
-
-
-
-#@ test: stackloss) x1x2z.partial_correlation() ------
-# > str(stackloss)
-# 'data.frame':	21 obs. of  4 variables:
-#  $ Air.Flow  : num  80 80 75 62 62 62 62 62 58 58 ...
-#  $ Water.Temp: num  27 27 25 24 22 23 24 24 23 18 ...
-#  $ Acid.Conc.: num  89 88 90 87 87 87 93 93 87 80 ...
-#  $ stack.loss: num  42 37 37 28 18 18 19 20 15 14 ...
-
-# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
-#          unadjusted_cor partial_cor
-# pearson       0.7818523   0.7356413
-# spearman      0.7330699   0.5976564
-# kendall       0.5955500   0.4455219
-
-              
- 
+   
 #@ test) x1x2z.partial_correlation_dbl() ------
 # > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 # > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
