@@ -1,5 +1,7 @@
+
 function.binary2numeric = function(x) {
   # source("https://github.com/mkim0710/tidystat/raw/master/function.binary2numeric.source.r")
+  # caution) as.numeric(CategoricalVariable_3MoreLevels)
   if (is.character(x)) {
     x = as.factor(x)
   }
@@ -11,7 +13,6 @@ function.binary2numeric = function(x) {
   } 
   x
 }
-
 
 #@ test) function.binary2numeric() ----
 # > function.binary2numeric(c(T, F ,T))
