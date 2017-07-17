@@ -29,6 +29,23 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
   # out = out %>% map_df(as.numeric)
   out
 }
+#@ test) array3d_R_C_strata2df() --------
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
+# # A tibble: 78 x 4
+#      Var1   Var2   Var3  Freq
+#  * <fctr> <fctr> <fctr> <int>
+#  1      A      A      A     1
+#  2      B      A      A     2
+#  3      B      A      A     2
+#  4      A      B      A     3
+#  5      A      B      A     3
+#  6      A      B      A     3
+#  7      B      B      A     4
+#  8      B      B      A     4
+#  9      B      B      A     4
+# 10      B      B      A     4
+# # ... with 68 more rows        
+              
               
 matrix2x2.OR_CI = function(matrix2x2) {
   # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.OR_CI_phi.source.r")
@@ -76,13 +93,22 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
   out = out %>% t %>% as.data.frame
   out
 }
+#@ test) x1x2z.partial_correlation() ------
+# > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
+# > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
+#          unadjusted_cor partial_cor
+# pearson      -0.0120125 -0.01699817
+# spearman     -0.0120125  0.16198062
+# kendall      -0.0120125  0.14541024
 
+        
 
 function.sequence_with_leading_zeros = function(num) {
   # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.source.r")
   digits_with_leading_zeros = trunc(log10(num)) + 1
   sprintf(paste0("%0",digits_with_leading_zeros,"d"), 1:num)
 }
+        
               
 # array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = c("pearson", "spearman", "kendall")) {
 array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = "pearson") {
@@ -176,35 +202,6 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
   out
 }
 
-        
-#@ test) array3d_R_C_strata2df() --------
-# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
-# # A tibble: 78 x 4
-#      Var1   Var2   Var3  Freq
-#  * <fctr> <fctr> <fctr> <int>
-#  1      A      A      A     1
-#  2      B      A      A     2
-#  3      B      A      A     2
-#  4      A      B      A     3
-#  5      A      B      A     3
-#  6      A      B      A     3
-#  7      B      B      A     4
-#  8      B      B      A     4
-#  9      B      B      A     4
-# 10      B      B      A     4
-# # ... with 68 more rows        
-
-
-#@ test) x1x2z.partial_correlation() ------
-# > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
-# > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
-#          unadjusted_cor partial_cor
-# pearson      -0.0120125 -0.01699817
-# spearman     -0.0120125  0.16198062
-# kendall      -0.0120125  0.14541024
-
-        
-        
 #@ test) array3d_R_C_strata.OR_CI_partial_cor_strata() -------
 # > array(1:12, dim = c(2, 2, 3))
 # , , 1
