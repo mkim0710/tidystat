@@ -38,8 +38,18 @@ matrix2x2.OR_CI = function(matrix2x2) {
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
   # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.source.r")
   library(tidyverse)
+  
+  # caution) as.numeric(CategoricalVariable)
+  if(is.logical(x1)) x1 = as.numeric(x1)
+  if(is.logical(x2)) x2 = as.numeric(x2)
+  if(is.character(x1)) x1 = as.factor(x1)
+  if(is.character(x2)) x2 = as.factor(x2)
+  if(length(levels(x1)) == 2) x1 = as.numeric(x1)
+  if(length(levels(x2)) == 2) x2 = as.numeric(x2)
+
   resid1 = lm(x1 ~ z)$residuals
   resid2 = lm(x2 ~ z)$residuals
+  
   out = map(
     seq_along(cor_method)
     , function(i) {
@@ -96,17 +106,19 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
         )
     
     #@ partial_correlation ------
-    tmp.df.numeric = array3d_R_C_strata2df(array3d_R_C_strata) %>% map_df(as.numeric)
-    out.x1x2z.partial_correlation = x1x2z.partial_correlation(x1 = tmp.df.numeric[[1]], x2 = tmp.df.numeric[[2]], z = tmp.df.numeric[[3]], cor_method = .cor_method)
+    # tmp.df.numeric = array3d_R_C_strata2df(array3d_R_C_strata) %>% map_df(as.numeric)
+    # caution) as.numeric(CategoricalVariable)
+    tmp.df = array3d_R_C_strata2df(array3d_R_C_strata)
+    out.x1x2z.partial_correlation = x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], cor_method = .cor_method)
     for (i in .cor_method) {
       # out[[i]] = NA
       # out[1, i] = out.x1x2z.partial_correlation[i, "unadjusted_cor"]
       # out[2, i] = out.x1x2z.partial_correlation[i, "partial_cor"]
-      tmp.df.numeric.by_Var3 = map(unique(tmp.df.numeric[[3]]), function(byVar) tmp.df.numeric[tmp.df.numeric[[3]] == byVar, ])
+      tmp.df.by_Var3 = map(unique(tmp.df[[3]]), function(byVar) tmp.df[tmp.df[[3]] == byVar, ])
       out[[i]] = c(
         out.x1x2z.partial_correlation[i, "unadjusted_cor"]
         , out.x1x2z.partial_correlation[i, "partial_cor"]
-        , map_dbl( tmp.df.numeric.by_Var3, function(df) cor(df[[1]], df[[2]], method = i) )
+        , map_dbl( tmp.df.by_Var3, function(df) cor(df[[1]], df[[2]], method = i) )
       )
 
     }
