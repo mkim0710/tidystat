@@ -1,7 +1,7 @@
 # OR_CI_strata.source
 # array3d_R_C_strata.OR_CI_strata.source
 # array3d_R_C_strata.OR_CI_partial_cor_strata.source
-# 170630 170704 170713
+# 170630 170704 170713 170717
 # debug 170717 function.sequence_with_leading_zeros()
 
 array3d_R_C_strata2df = function(array3d_R_C_strata) {
@@ -44,7 +44,7 @@ function.sequence_with_leading_zeros = function(num) {
 # array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = c("pearson", "spearman", "kendall")) {
 array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = "pearson") {
   # source("https://github.com/mkim0710/tidystat/raw/master/array3d_R_C_strata.OR_CI_partial_cor_strata.source.r")
-  # version 170713
+  # version 170717
   library(tidyverse)
   # if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)
   if( length(dim(array3d_R_C_strata)) == 3 & dim(array3d_R_C_strata)[1] == 2 & dim(array3d_R_C_strata)[2] == 2 ) {
@@ -67,8 +67,9 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
     OR_CI_MH = data_frame(OR = OR_MH, OR_LowerLimit = OR_MH_LowerLimit, OR_UpperLimit = OR_MH_UpperLimit) %>% rownames_to_column()
 
     OR_CI_strata = map_df(1:dim(array3d_R_C_strata)[3], function(i) {matrix2x2.OR_CI(array3d_R_C_strata[,,i])}) %>% rownames_to_column()
-
-    out = reduce(list(OR_CI_crude = OR_CI_crude, OR_CI_MH = OR_CI_MH, OR_CI_strata= OR_CI_strata), function(x, y) full_join(x, y, by = c("rowname", "OR", "OR_LowerLimit", "OR_UpperLimit")))
+    # out = reduce(list(OR_CI_crude = OR_CI_crude, OR_CI_MH = OR_CI_MH, OR_CI_strata= OR_CI_strata), function(x, y) full_join(x, y, by = c("rowname", "OR", "OR_LowerLimit", "OR_UpperLimit")))
+    # debug 170717
+    out = bind_rows(OR_CI_crude, OR_CI_MH, OR_CI_strata)
     out$MHWeight =
       c(NA, NA
         , array3d_R_C_strata[1,2,] * array3d_R_C_strata[2,1,] / apply(array3d_R_C_strata, 3, sum)
@@ -129,7 +130,6 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
   out = bind_cols(out, out2)
   out
 }
-
 
 
 #@ test -------
