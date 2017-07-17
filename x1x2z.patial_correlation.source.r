@@ -12,12 +12,23 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
   out
 }
 
-x1x2z.patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
+
+x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
   # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.source.r")
   library(tidyverse)
+  
+  # caution) as.numeric(CategoricalVariable)
+  if(is.logical(x1)) x1 = as.numeric(x1)
+  if(is.logical(x2)) x2 = as.numeric(x2)
+  if(is.character(x1)) x1 = as.factor(x1)
+  if(is.character(x2)) x2 = as.factor(x2)
+  if(length(levels(x1)) == 2) x1 = as.numeric(x1)
+  if(length(levels(x2)) == 2) x2 = as.numeric(x2)
+
   resid1 = lm(x1 ~ z)$residuals
   resid2 = lm(x2 ~ z)$residuals
-  out = map(x
+  
+  out = map(
     seq_along(cor_method)
     , function(i) {
       unadjusted_cor = cor(x1, x2, method = cor_method[i])
@@ -68,12 +79,13 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson") {
 # # ... with 68 more rows
 
 #@ test) x1x2z.partial_correlation() ------
-# > tmp.df.numeric = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% map_df(as.numeric)
-# > x1x2z.partial_correlation(x1 = tmp.df.numeric[[1]], x2 = tmp.df.numeric[[2]], z = tmp.df.numeric[[3]])
+# > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
+# > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 #          unadjusted_cor partial_cor
-# pearson      -0.0120125 -0.01615193
-# spearman     -0.0120125  0.16380120
-# kendall      -0.0120125  0.14719397
+# pearson      -0.0120125 -0.01699817
+# spearman     -0.0120125  0.16198062
+# kendall      -0.0120125  0.14541024
+
 
 
 #@ test: stackloss) x1x2z.partial_correlation() ------
@@ -93,10 +105,11 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson") {
               
  
 #@ test) x1x2z.partial_correlation_dbl() ------
-# > tmp.df.numeric = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% map_df(as.numeric)
-# > x1x2z.partial_correlation_dbl(x1 = tmp.df.numeric[[1]], x2 = tmp.df.numeric[[2]], z = tmp.df.numeric[[3]])
+# > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
+# > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 # unadjusted_cor_pearson    partial_cor_pearson 
-#            -0.01201250            -0.01615193              
+#            -0.01201250            -0.01699817 
+          
               
 #@ test: stackloss) x1x2z.partial_correlation_dbl() ------
 # > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
