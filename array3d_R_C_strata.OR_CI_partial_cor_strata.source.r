@@ -240,20 +240,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
 #   R1  35   5
 #   R2 449 173
 
-# > array3d_R_C_strata.OR_CI_partial_cor_strata(
-# +   array(
-# +     c( 2, 90, 2, 660
-# +        , 16,360,13,1250
-# +        , 41,557, 7, 774
-# +        ,35,449, 5, 173)
-# +     , dim = c(2,2,4)
-# +     , dimnames = map2(
-# +       list(Row = "R", Col = "C", Strata = "S")
-# +       , c(2,2,4)
-# +       , function(x, y) paste0(x,1:y)
-# +     )
-# +   )
-# + )
+# > array3d_R_C_strata.OR_CI_partial_cor_strata(array(c(2, 90, 2, 660, 16, 360, 13, 1250, 41,557, 7, 774, 35, 449, 5, 173), dim = c(2,2,4), dimnames = map2(list(Row = "R", Col = "C", Strata = "S"), c(2,2,4), function(x, y) paste0(x,1:y))), .cor_method = "pearson")
 # # A tibble: 6 x 13
 #             rowname       OR OR_LowerLimit OR_UpperLimit  MHWeight    pearson   spearman    kendall  R1C1  R1C2  R2C1  R2C2  Ntot
 #               <chr>    <dbl>         <dbl>         <dbl>     <dbl>      <dbl>      <dbl>      <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
