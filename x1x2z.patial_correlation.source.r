@@ -2,7 +2,15 @@
 # 170704
 # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.source.r")
 
+array3d_R_C_strata2df = function(array3d_R_C_strata) {
+  library(tidyverse)
+  x1x2z.df = array3d_R_C_strata %>% as.table %>% as.data.frame
 
+  index = map(1:nrow(x1x2z.df), function(i) rep(i, x1x2z.df[i,4])) %>% unlist
+  out = x1x2z.df[index, ]
+  # out = out %>% map_df(as.numeric)
+  out
+}
 
 x1x2z.patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
   # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.source.r")
@@ -24,7 +32,33 @@ x1x2z.patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearm
   out
 }
 
-#@ test ------
+#@ test) array3d_R_C_strata2df() --------
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
+# # A tibble: 78 x 4
+#      Var1   Var2   Var3  Freq
+#  * <fctr> <fctr> <fctr> <int>
+#  1      A      A      A     1
+#  2      B      A      A     2
+#  3      B      A      A     2
+#  4      A      B      A     3
+#  5      A      B      A     3
+#  6      A      B      A     3
+#  7      B      B      A     4
+#  8      B      B      A     4
+#  9      B      B      A     4
+# 10      B      B      A     4
+# # ... with 68 more rows
+
+#@ test) x1x2z.partial_correlation() ------
+# > tmp.df.numeric = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% map_df(as.numeric)
+# > x1x2z.partial_correlation(x1 = tmp.df.numeric[[1]], x2 = tmp.df.numeric[[2]], z = tmp.df.numeric[[3]])
+#          unadjusted_cor partial_cor
+# pearson      -0.0120125 -0.01615193
+# spearman     -0.0120125  0.16380120
+# kendall      -0.0120125  0.14719397
+
+
+#@ test: stackloss) x1x2z.partial_correlation() ------
 # > str(stackloss)
 # 'data.frame':	21 obs. of  4 variables:
 #  $ Air.Flow  : num  80 80 75 62 62 62 62 62 58 58 ...
