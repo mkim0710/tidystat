@@ -2,6 +2,7 @@
 # array3d_R_C_strata.OR_CI_strata.source
 # array3d_R_C_strata.OR_CI_partial_cor_strata.source
 # 170630 170704 170713
+# debug 170717 function.sequence_with_leading_zeros()
 
 array3d_R_C_strata2df = function(array3d_R_C_strata) {
   library(tidyverse)
@@ -34,7 +35,12 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
   out
 }
 
-
+function.sequence_with_leading_zeros = function(num) {
+  # source("https://github.com/mkim0710/tidystat/raw/master/tidyfunctions.source.r")
+  digits_with_leading_zeros = trunc(log10(num)) + 1
+  sprintf(paste0("%0",digits_with_leading_zeros,"d"), 1:num)
+}
+              
 # array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = c("pearson", "spearman", "kendall")) {
 array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = "pearson") {
   # source("https://github.com/mkim0710/tidystat/raw/master/array3d_R_C_strata.OR_CI_partial_cor_strata.source.r")
@@ -89,7 +95,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
     dimnames(array3d_R_C_strata.rename) = list(
       Row = paste0("Row", 1:2)
       , Col = paste0("Col", 1:2)
-      , Strata = paste0("Strata", 1:(dim(array3d_R_C_strata.rename)[3]))
+      , Strata = paste0("Strata", function.sequence_with_leading_zeros(dim(array3d_R_C_strata.rename)[3]))
     )
     N_spread = full_join(
       apply(array3d_R_C_strata.rename, 1:2, sum) %>% as.table %>% as.tibble() %>%
@@ -113,10 +119,10 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
     dimnames(array3d_R_C_strata) = list(
       Row = paste0("Row", 1:2)
       , Col = paste0("Col", 1:2)
-      , Strata = paste0("Strata", 1:(dim(array3d_R_C_strata)[3]))
+      , Strata = paste0("Strata", function.sequence_with_leading_zeros(dim(array3d_R_C_strata)[3]))
     )
   } else if( is.null( dimnames(array3d_R_C_strata) [[3]] ) ) {
-    dimnames(array3d_R_C_strata) [[3]] = paste0("Strata", 1:(dim(array3d_R_C_strata)[3]))
+    dimnames(array3d_R_C_strata) [[3]] = paste0("Strata", function.sequence_with_leading_zeros(dim(array3d_R_C_strata)[3]))
   }
 
   out$rowname = c("Crude Estimate", "Adjusted Estimate", dimnames(array3d_R_C_strata)[[3]])
