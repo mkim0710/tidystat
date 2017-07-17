@@ -66,10 +66,7 @@ x1x2z.patial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearm
 #  $ Acid.Conc.: num  89 88 90 87 87 87 93 93 87 80 ...
 #  $ stack.loss: num  42 37 37 28 18 18 19 20 15 14 ...
 
-# > x1x2z.partial_correlation(
-# +   x1 = stackloss$Air.Flow
-# +   , x2 = stackloss$Water.Temp
-# +   , z = stackloss$Acid.Conc.)
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 #          unadjusted_cor partial_cor
 # pearson       0.7818523   0.7356413
 # spearman      0.7330699   0.5976564
