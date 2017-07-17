@@ -13,6 +13,26 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
   # out = out %>% map_df(as.numeric)
   out
 }
+              
+matrix2x2.OR_CI = function(matrix2x2) {
+  # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.OR_CI_phi.source.r")
+  # version 170630
+  library(tidyverse)
+  out = list()
+  if(length(matrix2x2) == 4) {
+    OR = matrix2x2[1,1] * matrix2x2[2,2] / matrix2x2[1,2] / matrix2x2[2,1]
+    SE_ln_OR = sqrt(1/matrix2x2[1,1] + 1/matrix2x2[1,2] + 1/matrix2x2[2,1] + 1/matrix2x2[2,2])
+    out$OR = OR
+    out$OR_LowerLimit = exp( log(OR) - 1.96 * SE_ln_OR )
+    out$OR_UpperLimit = exp( log(OR) + 1.96 * SE_ln_OR )
+
+    # out$phi = matrix2x2.phi(matrix2x2)
+
+  } else {
+    print("error: not matrix2x2")
+  }
+  out %>% as.tibble
+}
 
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
