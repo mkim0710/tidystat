@@ -4,6 +4,22 @@
 # 170630 170704 170713 170717
 # debug 170717 function.sequence_with_leading_zeros()
 
+
+function.binary2numeric = function(x) {
+  # source("https://github.com/mkim0710/tidystat/raw/master/function.binary2numeric.source.r")
+  # caution) as.numeric(CategoricalVariable_3MoreLevels)
+  if (is.character(x)) {
+    x = as.factor(x)
+  }
+  if (length(levels(x)) == 2) {
+    x = as.numeric(x)
+  }
+  if (is.logical(x)) {
+    x = as.numeric(x)
+  } 
+  x
+}
+
 array3d_R_C_strata2df = function(array3d_R_C_strata) {
   library(tidyverse)
   x1x2z.df = array3d_R_C_strata %>% as.table %>% as.data.frame
@@ -39,21 +55,17 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
   # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.source.r")
   library(tidyverse)
   
-  # caution) as.numeric(CategoricalVariable)
-  if(is.logical(x1)) x1 = as.numeric(x1)
-  if(is.logical(x2)) x2 = as.numeric(x2)
-  if(is.character(x1)) x1 = as.factor(x1)
-  if(is.character(x2)) x2 = as.factor(x2)
-  if(length(levels(x1)) == 2) x1 = as.numeric(x1)
-  if(length(levels(x2)) == 2) x2 = as.numeric(x2)
+  # caution) as.numeric(CategoricalVariable_3MoreLevels)
+  x1.binary2numeric = function.binary2numeric(x1)
+  x2.binary2numeric = function.binary2numeric(x2)
 
-  resid1 = lm(x1 ~ z)$residuals
-  resid2 = lm(x2 ~ z)$residuals
+  resid1 = lm(x1.binary2numeric ~ z)$residuals
+  resid2 = lm(x2.binary2numeric ~ z)$residuals
   
   out = map(
     seq_along(cor_method)
     , function(i) {
-      unadjusted_cor = cor(x1, x2, method = cor_method[i])
+      unadjusted_cor = cor(x1.binary2numeric, x2.binary2numeric, method = cor_method[i])
       partial_cor = cor(resid1, resid2, method = cor_method[i])
       list(unadjusted_cor = unadjusted_cor, partial_cor = partial_cor)
     }
@@ -64,6 +76,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
   out = out %>% t %>% as.data.frame
   out
 }
+
 
 function.sequence_with_leading_zeros = function(num) {
   # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.source.r")
@@ -118,7 +131,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
       out[[i]] = c(
         out.x1x2z.partial_correlation[i, "unadjusted_cor"]
         , out.x1x2z.partial_correlation[i, "partial_cor"]
-        , map_dbl( tmp.df.by_Var3, function(df) cor(df[[1]], df[[2]], method = i) )
+        , map_dbl( tmp.df.by_Var3, function(df) cor(function.binary2numeric(df[[1]]), function.binary2numeric(df[[2]]), method = i) )
       )
 
     }
