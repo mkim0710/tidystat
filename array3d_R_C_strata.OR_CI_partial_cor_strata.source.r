@@ -196,12 +196,12 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
 
 
 #@ test) x1x2z.partial_correlation() ------
-# > tmp.df.numeric = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% map_df(as.numeric)
-# > x1x2z.partial_correlation(x1 = tmp.df.numeric[[1]], x2 = tmp.df.numeric[[2]], z = tmp.df.numeric[[3]])
+# > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
+# > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 #          unadjusted_cor partial_cor
-# pearson      -0.0120125 -0.01615193
-# spearman     -0.0120125  0.16380120
-# kendall      -0.0120125  0.14719397
+# pearson      -0.0120125 -0.01699817
+# spearman     -0.0120125  0.16198062
+# kendall      -0.0120125  0.14541024
 
         
         
