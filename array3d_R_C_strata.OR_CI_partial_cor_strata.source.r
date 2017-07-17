@@ -152,7 +152,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
 }
 
 
-#@ test -------
+#@ test) array3d_R_C_strata.OR_CI_partial_cor_strata() -------
 # > array(1:12, dim = c(2, 2, 3))
 # , , 1
 # 
@@ -199,7 +199,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
 # 5           Strata3 0.9818182    0.29081865      3.314667 2.619048 -0.00456103 -0.00456103 -0.00456103     9    11    10    12    42
 
                  
-#@ test2 ------
+#@ test2) array3d_R_C_strata.OR_CI_partial_cor_strata() ------
 # > array(
 # +   c( 2, 90, 2, 660
 # +      , 16,360,13,1250
