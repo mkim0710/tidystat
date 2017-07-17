@@ -48,6 +48,15 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson") {
   # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.source.r")
   library(tidyverse)
+  
+  # caution) as.numeric(CategoricalVariable)
+  if(is.logical(x1)) x1 = as.numeric(x1)
+  if(is.logical(x2)) x2 = as.numeric(x2)
+  if(is.character(x1)) x1 = as.factor(x1)
+  if(is.character(x2)) x2 = as.factor(x2)
+  if(length(levels(x1)) == 2) x1 = as.numeric(x1)
+  if(length(levels(x2)) == 2) x2 = as.numeric(x2)
+  
   resid1 = lm(x1 ~ z)$residuals
   resid2 = lm(x2 ~ z)$residuals
 
