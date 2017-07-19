@@ -8,18 +8,18 @@ function.pairwise.data_frame = function(vars) {
   out
 }
 
-# > function.pairwise.data_frame(LETTERS)
+# > function.pairwise.data_frame(letters)
 # # A tibble: 325 x 2
 #    var_i var_j
 #    <chr> <chr>
-#  1     A     B
-#  2     A     C
-#  3     A     D
-#  4     A     E
-#  5     A     F
-#  6     A     G
-#  7     A     H
-#  8     A     I
-#  9     A     J
-# 10     A     K
+#  1     a     b
+#  2     a     c
+#  3     a     d
+#  4     a     e
+#  5     a     f
+#  6     a     g
+#  7     a     h
+#  8     a     i
+#  9     a     j
+# 10     a     k
 # # ... with 315 more rows
