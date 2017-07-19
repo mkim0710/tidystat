@@ -7,6 +7,8 @@ function.binary2numeric = function(x) {
   }
   if (length(levels(x)) == 2) {
     x = as.numeric(x)
+  } else if (length(levels(x)) > 2) {
+    print("error - length(levels(x)) > 2")
   }
   if (is.logical(x)) {
     x = as.numeric(x)
