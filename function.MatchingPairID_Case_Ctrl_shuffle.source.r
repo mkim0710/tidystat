@@ -22,7 +22,6 @@ function.MatchingPairID_Case_Ctrl_shuffle = function(MatchingPairID_Case_Ctrl, v
 
 }
 
-
 # #@ test) function.MatchingPairID_Case_Ctrl_shuffle() ---------
 # load(url("https://github.com/mkim0710/tidystat/raw/master/library(CrossScreening) nhanes.fish.match.rda"))
 # nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")]
@@ -82,6 +81,9 @@ function.MatchingPairID_Case_Ctrl_shuffle = function(MatchingPairID_Case_Ctrl, v
 
 
 
+
+
+
 function.MatchingPairID_Case_Ctrl_shuffle_vec = function(MatchingPairID_Case_Ctrl, var_MatchingPairID = "MatchingPairID", var_Case = "Case", var_Ctrl = "Ctrl", seed = NULL) {
     library(tidyverse)
     # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Case_Ctrl_shuffle.source.r")
@@ -133,3 +135,4 @@ function.MatchingPairID_Case_Ctrl_shuffle_vec = function(MatchingPairID_Case_Ctr
 # # > function.MatchingPairID_Case_Ctrl_shuffle_vec(nhanes.fish.match.rename) %>% summary
 # #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 # #     1.0   307.5   562.0   563.5   818.8  1097.0 
+
