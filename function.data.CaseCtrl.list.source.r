@@ -27,7 +27,9 @@ function.data.CaseCtrl.list = function(data, varname_Case = "isCase", rm_zero_va
     data.CaseCtrl.list
 }
 
-#@ test --------
+
+
+# #@ test --------
 # load(url("https://github.com/mkim0710/tidystat/raw/master/library(Matching) lalonde.rda"))
 # lalonde$isCase = lalonde$treat == 1
 # str(lalonde)
