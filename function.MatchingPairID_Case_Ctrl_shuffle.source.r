@@ -79,6 +79,9 @@ function.MatchingPairID_Case_Ctrl_shuffle = function(MatchingPairID_Case_Ctrl, v
 
 
 
+
+
+
 function.MatchingPairID_Case_Ctrl_shuffle_vec = function(MatchingPairID_Case_Ctrl, var_MatchingPairID = "MatchingPairID", var_Case = "Case", var_Ctrl = "Ctrl", seed = NULL) {
     library(tidyverse)
     # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Case_Ctrl_shuffle.source.r")
@@ -268,5 +271,3 @@ function.MatchingPairID_isCase_PERSON_ID_shuffle_vec = function(MatchingPairID_i
 # # [137]  412  413  416  376  377  863  832  399  284  533  431  638  439   44  814 1061  154 1020  602  560  372  142  945  772  570  483  839 1065  911  589  598  686  783  601
 # # [171]  606  512  251  304  161  371  612  615  132  460  619   62 1087  625  634  637  641  446  882  250   40  710  530  181  665  988  386  555  697 1089   20   92  685  963
 # # [205] 1019  409  300  854  732  736   74  655  292  388 1050  749  750  751  491  760  770  370  782  482 1101  344  789   63  798    8  312  620  810  817
-
-
