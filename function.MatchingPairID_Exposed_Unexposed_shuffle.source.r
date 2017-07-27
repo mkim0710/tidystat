@@ -136,6 +136,59 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 }
 
 # #@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle() ---------
+# library(tidyverse)
+# n = 100
+# data = data_frame(
+#   PERSON_ID = as.factor(1:(n * 2))
+#   , MatchingPairID = as.factor((1:(n * 2) + 1) %/% 2)
+#   , isExposed = rep(c(F,T), n) ) 
+# set.seed(1)
+# data = data %>% mutate(Outcome = isExposed + 10 + rnorm(2 * n, 0, 3) + (((1:nrow(data) + 1) %/% 2) %% 5) )
+# data
+# data %>% summary
+# # > data
+# # # A tibble: 200 x 4
+# #    PERSON_ID MatchingPairID isExposed   Outcome
+# #       <fctr>         <fctr>     <lgl>     <dbl>
+# #  1         1              1     FALSE  9.120639
+# #  2         2              1      TRUE 12.550930
+# #  3         3              2     FALSE  9.493114
+# #  4         4              2      TRUE 17.785842
+# #  5         5              3     FALSE 13.988523
+# #  6         6              3      TRUE 11.538595
+# #  7         7              4     FALSE 15.462287
+# #  8         8              4      TRUE 17.214974
+# #  9         9              5     FALSE 11.727344
+# # 10        10              5      TRUE 10.083835
+# # # ... with 190 more rows
+# # > data %>% summary
+# #    PERSON_ID   MatchingPairID isExposed          Outcome      
+# #  1      :  1   1      :  2    Mode :logical   Min.   : 5.257  
+# #  2      :  1   2      :  2    FALSE:100       1st Qu.:10.466  
+# #  3      :  1   3      :  2    TRUE :100       Median :12.507  
+# #  4      :  1   4      :  2                    Mean   :12.607  
+# #  5      :  1   5      :  2                    3rd Qu.:14.698  
+# #  6      :  1   6      :  2                    Max.   :21.226  
+# #  (Other):194   (Other):188    
+# set.seed(1)
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle(MatchingPairID_isExposed_PERSON_ID = data)
+# # > function.MatchingPairID_isExposed_PERSON_ID_shuffle(MatchingPairID_isExposed_PERSON_ID = data)
+# # # A tibble: 200 x 5
+# #    PERSON_ID MatchingPairID isExposed   Outcome isExposed_shuffle
+# #       <fctr>         <fctr>     <lgl>     <dbl>             <lgl>
+# #  1         1              1     FALSE  9.120639             FALSE
+# #  2         2              1      TRUE 12.550930              TRUE
+# #  3         3              2     FALSE  9.493114             FALSE
+# #  4         4              2      TRUE 17.785842              TRUE
+# #  5         5              3     FALSE 13.988523              TRUE
+# #  6         6              3      TRUE 11.538595             FALSE
+# #  7         7              4     FALSE 15.462287              TRUE
+# #  8         8              4      TRUE 17.214974             FALSE
+# #  9         9              5     FALSE 11.727344             FALSE
+# # 10        10              5      TRUE 10.083835              TRUE
+# # # ... with 190 more rows
+# 
+# 
 # load(url("https://github.com/mkim0710/tidystat/raw/master/library(CrossScreening) nhanes.fish.match.rda"))
 # nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column %>% as.tibble
 # names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
@@ -208,6 +261,10 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 # # 10            102        Unexposed        45              TRUE
 # # # ... with 458 more rows
 
+
+
+
+
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -222,6 +279,17 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairI
 }
 
 # #@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec() --------
+# set.seed(1)
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+#  Factor w/ 200 levels "1","2","3","4",..: 1 4 6 7 9 12 14 16 17 19 ...
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+#  Factor w/ 200 levels "1","2","3","4",..: 2 4 5 8 10 11 13 16 18 19 ...
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+#  Factor w/ 200 levels "1","2","3","4",..: 1 4 6 8 10 11 14 15 18 20 ...
+#  
 # set.seed(1)
 # function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
 # function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
