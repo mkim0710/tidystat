@@ -136,6 +136,104 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 }
 
 # #@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle() ---------
+# library(tidyverse)
+# n = 100
+# data = data_frame(
+#   PERSON_ID = as.factor(1:(n * 2))
+#   , MatchingPairID = as.factor((1:(n * 2) + 1) %/% 2)
+#   , isExposed = rep(c(F,T), n) )
+# set.seed(1)
+# data = data %>% mutate(Outcome = isExposed + 10 + rnorm(2 * n, 0, 3) + (((1:nrow(data) + 1) %/% 2) %% 5) )
+# data
+# data %>% summary
+# # > data
+# # # A tibble: 200 x 4
+# #    PERSON_ID MatchingPairID isExposed   Outcome
+# #       <fctr>         <fctr>     <lgl>     <dbl>
+# #  1         1              1     FALSE  9.120639
+# #  2         2              1      TRUE 12.550930
+# #  3         3              2     FALSE  9.493114
+# #  4         4              2      TRUE 17.785842
+# #  5         5              3     FALSE 13.988523
+# #  6         6              3      TRUE 11.538595
+# #  7         7              4     FALSE 15.462287
+# #  8         8              4      TRUE 17.214974
+# #  9         9              5     FALSE 11.727344
+# # 10        10              5      TRUE 10.083835
+# # # ... with 190 more rows
+# # > data %>% summary
+# #    PERSON_ID   MatchingPairID isExposed          Outcome      
+# #  1      :  1   1      :  2    Mode :logical   Min.   : 5.257  
+# #  2      :  1   2      :  2    FALSE:100       1st Qu.:10.466  
+# #  3      :  1   3      :  2    TRUE :100       Median :12.507  
+# #  4      :  1   4      :  2                    Mean   :12.607  
+# #  5      :  1   5      :  2                    3rd Qu.:14.698  
+# #  6      :  1   6      :  2                    Max.   :21.226  
+# #  (Other):194   (Other):188    
+# set.seed(1)
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle(MatchingPairID_isExposed_PERSON_ID = data)
+# # > function.MatchingPairID_isExposed_PERSON_ID_shuffle(MatchingPairID_isExposed_PERSON_ID = data)
+# # # A tibble: 200 x 5
+# #    PERSON_ID MatchingPairID isExposed   Outcome isExposed_shuffle
+# #       <fctr>         <fctr>     <lgl>     <dbl>             <lgl>
+# #  1         1              1     FALSE  9.120639             FALSE
+# #  2         2              1      TRUE 12.550930              TRUE
+# #  3         3              2     FALSE  9.493114             FALSE
+# #  4         4              2      TRUE 17.785842              TRUE
+# #  5         5              3     FALSE 13.988523              TRUE
+# #  6         6              3      TRUE 11.538595             FALSE
+# #  7         7              4     FALSE 15.462287              TRUE
+# #  8         8              4      TRUE 17.214974             FALSE
+# #  9         9              5     FALSE 11.727344             FALSE
+# # 10        10              5      TRUE 10.083835              TRUE
+# # # ... with 190 more rows
+# 
+# t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T])
+# # > t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T])
+# # 
+# # 	Welch Two Sample t-test
+# # 
+# # data:  data$Outcome[data$isExposed == F] and data$Outcome[data$isExposed == T]
+# # t = -1.8015, df = 197.83, p-value = 0.07314
+# # alternative hypothesis: true difference in means is not equal to 0
+# # 95 percent confidence interval:
+# #  -1.638826  0.074052
+# # sample estimates:
+# # mean of x mean of y 
+# #  12.21543  12.99781 
+# 
+# t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T], paired = T)
+# # > t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T], paired = T)
+# # 
+# # 	Paired t-test
+# # 
+# # data:  data$Outcome[data$isExposed == F] and data$Outcome[data$isExposed == T]
+# # t = -1.9882, df = 99, p-value = 0.04955
+# # alternative hypothesis: true difference in means is not equal to 0
+# # 95 percent confidence interval:
+# #  -1.563190264 -0.001584066
+# # sample estimates:
+# # mean of the differences 
+# #              -0.7823872 
+# iteration = 10^5
+# set.seed(3)
+# time1 = Sys.time()
+# dist = replicate(iteration, diff(by(data$Outcome, function.MatchingPairID_isExposed_PERSON_ID_shuffle(data)$isExposed_shuffle, mean)))
+# time2 = Sys.time()
+# hist(dist, col = "gray", breaks = 100)
+# abline(v = diff(by(data$Outcome, data$isExposed, mean)), col = "blue", lwd = 2)
+# 
+# time2 - time1
+# sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
+# sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  # two-tailed test
+# # > time2 - time1
+# # Time difference of 2.884855 mins
+# # > sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
+# # [1] 0.02486
+# # > sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  # two-tailed test
+# # [1] 0.04855
+# 
+# 
 # load(url("https://github.com/mkim0710/tidystat/raw/master/library(CrossScreening) nhanes.fish.match.rda"))
 # nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column %>% as.tibble
 # names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
@@ -208,6 +306,10 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 # # 10            102        Unexposed        45              TRUE
 # # # ... with 458 more rows
 
+
+
+
+
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -223,6 +325,17 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairI
 
 # #@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec() --------
 # set.seed(1)
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+#  Factor w/ 200 levels "1","2","3","4",..: 1 4 6 7 9 12 14 16 17 19 ...
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+#  Factor w/ 200 levels "1","2","3","4",..: 2 4 5 8 10 11 13 16 18 19 ...
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+#  Factor w/ 200 levels "1","2","3","4",..: 1 4 6 8 10 11 14 15 18 20 ...
+#  
+# set.seed(1)
 # function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
 # function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
 # function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
@@ -237,3 +350,72 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairI
 # #  int [1:234] 1003 489 820 166 45 828 829 83 831 859 ...
 
 
+
+
+#@ shuffle & calculate Statistic ---------
+
+function.Outcome_mean_diff_byExposed = function(isExposed_Outcome, var_isExposed = "isExposed", var_Outcome = "Outcome") {
+  if (!var_isExposed %in% names(isExposed_Outcome)) {
+    stop("!var_isExposed %in% names(isExposed_Outcome)")
+  } else if (!var_Outcome %in% names(isExposed_Outcome)) {
+    stop("!var_Outcome %in% names(isExposed_Outcome)")
+  }
+  StatisticValue = diff(by(isExposed_Outcome[[var_Outcome]], isExposed_Outcome[[var_isExposed]], mean))
+  StatisticValue
+}
+# function.Outcome_mean_diff_byExposed(data)
+# # > function.Outcome_mean_diff_byExposed(data)
+# # [1] 0.7823872
+
+function.calculate.StatisticValue = function.Outcome_mean_diff_byExposed
+
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue = function(
+  MatchingPairID_isExposed_PERSON_ID
+  , var_MatchingPairID = "MatchingPairID"
+  , var_PERSON_ID = "PERSON_ID"
+  , seed = NULL
+  , .function.calculate.StatisticValue = function.calculate.StatisticValue
+  , ...
+) {
+  MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
+  
+  if(!is.null(seed)) {
+    set.seed(seed); 
+  }
+  sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
+  index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
+  
+  data_shuffle = MatchingPairID_isExposed_PERSON_ID
+  data_shuffle$isExposed = F
+  data_shuffle$isExposed[index4Exposed] = T
+  out = .function.calculate.StatisticValue(data_shuffle)
+  out
+}
+# set.seed(5)
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data)
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data)
+# function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data)
+# # > function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data)
+# # [1] -0.7375218
+# # > function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data)
+# # [1] -0.4180693
+# # > function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data)
+# # [1] 0.0853595
+# 
+# iteration = 10^5
+# set.seed(3)
+# time1 = Sys.time()
+# EmpiricalDistributionOfStatisticValue = replicate(iteration, function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data))
+# time2 = Sys.time()
+# hist(EmpiricalDistributionOfStatisticValue, col = "gray", breaks = 100)
+# abline(v = diff(by(data$Outcome, data$isExposed, mean)), col = "blue", lwd = 2)
+# 
+# time2 - time1
+# sum(EmpiricalDistributionOfStatisticValue > function.calculate.StatisticValue(data) )/iteration  # one-tailed test
+# sum(abs(EmpiricalDistributionOfStatisticValue) > abs(function.calculate.StatisticValue(data)) )/iteration  # two-tailed test
+# # > time2 - time1
+# # Time difference of 2.237994 mins
+# # > sum(EmpiricalDistributionOfStatisticValue > function.calculate.StatisticValue(data) )/iteration  # one-tailed test
+# # [1] 0.02486
+# # > sum(abs(EmpiricalDistributionOfStatisticValue) > abs(function.calculate.StatisticValue(data)) )/iteration  # two-tailed test
+# # [1] 0.04855
