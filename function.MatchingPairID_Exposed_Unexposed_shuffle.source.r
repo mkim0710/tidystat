@@ -1,5 +1,5 @@
 function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Exposed_Unexposed, var_MatchingPairID = "MatchingPairID", var_Exposed = "Exposed", var_Unexposed = "Unexposed", seed = NULL) {
-    library(tidyverse)
+    # library(tidyverse)
     # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r")
     if( !identical(colnames(MatchingPairID_Exposed_Unexposed), c(var_MatchingPairID, var_Exposed, var_Unexposed)) ) {
         stop("!identical(colnames(MatchingPairID_Exposed_Unexposed), c(var_MatchingPairID, var_Exposed, var_Unexposed))")
@@ -10,16 +10,16 @@ function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Expo
     # %>% arrange(!!var_MatchingPairID)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID$MatchingPairID), ]
     
-    if(!is.null(seed)) {
-        set.seed(seed); 
-    }
+    # if(!is.null(seed)) {
+    #     set.seed(seed); 
+    # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
     
     out$Exposed_shuffle = MatchingPairID_isExposed_PERSON_ID$PERSON_ID[index4Exposed]
     out$Unexposed_shuffle = MatchingPairID_isExposed_PERSON_ID$PERSON_ID[-index4Exposed]
     out
-
+    
 }
 
 # #@ test) function.MatchingPairID_Exposed_Unexposed_shuffle() ---------
@@ -82,17 +82,17 @@ function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Expo
 
 
 function.MatchingPairID_Exposed_Unexposed_shuffle_vec = function(MatchingPairID_Exposed_Unexposed, var_MatchingPairID = "MatchingPairID", var_Exposed = "Exposed", var_Unexposed = "Unexposed", seed = NULL) {
-    library(tidyverse)
     # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r")
+    # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = 
         MatchingPairID_Exposed_Unexposed[order(MatchingPairID_Exposed_Unexposed$MatchingPairID), c(var_MatchingPairID, var_Exposed, var_Unexposed)] %>% 
         gather(!!var_Exposed, !!var_Unexposed, key = "ExposedUnexposed", value = "PERSON_ID")
     # %>% arrange(!!var_MatchingPairID)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID$MatchingPairID), ]
     
-    if(!is.null(seed)) {
-        set.seed(seed); 
-    }
+    # if(!is.null(seed)) {
+    #     set.seed(seed); 
+    # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
     
@@ -121,11 +121,13 @@ function.MatchingPairID_Exposed_Unexposed_shuffle_vec = function(MatchingPairID_
 
 
 function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r")
+    # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
-    if(!is.null(seed)) {
-        set.seed(seed); 
-    }
+    # if(!is.null(seed)) {
+    #     set.seed(seed); 
+    # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
     
@@ -311,11 +313,13 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 
 
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r")
+    # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
-    if(!is.null(seed)) {
-        set.seed(seed); 
-    }
+    # if(!is.null(seed)) {
+    #     set.seed(seed); 
+    # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
     
@@ -355,13 +359,15 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairI
 #@ shuffle & calculate Statistic ---------
 
 function.Outcome_mean_diff_byExposed = function(isExposed_Outcome, var_isExposed = "isExposed", var_Outcome = "Outcome") {
-  if (!var_isExposed %in% names(isExposed_Outcome)) {
-    stop("!var_isExposed %in% names(isExposed_Outcome)")
-  } else if (!var_Outcome %in% names(isExposed_Outcome)) {
-    stop("!var_Outcome %in% names(isExposed_Outcome)")
-  }
-  StatisticValue = diff(by(isExposed_Outcome[[var_Outcome]], isExposed_Outcome[[var_isExposed]], mean))
-  StatisticValue
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r")
+    # library(tidyverse)
+    # if (!var_isExposed %in% names(isExposed_Outcome)) {
+    #     stop("!var_isExposed %in% names(isExposed_Outcome)")
+    # } else if (!var_Outcome %in% names(isExposed_Outcome)) {
+    #     stop("!var_Outcome %in% names(isExposed_Outcome)")
+    # }
+    StatisticValue = diff(by(isExposed_Outcome[[var_Outcome]], isExposed_Outcome[[var_isExposed]], mean))
+    StatisticValue
 }
 # function.Outcome_mean_diff_byExposed(data)
 # # > function.Outcome_mean_diff_byExposed(data)
@@ -370,26 +376,28 @@ function.Outcome_mean_diff_byExposed = function(isExposed_Outcome, var_isExposed
 function.calculate.StatisticValue = function.Outcome_mean_diff_byExposed
 
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue = function(
-  MatchingPairID_isExposed_PERSON_ID
-  , var_MatchingPairID = "MatchingPairID"
-  , var_PERSON_ID = "PERSON_ID"
-  , seed = NULL
-  , .function.calculate.StatisticValue = function.calculate.StatisticValue
-  , ...
+    MatchingPairID_isExposed_PERSON_ID
+    , var_MatchingPairID = "MatchingPairID"
+    , var_PERSON_ID = "PERSON_ID"
+    , seed = NULL
+    , .function.calculate.StatisticValue = function.calculate.StatisticValue
+    , ...
 ) {
-  MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
-  
-  if(!is.null(seed)) {
-    set.seed(seed); 
-  }
-  sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
-  index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
-  
-  data_shuffle = MatchingPairID_isExposed_PERSON_ID
-  data_shuffle$isExposed = F
-  data_shuffle$isExposed[index4Exposed] = T
-  out = .function.calculate.StatisticValue(data_shuffle)
-  out
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r")
+    # library(tidyverse)
+    MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
+    
+    # if(!is.null(seed)) {
+    #     set.seed(seed); 
+    # }
+    sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
+    index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
+    
+    data_shuffle = MatchingPairID_isExposed_PERSON_ID
+    data_shuffle$isExposed = F
+    data_shuffle$isExposed[index4Exposed] = T
+    out = .function.calculate.StatisticValue(data_shuffle)
+    out
 }
 # set.seed(5)
 # function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue(data)

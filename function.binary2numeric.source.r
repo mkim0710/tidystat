@@ -1,19 +1,19 @@
 
 function.binary2numeric = function(x) {
-  # source("https://github.com/mkim0710/tidystat/raw/master/function.binary2numeric.source.r")
-  # caution) as.numeric(CategoricalVariable_3MoreLevels)
-  if (is.character(x)) {
-    x = as.factor(x)
-  }
-  if (length(levels(x)) == 2) {
-    x = as.numeric(x)
-  } else if (length(levels(x)) > 2) {
-    print("error - length(levels(x)) > 2")
-  }
-  if (is.logical(x)) {
-    x = as.numeric(x)
-  } 
-  x
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.binary2numeric.source.r")
+    # caution) as.numeric(CategoricalVariable_3MoreLevels)
+    if (is.character(x)) {
+        x = as.factor(x)
+    }
+    if (length(levels(x)) == 2) {
+        x = as.numeric(x)
+    } else if (length(levels(x)) > 2) {
+        print("error - length(levels(x)) > 2")
+    }
+    if (is.logical(x)) {
+        x = as.numeric(x)
+    } 
+    x
 }
 
 #@ test) function.binary2numeric() ----

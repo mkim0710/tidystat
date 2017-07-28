@@ -1,15 +1,15 @@
 matrix2x2.phi = function(matrix2x2) {
-  library(tidyverse)
-  if(length(matrix2x2) == 4) {
-    n00 = matrix2x2[1,1]
-    n01 = matrix2x2[1,2]
-    n10 = matrix2x2[2,1]
-    n11 = matrix2x2[2,2]
-    phi = (n11 * n00 - n10 * n01) / { (n10+n11)*(n00+n01)*(n00+n10)*(n01+n11) } ^.5
-  } else {
-    print("error: not matrix2x2")
-  }
-  phi
+    # library(tidyverse)
+    if(length(matrix2x2) == 4) {
+        n00 = matrix2x2[1,1]
+        n01 = matrix2x2[1,2]
+        n10 = matrix2x2[2,1]
+        n11 = matrix2x2[2,2]
+        phi = (n11 * n00 - n10 * n01) / { (n10+n11)*(n00+n01)*(n00+n10)*(n01+n11) } ^.5
+    } else {
+        print("error: not matrix2x2")
+    }
+    phi
 }
 
 # matrix2x2.cor = function(matrix2x2) {
@@ -28,23 +28,23 @@ matrix2x2.phi = function(matrix2x2) {
 # }
 
 matrix2x2.OR_CI_phi = function(matrix2x2) {
-  # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.OR_CI_phi.source.r")
-  # version 170630
-  library(tidyverse)
-  out = list()
-  if(length(matrix2x2) == 4) {
-    OR = matrix2x2[1,1] * matrix2x2[2,2] / matrix2x2[1,2] / matrix2x2[2,1]
-    SE_ln_OR = sqrt(1/matrix2x2[1,1] + 1/matrix2x2[1,2] + 1/matrix2x2[2,1] + 1/matrix2x2[2,2])
-    out$OR = OR
-    out$OR_LowerLimit = exp( log(OR) - 1.96 * SE_ln_OR )
-    out$OR_UpperLimit = exp( log(OR) + 1.96 * SE_ln_OR )
-
-    out$phi = matrix2x2.phi(matrix2x2)
-
-  } else {
-    print("error: not matrix2x2")
-  }
-  out %>% as.tibble
+    # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.OR_CI_phi.source.r")
+    # version 170630
+    # library(tidyverse)
+    out = list()
+    if(length(matrix2x2) == 4) {
+        OR = matrix2x2[1,1] * matrix2x2[2,2] / matrix2x2[1,2] / matrix2x2[2,1]
+        SE_ln_OR = sqrt(1/matrix2x2[1,1] + 1/matrix2x2[1,2] + 1/matrix2x2[2,1] + 1/matrix2x2[2,2])
+        out$OR = OR
+        out$OR_LowerLimit = exp( log(OR) - 1.96 * SE_ln_OR )
+        out$OR_UpperLimit = exp( log(OR) + 1.96 * SE_ln_OR )
+        
+        out$phi = matrix2x2.phi(matrix2x2)
+        
+    } else {
+        print("error: not matrix2x2")
+    }
+    out %>% as.tibble
 }
 
 

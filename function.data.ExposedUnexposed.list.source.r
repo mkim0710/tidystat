@@ -1,5 +1,5 @@
 function.data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_zero_vars = T) {
-    library(tidyverse)
+    # library(tidyverse)
     # source("https://github.com/mkim0710/tidystat/raw/master/function.data.ExposedUnexposed.list.source.r")
     if(!is.logical(data[[varname_Exposed]])) {
         stop("error - !is.logical(data[[varname_Exposed]])")

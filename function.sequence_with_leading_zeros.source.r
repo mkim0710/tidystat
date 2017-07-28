@@ -1,7 +1,7 @@
 function.sequence_with_leading_zeros = function(num) {
-  # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.source.r")
-  digits_with_leading_zeros = trunc(log10(num)) + 1
-  sprintf(paste0("%0",digits_with_leading_zeros,"d"), 1:num)
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.source.r")
+    digits_with_leading_zeros = trunc(log10(num)) + 1
+    sprintf(paste0("%0",digits_with_leading_zeros,"d"), 1:num)
 }
 
 # > function.sequence_with_leading_zeros(9.9)
