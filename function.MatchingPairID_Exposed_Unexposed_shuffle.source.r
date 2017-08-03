@@ -217,17 +217,41 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 # # sample estimates:
 # # mean of the differences 
 # #              -0.0806007 
-# iteration = 10^5
+# 
+# iteration = 2000
+# # iteration = 10^4
+# # iteration = 10^5
 # set.seed(3)
 # time1 = Sys.time()
 # dist = replicate(iteration, diff(by(data$Outcome, function.MatchingPairID_isExposed_PERSON_ID_shuffle(data)$isExposed_shuffle, mean)))
 # time2 = Sys.time()
-# hist(dist, col = "gray", breaks = 100)
+# dist %>% hist(col = "gray", breaks = 100)
 # abline(v = diff(by(data$Outcome, data$isExposed, mean)), col = "blue", lwd = 2)
 # 
 # time2 - time1
 # sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
 # sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  # two-tailed test
+# 
+# # > iteration = 2000
+# # 
+# # > time2 - time1
+# # Time difference of 23.0491 secs
+# # > sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
+# # [1] 0.0315
+# # > sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  # two-tailed test
+# # [1] 0.064
+# 
+# # > iteration = 10^4
+# # 
+# # > time2 - time1
+# # Time difference of 1.906421 mins
+# # > sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
+# # [1] 0.0275
+# # > sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  # two-tailed test
+# # [1] 0.0589
+# 
+# # > iteration = 10^5
+# # 
 # # > time2 - time1
 # # Time difference of 22.65409 mins
 # # > sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
