@@ -139,84 +139,84 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 
 # #@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle() ---------
 # library(tidyverse)
-# n = 100
+# n = 10^4
 # data = data_frame(
 #   PERSON_ID = as.factor(1:(n * 2))
 #   , MatchingPairID = as.factor((1:(n * 2) + 1) %/% 2)
 #   , isExposed = rep(c(F,T), n) )
 # set.seed(1)
-# data = data %>% mutate(Outcome = isExposed + 10 + rnorm(2 * n, 0, 3) + (((1:nrow(data) + 1) %/% 2) %% 5) )
+# data = data %>% mutate(Outcome = isExposed * 100 / n + 10 + rnorm(2 * n, 0, 3) + (((1:nrow(data) + 1) %/% 2) %% 5) )
 # data
 # data %>% summary
 # # > data
-# # # A tibble: 200 x 4
+# # # A tibble: 20,000 x 4
 # #    PERSON_ID MatchingPairID isExposed   Outcome
 # #       <fctr>         <fctr>     <lgl>     <dbl>
 # #  1         1              1     FALSE  9.120639
-# #  2         2              1      TRUE 12.550930
+# #  2         2              1      TRUE 11.560930
 # #  3         3              2     FALSE  9.493114
-# #  4         4              2      TRUE 17.785842
+# #  4         4              2      TRUE 16.795842
 # #  5         5              3     FALSE 13.988523
-# #  6         6              3      TRUE 11.538595
+# #  6         6              3      TRUE 10.548595
 # #  7         7              4     FALSE 15.462287
-# #  8         8              4      TRUE 17.214974
+# #  8         8              4      TRUE 16.224974
 # #  9         9              5     FALSE 11.727344
-# # 10        10              5      TRUE 10.083835
-# # # ... with 190 more rows
+# # 10        10              5      TRUE  9.093835
+# # # ... with 19,990 more rows
 # # > data %>% summary
-# #    PERSON_ID   MatchingPairID isExposed          Outcome      
-# #  1      :  1   1      :  2    Mode :logical   Min.   : 5.257  
-# #  2      :  1   2      :  2    FALSE:100       1st Qu.:10.466  
-# #  3      :  1   3      :  2    TRUE :100       Median :12.507  
-# #  4      :  1   4      :  2                    Mean   :12.607  
-# #  5      :  1   5      :  2                    3rd Qu.:14.698  
-# #  6      :  1   6      :  2                    Max.   :21.226  
-# #  (Other):194   (Other):188    
+# #    PERSON_ID     MatchingPairID  isExposed          Outcome      
+# #  1      :    1   1      :    2   Mode :logical   Min.   :-2.898  
+# #  2      :    1   2      :    2   FALSE:10000     1st Qu.: 9.731  
+# #  3      :    1   3      :    2   TRUE :10000     Median :11.989  
+# #  4      :    1   4      :    2                   Mean   :11.989  
+# #  5      :    1   5      :    2                   3rd Qu.:14.212  
+# #  6      :    1   6      :    2                   Max.   :24.883  
+# #  (Other):19994   (Other):19988                                   
 # set.seed(1)
 # function.MatchingPairID_isExposed_PERSON_ID_shuffle(MatchingPairID_isExposed_PERSON_ID = data)
 # # > function.MatchingPairID_isExposed_PERSON_ID_shuffle(MatchingPairID_isExposed_PERSON_ID = data)
-# # # A tibble: 200 x 5
+# # # A tibble: 20,000 x 5
 # #    PERSON_ID MatchingPairID isExposed   Outcome isExposed_shuffle
 # #       <fctr>         <fctr>     <lgl>     <dbl>             <lgl>
 # #  1         1              1     FALSE  9.120639             FALSE
-# #  2         2              1      TRUE 12.550930              TRUE
-# #  3         3              2     FALSE  9.493114             FALSE
-# #  4         4              2      TRUE 17.785842              TRUE
-# #  5         5              3     FALSE 13.988523              TRUE
-# #  6         6              3      TRUE 11.538595             FALSE
-# #  7         7              4     FALSE 15.462287              TRUE
-# #  8         8              4      TRUE 17.214974             FALSE
-# #  9         9              5     FALSE 11.727344             FALSE
-# # 10        10              5      TRUE 10.083835              TRUE
-# # # ... with 190 more rows
+# #  2         2              1      TRUE 11.560930              TRUE
+# #  3         3              2     FALSE  9.493114              TRUE
+# #  4         4              2      TRUE 16.795842             FALSE
+# #  5         5              3     FALSE 13.988523             FALSE
+# #  6         6              3      TRUE 10.548595              TRUE
+# #  7         7              4     FALSE 15.462287             FALSE
+# #  8         8              4      TRUE 16.224974              TRUE
+# #  9         9              5     FALSE 11.727344              TRUE
+# # 10        10              5      TRUE  9.093835             FALSE
+# # # ... with 19,990 more rows
 # 
 # t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T])
+# t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T], paired = T)
 # # > t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T])
 # # 
 # # 	Welch Two Sample t-test
 # # 
 # # data:  data$Outcome[data$isExposed == F] and data$Outcome[data$isExposed == T]
-# # t = -1.8015, df = 197.83, p-value = 0.07314
+# # t = -1.7156, df = 19997, p-value = 0.08625
 # # alternative hypothesis: true difference in means is not equal to 0
 # # 95 percent confidence interval:
-# #  -1.638826  0.074052
+# #  -0.17268666  0.01148525
 # # sample estimates:
 # # mean of x mean of y 
-# #  12.21543  12.99781 
-# 
-# t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T], paired = T)
+# #  11.94861  12.02921 
+# # 
 # # > t.test(data$Outcome[data$isExposed==F], data$Outcome[data$isExposed==T], paired = T)
 # # 
 # # 	Paired t-test
 # # 
 # # data:  data$Outcome[data$isExposed == F] and data$Outcome[data$isExposed == T]
-# # t = -1.9882, df = 99, p-value = 0.04955
+# # t = -1.8992, df = 9999, p-value = 0.05757
 # # alternative hypothesis: true difference in means is not equal to 0
 # # 95 percent confidence interval:
-# #  -1.563190264 -0.001584066
+# #  -0.163790679  0.002589273
 # # sample estimates:
 # # mean of the differences 
-# #              -0.7823872 
+# #              -0.0806007 
 # iteration = 10^5
 # set.seed(3)
 # time1 = Sys.time()
@@ -229,13 +229,13 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
 # sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
 # sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  # two-tailed test
 # # > time2 - time1
-# # Time difference of 2.884855 mins
+# # Time difference of 22.65409 mins
 # # > sum(dist > diff(by(data$Outcome, data$isExposed, mean)) )/iteration  # one-tailed test
-# # [1] 0.02486
+# # [1] 0.02898
 # # > sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  # two-tailed test
-# # [1] 0.04855
-# 
-# 
+# # [1] 0.05828
+
+
 # load(url("https://github.com/mkim0710/tidystat/raw/master/library(CrossScreening) nhanes.fish.match.rda"))
 # nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column %>% as.tibble
 # names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
