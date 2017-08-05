@@ -3,6 +3,8 @@
 
 
 function.character.clean = function(vec, pattern_to_clean = "[^A-z0-9[:punct:][:space:]]") {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.character.clean")
+    
     index_to_clean = grep(pattern_to_clean, vec, value = F)
     # warnings(
     #     paste0("Cleaning Characters: ", "\"", paste0(grep(pattern_to_clean, vec, value = T), collapse = "\", \""), "\"" )
@@ -22,6 +24,7 @@ function.character.clean = function(vec, pattern_to_clean = "[^A-z0-9[:punct:][:
     print(t(tmp_df))
     out
 }
+
 
 
 # #@ test) function.character.clean() -----
