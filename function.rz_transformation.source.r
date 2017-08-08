@@ -1,11 +1,12 @@
 # function.rz_transformation.source.r
 
-
 function.Fisher_rz_Transform = function(r) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.rz_transformation.source.r")
     .5 * log ( (1+r)/(1-r) )
 }
 
 function.rz_diff = function(r1, r2, n1, n2 = NULL) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.rz_transformation.source.r")
     if(is.null(n2)) {
         n2 = n1
     }
@@ -13,4 +14,3 @@ function.rz_diff = function(r1, r2, n1, n2 = NULL) {
     rz2 = .5 * log ( (1+r2)/(1-r2) )
     rz_diff = (rz1 - rz2) / ( 1/(n1-3) + 1/(n2-3) )^.5
 }
-
