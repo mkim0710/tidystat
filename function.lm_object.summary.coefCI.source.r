@@ -48,9 +48,9 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2)
     tmp.df$p_value = sprintf("%.3f", lm_object.summary.coef.df$`Pr(>|t|)`)
     tmp.df$p_value[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.001] = "<0.001"
     
-    tmp.df$star = ""
-    tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.05] = "*"
-    tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.01] = "**"
+    tmp.df$star = "   "
+    tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.05] = "*  "
+    tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.01] = "** "
     tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.001] = "***"
     
     out = cbind(
@@ -144,9 +144,9 @@ function.glm_object.summary.OR = function(glm_object, sprintf_fmt_decimal = 2, c
     tmp.df$p_value = sprintf("%.3f", glm_object.summary.coef.df$`Pr(>|z|)`)
     tmp.df$p_value[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
 
-    tmp.df$star = ""
-    tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.05] = "*"
-    tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.01] = "**"
+    tmp.df$star = "   "
+    tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.05] = "*  "
+    tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.01] = "** "
     tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "***"
 
     out = cbind(
@@ -237,9 +237,9 @@ function.clogit_object.summary.OR = function(clogit_object, sprintf_fmt_decimal 
     tmp.df$p_value = sprintf("%.3f", clogit_object.summary.coef.df$`Pr(>|z|)`)
     tmp.df$p_value[clogit_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
 
-    tmp.df$star = ""
-    tmp.df$star[clogit_object.summary.coef.df$`Pr(>|z|)` <= 0.05] = "*"
-    tmp.df$star[clogit_object.summary.coef.df$`Pr(>|z|)` <= 0.01] = "**"
+    tmp.df$star = "   "
+    tmp.df$star[clogit_object.summary.coef.df$`Pr(>|z|)` <= 0.05] = "*  "
+    tmp.df$star[clogit_object.summary.coef.df$`Pr(>|z|)` <= 0.01] = "** "
     tmp.df$star[clogit_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "***"
 
     out = cbind(
