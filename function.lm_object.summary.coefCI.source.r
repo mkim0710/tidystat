@@ -29,7 +29,10 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2)
     #     , ")"
     # ), stringsAsFactors = F)
     # http://www.dummies.com/programming/r/how-to-format-numbers-in-r/
-    digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(lm_object.summary.coef.df$Estimate, lm_object.confint.df$`2.5 %`, lm_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
+    # digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(lm_object.summary.coef.df$Estimate, lm_object.confint.df$`2.5 %`, lm_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
+    tmp.vec = c(lm_object.summary.coef.df$Estimate, lm_object.confint.df$`2.5 %`, lm_object.confint.df$`97.5 %`)
+    tmp.vec[is.infinite(tmp.vec)] = NA
+    digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(tmp.vec, na.rm = T) %>% log10 %>% trunc) + 1
     if (any(c(lm_object.summary.coef.df$Estimate, lm_object.confint.df$`2.5 %`, lm_object.confint.df$`97.5 %`) < 0, na.rm = T) ) {
         digits_total_incl_decimal = digits_total_incl_decimal + 1
     }
@@ -121,12 +124,14 @@ function.glm_object.summary.OR = function(glm_object, sprintf_fmt_decimal = 2, c
     #     , ")"
     # ), stringsAsFactors = F)
     # http://www.dummies.com/programming/r/how-to-format-numbers-in-r/
-    digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(glm_object.summary.coef.df$Estimate, glm_object.confint.df$`2.5 %`, glm_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
+    # digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(glm_object.summary.coef.df$Estimate, glm_object.confint.df$`2.5 %`, glm_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
+    tmp.vec = c(glm_object.summary.coef.df$Estimate, glm_object.confint.df$`2.5 %`, glm_object.confint.df$`97.5 %`)
+    tmp.vec[is.infinite(tmp.vec)] = NA
+    digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(tmp.vec, na.rm = T) %>% log10 %>% trunc) + 1
     if (any(c(glm_object.summary.coef.df$Estimate, glm_object.confint.df$`2.5 %`, glm_object.confint.df$`97.5 %`) < 0, na.rm = T) ) {
         digits_total_incl_decimal = digits_total_incl_decimal + 1
     }
 
-    
     tmp.df = data.frame(coefCI = paste0(
         sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), glm_object.summary.coef.df$Estimate)
         , " ("
@@ -212,7 +217,10 @@ function.clogit_object.summary.OR = function(clogit_object, sprintf_fmt_decimal 
     #     , ")"
     # ), stringsAsFactors = F)
     # http://www.dummies.com/programming/r/how-to-format-numbers-in-r/
-    digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(clogit_object.summary.coef.df$coef, clogit_object.confint.df$`2.5 %`, clogit_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
+    # digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(clogit_object.summary.coef.df$coef, clogit_object.confint.df$`2.5 %`, clogit_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
+    tmp.vec = c(clogit_object.summary.coef.df$coef, clogit_object.confint.df$`2.5 %`, clogit_object.confint.df$`97.5 %`)
+    tmp.vec[is.infinite(tmp.vec)] = NA
+    digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(tmp.vec, na.rm = T) %>% log10 %>% trunc) + 1
     if (any(c(clogit_object.summary.coef.df$coef, clogit_object.confint.df$`2.5 %`, clogit_object.confint.df$`97.5 %`) < 0, na.rm = T) ) {
         digits_total_incl_decimal = digits_total_incl_decimal + 1
     }
