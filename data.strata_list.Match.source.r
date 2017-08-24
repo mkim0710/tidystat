@@ -37,7 +37,7 @@ rhc_mydata %>% as.tibble
 #  9     0     0     0      0     0       0     1      0 18.04199      1      53         0     0 [10,20)
 # 10     1     0     0      0     0       0     0      0 48.42398      1      73         1     0 [40,50)
 # # ... with 5,725 more rows
-rhc_mydata.strata_list = data.strata_list(.mydata = rhc_mydata, .vars4data.strata_list = c("female", "age.cut"))
+rhc_mydata.strata_list = rhc_mydata %>% data.strata_list(.vars4data.strata_list = c("female", "age.cut"))
 rhc_mydata.strata_list %>% str(max.level = 1)
 rhc_mydata.strata_list[[1]]
 # > rhc_mydata.strata_list %>% str(max.level = 1)
