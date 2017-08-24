@@ -176,7 +176,7 @@ mtcars %>% split(.$cyl) %>% map.parent_name(function(x) nrow(x)) %>% str
 mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% str(max.level = 1)
 mtcars %>% split(.$cyl) %>% map.parent_name(lm, formula = mpg ~ wt) %>% str(max.level = 1)
 mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% str(max.level = 1)
-mtcars %>% split(.$cyl) %>% map.parent_name(~ lm(mpg ~ wt, data = .x)) %>% str(max.level = 1)
+# mtcars %>% split(.$cyl) %>% map.parent_name(~ lm(mpg ~ wt, data = .x)) %>% str(max.level = 1)
 mtcars %>% split(.$cyl) %>% map(function(x) lm(mpg ~ wt, data = x)) %>% str(max.level = 1)
 mtcars %>% split(.$cyl) %>% map.parent_name(function(x) lm(mpg ~ wt, data = x)) %>% str(max.level = 1)
 # > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% str(max.level = 1)
