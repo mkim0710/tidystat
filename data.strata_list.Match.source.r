@@ -324,6 +324,10 @@ data.stratified.Match = function(
     names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
     out
 }
+
+#@ test) data.stratified.Match() -----
+load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
     .vars4data.strata_list = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
