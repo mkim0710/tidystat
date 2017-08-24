@@ -226,21 +226,15 @@ mtcars %>% split(.$cyl) %>% map.parent_name(function(x) lm(mpg ~ wt, data = x)) 
 #   ..- attr(*, "class")= chr "lm"
 #   ..- attr(*, "parent_name")= chr "8"
 
-mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map(length) %>% str
-mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map(function(x) length(x)) %>% str
-mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map.parent_name(function(x) length(x)) %>% str
-mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map.parent_name2(function(x) length(x)) %>% str
-# > mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map(length) %>% str
+mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map(length) %>% str
+mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name(length) %>% str
+mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name2(length) %>% str
+# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map(length) %>% str
 # List of 3
 #  $ 4: int 12
 #  $ 6: int 12
 #  $ 8: int 12
-# > mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map(function(x) length(x)) %>% str
-# List of 3
-#  $ 4: int 12
-#  $ 6: int 12
-#  $ 8: int 12
-# > mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map.parent_name(function(x) length(x)) %>% str
+# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name(length) %>% str
 # List of 3
 #  $ 4: atomic [1:1] 12
 #   ..- attr(*, "parent_name")= chr "4"
@@ -248,7 +242,7 @@ mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map.parent_name2(
 #   ..- attr(*, "parent_name")= chr "6"
 #  $ 8: atomic [1:1] 12
 #   ..- attr(*, "parent_name")= chr "8"
-# > mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% map.parent_name2(function(x) length(x)) %>% str
+# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name2(length) %>% str
 # List of 3
 #  $ 4: atomic [1:1] 12
 #   ..- attr(*, "parent_name")= chr "4"
