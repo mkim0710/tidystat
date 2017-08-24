@@ -1,4 +1,4 @@
-# function.data.gather.group_by_variable.source.r
+# data.gather.group_by_variable.source.r
 
 #@ ---------------
 # data_wide %>% gather(key = "variable", value = "value") %>%
@@ -13,8 +13,8 @@ iris[,1:4] %>% gather(key = "variable", value = "value") %>%
 
 
 #@ ------------
-function.data.numeric.gather.group_by.summarise_all = function(data, round_digits = 3) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.data.gather.group_by_variable.source.r")
+data.numeric.gather.group_by.summarise_all = function(data, round_digits = 3) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.gather.group_by_variable.source.r")
     Q1 = function(x) quantile(x, probs = 0.25)
     Q2 = function(x) quantile(x, probs = 0.75)
     
@@ -30,7 +30,7 @@ function.data.numeric.gather.group_by.summarise_all = function(data, round_digit
     out
 }
 
-# #@ test: iris) function.data.gather.group_by.summarise_all()
+# #@ test: iris) data.gather.group_by.summarise_all()
 # iris %>% as.tibble
 # # > iris %>% as.tibble
 # # # A tibble: 150 x 5
@@ -56,8 +56,8 @@ function.data.numeric.gather.group_by.summarise_all = function(data, round_digit
 # #  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199                  
 # #  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
 # #  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500                  
-# function.data.numeric.gather.group_by.summarise_all(iris)
-# # > function.data.numeric.gather.group_by.summarise_all(iris)
+# data.numeric.gather.group_by.summarise_all(iris)
+# # > data.numeric.gather.group_by.summarise_all(iris)
 # #        Sepal.Length Sepal.Width Petal.Length Petal.Width
 # # mean          5.843       3.057        3.758       1.199
 # # sd            0.828       0.436        1.765       0.762
@@ -67,7 +67,7 @@ function.data.numeric.gather.group_by.summarise_all = function(data, round_digit
 # # Q2            6.400       3.300        5.100       1.800
 # # max           7.900       4.400        6.900       2.500
 # # Warning message:
-# # In function.data.numeric.gather.group_by.summarise_all(iris) :
+# # In data.numeric.gather.group_by.summarise_all(iris) :
 # #   !map_lgl(data, is.numeric) 
 # #     Dropping variables: Species
 

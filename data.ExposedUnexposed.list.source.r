@@ -1,6 +1,6 @@
-function.data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_zero_vars = T) {
+data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_zero_vars = T) {
     # library(tidyverse)
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.data.ExposedUnexposed.list.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.ExposedUnexposed.list.source.r")
     if(!is.logical(data[[varname_Exposed]])) {
         stop("error - !is.logical(data[[varname_Exposed]])")
     }
@@ -48,8 +48,8 @@ function.data.ExposedUnexposed.list = function(data, varname_Exposed = "isExpose
 # #  $ u75    : int  1 1 1 1 1 1 1 1 1 1 ...
 # #  $ treat  : int  1 1 1 1 1 1 1 1 1 1 ...
 # #  $ isExposed : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-# str(function.data.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
-# # > str(function.data.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
+# str(data.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
+# # > str(data.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
 # # [1] "* Dropping variables with all-zero values, either in the Exposed or the Unexposed:"
 # # "treat"
 # # List of 2

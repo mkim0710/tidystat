@@ -1,13 +1,13 @@
-# function.list3d.to.array3d.source.r
+# list3d.to.array3d.source.r
 
-function.list3d.to.array3d = function(list3d) {
+list3d.to.array3d = function(list3d) {
     list3d.unlist = list3d %>% unlist 
     dim(list3d.unlist) = dim(list3d)
     dimnames(list3d.unlist) = dimnames(list3d)
     list3d.unlist
 }
 
-#@ test: function.list3d.to.array3d() ------
+#@ test: list3d.to.array3d() ------
 list3d = as.list(1:(3*4*2))
 dim(list3d) = c(3,4,2)
 list3d
@@ -55,8 +55,8 @@ list3d %>% str
 #  $ : int 24
 #  - attr(*, "dim")= int [1:3] 3 4 2
 
-function.list3d.to.array3d(list3d)
-# > function.list3d.to.array3d(list3d)
+list3d.to.array3d(list3d)
+# > list3d.to.array3d(list3d)
 # , , 1
 # 
 #      [,1] [,2] [,3] [,4]
@@ -71,9 +71,9 @@ function.list3d.to.array3d(list3d)
 # [2,]   14   17   20   23
 # [3,]   15   18   21   24
 
-function.list3d.to.array3d(list3d) %>% str
-# > function.list3d.to.array3d(list3d) %>% str
+list3d.to.array3d(list3d) %>% str
+# > list3d.to.array3d(list3d) %>% str
 #  int [1:3, 1:4, 1:2] 1 2 3 4 5 6 7 8 9 10 ...
-function.list3d.to.array3d(list3d) %>% as.vector()
-# > function.list3d.to.array3d(list3d) %>% as.vector()
+list3d.to.array3d(list3d) %>% as.vector()
+# > list3d.to.array3d(list3d) %>% as.vector()
 #  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24

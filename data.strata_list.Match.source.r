@@ -1,11 +1,11 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/function.data.strata_list.Match.source.r")
+# source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
 
 
-function.data.strata_list = function(
+data.strata_list = function(
     .mydata
     , .vars4data.strata_list = c("female", "age.cut")
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4data.strata_list] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
     .mydata$strata = .mydata$strata %>% as.factor
@@ -18,7 +18,7 @@ function.data.strata_list = function(
     names(out) = levels(.mydata$strata)
     out
 }
-#@ test) function.data.strata_list() -----
+#@ test) data.strata_list() -----
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata %>% as.tibble
@@ -37,7 +37,7 @@ rhc_mydata %>% as.tibble
 #  9     0     0     0      0     0       0     1      0 18.04199      1      53         0     0 [10,20)
 # 10     1     0     0      0     0       0     0      0 48.42398      1      73         1     0 [40,50)
 # # ... with 5,725 more rows
-rhc_mydata.strata_list = function.data.strata_list(.mydata = rhc_mydata, .vars4data.strata_list = c("female", "age.cut"))
+rhc_mydata.strata_list = data.strata_list(.mydata = rhc_mydata, .vars4data.strata_list = c("female", "age.cut"))
 rhc_mydata.strata_list %>% str(max.level = 1)
 rhc_mydata.strata_list[[1]]
 # > rhc_mydata.strata_list %>% str(max.level = 1)
@@ -80,11 +80,11 @@ rhc_mydata.strata_list[[1]]
 
 
 
-function.data.Match <- function(
+data.Match <- function(
     .mydata
     , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     library(tidyverse)
     library(Matching)
     select = dplyr::select
@@ -145,9 +145,9 @@ function.data.Match <- function(
     }
     out
 }
-?CreateTableOne
-#@ test) function.data.Match() rhc_mydata -----
-rhc_mydata.Match = rhc_mydata %>% function.data.Match(
+
+#@ test) data.Match() rhc_mydata -----
+rhc_mydata.Match = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
@@ -203,15 +203,15 @@ rhc_mydata.Match$data
 # 10    3887     1     0     0      0     0       0     0      0 47.93399      1      58         0     0 [40,50)              2               3
 # # ... with 4,250 more rows
 
-#@ test) function.data.Match() rhc_mydata.strata_list -----
+#@ test) data.Match() rhc_mydata.strata_list -----
 rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
-    map(function.data.Match
+    map(data.Match
         , .vars4Matching = c("age","meanbp1")
         , .exposure = "treatment"
         , .MatchingRatio = 5
     )
 # > rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
-# +     map(function.data.Match
+# +     map(data.Match
 # +         , .vars4Matching = c("age","meanbp1")
 # +         , .exposure = "treatment"
 # +         , .MatchingRatio = 5
@@ -281,16 +281,16 @@ rhc_mydata.strata_list.Match.old$`0_[60,70)`$data
 # # ... with 536 more rows
 
 
-function.data.stratified.Match = function(
+data.stratified.Match = function(
     .mydata
     , .vars4data.strata_list = c("female", "age.cut")
     , .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
-    .mydata.strata_list = function.data.strata_list(.mydata = .mydata, .vars4data.strata_list = .vars4data.strata_list)
+    .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4data.strata_list = .vars4data.strata_list)
     .mydata.strata_list.Match = .mydata.strata_list %>% 
-        map(function.data.Match
+        map(data.Match
             , .vars4Matching = .vars4Matching
             , .exposure = .exposure
             , .MatchingRatio = .MatchingRatio
@@ -324,13 +324,13 @@ function.data.stratified.Match = function(
     names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
     out
 }
-rhc_mydata.stratified.Match = rhc_mydata %>% function.data.stratified.Match(
+rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
     .vars4data.strata_list = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
 )
-# > rhc_mydata.stratified.Match = rhc_mydata %>% function.data.stratified.Match(
+# > rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # +     .vars4data.strata_list = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -339,7 +339,7 @@ rhc_mydata.stratified.Match = rhc_mydata %>% function.data.stratified.Match(
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
 # 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 3: In function.data.stratified.Match(., .vars4data.strata_list = c("female",  :
+# 3: In data.stratified.Match(., .vars4data.strata_list = c("female",  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # 0_[100,Inf], 1_[100,Inf]
 
