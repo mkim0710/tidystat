@@ -1,6 +1,85 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
 
 
+# data.tab_strata_exposure.old = function(
+#     .mydata
+#     , .vars4strata = c("female", "age.cut")
+#     , .exposure = "treatment"
+# ) {
+#     .mydata.strata_list = .mydata %>% data.strata_list(.vars4strata = .vars4strata)
+#     out = .mydata.strata_list %>% map(function(df) {
+#         out = df[[.exposure]] %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
+#         parent.x = get(".x", envir = parent.frame())
+#         attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+#         names(out)[1] = attr(out, "parent_name")
+#         out = out %>% t %>% as.data.frame %>% rownames_to_column
+#         out
+#     }) %>% reduce(bind_rows)
+#     out$total = rowSums(out[, 2:3], na.rm = T)
+#     out$ratio = out[[2]] / out[[3]] %>% round(3)
+#     out$ratio_inv = out[[3]] / out[[2]] %>% round(3)
+#     print(paste0("min(ratio, na.rm = T): ", min(out$ratio, na.rm = T)))
+#     print(paste0("min(ratio_inv, na.rm = T): ", min(out$ratio_inv, na.rm = T)))
+#     out
+# }
+data.tab_strata_exposure = function(
+    .mydata
+    , .vars4strata = c("female", "age.cut")
+    , .exposure = "treatment"
+    , round_digits = 2
+) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+
+    if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
+    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
+    # tmp = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame
+    # out = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame.matrix %>% rownames_to_column
+    out = table(.mydata$strata, .mydata[[.exposure]]) %>% addmargins %>% as.data.frame.matrix %>% rownames_to_column
+
+    # out$total = rowSums(out[, 2:3], na.rm = T)
+    out$ratio = out[[2]] / out[[3]] 
+    out$ratio = out$ratio %>% round(round_digits)
+    out$ratio_inv = out[[3]] / out[[2]] 
+    out$ratio_inv = out$ratio_inv %>% round(round_digits)
+    print(paste0("min(ratio, na.rm = T): ", min(out$ratio, na.rm = T)))
+    print(paste0("min(ratio_inv, na.rm = T): ", min(out$ratio_inv, na.rm = T)))
+    out
+}
+
+#@ test) data.tab_strata_exposure() -----
+library(tidyverse)
+load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
+rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
+# > rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
+# [1] "min(ratio, na.rm = T): 0"
+# [1] "min(ratio_inv, na.rm = T): 0"
+#        rowname    0    1  Sum ratio ratio_inv
+# 1    0_[10,20)   17    5   22  3.40      0.29
+# 2  0_[100,Inf]    0    1    1  0.00       Inf
+# 3    0_[20,30)   85   50  135  1.70      0.59
+# 4    0_[30,40)  170   72  242  2.36      0.42
+# 5    0_[40,50)  230  174  404  1.32      0.76
+# 6    0_[50,60)  309  218  527  1.42      0.71
+# 7    0_[60,70)  459  343  802  1.34      0.75
+# 8    0_[70,80)  427  330  757  1.29      0.77
+# 9    0_[80,90)  190   80  270  2.38      0.42
+# 10  0_[90,100)   27    5   32  5.40      0.19
+# 11   1_[10,20)    8    3   11  2.67      0.38
+# 12 1_[100,Inf]    2    0    2   Inf      0.00
+# 13   1_[20,30)   71   46  117  1.54      0.65
+# 14   1_[30,40)  130   81  211  1.60      0.62
+# 15   1_[40,50)  173  109  282  1.59      0.63
+# 16   1_[50,60)  237  153  390  1.55      0.65
+# 17   1_[60,70)  353  234  587  1.51      0.66
+# 18   1_[70,80)  382  199  581  1.92      0.52
+# 19   1_[80,90)  232   73  305  3.18      0.31
+# 20  1_[90,100)   49    8   57  6.12      0.16
+# 21         Sum 3551 2184 5735  1.63      0.62
+
+
+
+#@ -----
 data.strata_list = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
@@ -118,75 +197,6 @@ rhc_mydata.strata_list %>% map(function(df) {
 # 19   1_[80,90) 232  73
 # 20  1_[90,100)  49   8
 
-
-# data.tab_strata_exposure.old = function(
-#     .mydata
-#     , .vars4strata = c("female", "age.cut")
-#     , .exposure = "treatment"
-# ) {
-#     .mydata.strata_list = .mydata %>% data.strata_list(.vars4strata = .vars4strata)
-#     out = .mydata.strata_list %>% map(function(df) {
-#         out = df[[.exposure]] %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
-#         parent.x = get(".x", envir = parent.frame())
-#         attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
-#         names(out)[1] = attr(out, "parent_name")
-#         out = out %>% t %>% as.data.frame %>% rownames_to_column
-#         out
-#     }) %>% reduce(bind_rows)
-#     out$total = rowSums(out[, 2:3], na.rm = T)
-#     out$ratio = out[[2]] / out[[3]] %>% round(3)
-#     out$ratio_inv = out[[3]] / out[[2]] %>% round(3)
-#     print(paste0("min(ratio, na.rm = T): ", min(out$ratio, na.rm = T)))
-#     print(paste0("min(ratio_inv, na.rm = T): ", min(out$ratio_inv, na.rm = T)))
-#     out
-# }
-data.tab_strata_exposure = function(
-    .mydata
-    , .vars4strata = c("female", "age.cut")
-    , .exposure = "treatment"
-    , round_digits = 2
-) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
-    if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
-    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
-    # tmp = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame
-    out = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame.matrix %>% rownames_to_column
-
-    out$total = rowSums(out[, 2:3], na.rm = T)
-    out$ratio = out[[2]] / out[[3]] 
-    out$ratio = out$ratio %>% round(round_digits)
-    out$ratio_inv = out[[3]] / out[[2]] 
-    out$ratio_inv = out$ratio_inv %>% round(round_digits)
-    print(paste0("min(ratio, na.rm = T): ", min(out$ratio, na.rm = T)))
-    print(paste0("min(ratio_inv, na.rm = T): ", min(out$ratio_inv, na.rm = T)))
-    out
-}
-
-rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
-# > rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
-# [1] "min(ratio, na.rm = T): 0"
-# [1] "min(ratio_inv, na.rm = T): 0"
-#        rowname   0   1 total ratio ratio_inv
-# 1    0_[10,20)  17   5    22  3.40      0.29
-# 2  0_[100,Inf]   0   1     1  0.00       Inf
-# 3    0_[20,30)  85  50   135  1.70      0.59
-# 4    0_[30,40) 170  72   242  2.36      0.42
-# 5    0_[40,50) 230 174   404  1.32      0.76
-# 6    0_[50,60) 309 218   527  1.42      0.71
-# 7    0_[60,70) 459 343   802  1.34      0.75
-# 8    0_[70,80) 427 330   757  1.29      0.77
-# 9    0_[80,90) 190  80   270  2.38      0.42
-# 10  0_[90,100)  27   5    32  5.40      0.19
-# 11   1_[10,20)   8   3    11  2.67      0.38
-# 12 1_[100,Inf]   2   0     2   Inf      0.00
-# 13   1_[20,30)  71  46   117  1.54      0.65
-# 14   1_[30,40) 130  81   211  1.60      0.62
-# 15   1_[40,50) 173 109   282  1.59      0.63
-# 16   1_[50,60) 237 153   390  1.55      0.65
-# 17   1_[60,70) 353 234   587  1.51      0.66
-# 18   1_[70,80) 382 199   581  1.92      0.52
-# 19   1_[80,90) 232  73   305  3.18      0.31
-# 20  1_[90,100)  49   8    57  6.12      0.16
 
 
 data.Match <- function(
@@ -397,6 +407,91 @@ data.stratified.Match = function(
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
+    
+    data.strata_list = function(
+        .mydata
+        , .vars4strata = c("female", "age.cut")
+    ) {
+        # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+        if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
+        .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
+        .mydata$strata = .mydata$strata %>% as.factor
+        out = map(
+            levels(.mydata$strata)
+            , function(chr) {
+                .mydata %>% filter(strata == !!chr) %>% as.tibble
+            }
+        )
+        names(out) = levels(.mydata$strata)
+        out
+    }
+    
+    data.Match <- function(
+        .mydata
+        , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
+    ) {
+        # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+        library(tidyverse)
+        library(Matching)
+        select = dplyr::select
+        library(tableone)
+        library(useful)
+        
+        if (length(unique(.mydata[[.exposure]])) < 2) {
+            warning("length(unique(.mydata[[.exposure]]) < 2")
+            out = "length(unique(.mydata[[.exposure]]) < 2"
+        } else {
+            out = list()
+            if (add_tableone_pre_post == T) {
+                out$tableone_pre = CreateTableOne(vars = .vars4Matching, strata = .exposure, data = .mydata, test=T, includeNA = T)
+            }
+            
+            # Tr.logical = as.logical(.mydata[[.exposure]])
+            .X = build.x(~., .mydata[.vars4Matching])
+            .mydata.Match = Match(Tr = .mydata[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
+            
+            tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
+            tmpDf$MatchingCtrlNum = 1:.MatchingRatio
+            # tmpDf
+            
+            tmpDf2ctrl = tmpDf[,c("index.control", "MatchingPairID", "MatchingCtrlNum")]
+            names(tmpDf2ctrl)[1] = "rowname"
+            # tmpDf2ctrl
+            
+            tmpDf2tx = tmpDf[,c("index.treated", "MatchingPairID", "MatchingCtrlNum")]
+            tmpDf2tx$MatchingCtrlNum = 0
+            names(tmpDf2tx)[1] = "rowname"
+            tmpDf2tx = tmpDf2tx %>% distinct()
+            # tmpDf2tx
+            
+            tmpDf3 = union(tmpDf2tx, tmpDf2ctrl)
+            tmpDf3$rowname = tmpDf3$rowname %>% as.character()
+            # tmpDf3 %>% arrange(MatchingPairID, MatchingCtrlNum)
+            
+            .mydataMatching = .mydata %>% rownames_to_column() %>% as.tibble()
+            .mydataMatching = inner_join(.mydataMatching, tmpDf3, by = "rowname") %>% arrange(MatchingPairID, MatchingCtrlNum)
+            # .mydataMatching$MatchingPairID = paste0()
+            # .mydataMatching
+            out$data = .mydataMatching
+            if (add_tableone_pre_post == T) {
+                out$tableone_post_total = CreateTableOne(
+                    vars = .vars4Matching, strata = .exposure
+                    , data = .mydataMatching
+                    , test=T
+                    , includeNA = T)
+                out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
+                    CreateTableOne(
+                        vars = .vars4Matching, strata = .exposure
+                        , data = .mydataMatching %>% filter(MatchingCtrlNum %in% c(0,i))
+                        , test=T
+                        , includeNA = T)
+                })
+                names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
+            }
+        }
+        out
+    }
+    
     .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4strata = .vars4strata)
     .mydata.strata_list.Match = .mydata.strata_list %>% 
         map(data.Match
