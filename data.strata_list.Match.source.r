@@ -198,17 +198,18 @@ rhc_mydata.strata_list %>% map(function(df) {
 # 20  1_[90,100)  49   8
 
 
-
 data.Match <- function(
     .mydata
     , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
+    , apply.na.omit = F
+    , print.process = F
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
-    library(tidyverse)
-    library(Matching)
-    select = dplyr::select
-    library(tableone)
-    library(useful)
+    # library(tidyverse)
+    # library(Matching)
+    # select = dplyr::select
+    # library(tableone)
+    # library(useful)
     
     if (length(unique(.mydata[[.exposure]])) < 2) {
         warning("length(unique(.mydata[[.exposure]]) < 2")
@@ -219,9 +220,25 @@ data.Match <- function(
             out$tableone_pre = CreateTableOne(vars = .vars4Matching, strata = .exposure, data = .mydata, test=T, includeNA = T)
         }
         
-        # Tr.logical = as.logical(.mydata[[.exposure]])
-        .X = build.x(~., .mydata[.vars4Matching])
-        .mydata.Match = Match(Tr = .mydata[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
+        if (apply.na.omit == T) {
+            nrow1 = nrow(.mydata)
+            .mydata = .mydata %>% na.omit
+            nrow2 = nrow(.mydata)
+            print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+        }
+        
+        
+        .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
+        # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
+        .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit)
+        # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
+        
+        if (print.process == T) {
+            print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
+            print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
+            print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
+        }
+        .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
         
         tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
         tmpDf$MatchingCtrlNum = 1:.MatchingRatio
@@ -270,6 +287,21 @@ rhc_mydata.Match = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
+    , print.process = T
+)
+# > rhc_mydata.Match = rhc_mydata %>% data.Match(
+# +     .vars4Matching = c("female","age","meanbp1")
+# +     , .exposure = "treatment"
+# +     , .MatchingRatio = 5
+# +     , print.process = T
+# + )
+# [1] "data.Match() - dim(.mydata) : c(5735L, 14L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(5735L, 4L)"
+# [1] "data.Match() - dim(.X) : c(5735L, 5L)"
+rhc_mydata.Match = rhc_mydata %>% data.Match(
+    .vars4Matching = c("female","age","meanbp1")
+    , .exposure = "treatment"
+    , .MatchingRatio = 5
 )
 rhc_mydata.Match %>% str(max.level = 1)
 # > rhc_mydata.Match %>% str(max.level = 1)
@@ -280,6 +312,7 @@ rhc_mydata.Match %>% str(max.level = 1)
 #  $ tableone_post_total:List of 3
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ tableone_post_i    :List of 5
+
 
 rhc_mydata.Match$tableone_pre %>% print(smd = T)
 rhc_mydata.Match$tableone_post_total %>% print(smd = T)
@@ -403,7 +436,9 @@ data.stratified.Match = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5
-    , .parallelsugar = F
+    , .paralletlsugar = F
+    , apply.na.omit = F
+    , print.process = F
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
@@ -411,12 +446,12 @@ data.stratified.Match = function(
     library(Matching)
     select = dplyr::select
     library(tableone)
-    library(useful)
+    # library(useful)
     
-    if(.parallelsugar == T) {
-        library(parallelsugar)
-        map = parallelsugar::mclapply
-    }
+    # if(.parallelsugar == T) {
+    #     library(parallelsugar)
+    #     map = parallelsugar::mclapply
+    # }
     
     data.strata_list = function(
         .mydata
@@ -435,10 +470,12 @@ data.stratified.Match = function(
         names(out) = levels(.mydata$strata)
         out
     }
-    
+
     data.Match <- function(
         .mydata
         , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
+        , apply.na.omit = F
+        , print.process = F
     ) {
         # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
         # library(tidyverse)
@@ -456,9 +493,25 @@ data.stratified.Match = function(
                 out$tableone_pre = CreateTableOne(vars = .vars4Matching, strata = .exposure, data = .mydata, test=T, includeNA = T)
             }
             
-            # Tr.logical = as.logical(.mydata[[.exposure]])
-            .X = build.x(~., .mydata[.vars4Matching])
-            .mydata.Match = Match(Tr = .mydata[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
+            if (apply.na.omit == T) {
+                nrow1 = nrow(.mydata)
+                .mydata = .mydata %>% na.omit
+                nrow2 = nrow(.mydata)
+                print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+            }
+            
+            
+            .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
+            # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
+            .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit)
+            # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
+            
+            if (print.process == T) {
+                print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
+                print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
+                print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
+            }
+            .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
             
             tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
             tmpDf$MatchingCtrlNum = 1:.MatchingRatio
@@ -503,13 +556,29 @@ data.stratified.Match = function(
     }
 
     .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4strata = .vars4strata)
-    .mydata.strata_list.Match = .mydata.strata_list %>% 
-        map(data.Match
+    
+    if (print.process == T) {
+        .mydata.strata_list.Match = .mydata.strata_list %>% seq_along %>% 
+            map(function(i, ...) {
+                print(paste0("map to data.Match() with .mydata.strata_list$", names(.mydata.strata_list)[i]))
+                out = .mydata.strata_list[[i]] %>% data.Match(...)
+                out
+            }
             , .vars4Matching = .vars4Matching
             , .exposure = .exposure
             , .MatchingRatio = .MatchingRatio
             , add_tableone_pre_post = F
-        )
+            , print.process = T
+            )
+    } else {
+        .mydata.strata_list.Match = .mydata.strata_list %>%
+            map(data.Match
+                , .vars4Matching = .vars4Matching
+                , .exposure = .exposure
+                , .MatchingRatio = .MatchingRatio
+                , add_tableone_pre_post = F
+            )
+    }
     # map = purrr::map
     out = list()
     out$tableone_pre = CreateTableOne(vars = c(.vars4strata, .vars4Matching), strata = .exposure, data = .mydata, test=T, includeNA = T)
@@ -542,10 +611,104 @@ data.stratified.Match = function(
     out
 }
 
+
 #@ test) data.stratified.Match() -----
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
+rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
+    .vars4strata = c("female", "age.cut")
+    , .vars4Matching = c("age","meanbp1")
+    , .exposure = "treatment"
+    , .MatchingRatio = 5
+    , print.process = T
+)
+# > rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
+# +     .vars4strata = c("female", "age.cut")
+# +     , .vars4Matching = c("age","meanbp1")
+# +     , .exposure = "treatment"
+# +     , .MatchingRatio = 5
+# +     , print.process = T
+# + )
+# [1] "map to data.Match() with .mydata.strata_list$0_[10,20)"
+# [1] "data.Match() - dim(.mydata) : c(22L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(22L, 3L)"
+# [1] "data.Match() - dim(.X) : c(22L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[100,Inf]"
+# [1] "map to data.Match() with .mydata.strata_list$0_[20,30)"
+# [1] "data.Match() - dim(.mydata) : c(135L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(135L, 3L)"
+# [1] "data.Match() - dim(.X) : c(135L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[30,40)"
+# [1] "data.Match() - dim(.mydata) : c(242L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(242L, 3L)"
+# [1] "data.Match() - dim(.X) : c(242L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[40,50)"
+# [1] "data.Match() - dim(.mydata) : c(404L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(404L, 3L)"
+# [1] "data.Match() - dim(.X) : c(404L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[50,60)"
+# [1] "data.Match() - dim(.mydata) : c(527L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(527L, 3L)"
+# [1] "data.Match() - dim(.X) : c(527L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[60,70)"
+# [1] "data.Match() - dim(.mydata) : c(802L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(802L, 3L)"
+# [1] "data.Match() - dim(.X) : c(802L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[70,80)"
+# [1] "data.Match() - dim(.mydata) : c(757L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(757L, 3L)"
+# [1] "data.Match() - dim(.X) : c(757L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[80,90)"
+# [1] "data.Match() - dim(.mydata) : c(270L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(270L, 3L)"
+# [1] "data.Match() - dim(.X) : c(270L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$0_[90,100)"
+# [1] "data.Match() - dim(.mydata) : c(32L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(32L, 3L)"
+# [1] "data.Match() - dim(.X) : c(32L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[10,20)"
+# [1] "data.Match() - dim(.mydata) : c(11L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(11L, 3L)"
+# [1] "data.Match() - dim(.X) : c(11L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[100,Inf]"
+# [1] "map to data.Match() with .mydata.strata_list$1_[20,30)"
+# [1] "data.Match() - dim(.mydata) : c(117L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(117L, 3L)"
+# [1] "data.Match() - dim(.X) : c(117L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[30,40)"
+# [1] "data.Match() - dim(.mydata) : c(211L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(211L, 3L)"
+# [1] "data.Match() - dim(.X) : c(211L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[40,50)"
+# [1] "data.Match() - dim(.mydata) : c(282L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(282L, 3L)"
+# [1] "data.Match() - dim(.X) : c(282L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[50,60)"
+# [1] "data.Match() - dim(.mydata) : c(390L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(390L, 3L)"
+# [1] "data.Match() - dim(.X) : c(390L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[60,70)"
+# [1] "data.Match() - dim(.mydata) : c(587L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(587L, 3L)"
+# [1] "data.Match() - dim(.X) : c(587L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[70,80)"
+# [1] "data.Match() - dim(.mydata) : c(581L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(581L, 3L)"
+# [1] "data.Match() - dim(.X) : c(581L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[80,90)"
+# [1] "data.Match() - dim(.mydata) : c(305L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(305L, 3L)"
+# [1] "data.Match() - dim(.X) : c(305L, 4L)"
+# [1] "map to data.Match() with .mydata.strata_list$1_[90,100)"
+# [1] "data.Match() - dim(.mydata) : c(57L, 15L)"
+# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(57L, 3L)"
+# [1] "data.Match() - dim(.X) : c(57L, 4L)"
+# Warning messages:
+# 1: In data.Match(., ...) : length(unique(.mydata[[.exposure]]) < 2
+# 2: In data.Match(., ...) : length(unique(.mydata[[.exposure]]) < 2
+
+
 rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
@@ -564,57 +727,59 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
-library(parallelsugar)
-system.time(
-    rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
-        .vars4strata = c("female", "age.cut")
-        , .vars4Matching = c("age","meanbp1")
-        , .exposure = "treatment"
-        , .MatchingRatio = 5
-        , .parallelsugar = F
-    )
-)
-system.time(
-    rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
-        .vars4strata = c("female", "age.cut")
-        , .vars4Matching = c("age","meanbp1")
-        , .exposure = "treatment"
-        , .MatchingRatio = 5
-        , .parallelsugar = T
-    )
-)
-# > system.time(
-# +     rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
-# +         .vars4strata = c("female", "age.cut")
-# +         , .vars4Matching = c("age","meanbp1")
-# +         , .exposure = "treatment"
-# +         , .MatchingRatio = 5
-# +         , .parallelsugar = F
-# +     )
-# + )
-#  사용자  시스템 elapsed 
-#    1.34    0.00    1.34 
-# Warning messages:
-# 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
-#   length(unique(.mydata[[.exposure]]) < 2: 
-# c("0_[100,Inf]", "1_[100,Inf]")
-# > system.time(
-# +     rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
-# +         .vars4strata = c("female", "age.cut")
-# +         , .vars4Matching = c("age","meanbp1")
-# +         , .exposure = "treatment"
-# +         , .MatchingRatio = 5
-# +         , .parallelsugar = T
-# +     )
-# + )
-#  사용자  시스템 elapsed 
-#    2.97    2.69   52.17 
-# Warning message:
-# In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
-#   length(unique(.mydata[[.exposure]]) < 2: 
-# c("0_[100,Inf]", "1_[100,Inf]")
+
+
+# library(parallelsugar)
+# system.time(
+#     rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
+#         .vars4strata = c("female", "age.cut")
+#         , .vars4Matching = c("age","meanbp1")
+#         , .exposure = "treatment"
+#         , .MatchingRatio = 5
+#         , .parallelsugar = F
+#     )
+# )
+# system.time(
+#     rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
+#         .vars4strata = c("female", "age.cut")
+#         , .vars4Matching = c("age","meanbp1")
+#         , .exposure = "treatment"
+#         , .MatchingRatio = 5
+#         , .parallelsugar = T
+#     )
+# )
+# # > system.time(
+# # +     rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
+# # +         .vars4strata = c("female", "age.cut")
+# # +         , .vars4Matching = c("age","meanbp1")
+# # +         , .exposure = "treatment"
+# # +         , .MatchingRatio = 5
+# # +         , .parallelsugar = F
+# # +     )
+# # + )
+# #  사용자  시스템 elapsed 
+# #    1.34    0.00    1.34 
+# # Warning messages:
+# # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# # 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# # 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# #   length(unique(.mydata[[.exposure]]) < 2: 
+# # c("0_[100,Inf]", "1_[100,Inf]")
+# # > system.time(
+# # +     rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
+# # +         .vars4strata = c("female", "age.cut")
+# # +         , .vars4Matching = c("age","meanbp1")
+# # +         , .exposure = "treatment"
+# # +         , .MatchingRatio = 5
+# # +         , .parallelsugar = T
+# # +     )
+# # + )
+# #  사용자  시스템 elapsed 
+# #    2.97    2.69   52.17 
+# # Warning message:
+# # In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# #   length(unique(.mydata[[.exposure]]) < 2: 
+# # c("0_[100,Inf]", "1_[100,Inf]")
 
 rhc_mydata.Match %>% str(max.level = 1)
 rhc_mydata.stratified.Match %>% str(max.level = 1)
