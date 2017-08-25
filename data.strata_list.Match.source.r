@@ -3,11 +3,11 @@
 
 data.strata_list = function(
     .mydata
-    , .vars4data.strata_list = c("female", "age.cut")
+    , .vars4strata = c("female", "age.cut")
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
-    .mydata$strata = .mydata[, .vars4data.strata_list] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
+    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
     .mydata$strata = .mydata$strata %>% as.factor
     out = map(
         levels(.mydata$strata)
@@ -19,6 +19,7 @@ data.strata_list = function(
     out
 }
 #@ test) data.strata_list() -----
+library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata %>% as.tibble
@@ -37,7 +38,8 @@ rhc_mydata %>% as.tibble
 #  9     0     0     0      0     0       0     1      0 18.04199      1      53         0     0 [10,20)
 # 10     1     0     0      0     0       0     0      0 48.42398      1      73         1     0 [40,50)
 # # ... with 5,725 more rows
-rhc_mydata.strata_list = rhc_mydata %>% data.strata_list(.vars4data.strata_list = c("female", "age.cut"))
+ # %>% map(seq_along(.), function(i) {df = .[[i]]; names(df)[1] = names(.)[i]; t(df)})
+rhc_mydata.strata_list = rhc_mydata %>% data.strata_list(.vars4strata = c("female", "age.cut"))
 rhc_mydata.strata_list %>% str(max.level = 1)
 rhc_mydata.strata_list[[1]]
 # > rhc_mydata.strata_list %>% str(max.level = 1)
@@ -78,6 +80,113 @@ rhc_mydata.strata_list[[1]]
 # 10     1     0     0      0     0       0     0      0 18.16299      0      65         0     1 [10,20) 0_[10,20)
 # # ... with 12 more rows
 
+rhc_mydata.strata_list %>% map(function(df) {
+    out = df$treatment %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
+    parent.x = get(".x", envir = parent.frame())
+    attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+    names(out)[1] = attr(out, "parent_name")
+    out = out %>% t %>% as.data.frame %>% rownames_to_column
+    out
+}) %>% reduce(bind_rows)
+# > rhc_mydata.strata_list %>% map(function(df) {
+# +     out = df$treatment %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
+# +     parent.x = get(".x", envir = parent.frame())
+# +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+# +     names(out)[1] = attr(out, "parent_name")
+# +     out = out %>% t %>% as.data.frame %>% rownames_to_column
+# +     out
+# + }) %>% reduce(bind_rows)
+#        rowname   0   1
+# 1    0_[10,20)  17   5
+# 2  0_[100,Inf]  NA   1
+# 3    0_[20,30)  85  50
+# 4    0_[30,40) 170  72
+# 5    0_[40,50) 230 174
+# 6    0_[50,60) 309 218
+# 7    0_[60,70) 459 343
+# 8    0_[70,80) 427 330
+# 9    0_[80,90) 190  80
+# 10  0_[90,100)  27   5
+# 11   1_[10,20)   8   3
+# 12 1_[100,Inf]   2  NA
+# 13   1_[20,30)  71  46
+# 14   1_[30,40) 130  81
+# 15   1_[40,50) 173 109
+# 16   1_[50,60) 237 153
+# 17   1_[60,70) 353 234
+# 18   1_[70,80) 382 199
+# 19   1_[80,90) 232  73
+# 20  1_[90,100)  49   8
+
+
+# data.tab_strata_exposure.old = function(
+#     .mydata
+#     , .vars4strata = c("female", "age.cut")
+#     , .exposure = "treatment"
+# ) {
+#     .mydata.strata_list = .mydata %>% data.strata_list(.vars4strata = .vars4strata)
+#     out = .mydata.strata_list %>% map(function(df) {
+#         out = df[[.exposure]] %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
+#         parent.x = get(".x", envir = parent.frame())
+#         attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+#         names(out)[1] = attr(out, "parent_name")
+#         out = out %>% t %>% as.data.frame %>% rownames_to_column
+#         out
+#     }) %>% reduce(bind_rows)
+#     out$total = rowSums(out[, 2:3], na.rm = T)
+#     out$ratio = out[[2]] / out[[3]] %>% round(3)
+#     out$ratio_inv = out[[3]] / out[[2]] %>% round(3)
+#     print(paste0("min(ratio, na.rm = T): ", min(out$ratio, na.rm = T)))
+#     print(paste0("min(ratio_inv, na.rm = T): ", min(out$ratio_inv, na.rm = T)))
+#     out
+# }
+data.tab_strata_exposure = function(
+    .mydata
+    , .vars4strata = c("female", "age.cut")
+    , .exposure = "treatment"
+    , round_digits = 2
+) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+    if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
+    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
+    # tmp = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame
+    out = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame.matrix %>% rownames_to_column
+
+    out$total = rowSums(out[, 2:3], na.rm = T)
+    out$ratio = out[[2]] / out[[3]] 
+    out$ratio = out$ratio %>% round(round_digits)
+    out$ratio_inv = out[[3]] / out[[2]] 
+    out$ratio_inv = out$ratio_inv %>% round(round_digits)
+    print(paste0("min(ratio, na.rm = T): ", min(out$ratio, na.rm = T)))
+    print(paste0("min(ratio_inv, na.rm = T): ", min(out$ratio_inv, na.rm = T)))
+    out
+}
+
+rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
+# > rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
+# [1] "min(ratio, na.rm = T): 0"
+# [1] "min(ratio_inv, na.rm = T): 0"
+#        rowname   0   1 total ratio ratio_inv
+# 1    0_[10,20)  17   5    22  3.40      0.29
+# 2  0_[100,Inf]   0   1     1  0.00       Inf
+# 3    0_[20,30)  85  50   135  1.70      0.59
+# 4    0_[30,40) 170  72   242  2.36      0.42
+# 5    0_[40,50) 230 174   404  1.32      0.76
+# 6    0_[50,60) 309 218   527  1.42      0.71
+# 7    0_[60,70) 459 343   802  1.34      0.75
+# 8    0_[70,80) 427 330   757  1.29      0.77
+# 9    0_[80,90) 190  80   270  2.38      0.42
+# 10  0_[90,100)  27   5    32  5.40      0.19
+# 11   1_[10,20)   8   3    11  2.67      0.38
+# 12 1_[100,Inf]   2   0     2   Inf      0.00
+# 13   1_[20,30)  71  46   117  1.54      0.65
+# 14   1_[30,40) 130  81   211  1.60      0.62
+# 15   1_[40,50) 173 109   282  1.59      0.63
+# 16   1_[50,60) 237 153   390  1.55      0.65
+# 17   1_[60,70) 353 234   587  1.51      0.66
+# 18   1_[70,80) 382 199   581  1.92      0.52
+# 19   1_[80,90) 232  73   305  3.18      0.31
+# 20  1_[90,100)  49   8    57  6.12      0.16
 
 
 data.Match <- function(
@@ -283,12 +392,12 @@ rhc_mydata.strata_list.Match.old$`0_[60,70)`$data
 
 data.stratified.Match = function(
     .mydata
-    , .vars4data.strata_list = c("female", "age.cut")
+    , .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
-    .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4data.strata_list = .vars4data.strata_list)
+    .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4strata = .vars4strata)
     .mydata.strata_list.Match = .mydata.strata_list %>% 
         map(data.Match
             , .vars4Matching = .vars4Matching
@@ -297,7 +406,7 @@ data.stratified.Match = function(
             , add_tableone_pre_post = F
         )
     out = list()
-    out$tableone_pre = CreateTableOne(vars = c(.vars4data.strata_list, .vars4Matching), strata = .exposure, data = .mydata, test=T, includeNA = T)
+    out$tableone_pre = CreateTableOne(vars = c(.vars4strata, .vars4Matching), strata = .exposure, data = .mydata, test=T, includeNA = T)
     warning_which = names(.mydata.strata_list.Match)[which(map_chr(.mydata.strata_list.Match, class) == "character")]
     out$data = .mydata.strata_list.Match %>% 
         map(function(object) {
@@ -307,16 +416,18 @@ data.stratified.Match = function(
             object
         }) %>% map(function(x) x$data) %>% reduce(rbind)
     if (length(warning_which) > 0) {
-        warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", paste0(warning_which, collapse = ", ")))
+        # warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", paste0(warning_which, collapse = ", ")))
+        # warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", dput(warning_which)))
+        warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", deparse(warning_which)))
     }
     out$tableone_post_total = CreateTableOne(
-        vars = c(.vars4data.strata_list, .vars4Matching), strata = .exposure
+        vars = c(.vars4strata, .vars4Matching), strata = .exposure
         , data = out$data
         , test=T
         , includeNA = T)
     out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
         CreateTableOne(
-            vars = c(.vars4data.strata_list, .vars4Matching), strata = .exposure
+            vars = c(.vars4strata, .vars4Matching), strata = .exposure
             , data = out$data %>% filter(MatchingCtrlNum %in% c(0,i))
             , test=T
             , includeNA = T)
@@ -329,13 +440,13 @@ data.stratified.Match = function(
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
-    .vars4data.strata_list = c("female", "age.cut")
+    .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
 )
 # > rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
-# +     .vars4data.strata_list = c("female", "age.cut")
+# +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
 # +     , .MatchingRatio = 5
@@ -343,9 +454,9 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
 # 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 3: In data.stratified.Match(., .vars4data.strata_list = c("female",  :
+# 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
-# 0_[100,Inf], 1_[100,Inf]
+# c("0_[100,Inf]", "1_[100,Inf]")
 
 rhc_mydata.Match %>% str(max.level = 1)
 rhc_mydata.stratified.Match %>% str(max.level = 1)
