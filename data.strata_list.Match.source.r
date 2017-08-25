@@ -399,14 +399,24 @@ rhc_mydata.strata_list.Match.old$`0_[60,70)`$data
 # 10     227     0     0     0      0     0       0     1      0 68.23297      0      47         0     1 [60,70) 0_[60,70)              2               3
 # # ... with 536 more rows
 
-
 data.stratified.Match = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5
+    , .parallelsugar = F
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
+    library(tidyverse)
+    library(Matching)
+    select = dplyr::select
+    library(tableone)
+    library(useful)
+    
+    if(.parallelsugar == T) {
+        library(parallelsugar)
+        map = parallelsugar::mclapply
+    }
     
     data.strata_list = function(
         .mydata
@@ -431,11 +441,11 @@ data.stratified.Match = function(
         , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
     ) {
         # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
-        library(tidyverse)
-        library(Matching)
-        select = dplyr::select
-        library(tableone)
-        library(useful)
+        # library(tidyverse)
+        # library(Matching)
+        # select = dplyr::select
+        # library(tableone)
+        # library(useful)
         
         if (length(unique(.mydata[[.exposure]])) < 2) {
             warning("length(unique(.mydata[[.exposure]]) < 2")
@@ -491,7 +501,7 @@ data.stratified.Match = function(
         }
         out
     }
-    
+
     .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4strata = .vars4strata)
     .mydata.strata_list.Match = .mydata.strata_list %>% 
         map(data.Match
@@ -500,6 +510,7 @@ data.stratified.Match = function(
             , .MatchingRatio = .MatchingRatio
             , add_tableone_pre_post = F
         )
+    # map = purrr::map
     out = list()
     out$tableone_pre = CreateTableOne(vars = c(.vars4strata, .vars4Matching), strata = .exposure, data = .mydata, test=T, includeNA = T)
     warning_which = names(.mydata.strata_list.Match)[which(map_chr(.mydata.strata_list.Match, class) == "character")]
@@ -532,6 +543,7 @@ data.stratified.Match = function(
 }
 
 #@ test) data.stratified.Match() -----
+library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
@@ -550,6 +562,57 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
 # 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
 # 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+#   length(unique(.mydata[[.exposure]]) < 2: 
+# c("0_[100,Inf]", "1_[100,Inf]")
+library(parallelsugar)
+system.time(
+    rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
+        .vars4strata = c("female", "age.cut")
+        , .vars4Matching = c("age","meanbp1")
+        , .exposure = "treatment"
+        , .MatchingRatio = 5
+        , .parallelsugar = F
+    )
+)
+system.time(
+    rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
+        .vars4strata = c("female", "age.cut")
+        , .vars4Matching = c("age","meanbp1")
+        , .exposure = "treatment"
+        , .MatchingRatio = 5
+        , .parallelsugar = T
+    )
+)
+# > system.time(
+# +     rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
+# +         .vars4strata = c("female", "age.cut")
+# +         , .vars4Matching = c("age","meanbp1")
+# +         , .exposure = "treatment"
+# +         , .MatchingRatio = 5
+# +         , .parallelsugar = F
+# +     )
+# + )
+#  사용자  시스템 elapsed 
+#    1.34    0.00    1.34 
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+#   length(unique(.mydata[[.exposure]]) < 2: 
+# c("0_[100,Inf]", "1_[100,Inf]")
+# > system.time(
+# +     rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
+# +         .vars4strata = c("female", "age.cut")
+# +         , .vars4Matching = c("age","meanbp1")
+# +         , .exposure = "treatment"
+# +         , .MatchingRatio = 5
+# +         , .parallelsugar = T
+# +     )
+# + )
+#  사용자  시스템 elapsed 
+#    2.97    2.69   52.17 
+# Warning message:
+# In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
 

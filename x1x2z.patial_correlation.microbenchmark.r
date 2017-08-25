@@ -156,11 +156,11 @@ x1x2z.partial_correlation_scalar1(x1 = stackloss$Air.Flow, x2 = stackloss$Water.
 # > x1x2z.partial_correlation_scalar1(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")
 # [1] 0.7356413
 
-system.time(replicate(10^4, x1x2z.partial_correlation0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
-system.time(replicate(10^4, x1x2z.partial_correlation_dbl0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
-system.time(replicate(10^4, x1x2z.partial_correlation_dbl1(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
-system.time(replicate(10^4, x1x2z.partial_correlation_scalar0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
-system.time(replicate(10^4, x1x2z.partial_correlation_scalar1(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
+system.time(replicate(10^3, x1x2z.partial_correlation0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
+system.time(replicate(10^3, x1x2z.partial_correlation_dbl0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
+system.time(replicate(10^3, x1x2z.partial_correlation_dbl1(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
+system.time(replicate(10^3, x1x2z.partial_correlation_scalar0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
+system.time(replicate(10^3, x1x2z.partial_correlation_scalar1(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
 # > system.time(replicate(10^4, x1x2z.partial_correlation0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")))
 #  사용자  시스템 elapsed 
 #   33.33    0.00   33.55 
