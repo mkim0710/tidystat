@@ -1,11 +1,14 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.source.r")
 
-map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-.data.frame`), ...) {
+map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-.data.frame`), .print.Sys.time = F, ...) {
     # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.source.r")
     if(is.vector(vec) & !is.list(vec)) {
         out1 = vec %>% seq_along %>% map(function(i) {
             out2 = do.call(.f, args = list(vec[i], ...))
-            print(paste0("map to .f() /w vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i])))
+            
+            if (.print.Sys.time == T) print(Sys.time())
+            print(paste0("Finished map to .f() /w vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i])))
+
             attr(out2, "parent_name") = names(vec)[i]
             out2
         })
@@ -19,7 +22,10 @@ map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-
         ls = vec
         out1 = ls %>% seq_along %>% map(function(i) {
             out2 = do.call(.f, args = list(ls[[i]], ...))
-            print(paste0("map to .f() /w list element [[", i, "]] named: ", ifelse(is.null(names(ls)[i]), "NULL", names(ls)[i])))
+            
+            if (.print.Sys.time == T) print(Sys.time())
+            print(paste0("Finished map to .f() /w list element [[", i, "]] named: ", ifelse(is.null(names(ls)[i]), "NULL", names(ls)[i])))
+            
             attr(out2, "parent_name") = names(ls)[i]
             out2
         })
@@ -76,7 +82,10 @@ map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<
     if(is.vector(vec) & !is.list(vec)) {
         out1 = vec %>% seq_along %>% map(function(i) {
             out2 = do.call(.f, args = list(vec[i], ...))
-            print(paste0("map to .f() /w vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i])))
+            
+            if (.print.Sys.time == T) print(Sys.time())
+            print(paste0("Finished map to .f() /w vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i])))
+            
             attr(out2, "parent_name") = names(vec)[i]
             out2
         })
@@ -94,7 +103,10 @@ map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<
             # attr(out2, "parent_name") = names(ls)[i]
             parent.x = get(".x", envir = parent.frame())
             i = which(map_lgl(parent.x, function(object) {identical(x, object)}))
-            print(paste0("map to .f() /w list element [[", i, "]] named: ", ifelse(is.null(names(parent.x)[i]), "NULL", names(parent.x)[i])))
+            
+            if (.print.Sys.time == T) print(Sys.time())
+            print(paste0("Finished map to .f() /w list element [[", i, "]] named: ", ifelse(is.null(names(parent.x)[i]), "NULL", names(parent.x)[i])))
+            
             # attr(out2, "parent_name") = names(parent.x)[which(parent.x == x)]
             # attr(out2, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(x, object)}))]
             attr(out2, "parent_name") = names(parent.x)[i]
@@ -125,6 +137,7 @@ library(tidyverse)
 set.seed(1); 1:3 %>% map(rnorm, n = 10) %>% str
 set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10) %>% str
 set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .max.object.size.to.store = 10) %>% str
+set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .print.Sys.time = T) %>% str(max.level = 1)
 set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10) %>% str
 set.seed(1); 1:3 %>% map(~rnorm(10, .x)) %>% str
 # set.seed(1); 1:3 %>% map.parent_name(~rnorm(10, .x)) %>% str
@@ -172,6 +185,18 @@ set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
 #   ..$ vec                : chr "Not stored b/c object.size larger than 10"
 #   ..$ .f.name            : chr "rnorm"
 #   ..$ .f                 :function (n, mean = 0, sd = 1)  
+# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .print.Sys.time = T) %>% str(max.level = 1)
+# [1] "2017-08-26 01:43:45 EDT"
+# [1] "Finished map to .f() /w vector element [1] named: NULL"
+# [1] "2017-08-26 01:43:45 EDT"
+# [1] "Finished map to .f() /w vector element [2] named: NULL"
+# [1] "2017-08-26 01:43:45 EDT"
+# [1] "Finished map to .f() /w vector element [3] named: NULL"
+# List of 3
+#  $ 1: num [1:10] 0.374 1.184 0.164 2.595 1.33 ...
+#  $ 2: num [1:10] 3.512 2.39 1.379 -0.215 3.125 ...
+#  $ 3: num [1:10] 3.92 3.78 3.07 1.01 3.62 ...
+#  - attr(*, "function.input")=List of 7
 # > set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10) %>% str
 # [1] "map to .f() /w vector element [1] named: NULL"
 # [1] "map to .f() /w vector element [2] named: NULL"
