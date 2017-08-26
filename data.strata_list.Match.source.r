@@ -242,10 +242,10 @@ data.Match <- function(
             nrow1 = nrow(.mydata)
             # .mydata = .mydata %>% na.omit
             # nrow2 = nrow(.mydata)
-            # print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+            # print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, " rows - from ", nrow1, " rows to ", nrow2, " rows"))
             .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
             nrow2 = nrow(.mydata.exposure.vars4Matching.na.omit)
-            print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+            print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, " rows - from ", nrow1, " rows to ", nrow2, " rows"))
         } else {
             .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)]
         }
@@ -585,10 +585,10 @@ data.stratified.Match = function(
                 nrow1 = nrow(.mydata)
                 # .mydata = .mydata %>% na.omit
                 # nrow2 = nrow(.mydata)
-                # print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+                # print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, " rows - from ", nrow1, " rows to ", nrow2, " rows"))
                 .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
                 nrow2 = nrow(.mydata.exposure.vars4Matching.na.omit)
-                print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+                print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, " rows - from ", nrow1, " rows to ", nrow2, " rows"))
             } else {
                 .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)]
             }
