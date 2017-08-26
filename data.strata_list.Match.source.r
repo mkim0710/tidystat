@@ -590,6 +590,7 @@ data.stratified.Match = function(
             }
             object
         }) %>% map(function(x) x$data) %>% reduce(rbind)
+    out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID)
     if (length(warning_which) > 0) {
         # warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", paste0(warning_which, collapse = ", ")))
         # warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", dput(warning_which)))
