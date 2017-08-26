@@ -203,13 +203,16 @@ data.Match <- function(
     , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
     , apply.na.omit = F
     , print.process = F
+    , load.dependent.library = T
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
-    # library(tidyverse)
-    # library(Matching)
-    # select = dplyr::select
-    # library(tableone)
-    # library(useful)
+    if (load.dependent.library == T) {
+        library(tidyverse)
+        library(Matching)
+        library(tableone)
+        # library(useful)
+    }
+    select = dplyr::select
     
     if (length(unique(.mydata[[.exposure]])) < 2) {
         warning("length(unique(.mydata[[.exposure]]) < 2")
@@ -449,14 +452,17 @@ data.stratified.Match = function(
     , .paralletlsugar = F
     , apply.na.omit = F
     , print.process = F
+    , load.dependent.library = T
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
-    library(tidyverse)
-    library(Matching)
+    if (load.dependent.library == T) {
+        library(tidyverse)
+        library(Matching)
+        library(tableone)
+        # library(useful)
+    }
     select = dplyr::select
-    library(tableone)
-    # library(useful)
     
     # if(.parallelsugar == T) {
     #     library(parallelsugar)
@@ -486,13 +492,16 @@ data.stratified.Match = function(
         , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
         , apply.na.omit = F
         , print.process = F
+        , load.dependent.library = T
     ) {
         # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
-        # library(tidyverse)
-        # library(Matching)
-        # select = dplyr::select
-        # library(tableone)
-        # library(useful)
+        if (load.dependent.library == T) {
+            library(tidyverse)
+            library(Matching)
+            library(tableone)
+            # library(useful)
+        }
+        select = dplyr::select
         
         if (length(unique(.mydata[[.exposure]])) < 2) {
             warning("length(unique(.mydata[[.exposure]]) < 2")
@@ -590,6 +599,7 @@ data.stratified.Match = function(
             , .MatchingRatio = .MatchingRatio
             , add_tableone_pre_post = F
             , print.process = T
+            , load.dependent.library = F
             )
     } else {
         .mydata.strata_list.Match = .mydata.strata_list %>%
@@ -598,6 +608,7 @@ data.stratified.Match = function(
                 , .exposure = .exposure
                 , .MatchingRatio = .MatchingRatio
                 , add_tableone_pre_post = F
+                , load.dependent.library = F
             )
     }
     # map = purrr::map
