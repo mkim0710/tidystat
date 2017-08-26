@@ -3,7 +3,7 @@
 
             # # Codes to insert inside in the beginning annonymous function for map
             # parent.x = get(".x", envir = parent.frame())
-            # i = which(map_lgl(parent.x, function(children.from.parent.x) {identical(children_from_parent.x, input_object_name_of_map_function_to_investigate}))
+            # i = which(map_lgl(parent.x, function(children.from.parent.x) { identical(children_from_parent.x, input_object_name_of_map_function_to_investigate) } ))
             # 
             # print(Sys.time())
             # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse(is.null(names(parent.x)[i]), "NULL", names(parent.x)[i])))
