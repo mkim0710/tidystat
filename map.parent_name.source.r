@@ -6,7 +6,7 @@
             # i = which(map_lgl(parent.x, function(children.from.parent.x) { identical(children_from_parent.x, input_object_name_of_map_function_to_investigate) } ))
             # 
             # print(Sys.time())
-            # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse(is.null(names(parent.x)[i]), "NULL", names(parent.x)[i])))
+            # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ) ))
 
 
 map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-.data.frame`), .print.Sys.time = F, .add.attributes = T, ...) {
@@ -116,7 +116,7 @@ map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<
             i = which(map_lgl(parent.x, function(children.from.parent.x) {identical(children.from.parent.x, input_object_name_of_map_function_to_investigate)}))
             
             if (.print.Sys.time == T) print(Sys.time())
-            print(paste0("Finished .f() map from list element [[", i, "]] named: ", ifelse(is.null(names(parent.x)[i]), "NULL", names(parent.x)[i])))
+            print(paste0("Finished .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ) ))
             
             # attr(out2, "parent_name") = names(parent.x)[which(parent.x == input_object_name_of_map_function_to_investigate)]
             # attr(out2, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(children.from.parent.x) {identical(children.from.parent.x, input_object_name_of_map_function_to_investigate)}))]
