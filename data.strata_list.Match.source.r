@@ -91,10 +91,17 @@ data.strata_list = function(
     out = map(
         levels(.mydata$strata)
         , function(chr) {
-            .mydata %>% filter(strata == !!chr) %>% as.tibble
+            out2 = .mydata %>% filter(strata == !!chr) %>% as.tibble
+            # attr(out2, ".vars4strata") = .vars4strata
+            out2
         }
     )
     names(out) = levels(.mydata$strata)
+    attr(out, ".vars4strata") = .vars4strata
+    attr(out, "function.input") = list(
+        data.strata_list = data.strata_list
+        , .vars4strata = .vars4strata
+    ) # list inside attr() is not shown with str(max.level = 1)
     out
 }
 #@ test) data.strata_list() -----
@@ -143,6 +150,8 @@ rhc_mydata.strata_list[[1]]
 #  $ 1_[70,80)  :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	581 obs. of  15 variables:
 #  $ 1_[80,90)  :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	305 obs. of  15 variables:
 #  $ 1_[90,100) :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	57 obs. of  15 variables:
+#  - attr(*, ".vars4strata")= chr [1:2] "female" "age.cut"
+#  - attr(*, "function.input")=List of 2
 # > rhc_mydata.strata_list[[1]]
 # # A tibble: 22 x 15
 #      ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut    strata
@@ -158,7 +167,6 @@ rhc_mydata.strata_list[[1]]
 #  9     1     0     0      0     0       0     0      0 19.17599      0      62         0     0 [10,20) 0_[10,20)
 # 10     1     0     0      0     0       0     0      0 18.16299      0      65         0     1 [10,20) 0_[10,20)
 # # ... with 12 more rows
-
 rhc_mydata.strata_list %>% map(function(df) {
     out = df$treatment %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
     parent.x = get(".x", envir = parent.frame())
@@ -216,7 +224,14 @@ data.Match <- function(
     
     if (length(unique(.mydata[[.exposure]])) < 2) {
         warning("length(unique(.mydata[[.exposure]]) < 2")
-        out = "length(unique(.mydata[[.exposure]]) < 2"
+        out = list()
+        out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+        attr(out, "error.message") = "length(unique(.mydata[[.exposure]]) < 2"  # attr() is shown with str(max.level = 1)
+        # if (add_tableone_pre_post == T) {
+        #     out$tableone_pre = NA
+        #     out$tableone_post_total = NA
+        #     out$tableone_post_i = NA
+        # }
     } else {
         out = list()
         if (add_tableone_pre_post == T) {
@@ -238,7 +253,7 @@ data.Match <- function(
         
         if (print.process == T) {
             print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
-            print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
+            # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
             print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
         }
         .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
@@ -281,17 +296,17 @@ data.Match <- function(
             })
             names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
         }
-        attr(out$data, ".vars4strata") = .vars4strata
-        attr(out$data, ".vars4Matching") = .vars4Matching
-        attr(out$data, ".exposure") = .exposure
-        attr(out$data, ".MatchingRatio") = .MatchingRatio
-        attr(out$data, "apply.na.omit") = apply.na.omit
     }
-    out$`.vars4strata` = .vars4strata
-    out$`.vars4Matching` = .vars4Matching
-    out$`.exposure` = .exposure
-    out$`.MatchingRatio` = .MatchingRatio
-    out$apply.na.omit = apply.na.omit
+    attr(out$data, ".vars4Matching") = .vars4Matching
+    attr(out$data, ".exposure") = .exposure
+    attr(out$data, ".MatchingRatio") = .MatchingRatio
+    attr(out$data, "apply.na.omit") = apply.na.omit
+    attr(out, "function.input") = list(data.Match = data.Match
+        , .vars4Matching = .vars4Matching
+        , .exposure = .exposure
+        , .MatchingRatio = .MatchingRatio
+        , apply.na.omit = apply.na.omit
+    ) # list inside attr() is not shown with str(max.level = 1)
     out
 }
 
@@ -309,7 +324,6 @@ rhc_mydata.Match = rhc_mydata %>% data.Match(
 # +     , print.process = T
 # + )
 # [1] "data.Match() - dim(.mydata) : c(5735L, 14L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(5735L, 4L)"
 # [1] "data.Match() - dim(.X) : c(5735L, 5L)"
 rhc_mydata.Match = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
@@ -317,16 +331,30 @@ rhc_mydata.Match = rhc_mydata %>% data.Match(
     , .MatchingRatio = 5
 )
 rhc_mydata.Match %>% str(max.level = 1)
+rhc_mydata.Match %>% attr("function.input") %>% str
 # > rhc_mydata.Match %>% str(max.level = 1)
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	4260 obs. of  17 variables:
+#   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi FALSE
 #  $ tableone_post_total:List of 3
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ tableone_post_i    :List of 5
-
-
+#  - attr(*, "function.input")=List of 5
+# > rhc_mydata.Match %>% attr("function.input") %>% str
+# List of 5
+#  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T, apply.na.omit = F, print.process = F, 
+#     load.dependent.library = T)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 15 103 1 15 1 1 103
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000017eebc40> 
+#  $ .vars4Matching: chr [1:3] "female" "age" "meanbp1"
+#  $ .exposure     : chr "treatment"
+#  $ .MatchingRatio: num 5
+#  $ apply.na.omit : logi FALSE
 rhc_mydata.Match$tableone_pre %>% print(smd = T)
 rhc_mydata.Match$tableone_post_total %>% print(smd = T)
 rhc_mydata.Match$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
@@ -368,6 +396,8 @@ rhc_mydata.Match$data
 # 10    3887     1     0     0      0     0       0     0      0 47.93399      1      58         0     0 [40,50)              2               3
 # # ... with 4,250 more rows
 
+
+
 #@ test) data.Match() rhc_mydata.strata_list -----
 rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
     map(data.Match
@@ -388,25 +418,47 @@ rhc_mydata.strata_list.Match.old %>% str(max.level = 1)
 # > rhc_mydata.strata_list.Match.old %>% str(max.level = 1)
 # List of 20
 #  $ 0_[10,20)  :List of 4
-#  $ 0_[100,Inf]: chr "length(unique(.mydata[[.exposure]]) < 2"
+#   ..- attr(*, "function.input")=List of 5
+#  $ 0_[100,Inf]:List of 1
+#   ..- attr(*, "error.message")= chr "length(unique(.mydata[[.exposure]]) < 2"
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[20,30)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[30,40)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[40,50)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[50,60)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[60,70)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[70,80)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[80,90)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 0_[90,100) :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[10,20)  :List of 4
-#  $ 1_[100,Inf]: chr "length(unique(.mydata[[.exposure]]) < 2"
+#   ..- attr(*, "function.input")=List of 5
+#  $ 1_[100,Inf]:List of 1
+#   ..- attr(*, "error.message")= chr "length(unique(.mydata[[.exposure]]) < 2"
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[20,30)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[30,40)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[40,50)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[50,60)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[60,70)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[70,80)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[80,90)  :List of 4
+#   ..- attr(*, "function.input")=List of 5
 #  $ 1_[90,100) :List of 4
+#   ..- attr(*, "function.input")=List of 5
 rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_pre %>% print(smd = T)
 rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_total %>% print(smd = T)
 rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
@@ -480,10 +532,17 @@ data.stratified.Match = function(
         out = map(
             levels(.mydata$strata)
             , function(chr) {
-                .mydata %>% filter(strata == !!chr) %>% as.tibble
+                out2 = .mydata %>% filter(strata == !!chr) %>% as.tibble
+                # attr(out2, ".vars4strata") = .vars4strata
+                out2
             }
         )
         names(out) = levels(.mydata$strata)
+        attr(out, ".vars4strata") = .vars4strata
+        attr(out, "function.input") = list(
+            data.strata_list = data.strata_list
+            , .vars4strata = .vars4strata
+        ) # list inside attr() is not shown with str(max.level = 1)
         out
     }
     
@@ -505,7 +564,14 @@ data.stratified.Match = function(
         
         if (length(unique(.mydata[[.exposure]])) < 2) {
             warning("length(unique(.mydata[[.exposure]]) < 2")
-            out = "length(unique(.mydata[[.exposure]]) < 2"
+            out = list()
+            out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+            attr(out, "error.message") = "length(unique(.mydata[[.exposure]]) < 2"  # attr() is shown with str(max.level = 1)
+            # if (add_tableone_pre_post == T) {
+            #     out$tableone_pre = NA
+            #     out$tableone_post_total = NA
+            #     out$tableone_post_i = NA
+            # }
         } else {
             out = list()
             if (add_tableone_pre_post == T) {
@@ -527,7 +593,7 @@ data.stratified.Match = function(
             
             if (print.process == T) {
                 print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
-                print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
+                # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
                 print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
             }
             .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
@@ -570,20 +636,19 @@ data.stratified.Match = function(
                 })
                 names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
             }
-            attr(out$data, ".vars4strata") = .vars4strata
-            attr(out$data, ".vars4Matching") = .vars4Matching
-            attr(out$data, ".exposure") = .exposure
-            attr(out$data, ".MatchingRatio") = .MatchingRatio
-            attr(out$data, "apply.na.omit") = apply.na.omit
         }
-        out$`.vars4strata` = .vars4strata
-        out$`.vars4Matching` = .vars4Matching
-        out$`.exposure` = .exposure
-        out$`.MatchingRatio` = .MatchingRatio
-        out$apply.na.omit = apply.na.omit
+        attr(out$data, ".vars4Matching") = .vars4Matching
+        attr(out$data, ".exposure") = .exposure
+        attr(out$data, ".MatchingRatio") = .MatchingRatio
+        attr(out$data, "apply.na.omit") = apply.na.omit
+        attr(out, "function.input") = list(data.Match = data.Match
+                                           , .vars4Matching = .vars4Matching
+                                           , .exposure = .exposure
+                                           , .MatchingRatio = .MatchingRatio
+                                           , apply.na.omit = apply.na.omit
+        ) # list inside attr() is not shown with str(max.level = 1)
         out
     }
-    
     
     .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4strata = .vars4strata)
     
@@ -601,6 +666,7 @@ data.stratified.Match = function(
             , print.process = T
             , load.dependent.library = F
             )
+        names(.mydata.strata_list.Match) = names(.mydata.strata_list)
     } else {
         .mydata.strata_list.Match = .mydata.strata_list %>%
             map(data.Match
@@ -614,20 +680,22 @@ data.stratified.Match = function(
     # map = purrr::map
     out = list()
     out$tableone_pre = CreateTableOne(vars = c(.vars4strata, .vars4Matching), strata = .exposure, data = .mydata, test=T, includeNA = T)
-    warning_which = names(.mydata.strata_list.Match)[which(map_chr(.mydata.strata_list.Match, class) == "character")]
-    out$data = .mydata.strata_list.Match %>% 
-        map(function(object) {
-            if (is.character(object)) {
-                object = NULL
-            }
-            object
-        }) %>% map(function(x) x$data) %>% reduce(rbind)
+
+    warning_lgl = .mydata.strata_list.Match %>% map_lgl(function(object) {
+            as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[.exposure]]) < 2")) # sum() to avoid error "argument is of length zero" in if()
+        })
+    # print(paste0("warning_lgl : ", deparse(warning_lgl)))
+    # print(paste0("names(.mydata.strata_list.Match) : ", deparse(names(.mydata.strata_list.Match))))
+    # print(paste0("names(.mydata.strata_list.Match)[warning_lgl] : ", deparse(names(.mydata.strata_list.Match)[warning_lgl])))
+    out$data = .mydata.strata_list.Match[!warning_lgl] %>% map(function(x) x$data) %>% reduce(rbind)
     out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID) %>% as.factor
-    if (length(warning_which) > 0) {
+    
+    if (sum(warning_lgl) > 0) {
         # warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", paste0(warning_which, collapse = ", ")))
         # warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", dput(warning_which)))
-        warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", deparse(warning_which)))
+        warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", deparse(names(.mydata.strata_list.Match)[warning_lgl])))
     }
+    
     out$tableone_post_total = CreateTableOne(
         vars = c(.vars4strata, .vars4Matching), strata = .exposure
         , data = out$data
@@ -642,16 +710,21 @@ data.stratified.Match = function(
     })
     names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
     
-    out$`.vars4strata` = .vars4strata
-    out$`.vars4Matching` = .vars4Matching
-    out$`.exposure` = .exposure
-    out$`.MatchingRatio` = .MatchingRatio
-    out$apply.na.omit = apply.na.omit
     attr(out$data, ".vars4strata") = .vars4strata
     attr(out$data, ".vars4Matching") = .vars4Matching
     attr(out$data, ".exposure") = .exposure
     attr(out$data, ".MatchingRatio") = .MatchingRatio
     attr(out$data, "apply.na.omit") = apply.na.omit
+    attr(out, "function.input") = list(
+        data.stratified.Match = data.stratified.Match
+        , data.strata_list = data.strata_list
+        , data.Match = data.Match
+        , .vars4strata
+        , .vars4Matching = .vars4Matching
+        , .exposure = .exposure
+        , .MatchingRatio = .MatchingRatio
+        , apply.na.omit = apply.na.omit
+    ) # list inside attr() is not shown with str(max.level = 1)
     out
 }
 
@@ -676,82 +749,66 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # + )
 # [1] "map to data.Match() with .mydata.strata_list$0_[10,20)"
 # [1] "data.Match() - dim(.mydata) : c(22L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(22L, 3L)"
 # [1] "data.Match() - dim(.X) : c(22L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[100,Inf]"
 # [1] "map to data.Match() with .mydata.strata_list$0_[20,30)"
 # [1] "data.Match() - dim(.mydata) : c(135L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(135L, 3L)"
 # [1] "data.Match() - dim(.X) : c(135L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[30,40)"
 # [1] "data.Match() - dim(.mydata) : c(242L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(242L, 3L)"
 # [1] "data.Match() - dim(.X) : c(242L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[40,50)"
 # [1] "data.Match() - dim(.mydata) : c(404L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(404L, 3L)"
 # [1] "data.Match() - dim(.X) : c(404L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[50,60)"
 # [1] "data.Match() - dim(.mydata) : c(527L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(527L, 3L)"
 # [1] "data.Match() - dim(.X) : c(527L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[60,70)"
 # [1] "data.Match() - dim(.mydata) : c(802L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(802L, 3L)"
 # [1] "data.Match() - dim(.X) : c(802L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[70,80)"
 # [1] "data.Match() - dim(.mydata) : c(757L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(757L, 3L)"
 # [1] "data.Match() - dim(.X) : c(757L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[80,90)"
 # [1] "data.Match() - dim(.mydata) : c(270L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(270L, 3L)"
 # [1] "data.Match() - dim(.X) : c(270L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$0_[90,100)"
 # [1] "data.Match() - dim(.mydata) : c(32L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(32L, 3L)"
 # [1] "data.Match() - dim(.X) : c(32L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[10,20)"
 # [1] "data.Match() - dim(.mydata) : c(11L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(11L, 3L)"
 # [1] "data.Match() - dim(.X) : c(11L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[100,Inf]"
 # [1] "map to data.Match() with .mydata.strata_list$1_[20,30)"
 # [1] "data.Match() - dim(.mydata) : c(117L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(117L, 3L)"
 # [1] "data.Match() - dim(.X) : c(117L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[30,40)"
 # [1] "data.Match() - dim(.mydata) : c(211L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(211L, 3L)"
 # [1] "data.Match() - dim(.X) : c(211L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[40,50)"
 # [1] "data.Match() - dim(.mydata) : c(282L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(282L, 3L)"
 # [1] "data.Match() - dim(.X) : c(282L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[50,60)"
 # [1] "data.Match() - dim(.mydata) : c(390L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(390L, 3L)"
 # [1] "data.Match() - dim(.X) : c(390L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[60,70)"
 # [1] "data.Match() - dim(.mydata) : c(587L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(587L, 3L)"
 # [1] "data.Match() - dim(.X) : c(587L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[70,80)"
 # [1] "data.Match() - dim(.mydata) : c(581L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(581L, 3L)"
 # [1] "data.Match() - dim(.X) : c(581L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[80,90)"
 # [1] "data.Match() - dim(.mydata) : c(305L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(305L, 3L)"
 # [1] "data.Match() - dim(.X) : c(305L, 4L)"
 # [1] "map to data.Match() with .mydata.strata_list$1_[90,100)"
 # [1] "data.Match() - dim(.mydata) : c(57L, 15L)"
-# [1] "data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : c(57L, 3L)"
 # [1] "data.Match() - dim(.X) : c(57L, 4L)"
 # Warning messages:
 # 1: In data.Match(., ...) : length(unique(.mydata[[.exposure]]) < 2
 # 2: In data.Match(., ...) : length(unique(.mydata[[.exposure]]) < 2
-
+# 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+#   length(unique(.mydata[[.exposure]]) < 2: 
+# c("0_[100,Inf]", "1_[100,Inf]")
 
 rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
     .vars4strata = c("female", "age.cut")
@@ -827,22 +884,52 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 
 rhc_mydata.Match %>% str(max.level = 1)
 rhc_mydata.stratified.Match %>% str(max.level = 1)
+rhc_mydata.stratified.Match %>% attr("function.input") %>% str
 # > rhc_mydata.Match %>% str(max.level = 1)
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	4260 obs. of  17 variables:
+#   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi FALSE
 #  $ tableone_post_total:List of 3
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ tableone_post_i    :List of 5
+#  - attr(*, "function.input")=List of 5
 # > rhc_mydata.stratified.Match %>% str(max.level = 1)
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	4212 obs. of  18 variables:
+#   ..- attr(*, ".vars4Matching")= chr [1:2] "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi FALSE
+#   ..- attr(*, ".vars4strata")= chr [1:2] "female" "age.cut"
 #  $ tableone_post_total:List of 3
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ tableone_post_i    :List of 5
+#  - attr(*, "function.input")=List of 8
+# > rhc_mydata.stratified.Match %>% attr("function.input") %>% str
+# List of 8
+#  $ data.stratified.Match:function (.mydata, .vars4strata = c("female", "age.cut"), .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5, .paralletlsugar = F, 
+#     apply.na.omit = F, print.process = F, load.dependent.library = T)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 25 230 1 25 1 1 230
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x00000000187ec3b0> 
+#  $ data.strata_list     :function (.mydata, .vars4strata = c("female", "age.cut"))  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 25 24 48 5 24 5 25 48
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x00000000187ec3b0> 
+#  $ data.Match           :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T, apply.na.omit = F, print.process = F, 
+#     load.dependent.library = T)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 50 19 152 5 19 5 50 152
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x00000000187ec3b0> 
+#  $                      : chr [1:2] "female" "age.cut"
+#  $ .vars4Matching       : chr [1:2] "age" "meanbp1"
+#  $ .exposure            : chr "treatment"
+#  $ .MatchingRatio       : num 5
+#  $ apply.na.omit        : logi FALSE
 4260 - 4212
 # > 4260 - 4212
 # [1] 48
@@ -910,17 +997,17 @@ rhc_mydata.stratified.Match$data
 # > rhc_mydata.stratified.Match$data
 # # A tibble: 4,212 x 18
 #    rowname   ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut    strata MatchingPairID MatchingCtrlNum
-#      <chr> <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>    <fctr>          <dbl>           <dbl>
-#  1       1     0     0     0      0     0       0     0      1 19.67400      0     105         1     1 [10,20) 0_[10,20)              1               0
-#  2       2     0     0     0      0     0       0     0      1 19.35100      0      70         0     0 [10,20) 0_[10,20)              1               1
-#  3       4     1     0     0      0     0       0     0      0 19.79199      0      66         0     0 [10,20) 0_[10,20)              1               2
-#  4       5     0     0     0      0     0       0     0      1 19.14899      0     103         0     0 [10,20) 0_[10,20)              1               3
-#  5       6     1     0     0      0     0       0     0      0 19.21999      0     128         0     0 [10,20) 0_[10,20)              1               4
-#  6      18     0     0     0      0     0       0     1      0 18.94600      0     112         0     1 [10,20) 0_[10,20)              1               5
-#  7      15     0     0     0      0     0       0     0      1 19.85199      0      63         1     1 [10,20) 0_[10,20)              2               0
-#  8       3     1     0     0      0     0       0     0      0 19.92599      0      41         0     0 [10,20) 0_[10,20)              2               1
-#  9       9     1     0     0      0     0       0     0      0 19.17599      0      62         0     0 [10,20) 0_[10,20)              2               2
-# 10      13     1     0     0      0     0       0     0      0 19.70999      0      55         0     1 [10,20) 0_[10,20)              2               3
+#      <chr> <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>    <fctr>         <fctr>           <dbl>
+#  1       1     0     0     0      0     0       0     0      1 19.67400      0     105         1     1 [10,20) 0_[10,20)    0_[10,20)_1               0
+#  2       2     0     0     0      0     0       0     0      1 19.35100      0      70         0     0 [10,20) 0_[10,20)    0_[10,20)_1               1
+#  3       4     1     0     0      0     0       0     0      0 19.79199      0      66         0     0 [10,20) 0_[10,20)    0_[10,20)_1               2
+#  4       5     0     0     0      0     0       0     0      1 19.14899      0     103         0     0 [10,20) 0_[10,20)    0_[10,20)_1               3
+#  5       6     1     0     0      0     0       0     0      0 19.21999      0     128         0     0 [10,20) 0_[10,20)    0_[10,20)_1               4
+#  6      18     0     0     0      0     0       0     1      0 18.94600      0     112         0     1 [10,20) 0_[10,20)    0_[10,20)_1               5
+#  7      15     0     0     0      0     0       0     0      1 19.85199      0      63         1     1 [10,20) 0_[10,20)    0_[10,20)_2               0
+#  8       3     1     0     0      0     0       0     0      0 19.92599      0      41         0     0 [10,20) 0_[10,20)    0_[10,20)_2               1
+#  9       9     1     0     0      0     0       0     0      0 19.17599      0      62         0     0 [10,20) 0_[10,20)    0_[10,20)_2               2
+# 10      13     1     0     0      0     0       0     0      0 19.70999      0      55         0     1 [10,20) 0_[10,20)    0_[10,20)_2               3
 # # ... with 4,202 more rows
 
 
