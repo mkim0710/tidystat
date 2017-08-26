@@ -240,13 +240,16 @@ data.Match <- function(
         
         if (apply.na.omit == T) {
             nrow1 = nrow(.mydata)
-            .mydata = .mydata %>% na.omit
-            nrow2 = nrow(.mydata)
+            # .mydata = .mydata %>% na.omit
+            # nrow2 = nrow(.mydata)
+            # print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+            .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
+            nrow2 = nrow(.mydata.exposure.vars4Matching.na.omit)
             print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+        } else {
+            .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)]
         }
         
-        
-        .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
         # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
         .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit)
         # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
@@ -302,10 +305,10 @@ data.Match <- function(
     attr(out$data, ".MatchingRatio") = .MatchingRatio
     attr(out$data, "apply.na.omit") = apply.na.omit
     attr(out, "function.input") = list(data.Match = data.Match
-        , .vars4Matching = .vars4Matching
-        , .exposure = .exposure
-        , .MatchingRatio = .MatchingRatio
-        , apply.na.omit = apply.na.omit
+                                       , .vars4Matching = .vars4Matching
+                                       , .exposure = .exposure
+                                       , .MatchingRatio = .MatchingRatio
+                                       , apply.na.omit = apply.na.omit
     ) # list inside attr() is not shown with str(max.level = 1)
     out
 }
@@ -580,13 +583,16 @@ data.stratified.Match = function(
             
             if (apply.na.omit == T) {
                 nrow1 = nrow(.mydata)
-                .mydata = .mydata %>% na.omit
-                nrow2 = nrow(.mydata)
+                # .mydata = .mydata %>% na.omit
+                # nrow2 = nrow(.mydata)
+                # print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+                .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
+                nrow2 = nrow(.mydata.exposure.vars4Matching.na.omit)
                 print(paste0("apply.na.omit == T : removing ", nrow1 - nrow2, "rows - from ", nrow1, " rows to ", nrow2, " rows"))
+            } else {
+                .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)]
             }
             
-            
-            .mydata.exposure.vars4Matching.na.omit = .mydata[, c(.exposure, .vars4Matching)] %>% na.omit
             # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
             .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit)
             # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
@@ -665,6 +671,7 @@ data.stratified.Match = function(
             , add_tableone_pre_post = F
             , print.process = T
             , load.dependent.library = F
+            , apply.na.omit = apply.na.omit
             )
         names(.mydata.strata_list.Match) = names(.mydata.strata_list)
     } else {
@@ -675,6 +682,7 @@ data.stratified.Match = function(
                 , .MatchingRatio = .MatchingRatio
                 , add_tableone_pre_post = F
                 , load.dependent.library = F
+                , apply.na.omit = apply.na.omit
             )
     }
     # map = purrr::map
