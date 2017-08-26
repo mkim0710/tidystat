@@ -29,13 +29,13 @@ data.tab_strata_exposure = function(
     , round_digits = 2
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
-
+    
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
     # tmp = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame
     # out = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame.matrix %>% rownames_to_column
     out = table(.mydata$strata, .mydata[[.exposure]]) %>% addmargins %>% as.data.frame.matrix %>% rownames_to_column
-
+    
     # out$total = rowSums(out[, 2:3], na.rm = T)
     out$ratio = out[[2]] / out[[3]] 
     out$ratio = out$ratio %>% round(round_digits)
@@ -117,7 +117,7 @@ rhc_mydata %>% as.tibble
 #  9     0     0     0      0     0       0     1      0 18.04199      1      53         0     0 [10,20)
 # 10     1     0     0      0     0       0     0      0 48.42398      1      73         1     0 [40,50)
 # # ... with 5,725 more rows
- # %>% map(seq_along(.), function(i) {df = .[[i]]; names(df)[1] = names(.)[i]; t(df)})
+# %>% map(seq_along(.), function(i) {df = .[[i]]; names(df)[1] = names(.)[i]; t(df)})
 rhc_mydata.strata_list = rhc_mydata %>% data.strata_list(.vars4strata = c("female", "age.cut"))
 rhc_mydata.strata_list %>% str(max.level = 1)
 rhc_mydata.strata_list[[1]]
@@ -278,7 +278,17 @@ data.Match <- function(
             })
             names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
         }
+        attr(out$data, ".vars4strata") = .vars4strata
+        attr(out$data, ".vars4Matching") = .vars4Matching
+        attr(out$data, ".exposure") = .exposure
+        attr(out$data, ".MatchingRatio") = .MatchingRatio
+        attr(out$data, "apply.na.omit") = apply.na.omit
     }
+    out$`.vars4strata` = .vars4strata
+    out$`.vars4Matching` = .vars4Matching
+    out$`.exposure` = .exposure
+    out$`.MatchingRatio` = .MatchingRatio
+    out$apply.na.omit = apply.na.omit
     out
 }
 
@@ -470,7 +480,7 @@ data.stratified.Match = function(
         names(out) = levels(.mydata$strata)
         out
     }
-
+    
     data.Match <- function(
         .mydata
         , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
@@ -551,10 +561,21 @@ data.stratified.Match = function(
                 })
                 names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
             }
+            attr(out$data, ".vars4strata") = .vars4strata
+            attr(out$data, ".vars4Matching") = .vars4Matching
+            attr(out$data, ".exposure") = .exposure
+            attr(out$data, ".MatchingRatio") = .MatchingRatio
+            attr(out$data, "apply.na.omit") = apply.na.omit
         }
+        out$`.vars4strata` = .vars4strata
+        out$`.vars4Matching` = .vars4Matching
+        out$`.exposure` = .exposure
+        out$`.MatchingRatio` = .MatchingRatio
+        out$apply.na.omit = apply.na.omit
         out
     }
-
+    
+    
     .mydata.strata_list = data.strata_list(.mydata = .mydata, .vars4strata = .vars4strata)
     
     if (print.process == T) {
@@ -609,6 +630,17 @@ data.stratified.Match = function(
             , includeNA = T)
     })
     names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
+    
+    out$`.vars4strata` = .vars4strata
+    out$`.vars4Matching` = .vars4Matching
+    out$`.exposure` = .exposure
+    out$`.MatchingRatio` = .MatchingRatio
+    out$apply.na.omit = apply.na.omit
+    attr(out$data, ".vars4strata") = .vars4strata
+    attr(out$data, ".vars4Matching") = .vars4Matching
+    attr(out$data, ".exposure") = .exposure
+    attr(out$data, ".MatchingRatio") = .MatchingRatio
+    attr(out$data, "apply.na.omit") = apply.na.omit
     out
 }
 
