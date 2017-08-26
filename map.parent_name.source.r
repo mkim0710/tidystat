@@ -1,5 +1,14 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.source.r")
 
+
+            # # Codes to insert inside in the beginning annonymous function for map
+            # parent.x = get(".x", envir = parent.frame())
+            # i = which(map_lgl(parent.x, function(object) {identical(x, object)}))
+            # 
+            # print(Sys.time())
+            # print(paste0("Beginning map to .f() /w list element [[", i, "]] named: ", ifelse(is.null(names(parent.x)[i]), "NULL", names(parent.x)[i])))
+
+
 map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-.data.frame`), .print.Sys.time = F, ...) {
     # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.source.r")
     if(is.vector(vec) & !is.list(vec)) {
