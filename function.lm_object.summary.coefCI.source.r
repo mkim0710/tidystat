@@ -489,4 +489,109 @@ clogit_object %>% function.coxph_object.summary.OR
 
 
 
+function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
+    library(glmnet)
+    library(tidyverse)
+    out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
+        coef(cv.glmnet_object, s = chr)
+    }) %>% map(as.matrix) %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = "rowname")
+    names(out)[2:3] = c("coef.min", "coef.1se")
+    # names(out)[2:3] = names(out)[2:3] %>% format(nsmall = 3)
+    out$rownum = 1:nrow(out)
+    
+    out.NA = out
+    out.NA [out.NA == 0] = NA
+    
+    # out.NA[["exp(coef.min)"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
+    # out.NA[["exp(coef.1se)"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+    # out.NA = out.NA %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
+    out.NA[["expB.min"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
+    out.NA[["expB.1se"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+    out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
+    
+    if (nonzero == T) {
+        out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)
+    }
+    out.NA
+}
+
+function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_object, i_names = NULL) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
+    library(glmnet)
+    library(tidyverse)
+    out2 = cv.glmnet_alphas_list_object %>% map(function.cv.glmnet_object.coef.exp)
+    if (is.null(i_names)) {
+        # names(cv.glmnet_alphas_list_object) %>% grep("\\.a1$|\\.a0\\.[1-9]$", ., value = T)
+        i_names = names(cv.glmnet_alphas_list_object) %>% stringr::str_extract("\\.a1$|\\.a0\\.[1-9]$")
+        i_names = i_names %>% gsub("\\.a0\\.", ".a.", .)
+        i_names = i_names %>% gsub("^\\.", "", .)
+        if (any(is.na(i_names))) {
+            stop("any(is.na(i_names))")
+        }
+    }
+    out3 = out2 %>% seq_along %>% map(function(i) {
+        df = out2[[i]]
+        names(df) [!names(df) %in% c("rownum", "rowname")] = 
+            paste0(
+                i_names[i]
+                , names(df) [!names(df) %in% c("rownum", "rowname")]
+            )
+        df
+    })
+
+    out4 = out3 %>% reduce(full_join, by = c("rownum", "rowname"))
+    # out4 = out4 %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
+    out4 = out4 %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
+    out4
+}
+
+
+#@ test) function.cv.glmnet_object.coef.exp() -----
+library(tidyverse)
+library(glmnet)
+x = matrix(rnorm(1e3 * 100), 1e3, 100)
+y = rnorm(1e3)
+cv.glmnet_object = cv.glmnet(x,y)
+cv.glmnet_object %>% function.cv.glmnet_object.coef.exp
+
+set.seed(1010)
+n=1000;p=100
+nzc=trunc(p/10)
+x=matrix(rnorm(n*p),n,p)
+beta=rnorm(nzc)
+fx= x[,seq(nzc)] %*% beta
+eps=rnorm(n)*5
+y=drop(fx+eps)
+px=exp(fx)
+px=px/(1+px)
+ly=rbinom(n=length(px),prob=px,size=1)
+set.seed(1011)
+cvob1=cv.glmnet(x,y)
+cvob1 %>% function.cv.glmnet_object.coef.exp %>% head(15)
+# > cvob1 %>% function.cv.glmnet_object.coef.exp %>% head(15)
+#    rownum     rowname expB.min expB.1se    coef.min   coef.1se
+# 1       1 (Intercept)     0.89     0.89 -0.11291017 -0.1144990
+# 2       2          V1     0.66     0.78 -0.41095526 -0.2496825
+# 3       3          V2     1.65     1.43  0.50127803  0.3546561
+# 4       4          V3       NA       NA          NA         NA
+# 5       5          V4     0.67     0.78 -0.40319404 -0.2505954
+# 6       6          V5     0.65     0.80 -0.42518885 -0.2208821
+# 7       7          V6     1.53     1.33  0.42609526  0.2819755
+# 8       8          V7     1.52     1.25  0.41845873  0.2264551
+# 9       9          V8     0.21     0.25 -1.54881117 -1.3898424
+# 10     10          V9     3.43     2.87  1.23284876  1.0554409
+# 11     11         V10     1.37     1.20  0.31187777  0.1851447
+# 12     12         V11       NA       NA          NA         NA
+# 13     13         V12       NA       NA          NA         NA
+# 14     14         V13       NA       NA          NA         NA
+# 15     15         V14     0.97       NA -0.03085618         NA
+
+
+
+
+#@ test) function.cv.glmnet_alphas_list_object.coef.exp() -----
+
+
+
 #@ end -----
