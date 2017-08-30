@@ -488,8 +488,7 @@ clogit_object %>% function.coxph_object.summary.OR
 # In function.coxph_object.summary.OR(.) : "clogit" %in% class(coxph_object)
 
 
-
-function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F) {
+function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
     library(glmnet)
     library(tidyverse)
@@ -511,7 +510,16 @@ function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F) {
     out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
     
     if (nonzero == T) {
-        out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)
+        out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical * logical == 0 : TRUE when any of the logicals is FALSE : ?? operator
+        # out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical + logical == 0 : TRUE when both of the logicals is FALSE : ?? operator
+        # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical * !logical == 0 : TRUE when any of the logicals is TRUE : OR operator
+        # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical + !logical == 0 : TRUE when both of the logicals is TRUE : AND operator
+    }
+    if (print_any_expB_gt.2 == T) {
+        suppressWarnings((
+            out.NA = out.NA %>% filter(abs(as.numeric(expB.min)-1) > 0.2 | abs(as.numeric(expB.1se)-1) > 0.2)
+        ))
+        rownames(out.NA) = NULL
     }
     out.NA
 }
@@ -523,6 +531,10 @@ x = matrix(rnorm(1e3 * 100), 1e3, 100)
 y = rnorm(1e3)
 cv.glmnet_object = cv.glmnet(x,y)
 cv.glmnet_object %>% function.cv.glmnet_object.coef.exp
+cv.glmnet_object %>% function.cv.glmnet_object.coef.exp(print_any_expB_gt.2 = T)
+# > cv.glmnet_object %>% function.cv.glmnet_object.coef.exp(print_any_expB_gt.2 = T)
+# [1] rownum   rowname  expB.min expB.1se coef.min coef.1se
+# <0 행> <또는 row.names의 길이가 0입니다>
 
 set.seed(1010)
 n=1000;p=100
@@ -538,6 +550,7 @@ ly=rbinom(n=length(px),prob=px,size=1)
 set.seed(1011)
 cvob1=cv.glmnet(x,y)
 cvob1 %>% function.cv.glmnet_object.coef.exp %>% head(15)
+cvob1 %>% function.cv.glmnet_object.coef.exp(print_any_expB_gt.2 = T)
 # > cvob1 %>% function.cv.glmnet_object.coef.exp %>% head(15)
 #    rownum     rowname expB.min expB.1se    coef.min   coef.1se
 # 1       1 (Intercept)     0.89     0.89 -0.11291017 -0.1144990
@@ -555,13 +568,25 @@ cvob1 %>% function.cv.glmnet_object.coef.exp %>% head(15)
 # 13     13         V12       NA       NA          NA         NA
 # 14     14         V13       NA       NA          NA         NA
 # 15     15         V14     0.97       NA -0.03085618         NA
+# > cvob1 %>% function.cv.glmnet_object.coef.exp(print_any_expB_gt.2 = T)
+#    rownum rowname expB.min expB.1se   coef.min    coef.1se
+# 1       2      V1     0.66     0.78 -0.4109553 -0.24968246
+# 2       3      V2     1.65     1.43  0.5012780  0.35465610
+# 3       5      V4     0.67     0.78 -0.4031940 -0.25059537
+# 4       6      V5     0.65     0.80 -0.4251888 -0.22088214
+# 5       7      V6     1.53     1.33  0.4260953  0.28197554
+# 6       8      V7     1.52     1.25  0.4184587  0.22645514
+# 7       9      V8     0.21     0.25 -1.5488112 -1.38984240
+# 8      10      V9     3.43     2.87  1.2328488  1.05544092
+# 9      11     V10     1.37     1.20  0.3118778  0.18514468
+# 10     27     V26     1.22     1.03  0.1970404  0.02947248
+# 11     76     V75     0.70     0.84 -0.3579856 -0.17717557
 
 
-
-function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_object, i_names = NULL) {
+function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_object, i_names = NULL, print_any_expB.min_gt.2 = F) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
     
-    function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F) {
+    function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
         # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
         library(glmnet)
         library(tidyverse)
@@ -583,11 +608,20 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
         out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
         
         if (nonzero == T) {
-            out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)
+            out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical * logical == 0 : TRUE when any of the logicals is FALSE : ?? operator
+            # out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical + logical == 0 : TRUE when both of the logicals is FALSE : ?? operator
+            # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical * !logical == 0 : TRUE when any of the logicals is TRUE : OR operator
+            # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical + !logical == 0 : TRUE when both of the logicals is TRUE : AND operator
+        }
+        if (print_any_expB_gt.2 == T) {
+            suppressWarnings((
+                out.NA = out.NA %>% filter(abs(as.numeric(expB.min)-1) > 0.2 | abs(as.numeric(expB.1se)-1) > 0.2)
+            ))
+            rownames(out.NA) = NULL
         }
         out.NA
     }
-    
+
     library(glmnet)
     library(tidyverse)
     out2 = cv.glmnet_alphas_list_object %>% map(function.cv.glmnet_object.coef.exp)
@@ -613,6 +647,16 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
     out4 = out3 %>% reduce(full_join, by = c("rownum", "rowname"))
     # out4 = out4 %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
     out4 = out4 %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
+    
+    if (print_any_expB.min_gt.2 == T) {
+        # suppressWarnings((
+        #     out4 = out4 %>% filter(abs(as.numeric(a1expB.min)-1) > 0.2 | abs(as.numeric(a.5expB.min)-1) > 0.2)
+        # ))
+        suppressWarnings((
+            out4 = out4[which( ( ( abs( (out4[paste0(i_names, "expB.min")] %>% map_df(as.numeric)) - 1 ) > 0.2 ) %>% rowSums(na.rm = T) ) > 0 ), ]
+        ))
+        rownames(out4) = NULL
+    }
     out4
 }
 #@ test) function.cv.glmnet_alphas_list_object.coef.exp() -----
