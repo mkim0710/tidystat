@@ -208,13 +208,19 @@ rhc_mydata.strata_list %>% map(function(df) {
 # 20  1_[90,100)  49   8
 
 
-data.Match <- function(
+
+
+
+
+data.Match = function(
     .mydata
     , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
     , RowNum_original_before_strata = NULL
     , apply.na.omit = F
     , print.process = F
     , load.dependent.library = T
+    , propensity_score_matching = F
+    , propensity_score_matching_weight = F
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (load.dependent.library == T) {
@@ -256,61 +262,109 @@ data.Match <- function(
             .mydata.exposure.vars4Matching.na.omit$RowNum_after_na.omit = 1:nrow(.mydata.exposure.vars4Matching.na.omit)
         }
         
-        # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
-        .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit[, .vars4Matching])
-        # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
-        
-        if (print.process == T) {
-            print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
-            # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
-            print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
-        }
-        .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
-        
-        tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
-        tmpDf$MatchingCtrlNum = 1:.MatchingRatio
-        # tmpDf
-        
-        tmpDf2ctrl = tmpDf[,c("index.control", "MatchingPairID", "MatchingCtrlNum")]
-        # names(tmpDf2ctrl)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
-        names(tmpDf2ctrl)[1] = "RowNum_after_na.omit"
-        # tmpDf2ctrl
-        
-        tmpDf2tx = tmpDf[,c("index.treated", "MatchingPairID", "MatchingCtrlNum")]
-        tmpDf2tx$MatchingCtrlNum = 0
-        # names(tmpDf2tx)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
-        names(tmpDf2tx)[1] = "RowNum_after_na.omit"
-        tmpDf2tx = tmpDf2tx %>% distinct()
-        # tmpDf2tx
-        
-        tmpDf3 = union(tmpDf2tx, tmpDf2ctrl)
-        # tmpDf3$rowname = tmpDf3$rowname %>% as.character()  # bug fix 170826 - rowname are altered when apply.na.omit == T
-        # tmpDf3 %>% arrange(MatchingPairID, MatchingCtrlNum)
-        
-        tmpDf4 = left_join(tmpDf3, .mydata.exposure.vars4Matching.na.omit[, c(RowNum_original_before_strata, "RowNum_original", "RowNum_after_na.omit")], by = "RowNum_after_na.omit")
-        
-        # .mydataMatching = .mydata %>% rownames_to_column() %>% as.tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
-        # .mydataMatching = inner_join(.mydataMatching, tmpDf3, by = "rowname") %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
-        .mydataMatching = inner_join(.mydata, tmpDf4, by = c(RowNum_original_before_strata, "RowNum_original")) %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
-        
-        # .mydataMatching$MatchingPairID = paste0()
-        # .mydataMatching
-        out$data = .mydataMatching %>% as.tibble
-        if (add_tableone_pre_post == T) {
-            out$tableone_post_total = CreateTableOne(
-                vars = .vars4Matching, strata = .exposure
-                , data = .mydataMatching
-                , test=T
-                , includeNA = T)
-            out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
-                CreateTableOne(
+        if (propensity_score_matching_weight == T) {
+            if (!identical(unique(as.integer(.mydata[[.exposure]])), 0:1)) {
+                warning("!identical(unique(as.integer(.mydata[[.exposure]])), 0:1)")
+                out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+                attr(out, "error.message") = "!identical(unique(as.integer(.mydata[[.exposure]])), 0:1)"  # attr() is shown with str(max.level = 1)
+            } else {
+                psModel = glm(
+                    formula = as.formula(paste0(.exposure, " ~ ", paste(.vars4Matching, collapse = " + ")))
+                    , family = binomial
+                    , data = .mydata.exposure.vars4Matching.na.omit
+                )
+                psModel.predict_pExposure_is_T = psModel %>% predict(type = "response")  # predicted probability of being assigned to the exposure (treatment)
+                
+                .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data = ifelse(as.integer(.mydata.exposure.vars4Matching.na.omit[[.exposure]]) == 1, psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
+                .mydata.exposure.vars4Matching.na.omit$pMin = pmin(psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
+                .mydata.exposure.vars4Matching.na.omit$matching_weight = .mydata.exposure.vars4Matching.na.omit$pMin / .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data
+                library(survey)
+                .mydata.exposure.vars4Matching.na.omit.svydesign = .mydata.exposure.vars4Matching.na.omit %>% svydesign(ids = ~ 1, data = ., weights = ~ matching_weight)
+                
+                out$data = .mydata.exposure.vars4Matching.na.omit.svydesign
+                if (add_tableone_pre_post == T) {
+                    out$tableone_post_total = svyCreateTableOne(
+                        vars = .vars4Matching, strata = .exposure
+                        , data = .mydata.exposure.vars4Matching.na.omit.svydesign
+                        , test=T
+                        , includeNA = T)
+                }
+            }
+            
+        } else {
+            if (propensity_score_matching == T) {
+                psModel = glm(
+                    formula = as.formula(paste0(.exposure, " ~ ", paste(.vars4Matching, collapse = " + ")))
+                    , family = binomial
+                    , data = .mydata.exposure.vars4Matching.na.omit
+                )
+                psModel.predict_pExposure_is_T = psModel %>% predict(type = "response")  # predicted probability of being assigned to the exposure (treatment)
+                
+                .mydata.Match = Match(
+                    Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio
+                    , X = log( psModel.predict_pExposure_is_T / (1 - psModel.predict_pExposure_is_T) )
+                    , replace = FALSE)
+                
+            } else {
+                ## Mahalanobis distance-based nearest neighbor matching
+                # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
+                .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit[, .vars4Matching])
+                # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
+                
+                if (print.process == T) {
+                    print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
+                    # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
+                    print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
+                }
+                .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
+            }
+            
+            tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
+            tmpDf$MatchingCtrlNum = 1:.MatchingRatio
+            # tmpDf
+            
+            tmpDf2ctrl = tmpDf[,c("index.control", "MatchingPairID", "MatchingCtrlNum")]
+            # names(tmpDf2ctrl)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
+            names(tmpDf2ctrl)[1] = "RowNum_after_na.omit"
+            # tmpDf2ctrl
+            
+            tmpDf2tx = tmpDf[,c("index.treated", "MatchingPairID", "MatchingCtrlNum")]
+            tmpDf2tx$MatchingCtrlNum = 0
+            # names(tmpDf2tx)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
+            names(tmpDf2tx)[1] = "RowNum_after_na.omit"
+            tmpDf2tx = tmpDf2tx %>% distinct()
+            # tmpDf2tx
+            
+            tmpDf3 = union(tmpDf2tx, tmpDf2ctrl)
+            # tmpDf3$rowname = tmpDf3$rowname %>% as.character()  # bug fix 170826 - rowname are altered when apply.na.omit == T
+            # tmpDf3 %>% arrange(MatchingPairID, MatchingCtrlNum)
+            
+            tmpDf4 = left_join(tmpDf3, .mydata.exposure.vars4Matching.na.omit[, c(RowNum_original_before_strata, "RowNum_original", "RowNum_after_na.omit")], by = "RowNum_after_na.omit")
+            
+            # .mydataMatching = .mydata %>% rownames_to_column() %>% as.tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
+            # .mydataMatching = inner_join(.mydataMatching, tmpDf3, by = "rowname") %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
+            .mydataMatching = inner_join(.mydata, tmpDf4, by = c(RowNum_original_before_strata, "RowNum_original")) %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
+            
+            # .mydataMatching$MatchingPairID = paste0()
+            # .mydataMatching
+            out$data = .mydataMatching %>% as.tibble
+            if (add_tableone_pre_post == T) {
+                out$tableone_post_total = CreateTableOne(
                     vars = .vars4Matching, strata = .exposure
-                    , data = .mydataMatching %>% filter(MatchingCtrlNum %in% c(0,i))
+                    , data = .mydataMatching
                     , test=T
                     , includeNA = T)
-            })
-            names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
+                out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
+                    CreateTableOne(
+                        vars = .vars4Matching, strata = .exposure
+                        , data = .mydataMatching %>% filter(MatchingCtrlNum %in% c(0,i))
+                        , test=T
+                        , includeNA = T)
+                })
+                names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
+            }
         }
+        
     }
     attr(out$data, ".vars4Matching") = .vars4Matching
     attr(out$data, ".exposure") = .exposure
@@ -330,8 +384,10 @@ data.Match <- function(
 }
 
 
-
 #@ test) data.Match() rhc_mydata -----
+library(tidyverse)
+load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.Match = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
     , .exposure = "treatment"
@@ -377,7 +433,7 @@ rhc_mydata.Match %>% attr("function.input") %>% str
 #  $ .MatchingRatio: num 5
 #  $ apply.na.omit : logi FALSE
 rhc_mydata.Match$tableone_pre %>% print(smd = T)
-rhc_mydata.Match$tableone_post_total %>% print(smd = T)
+rhc_mydata.Match$tableone_post_total %>% print(smd = T)  # ----
 rhc_mydata.Match$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
 rhc_mydata.Match$data
 # > rhc_mydata.Match$tableone_pre %>% print(smd = T)
@@ -387,7 +443,7 @@ rhc_mydata.Match$data
 #   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
 #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 #   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
-# > rhc_mydata.Match$tableone_post_total %>% print(smd = T)
+# > rhc_mydata.Match$tableone_post_total %>% print(smd = T)  # ----
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3550           710                           
@@ -416,6 +472,137 @@ rhc_mydata.Match$data
 #  9     0     0     0      0     0       0     0      1 45.02698      1      57         0     0 [40,50)            3043              2               2
 # 10     1     0     0      0     0       0     0      0 47.93399      1      58         0     0 [40,50)            3887              2               3
 # # ... with 4,250 more rows
+
+
+rhc_mydata.Match_propensity_score = rhc_mydata %>% data.Match(
+    .vars4Matching = c("female","age","meanbp1")
+    , .exposure = "treatment"
+    , .MatchingRatio = 5
+    , propensity_score_matching = T
+)
+rhc_mydata.Match_propensity_score %>% str(max.level = 1)
+# rhc_mydata.Match_propensity_score %>% attr("function.input") %>% str
+rhc_mydata.Match_propensity_score$tableone_pre %>% print(smd = T)
+rhc_mydata.Match_propensity_score$tableone_post_total %>% print(smd = T)  # ----
+# rhc_mydata.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+rhc_mydata.Match_propensity_score$data
+# > rhc_mydata.Match_propensity_score %>% str(max.level = 1)
+# List of 4
+#  $ tableone_pre       :List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	4260 obs. of  17 variables:
+#   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi FALSE
+#  $ tableone_post_total:List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ tableone_post_i    :List of 5
+#  - attr(*, "function.input")=List of 5
+# > rhc_mydata.Match_propensity_score %>% attr("function.input") %>% str
+# List of 5
+#  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 14 170 1 14 1 1 170
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000026ffc568> 
+#  $ .vars4Matching: chr [1:3] "female" "age" "meanbp1"
+#  $ .exposure     : chr "treatment"
+#  $ .MatchingRatio: num 5
+#  $ apply.na.omit : logi FALSE
+# > rhc_mydata.Match_propensity_score$tableone_pre %>% print(smd = T)
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                    3551          2184                           
+#   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
+#   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
+#   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
+# > rhc_mydata.Match_propensity_score$tableone_post_total %>% print(smd = T)  # ----
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                    3550           710                           
+#   female (mean (sd))   0.46 (0.50)   0.43 (0.49)   0.083       0.071
+#   age (mean (sd))     61.77 (17.29) 60.72 (15.53)  0.133       0.064
+#   meanbp1 (mean (sd)) 84.82 (38.79) 69.14 (33.79) <0.001       0.431
+# > rhc_mydata.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                     710           710                           
+#   female (mean (sd))   0.47 (0.50)   0.43 (0.49)   0.109       0.085
+#   age (mean (sd))     62.18 (17.00) 60.72 (15.53)  0.090       0.090
+#   meanbp1 (mean (sd)) 84.64 (38.96) 69.14 (33.79) <0.001       0.425
+# > rhc_mydata.Match_propensity_score$data
+# # A tibble: 4,260 x 17
+#      ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died  age.cut RowNum_original MatchingPairID MatchingCtrlNum
+#    <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>   <fctr>           <int>          <dbl>           <dbl>
+#  1     0     0     0      0     0       0     0      1 78.17896      1      63         1     1  [70,80)               2              1               0
+#  2     1     0     0      0     0       0     0      0 87.86298      1      59         0     0  [80,90)            1042              1               1
+#  3     0     0     0      0     0       0     0      0 80.73895      1      62         0     0  [80,90)            1204              1               2
+#  4     0     0     0      0     1       0     0      0 75.12097      0      77         0     1  [70,80)            2893              1               3
+#  5     1     0     0      0     0       0     0      0 85.34399      1      60         0     0  [80,90)            4107              1               4
+#  6     1     0     0      0     0       0     0      0 83.24194      1      61         0     0  [80,90)            5201              1               5
+#  7     0     0     0      0     0       0     1      0 46.09198      1      57         1     0  [40,50)               3              2               0
+#  8     0     0     0      0     0       0     0      1 95.58099      0      49         0     1 [90,100)             469              2               1
+#  9     0     0     0      0     0       0     1      0 69.81195      0      60         0     1  [60,70)             818              2               2
+# 10     0     0     0      0     0       0     0      1 62.76797      1      50         0     0  [60,70)            2328              2               3
+# # ... with 4,250 more rows
+
+
+
+rhc_mydata.Match_propensity_score_matching_weight = rhc_mydata %>% data.Match(
+    .vars4Matching = c("female","age","meanbp1")
+    , .exposure = "treatment"
+    , .MatchingRatio = 5
+    , propensity_score_matching_weight = T
+)
+rhc_mydata.Match_propensity_score_matching_weight %>% str(max.level = 1)
+# rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") %>% str
+rhc_mydata.Match_propensity_score_matching_weight$tableone_pre %>% print(smd = T)
+rhc_mydata.Match_propensity_score_matching_weight$tableone_post_total %>% print(smd = T)  # ----
+rhc_mydata.Match_propensity_score_matching_weight$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+rhc_mydata.Match_propensity_score_matching_weight$data
+# > rhc_mydata.Match_propensity_score_matching_weight %>% str(max.level = 1)
+# List of 3
+#  $ tableone_pre       :List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ data               :List of 9
+#   ..- attr(*, "class")= chr [1:2] "survey.design2" "survey.design"
+#   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi FALSE
+#  $ tableone_post_total:List of 3
+#   ..- attr(*, "class")= chr [1:2] "svyTableOne" "TableOne"
+#  - attr(*, "function.input")=List of 5
+# > rhc_mydata.Match_propensity_score_matching_weight %>% attr("function.input") %>% str
+# List of 5
+#  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 14 170 1 14 1 1 170
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000026ffc568> 
+#  $ .vars4Matching: chr [1:3] "female" "age" "meanbp1"
+#  $ .exposure     : chr "treatment"
+#  $ .MatchingRatio: num 5
+#  $ apply.na.omit : logi FALSE
+# > rhc_mydata.Match_propensity_score_matching_weight$tableone_pre %>% print(smd = T)
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                    3551          2184                           
+#   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
+#   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
+#   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
+# > rhc_mydata.Match_propensity_score_matching_weight$tableone_post_total %>% print(smd = T)  # ----
+#                      Stratified by treatment
+#                       0               1               p      test SMD   
+#   n                   2142.75         2149.92                           
+#   female (mean (sd))     0.42 (0.49)     0.42 (0.49)   0.930       0.002
+#   age (mean (sd))       60.81 (17.65)   60.88 (15.56)  0.877       0.004
+#   meanbp1 (mean (sd))   69.39 (32.73)   69.00 (33.81)  0.660       0.012
+# > rhc_mydata.Match_propensity_score_matching_weight$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+# NULL
+# > rhc_mydata.Match_propensity_score_matching_weight$data
+# Independent Sampling design (with replacement)
+# svydesign(ids = ~1, data = ., weights = ~matching_weight)
+
 
 #@ test) data.Match() rhc_mydata.na ----
 library(tidyverse)
@@ -531,7 +718,7 @@ rhc_mydata.na.Match$data %>% dim
 # [1] 126
 
 rhc_mydata.na.Match$tableone_pre %>% print(smd = T)
-rhc_mydata.na.Match$tableone_post_total %>% print(smd = T)
+rhc_mydata.na.Match$tableone_post_total %>% print(smd = T)  # ----
 rhc_mydata.na.Match$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
 rhc_mydata.na.Match$data
 # > rhc_mydata.na.Match$tableone_pre %>% print(smd = T)
@@ -541,7 +728,7 @@ rhc_mydata.na.Match$data
 #   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
 #   age (mean (sd))     61.68 (17.28) 60.71 (15.62)  0.034       0.059
 #   meanbp1 (mean (sd)) 84.83 (38.87) 68.14 (34.22) <0.001       0.456
-# > rhc_mydata.na.Match$tableone_post_total %>% print(smd = T)
+# > rhc_mydata.na.Match$tableone_post_total %>% print(smd = T)  # ----
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3445           689                           
@@ -575,108 +762,267 @@ rhc_mydata.na.Match$data$RowNum_original %>% unique %>% length
 rhc_mydata.na.Match$data$RowNum_after_na.omit %>% unique %>% length
 # > rhc_mydata.na.Match$data$RowNum_original %>% unique %>% length
 # [1] 4134
+# # > rhc_mydata.na.Match$data$RowNum_after_na.omit %>% unique %>% length
+# # [1] 4134
 # > rhc_mydata.na.Match$data$RowNum_after_na.omit %>% unique %>% length
-# [1] 4134
+# [1] 0
+# Warning message:
+# Unknown or uninitialised column: 'RowNum_after_na.omit'. 
 
 
-#@ test) data.Match() rhc_mydata.strata_list -----
-rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
-    map(data.Match
-        , .vars4Matching = c("age","meanbp1")
-        , .exposure = "treatment"
-        , .MatchingRatio = 5
-    )
-# > rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
-# +     map(data.Match
-# +         , .vars4Matching = c("age","meanbp1")
-# +         , .exposure = "treatment"
-# +         , .MatchingRatio = 5
-# +     )
-# Warning messages:
-# 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-rhc_mydata.strata_list.Match.old %>% str(max.level = 1)
-# > rhc_mydata.strata_list.Match.old %>% str(max.level = 1)
-# List of 20
-#  $ 0_[10,20)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[100,Inf]:List of 1
-#   ..- attr(*, "error.message")= chr "length(unique(.mydata[[.exposure]]) < 2"
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[20,30)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[30,40)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[40,50)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[50,60)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[60,70)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[70,80)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[80,90)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 0_[90,100) :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[10,20)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[100,Inf]:List of 1
-#   ..- attr(*, "error.message")= chr "length(unique(.mydata[[.exposure]]) < 2"
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[20,30)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[30,40)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[40,50)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[50,60)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[60,70)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[70,80)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[80,90)  :List of 4
-#   ..- attr(*, "function.input")=List of 5
-#  $ 1_[90,100) :List of 4
-#   ..- attr(*, "function.input")=List of 5
-rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_pre %>% print(smd = T)
-rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_total %>% print(smd = T)
-rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
-rhc_mydata.strata_list.Match.old$`0_[60,70)`$data
-# > rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_pre %>% print(smd = T)
+rhc_mydata.na.Match_propensity_score = rhc_mydata.na %>% data.Match(
+    .vars4Matching = c("female","age","meanbp1")
+    , .exposure = "treatment"
+    , .MatchingRatio = 5
+    , print.process = F
+    , apply.na.omit = T
+    , propensity_score_matching = T
+)
+rhc_mydata.na.Match_propensity_score %>% str(max.level = 1)
+# rhc_mydata.na.Match_propensity_score %>% attr("function.input") %>% str
+rhc_mydata.na.Match_propensity_score$tableone_pre %>% print(smd = T)
+rhc_mydata.na.Match_propensity_score$tableone_post_total %>% print(smd = T) # ----
+# rhc_mydata.na.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+rhc_mydata.na.Match_propensity_score$data
+# > rhc_mydata.na.Match_propensity_score = rhc_mydata.na %>% data.Match(
+# +     .vars4Matching = c("female","age","meanbp1")
+# +     , .exposure = "treatment"
+# +     , .MatchingRatio = 5
+# +     , print.process = F
+# +     , apply.na.omit = T
+# +     , propensity_score_matching = T
+# + )
+# [1] "apply.na.omit == T : removing 100 rows - from 5735 rows to 5635 rows"
+# > rhc_mydata.na.Match_propensity_score %>% str(max.level = 1)
+# List of 4
+#  $ tableone_pre       :List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	4188 obs. of  17 variables:
+#   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi TRUE
+#  $ tableone_post_total:List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ tableone_post_i    :List of 5
+#  - attr(*, "function.input")=List of 5
+# > rhc_mydata.na.Match_propensity_score %>% attr("function.input") %>% str
+# List of 5
+#  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 14 170 1 14 1 1 170
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000026ffc568> 
+#  $ .vars4Matching: chr [1:3] "female" "age" "meanbp1"
+#  $ .exposure     : chr "treatment"
+#  $ .MatchingRatio: num 5
+#  $ apply.na.omit : logi TRUE
+# > rhc_mydata.na.Match_propensity_score$tableone_pre %>% print(smd = T)
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
-#   n                     459           343                           
-#   age (mean (sd))     65.16 (2.91)  64.97 (2.87)   0.346       0.067
-#   meanbp1 (mean (sd)) 85.39 (38.10) 68.43 (36.41) <0.001       0.455
-# > rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_total %>% print(smd = T)
+#   n                    3551          2184                           
+#   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
+#   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
+#   meanbp1 (mean (sd)) 84.83 (38.87) 68.14 (34.22) <0.001       0.456
+# > rhc_mydata.na.Match_propensity_score$tableone_post_total %>% print(smd = T) # ----
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
-#   n                     455            91                           
-#   age (mean (sd))     65.15 (2.90)  65.29 (2.73)   0.676       0.049
-#   meanbp1 (mean (sd)) 84.64 (37.36) 69.77 (33.90) <0.001       0.417
-# > rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+#   n                    3490           698                           
+#   female (mean (sd))   0.46 (0.50)   0.43 (0.50)   0.183       0.055
+#   age (mean (sd))     61.79 (17.31) 60.71 (15.48)  0.128       0.065
+#   meanbp1 (mean (sd)) 84.71 (38.69) 68.79 (33.72) <0.001       0.439
+# > rhc_mydata.na.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
-#   n                      91            91                           
-#   age (mean (sd))     65.24 (2.88)  65.29 (2.73)   0.909       0.017
-#   meanbp1 (mean (sd)) 85.51 (37.50) 69.77 (33.90)  0.003       0.440
-# > rhc_mydata.strata_list.Match.old$`0_[60,70)`$data
-# # A tibble: 546 x 18
-#    rowname   ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut    strata MatchingPairID MatchingCtrlNum
-#      <chr> <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>    <fctr>          <dbl>           <dbl>
-#  1       1     0     0     0      0     0       0     0      1 67.90997      0      65         1     1 [60,70) 0_[60,70)              1               0
-#  2      36     0     1     0      0     0       0     0      0 67.89294      0      66         0     0 [60,70) 0_[60,70)              1               1
-#  3     517     1     0     0      0     0       0     0      0 67.89600      0      65         0     1 [60,70) 0_[60,70)              1               2
-#  4     538     1     0     0      0     0       0     0      0 67.96997      0      67         0     1 [60,70) 0_[60,70)              1               3
-#  5     676     0     0     0      0     0       0     0      0 68.02496      0      63         0     1 [60,70) 0_[60,70)              1               4
-#  6     731     0     0     0      0     0       0     1      0 67.79700      0      65         0     1 [60,70) 0_[60,70)              1               5
-#  7       2     1     0     0      0     0       0     0      0 68.34796      0      50         1     0 [60,70) 0_[60,70)              2               0
-#  8     166     0     0     1      0     0       0     0      0 68.07397      0      53         0     1 [60,70) 0_[60,70)              2               1
-#  9     220     0     0     0      0     0       0     0      1 68.51196      0      52         0     1 [60,70) 0_[60,70)              2               2
-# 10     227     0     0     0      0     0       0     1      0 68.23297      0      47         0     1 [60,70) 0_[60,70)              2               3
-# # ... with 536 more rows
+#   n                     698           698                           
+#   female (mean (sd))   0.45 (0.50)   0.43 (0.50)   0.554       0.032
+#   age (mean (sd))     62.33 (16.67) 60.71 (15.48)  0.060       0.101
+#   meanbp1 (mean (sd)) 84.69 (38.35) 68.79 (33.72) <0.001       0.440
+# > rhc_mydata.na.Match_propensity_score$data
+# # A tibble: 4,188 x 17
+#      ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut RowNum_original MatchingPairID MatchingCtrlNum
+#    <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>           <int>          <dbl>           <dbl>
+#  1     0     0     0      0     0       0     0      1 78.17896      1      63         1     1 [70,80)               2              1               0
+#  2     1     0     0      0     0       0     0      0 87.86298      1      59         0     0 [80,90)            1042              1               1
+#  3     0     0     0      0     0       0     0      0 80.73895      1      62         0     0 [80,90)            1204              1               2
+#  4     1     0     0      0     0       0     0      0 80.76898      1      62         0     1 [80,90)            3977              1               3
+#  5     1     0     0      0     0       0     0      0 85.34399      1      60         0     0 [80,90)            4107              1               4
+#  6     1     0     0      0     0       0     0      0 83.24194      1      61         0     0 [80,90)            5201              1               5
+#  7     0     0     0      0     0       0     1      0 46.09198      1      57         1     0 [40,50)               3              2               0
+#  8     0     0     0      0     0       0     0      1 62.76797      1      50         0     0 [60,70)            2328              2               1
+#  9     0     0     0      0     0       0     0      1 80.16394      0      56         0     1 [80,90)            2356              2               2
+# 10     0     0     0      0     0       0     1      0 82.14099      0      55         0     1 [80,90)            2963              2               3
+# # ... with 4,178 more rows
+
+
+
+rhc_mydata.na.Match_propensity_score_matching_weight = rhc_mydata.na %>% data.Match(
+    .vars4Matching = c("female","age","meanbp1")
+    , .exposure = "treatment"
+    , .MatchingRatio = 5
+    , print.process = F
+    , apply.na.omit = T
+    , propensity_score_matching_weight = T
+)
+rhc_mydata.na.Match_propensity_score_matching_weight %>% str(max.level = 1)
+# rhc_mydata.na.Match_propensity_score_matching_weight %>% attr("function.input") %>% str
+rhc_mydata.na.Match_propensity_score_matching_weight$tableone_pre %>% print(smd = T)
+rhc_mydata.na.Match_propensity_score_matching_weight$tableone_post_total %>% print(smd = T) # ----
+# rhc_mydata.na.Match_propensity_score_matching_weight$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+rhc_mydata.na.Match_propensity_score_matching_weight$data
+# > rhc_mydata.na.Match_propensity_score_matching_weight = rhc_mydata.na %>% data.Match(
+# +     .vars4Matching = c("female","age","meanbp1")
+# +     , .exposure = "treatment"
+# +     , .MatchingRatio = 5
+# +     , print.process = F
+# +     , apply.na.omit = T
+# +     , propensity_score_matching_weight = T
+# + )
+# [1] "apply.na.omit == T : removing 185 rows - from 5735 rows to 5550 rows"
+# > rhc_mydata.na.Match_propensity_score_matching_weight %>% str(max.level = 1)
+# List of 3
+#  $ tableone_pre       :List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ data               :List of 9
+#   ..- attr(*, "class")= chr [1:2] "survey.design2" "survey.design"
+#   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi TRUE
+#  $ tableone_post_total:List of 3
+#   ..- attr(*, "class")= chr [1:2] "svyTableOne" "TableOne"
+#  - attr(*, "function.input")=List of 5
+# > rhc_mydata.na.Match_propensity_score_matching_weight %>% attr("function.input") %>% str
+# List of 5
+#  $ data.Match    :function (.mydata, .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     apply.na.omit = F, print.process = F, load.dependent.library = T, propensity_score_matching = F, propensity_score_matching_weight = F)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 14 170 1 14 1 1 170
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000019380e38> 
+#  $ .vars4Matching: chr [1:3] "female" "age" "meanbp1"
+#  $ .exposure     : chr "treatment"
+#  $ .MatchingRatio: num 5
+#  $ apply.na.omit : logi TRUE
+# > rhc_mydata.na.Match_propensity_score_matching_weight$tableone_pre %>% print(smd = T)
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                    3551          2184                           
+#   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
+#   age (mean (sd))     61.68 (17.28) 60.71 (15.62)  0.034       0.059
+#   meanbp1 (mean (sd)) 84.83 (38.87) 68.14 (34.22) <0.001       0.456
+# > rhc_mydata.na.Match_propensity_score_matching_weight$tableone_post_total %>% print(smd = T) # ----
+#                      Stratified by treatment
+#                       0               1               p      test SMD   
+#   n                   2066.44         2072.77                           
+#   female (mean (sd))     0.42 (0.49)     0.42 (0.49)   0.941       0.002
+#   age (mean (sd))       60.79 (17.65)   60.85 (15.55)  0.894       0.004
+#   meanbp1 (mean (sd))   69.35 (32.70)   68.97 (33.89)  0.664       0.012
+# > rhc_mydata.na.Match_propensity_score_matching_weight$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+# NULL
+# > rhc_mydata.na.Match_propensity_score_matching_weight$data
+# Independent Sampling design (with replacement)
+# svydesign(ids = ~1, data = ., weights = ~matching_weight)
+
+
+
+# #@ test) data.Match() rhc_mydata.strata_list -----
+# rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
+#     map(data.Match
+#         , .vars4Matching = c("age","meanbp1")
+#         , .exposure = "treatment"
+#         , .MatchingRatio = 5
+#     )
+# # > rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
+# # +     map(data.Match
+# # +         , .vars4Matching = c("age","meanbp1")
+# # +         , .exposure = "treatment"
+# # +         , .MatchingRatio = 5
+# # +     )
+# # Warning messages:
+# # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# # 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# rhc_mydata.strata_list.Match.old %>% str(max.level = 1)
+# # > rhc_mydata.strata_list.Match.old %>% str(max.level = 1)
+# # List of 20
+# #  $ 0_[10,20)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[100,Inf]:List of 1
+# #   ..- attr(*, "error.message")= chr "length(unique(.mydata[[.exposure]]) < 2"
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[20,30)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[30,40)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[40,50)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[50,60)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[60,70)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[70,80)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[80,90)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 0_[90,100) :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[10,20)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[100,Inf]:List of 1
+# #   ..- attr(*, "error.message")= chr "length(unique(.mydata[[.exposure]]) < 2"
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[20,30)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[30,40)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[40,50)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[50,60)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[60,70)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[70,80)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[80,90)  :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# #  $ 1_[90,100) :List of 4
+# #   ..- attr(*, "function.input")=List of 5
+# rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_pre %>% print(smd = T)
+# rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_total %>% print(smd = T)
+# rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+# rhc_mydata.strata_list.Match.old$`0_[60,70)`$data
+# # > rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_pre %>% print(smd = T)
+# #                      Stratified by treatment
+# #                       0             1             p      test SMD   
+# #   n                     459           343                           
+# #   age (mean (sd))     65.16 (2.91)  64.97 (2.87)   0.346       0.067
+# #   meanbp1 (mean (sd)) 85.39 (38.10) 68.43 (36.41) <0.001       0.455
+# # > rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_total %>% print(smd = T)
+# #                      Stratified by treatment
+# #                       0             1             p      test SMD   
+# #   n                     455            91                           
+# #   age (mean (sd))     65.15 (2.90)  65.29 (2.73)   0.676       0.049
+# #   meanbp1 (mean (sd)) 84.64 (37.36) 69.77 (33.90) <0.001       0.417
+# # > rhc_mydata.strata_list.Match.old$`0_[60,70)`$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+# #                      Stratified by treatment
+# #                       0             1             p      test SMD   
+# #   n                      91            91                           
+# #   age (mean (sd))     65.24 (2.88)  65.29 (2.73)   0.909       0.017
+# #   meanbp1 (mean (sd)) 85.51 (37.50) 69.77 (33.90)  0.003       0.440
+# # > rhc_mydata.strata_list.Match.old$`0_[60,70)`$data
+# # # A tibble: 546 x 18
+# #    rowname   ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut    strata MatchingPairID MatchingCtrlNum
+# #      <chr> <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>    <fctr>          <dbl>           <dbl>
+# #  1       1     0     0     0      0     0       0     0      1 67.90997      0      65         1     1 [60,70) 0_[60,70)              1               0
+# #  2      36     0     1     0      0     0       0     0      0 67.89294      0      66         0     0 [60,70) 0_[60,70)              1               1
+# #  3     517     1     0     0      0     0       0     0      0 67.89600      0      65         0     1 [60,70) 0_[60,70)              1               2
+# #  4     538     1     0     0      0     0       0     0      0 67.96997      0      67         0     1 [60,70) 0_[60,70)              1               3
+# #  5     676     0     0     0      0     0       0     0      0 68.02496      0      63         0     1 [60,70) 0_[60,70)              1               4
+# #  6     731     0     0     0      0     0       0     1      0 67.79700      0      65         0     1 [60,70) 0_[60,70)              1               5
+# #  7       2     1     0     0      0     0       0     0      0 68.34796      0      50         1     0 [60,70) 0_[60,70)              2               0
+# #  8     166     0     0     1      0     0       0     0      0 68.07397      0      53         0     1 [60,70) 0_[60,70)              2               1
+# #  9     220     0     0     0      0     0       0     0      1 68.51196      0      52         0     1 [60,70) 0_[60,70)              2               2
+# # 10     227     0     0     0      0     0       0     1      0 68.23297      0      47         0     1 [60,70) 0_[60,70)              2               3
+# # # ... with 536 more rows
+
+
 
 data.stratified.Match = function(
     .mydata
@@ -686,6 +1032,7 @@ data.stratified.Match = function(
     , apply.na.omit = F
     , print.process = F
     , load.dependent.library = T
+    , propensity_score_matching = F
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
@@ -728,13 +1075,15 @@ data.stratified.Match = function(
         out
     }
     
-    data.Match <- function(
+    data.Match = function(
         .mydata
         , .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, add_tableone_pre_post = T
         , RowNum_original_before_strata = NULL
         , apply.na.omit = F
         , print.process = F
         , load.dependent.library = T
+        , propensity_score_matching = F
+        , propensity_score_matching_weight = F
     ) {
         # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
         if (load.dependent.library == T) {
@@ -776,61 +1125,109 @@ data.stratified.Match = function(
                 .mydata.exposure.vars4Matching.na.omit$RowNum_after_na.omit = 1:nrow(.mydata.exposure.vars4Matching.na.omit)
             }
             
-            # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
-            .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit[, .vars4Matching])
-            # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
-            
-            if (print.process == T) {
-                print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
-                # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
-                print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
-            }
-            .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
-            
-            tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
-            tmpDf$MatchingCtrlNum = 1:.MatchingRatio
-            # tmpDf
-            
-            tmpDf2ctrl = tmpDf[,c("index.control", "MatchingPairID", "MatchingCtrlNum")]
-            # names(tmpDf2ctrl)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
-            names(tmpDf2ctrl)[1] = "RowNum_after_na.omit"
-            # tmpDf2ctrl
-            
-            tmpDf2tx = tmpDf[,c("index.treated", "MatchingPairID", "MatchingCtrlNum")]
-            tmpDf2tx$MatchingCtrlNum = 0
-            # names(tmpDf2tx)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
-            names(tmpDf2tx)[1] = "RowNum_after_na.omit"
-            tmpDf2tx = tmpDf2tx %>% distinct()
-            # tmpDf2tx
-            
-            tmpDf3 = union(tmpDf2tx, tmpDf2ctrl)
-            # tmpDf3$rowname = tmpDf3$rowname %>% as.character()  # bug fix 170826 - rowname are altered when apply.na.omit == T
-            # tmpDf3 %>% arrange(MatchingPairID, MatchingCtrlNum)
-            
-            tmpDf4 = left_join(tmpDf3, .mydata.exposure.vars4Matching.na.omit[, c(RowNum_original_before_strata, "RowNum_original", "RowNum_after_na.omit")], by = "RowNum_after_na.omit")
-            
-            # .mydataMatching = .mydata %>% rownames_to_column() %>% as.tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
-            # .mydataMatching = inner_join(.mydataMatching, tmpDf3, by = "rowname") %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
-            .mydataMatching = inner_join(.mydata, tmpDf4, by = c(RowNum_original_before_strata, "RowNum_original")) %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
-            
-            # .mydataMatching$MatchingPairID = paste0()
-            # .mydataMatching
-            out$data = .mydataMatching %>% as.tibble
-            if (add_tableone_pre_post == T) {
-                out$tableone_post_total = CreateTableOne(
-                    vars = .vars4Matching, strata = .exposure
-                    , data = .mydataMatching
-                    , test=T
-                    , includeNA = T)
-                out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
-                    CreateTableOne(
+            if (propensity_score_matching_weight == T) {
+                if (!identical(unique(as.integer(.mydata[[.exposure]])), 0:1)) {
+                    warning("!identical(unique(as.integer(.mydata[[.exposure]])), 0:1)")
+                    out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+                    attr(out, "error.message") = "!identical(unique(as.integer(.mydata[[.exposure]])), 0:1)"  # attr() is shown with str(max.level = 1)
+                } else {
+                    psModel = glm(
+                        formula = as.formula(paste0(.exposure, " ~ ", paste(.vars4Matching, collapse = " + ")))
+                        , family = binomial
+                        , data = .mydata.exposure.vars4Matching.na.omit
+                    )
+                    psModel.predict_pExposure_is_T = psModel %>% predict(type = "response")  # predicted probability of being assigned to the exposure (treatment)
+                    
+                    .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data = ifelse(as.integer(.mydata.exposure.vars4Matching.na.omit[[.exposure]]) == 1, psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
+                    .mydata.exposure.vars4Matching.na.omit$pMin = pmin(psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
+                    .mydata.exposure.vars4Matching.na.omit$matching_weight = .mydata.exposure.vars4Matching.na.omit$pMin / .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data
+                    library(survey)
+                    .mydata.exposure.vars4Matching.na.omit.svydesign = .mydata.exposure.vars4Matching.na.omit %>% svydesign(ids = ~ 1, data = ., weights = ~ matching_weight)
+                    
+                    out$data = .mydata.exposure.vars4Matching.na.omit.svydesign
+                    if (add_tableone_pre_post == T) {
+                        out$tableone_post_total = svyCreateTableOne(
+                            vars = .vars4Matching, strata = .exposure
+                            , data = .mydata.exposure.vars4Matching.na.omit.svydesign
+                            , test=T
+                            , includeNA = T)
+                    }
+                }
+                
+            } else {
+                if (propensity_score_matching == T) {
+                    psModel = glm(
+                        formula = as.formula(paste0(.exposure, " ~ ", paste(.vars4Matching, collapse = " + ")))
+                        , family = binomial
+                        , data = .mydata.exposure.vars4Matching.na.omit
+                    )
+                    psModel.predict_pExposure_is_T = psModel %>% predict(type = "response")  # predicted probability of being assigned to the exposure (treatment)
+                    
+                    .mydata.Match = Match(
+                        Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio
+                        , X = log( psModel.predict_pExposure_is_T / (1 - psModel.predict_pExposure_is_T) )
+                        , replace = FALSE)
+                    
+                } else {
+                    ## Mahalanobis distance-based nearest neighbor matching
+                    # .X = .mydata.exposure.vars4Matching.na.omit[, .vars4Matching]
+                    .X = model.matrix(~., .mydata.exposure.vars4Matching.na.omit[, .vars4Matching])
+                    # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
+                    
+                    if (print.process == T) {
+                        print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
+                        # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
+                        print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
+                    }
+                    .mydata.Match = Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]], M = .MatchingRatio, X = .X, replace = FALSE)
+                }
+                
+                tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
+                tmpDf$MatchingCtrlNum = 1:.MatchingRatio
+                # tmpDf
+                
+                tmpDf2ctrl = tmpDf[,c("index.control", "MatchingPairID", "MatchingCtrlNum")]
+                # names(tmpDf2ctrl)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                names(tmpDf2ctrl)[1] = "RowNum_after_na.omit"
+                # tmpDf2ctrl
+                
+                tmpDf2tx = tmpDf[,c("index.treated", "MatchingPairID", "MatchingCtrlNum")]
+                tmpDf2tx$MatchingCtrlNum = 0
+                # names(tmpDf2tx)[1] = "rowname"  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                names(tmpDf2tx)[1] = "RowNum_after_na.omit"
+                tmpDf2tx = tmpDf2tx %>% distinct()
+                # tmpDf2tx
+                
+                tmpDf3 = union(tmpDf2tx, tmpDf2ctrl)
+                # tmpDf3$rowname = tmpDf3$rowname %>% as.character()  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                # tmpDf3 %>% arrange(MatchingPairID, MatchingCtrlNum)
+                
+                tmpDf4 = left_join(tmpDf3, .mydata.exposure.vars4Matching.na.omit[, c(RowNum_original_before_strata, "RowNum_original", "RowNum_after_na.omit")], by = "RowNum_after_na.omit")
+                
+                # .mydataMatching = .mydata %>% rownames_to_column() %>% as.tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                # .mydataMatching = inner_join(.mydataMatching, tmpDf3, by = "rowname") %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                .mydataMatching = inner_join(.mydata, tmpDf4, by = c(RowNum_original_before_strata, "RowNum_original")) %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                
+                # .mydataMatching$MatchingPairID = paste0()
+                # .mydataMatching
+                out$data = .mydataMatching %>% as.tibble
+                if (add_tableone_pre_post == T) {
+                    out$tableone_post_total = CreateTableOne(
                         vars = .vars4Matching, strata = .exposure
-                        , data = .mydataMatching %>% filter(MatchingCtrlNum %in% c(0,i))
+                        , data = .mydataMatching
                         , test=T
                         , includeNA = T)
-                })
-                names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
+                    out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
+                        CreateTableOne(
+                            vars = .vars4Matching, strata = .exposure
+                            , data = .mydataMatching %>% filter(MatchingCtrlNum %in% c(0,i))
+                            , test=T
+                            , includeNA = T)
+                    })
+                    names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
+                }
             }
+            
         }
         attr(out$data, ".vars4Matching") = .vars4Matching
         attr(out$data, ".exposure") = .exposure
@@ -867,6 +1264,7 @@ data.stratified.Match = function(
             , load.dependent.library = F
             , apply.na.omit = apply.na.omit
             , RowNum_original_before_strata = "RowNum_original_before_strata"
+            , propensity_score_matching = propensity_score_matching
             )
         names(.mydata.strata_list.Match) = names(.mydata.strata_list)
     } else {
@@ -879,15 +1277,16 @@ data.stratified.Match = function(
                 , load.dependent.library = F
                 , apply.na.omit = apply.na.omit
                 , RowNum_original_before_strata = "RowNum_original_before_strata"
+                , propensity_score_matching = propensity_score_matching
             )
     }
     # map = purrr::map
     out = list()
     out$tableone_pre = CreateTableOne(vars = c(.vars4strata, .vars4Matching), strata = .exposure, data = .mydata, test=T, includeNA = T)
-
+    
     warning_lgl = .mydata.strata_list.Match %>% map_lgl(function(object) {
-            as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[.exposure]]) < 2")) # sum() to avoid error "argument is of length zero" in if()
-        })
+        as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[.exposure]]) < 2")) # sum() to avoid error "argument is of length zero" in if()
+    })
     # print(paste0("warning_lgl : ", deparse(warning_lgl)))
     # print(paste0("names(.mydata.strata_list.Match) : ", deparse(names(.mydata.strata_list.Match))))
     # print(paste0("names(.mydata.strata_list.Match)[warning_lgl] : ", deparse(names(.mydata.strata_list.Match)[warning_lgl])))
@@ -1135,7 +1534,7 @@ rhc_mydata.stratified.Match$data %>% dim
 # [1] 48
 
 rhc_mydata.stratified.Match$tableone_pre %>% print(smd = T)
-rhc_mydata.stratified.Match$tableone_post_total %>% print(smd = T)
+rhc_mydata.stratified.Match$tableone_post_total %>% print(smd = T)  # ----
 rhc_mydata.stratified.Match$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
 rhc_mydata.stratified.Match$data
 # > rhc_mydata.stratified.Match$tableone_pre %>% print(smd = T)
@@ -1157,7 +1556,7 @@ rhc_mydata.stratified.Match$data
 #      [100,Inf]            2 ( 0.1)      1 ( 0.0)                    
 #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 #   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
-# > rhc_mydata.stratified.Match$tableone_post_total %>% print(smd = T)
+# > rhc_mydata.stratified.Match$tableone_post_total %>% print(smd = T)  # ----
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3510           702                           
@@ -1210,6 +1609,123 @@ rhc_mydata.stratified.Match$data
 #  9     1     0     0      0     0       0     0      0 19.17599      0      62         0     0 [10,20) 0_[10,20)            2647    0_[10,20)_2               2
 # 10     1     0     0      0     0       0     0      0 19.70999      0      55         0     1 [10,20) 0_[10,20)            3399    0_[10,20)_2               3
 # # ... with 4,202 more rows
+
+
+rhc_mydata.stratified.Match_propensity_score = rhc_mydata %>% data.stratified.Match(
+    .vars4strata = c("female", "age.cut")
+    , .vars4Matching = c("age","meanbp1")
+    , .exposure = "treatment"
+    , .MatchingRatio = 5
+    , propensity_score_matching = T
+)
+rhc_mydata.stratified.Match_propensity_score %>% str(max.level = 1)
+# rhc_mydata.stratified.Match_propensity_score %>% attr("function.input") %>% str
+rhc_mydata.stratified.Match_propensity_score$tableone_pre %>% print(smd = T)
+rhc_mydata.stratified.Match_propensity_score$tableone_post_total %>% print(smd = T)  # ----
+# rhc_mydata.stratified.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+rhc_mydata.stratified.Match_propensity_score$data
+# > rhc_mydata.stratified.Match_propensity_score = rhc_mydata %>% data.stratified.Match(
+# +     .vars4strata = c("female", "age.cut")
+# +     , .vars4Matching = c("age","meanbp1")
+# +     , .exposure = "treatment"
+# +     , .MatchingRatio = 5
+# +     , propensity_score_matching = T
+# + )
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
+# 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+#   length(unique(.mydata[[.exposure]]) < 2: 
+# c("0_[100,Inf]", "1_[100,Inf]")
+# > rhc_mydata.stratified.Match_propensity_score %>% str(max.level = 1)
+# List of 4
+#  $ tableone_pre       :List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	4212 obs. of  18 variables:
+#   ..- attr(*, ".vars4Matching")= chr [1:2] "age" "meanbp1"
+#   ..- attr(*, ".exposure")= chr "treatment"
+#   ..- attr(*, ".MatchingRatio")= num 5
+#   ..- attr(*, "apply.na.omit")= logi FALSE
+#   ..- attr(*, ".vars4strata")= chr [1:2] "female" "age.cut"
+#  $ tableone_post_total:List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ tableone_post_i    :List of 5
+#  - attr(*, "function.input")=List of 8
+# > # rhc_mydata.stratified.Match_propensity_score %>% attr("function.input") %>% str
+# > rhc_mydata.stratified.Match_propensity_score$tableone_pre %>% print(smd = T)
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                    3551          2184                           
+#   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
+#   age.cut (%)                                      NaN         0.241
+#      [0,10)               0 ( 0.0)      0 ( 0.0)                    
+#      [10,20)             25 ( 0.7)      8 ( 0.4)                    
+#      [20,30)            156 ( 4.4)     96 ( 4.4)                    
+#      [30,40)            300 ( 8.4)    153 ( 7.0)                    
+#      [40,50)            403 (11.3)    283 (13.0)                    
+#      [50,60)            546 (15.4)    371 (17.0)                    
+#      [60,70)            812 (22.9)    577 (26.4)                    
+#      [70,80)            809 (22.8)    529 (24.2)                    
+#      [80,90)            422 (11.9)    153 ( 7.0)                    
+#      [90,100)            76 ( 2.1)     13 ( 0.6)                    
+#      [100,Inf]            2 ( 0.1)      1 ( 0.0)                    
+#   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
+#   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
+# > rhc_mydata.stratified.Match_propensity_score$tableone_post_total %>% print(smd = T)  # ----
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                    3510           702                           
+#   female (mean (sd))   0.46 (0.50)   0.46 (0.50)   1.000      <0.001
+#   age.cut (%)                                      NaN        <0.001
+#      [0,10)               0 ( 0.0)      0 ( 0.0)                    
+#      [10,20)             20 ( 0.6)      4 ( 0.6)                    
+#      [20,30)            155 ( 4.4)     31 ( 4.4)                    
+#      [30,40)            300 ( 8.5)     60 ( 8.5)                    
+#      [40,50)            400 (11.4)     80 (11.4)                    
+#      [50,60)            540 (15.4)    108 (15.4)                    
+#      [60,70)            805 (22.9)    161 (22.9)                    
+#      [70,80)            805 (22.9)    161 (22.9)                    
+#      [80,90)            420 (12.0)     84 (12.0)                    
+#      [90,100)            65 ( 1.9)     13 ( 1.9)                    
+#      [100,Inf]            0 ( 0.0)      0 ( 0.0)                    
+#   age (mean (sd))     61.70 (17.15) 61.79 (16.94)  0.900       0.005
+#   meanbp1 (mean (sd)) 84.24 (38.28) 67.72 (33.91) <0.001       0.457
+# > rhc_mydata.stratified.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 %>% print(smd = T)
+#                      Stratified by treatment
+#                       0             1             p      test SMD   
+#   n                     702           702                           
+#   female (mean (sd))   0.46 (0.50)   0.46 (0.50)   1.000      <0.001
+#   age.cut (%)                                      NaN        <0.001
+#      [0,10)               0 ( 0.0)      0 ( 0.0)                    
+#      [10,20)              4 ( 0.6)      4 ( 0.6)                    
+#      [20,30)             31 ( 4.4)     31 ( 4.4)                    
+#      [30,40)             60 ( 8.5)     60 ( 8.5)                    
+#      [40,50)             80 (11.4)     80 (11.4)                    
+#      [50,60)            108 (15.4)    108 (15.4)                    
+#      [60,70)            161 (22.9)    161 (22.9)                    
+#      [70,80)            161 (22.9)    161 (22.9)                    
+#      [80,90)             84 (12.0)     84 (12.0)                    
+#      [90,100)            13 ( 1.9)     13 ( 1.9)                    
+#      [100,Inf]            0 ( 0.0)      0 ( 0.0)                    
+#   age (mean (sd))     61.76 (17.07) 61.79 (16.94)  0.978       0.002
+#   meanbp1 (mean (sd)) 83.92 (39.04) 67.72 (33.91) <0.001       0.443
+# > rhc_mydata.stratified.Match_propensity_score$data
+# # A tibble: 4,212 x 18
+#      ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut    strata RowNum_original MatchingPairID MatchingCtrlNum
+#    <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>    <fctr>           <int>         <fctr>           <dbl>
+#  1     0     0     0      0     0       0     0      1 19.67400      0     105         1     1 [10,20) 0_[10,20)             201    0_[10,20)_1               0
+#  2     1     0     0      0     0       0     0      0 19.92599      0      41         0     0 [10,20) 0_[10,20)             607    0_[10,20)_1               1
+#  3     1     0     0      0     0       0     0      0 19.79199      0      66         0     0 [10,20) 0_[10,20)             714    0_[10,20)_1               2
+#  4     1     0     0      0     0       0     0      0 19.70999      0      55         0     1 [10,20) 0_[10,20)            3399    0_[10,20)_1               3
+#  5     1     0     0      0     0       0     0      0 19.75099      0      53         0     0 [10,20) 0_[10,20)            4066    0_[10,20)_1               4
+#  6     1     0     0      0     0       0     0      0 19.82999      0      63         0     0 [10,20) 0_[10,20)            4568    0_[10,20)_1               5
+#  7     0     0     0      0     0       0     0      1 19.85199      0      63         1     1 [10,20) 0_[10,20)            3746    0_[10,20)_2               0
+#  8     0     0     0      0     0       0     0      1 19.35100      0      70         0     0 [10,20) 0_[10,20)             491    0_[10,20)_2               1
+#  9     0     0     0      0     0       0     0      1 19.14899      0     103         0     0 [10,20) 0_[10,20)             722    0_[10,20)_2               2
+# 10     1     0     0      0     0       0     0      0 19.21999      0     128         0     0 [10,20) 0_[10,20)            1944    0_[10,20)_2               3
+# # ... with 4,202 more rows
+
+
 
 
 #@ test) data.stratified.Match() rhc_mydata.na ----
