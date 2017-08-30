@@ -516,37 +516,6 @@ function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F) {
     out.NA
 }
 
-function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_object, i_names = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
-    library(glmnet)
-    library(tidyverse)
-    out2 = cv.glmnet_alphas_list_object %>% map(function.cv.glmnet_object.coef.exp)
-    if (is.null(i_names)) {
-        # names(cv.glmnet_alphas_list_object) %>% grep("\\.a1$|\\.a0\\.[1-9]$", ., value = T)
-        i_names = names(cv.glmnet_alphas_list_object) %>% stringr::str_extract("\\.a1$|\\.a0\\.[1-9]$")
-        i_names = i_names %>% gsub("\\.a0\\.", ".a.", .)
-        i_names = i_names %>% gsub("^\\.", "", .)
-        if (any(is.na(i_names))) {
-            stop("any(is.na(i_names))")
-        }
-    }
-    out3 = out2 %>% seq_along %>% map(function(i) {
-        df = out2[[i]]
-        names(df) [!names(df) %in% c("rownum", "rowname")] = 
-            paste0(
-                i_names[i]
-                , names(df) [!names(df) %in% c("rownum", "rowname")]
-            )
-        df
-    })
-
-    out4 = out3 %>% reduce(full_join, by = c("rownum", "rowname"))
-    # out4 = out4 %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
-    out4 = out4 %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
-    out4
-}
-
-
 #@ test) function.cv.glmnet_object.coef.exp() -----
 library(tidyverse)
 library(glmnet)
@@ -589,7 +558,63 @@ cvob1 %>% function.cv.glmnet_object.coef.exp %>% head(15)
 
 
 
+function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_object, i_names = NULL) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
+    
+    function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F) {
+        # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
+        library(glmnet)
+        library(tidyverse)
+        out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
+            coef(cv.glmnet_object, s = chr)
+        }) %>% map(as.matrix) %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = "rowname")
+        names(out)[2:3] = c("coef.min", "coef.1se")
+        # names(out)[2:3] = names(out)[2:3] %>% format(nsmall = 3)
+        out$rownum = 1:nrow(out)
+        
+        out.NA = out
+        out.NA [out.NA == 0] = NA
+        
+        # out.NA[["exp(coef.min)"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
+        # out.NA[["exp(coef.1se)"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+        # out.NA = out.NA %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
+        out.NA[["expB.min"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
+        out.NA[["expB.1se"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+        out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
+        
+        if (nonzero == T) {
+            out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)
+        }
+        out.NA
+    }
+    
+    library(glmnet)
+    library(tidyverse)
+    out2 = cv.glmnet_alphas_list_object %>% map(function.cv.glmnet_object.coef.exp)
+    if (is.null(i_names)) {
+        # names(cv.glmnet_alphas_list_object) %>% grep("\\.a1$|\\.a0\\.[1-9]$", ., value = T)
+        i_names = names(cv.glmnet_alphas_list_object) %>% stringr::str_extract("\\.a1$|\\.a0\\.[1-9]$")
+        i_names = i_names %>% gsub("\\.a0\\.", ".a.", .)
+        i_names = i_names %>% gsub("^\\.", "", .)
+        if (any(is.na(i_names))) {
+            stop("any(is.na(i_names))")
+        }
+    }
+    out3 = out2 %>% seq_along %>% map(function(i) {
+        df = out2[[i]]
+        names(df) [!names(df) %in% c("rownum", "rowname")] = 
+            paste0(
+                i_names[i]
+                , names(df) [!names(df) %in% c("rownum", "rowname")]
+            )
+        df
+    })
 
+    out4 = out3 %>% reduce(full_join, by = c("rownum", "rowname"))
+    # out4 = out4 %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
+    out4 = out4 %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
+    out4
+}
 #@ test) function.cv.glmnet_alphas_list_object.coef.exp() -----
 
 
