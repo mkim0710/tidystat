@@ -54,7 +54,6 @@
 
 
 
-
 function.dichotomous2logical = function(x, dichotomous2integer = F) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.source.r")
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -64,15 +63,23 @@ function.dichotomous2logical = function(x, dichotomous2integer = F) {
     if (is.character(x)) {
         x = as.factor(x)
     }
-    if (length(levels(x)) == 2) {
-        if (dichotomous2integer == T) {
-            warning(paste0(levels(x)[1], " is coded to 0 & ", levels(x)[2], " is coded to 1"))
-        } else {
-            warning(paste0(levels(x)[1], " is coded to FALSE & ", levels(x)[2], " is coded to TRUE"))
+    # if (length(levels(x)) == 1) {
+    #     warning("length(levels(x)) == 1")
+    # }
+    if (length(unique(x)) == 1) {
+        warning("length(unique(x)) == 1")
+    }
+    if (!is.null(levels(x))) {
+        if (length(levels(x)) %in% 1:2) {
+            if (dichotomous2integer == T) {
+                warning(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to 0 & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to 1"))
+            } else {
+                warning(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to FALSE & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to TRUE"))
+            }
+            x = as.integer(x) - 1
+        } else if (length(levels(x)) > 2) {
+            stop("length(levels(x)) > 2")
         }
-        x = as.integer(x) - 1
-    } else if (length(levels(x)) > 2) {
-        stop("length(levels(x)) > 2")
     }
     if (dichotomous2integer == T) {
         x = as.integer(x)
@@ -82,14 +89,44 @@ function.dichotomous2logical = function(x, dichotomous2integer = F) {
     x
 }
 
+
+
 #@ test) function.binary2numeric() ----
-function.dichotomous2logical(c(T, F ,T))
+library(tidyverse)
+c(T, F, T) %>% is.numeric
+c(T, F, T) %>% is.character
+c(T, F, T) %>% levels
+c(T, F, T) %>% levels %>% length
+c(T, F, T) %>% unique %>% length
+function.dichotomous2logical(c(T, T, T))
+function.dichotomous2logical(c(F, F, F))
+function.dichotomous2logical(c(T, F, T))
 function.dichotomous2logical(c("A", "A", "B", "B", "A"))
 function.dichotomous2logical(c("A", "A", "B", "C", "A"))
-function.dichotomous2logical(c(T, F ,T), dichotomous2integer = T)
+function.dichotomous2logical(c(T, T, T), dichotomous2integer = T)
+function.dichotomous2logical(c(F, F, F), dichotomous2integer = T)
+function.dichotomous2logical(c(T, F, T), dichotomous2integer = T)
 function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T)
 function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T)
-# > function.dichotomous2logical(c(T, F ,T))
+# > c(T, F, T) %>% is.numeric
+# [1] FALSE
+# > c(T, F, T) %>% is.character
+# [1] FALSE
+# > c(T, F, T) %>% levels
+# NULL
+# > c(T, F, T) %>% levels %>% length
+# [1] 0
+# > c(T, F, T) %>% unique %>% length
+# [1] 2
+# > function.dichotomous2logical(c(T, T, T))
+# [1] TRUE TRUE TRUE
+# Warning message:
+# In function.dichotomous2logical(c(T, T, T)) : length(unique(x)) == 1
+# > function.dichotomous2logical(c(F, F, F))
+# [1] FALSE FALSE FALSE
+# Warning message:
+# In function.dichotomous2logical(c(F, F, F)) : length(unique(x)) == 1
+# > function.dichotomous2logical(c(T, F, T))
 # [1]  TRUE FALSE  TRUE
 # > function.dichotomous2logical(c("A", "A", "B", "B", "A"))
 # [1] FALSE FALSE  TRUE  TRUE FALSE
@@ -99,7 +136,17 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 # > function.dichotomous2logical(c("A", "A", "B", "C", "A"))
 # Error in function.dichotomous2logical(c("A", "A", "B", "C", "A")) : 
 #   length(levels(x)) > 2
-# > function.dichotomous2logical(c(T, F ,T), dichotomous2integer = T)
+# > function.dichotomous2logical(c(T, T, T), dichotomous2integer = T)
+# [1] 1 1 1
+# Warning message:
+# In function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) :
+#   length(unique(x)) == 1
+# > function.dichotomous2logical(c(F, F, F), dichotomous2integer = T)
+# [1] 0 0 0
+# Warning message:
+# In function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) :
+#   length(unique(x)) == 1
+# > function.dichotomous2logical(c(T, F, T), dichotomous2integer = T)
 # [1] 1 0 1
 # > function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T)
 # [1] 0 0 1 1 0
@@ -109,5 +156,4 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 # > function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T)
 # Error in function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) : 
 #   length(levels(x)) > 2
-
 
