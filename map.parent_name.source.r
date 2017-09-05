@@ -1,5 +1,14 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.source.r")
 
+    # # Codes to insert inside in the beginning annonymous function for map
+    # parent.x = get(".x", envir = parent.frame())
+    # i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, x) } ))
+    # 
+    # # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+    # # print(Sys.time())
+    # print(paste0("Beginning .f() map from vector element [", i, "] valued: ", parent.x[i], "  #----" ))
+
+
 
             # # Codes to insert inside in the beginning annonymous function for map
             # parent.x = get(".x", envir = parent.frame())
@@ -7,7 +16,8 @@
             # 
             # # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
             # print(Sys.time())
-            # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
+            # #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
+            # cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
             # # Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); gc()
 
@@ -19,7 +29,7 @@ map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-
             out2 = do.call(.f, args = list(vec[i], ...))
             
             if (.print.Sys.time == T) print(Sys.time())
-            print(paste0("Finished .f() map from vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i]), "  #----"))
+            cat(paste0("Finished .f() map from vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i]), "  #---- \n"))
             
             if (.add.attributes == T) attr(out2, "parent_name") = names(vec)[i]
             out2
@@ -36,7 +46,7 @@ map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-
             out2 = do.call(.f, args = list(ls[[i]], ...))
             
             if (.print.Sys.time == T) print(Sys.time())
-            print(paste0("Finished .f() map from list element [[", i, "]] named: ", ifelse(is.null(names(ls)[i]), "NULL", names(ls)[i]), "  #----"))
+            cat(paste0("Finished .f() map from list element [[", i, "]] named: ", ifelse(is.null(names(ls)[i]), "NULL", names(ls)[i]), "  #---- \n"))
             
             if (.add.attributes == T) attr(out2, "parent_name") = names(ls)[i]
             out2
@@ -98,7 +108,7 @@ map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<
             out2 = do.call(.f, args = list(vec[i], ...))
             
             if (.print.Sys.time == T) print(Sys.time())
-            print(paste0("Finished .f() map from vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i]), "  #----"))
+            cat(paste0("Finished .f() map from vector element [", i, "] named: ", ifelse(is.null(names(vec)[i]), "NULL", names(vec)[i]), "  #---- \n"))
             
             if (.add.attributes == T) attr(out2, "parent_name") = names(vec)[i]
             out2
@@ -119,7 +129,7 @@ map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<
             i = which(map_lgl(parent.x, function(children_from_parent.x) {identical(children_from_parent.x, input_object_name_of_map_function_to_investigate)}))
             
             if (.print.Sys.time == T) print(Sys.time())
-            print(paste0("Finished .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
+            cat(paste0("Finished .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
             
             # attr(out2, "parent_name") = names(parent.x)[which(parent.x == input_object_name_of_map_function_to_investigate)]
             # attr(out2, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(children_from_parent.x) {identical(children_from_parent.x, input_object_name_of_map_function_to_investigate)}))]
