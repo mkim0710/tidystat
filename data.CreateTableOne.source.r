@@ -27,7 +27,7 @@ vars4IQR = names(data)[data %>% map_lgl(is.numeric)]
 data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
     openxlsx::write.xlsx("data.CreateTableOne.IQR.by_exposure.xlsx")
 
-#@
+#@ ------
 df = JK02.2079.CCW.MIN_Date.ge365_EndTime.is.Case.confirm.365.Match.TimeFrame1$LookBackWindow.gt.1y %>% 
   filter(MatchingCtrlNum %in% c(0, 1)) %>%
   select(AcquiredHypothyroidism: VisualImpairment, EndTime.is.Case.confirm.365)
