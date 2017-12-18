@@ -27,11 +27,12 @@ data.tab_strata_exposure = function(
     , .vars4strata = c("female", "age.cut")
     , .exposure = "treatment"
     , round_digits = 2
+    , paste.collapse = "_"
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
-    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
+    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
     # tmp = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame
     # out = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame.matrix %>% rownames_to_column
     out = table(.mydata$strata, .mydata[[.exposure]]) %>% addmargins %>% as.data.frame.matrix %>% rownames_to_column
@@ -83,10 +84,11 @@ rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .
 data.strata_list = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
+    , paste.collapse = "_"
 ) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
-    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
+    .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
     .mydata$strata = .mydata$strata %>% as.factor
     out = map(
         levels(.mydata$strata)
@@ -1276,10 +1278,11 @@ data.stratified.Match = function(
     data.strata_list = function(
         .mydata
         , .vars4strata = c("female", "age.cut")
+        , paste.collapse = "_"
     ) {
         # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
         if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
-        .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = "_")
+        .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
         .mydata$strata = .mydata$strata %>% as.factor
         out = map(
             levels(.mydata$strata)
