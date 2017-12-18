@@ -46,7 +46,7 @@ data.tab_strata_exposure = function(
     out
 }
 
-#@ test) data.tab_strata_exposure() -----
+#@ test) data.tab_strata_exposure() rhc_mydata.rda -----
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -106,7 +106,7 @@ data.strata_list = function(
 }
 
 
-#@ test) data.strata_list() -----
+#@ test) data.strata_list() rhc_mydata.rda -----
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -472,7 +472,7 @@ data.Match = function(
     out
 }
 
-#@ test) data.Match() rhc_mydata -----
+#@ test) data.Match() rhc_mydata.rda -----
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -1660,7 +1660,7 @@ data.stratified.Match = function(
     out
 }
 
-#@ test) data.stratified.Match() rhc_mydata -----
+#@ test) data.stratified.Match() rhc_mydata.rda -----
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
