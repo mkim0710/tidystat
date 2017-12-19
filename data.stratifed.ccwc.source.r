@@ -102,7 +102,7 @@ data.ccwc = function(
     # }
     if (length(unique(.mydata[[.event]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical)), 0:1 ))
         print("length(unique(.mydata[[.event]]) < 2")
-        # out = list()
+        out = list()
         out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
         attr(out, "error.message") = "length(unique(.mydata[[.event]])) < 2"  # attr() is shown with str(max.level = 1)
         
