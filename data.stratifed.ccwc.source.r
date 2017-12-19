@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.ccwc.source.r")
+# source("https://github.com/mkim0710/tidystat/raw/master/data.stratifed.ccwc.source.r")
 
 #@ data.ccwc = function( =====
 data.ccwc = function(
@@ -17,7 +17,7 @@ data.ccwc = function(
     , load.dependent.library = T
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.stratifed.ccwc.source.r")
     if (load.dependent.library == T) {
         library(tidyverse)
         library(tableone)
@@ -375,7 +375,7 @@ data.strata_list = function(
 
 #@ test) data.strata_list() diet.rda -----
 # data(diet, package = "Epi")
-load("library(Epi) diet.rda")
+load(url("https://github.com/mkim0710/tidystat/raw/master/library(Epi) diet.rda"))
 diet = diet %>% mutate(
     RowNum_original = 1:nrow(.)
     , entry_age = as.numeric(doe - dob)/365

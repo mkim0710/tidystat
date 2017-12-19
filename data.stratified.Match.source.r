@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+# source("https://github.com/mkim0710/tidystat/raw/master/data.stratfied.Match.source.r")
 
 
 # data.tab_strata_exposure.old = function(
@@ -29,7 +29,7 @@ data.tab_strata_exposure = function(
     , round_digits = 2
     , paste.collapse = "_"
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.stratfied.Match.source.r")
     
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
@@ -86,7 +86,7 @@ data.strata_list = function(
     , .vars4strata = c("female", "age.cut")
     , paste.collapse = "_"
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.stratfied.Match.source.r")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
     .mydata$strata = .mydata$strata %>% as.factor
@@ -226,7 +226,7 @@ data.Match = function(
     , propensity_score_matching_weight = F
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.stratfied.Match.source.r")
     if (load.dependent.library == T) {
         library(tidyverse)
         library(Matching)
@@ -1257,7 +1257,7 @@ data.stratified.Match = function(
     , propensity_score_matching = F
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/data.stratfied.Match.source.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
     if (load.dependent.library == T) {
         library(tidyverse)
@@ -1280,7 +1280,7 @@ data.stratified.Match = function(
         , .vars4strata = c("female", "age.cut")
         , paste.collapse = "_"
     ) {
-        # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+        # source("https://github.com/mkim0710/tidystat/raw/master/data.stratfied.Match.source.r")
         if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
         .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
         .mydata$strata = .mydata$strata %>% as.factor
@@ -1319,7 +1319,7 @@ data.stratified.Match = function(
         , propensity_score_matching_weight = F
         , apply.function.dichotomous2logical = F
     ) {
-        # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.Match.source.r")
+        # source("https://github.com/mkim0710/tidystat/raw/master/data.stratfied.Match.source.r")
         if (load.dependent.library == T) {
             library(tidyverse)
             library(Matching)
