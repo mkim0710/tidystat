@@ -268,7 +268,7 @@ mycohort_1strata_tie %>% as.tibble
 
 
 mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(.event = "event", .entry = "entry_age", .exit = "exit_age", .origin = "origin", print.process = T)
-mycohort_1strata_tie %>% data.ccwc(.event = "event", .entry = "entry_age", .exit = "exit_age", .origin = NULL, print.process = T)
+mycohort_1strata_tie %>% data.ccwc(.event = "event", .entry = "entry_age", .exit = "exit_age", .origin = NULL, print.process = F)
 # > mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(.event = "event", .entry = "entry_age", .exit = "exit_age", .origin = "origin", print.process = T)
 # [1] "*** 1-th iteration for .event.exit_age.unique.sort: 12"
 # [1] "which.Case: 1"
