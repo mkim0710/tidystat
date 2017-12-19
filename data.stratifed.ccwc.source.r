@@ -518,7 +518,7 @@ data.stratified.ccwc = function(
                 , seed = seed
                 , .MatchingRatio = .MatchingRatio
                 , add_tableone_pre_post = F
-                , print.process = print.process
+                , print.process = F
                 , RowNum_original_before_strata = "RowNum_original_before_strata"
                 , apply.na.omit = apply.na.omit
                 , load.dependent.library = F
@@ -572,7 +572,7 @@ data.stratified.ccwc = function(
 }
 diet.stratified.ccwc = diet %>% data.stratified.ccwc(
     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
-    , .event = "event", .entry = "entry_age", .exit = "exit_age", .origin = NULL, print.map.process = F
+    , .event = "event", .entry = "entry_age", .exit = "exit_age", .origin = NULL, print.map.process = T
     )
 diet.stratified.ccwc
 diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned)
