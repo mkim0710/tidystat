@@ -211,24 +211,24 @@ data.ccwc = function(
         }
         
     }
-    # attr(out$data, ".event") = .event
-    # attr(out$data, ".entry") = .entry
-    # attr(out$data, ".exit") = .exit
-    # attr(out$data, ".origin") = .origin
-    # attr(out$data, ".MatchingRatio") = .MatchingRatio
-    # attr(out$data, "apply.na.omit") = apply.na.omit
-    # # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1)
-    # attr(out, "function.input") = list(
-    #     Call = match.call(expand.dots = TRUE)
-    #     , fun = data.ccwc
-    #     , .event = .event
-    #     , .entry = .entry
-    #     , .exit = .exit
-    #     , .origin = .origin
-    #     , .MatchingRatio = .MatchingRatio
-    #     , apply.na.omit = apply.na.omit
-    #     , apply.function.dichotomous2logical = apply.function.dichotomous2logical
-    # ) # list inside attr() is not shown with str(max.level = 1)
+    attr(out$data, ".event") = .event
+    attr(out$data, ".entry") = .entry
+    attr(out$data, ".exit") = .exit
+    attr(out$data, ".origin") = .origin
+    attr(out$data, ".MatchingRatio") = .MatchingRatio
+    attr(out$data, "apply.na.omit") = apply.na.omit
+    # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1)
+    attr(out, "function.input") = list(
+        Call = match.call(expand.dots = TRUE)
+        , fun = data.ccwc
+        , .event = .event
+        , .entry = .entry
+        , .exit = .exit
+        , .origin = .origin
+        , .MatchingRatio = .MatchingRatio
+        , apply.na.omit = apply.na.omit
+        , apply.function.dichotomous2logical = apply.function.dichotomous2logical
+    ) # list inside attr() is not shown with str(max.level = 1)
     if(is.data.frame(out$data)) {
         # outdataRowNum_original = NULL
         out$data$RowNum_after_na.omit = NULL
@@ -550,21 +550,21 @@ data.stratified.ccwc = function(
         , test=T
         , includeNA = T)
     
-    # attr(out$data, ".event") = .event
-    # attr(out$data, ".entry") = .entry
-    # attr(out$data, ".exit") = .exit
-    # attr(out$data, ".MatchingRatio") = .MatchingRatio
-    # attr(out$data, "apply.na.omit") = apply.na.omit
-    # attr(out, "function.input") = list(
-    #     data.stratified.ccwc = data.stratified.ccwc
-    #     , data.strata_list = data.strata_list
-    #     , data.ccwc = data.ccwc
-    #     , .event = .event
-    #     , .entry = .entry
-    #     , .exit = .exit
-    #     , .MatchingRatio = .MatchingRatio
-    #     , apply.na.omit = apply.na.omit
-    # ) # list inside attr() is not shown with str(max.level = 1)
+    attr(out$data, ".event") = .event
+    attr(out$data, ".entry") = .entry
+    attr(out$data, ".exit") = .exit
+    attr(out$data, ".MatchingRatio") = .MatchingRatio
+    attr(out$data, "apply.na.omit") = apply.na.omit
+    attr(out, "function.input") = list(
+        data.stratified.ccwc = data.stratified.ccwc
+        , data.strata_list = data.strata_list
+        , data.ccwc = data.ccwc
+        , .event = .event
+        , .entry = .entry
+        , .exit = .exit
+        , .MatchingRatio = .MatchingRatio
+        , apply.na.omit = apply.na.omit
+    ) # list inside attr() is not shown with str(max.level = 1)
     out$data$RowNum_original = out$data$RowNum_original_before_strata  # these are not unique numbers d/t stratified map
     out$data$RowNum_original_before_strata  = NULL
     out$data$RowNum_after_na.omit = NULL  # these are not unique numbers d/t stratified map
