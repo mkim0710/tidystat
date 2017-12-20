@@ -550,6 +550,7 @@ data.stratified.ccwc = function(
         , test=T
         , includeNA = T)
     
+    attr(out$data, ".vars4strata") = .vars4strata
     attr(out$data, ".event") = .event
     attr(out$data, ".entry") = .entry
     attr(out$data, ".exit") = .exit
@@ -559,6 +560,7 @@ data.stratified.ccwc = function(
         data.stratified.ccwc = data.stratified.ccwc
         , data.strata_list = data.strata_list
         , data.ccwc = data.ccwc
+        , .vars4strata = .vars4strata
         , .event = .event
         , .entry = .entry
         , .exit = .exit
