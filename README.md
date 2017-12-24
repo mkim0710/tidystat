@@ -22,6 +22,16 @@ https://github.com/cran/MatchIt
 https://github.com/cran/Matching
 #### CRAN Package optmatch
 https://github.com/cran/optmatch
+#### CRAN Package lars
+https://github.com/cran/lars
+#### CRAN Package glmnet
+https://github.com/cran/glmnet
+#### CRAN Package glinternet
+https://github.com/cran/glinternet
+#### CRAN Package bnlearn
+https://github.com/cran/bnlearn
+#### CRAN Package lsmeans
+https://github.com/cran/lsmeans
 #### CRAN Package Epi
 https://github.com/cran/Epi
 #### CRAN Package epitools
