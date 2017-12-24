@@ -11,3 +11,4 @@ https://github.com/mkim0710/tidystat/blob/master/data.stratified.Match.source.r
 ## Permutation Test
 https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r
 
+## Matched Pair Network Analysis (Manuscript under review)
