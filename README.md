@@ -15,7 +15,7 @@ https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed
 
 ## REFERENCES
 #### Github r-source
-https://github.com/wch/r-source
+https://github.com/wch/r-source/tree/trunk/src/main
 #### CRAN Package tidyverse
 https://github.com/cran/tidyverse
 #### CRAN Package survival
