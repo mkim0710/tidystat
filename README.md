@@ -35,6 +35,9 @@ https://github.com/cran/tmle
 https://github.com/cran/caret
 #### CRAN Package tensorflow
 https://github.com/cran/tensorflow
+https://github.com/issactoast/tensoRflow
+#### r4issactoast
+https://github.com/issactoast/r4issactoast
 #### CRAN Package MatchIt
 https://github.com/cran/MatchIt
 #### CRAN Package Matching
@@ -71,4 +74,3 @@ https://github.com/cran/ggplotAssist
 https://github.com/cardiomoon/ggplotAssist
 #### OHDSI
 https://github.com/OHDSI
-
