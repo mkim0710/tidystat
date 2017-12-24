@@ -17,6 +17,10 @@ https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed
 #### Github r-source
 https://github.com/wch/r-source/tree/trunk/src/main
 https://github.com/wch/r-source/blob/trunk/src/main/arithmetic.c
+https://github.com/wch/r-source/blob/trunk/src/library/stats/R/glm.R
+https://github.com/wch/r-source/blob/trunk/src/library/stats/R/wilcox.test.R
+https://github.com/wch/r-source/blob/trunk/src/library/stats/test/glm.R
+https://github.com/wch/r-source/blob/trunk/src/library/stats/demo/lm.glm.R
 #### CRAN Package tidyverse
 https://github.com/cran/tidyverse
 #### CRAN Package survival
