@@ -15,6 +15,7 @@ https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed
 
 ## REFERENCES
 #### Github r-source
+https://goo.gl/wq3Y3p
 https://github.com/wch/r-source/blob/trunk/src/main/arithmetic.c
 https://github.com/wch/r-source/blob/trunk/src/library/stats/R/glm.R
 https://github.com/wch/r-source/blob/trunk/src/library/stats/R/wilcox.test.R
