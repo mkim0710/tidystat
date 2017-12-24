@@ -31,6 +31,8 @@ https://github.com/cran/MASS
 https://github.com/cran/lme4
 #### CRAN Package tmle
 https://github.com/cran/tmle
+#### CRAN Package caret
+https://github.com/cran/caret
 #### CRAN Package tensorflow
 https://github.com/cran/tensorflow
 #### CRAN Package MatchIt
