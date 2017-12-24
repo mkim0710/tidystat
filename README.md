@@ -16,6 +16,16 @@ https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed
 ## REFERENCES
 #### CRAN Package tidyverse
 https://github.com/cran/tidyverse
+#### CRAN Package survival
+https://github.com/cran/survival
+#### CRAN Package MASS
+https://github.com/cran/MASS
+#### CRAN Package lme4
+https://github.com/cran/lme4
+#### CRAN Package tmle
+https://github.com/cran/tmle
+#### CRAN Package tensorflow
+https://github.com/cran/tensorflow
 #### CRAN Package MatchIt
 https://github.com/cran/MatchIt
 #### CRAN Package Matching
