@@ -17,6 +17,7 @@ trainset.cv.glmnet_alphas_cox = function(
 ) { 
     library( glmnet ); library( useful ); # library( coefplot ) 
     library(survival)
+    return_name.input = return_name
     if (is.null(return_name)) {
         if (deparse(substitute(trainset)) == ".") {
             #@ need to work further ----
@@ -127,9 +128,29 @@ trainset.cv.glmnet_alphas_cox = function(
         Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); gc()
         out
     })
-    names(return_list) = paste0(return_name,paste_itrainset,".cv.glmnet",paste_imyFormula,"_a", alphas)
+    # names(return_list) = paste0(return_name,paste_itrainset,".cv.glmnet",paste_imyFormula,"_a", alphas)
+    out = return_list
+    names(out) = paste0("alpha", alphas) 
+    # attr(out, "function.input") = match.call(expand.dots = TRUE)   # list inside attr() is not shown with str(max.level = 1)
+    attr(out, "function.input") = list(
+        Call = match.call(expand.dots = TRUE)
+        , CreatedDate = Sys.time()
+        , functionUsed = trainset.cv.glmnet_alphas_cox
+        , trainset_name = deparse(substitute(trainset))
+        , myFormula = myFormula
+        , alphas = alphas
+        , glmnet.family = glmnet.family, my.type.measure = my.type.measure
+        , na.omit.needed = na.omit.needed
+        , return.glmnet.objects = return.glmnet.objects
+        , saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha = saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha
+        , return_name = return_name.input
+        , itrainset = itrainset
+        , imyFormula = imyFormula
+        , save.png = save.png
+        , png.size = png.size, seed = seed, nfolds = nfolds
+    ) # list inside attr() is not shown with str(max.level = 1)
     # print( paste0( return_name , ".cv.glmnet_alphas" ) ); # assign( paste0( return_name, ".cv.glmnet_alphas" ) , return_list , envir = .GlobalEnv) ;
-    return_list}; # save.image() # update 170509
+    out}; # save.image() # update 170509
 
 #@ test) trainset.cv.glmnet_alphas_cox() CoxExample_tibble ----
 # library(glmnet)
@@ -157,45 +178,71 @@ CoxExample_tibble %>% as.tibble
 # #   V13 <dbl>, V14 <dbl>, V15 <dbl>, V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>, V21 <dbl>,
 # #   V22 <dbl>, V23 <dbl>, V24 <dbl>, V25 <dbl>, V26 <dbl>, V27 <dbl>, V28 <dbl>, V29 <dbl>, V30 <dbl>
 
-    
-    
+
 CoxExample_tibble.cv.glmnet_alphas_cox =
     CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = NULL, imyFormula = NULL,save.png = F)
 CoxExample_tibble.cv.glmnet_alphas_cox %>% str(max.level = 1)
 CoxExample_tibble.cv.glmnet_alphas_cox =
     CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = "itrainset", imyFormula = "imyFormula",save.png = T)
 CoxExample_tibble.cv.glmnet_alphas_cox %>% str(max.level = 1)
+CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% str(max.level = 1)
 # > CoxExample_tibble.cv.glmnet_alphas_cox =
 # +     CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = NULL, imyFormula = NULL,save.png = F)
 # [1] "Beginning .f() map from alphas [1] valued : 1"
-# [1] "Sys.time_1 : 2017-12-29 17:29:24"
-# [1] "Sys.time_2 - Sys.time_1 : structure(0.979681968688965, units = \"secs\", class = \"difftime\")"
+# [1] "Sys.time_1 : 2017-12-29 18:08:26"
+# [1] "Sys.time_2 - Sys.time_1 : structure(0.290771007537842, units = \"secs\", class = \"difftime\")"
 # [1] "Beginning .f() map from alphas [2] valued : 0.5"
-# [1] "Sys.time_1 : 2017-12-29 17:29:25"
-# [1] "Sys.time_2 - Sys.time_1 : structure(0.799121856689453, units = \"secs\", class = \"difftime\")"
+# [1] "Sys.time_1 : 2017-12-29 18:08:26"
+# [1] "Sys.time_2 - Sys.time_1 : structure(0.616238117218018, units = \"secs\", class = \"difftime\")"
 # > CoxExample_tibble.cv.glmnet_alphas_cox %>% str(max.level = 1)
 # List of 2
-#  $ trainset.cv.glmnet_a1  :List of 10
+#  $ alpha1  :List of 10
 #   ..- attr(*, "class")= chr "cv.glmnet"
-#  $ trainset.cv.glmnet_a0.5:List of 10
+#  $ alpha0.5:List of 10
 #   ..- attr(*, "class")= chr "cv.glmnet"
+#  - attr(*, "function.input")=List of 18
 # > CoxExample_tibble.cv.glmnet_alphas_cox =
 # +     CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = "itrainset", imyFormula = "imyFormula",save.png = T)
 # [1] "Beginning .f() map from alphas [1] valued : 1"
-# [1] "Sys.time_1 : 2017-12-29 17:29:28"
+# [1] "Sys.time_1 : 2017-12-29 18:08:27"
 # [1] "plot(object_cvglmnet) : trainset_itrainset.cv.glmnet_imyFormula_a1_plot.png"
-# [1] "Sys.time_2 - Sys.time_1 : structure(1.82744097709656, units = \"secs\", class = \"difftime\")"
+# [1] "Sys.time_2 - Sys.time_1 : structure(0.352939128875732, units = \"secs\", class = \"difftime\")"
 # [1] "Beginning .f() map from alphas [2] valued : 0.5"
-# [1] "Sys.time_1 : 2017-12-29 17:29:31"
+# [1] "Sys.time_1 : 2017-12-29 18:08:28"
 # [1] "plot(object_cvglmnet) : trainset_itrainset.cv.glmnet_imyFormula_a0.5_plot.png"
-# [1] "Sys.time_2 - Sys.time_1 : structure(1.72912693023682, units = \"secs\", class = \"difftime\")"
+# [1] "Sys.time_2 - Sys.time_1 : structure(0.39408802986145, units = \"secs\", class = \"difftime\")"
 # > CoxExample_tibble.cv.glmnet_alphas_cox %>% str(max.level = 1)
 # List of 2
-#  $ trainset_itrainset.cv.glmnet_imyFormula_a1  :List of 10
+#  $ alpha1  :List of 10
 #   ..- attr(*, "class")= chr "cv.glmnet"
-#  $ trainset_itrainset.cv.glmnet_imyFormula_a0.5:List of 10
+#  $ alpha0.5:List of 10
 #   ..- attr(*, "class")= chr "cv.glmnet"
-
+#  - attr(*, "function.input")=List of 18
+# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% str(max.level = 1)
+# List of 18
+#  $ Call                                                     : language trainset.cv.glmnet_alphas_cox(trainset = ., myFormula = Surv(time, status) ~ ., itrainset = "itrainset", imyFormu| __truncated__
+#  $ CreatedDate                                              : POSIXct[1:1], format: "2017-12-29 18:08:29"
+#  $ functionUsed                                             :function (trainset, myFormula, alphas = c(1, 0.5), glmnet.family = "cox", my.type.measure = "deviance", na.omit.needed = F, return.glmnet.objects = T, 
+#     saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha = F, return_name = NULL, itrainset = NULL, imyFormula = NULL, save.png = TRUE, 
+#     png.size = 1280, seed = 1, nfolds = 5)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 33 149 8 33 8 1 149
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000006e692e0> 
+#  $ trainset_name                                            : chr [1:7840] "structure(list(time = c(1.7687775658842, 0.545284044924978, 0.0448591779898214, " "0.850322982646606, 0.614884258533517, 0.298609393241967, 0.0171739813784381, " "15.9713501150213, 0.648016143423707, 1.91448321146452, 1.37737581822182, " "0.504883313673581, 0.175484415215699, 0.0502979398859797, 1.77155865113711, " ...
+#  $ myFormula                                                :Class 'formula'  language Surv(time, status) ~ .
+#   .. ..- attr(*, ".Environment")=<environment: 0x0000000024b33d78> 
+#  $ alphas                                                   : num [1:2] 1 0.5
+#  $ glmnet.family                                            : chr "cox"
+#  $ my.type.measure                                          : chr "deviance"
+#  $ na.omit.needed                                           : logi FALSE
+#  $ return.glmnet.objects                                    : logi TRUE
+#  $ saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha: logi FALSE
+#  $ return_name                                              : NULL
+#  $ itrainset                                                : chr "itrainset"
+#  $ imyFormula                                               : chr "imyFormula"
+#  $ save.png                                                 : logi TRUE
+#  $ png.size                                                 : num 1280
+#  $ seed                                                     : num 1
+#  $ nfolds                                                   : num 5
 
 
 
@@ -232,10 +279,16 @@ object_list_cvglmnet.coefexp = function(object_list_cvglmnet, i_names = NULL) {
     library(tidyverse)
     out2 = object_list_cvglmnet %>% map(object_cvglmnet.coefexp)
     if (is.null(i_names)) {
-        # names(object_list_cvglmnet) %>% grep("\\_a1$|\\_a0\\.[1-9]$", ., value = T)
-        i_names = names(object_list_cvglmnet) %>% stringr::str_extract("\\_a1$|\\_a0\\.[1-9]$")
-        i_names = i_names %>% gsub("\\_a0\\.", "_a.", .)
-        i_names = i_names %>% gsub("^\\_", "", .)
+        if ({substr(names(object_list_cvglmnet)[1], start = 1, stop = 5) == "alpha"}) {
+            i_names = names(object_list_cvglmnet)
+            i_names = i_names %>% gsub("^alpha", "a", .)
+            i_names = i_names %>% gsub("a0\\.", "a.", .)
+        } else {
+            # names(object_list_cvglmnet) %>% grep("\\_a1$|\\_a0\\.[1-9]$", ., value = T)
+            i_names = names(object_list_cvglmnet) %>% stringr::str_extract("\\_a1$|\\_a0\\.[1-9]$")
+            i_names = i_names %>% gsub("\\_a0\\.", "_a.", .)
+            i_names = i_names %>% gsub("^\\_", "", .)
+        }
         if (any(is.na(i_names))) {
             stop("any(is.na(i_names))")
         }
@@ -258,40 +311,40 @@ object_list_cvglmnet.coefexp = function(object_list_cvglmnet, i_names = NULL) {
 
 
 #@ test) object_list_cvglmnet.coefexp() CoxExample_tibble.cv.glmnet_alphas_cox -----
-object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$trainset_itrainset.cv.glmnet_imyFormula_a0.5) #----
+object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----
 object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
-# > object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$trainset_itrainset.cv.glmnet_imyFormula_a0.5) #----
-#    rownum rowname expB.min expB.1se      coef.min    coef.1se
-# 1       1      V1     1.60     1.38  0.4702664543  0.32244534
-# 2       2      V2     0.85     0.93 -0.1662272351 -0.07327914
-# 3       3      V3     0.81     0.90 -0.2088175878 -0.11018701
-# 4       4      V4     1.18     1.08  0.1667420520  0.07698016
-# 5       5      V5     0.84     0.91 -0.1790779843 -0.09491137
-# 6       6      V6     0.62     0.71 -0.4709548588 -0.33758352
-# 7       7      V7     1.38     1.23  0.3212960746  0.20619960
-# 8       8      V8     1.09     1.03  0.0878921191  0.02502086
-# 9       9      V9     1.54     1.35  0.4318903899  0.29925257
-# 10     10     V10     1.12     1.02  0.1094098263  0.02159228
-# 11     11     V11       NA       NA            NA          NA
-# 12     12     V12       NA       NA            NA          NA
-# 13     13     V13     1.02       NA  0.0177894164          NA
-# 14     14     V14       NA       NA            NA          NA
-# 15     15     V15       NA       NA            NA          NA
-# 16     16     V16       NA       NA            NA          NA
-# 17     17     V17     0.98       NA -0.0172848043          NA
-# 18     18     V18       NA       NA            NA          NA
-# 19     19     V19       NA       NA            NA          NA
-# 20     20     V20       NA       NA            NA          NA
-# 21     21     V21     1.00       NA -0.0024320160          NA
-# 22     22     V22       NA       NA            NA          NA
-# 23     23     V23       NA       NA            NA          NA
-# 24     24     V24       NA       NA            NA          NA
-# 25     25     V25     0.98       NA -0.0219618248          NA
-# 26     26     V26       NA       NA            NA          NA
-# 27     27     V27     1.00       NA  0.0006136365          NA
-# 28     28     V28       NA       NA            NA          NA
-# 29     29     V29       NA       NA            NA          NA
-# 30     30     V30     0.99       NA -0.0080371921          NA
+# > object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----
+#    rownum rowname expB.min expB.1se    coef.min     coef.1se
+# 1       1      V1     1.62     1.39  0.47972069  0.332155771
+# 2       2      V2     0.85     0.94 -0.16674492 -0.063825745
+# 3       3      V3     0.81     0.90 -0.21014303 -0.103020945
+# 4       4      V4     1.18     1.07  0.16781912  0.066405963
+# 5       5      V5     0.84     0.92 -0.17951289 -0.085542691
+# 6       6      V6     0.62     0.71 -0.48058218 -0.347938771
+# 7       7      V7     1.39     1.23  0.32603876  0.206025170
+# 8       8      V8     1.09     1.01  0.08646499  0.012908662
+# 9       9      V9     1.55     1.36  0.44014704  0.306959063
+# 10     10     V10     1.11     1.01  0.10854409  0.005616284
+# 11     11     V11       NA       NA          NA           NA
+# 12     12     V12       NA       NA          NA           NA
+# 13     13     V13     1.01       NA  0.01304299           NA
+# 14     14     V14       NA       NA          NA           NA
+# 15     15     V15       NA       NA          NA           NA
+# 16     16     V16       NA       NA          NA           NA
+# 17     17     V17     0.99       NA -0.01388096           NA
+# 18     18     V18       NA       NA          NA           NA
+# 19     19     V19       NA       NA          NA           NA
+# 20     20     V20       NA       NA          NA           NA
+# 21     21     V21       NA       NA          NA           NA
+# 22     22     V22       NA       NA          NA           NA
+# 23     23     V23       NA       NA          NA           NA
+# 24     24     V24       NA       NA          NA           NA
+# 25     25     V25     0.98       NA -0.01830447           NA
+# 26     26     V26       NA       NA          NA           NA
+# 27     27     V27       NA       NA          NA           NA
+# 28     28     V28       NA       NA          NA           NA
+# 29     29     V29       NA       NA          NA           NA
+# 30     30     V30     1.00       NA -0.00301953           NA
 # > object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
 #    rownum rowname a1expB.min a1expB.1se a.5expB.min a.5expB.1se  a1coef.min   a1coef.1se   a.5coef.min a.5coef.1se
 # 1       1      V1       1.62       1.39        1.60        1.38  0.47972069  0.332155771  0.4702664543  0.32244534
@@ -324,7 +377,6 @@ object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
 # 28     28     V28         NA         NA          NA          NA          NA           NA            NA          NA
 # 29     29     V29         NA         NA          NA          NA          NA           NA            NA          NA
 # 30     30     V30       1.00         NA        0.99          NA -0.00301953           NA -0.0080371921          NA
-
 
 
 #@ end -----
