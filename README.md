@@ -13,6 +13,11 @@ https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed
 
 ## Matched Pair Network Analysis (Manuscript under review)
 
+## Logistic Regression with Elastic Net
+
+## Cox Regression with Elastic Net
+https://github.com/mkim0710/tidystat/blob/master/trainset.cv.glmnet.alphas.source.r
+
 ## REFERENCES
 #### Github r-source
 https://goo.gl/wq3Y3p
