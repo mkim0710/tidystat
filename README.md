@@ -16,7 +16,6 @@ https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed
 ## Logistic Regression with Elastic Net
 
 ## Cox Regression with Elastic Net
-https://github.com/mkim0710/tidystat/blob/master/trainset.cv.glmnet.alphas.source.r
 
 ## REFERENCES
 #### Github r-source
