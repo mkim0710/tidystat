@@ -66,10 +66,12 @@ data.ccwc = function(
     }
 
     .mydata[[".event"]] = .mydata[[varname4event]] %>% function.dichotomous2logical
-    if(is.numeric(varname4entry)) {
-        
-    } else if (is.numeric(varname4exit)) {
-        stop("varname4exit must be a character")
+    if(!is.character(varname4entry)) {
+        stop("!is.character(varname4entry)")
+    } else if (!is.character(varname4exit)) {
+        stop("!is.character(varname4exit)")
+    } else if (is.numeric(varname4origin)) {
+        stop("is.numeric(varname4origin)")
     } else {
         if(!is.null(varname4origin)) {
             .mydata[[".entry_age"]] = .mydata[[varname4entry]] - .mydata[[varname4origin]]
@@ -130,7 +132,7 @@ data.ccwc = function(
             , is.Ctrl.Candidate = T
             , is.assigned = F
         )
-        .event.exit_age.unique.sort = .mydata %>% filter(varname4event == T) %>% select(.exit_age) %>% unlist %>% unname %>% unique %>% sort
+        .event.exit_age.unique.sort = .mydata %>% filter(.event == T) %>% select(.exit_age) %>% unlist %>% unname %>% unique %>% sort
         # print(paste0(".event.exit_age.unique.sort: ", deparse(.event.exit_age.unique.sort) ))
         incomplete = 0
         ## ccwc() 140 ties <- FALSE
@@ -273,8 +275,8 @@ mycohort_1strata_tie %>% as.tibble
 # 12             322        38       49 FALSE Driver|>2750 KCals
 
 
-mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F)
-mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F)
+mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F) %>% str(max.level = 1)
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% str(max.level = 1)
 # > mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = T)
 # [1] "*** 1-th iteration for .event.exit_age.unique.sort: 12"
 # [1] "which.Case: 1"
@@ -583,7 +585,7 @@ diet.stratified.ccwc = diet %>% data.stratified.ccwc(
     , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
     )
 diet.stratified.ccwc
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned)
+diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned)
 # > diet.stratified.ccwc = diet %>% data.stratified.ccwc(
 # +     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
 # +     , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
@@ -684,7 +686,7 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, varna
 #  9               5  49.71781 61.00000   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               2   FALSE             FALSE        TRUE
 # 10               6  49.06027 53.80822   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_4               0    TRUE             FALSE        TRUE
 # # ... with 327 more rows
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame()
+diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame()
 # > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame()
 #     RowNum_original entry_age exit_age varname4event                   strata               MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
 # 1                71  46.57808 48.07397   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               0    TRUE             FALSE        TRUE
