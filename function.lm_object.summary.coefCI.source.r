@@ -103,7 +103,7 @@ function.lm_object.summary.coefCI(lm_object)
 
 
 
-function.glm_object.summary.OR = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni")) {
+function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni")) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
     if(!"glm" %in% class(glm_object)) {
         stop("!\"glm\" %in% class(glm_object)")
@@ -194,10 +194,10 @@ function.glm_object.summary.OR = function(glm_object, sprintf_fmt_decimal = 2, c
     out
 }
 
-#@ test) function.glm_object.summary.OR() ----
+#@ test) function.glm_object.summary.exp() ----
 glm_object = glm(admit ~ gre + gpa + rank, data = read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv"), family = binomial)
-glm_object %>% function.glm_object.summary.OR
-# > glm_object %>% function.glm_object.summary.OR
+glm_object %>% function.glm_object.summary.exp
+# > glm_object %>% function.glm_object.summary.exp
 # Waiting for profiling to be done...
 #       rowname               ORCI p_value star  p.fdr *fdr  p.bon *bon exp(Estimate)  exp(2.5 %) exp(97.5 %)  Std. Error   z value     Pr(>|z|)
 # 1 (Intercept) 0.03 (0.00 ~ 0.28)   0.002  **   0.005  **   0.009  **     0.03175998 0.003309497   0.2835650 1.132846009 -3.045029 2.326583e-03
@@ -206,7 +206,7 @@ glm_object %>% function.glm_object.summary.OR
 # 4        rank 0.57 (0.44 ~ 0.73)  <0.001  *** <0.001  *** <0.001  ***    0.57119114 0.442656492   0.7294389 0.127136989 -4.404945 1.058109e-05
 
 
-# function.clogit_object.summary.OR = function(clogit_object, sprintf_fmt_decimal = 2, coef.exp = T) {
+# function.clogit_object.summary.exp = function(clogit_object, sprintf_fmt_decimal = 2, coef.exp = T) {
 #     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
 #     if(!"clogit" %in% class(clogit_object)) {
 #         stop("!\"clogit\" %in% class(clogit_object)")
@@ -288,7 +288,7 @@ glm_object %>% function.glm_object.summary.OR
 # 
 # 
 # 
-# #@ test) function.clogit_object.summary.OR() ----
+# #@ test) function.clogit_object.summary.exp() ----
 # library(survival)
 # logan2 = data.frame(
 #     survival::logan[rep(1:nrow(survival::logan), length(levels(survival::logan$occupation))), ]
@@ -314,12 +314,12 @@ glm_object %>% function.glm_object.summary.OR
 # # 10  craftsmen        sales        13 non-black     2 professional FALSE
 # # # ... with 4,180 more rows
 # clogit_object = clogit(case ~ tocc + tocc:education + strata(id), logan2)
-# clogit_object %>% function.clogit_object.summary.OR
+# clogit_object %>% function.clogit_object.summary.exp
 # # > clogit_object = clogit(case ~ tocc + tocc:education + strata(id), logan2)
 # # Warning message:
 # # In coxph(formula = Surv(rep(1, 4190L), case) ~ tocc + tocc:education +  :
 # #   X matrix deemed to be singular; variable 9
-# # > clogit_object %>% function.clogit_object.summary.OR
+# # > clogit_object %>% function.clogit_object.summary.exp
 # #                      rowname               ORCI p_value star    exp(coef)   exp(2.5 %) exp(97.5 %)   se(coef)          z     Pr(>|z|)
 # # 1                   toccfarm 0.15 (0.01 ~ 2.25)   0.170      0.1500985887 1.002427e-02  2.24750455 1.38078224  -1.373470 1.696063e-01
 # # 2             toccoperatives 3.21 (1.06 ~ 9.73)   0.039  *   3.2115387998 1.059825e+00  9.73178121 0.56564649   2.062684 3.914262e-02
@@ -332,7 +332,7 @@ glm_object %>% function.glm_object.summary.OR
 # # 9        toccsales:education   NA (  NA ~   NA)      NA                NA           NA          NA 0.00000000         NA           NA
 
 
-function.coxph_object.summary.OR = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) {
+function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
     if (!"coxph" %in% class(coxph_object)) {
         stop("!\"coxph\" %in% class(coxph_object)")
@@ -441,7 +441,7 @@ function.coxph_object.summary.OR = function(coxph_object, sprintf_fmt_decimal = 
 
 
 
-#@ test) function.clogit_object.summary.OR() - clogit object ----
+#@ test) function.clogit_object.summary.exp() - clogit object ----
 library(tidyverse)
 library(survival)
 logan2 = data.frame(
@@ -468,12 +468,12 @@ logan2 %>% as.tibble
 # 10  craftsmen        sales        13 non-black     2 professional FALSE
 # # ... with 4,180 more rows
 clogit_object = clogit(case ~ tocc + tocc:education + strata(id), logan2)
-clogit_object %>% function.coxph_object.summary.OR
+clogit_object %>% function.coxph_object.summary.exp
 # > clogit_object = clogit(case ~ tocc + tocc:education + strata(id), logan2)
 # Warning message:
 # In coxph(formula = Surv(rep(1, 4190L), case) ~ tocc + tocc:education +  :
 #   X matrix deemed to be singular; variable 9
-# > clogit_object %>% function.coxph_object.summary.OR
+# > clogit_object %>% function.coxph_object.summary.exp
 #                      rowname               ORCI p_value star  p.fdr *fdr  p.bon *bon    exp(coef)   exp(2.5 %) exp(97.5 %)   se(coef)          z     Pr(>|z|)
 # 1                   toccfarm 0.15 (0.01 ~ 2.25)   0.170       0.170       1.000      0.1500985887 1.002427e-02  2.24750455 1.38078224  -1.373470 1.696063e-01
 # 2             toccoperatives 3.21 (1.06 ~ 9.73)   0.039  *    0.045  *    0.313      3.2115387998 1.059825e+00  9.73178121 0.56564649   2.062684 3.914262e-02
@@ -485,7 +485,7 @@ clogit_object %>% function.coxph_object.summary.OR
 # 8 toccprofessional:education 1.32 (1.20 ~ 1.46)  <0.001  *** <0.001  *** <0.001  *** 1.3208122354 1.195121e+00  1.45972295 0.05102123   5.453550 4.937392e-08
 # 9        toccsales:education   NA (  NA ~   NA)      NA          NA          NA                NA           NA          NA 0.00000000         NA           NA
 # Warning message:
-# In function.coxph_object.summary.OR(.) : "clogit" %in% class(coxph_object)
+# In function.coxph_object.summary.exp(.) : "clogit" %in% class(coxph_object)
 
 
 function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {

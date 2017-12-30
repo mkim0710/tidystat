@@ -1,6 +1,7 @@
 function.deparse.cat.width = function(x, deparse.width.cutoff = 500, cat.sep = "") {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.deparse.cat.width.source.r")
     cat(deparse(x, width.cutoff = deparse.width.cutoff), sep = cat.sep)
+    if (cat.sep != "\n") cat("\n")
 }
 
 # @ test) function.deparse.cat.width() --------
@@ -8,8 +9,8 @@ letters %>% print
 letters %>% dput
 letters %>% deparse
 # letters %>% deparse %>% print  ## identical to: letters %>% deparse
-letters %>% cat
-letters %>% deparse %>% cat(sep = "")
+letters %>% cat;cat("\n")
+letters %>% deparse %>% cat(sep = "");cat("\n")
 letters %>% function.deparse.cat.width
 # > letters %>% print
 #  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
@@ -28,10 +29,10 @@ letters %>% function.deparse.cat.width
 # > letters %>% function.deparse.cat.width
 # c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
 
-installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat
-installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat(sep = "")
-installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse(width.cutoff = 500) %>% cat(sep = "\n")
-installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat(sep = "\n")
+installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat;cat("\n")
+installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat(sep = "");cat("\n")
+installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse(width.cutoff = 500) %>% cat(sep = "\n");cat("\n")
+installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat(sep = "\n");cat("\n")
 # > installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat
 # c("base", "boot", "class", "cluster", "codetools", "compiler",  "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth",  "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet",  "parallel", "rpart", "spatial", "splines", "stats", "stats4",  "survival", "tcltk", "tools", "utils")
 # > installed.packages() %>% as.tibble %>% filter(!is.na(Priority)) %>% select(Package) %>% unlist %>% unname %>% deparse %>% cat(sep = "")
@@ -54,6 +55,11 @@ v4 = c("base", "boot", "class", "cluster", "codetools", "compiler",
 "parallel", "rpart", "spatial", "splines", "stats", "stats4",
 "survival", "tcltk", "tools", "utils")
 
+setdiff(v1, v2) %>% deparse %>% cat(sep = "");cat("\n")
+setdiff(v2, v1) %>% deparse %>% cat(sep = "");cat("\n")
+union(v1, v2) %>% deparse %>% cat(sep = "");cat("\n")
+intersect(v1, v2) %>% deparse %>% cat(sep = "");cat("\n")
+
 identical(v1, v2)
 identical(v1, v3)
 identical(v1, v4)
@@ -63,3 +69,7 @@ identical(v1, v4)
 # [1] TRUE
 # > identical(v1, v4)
 # [1] TRUE
+
+
+#@ end ----
+
