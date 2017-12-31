@@ -3,13 +3,13 @@ Stratified Sampling, Incidence Density Sampling, Nearest Neighbor Matching, Prop
 
 
 ## Incidence Density Sampling
-https://github.com/mkim0710/tidystat/blob/master/data.stratifed.ccwc.source.r
+https://github.com/mkim0710/tidystat/blob/master/R/data.stratifed.ccwc.source.r
 
 ## Nearest Neighbor Matching, Propensity Score Matching
-https://github.com/mkim0710/tidystat/blob/master/data.stratified.Match.source.r
+https://github.com/mkim0710/tidystat/blob/master/R/data.stratified.Match.source.r
 
 ## Permutation Test
-https://github.com/mkim0710/tidystat/blob/master/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r
+https://github.com/mkim0710/tidystat/blob/master/R/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r
 
 ## Matched Pair Network Analysis (Manuscript under review)
 
