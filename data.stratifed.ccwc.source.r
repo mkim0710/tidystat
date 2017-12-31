@@ -792,5 +792,4 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .even
 #  [ reached getOption("max.print") -- omitted 237 rows ]
 
 
-
 #@ end -----
