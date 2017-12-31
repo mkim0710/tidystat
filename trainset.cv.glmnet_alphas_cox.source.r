@@ -1084,6 +1084,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
 #@@@ object_cvglmnet.newFormula_coxph = function(object_cvglmnet, testset, coef.cv.glmnet.s = "lambda.min") { =====
 object_cvglmnet.newFormula_coxph = function(object_cvglmnet, testset, coef.cv.glmnet.s = "lambda.min") {
     # ?coxph
+    library(survival)
     coxph(
         formula = object_cvglmnet.newFormula(object_cvglmnet = object_cvglmnet, coef.cv.glmnet.s = coef.cv.glmnet.s)
         , data = testset
