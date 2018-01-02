@@ -16,7 +16,8 @@ data_V1_V2_EdgeWeight.igraph = function(
     , vertex.size.default = 20
     , vertex.size.multiplier = 1
     , vertex.label.df = NULL
-    , width.max = 30
+    , weight.max.1 = TRUE
+    , weight.multiplier = 30
     , directed = TRUE, vertices = NULL
     , layouts = c("layout.fruchterman.reingold", "layout.circle")
     , vertice = NULL
@@ -113,12 +114,21 @@ data_V1_V2_EdgeWeight.igraph = function(
     df.V1_V2_EdgeWeight = cbind(df.V1_V2_EdgeWeight[, c(varname4V1, varname4V2)], df.V1_V2_EdgeWeight[, !colnames(df.V1_V2_EdgeWeight) %in% c(varname4V1, varname4V2)])
     g = graph.data.frame(df.V1_V2_EdgeWeight, directed = directed, vertices = vertices)
     E(g)$weight = df.V1_V2_EdgeWeight[[varname4weight]]
-    if (max(E(g)$weight) != 1) {
-        E(g)$weight = E(g)$weight / max(E(g)$weight)
-        print(paste0("Caution (max(E(g)$weight) != 1): E(g)$weight = E(g)$weight / max(E(g)$weight)"))
-        warning(paste0("Caution (max(E(g)$weight) != 1): E(g)$weight = E(g)$weight / max(E(g)$weight)"))
+    if (min(E(g)$weight) < 0) {
+        print(paste0("Caution) min(E(g)$weight) < 0"))
+        warning(paste0("Caution) min(E(g)$weight) < 0"))
+        #@ need to work) what to do when weight is less than zero?!  -----
     }
-    E(g)$width = width.max * E(g)$weight
+    if (max(E(g)$weight) != 1) {
+        print(paste0("Caution) max(E(g)$weight) != 1"))
+        warning(paste0("Caution) max(E(g)$weight) != 1"))
+        if (weight.max.1 == TRUE) {
+            E(g)$weight = E(g)$weight / max(E(g)$weight)
+            print(paste0("weight.max.1 == TRUE) E(g)$weight = E(g)$weight / max(E(g)$weight)"))
+            warning(paste0("weight.max.1 == TRUE) E(g)$weight = E(g)$weight / max(E(g)$weight)"))
+        }
+    }
+    E(g)$width = weight.multiplier * E(g)$weight
     edge.width = E(g)$width
     
     # E(g)$color = c(rgb(0,0,.6), rgb(.8,0,0))[(df.V1_V2_EdgeWeight[[edgeColor.NegBluePosRed]] > 0) + 1]
@@ -364,10 +374,10 @@ identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(
 # [1] TRUE
 
 # debug(data_V1_V2_EdgeWeight.igraph)
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% select(-rowname) %>% data_V1_V2_EdgeWeight.igraph(varname4weight = "cooccurence", vertex.size.default = 25, width.max = 35, directed = F)
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 25, width.max = 35, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% select(-rowname) %>% data_V1_V2_EdgeWeight.igraph(varname4weight = "cooccurence", vertex.size.default = 25, weight.multiplier = 35, directed = F)
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 25, weight.multiplier = 35, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
 # undebug(data_V1_V2_EdgeWeight.igraph)
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% select(-rowname) %>% data_V1_V2_EdgeWeight.igraph(varname4weight = "cooccurence", vertex.size.default = 25, width.max = 35, directed = F)
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% select(-rowname) %>% data_V1_V2_EdgeWeight.igraph(varname4weight = "cooccurence", vertex.size.default = 25, weight.multiplier = 35, directed = F)
 # [1] "Caution: out.name.prefix == \".\") "
 # [1] "Caution: guessing df.V1_V2_EdgeWeight in .GlobalEnv) failed..."
 # [1] "Caution (max(E(g)$weight) != 1): E(g)$weight = E(g)$weight / max(E(g)$weight)"
@@ -379,7 +389,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.co
 #   Caution: out.name.prefix == ".") 
 # 3: In data_V1_V2_EdgeWeight.igraph(., varname4weight = "cooccurence",  :
 #   Caution (max(E(g)$weight) != 1): E(g)$weight = E(g)$weight / max(E(g)$weight)
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 25, width.max = 35, directed = F, out.png.pdf = T)
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph = termDocMatrix.t.df.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 25, weight.multiplier = 35, directed = F, out.png.pdf = T)
 # [1] "Caution: out.name.prefix == \".\") "
 # [1] "Caution: guessing df.V1_V2_EdgeWeight in .GlobalEnv) termDocMatrix.t.df.lgl.comat.gather.upper.tri"
 # [1] "Caution) using \"termDocMatrix.t.df.lgl.comat.gather.upper.tri\" as out.name.prefix"
@@ -568,6 +578,16 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% str
 #  $ ObstructiveLungDisease   : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
 #  $ CancerSurvivors          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
 
+
+data.lgl.comat = function(data) {
+    data.lgl.matrix = as.matrix(data %>% map_df(as.logical))
+    out = t(data.lgl.matrix) %*% data.lgl.matrix
+    if (any(is.na(out))) {
+        warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
+    }
+    out
+}
+
 trainsetCC69agg4i07_829.Ctrl.lgl.comat = t(as.matrix(trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical))) %*% as.matrix(trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag
 identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
@@ -593,6 +613,8 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% str
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:31] "AcquiredHypothyroidism" "AdjustmentDisorder" "Anemia" "Anxiety" ...
 #   ..$ : chr [1:31] "AcquiredHypothyroidism" "AdjustmentDisorder" "Anemia" "Anxiety" ...
+
+
 
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
@@ -626,6 +648,27 @@ identical(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather), ncol(trainsetCC69
 # # ... with 951 more rows
 # > identical(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat))
 # [1] TRUE
+
+
+data.lgl.comat.gather.upper.tri = function(data) {
+    data.lgl.matrix = as.matrix(data %>% map_df(as.logical))
+    out = t(data.lgl.matrix) %*% data.lgl.matrix
+    if (any(is.na(out))) {
+        warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
+    }
+    out = out %>% as.data.frame %>% rownames_to_column %>% 
+        dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
+        gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
+        mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
+        mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
+        arrange(R) %>% as.tibble %>% filter(R < C)
+    # if (any(is.na(out$cooccurence))) {
+    #     warning("any(is.na(out$cooccurence))")
+    # }
+    out
+}
+
+
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
@@ -659,10 +702,10 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # [1] TRUE
 
 # debug(data_V1_V2_EdgeWeight.igraph)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% select(-rowname) %>% data_V1_V2_EdgeWeight.igraph(varname4weight = "cooccurence", vertex.size.default = 20, width.max = 30, directed = F)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 20, width.max = 30, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% select(-rowname) %>% data_V1_V2_EdgeWeight.igraph(varname4weight = "cooccurence", vertex.size.default = 20, weight.multiplier = 30, directed = F)
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 20, weight.multiplier = 30, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
 # undebug(data_V1_V2_EdgeWeight.igraph)
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 25, width.max = 35, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 25, weight.multiplier = 35, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
 # [1] "Caution: out.name.prefix == \".\") "
 # [1] "Caution: guessing df.V1_V2_EdgeWeight in .GlobalEnv) trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri"
 # [1] "Caution) using \"trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri\" as out.name.prefix"
@@ -680,7 +723,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg
 #   Caution) using "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri" as out.name.prefix
 # 3: In data_V1_V2_EdgeWeight.igraph(., varname4V1 = "V1", varname4V2 = "V2",  :
 #   Caution (max(E(g)$weight) != 1): E(g)$weight = E(g)$weight / max(E(g)$weight)
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 20, width.max = 30, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 20, weight.multiplier = 30, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
 # [1] "Caution: out.name.prefix == \".\") "
 # [1] "Caution: guessing df.V1_V2_EdgeWeight in .GlobalEnv) trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri"
 # [1] "Caution) using \"trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri\" as out.name.prefix"
