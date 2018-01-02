@@ -31,12 +31,19 @@ https://github.com/cran/tidyverse
 https://github.com/cran/survival
 #### CRAN Package MASS
 https://github.com/cran/MASS
+#### CRAN Package rms
+https://github.com/cran/rms
+https://github.com/harrelfe/rms
 #### CRAN Package lme4
 https://github.com/cran/lme4
 #### CRAN Package tmle
 https://github.com/cran/tmle
 #### CRAN Package caret
 https://github.com/cran/caret
+#### CRAN Package gbm
+https://github.com/cran/gbm
+https://github.com/harrysouthworth/gbm
+https://github.com/gbm-developers/gbm
 #### CRAN Package tensorflow
 https://github.com/cran/tensorflow
 https://github.com/issactoast/tensoRflow
@@ -58,6 +65,12 @@ https://github.com/cran/MatchIt
 https://github.com/cran/Matching
 #### CRAN Package optmatch
 https://github.com/cran/optmatch
+#### CRAN Package sampling
+https://github.com/cran/sampling
+#### CRAN Package survey
+https://github.com/cran/survey
+#### CRAN Package PracTools
+https://github.com/cran/PracTools
 #### CRAN Package Epi
 https://github.com/cran/Epi
 #### CRAN Package epitools

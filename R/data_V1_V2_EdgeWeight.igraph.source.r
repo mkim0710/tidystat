@@ -1,6 +1,6 @@
 # data_V1_V2_EdgeWeight.igraph.source.r
 
-
+?scale
 data_V1_V2_EdgeWeight.igraph = function(
     df.V1_V2_EdgeWeight
     , out.name.prefix = deparse(substitute(df.V1_V2_EdgeWeight))
@@ -16,7 +16,7 @@ data_V1_V2_EdgeWeight.igraph = function(
     , vertex.size.default = 20
     , vertex.size.multiplier = 1
     , vertex.label.df = NULL
-    , weight.max.1 = TRUE
+    , weight.max.scale1 = TRUE
     , weight.multiplier = 30
     , directed = TRUE, vertices = NULL
     , layouts = c("layout.fruchterman.reingold", "layout.circle")
@@ -122,10 +122,10 @@ data_V1_V2_EdgeWeight.igraph = function(
     if (max(E(g)$weight) != 1) {
         print(paste0("Caution) max(E(g)$weight) != 1"))
         warning(paste0("Caution) max(E(g)$weight) != 1"))
-        if (weight.max.1 == TRUE) {
+        if (weight.max.scale1 == TRUE) {
             E(g)$weight = E(g)$weight / max(E(g)$weight)
-            print(paste0("weight.max.1 == TRUE) E(g)$weight = E(g)$weight / max(E(g)$weight)"))
-            warning(paste0("weight.max.1 == TRUE) E(g)$weight = E(g)$weight / max(E(g)$weight)"))
+            print(paste0("weight.max.scale1 == TRUE) E(g)$weight = E(g)$weight / max(E(g)$weight)"))
+            warning(paste0("weight.max.scale1 == TRUE) E(g)$weight = E(g)$weight / max(E(g)$weight)"))
         }
     }
     E(g)$width = weight.multiplier * E(g)$weight
