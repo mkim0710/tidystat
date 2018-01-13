@@ -17,6 +17,10 @@ https://github.com/mkim0710/tidystat/blob/master/R/function.MatchingPairID_Expos
 
 ## Cox Regression with Elastic Net
 
+## Individual-level Imputation of Social Determinants of Health using Census and Health and Nutritional Examination Survey
+https://github.com/mkim0710/tidystat/blob/master/R/function.weighted_join_FIPS_HANES.source.r
+
+
 ## REFERENCES
 #### Github r-source
 https://goo.gl/wq3Y3p
@@ -89,5 +93,12 @@ https://github.com/cardiomoon/moonBook
 #### CRAN Package ggplotAssist
 https://github.com/cran/ggplotAssist
 https://github.com/cardiomoon/ggplotAssist
+#### NHANES
+https://www.cdc.gov/nchs/nhanes/nhanes_questionnaires.htm
+#### NYC Open Data
+https://opendata.cityofnewyork.us/
+#### FACETS
+https://github.com/mcantor2/FACETS
 #### OHDSI
 https://github.com/OHDSI
+
