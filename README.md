@@ -15,9 +15,9 @@ https://github.com/mkim0710/tidystat/blob/master/R/function.MatchingPairID_Expos
 
 ## Logistic Regression with Elastic Net
 
-## Cox Regression with Elastic Net
+## Cox Regression with Elastic Net (Manuscript in preparation)
 
-## Individual-level Imputation of Social Determinants of Health using Census and Health and Nutritional Examination Survey
+## Individual-level Imputation of Social Determinants of Health using Census and Health and Nutritional Examination Survey (Under research)
 https://github.com/mkim0710/tidystat/blob/master/R/function.weighted_join_FIPS_HANES.source.r
 
 
