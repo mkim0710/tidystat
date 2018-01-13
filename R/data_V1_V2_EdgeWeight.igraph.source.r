@@ -650,6 +650,27 @@ identical(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather), ncol(trainsetCC69
 # [1] TRUE
 
 
+
+
+data.lgl.comat.gather = function(data) {
+    data.lgl.matrix = as.matrix(data %>% map_df(as.logical))
+    out = t(data.lgl.matrix) %*% data.lgl.matrix
+    if (any(is.na(out))) {
+        warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
+    }
+    out = out %>% as.data.frame %>% rownames_to_column %>% 
+        dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
+        gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
+        mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
+        mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
+        arrange(R) %>% as.tibble
+    # if (any(is.na(out$cooccurence))) {
+    #     warning("any(is.na(out$cooccurence))")
+    # }
+    out
+}
+
+
 data.lgl.comat.gather.upper.tri = function(data) {
     data.lgl.matrix = as.matrix(data %>% map_df(as.logical))
     out = t(data.lgl.matrix) %*% data.lgl.matrix
