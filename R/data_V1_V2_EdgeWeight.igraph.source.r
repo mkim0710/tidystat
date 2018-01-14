@@ -341,6 +341,11 @@ identical(nrow(termDocMatrix.t.df.lgl.comat.gather), ncol(termDocMatrix.t.df.lgl
 # > identical(nrow(termDocMatrix.t.df.lgl.comat.gather), ncol(termDocMatrix.t.df.lgl.comat) * nrow(termDocMatrix.t.df.lgl.comat))
 # [1] TRUE
 
+
+termDocMatrix.t.df.lgl.comat.gather
+
+
+
 termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
@@ -579,123 +584,90 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% str
 #  $ CancerSurvivors          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
 
 
-data.lgl.comat = function(data) {
-    data.lgl.matrix = as.matrix(data %>% map_df(as.logical))
-    out = t(data.lgl.matrix) %*% data.lgl.matrix
-    if (any(is.na(out))) {
-        warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
-    }
-    out
-}
 
-trainsetCC69agg4i07_829.Ctrl.lgl.comat = t(as.matrix(trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical))) %*% as.matrix(trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag
-identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% str
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag
-#    AcquiredHypothyroidism        AdjustmentDisorder                    Anemia                   Anxiety                 Arthritis        AtrialFibrillation           BenignProstatic 
-#                        29                         1                        20                       106                       599                         0                         1 
-#               BrainInjury                  Cataract             ChronicKidney                  Diabetes                 Dysthymia                  Epilepsy Fibromyalgia_Pain_Fatigue 
-#                         6                       230                        29                       133                         2                         4                       336 
-#                  Glaucoma         HearingImpairment              HeartFailure            Hyperlipidemia              Hypertension             IschemicHeart  Migraine_ChronicHeadache 
-#                        94                        21                        36                       206                        38                       103                       134 
-#       MobilityImpairments              Osteoporosis                  PelvicFx      PersonalityDisorders          SpinalCordInjury                 StrokeTIA         AlzheimerDementia 
-#                        13                       127                        14                         0                        26                        70                         2 
-#              LiverDisease    ObstructiveLungDisease           CancerSurvivors 
-#                       118                       154                        15 
-# > identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-# [1] TRUE
-# > identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-# [1] TRUE
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% str
-#  num [1:31, 1:31] 29 0 1 5 20 0 0 0 9 1 ...
-#  - attr(*, "dimnames")=List of 2
-#   ..$ : chr [1:31] "AcquiredHypothyroidism" "AdjustmentDisorder" "Anemia" "Anxiety" ...
-#   ..$ : chr [1:31] "AcquiredHypothyroidism" "AdjustmentDisorder" "Anemia" "Anxiety" ...
+#@ data.lgl.comat.gather() separate file ======
 
 
-
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
-    dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
-    gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
-    mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
-    mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-    arrange(R) %>% as.tibble
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather
-identical(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat))
-# save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.rda")
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
-# +     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
-# +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
-# +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
-# +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-# +     arrange(R) %>% as.tibble
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather
+trainsetCC69agg4i07_829.Ctrl.lgl 
+trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
 # # A tibble: 961 x 6
-#    rowname                     V1                     V2 cooccurence     R     C
-#      <chr>                 <fctr>                 <fctr>       <dbl> <int> <int>
-#  1    R1C1 AcquiredHypothyroidism AcquiredHypothyroidism          29     1     1
-#  2    R1C2 AcquiredHypothyroidism     AdjustmentDisorder           0     1     2
-#  3    R1C3 AcquiredHypothyroidism                 Anemia           1     1     3
-#  4    R1C4 AcquiredHypothyroidism                Anxiety           5     1     4
-#  5    R1C5 AcquiredHypothyroidism              Arthritis          20     1     5
-#  6    R1C6 AcquiredHypothyroidism     AtrialFibrillation           0     1     6
-#  7    R1C7 AcquiredHypothyroidism        BenignProstatic           0     1     7
-#  8    R1C8 AcquiredHypothyroidism            BrainInjury           0     1     8
-#  9    R1C9 AcquiredHypothyroidism               Cataract           9     1     9
-# 10   R1C10 AcquiredHypothyroidism          ChronicKidney           1     1    10
+#                        V1                     V2 cooccurence    RC     R     C
+#                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10
 # # ... with 951 more rows
-# > identical(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat))
-# [1] TRUE
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
+# # A tibble: 961 x 16
+#                        V1                     V2 cooccurence    RC     R     C  ntot   n00   n10   n01   n11           phi        OR SimpleAgreement ChanceAgreement Cohen_kappa
+#                    <fctr>                 <fctr>       <dbl> <chr> <int> <int> <int> <dbl> <dbl> <dbl> <dbl>         <dbl>     <dbl>           <dbl>           <dbl>       <dbl>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1   829   800     0     0    29  1.0000000000       Inf             Inf       2.0000000        -Inf
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2   829   799    29     1     0 -0.0066166603 0.0000000       0.0000000       0.9637696 -26.6011500
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3   829   781    28    19     1  0.0128518633 1.4680451       1.4680451       0.9441855   9.3857277
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4   829   699    24   101     5  0.0253993965 1.4418317       1.4418317       0.8528786   4.0031771
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5   829   221     9   579    20 -0.0139912063 0.8482057       0.8482057       0.2884671   0.7866658
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6   829   800    29    NA    NA           NaN       NaN             NaN             NaN         NaN
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7   829   799    29     1     0 -0.0066166603 0.0000000       0.0000000       0.9637696 -26.6011500
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8   829   794    29     6     0 -0.0162565997 0.0000000       0.0000000       0.9575273 -22.5445573
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9   829   579    20   221     9  0.0139912063 1.1789593       1.1789593       0.7117287   1.6208015
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10   829   772    28    28     1 -0.0005172414 0.9846939       0.9846939       0.9324141   0.7735310
+# # ... with 951 more rows
+# Warning message:
+# In data.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
+#   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+# Error in out$cor_spearman.ll[k] <- cor.test_spearman.out$conf.int[1] : 
+#   replacement has length zero
+# In addition: Warning message:
+# In cor.test.default(as.numeric(data.lgl[[varname1vec[k]]]), as.numeric(data.lgl[[varname2vec[k]]]),  :
+#   Cannot compute exact p-value with ties
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+# # A tibble: 961 x 14
+#                        V1                     V2 cooccurence    RC     R     C   cor_pearson cor_pearson.ll cor_pearson.ul cor_pearson.p cor_spearman cor_spearman.ll cor_spearman.ul cor_spearman.p
+#                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>         <dbl>          <dbl>          <dbl>         <dbl>        <dbl>           <dbl>           <dbl>          <dbl>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1  1.0000000000     1.00000000     1.00000000     0.0000000           NA              NA              NA             NA
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3  0.0128518633    -0.05528686     0.08087144     0.7117607           NA              NA              NA             NA
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4  0.0253993965    -0.04276491     0.09332834     0.4651928           NA              NA              NA             NA
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5 -0.0139912063    -0.08200343     0.05415073     0.6874988           NA              NA              NA             NA
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6            NA             NA             NA            NA           NA              NA              NA             NA
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8 -0.0162565997    -0.08425368     0.05189119     0.6402205           NA              NA              NA             NA
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9  0.0139912063    -0.05415073     0.08200343     0.6874988           NA              NA              NA             NA
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10 -0.0005172414    -0.06860517     0.06757548     0.9881358           NA              NA              NA             NA
+# # ... with 951 more rows
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
+# # A tibble: 961 x 10
+#                        V1                     V2 cooccurence    RC     R     C fisher.test.OR fisher.test.OR_ll95 fisher.test.OR_ul95 fisher.test.p
+#                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>          <dbl>               <dbl>               <dbl>         <dbl>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1            Inf        3.200677e+03                 Inf  3.339119e-54
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2      0.0000000        0.000000e+00         1058.091715  1.000000e+00
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3      1.4672178        3.412795e-02            9.919660  5.135455e-01
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4      1.4411073        4.199260e-01            3.971758  4.037807e-01
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5      0.8483994        3.626019e-01            2.149752  6.760785e-01
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6             NA                  NA                  NA            NA
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7      0.0000000        0.000000e+00         1058.091715  1.000000e+00
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8      0.0000000        0.000000e+00           24.264405  1.000000e+00
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9      1.1786902        4.651700e-01            2.757845  6.760785e-01
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10      0.9847120        2.326087e-02            6.424633  1.000000e+00
+# # ... with 951 more rows
 
-
-
-
-data.lgl.comat.gather = function(data) {
-    data.lgl.matrix = as.matrix(data %>% map_df(as.logical))
-    out = t(data.lgl.matrix) %*% data.lgl.matrix
-    if (any(is.na(out))) {
-        warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
-    }
-    out = out %>% as.data.frame %>% rownames_to_column %>% 
-        dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
-        gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
-        mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
-        mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-        arrange(R) %>% as.tibble
-    # if (any(is.na(out$cooccurence))) {
-    #     warning("any(is.na(out$cooccurence))")
-    # }
-    out
-}
-
-
-data.lgl.comat.gather.upper.tri = function(data) {
-    data.lgl.matrix = as.matrix(data %>% map_df(as.logical))
-    out = t(data.lgl.matrix) %*% data.lgl.matrix
-    if (any(is.na(out))) {
-        warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
-    }
-    out = out %>% as.data.frame %>% rownames_to_column %>% 
-        dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
-        gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
-        mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
-        mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-        arrange(R) %>% as.tibble %>% filter(R < C)
-    # if (any(is.na(out$cooccurence))) {
-    #     warning("any(is.na(out$cooccurence))")
-    # }
-    out
-}
-
-
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
-    dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
-    gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
-    mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
-    mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
-    arrange(R) %>% as.tibble %>% filter(R < C)
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather
+# save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple).rda")
+load("data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple).rda")
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather %>% filter(R < C)
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% filter(R < C)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
