@@ -87,7 +87,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-        mutate(rowname = RC) %>% column_to_rownames %>% 
+        mutate(rowname = RC, upper.tri = ifelse( R==C, 0, (C-R)/abs(C-R) ) ) %>% column_to_rownames %>% 
         arrange(R) %>% as.tibble
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
         # out$varname1 = out$V1 %>% as.character
@@ -129,6 +129,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
         }
         
         which.R.lt.C = which(out$R < out$C)
+        out$comparison = length(which.R.lt.C)
         for (k in which.R.lt.C) {
             # cat(k)
             # cat(".")
@@ -280,67 +281,67 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = T, .Fisher.exact.test = T)
 # save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.rda")
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
-# # A tibble: 961 x 6
-#                        V1                     V2 cooccurence    RC     R     C
-#                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>
-#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1
-#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2
-#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3
-#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4
-#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5
-#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6
-#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7
-#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8
-#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9
-# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10
+# # A tibble: 961 x 7
+#                        V1                     V2 cooccurence    RC     R     C upper.tri
+#                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1
 # # ... with 951 more rows
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
-# # A tibble: 961 x 16
-#                        V1                     V2 cooccurence    RC     R     C  ntot   n00   n10   n01   n11           phi        OR SimpleAgreement ChanceAgreement   Cohen_kappa
-#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int> <int> <dbl> <dbl> <dbl> <dbl>         <dbl>     <dbl>           <dbl>           <dbl>         <dbl>
-#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1   829    NA    NA    NA    NA           NaN       NaN             NaN             NaN           NaN
-#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2   829   799    29     1     0 -0.0066166603 0.0000000       0.9638118       0.9637696  0.0011646545
-#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3   829   781    28    19     1  0.0128518633 1.4680451       0.9433052       0.9441855 -0.0157723026
-#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4   829   699    24   101     5  0.0253993965 1.4418317       0.8492159       0.8528786 -0.0248954492
-#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5   829   221     9   579    20 -0.0139912063 0.8482057       0.2907117       0.2884671  0.0031545970
-#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6   829   800    29    NA    NA           NaN       NaN       0.9650181             NaN           NaN
-#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7   829   799    29     1     0 -0.0066166603 0.0000000       0.9638118       0.9637696  0.0011646545
-#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8   829   794    29     6     0 -0.0162565997 0.0000000       0.9577805       0.9575273  0.0059595837
-#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9   829   579    20   221     9  0.0139912063 1.1789593       0.7092883       0.7117287 -0.0084654734
-# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10   829   772    28    28     1 -0.0005172414 0.9846939       0.9324487       0.9324141  0.0005130175
+# # A tibble: 961 x 18
+#                        V1                     V2 cooccurence    RC     R     C upper.tri  ntot   n00   n10   n01   n11 comparison           phi        OR SimpleAgreement ChanceAgreement   Cohen_kappa
+#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl> <int> <dbl> <dbl> <dbl> <dbl>      <int>         <dbl>     <dbl>           <dbl>           <dbl>         <dbl>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0   829    NA    NA    NA    NA        465           NaN       NaN             NaN             NaN           NaN
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1   829   799    29     1     0        465 -0.0066166603 0.0000000       0.9638118       0.9637696  0.0011646545
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1   829   781    28    19     1        465  0.0128518633 1.4680451       0.9433052       0.9441855 -0.0157723026
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1   829   699    24   101     5        465  0.0253993965 1.4418317       0.8492159       0.8528786 -0.0248954492
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1   829   221     9   579    20        465 -0.0139912063 0.8482057       0.2907117       0.2884671  0.0031545970
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1   829   800    29    NA    NA        465           NaN       NaN       0.9650181             NaN           NaN
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1   829   799    29     1     0        465 -0.0066166603 0.0000000       0.9638118       0.9637696  0.0011646545
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1   829   794    29     6     0        465 -0.0162565997 0.0000000       0.9577805       0.9575273  0.0059595837
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1   829   579    20   221     9        465  0.0139912063 1.1789593       0.7092883       0.7117287 -0.0084654734
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1   829   772    28    28     1        465 -0.0005172414 0.9846939       0.9324487       0.9324141  0.0005130175
 # # ... with 951 more rows
 # Warning message:
 # In data.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
-# # A tibble: 961 x 14
-#                        V1                     V2 cooccurence    RC     R     C   cor_pearson cor_pearson.ll cor_pearson.ul cor_pearson.p cor_spearman cor_spearman.ll cor_spearman.ul cor_spearman.p
-#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>         <dbl>          <dbl>          <dbl>         <dbl>        <dbl>           <dbl>           <dbl>          <dbl>
-#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1            NA             NA             NA            NA           NA              NA              NA             NA
-#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
-#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3  0.0128518633    -0.05528686     0.08087144     0.7117607           NA              NA              NA             NA
-#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4  0.0253993965    -0.04276491     0.09332834     0.4651928           NA              NA              NA             NA
-#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5 -0.0139912063    -0.08200343     0.05415073     0.6874988           NA              NA              NA             NA
-#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6            NA             NA             NA            NA           NA              NA              NA             NA
-#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
-#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8 -0.0162565997    -0.08425368     0.05189119     0.6402205           NA              NA              NA             NA
-#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9  0.0139912063    -0.05415073     0.08200343     0.6874988           NA              NA              NA             NA
-# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10 -0.0005172414    -0.06860517     0.06757548     0.9881358           NA              NA              NA             NA
-# # ... with 951 more rows
+# # A tibble: 961 x 16
+#                        V1                     V2 cooccurence    RC     R     C upper.tri   cor_pearson cor_pearson.ll cor_pearson.ul cor_pearson.p cor_spearman cor_spearman.ll cor_spearman.ul cor_spearman.p
+#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl>         <dbl>          <dbl>          <dbl>         <dbl>        <dbl>           <dbl>           <dbl>          <dbl>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0            NA             NA             NA            NA           NA              NA              NA             NA
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1  0.0128518633    -0.05528686     0.08087144     0.7117607           NA              NA              NA             NA
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1  0.0253993965    -0.04276491     0.09332834     0.4651928           NA              NA              NA             NA
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1 -0.0139912063    -0.08200343     0.05415073     0.6874988           NA              NA              NA             NA
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1            NA             NA             NA            NA           NA              NA              NA             NA
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1 -0.0162565997    -0.08425368     0.05189119     0.6402205           NA              NA              NA             NA
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1  0.0139912063    -0.05415073     0.08200343     0.6874988           NA              NA              NA             NA
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1 -0.0005172414    -0.06860517     0.06757548     0.9881358           NA              NA              NA             NA
+# # ... with 951 more rows, and 1 more variables: comparison <int>
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
-# # A tibble: 961 x 10
-#                        V1                     V2 cooccurence    RC     R     C fisher.test.OR fisher.test.OR_ll95 fisher.test.OR_ul95 fisher.test.p
-#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>          <dbl>               <dbl>               <dbl>         <dbl>
-#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1             NA                  NA                  NA            NA
-#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2      0.0000000          0.00000000         1058.091715     1.0000000
-#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3      1.4672178          0.03412795            9.919660     0.5135455
-#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4      1.4411073          0.41992602            3.971758     0.4037807
-#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5      0.8483994          0.36260191            2.149752     0.6760785
-#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6             NA                  NA                  NA            NA
-#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7      0.0000000          0.00000000         1058.091715     1.0000000
-#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8      0.0000000          0.00000000           24.264405     1.0000000
-#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9      1.1786902          0.46517002            2.757845     0.6760785
-# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10      0.9847120          0.02326087            6.424633     1.0000000
+# # A tibble: 961 x 12
+#                        V1                     V2 cooccurence    RC     R     C upper.tri fisher.test.OR fisher.test.OR_ll95 fisher.test.OR_ul95 fisher.test.p comparison
+#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl>          <dbl>               <dbl>               <dbl>         <dbl>      <int>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0             NA                  NA                  NA            NA        465
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1      0.0000000          0.00000000         1058.091715     1.0000000        465
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1      1.4672178          0.03412795            9.919660     0.5135455        465
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1      1.4411073          0.41992602            3.971758     0.4037807        465
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1      0.8483994          0.36260191            2.149752     0.6760785        465
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1             NA                  NA                  NA            NA        465
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1      0.0000000          0.00000000         1058.091715     1.0000000        465
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1      0.0000000          0.00000000           24.264405     1.0000000        465
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1      1.1786902          0.46517002            2.757845     0.6760785        465
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1      0.9847120          0.02326087            6.424633     1.0000000        465
 # # ... with 951 more rows
 
 
@@ -372,19 +373,19 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
 # +     arrange(R) %>% as.tibble %>% filter(R < C)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
-# # A tibble: 465 x 6
-#    rowname                     V1                 V2 cooccurence     R     C
-#      <chr>                 <fctr>             <fctr>       <dbl> <int> <int>
-#  1    R1C2 AcquiredHypothyroidism AdjustmentDisorder           0     1     2
-#  2    R1C3 AcquiredHypothyroidism             Anemia           1     1     3
-#  3    R1C4 AcquiredHypothyroidism            Anxiety           5     1     4
-#  4    R1C5 AcquiredHypothyroidism          Arthritis          20     1     5
-#  5    R1C6 AcquiredHypothyroidism AtrialFibrillation           0     1     6
-#  6    R1C7 AcquiredHypothyroidism    BenignProstatic           0     1     7
-#  7    R1C8 AcquiredHypothyroidism        BrainInjury           0     1     8
-#  8    R1C9 AcquiredHypothyroidism           Cataract           9     1     9
-#  9   R1C10 AcquiredHypothyroidism      ChronicKidney           1     1    10
-# 10   R1C11 AcquiredHypothyroidism           Diabetes           1     1    11
+# # A tibble: 465 x 7
+#                        V1                 V2 cooccurence    RC     R     C upper.tri
+#                    <fctr>             <fctr>       <dbl> <chr> <int> <int>     <dbl>
+#  1 AcquiredHypothyroidism AdjustmentDisorder           0  R1C2     1     2         1
+#  2 AcquiredHypothyroidism             Anemia           1  R1C3     1     3         1
+#  3 AcquiredHypothyroidism            Anxiety           5  R1C4     1     4         1
+#  4 AcquiredHypothyroidism          Arthritis          20  R1C5     1     5         1
+#  5 AcquiredHypothyroidism AtrialFibrillation           0  R1C6     1     6         1
+#  6 AcquiredHypothyroidism    BenignProstatic           0  R1C7     1     7         1
+#  7 AcquiredHypothyroidism        BrainInjury           0  R1C8     1     8         1
+#  8 AcquiredHypothyroidism           Cataract           9  R1C9     1     9         1
+#  9 AcquiredHypothyroidism      ChronicKidney           1 R1C10     1    10         1
+# 10 AcquiredHypothyroidism           Diabetes           1 R1C11     1    11         1
 # # ... with 455 more rows
 # > identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)
 # [1] TRUE
