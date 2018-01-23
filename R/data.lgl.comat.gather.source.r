@@ -114,11 +114,13 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
             out$cor_pearson.ll = as.numeric(NA)
             out$cor_pearson.ul = as.numeric(NA)
             out$cor_pearson.p = as.numeric(NA)
+            out$cor_pearson.p.bon = as.numeric(NA)
             
             out$cor_spearman = as.numeric(NA)
             out$cor_spearman.ll = as.numeric(NA)
             out$cor_spearman.ul = as.numeric(NA)
             out$cor_spearman.p = as.numeric(NA)
+            out$cor_spearman.p.bon = as.numeric(NA)
         }
         
         if (.Fisher.exact.test == T) {
@@ -126,6 +128,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
             out$fisher.test.OR_ll95 = as.numeric(NA)
             out$fisher.test.OR_ul95 = as.numeric(NA)
             out$fisher.test.p = as.numeric(NA)
+            out$fisher.test.p.bon = as.numeric(NA)
         }
         
         which.R.lt.C = which(out$R < out$C)
@@ -217,6 +220,14 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
             
             # out = out %>% mutate(phi.artanh = .5 * log ( (1+phi)/(1-phi) ))
         }
+        if (.cor.test == T) {
+            out$cor_pearson.p.bon = out$cor_pearson.p * out$comparison
+            out$cor_spearman.p.bon = out$cor_spearman.p * out$comparison
+        }
+        if (.Fisher.exact.test == T) {
+            out$fisher.test.p.bon = out$fisher.test.p * out$comparison
+        }
+        
         # browser()
         out = out %>% as.data.frame
         rownames(out) = out$RC
@@ -277,9 +288,8 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% str
 trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
 trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
 trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
 trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = T, .Fisher.exact.test = T)
-# save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.rda")
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
 # # A tibble: 961 x 7
 #                        V1                     V2 cooccurence    RC     R     C upper.tri
@@ -314,35 +324,79 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl
 # In data.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
-# # A tibble: 961 x 16
-#                        V1                     V2 cooccurence    RC     R     C upper.tri   cor_pearson cor_pearson.ll cor_pearson.ul cor_pearson.p cor_spearman cor_spearman.ll cor_spearman.ul cor_spearman.p
-#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl>         <dbl>          <dbl>          <dbl>         <dbl>        <dbl>           <dbl>           <dbl>          <dbl>
-#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0            NA             NA             NA            NA           NA              NA              NA             NA
-#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
-#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1  0.0128518633    -0.05528686     0.08087144     0.7117607           NA              NA              NA             NA
-#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1  0.0253993965    -0.04276491     0.09332834     0.4651928           NA              NA              NA             NA
-#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1 -0.0139912063    -0.08200343     0.05415073     0.6874988           NA              NA              NA             NA
-#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1            NA             NA             NA            NA           NA              NA              NA             NA
-#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1 -0.0066166603    -0.07467336     0.06150139     0.8491337           NA              NA              NA             NA
-#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1 -0.0162565997    -0.08425368     0.05189119     0.6402205           NA              NA              NA             NA
-#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1  0.0139912063    -0.05415073     0.08200343     0.6874988           NA              NA              NA             NA
-# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1 -0.0005172414    -0.06860517     0.06757548     0.9881358           NA              NA              NA             NA
-# # ... with 951 more rows, and 1 more variables: comparison <int>
+# # A tibble: 961 x 18
+#                        V1                     V2 cooccurence    RC     R     C upper.tri   cor_pearson cor_pearson.ll cor_pearson.ul cor_pearson.p cor_pearson.p.bon cor_spearman cor_spearman.ll cor_spearman.ul
+#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl>         <dbl>          <dbl>          <dbl>         <dbl>             <dbl>        <dbl>           <dbl>           <dbl>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0            NA             NA             NA            NA                NA           NA              NA              NA
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1 -0.0066166603    -0.07467336     0.06150139     0.8491337          394.8472           NA              NA              NA
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1  0.0128518633    -0.05528686     0.08087144     0.7117607          330.9687           NA              NA              NA
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1  0.0253993965    -0.04276491     0.09332834     0.4651928          216.3147           NA              NA              NA
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1 -0.0139912063    -0.08200343     0.05415073     0.6874988          319.6869           NA              NA              NA
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1            NA             NA             NA            NA                NA           NA              NA              NA
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1 -0.0066166603    -0.07467336     0.06150139     0.8491337          394.8472           NA              NA              NA
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1 -0.0162565997    -0.08425368     0.05189119     0.6402205          297.7025           NA              NA              NA
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1  0.0139912063    -0.05415073     0.08200343     0.6874988          319.6869           NA              NA              NA
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1 -0.0005172414    -0.06860517     0.06757548     0.9881358          459.4831           NA              NA              NA
+# # ... with 951 more rows, and 3 more variables: cor_spearman.p <dbl>, cor_spearman.p.bon <dbl>, comparison <int>
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
-# # A tibble: 961 x 12
-#                        V1                     V2 cooccurence    RC     R     C upper.tri fisher.test.OR fisher.test.OR_ll95 fisher.test.OR_ul95 fisher.test.p comparison
-#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl>          <dbl>               <dbl>               <dbl>         <dbl>      <int>
-#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0             NA                  NA                  NA            NA        465
-#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1      0.0000000          0.00000000         1058.091715     1.0000000        465
-#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1      1.4672178          0.03412795            9.919660     0.5135455        465
-#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1      1.4411073          0.41992602            3.971758     0.4037807        465
-#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1      0.8483994          0.36260191            2.149752     0.6760785        465
-#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1             NA                  NA                  NA            NA        465
-#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1      0.0000000          0.00000000         1058.091715     1.0000000        465
-#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1      0.0000000          0.00000000           24.264405     1.0000000        465
-#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1      1.1786902          0.46517002            2.757845     0.6760785        465
-# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1      0.9847120          0.02326087            6.424633     1.0000000        465
+# # A tibble: 961 x 13
+#                        V1                     V2 cooccurence    RC     R     C upper.tri fisher.test.OR fisher.test.OR_ll95 fisher.test.OR_ul95 fisher.test.p fisher.test.p.bon comparison
+#  *                 <fctr>                 <fctr>       <dbl> <chr> <int> <int>     <dbl>          <dbl>               <dbl>               <dbl>         <dbl>             <dbl>      <int>
+#  1 AcquiredHypothyroidism AcquiredHypothyroidism          29  R1C1     1     1         0             NA                  NA                  NA            NA                NA        465
+#  2 AcquiredHypothyroidism     AdjustmentDisorder           0  R1C2     1     2         1      0.0000000          0.00000000         1058.091715     1.0000000          465.0000        465
+#  3 AcquiredHypothyroidism                 Anemia           1  R1C3     1     3         1      1.4672178          0.03412795            9.919660     0.5135455          238.7986        465
+#  4 AcquiredHypothyroidism                Anxiety           5  R1C4     1     4         1      1.4411073          0.41992602            3.971758     0.4037807          187.7580        465
+#  5 AcquiredHypothyroidism              Arthritis          20  R1C5     1     5         1      0.8483994          0.36260191            2.149752     0.6760785          314.3765        465
+#  6 AcquiredHypothyroidism     AtrialFibrillation           0  R1C6     1     6         1             NA                  NA                  NA            NA                NA        465
+#  7 AcquiredHypothyroidism        BenignProstatic           0  R1C7     1     7         1      0.0000000          0.00000000         1058.091715     1.0000000          465.0000        465
+#  8 AcquiredHypothyroidism            BrainInjury           0  R1C8     1     8         1      0.0000000          0.00000000           24.264405     1.0000000          465.0000        465
+#  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9         1      1.1786902          0.46517002            2.757845     0.6760785          314.3765        465
+# 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10         1      0.9847120          0.02326087            6.424633     1.0000000          465.0000        465
 # # ... with 951 more rows
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = T, .Fisher.exact.test = T)
+# Warning message:
+# In data.lgl.comat.gather(., .n11 = T, .cor.test = T, .Fisher.exact.test = T) :
+#   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
+
+
+
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = T, .Fisher.exact.test = T)
+# save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.rda")
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% mutate(div = fisher.test.p.bon/fisher.test.p, tmp = p.adjust(fisher.test.p, method = "bonferroni"), tmp.div = tmp/fisher.test.p) %>% select(fisher.test.p, fisher.test.p.bon, div, tmp, tmp.div)
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% mutate(div = fisher.test.p.bon/fisher.test.p, tmp = p.adjust(fisher.test.p, method = "bonferroni"), tmp.div = tmp/fisher.test.p) %>% select(fisher.test.p, fisher.test.p.bon, div, tmp, tmp.div) %>% arrange(fisher.test.p)
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% mutate(div = fisher.test.p.bon/fisher.test.p, tmp = p.adjust(fisher.test.p, method = "bonferroni"), tmp.div = tmp/fisher.test.p) %>% select(fisher.test.p, fisher.test.p.bon, div, tmp, tmp.div)
+# # A tibble: 961 x 5
+#    fisher.test.p fisher.test.p.bon   div   tmp  tmp.div
+#            <dbl>             <dbl> <dbl> <dbl>    <dbl>
+#  1            NA                NA    NA    NA       NA
+#  2     1.0000000          465.0000   465     1 1.000000
+#  3     0.5135455          238.7986   465     1 1.947247
+#  4     0.4037807          187.7580   465     1 2.476592
+#  5     0.6760785          314.3765   465     1 1.479118
+#  6            NA                NA    NA    NA       NA
+#  7     1.0000000          465.0000   465     1 1.000000
+#  8     1.0000000          465.0000   465     1 1.000000
+#  9     0.6760785          314.3765   465     1 1.479118
+# 10     1.0000000          465.0000   465     1 1.000000
+# # ... with 951 more rows
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% mutate(div = fisher.test.p.bon/fisher.test.p, tmp = p.adjust(fisher.test.p, method = "bonferroni"), tmp.div = tmp/fisher.test.p) %>% select(fisher.test.p, fisher.test.p.bon, div, tmp, tmp.div) %>% arrange(fisher.test.p)
+# # A tibble: 961 x 5
+#    fisher.test.p fisher.test.p.bon   div          tmp tmp.div
+#            <dbl>             <dbl> <dbl>        <dbl>   <dbl>
+#  1  3.151544e-08      1.465468e-05   465 2.559054e-05     812
+#  2  3.151544e-08      1.465468e-05   465 2.559054e-05     812
+#  3  7.222512e-08      3.358468e-05   465 5.864680e-05     812
+#  4  7.222512e-08      3.358468e-05   465 5.864680e-05     812
+#  5  1.930771e-05      8.978086e-03   465 1.567786e-02     812
+#  6  1.930771e-05      8.978086e-03   465 1.567786e-02     812
+#  7  3.637371e-05      1.691377e-02   465 2.953545e-02     812
+#  8  3.637371e-05      1.691377e-02   465 2.953545e-02     812
+#  9  1.371930e-04      6.379476e-02   465 1.114007e-01     812
+# 10  1.371930e-04      6.379476e-02   465 1.114007e-01     812
+# # ... with 951 more rows
+
+
+
 
 
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% select(V1, V2, cooccurence, n11, OR, fisher.test.OR, phi, cor_pearson, cor_spearman)
