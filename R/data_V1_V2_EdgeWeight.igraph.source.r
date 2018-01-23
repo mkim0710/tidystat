@@ -7,12 +7,12 @@ data_V1_V2_EdgeWeight.igraph = function(
     , varname4V1 = colnames(df.V1_V2_EdgeWeight)[1]
     , varname4V2 = colnames(df.V1_V2_EdgeWeight)[2]
     , varname4weight = "weight"
-    , edgeColor.Red = NULL
-    , edgeColor.Blue = NULL
-    , edgeColor.Green = NULL
-    , edgeColor.DarkGray = NULL
-    , edgeColor.Orange = NULL
-    , edgeColor.SkyBlue = NULL
+    , varname.edgeColor.Red = NULL
+    , varname.edgeColor.Blue = NULL
+    , varname.edgeColor.Green = NULL
+    , varname.edgeColor.DarkGray = NULL
+    , varname.edgeColor.Orange = NULL
+    , varname.edgeColor.Purple = NULL
     , vertex.size.default = 20
     , vertex.size.multiplier = 1
     , vertex.label.df = NULL
@@ -131,18 +131,18 @@ data_V1_V2_EdgeWeight.igraph = function(
     E(g)$width = weight.multiplier * E(g)$weight
     edge.width = E(g)$width
     
-    # E(g)$color = c(rgb(0,0,.6), rgb(.8,0,0))[(df.V1_V2_EdgeWeight[[edgeColor.NegBluePosRed]] > 0) + 1]
-    # E(g)$color[is.na(df.V1_V2_EdgeWeight[[edgeColor.NegBluePosRed]])] = "grey"
-    # E(g)$color[df.V1_V2_EdgeWeight[[edgeColor.NegBluePosRed]] == 0] = "grey"
+    # E(g)$color = c(rgb(0,0,.6), rgb(.8,0,0))[(df.V1_V2_EdgeWeight[[varname.edgeColor.NegBluePosRed]] > 0) + 1]
+    # E(g)$color[is.na(df.V1_V2_EdgeWeight[[varname.edgeColor.NegBluePosRed]])] = "grey"
+    # E(g)$color[df.V1_V2_EdgeWeight[[varname.edgeColor.NegBluePosRed]] == 0] = "grey"
     # E(g)$color = rep("gray90", nrow(df.V1_V2_EdgeWeight))  # gray90 - very very light
     # E(g)$color = rep("lightgray", nrow(df.V1_V2_EdgeWeight))  
     E(g)$color = rep("gray", nrow(df.V1_V2_EdgeWeight))  
-    if (!is.null(edgeColor.Red)) E(g)$color[df.V1_V2_EdgeWeight[[edgeColor.Red]] == 1] = rgb(.8,0,0)
-    if (!is.null(edgeColor.Blue)) E(g)$color[df.V1_V2_EdgeWeight[[edgeColor.Blue]] == 1] = rgb(0,0,.6)
-    if (!is.null(edgeColor.Green)) E(g)$color[df.V1_V2_EdgeWeight[[edgeColor.Green]] == 1] = "darkgreen"
-    if (!is.null(edgeColor.DarkGray)) E(g)$color[df.V1_V2_EdgeWeight[[edgeColor.DarkGray]] == 1] = "gray40"
-    if (!is.null(edgeColor.Orange)) E(g)$color[df.V1_V2_EdgeWeight[[edgeColor.Orange]] == 1] = "darkorange"
-    if (!is.null(edgeColor.SkyBlue)) E(g)$color[df.V1_V2_EdgeWeight[[edgeColor.SkyBlue]] == 1] = "deepskyblue"
+    if (!is.null(varname.edgeColor.Red)) E(g)$color[df.V1_V2_EdgeWeight[[varname.edgeColor.Red]] == 1] = "indianred3"
+    if (!is.null(varname.edgeColor.Blue)) E(g)$color[df.V1_V2_EdgeWeight[[varname.edgeColor.Blue]] == 1] = "turquoise4"
+    if (!is.null(varname.edgeColor.Green)) E(g)$color[df.V1_V2_EdgeWeight[[varname.edgeColor.Green]] == 1] = "olivedrab4"
+    if (!is.null(varname.edgeColor.DarkGray)) E(g)$color[df.V1_V2_EdgeWeight[[varname.edgeColor.DarkGray]] == 1] = "ivory4"
+    if (!is.null(varname.edgeColor.Orange)) E(g)$color[df.V1_V2_EdgeWeight[[varname.edgeColor.Orange]] == 1] = "sienna3"
+    if (!is.null(varname.edgeColor.Purple)) E(g)$color[df.V1_V2_EdgeWeight[[varname.edgeColor.Purple]] == 1] = "mediumorchid4"
     edge.color = E(g)$color
     
     V(g)$size = vertex.size.default
