@@ -10,7 +10,9 @@ vars4IQR = names(data)[data %>% map_lgl(is.numeric)]
 data.CreateTableOne %>% print(smd = T)
 data.CreateTableOne %>% print(smd = T, nonnormal = vars4IQR)
 
-data.CreateTableOne %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
+data.CreateTableOne %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 4]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+    mutate(Group1 = {.[[2]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% 
     openxlsx::write.xlsx("data.CreateTableOne.xlsx")
 data.CreateTableOne %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
     openxlsx::write.xlsx("data.CreateTableOne.IQR.xlsx")
@@ -24,7 +26,9 @@ vars4IQR = names(data)[data %>% map_lgl(is.numeric)]
 data.CreateTableOne.by_exposure %>% print(smd = T)
 data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = vars4IQR)
 
-data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
+data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+    mutate(Group1 = {.[[2]]}, Group2 = {.[[3]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>% 
     openxlsx::write.xlsx("data.CreateTableOne.by_exposure.xlsx")
 data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
     openxlsx::write.xlsx("data.CreateTableOne.IQR.by_exposure.xlsx")
