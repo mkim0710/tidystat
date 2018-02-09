@@ -7,8 +7,9 @@ data_V1_V2_EdgeWeight.igraph = function(
     , varname4V1 = colnames(df.V1_V2_EdgeWeight)[1]
     , varname4V2 = colnames(df.V1_V2_EdgeWeight)[2]
     , varname4weight = "weight"
-    , edgeColor.by.weight = FALSE
-    , edgeColor.by.weight.colorRampPalette = colorRampPalette(c("royalblue", "springgreen", "yellow", "red"))(101)
+    , varname4edgeColor_vector0to1 = NULL
+    , edgeColor_vector0to1.by.weight = FALSE
+    , edgeColor_vector0to1.colorRampPalette = colorRampPalette(c("red", "yellow", "springgreen", "royalblue"))(101)
     , varname.edgeColor.Red = NULL
     , varname.edgeColor.Orange = NULL
     , varname.edgeColor.Green = NULL
@@ -16,6 +17,10 @@ data_V1_V2_EdgeWeight.igraph = function(
     , varname.edgeColor.Purple = NULL
     , varname.edgeColor.DarkGray = NULL
     , varname.edgeColor.Black = NULL
+    , vertex.color.default = rgb(r=159, g=159, b=159, maxColorValue=255, alpha=255)
+    , name4vertex.color.tomato = NULL
+    , name4vertex.color.yellow = NULL
+    , name4vertex.color.lightblue = NULL
     , vertex.size.default = 20
     , vertex.size.multiplier = 1
     , vertex.label.df = NULL
@@ -140,12 +145,13 @@ data_V1_V2_EdgeWeight.igraph = function(
     # E(g)$color = rep("gray90", nrow(df.V1_V2_EdgeWeight))  # gray90 - very very light
     # E(g)$color = rep("lightgray", nrow(df.V1_V2_EdgeWeight))  
     
-    if (edgeColor.by.weight) {
-        # E(g)$color = varname.edgeColor.vector.colorRampPalette[round(df.V1_V2_EdgeWeight[[varname.edgeColor.vector]] * 100)]
-        E(g)$color = edgeColor.by.weight.colorRampPalette[round(E(g)$weight * 100)+1]
+    if (edgeColor_vector0to1.by.weight) {
+        E(g)$color = edgeColor_vector0to1.colorRampPalette[round(E(g)$weight * 100)+1]
         # Browse[2]> round(E(g)$weight * 100) %>% summary
         #  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
         # 0.000   0.000   0.000   3.032   3.000 100.000
+    } else if (!is.null(varname4edgeColor_vector0to1)) {
+        E(g)$color = edgeColor_vector0to1.colorRampPalette[round(df.V1_V2_EdgeWeight[[varname4edgeColor_vector0to1]] * 100)+1]
     } else {
         E(g)$color = rep("gray", nrow(df.V1_V2_EdgeWeight))  
     }
@@ -160,10 +166,12 @@ data_V1_V2_EdgeWeight.igraph = function(
     
     V(g)$size = vertex.size.default
     vertex.size = V(g)$size * vertex.size.multiplier
-    V(g)$color = rep("lightblue", length(V(g)$name))
-    V(g)$color[V(g)$name %in% c("Female", "AgeDecade", "Income", "MedicalAid")] = "Yellow"
-    V(g)$color[V(g)$name == "Case"] = "tomato"
-    # vertex.color = c("lightblue", "tomato")[(V(g)$name == "Case") + 1]
+    
+    V(g)$color = rep(vertex.color.default, length(V(g)$name))
+    V(g)$color[V(g)$name %in% name4vertex.color.tomato] = "tomato"
+    V(g)$color[V(g)$name %in% name4vertex.color.yellow] = "yellow"
+    V(g)$color[V(g)$name %in% name4vertex.color.lightblue] = "lightblue"
+    # # vertex.color = c("lightblue", "tomato")[(V(g)$name == "Case") + 1]
     vertex.color = V(g)$color
     
     V(g)$label.color = "black"
@@ -707,10 +715,13 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # > identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)
 # [1] TRUE
 
+
+
 # debug(data_V1_V2_EdgeWeight.igraph)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% select(-rowname) %>% data_V1_V2_EdgeWeight.igraph(varname4weight = "cooccurence", vertex.size.default = 20, weight.multiplier = 30, directed = F)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 20, weight.multiplier = 30, directed = F, out.png.pdf = F, out.png.pdf.path = "Rplot/")
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", edgeColor.by.weight = T, vertex.size.default = 20, weight.multiplier = 30, directed = T, out.png.pdf = F)
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", edgeColor_vector0to1.by.weight = T, vertex.size.default = 20, weight.multiplier = 30, directed = F, out.png.pdf = F, out.png.pdf.path = "Rplot/")
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", edgeColor_vector0to1.by.weight = T, vertex.size.default = 20, weight.multiplier = 30, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/", name4vertex.color.tomato = c("AtrialFibrillation", "HeartFailure", "IschemicHeart"), name4vertex.color.yellow = c("AdjustmentDisorder", "Anxiety", "Dysthymia"), name4vertex.color.lightblue = "ObstructiveLungDisease")
 # undebug(data_V1_V2_EdgeWeight.igraph)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri %>% data_V1_V2_EdgeWeight.igraph(varname4V1 = "V1", varname4V2 = "V2", varname4weight = "cooccurence", vertex.size.default = 25, weight.multiplier = 35, directed = F, out.png.pdf = T, out.png.pdf.path = "Rplot/")
 # [1] "Caution: out.name.prefix == \".\") "
