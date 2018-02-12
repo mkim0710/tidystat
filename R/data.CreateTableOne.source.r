@@ -4,34 +4,39 @@ library(tidyverse)
 library(tableone)
 
 #@ data.CreateTableOne -----
-data.CreateTableOne = data %>% as.data.frame %>% 
+data.tableone = data %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
     CreateTableOne(data = ., test=F)
 vars4IQR = names(data)[data %>% map_lgl(is.numeric)]
-data.CreateTableOne %>% print(smd = T)
-data.CreateTableOne %>% print(smd = T, nonnormal = vars4IQR)
+data.tableone %>% print(smd = T)
+data.tableone %>% print(smd = T, nonnormal = vars4IQR)
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-data.CreateTableOne %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 4]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+data.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 4]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group1 = {.[[2]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% 
-    openxlsx::write.xlsx("data.CreateTableOne.xlsx")
-data.CreateTableOne %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.CreateTableOne.IQR.xlsx")
+    openxlsx::write.xlsx("data.tableone.xlsx")
+openxlsx::openXL("data.tableone.xlsx")
+data.tableone %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("data.tableone.IQR.xlsx")
+openxlsx::openXL("data.tableone.IQR.xlsx")
 
 
 #@ data.CreateTableOne.by_exposure -----
 varnames4exposure =  c("treatment")
-data.CreateTableOne.by_exposure = data %>% as.data.frame %>% 
+data.tableone_by_exposure = data %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
     CreateTableOne(strata = varnames4exposure, data = ., test=T)
 vars4IQR = names(data)[data %>% map_lgl(is.numeric)]
-data.CreateTableOne.by_exposure %>% print(smd = T)
-data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = vars4IQR)
+data.tableone_by_exposure %>% print(smd = T)
+data.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR)
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+data.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group1 = {.[[2]]}, Group2 = {.[[3]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>% 
-    openxlsx::write.xlsx("data.CreateTableOne.by_exposure.xlsx")
-data.CreateTableOne.by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.CreateTableOne.IQR.by_exposure.xlsx")
+    openxlsx::write.xlsx("data.tableone_by_exposure.xlsx")
+openxlsx::openXL("data.tableone_by_exposure.xlsx")
+data.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("data.tableone_by_exposure.IQR.xlsx")
+openxlsx::openXL("data.tableone_by_exposure.IQR.xlsx")
+
 
 #@ ------
 df = JK02.2079.CCW.MIN_Date.ge365_EndTime.is.Case.confirm.365.Match.TimeFrame1$LookBackWindow.gt.1y %>% 
