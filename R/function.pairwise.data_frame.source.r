@@ -106,7 +106,310 @@ outer(letters[1:3], letters[1:3], paste, sep = "|") %>% as.vector %>% as.tibble 
 # 9     c     c
 
 
+c(F, T) %>% as.character %>% as.logical %>% str
+c(F, T) %>% as.character %>% as.factor %>% str
+c(F, T) %>% as.character %>% as.factor %>% as.logical %>% str
+c(F, T) %>% as.character %>% as.factor %>% as.numeric %>% as.logical %>% str
+# > c(F, T) %>% as.character %>% as.logical %>% str
+#  logi [1:2] FALSE TRUE
+# > c(F, T) %>% as.character %>% as.factor %>% str
+#  Factor w/ 2 levels "FALSE","TRUE": 1 2
+# > c(F, T) %>% as.character %>% as.factor %>% as.logical %>% str
+#  logi [1:2] FALSE TRUE
+# > c(F, T) %>% as.character %>% as.factor %>% as.numeric %>% as.logical %>% str
+#  logi [1:2] TRUE TRUE
 
+
+
+RACE = c("1: Non-Hispanic White", "2: Non-Hispanic Black", "3: Hispanic", "4: Asian", "5: Other")
+isFemale = c(F, T)
+
+outer(RACE, c(F, T), paste, sep = "|")
+outer(RACE, c(F, T), paste, sep = "|") %>% as.vector
+outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble
+outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor)
+outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% str
+outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% map_df(as.logical) %>% str
+# > outer(RACE, c(F, T), paste, sep = "|")
+#      [,1]                          [,2]                        
+# [1,] "1: Non-Hispanic White|FALSE" "1: Non-Hispanic White|TRUE"
+# [2,] "2: Non-Hispanic Black|FALSE" "2: Non-Hispanic Black|TRUE"
+# [3,] "3: Hispanic|FALSE"           "3: Hispanic|TRUE"          
+# [4,] "4: Asian|FALSE"              "4: Asian|TRUE"             
+# [5,] "5: Other|FALSE"              "5: Other|TRUE"             
+# > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector
+#  [1] "1: Non-Hispanic White|FALSE" "2: Non-Hispanic Black|FALSE" "3: Hispanic|FALSE"          
+#  [4] "4: Asian|FALSE"              "5: Other|FALSE"              "1: Non-Hispanic White|TRUE" 
+#  [7] "2: Non-Hispanic Black|TRUE"  "3: Hispanic|TRUE"            "4: Asian|TRUE"              
+# [10] "5: Other|TRUE"              
+# > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble
+# # A tibble: 10 x 1
+#                          value
+#                          <chr>
+#  1 1: Non-Hispanic White|FALSE
+#  2 2: Non-Hispanic Black|FALSE
+#  3           3: Hispanic|FALSE
+#  4              4: Asian|FALSE
+#  5              5: Other|FALSE
+#  6  1: Non-Hispanic White|TRUE
+#  7  2: Non-Hispanic Black|TRUE
+#  8            3: Hispanic|TRUE
+#  9               4: Asian|TRUE
+# 10               5: Other|TRUE
+# > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor)
+# # A tibble: 10 x 2
+#                     RACE isFemale
+#                   <fctr>   <fctr>
+#  1 1: Non-Hispanic White    FALSE
+#  2 2: Non-Hispanic Black    FALSE
+#  3           3: Hispanic    FALSE
+#  4              4: Asian    FALSE
+#  5              5: Other    FALSE
+#  6 1: Non-Hispanic White     TRUE
+#  7 2: Non-Hispanic Black     TRUE
+#  8           3: Hispanic     TRUE
+#  9              4: Asian     TRUE
+# 10              5: Other     TRUE
+# > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% str
+# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	10 obs. of  2 variables:
+#  $ RACE    : Factor w/ 5 levels "1: Non-Hispanic White",..: 1 2 3 4 5 1 2 3 4 5
+#  $ isFemale: Factor w/ 2 levels "FALSE","TRUE": 1 1 1 1 1 2 2 2 2 2
+# > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% map_df(as.logical) %>% str
+# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	10 obs. of  2 variables:
+#  $ RACE    : logi  NA NA NA NA NA NA ...
+#  $ isFemale: logi  FALSE FALSE FALSE FALSE FALSE TRUE ...
+
+
+#@ public_v2_112917.levels123 ======
+public_v2_112917.levels123 %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# > public_v2_112917.levels123 %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# # A tibble: 12 x 4
+# # Groups:   RACE [?]
+#                     RACE isCollege_MS_PhD     N CAPI_WT.sum
+#                   <fctr>            <lgl> <int>       <dbl>
+#  1 1: Non-Hispanic White            FALSE   171  913173.661
+#  2 1: Non-Hispanic White             TRUE   341 1284678.187
+#  3 1: Non-Hispanic White               NA     1    3815.433
+#  4 2: Non-Hispanic Black            FALSE   271 1125421.441
+#  5 2: Non-Hispanic Black             TRUE    69  211164.247
+#  6           3: Hispanic            FALSE   313 1459116.225
+#  7           3: Hispanic             TRUE    76  241975.873
+#  8           3: Hispanic               NA     1    2872.296
+#  9              4: Asian            FALSE    98  488004.581
+# 10              4: Asian             TRUE   106  391562.356
+# 11              5: Other            FALSE    44  102144.581
+# 12              5: Other             TRUE    36   61819.938
+# > public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# # A tibble: 10 x 4
+# # Groups:   RACE [?]
+#                     RACE isCollege_MS_PhD     N CAPI_WT.sum
+#                   <fctr>            <lgl> <int>       <dbl>
+#  1 1: Non-Hispanic White            FALSE   171   913173.66
+#  2 1: Non-Hispanic White             TRUE   341  1284678.19
+#  3 2: Non-Hispanic Black            FALSE   271  1125421.44
+#  4 2: Non-Hispanic Black             TRUE    69   211164.25
+#  5           3: Hispanic            FALSE   313  1459116.23
+#  6           3: Hispanic             TRUE    76   241975.87
+#  7              4: Asian            FALSE    98   488004.58
+#  8              4: Asian             TRUE   106   391562.36
+#  9              5: Other            FALSE    44   102144.58
+# 10              5: Other             TRUE    36    61819.94
+
+#@ -----
+df_RACE_isCollege_MS_PhD = outer(levels(public_v2_112917.levels123$RACE), c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isCollege_MS_PhD"), sep = "\\|") %>% map_df(as.factor) %>% 
+    mutate(isCollege_MS_PhD = as.logical(isCollege_MS_PhD))
+df_RACE_isCollege_MS_PhD
+# > df_RACE_isCollege_MS_PhD
+# # A tibble: 10 x 2
+#                     RACE isCollege_MS_PhD
+#                   <fctr>            <lgl>
+#  1 1: Non-Hispanic White            FALSE
+#  2 2: Non-Hispanic Black            FALSE
+#  3           3: Hispanic            FALSE
+#  4              4: Asian            FALSE
+#  5              5: Other            FALSE
+#  6 1: Non-Hispanic White             TRUE
+#  7 2: Non-Hispanic Black             TRUE
+#  8           3: Hispanic             TRUE
+#  9              4: Asian             TRUE
+# 10              5: Other             TRUE
+
+
+for (i in 1:nrow(df_RACE_isCollege_MS_PhD)) {
+    public_v2_112917.levels123 %>% filter(
+        RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+        , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+    ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+}
+1:nrow(df_RACE_isCollege_MS_PhD) %>% map(function(i) {
+    public_v2_112917.levels123 %>% filter(
+        RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+        , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+    ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+}) %>% bind_rows
+1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
+    public_v2_112917.levels123 %>% filter(
+        RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+        , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+    ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+})
+bind_cols(
+    df_RACE_isCollege_MS_PhD
+    , 1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
+        public_v2_112917.levels123 %>% filter(
+            RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+            , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+        ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+    })
+)
+# > for (i in 1:nrow(df_RACE_isCollege_MS_PhD)) {
+# +     public_v2_112917.levels123 %>% filter(
+# +         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+# +         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+# +     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# + }
+# > 1:nrow(df_RACE_isCollege_MS_PhD) %>% map(function(i) {
+# +     public_v2_112917.levels123 %>% filter(
+# +         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+# +         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+# +     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# + }) %>% bind_rows
+#      N CAPI_WT.sum
+# 1  171   913173.66
+# 2  271  1125421.44
+# 3  313  1459116.23
+# 4   98   488004.58
+# 5   44   102144.58
+# 6  341  1284678.19
+# 7   69   211164.25
+# 8   76   241975.87
+# 9  106   391562.36
+# 10  36    61819.94
+# > 1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
+# +     public_v2_112917.levels123 %>% filter(
+# +         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+# +         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+# +     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# + })
+#      N CAPI_WT.sum
+# 1  171   913173.66
+# 2  271  1125421.44
+# 3  313  1459116.23
+# 4   98   488004.58
+# 5   44   102144.58
+# 6  341  1284678.19
+# 7   69   211164.25
+# 8   76   241975.87
+# 9  106   391562.36
+# 10  36    61819.94
+# > bind_cols(
+# +     df_RACE_isCollege_MS_PhD
+# +     , 1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
+# +         public_v2_112917.levels123 %>% filter(
+# +             RACE == df_RACE_isCollege_MS_PhD$RACE[i]
+# +             , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
+# +         ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# +     })
+# + )
+# # A tibble: 10 x 4
+#                     RACE isCollege_MS_PhD     N CAPI_WT.sum
+#                   <fctr>            <lgl> <int>       <dbl>
+#  1 1: Non-Hispanic White            FALSE   171   913173.66
+#  2 2: Non-Hispanic Black            FALSE   271  1125421.44
+#  3           3: Hispanic            FALSE   313  1459116.23
+#  4              4: Asian            FALSE    98   488004.58
+#  5              5: Other            FALSE    44   102144.58
+#  6 1: Non-Hispanic White             TRUE   341  1284678.19
+#  7 2: Non-Hispanic Black             TRUE    69   211164.25
+#  8           3: Hispanic             TRUE    76   241975.87
+#  9              4: Asian             TRUE   106   391562.36
+# 10              5: Other             TRUE    36    61819.94
+
+public_v2_112917.levels123 %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# > public_v2_112917.levels123 %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# # A tibble: 12 x 4
+# # Groups:   RACE [?]
+#                     RACE isCollege_MS_PhD     N CAPI_WT.sum
+#                   <fctr>            <lgl> <int>       <dbl>
+#  1 1: Non-Hispanic White            FALSE   171  913173.661
+#  2 1: Non-Hispanic White             TRUE   341 1284678.187
+#  3 1: Non-Hispanic White               NA     1    3815.433
+#  4 2: Non-Hispanic Black            FALSE   271 1125421.441
+#  5 2: Non-Hispanic Black             TRUE    69  211164.247
+#  6           3: Hispanic            FALSE   313 1459116.225
+#  7           3: Hispanic             TRUE    76  241975.873
+#  8           3: Hispanic               NA     1    2872.296
+#  9              4: Asian            FALSE    98  488004.581
+# 10              4: Asian             TRUE   106  391562.356
+# 11              5: Other            FALSE    44  102144.581
+# 12              5: Other             TRUE    36   61819.938
+# > public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# # A tibble: 10 x 4
+# # Groups:   RACE [?]
+#                     RACE isCollege_MS_PhD     N CAPI_WT.sum
+#                   <fctr>            <lgl> <int>       <dbl>
+#  1 1: Non-Hispanic White            FALSE   171   913173.66
+#  2 1: Non-Hispanic White             TRUE   341  1284678.19
+#  3 2: Non-Hispanic Black            FALSE   271  1125421.44
+#  4 2: Non-Hispanic Black             TRUE    69   211164.25
+#  5           3: Hispanic            FALSE   313  1459116.23
+#  6           3: Hispanic             TRUE    76   241975.87
+#  7              4: Asian            FALSE    98   488004.58
+#  8              4: Asian             TRUE   106   391562.36
+#  9              5: Other            FALSE    44   102144.58
+# 10              5: Other             TRUE    36    61819.94
+# > public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
+# # A tibble: 10 x 4
+# # Groups:   RACE [?]
+#                     RACE isCollege_MS_PhD     N CAPI_WT.sum
+#                   <fctr>            <lgl> <int>       <dbl>
+#  1 1: Non-Hispanic White            FALSE   172   916989.09
+#  2 1: Non-Hispanic White             TRUE   341  1284678.19
+#  3 2: Non-Hispanic Black            FALSE   271  1125421.44
+#  4 2: Non-Hispanic Black             TRUE    69   211164.25
+#  5           3: Hispanic            FALSE   314  1461988.52
+#  6           3: Hispanic             TRUE    76   241975.87
+#  7              4: Asian            FALSE    98   488004.58
+#  8              4: Asian             TRUE   106   391562.36
+#  9              5: Other            FALSE    44   102144.58
+# 10              5: Other             TRUE    36    61819.94
+
+
+
+public_v2_112917.levels123 %>% nrow
+public_v2_112917.levels123$CAPI_WT %>% sum
+public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% nrow
+public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% select(CAPI_WT) %>% sum
+public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT)) %>% ungroup %>% select(N, CAPI_WT.sum) %>% colSums
+public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% nrow
+public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% select(CAPI_WT) %>% sum
+public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT)) %>% ungroup %>% select(N, CAPI_WT.sum) %>% colSums
+# > public_v2_112917.levels123 %>% nrow
+# [1] 1527
+# > public_v2_112917.levels123$CAPI_WT %>% sum
+# [1] 6285749
+# > public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% nrow
+# [1] 1525
+# > public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% select(CAPI_WT) %>% sum
+# [1] 6279061
+# > public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT)) %>% ungroup %>% select(N, CAPI_WT.sum) %>% colSums
+#           N CAPI_WT.sum 
+#        1525     6279061 
+# > public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% nrow
+# [1] 1527
+# > public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% select(CAPI_WT) %>% sum
+# [1] 6285749
+# > public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT)) %>% ungroup %>% select(N, CAPI_WT.sum) %>% colSums
+#           N CAPI_WT.sum 
+#        1527     6285749 
+
+
+
+
+#@ function.pairwise.data_frame = function(vars) { ======
 function.pairwise.data_frame = function(vars) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.pairwise.data_frame.source.r")
     # library(tidyverse)
