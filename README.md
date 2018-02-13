@@ -75,6 +75,10 @@ https://github.com/cran/sampling
 https://github.com/cran/survey
 #### CRAN Package PracTools
 https://github.com/cran/PracTools
+#### CRAN Package tensor
+https://github.com/cran/tensor
+#### CRAN Package tensorA
+https://github.com/cran/tensorA
 #### CRAN Package Epi
 https://github.com/cran/Epi
 #### CRAN Package epitools
