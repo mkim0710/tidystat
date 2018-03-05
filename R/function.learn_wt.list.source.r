@@ -2,7 +2,7 @@
 
 
 function.learn_wt.list = function(
-    data = as.tibble(public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% select(CAPI_WT, RACE, isCollege_MS_PhD))
+    data = data
     , max_iteration = 10^3
     , early_stop_when_cost_diff_lt = .1^5
     , Dist_RACE_target = Dist_RACE_target
