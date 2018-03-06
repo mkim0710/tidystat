@@ -2,14 +2,12 @@
 
 
 function.learn_wt.list = function(
-    data = data
+    data = data_frame(PERSON_ID = as.interger(PERSON_ID), WT = as.numeric(WT), DM = as.factor(DM), SDH = as.factor(SDH))
     , max_iteration = 10^3
     , early_stop_when_cost_diff_lt = .1^5
     , Dist_DM_target = Dist_DM_target
     , Dist_SDH_target = Dist_SDH_target
 ){
-    
-    # data = data_frame(PERSON_ID = as.interger(PERSON_ID), WT = as.numeric(WT), DM = as.factor(DM), SDH = as.factor(SDH))
 
     wt.normalized.list = list()
     wt.normalized.list[[1]] = data$WT / sum(data$WT)
