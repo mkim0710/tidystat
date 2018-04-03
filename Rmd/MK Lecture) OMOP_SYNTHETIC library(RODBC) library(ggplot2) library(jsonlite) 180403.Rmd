@@ -8,6 +8,10 @@ https://github.com/mkim0710/tidystat/blob/master/Rmd/MK%20Lecture)%20OMOP_SYNTHE
 
 Please "Fork" and send a "Pull request" if you have any suggestion on how to improve the codes.
 
+Please find the acknowledgements section at the end of this document.
+
+Thanks.
+
 Min-hyung Kim
 
 April 3, 2018
