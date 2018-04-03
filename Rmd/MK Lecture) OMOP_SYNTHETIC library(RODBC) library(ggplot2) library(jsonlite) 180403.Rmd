@@ -3,12 +3,33 @@ title: "MK Lecture) OMOP_SYNTHETIC library(RODBC) library(ggplot2) library(jsonl
 output: html_notebook
 ---
 
+Please find the most updated version of this file in the following URL:
+https://github.com/mkim0710/tidystat/blob/master/Rmd/MK%20Lecture)%20OMOP_SYNTHETIC%20library(RODBC)%20library(ggplot2)%20library(jsonlite)%20180403.Rmd
+
+Please "Fork" and send a "Pull request" if you have any suggestion on how to improve the codes.
+
+Min-hyung Kim
+
+April 3, 2018
+
+
 
 ```{r}
 # An appropriate ODBC driver should be installed in your computer first!
 
+for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
+    if(!require(packagename, character.only = T)) install.packages(packagename)
+}
+
+detach("package:maps", unload=TRUE) # package:maps conflicts with some other packages, so load only when you need it, detach when you are done with it.
+
 library(tidyverse)
 library(RODBC)
+
+# You should be within WCMC network to connect to VITS-ARCHSQLP04 server.
+# If you are not not in WCMC network, you may have to set-up the MS SQL server, using the 1000 person data set in CDMv5 format provided by LTS Computing LLC. (If you set up some other database software, you may have to change the SQL codes because the syntax may be slightly different.) 
+# Or, you may just skip the library(RODBC) part and go to the library(jsonlite) part.
+
 channel = odbcDriverConnect("Driver= {SQL Server}; server=VITS-ARCHSQLP04; database=OMOP_SYNTHETIC")
 
 ```
@@ -378,8 +399,9 @@ detach("package:maps", unload=TRUE)
 
 ```{r}
 #@ CMS_SynPUF_CDMv5_YZ.json -----
+
 library(jsonlite)
-CMS_SynPUF_CDMv5_YZ.json = fromJSON("CMS_SynPUF_CDMv5_YZ.json")
+CMS_SynPUF_CDMv5_YZ.json = fromJSON(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/CMS_SynPUF_CDMv5_YZ.json"))
 CMS_SynPUF_CDMv5_YZ.json %>% length
 
 ```
@@ -427,4 +449,23 @@ g+geom_jitter()
 ```{r}
 g+geom_violin()
 ```
+
+
+# Acknowledgements
+
+The CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) is provided by U.S. Centers for Medicare & Medicaid Services.
+
+https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html
+
+
+The Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM) Version 5 is provided by Observational Health Data Sciences and Informatics (OHDSI) community.
+
+https://github.com/OHDSI/CommonDataModel
+
+
+The 1000 person data set from the CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) converted it to the OMOP Common Data Model Version 5 format was provided by LTS Computing LLC.
+
+http://www.ltscomputingllc.com/downloads/
+
+The 1000 person CMS_SynPUF_CDMv5 transformed into JSON format was provided by Dr. Yiye Zhang in the Division of Health Informatics, Department of Healthcare Policy and Research, Weill Medical College of Cornell University.
 
