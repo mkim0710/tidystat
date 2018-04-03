@@ -467,5 +467,7 @@ The 1000 person data set from the CMS 2008-2010 Data Entrepreneurs' Synthetic Pu
 
 http://www.ltscomputingllc.com/downloads/
 
+The 1000 person CMS_SynPUF_CDMv5 was loaded into MS SQL server in the Weill Cornell Architecture for Research Computing in Health (ARCH) by Evan Scholle, in the Information Technologies & Services, Weill Cornell Medicine.
+
 The 1000 person CMS_SynPUF_CDMv5 transformed into JSON format was provided by Dr. Yiye Zhang in the Division of Health Informatics, Department of Healthcare Policy and Research, Weill Medical College of Cornell University.
 
