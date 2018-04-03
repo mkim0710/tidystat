@@ -1,0 +1,430 @@
+---
+title: "MK Lecture) OMOP_SYNTHETIC library(RODBC) library(ggplot2) library(jsonlite) 180403"
+output: html_notebook
+---
+
+
+```{r}
+# An appropriate ODBC driver should be installed in your computer first!
+
+library(tidyverse)
+library(RODBC)
+channel = odbcDriverConnect("Driver= {SQL Server}; server=VITS-ARCHSQLP04; database=OMOP_SYNTHETIC")
+
+```
+
+```{r}
+sqlQuery(channel, "
+select distinct TABLE_NAME
+from information_schema.columns
+;")
+```
+
+```{r}
+sqlQuery(channel, "
+SELECT TABLE_NAME, COLUMN_NAME, IS_NULLABLE, DATA_TYPE
+FROM information_schema.columns
+WHERE TABLE_NAME in ('PERSON', 'VISIT_OCCURRENCE', 'CONDITION_OCCURRENCE', 'LOCATION')
+;")
+
+```
+
+```{r}
+sqlQuery(channel, "
+SELECT *
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+;")
+```
+
+```{r}
+sqlQuery(channel, "
+select count(*) as nrow
+	, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID) as n_distinct_VISIT_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
+from CONDITION_OCCURRENCE
+;")
+
+```
+
+```{r}
+varnames = sqlQuery(channel, "
+SELECT COLUMN_NAME
+FROM information_schema.columns
+WHERE TABLE_NAME = 'VISIT_OCCURRENCE'
+;")[[1]]
+
+qryText = paste0(
+    "select count(*) as nrow"
+    , paste0(
+    	", count(distinct "
+        , varnames
+    	, ") as n_distinct_"
+        , varnames
+    	, collapse = ""
+    )
+    , " from VISIT_OCCURRENCE;"
+)
+qryText
+
+```
+
+```{r}
+sqlQuery(channel, qryText) %>% t
+
+```
+
+```{r}
+VISIT_OCCURRENCE = sqlQuery(channel, "
+select *
+from VISIT_OCCURRENCE
+;")
+VISIT_OCCURRENCE %>% summarise_all(n_distinct) %>% t
+
+```
+
+```{r}
+sqlQuery(channel, paste("
+select CONDITION_CONCEPT_ID, CONDITION_SOURCE_VALUE, count(*) as nrow, count(distinct CONDITION_OCCURRENCE_ID) as CONDITION_OCCURRENCE_ID_n_distinct, count(distinct PERSON_ID) as PERSON_ID_n_distinct
+from CONDITION_OCCURRENCE
+where (CONDITION_SOURCE_VALUE like '2962%'
+	or CONDITION_SOURCE_VALUE like '2963%'
+)
+group by CONDITION_CONCEPT_ID, CONDITION_SOURCE_VALUE
+order by CONDITION_SOURCE_VALUE
+;"))
+
+```
+
+```{r}
+sqlQuery(channel, paste("
+select PERSON_ID, count(*) as nrow, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID, count(distinct PERSON_ID) as n_distinct_PERSON_ID, count(distinct CONDITION_SOURCE_VALUE) as n_distinct_CONDITION_SOURCE_VALUE
+from CONDITION_OCCURRENCE
+where (CONDITION_SOURCE_VALUE like '2962%'
+	or CONDITION_SOURCE_VALUE like '2963%'
+)
+group by PERSON_ID
+order by count(distinct CONDITION_SOURCE_VALUE) desc
+;")) 
+```
+
+```{r}
+sqlQuery(channel, paste("
+select CONDITION_OCCURRENCE_ID, VISIT_OCCURRENCE_ID, PERSON_ID, CONDITION_SOURCE_VALUE, CONDITION_START_DATE, CONDITION_END_DATE
+from CONDITION_OCCURRENCE
+where (CONDITION_SOURCE_VALUE like '2962%'
+	or CONDITION_SOURCE_VALUE like '2963%'
+) and PERSON_ID = 258
+order by CONDITION_START_DATE
+;"))
+```
+
+```{r}
+#@ total & MDD & pMDD (PERSON_ID_n_distinct, 1-year period prevalence/proportion) ------
+tblTotal = sqlQuery(channel, paste("
+select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
+	, GENDER_SOURCE_VALUE
+	, count(*) as nrow
+	, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID) as n_distinct_VISIT_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
+from (
+	CONDITION_OCCURRENCE
+	left join VISIT_OCCURRENCE 
+	on CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID = VISIT_OCCURRENCE.VISIT_OCCURRENCE_ID
+	left join PERSON
+	on VISIT_OCCURRENCE.PERSON_ID = PERSON.PERSON_ID 
+)
+group by year(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+order by year(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+;"))
+tblTotal
+
+
+```
+
+```{r}
+tblMDD = sqlQuery(channel, paste("
+select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
+	, GENDER_SOURCE_VALUE
+	, count(*) as nrow
+	, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID) as n_distinct_VISIT_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
+from (
+	CONDITION_OCCURRENCE
+	left join VISIT_OCCURRENCE 
+	on CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID = VISIT_OCCURRENCE.VISIT_OCCURRENCE_ID
+	left join PERSON
+	on VISIT_OCCURRENCE.PERSON_ID = PERSON.PERSON_ID 
+)
+where (CONDITION_SOURCE_VALUE like '2962%'
+	or CONDITION_SOURCE_VALUE like '2963%'
+)
+group by year(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+order by year(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+;"))
+tblMDD = full_join(select(tblTotal, -nrow, -n_distinct_CONDITION_OCCURRENCE_ID, -n_distinct_VISIT_OCCURRENCE_ID, -n_distinct_PERSON_ID), tblMDD)
+tblMDD
+
+
+```
+
+```{r}
+tblMDDp = tblMDD; tblMDDp[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")] = tblMDD[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]/tblTotal[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]
+tblMDDp 
+```
+
+```{r}
+g = tblMDDp %>% ggplot(aes(x = as.factor(CONDITION_START_year), y = n_distinct_PERSON_ID, group = GENDER_SOURCE_VALUE, color = GENDER_SOURCE_VALUE, fill = GENDER_SOURCE_VALUE))
+
+```
+
+```{r}
+g+geom_area(position = "stack")
+```
+
+```{r}
+g+geom_area(position = "fill")
+```
+
+```{r}
+g+geom_col(position = "stack")
+```
+
+```{r}
+g+geom_col(position = "dodge")
+```
+
+```{r}
+g+geom_col(position = "fill")
+```
+
+```{r}
+#@ total & MDD & pMDD (n_distinct_PERSON_ID, 1-month period prevalence/proportion) ------
+tblTotal = sqlQuery(channel, paste("
+select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
+	, month(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_month
+	, GENDER_SOURCE_VALUE
+	, count(*) as nrow
+	, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID) as n_distinct_VISIT_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
+from (
+	CONDITION_OCCURRENCE
+	left join VISIT_OCCURRENCE 
+	on CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID = VISIT_OCCURRENCE.VISIT_OCCURRENCE_ID
+	left join PERSON
+	on VISIT_OCCURRENCE.PERSON_ID = PERSON.PERSON_ID 
+)
+group by year(convert(datetime, CONDITION_START_DATE, 112)), month(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+order by year(convert(datetime, CONDITION_START_DATE, 112)), month(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+;"))
+tblTotal
+
+```
+
+```{r}
+tblMDD = sqlQuery(channel, paste("
+select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
+	, month(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_month
+	, GENDER_SOURCE_VALUE
+	, count(*) as nrow
+	, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID) as n_distinct_VISIT_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
+from (
+	CONDITION_OCCURRENCE
+	left join VISIT_OCCURRENCE 
+	on CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID = VISIT_OCCURRENCE.VISIT_OCCURRENCE_ID
+	left join PERSON
+	on VISIT_OCCURRENCE.PERSON_ID = PERSON.PERSON_ID 
+)
+where (CONDITION_SOURCE_VALUE like '2962%'
+	or CONDITION_SOURCE_VALUE like '2963%'
+)
+group by year(convert(datetime, CONDITION_START_DATE, 112)), month(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+order by year(convert(datetime, CONDITION_START_DATE, 112)), month(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
+;"))
+tblMDD = full_join(select(tblTotal, -nrow, -n_distinct_CONDITION_OCCURRENCE_ID, -n_distinct_VISIT_OCCURRENCE_ID, -n_distinct_PERSON_ID), tblMDD)
+tblMDD
+
+```
+
+```{r}
+tblMDDp = tblMDD; tblMDDp[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")] = tblMDD[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]/tblTotal[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]
+tblMDDp 
+
+```
+
+```{r}
+g = tblMDDp %>% 
+    ggplot(aes(
+        x = as.factor(CONDITION_START_month)
+        , y = n_distinct_PERSON_ID
+        , group = GENDER_SOURCE_VALUE
+        , color = GENDER_SOURCE_VALUE
+        , fill = GENDER_SOURCE_VALUE)) + 
+    facet_grid(CONDITION_START_year~.)
+
+```
+
+```{r}
+g+geom_step()
+
+```
+
+```{r}
+g+geom_step()+geom_smooth(method = "loess")
+
+```
+
+```{r}
+g+geom_step()+geom_smooth(method = "lm")
+
+```
+
+```{r}
+g+geom_line()
+
+```
+
+```{r}
+g+geom_line()+geom_smooth(method = "loess")
+
+```
+
+```{r}
+g+geom_line()+geom_smooth(method = "lm")
+
+```
+
+```{r}
+g+geom_area()
+
+```
+
+```{r}
+#@ total & MDD & pMDD (n_distinct_PERSON_ID, 1-year period prevalence/proportion, by state) ------
+tblTotal = sqlQuery(channel, paste("
+select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
+	, STATE
+	, count(*) as nrow
+	, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID) as n_distinct_VISIT_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
+from (
+	CONDITION_OCCURRENCE
+	left join VISIT_OCCURRENCE 
+	on CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID = VISIT_OCCURRENCE.VISIT_OCCURRENCE_ID
+	left join PERSON
+	on VISIT_OCCURRENCE.PERSON_ID = PERSON.PERSON_ID
+	left join LOCATION
+	on PERSON.LOCATION_ID = LOCATION.LOCATION_ID
+)
+group by year(convert(datetime, CONDITION_START_DATE, 112)), STATE
+order by year(convert(datetime, CONDITION_START_DATE, 112)), STATE
+;"))
+tblTotal
+```
+
+```{r}
+tblMDD = sqlQuery(channel, paste("
+select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
+	, STATE
+	, count(*) as nrow
+	, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID) as n_distinct_VISIT_OCCURRENCE_ID
+	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
+from (
+	CONDITION_OCCURRENCE
+	left join VISIT_OCCURRENCE 
+	on CONDITION_OCCURRENCE.VISIT_OCCURRENCE_ID = VISIT_OCCURRENCE.VISIT_OCCURRENCE_ID
+	left join PERSON
+	on VISIT_OCCURRENCE.PERSON_ID = PERSON.PERSON_ID 
+	left join LOCATION
+	on PERSON.LOCATION_ID = LOCATION.LOCATION_ID
+)
+where (CONDITION_SOURCE_VALUE like '2962%'
+	or CONDITION_SOURCE_VALUE like '2963%'
+)
+group by year(convert(datetime, CONDITION_START_DATE, 112)), STATE
+order by year(convert(datetime, CONDITION_START_DATE, 112)), STATE
+;")) 
+tblMDD = full_join(select(tblTotal, -nrow, -n_distinct_CONDITION_OCCURRENCE_ID, -n_distinct_VISIT_OCCURRENCE_ID, -n_distinct_PERSON_ID), tblMDD)
+tblMDD
+
+```
+
+```{r}
+tblMDDp = tblMDD; tblMDDp[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")] = tblMDD[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]/tblTotal[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]
+tblMDDp 
+
+
+tblMDDp %>% full_join(., tibble(state.abb, state.name, state.name.tolower = tolower(state.name)), by = c("STATE" = "state.abb"))
+
+```
+
+```{r}
+library(maps)
+map = map_data("state")
+g = tblMDDp %>% full_join(., tibble(state.abb, state.name, state.name.tolower = tolower(state.name)), by = c("STATE" = "state.abb")) %>% 
+    ggplot(aes(fill = n_distinct_PERSON_ID)) + 
+    facet_grid(CONDITION_START_year~.)
+g+geom_map(aes(map_id = state.name.tolower), map = map)+expand_limits(x=map$long, y=map$lat)
+
+detach("package:maps", unload=TRUE)
+```
+
+```{r}
+#@ CMS_SynPUF_CDMv5_YZ.json -----
+library(jsonlite)
+CMS_SynPUF_CDMv5_YZ.json = fromJSON("CMS_SynPUF_CDMv5_YZ.json")
+CMS_SynPUF_CDMv5_YZ.json %>% length
+
+```
+
+```{r}
+CMS_SynPUF_CDMv5_YZ.json[1000] %>% str
+```
+
+```{r}
+#@ CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(function(ls) { ----
+CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(function(ls) {
+    ls %>% purrr::map(function(x) {
+        if (is.list(x))
+            x = length(x)
+        if (length(x) > 1)
+            x = length(x)
+        x
+    })
+})
+CMS_SynPUF_CDMv5_YZ.json.map_df
+
+```
+
+```{r}
+g = CMS_SynPUF_CDMv5_YZ.json.map_df %>% 
+    ggplot(aes(x = sex, y = appt, color = sex))
+```
+
+```{r}
+g+geom_boxplot()
+```
+
+```{r}
+g+geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 1/5)
+```
+
+```{r}
+g+geom_count()
+```
+
+```{r}
+g+geom_jitter()
+```
+
+```{r}
+g+geom_violin()
+```
+
