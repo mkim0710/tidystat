@@ -49,7 +49,7 @@ data.tab_strata_exposure = function(
 
 #@ test) data.tab_strata_exposure() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
 # > rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
@@ -110,7 +110,7 @@ data.strata_list = function(
 
 #@ test) data.strata_list() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata %>% as.tibble
 # > rhc_mydata %>% as.tibble
@@ -134,26 +134,26 @@ rhc_mydata.strata_list %>% str(max.level = 1)
 rhc_mydata.strata_list[[1]]
 # > rhc_mydata.strata_list %>% str(max.level = 1)
 # List of 20
-#  $ 0_[10,20)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	22 obs. of  15 variables:
-#  $ 0_[100,Inf]:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  15 variables:
-#  $ 0_[20,30)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	135 obs. of  15 variables:
-#  $ 0_[30,40)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	242 obs. of  15 variables:
-#  $ 0_[40,50)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	404 obs. of  15 variables:
-#  $ 0_[50,60)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	527 obs. of  15 variables:
-#  $ 0_[60,70)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	802 obs. of  15 variables:
-#  $ 0_[70,80)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	757 obs. of  15 variables:
-#  $ 0_[80,90)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	270 obs. of  15 variables:
-#  $ 0_[90,100) :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	32 obs. of  15 variables:
-#  $ 1_[10,20)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  15 variables:
-#  $ 1_[100,Inf]:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2 obs. of  15 variables:
-#  $ 1_[20,30)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	117 obs. of  15 variables:
-#  $ 1_[30,40)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	211 obs. of  15 variables:
-#  $ 1_[40,50)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	282 obs. of  15 variables:
-#  $ 1_[50,60)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	390 obs. of  15 variables:
-#  $ 1_[60,70)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	587 obs. of  15 variables:
-#  $ 1_[70,80)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	581 obs. of  15 variables:
-#  $ 1_[80,90)  :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	305 obs. of  15 variables:
-#  $ 1_[90,100) :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	57 obs. of  15 variables:
+#  $ 0_[10,20)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	22 obs. of  15 variables:
+#  $ 0_[100,Inf]:Classes ??tbl_df??, ??tbl?? and 'data.frame':	1 obs. of  15 variables:
+#  $ 0_[20,30)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	135 obs. of  15 variables:
+#  $ 0_[30,40)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	242 obs. of  15 variables:
+#  $ 0_[40,50)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	404 obs. of  15 variables:
+#  $ 0_[50,60)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	527 obs. of  15 variables:
+#  $ 0_[60,70)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	802 obs. of  15 variables:
+#  $ 0_[70,80)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	757 obs. of  15 variables:
+#  $ 0_[80,90)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	270 obs. of  15 variables:
+#  $ 0_[90,100) :Classes ??tbl_df??, ??tbl?? and 'data.frame':	32 obs. of  15 variables:
+#  $ 1_[10,20)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	11 obs. of  15 variables:
+#  $ 1_[100,Inf]:Classes ??tbl_df??, ??tbl?? and 'data.frame':	2 obs. of  15 variables:
+#  $ 1_[20,30)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	117 obs. of  15 variables:
+#  $ 1_[30,40)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	211 obs. of  15 variables:
+#  $ 1_[40,50)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	282 obs. of  15 variables:
+#  $ 1_[50,60)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	390 obs. of  15 variables:
+#  $ 1_[60,70)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	587 obs. of  15 variables:
+#  $ 1_[70,80)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	581 obs. of  15 variables:
+#  $ 1_[80,90)  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	305 obs. of  15 variables:
+#  $ 1_[90,100) :Classes ??tbl_df??, ??tbl?? and 'data.frame':	57 obs. of  15 variables:
 #  - attr(*, ".vars4strata")= chr [1:2] "female" "age.cut"
 #  - attr(*, "function.input")=List of 2
 # > rhc_mydata.strata_list[[1]]
@@ -476,7 +476,7 @@ data.Match = function(
 
 #@ test) data.Match() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.Match = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
@@ -493,6 +493,7 @@ rhc_mydata.Match = rhc_mydata %>% data.Match(
 # [1] "Weight_covariates : InverseVariance"
 # [1] "data.Match() - dim(.mydata) : c(5735L, 15L)"
 # [1] "data.Match() - dim(.X) : c(5735L, 4L)"
+
 rhc_mydata.Match = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
     , .exposure = "treatment"
@@ -504,7 +505,7 @@ rhc_mydata.Match %>% attr("function.input") %>% str  #----
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4260 obs. of  17 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4260 obs. of  17 variables:
 #   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
 #   ..- attr(*, ".exposure")= chr "treatment"
 #   ..- attr(*, ".MatchingRatio")= num 5
@@ -590,7 +591,7 @@ rhc_mydata.Match_propensity_score$data
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4260 obs. of  17 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4260 obs. of  17 variables:
 #   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
 #   ..- attr(*, ".exposure")= chr "treatment"
 #   ..- attr(*, ".MatchingRatio")= num 5
@@ -765,7 +766,7 @@ rhc_mydata.Match_Mahal_caliper.2$tableone_post_total %>% print(smd = T)
 
 #@ test) data.Match() rhc_mydata.na ----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.na = rhc_mydata
 rhc_mydata.na$age[0:99 * 7 + 1] = NA
@@ -846,7 +847,7 @@ rhc_mydata.na.Match %>% attr("function.input") %>% str
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4134 obs. of  18 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4134 obs. of  18 variables:
 #   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
 #   ..- attr(*, ".exposure")= chr "treatment"
 #   ..- attr(*, ".MatchingRatio")= num 5
@@ -960,7 +961,7 @@ rhc_mydata.na.Match_propensity_score$data
 # # List of 4
 # #  $ tableone_pre       :List of 3
 # #   ..- attr(*, "class")= chr "TableOne"
-# #  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4188 obs. of  17 variables:
+# #  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4188 obs. of  17 variables:
 # #   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
 # #   ..- attr(*, ".exposure")= chr "treatment"
 # #   ..- attr(*, ".MatchingRatio")= num 5
@@ -1028,7 +1029,7 @@ rhc_mydata.na.Match_propensity_score$data
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4134 obs. of  17 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4134 obs. of  17 variables:
 #   ..- attr(*, ".vars4Matching")= chr [1:3] "female" "age" "meanbp1"
 #   ..- attr(*, ".exposure")= chr "treatment"
 #   ..- attr(*, ".MatchingRatio")= num 5
@@ -1665,7 +1666,7 @@ data.stratified.Match = function(
 
 #@ test) data.stratified.Match() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
     .vars4strata = c("female", "age.cut")
@@ -1800,7 +1801,7 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # # +         , .parallelsugar = F
 # # +     )
 # # + )
-# #  사용자  시스템 elapsed 
+# #  ??????  ?첵??? elapsed 
 # #    1.34    0.00    1.34 
 # # Warning messages:
 # # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
@@ -1817,7 +1818,7 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # # +         , .parallelsugar = T
 # # +     )
 # # + )
-# #  사용자  시스템 elapsed 
+# #  ??????  ?첵??? elapsed 
 # #    2.97    2.69   52.17 
 # # Warning message:
 # # In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
@@ -1830,7 +1831,7 @@ rhc_mydata.stratified.Match %>% attr("function.input") %>% str
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4212 obs. of  18 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4212 obs. of  18 variables:
 #   ..- attr(*, ".vars4Matching")= chr [1:2] "age" "meanbp1"
 #   ..- attr(*, ".exposure")= chr "treatment"
 #   ..- attr(*, ".MatchingRatio")= num 5
@@ -1981,7 +1982,7 @@ rhc_mydata.stratified.Match_propensity_score$data
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4212 obs. of  18 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4212 obs. of  18 variables:
 #   ..- attr(*, ".vars4Matching")= chr [1:2] "age" "meanbp1"
 #   ..- attr(*, ".exposure")= chr "treatment"
 #   ..- attr(*, ".MatchingRatio")= num 5
@@ -2217,7 +2218,7 @@ rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total %>% p
 
 #@ test) data.stratified.Match() rhc_mydata.na ----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/rhc_mydata.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.na = rhc_mydata
 rhc_mydata.na$age[0:99 * 7 + 1] = NA
@@ -2416,7 +2417,7 @@ rhc_mydata.na.stratified.Match %>% attr("function.input") %>% str
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4086 obs. of  18 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	4086 obs. of  18 variables:
 #   ..- attr(*, ".vars4Matching")= chr [1:2] "age" "meanbp1"
 #   ..- attr(*, ".exposure")= chr "treatment"
 #   ..- attr(*, ".MatchingRatio")= num 5

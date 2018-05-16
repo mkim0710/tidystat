@@ -1,4 +1,5 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/data.stratifed.ccwc.source.r")
+# source("https://github.com/mkim0710/tidystat/raw/master/r/data.stratifed.ccwc.source.r")
+
 
 #@ data.ccwc = function( =====
 data.ccwc = function(
@@ -17,7 +18,7 @@ data.ccwc = function(
     , load.dependent.library = T
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.stratifed.ccwc.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratifed.ccwc.source.r")
     if (load.dependent.library == T) {
         library(tidyverse)
         library(tableone)
@@ -126,8 +127,8 @@ data.ccwc = function(
         }
         
         .mydata = .mydata %>%  mutate(
-            MatchingPairID = 999L
-            , MatchingCtrlNum = 999L
+            MatchingPairID = 999999999L
+            , MatchingCtrlNum = 999999999L
             , is.Case = F
             , is.Ctrl.Candidate = T
             , is.assigned = F
@@ -245,6 +246,7 @@ data.ccwc = function(
 }
 
 #@ test) data.ccwc() mycohort_1strata_tie ----
+library(tidyverse)
 mycohort_1strata_tie = structure(list(RowNum_original = c(125L, 143L, 170L, 221L, 236L, 
 244L, 247L, 249L, 258L, 284L, 315L, 322L), entry_age = c(31L, 
 61L, 46L, 50L, 59L, 49L, 60L, 59L, 57L, 40L, 47L, 38L), exit_age = c(42, 
@@ -277,51 +279,63 @@ mycohort_1strata_tie %>% as.tibble
 
 mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F) %>% str(max.level = 1)
 mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% str(max.level = 1)
-# > mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = T)
-# [1] "*** 1-th iteration for .event.exit_age.unique.sort: 12"
-# [1] "which.Case: 1"
-# [1] "which.Ctrl.Candidate: c(10L, 12L)"
-# [1] "incomplete: 0"
-# [1] "tmp.nCtrl: 2"
-# [1] "set.seed: 2"
-# [1] "which.Ctrl: c(10L, 12L)"
-# # A tibble: 3 x 10
-#   RowNum_original .entry_age .exit_age varname4event             strata MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
-#             <int>      <dbl>     <dbl>  <lgl>             <fctr>          <int>           <dbl>   <lgl>             <lgl>       <lgl>
-# 1             125          1        12   TRUE Driver|>2750 KCals              1               0    TRUE             FALSE        TRUE
-# 2             284         10        27  FALSE Driver|>2750 KCals              1               1   FALSE             FALSE        TRUE
-# 3             322          8        19  FALSE Driver|>2750 KCals              1               2   FALSE             FALSE        TRUE
-# [1] "*** 2-th iteration for .event.exit_age.unique.sort: 26"
-# [1] "which.Case: 3"
-# [1] "which.Ctrl.Candidate: c(4L, 6L, 11L)"
-# [1] "incomplete: 0"
-# [1] "tmp.nCtrl: 2"
-# [1] "set.seed: 3"
-# [1] "which.Ctrl: c(4L, 6L)"
-# # A tibble: 3 x 10
-#   RowNum_original .entry_age .exit_age varname4event             strata MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
-#             <int>      <dbl>     <dbl>  <lgl>             <fctr>          <int>           <dbl>   <lgl>             <lgl>       <lgl>
-# 1             170         16        26   TRUE Driver|>2750 KCals              2               0    TRUE             FALSE        TRUE
-# 2             221         20        37  FALSE Driver|>2750 KCals              2               1   FALSE             FALSE        TRUE
-# 3             244         19        35   TRUE Driver|>2750 KCals              2               2   FALSE             FALSE        TRUE
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% {.[c(2, 1, 3)]}
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F)
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% str(max.level = 1)
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
-# [1] "*** 3-th iteration for .event.exit_age.unique.sort: 35"
-# [1] "which.Case: 8"
-# [1] "which.Ctrl.Candidate: c(2L, 5L, 7L, 9L)"
-# [1] "incomplete: 0"
-# [1] "tmp.nCtrl: 2"
-# [1] "set.seed: 4"
-# [1] "which.Ctrl: c(7L, 2L)"
-# # A tibble: 3 x 10
-#   RowNum_original .entry_age .exit_age varname4event             strata MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
-#             <int>      <dbl>     <dbl>  <lgl>             <fctr>          <int>           <dbl>   <lgl>             <lgl>       <lgl>
-# 1             249         29        35   TRUE Driver|>2750 KCals              3               0    TRUE             FALSE        TRUE
-# 2             247         30        40  FALSE Driver|>2750 KCals              3               1   FALSE             FALSE        TRUE
-# 3             143         31        38   TRUE Driver|>2750 KCals              3               2   FALSE             FALSE        TRUE
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
-# [1] "*** 4-th iteration for .event.exit_age.unique.sort: 38"
-# [1] "which.Case: "
-# [1] "*** Caution) 4-th iteration for: 38 -> this case may have already been assigned as control"
+# [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
+# List of 3
+#  $ tableone_pre       :List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	12 obs. of  13 variables:
+#   ..- attr(*, ".event")= chr "event"
+#   ..- attr(*, ".entry")= chr "entry_age"
+#   ..- attr(*, ".exit")= chr "exit_age"
+#   ..- attr(*, ".MatchingRatio")= num 2
+#   ..- attr(*, "apply.na.omit")= logi FALSE
+#  $ tableone_post_total:List of 3
+#   ..- attr(*, "class")= chr "TableOne"
+#  - attr(*, "function.input")=List of 9
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% {.[c(2, 1, 3)]}
+# [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
+# [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
+# [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
+# $data
+# # A tibble: 12 x 13
+#    RowNum_original entry_age exit_age event strata             .event .entry_age .exit_age MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#              <int>     <int>    <dbl> <lgl> <fct>              <lgl>       <int>     <dbl>          <int>           <dbl> <lgl>   <lgl>             <lgl>      
+#  1             125        31       42 TRUE  Driver|>2750 KCals TRUE           31        42              1               0 TRUE    FALSE             TRUE       
+#  2             284        40       57 FALSE Driver|>2750 KCals FALSE          40        57              1               1 FALSE   FALSE             TRUE       
+#  3             322        38       49 FALSE Driver|>2750 KCals FALSE          38        49              1               2 FALSE   FALSE             TRUE       
+#  4             170        46       56 TRUE  Driver|>2750 KCals TRUE           46        56              2               0 TRUE    FALSE             TRUE       
+#  5             221        50       67 FALSE Driver|>2750 KCals FALSE          50        67              2               1 FALSE   FALSE             TRUE       
+#  6             244        49       65 TRUE  Driver|>2750 KCals TRUE           49        65              2               2 FALSE   FALSE             TRUE       
+#  7             249        59       65 TRUE  Driver|>2750 KCals TRUE           59        65              3               0 TRUE    FALSE             TRUE       
+#  8             247        60       70 FALSE Driver|>2750 KCals FALSE          60        70              3               1 FALSE   FALSE             TRUE       
+#  9             143        61       68 TRUE  Driver|>2750 KCals TRUE           61        68              3               2 FALSE   FALSE             TRUE       
+# 10             236        59       70 FALSE Driver|>2750 KCals FALSE          59        70            999             999 FALSE   TRUE              FALSE      
+# 11             258        57       70 FALSE Driver|>2750 KCals FALSE          57        70            999             999 FALSE   TRUE              FALSE      
+# 12             315        47       63 FALSE Driver|>2750 KCals FALSE          47        63            999             999 FALSE   TRUE              FALSE      
+# 
+# $tableone_pre
+#                        Stratified by event
+#                         FALSE        TRUE          p      test
+#   n                         7            5                    
+#   entry_age (mean (sd)) 50.14 (8.97) 49.20 (12.01)  0.879     
+#   exit_age (mean (sd))  63.71 (8.08) 59.20 (10.62)  0.420     
+# 
+# $tableone_post_total
+#                        Stratified by is.Case
+#                         FALSE        TRUE          p      test
+#   n                         6            3                    
+#   entry_age (mean (sd)) 49.67 (9.65) 45.33 (14.01)  0.597     
+#   exit_age (mean (sd))  62.67 (8.07) 54.33 (11.59)  0.242     
+# 
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F)
+# [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
+# [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
+# [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
 # $tableone_pre
 #                        Stratified by event
 #                         FALSE        TRUE          p      test
@@ -330,21 +344,21 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #   exit_age (mean (sd))  63.71 (8.08) 59.20 (10.62)  0.420     
 # 
 # $data
-# # A tibble: 12 x 14
-#    RowNum_original entry_age exit_age event             strata origin varname4event .entry_age .exit_age MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
-#              <int>     <int>    <dbl> <lgl>             <fctr>  <dbl>  <lgl>      <dbl>     <dbl>          <int>           <dbl>   <lgl>             <lgl>       <lgl>
-#  1             125        31       42  TRUE Driver|>2750 KCals     30   TRUE          1        12              1               0    TRUE             FALSE        TRUE
-#  2             284        40       57 FALSE Driver|>2750 KCals     30  FALSE         10        27              1               1   FALSE             FALSE        TRUE
-#  3             322        38       49 FALSE Driver|>2750 KCals     30  FALSE          8        19              1               2   FALSE             FALSE        TRUE
-#  4             170        46       56  TRUE Driver|>2750 KCals     30   TRUE         16        26              2               0    TRUE             FALSE        TRUE
-#  5             221        50       67 FALSE Driver|>2750 KCals     30  FALSE         20        37              2               1   FALSE             FALSE        TRUE
-#  6             244        49       65  TRUE Driver|>2750 KCals     30   TRUE         19        35              2               2   FALSE             FALSE        TRUE
-#  7             249        59       65  TRUE Driver|>2750 KCals     30   TRUE         29        35              3               0    TRUE             FALSE        TRUE
-#  8             247        60       70 FALSE Driver|>2750 KCals     30  FALSE         30        40              3               1   FALSE             FALSE        TRUE
-#  9             143        61       68  TRUE Driver|>2750 KCals     30   TRUE         31        38              3               2   FALSE             FALSE        TRUE
-# 10             236        59       70 FALSE Driver|>2750 KCals     30  FALSE         29        40            999             999   FALSE              TRUE       FALSE
-# 11             258        57       70 FALSE Driver|>2750 KCals     30  FALSE         27        40            999             999   FALSE              TRUE       FALSE
-# 12             315        47       63 FALSE Driver|>2750 KCals     30  FALSE         17        33            999             999   FALSE              TRUE       FALSE
+# # A tibble: 12 x 13
+#    RowNum_original entry_age exit_age event strata             .event .entry_age .exit_age MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#              <int>     <int>    <dbl> <lgl> <fct>              <lgl>       <int>     <dbl>          <int>           <dbl> <lgl>   <lgl>             <lgl>      
+#  1             125        31       42 TRUE  Driver|>2750 KCals TRUE           31        42              1               0 TRUE    FALSE             TRUE       
+#  2             284        40       57 FALSE Driver|>2750 KCals FALSE          40        57              1               1 FALSE   FALSE             TRUE       
+#  3             322        38       49 FALSE Driver|>2750 KCals FALSE          38        49              1               2 FALSE   FALSE             TRUE       
+#  4             170        46       56 TRUE  Driver|>2750 KCals TRUE           46        56              2               0 TRUE    FALSE             TRUE       
+#  5             221        50       67 FALSE Driver|>2750 KCals FALSE          50        67              2               1 FALSE   FALSE             TRUE       
+#  6             244        49       65 TRUE  Driver|>2750 KCals TRUE           49        65              2               2 FALSE   FALSE             TRUE       
+#  7             249        59       65 TRUE  Driver|>2750 KCals TRUE           59        65              3               0 TRUE    FALSE             TRUE       
+#  8             247        60       70 FALSE Driver|>2750 KCals FALSE          60        70              3               1 FALSE   FALSE             TRUE       
+#  9             143        61       68 TRUE  Driver|>2750 KCals TRUE           61        68              3               2 FALSE   FALSE             TRUE       
+# 10             236        59       70 FALSE Driver|>2750 KCals FALSE          59        70            999             999 FALSE   TRUE              FALSE      
+# 11             258        57       70 FALSE Driver|>2750 KCals FALSE          57        70            999             999 FALSE   TRUE              FALSE      
+# 12             315        47       63 FALSE Driver|>2750 KCals FALSE          47        63            999             999 FALSE   TRUE              FALSE      
 # 
 # $tableone_post_total
 #                        Stratified by is.Case
@@ -352,9 +366,236 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #   n                         6            3                    
 #   entry_age (mean (sd)) 49.67 (9.65) 45.33 (14.01)  0.597     
 #   exit_age (mean (sd))  62.67 (8.07) 54.33 (11.59)  0.242     
+# 
+# attr(,"function.input")
+# attr(,"function.input")$Call
+# data.ccwc(.mydata = ., varname4event = "event", varname4entry = "entry_age", 
+#     varname4exit = "exit_age", varname4origin = NULL, print.process = F)
+# 
+# attr(,"function.input")$fun
+# function (.mydata, ..., varname4event = "failure", varname4entry = ".entry_age", 
+#     varname4exit = ".exit_age", varname4origin = NULL, .MatchingRatio = 2, 
+#     seed = 1, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     apply.na.omit = F, print.process = F, load.dependent.library = T, 
+#     apply.function.dichotomous2logical = F) 
+# {
+#     if (load.dependent.library == T) {
+#         library(tidyverse)
+#         library(tableone)
+#     }
+#     select = dplyr::select
+#     if (is.null(.mydata$RowNum_original)) {
+#         .mydata$RowNum_original = 1:nrow(.mydata)
+#     }
+#     Call <- match.call(expand.dots = TRUE)
+#     function.dichotomous2logical = function(x, dichotomous2integer = F) {
+#         if (is.numeric(x)) {
+#             x = as.character(x)
+#         }
+#         if (is.character(x)) {
+#             x = as.factor(x)
+#         }
+#         if (length(unique(x)) == 1) {
+#             warning("length(unique(x)) == 1")
+#         }
+#         if (!is.null(levels(x))) {
+#             if (length(levels(x)) %in% 1:2) {
+#                 if (dichotomous2integer == T) {
+#                   warning(paste0(ifelse(is.null(levels(x)[1]), 
+#                     "NULL", levels(x)[1]), " is coded to 0 & ", 
+#                     ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), 
+#                     " is coded to 1"))
+#                 }
+#                 else {
+#                   warning(paste0(ifelse(is.null(levels(x)[1]), 
+#                     "NULL", levels(x)[1]), " is coded to FALSE & ", 
+#                     ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), 
+#                     " is coded to TRUE"))
+#                 }
+#                 x = as.integer(x) - 1
+#             }
+#             else if (length(levels(x)) > 2) {
+#                 stop("length(levels(x)) > 2")
+#             }
+#         }
+#         if (dichotomous2integer == T) {
+#             x = as.integer(x)
+#         }
+#         else {
+#             x = as.logical(x)
+#         }
+#         x
+#     }
+#     .mydata[[".event"]] = .mydata[[varname4event]] %>% function.dichotomous2logical
+#     if (!is.character(varname4entry)) {
+#         stop("!is.character(varname4entry)")
+#     }
+#     else if (!is.character(varname4exit)) {
+#         stop("!is.character(varname4exit)")
+#     }
+#     else if (is.numeric(varname4origin)) {
+#         stop("is.numeric(varname4origin)")
+#     }
+#     else {
+#         if (!is.null(varname4origin)) {
+#             .mydata[[".entry_age"]] = .mydata[[varname4entry]] - 
+#                 .mydata[[varname4origin]]
+#             .mydata[[".exit_age"]] = .mydata[[varname4exit]] - 
+#                 .mydata[[varname4origin]]
+#         }
+#         else {
+#             .mydata[[".entry_age"]] = .mydata[[varname4entry]]
+#             .mydata[[".exit_age"]] = .mydata[[varname4exit]]
+#         }
+#     }
+#     if (length(unique(.mydata[[varname4event]])) < 2) {
+#         print("length(unique(.mydata[[varname4event]]) < 2")
+#         out = list()
+#         out$data = NA
+#         attr(out, "error.message") = "length(unique(.mydata[[varname4event]])) < 2"
+#     }
+#     else {
+#         out = list()
+#         if (add_tableone_pre_post == T) {
+#             out$tableone_pre = CreateTableOne(vars = c(varname4entry, 
+#                 varname4exit), strata = varname4event, data = .mydata, 
+#                 test = T, includeNA = T)
+#         }
+#         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
+#             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
+#         .event.exit_age.unique.sort = .mydata %>% filter(.event == 
+#             T) %>% select(.exit_age) %>% unlist %>% unname %>% 
+#             unique %>% sort
+#         incomplete = 0
+#         ties <- FALSE
+#         .mydata.ccwc = .mydata
+#         for (i in 1:length(.event.exit_age.unique.sort)) {
+#             if (print.process == T) 
+#                 print(paste0("*** ", i, "-th iteration for .event.exit_age.unique.sort: ", 
+#                   .event.exit_age.unique.sort[i]))
+#             which.Case = which({
+#                 ({
+#                   abs(.mydata.ccwc[[".exit_age"]] - .event.exit_age.unique.sort[i]) < 
+#                     0.001
+#                 }) & .mydata.ccwc[[".event"]] == T & .mydata.ccwc$is.assigned == 
+#                   F
+#             })
+#             if (length(which.Case) == 0) {
+#                 if (print.process == T) 
+#                   print(paste0("which.Case: ", which.Case))
+#                 print(paste0("*** Caution) ", i, "-th iteration for: ", 
+#                   .event.exit_age.unique.sort[i], " -> this case may have already been assigned as control"))
+#             }
+#             else {
+#                 if (print.process == T) 
+#                   print(paste0("which.Case: ", which.Case))
+#                 .mydata.ccwc[which.Case, c("is.Case", "is.assigned")] = T
+#                 .mydata.ccwc[which.Case, c("is.Ctrl.Candidate")] = F
+#                 .mydata.ccwc[which.Case, c("MatchingPairID")] = i
+#                 .mydata.ccwc[which.Case, c("MatchingCtrlNum")] = 0
+#                 which.Ctrl.Candidate = which({
+#                   .mydata.ccwc$is.Ctrl.Candidate == T & (.mydata.ccwc[[".entry_age"]] <= 
+#                     .event.exit_age.unique.sort[i]) & (.mydata.ccwc[[".exit_age"]] >= 
+#                     .event.exit_age.unique.sort[i])
+#                 })
+#                 if (print.process == T) 
+#                   print(paste0("which.Ctrl.Candidate: ", deparse(which.Ctrl.Candidate)))
+#                 if (.MatchingRatio * length(which.Case) > length(which.Ctrl.Candidate)) {
+#                   incomplete = incomplete + 1
+#                 }
+#                 tmp.nCtrl = min(.MatchingRatio * length(which.Case), 
+#                   length(which.Ctrl.Candidate))
+#                 if (print.process == T) 
+#                   print(paste0("incomplete: ", incomplete))
+#                 if (print.process == T) 
+#                   print(paste0("tmp.nCtrl: ", tmp.nCtrl))
+#                 set.seed(seed + i)
+#                 if (print.process == T) 
+#                   print(paste0("set.seed: ", seed + i))
+#                 which.Ctrl = sample(which.Ctrl.Candidate, size = tmp.nCtrl)
+#                 if (print.process == T) 
+#                   print(paste0("which.Ctrl: ", deparse(which.Ctrl)))
+#                 .mydata.ccwc[which.Ctrl, c("is.assigned")] = T
+#                 .mydata.ccwc[which.Ctrl, c("is.Ctrl.Candidate")] = F
+#                 .mydata.ccwc[which.Ctrl, c("MatchingPairID")] = i
+#                 .mydata.ccwc[which.Ctrl, c("MatchingCtrlNum")] = 1:{
+#                   length(which.Ctrl)/length(which.Case)
+#                 }
+#                 if (print.process == T) 
+#                   print(.mydata.ccwc[c(which.Case, which.Ctrl), 
+#                     ] %>% select(RowNum_original, .entry_age, 
+#                     .exit_age, varname4event, strata, MatchingPairID, 
+#                     MatchingCtrlNum, is.Case, is.Ctrl.Candidate, 
+#                     is.assigned))
+#                 if (any(.mydata.ccwc[which.Ctrl, ".event"] == 
+#                   T)) {
+#                   print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", 
+#                     deparse(.mydata.ccwc[{
+#                       which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == 
+#                         T]
+#                     }, ]$RowNum_original)))
+#                 }
+#                 if (length(which.Case) > 1) {
+#                   ties <- TRUE
+#                   print(paste0("** ties in RowNum_original: ", 
+#                     deparse(.mydata.ccwc[which.Case, ]$RowNum_original)))
+#                 }
+#             }
+#         }
+#         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
+#         if (add_tableone_pre_post == T) {
+#             out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
+#                 varname4exit), strata = "is.Case", data = filter(.mydata.ccwc, 
+#                 is.assigned == T), test = T, includeNA = T)
+#         }
+#     }
+#     attr(out$data, ".event") = varname4event
+#     attr(out$data, ".entry") = varname4entry
+#     attr(out$data, ".exit") = varname4exit
+#     attr(out$data, ".origin") = varname4origin
+#     attr(out$data, ".MatchingRatio") = .MatchingRatio
+#     attr(out$data, "apply.na.omit") = apply.na.omit
+#     attr(out, "function.input") = list(Call = match.call(expand.dots = TRUE), 
+#         fun = data.ccwc, varname4event = varname4event, varname4entry = varname4entry, 
+#         varname4exit = varname4exit, varname4origin = varname4origin, 
+#         .MatchingRatio = .MatchingRatio, apply.na.omit = apply.na.omit, 
+#         apply.function.dichotomous2logical = apply.function.dichotomous2logical)
+#     if (is.data.frame(out$data)) {
+#         out$data$RowNum_after_na.omit = NULL
+#     }
+#     out
+# }
+# <bytecode: 0x000000000305ff08>
+# 
+# attr(,"function.input")$varname4event
+# [1] "event"
+# 
+# attr(,"function.input")$varname4entry
+# [1] "entry_age"
+# 
+# attr(,"function.input")$varname4exit
+# [1] "exit_age"
+# 
+# attr(,"function.input")$varname4origin
+# NULL
+# 
+# attr(,"function.input")$.MatchingRatio
+# [1] 2
+# 
+# attr(,"function.input")$apply.na.omit
+# [1] FALSE
+# 
+# attr(,"function.input")$apply.function.dichotomous2logical
+# [1] FALSE
 
 
-#@ -----
+
+
+
+
+
+
+#@ data.strata_list = function( -----
 data.strata_list = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
@@ -383,7 +624,7 @@ data.strata_list = function(
 
 #@ test) data.strata_list() diet.rda -----
 # data(diet, package = "Epi")
-load(url("https://github.com/mkim0710/tidystat/raw/master/library(Epi) diet.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library(Epi) diet.rda"))
 diet = diet %>% mutate(
     RowNum_original = 1:nrow(.)
     , entry_age = as.numeric(doe - dob)/365
@@ -465,6 +706,12 @@ diet.strata_list %>% map(function(df) {
 
 
 
+
+
+
+
+
+#@ data.stratified.ccwc = function( ----
 data.stratified.ccwc = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
@@ -584,8 +831,10 @@ diet.stratified.ccwc = diet %>% data.stratified.ccwc(
     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
     , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
     )
-diet.stratified.ccwc
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned)
+diet.stratified.ccwc %>% {.[c(2, 1, 3)]} #----
+diet.stratified.ccwc #----
+diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
+diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
 # > diet.stratified.ccwc = diet %>% data.stratified.ccwc(
 # +     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
 # +     , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
@@ -639,7 +888,37 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .even
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: c(244L, 143L)"
 # [1] "*** Caution) 9-th iteration for: 66.3698630136986 -> this case may have already been assigned as control"
 # [1] "*** Caution) 10-th iteration for: 68.0739726027397 -> this case may have already been assigned as control"
-# > diet.stratified.ccwc
+# > diet.stratified.ccwc %>% {.[c(2, 1, 3)]} #----
+# $data
+# # A tibble: 337 x 28
+#       id doe        dox        dob            y  fail job      month energy height weight   fat fibre energy.grp   chd RowNum_original entry_age exit_age event strata       .event .entry_age
+#    <dbl> <date>     <date>     <date>     <dbl> <dbl> <fct>    <dbl>  <dbl>  <dbl>  <dbl> <dbl> <dbl> <fct>      <dbl>           <int>     <dbl>    <dbl> <lgl> <fct>        <lgl>       <dbl>
+#  1   305 1970-01-16 1971-07-16 1923-07-01  1.49     3 Bank wo~     1   23.6    NA    NA   11.0  1.30  <=2750 KC~     1              71      46.6     48.1 TRUE  Bank worker~ TRUE         46.6
+#  2   200 1966-12-17 1986-12-02 1919-06-19 20.0      0 Bank wo~    12   24.5   178.   73.5 12.8  1.84  <=2750 KC~     0              61      47.5     67.5 FALSE Bank worker~ FALSE        47.5
+#  3   332 1971-06-17 1986-12-02 1929-03-18 15.5      0 Bank wo~     6   27.5   174.   68.7 10.0  1.91  <=2750 KC~     0             152      42.3     57.7 FALSE Bank worker~ FALSE        42.3
+#  4   324 1971-06-17 1975-12-08 1926-11-15  4.48     1 Bank wo~     6   25.6   173.   85.0 11.3  2.02  <=2750 KC~     1             186      44.6     49.1 TRUE  Bank worker~ TRUE         44.6
+#  5   333 1971-06-17 1986-12-02 1925-01-30 15.5      0 Bank wo~     6   20.6   186.   67.4  8.63 1.24  <=2750 KC~     0              41      46.4     61.9 FALSE Bank worker~ FALSE        46.4
+#  6   220 1967-01-17 1986-12-02 1918-03-04 19.9      0 Bank wo~     1   27.2   183.   72.1 12.0  1.35  <=2750 KC~     0             156      48.9     68.8 FALSE Bank worker~ FALSE        48.9
+#  7   278 1969-04-16 1973-08-23 1920-07-11  4.35     3 Bank wo~     4   25.1   174.   81.2 12.4  1.29  <=2750 KC~     1             117      48.8     53.2 TRUE  Bank worker~ TRUE         48.8
+#  8   252 1967-11-17 1979-05-11 1916-10-04 11.5     15 Bank wo~    11   26.7   176.   72.6 11.4  1.82  <=2750 KC~     0             120      51.2     62.6 TRUE  Bank worker~ TRUE         51.2
+#  9   247 1968-03-16 1979-06-25 1918-07-10 11.3     13 Bank wo~     3   18.5   178.   97.1  9.15 0.991 <=2750 KC~     1               5      49.7     61   TRUE  Bank worker~ TRUE         49.7
+# 10   272 1969-03-16 1973-12-13 1920-03-06  4.74     3 Bank wo~     3   20.3   175.   61.0  8.54 0.765 <=2750 KC~     1               6      49.1     53.8 TRUE  Bank worker~ TRUE         49.1
+# # ... with 327 more rows, and 6 more variables: .exit_age <dbl>, MatchingPairID <fct>, MatchingCtrlNum <dbl>, is.Case <lgl>, is.Ctrl.Candidate <lgl>, is.assigned <lgl>
+# 
+# $tableone_pre
+#                        Stratified by event
+#                         FALSE        TRUE         p      test
+#   n                       257           80                   
+#   entry_age (mean (sd)) 49.02 (7.17) 51.05 (6.23)  0.023     
+#   exit_age (mean (sd))  64.36 (5.80) 59.34 (6.18) <0.001     
+# 
+# $tableone_post_total
+#                        Stratified by is.Case
+#                         FALSE        TRUE         p      test
+#   n                       114           57                   
+#   entry_age (mean (sd)) 49.84 (6.03) 50.90 (6.38)  0.289     
+#   exit_age (mean (sd))  64.86 (4.92) 58.03 (6.22) <0.001  
+# > diet.stratified.ccwc #----
 # $tableone_pre
 #                        Stratified by event
 #                         FALSE        TRUE         p      test
@@ -649,20 +928,19 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .even
 # 
 # $data
 # # A tibble: 337 x 28
-#       id        doe        dox        dob         y  fail         job month  energy  height   weight    fat fibre   energy.grp   chd RowNum_original entry_age exit_age event
-#    <dbl>     <date>     <date>     <date>     <dbl> <dbl>      <fctr> <dbl>   <dbl>   <dbl>    <dbl>  <dbl> <dbl>       <fctr> <dbl>           <int>     <dbl>    <dbl> <lgl>
-#  1   305 1970-01-16 1971-07-16 1923-07-01  1.494867     3 Bank worker     1 23.6293      NA       NA 10.983 1.298 <=2750 KCals     1              71  46.57808 48.07397  TRUE
-#  2   200 1966-12-17 1986-12-02 1919-06-19 19.958932     0 Bank worker    12 24.4868 177.800 73.48320 12.804 1.839 <=2750 KCals     0              61  47.52877 67.50137 FALSE
-#  3   332 1971-06-17 1986-12-02 1929-03-18 15.460643     0 Bank worker     6 27.4970 173.990 68.72040 10.036 1.906 <=2750 KCals     0             152  42.27671 57.74795 FALSE
-#  4   324 1971-06-17 1975-12-08 1926-11-15  4.476386     1 Bank worker     6 25.5941 172.720 84.95928 11.323 2.021 <=2750 KCals     1             186  44.61644 49.09589  TRUE
-#  5   333 1971-06-17 1986-12-02 1925-01-30 15.460643     0 Bank worker     6 20.5672 186.055 67.35960  8.630 1.239 <=2750 KCals     0              41  46.40822 61.87945 FALSE
-#  6   220 1967-01-17 1986-12-02 1918-03-04 19.874059     0 Bank worker     1 27.2441 182.880 72.12240 11.962 1.350 <=2750 KCals     0             156  48.90685 68.79452 FALSE
-#  7   278 1969-04-16 1973-08-23 1920-07-11  4.353183     3 Bank worker     4 25.1397 173.990 81.19440 12.389 1.293 <=2750 KCals     1             117  48.79726 53.15342  TRUE
-#  8   252 1967-11-17 1979-05-11 1916-10-04 11.479808    15 Bank worker    11 26.7377 175.895 72.57600 11.435 1.819 <=2750 KCals     0             120  51.15342 62.64110  TRUE
-#  9   247 1968-03-16 1979-06-25 1918-07-10 11.274470    13 Bank worker     3 18.5402 177.800 97.07040  9.147 0.991 <=2750 KCals     1               5  49.71781 61.00000  TRUE
-# 10   272 1969-03-16 1973-12-13 1920-03-06  4.744695     3 Bank worker     3 20.3073 175.260 61.00920  8.536 0.765 <=2750 KCals     1               6  49.06027 53.80822  TRUE
-# # ... with 327 more rows, and 9 more variables: strata <fctr>, varname4event <lgl>, .entry_age <dbl>, .exit_age <dbl>, MatchingPairID <fctr>, MatchingCtrlNum <dbl>, is.Case <lgl>,
-# #   is.Ctrl.Candidate <lgl>, is.assigned <lgl>
+#       id doe        dox        dob            y  fail job      month energy height weight   fat fibre energy.grp   chd RowNum_original entry_age exit_age event strata       .event .entry_age
+#    <dbl> <date>     <date>     <date>     <dbl> <dbl> <fct>    <dbl>  <dbl>  <dbl>  <dbl> <dbl> <dbl> <fct>      <dbl>           <int>     <dbl>    <dbl> <lgl> <fct>        <lgl>       <dbl>
+#  1   305 1970-01-16 1971-07-16 1923-07-01  1.49     3 Bank wo~     1   23.6    NA    NA   11.0  1.30  <=2750 KC~     1              71      46.6     48.1 TRUE  Bank worker~ TRUE         46.6
+#  2   200 1966-12-17 1986-12-02 1919-06-19 20.0      0 Bank wo~    12   24.5   178.   73.5 12.8  1.84  <=2750 KC~     0              61      47.5     67.5 FALSE Bank worker~ FALSE        47.5
+#  3   332 1971-06-17 1986-12-02 1929-03-18 15.5      0 Bank wo~     6   27.5   174.   68.7 10.0  1.91  <=2750 KC~     0             152      42.3     57.7 FALSE Bank worker~ FALSE        42.3
+#  4   324 1971-06-17 1975-12-08 1926-11-15  4.48     1 Bank wo~     6   25.6   173.   85.0 11.3  2.02  <=2750 KC~     1             186      44.6     49.1 TRUE  Bank worker~ TRUE         44.6
+#  5   333 1971-06-17 1986-12-02 1925-01-30 15.5      0 Bank wo~     6   20.6   186.   67.4  8.63 1.24  <=2750 KC~     0              41      46.4     61.9 FALSE Bank worker~ FALSE        46.4
+#  6   220 1967-01-17 1986-12-02 1918-03-04 19.9      0 Bank wo~     1   27.2   183.   72.1 12.0  1.35  <=2750 KC~     0             156      48.9     68.8 FALSE Bank worker~ FALSE        48.9
+#  7   278 1969-04-16 1973-08-23 1920-07-11  4.35     3 Bank wo~     4   25.1   174.   81.2 12.4  1.29  <=2750 KC~     1             117      48.8     53.2 TRUE  Bank worker~ TRUE         48.8
+#  8   252 1967-11-17 1979-05-11 1916-10-04 11.5     15 Bank wo~    11   26.7   176.   72.6 11.4  1.82  <=2750 KC~     0             120      51.2     62.6 TRUE  Bank worker~ TRUE         51.2
+#  9   247 1968-03-16 1979-06-25 1918-07-10 11.3     13 Bank wo~     3   18.5   178.   97.1  9.15 0.991 <=2750 KC~     1               5      49.7     61   TRUE  Bank worker~ TRUE         49.7
+# 10   272 1969-03-16 1973-12-13 1920-03-06  4.74     3 Bank wo~     3   20.3   175.   61.0  8.54 0.765 <=2750 KC~     1               6      49.1     53.8 TRUE  Bank worker~ TRUE         49.1
+# # ... with 327 more rows, and 6 more variables: .exit_age <dbl>, MatchingPairID <fct>, MatchingCtrlNum <dbl>, is.Case <lgl>, is.Ctrl.Candidate <lgl>, is.assigned <lgl>
 # 
 # $tableone_post_total
 #                        Stratified by is.Case
@@ -671,24 +949,336 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .even
 #   entry_age (mean (sd)) 49.84 (6.03) 50.90 (6.38)  0.289     
 #   exit_age (mean (sd))  64.86 (4.92) 58.03 (6.22) <0.001     
 # 
-# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned)
+# attr(,"function.input")
+# attr(,"function.input")$data.stratified.ccwc
+# function (.mydata, .vars4strata = c("female", "age.cut"), paste.collapse = "|", 
+#     ..., varname4event = "failure", varname4entry = ".entry_age", 
+#     varname4exit = ".exit_age", varname4origin = NULL, .MatchingRatio = 2, 
+#     seed = 1, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     apply.na.omit = F, print.process = F, print.map.process = T, 
+#     load.dependent.library = T, apply.function.dichotomous2logical = F) 
+# {
+#     if (!is.data.frame(.mydata)) 
+#         stop("!is.data.frame(.mydata)")
+#     if (load.dependent.library == T) {
+#         library(tidyverse)
+#         library(tableone)
+#     }
+#     select = dplyr::select
+#     .mydata$RowNum_original_before_strata = 1:nrow(.mydata)
+#     .mydata.strata_list = data.strata_list(.mydata = .mydata, 
+#         .vars4strata = .vars4strata, paste.collapse = paste.collapse)
+#     if (print.map.process == T) {
+#         .mydata.strata_list.ccwc = .mydata.strata_list %>% seq_along %>% 
+#             map(function(i, ...) {
+#                 print(paste0("map to data.ccwc() with .mydata.strata_list$", 
+#                   names(.mydata.strata_list)[i]))
+#                 out = .mydata.strata_list[[i]] %>% data.ccwc(...)
+#                 out
+#             }, varname4event = varname4event, varname4entry = varname4entry, 
+#                 varname4exit = varname4exit, varname4origin = varname4origin, 
+#                 seed = seed, .MatchingRatio = .MatchingRatio, 
+#                 add_tableone_pre_post = F, print.process = print.process, 
+#                 RowNum_original_before_strata = "RowNum_original_before_strata", 
+#                 apply.na.omit = apply.na.omit, load.dependent.library = F, 
+#                 apply.function.dichotomous2logical = apply.function.dichotomous2logical)
+#         names(.mydata.strata_list.ccwc) = names(.mydata.strata_list)
+#     }
+#     else {
+#         .mydata.strata_list.ccwc = .mydata.strata_list %>% map(data.ccwc, 
+#             varname4event = varname4event, varname4entry = varname4entry, 
+#             varname4exit = varname4exit, varname4origin = varname4origin, 
+#             seed = seed, .MatchingRatio = .MatchingRatio, add_tableone_pre_post = F, 
+#             print.process = F, RowNum_original_before_strata = "RowNum_original_before_strata", 
+#             apply.na.omit = apply.na.omit, load.dependent.library = F, 
+#             apply.function.dichotomous2logical = apply.function.dichotomous2logical)
+#     }
+#     out = list()
+#     out$tableone_pre = CreateTableOne(vars = c(varname4entry, 
+#         varname4exit), strata = varname4event, data = .mydata, 
+#         test = T, includeNA = T)
+#     warning_lgl = .mydata.strata_list.ccwc %>% map_lgl(function(object) {
+#         as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[varname4event]])) < 2"))
+#     })
+#     out$data = .mydata.strata_list.ccwc[!warning_lgl] %>% map(function(x) x$data) %>% 
+#         reduce(rbind)
+#     out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID) %>% 
+#         as.factor
+#     if (sum(warning_lgl) > 0) {
+#         warning(paste0("length(unique(.mydata[[varname4event]]) < 2", 
+#             ": \n", deparse(names(.mydata.strata_list.ccwc)[warning_lgl])))
+#     }
+#     out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
+#         varname4exit), strata = "is.Case", data = filter(out$data, 
+#         is.assigned == T), test = T, includeNA = T)
+#     attr(out$data, ".vars4strata") = .vars4strata
+#     attr(out$data, ".event") = varname4event
+#     attr(out$data, ".entry") = varname4entry
+#     attr(out$data, ".exit") = varname4exit
+#     attr(out$data, ".MatchingRatio") = .MatchingRatio
+#     attr(out$data, "apply.na.omit") = apply.na.omit
+#     attr(out, "function.input") = list(data.stratified.ccwc = data.stratified.ccwc, 
+#         data.strata_list = data.strata_list, data.ccwc = data.ccwc, 
+#         .vars4strata = .vars4strata, varname4event = varname4event, 
+#         varname4entry = varname4entry, varname4exit = varname4exit, 
+#         .MatchingRatio = .MatchingRatio, apply.na.omit = apply.na.omit)
+#     out$data$RowNum_original = out$data$RowNum_original_before_strata
+#     out$data$RowNum_original_before_strata = NULL
+#     out$data$RowNum_after_na.omit = NULL
+#     out
+# }
+# <bytecode: 0x000000001fc5df78>
+# 
+# attr(,"function.input")$data.strata_list
+# function (.mydata, .vars4strata = c("female", "age.cut"), paste.collapse = "_") 
+# {
+#     if ("strata" %in% names(.mydata)) 
+#         stop("\"strata\" %in% names(.mydata)")
+#     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, 
+#         FUN = paste, collapse = paste.collapse)
+#     .mydata$strata = .mydata$strata %>% as.factor
+#     out = map(levels(.mydata$strata), function(chr) {
+#         out2 = .mydata %>% filter(strata == (!(!chr))) %>% as.tibble
+#         out2
+#     })
+#     names(out) = levels(.mydata$strata)
+#     attr(out, ".vars4strata") = .vars4strata
+#     attr(out, "function.input") = list(data.strata_list = data.strata_list, 
+#         .vars4strata = .vars4strata)
+#     out
+# }
+# <bytecode: 0x000000001f7e1188>
+# 
+# attr(,"function.input")$data.ccwc
+# function (.mydata, ..., varname4event = "failure", varname4entry = ".entry_age", 
+#     varname4exit = ".exit_age", varname4origin = NULL, .MatchingRatio = 2, 
+#     seed = 1, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     apply.na.omit = F, print.process = F, load.dependent.library = T, 
+#     apply.function.dichotomous2logical = F) 
+# {
+#     if (load.dependent.library == T) {
+#         library(tidyverse)
+#         library(tableone)
+#     }
+#     select = dplyr::select
+#     if (is.null(.mydata$RowNum_original)) {
+#         .mydata$RowNum_original = 1:nrow(.mydata)
+#     }
+#     Call <- match.call(expand.dots = TRUE)
+#     function.dichotomous2logical = function(x, dichotomous2integer = F) {
+#         if (is.numeric(x)) {
+#             x = as.character(x)
+#         }
+#         if (is.character(x)) {
+#             x = as.factor(x)
+#         }
+#         if (length(unique(x)) == 1) {
+#             warning("length(unique(x)) == 1")
+#         }
+#         if (!is.null(levels(x))) {
+#             if (length(levels(x)) %in% 1:2) {
+#                 if (dichotomous2integer == T) {
+#                   warning(paste0(ifelse(is.null(levels(x)[1]), 
+#                     "NULL", levels(x)[1]), " is coded to 0 & ", 
+#                     ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), 
+#                     " is coded to 1"))
+#                 }
+#                 else {
+#                   warning(paste0(ifelse(is.null(levels(x)[1]), 
+#                     "NULL", levels(x)[1]), " is coded to FALSE & ", 
+#                     ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), 
+#                     " is coded to TRUE"))
+#                 }
+#                 x = as.integer(x) - 1
+#             }
+#             else if (length(levels(x)) > 2) {
+#                 stop("length(levels(x)) > 2")
+#             }
+#         }
+#         if (dichotomous2integer == T) {
+#             x = as.integer(x)
+#         }
+#         else {
+#             x = as.logical(x)
+#         }
+#         x
+#     }
+#     .mydata[[".event"]] = .mydata[[varname4event]] %>% function.dichotomous2logical
+#     if (!is.character(varname4entry)) {
+#         stop("!is.character(varname4entry)")
+#     }
+#     else if (!is.character(varname4exit)) {
+#         stop("!is.character(varname4exit)")
+#     }
+#     else if (is.numeric(varname4origin)) {
+#         stop("is.numeric(varname4origin)")
+#     }
+#     else {
+#         if (!is.null(varname4origin)) {
+#             .mydata[[".entry_age"]] = .mydata[[varname4entry]] - 
+#                 .mydata[[varname4origin]]
+#             .mydata[[".exit_age"]] = .mydata[[varname4exit]] - 
+#                 .mydata[[varname4origin]]
+#         }
+#         else {
+#             .mydata[[".entry_age"]] = .mydata[[varname4entry]]
+#             .mydata[[".exit_age"]] = .mydata[[varname4exit]]
+#         }
+#     }
+#     if (length(unique(.mydata[[varname4event]])) < 2) {
+#         print("length(unique(.mydata[[varname4event]]) < 2")
+#         out = list()
+#         out$data = NA
+#         attr(out, "error.message") = "length(unique(.mydata[[varname4event]])) < 2"
+#     }
+#     else {
+#         out = list()
+#         if (add_tableone_pre_post == T) {
+#             out$tableone_pre = CreateTableOne(vars = c(varname4entry, 
+#                 varname4exit), strata = varname4event, data = .mydata, 
+#                 test = T, includeNA = T)
+#         }
+#         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
+#             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
+#         .event.exit_age.unique.sort = .mydata %>% filter(.event == 
+#             T) %>% select(.exit_age) %>% unlist %>% unname %>% 
+#             unique %>% sort
+#         incomplete = 0
+#         ties <- FALSE
+#         .mydata.ccwc = .mydata
+#         for (i in 1:length(.event.exit_age.unique.sort)) {
+#             if (print.process == T) 
+#                 print(paste0("*** ", i, "-th iteration for .event.exit_age.unique.sort: ", 
+#                   .event.exit_age.unique.sort[i]))
+#             which.Case = which({
+#                 ({
+#                   abs(.mydata.ccwc[[".exit_age"]] - .event.exit_age.unique.sort[i]) < 
+#                     0.001
+#                 }) & .mydata.ccwc[[".event"]] == T & .mydata.ccwc$is.assigned == 
+#                   F
+#             })
+#             if (length(which.Case) == 0) {
+#                 if (print.process == T) 
+#                   print(paste0("which.Case: ", which.Case))
+#                 print(paste0("*** Caution) ", i, "-th iteration for: ", 
+#                   .event.exit_age.unique.sort[i], " -> this case may have already been assigned as control"))
+#             }
+#             else {
+#                 if (print.process == T) 
+#                   print(paste0("which.Case: ", which.Case))
+#                 .mydata.ccwc[which.Case, c("is.Case", "is.assigned")] = T
+#                 .mydata.ccwc[which.Case, c("is.Ctrl.Candidate")] = F
+#                 .mydata.ccwc[which.Case, c("MatchingPairID")] = i
+#                 .mydata.ccwc[which.Case, c("MatchingCtrlNum")] = 0
+#                 which.Ctrl.Candidate = which({
+#                   .mydata.ccwc$is.Ctrl.Candidate == T & (.mydata.ccwc[[".entry_age"]] <= 
+#                     .event.exit_age.unique.sort[i]) & (.mydata.ccwc[[".exit_age"]] >= 
+#                     .event.exit_age.unique.sort[i])
+#                 })
+#                 if (print.process == T) 
+#                   print(paste0("which.Ctrl.Candidate: ", deparse(which.Ctrl.Candidate)))
+#                 if (.MatchingRatio * length(which.Case) > length(which.Ctrl.Candidate)) {
+#                   incomplete = incomplete + 1
+#                 }
+#                 tmp.nCtrl = min(.MatchingRatio * length(which.Case), 
+#                   length(which.Ctrl.Candidate))
+#                 if (print.process == T) 
+#                   print(paste0("incomplete: ", incomplete))
+#                 if (print.process == T) 
+#                   print(paste0("tmp.nCtrl: ", tmp.nCtrl))
+#                 set.seed(seed + i)
+#                 if (print.process == T) 
+#                   print(paste0("set.seed: ", seed + i))
+#                 which.Ctrl = sample(which.Ctrl.Candidate, size = tmp.nCtrl)
+#                 if (print.process == T) 
+#                   print(paste0("which.Ctrl: ", deparse(which.Ctrl)))
+#                 .mydata.ccwc[which.Ctrl, c("is.assigned")] = T
+#                 .mydata.ccwc[which.Ctrl, c("is.Ctrl.Candidate")] = F
+#                 .mydata.ccwc[which.Ctrl, c("MatchingPairID")] = i
+#                 .mydata.ccwc[which.Ctrl, c("MatchingCtrlNum")] = 1:{
+#                   length(which.Ctrl)/length(which.Case)
+#                 }
+#                 if (print.process == T) 
+#                   print(.mydata.ccwc[c(which.Case, which.Ctrl), 
+#                     ] %>% select(RowNum_original, .entry_age, 
+#                     .exit_age, varname4event, strata, MatchingPairID, 
+#                     MatchingCtrlNum, is.Case, is.Ctrl.Candidate, 
+#                     is.assigned))
+#                 if (any(.mydata.ccwc[which.Ctrl, ".event"] == 
+#                   T)) {
+#                   print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", 
+#                     deparse(.mydata.ccwc[{
+#                       which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == 
+#                         T]
+#                     }, ]$RowNum_original)))
+#                 }
+#                 if (length(which.Case) > 1) {
+#                   ties <- TRUE
+#                   print(paste0("** ties in RowNum_original: ", 
+#                     deparse(.mydata.ccwc[which.Case, ]$RowNum_original)))
+#                 }
+#             }
+#         }
+#         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
+#         if (add_tableone_pre_post == T) {
+#             out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
+#                 varname4exit), strata = "is.Case", data = filter(.mydata.ccwc, 
+#                 is.assigned == T), test = T, includeNA = T)
+#         }
+#     }
+#     attr(out$data, ".event") = varname4event
+#     attr(out$data, ".entry") = varname4entry
+#     attr(out$data, ".exit") = varname4exit
+#     attr(out$data, ".origin") = varname4origin
+#     attr(out$data, ".MatchingRatio") = .MatchingRatio
+#     attr(out$data, "apply.na.omit") = apply.na.omit
+#     attr(out, "function.input") = list(Call = match.call(expand.dots = TRUE), 
+#         fun = data.ccwc, varname4event = varname4event, varname4entry = varname4entry, 
+#         varname4exit = varname4exit, varname4origin = varname4origin, 
+#         .MatchingRatio = .MatchingRatio, apply.na.omit = apply.na.omit, 
+#         apply.function.dichotomous2logical = apply.function.dichotomous2logical)
+#     if (is.data.frame(out$data)) {
+#         out$data$RowNum_after_na.omit = NULL
+#     }
+#     out
+# }
+# <bytecode: 0x000000000305ff08>
+# 
+# attr(,"function.input")$.vars4strata
+# [1] "job"        "energy.grp"
+# 
+# attr(,"function.input")$varname4event
+# [1] "event"
+# 
+# attr(,"function.input")$varname4entry
+# [1] "entry_age"
+# 
+# attr(,"function.input")$varname4exit
+# [1] "exit_age"
+# 
+# attr(,"function.input")$.MatchingRatio
+# [1] 2
+# 
+# attr(,"function.input")$apply.na.omit
+# [1] FALSE
+# 
+# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
 # # A tibble: 337 x 10
-#    RowNum_original entry_age exit_age varname4event                   strata             MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
-#              <int>     <dbl>    <dbl>  <lgl>                   <fctr>                     <fctr>           <dbl>   <lgl>             <lgl>       <lgl>
-#  1              71  46.57808 48.07397   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               0    TRUE             FALSE        TRUE
-#  2              61  47.52877 67.50137  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               1   FALSE             FALSE        TRUE
-#  3             152  42.27671 57.74795  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               2   FALSE             FALSE        TRUE
-#  4             186  44.61644 49.09589   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               0    TRUE             FALSE        TRUE
-#  5              41  46.40822 61.87945  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               1   FALSE             FALSE        TRUE
-#  6             156  48.90685 68.79452  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               2   FALSE             FALSE        TRUE
-#  7             117  48.79726 53.15342   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               0    TRUE             FALSE        TRUE
-#  8             120  51.15342 62.64110   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               1   FALSE             FALSE        TRUE
-#  9               5  49.71781 61.00000   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               2   FALSE             FALSE        TRUE
-# 10               6  49.06027 53.80822   TRUE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_4               0    TRUE             FALSE        TRUE
+#    RowNum_original entry_age exit_age .event strata                   MatchingPairID             MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#              <int>     <dbl>    <dbl> <lgl>  <fct>                    <fct>                                <dbl> <lgl>   <lgl>             <lgl>      
+#  1              71      46.6     48.1 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               0 TRUE    FALSE             TRUE       
+#  2              61      47.5     67.5 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               1 FALSE   FALSE             TRUE       
+#  3             152      42.3     57.7 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               2 FALSE   FALSE             TRUE       
+#  4             186      44.6     49.1 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               0 TRUE    FALSE             TRUE       
+#  5              41      46.4     61.9 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               1 FALSE   FALSE             TRUE       
+#  6             156      48.9     68.8 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               2 FALSE   FALSE             TRUE       
+#  7             117      48.8     53.2 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               0 TRUE    FALSE             TRUE       
+#  8             120      51.2     62.6 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               1 FALSE   FALSE             TRUE       
+#  9               5      49.7     61   TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               2 FALSE   FALSE             TRUE       
+# 10               6      49.1     53.8 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_4               0 TRUE    FALSE             TRUE       
 # # ... with 327 more rows
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame()
-# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame()
-#     RowNum_original entry_age exit_age varname4event                   strata               MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
+#     RowNum_original entry_age exit_age .event                   strata               MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
 # 1                71  46.57808 48.07397   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               0    TRUE             FALSE        TRUE
 # 2                61  47.52877 67.50137  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               1   FALSE             FALSE        TRUE
 # 3               152  42.27671 57.74795  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               2   FALSE             FALSE        TRUE
@@ -790,6 +1380,8 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .even
 # 99              330  51.56986 62.54795   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_12               0    TRUE             FALSE        TRUE
 # 100             288  53.52603 70.04658  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_12               1   FALSE             FALSE        TRUE
 #  [ reached getOption("max.print") -- omitted 237 rows ]
+
+
 
 
 #@ end -----
