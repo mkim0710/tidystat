@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/r/data.stratified.ccwc.source.r")
+# source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratified.ccwc.source.r")
 
 
 #@ data.ccwc = function( =====
