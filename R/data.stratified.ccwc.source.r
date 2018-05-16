@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/r/data.stratifed.ccwc.source.r")
+# source("https://github.com/mkim0710/tidystat/raw/master/r/data.stratified.ccwc.source.r")
 
 
 #@ data.ccwc = function( =====
@@ -18,7 +18,7 @@ data.ccwc = function(
     , load.dependent.library = T
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratifed.ccwc.source.r")
+    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratified.ccwc.source.r")
     if (load.dependent.library == T) {
         library(tidyverse)
         library(tableone)
@@ -288,7 +288,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 # List of 3
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
-#  $ data               :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	12 obs. of  13 variables:
+#  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	12 obs. of  13 variables:
 #   ..- attr(*, ".event")= chr "event"
 #   ..- attr(*, ".entry")= chr "entry_age"
 #   ..- attr(*, ".exit")= chr "exit_age"
@@ -654,12 +654,12 @@ diet.strata_list[[1]]
 # > diet.strata_list = diet %>% data.strata_list(.vars4strata = c("job", "energy.grp"), paste.collapse = "|")
 # > diet.strata_list %>% str(max.level = 1)
 # List of 6
-#  $ Bank worker|<=2750 KCals:Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	68 obs. of  20 variables:
-#  $ Bank worker|>2750 KCals :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	83 obs. of  20 variables:
-#  $ Conductor|<=2750 KCals  :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	39 obs. of  20 variables:
-#  $ Conductor|>2750 KCals   :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	45 obs. of  20 variables:
-#  $ Driver|<=2750 KCals     :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	48 obs. of  20 variables:
-#  $ Driver|>2750 KCals      :Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	54 obs. of  20 variables:
+#  $ Bank worker|<=2750 KCals:Classes ??tbl_df??, ??tbl?? and 'data.frame':	68 obs. of  20 variables:
+#  $ Bank worker|>2750 KCals :Classes ??tbl_df??, ??tbl?? and 'data.frame':	83 obs. of  20 variables:
+#  $ Conductor|<=2750 KCals  :Classes ??tbl_df??, ??tbl?? and 'data.frame':	39 obs. of  20 variables:
+#  $ Conductor|>2750 KCals   :Classes ??tbl_df??, ??tbl?? and 'data.frame':	45 obs. of  20 variables:
+#  $ Driver|<=2750 KCals     :Classes ??tbl_df??, ??tbl?? and 'data.frame':	48 obs. of  20 variables:
+#  $ Driver|>2750 KCals      :Classes ??tbl_df??, ??tbl?? and 'data.frame':	54 obs. of  20 variables:
 #  - attr(*, ".vars4strata")= chr [1:2] "job" "energy.grp"
 #  - attr(*, "function.input")=List of 2
 # > diet.strata_list[[1]]
