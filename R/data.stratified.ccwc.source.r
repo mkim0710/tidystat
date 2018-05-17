@@ -26,11 +26,11 @@ data.ccwc = function(
     }
     select = dplyr::select
     
+    Call <- match.call(expand.dots = TRUE)
+    
     if (is.null(.mydata$RowNum_original)) {
         .mydata$RowNum_original = 1:nrow(.mydata)
     }
-    
-    Call <- match.call(expand.dots = TRUE)
 
     function.dichotomous2logical = function(x, dichotomous2integer = F) {
         # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.source.r")
