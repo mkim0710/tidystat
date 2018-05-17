@@ -69,7 +69,7 @@ data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "aaa")
 data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "letters") %>% str
 data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 # > df %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	26 obs. of  8 variables:
+# Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : chr  "1" "2" "3" "4" ...
 #  $ LETTERS  : chr  "A" "B" "C" "D" ...
 #  $ letters  : chr  "a" "b" "c" "d" ...
@@ -79,7 +79,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : chr  "10100000" "10200000" "10300000" "10400000" ...
 # > data_frame.map_df.as.factor(df) %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	26 obs. of  8 variables:
+# Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ letters  : Factor w/ 26 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -89,7 +89,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
 # > data_frame.map_df.as.factor(df, colnames.as.factor = NULL) %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	26 obs. of  8 variables:
+# Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ letters  : Factor w/ 26 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -99,7 +99,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
 # > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = NULL) %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	26 obs. of  8 variables:
+# Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","10","11",..: 1 12 20 21 22 23 24 25 26 2 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ letters  : Factor w/ 26 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -109,7 +109,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
 # > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "aaa") %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	26 obs. of  8 variables:
+# Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","10","11",..: 1 12 20 21 22 23 24 25 26 2 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ letters  : Factor w/ 26 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -119,7 +119,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : Factor w/ 26 levels "1.1e+07","1.2e+07",..: 3 4 5 6 7 8 9 10 11 1 ...
 # > data_frame.map_df.as.factor(df, colnames_character.as.numeric.as.factor = "letters") %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	26 obs. of  8 variables:
+# Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","10","11",..: 1 12 20 21 22 23 24 25 26 2 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ letters  : Factor w/ 26 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -133,7 +133,7 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 # 2: In .f(.x[[i]], ...) :
 #   any(is.na(as.numeric(x))) -> Check colnames_character.as.numeric.as.factor
 # > data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	26 obs. of  8 variables:
+# Classes ??tbl_df??, ??tbl?? and 'data.frame':	26 obs. of  8 variables:
 #  $ rowname  : Factor w/ 26 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ LETTERS  : Factor w/ 26 levels "A","B","C","D",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ letters  : Factor w/ 26 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -142,6 +142,67 @@ data_frame.map_df.as.factor(df, colnames.not.as.factor = "KEY_SEQ") %>% str
 #  $ PERSON_ID: Factor w/ 26 levels "101","102","103",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ KEY      : num  1e+08 1e+08 1e+08 1e+08 1e+08 ...
 #  $ KEY_SEQ  : chr  "10100000" "10200000" "10300000" "10400000" ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+is.numeric(as.Date("2002-01-01"))
+is.integer(as.Date("2002-01-01"))
+is.character(as.Date("2002-01-01"))
+is.POSIXct(as.Date("2002-01-01"))
+is.POSIXlt(as.Date("2002-01-01"))
+is.POSIXt(as.Date("2002-01-01"))
+class(as.Date("2002-01-01"))
+lubridate::is.Date(as.Date("2002-01-01"))
+is.numeric(999999999L)
+is.integer(999999999L)
+class(999999999L)
+is.numeric(999999999)
+is.integer(999999999)
+class(999999999)
+# > is.numeric(as.Date("2002-01-01"))
+# [1] FALSE
+# > is.integer(as.Date("2002-01-01"))
+# [1] FALSE
+# > is.character(as.Date("2002-01-01"))
+# [1] FALSE
+# > is.POSIXct(as.Date("2002-01-01"))
+# [1] FALSE
+# > is.POSIXlt(as.Date("2002-01-01"))
+# [1] FALSE
+# > is.POSIXt(as.Date("2002-01-01"))
+# [1] FALSE
+# > class(as.Date("2002-01-01"))
+# [1] "Date"
+# > lubridate::is.Date(as.Date("2002-01-01"))
+# [1] TRUE
+# > is.numeric(999999999L)
+# [1] TRUE
+# > is.integer(999999999L)
+# [1] TRUE
+# > class(999999999L)
+# [1] "integer"
+# > is.numeric(999999999)
+# [1] TRUE
+# > is.integer(999999999)
+# [1] FALSE
+# > class(999999999)
+# [1] "numeric"
+
+
+
 
 
 #@ end -----
