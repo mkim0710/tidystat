@@ -98,7 +98,6 @@ data.ccwc = function(
                 .mydata[[".exit_age"]] = .mydata[[".exit_age"]] - .mydata[[varname4origin]]
             }
         }
-        
     }
 
     # if (apply.na.omit == T) {
@@ -233,6 +232,7 @@ data.ccwc = function(
         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
             
         # .mydata.ccwc$.new.label = c("Control", "Case")[as.numeric(.mydata.ccwc$MatchingCtrlNum == 0)+1]
+        
         # if (add_tableone_pre_post == T) {
         #     out$tableone_post_total = CreateTableOne(
         #         vars = c(varname4entry, varname4exit), strata = "is.Case"
