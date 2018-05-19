@@ -176,11 +176,10 @@ data.ccwc = function(
 
             # Browse[2]> which.Case %>% str
             # int 2
+            if(print.process == T) print(paste0("which.Case: ", deparse(which.Case)))
             if (length(which.Case) == 0) {
-                if(print.process == T) print(paste0("which.Case: ", deparse(which.Case)))
                 print(paste0("*** Caution) ", i, "-th iteration for: ", .event.exit_age.unique.sort[i], " -> this case may have already been assigned as control"))
             } else {
-                if(print.process == T) print(paste0("which.Case: ", deparse(which.Case)))
                 .mydata.ccwc[which.Case, c("is.Case", "is.assigned")] = T
                 .mydata.ccwc[which.Case, c("is.Ctrl.Candidate")] = F
                 .mydata.ccwc[which.Case, c("MatchingPairID")] = i
@@ -193,8 +192,8 @@ data.ccwc = function(
                 which.Ctrl.Candidate = which({ .mydata.ccwc$is.Ctrl.Candidate == T & (.mydata.ccwc[[".entry_age"]] <= .event.exit_age.unique.sort[i]) & (.mydata.ccwc[[".exit_age"]] >= .event.exit_age.unique.sort[i]) })
                 # which.Ctrl.Candidate %>% str
                 # print(.mydata.ccwc[c(which.Case, which.Ctrl.Candidate), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
+                
                 if(print.process == T) print(paste0("which.Ctrl.Candidate: ", deparse(which.Ctrl.Candidate)))
-				
 				if (length(which.Ctrl.Candidate) == 0) {  # debug 180519
 					warning(paste0("length(which.Ctrl.Candidate) == 0", "for .mydata.ccwc[which.Case,], where which.Case is: ", deparse(which.Case) ))
 				} else {
