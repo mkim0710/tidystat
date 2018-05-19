@@ -2,7 +2,7 @@
 
 
 
-#@ data.ccwc = function( =====
+#@ data.ccwc = function( - debug 180519 v3 =====
 data.ccwc = function(
     .mydata
     , ...
@@ -177,10 +177,10 @@ data.ccwc = function(
             # Browse[2]> which.Case %>% str
             # int 2
             if (length(which.Case) == 0) {
-                if(print.process == T) print(paste0("which.Case: ", which.Case))
+                if(print.process == T) print(paste0("which.Case: ", deparse(which.Case)))
                 print(paste0("*** Caution) ", i, "-th iteration for: ", .event.exit_age.unique.sort[i], " -> this case may have already been assigned as control"))
             } else {
-                if(print.process == T) print(paste0("which.Case: ", which.Case))
+                if(print.process == T) print(paste0("which.Case: ", deparse(which.Case)))
                 .mydata.ccwc[which.Case, c("is.Case", "is.assigned")] = T
                 .mydata.ccwc[which.Case, c("is.Ctrl.Candidate")] = F
                 .mydata.ccwc[which.Case, c("MatchingPairID")] = i
@@ -194,38 +194,42 @@ data.ccwc = function(
                 # which.Ctrl.Candidate %>% str
                 # print(.mydata.ccwc[c(which.Case, which.Ctrl.Candidate), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
                 if(print.process == T) print(paste0("which.Ctrl.Candidate: ", deparse(which.Ctrl.Candidate)))
+				
+				if (length(which.Ctrl.Candidate) == 0) {  # debug 180519
+					warning(paste0("length(which.Ctrl.Candidate) == 0", "for .mydata.ccwc[which.Case,], where which.Case is: ", deparse(which.Case) ))
+				} else {
+					## ccwc() 160 if (controls*ncase > sum(noncase) & controls*ncase > 0) {incomplete = incomplete + 1}
+					## ccwc() 159 ncont = min(controls*ncase, sum(noncase))
+					if(.MatchingRatio*length(which.Case) > length(which.Ctrl.Candidate)) {incomplete = incomplete + 1}
+					tmp.nCtrl = min(.MatchingRatio*length(which.Case), length(which.Ctrl.Candidate))
+					if(print.process == T) print(paste0("incomplete: ", incomplete))
+					if(print.process == T) print(paste0("tmp.nCtrl: ", tmp.nCtrl))
 
-                ## ccwc() 160 if (controls*ncase > sum(noncase) & controls*ncase > 0) {incomplete = incomplete + 1}
-                ## ccwc() 159 ncont = min(controls*ncase, sum(noncase))
-                if(.MatchingRatio*length(which.Case) > length(which.Ctrl.Candidate)) {incomplete = incomplete + 1}
-                tmp.nCtrl = min(.MatchingRatio*length(which.Case), length(which.Ctrl.Candidate))
-                if(print.process == T) print(paste0("incomplete: ", incomplete))
-                if(print.process == T) print(paste0("tmp.nCtrl: ", tmp.nCtrl))
 
+					## ccwc() 169 pr[(nn+ncase+1):(newnn)] <- sample((1:n)[noncase], size=ncont)
+					## ccwc() 169 pr[(nn+ncase+1):(newnn)] <- sample(which(noncase == T), size=ncont)
+					set.seed(seed + i)
+					if(print.process == T) print(paste0("set.seed: ", seed + i))
+					which.Ctrl = sample(which.Ctrl.Candidate, size = tmp.nCtrl)
+					if(print.process == T) print(paste0("which.Ctrl: ", deparse(which.Ctrl)))
 
-                ## ccwc() 169 pr[(nn+ncase+1):(newnn)] <- sample((1:n)[noncase], size=ncont)
-                ## ccwc() 169 pr[(nn+ncase+1):(newnn)] <- sample(which(noncase == T), size=ncont)
-                set.seed(seed + i)
-                if(print.process == T) print(paste0("set.seed: ", seed + i))
-                which.Ctrl = sample(which.Ctrl.Candidate, size = tmp.nCtrl)
-                if(print.process == T) print(paste0("which.Ctrl: ", deparse(which.Ctrl)))
+					.mydata.ccwc[which.Ctrl, c("is.assigned")] = T
+					.mydata.ccwc[which.Ctrl, c("is.Ctrl.Candidate")] = F
+					.mydata.ccwc[which.Ctrl, c("MatchingPairID")] = i
+					.mydata.ccwc[which.Ctrl, c("MatchingCtrlNum")] = 1:{length(which.Ctrl)/length(which.Case)}
+					if(print.process == T) print(.mydata.ccwc[c(which.Case, which.Ctrl), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
+					if(length(which.Ctrl) > 0) {  # debug 180516
+						if(any(.mydata.ccwc[which.Ctrl, ".event"] == T)) {
+							print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", deparse(.mydata.ccwc[{which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == T]}, ]$RowNum_original) ))
+						}
+					}
 
-                .mydata.ccwc[which.Ctrl, c("is.assigned")] = T
-                .mydata.ccwc[which.Ctrl, c("is.Ctrl.Candidate")] = F
-                .mydata.ccwc[which.Ctrl, c("MatchingPairID")] = i
-                .mydata.ccwc[which.Ctrl, c("MatchingCtrlNum")] = 1:{length(which.Ctrl)/length(which.Case)}
-                if(print.process == T) print(.mydata.ccwc[c(which.Case, which.Ctrl), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
-                if(length(which.Ctrl) > 0) {  # debug 180516
-                    if(any(.mydata.ccwc[which.Ctrl, ".event"] == T)) {
-                        print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", deparse(.mydata.ccwc[{which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == T]}, ]$RowNum_original) ))
-                    }
-                }
-
-                ## ccwc() 154 ties <- TRUE
-                if(length(which.Case) > 1) {
-                    ties <- TRUE
-                    print(paste0("** ties in RowNum_original: ", deparse(.mydata.ccwc[which.Case, ]$RowNum_original) ))
-                }
+					## ccwc() 154 ties <- TRUE
+					if(length(which.Case) > 1) {
+						ties <- TRUE
+						print(paste0("** ties in RowNum_original: ", deparse(.mydata.ccwc[which.Case, ]$RowNum_original) ))
+					}
+				}
             }
         }
         # out$data = .mydata.ccwc %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% arrange(MatchingPairID, MatchingCtrlNum)
@@ -281,8 +285,6 @@ data.ccwc = function(
     }
     out
 }
-
-
 
 
 #@ test) data.ccwc() mycohort_1strata_tie ----
@@ -717,6 +719,59 @@ mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>%
 # 24                         46253 2002-01-01 2004-05-31          FALSE  FALSE      11688     12569      999999999       999999999   FALSE              TRUE       FALSE
 # 25                         46285 2002-01-01 2005-03-31          FALSE  FALSE      11688     12873      999999999       999999999   FALSE              TRUE       FALSE
 # 26                         46412 2002-01-01 2004-10-31          FALSE  FALSE      11688     12722      999999999       999999999   FALSE              TRUE       FALSE
+
+
+#@ test) data.ccwc() mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE -----
+mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE = 
+structure(list(RowNum_original_before_strata = c(36092L, 37713L,
+38766L), entry = structure(c(11688, 11688, 11688), class = "Date"),
+    EndTime.YM = structure(c(13664, 12417, 14183), class = "Date"),
+    EndTime.is.MDD = c(FALSE, FALSE, TRUE)), row.names = c(NA,
+-3L), class = c("tbl_df", "tbl", "data.frame"), .Names = c("RowNum_original_before_strata",
+"entry", "EndTime.YM", "EndTime.is.MDD"))
+mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as.tibble
+# > mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as.tibble
+# # A tibble: 3 x 4
+#   RowNum_original_before_strata entry      EndTime.YM EndTime.is.MDD
+#                           <int> <date>     <date>     <lgl>         
+# 1                         36092 2002-01-01 2007-05-31 FALSE         
+# 2                         37713 2002-01-01 2003-12-31 FALSE         
+# 3                         38766 2002-01-01 2008-10-31 TRUE          
+
+mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% 
+    data.ccwc(
+        varname4event = "EndTime.is.MDD"
+        , varname4entry = "entry"
+        , varname4exit = "EndTime.YM"
+        , .MatchingRatio = 1
+        , apply.na.omit = F
+        , print.process = F
+        , print.map.process = F
+        , add_tableone_pre_post = F
+    ) %>% {.$data}
+# > mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% 
+# +     data.ccwc(
+# +         varname4event = "EndTime.is.MDD"
+# +         , varname4entry = "entry"
+# +         , varname4exit = "EndTime.YM"
+# +         , .MatchingRatio = 1
+# +         , apply.na.omit = F
+# +         , print.process = F
+# +         , print.map.process = F
+# +         , add_tableone_pre_post = F
+# +     ) %>% {.$data}
+# # A tibble: 3 x 13
+#   RowNum_original_before_strata entry      EndTime.YM EndTime.is.MDD RowNum_original .event .entry_age .exit_age MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#                           <int> <date>     <date>     <lgl>                    <int> <lgl>       <dbl>     <dbl>          <int>           <int> <lgl>   <lgl>             <lgl>      
+# 1                         38766 2002-01-01 2008-10-31 TRUE                         3 TRUE        11688     14183              1               0 TRUE    FALSE             TRUE       
+# 2                         36092 2002-01-01 2007-05-31 FALSE                        1 FALSE       11688     13664      999999999       999999999 FALSE   TRUE              FALSE      
+# 3                         37713 2002-01-01 2003-12-31 FALSE                        2 FALSE       11688     12417      999999999       999999999 FALSE   TRUE              FALSE      
+# Warning messages:
+# 1: Unknown or uninitialised column: 'RowNum_original'. 
+# 2: In data.ccwc(., varname4event = "EndTime.is.MDD", varname4entry = "entry",  :
+#   length(which.Ctrl.Candidate) == 0for .mydata.ccwc[which.Case,], where which.Case is: 3L
+
+
 
 
 #@ data.strata_list = function( -----
