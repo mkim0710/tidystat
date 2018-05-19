@@ -217,10 +217,8 @@ data.ccwc = function(
 					.mydata.ccwc[which.Ctrl, c("MatchingPairID")] = i
 					.mydata.ccwc[which.Ctrl, c("MatchingCtrlNum")] = 1:{length(which.Ctrl)/length(which.Case)}
 					if(print.process == T) print(.mydata.ccwc[c(which.Case, which.Ctrl), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
-					if(length(which.Ctrl) > 0) {  # debug 180516
-						if(any(.mydata.ccwc[which.Ctrl, ".event"] == T)) {
-							print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", deparse(.mydata.ccwc[{which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == T]}, ]$RowNum_original) ))
-						}
+					if(any(.mydata.ccwc[which.Ctrl, ".event"] == T)) {
+						print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", deparse(.mydata.ccwc[{which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == T]}, ]$RowNum_original) ))
 					}
 
 					## ccwc() 154 ties <- TRUE
