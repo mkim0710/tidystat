@@ -896,7 +896,7 @@ diet.strata_list %>% map(function(df) {
 
 
 
-#@ data.stratified.ccwc = function( ----
+#@ data.stratified.ccwc = function( - debug 180519 v5 ----
 data.stratified.ccwc = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
@@ -977,7 +977,10 @@ data.stratified.ccwc = function(
     # print(paste0("warning_lgl : ", deparse(warning_lgl)))
     # print(paste0("names(.mydata.strata_list.ccwc) : ", deparse(names(.mydata.strata_list.ccwc))))
     # print(paste0("names(.mydata.strata_list.ccwc)[warning_lgl] : ", deparse(names(.mydata.strata_list.ccwc)[warning_lgl])))
-    out$data = .mydata.strata_list.ccwc[!warning_lgl] %>% map(function(x) x$data) %>% reduce(rbind)
+
+    # out$data = .mydata.strata_list.ccwc[!warning_lgl] %>% map(function(x) x$data) %>% reduce(rbind)
+    # debug 180519 v5
+    out$data = .mydata.strata_list.ccwc %>% map(function(x) x$data) %>% bind_rows
     out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID) %>% as.factor
     
     if (sum(warning_lgl) > 0) {
@@ -998,7 +1001,6 @@ data.stratified.ccwc = function(
     #     , test=T
     #     , includeNA = T)
 
-    
     attr(out$data, ".vars4strata") = .vars4strata
     attr(out$data, ".event") = varname4event
     attr(out$data, ".entry") = varname4entry
