@@ -1,8 +1,7 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratified.ccwc.source.r")
 
 
-
-#@ data.ccwc = function( - debug 180519 v3 =====
+#@ data.ccwc = function( - debug 180519 v5 =====
 data.ccwc = function(
     .mydata
     , ...
@@ -28,7 +27,9 @@ data.ccwc = function(
     
     Call <- match.call(expand.dots = TRUE)
     
-    if (is.null(.mydata$RowNum_original)) {
+    # if (is.null(.mydata$RowNum_original)) {
+    # if (!exists(.mydata$RowNum_original)) {
+    if (!"RowNum_original" %in% colnames(.mydata)) {  # debug 180519 v5
         .mydata$RowNum_original = 1:nrow(.mydata)
     }
 
@@ -42,17 +43,17 @@ data.ccwc = function(
             x = as.factor(x)
         }
         # if (length(levels(x)) == 1) {
-        #     warning("length(levels(x)) == 1")
+        #     print("length(levels(x)) == 1")
         # }
         if (length(unique(x)) == 1) {
-            warning("length(unique(x)) == 1")
+            print("length(unique(x)) == 1")
         }
         if (!is.null(levels(x))) {
             if (length(levels(x)) %in% 1:2) {
                 if (dichotomous2integer == T) {
-                    warning(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to 0 & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to 1"))
+                    print(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to 0 & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to 1"))
                 } else {
-                    warning(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to FALSE & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to TRUE"))
+                    print(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to FALSE & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to TRUE"))
                 }
                 x = as.integer(x) - 1
             } else if (length(levels(x)) > 2) {
@@ -66,8 +67,10 @@ data.ccwc = function(
         }
         x
     }
+    
+    .mydata[[".event"]] = .mydata[[varname4event]]
+    if (apply.function.dichotomous2logical == T) .mydata[[".event"]] = .mydata[[varname4event]] %>% function.dichotomous2logical  # debug 180519 v5
 
-    .mydata[[".event"]] = .mydata[[varname4event]] %>% function.dichotomous2logical
     if(!is.character(varname4entry)) {
         stop("!is.character(varname4entry)")
     } else if (!is.character(varname4exit)) {
@@ -129,7 +132,15 @@ data.ccwc = function(
     if (length(unique(.mydata[[varname4event]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical)), 0:1 ))
         print("length(unique(.mydata[[varname4event]]) < 2")
         out = list()
-        out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+        # out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+        # debug 180519 v5
+        out$data = .mydata %>%  mutate(
+            MatchingPairID = NA
+            , MatchingCtrlNum = NA
+            , is.Case = NA
+            , is.Ctrl.Candidate = NA
+            , is.assigned = NA
+        )
         attr(out, "error.message") = "length(unique(.mydata[[varname4event]])) < 2"  # attr() is shown with str(max.level = 1)
         
         # if (add_tableone_pre_post == T) {
@@ -192,10 +203,10 @@ data.ccwc = function(
                 which.Ctrl.Candidate = which({ .mydata.ccwc$is.Ctrl.Candidate == T & (.mydata.ccwc[[".entry_age"]] <= .event.exit_age.unique.sort[i]) & (.mydata.ccwc[[".exit_age"]] >= .event.exit_age.unique.sort[i]) })
                 # which.Ctrl.Candidate %>% str
                 # print(.mydata.ccwc[c(which.Case, which.Ctrl.Candidate), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
-                
                 if(print.process == T) print(paste0("which.Ctrl.Candidate: ", deparse(which.Ctrl.Candidate)))
+				
 				if (length(which.Ctrl.Candidate) == 0) {  # debug 180519
-					warning(paste0("length(which.Ctrl.Candidate) == 0", "for .mydata.ccwc[which.Case,], where which.Case is: ", deparse(which.Case) ))
+					print(paste0("length(which.Ctrl.Candidate) == 0 ", "for .mydata.ccwc[which.Case,], where which.Case is: ", deparse(which.Case) ))
 				} else {
 					## ccwc() 160 if (controls*ncase > sum(noncase) & controls*ncase > 0) {incomplete = incomplete + 1}
 					## ccwc() 159 ncont = min(controls*ncase, sum(noncase))
@@ -217,8 +228,10 @@ data.ccwc = function(
 					.mydata.ccwc[which.Ctrl, c("MatchingPairID")] = i
 					.mydata.ccwc[which.Ctrl, c("MatchingCtrlNum")] = 1:{length(which.Ctrl)/length(which.Case)}
 					if(print.process == T) print(.mydata.ccwc[c(which.Case, which.Ctrl), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
-					if(any(.mydata.ccwc[which.Ctrl, ".event"] == T)) {
-						print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", deparse(.mydata.ccwc[{which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == T]}, ]$RowNum_original) ))
+					if(length(which.Ctrl) > 0) {  # debug 180516
+						if(any(.mydata.ccwc[which.Ctrl, ".event"] == T)) {
+							print(paste0("*** Caution) a future case has been assigned as a control - RowNum_original: ", deparse(.mydata.ccwc[{which.Ctrl[.mydata.ccwc[which.Ctrl, ".event"] == T]}, ]$RowNum_original) ))
+						}
 					}
 
 					## ccwc() 154 ties <- TRUE
@@ -229,6 +242,7 @@ data.ccwc = function(
 				}
             }
         }
+        # stopifnot(nrow(.mydata) == nrow(.mydata.ccwc))  # debug 180519 v4
         # out$data = .mydata.ccwc %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% arrange(MatchingPairID, MatchingCtrlNum)
         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
             
@@ -757,16 +771,13 @@ mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>%
 # +         , print.map.process = F
 # +         , add_tableone_pre_post = F
 # +     ) %>% {.$data}
+# [1] "length(which.Ctrl.Candidate) == 0 for .mydata.ccwc[which.Case,], where which.Case is: 3L"
 # # A tibble: 3 x 13
 #   RowNum_original_before_strata entry      EndTime.YM EndTime.is.MDD RowNum_original .event .entry_age .exit_age MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
 #                           <int> <date>     <date>     <lgl>                    <int> <lgl>       <dbl>     <dbl>          <int>           <int> <lgl>   <lgl>             <lgl>      
 # 1                         38766 2002-01-01 2008-10-31 TRUE                         3 TRUE        11688     14183              1               0 TRUE    FALSE             TRUE       
 # 2                         36092 2002-01-01 2007-05-31 FALSE                        1 FALSE       11688     13664      999999999       999999999 FALSE   TRUE              FALSE      
 # 3                         37713 2002-01-01 2003-12-31 FALSE                        2 FALSE       11688     12417      999999999       999999999 FALSE   TRUE              FALSE      
-# Warning messages:
-# 1: Unknown or uninitialised column: 'RowNum_original'. 
-# 2: In data.ccwc(., varname4event = "EndTime.is.MDD", varname4entry = "entry",  :
-#   length(which.Ctrl.Candidate) == 0for .mydata.ccwc[which.Case,], where which.Case is: 3L
 
 
 
