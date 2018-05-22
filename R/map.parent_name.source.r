@@ -1,15 +1,5 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.source.r")
 
-    # # Codes to insert inside in the beginning annonymous function for map
-    # parent.x = get(".x", envir = parent.frame())
-    # i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, x) } ))
-    # 
-    # # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
-    # # print(Sys.time())
-    # print(paste0("Beginning .f() map from vector element [", i, "] valued: ", parent.x[i], "  #----" ))
-
-
-
             # # Codes to insert inside in the beginning annonymous function for map
             # parent.x = get(".x", envir = parent.frame())
             # i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, input_object_name_of_map_function_to_investigate) } ))
