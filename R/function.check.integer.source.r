@@ -299,6 +299,10 @@ as.integer(2147483648)
 # > 2 ^ .Machine$double.digits
 # [1] 9007199254740992
 
+9007199254740992 / 10^15
+# > 9007199254740992 / 10^15
+# [1] 9.007199
+
 options(digits = 22)
 print(max.num <- 2 ^ .Machine$double.digits)
 (max.num) - (max.num - 1)
