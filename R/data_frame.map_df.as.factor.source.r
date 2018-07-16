@@ -202,7 +202,38 @@ class(999999999)
 # [1] "numeric"
 
 
+is(as.Date("2002-01-01"), "Date")
+inherits(as.Date("2002-01-01"), "Date")
+class(as.Date("2002-01-01")) == "Date"
+lubridate::is.Date(as.Date("2002-01-01"))
+# > is(as.Date("2002-01-01"), "Date")
+# [1] TRUE
+# > inherits(as.Date("2002-01-01"), "Date")
+# [1] TRUE
+# > class(as.Date("2002-01-01")) == "Date"
+# [1] TRUE
+# > lubridate::is.Date(as.Date("2002-01-01"))
+# [1] TRUE
+
+library(tidyverse)
+as.Date("2002-01-01") %>% is("Date")
+as.Date("2002-01-01") %>% inherits("Date")
+as.Date("2002-01-01") %>% class %>% {. == "Date"}
+as.Date("2002-01-01") %>% lubridate::is.Date
+as.Date("2002-01-01") %>% lubridate::is.Date(.)
+# > as.Date("2002-01-01") %>% is("Date")
+# [1] TRUE
+# > as.Date("2002-01-01") %>% inherits("Date")
+# [1] TRUE
+# > as.Date("2002-01-01") %>% class %>% {. == "Date"}
+# [1] TRUE
+# > as.Date("2002-01-01") %>% lubridate::is.Date
+# Error in .::lubridate : unused argument (is.Date)
+# > as.Date("2002-01-01") %>% lubridate::is.Date(.)
+# [1] TRUE
 
 
+# https://github.com/tidyverse/lubridate/blob/master/R/Dates.r
+# https://github.com/wch/r-source/blob/tags/R-3-5-1/src/library/methods/R/is.R
 
 #@ end -----
