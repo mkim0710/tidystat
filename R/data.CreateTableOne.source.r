@@ -3,50 +3,50 @@
 library(tidyverse)
 library(tableone)
 
-#@ data.CreateTableOne -----
-data.tableone = data %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+#@ dataset.CreateTableOne -----
+dataset.tableone = dataset %>% select(-rowname, -PERSON_ID) %>% as.dataset.frame %>% 
     CreateTableOne(data = ., test = T, includeNA = T)
-vars4IQR = names(data)[data %>% map_lgl(is.numeric)]
-data.tableone %>% print(smd = T)
-data.tableone %>% print(smd = T, nonnormal = vars4IQR)
+vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
+dataset.tableone %>% print(smd = T)
+dataset.tableone %>% print(smd = T, nonnormal = vars4IQR)
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-data.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
-    write.csv("data.tableone -clean.csv")
-openxlsx::openXL("data.tableone -clean.csv")
-# data.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
-#     openxlsx::write.xlsx("data.tableone -clean.xlsx")
-# openxlsx::openXL("data.tableone -clean.xlsx")
-data.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.tableone.xlsx")
-openxlsx::openXL("data.tableone.xlsx")
-data.tableone %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.tableone.IQR.xlsx")
-openxlsx::openXL("data.tableone.IQR.xlsx")
+dataset.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+    write.csv("dataset.tableone -clean.csv")
+openxlsx::openXL("dataset.tableone -clean.csv")
+# dataset.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
+#     openxlsx::write.xlsx("dataset.tableone -clean.xlsx")
+# openxlsx::openXL("dataset.tableone -clean.xlsx")
+dataset.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("dataset.tableone.xlsx")
+openxlsx::openXL("dataset.tableone.xlsx")
+dataset.tableone %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("dataset.tableone.IQR.xlsx")
+openxlsx::openXL("dataset.tableone.IQR.xlsx")
 
 
-#@ data.CreateTableOne.by_exposure -----
+#@ dataset.CreateTableOne.by_exposure -----
 varnames4exposure =  c("treatment")
-data.tableone_by_exposure = data %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+dataset.tableone_by_exposure = dataset %>% select(-rowname, -PERSON_ID) %>% as.dataset.frame %>% 
     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
-vars4IQR = names(data)[data %>% map_lgl(is.numeric)]
-data.tableone_by_exposure %>% print(smd = T)
-data.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR)
+vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
+dataset.tableone_by_exposure %>% print(smd = T)
+dataset.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR)
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-data.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
-    write.csv("data.tableone_by_exposure -clean.csv")
-openxlsx::openXL("data.tableone_by_exposure -clean.csv")
-# data.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>%
-#     openxlsx::write.xlsx("data.tableone_by_exposure -clean.xlsx")
-# openxlsx::openXL("data.tableone_by_exposure -clean.xlsx")
-data.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+dataset.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
+    write.csv("dataset.tableone_by_exposure -clean.csv")
+openxlsx::openXL("dataset.tableone_by_exposure -clean.csv")
+# dataset.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>%
+#     openxlsx::write.xlsx("dataset.tableone_by_exposure -clean.xlsx")
+# openxlsx::openXL("dataset.tableone_by_exposure -clean.xlsx")
+dataset.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group1 = {.[[2]]}, Group2 = {.[[3]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>% 
-    openxlsx::write.xlsx("data.tableone_by_exposure.xlsx")
-openxlsx::openXL("data.tableone_by_exposure.xlsx")
-data.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.tableone_by_exposure.IQR.xlsx")
-openxlsx::openXL("data.tableone_by_exposure.IQR.xlsx")
+    openxlsx::write.xlsx("dataset.tableone_by_exposure.xlsx")
+openxlsx::openXL("dataset.tableone_by_exposure.xlsx")
+dataset.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("dataset.tableone_by_exposure.IQR.xlsx")
+openxlsx::openXL("dataset.tableone_by_exposure.IQR.xlsx")
 
 
 
@@ -85,61 +85,59 @@ library(survey)
 # ## End(Not run)
 
 
-data.svydesign = data %>% svydesign(id = ~PrimarySamplingUnit, strata = ~SamplingStrata, weights = ~SamplingWeight, nest = TRUE, data = . , pps="brewer")
-# data.svydesign = data %>% svydesign(id = ~PSUNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+dataset.svydesign = dataset %>% svydesign(id = ~PrimarySamplingUnit, strata = ~SamplingStrata, weights = ~SamplingWeight, nest = TRUE, data = . , pps="brewer")
+# dataset.svydesign = dataset %>% svydesign(id = ~PSUNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 
 
 
-#@ data.svydesign.svyCreateTableOne -----
-data.svydesign.tableone = data.svydesign %>% select(-rowname, -PERSON_ID) %>%
+#@ dataset.svydesign.svyCreateTableOne -----
+dataset.svydesign.tableone = dataset.svydesign %>% select(-rowname, -PERSON_ID) %>%
     svyCreateTableOne(data = ., test = T, includeNA = T)
-vars4IQR = names(data.svydesign)[data.svydesign %>% map_lgl(is.numeric)]
-data.svydesign.tableone %>% print(smd = T)
-data.svydesign.tableone %>% print(smd = T, nonnormal = vars4IQR)
+vars4IQR = names(dataset.svydesign)[dataset.svydesign %>% map_lgl(is.numeric)]
+dataset.svydesign.tableone %>% print(smd = T)
+dataset.svydesign.tableone %>% print(smd = T, nonnormal = vars4IQR)
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-data.svydesign.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
-    write.csv("data.svydesign.tableone -clean.csv")
-openxlsx::openXL("data.svydesign.tableone -clean.csv")
-# data.svydesign.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
-#     openxlsx::write.xlsx("data.svydesign.tableone -clean.xlsx")
-# openxlsx::openXL("data.svydesign.tableone -clean.xlsx")
-data.svydesign.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.svydesign.tableone.xlsx")
-openxlsx::openXL("data.svydesign.tableone.xlsx")
-data.svydesign.tableone %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.svydesign.tableone.IQR.xlsx")
-openxlsx::openXL("data.svydesign.tableone.IQR.xlsx")
+dataset.svydesign.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+    write.csv("dataset.svydesign.tableone -clean.csv")
+openxlsx::openXL("dataset.svydesign.tableone -clean.csv")
+# dataset.svydesign.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
+#     openxlsx::write.xlsx("dataset.svydesign.tableone -clean.xlsx")
+# openxlsx::openXL("dataset.svydesign.tableone -clean.xlsx")
+dataset.svydesign.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("dataset.svydesign.tableone.xlsx")
+openxlsx::openXL("dataset.svydesign.tableone.xlsx")
+dataset.svydesign.tableone %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("dataset.svydesign.tableone.IQR.xlsx")
+openxlsx::openXL("dataset.svydesign.tableone.IQR.xlsx")
 
 
-#@ data.svydesign.svyCreateTableOne.by_exposure -----
+#@ dataset.svydesign.svyCreateTableOne.by_exposure -----
 varnames4exposure =  c("treatment")
-# data.svydesign.tableone_by_exposure = data.svydesign %>% select(-rowname, -PERSON_ID) %>%
+# dataset.svydesign.tableone_by_exposure = dataset.svydesign %>% select(-rowname, -PERSON_ID) %>%
 #     svyCreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
 # # Error in dimnames(x) <- dn : 
 # #   length of 'dimnames' [2] not equal to array extent
-data.svydesign.tableone_by_exposure = data.svydesign %>% select(-rowname, -PERSON_ID) %>%
+dataset.svydesign.tableone_by_exposure = dataset.svydesign %>% select(-rowname, -PERSON_ID) %>%
     svyCreateTableOne(strata = varnames4exposure, data = ., test = T)
-vars4IQR = names(data.svydesign)[data.svydesign %>% map_lgl(is.numeric)]
-data.svydesign.tableone_by_exposure %>% print(smd = T)
-data.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR)
+vars4IQR = names(dataset.svydesign)[dataset.svydesign %>% map_lgl(is.numeric)]
+dataset.svydesign.tableone_by_exposure %>% print(smd = T)
+dataset.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR)
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-data.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
-    write.csv("data.svydesign.tableone_by_exposure -clean.csv")
-openxlsx::openXL("data.svydesign.tableone_by_exposure -clean.csv")
-# data.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>%
-#     openxlsx::write.xlsx("data.svydesign.tableone_by_exposure -clean.xlsx")
-# openxlsx::openXL("data.svydesign.tableone_by_exposure -clean.xlsx")
-data.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+dataset.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
+    write.csv("dataset.svydesign.tableone_by_exposure -clean.csv")
+openxlsx::openXL("dataset.svydesign.tableone_by_exposure -clean.csv")
+# dataset.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>%
+#     openxlsx::write.xlsx("dataset.svydesign.tableone_by_exposure -clean.xlsx")
+# openxlsx::openXL("dataset.svydesign.tableone_by_exposure -clean.xlsx")
+dataset.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group1 = {.[[2]]}, Group2 = {.[[3]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>% 
-    openxlsx::write.xlsx("data.svydesign.tableone_by_exposure.xlsx")
-openxlsx::openXL("data.svydesign.tableone_by_exposure.xlsx")
-data.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
-    openxlsx::write.xlsx("data.svydesign.tableone_by_exposure.IQR.xlsx")
-openxlsx::openXL("data.svydesign.tableone_by_exposure.IQR.xlsx")
-
-
+    openxlsx::write.xlsx("dataset.svydesign.tableone_by_exposure.xlsx")
+openxlsx::openXL("dataset.svydesign.tableone_by_exposure.xlsx")
+dataset.svydesign.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.dataset.frame %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("dataset.svydesign.tableone_by_exposure.IQR.xlsx")
+openxlsx::openXL("dataset.svydesign.tableone_by_exposure.IQR.xlsx")
 
 
 
