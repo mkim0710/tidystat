@@ -1,5 +1,37 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratified.ccwc.source.r")
 
+#@ to do ----
+#@ .entry_age_of_Case
+#@ EndTime.of.Case
+# 
+# dataset %>% 
+#     filter(MatchingCtrlNum == 0) %>% 
+#     select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
+# # > dataset %>% 
+# # +     filter(MatchingCtrlNum == 0) %>% 
+# # +     select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
+# # # A tibble: 10,299 x 2
+# #    MatchingPairID1_1                    .exit_age_of_Case
+# #    <fct>                                            <dbl>
+# #  1 1|10|1q|11_36| TRUE|FALSE|FALSE_2_1              13969
+# #  2 1|10|1q|11_36| TRUE|FALSE|FALSE_4_1              14060
+# #  3 1|10|1q|11_36| TRUE|FALSE|FALSE_7_1              15917
+# #  4 1|10|1q|11_36|FALSE|FALSE| TRUE_23_2             14364
+# #  5 1|10|1q|11_36|FALSE|FALSE| TRUE_24_1             14487
+# #  6 1|10|1q|11_36|FALSE|FALSE| TRUE_25_1             14548
+# #  7 1|10|1q|11_36|FALSE|FALSE| TRUE_26_1             14729
+# #  8 1|10|1q|11_36|FALSE|FALSE| TRUE_27_1             14790
+# #  9 1|10|1q|11_36|FALSE|FALSE| TRUE_28_1             14821
+# # 10 1|10|1q|11_36|FALSE|FALSE| TRUE_29_1             15005
+# # # ... with 10,289 more rows
+# 
+# dataset = dataset %>% 
+#     left_join(
+#         dataset %>%
+#             filter(MatchingCtrlNum == 0) %>% 
+#             select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
+#     )
+
 
 #@ data.ccwc = function( - debug 180519 v5 =====
 data.ccwc = function(
