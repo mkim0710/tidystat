@@ -103,6 +103,7 @@ function.lm_object.summary.coefCI(lm_object)
 
 
 
+
 function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni")) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
     if(!"glm" %in% class(glm_object)) {
@@ -135,7 +136,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
     #     , ")"
     # ), stringsAsFactors = F)
     # http://www.dummies.com/programming/r/how-to-format-numbers-in-r/
-    # digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(glm_object.summary.coef.df$Estimate, glm_object.confint.df$`2.5 %`, glm_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
+    # digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(c(glm_object.summary.coef.dfEstimate,glmobject.confint.df`2.5 %`, glm_object.confint.df$`97.5 %`), na.rm = T) %>% log10 %>% trunc) + 1
     tmp.vec = c(glm_object.summary.coef.df$Estimate, glm_object.confint.df$`2.5 %`, glm_object.confint.df$`97.5 %`)
     tmp.vec[is.infinite(tmp.vec)] = NA
     digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(tmp.vec, na.rm = T) %>% log10 %>% trunc) + 1
@@ -151,17 +152,18 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
         , sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), glm_object.confint.df$`97.5 %`)
         , ")"
     ), stringsAsFactors = F)
-    # tmp.df$p_value = glm_object.summary.coef.df$`Pr(>|z|)` %>% round(3) %>% as.character
-    tmp.df$p_value = sprintf("%.3f", glm_object.summary.coef.df$`Pr(>|z|)`)
-    tmp.df$p_value[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
+    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    varname4Pr = colnames(glm_object.summary.coef.df) %>% grep("^Pr", ., value = T)  # debug 180806) in glm() `Pr(>|z|)`, in svyglm() `Pr(>|t|)`
+    tmp.df$p_value = sprintf("%.3f", glm_object.summary.coef.df[[varname4Pr]])
+    tmp.df$p_value[glm_object.summary.coef.df[[varname4Pr]] <= 0.001] = "<0.001"
 
     tmp.df$star = "   "
-    tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.05] = "*  "
-    tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.01] = "** "
-    tmp.df$star[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "***"
+    tmp.df$star[glm_object.summary.coef.df[[varname4Pr]] <= 0.05] = "*  "
+    tmp.df$star[glm_object.summary.coef.df[[varname4Pr]] <= 0.01] = "** "
+    tmp.df$star[glm_object.summary.coef.df[[varname4Pr]] <= 0.001] = "***"
     
     for (i in 1:length(p.adjust_method)) {
-        tmp.df[[paste0("p.adjust.", i)]] = glm_object.summary.coef.df$`Pr(>|z|)` %>% p.adjust(method = p.adjust_method[i])
+        tmp.df[[paste0("p.adjust.", i)]] = glm_object.summary.coef.df[[varname4Pr]] %>% p.adjust(method = p.adjust_method[i])
         p.adjust_method.i = substr(p.adjust_method[i], 1, 3)
         tmp.df[[paste0("p.", p.adjust_method.i)]] = sprintf("%.3f", tmp.df[[paste0("p.adjust.", i)]])
         tmp.df[[paste0("p.", p.adjust_method.i)]] [tmp.df[[paste0("p.adjust.", i)]] <= 0.001] = "<0.001"
@@ -534,7 +536,7 @@ cv.glmnet_object %>% function.cv.glmnet_object.coef.exp
 cv.glmnet_object %>% function.cv.glmnet_object.coef.exp(print_any_expB_gt.2 = T)
 # > cv.glmnet_object %>% function.cv.glmnet_object.coef.exp(print_any_expB_gt.2 = T)
 # [1] rownum   rowname  expB.min expB.1se coef.min coef.1se
-# <0 Çà> <¶Ç´Â row.namesÀÇ ±æÀÌ°¡ 0ÀÔ´Ï´Ù>
+# <0 ??> <?Ç´? row.names?? ???Ì°? 0?Ô´Ï´?>
 
 set.seed(1010)
 n=1000;p=100
