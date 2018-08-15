@@ -665,4 +665,383 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
 
 
 
+
+
+
+
+
+
+
+
+
+#@@@@ =====
+library(tidyverse)
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/data.SSQ_5_6.rda"))
+data.svydesign = data.SSQ_5_6 %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+data.Depressed.svydesign = data.SSQ_5_6 %>% filter(DXDEPRESSION %in% c("1: Depressed and previously diagnosed", "2: Depressed and no diagnosis")) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+
+
+#@ tables for manuscript - main effects model () ====
+
+
+
+
+svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+    rename_all(toupper)
+
+svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+    rename_if(is.character, toupper)
+
+svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+    rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
+# > svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +     rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
+# Error in selected[[i]] <- .p(.tbl[[tibble_vars[[i]]]], ...) : 
+#   more elements supplied than there are to replace
+
+svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+    rename_if(.predicate = function(x) {(names(x) == "rowname")}, toupper)
+# > svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +     rename_if(.predicate = function(x) {(names(x) == "rowname")}, toupper)
+# Error in selected[[i]] <- .p(.tbl[[tibble_vars[[i]]]], ...) : 
+#   replacement has length zero
+
+
+svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+    rename_if(.predicate = function(x) {print(names(x)); (names(x) == "rowname")}, toupper)
+# > svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +     rename_if(.predicate = function(x) {print(names(x)); (names(x) == "rowname")}, toupper)
+# NULL
+# Error in selected[[i]] <- .p(.tbl[[tibble_vars[[i]]]], ...) : 
+#   replacement has length zero
+
+
+(
+    svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% rename_if(
+        .predicate = function(x) {
+            # print(names(x))
+            # parent.x = get("selected", envir = parent.frame())
+            # i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, x) } ))
+            # print(i)
+            # (i == "rowname")
+            # browser()
+            # # Browse[1]> ls()
+            # # [1] "x"
+            # # Browse[1]> x
+            # # [1] "(Intercept)"                                              "SSQ_5_62: partially adequate"                            
+            # # [3] "SSQ_5_63: adequate"                                       "US_BORN2: Other"                                         
+            # # [5] "GENDER2: Female"                                          "AGEGRP5C2: 30-39"                                        
+            # # [7] "AGEGRP5C3: 40-49"                                         "AGEGRP5C4: 50-59"                                        
+            # # [9] "AGEGRP5C5: 60 and over"                                   "RACE2: Non-Hispanic Black"                               
+            # # [11] "RACE3: Hispanic"                                          "RACE4: Asian"                                            
+            # # [13] "RACE5: Other"                                             "MARITAL_MarriedTRUE"                                     
+            # # [15] "INC25K2: $25,000 - $49,999"                               "INC25K3: $50,000 - $74,999"                              
+            # # [17] "INC25K4: $75,000 - $99,999"                               "INC25K5: $100,000  or more"                              
+            # # [19] "POVGROUP6_0812CT2: 5 to <10%"                             "POVGROUP6_0812CT3: 10 to <20%"                           
+            # # [21] "POVGROUP6_0812CT4: 20 to <30%"                            "POVGROUP6_0812CT5: 30 to <40%"                           
+            # # [23] "POVGROUP6_0812CT6: 40% to 100% (very high poverty areas)" "EDU4CAT_collegeTRUE"                                     
+            # # [25] "HIQ_62: No"                                               "HUQ_3_lt_1yearTRUE"                                      
+            # # Browse[1]> ls(envir = parent.frame())
+            # # [1] "i"           "n"           "selected"    "tibble_vars"
+            # # Browse[1]> get("i", envir = parent.frame())
+            # # [1] 1
+            # # Browse[1]> get("n", envir = parent.frame())
+            # # [1] 4
+            # # Browse[1]> get("selected", envir = parent.frame())
+            # # [1] NA NA NA NA
+            # # Browse[1]> get("tibble_vars", envir = parent.frame())
+            # # [1] "rowname" "ORCI"    "p_value" "star"   
+            get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"
+        }
+        , function(chr) paste0(chr, ".11var")
+    )
+)
+#                                                     rowname         ORCI.11var p_value.11var star.11var
+# 1                                               (Intercept) 0.95 (0.18 ~ 4.95)         0.949           
+# 2                              SSQ_5_62: partially adequate 1.02 (0.51 ~ 2.04)         0.954           
+# 3                                        SSQ_5_63: adequate 0.32 (0.15 ~ 0.70)         0.005        ** 
+# 4                                           US_BORN2: Other 0.72 (0.42 ~ 1.25)         0.251           
+# 5                                           GENDER2: Female 2.36 (1.47 ~ 3.79)        <0.001        ***
+# 6                                          AGEGRP5C2: 30-39 0.87 (0.36 ~ 2.11)         0.756           
+# 7                                          AGEGRP5C3: 40-49 0.69 (0.31 ~ 1.55)         0.377           
+# 8                                          AGEGRP5C4: 50-59 0.90 (0.39 ~ 2.07)         0.797           
+# 9                                    AGEGRP5C5: 60 and over 0.43 (0.17 ~ 1.06)         0.070           
+# 10                                RACE2: Non-Hispanic Black 0.48 (0.23 ~ 1.01)         0.055           
+# 11                                          RACE3: Hispanic 0.66 (0.32 ~ 1.35)         0.260           
+# 12                                             RACE4: Asian 0.33 (0.09 ~ 1.16)         0.087           
+# 13                                             RACE5: Other 0.97 (0.37 ~ 2.52)         0.944           
+# 14                                      MARITAL_MarriedTRUE 1.23 (0.70 ~ 2.18)         0.475           
+# 15                               INC25K2: $25,000 - $49,999 0.65 (0.35 ~ 1.19)         0.163           
+# 16                               INC25K3: $50,000 - $74,999 0.68 (0.30 ~ 1.53)         0.350           
+# 17                               INC25K4: $75,000 - $99,999 0.11 (0.02 ~ 0.54)         0.008        ** 
+# 18                               INC25K5: $100,000  or more 0.15 (0.04 ~ 0.58)         0.007        ** 
+# 19                             POVGROUP6_0812CT2: 5 to <10% 0.41 (0.15 ~ 1.08)         0.075           
+# 20                            POVGROUP6_0812CT3: 10 to <20% 0.46 (0.16 ~ 1.35)         0.160           
+# 21                            POVGROUP6_0812CT4: 20 to <30% 0.96 (0.33 ~ 2.78)         0.933           
+# 22                            POVGROUP6_0812CT5: 30 to <40% 0.81 (0.27 ~ 2.41)         0.699           
+# 23 POVGROUP6_0812CT6: 40% to 100% (very high poverty areas) 0.61 (0.19 ~ 2.00)         0.418           
+# 24                                      EDU4CAT_collegeTRUE 0.73 (0.38 ~ 1.40)         0.340           
+# 25                                               HIQ_62: No 0.65 (0.32 ~ 1.29)         0.218           
+# 26                                       HUQ_3_lt_1yearTRUE 0.93 (0.43 ~ 1.97)         0.841 
+
+
+
+(
+    svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        rename_if(
+            function(x) {get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"}
+            , function(chr) paste0(chr, ".11var")
+        ) 
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGROUP + RACE_White + MARITAL_Married + INC25KMOD_gt75k + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        rename_if(
+            function(x) {get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"}
+            , function(chr) paste0(chr, ".10var")
+        ) 
+)
+# > (
+# +     svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         rename_if(
+# +             function(x) {get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"}
+# +             , function(chr) paste0(chr, ".11var")
+# +         ) 
+# + ) %>% full_join(
+# +     svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGROUP + RACE_White + MARITAL_Married + INC25KMOD_gt75k + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         rename_if(
+# +             function(x) {get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"}
+# +             , function(chr) paste0(chr, ".10var")
+# +         ) 
+# + )
+# Joining, by = "rowname"
+#                                                     rowname         ORCI.11var p_value.11var star.11var         ORCI.10var p_value.10var star.10var
+# 1                                               (Intercept) 0.95 (0.18 ~ 4.95)         0.949            0.33 (0.11 ~ 0.97)         0.046        *  
+# 2                              SSQ_5_62: partially adequate 1.02 (0.51 ~ 2.04)         0.954            1.01 (0.54 ~ 1.89)         0.975           
+# 3                                        SSQ_5_63: adequate 0.32 (0.15 ~ 0.70)         0.005        **  0.28 (0.15 ~ 0.53)        <0.001        ***
+# 4                                           US_BORN2: Other 0.72 (0.42 ~ 1.25)         0.251            0.62 (0.39 ~ 0.99)         0.049        *  
+# 5                                           GENDER2: Female 2.36 (1.47 ~ 3.79)        <0.001        *** 2.33 (1.43 ~ 3.81)        <0.001        ***
+# 6                                          AGEGRP5C2: 30-39 0.87 (0.36 ~ 2.11)         0.756                          <NA>          <NA>       <NA>
+# 7                                          AGEGRP5C3: 40-49 0.69 (0.31 ~ 1.55)         0.377                          <NA>          <NA>       <NA>
+# 8                                          AGEGRP5C4: 50-59 0.90 (0.39 ~ 2.07)         0.797                          <NA>          <NA>       <NA>
+# 9                                    AGEGRP5C5: 60 and over 0.43 (0.17 ~ 1.06)         0.070                          <NA>          <NA>       <NA>
+# 10                                RACE2: Non-Hispanic Black 0.48 (0.23 ~ 1.01)         0.055                          <NA>          <NA>       <NA>
+# 11                                          RACE3: Hispanic 0.66 (0.32 ~ 1.35)         0.260                          <NA>          <NA>       <NA>
+# 12                                             RACE4: Asian 0.33 (0.09 ~ 1.16)         0.087                          <NA>          <NA>       <NA>
+# 13                                             RACE5: Other 0.97 (0.37 ~ 2.52)         0.944                          <NA>          <NA>       <NA>
+# 14                                      MARITAL_MarriedTRUE 1.23 (0.70 ~ 2.18)         0.475            1.06 (0.65 ~ 1.73)         0.828           
+# 15                               INC25K2: $25,000 - $49,999 0.65 (0.35 ~ 1.19)         0.163                          <NA>          <NA>       <NA>
+# 16                               INC25K3: $50,000 - $74,999 0.68 (0.30 ~ 1.53)         0.350                          <NA>          <NA>       <NA>
+# 17                               INC25K4: $75,000 - $99,999 0.11 (0.02 ~ 0.54)         0.008        **                <NA>          <NA>       <NA>
+# 18                               INC25K5: $100,000  or more 0.15 (0.04 ~ 0.58)         0.007        **                <NA>          <NA>       <NA>
+# 19                             POVGROUP6_0812CT2: 5 to <10% 0.41 (0.15 ~ 1.08)         0.075                          <NA>          <NA>       <NA>
+# 20                            POVGROUP6_0812CT3: 10 to <20% 0.46 (0.16 ~ 1.35)         0.160                          <NA>          <NA>       <NA>
+# 21                            POVGROUP6_0812CT4: 20 to <30% 0.96 (0.33 ~ 2.78)         0.933                          <NA>          <NA>       <NA>
+# 22                            POVGROUP6_0812CT5: 30 to <40% 0.81 (0.27 ~ 2.41)         0.699                          <NA>          <NA>       <NA>
+# 23 POVGROUP6_0812CT6: 40% to 100% (very high poverty areas) 0.61 (0.19 ~ 2.00)         0.418                          <NA>          <NA>       <NA>
+# 24                                      EDU4CAT_collegeTRUE 0.73 (0.38 ~ 1.40)         0.340            0.58 (0.32 ~ 1.08)         0.087           
+# 25                                               HIQ_62: No 0.65 (0.32 ~ 1.29)         0.218            0.69 (0.36 ~ 1.29)         0.244           
+# 26                                       HUQ_3_lt_1yearTRUE 0.93 (0.43 ~ 1.97)         0.841            0.88 (0.42 ~ 1.85)         0.731           
+# 27                                         AGEGROUP2: 40-59               <NA>          <NA>       <NA> 0.84 (0.49 ~ 1.43)         0.511           
+# 28                                           AGEGROUP3: 60+               <NA>          <NA>       <NA> 0.55 (0.28 ~ 1.07)         0.079           
+# 29                                           RACE_WhiteTRUE               <NA>          <NA>       <NA> 1.29 (0.77 ~ 2.16)         0.335           
+# 30                                      INC25KMOD_gt75kTRUE               <NA>          <NA>       <NA> 0.21 (0.09 ~ 0.52)        <0.001        ***
+
+
+?rename_all
+
+
+(
+    svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0('prefix.', names(.))))
+)
+
+
+
+(
+    svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".11var")))
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGROUP + RACE_White + MARITAL_Married + INC25KMOD_gt75k + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+) %>% 
+    as.data.frame
+# > (
+# +     svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".11var")))
+# + ) %>% full_join(
+# +     svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGROUP + RACE_White + MARITAL_Married + INC25KMOD_gt75k + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+# + ) %>% 
+# +     as.data.frame
+# Joining, by = "rowname"
+#                                                     rowname         ORCI.11var p_value.11var star.11var         ORCI.10var p_value.10var star.10var
+# 1                                               (Intercept) 0.95 (0.18 ~ 4.95)         0.949            0.33 (0.11 ~ 0.97)         0.046        *  
+# 2                              SSQ_5_62: partially adequate 1.02 (0.51 ~ 2.04)         0.954            1.01 (0.54 ~ 1.89)         0.975           
+# 3                                        SSQ_5_63: adequate 0.32 (0.15 ~ 0.70)         0.005        **  0.28 (0.15 ~ 0.53)        <0.001        ***
+# 4                                           US_BORN2: Other 0.72 (0.42 ~ 1.25)         0.251            0.62 (0.39 ~ 0.99)         0.049        *  
+# 5                                           GENDER2: Female 2.36 (1.47 ~ 3.79)        <0.001        *** 2.33 (1.43 ~ 3.81)        <0.001        ***
+# 6                                          AGEGRP5C2: 30-39 0.87 (0.36 ~ 2.11)         0.756                          <NA>          <NA>       <NA>
+# 7                                          AGEGRP5C3: 40-49 0.69 (0.31 ~ 1.55)         0.377                          <NA>          <NA>       <NA>
+# 8                                          AGEGRP5C4: 50-59 0.90 (0.39 ~ 2.07)         0.797                          <NA>          <NA>       <NA>
+# 9                                    AGEGRP5C5: 60 and over 0.43 (0.17 ~ 1.06)         0.070                          <NA>          <NA>       <NA>
+# 10                                RACE2: Non-Hispanic Black 0.48 (0.23 ~ 1.01)         0.055                          <NA>          <NA>       <NA>
+# 11                                          RACE3: Hispanic 0.66 (0.32 ~ 1.35)         0.260                          <NA>          <NA>       <NA>
+# 12                                             RACE4: Asian 0.33 (0.09 ~ 1.16)         0.087                          <NA>          <NA>       <NA>
+# 13                                             RACE5: Other 0.97 (0.37 ~ 2.52)         0.944                          <NA>          <NA>       <NA>
+# 14                                      MARITAL_MarriedTRUE 1.23 (0.70 ~ 2.18)         0.475            1.06 (0.65 ~ 1.73)         0.828           
+# 15                               INC25K2: $25,000 - $49,999 0.65 (0.35 ~ 1.19)         0.163                          <NA>          <NA>       <NA>
+# 16                               INC25K3: $50,000 - $74,999 0.68 (0.30 ~ 1.53)         0.350                          <NA>          <NA>       <NA>
+# 17                               INC25K4: $75,000 - $99,999 0.11 (0.02 ~ 0.54)         0.008        **                <NA>          <NA>       <NA>
+# 18                               INC25K5: $100,000  or more 0.15 (0.04 ~ 0.58)         0.007        **                <NA>          <NA>       <NA>
+# 19                             POVGROUP6_0812CT2: 5 to <10% 0.41 (0.15 ~ 1.08)         0.075                          <NA>          <NA>       <NA>
+# 20                            POVGROUP6_0812CT3: 10 to <20% 0.46 (0.16 ~ 1.35)         0.160                          <NA>          <NA>       <NA>
+# 21                            POVGROUP6_0812CT4: 20 to <30% 0.96 (0.33 ~ 2.78)         0.933                          <NA>          <NA>       <NA>
+# 22                            POVGROUP6_0812CT5: 30 to <40% 0.81 (0.27 ~ 2.41)         0.699                          <NA>          <NA>       <NA>
+# 23 POVGROUP6_0812CT6: 40% to 100% (very high poverty areas) 0.61 (0.19 ~ 2.00)         0.418                          <NA>          <NA>       <NA>
+# 24                                      EDU4CAT_collegeTRUE 0.73 (0.38 ~ 1.40)         0.340            0.58 (0.32 ~ 1.08)         0.087           
+# 25                                               HIQ_62: No 0.65 (0.32 ~ 1.29)         0.218            0.69 (0.36 ~ 1.29)         0.244           
+# 26                                       HUQ_3_lt_1yearTRUE 0.93 (0.43 ~ 1.97)         0.841            0.88 (0.42 ~ 1.85)         0.731           
+# 27                                         AGEGROUP2: 40-59               <NA>          <NA>       <NA> 0.84 (0.49 ~ 1.43)         0.511           
+# 28                                           AGEGROUP3: 60+               <NA>          <NA>       <NA> 0.55 (0.28 ~ 1.07)         0.079           
+# 29                                           RACE_WhiteTRUE               <NA>          <NA>       <NA> 1.29 (0.77 ~ 2.16)         0.335           
+# 30                                      INC25KMOD_gt75kTRUE               <NA>          <NA>       <NA> 0.21 (0.09 ~ 0.52)        <0.001        ***
+
+
+
+
+
+
+(
+    svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".6var")))
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".4var")))
+) %>% 
+    as.data.frame
+# > (
+# +     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+# + ) %>% full_join(
+# +     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".6var")))
+# + ) %>% full_join(
+# +     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".4var")))
+# + ) %>% 
+# +     as.data.frame
+# Joining, by = "rowname"
+# Joining, by = "rowname"
+#                 rowname         ORCI.10var p_value.10var star.10var          ORCI.6var p_value.6var star.6var          ORCI.4var p_value.4var star.4var
+# 1           (Intercept) 0.43 (0.15 ~ 1.27)         0.130            0.33 (0.18 ~ 0.59)       <0.001       *** 0.27 (0.17 ~ 0.44)       <0.001       ***
+# 2  SSQ_5_6_adequateTRUE 0.29 (0.18 ~ 0.47)        <0.001        *** 0.34 (0.21 ~ 0.54)       <0.001       *** 0.36 (0.22 ~ 0.57)       <0.001       ***
+# 3       US_BORN2: Other 0.61 (0.38 ~ 0.98)         0.044        *   0.63 (0.40 ~ 1.01)        0.055           0.61 (0.38 ~ 0.97)        0.038       *  
+# 4       GENDER2: Female 2.42 (1.46 ~ 4.00)        <0.001        *** 2.01 (1.28 ~ 3.18)        0.003       **  2.00 (1.27 ~ 3.16)        0.003       ** 
+# 5        INC10K_integer 0.85 (0.76 ~ 0.95)         0.004        **  0.85 (0.78 ~ 0.93)       <0.001       *** 0.87 (0.80 ~ 0.94)       <0.001       ***
+# 6      AGEGROUP2: 40-59 0.99 (0.57 ~ 1.70)         0.965            0.89 (0.54 ~ 1.45)        0.629                         <NA>         <NA>      <NA>
+# 7        AGEGROUP3: 60+ 0.48 (0.23 ~ 1.04)         0.064            0.52 (0.27 ~ 1.00)        0.053                         <NA>         <NA>      <NA>
+# 8        RACE_WhiteTRUE 1.66 (0.98 ~ 2.83)         0.064            1.18 (0.70 ~ 1.98)        0.533                         <NA>         <NA>      <NA>
+# 9   MARITAL_MarriedTRUE 1.18 (0.69 ~ 2.02)         0.542                          <NA>         <NA>      <NA>               <NA>         <NA>      <NA>
+# 10  EDU4CAT_collegeTRUE 0.59 (0.32 ~ 1.08)         0.091                          <NA>         <NA>      <NA>               <NA>         <NA>      <NA>
+# 11           HIQ_62: No 0.69 (0.34 ~ 1.37)         0.285                          <NA>         <NA>      <NA>               <NA>         <NA>      <NA>
+# 12   HUQ_3_lt_1yearTRUE 0.96 (0.43 ~ 2.14)         0.928                          <NA>         <NA>      <NA>               <NA>         <NA>      <NA>
+
+
+
+
+#@@ main effect vs. interaction ======
+
+(
+    svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6_adequate * US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var.inter")))
+) %>% 
+    as.data.frame
+# > (
+# +     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+# + ) %>% full_join(
+# +     svyglm(Depressed ~ SSQ_5_6_adequate * US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var.inter")))
+# + ) %>% 
+# +     as.data.frame
+# Joining, by = "rowname"
+#                                 rowname         ORCI.10var p_value.10var star.10var   ORCI.10var.inter p_value.10var.inter star.10var.inter
+# 1                           (Intercept) 0.43 (0.15 ~ 1.27)         0.130            0.53 (0.18 ~ 1.56)               0.255                 
+# 2                  SSQ_5_6_adequateTRUE 0.29 (0.18 ~ 0.47)        <0.001        *** 0.18 (0.10 ~ 0.33)              <0.001              ***
+# 3                       US_BORN2: Other 0.61 (0.38 ~ 0.98)         0.044        *   0.34 (0.16 ~ 0.69)               0.003              ** 
+# 4                       GENDER2: Female 2.42 (1.46 ~ 4.00)        <0.001        *** 2.42 (1.44 ~ 4.05)               0.001              ** 
+# 5                        INC10K_integer 0.85 (0.76 ~ 0.95)         0.004        **  0.85 (0.76 ~ 0.95)               0.004              ** 
+# 6                      AGEGROUP2: 40-59 0.99 (0.57 ~ 1.70)         0.965            0.99 (0.57 ~ 1.72)               0.980                 
+# 7                        AGEGROUP3: 60+ 0.48 (0.23 ~ 1.04)         0.064            0.48 (0.22 ~ 1.03)               0.061                 
+# 8                        RACE_WhiteTRUE 1.66 (0.98 ~ 2.83)         0.064            1.71 (1.00 ~ 2.93)               0.052                 
+# 9                   MARITAL_MarriedTRUE 1.18 (0.69 ~ 2.02)         0.542            1.20 (0.69 ~ 2.08)               0.529                 
+# 10                  EDU4CAT_collegeTRUE 0.59 (0.32 ~ 1.08)         0.091            0.60 (0.33 ~ 1.09)               0.098                 
+# 11                           HIQ_62: No 0.69 (0.34 ~ 1.37)         0.285            0.66 (0.33 ~ 1.34)               0.256                 
+# 12                   HUQ_3_lt_1yearTRUE 0.96 (0.43 ~ 2.14)         0.928            1.00 (0.43 ~ 2.34)               0.999                 
+# 13 SSQ_5_6_adequateTRUE:US_BORN2: Other               <NA>          <NA>       <NA> 3.23 (1.17 ~ 8.93)               0.025              *  
+
+(
+    svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6_adequate * US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var.inter")))
+) %>% 
+    openxlsx::write.xlsx("svyglm 10var vs 10var.inter.xlsx")
+openxlsx::openXL("svyglm 10var vs 10var.inter.xlsx")
+
+
+
+
+
+#@@ US_BORN_T vs US_BORN_F -----------
+
+(
+    svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_T.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_T.10var")))
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_F.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_F.10var")))
+) %>% 
+    as.data.frame
+# > (
+# +     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_T.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_T.10var")))
+# + ) %>% full_join(
+# +     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_F.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+# +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_F.10var")))
+# + ) %>% 
+# +     as.data.frame
+# Joining, by = "rowname"
+#                 rowname ORCIUS_BORN_T.10var p_valueUS_BORN_T.10var starUS_BORN_T.10var ORCIUS_BORN_F.10var p_valueUS_BORN_F.10var starUS_BORN_F.10var
+# 1           (Intercept)  0.40 (0.14 ~ 1.16)                  0.093                      0.24 (0.03 ~ 2.20)                  0.209                    
+# 2  SSQ_5_6_adequateTRUE  0.16 (0.09 ~ 0.30)                 <0.001                 ***  0.64 (0.28 ~ 1.47)                  0.295                    
+# 3       GENDER2: Female  2.74 (1.51 ~ 5.00)                  0.001                 **   2.70 (1.00 ~ 7.33)                  0.053                    
+# 4        INC10K_integer  0.82 (0.72 ~ 0.94)                  0.005                 **   0.92 (0.77 ~ 1.09)                  0.315                    
+# 5      AGEGROUP2: 40-59  0.82 (0.41 ~ 1.64)                  0.581                      1.12 (0.44 ~ 2.86)                  0.811                    
+# 6        AGEGROUP3: 60+  0.19 (0.05 ~ 0.79)                  0.024                 *    1.53 (0.44 ~ 5.30)                  0.501                    
+# 7        RACE_WhiteTRUE  2.48 (1.18 ~ 5.21)                  0.018                 *    1.04 (0.34 ~ 3.17)                  0.944                    
+# 8   MARITAL_MarriedTRUE  0.91 (0.40 ~ 2.07)                  0.826                      1.90 (0.83 ~ 4.32)                  0.130                    
+# 9   EDU4CAT_collegeTRUE  0.64 (0.29 ~ 1.43)                  0.281                      0.48 (0.16 ~ 1.50)                  0.212                    
+# 10           HIQ_62: No  0.83 (0.31 ~ 2.24)                  0.711                      0.35 (0.12 ~ 1.05)                  0.063                    
+# 11   HUQ_3_lt_1yearTRUE  1.56 (0.58 ~ 4.19)                  0.375                      0.47 (0.13 ~ 1.72)                  0.259       
+
+(
+    svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_T.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_T.10var")))
+) %>% full_join(
+    svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_F.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_F.10var")))
+) %>% 
+    openxlsx::write.xlsx("svyglm US_BORN_T.10var vs US_BORN_F.10var.xlsx")
+
+
+
+
+
 #@ end -----
