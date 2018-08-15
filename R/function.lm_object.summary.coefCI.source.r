@@ -674,17 +674,17 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
 
 
 
-#@@@@ =====
+#@@@@ data.SSQ_5_6 =====
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/data.SSQ_5_6.rda"))
+library(survey)
 data.svydesign = data.SSQ_5_6 %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+data.US_BORN_T.svydesign = data.SSQ_5_6 %>% filter(US_BORN == "1: US-Born, 50 States, DC, PR and Territories") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+data.US_BORN_F.svydesign = data.SSQ_5_6 %>% filter(US_BORN == "2: Other") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 data.Depressed.svydesign = data.SSQ_5_6 %>% filter(DXDEPRESSION %in% c("1: Depressed and previously diagnosed", "2: Depressed and no diagnosis")) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 
 
 #@ tables for manuscript - main effects model () ====
-
-
-
 
 svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
     rename_all(toupper)
@@ -846,8 +846,6 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 # 30                                      INC25KMOD_gt75kTRUE               <NA>          <NA>       <NA> 0.21 (0.09 ~ 0.52)        <0.001        ***
 
 
-?rename_all
-
 
 (
     svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
@@ -985,15 +983,15 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 # 12                   HUQ_3_lt_1yearTRUE 0.96 (0.43 ~ 2.14)         0.928            1.00 (0.43 ~ 2.34)               0.999                 
 # 13 SSQ_5_6_adequateTRUE:US_BORN2: Other               <NA>          <NA>       <NA> 3.23 (1.17 ~ 8.93)               0.025              *  
 
-(
-    svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
-        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
-) %>% full_join(
-    svyglm(Depressed ~ SSQ_5_6_adequate * US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
-        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var.inter")))
-) %>% 
-    openxlsx::write.xlsx("svyglm 10var vs 10var.inter.xlsx")
-openxlsx::openXL("svyglm 10var vs 10var.inter.xlsx")
+# (
+#     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+#         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
+# ) %>% full_join(
+#     svyglm(Depressed ~ SSQ_5_6_adequate * US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+#         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var.inter")))
+# ) %>% 
+#     openxlsx::write.xlsx("svyglm 10var vs 10var.inter.xlsx")
+# openxlsx::openXL("svyglm 10var vs 10var.inter.xlsx")
 
 
 
@@ -1031,14 +1029,20 @@ openxlsx::openXL("svyglm 10var vs 10var.inter.xlsx")
 # 10           HIQ_62: No  0.83 (0.31 ~ 2.24)                  0.711                      0.35 (0.12 ~ 1.05)                  0.063                    
 # 11   HUQ_3_lt_1yearTRUE  1.56 (0.58 ~ 4.19)                  0.375                      0.47 (0.13 ~ 1.72)                  0.259       
 
-(
-    svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_T.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
-        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_T.10var")))
-) %>% full_join(
-    svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_F.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
-        set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_F.10var")))
-) %>% 
-    openxlsx::write.xlsx("svyglm US_BORN_T.10var vs US_BORN_F.10var.xlsx")
+# (
+#     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_T.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+#         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_T.10var")))
+# ) %>% full_join(
+#     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_F.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
+#         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_F.10var")))
+# ) %>% 
+#     openxlsx::write.xlsx("svyglm US_BORN_T.10var vs US_BORN_F.10var.xlsx")
+# openxlsx::openXL("svyglm US_BORN_T.10var vs US_BORN_F.10var.xlsx")
+
+
+
+
+
 
 
 
