@@ -245,6 +245,11 @@ traj_clusters_by_sequence %>% str
 #   ..$ cluster : int [1:325] 9 13 12 4 7 1 13 14 14 15 ...
 
 
+
+
+
+
+
 function.traj_clusters_by_time = function(input, seed = 1) {
     library(tidyverse)
     library(traj)
