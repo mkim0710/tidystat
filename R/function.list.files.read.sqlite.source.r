@@ -9,9 +9,19 @@
 
 
 library(tidyverse)
-library(DBI)
+getwd() %>% dput
+# > getwd() %>% dput
+# "X:/mkim/Rproject"
+# path4read = "//DON/marketscan_users/smacdonald/"
+# path4write = "//DON/marketscan_users/mkim/"
+# path4read = "/proj/marketscan_users/marketscan/mkim/"
+# path4write = "/proj/marketscan_users/marketscan/mkim/"
+path4read = "../data/"
+path4write = "../data/"
 
-mydb <- dbConnect(RSQLite::SQLite(), "KNHIS.02ID.2089.SICK_SYM_3char.sqlite")
+library(DBI)
+mydb <- dbConnect(RSQLite::SQLite(), paste0(path4write, "KNHIS.02ID.2089.SICK_SYM_3char.sqlite"))
+
 
 
 #@ mydb %>% dbWriteTable("NHID_JK0213.bind_rows", ( ------
@@ -190,8 +200,17 @@ rm(NHID_GJ_0213.bind_rows.integer)
 
 
 #@ end -----
+getwd() %>% dput
+# > getwd() %>% dput
+# "X:/mkim/Rproject"
+# path4read = "//DON/marketscan_users/smacdonald/"
+# path4write = "//DON/marketscan_users/mkim/"
+# path4read = "/proj/marketscan_users/marketscan/mkim/"
+# path4write = "/proj/marketscan_users/marketscan/mkim/"
+path4read = "../"
+path4write = "../"
+mydb <- DBI::dbConnect(RSQLite::SQLite(), paste0(path4write, "KNHIS.02ID.2089.SICK_SYM_3char.sqlite"))
 
-mydb <- DBI::dbConnect(RSQLite::SQLite(), "KNHIS.02ID.2089.SICK_SYM_3char.sqlite")
 
 mydb %>% {DBI::dbListTables(.)} %>% dput #----
 t0 = Sys.time()
@@ -282,6 +301,223 @@ dbDisconnect(mydb)
 
 
 
+
+
+
+
+
+
+
+
+
+
+#@@@ mydb.dbListTables.dbListFields.ifelse.bindcols from .r =====
+#@ mydb.dbListTables.dbListFields ======
+mydb.dbListTables.dbListFields = 
+    mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
+        mydb %>% dbListFields(chr)
+    }) %>% setNames(mydb %>% {DBI::dbListTables(.)})
+
+
+mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
+# > mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
+#  chr [1:149] "enrolid" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
+
+
+# mydb.dbListTables.dbListFields %>% map(function(vec) {
+#     if_else(vec %in% (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), T, F)
+# }) %>% str
+# # > mydb.dbListTables.dbListFields %>% map(function(vec) {
+# # +     if_else(vec %in% (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), T, F)
+# # + }) %>% str
+# # List of 18
+# #  $ infant_pregcohort_d_r4.sas7bdat    : logi [1:33] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ infant_pregcohort_i_r4.sas7bdat    : logi [1:64] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ infant_pregcohort_o_r4.sas7bdat    : logi [1:36] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ infant_pregcohort_o_r4_mod.sas7bdat: logi [1:10] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ infant_pregcohort_r_r4.sas7bdat    : logi [1:41] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ infant_pregcohort_s_r4.sas7bdat    : logi [1:44] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ infant_pregcohort_s_r4_mod.sas7bdat: logi [1:13] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ infant_pregcohort_t_r4.sas7bdat    : logi [1:11] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ mscan_delivrange_os_r4.sas7bdat    : logi [1:17] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ mscan_pregcohort_r4.sas7bdat       : logi [1:44] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_d_r4.sas7bdat     : logi [1:33] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_i_r4.sas7bdat     : logi [1:64] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_o_r4.sas7bdat     : logi [1:36] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_o_r4_mod.sas7bdat : logi [1:10] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_r_r4.sas7bdat     : logi [1:41] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_s_r4.sas7bdat     : logi [1:44] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_s_r4_mod.sas7bdat : logi [1:13] TRUE TRUE TRUE TRUE TRUE TRUE ...
+# #  $ women_pregcohort_t_r4.sas7bdat     : logi [1:11] TRUE TRUE TRUE TRUE TRUE TRUE ...
+
+
+mydb.dbListTables.dbListFields %>% map(function(vec) {
+    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+}) %>% str
+# > mydb.dbListTables.dbListFields %>% map(function(vec) {
+# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+# + }) %>% str
+# List of 18
+#  $ infant_pregcohort_d_r4.sas7bdat    : logi [1:149] TRUE TRUE TRUE TRUE TRUE TRUE ...
+#  $ infant_pregcohort_i_r4.sas7bdat    : logi [1:149] TRUE TRUE FALSE FALSE TRUE TRUE ...
+#  $ infant_pregcohort_o_r4.sas7bdat    : logi [1:149] TRUE TRUE FALSE TRUE TRUE TRUE ...
+#  $ infant_pregcohort_o_r4_mod.sas7bdat: logi [1:149] TRUE TRUE FALSE TRUE FALSE TRUE ...
+#  $ infant_pregcohort_r_r4.sas7bdat    : logi [1:149] TRUE TRUE FALSE TRUE TRUE TRUE ...
+#  $ infant_pregcohort_s_r4.sas7bdat    : logi [1:149] TRUE TRUE FALSE TRUE TRUE TRUE ...
+#  $ infant_pregcohort_s_r4_mod.sas7bdat: logi [1:149] TRUE TRUE FALSE TRUE FALSE TRUE ...
+#  $ infant_pregcohort_t_r4.sas7bdat    : logi [1:149] TRUE TRUE FALSE FALSE FALSE TRUE ...
+#  $ mscan_delivrange_os_r4.sas7bdat    : logi [1:149] FALSE TRUE FALSE TRUE FALSE TRUE ...
+#  $ mscan_pregcohort_r4.sas7bdat       : logi [1:149] FALSE FALSE FALSE FALSE FALSE FALSE ...
+#  $ women_pregcohort_d_r4.sas7bdat     : logi [1:149] FALSE TRUE TRUE TRUE TRUE TRUE ...
+#  $ women_pregcohort_i_r4.sas7bdat     : logi [1:149] FALSE TRUE FALSE FALSE TRUE TRUE ...
+#  $ women_pregcohort_o_r4.sas7bdat     : logi [1:149] FALSE TRUE FALSE TRUE TRUE TRUE ...
+#  $ women_pregcohort_o_r4_mod.sas7bdat : logi [1:149] FALSE TRUE FALSE TRUE FALSE TRUE ...
+#  $ women_pregcohort_r_r4.sas7bdat     : logi [1:149] FALSE TRUE FALSE TRUE TRUE TRUE ...
+#  $ women_pregcohort_s_r4.sas7bdat     : logi [1:149] FALSE TRUE FALSE TRUE TRUE TRUE ...
+#  $ women_pregcohort_s_r4_mod.sas7bdat : logi [1:149] FALSE TRUE FALSE TRUE FALSE TRUE ...
+#  $ women_pregcohort_t_r4.sas7bdat     : logi [1:149] FALSE TRUE FALSE FALSE FALSE TRUE ...
+
+
+mydb.dbListTables.dbListFields %>% map(function(vec) {
+    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+}) %>% bind_cols
+# > mydb.dbListTables.dbListFields %>% map(function(vec) {
+# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+# + }) %>% bind_cols
+# # A tibble: 149 x 18
+#    infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… mscan_delivrang…
+#    <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>           
+#  1 TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             FALSE           
+#  2 TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE            
+#  3 TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+#  4 TRUE             FALSE            TRUE             TRUE             TRUE             TRUE             TRUE             FALSE            TRUE            
+#  5 TRUE             TRUE             TRUE             FALSE            TRUE             TRUE             FALSE            FALSE            FALSE           
+#  6 TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE            
+#  7 TRUE             TRUE             TRUE             FALSE            TRUE             TRUE             FALSE            TRUE             FALSE           
+#  8 TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+#  9 TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+# 10 TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+# # ... with 139 more rows, and 9 more variables: mscan_pregcohort_r4.sas7bdat <lgl>, women_pregcohort_d_r4.sas7bdat <lgl>, women_pregcohort_i_r4.sas7bdat <lgl>,
+# #   women_pregcohort_o_r4.sas7bdat <lgl>, women_pregcohort_o_r4_mod.sas7bdat <lgl>, women_pregcohort_r_r4.sas7bdat <lgl>, women_pregcohort_s_r4.sas7bdat <lgl>,
+# #   women_pregcohort_s_r4_mod.sas7bdat <lgl>, women_pregcohort_t_r4.sas7bdat <lgl>
+
+
+
+mydb.dbListTables.dbListFields %>% map(function(vec) {
+    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+}) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1)
+# > mydb.dbListTables.dbListFields %>% map(function(vec) {
+# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+# + }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1)
+# # A tibble: 149 x 19
+#    varname infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho…
+#    <chr>   <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>           
+#  1 enrolid TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE            
+#  2 EFAMID  TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE            
+#  3 NDCNUM  TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+#  4 SVCDATE TRUE             FALSE            TRUE             TRUE             TRUE             TRUE             TRUE             FALSE           
+#  5 DOBYR   TRUE             TRUE             TRUE             FALSE            TRUE             TRUE             FALSE            FALSE           
+#  6 YEAR    TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE             TRUE            
+#  7 AGE     TRUE             TRUE             TRUE             FALSE            TRUE             TRUE             FALSE            TRUE            
+#  8 DAYSUPP TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+#  9 GENERID TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+# 10 METQTY  TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+# # ... with 139 more rows, and 10 more variables: mscan_delivrange_os_r4.sas7bdat <lgl>, mscan_pregcohort_r4.sas7bdat <lgl>, women_pregcohort_d_r4.sas7bdat <lgl>,
+# #   women_pregcohort_i_r4.sas7bdat <lgl>, women_pregcohort_o_r4.sas7bdat <lgl>, women_pregcohort_o_r4_mod.sas7bdat <lgl>, women_pregcohort_r_r4.sas7bdat <lgl>,
+# #   women_pregcohort_s_r4.sas7bdat <lgl>, women_pregcohort_s_r4_mod.sas7bdat <lgl>, women_pregcohort_t_r4.sas7bdat <lgl>
+
+
+
+mydb.dbListTables.dbListFields %>% map(function(vec) {
+    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+}) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+# > mydb.dbListTables.dbListFields %>% map(function(vec) {
+# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+# + }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+# # A tibble: 149 x 19
+#    varname infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho…
+#    <chr>   <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>           
+#  1 ABNORM… FALSE            FALSE            FALSE            FALSE            TRUE             FALSE            FALSE            FALSE           
+#  2 ADMDATE FALSE            TRUE             FALSE            FALSE            FALSE            TRUE             TRUE             FALSE           
+#  3 ADMTYP  FALSE            TRUE             FALSE            FALSE            FALSE            TRUE             FALSE            FALSE           
+#  4 AGE     TRUE             TRUE             TRUE             FALSE            TRUE             TRUE             FALSE            TRUE            
+#  5 AGEGRP  FALSE            TRUE             TRUE             FALSE            TRUE             TRUE             FALSE            FALSE           
+#  6 CASEID  FALSE            TRUE             FALSE            FALSE            FALSE            TRUE             TRUE             FALSE           
+#  7 code_n… FALSE            FALSE            FALSE            TRUE             FALSE            FALSE            TRUE             FALSE           
+#  8 codedp  FALSE            FALSE            FALSE            TRUE             FALSE            FALSE            TRUE             FALSE           
+#  9 DATATYP FALSE            FALSE            FALSE            FALSE            TRUE             FALSE            FALSE            FALSE           
+# 10 DAWIND  TRUE             FALSE            FALSE            FALSE            FALSE            FALSE            FALSE            FALSE           
+# # ... with 139 more rows, and 10 more variables: mscan_delivrange_os_r4.sas7bdat <lgl>, mscan_pregcohort_r4.sas7bdat <lgl>,
+# #   women_pregcohort_d_r4.sas7bdat <lgl>, women_pregcohort_i_r4.sas7bdat <lgl>, women_pregcohort_o_r4.sas7bdat <lgl>, women_pregcohort_o_r4_mod.sas7bdat <lgl>,
+# #   women_pregcohort_r_r4.sas7bdat <lgl>, women_pregcohort_s_r4.sas7bdat <lgl>, women_pregcohort_s_r4_mod.sas7bdat <lgl>, women_pregcohort_t_r4.sas7bdat <lgl>
+
+openxlsx::write.xlsx(
+    mydb.dbListTables.dbListFields %>% map(function(vec) {
+        if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+    }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+    , "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
+    , asTable = T
+)
+openxlsx::openXL(
+    "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
+)
+# > openxlsx::openXL(
+# +     "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
+# + )
+# Error in chooseExcelApp() : No applications (detected) available.
+# Set options('openxlsx.excelApp'), instead.
+
+
+
+
+#@ mydb.dbListTables.dbListFields %>% unlist %>% unname %>% toupper %>% unique ------
+?unique
+mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
+mydb.dbListTables.dbListFields %>% unlist %>% unname %>% toupper %>% unique %>% str
+# > mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
+#  chr [1:149] "enrolid" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
+# > mydb.dbListTables.dbListFields %>% unlist %>% unname %>% toupper %>% unique %>% str
+#  chr [1:146] "ENROLID" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
+
+
+
+mydb.dbListTables.dbListFields.ifelse.bindcols =
+    mydb.dbListTables.dbListFields %>% map(function(vec) {
+        if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+    }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+
+
+
+
+
+
+#@ end -----
+save(mydb.dbListTables.dbListFields, file = "mydb.dbListTables.dbListFields.rda")
+save(mydb.dbListTables.dbListFields.ifelse.bindcols, file = "mydb.dbListTables.dbListFields.ifelse.bindcols.rda")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#@@@ KNHIS.02ID.2089.sqlite.tbl from .r =====
 #@ KNHIS.02ID.2089.sqlite.tbl ====
 KNHIS.02ID.2089.sqlite.tbl = mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% tbl(chr)
