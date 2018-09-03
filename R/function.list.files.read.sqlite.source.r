@@ -193,17 +193,17 @@ rm(NHID_GJ_0213.bind_rows.integer)
 
 mydb <- DBI::dbConnect(RSQLite::SQLite(), "KNHIS.02ID.2089.SICK_SYM_3char.sqlite")
 
-mydb %>% {DBI::dbListTables(.)} %>% dput
+mydb %>% {DBI::dbListTables(.)} %>% dput #----
 t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0('
     select count(*) from "', chr, '"'))} %>% unlist
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
 Sys.time() - t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% dbListFields(chr)
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput
-# > mydb %>% {DBI::dbListTables(.)} %>% dput
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
+# > mydb %>% {DBI::dbListTables(.)} %>% dput #----
 c("NHID_GJ_0213.bind_rows.integer", "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char", 
 "NHID_GY60_0213.bind_rows.GNL_NM_CD4", "NHID_JK0213.bind_rows"
 )
@@ -211,7 +211,7 @@ c("NHID_GJ_0213.bind_rows.integer", "NHID_GY40_0213.bind_rows.factor.PERSON_ID.S
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
 # +     select count(*) from "', chr, '"'))} %>% unlist
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
 structure(list(`count(*)` = c(2294874, 227954977, 291467211,
 8335791)), .Names = "count(*)", row.names = c("NHID_GJ_0213.bind_rows.integer", 
 "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char", "NHID_GY60_0213.bind_rows.GNL_NM_CD4", 
@@ -220,7 +220,7 @@ structure(list(`count(*)` = c(2294874, 227954977, 291467211,
 # Time difference of 59.01476 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% dbListFields(chr)
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
 structure(list(NHID_GJ_0213.bind_rows.integer = c("PERSON_ID", 
 "HCHK_YEAR", "YKIHO_GUBUN_CD", "HEIGHT", "WEIGHT", "BP_HIGH", 
 "BP_LWST", "BLDS", "TOT_CHOLE", "HMG", "GLY_CD", "OLIG_OCCU_CD", 
