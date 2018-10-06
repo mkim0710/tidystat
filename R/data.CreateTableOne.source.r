@@ -4,7 +4,10 @@ library(tidyverse)
 library(tableone)
 
 #@ dataset.CreateTableOne -----
-dataset.tableone = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+# dataset.tableone = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+#     CreateTableOne(data = ., test = T, includeNA = T)
+dataset.tableone = dataset %>% 
+    {.[map_lgl(., function(vec) n_distinct(vec) <= 10)]} %>% as.data.frame %>% 
     CreateTableOne(data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 dataset.tableone %>% print(smd = T)
@@ -27,7 +30,10 @@ openxlsx::openXL("dataset.tableone.IQR.xlsx")
 
 #@ dataset.CreateTableOne.by_exposure -----
 varnames4exposure =  c("treatment")
-dataset.tableone_by_exposure = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+# dataset.tableone_by_exposure = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+#     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
+dataset.tableone_by_exposure = dataset %>% 
+    {.[map_lgl(., function(vec) n_distinct(vec) <= 10)]} %>% as.data.frame %>% 
     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 dataset.tableone_by_exposure %>% print(smd = T)
