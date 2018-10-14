@@ -10,8 +10,8 @@ dataset.tableone = dataset %>%
     {.[map_lgl(., function(vec) n_distinct(vec) <= 10)]} %>% as.data.frame %>% 
     CreateTableOne(data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
-dataset.tableone %>% print(smd = T)
-dataset.tableone %>% print(smd = T, nonnormal = vars4IQR)
+dataset.tableone %>% print(smd = T) #----
+dataset.tableone %>% print(smd = T, nonnormal = vars4IQR) #----
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
 dataset.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
@@ -36,8 +36,8 @@ dataset.tableone_by_exposure = dataset %>%
     {.[map_lgl(., function(vec) n_distinct(vec) <= 10)]} %>% as.data.frame %>% 
     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
-dataset.tableone_by_exposure %>% print(smd = T)
-dataset.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR)
+dataset.tableone_by_exposure %>% print(smd = T) #----
+dataset.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR) #----
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
 dataset.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
