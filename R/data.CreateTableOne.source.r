@@ -13,7 +13,7 @@ vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 dataset.tableone %>% print(smd = T) #----
 dataset.tableone %>% print(smd = T, nonnormal = vars4IQR) #----
 
-# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
 dataset.tableone %>% print(nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
     write.csv("dataset.tableone -clean.csv")
 openxlsx::openXL("dataset.tableone -clean.csv")
@@ -28,6 +28,11 @@ dataset.tableone %>% print(nonnormal = vars4IQR, exact = NULL, quote = FALSE, no
 # openxlsx::openXL("dataset.tableone.IQR.xlsx")
 
 
+               
+               
+               
+               
+               
 #@ dataset.CreateTableOne.by_exposure -----
 varnames4exposure =  c("treatment")
 # dataset.tableone_by_exposure = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
@@ -39,7 +44,7 @@ vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 dataset.tableone_by_exposure %>% print(smd = T) #----
 dataset.tableone_by_exposure %>% print(smd = T, nonnormal = vars4IQR) #----
 
-# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
 dataset.tableone_by_exposure %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
     write.csv("dataset.tableone_by_exposure -clean.csv")
 openxlsx::openXL("dataset.tableone_by_exposure -clean.csv")
