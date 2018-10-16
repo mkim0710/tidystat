@@ -8,7 +8,10 @@ getwd() %>% dput
 # "X:/mkim/Rproject"
 path4read = "//DON/marketscan_users/smacdonald/"
 path4write = "//DON/marketscan_users/mkim/"
-
+path4read = path4read %>% {ifelse(substr(., nchar(.), nchar(.)) == "/", ., paste0(., "/"))}
+path4write = path4write %>% {ifelse(substr(., nchar(.), nchar(.)) == "/", ., paste0(., "/"))}
+path4read %>% dput
+path4write %>% dput
 
 
 list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% {file.info(paste0(path4read, .))} %>% dput #----
