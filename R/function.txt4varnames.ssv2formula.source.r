@@ -45,5 +45,27 @@ txt %>% gsub("\n", " ", .) %>% gsub(" +", " ", .) %>% gsub("^ ", "", .) %>% gsub
 # . table1, by(Cigar_ge30) vars(Cigar contn \\ Cigar_ge1 cat \\ Cigar_ge30 cat \\ Cigar_ge50 cat \\ Cigar_ge100 cat \\ Cigar_ge365 cat \\ Cigar_cutMY cat \\ Cigar_cut800 cat \\ CigarettePackYear contn \\ CigarettePackYear_ge1 cat \\ CigarettePackYear_cut40 cat \\ Age contn \\ Age_ge50 cat \\ Age_cut2575 cat \\ HighSchoolLastYear cat \\ College1Year cat \\ CollegeGraduate cat \\ FamilyIncome_ge7000 cat \\ FamilyIncome_ge8000 cat \\ bmi contn \\ bmi_cut cat \\ PMHx_diabetes cat \\ PMHx_highBP cat \\ Alcohol_le1pwk cat \\ Alcohol_ge2le3pwk cat \\ Alcohol_ge4pwk cat \\ nutrition_calories contn \\ nutrition_protein contn \\ nutrition_fat contn \\ nutrition_carb contn \\ n1ah0287 cat \\ ihd cat \\ timeihd contn \\) format(%2.1f) saving("table1, by(Cigar_ge30).xls", replace)
 # . pwd
 
+
+
+
+
+#@ -----
+
+txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
+txt %>% gsub(" ", ", ", .) %>% dput
+# > txt %>% gsub(" ", ", ", .) %>% dput
+# "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar"
+
+n1_2016_withlabels_EPI522_merge_n2_recode %>% filter(N1GM0390 == 1 & Cigar_ge50 < 1) %>% 
+    select(N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar)
+
+
+
+
+
+
+
+
+
 #@ end ---
 
