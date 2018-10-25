@@ -1,6 +1,211 @@
 # function.indicators2factor.source.r
 
-# https://www.r-bloggers.com/conversion-between-factor-and-dummies-in-r/
+
+#@ ?factor ====
+?factor
+# Usage
+# 
+# factor(x = character(), levels, labels = levels,
+#        exclude = NA, ordered = is.ordered(x), nmax = NA)
+# 
+# ordered(x, ...)
+# 
+# is.factor(x)
+# is.ordered(x)
+# 
+# as.factor(x)
+# as.ordered(x)
+# 
+# addNA(x, ifany = FALSE)
+
+
+substring("statistics", 1:10, 1:10)
+"statistics" %>% str_split("") %>% unlist
+# > substring("statistics", 1:10, 1:10)
+#  [1] "s" "t" "a" "t" "i" "s" "t" "i" "c" "s"
+# > "statistics" %>% str_split("") %>% unlist
+#  [1] "s" "t" "a" "t" "i" "s" "t" "i" "c" "s"
+
+(ff <- factor(substring("statistics", 1:10, 1:10), levels = letters))
+# > (ff <- factor(substring("statistics", 1:10, 1:10), levels = letters))
+#  [1] s t a t i s t i c s
+# Levels: a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+as.integer(ff)      # the internal codes
+# > as.integer(ff)      # the internal codes
+#  [1] 19 20  1 20  9 19 20  9  3 19
+
+(f. <- factor(ff))  # drops the levels that do not occur ----
+ff[, drop = TRUE]   # the same, more transparently ----
+# > (f. <- factor(ff))  # drops the levels that do not occur ----
+#  [1] s t a t i s t i c s
+# Levels: a c i s t
+# > ff[, drop = TRUE]   # the same, more transparently ----
+#  [1] s t a t i s t i c s
+# Levels: a c i s t
+
+letters[1:20]
+# > letters[1:20]
+#  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t"
+
+factor(letters[1:20], labels = "letter")
+# > factor(letters[1:20], labels = "letter")
+#  [1] letter1  letter2  letter3  letter4  letter5  letter6  letter7  letter8  letter9  letter10 letter11 letter12 letter13 letter14 letter15
+# [16] letter16 letter17 letter18 letter19 letter20
+# 20 Levels: letter1 letter2 letter3 letter4 letter5 letter6 letter7 letter8 letter9 letter10 letter11 letter12 letter13 letter14 ... letter20
+
+
+ordered(4:1)
+class(ordered(4:1)) # "ordered", inheriting from "factor"
+# > ordered(4:1)
+# [1] 4 3 2 1
+# Levels: 1 < 2 < 3 < 4
+# > class(ordered(4:1)) # "ordered", inheriting from "factor"
+# [1] "ordered" "factor" 
+
+z <- factor(LETTERS[3:1], ordered = TRUE)
+z
+# > z
+# [1] C B A
+# Levels: A < B < C
+
+
+
+## and "relational" methods work: ----
+stopifnot(sort(z)[c(1,3)] == range(z), min(z) < max(z))
+
+sort(z)[c(1,3)]
+range(z)
+# > sort(z)[c(1,3)]
+# [1] A C
+# Levels: A < B < C
+# > range(z)
+# [1] A C
+# Levels: A < B < C
+
+min(z)
+max(z)
+# > min(z)
+# [1] A
+# Levels: A < B < C
+# > max(z)
+# [1] C
+# Levels: A < B < C
+
+
+## suppose you want "NA" as a level, and to allow missing values. ----
+factor(c(1, 2, NA))
+# > factor(c(1, 2, NA))
+# [1] 1    2    <NA>
+# Levels: 1 2
+(x <- factor(c(1, 2, NA), exclude = NULL))
+is.na(x)
+# > (x <- factor(c(1, 2, NA), exclude = NULL))
+# [1] 1    2    <NA>
+# Levels: 1 2 <NA>
+# > is.na(x)
+# [1] FALSE FALSE FALSE
+
+x[2] = NA
+is.na(x)
+# > x[2] = NA
+# > is.na(x)
+# [1] FALSE FALSE FALSE
+
+is.na(x)[2] <- TRUE
+x  # [1] 1    <NA> <NA>
+is.na(x)
+# > x  # [1] 1    <NA> <NA>
+# [1] 1    <NA> <NA>
+# Levels: 1 2 <NA>
+# > is.na(x)
+# [1] FALSE  TRUE FALSE
+
+
+
+## More rational, since R 3.4.0 : ----
+factor(c(1:2, NA), exclude =  "" ) # keeps <NA> , as
+factor(c(1:2, NA), exclude = NULL) # always did
+# > factor(c(1:2, NA), exclude =  "" ) # keeps <NA> , as
+# [1] 1    2    <NA>
+# Levels: 1 2 <NA>
+# > factor(c(1:2, NA), exclude = NULL) # always did
+# [1] 1    2    <NA>
+# Levels: 1 2 <NA>
+
+## exclude = <character>
+z # ordered levels 'A < B < C'
+# > z # ordered levels 'A < B < C'
+# [1] C B A
+# Levels: A < B < C
+
+factor(z, exclude = "C") # does exclude
+factor(z, exclude = "B") # ditto
+# > factor(z, exclude = "C") # does exclude
+# [1] <NA> B    A   
+# Levels: A < B
+# > factor(z, exclude = "B") # ditto
+# [1] C    <NA> A   
+# Levels: A < C
+
+
+## Now, labels maybe duplicated:
+## factor() with duplicated labels allowing to "merge levels"
+x <- c("Man", "Male", "Man", "Lady", "Female")
+## Map from 4 different values to only two levels:
+(xf <- factor(x, levels = c("Male", "Man" , "Lady",   "Female"),
+                 labels = c("Male", "Male", "Female", "Female")))
+# > (xf <- factor(x, levels = c("Male", "Man" , "Lady",   "Female"),
+# +                  labels = c("Male", "Male", "Female", "Female")))
+# [1] Male   Male   Male   Female Female
+# Levels: Male Female
+
+
+## Using addNA() ----
+Month <- airquality$Month
+Month %>% dput
+# > Month <- airquality$Month
+# > Month %>% dput
+# c(5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 
+# 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 
+# 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 
+# 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 7L, 7L, 
+# 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 
+# 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 8L, 8L, 8L, 
+# 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 
+# 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 8L, 9L, 9L, 9L, 9L, 
+# 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 
+# 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L)
+
+addNA(Month) %>% dput
+# > addNA(Month) %>% dput
+# structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+# 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+# 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+# 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+# 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 
+# 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 4L, 
+# 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 
+# 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 5L, 5L, 
+# 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 
+# 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L), .Label = c("5", 
+# "6", "7", "8", "9", NA), class = "factor")
+
+table(addNA(Month))
+table(addNA(Month, ifany = TRUE))
+# > table(addNA(Month))
+# 
+#    5    6    7    8    9 <NA> 
+#   31   30   31   31   30    0 
+# > table(addNA(Month, ifany = TRUE))
+# 
+#  5  6  7  8  9 
+# 31 30 31 31 30 
+
+
+
+
+# https://www.r-bloggers.com/conversion-between-factor-and-dummies-in-r/ ====
 
 library(tidyverse)
 
