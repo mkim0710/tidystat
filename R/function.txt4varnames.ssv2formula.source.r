@@ -15,6 +15,102 @@
 
 
 
+#@ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----
+txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
+txt %>% dput
+# > txt %>% dput
+# "\"N1GM0390\"        \"N1GM0392\"        \"N1GM0392_recode\" \"N1GM0394\"        \"N1GM0394_recode\" \"Cigar\""
+
+
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
+# "N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar"
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+
+
+
+
+
+
+
+
+#@ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----
+txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
+txt %>% dput
+# > txt %>% dput
+# "\"N1GM0390\"        \"N1GM0392\"        \"N1GM0392_recode\" \"N1GM0394\"        \"N1GM0394_recode\" \"Cigar\""
+
+txt %>% gsub('"', "", .) %>% dput
+# > txt %>% gsub('"', "", .) %>% dput
+# "N1GM0390        N1GM0392        N1GM0392_recode N1GM0394        N1GM0394_recode Cigar"
+
+txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) %>% cat
+txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
+txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} %>% cat
+# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) %>% cat
+# N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar
+# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
+# N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar
+# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} %>% cat
+# select(N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar)
+
+
+
+
+
+#@@@ gsub() vs. str_split(boundary("word")) vs. str_extract_all() -----
+txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
+
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
+txt %>% str_split(boundary("word")) %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} %>% cat
+txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+# > txt %>% str_split(boundary("word")) %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+# > txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+
+
+
+
+
+
+
+
+
+#@ txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar" -----
+txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar"
+
+txt %>% gsub("[ \t\n\r\f\v]+", "", .) 
+txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
+# > txt %>% gsub("[ \t\n\r\f\v]+", "", .)
+# [1] "N1GM0390,N1GM0392,N1GM0392_recode,N1GM0394,N1GM0394_recode,Cigar"
+# > txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+
+
+
+#@@@ gsub() vs. str_split(boundary("word")) vs. str_extract_all() -----
+txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar"
+
+txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
+txt %>% str_split(boundary("word")) %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} %>% cat
+txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
+# > txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+# > txt %>% str_split(boundary("word")) %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+# > txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
+
+
+
+
+
+
 
 
 #@ txt = ' =====
@@ -280,11 +376,14 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 
 
 
-#@ str_split(boundary("word")) vs. str_extract_all() -----
+#@@@ gsub() vs. str_split(boundary("word")) vs. str_extract_all() -----
 txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 
+txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
 txt %>% str_split(boundary("word")) %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} %>% cat
 txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
+# > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 # > txt %>% str_split(boundary("word")) %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} %>% cat
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 # > txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
@@ -296,54 +395,6 @@ txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
 
 
 
-
-
-
-
-
-
-#@ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----
-txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
-txt %>% dput
-# > txt %>% dput
-# "\"N1GM0390\"        \"N1GM0392\"        \"N1GM0392_recode\" \"N1GM0394\"        \"N1GM0394_recode\" \"Cigar\""
-
-
-txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
-txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
-# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
-# "N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar"
-# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
-# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-
-
-
-
-
-
-
-
-
-
-#@ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----
-txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
-txt %>% dput
-# > txt %>% dput
-# "\"N1GM0390\"        \"N1GM0392\"        \"N1GM0392_recode\" \"N1GM0394\"        \"N1GM0394_recode\" \"Cigar\""
-
-txt %>% gsub('"', "", .) %>% dput
-# > txt %>% gsub('"', "", .) %>% dput
-# "N1GM0390        N1GM0392        N1GM0392_recode N1GM0394        N1GM0394_recode Cigar"
-
-txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) %>% cat
-txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
-txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} %>% cat
-# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) %>% cat
-# N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar
-# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
-# N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar
-# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} %>% cat
-# select(N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar)
 
 
 
