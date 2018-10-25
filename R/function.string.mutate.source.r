@@ -1223,21 +1223,109 @@ x %>% str_extract(".{6}$")
 
 #@ ----
 
-7
-down vote
-Another reasonably straightforward way is to use regular expressions and sub:
+string %>% dput
+# > string %>% dput
+# c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics"
+# )
 
-sub('.*(?=.$)', '', string, perl=T)
-So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
-
-sub('.*(?=.{2}$)', '', string, perl=T)
-where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
-
-sub('.*(?=.{3}$)', '', string, perl=T)
-for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:
+# Another reasonably straightforward way is to use regular expressions and sub: ----
+sub('.*(?=.$)', '', string, perl=T)  # So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
+sub('.*(?=.{2}$)', '', string, perl=T)  # where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
+sub('.*(?=.{3}$)', '', string, perl=T)  # for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:
+# > sub('.*(?=.$)', '', string, perl=T)  # So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
+# [1] "s" "s" "s"
+# > sub('.*(?=.{2}$)', '', string, perl=T)  # where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
+# [1] "us" "os" "cs"
+# > sub('.*(?=.{3}$)', '', string, perl=T)  # for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:
+# [1] "mus" "ros" "ics"
 
 n = 3
 sub(paste('.+(?=.{', n, '})', sep=''), '', string, perl=T)
+# > n = 3
+# > sub(paste('.+(?=.{', n, '})', sep=''), '', string, perl=T)
+# [1] "mus" "ros" "ics"
+
+
+
+
+
+#@ ?boundary ====
+?boundary
+pattern <- "a.b"
+strings <- c("abb", "a.b")
+str_detect(strings, pattern)
+str_detect(strings, fixed(pattern))
+str_detect(strings, coll(pattern))
+# > str_detect(strings, pattern)
+# [1] TRUE TRUE
+# > str_detect(strings, fixed(pattern))
+# [1] FALSE  TRUE
+# > str_detect(strings, coll(pattern))
+# [1] FALSE  TRUE
+
+
+
+# coll() is useful for locale-aware case-insensitive matching
+i <- c("I", "\u0130", "i")
+i
+str_detect(i, fixed("i", TRUE))
+str_detect(i, coll("i", TRUE))
+str_detect(i, coll("i", TRUE, locale = "tr"))
+# > str_detect(i, fixed("i", TRUE))
+# [1]  TRUE FALSE  TRUE
+# > str_detect(i, coll("i", TRUE))
+# [1]  TRUE FALSE  TRUE
+# > str_detect(i, coll("i", TRUE, locale = "tr"))
+# [1] FALSE  TRUE  TRUE
+
+
+# Word boundaries
+words <- c("These are   some words.")
+str_count(words, boundary("word"))
+str_split(words, " ")[[1]]
+str_split(words, boundary("word"))[[1]]
+# > str_count(words, boundary("word"))
+# [1] 4
+# > str_split(words, " ")[[1]]
+# [1] "These"  "are"    ""       ""       "some"   "words."
+# > str_split(words, boundary("word"))[[1]]
+# [1] "These" "are"   "some"  "words"
+
+
+# Regular expression variations
+str_extract_all("The Cat in the Hat", "[a-z]+")
+str_extract_all("The Cat in the Hat", regex("[a-z]+", TRUE))
+# > str_extract_all("The Cat in the Hat", "[a-z]+")
+# [[1]]
+# [1] "he"  "at"  "in"  "the" "at" 
+# 
+# > str_extract_all("The Cat in the Hat", regex("[a-z]+", TRUE))
+# [[1]]
+# [1] "The" "Cat" "in"  "the" "Hat"
+
+
+str_extract_all("a\nb\nc", "^.")
+str_extract_all("a\nb\nc", regex("^.", multiline = TRUE))
+# > str_extract_all("a\nb\nc", "^.")
+# [[1]]
+# [1] "a"
+# 
+# > str_extract_all("a\nb\nc", regex("^.", multiline = TRUE))
+# [[1]]
+# [1] "a" "b" "c"
+
+
+str_extract_all("a\nb\nc", "a.")
+str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
+# > str_extract_all("a\nb\nc", "a.")
+# [[1]]
+# character(0)
+# 
+# > str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
+# [[1]]
+# [1] "a\n"
+
+
 
 
 #@ end -----
