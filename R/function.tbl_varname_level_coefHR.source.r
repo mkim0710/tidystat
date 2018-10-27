@@ -291,8 +291,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
 
 
 
-#@ data_list.cut.coxph_list ====
-
+#@@ data_list.cut.coxph_list from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
 #@ name4MainData, name4MainTransformation, name4FullModel ====
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
@@ -319,6 +318,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
 # [1] TRUE
 
+#@@ data_list.cut.coxph_list from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
 data_list.cut.coxph_list =
     analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
     map(function(list_object.coxph) {
@@ -385,7 +385,7 @@ data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior
                                                                                                                             
                                      
 
-#@ data_main.cut.coxph_list ----
+#@@ data_main.cut.coxph_list from data_list.cut.coxph_list ----
 #@ name4MainData, name4MainTransformation, name4FullModel ====
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
@@ -412,6 +412,7 @@ data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 
+#@@ data_main.cut.coxph_list from data_list.cut.coxph_list ----
 data_main.cut.coxph_list =
     data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact
                                      
