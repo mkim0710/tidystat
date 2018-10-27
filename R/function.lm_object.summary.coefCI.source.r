@@ -49,6 +49,7 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2,
     tmp.df$p_value[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.001] = "<0.001"
     
     tmp.df$star = "   "
+    tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.1] = ".  "
     tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.05] = "*  "
     tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.01] = "** "
     tmp.df$star[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.001] = "***"
@@ -164,6 +165,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
     tmp.df$p_value[glm_object.summary.coef.df[[varname4Pr]] <= 0.001] = "<0.001"
 
     tmp.df$star = "   "
+    tmp.df$star[glm_object.summary.coef.df[[varname4Pr]] <= 0.1] = ".  "
     tmp.df$star[glm_object.summary.coef.df[[varname4Pr]] <= 0.05] = "*  "
     tmp.df$star[glm_object.summary.coef.df[[varname4Pr]] <= 0.01] = "** "
     tmp.df$star[glm_object.summary.coef.df[[varname4Pr]] <= 0.001] = "***"
@@ -407,6 +409,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
     tmp.df$p_value[coxph_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
 
     tmp.df$star = "   "
+    tmp.df$star[coxph_object.summary.coef.df$`Pr(>|z|)` <= 0.1] = ".  "
     tmp.df$star[coxph_object.summary.coef.df$`Pr(>|z|)` <= 0.05] = "*  "
     tmp.df$star[coxph_object.summary.coef.df$`Pr(>|z|)` <= 0.01] = "** "
     tmp.df$star[coxph_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "***"
