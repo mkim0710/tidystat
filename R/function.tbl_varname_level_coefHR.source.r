@@ -263,30 +263,185 @@ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*
     # # 37 total_ddd_yr_METFORMIN NA                          total_ddd_yr_METFORMIN                      0.000347 " 1.000"    " 1.000"    " 1.001"    0.012      " 1.000( 1.000- 1.001),p=~
     # # 38 total_ddd_yr_STATIN    NA                          total_ddd_yr_STATIN                        -0.000899 " 0.999"    " 0.998"    " 1.000"    0.069      " 0.999( 0.998- 1.000),p=~    
 
-    tbl_varname_level_coefficients_res
+    # > tbl_varname_level_coefficients_res %>% names %>% dput
+    # c("varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR")
+    # txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"'
+    # txt %>% str_extract_all("[A-z0-9_]+") %>% str
+    # txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = ', ') %>% {paste0('select(', ., ')')} %>% cat
+    # select(varname, level, varnamelevel, coefficients, exp, coef, lower, 95, upper, 95, Pr, z, HR)
     
+    out = tbl_varname_level_coefficients_res %>% select(varname, level, HR, everything())
 }
 
 
 
 
+
 #@ tbl_varname_level_HR.FullModel_5yr ====
+name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 tbl_varname_level_HR.FullModel_5yr = function.tbl_varname_level_coefHR(
-  object.coxph = analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list[[name4FullModel]]$`_5yr`)
+  object.coxph = analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list[[name4FullModel]]$``)
 tbl_varname_level_HR.FullModel_5yr
 # > tbl_varname_level_HR.FullModel_5yr
-# # A tibble: 38 x 9
-#    varname                  level              varnamelevel                               coefficients `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)` HR                             
-#    <chr>                    <chr>              <chr>                                             <dbl> <chr>       <chr>       <chr>       <chr>      <chr>                          
-#  1 total_ddd_yr_ASPIRIN.cut [0,0.001)          total_ddd_yr_ASPIRIN.cut[0,0.001)               0       1           NA          NA          NA         (reference)                    
-#  2 total_ddd_yr_ASPIRIN.cut [0.001,30)         total_ddd_yr_ASPIRIN.cut[0.001,30)             -0.174   " 0.840"    " 0.571"    " 1.235"    0.375      " 0.840( 0.571- 1.235),p=0.375"
-#  3 total_ddd_yr_ASPIRIN.cut [30,365)           total_ddd_yr_ASPIRIN.cut[30,365)               -0.0835  " 0.920"    " 0.686"    " 1.233"    0.577      " 0.920( 0.686- 1.233),p=0.577"
-#  4 total_ddd_yr_ASPIRIN.cut [365,730)          total_ddd_yr_ASPIRIN.cut[365,730)               0.0249  " 1.025"    " 0.692"    " 1.519"    0.901      " 1.025( 0.692- 1.519),p=0.901"
-#  5 total_ddd_yr_ASPIRIN.cut [730,1.1e+03)      total_ddd_yr_ASPIRIN.cut[730,1.1e+03)           0.186   " 1.204"    " 0.782"    " 1.855"    0.399      " 1.204( 0.782- 1.855),p=0.399"
-#  6 total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03) total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03)     -0.629   " 0.533"    " 0.250"    " 1.135"    0.103      " 0.533( 0.250- 1.135),p=0.103"
-#  7 total_ddd_yr_ASPIRIN.cut [1.46e+03,Inf]     total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]          0.00985 " 1.010"    " 0.529"    " 1.927"    0.976      " 1.010( 0.529- 1.927),p=0.976"
-#  8 AGE_group                40-                AGE_group40-                                    0       1           NA          NA          NA         (reference)                    
-#  9 AGE_group                50-                AGE_group50-                                    1.23    " 3.414"    " 2.611"    " 4.465"    0.000      " 3.414( 2.611- 4.465),p<0.001"
-# 10 AGE_group                60-                AGE_group60-                                    2.03    " 7.631"    " 5.854"    " 9.947"    0.000      " 7.631( 5.854- 9.947),p<0.001"
-# # ... with 28 more rows
+# # A tibble: 34 x 9
+#    varname                  level              varnamelevel                               HR                              coefficients `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
+#    <chr>                    <chr>              <chr>                                      <chr>                                  <dbl> <chr>       <chr>       <chr>       <chr>     
+#  1 total_ddd_yr_ASPIRIN.cut [0,0.001)          total_ddd_yr_ASPIRIN.cut[0,0.001)          (reference)                           0      1           NA          NA          NA        
+#  2 total_ddd_yr_ASPIRIN.cut [0.001,30)         total_ddd_yr_ASPIRIN.cut[0.001,30)         " 0.839( 0.571- 1.234),p=0.374"      -0.175  " 0.839"    " 0.571"    " 1.234"    0.374     
+#  3 total_ddd_yr_ASPIRIN.cut [30,365)           total_ddd_yr_ASPIRIN.cut[30,365)           " 0.901( 0.672- 1.208),p=0.485"      -0.104  " 0.901"    " 0.672"    " 1.208"    0.485     
+#  4 total_ddd_yr_ASPIRIN.cut [365,730)          total_ddd_yr_ASPIRIN.cut[365,730)          " 0.986( 0.667- 1.459),p=0.945"      -0.0139 " 0.986"    " 0.667"    " 1.459"    0.945     
+#  5 total_ddd_yr_ASPIRIN.cut [730,1.1e+03)      total_ddd_yr_ASPIRIN.cut[730,1.1e+03)      " 1.146( 0.747- 1.759),p=0.533"       0.136  " 1.146"    " 0.747"    " 1.759"    0.533     
+#  6 total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03) total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03) " 0.498( 0.235- 1.057),p=0.069"      -0.697  " 0.498"    " 0.235"    " 1.057"    0.069     
+#  7 total_ddd_yr_ASPIRIN.cut [1.46e+03,Inf]     total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]     " 0.909( 0.481- 1.715),p=0.768"      -0.0957 " 0.909"    " 0.481"    " 1.715"    0.768     
+#  8 AGE_group                40-                AGE_group40-                               (reference)                           0      1           NA          NA          NA        
+#  9 AGE_group                50-                AGE_group50-                               " 3.395( 2.598- 4.435),p<0.001"       1.22   " 3.395"    " 2.598"    " 4.435"    0.000     
+# 10 AGE_group                60-                AGE_group60-                               " 7.548( 5.800- 9.821),p<0.001"       2.02   " 7.548"    " 5.800"    " 9.821"    0.000     
+# # ... with 24 more rows
 
+
+#@ data_list.cut.coxph_list ====
+name4MainData = "_5yr"
+name4MainTransformation = "cut"
+name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
+
+data_list.cut.coxph_list =
+    analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
+    map(function(list_object.coxph) {
+        list_object.coxph %>% map(function(object.coxph) {
+            object.coxph %>% function.tbl_varname_level_coefHR
+        })
+    })
+data_list.cut.coxph_list %>% str(max.level = 1)
+data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
+data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
+# > data_list.cut.coxph_list %>% str(max.level = 1)
+# List of 6
+#  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
+#  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
+#  $ cut_model4_ASPIRIN_AGE_group_NSAID_SEX                           :List of 5
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM    :List of 5
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :List of 5
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:List of 5
+# > data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
+# List of 5
+#  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	30 obs. of  9 variables:
+#  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	32 obs. of  9 variables:
+#  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	34 obs. of  9 variables:
+#  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	36 obs. of  9 variables:
+#  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  9 variables:
+# > data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	34 obs. of  9 variables:
+#  $ varname     : chr  "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" ...
+#  $ level       : chr  "[0,0.001)" "[0.001,30)" "[30,365)" "[365,730)" ...
+#  $ HR          : chr  "(reference)" " 0.839( 0.571- 1.234),p=0.374" " 0.901( 0.672- 1.208),p=0.485" " 0.986( 0.667- 1.459),p=0.945" ...
+#  $ varnamelevel: chr  "total_ddd_yr_ASPIRIN.cut[0,0.001)" "total_ddd_yr_ASPIRIN.cut[0.001,30)" "total_ddd_yr_ASPIRIN.cut[30,365)" "total_ddd_yr_ASPIRIN.cut[365,730)" ...
+#  $ coefficients: num  0 -0.175 -0.1044 -0.0139 0.1362 ...
+#  $ exp(coef)   : chr  "1" " 0.839" " 0.901" " 0.986" ...
+#  $ lower .95   : chr  NA " 0.571" " 0.672" " 0.667" ...
+#  $ upper .95   : chr  NA " 1.234" " 1.208" " 1.459" ...
+#  $ Pr(>|z|)    : chr  NA "0.374" "0.485" "0.945" ...
+
+
+
+#@ data_list.cut.coxph_list[[name4FullModel]][[name4MainData]] ----
+name4MainData = "_5yr"
+name4MainTransformation = "cut"
+name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
+data_list.cut.coxph_list[[name4FullModel]][[name4MainData]] #----
+# > data_list.cut.coxph_list[[name4FullModel]][[name4MainData]] #----
+# # A tibble: 34 x 9
+#    varname                  level              HR                              varnamelevel                               coefficients `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
+#    <chr>                    <chr>              <chr>                           <chr>                                             <dbl> <chr>       <chr>       <chr>       <chr>     
+#  1 total_ddd_yr_ASPIRIN.cut [0,0.001)          (reference)                     total_ddd_yr_ASPIRIN.cut[0,0.001)                0      1           NA          NA          NA        
+#  2 total_ddd_yr_ASPIRIN.cut [0.001,30)         " 0.839( 0.571- 1.234),p=0.374" total_ddd_yr_ASPIRIN.cut[0.001,30)              -0.175  " 0.839"    " 0.571"    " 1.234"    0.374     
+#  3 total_ddd_yr_ASPIRIN.cut [30,365)           " 0.901( 0.672- 1.208),p=0.485" total_ddd_yr_ASPIRIN.cut[30,365)                -0.104  " 0.901"    " 0.672"    " 1.208"    0.485     
+#  4 total_ddd_yr_ASPIRIN.cut [365,730)          " 0.986( 0.667- 1.459),p=0.945" total_ddd_yr_ASPIRIN.cut[365,730)               -0.0139 " 0.986"    " 0.667"    " 1.459"    0.945     
+#  5 total_ddd_yr_ASPIRIN.cut [730,1.1e+03)      " 1.146( 0.747- 1.759),p=0.533" total_ddd_yr_ASPIRIN.cut[730,1.1e+03)            0.136  " 1.146"    " 0.747"    " 1.759"    0.533     
+#  6 total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03) " 0.498( 0.235- 1.057),p=0.069" total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03)      -0.697  " 0.498"    " 0.235"    " 1.057"    0.069     
+#  7 total_ddd_yr_ASPIRIN.cut [1.46e+03,Inf]     " 0.909( 0.481- 1.715),p=0.768" total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]          -0.0957 " 0.909"    " 0.481"    " 1.715"    0.768     
+#  8 AGE_group                40-                (reference)                     AGE_group40-                                     0      1           NA          NA          NA        
+#  9 AGE_group                50-                " 3.395( 2.598- 4.435),p<0.001" AGE_group50-                                     1.22   " 3.395"    " 2.598"    " 4.435"    0.000     
+# 10 AGE_group                60-                " 7.548( 5.800- 9.821),p<0.001" AGE_group60-                                     2.02   " 7.548"    " 5.800"    " 9.821"    0.000     
+# # ... with 24 more rows
+
+
+
+
+
+#@ data_main.cut.coxph_list ----
+name4MainData = "_5yr"
+# name4MainTransformation = "cut"
+# name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
+
+
+data_list.cut.coxph_list %>% map(function(list) list[[name4MainData]]) %>% str(max.level = 1)
+# > data_list.cut.coxph_list %>% map(function(list) list[[name4MainData]]) %>% str(max.level = 1)
+# List of 6
+#  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  9 variables:
+#  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  9 variables:
+#  $ cut_model4_ASPIRIN_AGE_group_NSAID_SEX                           :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  9 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM    :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	32 obs. of  9 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	35 obs. of  9 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	34 obs. of  9 variables:
+
+data_main.cut.coxph_list =
+    data_list.cut.coxph_list %>% map(function(list) list[[name4MainData]]) 
+
+# data_main.cut.coxph_list %>% map(function(df) df %>% select(varname, level, varnamelevel, HR) %>% as.data.frame) #----
+data_main.cut.coxph_list %>% map(function(ob) {
+    # Codes to insert inside in the beginning annonymous function for map
+    parent.x = get(".x", envir = parent.frame())
+    i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, ob) } ))
+
+    # print(Sys.time())
+    # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
+    cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
+
+    ob %>% select(varname, level, HR) %>% as.data.frame %>% print
+    "ok"
+})
+# > data_main.cut.coxph_list %>% map(function(ob) {
+# +     # Codes to insert inside in the beginning annonymous function for map
+# +     parent.x = get(".x", envir = parent.frame())
+# +     i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, ob) } ))
+# + 
+# +     # print(Sys.time())
+# +     # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
+# +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
+# + 
+# +     ob %>% select(varname, level, HR) %>% as.data.frame %>% print
+# +     "ok"
+# + })
+# Beginning .f() map from list element [[1]] named: cut_model2_ASPIRIN_AGE_group  #---- 
+#                     varname              level                           HR
+# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)                  (reference)
+# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)  0.910( 0.628- 1.32),p=0.618
+# 3  total_ddd_yr_ASPIRIN.cut           [30,365)  0.949( 0.713- 1.26),p=0.717
+# 4  total_ddd_yr_ASPIRIN.cut          [365,730)  1.060( 0.722- 1.56),p=0.766
+# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)  1.278( 0.845- 1.93),p=0.245
+# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)  0.535( 0.253- 1.13),p=0.101
+# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]  1.031( 0.550- 1.93),p=0.924
+# 8                 AGE_group                40-                  (reference)
+# 9                 AGE_group                50-  3.470( 2.661- 4.52),p<0.001
+# 10                AGE_group                60-  7.830( 6.067-10.11),p<0.001
+# 11                AGE_group                70- 16.753(12.614-22.25),p<0.001
+# Beginning .f() map from list element [[2]] named: cut_model3_ASPIRIN_AGE_group_NSAID  #---- 
+#                     varname              level                           HR
+# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)                  (reference)
+# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)  0.911( 0.628- 1.32),p=0.621
+# 3  total_ddd_yr_ASPIRIN.cut           [30,365)  0.948( 0.713- 1.26),p=0.716
+# 4  total_ddd_yr_ASPIRIN.cut          [365,730)  1.060( 0.722- 1.56),p=0.766
+# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)  1.280( 0.847- 1.94),p=0.242
+# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)  0.537( 0.254- 1.14),p=0.104
+# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]  1.036( 0.553- 1.94),p=0.912
+# 8                 AGE_group                40-                  (reference)
+# 9                 AGE_group                50-  3.454( 2.647- 4.51),p<0.001
+# 10                AGE_group                60-  7.760( 5.993-10.05),p<0.001
+# 11                AGE_group                70- 16.521(12.381-22.04),p<0.001
+# 12   total_ddd_yr_NSAID.cut          [0,0.001)                  (reference)
+# 13   total_ddd_yr_NSAID.cut         [0.001,30)  0.861( 0.683- 1.09),p=0.206
+# 14   total_ddd_yr_NSAID.cut           [30,365)  0.938( 0.729- 1.21),p=0.615
+# 15   total_ddd_yr_NSAID.cut          [365,730)  0.985( 0.538- 1.80),p=0.961
+# 16   total_ddd_yr_NSAID.cut      [730,1.1e+03)  0.962( 0.304- 3.04),p=0.947
+# 17   total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)  0.000( 0.000-  Inf),p=0.985
+# 18   total_ddd_yr_NSAID.cut     [1.46e+03,Inf]  3.187( 0.785-12.95),p=0.105
