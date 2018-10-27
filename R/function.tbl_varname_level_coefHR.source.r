@@ -1,77 +1,125 @@
 
 
-function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) {
+
+function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
     library(survival)
     library(tidyverse)
     
-    
-    
-    # object.coxph %>% str(max.level = 1)
-    # # > object.coxph %>% str(max.level = 1) -----
-    # # List of 21
-    # #  $ coefficients     : Named num [1:29] -0.1745 -0.0835 0.0249 0.186 -0.6292 ...
-    # #   ..- attr(*, "names")= chr [1:29] "total_ddd_yr_ASPIRIN.cut[0.001,30)" "total_ddd_yr_ASPIRIN.cut[30,365)" "total_ddd_yr_ASPIRIN.cut[365,730)" "total_ddd_yr_ASPIRIN.cut[730,1.1e+03)" ...
-    # #  $ var              : num [1:29, 1:29] 0.03869 0.00324 0.00327 0.00323 0.00319 ...
-    # #  $ loglik           : num [1:2] -7517 -7235
-    # #  $ score            : num 719
-    # #  $ iter             : int 8
-    # #  $ linear.predictors: num [1:453605] 1.987 1.421 -0.132 -0.566 0.537 ...
-    # #  $ residuals        : Named num [1:453605] -0.000107 -0.003745 -0.000256 -0.000514 -0.001548 ...
-    # #   ..- attr(*, "names")= chr [1:453605] "1" "2" "3" "4" ...
-    # #  $ means            : Named num [1:29] 0.0467 0.0676 0.0298 0.0197 0.0133 ...
-    # #   ..- attr(*, "names")= chr [1:29] "total_ddd_yr_ASPIRIN.cut[0.001,30)" "total_ddd_yr_ASPIRIN.cut[30,365)" "total_ddd_yr_ASPIRIN.cut[365,730)" "total_ddd_yr_ASPIRIN.cut[730,1.1e+03)" ...
-    # #  $ method           : chr "breslow"
-    # #  $ concordance      : Named num [1:5] 1.86e+08 5.59e+07 1.73e+03 6.90e+01 5.80e+06
-    # #   ..- attr(*, "names")= chr [1:5] "concordant" "discordant" "tied.risk" "tied.time" ...
-    # #  $ n                : int 453605
-    # #  $ nevent           : num 581
-    # #  $ terms            :Classes 'terms', 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ total_ddd_yr_ASPIRIN.cut + AGE_group + total_ddd_yr_NSAID.dy| __truncated__
-    # #   .. ..- attr(*, "variables")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), total_ddd_yr_ASPIRIN.cut, AGE_group, total_ddd_yr_NSAID.| __truncated__
-    # #   .. ..- attr(*, "factors")= int [1:14, 1:13] 0 1 0 0 0 0 0 0 0 0 ...
-    # #   .. .. ..- attr(*, "dimnames")=List of 2
-    # #   .. ..- attr(*, "term.labels")= chr [1:13] "total_ddd_yr_ASPIRIN.cut" "AGE_group" "total_ddd_yr_NSAID.dyd" "SEX" ...
-    # #   .. ..- attr(*, "specials")=Dotted pair list of 3
-    # #   .. ..- attr(*, "order")= int [1:13] 1 1 1 1 1 1 1 1 1 1 ...
-    # #   .. ..- attr(*, "intercept")= num 1
-    # #   .. ..- attr(*, "response")= int 1
-    # #   .. ..- attr(*, ".Environment")=<environment: 0x0000000038c96d30> 
-    # #   .. ..- attr(*, "predvars")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), total_ddd_yr_ASPIRIN.cut, AGE_group, total_ddd_yr_NSAID.| __truncated__
-    # #   .. ..- attr(*, "dataClasses")= Named chr [1:14] "nmatrix.2" "factor" "factor" "numeric" ...
-    # #   .. .. ..- attr(*, "names")= chr [1:14] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "total_ddd_yr_ASPIRIN.cut" "AGE_group" "total_ddd_yr_NSAID.dyd" ...
-    # #  $ assign           :List of 13
-    # #  $ wald.test        : num 521
-    # #  $ na.action        : 'omit' Named int [1:7884] 5 53 125 160 162 174 326 380 402 465 ...
-    # #   ..- attr(*, "names")= chr [1:7884] "5" "53" "125" "160" ...
-    # #  $ y                : 'Surv' num [1:453605, 1:2]   92+ 2556+  970+ 2556+ 2556+ 2556+ 2556+ 2556+ 2556+ 2556+ ...
-    # #   ..- attr(*, "dimnames")=List of 2
-    # #   ..- attr(*, "type")= chr "right"
-    # #   ..- attr(*, "inputAttributes")=List of 2
-    # #  $ formula          :Class 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ total_ddd_yr_ASPIRIN.cut + AGE_group + total_ddd_yr_NSAID.dy| __truncated__
-    # #   .. ..- attr(*, ".Environment")=<environment: 0x0000000038c96d30> 
-    # #  $ xlevels          :List of 9
-    # #  $ contrasts        :List of 9
-    # #  $ call             : language coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ ., data = df, method = "breslow")
-    # #  - attr(*, "class")= chr "coxph"
-    
-    
-    
+    # df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample
+    # vec = c("evnttrth_C24_r", "fuduration_yr"
+    #         , "AGE"
+    #         , "SEX"
+    #         , "CigaretteCurrentSmoker", "BMI_Q_yr"
+    #         , "CCI_yr"
+    #         , "pmhx_DM_OR_glucose_ge126", "total_ddd_yr_METFORMIN.ge30"
+    # )
+    # # df[, vec] %>% mutate_if(is.logical, as.factor)  # appending "TRUE" after each variable names, because "TRUE becomes a factor level.
+    # df = df[, vec] # in logical, appending "TRUE" after each variable names.
+    # object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ . , data = df, method = "breslow")
+    # # > object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ . , data = df, method = "breslow")
+    # # Warning message:
+    # # In fitter(X, Y, strats, offset, init, control, weights = weights,  :
+    # #   Loglik converged before variable  4,6,10 ; beta may be infinite. 
+    # 
+    # 
+    # #@ object.coxph$coefficients %>% names %>% dput ----
+    # object.coxph$coefficients %>% names %>% dput
+    # # > object.coxph$coefficients %>% names %>% dput
+    # # c("AGE", "SEXFemale", "CigaretteCurrentSmokerTRUE", "BMI_Q_yr18.5-", 
+    # # "BMI_Q_yr23-", "BMI_Q_yr25-", "BMI_Q_yr30-", "CCI_yr", "pmhx_DM_OR_glucose_ge126TRUE", 
+    # # "total_ddd_yr_METFORMIN.ge30[30,Inf]")
+    # 
+    # 
+    # #@ object.coxph$formula %>% str ----
+    # object.coxph$formula %>% str
+    # object.coxph$formula %>% as.list %>% str
+    # # > object.coxph$formula %>% str
+    # # Class 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
+    # #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+    # # > object.coxph$formula %>% as.list %>% str
+    # # List of 3
+    # #  $ : symbol ~
+    # #  $ : language Surv(time = fuduration_yr, event = evnttrth_C24_r)
+    # #  $ : language AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmhx_DM_OR_glucose_ge126 + total_ddd_yr_METFORMIN.ge30
+    # #  - attr(*, "class")= chr "formula"
+    # #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
+    # 
+    # #@ object.coxph$terms %>% str ----
+    # object.coxph$terms %>% str
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+    # # > object.coxph$terms %>% str
+    # # Classes 'terms', 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
+    # #   ..- attr(*, "variables")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
+    # #   ..- attr(*, "factors")= int [1:8, 1:7] 0 1 0 0 0 0 0 0 0 0 ...
+    # #   .. ..- attr(*, "dimnames")=List of 2
+    # #   .. .. ..$ : chr [1:8] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "AGE" "SEX" "CigaretteCurrentSmoker" ...
+    # #   .. .. ..$ : chr [1:7] "AGE" "SEX" "CigaretteCurrentSmoker" "BMI_Q_yr" ...
+    # #   ..- attr(*, "term.labels")= chr [1:7] "AGE" "SEX" "CigaretteCurrentSmoker" "BMI_Q_yr" ...
+    # #   ..- attr(*, "specials")=Dotted pair list of 3
+    # #   .. ..$ strata : NULL
+    # #   .. ..$ cluster: NULL
+    # #   .. ..$ tt     : NULL
+    # #   ..- attr(*, "order")= int [1:7] 1 1 1 1 1 1 1
+    # #   ..- attr(*, "intercept")= num 1
+    # #   ..- attr(*, "response")= int 1
+    # #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+    # #   ..- attr(*, "predvars")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
+    # #   ..- attr(*, "dataClasses")= Named chr [1:8] "nmatrix.2" "numeric" "factor" "logical" ...
+    # #   .. ..- attr(*, "names")= chr [1:8] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "AGE" "SEX" "CigaretteCurrentSmoker" ...
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+    # # List of 2
+    # #  $ CigaretteCurrentSmoker  : chr [1:2] "FALSE" "TRUE"
+    # #  $ pmhx_DM_OR_glucose_ge126: chr [1:2] "FALSE" "TRUE"
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # # named list()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+    # # structure(list(), .Names = character(0))
+    # 
+    # 
+    # 
+    # #@ object.coxph$xlevels %>% str(max.level = 1) ----
     # object.coxph$xlevels %>% str(max.level = 1)
-    # # > object.coxph$xlevels %>% str(max.level = 1) ----
-    # # List of 9
-    # #  $ total_ddd_yr_ASPIRIN.cut: chr [1:7] "[0,0.001)" "[0.001,30)" "[30,365)" "[365,730)" ...
-    # #  $ AGE_group               : chr [1:4] "40-" "50-" "60-" "70-"
-    # #  $ SEX                     : chr [1:2] "Male" "Female"
-    # #  $ Socioeconomic           : chr [1:4] "SEcoQ1" "SEcoQ2" "SEcoQ3" "SEcoQ4"
-    # #  $ Disability              : chr [1:3] "None" "Level 1-2" "Level 3-6"
-    # #  $ CigaretteSmoking_yr     : chr [1:3] "Non-Smoker" "PastSmoker" "CurrentSmoker"
-    # #  $ DrinkHabit_yr           : chr [1:3] "No consumption or <3times/month" "1-2times/week" ">=3times/week"
-    # #  $ ExcerciseFreq_yr        : chr [1:3] "No Exercise" "1-2" ">3"
-    # #  $ BMI_Q_yr                : chr [1:5] "0-" "18.5-" "23-" "25-" ...
+    # # > object.coxph$xlevels %>% str(max.level = 1)
+    # # List of 3
+    # #  $ SEX                        : chr [1:2] "Male" "Female"
+    # #  $ BMI_Q_yr                   : chr [1:5] "0-" "18.5-" "23-" "25-" ...
+    # #  $ total_ddd_yr_METFORMIN.ge30: chr [1:2] "[0,30)" "[30,Inf]"
+    # 
+    # 
+    # 
+    # # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} %>% str
+    # # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} %>% str
+    # # # List of 5
+    # # #  $ SEcoQ4                : logi [1:2] FALSE TRUE
+    # # #  $ Disability_Any        : logi [1:2] FALSE TRUE
+    # # #  $ CigaretteCurrentSmoker: logi [1:2] FALSE TRUE
+    # # #  $ Drink_ge3pwk          : logi [1:2] FALSE TRUE
+    # # #  $ Excercise_ge3pwk      : logi [1:2] FALSE TRUE
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+    # # List of 5
+    # #  $ SEcoQ4                : chr [1:2] "FALSE" "TRUE"
+    # #  $ Disability_Any        : chr [1:2] "FALSE" "TRUE"
+    # #  $ CigaretteCurrentSmoker: chr [1:2] "FALSE" "TRUE"
+    # #  $ Drink_ge3pwk          : chr [1:2] "FALSE" "TRUE"
+    # #  $ Excercise_ge3pwk      : chr [1:2] "FALSE" "TRUE"
+    # 
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # # named list()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+    # # structure(list(), .Names = character(0))
+    
+    list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
+    list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
     
     
     #@ tbl_varname_level_coefficients ====
     tbl_varname_level_coefficients = 
-        object.coxph$xlevels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
+        list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
             object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
         ) #----
     
@@ -79,315 +127,284 @@ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*
     tbl_varname_level_coefficients$varname[is.na(tbl_varname_level_coefficients$varname)] = 
         tbl_varname_level_coefficients$varnamelevel[is.na(tbl_varname_level_coefficients$varname)]
     
-    
-    # tbl_varname_level_coefficients %>% print(n=99)
-    # # > tbl_varname_level_coefficients %>% print(n=99)
-    # # # A tibble: 38 x 4
-    # #    varname                  level                           varnamelevel                                 coefficients
-    # #    <chr>                    <chr>                           <chr>                                               <dbl>
-    # #  1 total_ddd_yr_ASPIRIN.cut [0,0.001)                       total_ddd_yr_ASPIRIN.cut[0,0.001)                0       
-    # #  2 total_ddd_yr_ASPIRIN.cut [0.001,30)                      total_ddd_yr_ASPIRIN.cut[0.001,30)              -0.174   
-    # #  3 total_ddd_yr_ASPIRIN.cut [30,365)                        total_ddd_yr_ASPIRIN.cut[30,365)                -0.0835  
-    # #  4 total_ddd_yr_ASPIRIN.cut [365,730)                       total_ddd_yr_ASPIRIN.cut[365,730)                0.0249  
-    # #  5 total_ddd_yr_ASPIRIN.cut [730,1.1e+03)                   total_ddd_yr_ASPIRIN.cut[730,1.1e+03)            0.186   
-    # #  6 total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)              total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03)      -0.629   
-    # #  7 total_ddd_yr_ASPIRIN.cut [1.46e+03,Inf]                  total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]           0.00985 
-    # #  8 AGE_group                40-                             AGE_group40-                                     0       
-    # #  9 AGE_group                50-                             AGE_group50-                                     1.23    
-    # # 10 AGE_group                60-                             AGE_group60-                                     2.03    
-    # # 11 AGE_group                70-                             AGE_group70-                                     2.79    
-    # # 12 SEX                      Male                            SEXMale                                          0       
-    # # 13 SEX                      Female                          SEXFemale                                       -0.412   
-    # # 14 Socioeconomic            SEcoQ1                          SocioeconomicSEcoQ1                              0       
-    # # 15 Socioeconomic            SEcoQ2                          SocioeconomicSEcoQ2                              0.109   
-    # # 16 Socioeconomic            SEcoQ3                          SocioeconomicSEcoQ3                             -0.0729  
-    # # 17 Socioeconomic            SEcoQ4                          SocioeconomicSEcoQ4                              0.208   
-    # # 18 Disability               None                            DisabilityNone                                   0       
-    # # 19 Disability               Level 1-2                       DisabilityLevel 1-2                             -0.716   
-    # # 20 Disability               Level 3-6                       DisabilityLevel 3-6                              0.580   
-    # # 21 CigaretteSmoking_yr      Non-Smoker                      CigaretteSmoking_yrNon-Smoker                    0       
-    # # 22 CigaretteSmoking_yr      PastSmoker                      CigaretteSmoking_yrPastSmoker                    0.0234  
-    # # 23 CigaretteSmoking_yr      CurrentSmoker                   CigaretteSmoking_yrCurrentSmoker                 0.104   
-    # # 24 DrinkHabit_yr            No consumption or <3times/month DrinkHabit_yrNo consumption or <3times/month     0       
-    # # 25 DrinkHabit_yr            1-2times/week                   DrinkHabit_yr1-2times/week                       0.157   
-    # # 26 DrinkHabit_yr            >=3times/week                   DrinkHabit_yr>=3times/week                       0.200   
-    # # 27 ExcerciseFreq_yr         No Exercise                     ExcerciseFreq_yrNo Exercise                      0       
-    # # 28 ExcerciseFreq_yr         1-2                             ExcerciseFreq_yr1-2                             -0.155   
-    # # 29 ExcerciseFreq_yr         >3                              ExcerciseFreq_yr>3                              -0.110   
-    # # 30 BMI_Q_yr                 0-                              BMI_Q_yr0-                                       0       
-    # # 31 BMI_Q_yr                 18.5-                           BMI_Q_yr18.5-                                   -0.198   
-    # # 32 BMI_Q_yr                 23-                             BMI_Q_yr23-                                     -0.281   
-    # # 33 BMI_Q_yr                 25-                             BMI_Q_yr25-                                     -0.232   
-    # # 34 BMI_Q_yr                 30-                             BMI_Q_yr30-                                      0.149   
-    # # 35 total_ddd_yr_NSAID.dyd   NA                              total_ddd_yr_NSAID.dyd                           0.0365  
-    # # 36 CCI_yr                   NA                              CCI_yr                                           0.0768  
-    # # 37 total_ddd_yr_METFORMIN   NA                              total_ddd_yr_METFORMIN                           0.000347
-    # # 38 total_ddd_yr_STATIN      NA                              total_ddd_yr_STATIN                             -0.000899
+    # tbl_varname_level_coefficients %>% print(n=99) #----
+    # # > tbl_varname_level_coefficients %>% print(n=99) #----
+    # # # A tibble: 15 x 4
+    # # varname                     level    varnamelevel                        coefficients
+    # # <chr>                       <chr>    <chr>                                      <dbl>
+    # #     1 SEX                         Male     SEXMale                                    0
+    # # 2 SEX                         Female   SEXFemale                                 -1.22
+    # # 3 BMI_Q_yr                    0-       BMI_Q_yr0-                                 0
+    # # 4 BMI_Q_yr                    18.5-    BMI_Q_yr18.5-                             18.8
+    # # 5 BMI_Q_yr                    23-      BMI_Q_yr23-                                1.11
+    # # 6 BMI_Q_yr                    25-      BMI_Q_yr25-                               20.6
+    # # 7 BMI_Q_yr                    30-      BMI_Q_yr30-                                1.21
+    # # 8 total_ddd_yr_METFORMIN.ge30 [0,30)   total_ddd_yr_METFORMIN.ge30[0,30)          0
+    # # 9 total_ddd_yr_METFORMIN.ge30 [30,Inf] total_ddd_yr_METFORMIN.ge30[30,Inf]      -19.9
+    # # 10 CigaretteCurrentSmoker      FALSE    CigaretteCurrentSmokerFALSE                0
+    # # 11 CigaretteCurrentSmoker      TRUE     CigaretteCurrentSmokerTRUE                 1.16
+    # # 12 pmhx_DM_OR_glucose_ge126    FALSE    pmhx_DM_OR_glucose_ge126FALSE              0
+    # # 13 pmhx_DM_OR_glucose_ge126    TRUE     pmhx_DM_OR_glucose_ge126TRUE               0.832
+    # # 14 AGE                         NA       AGE                                        0.227
+    # # 15 CCI_yr                      NA       CCI_yr                                     0.138
     
     
     
     #@ function.extractHR.focus.incl.reference() ----
-    library(survival)
-    library(tidyverse)
-    # digits = 2
+    res1 = summary(object.coxph)[c("coefficients", "conf.int")] %>% 
+        map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = c("rowname", "exp(coef)")) %>% 
+        {.[c("rowname", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")]}
+    # res1 %>% as.tibble
+    # # > res1 %>% as.tibble
+    # # # A tibble: 10 x 5
+    # #    rowname                             `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
+    # #    <chr>                                     <dbl>       <dbl>       <dbl>      <dbl>
+    # #  1 AGE                                     1.26e+0      1.08          1.45    0.00225
+    # #  2 SEXFemale                               2.95e-1      0.0278        3.13    0.311  
+    # #  3 CigaretteCurrentSmokerTRUE              3.19e+0      0.236        43.2     0.383  
+    # #  4 BMI_Q_yr18.5-                           1.39e+8      0           Inf       1.000  
+    # #  5 BMI_Q_yr23-                             3.04e+0      0           Inf       1.000  
+    # #  6 BMI_Q_yr25-                             9.27e+8      0           Inf       1.000  
+    # #  7 BMI_Q_yr30-                             3.35e+0      0           Inf       1.000  
+    # #  8 CCI_yr                                  1.15e+0      0.667         1.97    0.619  
+    # #  9 pmhx_DM_OR_glucose_ge126TRUE            2.30e+0      0.232        22.8     0.477  
+    # # 10 total_ddd_yr_METFORMIN.ge30[30,Inf]     2.27e-9      0           Inf       0.999  
     
-    
-    # summary(object.coxph) %>% str(max.level = 1)
-    # # > summary(object.coxph) %>% str(max.level = 1) ----
-    # # List of 14
-    # #  $ call        : language coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ ., data = df, method = "breslow")
-    # #  $ fail        : NULL
-    # #  $ na.action   : 'omit' Named int [1:7884] 5 53 125 160 162 174 326 380 402 465 ...
-    # #   ..- attr(*, "names")= chr [1:7884] "5" "53" "125" "160" ...
-    # #  $ n           : int 453605
-    # #  $ loglik      : num [1:2] -7517 -7235
-    # #  $ nevent      : num 581
-    # #  $ coefficients: num [1:29, 1:5] -0.1745 -0.0835 0.0249 0.186 -0.6292 ...
-    # #   ..- attr(*, "dimnames")=List of 2
-    # #  $ conf.int    : num [1:29, 1:4] 0.84 0.92 1.025 1.204 0.533 ...
-    # #   ..- attr(*, "dimnames")=List of 2
-    # #  $ logtest     : Named num [1:3] 5.63e+02 2.90e+01 2.51e-100
-    # #   ..- attr(*, "names")= chr [1:3] "test" "df" "pvalue"
-    # #  $ sctest      : Named num [1:3] 7.19e+02 2.90e+01 1.09e-132
-    # #   ..- attr(*, "names")= chr [1:3] "test" "df" "pvalue"
-    # #  $ rsq         : Named num [1:2] 0.00124 0.0326
-    # #   ..- attr(*, "names")= chr [1:2] "rsq" "maxrsq"
-    # #  $ waldtest    : Named num [1:3] 5.21e+02 2.90e+01 1.53e-91
-    # #   ..- attr(*, "names")= chr [1:3] "test" "df" "pvalue"
-    # #  $ used.robust : logi FALSE
-    # #  $ concordance : Named num [1:2] 0.769 0.012
-    # #   ..- attr(*, "names")= chr [1:2] "C" "se(C)"
-    # #  - attr(*, "class")= chr "summary.coxph"
-    
-    out = summary(object.coxph)
-    res = data.frame(round(out$conf.int[, -2], digits))
-    res = cbind(res, round(out$coef[, 5], max(2, digits)))
-    colnames(res) = c("exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
-    
-    for (i in 1:4){
-        res[[i]] <- as.character(format(res[[i]], digits = digits))
+    # res2 = tibble(
+    #     rowname = res$rowname
+    #     , HR = res %>% 
+    #         column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
+    #         add_column(" (", .after = "exp(coef)") %>%
+    #         add_column(", ", .after = "lower .95") %>%
+    #         add_column("), p = ", .after = "upper .95") %>%
+    #         unite(sep = "") %>% unlist %>% gsub("p = 0.000", "p < 0.001", .)
+    # )
+  
+    sprintf_but_ceiling5 = function(fmt='%#.2f', x, ...) {
+        sprintf(fmt = fmt, x + 10^(-9), ...)
+        # > 5.5550 %>% sprintf(fmt='%#.2f')
+        # [1] "5.55"
+        # > 5.5550 %>% sprintf_but_ceiling5(fmt='%#.2f')
+        # [1] "5.56"
     }
-    res$HR <- paste0( res[[1]]
-                      , "(", res[[2]]
-                      , "-", res[[3]]
-                      , "),p=", res[[4]]
+    res1[c("exp(coef)", "lower .95", "upper .95")] %>%
+        map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    res1[c("exp(coef)", "lower .95", "upper .95")] %>%
+        signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    # +     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # # A tibble: 10 x 3
+    #    `exp(coef)`      `lower .95` `upper .95`
+    #    <chr>            <chr>       <chr>      
+    #  1 0.00             0.00        Inf        
+    #  2 0.00             0.00        Inf        
+    #  3 0.00             0.00        Inf        
+    #  4 4.56             0.34        60.57      
+    #  5 0.00             0.00        Inf        
+    #  6 0.00             0.00        Inf        
+    #  7 111699493356.72  0.00        Inf        
+    #  8 5.23             5.23        5.23       
+    #  9 4486328565244.22 0.00        Inf        
+    # 10 1.03             0.07        15.76      
+    # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    # +     signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # # A tibble: 10 x 3
+    #    `exp(coef)`      `lower .95` `upper .95`
+    #    <chr>            <chr>       <chr>      
+    #  1 0.00             0.00        Inf        
+    #  2 0.00             0.00        Inf        
+    #  3 0.00             0.00        Inf        
+    #  4 4.56             0.34        60.60      
+    #  5 0.00             0.00        Inf        
+    #  6 0.00             0.00        Inf        
+    #  7 112000000000.00  0.00        Inf        
+    #  8 5.23             5.23        5.23       
+    #  9 4490000000000.00 0.00        Inf        
+    # 10 1.03             0.07        15.80   
+    res2 = tibble(
+        rowname = res1$rowname
+        , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% 
+            map_df(sprintf_but_ceiling5,  fmt = paste0("%.", digits, "f")) %>% 
+            add_column(" (", .after = "exp(coef)") %>%
+            add_column(", ", .after = "lower .95") %>%
+            add_column(")", .after = "upper .95") %>%
+            unite(sep = "") %>% unlist
+        , p_value = paste0("p=", res1$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
+        , star = res1$`Pr(>|z|)` %>% 
+            cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
+                , labels = c("***", "***", "** ", "*  ", ".  ", "   ") 
+                , include.lowest = T, right = T
+            )
     )
-    if(any(res[[4]] < 0.001)){
-        i = which(res[[4]] < 0.001)
-        res[i, ]$HR <- paste0( res[i,1]
-                               , "(", res[i,2]
-                               , "-", res[i,3]
-                               , "),p<", 0.1 ^ max(2, digits))
-    }
-    res
-    #  > res
-    #                                            exp(coef) lower .95 upper .95 Pr(>|z|)                            HR
-    # total_ddd_yr_ASPIRIN.cut[0.001,30)             0.840     0.571     1.235    0.375  0.840( 0.571- 1.235),p=0.375
-    # total_ddd_yr_ASPIRIN.cut[30,365)               0.920     0.686     1.233    0.577  0.920( 0.686- 1.233),p=0.577
-    # total_ddd_yr_ASPIRIN.cut[365,730)              1.025     0.692     1.519    0.901  1.025( 0.692- 1.519),p=0.901
-    # total_ddd_yr_ASPIRIN.cut[730,1.1e+03)          1.204     0.782     1.855    0.399  1.204( 0.782- 1.855),p=0.399
-    # total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03)     0.533     0.250     1.135    0.103  0.533( 0.250- 1.135),p=0.103
-    # total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]         1.010     0.529     1.927    0.976  1.010( 0.529- 1.927),p=0.976
-    # AGE_group50-                                   3.414     2.611     4.465    0.000  3.414( 2.611- 4.465),p<0.001
-    # AGE_group60-                                   7.631     5.854     9.947    0.000  7.631( 5.854- 9.947),p<0.001
-    # AGE_group70-                                  16.317    12.073    22.053    0.000 16.317(12.073-22.053),p<0.001
-    # total_ddd_yr_NSAID.dyd                         1.037     0.972     1.107    0.273  1.037( 0.972- 1.107),p=0.273
-    # SEXFemale                                      0.662     0.541     0.811    0.000  0.662( 0.541- 0.811),p<0.001
-    # SocioeconomicSEcoQ2                            1.115     0.901     1.381    0.316  1.115( 0.901- 1.381),p=0.316
-    # SocioeconomicSEcoQ3                            0.930     0.740     1.169    0.532  0.930( 0.740- 1.169),p=0.532
-    # SocioeconomicSEcoQ4                            1.232     0.971     1.562    0.085  1.232( 0.971- 1.562),p=0.085
-    # DisabilityLevel 1-2                            0.489     0.069     3.480    0.474  0.489( 0.069- 3.480),p=0.474
-    # DisabilityLevel 3-6                            1.785     0.843     3.779    0.130  1.785( 0.843- 3.779),p=0.130
-    # CigaretteSmoking_yrPastSmoker                  1.024     0.752     1.393    0.881  1.024( 0.752- 1.393),p=0.881
-    # CigaretteSmoking_yrCurrentSmoker               1.109     0.881     1.396    0.378  1.109( 0.881- 1.396),p=0.378
-    # DrinkHabit_yr1-2times/week                     1.170     0.908     1.506    0.225  1.170( 0.908- 1.506),p=0.225
-    # DrinkHabit_yr>=3times/week                     1.222     0.941     1.587    0.133  1.222( 0.941- 1.587),p=0.133
-    # ExcerciseFreq_yr1-2                            0.856     0.685     1.070    0.172  0.856( 0.685- 1.070),p=0.172
-    # ExcerciseFreq_yr>3                             0.896     0.724     1.108    0.311  0.896( 0.724- 1.108),p=0.311
-    # BMI_Q_yr18.5-                                  0.821     0.523     1.289    0.391  0.821( 0.523- 1.289),p=0.391
-    # BMI_Q_yr23-                                    0.755     0.475     1.200    0.234  0.755( 0.475- 1.200),p=0.234
-    # BMI_Q_yr25-                                    0.793     0.501     1.255    0.322  0.793( 0.501- 1.255),p=0.322
-    # BMI_Q_yr30-                                    1.161     0.637     2.116    0.626  1.161( 0.637- 2.116),p=0.626
-    # CCI_yr                                         1.080     1.023     1.139    0.005  1.080( 1.023- 1.139),p=0.005
-    # total_ddd_yr_METFORMIN                         1.000     1.000     1.001    0.012  1.000( 1.000- 1.001),p=0.012
-    # total_ddd_yr_STATIN                            0.999     0.998     1.000    0.069  0.999( 0.998- 1.000),p=0.069
+    res2
+    # > res2
+    # # A tibble: 10 x 4
+    # rowname                             HRCI                           p_value star 
+    # <chr>                               <chr>                          <chr>   <fct>
+    # 1 AGE                                 "        1.255 (1.085,  1.45)" p=0.002 ***
+    # 2 SEXFemale                           "        0.295 (0.028,  3.13)" p=0.311 "   "
+    # 3 CigaretteCurrentSmokerTRUE          "        3.191 (0.236, 43.19)" p=0.383 "   "
+    # 4 BMI_Q_yr18.5-                       139245599.097 (0.000,   Inf)   p=1.000 "   "
+    # 5 BMI_Q_yr23-                         "        3.044 (0.000,   Inf)" p=1.000 "   "
+    # 6 BMI_Q_yr25-                         927100265.413 (0.000,   Inf)   p=1.000 "   "
+    # 7 BMI_Q_yr30-                         "        3.354 (0.000,   Inf)" p=1.000 "   "
+    # 8 CCI_yr                              "        1.148 (0.667,  1.97)" p=0.619 "   "
+    # 9 pmhx_DM_OR_glucose_ge126TRUE        "        2.299 (0.232, 22.81)" p=0.477 "   "
+    # 10 total_ddd_yr_METFORMIN.ge30[30,Inf] "        0.000 (0.000,   Inf)" p=0.999 "   "
     
+    res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
     
-    tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(
-        res %>% rownames_to_column("varnamelevel"), by = "varnamelevel"
-    )
-    tbl_varname_level_coefficients_res    
+    tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
     tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
-    tbl_varname_level_coefficients_res$HR[is.na(tbl_varname_level_coefficients_res$HR) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
+    tbl_varname_level_coefficients_res$HRCI[is.na(tbl_varname_level_coefficients_res$HRCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
     # tbl_varname_level_coefficients_res %>% print(n=99)
+    # tbl_varname_level_coefficients_res %>% names %>% dput
     # # > tbl_varname_level_coefficients_res %>% print(n=99)
-    # # # A tibble: 38 x 9
-    # #    varname                level                       varnamelevel                            coefficients `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)` HR                        
-    # #    <chr>                  <chr>                       <chr>                                          <dbl> <chr>       <chr>       <chr>       <chr>      <chr>                     
-    # #  1 total_ddd_yr_ASPIRIN.~ [0,0.001)                   total_ddd_yr_ASPIRIN.cut[0,0.001)           0        1           NA          NA          NA         (reference)               
-    # #  2 total_ddd_yr_ASPIRIN.~ [0.001,30)                  total_ddd_yr_ASPIRIN.cut[0.001,30)         -0.174    " 0.840"    " 0.571"    " 1.235"    0.375      " 0.840( 0.571- 1.235),p=~
-    # #  3 total_ddd_yr_ASPIRIN.~ [30,365)                    total_ddd_yr_ASPIRIN.cut[30,365)           -0.0835   " 0.920"    " 0.686"    " 1.233"    0.577      " 0.920( 0.686- 1.233),p=~
-    # #  4 total_ddd_yr_ASPIRIN.~ [365,730)                   total_ddd_yr_ASPIRIN.cut[365,730)           0.0249   " 1.025"    " 0.692"    " 1.519"    0.901      " 1.025( 0.692- 1.519),p=~
-    # #  5 total_ddd_yr_ASPIRIN.~ [730,1.1e+03)               total_ddd_yr_ASPIRIN.cut[730,1.1e+03)       0.186    " 1.204"    " 0.782"    " 1.855"    0.399      " 1.204( 0.782- 1.855),p=~
-    # #  6 total_ddd_yr_ASPIRIN.~ [1.1e+03,1.46e+03)          total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e~    -0.629    " 0.533"    " 0.250"    " 1.135"    0.103      " 0.533( 0.250- 1.135),p=~
-    # #  7 total_ddd_yr_ASPIRIN.~ [1.46e+03,Inf]              total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]      0.00985  " 1.010"    " 0.529"    " 1.927"    0.976      " 1.010( 0.529- 1.927),p=~
-    # #  8 AGE_group              40-                         AGE_group40-                                0        1           NA          NA          NA         (reference)               
-    # #  9 AGE_group              50-                         AGE_group50-                                1.23     " 3.414"    " 2.611"    " 4.465"    0.000      " 3.414( 2.611- 4.465),p<~
-    # # 10 AGE_group              60-                         AGE_group60-                                2.03     " 7.631"    " 5.854"    " 9.947"    0.000      " 7.631( 5.854- 9.947),p<~
-    # # 11 AGE_group              70-                         AGE_group70-                                2.79     16.317      12.073      22.053      0.000      16.317(12.073-22.053),p<0~
-    # # 12 SEX                    Male                        SEXMale                                     0        1           NA          NA          NA         (reference)               
-    # # 13 SEX                    Female                      SEXFemale                                  -0.412    " 0.662"    " 0.541"    " 0.811"    0.000      " 0.662( 0.541- 0.811),p<~
-    # # 14 Socioeconomic          SEcoQ1                      SocioeconomicSEcoQ1                         0        1           NA          NA          NA         (reference)               
-    # # 15 Socioeconomic          SEcoQ2                      SocioeconomicSEcoQ2                         0.109    " 1.115"    " 0.901"    " 1.381"    0.316      " 1.115( 0.901- 1.381),p=~
-    # # 16 Socioeconomic          SEcoQ3                      SocioeconomicSEcoQ3                        -0.0729   " 0.930"    " 0.740"    " 1.169"    0.532      " 0.930( 0.740- 1.169),p=~
-    # # 17 Socioeconomic          SEcoQ4                      SocioeconomicSEcoQ4                         0.208    " 1.232"    " 0.971"    " 1.562"    0.085      " 1.232( 0.971- 1.562),p=~
-    # # 18 Disability             None                        DisabilityNone                              0        1           NA          NA          NA         (reference)               
-    # # 19 Disability             Level 1-2                   DisabilityLevel 1-2                        -0.716    " 0.489"    " 0.069"    " 3.480"    0.474      " 0.489( 0.069- 3.480),p=~
-    # # 20 Disability             Level 3-6                   DisabilityLevel 3-6                         0.580    " 1.785"    " 0.843"    " 3.779"    0.130      " 1.785( 0.843- 3.779),p=~
-    # # 21 CigaretteSmoking_yr    Non-Smoker                  CigaretteSmoking_yrNon-Smoker               0        1           NA          NA          NA         (reference)               
-    # # 22 CigaretteSmoking_yr    PastSmoker                  CigaretteSmoking_yrPastSmoker               0.0234   " 1.024"    " 0.752"    " 1.393"    0.881      " 1.024( 0.752- 1.393),p=~
-    # # 23 CigaretteSmoking_yr    CurrentSmoker               CigaretteSmoking_yrCurrentSmoker            0.104    " 1.109"    " 0.881"    " 1.396"    0.378      " 1.109( 0.881- 1.396),p=~
-    # # 24 DrinkHabit_yr          No consumption or <3times/~ DrinkHabit_yrNo consumption or <3times~     0        1           NA          NA          NA         (reference)               
-    # # 25 DrinkHabit_yr          1-2times/week               DrinkHabit_yr1-2times/week                  0.157    " 1.170"    " 0.908"    " 1.506"    0.225      " 1.170( 0.908- 1.506),p=~
-    # # 26 DrinkHabit_yr          >=3times/week               DrinkHabit_yr>=3times/week                  0.200    " 1.222"    " 0.941"    " 1.587"    0.133      " 1.222( 0.941- 1.587),p=~
-    # # 27 ExcerciseFreq_yr       No Exercise                 ExcerciseFreq_yrNo Exercise                 0        1           NA          NA          NA         (reference)               
-    # # 28 ExcerciseFreq_yr       1-2                         ExcerciseFreq_yr1-2                        -0.155    " 0.856"    " 0.685"    " 1.070"    0.172      " 0.856( 0.685- 1.070),p=~
-    # # 29 ExcerciseFreq_yr       >3                          ExcerciseFreq_yr>3                         -0.110    " 0.896"    " 0.724"    " 1.108"    0.311      " 0.896( 0.724- 1.108),p=~
-    # # 30 BMI_Q_yr               0-                          BMI_Q_yr0-                                  0        1           NA          NA          NA         (reference)               
-    # # 31 BMI_Q_yr               18.5-                       BMI_Q_yr18.5-                              -0.198    " 0.821"    " 0.523"    " 1.289"    0.391      " 0.821( 0.523- 1.289),p=~
-    # # 32 BMI_Q_yr               23-                         BMI_Q_yr23-                                -0.281    " 0.755"    " 0.475"    " 1.200"    0.234      " 0.755( 0.475- 1.200),p=~
-    # # 33 BMI_Q_yr               25-                         BMI_Q_yr25-                                -0.232    " 0.793"    " 0.501"    " 1.255"    0.322      " 0.793( 0.501- 1.255),p=~
-    # # 34 BMI_Q_yr               30-                         BMI_Q_yr30-                                 0.149    " 1.161"    " 0.637"    " 2.116"    0.626      " 1.161( 0.637- 2.116),p=~
-    # # 35 total_ddd_yr_NSAID.dyd NA                          total_ddd_yr_NSAID.dyd                      0.0365   " 1.037"    " 0.972"    " 1.107"    0.273      " 1.037( 0.972- 1.107),p=~
-    # # 36 CCI_yr                 NA                          CCI_yr                                      0.0768   " 1.080"    " 1.023"    " 1.139"    0.005      " 1.080( 1.023- 1.139),p=~
-    # # 37 total_ddd_yr_METFORMIN NA                          total_ddd_yr_METFORMIN                      0.000347 " 1.000"    " 1.000"    " 1.001"    0.012      " 1.000( 1.000- 1.001),p=~
-    # # 38 total_ddd_yr_STATIN    NA                          total_ddd_yr_STATIN                        -0.000899 " 0.999"    " 0.998"    " 1.000"    0.069      " 0.999( 0.998- 1.000),p=~    
-
-    # > tbl_varname_level_coefficients_res %>% names %>% dput
-    # c("varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR")
-    # txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"'
-    # txt %>% str_extract_all("[A-z0-9_]+") %>% str
-    # txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = ', ') %>% {paste0('select(', ., ')')} %>% cat
-    # select(varname, level, varnamelevel, coefficients, exp, coef, lower, 95, upper, 95, Pr, z, HR)
+    # # # A tibble: 15 x 11
+    # # varname                     level    varnamelevel                        coefficients HRCI                           p_value star  `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
+    # # <chr>                       <chr>    <chr>                                      <dbl> <chr>                          <chr>   <fct>       <dbl>       <dbl>       <dbl>      <dbl>
+    # # 1 SEX                         Male     SEXMale                                    0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # # 2 SEX                         Female   SEXFemale                                 -1.22  "        0.295 (0.028,  3.13)" p=0.311 "   "     2.95e-1      0.0278        3.13    0.311  
+    # # 3 BMI_Q_yr                    0-       BMI_Q_yr0-                                 0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # # 4 BMI_Q_yr                    18.5-    BMI_Q_yr18.5-                             18.8   139245599.097 (0.000,   Inf)   p=1.000 "   "     1.39e+8      0           Inf       1.000  
+    # # 5 BMI_Q_yr                    23-      BMI_Q_yr23-                                1.11  "        3.044 (0.000,   Inf)" p=1.000 "   "     3.04e+0      0           Inf       1.000  
+    # # 6 BMI_Q_yr                    25-      BMI_Q_yr25-                               20.6   927100265.413 (0.000,   Inf)   p=1.000 "   "     9.27e+8      0           Inf       1.000  
+    # # 7 BMI_Q_yr                    30-      BMI_Q_yr30-                                1.21  "        3.354 (0.000,   Inf)" p=1.000 "   "     3.35e+0      0           Inf       1.000  
+    # # 8 total_ddd_yr_METFORMIN.ge30 [0,30)   total_ddd_yr_METFORMIN.ge30[0,30)          0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # # 9 total_ddd_yr_METFORMIN.ge30 [30,Inf] total_ddd_yr_METFORMIN.ge30[30,Inf]      -19.9   "        0.000 (0.000,   Inf)" p=0.999 "   "     2.27e-9      0           Inf       0.999  
+    # # 10 CigaretteCurrentSmoker      FALSE    CigaretteCurrentSmokerFALSE                0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # # 11 CigaretteCurrentSmoker      TRUE     CigaretteCurrentSmokerTRUE                 1.16  "        3.191 (0.236, 43.19)" p=0.383 "   "     3.19e+0      0.236        43.2     0.383  
+    # # 12 pmhx_DM_OR_glucose_ge126    FALSE    pmhx_DM_OR_glucose_ge126FALSE              0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # # 13 pmhx_DM_OR_glucose_ge126    TRUE     pmhx_DM_OR_glucose_ge126TRUE               0.832 "        2.299 (0.232, 22.81)" p=0.477 "   "     2.30e+0      0.232        22.8     0.477  
+    # # 14 AGE                         NA       AGE                                        0.227 "        1.255 (1.085,  1.45)" p=0.002 ***       1.26e+0      1.08          1.45    0.00225
+    # # 15 CCI_yr                      NA       CCI_yr                                     0.138 "        1.148 (0.667,  1.97)" p=0.619 "   "     1.15e+0      0.667         1.97    0.619  
+    # # > tbl_varname_level_coefficients_res %>% names %>% dput
+    # # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
+    # # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
+    # # txt %>% str_extract_all("[A-z0-9_]+") %>% str
+    # # txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = ', ') %>% {paste0('select(', ., ')')} %>% cat
+    # # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
     
-    out = tbl_varname_level_coefficients_res %>% select(varname, level, HR, everything())
+    out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
 }
 
 
 
 
-
-#@ tbl_varname_level_HR.FullModel_5yr ====
-name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
-tbl_varname_level_HR.FullModel_5yr = function.tbl_varname_level_coefHR(
-  object.coxph = analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list[[name4FullModel]]$``)
-tbl_varname_level_HR.FullModel_5yr
-# > tbl_varname_level_HR.FullModel_5yr
-# # A tibble: 34 x 9
-#    varname                  level              varnamelevel                               HR                              coefficients `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
-#    <chr>                    <chr>              <chr>                                      <chr>                                  <dbl> <chr>       <chr>       <chr>       <chr>     
-#  1 total_ddd_yr_ASPIRIN.cut [0,0.001)          total_ddd_yr_ASPIRIN.cut[0,0.001)          (reference)                           0      1           NA          NA          NA        
-#  2 total_ddd_yr_ASPIRIN.cut [0.001,30)         total_ddd_yr_ASPIRIN.cut[0.001,30)         " 0.839( 0.571- 1.234),p=0.374"      -0.175  " 0.839"    " 0.571"    " 1.234"    0.374     
-#  3 total_ddd_yr_ASPIRIN.cut [30,365)           total_ddd_yr_ASPIRIN.cut[30,365)           " 0.901( 0.672- 1.208),p=0.485"      -0.104  " 0.901"    " 0.672"    " 1.208"    0.485     
-#  4 total_ddd_yr_ASPIRIN.cut [365,730)          total_ddd_yr_ASPIRIN.cut[365,730)          " 0.986( 0.667- 1.459),p=0.945"      -0.0139 " 0.986"    " 0.667"    " 1.459"    0.945     
-#  5 total_ddd_yr_ASPIRIN.cut [730,1.1e+03)      total_ddd_yr_ASPIRIN.cut[730,1.1e+03)      " 1.146( 0.747- 1.759),p=0.533"       0.136  " 1.146"    " 0.747"    " 1.759"    0.533     
-#  6 total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03) total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03) " 0.498( 0.235- 1.057),p=0.069"      -0.697  " 0.498"    " 0.235"    " 1.057"    0.069     
-#  7 total_ddd_yr_ASPIRIN.cut [1.46e+03,Inf]     total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]     " 0.909( 0.481- 1.715),p=0.768"      -0.0957 " 0.909"    " 0.481"    " 1.715"    0.768     
-#  8 AGE_group                40-                AGE_group40-                               (reference)                           0      1           NA          NA          NA        
-#  9 AGE_group                50-                AGE_group50-                               " 3.395( 2.598- 4.435),p<0.001"       1.22   " 3.395"    " 2.598"    " 4.435"    0.000     
-# 10 AGE_group                60-                AGE_group60-                               " 7.548( 5.800- 9.821),p<0.001"       2.02   " 7.548"    " 5.800"    " 9.821"    0.000     
-# # ... with 24 more rows
-
-
 #@ data_list.cut.coxph_list ====
+
+#@ name4MainData, name4MainTransformation, name4FullModel ====
 name4MainData = "_5yr"
-name4MainTransformation = "cut"
+# name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-data_list.cut.coxph_list =
-    analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
-    map(function(list_object.coxph) {
-        list_object.coxph %>% map(function(object.coxph) {
-            object.coxph %>% function.tbl_varname_level_coefHR
-        })
-    })
-data_list.cut.coxph_list %>% str(max.level = 1)
-data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
-data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
-# > data_list.cut.coxph_list %>% str(max.level = 1)
-# List of 6
+analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% str(max.level = 1)
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% str(max.level = 1)
+# List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
 #  $ cut_model4_ASPIRIN_AGE_group_NSAID_SEX                           :List of 5
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM    :List of 5
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :List of 5
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:List of 5
+#  $ function.tbl_varname_level_coefHR                                :function (object.coxph, focus.variable = ".*", digits = 3)  
+#   ..- attr(*, "srcref")= 'srcref' int [1:8] 2 37 300 1 37 1 2 300
+#   .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x0000000029f91bf0> 
+
+is.list(analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list)
+# > is.list(analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list)
+# [1] TRUE
+
+analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
+# [1] TRUE
+
+data_list.cut.coxph_list =
+    analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
+    map(function(list_object.coxph) {
+        if(is.list(list_object.coxph)) {
+            list_object.coxph %>% map(function(ob) {
+                if (ob %>% inherits("coxph")) {
+                    ob %>% function.tbl_varname_level_HRCI
+                } else {
+                    '!inherits(ob, "coxph")'
+                }
+            })
+        } else {
+            '!is.list(list_object.coxph)'
+        }
+    })
+data_list.cut.coxph_list %>% str(max.level = 1)
+data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
+data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
+# > data_list.cut.coxph_list %>% str(max.level = 1)
+# List of 7
+#  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
+#  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
+#  $ cut_model4_ASPIRIN_AGE_group_NSAID_SEX                           :List of 5
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM    :List of 5
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :List of 5
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:List of 5
+#  $ function.tbl_varname_level_coefHR                                : chr "!is.list(list_object.coxph)"
 # > data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
 # List of 5
-#  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	30 obs. of  9 variables:
-#  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	32 obs. of  9 variables:
-#  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	34 obs. of  9 variables:
-#  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	36 obs. of  9 variables:
-#  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  9 variables:
+#  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	36 obs. of  11 variables:
+#  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  11 variables:
+#  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
+#  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	42 obs. of  11 variables:
+#  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	44 obs. of  11 variables:
 # > data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
-# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	34 obs. of  9 variables:
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ varname     : chr  "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" ...
 #  $ level       : chr  "[0,0.001)" "[0.001,30)" "[30,365)" "[365,730)" ...
-#  $ HR          : chr  "(reference)" " 0.839( 0.571- 1.234),p=0.374" " 0.901( 0.672- 1.208),p=0.485" " 0.986( 0.667- 1.459),p=0.945" ...
+#  $ HRCI        : chr  "(reference)" " 0.839 ( 0.571,  1.234)" " 0.901 ( 0.672,  1.208)" " 0.986 ( 0.667,  1.459)" ...
+#  $ p_value     : chr  NA "p=0.374" "p=0.485" "p=0.945" ...
+#  $ star        : Factor w/ 5 levels "***","** ","*  ",..: NA 5 5 5 5 4 5 NA 1 1 ...
 #  $ varnamelevel: chr  "total_ddd_yr_ASPIRIN.cut[0,0.001)" "total_ddd_yr_ASPIRIN.cut[0.001,30)" "total_ddd_yr_ASPIRIN.cut[30,365)" "total_ddd_yr_ASPIRIN.cut[365,730)" ...
 #  $ coefficients: num  0 -0.175 -0.1044 -0.0139 0.1362 ...
-#  $ exp(coef)   : chr  "1" " 0.839" " 0.901" " 0.986" ...
-#  $ lower .95   : chr  NA " 0.571" " 0.672" " 0.667" ...
-#  $ upper .95   : chr  NA " 1.234" " 1.208" " 1.459" ...
-#  $ Pr(>|z|)    : chr  NA "0.374" "0.485" "0.945" ...
+#  $ exp(coef)   : num  1 0.839 0.901 0.986 1.146 ...
+#  $ lower .95   : num  NA 0.571 0.672 0.667 0.747 ...
+#  $ upper .95   : num  NA 1.23 1.21 1.46 1.76 ...
+#  $ Pr(>|z|)    : num  NA 0.374 0.485 0.945 0.533 ...
 
 
 
-#@ data_list.cut.coxph_list[[name4FullModel]][[name4MainData]] ----
-name4MainData = "_5yr"
-name4MainTransformation = "cut"
-name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
-data_list.cut.coxph_list[[name4FullModel]][[name4MainData]] #----
-# > data_list.cut.coxph_list[[name4FullModel]][[name4MainData]] #----
-# # A tibble: 34 x 9
-#    varname                  level              HR                              varnamelevel                               coefficients `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
-#    <chr>                    <chr>              <chr>                           <chr>                                             <dbl> <chr>       <chr>       <chr>       <chr>     
-#  1 total_ddd_yr_ASPIRIN.cut [0,0.001)          (reference)                     total_ddd_yr_ASPIRIN.cut[0,0.001)                0      1           NA          NA          NA        
-#  2 total_ddd_yr_ASPIRIN.cut [0.001,30)         " 0.839( 0.571- 1.234),p=0.374" total_ddd_yr_ASPIRIN.cut[0.001,30)              -0.175  " 0.839"    " 0.571"    " 1.234"    0.374     
-#  3 total_ddd_yr_ASPIRIN.cut [30,365)           " 0.901( 0.672- 1.208),p=0.485" total_ddd_yr_ASPIRIN.cut[30,365)                -0.104  " 0.901"    " 0.672"    " 1.208"    0.485     
-#  4 total_ddd_yr_ASPIRIN.cut [365,730)          " 0.986( 0.667- 1.459),p=0.945" total_ddd_yr_ASPIRIN.cut[365,730)               -0.0139 " 0.986"    " 0.667"    " 1.459"    0.945     
-#  5 total_ddd_yr_ASPIRIN.cut [730,1.1e+03)      " 1.146( 0.747- 1.759),p=0.533" total_ddd_yr_ASPIRIN.cut[730,1.1e+03)            0.136  " 1.146"    " 0.747"    " 1.759"    0.533     
-#  6 total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03) " 0.498( 0.235- 1.057),p=0.069" total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03)      -0.697  " 0.498"    " 0.235"    " 1.057"    0.069     
-#  7 total_ddd_yr_ASPIRIN.cut [1.46e+03,Inf]     " 0.909( 0.481- 1.715),p=0.768" total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]          -0.0957 " 0.909"    " 0.481"    " 1.715"    0.768     
-#  8 AGE_group                40-                (reference)                     AGE_group40-                                     0      1           NA          NA          NA        
-#  9 AGE_group                50-                " 3.395( 2.598- 4.435),p<0.001" AGE_group50-                                     1.22   " 3.395"    " 2.598"    " 4.435"    0.000     
-# 10 AGE_group                60-                " 7.548( 5.800- 9.821),p<0.001" AGE_group60-                                     2.02   " 7.548"    " 5.800"    " 9.821"    0.000     
-# # ... with 24 more rows
-
-
-
-
+                                     
 
 #@ data_main.cut.coxph_list ----
+#@ name4MainData, name4MainTransformation, name4FullModel ====
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
-# name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
+name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-
-data_list.cut.coxph_list %>% map(function(list) list[[name4MainData]]) %>% str(max.level = 1)
-# > data_list.cut.coxph_list %>% map(function(list) list[[name4MainData]]) %>% str(max.level = 1)
+data_list.cut.coxph_list %>% str(max.level = 1)
+data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% str(max.level = 1)
+data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
+# > data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NA) %>% str(max.level = 1)
+# List of 7
+#  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
+#  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:
+#  $ cut_model4_ASPIRIN_AGE_group_NSAID_SEX                           :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  11 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM    :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  11 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
+#  $ function.tbl_varname_level_coefHR                                : logi NA
+# > data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
 # List of 6
-#  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  9 variables:
-#  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  9 variables:
-#  $ cut_model4_ASPIRIN_AGE_group_NSAID_SEX                           :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  9 variables:
-#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM    :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	32 obs. of  9 variables:
-#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	35 obs. of  9 variables:
-#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	34 obs. of  9 variables:
+#  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
+#  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:
+#  $ cut_model4_ASPIRIN_AGE_group_NSAID_SEX                           :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  11 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM    :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  11 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
+#  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 
 data_main.cut.coxph_list =
-    data_list.cut.coxph_list %>% map(function(list) list[[name4MainData]]) 
-
-# data_main.cut.coxph_list %>% map(function(df) df %>% select(varname, level, varnamelevel, HR) %>% as.data.frame) #----
+    data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact
+                                     
+                                     
+                                     
+                                     
+# data_main.cut.coxph_list %>% map() select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print #----
 data_main.cut.coxph_list %>% map(function(ob) {
     # Codes to insert inside in the beginning annonymous function for map
     parent.x = get(".x", envir = parent.frame())
@@ -397,7 +414,7 @@ data_main.cut.coxph_list %>% map(function(ob) {
     # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
-    ob %>% select(varname, level, HR) %>% as.data.frame %>% print
+    ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print
     "ok"
 })
 # > data_main.cut.coxph_list %>% map(function(ob) {
@@ -409,39 +426,203 @@ data_main.cut.coxph_list %>% map(function(ob) {
 # +     # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
 # +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 # + 
-# +     ob %>% select(varname, level, HR) %>% as.data.frame %>% print
+# +     ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print
 # +     "ok"
 # + })
 # Beginning .f() map from list element [[1]] named: cut_model2_ASPIRIN_AGE_group  #---- 
-#                     varname              level                           HR
-# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)                  (reference)
-# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)  0.910( 0.628- 1.32),p=0.618
-# 3  total_ddd_yr_ASPIRIN.cut           [30,365)  0.949( 0.713- 1.26),p=0.717
-# 4  total_ddd_yr_ASPIRIN.cut          [365,730)  1.060( 0.722- 1.56),p=0.766
-# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)  1.278( 0.845- 1.93),p=0.245
-# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)  0.535( 0.253- 1.13),p=0.101
-# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]  1.031( 0.550- 1.93),p=0.924
-# 8                 AGE_group                40-                  (reference)
-# 9                 AGE_group                50-  3.470( 2.661- 4.52),p<0.001
-# 10                AGE_group                60-  7.830( 6.067-10.11),p<0.001
-# 11                AGE_group                70- 16.753(12.614-22.25),p<0.001
+#                     varname              level                 HRCI p_value star
+# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
+# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.91 (0.63, 1.32) p=0.618     
+# 3  total_ddd_yr_ASPIRIN.cut           [30,365)    0.95 (0.71, 1.26) p=0.717     
+# 4  total_ddd_yr_ASPIRIN.cut          [365,730)    1.06 (0.72, 1.56) p=0.766     
+# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)    1.28 (0.85, 1.93) p=0.245     
+# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)    0.54 (0.25, 1.13) p=0.101     
+# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]    1.03 (0.55, 1.93) p=0.924     
+# 8                 AGE_group                40-          (reference)    <NA> <NA>
+# 9                 AGE_group                50-    3.47 (2.66, 4.52) p<0.001  ***
+# 10                AGE_group                60-   7.83 (6.07, 10.11) p<0.001  ***
+# 11                AGE_group                70- 16.75 (12.61, 22.25) p<0.001  ***
 # Beginning .f() map from list element [[2]] named: cut_model3_ASPIRIN_AGE_group_NSAID  #---- 
-#                     varname              level                           HR
-# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)                  (reference)
-# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)  0.911( 0.628- 1.32),p=0.621
-# 3  total_ddd_yr_ASPIRIN.cut           [30,365)  0.948( 0.713- 1.26),p=0.716
-# 4  total_ddd_yr_ASPIRIN.cut          [365,730)  1.060( 0.722- 1.56),p=0.766
-# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)  1.280( 0.847- 1.94),p=0.242
-# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)  0.537( 0.254- 1.14),p=0.104
-# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]  1.036( 0.553- 1.94),p=0.912
-# 8                 AGE_group                40-                  (reference)
-# 9                 AGE_group                50-  3.454( 2.647- 4.51),p<0.001
-# 10                AGE_group                60-  7.760( 5.993-10.05),p<0.001
-# 11                AGE_group                70- 16.521(12.381-22.04),p<0.001
-# 12   total_ddd_yr_NSAID.cut          [0,0.001)                  (reference)
-# 13   total_ddd_yr_NSAID.cut         [0.001,30)  0.861( 0.683- 1.09),p=0.206
-# 14   total_ddd_yr_NSAID.cut           [30,365)  0.938( 0.729- 1.21),p=0.615
-# 15   total_ddd_yr_NSAID.cut          [365,730)  0.985( 0.538- 1.80),p=0.961
-# 16   total_ddd_yr_NSAID.cut      [730,1.1e+03)  0.962( 0.304- 3.04),p=0.947
-# 17   total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)  0.000( 0.000-  Inf),p=0.985
-# 18   total_ddd_yr_NSAID.cut     [1.46e+03,Inf]  3.187( 0.785-12.95),p=0.105
+#                     varname              level                 HRCI p_value star
+# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
+# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.91 (0.63, 1.32) p=0.621     
+# 3  total_ddd_yr_ASPIRIN.cut           [30,365)    0.95 (0.71, 1.26) p=0.716     
+# 4  total_ddd_yr_ASPIRIN.cut          [365,730)    1.06 (0.72, 1.56) p=0.766     
+# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)    1.28 (0.85, 1.94) p=0.242     
+# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)    0.54 (0.25, 1.14) p=0.104     
+# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]    1.04 (0.55, 1.94) p=0.912     
+# 8                 AGE_group                40-          (reference)    <NA> <NA>
+# 9                 AGE_group                50-    3.45 (2.65, 4.51) p<0.001  ***
+# 10                AGE_group                60-   7.76 (5.99, 10.05) p<0.001  ***
+# 11                AGE_group                70- 16.52 (12.38, 22.04) p<0.001  ***
+# 12   total_ddd_yr_NSAID.cut          [0,0.001)          (reference)    <NA> <NA>
+# 13   total_ddd_yr_NSAID.cut         [0.001,30)    0.86 (0.68, 1.09) p=0.206     
+# 14   total_ddd_yr_NSAID.cut           [30,365)    0.94 (0.73, 1.21) p=0.615     
+# 15   total_ddd_yr_NSAID.cut          [365,730)    0.99 (0.54, 1.80) p=0.961     
+# 16   total_ddd_yr_NSAID.cut      [730,1.1e+03)    0.96 (0.30, 3.04) p=0.947     
+# 17   total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)     0.00 (0.00, Inf) p=0.985     
+# 18   total_ddd_yr_NSAID.cut     [1.46e+03,Inf]   3.19 (0.78, 12.95) p=0.105     
+# Beginning .f() map from list element [[3]] named: cut_model4_ASPIRIN_AGE_group_NSAID_SEX  #---- 
+#                     varname              level                 HRCI p_value star
+# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
+# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.92 (0.64, 1.34) p=0.671     
+# 3  total_ddd_yr_ASPIRIN.cut           [30,365)    0.96 (0.72, 1.27) p=0.767     
+# 4  total_ddd_yr_ASPIRIN.cut          [365,730)    1.06 (0.72, 1.55) p=0.782     
+# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)    1.28 (0.84, 1.93) p=0.248     
+# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)    0.53 (0.25, 1.12) p=0.097  .  
+# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]    0.99 (0.53, 1.86) p=0.974     
+# 8                 AGE_group                40-          (reference)    <NA> <NA>
+# 9                 AGE_group                50-    3.51 (2.69, 4.58) p<0.001  ***
+# 10                AGE_group                60-   8.06 (6.22, 10.44) p<0.001  ***
+# 11                AGE_group                70- 17.75 (13.29, 23.71) p<0.001  ***
+# 12   total_ddd_yr_NSAID.cut          [0,0.001)          (reference)    <NA> <NA>
+# 13   total_ddd_yr_NSAID.cut         [0.001,30)    0.92 (0.73, 1.17) p=0.505     
+# 14   total_ddd_yr_NSAID.cut           [30,365)    1.10 (0.85, 1.43) p=0.455     
+# 15   total_ddd_yr_NSAID.cut          [365,730)    1.22 (0.66, 2.25) p=0.521     
+# 16   total_ddd_yr_NSAID.cut      [730,1.1e+03)    1.20 (0.38, 3.81) p=0.755     
+# 17   total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)     0.00 (0.00, Inf) p=0.983     
+# 18   total_ddd_yr_NSAID.cut     [1.46e+03,Inf]   3.86 (0.95, 15.68) p=0.059  .  
+# 19                      SEX               Male          (reference)    <NA> <NA>
+# 20                      SEX             Female    0.60 (0.51, 0.71) p<0.001  ***
+# Beginning .f() map from list element [[4]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM  #---- 
+#                     varname              level                 HRCI p_value star
+# 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
+# 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.84 (0.57, 1.23) p=0.374     
+# 3  total_ddd_yr_ASPIRIN.cut           [30,365)    0.90 (0.67, 1.21) p=0.482     
+# 4  total_ddd_yr_ASPIRIN.cut          [365,730)    0.99 (0.67, 1.46) p=0.941     
+# 5  total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)    1.15 (0.75, 1.76) p=0.535     
+# 6  total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)    0.50 (0.23, 1.06) p=0.069  .  
+# 7  total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]    0.91 (0.48, 1.71) p=0.766     
+# 8                 AGE_group                40-          (reference)    <NA> <NA>
+# 9                 AGE_group                50-    3.39 (2.60, 4.44) p<0.001  ***
+# 10                AGE_group                60-    7.55 (5.80, 9.82) p<0.001  ***
+# 11                AGE_group                70- 16.08 (11.93, 21.67) p<0.001  ***
+# 12   total_ddd_yr_NSAID.cut          [0,0.001)          (reference)    <NA> <NA>
+# 13   total_ddd_yr_NSAID.cut         [0.001,30)    0.94 (0.74, 1.19) p=0.598     
+# 14   total_ddd_yr_NSAID.cut           [30,365)    1.08 (0.82, 1.42) p=0.574     
+# 15   total_ddd_yr_NSAID.cut          [365,730)    1.17 (0.63, 2.17) p=0.616     
+# 16   total_ddd_yr_NSAID.cut      [730,1.1e+03)    1.14 (0.36, 3.64) p=0.821     
+# 17   total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)     0.00 (0.00, Inf) p=0.983     
+# 18   total_ddd_yr_NSAID.cut     [1.46e+03,Inf]   3.50 (0.86, 14.32) p=0.081  .  
+# 19                      SEX               Male          (reference)    <NA> <NA>
+# 20                      SEX             Female    0.64 (0.53, 0.78) p<0.001  ***
+# 21                 BMI_Q_yr                 0-          (reference)    <NA> <NA>
+# 22                 BMI_Q_yr              18.5-    0.81 (0.52, 1.27) p=0.366     
+# 23                 BMI_Q_yr                23-    0.74 (0.47, 1.17) p=0.200     
+# 24                 BMI_Q_yr                25-    0.77 (0.49, 1.22) p=0.260     
+# 25                 BMI_Q_yr                30-    1.12 (0.61, 2.04) p=0.717     
+# 26                   SEcoQ4              FALSE          (reference)    <NA> <NA>
+# 27                   SEcoQ4               TRUE    1.20 (0.98, 1.48) p=0.084  .  
+# 28           Disability_Any              FALSE          (reference)    <NA> <NA>
+# 29           Disability_Any               TRUE    1.35 (0.67, 2.72) p=0.408     
+# 30   CigaretteCurrentSmoker              FALSE          (reference)    <NA> <NA>
+# 31   CigaretteCurrentSmoker               TRUE    1.13 (0.91, 1.40) p=0.285     
+# 32             Drink_ge3pwk              FALSE          (reference)    <NA> <NA>
+# 33             Drink_ge3pwk               TRUE    1.18 (0.92, 1.52) p=0.187     
+# 34         Excercise_ge3pwk              FALSE          (reference)    <NA> <NA>
+# 35         Excercise_ge3pwk               TRUE    0.93 (0.76, 1.14) p=0.511     
+# 36 pmhx_DM_OR_glucose_ge126              FALSE          (reference)    <NA> <NA>
+# 37 pmhx_DM_OR_glucose_ge126               TRUE    1.23 (0.98, 1.54) p=0.068  .  
+# 38                   CCI_yr               <NA>    1.06 (1.01, 1.12) p=0.031  *  
+# Beginning .f() map from list element [[5]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med  #---- 
+#                        varname              level                 HRCI p_value star
+# 1     total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
+# 2     total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.84 (0.57, 1.23) p=0.373     
+# 3     total_ddd_yr_ASPIRIN.cut           [30,365)    0.92 (0.69, 1.24) p=0.580     
+# 4     total_ddd_yr_ASPIRIN.cut          [365,730)    1.02 (0.69, 1.52) p=0.920     
+# 5     total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)    1.19 (0.77, 1.84) p=0.425     
+# 6     total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)    0.52 (0.24, 1.11) p=0.089  .  
+# 7     total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]    0.96 (0.51, 1.82) p=0.901     
+# 8                    AGE_group                40-          (reference)    <NA> <NA>
+# 9                    AGE_group                50-    3.42 (2.62, 4.47) p<0.001  ***
+# 10                   AGE_group                60-    7.61 (5.85, 9.90) p<0.001  ***
+# 11                   AGE_group                70- 16.18 (12.00, 21.81) p<0.001  ***
+# 12      total_ddd_yr_NSAID.cut          [0,0.001)          (reference)    <NA> <NA>
+# 13      total_ddd_yr_NSAID.cut         [0.001,30)    0.93 (0.73, 1.18) p=0.565     
+# 14      total_ddd_yr_NSAID.cut           [30,365)    1.07 (0.82, 1.40) p=0.625     
+# 15      total_ddd_yr_NSAID.cut          [365,730)    1.16 (0.63, 2.16) p=0.635     
+# 16      total_ddd_yr_NSAID.cut      [730,1.1e+03)    1.13 (0.36, 3.62) p=0.830     
+# 17      total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)     0.00 (0.00, Inf) p=0.983     
+# 18      total_ddd_yr_NSAID.cut     [1.46e+03,Inf]   3.48 (0.85, 14.23) p=0.083  .  
+# 19                         SEX               Male          (reference)    <NA> <NA>
+# 20                         SEX             Female    0.64 (0.53, 0.78) p<0.001  ***
+# 21                    BMI_Q_yr                 0-          (reference)    <NA> <NA>
+# 22                    BMI_Q_yr              18.5-    0.82 (0.52, 1.29) p=0.384     
+# 23                    BMI_Q_yr                23-    0.75 (0.47, 1.19) p=0.224     
+# 24                    BMI_Q_yr                25-    0.78 (0.50, 1.24) p=0.301     
+# 25                    BMI_Q_yr                30-    1.15 (0.63, 2.10) p=0.649     
+# 26 total_ddd_yr_METFORMIN.ge30             [0,30)          (reference)    <NA> <NA>
+# 27 total_ddd_yr_METFORMIN.ge30           [30,Inf]    1.17 (0.85, 1.60) p=0.328     
+# 28    total_ddd_yr_STATIN.ge30             [0,30)          (reference)    <NA> <NA>
+# 29    total_ddd_yr_STATIN.ge30           [30,Inf]    0.85 (0.63, 1.13) p=0.258     
+# 30                      SEcoQ4              FALSE          (reference)    <NA> <NA>
+# 31                      SEcoQ4               TRUE    1.20 (0.98, 1.48) p=0.079  .  
+# 32              Disability_Any              FALSE          (reference)    <NA> <NA>
+# 33              Disability_Any               TRUE    1.35 (0.67, 2.72) p=0.404     
+# 34      CigaretteCurrentSmoker              FALSE          (reference)    <NA> <NA>
+# 35      CigaretteCurrentSmoker               TRUE    1.13 (0.91, 1.41) p=0.273     
+# 36                Drink_ge3pwk              FALSE          (reference)    <NA> <NA>
+# 37                Drink_ge3pwk               TRUE    1.18 (0.92, 1.52) p=0.185     
+# 38            Excercise_ge3pwk              FALSE          (reference)    <NA> <NA>
+# 39            Excercise_ge3pwk               TRUE    0.94 (0.77, 1.15) p=0.547     
+# 40                      CCI_yr               <NA>    1.07 (1.01, 1.14) p=0.014  *  
+# Beginning .f() map from list element [[6]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med  #---- 
+#                        varname              level                 HRCI p_value star
+# 1     total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
+# 2     total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.84 (0.57, 1.23) p=0.374     
+# 3     total_ddd_yr_ASPIRIN.cut           [30,365)    0.90 (0.67, 1.21) p=0.485     
+# 4     total_ddd_yr_ASPIRIN.cut          [365,730)    0.99 (0.67, 1.46) p=0.945     
+# 5     total_ddd_yr_ASPIRIN.cut      [730,1.1e+03)    1.15 (0.75, 1.76) p=0.533     
+# 6     total_ddd_yr_ASPIRIN.cut [1.1e+03,1.46e+03)    0.50 (0.23, 1.06) p=0.069  .  
+# 7     total_ddd_yr_ASPIRIN.cut     [1.46e+03,Inf]    0.91 (0.48, 1.72) p=0.768     
+# 8                    AGE_group                40-          (reference)    <NA> <NA>
+# 9                    AGE_group                50-    3.39 (2.60, 4.44) p<0.001  ***
+# 10                   AGE_group                60-    7.55 (5.80, 9.82) p<0.001  ***
+# 11                   AGE_group                70- 16.07 (11.92, 21.67) p<0.001  ***
+# 12      total_ddd_yr_NSAID.cut          [0,0.001)          (reference)    <NA> <NA>
+# 13      total_ddd_yr_NSAID.cut         [0.001,30)    0.94 (0.74, 1.19) p=0.598     
+# 14      total_ddd_yr_NSAID.cut           [30,365)    1.08 (0.82, 1.42) p=0.575     
+# 15      total_ddd_yr_NSAID.cut          [365,730)    1.17 (0.63, 2.17) p=0.617     
+# 16      total_ddd_yr_NSAID.cut      [730,1.1e+03)    1.14 (0.36, 3.64) p=0.821     
+# 17      total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)     0.00 (0.00, Inf) p=0.983     
+# 18      total_ddd_yr_NSAID.cut     [1.46e+03,Inf]   3.50 (0.86, 14.32) p=0.081  .  
+# 19                         SEX               Male          (reference)    <NA> <NA>
+# 20                         SEX             Female    0.64 (0.53, 0.78) p<0.001  ***
+# 21                    BMI_Q_yr                 0-          (reference)    <NA> <NA>
+# 22                    BMI_Q_yr              18.5-    0.81 (0.52, 1.28) p=0.366     
+# 23                    BMI_Q_yr                23-    0.74 (0.47, 1.17) p=0.200     
+# 24                    BMI_Q_yr                25-    0.77 (0.49, 1.22) p=0.260     
+# 25                    BMI_Q_yr                30-    1.12 (0.61, 2.04) p=0.716     
+# 26 total_ddd_yr_METFORMIN.ge30             [0,30)          (reference)    <NA> <NA>
+# 27 total_ddd_yr_METFORMIN.ge30           [30,Inf]    0.99 (0.68, 1.42) p=0.942     
+# 28                      SEcoQ4              FALSE          (reference)    <NA> <NA>
+# 29                      SEcoQ4               TRUE    1.20 (0.98, 1.48) p=0.084  .  
+# 30              Disability_Any              FALSE          (reference)    <NA> <NA>
+# 31              Disability_Any               TRUE    1.35 (0.67, 2.72) p=0.408     
+# 32      CigaretteCurrentSmoker              FALSE          (reference)    <NA> <NA>
+# 33      CigaretteCurrentSmoker               TRUE    1.13 (0.91, 1.40) p=0.285     
+# 34                Drink_ge3pwk              FALSE          (reference)    <NA> <NA>
+# 35                Drink_ge3pwk               TRUE    1.18 (0.92, 1.52) p=0.187     
+# 36            Excercise_ge3pwk              FALSE          (reference)    <NA> <NA>
+# 37            Excercise_ge3pwk               TRUE    0.93 (0.76, 1.15) p=0.512     
+# 38    pmhx_DM_OR_glucose_ge126              FALSE          (reference)    <NA> <NA>
+# 39    pmhx_DM_OR_glucose_ge126               TRUE    1.24 (0.95, 1.61) p=0.110     
+# 40                      CCI_yr               <NA>    1.06 (1.01, 1.13) p=0.031  *  
+# $`cut_model2_ASPIRIN_AGE_group`
+# [1] "ok"
+# 
+# $cut_model3_ASPIRIN_AGE_group_NSAID
+# [1] "ok"
+# 
+# $cut_model4_ASPIRIN_AGE_group_NSAID_SEX
+# [1] "ok"
+# 
+# $cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM
+# [1] "ok"
+# 
+# $cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med
+# [1] "ok"
+# 
+# $cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med
+# [1] "ok"
+
