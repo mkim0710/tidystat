@@ -291,7 +291,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
 
 
 
-#@@ data_list.cut.coxph_list from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
+#@@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
 #@ name4MainData, name4MainTransformation, name4FullModel ====
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
@@ -318,8 +318,8 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
 # [1] TRUE
 
-#@@ data_list.cut.coxph_list from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
-data_list.cut.coxph_list =
+#@@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
+data_list.cut.coxph_list.HRCI =
     analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
     map(function(list_object.coxph) {
         if(is.list(list_object.coxph)) {
@@ -334,10 +334,10 @@ data_list.cut.coxph_list =
             '!is.list(list_object.coxph)'
         }
     })
-data_list.cut.coxph_list %>% str(max.level = 1)
-data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
-data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
-# > data_list.cut.coxph_list %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI %>% str(max.level = 1)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
@@ -346,14 +346,14 @@ data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :List of 5
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:List of 5
 #  $ function.tbl_varname_level_coefHR                                : chr "!is.list(list_object.coxph)"
-# > data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
 # List of 5
 #  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	36 obs. of  11 variables:
 #  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  11 variables:
 #  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	42 obs. of  11 variables:
 #  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	44 obs. of  11 variables:
-# > data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ varname     : chr  "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" ...
 #  $ level       : chr  "[0,0.001)" "[0.001,30)" "[30,365)" "[365,730)" ...
@@ -385,16 +385,16 @@ data_list.cut.coxph_list$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior
                                                                                                                             
                                      
 
-#@@ data_main.cut.coxph_list from data_list.cut.coxph_list ----
+#@@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----
 #@ name4MainData, name4MainTransformation, name4FullModel ====
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-data_list.cut.coxph_list %>% str(max.level = 1)
-data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% str(max.level = 1)
-data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
-# > data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NA) %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NA) %>% str(max.level = 1)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:
@@ -403,7 +403,7 @@ data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ function.tbl_varname_level_coefHR                                : logi NA
-# > data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
 # List of 6
 #  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:
@@ -412,15 +412,15 @@ data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 
-#@@ data_main.cut.coxph_list from data_list.cut.coxph_list ----
-data_main.cut.coxph_list =
-    data_list.cut.coxph_list %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact
+#@@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----
+data_main.cut.coxph_list.HRCI =
+    data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact
                                      
                                      
                                      
                                      
-# data_main.cut.coxph_list %>% map() select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print #----
-data_main.cut.coxph_list %>% map(function(ob) {
+# data_main.cut.coxph_list.HRCI %>% map() select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print #----
+data_main.cut.coxph_list.HRCI %>% map(function(ob) {
     # Codes to insert inside in the beginning annonymous function for map
     parent.x = get(".x", envir = parent.frame())
     i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, ob) } ))
@@ -432,7 +432,7 @@ data_main.cut.coxph_list %>% map(function(ob) {
     ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print
     "ok"
 })
-# > data_main.cut.coxph_list %>% map(function(ob) {
+# > data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # +     # Codes to insert inside in the beginning annonymous function for map
 # +     parent.x = get(".x", envir = parent.frame())
 # +     i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, ob) } ))
