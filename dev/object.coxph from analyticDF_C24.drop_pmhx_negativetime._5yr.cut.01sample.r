@@ -446,155 +446,91 @@ digits = 3
 # # > 0.1 ^ max(2, digits)
 # # [1] 0.001
 
-
-res = object.coxph.summary[c("coefficients", "conf.int")] %>% 
-    map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = c("rowname", "exp(coef)")) %>% 
-    {.[c("rowname", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")]}
-res %>% as.tibble
-# > res %>% as.tibble
-# # A tibble: 10 x 5
-#    rowname                             `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
-#    <chr>                                     <dbl>       <dbl>       <dbl>      <dbl>
-#  1 AGE                                     1.26e+0      1.08          1.45    0.00225
-#  2 SEXFemale                               2.95e-1      0.0278        3.13    0.311  
-#  3 CigaretteCurrentSmokerTRUE              3.19e+0      0.236        43.2     0.383  
-#  4 BMI_Q_yr18.5-                           1.39e+8      0           Inf       1.000  
-#  5 BMI_Q_yr23-                             3.04e+0      0           Inf       1.000  
-#  6 BMI_Q_yr25-                             9.27e+8      0           Inf       1.000  
-#  7 BMI_Q_yr30-                             3.35e+0      0           Inf       1.000  
-#  8 CCI_yr                                  1.15e+0      0.667         1.97    0.619  
-#  9 pmhx_DM_OR_glucose_ge126TRUE            2.30e+0      0.232        22.8     0.477  
-# 10 total_ddd_yr_METFORMIN.ge30[30,Inf]     2.27e-9      0           Inf       0.999  
-
-digits
-res %>% map_df(format,  digits = digits)
-res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits)
-res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F)
-# > res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits)
-# # A tibble: 10 x 4
-#    `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
-#    <chr>       <chr>       <chr>       <chr>     
-#  1 1.25e+00    1.085       " 1.45"     0.002     
-#  2 2.95e-01    0.028       " 3.13"     0.311     
-#  3 3.19e+00    0.236       43.19       0.383     
-#  4 1.39e+08    0.000       "  Inf"     1.000     
-#  5 3.04e+00    0.000       "  Inf"     1.000     
-#  6 9.27e+08    0.000       "  Inf"     1.000     
-#  7 3.35e+00    0.000       "  Inf"     1.000     
-#  8 1.15e+00    0.667       " 1.97"     0.619     
-#  9 2.30e+00    0.232       22.81       0.477     
-# 10 0.00e+00    0.000       "  Inf"     0.999     
-# > res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F)
-# # A tibble: 10 x 4
-#    `exp(coef)`     `lower .95` `upper .95` `Pr(>|z|)`
-#    <chr>           <chr>       <chr>       <chr>     
-#  1 "        1.255" 1.085       " 1.45"     0.002     
-#  2 "        0.295" 0.028       " 3.13"     0.311     
-#  3 "        3.191" 0.236       43.19       0.383     
-#  4 139245599.097   0.000       "  Inf"     1.000     
-#  5 "        3.044" 0.000       "  Inf"     1.000     
-#  6 927100265.413   0.000       "  Inf"     1.000     
-#  7 "        3.354" 0.000       "  Inf"     1.000     
-#  8 "        1.148" 0.667       " 1.97"     0.619     
-#  9 "        2.299" 0.232       22.81       0.477     
-# 10 "        0.000" 0.000       "  Inf"     0.999     
-
-res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
-    add_column(" (", .after = "exp(coef)") %>% 
-    add_column(", ", .after = "lower .95") %>% 
-    add_column("), p=", .after = "upper .95") %>% 
-    as.tibble
-# > res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
-# +     add_column(" (", .after = "exp(coef)") %>% 
-# +     add_column(", ", .after = "lower .95") %>% 
-# +     add_column("), p=", .after = "upper .95") %>% 
-# +     as.tibble
-# # A tibble: 10 x 7
-#    `exp(coef)`     `" ("` `lower .95` `", "` `upper .95` `"), p="` `Pr(>|z|)`
-#    <chr>           <chr>  <chr>       <chr>  <chr>       <chr>     <chr>     
-#  1 "        1.255" " ("   1.085       ", "   " 1.45"     ), p=     0.002     
-#  2 "        0.295" " ("   0.028       ", "   " 3.13"     ), p=     0.311     
-#  3 "        3.191" " ("   0.236       ", "   43.19       ), p=     0.383     
-#  4 139245599.097   " ("   0.000       ", "   "  Inf"     ), p=     1.000     
-#  5 "        3.044" " ("   0.000       ", "   "  Inf"     ), p=     1.000     
-#  6 927100265.413   " ("   0.000       ", "   "  Inf"     ), p=     1.000     
-#  7 "        3.354" " ("   0.000       ", "   "  Inf"     ), p=     1.000     
-#  8 "        1.148" " ("   0.667       ", "   " 1.97"     ), p=     0.619     
-#  9 "        2.299" " ("   0.232       ", "   22.81       ), p=     0.477     
-# 10 "        0.000" " ("   0.000       ", "   "  Inf"     ), p=     0.999     
-
-res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
-    add_column(" (", .after = "exp(coef)") %>% 
-    add_column(", ", .after = "lower .95") %>% 
-    add_column("), p = ", .after = "upper .95") %>% 
-    unite(sep = "")
-# > res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
-# +     add_column(" (", .after = "exp(coef)") %>% 
-# +     add_column(", ", .after = "lower .95") %>% 
-# +     add_column("), p = ", .after = "upper .95") %>% 
-# +     unite(sep = "")
-# # A tibble: 10 x 1
-#    ``                                       
-#    <chr>                                    
-#  1 "        1.255 (1.085,  1.45), p = 0.002"
-#  2 "        0.295 (0.028,  3.13), p = 0.311"
-#  3 "        3.191 (0.236, 43.19), p = 0.383"
-#  4 139245599.097 (0.000,   Inf), p = 1.000  
-#  5 "        3.044 (0.000,   Inf), p = 1.000"
-#  6 927100265.413 (0.000,   Inf), p = 1.000  
-#  7 "        3.354 (0.000,   Inf), p = 1.000"
-#  8 "        1.148 (0.667,  1.97), p = 0.619"
-#  9 "        2.299 (0.232, 22.81), p = 0.477"
-# 10 "        0.000 (0.000,   Inf), p = 0.999"
-
-
-# res %>% column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
-#     add_column(" (", .after = "exp(coef)") %>% 
-#     add_column(", ", .after = "lower .95") %>% 
-#     add_column("), p = ", .after = "upper .95") %>% 
-#     unite(sep = "") %>% gsub("p = 0.000", "p < 0.001", .)
-
-
-res2 = tibble(
-    rowname = res$rowname
-    , HR = res %>% 
-        column_to_rownames %>% map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
-        add_column(" (", .after = "exp(coef)") %>%
-        add_column(", ", .after = "lower .95") %>%
-        add_column("), p = ", .after = "upper .95") %>%
-        unite(sep = "") %>% unlist %>% gsub("p = 0.000", "p < 0.001", .)
-)
-res2
-# > res2
-# # A tibble: 10 x 2
-#    rowname                             HR                                       
-#    <chr>                               <chr>                                    
-#  1 AGE                                 "        1.255 (1.085,  1.45), p = 0.002"
-#  2 SEXFemale                           "        0.295 (0.028,  3.13), p = 0.311"
-#  3 CigaretteCurrentSmokerTRUE          "        3.191 (0.236, 43.19), p = 0.383"
-#  4 BMI_Q_yr18.5-                       139245599.097 (0.000,   Inf), p = 1.000  
-#  5 BMI_Q_yr23-                         "        3.044 (0.000,   Inf), p = 1.000"
-#  6 BMI_Q_yr25-                         927100265.413 (0.000,   Inf), p = 1.000  
-#  7 BMI_Q_yr30-                         "        3.354 (0.000,   Inf), p = 1.000"
-#  8 CCI_yr                              "        1.148 (0.667,  1.97), p = 0.619"
-#  9 pmhx_DM_OR_glucose_ge126TRUE        "        2.299 (0.232, 22.81), p = 0.477"
-# 10 total_ddd_yr_METFORMIN.ge30[30,Inf] "        0.000 (0.000,   Inf), p = 0.999"
-
-res2 %>% full_join(res, by = "rowname")
-# > res2 %>% full_join(res, by = "rowname")
-# # A tibble: 10 x 6
-#    rowname                             HR                                        `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
-#    <chr>                               <chr>                                           <dbl>       <dbl>       <dbl>      <dbl>
-#  1 AGE                                 "        1.255 (1.085,  1.45), p = 0.002"     1.26e+0      1.08          1.45    0.00225
-#  2 SEXFemale                           "        0.295 (0.028,  3.13), p = 0.311"     2.95e-1      0.0278        3.13    0.311  
-#  3 CigaretteCurrentSmokerTRUE          "        3.191 (0.236, 43.19), p = 0.383"     3.19e+0      0.236        43.2     0.383  
-#  4 BMI_Q_yr18.5-                       139245599.097 (0.000,   Inf), p = 1.000       1.39e+8      0           Inf       1.000  
-#  5 BMI_Q_yr23-                         "        3.044 (0.000,   Inf), p = 1.000"     3.04e+0      0           Inf       1.000  
-#  6 BMI_Q_yr25-                         927100265.413 (0.000,   Inf), p = 1.000       9.27e+8      0           Inf       1.000  
-#  7 BMI_Q_yr30-                         "        3.354 (0.000,   Inf), p = 1.000"     3.35e+0      0           Inf       1.000  
-#  8 CCI_yr                              "        1.148 (0.667,  1.97), p = 0.619"     1.15e+0      0.667         1.97    0.619  
-#  9 pmhx_DM_OR_glucose_ge126TRUE        "        2.299 (0.232, 22.81), p = 0.477"     2.30e+0      0.232        22.8     0.477  
-# 10 total_ddd_yr_METFORMIN.ge30[30,Inf] "        0.000 (0.000,   Inf), p = 0.999"     2.27e-9      0           Inf       0.999  
-
-
+    
+    #@ function.extractHR.focus.incl.reference() ----
+    res1 = summary(object.coxph)[c("coefficients", "conf.int")] %>% 
+        map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = c("rowname", "exp(coef)")) %>% 
+        {.[c("rowname", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")]}
+    # res1 %>% as.tibble
+    # # > res1 %>% as.tibble
+    # # # A tibble: 10 x 5
+    # #    rowname                             `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
+    # #    <chr>                                     <dbl>       <dbl>       <dbl>      <dbl>
+    # #  1 AGE                                     1.26e+0      1.08          1.45    0.00225
+    # #  2 SEXFemale                               2.95e-1      0.0278        3.13    0.311  
+    # #  3 CigaretteCurrentSmokerTRUE              3.19e+0      0.236        43.2     0.383  
+    # #  4 BMI_Q_yr18.5-                           1.39e+8      0           Inf       1.000  
+    # #  5 BMI_Q_yr23-                             3.04e+0      0           Inf       1.000  
+    # #  6 BMI_Q_yr25-                             9.27e+8      0           Inf       1.000  
+    # #  7 BMI_Q_yr30-                             3.35e+0      0           Inf       1.000  
+    # #  8 CCI_yr                                  1.15e+0      0.667         1.97    0.619  
+    # #  9 pmhx_DM_OR_glucose_ge126TRUE            2.30e+0      0.232        22.8     0.477  
+    # # 10 total_ddd_yr_METFORMIN.ge30[30,Inf]     2.27e-9      0           Inf       0.999  
+    
+    
+    res2 = tibble(
+        rowname = res1$rowname
+        , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% 
+            map(round, max(2, digits)) %>% map_df(format,  digits = digits, scientific = F) %>% 
+            add_column(" (", .after = "exp(coef)") %>%
+            add_column(", ", .after = "lower .95") %>%
+            add_column(")", .after = "upper .95") %>%
+            unite(sep = "") %>% unlist
+        , p_value = paste0("p=", res$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
+        , star = res$`Pr(>|z|)` %>% 
+            cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
+                , labels = c("***", "***", "** ", "*  ", ".  ", "   ") 
+                , include.lowest = T, right = T
+            )
+    )
+    res2
+    # > res2
+    # # A tibble: 10 x 4
+    # rowname                             HRCI                           p_value star 
+    # <chr>                               <chr>                          <chr>   <fct>
+    # 1 AGE                                 "        1.255 (1.085,  1.45)" p=0.002 ***
+    # 2 SEXFemale                           "        0.295 (0.028,  3.13)" p=0.311 "   "
+    # 3 CigaretteCurrentSmokerTRUE          "        3.191 (0.236, 43.19)" p=0.383 "   "
+    # 4 BMI_Q_yr18.5-                       139245599.097 (0.000,   Inf)   p=1.000 "   "
+    # 5 BMI_Q_yr23-                         "        3.044 (0.000,   Inf)" p=1.000 "   "
+    # 6 BMI_Q_yr25-                         927100265.413 (0.000,   Inf)   p=1.000 "   "
+    # 7 BMI_Q_yr30-                         "        3.354 (0.000,   Inf)" p=1.000 "   "
+    # 8 CCI_yr                              "        1.148 (0.667,  1.97)" p=0.619 "   "
+    # 9 pmhx_DM_OR_glucose_ge126TRUE        "        2.299 (0.232, 22.81)" p=0.477 "   "
+    # 10 total_ddd_yr_METFORMIN.ge30[30,Inf] "        0.000 (0.000,   Inf)" p=0.999 "   "
+    
+    res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
+    
+    tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
+    tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
+    tbl_varname_level_coefficients_res$HRCI[is.na(tbl_varname_level_coefficients_res$HRCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
+    tbl_varname_level_coefficients_res %>% print(n=99)
+    tbl_varname_level_coefficients_res %>% names %>% dput
+    # > tbl_varname_level_coefficients_res %>% print(n=99)
+    # # A tibble: 15 x 11
+    # varname                     level    varnamelevel                        coefficients HRCI                           p_value star  `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
+    # <chr>                       <chr>    <chr>                                      <dbl> <chr>                          <chr>   <fct>       <dbl>       <dbl>       <dbl>      <dbl>
+    # 1 SEX                         Male     SEXMale                                    0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # 2 SEX                         Female   SEXFemale                                 -1.22  "        0.295 (0.028,  3.13)" p=0.311 "   "     2.95e-1      0.0278        3.13    0.311  
+    # 3 BMI_Q_yr                    0-       BMI_Q_yr0-                                 0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # 4 BMI_Q_yr                    18.5-    BMI_Q_yr18.5-                             18.8   139245599.097 (0.000,   Inf)   p=1.000 "   "     1.39e+8      0           Inf       1.000  
+    # 5 BMI_Q_yr                    23-      BMI_Q_yr23-                                1.11  "        3.044 (0.000,   Inf)" p=1.000 "   "     3.04e+0      0           Inf       1.000  
+    # 6 BMI_Q_yr                    25-      BMI_Q_yr25-                               20.6   927100265.413 (0.000,   Inf)   p=1.000 "   "     9.27e+8      0           Inf       1.000  
+    # 7 BMI_Q_yr                    30-      BMI_Q_yr30-                                1.21  "        3.354 (0.000,   Inf)" p=1.000 "   "     3.35e+0      0           Inf       1.000  
+    # 8 total_ddd_yr_METFORMIN.ge30 [0,30)   total_ddd_yr_METFORMIN.ge30[0,30)          0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # 9 total_ddd_yr_METFORMIN.ge30 [30,Inf] total_ddd_yr_METFORMIN.ge30[30,Inf]      -19.9   "        0.000 (0.000,   Inf)" p=0.999 "   "     2.27e-9      0           Inf       0.999  
+    # 10 CigaretteCurrentSmoker      FALSE    CigaretteCurrentSmokerFALSE                0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # 11 CigaretteCurrentSmoker      TRUE     CigaretteCurrentSmokerTRUE                 1.16  "        3.191 (0.236, 43.19)" p=0.383 "   "     3.19e+0      0.236        43.2     0.383  
+    # 12 pmhx_DM_OR_glucose_ge126    FALSE    pmhx_DM_OR_glucose_ge126FALSE              0     (reference)                    NA      NA        1.00e+0     NA            NA      NA      
+    # 13 pmhx_DM_OR_glucose_ge126    TRUE     pmhx_DM_OR_glucose_ge126TRUE               0.832 "        2.299 (0.232, 22.81)" p=0.477 "   "     2.30e+0      0.232        22.8     0.477  
+    # 14 AGE                         NA       AGE                                        0.227 "        1.255 (1.085,  1.45)" p=0.002 ***       1.26e+0      1.08          1.45    0.00225
+    # 15 CCI_yr                      NA       CCI_yr                                     0.138 "        1.148 (0.667,  1.97)" p=0.619 "   "     1.15e+0      0.667         1.97    0.619  
+    # > tbl_varname_level_coefficients_res %>% names %>% dput
+    # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
+    # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
+    # txt %>% str_extract_all("[A-z0-9_]+") %>% str
+    # txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = ', ') %>% {paste0('select(', ., ')')} %>% cat
+    # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
+    
+    out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
 
