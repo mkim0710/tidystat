@@ -6,11 +6,19 @@ function.numeric2nearest_integer = function(vec) {
 
 round_but_ceiling5 = function(x, digits = 0) {
     round(x + 10^(-9), digits = digits)
+    # > 5.5550 %>% round(2)
+    # [1] 5.55
+    # > 5.5550 %>% round_but_ceiling5(2)
+    # [1] 5.56
 }
 
 
 sprintf_but_ceiling5 = function(fmt='%#.2f', x, ...) {
-    sprintf(fmt = fmt, x, ...)
+    sprintf(fmt = fmt, x + 10^(-9), ...)
+    # > 5.5550 %>% sprintf(fmt='%#.2f')
+    # [1] "5.55"
+    # > 5.5550 %>% sprintf_but_ceiling5(fmt='%#.2f')
+    # [1] "5.56"
 }
 
 
