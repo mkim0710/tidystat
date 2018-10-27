@@ -191,6 +191,9 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
         map_df(sprintf_but_ceiling5,  fmt = "%.2f")
     res1[c("exp(coef)", "lower .95", "upper .95")] %>%
         signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    res1[c("exp(coef)", "lower .95", "upper .95")] %>% str
+    res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
+        map_df(sprintf_but_ceiling5,  fmt = "%.2f")
     # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
     # +     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
     # # A tibble: 10 x 3
@@ -221,14 +224,30 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     #  8 5.23             5.23        5.23       
     #  9 4490000000000.00 0.00        Inf        
     # 10 1.03             0.07        15.80   
+    # > res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
+    # +         map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # # A tibble: 28 x 3
+    # `exp(coef)` `lower .95` `upper .95`
+    # <chr>       <chr>       <chr>      
+    #     1 0.00        0.00        Inf        
+    # 2 0.00        0.00        Inf        
+    # 3 0.00        0.00        Inf        
+    # 4 4.56        0.34        60.57      
+    # 5 0.00        0.00        Inf        
+    # 6 0.00        0.00        Inf        
+    # 7 99.99       0.00        Inf        
+    # 8 5.23        5.23        5.23       
+    # 9 99.99       0.00        Inf        
+    # 10 1.03        0.07        15.76      
+    # # ... with 18 more rows
     res2 = tibble(
         rowname = res1$rowname
-        , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% 
+        , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
             map_df(sprintf_but_ceiling5,  fmt = paste0("%.", digits, "f")) %>% 
             add_column(" (", .after = "exp(coef)") %>%
             add_column(", ", .after = "lower .95") %>%
             add_column(")", .after = "upper .95") %>%
-            unite(sep = "") %>% unlist
+            unite(sep = "") %>% unlist %>% gsub("99.99", ">100", .)
         , p_value = paste0("p=", res1$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
         , star = res1$`Pr(>|z|)` %>% 
             cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
@@ -238,19 +257,20 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     )
     res2
     # > res2
-    # # A tibble: 10 x 4
-    # rowname                             HRCI                           p_value star 
-    # <chr>                               <chr>                          <chr>   <fct>
-    # 1 AGE                                 "        1.255 (1.085,  1.45)" p=0.002 ***
-    # 2 SEXFemale                           "        0.295 (0.028,  3.13)" p=0.311 "   "
-    # 3 CigaretteCurrentSmokerTRUE          "        3.191 (0.236, 43.19)" p=0.383 "   "
-    # 4 BMI_Q_yr18.5-                       139245599.097 (0.000,   Inf)   p=1.000 "   "
-    # 5 BMI_Q_yr23-                         "        3.044 (0.000,   Inf)" p=1.000 "   "
-    # 6 BMI_Q_yr25-                         927100265.413 (0.000,   Inf)   p=1.000 "   "
-    # 7 BMI_Q_yr30-                         "        3.354 (0.000,   Inf)" p=1.000 "   "
-    # 8 CCI_yr                              "        1.148 (0.667,  1.97)" p=0.619 "   "
-    # 9 pmhx_DM_OR_glucose_ge126TRUE        "        2.299 (0.232, 22.81)" p=0.477 "   "
-    # 10 total_ddd_yr_METFORMIN.ge30[30,Inf] "        0.000 (0.000,   Inf)" p=0.999 "   "
+    # # A tibble: 28 x 4
+    # rowname                                    HRCI               p_value star 
+    # <chr>                                      <chr>              <chr>   <fct>
+    # 1 total_ddd_yr_ASPIRIN.cut[0.001,30)         0.00 (0.00, Inf)   p=0.995 "   "
+    # 2 total_ddd_yr_ASPIRIN.cut[30,365)           0.00 (0.00, Inf)   p=0.993 "   "
+    # 3 total_ddd_yr_ASPIRIN.cut[365,730)          0.00 (0.00, Inf)   p=0.997 "   "
+    # 4 total_ddd_yr_ASPIRIN.cut[730,1.1e+03)      4.56 (0.34, 60.57) p=0.250 "   "
+    # 5 total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03) 0.00 (0.00, Inf)   p=0.999 "   "
+    # 6 total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]     0.00 (0.00, Inf)   p=0.999 "   "
+    # 7 AGE_group50-                               >100 (0.00, Inf)   p=1.000 "   "
+    # 8 AGE_group60-                               5.23 (5.23, 5.23)  p<0.001 ***  
+    #     9 AGE_group70-                               >100 (0.00, Inf)   p=1.000 "   "
+    # 10 total_ddd_yr_NSAID.cut[0.001,30)           1.03 (0.07, 15.76) p=0.986 "   "
+    # # ... with 18 more rows
     
     res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
     
