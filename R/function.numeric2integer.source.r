@@ -129,4 +129,98 @@ tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.
 
 
 
+
+
+
+
+res1[1:10,] %>% dput
+# > res1[1:10,] %>% dput
+res10 = 
+structure(list(rowname = c("total_ddd_yr_ASPIRIN.cut[0.001,30)",
+"total_ddd_yr_ASPIRIN.cut[30,365)", "total_ddd_yr_ASPIRIN.cut[365,730)",
+"total_ddd_yr_ASPIRIN.cut[730,1.1e+03)", "total_ddd_yr_ASPIRIN.cut[1.1e+03,1.46e+03)",
+"total_ddd_yr_ASPIRIN.cut[1.46e+03,Inf]", "AGE_group50-", "AGE_group60-",
+"AGE_group70-", "total_ddd_yr_NSAID.cut[0.001,30)"), `exp(coef)` = c(2.31015112055409e-06,
+1.41261804462617e-06, 2.41879129277633e-07, 4.56280954774587,
+5.74179648423187e-09, 3.22229442131584e-09, 111699493356.72,
+5.23235729576168, 4486328565244.22, 1.02515609698427), `lower .95` = c(0,
+0, 0, 0.343719191421198, 0, 0, 0, 5.23235729576168, 0, 0.06668076929983
+), `upper .95` = c(Inf, Inf, Inf, 60.5704641714017, Inf, Inf,
+Inf, 5.23235729576168, Inf, 15.7608413073107), `Pr(>|z|)` = c(0.995459635124392,
+0.992667202010393, 0.996598705230412, 0.249927991970702, 0.998992188874016,
+0.999149350866927, 0.999869166285058, 0, 0.999850173222601, 0.985782837945111
+)), row.names = c(NA, 10L), class = "data.frame")
+res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    map_df(sprintf,  fmt = "%.2f")
+res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    map(round, 2) %>% map_df(sprintf,  fmt = "%.2f")
+res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+# > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+# +     map_df(sprintf,  fmt = "%.2f")
+# # A tibble: 10 x 3
+#    `exp(coef)`      `lower .95` `upper .95`
+#    <chr>            <chr>       <chr>      
+#  1 0.00             0.00        Inf        
+#  2 0.00             0.00        Inf        
+#  3 0.00             0.00        Inf        
+#  4 4.56             0.34        60.57      
+#  5 0.00             0.00        Inf        
+#  6 0.00             0.00        Inf        
+#  7 111699493356.72  0.00        Inf        
+#  8 5.23             5.23        5.23       
+#  9 4486328565244.22 0.00        Inf        
+# 10 1.03             0.07        15.76      
+# > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+# +     map(round, 2) %>% map_df(sprintf,  fmt = "%.2f")
+# # A tibble: 10 x 3
+#    `exp(coef)`      `lower .95` `upper .95`
+#    <chr>            <chr>       <chr>      
+#  1 0.00             0.00        Inf        
+#  2 0.00             0.00        Inf        
+#  3 0.00             0.00        Inf        
+#  4 4.56             0.34        60.57      
+#  5 0.00             0.00        Inf        
+#  6 0.00             0.00        Inf        
+#  7 111699493356.72  0.00        Inf        
+#  8 5.23             5.23        5.23       
+#  9 4486328565244.22 0.00        Inf        
+# 10 1.03             0.07        15.76      
+# > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+# +     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+# # A tibble: 10 x 3
+#    `exp(coef)`      `lower .95` `upper .95`
+#    <chr>            <chr>       <chr>      
+#  1 0.00             0.00        Inf        
+#  2 0.00             0.00        Inf        
+#  3 0.00             0.00        Inf        
+#  4 4.56             0.34        60.57      
+#  5 0.00             0.00        Inf        
+#  6 0.00             0.00        Inf        
+#  7 111699493356.72  0.00        Inf        
+#  8 5.23             5.23        5.23       
+#  9 4486328565244.22 0.00        Inf        
+# 10 1.03             0.07        15.76      
+# > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+# +     signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+# # A tibble: 10 x 3
+#    `exp(coef)`      `lower .95` `upper .95`
+#    <chr>            <chr>       <chr>      
+#  1 0.00             0.00        Inf        
+#  2 0.00             0.00        Inf        
+#  3 0.00             0.00        Inf        
+#  4 4.56             0.34        60.60      
+#  5 0.00             0.00        Inf        
+#  6 0.00             0.00        Inf        
+#  7 112000000000.00  0.00        Inf        
+#  8 5.23             5.23        5.23       
+#  9 4490000000000.00 0.00        Inf        
+# 10 1.03             0.07        15.80   
+
+
+
+
+
 #@ end -----
