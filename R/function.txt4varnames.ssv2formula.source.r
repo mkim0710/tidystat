@@ -13,21 +13,12 @@
 
 
 
+#@ txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)" ----
+txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)"
+txt %>% str_extract_all("[A-z0-9_.*()|>%]+") %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
+# > txt %>% str_extract_all("[A-z0-9_.*()|>%]+") %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
+# c("rowname", "HRCI", "p_value", "star", "p.fdr", "*fdr", "p.bon", "*bon", "exp(coef)", "exp(2.5", "%)", "exp(97.5", "%)", "se(coef)", "z", "Pr(>|z|)")
 
-
-#@ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----
-txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
-txt %>% dput
-# > txt %>% dput
-# "\"N1GM0390\"        \"N1GM0392\"        \"N1GM0392_recode\" \"N1GM0394\"        \"N1GM0394_recode\" \"Cigar\""
-
-
-txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
-txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
-# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
-# "N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar"
-# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
-# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
 #@ txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"' -----
@@ -46,6 +37,22 @@ txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = ', ') %>%
 # > txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = ', ') %>% {paste0('select(', ., ')')} %>% cat
 # select(varname, level, varnamelevel, coefficients, exp, coef, lower, 95, upper, 95, Pr, z, HR)
 
+
+
+
+#@ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----
+txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
+txt %>% dput
+# > txt %>% dput
+# "\"N1GM0390\"        \"N1GM0392\"        \"N1GM0392_recode\" \"N1GM0394\"        \"N1GM0394_recode\" \"Cigar\""
+
+
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% cat
+# "N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar"
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} %>% cat
+# c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
 
