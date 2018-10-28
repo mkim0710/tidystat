@@ -1,6 +1,7 @@
 
 
 
+
 function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
     library(survival)
     library(tidyverse)
@@ -307,7 +308,6 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
 }
-
 
 
 
