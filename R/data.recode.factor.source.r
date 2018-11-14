@@ -378,9 +378,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` %>% str(give.attr = F) #--
 
 
 
-#@ unordered ======
-
-
+# debug 181114 unordered - to avoid .L & .Q =====
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
