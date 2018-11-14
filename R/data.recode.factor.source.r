@@ -378,6 +378,34 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` %>% str(give.attr = F) #--
 
 
 
+#@ unordered ======
+
+
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
+as.characther.as.factor = function(vec) as.factor(as.character(vec))
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% str
+factor.unordered = function(vec) factor(vec, ordered = F)
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% str
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
+# [1] TRUE
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+# [1] TRUE
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
+# [1] TRUE
+# > as.characther.as.factor = function(vec) as.factor(as.character(vec))
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
+# [1] FALSE
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% str
+#  Factor w/ 3 levels "BMI_ge23lt25",..: 1 1 3 3 1 3 3 2 1 2 ...
+# > factor.unordered = function(vec) factor(vec, ordered = F)
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
+# [1] FALSE
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% str
+#  Factor w/ 3 levels "BMI_lt23","BMI_ge23lt25",..: 2 2 1 1 2 1 1 3 2 3 ...
 
 
 #@ end ----
