@@ -119,10 +119,110 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     
     
     #@ tbl_varname_level_coefficients ====
-    tbl_varname_level_coefficients = 
-        list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-            object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
-        ) #----
+    # browser()
+                                                                                                                                # $`AGE_group`
+    # [1] "40-" "50-" "60-" "70-"
+    # Browse[1]> list_levels %>% enframe(name = "varname", value = "level")
+    # # A tibble: 1 x 2
+    #   varname   level    
+    #   <chr>     <list>   
+    # 1 AGE_group <chr [4]>
+    # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest
+    # # A tibble: 4 x 2
+    #   varname   level
+    #   <chr>     <chr>
+    # 1 AGE_group 40-  
+    # 2 AGE_group 50-  
+    # 3 AGE_group 60-  
+    # 4 AGE_group 70-  
+    # Browse[1]> list_levels %>% length
+    # [1] 0
+    # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level))
+    # # A tibble: 4 x 3
+    #   varname   level varnamelevel
+    #   <chr>     <chr> <chr>       
+    # 1 AGE_group 40-   AGE_group40-
+    # 2 AGE_group 50-   AGE_group50-
+    # 3 AGE_group 60-   AGE_group60-
+    # 4 AGE_group 70-   AGE_group70-
+    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% dput
+    # structure(list(varname = c("AGE_group", "AGE_group", "AGE_group", 
+    # "AGE_group"), level = c("40-", "50-", "60-", "70-"), varnamelevel = c("AGE_group40-", 
+    # "AGE_group50-", "AGE_group60-", "AGE_group70-")), class = c("tbl_df", 
+    # "tbl", "data.frame"), row.names = c(NA, -4L))
+    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% filter(varname == "varname")
+    # # A tibble: 0 x 3
+    # # ... with 3 variables: varname <chr>, level <chr>, varnamelevel <chr>
+    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% filter(varname == "varname") %>% dput
+    # structure(list(varname = character(0), level = character(0), 
+    #     varnamelevel = character(0)), class = c("tbl_df", "tbl", 
+    # "data.frame"), row.names = c(NA, 0L))
+    # Browse[2]> tibble(varname = character(0), level = character(0), varnamelevel = character(0))
+    # # A tibble: 0 x 3
+    # # ... with 3 variables: varname <chr>, level <chr>, varnamelevel <chr>
+    # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
+    # +             object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +         ) #----
+    # # A tibble: 6 x 4
+    #   varname   level varnamelevel             coefficients
+    #   <chr>     <chr> <chr>                           <dbl>
+    # 1 AGE_group 40-   AGE_group40-                  NA     
+    # 2 AGE_group 50-   AGE_group50-                   0.686 
+    # 3 AGE_group 60-   AGE_group60-                   1.36  
+    # 4 AGE_group 70-   AGE_group70-                   1.91  
+    # 5 NA        NA    total_ddd_yr_ASPIRIN.dyd       0.0176
+    # 6 NA        NA    total_ddd_yr_NSAID.dyd         0.0245
+    # Browse[2]> tbl_varname_level_coefficients %>% dput
+    # structure(list(varname = c("AGE_group", "AGE_group", "AGE_group", 
+    # "AGE_group", NA, NA), level = c("40-", "50-", "60-", "70-", NA, 
+    # NA), varnamelevel = c("AGE_group40-", "AGE_group50-", "AGE_group60-", 
+    # "AGE_group70-", "total_ddd_yr_ASPIRIN.dyd", "total_ddd_yr_NSAID.dyd"
+    # ), coefficients = c(NA, 0.685509497816688, 1.36352938332315, 
+    # 1.9073750200637, 0.0176023831525104, 0.024505492049069)), row.names = c(NA, 
+    # -6L), class = c("tbl_df", "tbl", "data.frame"))
+    # 
+    # Browse[2]> tbl_varname_level_coefficients
+    # # A tibble: 6 x 4
+    #   varname                  level varnamelevel             coefficients
+    #   <chr>                    <chr> <chr>                           <dbl>
+    # 1 AGE_group                40-   AGE_group40-                   0     
+    # 2 AGE_group                50-   AGE_group50-                   0.686 
+    # 3 AGE_group                60-   AGE_group60-                   1.36  
+    # 4 AGE_group                70-   AGE_group70-                   1.91  
+    # 5 total_ddd_yr_ASPIRIN.dyd NA    total_ddd_yr_ASPIRIN.dyd       0.0176
+    # 6 total_ddd_yr_NSAID.dyd   NA    total_ddd_yr_NSAID.dyd         0.0245
+    # 
+    # 
+    # Browse[1]> list_levels %>% str
+    #  list()
+    # Browse[1]> list_levels %>% dput
+    # list()
+    # Browse[1]> list_levels %>% length
+    # [1] 0
+    # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
+    # +             object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +         ) #----
+    # Error in mutate_impl(.data, dots) : 
+    #   Evaluation error: object 'level' not found.
+    # 
+    # 
+    #   
+    # if (length(list_levels) == 0) {
+    # 	tibble(varname = character(0), level = character(0), varnamelevel = character(0))
+    # }
+    # 
+                                                                                                                            
+    #@ tbl_varname_level_coefficients ====
+    if (length(list_levels) == 0) { # debug 181115 ----
+        tbl_varname_level_coefficients = tibble(varname = character(0), level = character(0), varnamelevel = character(0)) %>% full_join(
+                object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+            ) #----
+    } else {
+        tbl_varname_level_coefficients = 
+            list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
+                object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+            ) #----
+    }
     
     tbl_varname_level_coefficients$coefficients[is.na(tbl_varname_level_coefficients$coefficients) & !is.na(tbl_varname_level_coefficients$level)] = 0
     tbl_varname_level_coefficients$varname[is.na(tbl_varname_level_coefficients$varname)] = 
