@@ -52,7 +52,7 @@ openxlsx::openXL("dataset.tableone_by_exposure -clean.csv")
 #     openxlsx::write.xlsx("dataset.tableone_by_exposure -clean.xlsx")
 # openxlsx::openXL("dataset.tableone_by_exposure -clean.xlsx")
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
-    mutate(Group1 = {.[[2]]}, Group2 = {.[[3]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>% 
+    mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>%  # debug181115 mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]})
     openxlsx::write.xlsx("dataset.tableone_by_exposure.xlsx")
 # openxlsx::openXL("dataset.tableone_by_exposure.xlsx")
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
@@ -145,7 +145,7 @@ openxlsx::openXL("dataset.svydesign.tableone_by_exposure -clean.csv")
 #     openxlsx::write.xlsx("dataset.svydesign.tableone_by_exposure -clean.xlsx")
 # openxlsx::openXL("dataset.svydesign.tableone_by_exposure -clean.xlsx")
 dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 5]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
-    mutate(Group1 = {.[[2]]}, Group2 = {.[[3]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>% 
+    mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>%  # debug181115 mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]})
     openxlsx::write.xlsx("dataset.svydesign.tableone_by_exposure.xlsx")
 openxlsx::openXL("dataset.svydesign.tableone_by_exposure.xlsx")
 dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
