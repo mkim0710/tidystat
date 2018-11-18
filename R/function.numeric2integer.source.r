@@ -92,6 +92,43 @@ signif(x2, 3)
 # [1] 3.14e-02 3.14e+00 3.14e+02 3.14e+04 3.14e+06
 
 
+#@ https://en.wikipedia.org/wiki/Rounding#Comparison_of_approaches_for_rounding_to_an_integer =====
+#@ tibble(vec = c(-1.8, -1.5, -1.2, -0.8, -0.5, -0.2, 0.2, 0.5, 0.8, 1.2, 1.5, 1.8)) %>% ----
+tibble(vec = c(-1.8, -1.5, -1.2, -0.8, -0.5, -0.2, 0.2, 0.5, 0.8, 1.2, 1.5, 1.8)) %>% 
+    mutate(
+        ceiling(vec)
+        , floor(vec)
+        , trunc(vec)
+        , round(vec)
+        , signif(vec, digits = 1)
+        , nearest_integer = function.numeric2nearest_integer(vec)    
+    )
+# > tibble(vec = c(-1.8, -1.5, -1.2, -0.8, -0.5, -0.2, 0.2, 0.5, 0.8, 1.2, 1.5, 1.8)) %>% 
+# +     mutate(
+# +         ceiling(vec)
+# +         , floor(vec)
+# +         , trunc(vec)
+# +         , round(vec)
+# +         , signif(vec, digits = 1)
+# +         , nearest_integer = function.numeric2nearest_integer(vec)    
+# +     )
+# # A tibble: 12 x 7
+#      vec `ceiling(vec)` `floor(vec)` `trunc(vec)` `round(vec)` `signif(vec, digits = 1)` nearest_integer
+#    <dbl>          <dbl>        <dbl>        <dbl>        <dbl>                     <dbl>           <dbl>
+#  1  -1.8             -1           -2           -1           -2                      -2                -2
+#  2  -1.5             -1           -2           -1           -2                      -2                -1
+#  3  -1.2             -1           -2           -1           -1                      -1                -1
+#  4  -0.8              0           -1            0           -1                      -0.8              -1
+#  5  -0.5              0           -1            0            0                      -0.5               0
+#  6  -0.2              0           -1            0            0                      -0.2               0
+#  7   0.2              1            0            0            0                       0.2               0
+#  8   0.5              1            0            0            0                       0.5               1
+#  9   0.8              1            0            0            1                       0.8               1
+# 10   1.2              2            1            1            1                       1                 1
+# 11   1.5              2            1            1            2                       2                 2
+# 12   1.8              2            1            1            2                       2                 2
+
+
 #@ tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.5, 1.51)) %>%  -----
 tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.5, 1.51)) %>% 
     mutate(
@@ -126,9 +163,6 @@ tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.
 # 10  1.49              2            1            1            1                       1                 1
 # 11  1.5               2            1            1            2                       2                 2
 # 12  1.51              2            1            1            2                       2                 2
-
-
-
 
 
 
