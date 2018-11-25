@@ -446,6 +446,7 @@ all.equal(species, iris$Species)
 
 #@ function.indicators2factor = function(input.matrix, level = colnames(input.matrix)) { ======
 function.indicators2factor = function(input.matrix, labels = colnames(input.matrix), str_replace_all.pattern2remove = NULL, remove_colnames_before_dot = T) {
+    # https://github.com/mkim0710/tidystat/blob/master/R/function.indicators2factor.source.r
     if (!is.null(str_replace_all.pattern2remove)) labels = labels %>% str_replace_all(str_replace_all.pattern2remove, "")
     if (remove_colnames_before_dot) labels = labels %>% str_replace_all("^.+\\.", "")
     out = factor(input.matrix %*% 1:ncol(input.matrix), labels = labels)
