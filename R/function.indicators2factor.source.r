@@ -449,10 +449,10 @@ function.indicators2factor = function(input.matrix, labels = colnames(input.matr
     # https://github.com/mkim0710/tidystat/blob/master/R/function.indicators2factor.source.r
     if (!is.null(str_replace_all.pattern2remove)) labels = labels %>% str_replace_all(str_replace_all.pattern2remove, "")
     if (remove_colnames_before_dot) labels = labels %>% str_replace_all("^.+\\.", "")
+    if (is.data.frame(input.matrix)) input.matrix = as.matrix(input.matrix)
     out = factor(input.matrix %*% 1:ncol(input.matrix), labels = labels)
     out
 }
-
 
 
 
@@ -526,12 +526,39 @@ dummies %>% function.indicators2factor
 # Levels: setosa versicolor virginica
 
 
-
-
 all.equal(dummies %>% function.indicators2factor, iris$Species)
 # > all.equal(dummies %>% function.indicators2factor, iris$Species)
 # [1] TRUE
 
+
+
+# n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head = n1_2016_withlabels_EPI522_merge_n2_recode1026_drop %>% select(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% head(10) %>% as.data.frame
+# n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% dput
+n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head = 
+    structure(list(
+        Alcohol_le1pwk = c(0, NA, 1, 0, NA, 0, NA, 0, NA, 0)
+        , Alcohol_ge2le3pwk = c(0, NA, 0, 1, NA, 1, NA, 0, NA, 1)
+        , Alcohol_ge4pwk = c(1, NA, 0, 0, NA, 0, NA, 1, NA, 0)
+    ), class = "data.frame", row.names = c(NA, -10L))
+n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% mutate(
+    Alcohol = cbind(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% function.indicators2factor
+) %>% as.tibble
+# > n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% mutate(
+# +     Alcohol = cbind(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% function.indicators2factor
+# + ) %>% as.tibble
+# # A tibble: 10 x 4
+#    Alcohol_le1pwk Alcohol_ge2le3pwk Alcohol_ge4pwk Alcohol          
+#             <dbl>             <dbl>          <dbl> <fct>            
+#  1              0                 0              1 Alcohol_ge4pwk   
+#  2             NA                NA             NA NA               
+#  3              1                 0              0 Alcohol_le1pwk   
+#  4              0                 1              0 Alcohol_ge2le3pwk
+#  5             NA                NA             NA NA               
+#  6              0                 1              0 Alcohol_ge2le3pwk
+#  7             NA                NA             NA NA               
+#  8              0                 0              1 Alcohol_ge4pwk   
+#  9             NA                NA             NA NA               
+# 10              0                 1              0 Alcohol_ge2le3pwk
 
 
 #@ end -----
