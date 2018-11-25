@@ -438,5 +438,97 @@ all.equal(species, iris$Species)
 
 
 
+
+
+
+
+
+#@ function.indicators2factor = function(input.matrix, level = colnames(input.matrix)) { ======
+function.indicators2factor = function(input.matrix, labels = colnames(input.matrix), remove_colnames_before_dot = T) {
+    if (remove_colnames_before_dot) labels = labels %>% str_replace_all("^.+\\.", "")
+    out = factor(input.matrix %*% 1:ncol(input.matrix), labels = labels)
+    out
+}
+
+
+
+# library(caret)
+# dummies <- predict(dummyVars(~ Species, data = iris), newdata = iris)
+# head(dummies, n = 3)
+# # OUTPUT:
+# #   Species.setosa Species.versicolor Species.virginica
+# # 1              1                  0                 0
+# # 2              1                  0                 0
+# # 3              1                  0                 0
+#  
+# dummies %>% dput
+# > dummies %>% dput
+input.matrix = structure(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), .Dim = c(150L, 3L), .Dimnames = list(
+    c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", 
+    "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", 
+    "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", 
+    "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", 
+    "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", 
+    "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", 
+    "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", 
+    "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", 
+    "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", 
+    "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", 
+    "102", "103", "104", "105", "106", "107", "108", "109", "110", 
+    "111", "112", "113", "114", "115", "116", "117", "118", "119", 
+    "120", "121", "122", "123", "124", "125", "126", "127", "128", 
+    "129", "130", "131", "132", "133", "134", "135", "136", "137", 
+    "138", "139", "140", "141", "142", "143", "144", "145", "146", 
+    "147", "148", "149", "150"), c("Species.setosa", "Species.versicolor", 
+    "Species.virginica")))
+
+dummies %>% function.indicators2factor
+# > function.indicators2factor(dummies)
+#   [1] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+#  [12] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+#  [23] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+#  [34] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+#  [45] setosa     setosa     setosa     setosa     setosa     setosa     versicolor versicolor versicolor versicolor versicolor
+#  [56] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+#  [67] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+#  [78] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+#  [89] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+# [100] versicolor virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+# [111] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+# [122] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+# [133] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+# [144] virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+# Levels: setosa versicolor virginica
+
+
+
+
+all.equal(dummies %>% function.indicators2factor, iris$Species)
+# > all.equal(dummies %>% function.indicators2factor, iris$Species)
+# [1] TRUE
+
+
+
 #@ end -----
 
