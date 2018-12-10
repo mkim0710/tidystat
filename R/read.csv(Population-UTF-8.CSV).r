@@ -185,6 +185,7 @@ Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----
 #   OS reports request to set locale to "ko_KR.UTF-8" cannot be honored
 
 
+# https://hashcode.co.kr/questions/3654/r%EC%97%90%EC%84%9C-%ED%95%9C%EA%B8%80-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%98%A4%EB%A5%98
 Sys.setlocale("LC_ALL", "korean") #----
 # > Sys.setlocale("LC_ALL", "korean") #----
 # [1] "LC_COLLATE=Korean_Korea.949;LC_CTYPE=Korean_Korea.949;LC_MONETARY=Korean_Korea.949;LC_NUMERIC=C;LC_TIME=Korean_Korea.949"
