@@ -174,6 +174,23 @@ Population %>% str
 
 
 
+#@ ----
+
+
+Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----
+# > Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----
+# [1] ""
+# Warning message:
+# In Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") :
+#   OS reports request to set locale to "ko_KR.UTF-8" cannot be honored
+
+
+Sys.setlocale("LC_ALL", "korean") #----
+# > Sys.setlocale("LC_ALL", "korean") #----
+# [1] "LC_COLLATE=Korean_Korea.949;LC_CTYPE=Korean_Korea.949;LC_MONETARY=Korean_Korea.949;LC_NUMERIC=C;LC_TIME=Korean_Korea.949"
+
+
+
 
 
 #@ end ----
