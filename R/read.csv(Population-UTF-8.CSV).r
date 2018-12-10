@@ -72,6 +72,25 @@ Population %>% str
 #  $ Name         : Factor w/ 162 levels "가평군","강릉시",..: 64 54 41 115 19 42 104 68 70 66 ...
 #  $ Pop          : int  9992758 3613809 2459573 2770503 1401447 1467564 1082720 129322 1050602 937702 ...
 
+
+Population <- read.csv("Population-UTF-8.CSV", header = TRUE, encoding="UTF-8") %>% {set_names(., gsub("^X\\.U\\.FEFF\\.", "", names(.)))} #----
+Population %>% str
+# > Population <- read.csv("Population-UTF-8.CSV", header = TRUE, encoding="UTF-8") %>% {set_names(., gsub("^X\\.U\\.FEFF\\.", "", names(.)))} #----
+# > Population %>% str
+# 'data.frame':	163 obs. of  3 variables:
+#  $ Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
+#  $ Name: Factor w/ 162 levels "가평군","강릉시",..: 64 54 41 115 19 42 104 68 70 66 ...
+#  $ Pop : int  9992758 3613809 2459573 2770503 1401447 1467564 1082720 129322 1050602 937702 ...
+
+
+
+#@ end -----
+
+
+
+
+
+#@ ?read_csv =====
 ?read_csv
 Population <- read_csv("Population-UTF-8.CSV", col_names = TRUE) #----
 Population %>% str
