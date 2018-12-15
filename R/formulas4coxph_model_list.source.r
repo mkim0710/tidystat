@@ -225,6 +225,130 @@ formulas4coxph_model_list.Cigar_ge50 %>% dput
 #         nutrition_carb)
 
 
+formulas4coxph_model_list.Cigar_ge50 %>% map(deparse)
+# > formulas4coxph_model_list.Cigar_ge50 %>% map(deparse)
+# $`Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition`
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + " "    RaceWhite + bmi4category + PMHx_diabetes + PMHx_highBP + "      
+# [3] "    Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 + "      "    nutrition_calories + nutrition_protein + nutrition_fat + "      
+# [5] "    nutrition_carb"                                                 
+# 
+# $Cigar.Cigarette.Age.Sex.Race.Hx.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + "  "    RaceWhite + PMHx_diabetes + PMHx_highBP + Alcohol_3cat + "       
+# [3] "    HighSchoolLastYear + FamilyIncome_ge7000 + nutrition_calories + " "    nutrition_protein + nutrition_fat + nutrition_carb"              
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + " "    RaceWhite + bmi4category + Alcohol_3cat + HighSchoolLastYear + "
+# [3] "    FamilyIncome_ge7000 + nutrition_calories + nutrition_protein + " "    nutrition_fat + nutrition_carb"                                 
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol.Social
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + " "    RaceWhite + bmi4category + Alcohol_3cat + HighSchoolLastYear + "
+# [3] "    FamilyIncome_ge7000"                                            
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + " "    RaceWhite + bmi4category + Alcohol_3cat"                        
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + " "    RaceWhite + bmi4category"                                       
+# 
+# $Cigar.Cigarette.Age.Sex.Race
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + " "    RaceWhite"                                                      
+# 
+# $Cigar.Cigarette.Age.Sex
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male"
+# 
+# $Cigar.Cigarette
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear"
+# 
+# $Unadjusted
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + "        "    RaceWhite + Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 + "
+# [3] "    nutrition_calories + nutrition_protein + nutrition_fat + "              "    nutrition_carb"     
+
+
+
+formulas4coxph_model_list.Cigar_ge50 %>% map(deparse) %>% map(paste, collapse = " ")
+# > formulas4coxph_model_list.Cigar_ge50 %>% map(deparse) %>% map(paste, collapse = " ")
+# $`Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition`
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite + bmi4category + PMHx_diabetes + PMHx_highBP +      Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 +      nutrition_calories + nutrition_protein + nutrition_fat +      nutrition_carb"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.Hx.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite + PMHx_diabetes + PMHx_highBP + Alcohol_3cat +      HighSchoolLastYear + FamilyIncome_ge7000 + nutrition_calories +      nutrition_protein + nutrition_fat + nutrition_carb"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite + bmi4category + Alcohol_3cat + HighSchoolLastYear +      FamilyIncome_ge7000 + nutrition_calories + nutrition_protein +      nutrition_fat + nutrition_carb"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol.Social
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite + bmi4category + Alcohol_3cat + HighSchoolLastYear +      FamilyIncome_ge7000"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite + bmi4category + Alcohol_3cat"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite + bmi4category"
+# 
+# $Cigar.Cigarette.Age.Sex.Race
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite"
+# 
+# $Cigar.Cigarette.Age.Sex
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male"
+# 
+# $Cigar.Cigarette
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear"
+# 
+# $Unadjusted
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male +      RaceWhite + Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 +      nutrition_calories + nutrition_protein + nutrition_fat +      nutrition_carb"
+
+
+
+
+
+function.formula2text = function(formula) {
+    formula %>% as.character %>% {paste(.[2], .[1], .[3])}
+}
+
+formulas4coxph_model_list.Cigar_ge50 %>% map(function.formula2text)
+# > formulas4coxph_model_list.Cigar_ge50 %>% map(function.formula2text)
+# $`Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition`
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + bmi4category + PMHx_diabetes + PMHx_highBP + Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 + nutrition_calories + nutrition_protein + nutrition_fat + nutrition_carb"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.Hx.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + PMHx_diabetes + PMHx_highBP + Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 + nutrition_calories + nutrition_protein + nutrition_fat + nutrition_carb"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + bmi4category + Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 + nutrition_calories + nutrition_protein + nutrition_fat + nutrition_carb"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol.Social
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + bmi4category + Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI.Alcohol
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + bmi4category + Alcohol_3cat"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.BMI
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + bmi4category"
+# 
+# $Cigar.Cigarette.Age.Sex.Race
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite"
+# 
+# $Cigar.Cigarette.Age.Sex
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male"
+# 
+# $Cigar.Cigarette
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear"
+# 
+# $Unadjusted
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50"
+# 
+# $Cigar.Cigarette.Age.Sex.Race.Alcohol.Social.nutrition
+# [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + Alcohol_3cat + HighSchoolLastYear + FamilyIncome_ge7000 + nutrition_calories + nutrition_protein + nutrition_fat + nutrition_carb"
+
+
+
+
 
 
 #@ end -----
