@@ -167,6 +167,22 @@ as.expression(parse(text = paste0("lm(", as.character(formula)[2], " ~ ", as.cha
 # expression(lm(chl ~ age + bmi))
 
 
+as.expression(parse(text = paste0("lm(", function.formula2text(formula), ")")))
+# > as.expression(parse(text = paste0("lm(", function.formula2text(formula), ")")))
+# expression(lm(chl ~ age + bmi))
+
+as.expression(parse(text = paste0("lm(", deparse(formula), ")")))
+# > as.expression(parse(text = paste0("lm(", deparse(formula), ")")))
+# expression(lm(chl ~ age + bmi))
+
+parse(text = paste0("lm(", deparse(formula), ")"))
+# > parse(text = paste0("lm(", deparse(formula), ")"))
+# expression(lm(chl ~ age + bmi))
+
+
+
+
+
 #@ end -----
 
 
