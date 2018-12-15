@@ -73,6 +73,8 @@ function.formula2text = function(formula) {
 }
 
 formula4MainModel %>% function.formula2text
+formula4MainModel %>% deparse
+
 
 
 
