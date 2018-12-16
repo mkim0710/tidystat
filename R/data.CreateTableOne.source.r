@@ -61,6 +61,86 @@ dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = v
 
 
 
+# dataset = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% filter(!is.na(Cigar)) %>% filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
+dataset = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% select(-seqnum:-`_merge`, -matches("^count"))
+dataset = dataset %>% mutate(
+    Male.lgl = Male %>% as.logical
+    , RaceWhite.lgl = RaceWhite %>% as.logical
+    , HighSchoolLastYear.lgl = HighSchoolLastYear %>% as.logical
+    , College1Year.lgl = College1Year %>% as.logical
+    , CollegeGraduate.lgl = CollegeGraduate %>% as.logical
+    , FamilyIncome_ge7000.lgl = FamilyIncome_ge7000 %>% as.logical
+    , FamilyIncome_ge8000.lgl = FamilyIncome_ge8000 %>% as.logical
+    , PMHx_diabetes.lgl = PMHx_diabetes %>% as.logical
+    , PMHx_highBP.lgl = PMHx_highBP %>% as.logical
+)
+
+dataset %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) %>% summary #----
+# > dataset %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) %>% summary #----
+#  N1GM0392_recode  N1GM0394_recode      Cigar        
+#  Min.   : 0.000   Min.   : 0.000   Min.   :  24.99  
+#  1st Qu.: 0.214   1st Qu.: 0.000   1st Qu.:  24.99  
+#  Median : 0.643   Median : 0.500   Median :  24.99  
+#  Mean   : 2.030   Mean   : 5.121   Mean   :  34.07  
+#  3rd Qu.: 2.500   3rd Qu.: 7.000   3rd Qu.:  24.99  
+#  Max.   :20.000   Max.   :50.000   Max.   :3910.71  
+#  NA's   :13960    NA's   :13857    NA's   :7502 
+
+dataset = dataset %>% mutate(
+    MissingPattern = is.na(Cigar) * 100 + is.na(N1GM0392_recode) * 10 + is.na(N1GM0394_recode)
+    , MissingPattern = as.factor(MissingPattern)
+)
+
+
+#@ dataset.CreateTableOne.by_MissingPattern -----
+varnames4MissingPattern =  c("MissingPattern")
+# dataset.tableone_by_MissingPattern = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+#     CreateTableOne(strata = varnames4MissingPattern, data = ., test = T, includeNA = T)
+dataset.tableone_by_MissingPattern = dataset %>% 
+    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+    CreateTableOne(strata = varnames4MissingPattern, data = ., test = T, includeNA = T)
+vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
+dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T) #----
+dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
+
+
+
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
+dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
+    write.csv("dataset.tableone_by_MissingPattern -clean.csv")
+openxlsx::openXL("dataset.tableone_by_MissingPattern -clean.csv")
+# dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>%
+#     openxlsx::write.xlsx("dataset.tableone_by_MissingPattern -clean.xlsx")
+# openxlsx::openXL("dataset.tableone_by_MissingPattern -clean.xlsx")
+dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+    mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) %>%  # debug181115 mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]})
+    openxlsx::write.xlsx("dataset.tableone_by_MissingPattern.xlsx")
+# openxlsx::openXL("dataset.tableone_by_MissingPattern.xlsx")
+dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+    openxlsx::write.xlsx("dataset.tableone_by_MissingPattern.IQR.xlsx")
+# openxlsx::openXL("dataset.tableone_by_MissingPattern.IQR.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
+               
+               
+               
+               
+               
+               
+               
+               
 
 #@ library(survey) =====
 library(survey)
