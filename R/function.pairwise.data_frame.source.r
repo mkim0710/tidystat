@@ -27,6 +27,16 @@ outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) %>% as.vector
 # [1] "R1C1" "R2C1" "R1C2" "R2C2" "R1C3" "R2C3"
 
 
+c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")}
+# > c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")}
+#   A     B     C    
+# A "A:A" "A:B" "A:C"
+# B "B:A" "B:B" "B:C"
+# C "C:A" "C:B" "C:C"
+
+
+
+
 # outer(letters[1:3], letters[1:3], paste)
 # outer(letters[1:3], letters[1:3], paste) %>% as.vector
 # outer(letters[1:3], letters[1:3], paste) %>% as.vector %>% as.tibble
@@ -171,11 +181,11 @@ outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(
 #  9              4: Asian     TRUE
 # 10              5: Other     TRUE
 # > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	10 obs. of  2 variables:
+# Classes Â¡Â®tbl_dfÂ¡Â¯, Â¡Â®tblÂ¡Â¯ and 'data.frame':	10 obs. of  2 variables:
 #  $ RACE    : Factor w/ 5 levels "1: Non-Hispanic White",..: 1 2 3 4 5 1 2 3 4 5
 #  $ isFemale: Factor w/ 2 levels "FALSE","TRUE": 1 1 1 1 1 2 2 2 2 2
 # > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector %>% as.tibble %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) %>% map_df(as.logical) %>% str
-# Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	10 obs. of  2 variables:
+# Classes Â¡Â®tbl_dfÂ¡Â¯, Â¡Â®tblÂ¡Â¯ and 'data.frame':	10 obs. of  2 variables:
 #  $ RACE    : logi  NA NA NA NA NA NA ...
 #  $ isFemale: logi  FALSE FALSE FALSE FALSE FALSE TRUE ...
 
