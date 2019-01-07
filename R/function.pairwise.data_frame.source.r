@@ -27,8 +27,8 @@ outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) %>% as.vector
 # [1] "R1C1" "R2C1" "R1C2" "R2C2" "R1C3" "R2C3"
 
 
-c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")}
-# > c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")}
+c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
+# > c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
 #   A     B     C    
 # A "A:A" "A:B" "A:C"
 # B "B:A" "B:B" "B:C"
