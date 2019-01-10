@@ -1,0 +1,5 @@
+java -jar bfg.jar --strip-biggest-blobs 500 some-big-repo.git
+cd some-big-repo.git
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+git push
