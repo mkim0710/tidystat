@@ -11,7 +11,11 @@ https://github.com/mkim0710/tidystat/blob/master/R/data.stratified.Match.source.
 ## Permutation Test
 https://github.com/mkim0710/tidystat/blob/master/R/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r
 
-## Matched Pair Network Analysis (Manuscript under review)
+## Matched Pair Network Analysis 
+https://github.com/mkim0710/tidystat/blob/master/R/data_V1_V2_EdgeWeight.igraph.source.r
+https://github.com/mkim0710/tidystat/blob/master/R/x1x2z.patial_correlation.source.r
+https://github.com/mkim0710/tidystat/blob/master/R/function.MatchingPairID_Exposed_Unexposed_shuffle.source.r
+
 
 ## Logistic Regression with Elastic Net
 
@@ -19,6 +23,7 @@ https://github.com/mkim0710/tidystat/blob/master/R/function.MatchingPairID_Expos
 
 ## Individual-level Imputation of Social Determinants of Health using Census and Health and Nutritional Examination Survey (Under research)
 https://github.com/mkim0710/tidystat/blob/master/R/function.weighted_join_FIPS_HANES.source.r
+https://github.com/mkim0710/tidystat/blob/master/R/function.learn_wt.list.source.r
 
 
 ## REFERENCES
