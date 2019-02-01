@@ -221,6 +221,31 @@ out.list %>% dput
 
 
 
+#@ filename = paste0("mscan_pregcohort_r4.sas7bdat", "", ".rds") ====
+filename = paste0("mscan_pregcohort_r4.sas7bdat", "", ".rds")
+filename %>% {file.info(paste0(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) #----
+t0 = Sys.time()
+assign(
+    gsub(".rds$", "", filename)
+    , readRDS(paste0(path4read, filename))
+)
+Sys.time() - t0
+gsub(".rds$", "", filename) %>% {object.size(eval(parse(text = .)))} %>% {c(`bytes` = as.numeric(.), `KB` = as.numeric(.)/2^10, `MB` = as.numeric(.)/2^20, `GB` = as.numeric(.)/2^30)} %>% round(3) %>% format(scientific = FALSE) #----
+# > filename = paste0("mscan_pregcohort_r4.sas7bdat", "", ".rds")
+# > filename %>% {file.info(paste0(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) #----
+#                                                            filename     size       KB       MB         GB
+# 1 ../data/data.ID_DATE_DX.distinct/mscan_pregcohort_r4.sas7bdat.rds 72027014 70338.88 68.69031 0.06708038
+# > t0 = Sys.time()
+# > assign(
+# +     gsub(".rds$", "", filename)
+# +     , readRDS(paste0(path4read, filename))
+# + )
+# > Sys.time() - t0
+# Time difference of 4.942991 secs
+# > gsub(".rds$", "", filename) %>% {object.size(eval(parse(text = .)))} %>% {c(`bytes` = as.numeric(.), `KB` = as.numeric(.)/2^10, `MB` = as.numeric(.)/2^20, `GB` = as.numeric(.)/2^30)} %>% round(3) %>% format(scientific = FALSE) #----
+#           bytes              KB              MB              GB 
+# "964065520.000" "   941470.234" "      919.405" "        0.898" 
+
 
 
 
