@@ -249,6 +249,16 @@ gsub(".rds$", "", filename) %>% {object.size(eval(parse(text = .)))} %>% {c(`byt
 
 
 
+data.frame(objectname = gsub(".rds$", "", filename)) %>% mutate(
+    tmp = objectname %>% map_dbl(function(txt) object.size(eval(parse(text = txt), envir = .GlobalEnv)) )
+)
+# > data.frame(objectname = gsub(".rds$", "", filename)) %>% mutate(
+# +     tmp = objectname %>% map_dbl(function(txt) object.size(eval(parse(text = txt), envir = .GlobalEnv)) )
+# + )
+#                     objectname tmp
+# 1 mscan_pregcohort_r4.sas7bdat  56
+
+
 
 
 
