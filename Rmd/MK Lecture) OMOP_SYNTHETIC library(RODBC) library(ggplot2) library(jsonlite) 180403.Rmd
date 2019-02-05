@@ -26,8 +26,11 @@ April 3, 2018
 # if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
 # 
 # install.packages(c("tidyverse", "RODBC", "maps", "jsonlite"))
+# for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
+#     if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
+# }
 for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-    if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
+    if(!require(packagename, character.only = T)) {install.packages(packagename); require(packagename, character.only = T)}
 }
 # 
 # for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
