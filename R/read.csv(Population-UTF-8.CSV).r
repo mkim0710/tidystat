@@ -193,5 +193,24 @@ Sys.setlocale("LC_ALL", "korean") #----
 
 
 
+# https://github.com/tidyverse/readr/issues/834 ====
+path4read = "BLS_추출파일/"
+subpath = "기저질환/"
+dir(paste0(path4read, subpath)) %>% dput #----
+# > dir(paste0(path4read, subpath)) %>% dput #----
+# c("1.COPD.xlsx", "2.Asthma.xlsx", "3.TB1.xlsx", "4.TB2.xlsx", 
+# "5.ILD.xlsx", "6.Bronchiectasis.xlsx", "7.Pneumonia1.xlsx", "8.Pneumonia2.xlsx", 
+# "9.Pneumonia3.xlsx")
+
+path4read = "BLS_추출파일/"
+subpath = "기저질환/"
+list190220[[subpath]] = list()
+for (ii in dir(paste0(path4read, subpath)) %>% str_subset(".xls")) {
+    # print(ii)
+    tmp.xlsx <- tempfile(fileext = ".xlsx")
+    file.copy(paste0(path4read, subpath, ii), tmp.xlsx)
+    list190220[[subpath]][[ii]] = read_excel(tmp.xlsx)
+}
+
 
 #@ end ----
