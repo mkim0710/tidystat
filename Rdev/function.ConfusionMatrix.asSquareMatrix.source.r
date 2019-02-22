@@ -81,8 +81,18 @@ function.ConfusionMatrix.asSquareMatrix = function(InputMatrix) {
         as.tibble
 }
 
-InputMatrix %>% function.ConfusionMatrix.asSquareMatrix
-# > InputMatrix %>% function.ConfusionMatrix.asSquareMatrix
+InputSquareMatrix = InputMatrix %>% function.ConfusionMatrix.asSquareMatrix
+InputSquareMatrix %>% dput #----
+# > InputSquareMatrix %>% dput
+InputSquareMatrix = structure(list(
+    X1 = c("1", "2", "3", "4")
+    , `1` = c(62, 6, 3, 1)
+    , `2` = c(5, 8, 5, 3)
+    , `3` = c(2, 2, 7, 1)
+    , `4` = c(0, 1, 9, 39))
+    , class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA, -4L))
+InputSquareMatrix
+# > InputSquareMatrix
 # # A tibble: 4 x 5
 #   X1      `1`   `2`   `3`   `4`
 #   <chr> <dbl> <dbl> <dbl> <dbl>
@@ -90,8 +100,5 @@ InputMatrix %>% function.ConfusionMatrix.asSquareMatrix
 # 2 2         6     8     2     1
 # 3 3         3     5     7     9
 # 4 4         1     3     1    39
-
-
-
 
 #@ end -----
