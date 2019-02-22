@@ -83,25 +83,25 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
     # 14 2     4         1 FALSE FALSE TRUE  FALSE FALSE FALSE FALSE TRUE 
     # 15 3     4         9 FALSE FALSE FALSE FALSE TRUE  FALSE FALSE TRUE 
     # 16 4     4        39 FALSE FALSE FALSE FALSE FALSE FALSE TRUE  TRUE 
-
     
     
-	for (i in sort(unique(InputSquareMatrix.tbl.gather$X1))) {
-		out[[paste0("ConfusionLongFormat", i)]] = 
-			InputSquareMatrix.tbl.gather %>% mutate(
-				Predicted = !!rlang::sym(paste0("X1is", i))
-				, Actual = !!rlang::sym(paste0("X2is", i))
-			) %>% group_by(Predicted, Actual) %>% summarise(value = sum(value)) %>%
-			mutate(
-				binary = Predicted * 10 + Actual,
-				label = binary %>% recode(
-					`0` = "TN"
-					, `1` = "FN"
-					, `10` = "FP"
-					, `11` = "TP"
-				)
-			) %>% select(-value, everything())
-	}
+    
+    for (i in sort(unique(InputSquareMatrix.tbl.gather$X1))) {
+        out[[paste0("ConfusionLongFormat", i)]] = 
+            InputSquareMatrix.tbl.gather %>% mutate(
+                Predicted = !!rlang::sym(paste0("X1is", i))
+                , Actual = !!rlang::sym(paste0("X2is", i))
+            ) %>% group_by(Predicted, Actual) %>% summarise(value = sum(value)) %>%
+            mutate(
+                binary = Predicted * 10 + Actual,
+                label = binary %>% recode(
+                    `0` = "TN"
+                    , `1` = "FN"
+                    , `10` = "FP"
+                    , `11` = "TP"
+                )
+            ) %>% select(-value, everything())
+    }
     # > out
     # $`InputSquareMatrix.tbl`
     # # A tibble: 4 x 5
@@ -153,101 +153,101 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
     # 4 TRUE      TRUE       11 TP       39
     
     
-	out$Metrics = sort(unique(InputSquareMatrix.tbl.gather$X1)) %>% map(function(i) {
-		# label_value = InputSquareMatrix.tbl.gather.mutate %>% mutate(
-		# 	Predicted = !!rlang::sym(paste0("X1is", i))
-		# 	, Actual = !!rlang::sym(paste0("X2is", i))
-		# ) %>% group_by(Predicted, Actual) %>% summarise(value = sum(value)) %>% 
-		# 	mutate(
-		# 		binary = Predicted * 10 + Actual, 
-		# 		label = binary %>% recode(
-		# 			`0` = "TN"
-		# 			, `1` = "FN"
-		# 			, `10` = "FP"
-		# 			, `11` = "TP"
-		# 		)
-		# 	) %>% select(-value, everything()) %>% 
+    out$Metrics = sort(unique(InputSquareMatrix.tbl.gather$X1)) %>% map(function(i) {
+        # label_value = InputSquareMatrix.tbl.gather.mutate %>% mutate(
+        # 	Predicted = !!rlang::sym(paste0("X1is", i))
+        # 	, Actual = !!rlang::sym(paste0("X2is", i))
+        # ) %>% group_by(Predicted, Actual) %>% summarise(value = sum(value)) %>% 
+        # 	mutate(
+        # 		binary = Predicted * 10 + Actual, 
+        # 		label = binary %>% recode(
+        # 			`0` = "TN"
+        # 			, `1` = "FN"
+        # 			, `10` = "FP"
+        # 			, `11` = "TP"
+        # 		)
+        # 	) %>% select(-value, everything()) %>% 
         label_value = out[[paste0("ConfusionLongFormat", i)]] %>% 
-			ungroup %>% select(label, value) %>% spread(key = label, value = value)
-		label_value$varname4Predicted = paste0("X1is", i)
-		label_value$varname4Actual = paste0("X2is", i)
-		# label_value = label_value %>% select(matches("^varname"), everything())
-		label_value = label_value %>% select(matches("^varname"), TN, FN, FP, TP)
-		TN = label_value$TN
-		FN = label_value$FN
-		FP = label_value$FP
-		TP = label_value$TP
-		Sensitivity = TP/(TP+FN)
-		Specificity = TN/(TN+FP)
-		PPV = TP/(TP+FP)
-		# NPV = TN/(TN+FN)
-		# LRp = TP/(TP+FN) / FP*(FP+TN)
-		# LRn = FN/(TP+FN) / TN*(FP+TN)
-		label_value$Sensitivity = TP/(TP+FN)
-		label_value$Specificity = TN/(TN+FP)
-		label_value$PPV = TP/(TP+FP)
-		label_value$NPV = TN/(TN+FN)
-		# https://en.wikipedia.org/wiki/F1_score
-		label_value$F1score = 2/(1/Sensitivity+1/PPV)
-		label_value$F2score = (2^2+1)/(2^2/Sensitivity+1/PPV)
-		label_value$F.5score = (.5^2+1)/(.5^2/Sensitivity+1/PPV)
-		label_value$OR = TN * TP / FN / FP
-		label_value$LRp = TP/(TP+FN) / FP*(FP+TN)
-		label_value$LRn = FN/(TP+FN) / TN*(FP+TN)
-		label_value$phi = (TP*TN - FN*FP) / {as.numeric(FN+TP)*(TN+FP)*(TN+FN)*(FP+TP)} ^.5
-		SimpleAgreement = (TN+TP)/(TN+FN+FP+TP)
-		TN_expected = TN/(TN+FP)*TN/(TN+FN)
-		# FN_expected = 
-		# FP_expected = 
-		TP_expected = TP/(TP+FP)*TP/(TP+FN)
-		ChanceAgreement = (TN_expected + TN_expected)/(TN+FN+FP+TP)
-		# ChanceAgreement = TN/(TN+FP)*TN/(TN+FN) + TP/(TP+FP)*TP/(TP+FN)
-		label_value$SimpleAgreement = SimpleAgreement
-		label_value$ChanceAgreement = ChanceAgreement
-		label_value$Cohen_kappa = (SimpleAgreement - ChanceAgreement) / (1 - ChanceAgreement) 
-		label_value$c = (Sensitivity + Specificity)/2
-		# ?chisq.test
-		# label_value$Chi_squared = 		
-		# label_value$p_chi_squared = 		
-		# label_value$p_phi = 		
-		# label_value$R_squared = 		
-		label_value
-	}) %>% bind_rows # %>% rownames_to_column
-	
-	# out$Metrics = out$Metrics %>% column_to_rownames %>% t %>% as.data.frame %>% rownames_to_column %>% 
-	out$Metrics = out$Metrics %>% t %>% as.data.frame 
-	
-	# out$Metrics %>% dput
-	# out$Metrics %>% map_df(as.numeric) %>% dput
-	# out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans %>% dput
-	
-	out$Metrics$MacroAverage = out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans
-	
-	out$Metrics = out$Metrics %>% rownames_to_column %>% add_column(equation = 	"", .after = "rowname")
-	out$Metrics$equation = 
-	    c(
-	        rep(NA, 2)
-	        , "True Negative = (Predicted == FALSE) & (Actual == FALSE)"
-	        , "False Negative = (Predicted == FALSE) & (Actual == TRUE)"
-	        , "False Positive = (Predicted == TRUE) & (Actual == FALSE)"
-	        , "True Positive = (Predicted == TRUE) & (Actual == TRUE)"
-	        , "Sensitivity = TP/(TP+FN)"
-	        , "Specificity = TN/(TN+FP)"
-	        , "PPV = TP/(TP+FP)"
-	        , "NPV = TN/(TN+FN)"
-	        , "F1score = 2/(1/Sensitivity+1/PPV)"
-	        , "F2score = (2^2+1)/(2^2/Sensitivity+1/PPV)"
-	        , "F.5score = (.5^2+1)/(.5^2/Sensitivity+1/PPV)"
-	        , "OR = TN * TP / FN / FP"
-	        , "LRp = TP/(TP+FN) / FP*(FP+TN)"
-	        , "LRn = FN/(TP+FN) / TN*(FP+TN)"
-	        , "phi = (TP*TN - FN*FP) / {(FN+TP)*(TN+FP)*(TN+FN)*(FP+TP)} ^.5"
-	        , "SimpleAgreement = (TN+TP)/(TN+FN+FP+TP)"
-	        , "ChanceAgreement = (TN_expected + TN_expected)/(TN+FN+FP+TP)"
-	        , "Cohen_kappa = (SimpleAgreement - ChanceAgreement) / (1 - ChanceAgreement)"
-	        , "c = (Sensitivity + Specificity)/2"
-	    ) 
-	out
+            ungroup %>% select(label, value) %>% spread(key = label, value = value)
+        label_value$varname4Predicted = paste0("X1is", i)
+        label_value$varname4Actual = paste0("X2is", i)
+        # label_value = label_value %>% select(matches("^varname"), everything())
+        label_value = label_value %>% select(matches("^varname"), TN, FN, FP, TP)
+        TN = label_value$TN
+        FN = label_value$FN
+        FP = label_value$FP
+        TP = label_value$TP
+        Sensitivity = TP/(TP+FN)
+        Specificity = TN/(TN+FP)
+        PPV = TP/(TP+FP)
+        # NPV = TN/(TN+FN)
+        # LRp = TP/(TP+FN) / FP*(FP+TN)
+        # LRn = FN/(TP+FN) / TN*(FP+TN)
+        label_value$Sensitivity = TP/(TP+FN)
+        label_value$Specificity = TN/(TN+FP)
+        label_value$PPV = TP/(TP+FP)
+        label_value$NPV = TN/(TN+FN)
+        # https://en.wikipedia.org/wiki/F1_score
+        label_value$F1score = 2/(1/Sensitivity+1/PPV)
+        label_value$F2score = (2^2+1)/(2^2/Sensitivity+1/PPV)
+        label_value$F.5score = (.5^2+1)/(.5^2/Sensitivity+1/PPV)
+        label_value$OR = TN * TP / FN / FP
+        label_value$LRp = TP/(TP+FN) / FP*(FP+TN)
+        label_value$LRn = FN/(TP+FN) / TN*(FP+TN)
+        label_value$phi = (TP*TN - FN*FP) / {as.numeric(FN+TP)*(TN+FP)*(TN+FN)*(FP+TP)} ^.5
+        SimpleAgreement = (TN+TP)/(TN+FN+FP+TP)
+        TN_expected = TN/(TN+FP)*TN/(TN+FN)
+        # FN_expected = 
+        # FP_expected = 
+        TP_expected = TP/(TP+FP)*TP/(TP+FN)
+        ChanceAgreement = (TN_expected + TN_expected)/(TN+FN+FP+TP)
+        # ChanceAgreement = TN/(TN+FP)*TN/(TN+FN) + TP/(TP+FP)*TP/(TP+FN)
+        label_value$SimpleAgreement = SimpleAgreement
+        label_value$ChanceAgreement = ChanceAgreement
+        label_value$Cohen_kappa = (SimpleAgreement - ChanceAgreement) / (1 - ChanceAgreement) 
+        label_value$c = (Sensitivity + Specificity)/2
+        # ?chisq.test
+        # label_value$Chi_squared = 		
+        # label_value$p_chi_squared = 		
+        # label_value$p_phi = 		
+        # label_value$R_squared = 		
+        label_value
+    }) %>% bind_rows # %>% rownames_to_column
+    
+    # out$Metrics = out$Metrics %>% column_to_rownames %>% t %>% as.data.frame %>% rownames_to_column %>% 
+    out$Metrics = out$Metrics %>% t %>% as.data.frame 
+    
+    # out$Metrics %>% dput
+    # out$Metrics %>% map_df(as.numeric) %>% dput
+    # out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans %>% dput
+    
+    out$Metrics$MacroAverage = out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans
+    
+    out$Metrics = out$Metrics %>% rownames_to_column %>% add_column(equation = 	"", .after = "rowname")
+    out$Metrics$equation = 
+        c(
+            rep(NA, 2)
+            , "True Negative = (Predicted == FALSE) & (Actual == FALSE)"
+            , "False Negative = (Predicted == FALSE) & (Actual == TRUE)"
+            , "False Positive = (Predicted == TRUE) & (Actual == FALSE)"
+            , "True Positive = (Predicted == TRUE) & (Actual == TRUE)"
+            , "Sensitivity = TP/(TP+FN)"
+            , "Specificity = TN/(TN+FP)"
+            , "PPV = TP/(TP+FP)"
+            , "NPV = TN/(TN+FN)"
+            , "F1score = 2/(1/Sensitivity+1/PPV)"
+            , "F2score = (2^2+1)/(2^2/Sensitivity+1/PPV)"
+            , "F.5score = (.5^2+1)/(.5^2/Sensitivity+1/PPV)"
+            , "OR = TN * TP / FN / FP"
+            , "LRp = TP/(TP+FN) / FP*(FP+TN)"
+            , "LRn = FN/(TP+FN) / TN*(FP+TN)"
+            , "phi = (TP*TN - FN*FP) / {(FN+TP)*(TN+FP)*(TN+FN)*(FP+TP)} ^.5"
+            , "SimpleAgreement = (TN+TP)/(TN+FN+FP+TP)"
+            , "ChanceAgreement = (TN_expected + TN_expected)/(TN+FN+FP+TP)"
+            , "Cohen_kappa = (SimpleAgreement - ChanceAgreement) / (1 - ChanceAgreement)"
+            , "c = (Sensitivity + Specificity)/2"
+        ) 
+    out
 }
 
 
