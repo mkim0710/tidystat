@@ -69,6 +69,7 @@ InputMatrix %>% {
 #@ function.ConfusionMatrix.asSquareMatrix ===== 
 
 function.ConfusionMatrix.asSquareMatrix = function(InputMatrix) {
+    # https://github.com/mkim0710/tidystat/blob/master/Rdev/function.ConfusionMatrix.Metrics.source.r
     InputMatrix %>% {
         mutate(., 
                X1.old = X1
