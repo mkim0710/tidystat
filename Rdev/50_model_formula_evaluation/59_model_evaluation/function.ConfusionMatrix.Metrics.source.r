@@ -3,7 +3,7 @@
 library(tidyverse)
 # InputSquareMatrix.tbl <- read_delim("InputSquareMatrix.tbl.csv", "\t", escape_double = FALSE, trim_ws = TRUE)
 
-InputSquareMatrix.tbl.tbl = 
+InputMatrix.tbl = 
     structure(list(
         Actual = c("1a", "1b", "2a", "2b", "3a", "3b", "4")
         , `1` = c(45, 17, 3, 3, 3, 0, 1)
@@ -15,9 +15,9 @@ InputSquareMatrix.tbl.tbl =
 
 #@ function.ConfusionMatrix.asSquareMatrix ===== 
 
-function.ConfusionMatrix.asSquareMatrix = function(InputSquareMatrix.tbl.tbl) {
-    # https://github.com/mkim0710/tidystat/blob/master/Rdev/function.ConfusionMatrix.asSquareMatrix.source.r
-    InputSquareMatrix.tbl.tbl %>% {
+function.ConfusionMatrix.asSquareMatrix = function(InputMatrix.tbl) {
+    # https://github.com/mkim0710/tidystat/edit/master/Rdev/50_model_formula_evaluation/59_model_evaluation/function.ConfusionMatrix.asSquareMatrix.source.r
+    InputMatrix.tbl %>% {
         mutate(., 
                Actual.old = Actual
                , Actual = str_extract(Actual, paste0("[", paste0(colnames(.), collapse = "|"), "]"))
@@ -28,7 +28,7 @@ function.ConfusionMatrix.asSquareMatrix = function(InputSquareMatrix.tbl.tbl) {
         as.tibble
 }
 
-InputSquareMatrix.tbl = InputSquareMatrix.tbl.tbl %>% function.ConfusionMatrix.asSquareMatrix
+InputSquareMatrix.tbl = InputMatrix.tbl %>% function.ConfusionMatrix.asSquareMatrix
 InputSquareMatrix.tbl %>% dput #----
 # > InputSquareMatrix.tbl %>% dput
 InputSquareMatrix.tbl = structure(list(
