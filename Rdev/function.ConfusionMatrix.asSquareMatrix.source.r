@@ -1,6 +1,6 @@
 # function.ConfusionMatrix.asSquareMatrix.source.r
 
-InputMatrix = 
+InputMatrix.tbl = 
     structure(list(
         X1 = c("1a", "1b", "2a", "2b", "3a", "3b", "4")
         , `1` = c(45, 17, 3, 3, 3, 0, 1)
@@ -11,7 +11,7 @@ InputMatrix =
 
 
 
-InputMatrix %>% gather(key = "X2", value = "value", -X1) %>%
+InputMatrix.tbl %>% gather(key = "X2", value = "value", -X1) %>%
     mutate(
         X1.old = X1
         , X1 = X1 %>% str_extract(paste0("[", X2 %>% unique %>% paste0(collapse = "|"), "]"))
@@ -19,7 +19,7 @@ InputMatrix %>% gather(key = "X2", value = "value", -X1) %>%
     select(X1, X2, value) %>% 
     group_by(X1, X2) %>% summarise(value = sum(value)) %>% 
     spread(key = "X2", value = "value")
-# > InputMatrix %>% gather(key = "X2", value = "value", -X1) %>%
+# > InputMatrix.tbl %>% gather(key = "X2", value = "value", -X1) %>%
 # +     mutate(
 # +         X1.old = X1
 # +         , X1 = X1 %>% str_extract(paste0("[", X2 %>% unique %>% paste0(collapse = "|"), "]"))
@@ -38,7 +38,7 @@ InputMatrix %>% gather(key = "X2", value = "value", -X1) %>%
 
 
 
-InputMatrix %>% {
+InputMatrix.tbl %>% {
     mutate(., 
         X1.old = X1
         , X1 = str_extract(X1, paste0("[", paste0(colnames(.), collapse = "|"), "]"))
@@ -47,7 +47,7 @@ InputMatrix %>% {
     select(-matches(".old$")) %>% 
     group_by(X1) %>% summarise_all(sum) %>% 
     as.tibble
-# > InputMatrix %>% {
+# > InputMatrix.tbl %>% {
 # +     mutate(., 
 # +         X1.old = X1
 # +         , X1 = str_extract(X1, paste0("[", paste0(colnames(.), collapse = "|"), "]"))
@@ -68,9 +68,9 @@ InputMatrix %>% {
 
 #@ function.ConfusionMatrix.asSquareMatrix ===== 
 
-function.ConfusionMatrix.asSquareMatrix = function(InputMatrix) {
+function.ConfusionMatrix.asSquareMatrix = function(InputMatrix.tbl) {
     # https://github.com/mkim0710/tidystat/blob/master/Rdev/function.ConfusionMatrix.Metrics.source.r
-    InputMatrix %>% {
+    InputMatrix.tbl %>% {
         mutate(., 
                X1.old = X1
                , X1 = str_extract(X1, paste0("[", paste0(colnames(.), collapse = "|"), "]"))
@@ -81,7 +81,8 @@ function.ConfusionMatrix.asSquareMatrix = function(InputMatrix) {
         as.tibble
 }
 
-InputSquareMatrix = InputMatrix %>% function.ConfusionMatrix.asSquareMatrix
+
+InputSquareMatrix = InputMatrix.tbl %>% function.ConfusionMatrix.asSquareMatrix
 InputSquareMatrix %>% dput #----
 # > InputSquareMatrix %>% dput
 InputSquareMatrix = structure(list(
@@ -100,5 +101,8 @@ InputSquareMatrix
 # 2 2         6     8     2     1
 # 3 3         3     5     7     9
 # 4 4         1     3     1    39
+
+
+
 
 #@ end -----
