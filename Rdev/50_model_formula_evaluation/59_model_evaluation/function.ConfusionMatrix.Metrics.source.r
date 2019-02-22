@@ -56,6 +56,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
     out$InputSquareMatrix.tbl = InputSquareMatrix.tbl
     
     InputSquareMatrix.tbl.gather = InputSquareMatrix.tbl %>% gather(key = "Predicted", value = "value", -Actual)
+    InputSquareMatrix.tbl.gather = InputSquareMatrix.tbl.gather %>% mutate(Actual = Actual %>% as.character)
     if(!all.equal(sort(unique(InputSquareMatrix.tbl.gather$Actual)), sort(unique(InputSquareMatrix.tbl.gather$Predicted)))) {
         stop('!all.equal(sort(unique(Actual)), sort(unique(Predicted)))')
     }
@@ -169,8 +170,8 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
         # 	) %>% select(-value, everything()) %>% 
         label_value = out[[paste0("ConfusionLongFormat", i)]] %>% 
             ungroup %>% select(label, value) %>% spread(key = label, value = value)
-        label_value$varname4Predicted = paste0("Actual_", i)
-        label_value$varname4Actual = paste0("Predicted_", i)
+        label_value$varname4Actual = paste0("Actual_", i)
+        label_value$varname4Predicted = paste0("Predicted_", i)
         # label_value = label_value %>% select(matches("^varname"), everything())
         label_value = label_value %>% select(matches("^varname"), TN, FN, FP, TP)
         TN = label_value$TN
