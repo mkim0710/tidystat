@@ -350,6 +350,65 @@ InputSquareMatrix.tbl.ConfusionMatrix.Metrics
 
 
 
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Sensitivity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Specificity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "c") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
+#              rowname                                                                  equation          V1          V2          V3          V4 MacroAverage
+# 1     varname4Actual                                                                      <NA>    Actual_1    Actual_2    Actual_3    Actual_4           NA
+# 2  varname4Predicted                                                                      <NA> Predicted_1 Predicted_2 Predicted_3 Predicted_4           NA
+# 3                 TN                  True Negative = (Predicted == FALSE) & (Actual == FALSE)          75         124         125         100 106.00000000
+# 4                 FN                  False Negative = (Predicted == FALSE) & (Actual == TRUE)           7           9          17           5   9.50000000
+# 5                 FP                  False Positive = (Predicted == TRUE) & (Actual == FALSE)          10          13           5          10   9.50000000
+# 6                 TP                    True Positive = (Predicted == TRUE) & (Actual == TRUE)          62           8           7          39  29.00000000
+# 7        Sensitivity                                                  Sensitivity = TP/(TP+FN)   0.8985507   0.4705882   0.2916667   0.8863636   0.63679230
+# 8        Specificity                                                  Specificity = TN/(TN+FP)   0.8823529   0.9051095   0.9615385   0.9090909   0.91452295
+# 9                PPV                                                          PPV = TP/(TP+FP)   0.8611111   0.3809524   0.5833333   0.7959184   0.65532880
+# 10               NPV                                                          NPV = TN/(TN+FN)   0.9146341   0.9323308   0.8802817   0.9523810   0.91990690
+# 11           F1score                                         F1score = 2/(1/Sensitivity+1/PPV)   0.8794326   0.4210526   0.3888889   0.8387097   0.63202095
+# 12           F2score                                 F2score = (2^2+1)/(2^2/Sensitivity+1/PPV)   0.8908046   0.4494382   0.3240741   0.8666667   0.63274590
+# 13          F.5score                              F.5score = (.5^2+1)/(.5^2/Sensitivity+1/PPV)   0.8683473   0.3960396   0.4861111   0.8125000   0.64074950
+# 14                OR                                                    OR = TN * TP / FN / FP   66.428571    8.478632   10.294118   78.000000  40.80033025
+# 15               LRp                                             LRp = TP/(TP+FN) / FP*(FP+TN)    7.637681    4.959276    7.583333    9.750000   7.48257250
+# 16               LRn                                             LRn = FN/(TP+FN) / TN*(FP+TN)   0.1149758   0.5849146   0.7366667   0.1250000   0.39038927
+# 17               phi             phi = (TP*TN - FN*FP) / {(FN+TP)*(TN+FP)*(TN+FN)*(FP+TP)} ^.5   0.7783202   0.3430740   0.3426218   0.7715167   0.55888318
+# 18   SimpleAgreement                                   SimpleAgreement = (TN+TP)/(TN+FN+FP+TP)   0.8896104   0.8571429   0.8571429   0.9025974   0.87662340
+# 19   ChanceAgreement               ChanceAgreement = (TN_expected + TN_expected)/(TN+FN+FP+TP)  0.01048091  0.01095924  0.01099253  0.01124417   0.01091921
+# 20       Cohen_kappa Cohen_kappa = (SimpleAgreement - ChanceAgreement) / (1 - ChanceAgreement)   0.8884412   0.8555599   0.8555550   0.9014897   0.87526145
+# 21                 c                                         c = (Sensitivity + Specificity)/2   0.8904518   0.6878489   0.6266026   0.8977273   0.77565765
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Sensitivity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# [1] 0.6367923
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Specificity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# [1] 0.914523
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "c") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# [1] 0.7756576
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
+
+
+
+
+
+
 
 
 
