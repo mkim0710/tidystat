@@ -418,6 +418,34 @@ InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% f
 
 
 
+#@ =====
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
+# [1] 0.7532468
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
+# [1] 0.6367923
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+# [1] 0.914523
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+# [1] 0.7890248
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+# [1] 0.9001339
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+
+
 
 
 
