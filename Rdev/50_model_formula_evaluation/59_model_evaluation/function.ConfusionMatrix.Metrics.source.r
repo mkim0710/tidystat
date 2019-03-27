@@ -350,13 +350,234 @@ InputSquareMatrix.tbl.ConfusionMatrix.Metrics
 
 
 
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Sensitivity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Specificity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "c") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
+#              rowname                                                                  equation          V1          V2          V3          V4 MacroAverage
+# 1     varname4Actual                                                                      <NA>    Actual_1    Actual_2    Actual_3    Actual_4           NA
+# 2  varname4Predicted                                                                      <NA> Predicted_1 Predicted_2 Predicted_3 Predicted_4           NA
+# 3                 TN                  True Negative = (Predicted == FALSE) & (Actual == FALSE)          75         124         125         100 106.00000000
+# 4                 FN                  False Negative = (Predicted == FALSE) & (Actual == TRUE)           7           9          17           5   9.50000000
+# 5                 FP                  False Positive = (Predicted == TRUE) & (Actual == FALSE)          10          13           5          10   9.50000000
+# 6                 TP                    True Positive = (Predicted == TRUE) & (Actual == TRUE)          62           8           7          39  29.00000000
+# 7        Sensitivity                                                  Sensitivity = TP/(TP+FN)   0.8985507   0.4705882   0.2916667   0.8863636   0.63679230
+# 8        Specificity                                                  Specificity = TN/(TN+FP)   0.8823529   0.9051095   0.9615385   0.9090909   0.91452295
+# 9                PPV                                                          PPV = TP/(TP+FP)   0.8611111   0.3809524   0.5833333   0.7959184   0.65532880
+# 10               NPV                                                          NPV = TN/(TN+FN)   0.9146341   0.9323308   0.8802817   0.9523810   0.91990690
+# 11           F1score                                         F1score = 2/(1/Sensitivity+1/PPV)   0.8794326   0.4210526   0.3888889   0.8387097   0.63202095
+# 12           F2score                                 F2score = (2^2+1)/(2^2/Sensitivity+1/PPV)   0.8908046   0.4494382   0.3240741   0.8666667   0.63274590
+# 13          F.5score                              F.5score = (.5^2+1)/(.5^2/Sensitivity+1/PPV)   0.8683473   0.3960396   0.4861111   0.8125000   0.64074950
+# 14                OR                                                    OR = TN * TP / FN / FP   66.428571    8.478632   10.294118   78.000000  40.80033025
+# 15               LRp                                             LRp = TP/(TP+FN) / FP*(FP+TN)    7.637681    4.959276    7.583333    9.750000   7.48257250
+# 16               LRn                                             LRn = FN/(TP+FN) / TN*(FP+TN)   0.1149758   0.5849146   0.7366667   0.1250000   0.39038927
+# 17               phi             phi = (TP*TN - FN*FP) / {(FN+TP)*(TN+FP)*(TN+FN)*(FP+TP)} ^.5   0.7783202   0.3430740   0.3426218   0.7715167   0.55888318
+# 18   SimpleAgreement                                   SimpleAgreement = (TN+TP)/(TN+FN+FP+TP)   0.8896104   0.8571429   0.8571429   0.9025974   0.87662340
+# 19   ChanceAgreement               ChanceAgreement = (TN_expected + TN_expected)/(TN+FN+FP+TP)  0.01048091  0.01095924  0.01099253  0.01124417   0.01091921
+# 20       Cohen_kappa Cohen_kappa = (SimpleAgreement - ChanceAgreement) / (1 - ChanceAgreement)   0.8884412   0.8555599   0.8555550   0.9014897   0.87526145
+# 21                 c                                         c = (Sensitivity + Specificity)/2   0.8904518   0.6878489   0.6266026   0.8977273   0.77565765
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Sensitivity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# [1] 0.6367923
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Specificity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# [1] 0.914523
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "c") %>% select(MacroAverage) %>% unlist %>% unname #-----
+# [1] 0.7756576
+# Warning messages:
+# 1: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 2: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 3: In .f(.x[[i]], ...) : NAs introduced by coercion
+# 4: In .f(.x[[i]], ...) : NAs introduced by coercion
 
 
 
 
 
+#@ =====
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
+# [1] 0.7532468
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
+# [1] 0.6367923
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+# [1] 0.914523
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+# [1] 0.7890248
+# Warning message:
+# Setting row names on a tibble is deprecated. 
+# > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+# [1] 0.9001339
+# Warning message:
+# Setting row names on a tibble is deprecated. 
 
 
+
+
+
+#@ =====
+mat = InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix
+mat %>% dput
+# > mat %>% dput
+mat = structure(c(62, 6, 3, 1, 5, 8, 5, 3, 2, 2, 7, 1, 0, 1, 9, 39), .Dim = c(4L,
+4L), .Dimnames = list(c("1", "2", "3", "4"), c("1", "2", "3",
+"4")))
+mat
+# > mat
+#    1 2 3  4
+# 1 62 5 2  0
+# 2  6 8 2  1
+# 3  3 5 7  9
+# 4  1 3 1 39
+
+
+mat %>% {sum(.)} #----
+mat %>% {sum(diag(.))} #----
+mat %>% {sum(diag(.))/sum(.)} #----
+# > mat %>% {sum(.)} #----
+# [1] 154
+# > mat %>% {sum(diag(.))} #----
+# [1] 116
+# > mat %>% {sum(diag(.))/sum(.)} #----
+# [1] 0.7532468
+
+
+# Sensitivity = TP/(Actual == TRUE) =====
+# Sensitivity = TP/(TP+FN) =====
+mat %>% addmargins #----
+mat %>% {diag(.)} # True Positive = (Predicted == TRUE) & (Actual == TRUE) ----
+mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
+mat %>% {diag(.)/rowSums(.)} # Sensitivity = TP/(Actual == T) ----
+mat %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
+# > mat %>% addmargins #----
+#      1  2  3  4 Sum
+# 1   62  5  2  0  69
+# 2    6  8  2  1  17
+# 3    3  5  7  9  24
+# 4    1  3  1 39  44
+# Sum 72 21 12 49 154
+# > mat %>% {diag(.)} # TP ----
+#  1  2  3  4 
+# 62  8  7 39 
+# > mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
+#  1  2  3  4 
+# 69 17 24 44 
+# > mat %>% {diag(.)/rowSums(.)} # Sensitivity = TP/(Actual == TRUE) ----
+#         1         2         3         4 
+# 0.8985507 0.4705882 0.2916667 0.8863636 
+# > mat %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == TRUE) ----
+# [1] 0.6367923
+
+
+
+mat %>% {diag(.)/rowSums(.)} # Sensitivity = TP/(Actual == TRUE) ----
+mat %>% {colSums(.)/sum(.)} # proportion of (Predicted == TRUE) ----
+# mat %>% {colSums(.)/sum(.)} %>% sum # proportion of (Predicted == TRUE) ----
+mat %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+mat %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+# > mat %>% {diag(.)/rowSums(.)} # Sensitivity = TP/(Actual == TRUE) ----
+#         1         2         3         4 
+# 0.8985507 0.4705882 0.2916667 0.8863636 
+# > mat %>% {colSums(.)/sum(.)} # proportion of (Predicted == TRUE) ----
+#          1          2          3          4 
+# 0.46753247 0.13636364 0.07792208 0.31818182 
+# > # mat %>% {colSums(.)/sum(.)} %>% sum # proportion of (Predicted == TRUE) ----
+# > mat %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+#          1          2          3          4 
+# 0.42010164 0.06417112 0.02272727 0.28202479 
+# > mat %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+# [1] 0.7890248
+
+
+
+
+# Specificity = TN/(Actual == FALSE) =====
+# Specificity = TN/(TN+FP) =====
+mat %>% addmargins #----
+mat %>% {diag(.)} # True Positive = (Predicted == TRUE) & (Actual == TRUE) ----
+mat %>% {colSums(.) - diag(.)} # False Positive = (Predicted == TRUE) & (Actual == FALSE) = (Predicted == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
+mat %>% {rowSums(.) - diag(.)} # False Negative = (Predicted == FALSE) & (Actual == TRUE) = (Actual == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
+mat %>% {sum(.) - diag(.) - (rowSums(.) - diag(.)) - (colSums(.) - diag(.))} # True Negative = (Predicted == FALSE) & (Actual == FALSE) ----
+mat %>% {sum(.) + diag(.) - rowSums(.) - colSums(.)} # True Negative = (Predicted == FALSE) & (Actual == FALSE) ----
+mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
+mat %>% {sum(.) - rowSums(.)} # count of (Actual == FALSE) ----
+mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} # Specificity = TN/(Actual == FALSE) ----
+mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+# > mat %>% addmargins #----
+#      1  2  3  4 Sum
+# 1   62  5  2  0  69
+# 2    6  8  2  1  17
+# 3    3  5  7  9  24
+# 4    1  3  1 39  44
+# Sum 72 21 12 49 154
+# > mat %>% {diag(.)} # True Positive = (Predicted == TRUE) & (Actual == TRUE) ----
+#  1  2  3  4 
+# 62  8  7 39 
+# > mat %>% {colSums(.) - diag(.)} # False Positive = (Predicted == TRUE) & (Actual == FALSE) = (Predicted == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
+#  1  2  3  4 
+# 10 13  5 10 
+# > mat %>% {rowSums(.) - diag(.)} # False Negative = (Predicted == FALSE) & (Actual == TRUE) = (Actual == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
+#  1  2  3  4 
+#  7  9 17  5 
+# > mat %>% {sum(.) - diag(.) - (rowSums(.) - diag(.)) - (colSums(.) - diag(.))} # True Negative = (Predicted == FALSE) & (Actual == FALSE) ----
+#   1   2   3   4 
+#  75 124 125 100 
+# > mat %>% {sum(.) + diag(.) - rowSums(.) - colSums(.)} # True Negative = (Predicted == FALSE) & (Actual == FALSE) ----
+#   1   2   3   4 
+#  75 124 125 100 
+# > mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
+#  1  2  3  4 
+# 69 17 24 44 
+# > mat %>% {sum(.) - rowSums(.)} # count of (Actual == FALSE) ----
+#   1   2   3   4 
+#  85 137 130 110 
+# > mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} # Specificity = TN/(Actual == FALSE) ----
+#         1         2         3         4 
+# 0.8823529 0.9051095 0.9615385 0.9090909 
+# > mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+# [1] 0.914523
+
+
+
+mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} # Specificity = TN/(Actual == FALSE) ----
+mat %>% {colSums(.)/sum(.)} # proportion of (Predicted == TRUE) ----
+mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+# > mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} # Specificity = TN/(Actual == FALSE) ----
+#         1         2         3         4 
+# 0.8823529 0.9051095 0.9615385 0.9090909 
+# > mat %>% {colSums(.)/sum(.)} # proportion of (Predicted == TRUE) ----
+#          1          2          3          4 
+# 0.46753247 0.13636364 0.07792208 0.31818182 
+# > mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+#          1          2          3          4 
+# 0.41252865 0.12342402 0.07492507 0.28925620 
+# > mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+# [1] 0.9001339
 
 
 
