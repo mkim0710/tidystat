@@ -1,5 +1,9 @@
 
 
+# https://github.com/cardiomoon/Kormaps
+# https://rpubs.com/cardiomoon/159183
+# https://rpubs.com/cardiomoon/159305
+
 korpopmap1.CP949 %>% str(max.level = 1) #----
 korpopmap1.CP949 %>% str(max.level = 2) #----
 korpopmap1.CP949@data %>% str #----
