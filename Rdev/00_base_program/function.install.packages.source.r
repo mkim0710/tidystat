@@ -28,3 +28,9 @@ c("devtools") %>%
 c("moonBook") %>% 
     {.[!. %in% installed.packages()[,"Package"]]} %>% {ifelse(length(.) > 0, devtools::install_github("cardiomoon/moonBook"), .)}
 
+
+packagename = "devtools"
+if(!require(packagename, character.only = T)) {install.packages(packagename); require(packagename, character.only = T)}
+packagename = "moonBook"
+if(!require(packagename, character.only = T)) {devtools::install_github("cardiomoon/moonBook"); require(packagename, character.only = T)}
+
