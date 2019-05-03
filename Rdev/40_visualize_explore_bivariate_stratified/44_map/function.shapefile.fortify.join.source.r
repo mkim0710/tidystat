@@ -252,3 +252,15 @@ korpopmap3.CP949.fortify.join %>% mutate(code2 = code %>% substr(1, 2), code5 = 
     ggplot(aes(x=long, y=lat, group=group)) + geom_polygon(aes(fill = code5), color='black')
 
 
+
+
+korpopmap1.CP949.fortify.join %>% 
+    ggplot() + geom_polygon(color='black', aes(x=long, y=lat, group=group, fill = code)) +
+    geom_text(
+        data = korpopmap1.CP949.fortify.join %>% group_by(code) %>% select(code, long, lat) %>% summarise_all(.funs = mean)
+        , aes(x = long, y = lat, label = code)
+        , size = 4
+    ) + theme_void()
+
+
+
