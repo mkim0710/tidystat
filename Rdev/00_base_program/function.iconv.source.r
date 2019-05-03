@@ -61,6 +61,12 @@ korpopmap1@data %>% colnames %>% dput
 
 
 
+
+
+
+
+
+
 Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----
 # > Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----
 # [1] ""
@@ -99,6 +105,14 @@ korpopmap1@data %>% str #----
 #   invalid multibyte string, element 18
 
 
+
+
+
+
+
+
+
+# http://blog.naver.com/PostView.nhn?blogId=n2ll_&logNo=221427614530&categoryNo=7&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
 library(tidyverse)
 korpopmap1@data %>% names %>% iconv(from = "EUC-KR", to = "UTF-8") %>% dput
 korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "CP949") %>% dput
