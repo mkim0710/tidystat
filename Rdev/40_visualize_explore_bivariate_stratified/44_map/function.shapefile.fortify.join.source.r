@@ -84,6 +84,12 @@ korpopmap3.CP949 %>% str(max.level = 2) #----
 
 
 
+
+
+# https://kuduz.tistory.com/1042
+# https://encaion.wordpress.com/2016/03/13/korea_map_vis_1/
+# https://encaion.wordpress.com/2016/03/13/%ED%95%9C%EA%B5%AD-%ED%96%89%EC%A0%95%EA%B2%BD%EA%B3%84%EC%A7%80%EB%8F%84-%EC%8B%9C%EA%B0%81%ED%99%942/
+
 function.shapefile.fortify.join = function(shapefile) {
     library(tidyverse)
     # shapefile.fortify = shapefile %>% fortify
@@ -253,6 +259,8 @@ korpopmap3.CP949.fortify.join %>% mutate(code2 = code %>% substr(1, 2), code5 = 
 
 
 
+
+# https://rstudio-pubs-static.s3.amazonaws.com/280176_81148aa4c2024d6ca6e9d21598a3e41f.html
 
 korpopmap1.CP949.fortify.join %>% 
     ggplot() + geom_polygon(color='black', aes(x=long, y=lat, group=group, fill = code)) +
