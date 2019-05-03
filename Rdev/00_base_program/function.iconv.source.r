@@ -110,6 +110,18 @@ korpopmap1@data %>% str #----
 
 
 
+#@ Encoding(names(korpopmap1.UTF8@data)) = "UTF-8" =====
+korpopmap1.UTF8 = korpopmap1
+Encoding(names(korpopmap1.UTF8@data)) = "UTF-8"
+korpopmap1.UTF8@data = korpopmap1.UTF8@data %>% map_df(function(vec) {if(is.character(vec)) Encoding(vec) = "UTF-8"; vec})
+saveRDS(korpopmap1.UTF8, "korpopmap1.UTF8.rds")
+
+
+
+
+
+
+
 
 
 # http://blog.naver.com/PostView.nhn?blogId=n2ll_&logNo=221427614530&categoryNo=7&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
@@ -144,8 +156,12 @@ korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") %>% dput
 # "비거주용_건물내_주택_호", "주택이외의_거처_호", "region", "code1.data"
 # )
 
-saveRDS(korpopmap1, "korpopmap1.UTF8.rds")
 
+
+
+
+
+#@ names(korpopmap1.CP949@data) = names(korpopmap1.CP949@data) %>% iconv(from = "UTF-8", to = "CP949") ====
 korpopmap1.CP949 = korpopmap1
 korpopmap1.CP949@data = korpopmap1.CP949@data %>% map_df(iconv, from = "UTF-8", to = "CP949")
 names(korpopmap1.CP949@data) = names(korpopmap1.CP949@data) %>% iconv(from = "UTF-8", to = "CP949")
@@ -198,4 +214,34 @@ korpopmap1.CP949@data %>% str #----
 
 
 
+
+Encoding(names(korpopmap1@data)) %>% dput
+Encoding(names(korpopmap1.UTF8@data)) %>% dput
+Encoding(names(korpopmap1.CP949@data)) %>% dput
+# > Encoding(names(korpopmap1@data)) %>% dput
+# c("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown"
+# )
+# > Encoding(names(korpopmap1.UTF8@data)) %>% dput
+# c("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "UTF-8", 
+# "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", 
+# "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", 
+# "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", 
+# "UTF-8", "unknown", "unknown")
+# > Encoding(names(korpopmap1.CP949@data)) %>% dput
+# c("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
+# "unknown", "unknown", "unknown", "unknown", "unknown", "unknown"
+# )
 
