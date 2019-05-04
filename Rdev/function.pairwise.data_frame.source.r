@@ -422,8 +422,11 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 
 
 
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/function.pairwise.data_frame.source.r
+
 #@ function.pairwise.data_frame = function(vars) { ======
-function.pairwise.data_frame = function(vars, only.lower.tri = T) {
+function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.pairwise.data_frame.source.r")
     # library(tidyverse)
     vars.outer = outer(vars, vars, function(x, y) paste(x, y, sep = "&"))
@@ -437,6 +440,22 @@ function.pairwise.data_frame = function(vars, only.lower.tri = T) {
     out
 }
 
+?rep
+#@ function.pairwise.data_frame = function(vars) { ======
+function.pairwise.data_frame = function(vars, only.lower.tri = T) {
+    # source("https://github.com/mkim0710/tidystat/raw/master/function.pairwise.data_frame.source.r")
+    # library(tidyverse)
+    vars.factor.unique.sort = sort(unique(as.factor(vars)))
+    out = data.frame(
+        var_i = rep(vars.factor.unique.sort, each = length(vars.factor.unique.sort))
+        , var_j = rep(vars.factor.unique.sort, times = length(vars.factor.unique.sort))
+    )
+    if (only.lower.tri == T) {
+        out = out[as.numeric(out$var_i) < as.numeric(out$var_j), ]
+    }
+    out %>% as.tibble
+}
+
 
 letters %>% str
 letters %>% function.pairwise.data_frame
@@ -446,7 +465,7 @@ letters %>% function.pairwise.data_frame
 # > letters %>% function.pairwise.data_frame
 # # A tibble: 325 x 2
 #    var_i var_j
-#    <chr> <chr>
+#  * <fct> <fct>
 #  1 a     b    
 #  2 a     c    
 #  3 a     d    
@@ -466,7 +485,7 @@ letters %>% function.pairwise.data_frame(only.lower.tri = F)
 # > letters %>% function.pairwise.data_frame(only.lower.tri = F)
 # # A tibble: 676 x 2
 #    var_i var_j
-#    <chr> <chr>
+#    <fct> <fct>
 #  1 a     a    
 #  2 a     b    
 #  3 a     c    
@@ -480,6 +499,17 @@ letters %>% function.pairwise.data_frame(only.lower.tri = F)
 # # ... with 666 more rows
 # > 26 ^ 2
 # [1] 676
+
+
+system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame.old(only.lower.tri = F)) #----
+system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame(only.lower.tri = F)) #----
+# > system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame.old(only.lower.tri = F)) #----
+#    user  system elapsed 
+#   35.35    0.22   35.68 
+# > system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame(only.lower.tri = F)) #----
+#    user  system elapsed 
+#    0.36    0.01    0.41 
+
 
 
 
