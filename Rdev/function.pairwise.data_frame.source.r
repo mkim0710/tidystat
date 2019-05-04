@@ -419,32 +419,67 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 
 
 
+
+
+
 #@ function.pairwise.data_frame = function(vars) { ======
-function.pairwise.data_frame = function(vars) {
+function.pairwise.data_frame = function(vars, only.lower.tri = T) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.pairwise.data_frame.source.r")
     # library(tidyverse)
     vars.outer = outer(vars, vars, function(x, y) paste(x, y, sep = "&"))
-    tmp = data_frame(vars = vars.outer[lower.tri(vars.outer)])
+    if (only.lower.tri == T) {
+        tmp = data_frame(vars = vars.outer[lower.tri(vars.outer)])
+    } else {
+        tmp = data_frame(vars = vars.outer %>% as.vector)
+    }
     out = tmp %>% separate(col = "vars", into = c("var_j", "var_i"), sep = "&")
     out = out[c("var_i", "var_j")]
     out
 }
 
-# > function.pairwise.data_frame(letters)
+
+letters %>% str
+letters %>% function.pairwise.data_frame
+26 * 25 / 2
+# > letters %>% str
+#  chr [1:26] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+# > letters %>% function.pairwise.data_frame
 # # A tibble: 325 x 2
 #    var_i var_j
 #    <chr> <chr>
-#  1     a     b
-#  2     a     c
-#  3     a     d
-#  4     a     e
-#  5     a     f
-#  6     a     g
-#  7     a     h
-#  8     a     i
-#  9     a     j
-# 10     a     k
+#  1 a     b    
+#  2 a     c    
+#  3 a     d    
+#  4 a     e    
+#  5 a     f    
+#  6 a     g    
+#  7 a     h    
+#  8 a     i    
+#  9 a     j    
+# 10 a     k    
 # # ... with 315 more rows
+# > 26 * 25 / 2
+# [1] 325
+
+letters %>% function.pairwise.data_frame(only.lower.tri = F)
+26 ^ 2
+# > letters %>% function.pairwise.data_frame(only.lower.tri = F)
+# # A tibble: 676 x 2
+#    var_i var_j
+#    <chr> <chr>
+#  1 a     a    
+#  2 a     b    
+#  3 a     c    
+#  4 a     d    
+#  5 a     e    
+#  6 a     f    
+#  7 a     g    
+#  8 a     h    
+#  9 a     i    
+# 10 a     j    
+# # ... with 666 more rows
+# > 26 ^ 2
+# [1] 676
 
 
 
