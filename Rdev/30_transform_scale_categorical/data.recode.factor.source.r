@@ -29,6 +29,17 @@ letters[c(1:4, 2:6, 4:1)]%>% {factor(., levels = sample(unique(.)))}
 # Levels: f d c a e b
 
 
+letters[c(1:4, 7:1, 4:1)] %>% as.factor
+letters[c(1:4, 7:1, 4:1)] %>% {factor(., labels = rep(c("a", "b", "c"), length(.)/2)[1:length(unique(.))] )}
+# > letters[c(1:4, 7:1, 4:1)] %>% as.factor
+#  [1] a b c d g f e d c b a d c b a
+# Levels: a b c d e f g
+# > letters[c(1:4, 7:1, 4:1)] %>% {factor(., labels = rep(c("a", "b", "c"), length(.)/2)[1:length(unique(.))] )}
+#  [1] a b c a a c b a c b a a c b a
+# Levels: a b c
+
+
+
 
 
 
