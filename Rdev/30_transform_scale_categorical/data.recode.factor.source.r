@@ -1,6 +1,37 @@
 # data.recode.factor.source.r
 # analyticDF_C24.drop_pmhx_negativetime.list.cut from analyticDF_C24.drop_pmhx_negativetime.list .r
 
+
+
+letters[c(1:4, 2:6, 4:1)] %>% as.factor
+# letters[c(1:4, 2:6, 4:1)] %>% {factor(., levels = rev(.))}
+letters[c(1:4, 2:6, 4:1)] %>% {factor(., levels = rev(sort(unique(.))))}
+letters[c(1:4, 2:6, 4:1)] %>% {factor(., labels = rev(sort(unique(.))))}
+set.seed(1)
+letters[c(1:4, 2:6, 4:1)]%>% {factor(., levels = sample(unique(.)))}
+letters[c(1:4, 2:6, 4:1)]%>% {factor(., levels = sample(unique(.)))}
+# > letters[c(1:4, 2:6, 4:1)] %>% as.factor
+#  [1] a b c d b c d e f d c b a
+# Levels: a b c d e f
+# > # letters[c(1:4, 2:6, 4:1)] %>% {factor(., levels = rev(.))}
+# > letters[c(1:4, 2:6, 4:1)] %>% {factor(., levels = rev(sort(unique(.))))}
+#  [1] a b c d b c d e f d c b a
+# Levels: f e d c b a
+# > letters[c(1:4, 2:6, 4:1)] %>% {factor(., labels = rev(sort(unique(.))))}
+#  [1] f e d c e d c b a c d e f
+# Levels: f e d c b a
+# > set.seed(1)
+# > letters[c(1:4, 2:6, 4:1)]%>% {factor(., levels = sample(unique(.)))}
+#  [1] a b c d b c d e f d c b a
+# Levels: b f c d a e
+# > letters[c(1:4, 2:6, 4:1)]%>% {factor(., levels = sample(unique(.)))}
+#  [1] a b c d b c d e f d c b a
+# Levels: f d c a e b
+
+
+
+
+
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% str(give.attr = F)
 # > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% str(give.attr = F)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  22 variables:
