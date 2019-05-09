@@ -40,6 +40,21 @@ letters[c(1:4, 7:1, 4:1)] %>% {factor(., labels = rep(c("a", "b", "c"), length(.
 
 
 
+letters[c(1:4, 7:1, 4:1)] %>% as.factor %>% as.integer
+letters[c(1:4, 7:1, 4:1)] %>% as.factor %>% as.integer %% 3
+letters[c(1:4, 7:1, 4:1)] %>% as.factor %>% as.integer %>% {(. - 1) %% 3 + 1}
+# > letters[c(1:4, 7:1, 4:1)] %>% as.factor %>% as.integer
+#  [1] 1 2 3 4 7 6 5 4 3 2 1 4 3 2 1
+# > letters[c(1:4, 7:1, 4:1)] %>% as.factor %>% as.integer %% 3
+#  [1] 1 2 0 1 1 0 2 1 0 2 1 1 0 2 1
+# > letters[c(1:4, 7:1, 4:1)] %>% as.factor %>% as.integer %>% {(. - 1) %% 3 + 1}
+#  [1] 1 2 3 1 1 3 2 1 3 2 1 1 3 2 1
+
+
+
+
+
+
 
 
 
