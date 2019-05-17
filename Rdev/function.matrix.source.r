@@ -25,15 +25,41 @@ mat
 # [2,]    2    5    3    1
 # [3,]    3    1    4    2
 
-mat %>% {cbind(which.max(.) %% nrow(.), which.max(.) %/% nrow(.) + 1)} #----
-mat %>% {cbind(which(. == max(.)) %% nrow(.), which(. == max(.)) %/% nrow(.) + 1)} #----
-# > mat %>% {cbind(which.max(.) %% nrow(.), which.max(.) %/% nrow(.) + 1)} #----
+
+
+# > mat %>% {cbind(which.min(.) %% nrow(.), which.min(.) %/% nrow(.) + 1)} #----
+#      [,1] [,2]
+# [1,]    1    1
+# > mat %>% {cbind(which(. == min(.)) %% nrow(.), which(. == min(.)) %/% nrow(.) + 1)} #----
+#      [,1] [,2]
+# [1,]    1    1
+# [2,]    0    3
+# [3,]    2    4
+
+mat %>% {cbind((which.min(.)-1) %% nrow(.) + 1, which.min(.) %/% nrow(.) + 1)} #----
+mat %>% {cbind((which(. == min(.))-1) %% nrow(.) + 1, which(. == min(.)) %/% nrow(.) + 1)} #----
+# > mat %>% {cbind((which.min(.)-1) %% nrow(.) + 1, which.min(.) %/% nrow(.) + 1)} #----
+#      [,1] [,2]
+# [1,]    1    1
+# > mat %>% {cbind((which(. == min(.))-1) %% nrow(.) + 1, which(. == min(.)) %/% nrow(.) + 1)} #----
+#      [,1] [,2]
+# [1,]    1    1
+# [2,]    3    3
+# [3,]    2    4
+
+
+
+
+mat %>% {cbind((which.max(.)-1) %% nrow(.) + 1, which.max(.) %/% nrow(.) + 1)} #----
+mat %>% {cbind((which(. == max(.))-1) %% nrow(.) + 1, which(. == max(.)) %/% nrow(.) + 1)} #----
+# > mat %>% {cbind((which.max(.)-1) %% nrow(.) + 1, which.max(.) %/% nrow(.) + 1)} #----
 #      [,1] [,2]
 # [1,]    2    2
-# > mat %>% {cbind(which(. == max(.)) %% nrow(.), which(. == max(.)) %/% nrow(.) + 1)} #----
+# > mat %>% {cbind((which(. == max(.))-1) %% nrow(.) + 1, which(. == max(.)) %/% nrow(.) + 1)} #----
 #      [,1] [,2]
 # [1,]    2    2
 # [2,]    1    4
+
 
 
 
