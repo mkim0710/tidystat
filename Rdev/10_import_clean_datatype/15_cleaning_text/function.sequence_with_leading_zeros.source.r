@@ -99,3 +99,32 @@ mbm
 #    v2 158.4 187.3 681.685 321.25 1203.85 2821.4   100   a
 
 
+
+set.seed(1)
+mbm = microbenchmark(
+    v1 = sample(1:199, 10) %>% function.integer2factor_with_leading_zeros
+    , v2 = sample(1:199, 10) %>% function.integer2factor_with_leading_zeros.v2
+)
+autoplot(mbm)
+mbm
+# > mbm
+# Unit: microseconds
+#  expr   min     lq    mean median     uq   max neval cld
+#    v1 220.8 243.95 332.699  285.1 441.85 511.8   100   a
+#    v2 217.7 247.25 321.078  266.1 434.85 490.7   100   a
+
+
+
+set.seed(1)
+mbm = microbenchmark(
+    v1 = sample(1:15, 3) %>% function.integer2factor_with_leading_zeros
+    , v2 = sample(1:15, 3) %>% function.integer2factor_with_leading_zeros.v2
+)
+autoplot(mbm)
+mbm
+# > mbm
+# Unit: microseconds
+#  expr   min     lq    mean median     uq   max neval cld
+#    v1 170.5 194.75 205.496  202.1 208.35 347.2   100   a
+#    v2 149.7 196.10 212.288  201.6 212.90 555.7   100   a
+
