@@ -260,6 +260,63 @@ df_actual_prediction.treshold_roc %>% function.threshold_roc.auc #----
 
 
 
+
+
+
+#@ -----
+function.vec_actual_prediction.auc = function(vec_actual, vec_prediction) {
+    if (length(vec_actual) != length(vec_prediction)) {
+        warning("length(vec_actual) != length(vec_prediction)")
+        out = NA
+        attr(out, "ErrorMessage") = "length(vec_actual) != length(vec_prediction)"
+    } else {
+        out = tibble(threshold = vec_prediction %>% unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+            mutate(
+                TP = threshold %>% map_dbl(function(i) {sum(vec_actual == T & vec_prediction >= i)})
+                , FP = threshold %>% map_dbl(function(i) {sum(vec_actual != T & vec_prediction >= i)})
+                , FN = threshold %>% map_dbl(function(i) {sum(vec_actual == T & vec_prediction < i)})
+                , TN = threshold %>% map_dbl(function(i) {sum(vec_actual != T & vec_prediction < i)})
+                , Sensitivity = TP/(TP+FN)
+                , Specificity = TN/(TN+FP)
+            )
+        attributes(out)$vec_actual = vec_actual
+        attributes(out)$vec_prediction = vec_prediction
+        class(out) = c(class(out), "object.threshold_roc")
+    }
+    object.threshold_roc = out
+    tmp_df = object.threshold_roc %>% 
+        mutate(
+            TPR = Sensitivity
+            , FPR = 1 - Specificity
+        ) %>% 
+        arrange(FPR, TPR) %>% 
+        mutate(
+            dFPR = c(diff(FPR), 0)
+            , dTPR = c(diff(TPR), 0)
+        )
+    # inputs already sorted, best predictions first 
+    tmp_df %>% with(sum(TPR * dFPR) + sum(dTPR * dFPR)/2)
+}
+
+function.vec_actual_prediction.auc(df_actual_prediction$actual, df_actual_prediction$prediction) #-----
+# > function.vec_actual_prediction.auc(df_actual_prediction$actual, df_actual_prediction$prediction) #-----
+# [1] 0.825
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function.threshold_roc.plot = function(object.threshold_roc) {
     # codes borrowed from: https://blog.revolutionanalytics.com/2016/11/calculating-auc.html
     if(!"object.threshold_roc" %in% class(object.threshold_roc)) stop('!"object.threshold_roc" %in% class(object.threshold_roc)')
