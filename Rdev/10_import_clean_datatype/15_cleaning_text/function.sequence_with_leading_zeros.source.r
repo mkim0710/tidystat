@@ -82,15 +82,15 @@ tmp.vec3 %>% function.integer2factor_with_leading_zeros.v2
 library(microbenchmark)
 set.seed(1)
 mbm = microbenchmark(
-    v1 = sample(-99:999, 10) %>% function.integer2factor_with_leading_zeros.v2
+    v1 = sample(-99:999, 10) %>% function.integer2factor_with_leading_zeros.v1
     , v2 = sample(-99:999, 10) %>% function.integer2factor_with_leading_zeros.v2
 )
 autoplot(mbm)
 mbm
 # > mbm
 # Unit: microseconds
-#  expr   min     lq    mean median      uq    max neval cld
-#    v1 163.9 206.85 747.820  308.5 1381.15 3775.7   100   a
-#    v2 162.5 208.50 857.026  316.2 1389.80 4772.8   100   a
+#  expr   min    lq    mean median      uq    max neval cld
+#    v1 156.8 170.2 320.220 190.55  561.25 1445.6   100  a 
+#    v2 155.1 171.5 576.372 192.85 1141.65 2442.0   100   b
 
 
