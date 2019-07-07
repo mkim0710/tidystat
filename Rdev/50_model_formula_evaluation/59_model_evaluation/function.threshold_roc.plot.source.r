@@ -3,14 +3,14 @@
 # https://blog.revolutionanalytics.com/2016/11/calculating-auc.html =====
 
 
-input_actual_score = tibble(
+input_actual_prediction = tibble(
     actual = c(1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0)
-    , score = c(20, 19, 18, 17, 16, 15, 14, 13, 11.5, 11.5, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+    , prediction = c(20, 19, 18, 17, 16, 15, 14, 13, 11.5, 11.5, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
 )
 
 
 library(pROC)
-roc_obj <- roc(input_actual_score$actual, input_actual_score$score)
+roc_obj <- roc(input_actual_prediction$actual, input_actual_prediction$prediction)
 auc(roc_obj)
 # > auc(roc_obj)
 # Area under the curve: 0.825
@@ -41,13 +41,13 @@ roc_obj[c("sensitivities", "specificities")] %>% as.tibble
 # 19        0       2             0.1           1  
 # 20        0       1             0             1  
 
-function.threshold_roc = function(input_actual_score) {
-    out = tibble(threshold = input_actual_score$score %>% unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+function.threshold_roc = function(input_actual_prediction) {
+    out = tibble(threshold = input_actual_prediction$prediction %>% unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
         mutate(
-            TP = threshold %>% map_dbl(function(i) {sum(input_actual_score$actual == T & input_actual_score$score >= i)})
-            , FP = threshold %>% map_dbl(function(i) {sum(input_actual_score$actual != T & input_actual_score$score >= i)})
-            , FN = threshold %>% map_dbl(function(i) {sum(input_actual_score$actual == T & input_actual_score$score < i)})
-            , TN = threshold %>% map_dbl(function(i) {sum(input_actual_score$actual != T & input_actual_score$score < i)})
+            TP = threshold %>% map_dbl(function(i) {sum(input_actual_prediction$actual == T & input_actual_prediction$prediction >= i)})
+            , FP = threshold %>% map_dbl(function(i) {sum(input_actual_prediction$actual != T & input_actual_prediction$prediction >= i)})
+            , FN = threshold %>% map_dbl(function(i) {sum(input_actual_prediction$actual == T & input_actual_prediction$prediction < i)})
+            , TN = threshold %>% map_dbl(function(i) {sum(input_actual_prediction$actual != T & input_actual_prediction$prediction < i)})
             , total = TP + FP + FN + TN
             , Sensitivity = TP/(TP+FN)
             , Specificity = TN/(TN+FP)
@@ -72,15 +72,15 @@ function.threshold_roc = function(input_actual_score) {
             # , ChanceAgreement = TN/(TN+FP)*TN/(TN+FN) + TP/(TP+FP)*TP/(TP+FN)
             , Cohen_kappa = (SimpleAgreement - ChanceAgreement) / (1 - ChanceAgreement) 
         )
-    attributes(out)$input_actual_score = input_actual_score
+    attributes(out)$input_actual_prediction = input_actual_prediction
     class(out) = c(class(out), "object.threshold_roc")
     out
 }
 
-input_actual_score.treshold_roc = input_actual_score %>% function.threshold_roc #-----
-input_actual_score.treshold_roc
-input_actual_score.treshold_roc %>% str #----
-# > input_actual_score.treshold_roc
+input_actual_prediction.treshold_roc = input_actual_prediction %>% function.threshold_roc #-----
+input_actual_prediction.treshold_roc
+input_actual_prediction.treshold_roc %>% str #----
+# > input_actual_prediction.treshold_roc
 # # A tibble: 20 x 24
 #    threshold    TP    FP    FN    TN total Sensitivity Specificity     PPV     NPV   TPR   FPR F1score F2score F.5score     OR    LRp     LRn     phi
 #  *     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>       <dbl>       <dbl>   <dbl>   <dbl> <dbl> <dbl>   <dbl>   <dbl>    <dbl>  <dbl>  <dbl>   <dbl>   <dbl>
@@ -105,7 +105,7 @@ input_actual_score.treshold_roc %>% str #----
 # 19      19.5     1     0     9    10    20         0.1         1     1       0.526   0.1 0       0.182   0.122    0.357 Inf    Inf      0.900   0.229
 # 20     Inf       0     0    10    10    20         0           1   NaN       0.5     0   0     NaN     NaN      NaN     NaN    NaN      1     NaN    
 # # ... with 5 more variables: SimpleAgreement <dbl>, TN_expected <dbl>, TP_expected <dbl>, ChanceAgreement <dbl>, Cohen_kappa <dbl>
-# > input_actual_score.treshold_roc %>% str #----
+# > input_actual_prediction.treshold_roc %>% str #----
 # Classes ‘tbl_df’, ‘tbl’, ‘object.threshold_roc’ and 'data.frame':	20 obs. of  24 variables:
 #  $ threshold      : num  -Inf 1.5 2.5 3.5 4.5 ...
 #  $ TP             : num  10 10 10 10 10 9 9 9 8 8 ...
@@ -131,12 +131,13 @@ input_actual_score.treshold_roc %>% str #----
 #  $ TP_expected    : num  0.5 0.526 0.556 0.588 0.625 ...
 #  $ ChanceAgreement: num  NaN 0.01 0.02 0.03 0.04 ...
 #  $ Cohen_kappa    : num  NaN 0.545 0.592 0.639 0.687 ...
-#  - attr(*, "input_actual_score")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  2 variables:
+#  - attr(*, "input_actual_prediction")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  2 variables:
 #   ..$ actual: num  1 1 1 1 0 1 1 0 1 0 ...
-#   ..$ score : num  20 19 18 17 16 15 14 13 11.5 11.5 ...
+#   ..$ prediction : num  20 19 18 17 16 15 14 13 11.5 11.5 ...
 
 
-input_actual_score.treshold_roc %>% arrange(FPR, TPR) %>% ggplot(aes(x = FPR, y = TPR)) + geom_point() + geom_line() + coord_cartesian(xlim = c(0,1), ylim = c(0,1))
+input_actual_prediction.treshold_roc %>% arrange(FPR, TPR) %>% 
+    ggplot(aes(x = FPR, y = TPR)) + geom_point() + geom_line() + coord_cartesian(xlim = c(0,1), ylim = c(0,1))
 
 
 function.threshold_roc.auc = function(object.threshold_roc) {
@@ -146,12 +147,12 @@ function.threshold_roc.auc = function(object.threshold_roc) {
         dFPR = c(diff(FPR), 0)
         , dTPR = c(diff(TPR), 0)
     )
-    # inputs already sorted, best scores first 
+    # inputs already sorted, best predictions first 
     tmp_df %>% with(sum(TPR * dFPR) + sum(dTPR * dFPR)/2)
 }
 
-input_actual_score.treshold_roc %>% function.threshold_roc.auc #----
-# > input_actual_score.treshold_roc %>% function.threshold_roc.auc #----
+input_actual_prediction.treshold_roc %>% function.threshold_roc.auc #----
+# > input_actual_prediction.treshold_roc %>% function.threshold_roc.auc #----
 # [1] 0.825
 
 
@@ -184,15 +185,15 @@ function.threshold_roc.plot = function(object.threshold_roc) {
     })
     
 }
-input_actual_score %>% function.threshold_roc.plot
-# > input_actual_score %>% function.threshold_roc.plot
+input_actual_prediction %>% function.threshold_roc.plot
+# > input_actual_prediction %>% function.threshold_roc.plot
 #  Show Traceback
 #  
 #  Rerun with Debug
 #  Error in function.threshold_roc.plot(.) : 
 #   !"object.threshold_roc" %in% class(object.threshold_roc) 
 
-input_actual_score.treshold_roc %>% function.threshold_roc.plot
+input_actual_prediction.treshold_roc %>% function.threshold_roc.plot
 
 
 #@ end ----
