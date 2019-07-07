@@ -12,7 +12,12 @@ function.sequence_with_leading_zeros = function(num) {
 
 
 
-function.integer2factor_with_leading_zeros.v1 = function(vec_int) {
+
+
+
+
+
+function.integer2factor_with_leading_zeros = function(vec_int) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.source.r")
     if(min(vec_int) < 1) {
         out = NA
@@ -30,21 +35,21 @@ tmp.vec1 = c(1, 3, 6, 9)
 tmp.vec2 = c(1:3, 10)
 tmp.vec3 = c(1, 3, 6, 9, -1)
 
-tmp.vec1 %>% function.integer2factor_with_leading_zeros.v1
-tmp.vec2 %>% function.integer2factor_with_leading_zeros.v1
-tmp.vec3 %>% function.integer2factor_with_leading_zeros.v1
-# > tmp.vec1 %>% function.integer2factor_with_leading_zeros.v1
+tmp.vec1 %>% function.integer2factor_with_leading_zeros
+tmp.vec2 %>% function.integer2factor_with_leading_zeros
+tmp.vec3 %>% function.integer2factor_with_leading_zeros
+# > tmp.vec1 %>% function.integer2factor_with_leading_zeros
 # [1] 1 3 6 9
 # Levels: 1 2 3 4 5 6 7 8 9
-# > tmp.vec2 %>% function.integer2factor_with_leading_zeros.v1
+# > tmp.vec2 %>% function.integer2factor_with_leading_zeros
 # [1] <NA> <NA> <NA> 10  
 # Levels: 01 02 03 04 05 06 07 08 09 10
-# > tmp.vec3 %>% function.integer2factor_with_leading_zeros.v1
+# > tmp.vec3 %>% function.integer2factor_with_leading_zeros
 # [1] NA
 # attr(,"ErrorMessage")
 # [1] "min(vec_int) < 1"
 # Warning message:
-# In function.integer2factor_with_leading_zeros.v1(.) : min(vec_int) < 1
+# In function.integer2factor_with_leading_zeros(.) : min(vec_int) < 1
 
 
 
@@ -82,7 +87,7 @@ tmp.vec3 %>% function.integer2factor_with_leading_zeros.v2
 library(microbenchmark)
 set.seed(1)
 mbm = microbenchmark(
-    v1 = sample(-99:999, 10) %>% function.integer2factor_with_leading_zeros.v1
+    v1 = sample(-99:999, 10) %>% function.integer2factor_with_leading_zeros
     , v2 = sample(-99:999, 10) %>% function.integer2factor_with_leading_zeros.v2
 )
 autoplot(mbm)
