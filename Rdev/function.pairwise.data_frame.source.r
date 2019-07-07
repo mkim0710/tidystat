@@ -15,6 +15,40 @@ outer(c("A","B"), 1:3, paste0) %>% as.vector
 # > outer(c("A","B"), 1:3, paste0) %>% as.vector
 # [1] "A1" "B1" "A2" "B2" "A3" "B3"
 
+
+expand.grid(c("A","B"), 1:3) 
+# > expand.grid(c("A","B"), 1:3) 
+#   Var1 Var2
+# 1    A    1
+# 2    B    1
+# 3    A    2
+# 4    B    2
+# 5    A    3
+# 6    B    3
+
+expand.grid(rowname = c("A","B"), colname = 1:3) %>% mutate(value = paste0(rowname, colname))
+# > expand.grid(rowname = c("A","B"), colname = 1:3) %>% mutate(value = paste0(rowname, colname))
+#   rowname colname value
+# 1       A       1    A1
+# 2       B       1    B1
+# 3       A       2    A2
+# 4       B       2    B2
+# 5       A       3    A3
+# 6       B       3    B3
+
+expand.grid(rowname = c("A","B"), colname = 1:3) %>% mutate(value = paste0(rowname, colname)) %>% 
+    spread(key = colname, value = value) %>% column_to_rownames
+# > expand.grid(rowname = c("A","B"), colname = 1:3) %>% mutate(value = paste0(rowname, colname)) %>% 
+# +     spread(key = colname, value = value) %>% column_to_rownames
+#    1  2  3
+# A A1 A2 A3
+# B B1 B2 B3
+
+
+
+
+
+
 outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)})
 outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) %>% as.vector
 # > outer(1:2, 1:3, function(i, j) {
@@ -33,6 +67,7 @@ c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
 # A "A:A" "A:B" "A:C"
 # B "B:A" "B:B" "B:C"
 # C "C:A" "C:B" "C:C"
+
 
 
 
@@ -500,7 +535,25 @@ letters %>% function.pairwise.data_frame(only.lower.tri = F)
 # > 26 ^ 2
 # [1] 676
 
+                       
+expand.grid(var_i = letters, var_j = letters) %>% as.tibble
+# > expand.grid(var_i = letters, var_j = letters) %>% as.tibble
+# # A tibble: 676 x 2
+#    var_i var_j
+#    <fct> <fct>
+#  1 a     a    
+#  2 b     a    
+#  3 c     a    
+#  4 d     a    
+#  5 e     a    
+#  6 f     a    
+#  7 g     a    
+#  8 h     a    
+#  9 i     a    
+# 10 j     a    
+# # ... with 666 more rows
 
+                       
 system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame.old(only.lower.tri = F)) #----
 system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame(only.lower.tri = F)) #----
 # > system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame.old(only.lower.tri = F)) #----
