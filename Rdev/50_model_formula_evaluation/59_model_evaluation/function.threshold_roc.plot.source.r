@@ -140,6 +140,10 @@ input_actual_prediction.treshold_roc %>% arrange(FPR, TPR) %>%
     ggplot(aes(x = FPR, y = TPR)) + geom_point() + geom_line() + coord_cartesian(xlim = c(0,1), ylim = c(0,1))
 
 
+input_actual_prediction.treshold_roc %>% arrange(1 - Specificity, Sensitivity) %>% 
+    ggplot(aes(x = 1 - Specificity, y = Sensitivity)) + geom_point() + geom_line() + coord_cartesian(xlim = c(0,1), ylim = c(0,1))
+
+
 function.threshold_roc.auc = function(object.threshold_roc) {
     # codes borrowed from: https://blog.revolutionanalytics.com/2016/11/calculating-auc.html
     if(!"object.threshold_roc" %in% class(object.threshold_roc)) stop('!"object.threshold_roc" %in% class(object.threshold_roc)')
