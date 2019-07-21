@@ -1,5 +1,17 @@
-java -jar bfg.jar --strip-biggest-blobs 500 some-big-repo.git
-cd some-big-repo.git
+https://rtyley.github.io/bfg-repo-cleaner/#download
+
+# start bash at the folder
+cd ../
+mkdir tmp_mirror
+cd tmp_mirror
+
+# copy bfg.jar at the folder
+
+git clone --mirror https://github.com/mkim0710/github_tidystat
+java -jar bfg-1.13.0.jar --delete-files ATC_RxNorm_NDC.rds github_tidystat.git
+java -jar bfg-1.13.0.jar --delete-files CONCEPT_NDC.rds github_tidystat.git
+
+cd github_tidystat.git
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 git push
