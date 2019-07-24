@@ -44,6 +44,36 @@ ID_Criteria.n_distinct.tbl %>% names %>% paste(collapse = "\n, ") %>% cat #----
 # , Inc2.ia.4.c.3.ndDate
 
 
+ID_Criteria.n_distinct_lgl.tbl = ID_Criteria.n_distinct.tbl %>% 
+    mutate(
+        ENROLID = ENROLID
+        # , Exc1 = is.na(Exc1.ndDate) | (Exc1.ndDate == 0)
+        # , Exc2 = is.na(Exc1.ndDate) | (Exc1.ndDate == 0)
+        # , Exc4 = is.na(Exc4.ndDate) | (Exc4.ndDate < 2)
+        # , Exc5 = rowSums(cbind(Exc5.i.ndDate, Exc5.ii.ndDate, Exc5.iii.ndDate), na.rm = T) > 0
+        # , Exc6 = Exc6.ndDate > 0
+        # , Exc10 = Exc10.ndDate > 0
+        # , Exc11 = Exc11.ndDate > 0
+        # , Exc12 = Exc12.ndDate > 0
+        # , Exc13 = Exc13.ndDate > 0
+        # , Inc2.ia.1.a.ndDate
+# , Inc2.ia.1.b.1.ndDate
+# , Inc2.ia.1.b.2.ndDate
+# , Inc2.ia.1.c.ndDate
+# , Inc2.ia.2.a.ndDate
+# , Inc2.ia.2.b.ndDate
+# , Inc2.ia.3.a.ndDate
+# , Inc2.ia.3.b.ndDate
+# , Inc2.ia.3.c.ndDate
+# , Inc2.ia.3.d.ndDate
+# , Inc2.ia.4.a.ndDate
+# , Inc2.ia.4.b.ndDate
+# , Inc2.ia.4.c.1.ndDate
+# , Inc2.ia.4.c.2.ndDate
+# , Inc2.ia.4.c.3.ndDate
+    )
+
+
 
 #@ ------------------------
 #@ txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)" ----
