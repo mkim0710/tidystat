@@ -13,6 +13,39 @@
 
 
 
+
+
+#@ ------------------------
+ID_Criteria.n_distinct.tbl %>% names %>% dput
+# > ID_Criteria.n_distinct.tbl %>% names %>% dput
+# c("ENROLID", "Inc2.ia.1.a.ndDate", "Inc2.ia.1.b.1.ndDate", "Inc2.ia.1.b.2.ndDate", 
+# "Inc2.ia.1.c.ndDate", "Inc2.ia.2.a.ndDate", "Inc2.ia.2.b.ndDate", 
+# "Inc2.ia.3.a.ndDate", "Inc2.ia.3.b.ndDate", "Inc2.ia.3.c.ndDate", 
+# "Inc2.ia.3.d.ndDate", "Inc2.ia.4.a.ndDate", "Inc2.ia.4.b.ndDate", 
+# "Inc2.ia.4.c.1.ndDate", "Inc2.ia.4.c.2.ndDate", "Inc2.ia.4.c.3.ndDate"
+# )
+ID_Criteria.n_distinct.tbl %>% names %>% paste(collapse = "\n, ") %>% cat #----
+# > ID_Criteria.n_distinct.tbl %>% names %>% paste(collapse = "\n, ") %>% cat #----
+# ENROLID
+# , Inc2.ia.1.a.ndDate
+# , Inc2.ia.1.b.1.ndDate
+# , Inc2.ia.1.b.2.ndDate
+# , Inc2.ia.1.c.ndDate
+# , Inc2.ia.2.a.ndDate
+# , Inc2.ia.2.b.ndDate
+# , Inc2.ia.3.a.ndDate
+# , Inc2.ia.3.b.ndDate
+# , Inc2.ia.3.c.ndDate
+# , Inc2.ia.3.d.ndDate
+# , Inc2.ia.4.a.ndDate
+# , Inc2.ia.4.b.ndDate
+# , Inc2.ia.4.c.1.ndDate
+# , Inc2.ia.4.c.2.ndDate
+# , Inc2.ia.4.c.3.ndDate
+
+
+
+#@ ------------------------
 #@ txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)" ----
 txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)"
 txt %>% str_extract_all("[A-z0-9_.*()|>%]+") %>% unlist %>% paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} %>% cat
