@@ -88,37 +88,6 @@ warnings()
 
 
 
-
-#@ ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure ====
-ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure = 
-    ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(
-        ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm) %>%
-            mutate_at(vars(matches("CONCEPT_NDC")), list(~if_else(., SVCDATE, as.Date(NA)))) %>% 
-            filter(SVCDATE >= lmp - 90) %>% 
-            filter(SVCDATE <= lmp + 120) %>% 
-            group_by(ENROLID) %>% summarise_at(.vars = vars(matches("CONCEPT_NDC")), .funs = list(ndDate = n_distinct, minDate = min, maxDate = max), na.rm = T)
-    )
-warnings()
-# > ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure = 
-# +     ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(
-# +         ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm) %>%
-# +             mutate_at(vars(matches("CONCEPT_NDC")), list(~if_else(., SVCDATE, as.Date(NA)))) %>% 
-# +             filter(SVCDATE >= lmp - 90) %>% 
-# +             filter(SVCDATE <= lmp + 120) %>% 
-# +             group_by(ENROLID) %>% summarise_at(.vars = vars(matches("CONCEPT_NDC")), .funs = list(ndDate = n_distinct, minDate = min, maxDate = max), na.rm = T)
-# +     )
-# Joining, by = "ENROLID"
-# Joining, by = "ENROLID"
-# There were 50 or more warnings (use warnings() to see the first 50)
-
-# 47: In min.default(structure(NA_real_, class = "Date"), na.rm = TRUE) :
-#   no non-missing arguments to min; returning Inf
-# 49: In min.default(structure(c(NA_real_, NA_real_, NA_real_ ... :
-#   no non-missing arguments to min; returning Inf
-# 50: In min.default(structure(c(NA_real_, NA_real_), class = "Date"),  ... :
-#   no non-missing arguments to min; returning Inf
-
-
 ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure %>% map(function(x) tibble(is.Inf = sum(x == Inf, na.rm = T), is.NInf = sum(x == -Inf, na.rm = T), is.na = sum(is.na(x))) ) %>% bind_rows(.id = ".id") %>% print(n = 99) #----
 # > ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure %>% map(function(x) tibble(is.Inf = sum(x == Inf, na.rm = T), is.NInf = sum(x == -Inf, na.rm = T), is.na = sum(is.na(x))) ) %>% bind_rows(.id = ".id") %>% print(n = 99) #----
 # # A tibble: 67 x 4
@@ -255,6 +224,41 @@ data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>
 #  Max.   :2011-12-10  
 #  NA's   :3        
 
+
+
+                                                                                         
+                                                                                         
+
+
+#@ ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure ====
+ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure = 
+    ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(
+        ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm) %>%
+            mutate_at(vars(matches("CONCEPT_NDC")), list(~if_else(., SVCDATE, as.Date(NA)))) %>% 
+            filter(SVCDATE >= lmp - 90) %>% 
+            filter(SVCDATE <= lmp + 120) %>% 
+            group_by(ENROLID) %>% summarise_at(.vars = vars(matches("CONCEPT_NDC")), .funs = list(ndDate = n_distinct, minDate = min, maxDate = max), na.rm = T)
+    ) %>% 
+    map_df(function(x) if(class(x) == "Date") if_else(x == Inf | x == -Inf, as.Date(NA), as.Date(x)) else x) 
+warnings()
+# > ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure = 
+# +     ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(
+# +         ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm) %>%
+# +             mutate_at(vars(matches("CONCEPT_NDC")), list(~if_else(., SVCDATE, as.Date(NA)))) %>% 
+# +             filter(SVCDATE >= lmp - 90) %>% 
+# +             filter(SVCDATE <= lmp + 120) %>% 
+# +             group_by(ENROLID) %>% summarise_at(.vars = vars(matches("CONCEPT_NDC")), .funs = list(ndDate = n_distinct, minDate = min, maxDate = max), na.rm = T)
+# +     )
+# Joining, by = "ENROLID"
+# Joining, by = "ENROLID"
+# There were 50 or more warnings (use warnings() to see the first 50)
+
+# 47: In min.default(structure(NA_real_, class = "Date"), na.rm = TRUE) :
+#   no non-missing arguments to min; returning Inf
+# 49: In min.default(structure(c(NA_real_, NA_real_, NA_real_ ... :
+#   no non-missing arguments to min; returning Inf
+# 50: In min.default(structure(c(NA_real_, NA_real_), class = "Date"),  ... :
+#   no non-missing arguments to min; returning Inf
 
 
 
