@@ -63,7 +63,7 @@ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function(
                     # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max( eval(parse(text=varname4t)) , na.rm = T)
                 ) %>%
                 as.tibble
-            , by = "ENROLID"
+            , by = varname4PersonID
         )
     out
 }
