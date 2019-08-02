@@ -311,6 +311,13 @@ tblPersonID_FilterName.ndDate %>% na.omit
 
 
 
+tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} %>% dput #----
+# > tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} %>% dput #----
+structure(list(ENROLID = c(171946801, 1210879901, 1282775301,
+2068053701, 27240989002, 27945818803, 28503004201), t_NInf_154.ICD250x1_250x3.ndDate = c(2L,
+5L, 1L, 3L, 1L, 2L, 1L), t_NInf_0.RxCONCEPT_NDC_metformin.ndDate = c(1L,
+1L, 7L, 2L, 1L, 1L, 2L)), row.names = c(NA, -7L), class = c("tbl_df",
+"tbl", "data.frame"))
 
 
 
