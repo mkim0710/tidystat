@@ -1,3 +1,18 @@
+
+i = 3
+
+CriteriaID.i = Criteria.tbl[i,]$CriteriaID 
+CodeType.i = Criteria.tbl[i,]$CodeType 
+
+t_begin.int.i = Criteria.tbl[i,]$t_begin.int
+t_end.int.i = Criteria.tbl[i,]$t_end.int
+if (is.na(t_end.int.i)) t_end.int.i = Inf
+
+FilterName.i = Criteria.tbl[i,]$FilterName
+FilterRegex.i = Criteria.tbl[i,]$FilterRegex
+Code_vec.list.i = Criteria.tbl[i,]$Code_vec.list
+    
+
 CriteriaID.i
 CodeType.i
 t_begin.int.i
@@ -92,4 +107,118 @@ tblPersonID_FilterName.ndDate %>% select(ENROLID) %>%
 # # ... with 106 more rows
 
 
+
+
+
+
+
+
+
+i = 4
+
+CriteriaID.i = Criteria.tbl[i,]$CriteriaID 
+CodeType.i = Criteria.tbl[i,]$CodeType 
+
+t_begin.int.i = Criteria.tbl[i,]$t_begin.int
+t_end.int.i = Criteria.tbl[i,]$t_end.int
+if (is.na(t_end.int.i)) t_end.int.i = Inf
+
+FilterName.i = Criteria.tbl[i,]$FilterName
+FilterRegex.i = Criteria.tbl[i,]$FilterRegex
+Code_vec.list.i = Criteria.tbl[i,]$Code_vec.list
+    
+        
+CriteriaID.i
+CodeType.i
+t_begin.int.i
+t_end.int.i
+FilterName.i
+FilterRegex.i
+Code_vec.list.i
+# > CriteriaID.i
+# [1] "Exc4"
+# > CodeType.i
+# [1] "Rx"
+# > t_begin.int.i
+# [1] -Inf
+# > t_end.int.i
+# [1] 0
+# > FilterName.i
+# [1] "t_NInf_0.RxCONCEPT_NDC_metformin"
+# > FilterRegex.i
+# [1] "^(CONCEPT_NDC_metformin)"
+# > Code_vec.list.i
+# [1] "CONCEPT_NDC_metformin"
+
+
+
+#@ tblPersonID_FilterName.ndDate.append_FilterMet <- function( ----
+tblPersonID_FilterName.ndDate.append_FilterMet <- function(
+    tblPersonID_FilterName.ndDate
+    , tblClaim_Date_Code
+    , varname4PersonID = "ENROLID"
+    , varname4t = "SVCDATE"
+    , varname4t0 = "lmp"
+    , t_begin.int.i = t_begin.int.i
+    , t_end.int.i = t_end.int.i
+    , varname4Code = "value"
+    , FilterName.i = FilterName.i
+    , varname4FilterMet.i = Code_vec.list.i
+) {
+    out = tblPersonID_FilterName.ndDate %>% 
+        left_join(
+            tblClaim_Date_Code %>% 
+                filter( eval(parse(text=varname4t)) >= eval(parse(text=varname4t0)) + t_begin.int.i) %>% 
+                filter( eval(parse(text=varname4t)) <= eval(parse(text=varname4t0)) + t_end.int.i) %>% 
+                filter( eval(parse(text=varname4FilterMet.i)) ) %>% 
+                group_by(ENROLID) %>% summarise(
+                    !!rlang::sym( paste0(FilterName.i, ".ndDate") ) := n_distinct(as.numeric( eval(parse(text=varname4t)) ), na.rm = T)
+                    # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min(SVCDATE, na.rm = T)
+                    # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max(SVCDATE, na.rm = T)
+                ) %>%
+                as.tibble
+            , by = varname4PersonID
+        )
+    out
+}
+
+
+tblPersonID_FilterName.ndDate %>% select(ENROLID) %>% 
+    tblPersonID_FilterName.ndDate.append_FilterMet(
+        tblClaim_Date_Code = d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm[1:10^6, ]
+        , varname4PersonID = "ENROLID"
+        , varname4t = "SVCDATE"
+        , varname4t0 = "lmp"
+        , t_begin.int.i = t_begin.int.i
+        , t_end.int.i = t_end.int.i
+        , varname4Code = "value"
+        , FilterName.i = FilterName.i
+        , varname4FilterMet.i = Code_vec.list.i
+    ) %>% na.omit
+# > tblPersonID_FilterName.ndDate %>% select(ENROLID) %>% 
+# +     tblPersonID_FilterName.ndDate.append_FilterMet(
+# +         tblClaim_Date_Code = d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm[1:10^6, ]
+# +         , varname4PersonID = "ENROLID"
+# +         , varname4t = "SVCDATE"
+# +         , varname4t0 = "lmp"
+# +         , t_begin.int.i = t_begin.int.i
+# +         , t_end.int.i = t_end.int.i
+# +         , varname4Code = "value"
+# +         , FilterName.i = FilterName.i
+# +         , varname4FilterMet.i = Code_vec.list.i
+# +     ) %>% na.omit
+# # A tibble: 27,421 x 2
+#      ENROLID t_NInf_0.RxCONCEPT_NDC_metformin.ndDate
+#        <dbl>                                   <int>
+#  1  14519101                                       2
+#  2  32230709                                       1
+#  3 102652303                                       3
+#  4 131792704                                       1
+#  5 136649401                                       2
+#  6 139720104                                       2
+#  7 171946801                                       1
+#  8 172341702                                       2
+#  9 189216201                                       5
+# 10 218320801                                       1
+# # ... with 27,411 more rows
 
