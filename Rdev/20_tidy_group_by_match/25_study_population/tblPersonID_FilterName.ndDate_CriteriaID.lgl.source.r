@@ -70,7 +70,7 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
                 bind_cols(
                     data4evaluation %>%
                         transmute(
-                            !!rlang::sym(CriteriaID.i) := eval(parse(text = Evaluation.i))
+                            !!rlang::sym(CriteriaID.i) := eval(parse(text=Evaluation.i))
                         )
                 )
         }
