@@ -59,8 +59,8 @@ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function(
                 ) %>% filter(FilterRegexMet) %>% 
                 group_by(ENROLID) %>% summarise(
                     !!rlang::sym( paste0(FilterName.i, ".ndDate") ) := n_distinct(as.numeric( eval(parse(text=varname4t)) ), na.rm = T)
-                    # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min(SVCDATE, na.rm = T)
-                    # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max(SVCDATE, na.rm = T)
+                    # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min( eval(parse(text=varname4t)) , na.rm = T)
+                    # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max( eval(parse(text=varname4t)) , na.rm = T)
                 ) %>%
                 as.tibble
             , by = "ENROLID"
@@ -173,8 +173,8 @@ tblPersonID_FilterName.ndDate.append_FilterMet <- function(
                 filter( eval(parse(text=varname4FilterMet.i)) ) %>% 
                 group_by(ENROLID) %>% summarise(
                     !!rlang::sym( paste0(FilterName.i, ".ndDate") ) := n_distinct(as.numeric( eval(parse(text=varname4t)) ), na.rm = T)
-                    # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min(SVCDATE, na.rm = T)
-                    # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max(SVCDATE, na.rm = T)
+                    # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min( eval(parse(text=varname4t)) , na.rm = T)
+                    # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max( eval(parse(text=varname4t)) , na.rm = T)
                 ) %>%
                 as.tibble
             , by = varname4PersonID
