@@ -1,3 +1,25 @@
+CriteriaID.i
+CodeType.i
+t_begin.int.i
+t_end.int.i
+FilterName.i
+FilterRegex.i
+Code_vec.list.i
+# >     CriteriaID.i
+# [1] "Exc3"
+# >     CodeType.i
+# [1] "ICD9"
+# >     t_begin.int.i
+# [1] -Inf
+# >     t_end.int.i
+# [1] 154
+# >     FilterName.i
+# [1] "t_NInf_154.ICD250x1_250x3"
+# >     FilterRegex.i
+# [1] "^250[0-9][13]$"
+# >     Code_vec.list.i
+# [1] "250x1, 250x3"
+
 
 #@ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function( ----
 tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function(
