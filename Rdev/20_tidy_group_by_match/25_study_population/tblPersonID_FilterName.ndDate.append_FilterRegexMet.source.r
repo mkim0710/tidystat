@@ -232,6 +232,33 @@ tblPersonID_FilterName.ndDate %>% select(ENROLID) %>%
 
 
 
+
+
+
+# Criteria.tbl.bind_rows = bind_rows(Criteria.tbl.list$ExclusionCriteria.tbl, Criteria.tbl.list$InclusionCriteria.tbl)
+Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) %>% dput #----
+# > Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) %>% dput #----
+Criteria.tbl.bind_rows = structure(list(CriteriaID = c("Exc3", "Exc4"), CriteriaShortName = c("ICD9_DMt1",
+"Rx_Metformin.lt2"), t_begin.int = c(-Inf, -Inf), t_end.int = c(154,
+0), CodeType = c("ICD9", "Rx"), Code_vec = c(NA_character_, NA_character_
+), Code_vec.list = c("250x1, 250x3", "CONCEPT_NDC_metformin"),
+    FilterName = c("t_NInf_154.ICD250x1_250x3", "t_NInf_0.RxCONCEPT_NDC_metformin"
+    ), FilterRegex = c("^250[0-9][13]$", "^(CONCEPT_NDC_metformin)"
+    ), Evaluation = c("t_NInf_154.ICD250x1_250x3 > 0", "t_NInf_0.RxCONCEPT_NDC_metformin < 2"
+    ), nID.nDate_ge1 = c(NA_real_, NA_real_), nID.nDate_ge2 = c(NA_real_,
+    NA_real_), nID.nDate_ge3 = c(NA_real_, NA_real_)), row.names = 3:4, class = "data.frame")
+Criteria.tbl.bind_rows
+# > Criteria.tbl.bind_rows
+#   CriteriaID CriteriaShortName t_begin.int t_end.int CodeType Code_vec         Code_vec.list                       FilterName
+# 3       Exc3         ICD9_DMt1        -Inf       154     ICD9     <NA>          250x1, 250x3        t_NInf_154.ICD250x1_250x3
+# 4       Exc4  Rx_Metformin.lt2        -Inf         0       Rx     <NA> CONCEPT_NDC_metformin t_NInf_0.RxCONCEPT_NDC_metformin
+#                FilterRegex                           Evaluation nID.nDate_ge1 nID.nDate_ge2 nID.nDate_ge3
+# 3           ^250[0-9][13]$        t_NInf_154.ICD250x1_250x3 > 0            NA            NA            NA
+# 4 ^(CONCEPT_NDC_metformin) t_NInf_0.RxCONCEPT_NDC_metformin < 2            NA            NA            NA
+
+tblClaim_Date_Code4ICD = os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014[1:10^6, ]
+tblClaim_Date_Code4Rx = d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm[1:10^6, ]
+
 #@@@ tblPersonID_FilterName.ndDate -----
 t0 = Sys.time()
 tblPersonID_FilterName.ndDate =
