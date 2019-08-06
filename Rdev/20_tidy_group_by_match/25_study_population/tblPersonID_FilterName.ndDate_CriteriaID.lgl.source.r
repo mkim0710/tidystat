@@ -60,14 +60,17 @@ t0 = Sys.time()
 #     os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014 %>%
 #     select(ENROLID) %>% distinct
 tblPersonID_CriteriaID.lgl = tblPersonID_FilterName.ndDate %>% select(ENROLID)
-data4evaluation = tblPersonID_FilterName.ndDate %>% select_all(.funs = funs(gsub("\\.ndDate$", "", .))) %>%
-    map_df(replace_na, 0)   # debug190726) NA causes error when using logical operators (e.g., ==)  # somehow map_df(replace_na, 0) is very slow?
+data4evaluation = tblPersonID_FilterName.ndDate %>% 
+    mutate_at(vars(matches("\\.ndDate$")), .funs = list(~replace_na(., 0L) )) %>%   # debug190726) NA causes error when using logical operators (e.g., ==)  # somehow map_df(replace_na, 0) is very slow?
+    select_at(vars(matches("\\.ndDate$")), .funs = list(~gsub("\\.ndDate$", "", .) )) %>%    # select_at() for rename
+    bind_cols(tblPersonID_FilterName.ndDate %>% select(matches("Date$")))
 for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation)) {
     CriteriaID.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$CriteriaID
-
-    Evaluation.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Evaluation
-    Evaluation.i.ElementVector = Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit("==|>|<|&|-|/|\\+|\\*|\\|") %>% unlist
     
+    Evaluation.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Evaluation
+    Evaluation.i.ElementVector = Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit("==|>|<|&|-|/|\\+|\\*") %>% unlist
+    Evaluation.minDate.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Evaluation.minDate
+        
     if ( !all(Evaluation.i.ElementVector %>% {.[is.na(as.numeric(.))] %in% names(data4evaluation)}) ) {   
         msg = paste0( '!all(Evaluation.i.ElementVector %>% {.[is.na(as.numeric(.))] %in% names(data4evaluation)}) -> skipping for CriteriaID.i: ', CriteriaID.i )
         print(msg); warning(msg)
@@ -84,6 +87,7 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
                     data4evaluation %>%
                         transmute(
                             !!rlang::sym(CriteriaID.i) := eval(parse(text=Evaluation.i))
+                            , !!rlang::sym(paste0(CriteriaID.i, ".minDate")) := eval(parse(text=Evaluation.minDate.i))
                         )
                 )
         }
