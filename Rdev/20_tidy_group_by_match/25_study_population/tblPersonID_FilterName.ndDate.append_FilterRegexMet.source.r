@@ -270,7 +270,7 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
         assign(paste0(names(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,])[v], ".i")
                , tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,][[v]] )
     }
-    print(paste0("FilterName.i = ", FilterName.i))
+    # print(paste0("FilterName.i = ", FilterName.i))
     if (is.na(t_end.int.i)) t_end.int.i = Inf
     if (!exists("Mom_or_Baby.i")) Mom_or_Baby.i = "Mom"
 
