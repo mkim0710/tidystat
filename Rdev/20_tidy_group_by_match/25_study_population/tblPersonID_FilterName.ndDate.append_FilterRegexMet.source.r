@@ -274,8 +274,9 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
     if (is.na(t_end.int.i)) t_end.int.i = Inf
     if (!exists("Mom_or_Baby.i")) Mom_or_Baby.i = "Mom"
 
-    if (is.na(Code_vec.list.i)) {
-        msg = paste0( 'is.na(Code_vec.list.i) for FilterName.i: ', FilterName.i )
+    
+    if (!CodeType.i %in% c("ICD9", "ICD10", "CPT", "Rx")) {
+        msg = paste0( '!CodeType.i %in% c("ICD9", "ICD10", "CPT", "Rx") for FilterName.i: ', FilterName.i )
         print(msg); warning(msg)
     } else if (paste0(FilterName.i, ".ndDate") %in% names(tblPersonID_FilterName.ndDate)) {
         msg = paste0( paste0(FilterName.i, ".ndDate"), ' %in% names(tblPersonID_FilterName.ndDate)', '-> skipping for CriteriaID.i: ', CriteriaID.i )
