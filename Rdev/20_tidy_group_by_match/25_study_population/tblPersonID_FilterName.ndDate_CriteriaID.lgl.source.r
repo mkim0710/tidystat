@@ -34,30 +34,23 @@ tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation
 
 
 
+
 #@@@ tblPersonID_CriteriaID.lgl from tblPersonID_FilterName.ndDate #-----
 t0 = Sys.time()
 # tblPersonID_CriteriaID.lgl =
 #     os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014 %>%
 #     select(ENROLID) %>% distinct
-tblPersonID_CriteriaID.lgl = tblPersonID_FilterName.ndDate # %>% select(ENROLID)
+tblPersonID_CriteriaID.lgl = tblPersonID_FilterName.ndDate %>% select(ENROLID)
 data4evaluation = tblPersonID_FilterName.ndDate %>% select_all(.funs = funs(gsub("\\.ndDate$", "", .))) %>%
     map_df(replace_na, 0)   # debug190726) NA causes error when using logical operators (e.g., ==)  # somehow map_df(replace_na, 0) is very slow?
 for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation)) {
     CriteriaID.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$CriteriaID
-    # CodeType.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$CodeType
-    #
-    # t_begin.int.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$t_begin.int
-    # t_end.int.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$t_end.int
-    # if (is.na(t_end.int.i)) t_end.int.i = Inf
-    #
-    FilterName.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$FilterName %>% replace_na("")   # debug190726) NA causes error when using logical operators (e.g., ==)
-    # FilterRegex.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$FilterRegex
-    Code_vec.list.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Code_vec.list
 
     Evaluation.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Evaluation
-
-    if ( is.na(Code_vec.list.i) & (substr(FilterName.i, 1, 7) != "Boolean") ) {   # debug190726) NA causes error when using logical operators (e.g., ==)
-        msg = paste0( 'is.na(Code_vec.list.i) & (substr(FilterName.i, 1, 7) != "Boolean") -> skipping for CriteriaID.i: ', CriteriaID.i )
+    Evaluation.i.ElementVector = Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit("==|>|<|&|-|/|\\+|\\*") %>% unlist
+    
+    if ( !all(Evaluation.i.ElementVector %>% {.[is.na(as.numeric(.))] %in% names(data4evaluation)}) ) {   
+        msg = paste0( '!all(Evaluation.i.ElementVector %>% {.[is.na(as.numeric(.))] %in% names(data4evaluation)}) -> skipping for CriteriaID.i: ', CriteriaID.i )
         print(msg); warning(msg)
     } else {
         # print(Evaluation.i)
@@ -65,6 +58,7 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
             msg = paste0( 'is.na(Evaluation.i) -> skipping for CriteriaID.i: ', CriteriaID.i )
             print(msg); warning(msg)
         } else {
+            print(paste0( 'Appending: ', CriteriaID.i ))
             tblPersonID_CriteriaID.lgl =
                 tblPersonID_CriteriaID.lgl %>%
                 bind_cols(
