@@ -264,19 +264,15 @@ tblClaim_Date_Code4Rx = d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_36
 #@@@ tblPersonID_FilterName.ndDate -----
 t0 = Sys.time()
 tblPersonID_FilterName.ndDate =
-    os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014 %>%
-    select(ENROLID) %>% distinct
+    ENROLID2797_Age1845_Inc2.ia_Exc12356abcd.t_42_154.exposure.enrolid_inf %>% select(ENROLID) %>% mutate(ENROLID = ENROLID %>% as.numeric)
 for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation)) {
-    CriteriaID.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$CriteriaID
-    CodeType.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$CodeType
-
-    t_begin.int.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$t_begin.int
-    t_end.int.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$t_end.int
+    for ( v in 1:length(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]) ) {
+        assign(paste0(names(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,])[v], ".i")
+               , tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,][[v]] )
+    }
+    print(paste0("FilterName.i = ", FilterName.i))
     if (is.na(t_end.int.i)) t_end.int.i = Inf
-
-    FilterName.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$FilterName
-    FilterRegex.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$FilterRegex
-    Code_vec.list.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Code_vec.list
+    if (!exists("Mom_or_Baby.i")) Mom_or_Baby.i = "Mom"
 
     if (is.na(Code_vec.list.i)) {
         msg = paste0( 'is.na(Code_vec.list.i) for FilterName.i: ', FilterName.i )
@@ -286,38 +282,47 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
         print(msg); warning(msg)
     } else {
         print(paste0( 'Appending: ', paste0(FilterName.i, ".ndDate") ))
+        varname4PersonID.i = "ENROLID"
+        varname4t.i = "SVCDATE"
+        varname4t0.i = "lmp"
         if (CodeType.i %in% c("ICD9", "ICD10")) {
+            varname4Code.i = "value"
+            # if(Mom_or_Baby.i %in% "Mom") {
+                tblClaim_Date_Code.i = tblClaim_Date_Code4ICD
+            # } else 
+                if (Mom_or_Baby.i %in% "Infant") {
+                tblClaim_Date_Code.i = tblClaim_Date_Code4ICD.infant
+            }
             tblPersonID_FilterName.ndDate =
                 tblPersonID_FilterName.ndDate %>%
-                    tblPersonID_FilterName.ndDate.append_FilterRegexMet(
-                        tblClaim_Date_Code = tblClaim_Date_Code4ICD
-                        # , CriteriaID.i = CriteriaID.i
-                        # , CodeType.i = CodeType.i
-                        , t_begin.int.i = t_begin.int.i
-                        , t_end.int.i = t_end.int.i
-                        , FilterName.i = FilterName.i
-                        , FilterRegex.i = FilterRegex.i
-                        # , Code_vec.list.i = Code_vec.list.i
-                    )
+                tblPersonID_FilterName.ndDate.append_FilterRegexMet(tblClaim_Date_Code = tblClaim_Date_Code.i, varname4PersonID = varname4PersonID.i, varname4t = varname4t.i, varname4t0 = varname4t0.i, t_begin.int.i = t_begin.int.i, t_end.int.i = t_end.int.i, FilterName.i = FilterName.i, FilterRegex.i = FilterRegex.i, varname4Code = varname4Code.i)
         }
 
+        if (CodeType.i %in% c("CPT")) {
+            varname4Code.i = "PROC1"
+            # if(Mom_or_Baby.i %in% "Mom") {
+                tblClaim_Date_Code.i = tblClaim_Date_Code4CPT
+            # } else 
+                if (Mom_or_Baby.i %in% "Infant") {
+                tblClaim_Date_Code.i = tblClaim_Date_Code4CPT.infant
+            }
+            tblPersonID_FilterName.ndDate =
+                tblPersonID_FilterName.ndDate %>%
+                tblPersonID_FilterName.ndDate.append_FilterRegexMet(tblClaim_Date_Code = tblClaim_Date_Code.i, varname4PersonID = varname4PersonID.i, varname4t = varname4t.i, varname4t0 = varname4t0.i, t_begin.int.i = t_begin.int.i, t_end.int.i = t_end.int.i, FilterName.i = FilterName.i, FilterRegex.i = FilterRegex.i, varname4Code = varname4Code.i)
+        }
+        
         # if (CodeType.i == "Rx") { # missing value where TRUE/FALSE needed
         if (CodeType.i %in% c("Rx")) {
-            tblPersonID_FilterName.ndDate = 
-                tblPersonID_FilterName.ndDate %>% 
-                tblPersonID_FilterName.ndDate.append_FilterMet(
-                    tblClaim_Date_Code = tblClaim_Date_Code4Rx
-                    , varname4PersonID = "ENROLID"
-                    , varname4t = "SVCDATE"
-                    , varname4t0 = "lmp"
-                    , t_begin.int.i = t_begin.int.i
-                    , t_end.int.i = t_end.int.i
-                    , varname4Code = "value"
-                    , FilterName.i = FilterName.i
-                    , varname4FilterMet.i = Code_vec.list.i
-                )
-
+            # if(Mom_or_Baby.i %in% "Mom") {
+                tblClaim_Date_Code.i = tblClaim_Date_Code4Rx
+                varname4FilterMet.i = Code_vec.list.i
+                
+                tblPersonID_FilterName.ndDate =
+                    tblPersonID_FilterName.ndDate %>%
+                    tblPersonID_FilterName.ndDate.append_FilterMet(tblClaim_Date_Code = tblClaim_Date_Code.i, varname4PersonID = varname4PersonID.i, varname4t = varname4t.i, varname4t0 = varname4t0.i, t_begin.int.i = t_begin.int.i, t_end.int.i = t_end.int.i, FilterName.i = FilterName.i, varname4FilterMet.i = varname4FilterMet.i)
+            # }
         }
+        
     }
 }
 Sys.time() - t0
