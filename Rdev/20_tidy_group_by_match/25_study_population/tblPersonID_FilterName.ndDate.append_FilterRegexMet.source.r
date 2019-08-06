@@ -279,7 +279,7 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
         msg = paste0( '!CodeType.i %in% c("ICD9", "ICD10", "CPT", "Rx") for FilterName.i: ', FilterName.i )
         print(msg); warning(msg)
     } else if (paste0(FilterName.i, ".ndDate") %in% names(tblPersonID_FilterName.ndDate)) {
-        msg = paste0( paste0(FilterName.i, ".ndDate"), ' %in% names(tblPersonID_FilterName.ndDate)', '-> skipping for CriteriaID.i: ', CriteriaID.i )
+        msg = paste0( paste0(FilterName.i, ".ndDate"), ' %in% names(tblPersonID_FilterName.ndDate)', ' -> skipping for CriteriaID.i: ', CriteriaID.i )
         print(msg); warning(msg)
     } else {
         print(paste0( 'Appending: ', paste0(FilterName.i, ".ndDate") ))
