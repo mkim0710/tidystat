@@ -1,5 +1,8 @@
 # function.boot.statistic_glm_coef.source.r
 
+# https://www.statmethods.net/advstats/bootstrapping.html
+# https://www.datacamp.com/community/tutorials/bootstrap-r
+# https://stats.idre.ucla.edu/r/library/r-library-introduction-to-bootstrapping/
 
 
 function.boot.statistic_glm_coef = function(data, index, glm.formula, glm.weights = NULL, coef.exp = F, ...) {
