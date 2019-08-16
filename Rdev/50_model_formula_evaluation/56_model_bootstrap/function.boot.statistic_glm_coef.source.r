@@ -3,6 +3,8 @@
 
 
 function.boot.statistic_glm_coef = function(data, index, glm.formula, glm.weights = NULL, coef.exp = F, ...) {
+    # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/56_model_bootstrap/function.boot.statistic_glm_coef.source.r
+    
     # The boot() function calls the statistic function R times. (The first argument should be data & the second argument should be indices?)
     # A function that produces the k statistics to be bootstrapped (k=1 if bootstrapping a single statistic). 
     # The function should include an indices parameter that the boot() function can use to select cases for each replication (see the examples in the text).
