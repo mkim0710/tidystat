@@ -88,6 +88,7 @@ boot.output = boot(
     data = data, Interval = 7
     , statistic = function.boot.statistic_RiskDifference, glm.formula = glm.formula,  glm.weights = glm.weights, coef.exp = T
     , R = nIteration
+    # , parallel = "multicore", ncpus = 4
 )
 Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
@@ -237,6 +238,7 @@ boot.output = boot(
     data = data, Interval = 7
     , statistic = function.boot.statistic_RiskDifference, glm.formula = glm.formula,  glm.weights = glm.weights, coef.exp = T
     , R = nIteration
+    , parallel = "multicore", ncpus = 4
 )
 Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
