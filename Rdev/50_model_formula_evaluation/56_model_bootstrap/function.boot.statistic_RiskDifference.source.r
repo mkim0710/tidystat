@@ -131,7 +131,7 @@ boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %
 # 1000 
 
 boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
-boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[c(25, 26)], .[c(975, 976)])}
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(25/2) + 0:1], .[trunc(975/2) + 0:1])}
 # > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
 #      2.5%     97.5% 
 # 0.0554281 0.1617393 
