@@ -144,6 +144,36 @@ boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDiffere
 
 
 
+norm.inter <- function(t,alpha)
+    # Interpolation on the normal quantile scale. 
+    # For a non-integer order statistic this function interpolates between the surrounding order statistics using the normal quantile scale. 
+    # See equation 5.8 of Davison and Hinkley (1997)
+{
+    t <- t[is.finite(t)]
+    R <- length(t)
+    rk <- (R+1)*alpha
+    if (!all(rk>1 & rk<R))
+        warning("extreme order statistics used as endpoints")
+    k <- trunc(rk)
+    inds <- seq_along(k)
+    out <- inds
+    kvs <- k[k>0 & k<R]
+    tstar <- sort(t, partial = sort(union(c(1, R), c(kvs, kvs+1))))
+    ints <- (k == rk)
+    if (any(ints)) out[inds[ints]] <- tstar[k[inds[ints]]]
+    out[k == 0] <- tstar[1L]
+    out[k == R] <- tstar[R]
+    not <- function(v) xor(rep(TRUE,length(v)),v)
+    temp <- inds[not(ints) & k != 0 & k != R]
+    temp1 <- qnorm(alpha[temp])
+    temp2 <- qnorm(k[temp]/(R+1))
+    temp3 <- qnorm((k[temp]+1)/(R+1))
+    tk <- tstar[k[temp]]
+    tk1 <- tstar[k[temp]+1L]
+    out[temp] <- tk + (temp1-temp2)/(temp3-temp2)*(tk1 - tk)
+    cbind(round(rk, 2), out)
+}
+
 #@ analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci =====
 analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci = 
     boot.output %>% {rbind( as.tibble(as.list(.$t0)), map_df( {set_names(as.tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
