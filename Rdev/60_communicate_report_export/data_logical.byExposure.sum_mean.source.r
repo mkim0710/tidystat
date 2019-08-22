@@ -1,4 +1,13 @@
 
+#@@@@ data_numeric.byExposure.mean_sd ======
+
+
+
+
+
+
+
+#@@@@ data_logical.byExposure.sum_mean ======
 
 #@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI = list()
@@ -54,4 +63,13 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
 #  9 SecondaryOutcome1_sum    372 (16.33%) 89 (17.15%)            
 # 10 SecondaryOutcome10_sum   36 (1.58%)   11 (2.12%)             
 # # ... with 11 more rows
+
+
+
+
+
+
+#@@@@ data_factor.byExposure.table_proptable ======
+
+
 
