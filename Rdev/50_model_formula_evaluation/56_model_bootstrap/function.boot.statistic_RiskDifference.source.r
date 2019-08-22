@@ -26,7 +26,7 @@ function.boot.statistic_RiskDifference = function(data, index, glm.formula, glm.
 #@ nIteration = 500 =====
 library(boot)
 data = analyticDF2797.ipw.PersonTime7 %>% select(Dk_plus1, Exposure, k, StabilizedWeight)
-glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2))
+glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + .
 glm.weights = data$StabilizedWeight
 nIteration = 500  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
 set.seed(1)
