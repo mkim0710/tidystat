@@ -1,149 +1,268 @@
 
-function.boot.statistic_RiskDifference = function(data, index, glm.formula, glm.weights = NULL, ...) {
+
+# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates.boot.ci.list_PrimaryOutcomes from (don) -debug3.r
+function.boot.statistic_RiskDifference = function(data, index, glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + ., glm.weights = NULL, Interval = 1, ...) {
     # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/56_model_bootstrap/function.boot.statistic_RiskDifference.source.r
 
     # The boot() function calls the statistic function R times. (The first argument should be data & the second argument should be indices?)
-    # A function that produces the k statistics to be bootstrapped (k=1 if bootstrapping a single statistic). 
+    # A function that produces the k statistics to be bootstrapped (k=1 if bootstrapping a single statistic).
     # The function should include an indices parameter that the boot() function can use to select cases for each replication (see the examples in the text).
     # If there is a set of statistics (for example, a set of regression coefficients), the function should return a vector.
     
-    data.resampled = data[index, ]  # allows boot to select sample 
-    
-    data.resampled.PersonTime.glmOutcome_Exposure_k = glm(formula = glm.formula, family = binomial, data = data.resampled, weights = glm.weights)
-    
-    RiskDifference.vec = data.resampled %>% select(k) %>% distinct %>% arrange(k) %>% {rbind(mutate(., Exposure = 0), mutate(., Exposure = 1))} %>% 
-        mutate(pNoEvent_k = 1 - predict(data.resampled.PersonTime.glmOutcome_Exposure_k, newdata = ., type = "response")) %>% 
-        group_by(Exposure) %>% mutate(pNoEvent_k.cumprod = pNoEvent_k %>% cumprod) %>% 
-        filter(k == max(k)) %>% 
-        select(k, Exposure, pNoEvent_k.cumprod) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) %>% rename(`max(k)` = k, pNoEvent_k.cumprod0 = `0`, pNoEvent_k.cumprod1 = `1`) %>% mutate(RiskDifference = pNoEvent_k.cumprod1-pNoEvent_k.cumprod0) %>% unlist #----
+    assign("globalenv.counter", globalenv.counter + 1, envir = globalenv())
+    cat(paste0(globalenv.counter, ".."))
+    # warning(globalenv.counter)
 
-    out = c(RiskDifference.vec, exp(coef(data.resampled.PersonTime.glmOutcome_Exposure_k)))  # coef(fit): named vector
+    # data = data %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric)  # this should be done prior to running boot()
+    data.resampled = data[index, ]  # allows boot to select sample
 
+    data.resampled.PersonTime =
+        data.resampled %>%
+        mutate(PeriodSeq = Time2Censor %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%
+        mutate(
+            # Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") %>% as.factor
+            # , time = PeriodSeq * Interval
+            # , event = (PrimaryOutcome123456 == 1) & (PrimaryOutcome123456.time <= PeriodSeq * Interval)
+            # ,
+            k = PeriodSeq - 1  # defined as in hernanrobins_v2.17.22 $17.2 From hazards to risks
+            , Dk_plus1 = (SpecificOutcome == 1) & (Time2SpecificOutcome <= PeriodSeq * Interval)  # defined as in hernanrobins_v2.17.22 $17.2 From hazards to risks
+        ) %>% select(k, Dk_plus1, Exposure, everything(), -PeriodSeq, -Time2Censor, -Time2SpecificOutcome, -SpecificOutcome)
+
+    data.resampled.PersonTime.glmOutcome_Exposure_k_Covariates = glm(formula = glm.formula, family = binomial, data = data.resampled.PersonTime, weights = glm.weights)
+    
+    RiskDifference.vec =
+        expand.grid(k = 1:max(ceiling(data$Time2Censor/Interval)) - 1, Exposure = 0:1) %>%
+        cbind(
+            # data.resampled %>% # mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%   # this should be done prior to running boot()
+            data %>% # mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%   # this should be done prior to running boot()
+                select(-Time2Censor # , Censor
+                       , -Time2SpecificOutcome, -SpecificOutcome
+                       , -Exposure) %>%
+                summarise_all(median)
+        ) %>%
+        mutate(pNoEvent_k = 1 - predict(data.resampled.PersonTime.glmOutcome_Exposure_k_Covariates, newdata = ., type = "response")) %>%
+        group_by(Exposure) %>% mutate(pNoEvent_k.cumprod = pNoEvent_k %>% cumprod) %>%
+        filter(k == max(k)) %>%
+        # select(k, Exposure, pNoEvent_k.cumprod, everything(), -pNoEvent_k) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) %>%
+        select(k, Exposure, pNoEvent_k.cumprod) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) %>%
+        rename(`max(k)` = k, pNoEvent_k.cumprod0 = `0`, pNoEvent_k.cumprod1 = `1`) %>% mutate(RiskDifference = pNoEvent_k.cumprod1-pNoEvent_k.cumprod0) %>%
+        unlist
+
+    out = c(RiskDifference.vec, exp(coef(data.resampled.PersonTime.glmOutcome_Exposure_k_Covariates)))  # coef(fit): named vector
+    # cat(paste0("#", length(out), "\n"))
+    
+    # if(!exists("globalenv.out.length", envir = globalenv())) {
+    #     assign("globalenv.out.length", length(out), envir = globalenv())
+    # } else if(globalenv.out.length != length(out)) browser()
+    
     out
 }
 
 
-#@ nIteration = 500 =====
+
+#@ nIteration = 20 =====
 library(boot)
-data = analyticDF2797.ipw.PersonTime7 %>% select(Dk_plus1, Exposure, k, StabilizedWeight)
+data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
+    mutate(
+        Time2Censor = PrimaryOutcome123456.time
+        # , Censor = PrimaryOutcome123456
+        , Time2SpecificOutcome = PrimaryOutcome123456.time
+        , SpecificOutcome = PrimaryOutcome123456
+    ) %>%
+    select(
+        Time2Censor # , Censor
+        , Time2SpecificOutcome, SpecificOutcome
+        , Exposure
+        , Age_at_lmp, `year(lmp)`
+        , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset
+    )
 glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + .
-glm.weights = data$StabilizedWeight
-nIteration = 500  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
+# glm.weights = data$StabilizedWeight
+glm.weights = NULL
+# nIteration = 10  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
+nIteration = 20  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
 set.seed(1)
 t0 = Sys.time()
+globalenv.counter = -1
 boot.output = boot(
-    data = data
+    data = data, Interval = 7
     , statistic = function.boot.statistic_RiskDifference, glm.formula = glm.formula,  glm.weights = glm.weights, coef.exp = T
     , R = nIteration
 )
-Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations? 
+Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
-# There were 50 or more warnings (use warnings() to see the first 50)
-# > Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations? 
-# Time difference of 5 mins
+#@ bootstrap confidence interval (manual) ----
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% str #----
+bind_rows(boot.output$t0, boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
+boot.output #----
+boot.output %>% str(max.level = 1) #----
+# 0..1..2..3..4..5..6..7..8..9..10..11..12..13..14..15..16..17..18..19..20..> Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
+# Time difference of 27.27654 secs
 # > warnings()
 # Warning messages:
-# 1: In eval(family$initialize) : non-integer #successes in a binomial glm!
-
-
-
-boot.output$t0
-boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)
-boot.output
-boot.output %>% str #----
-# > boot.output$t0
-#              max(k) pNoEvent_k.cumprod0 pNoEvent_k.cumprod1      RiskDifference         (Intercept)            Exposure                   k              I(k^2)          Exposure:k     Exposure:I(k^2) 
-#        40.000000000         0.573045080         0.696292010         0.123246930         0.009855443         0.332824553         0.895475841         1.004014857         1.038979833         0.999527466 
-# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)
-#              max(k) pNoEvent_k.cumprod0 pNoEvent_k.cumprod1      RiskDifference         (Intercept)            Exposure                   k              I(k^2)          Exposure:k     Exposure:I(k^2) 
-#        40.000000000         0.576556930         0.685683786         0.109126856         0.009775713         0.356738876         0.895381173         1.004016970         1.042598056         0.999451570 
-# > boot.output
+# 1: In max(vapply(X = df_col, FUN = nchar_type, FUN.VALUE = numeric(1),  ... :
+#   no non-missing arguments to max; returning -Inf
+# 2: In max(vapply(X = df_col, FUN = nchar_type, FUN.VALUE = numeric(1),  ... :
+#   no non-missing arguments to max; returning -Inf
+# 3: In max(vapply(X = df_col, FUN = nchar_type, FUN.VALUE = numeric(1),  ... :
+#   no non-missing arguments to max; returning -Inf
+# 4: In max(vapply(X = df_col, FUN = nchar_type, FUN.VALUE = numeric(1),  ... :
+#   no non-missing arguments to max; returning -Inf
+# > 
+# > #@ bootstrap confidence interval (manual) ----
+# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
+#       2.5%      97.5% 
+# 0.06483304 0.12071529 
+# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+#            [,1]      [,2]
+# [1,] 0.05131718 0.1148298
+# [2,] 0.07977163 0.1260402
+# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
+# 40 
+# 20 
+# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% str #----
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  22 variables:
+#  $ max(k)                                   : num  40 40 40 40 40 40 40 40 40 40 ...
+#  $ pNoEvent_k.cumprod0                      : num  0.645 0.652 0.678 0.677 0.661 ...
+#  $ pNoEvent_k.cumprod1                      : num  0.731 0.767 0.789 0.765 0.712 ...
+#  $ RiskDifference                           : num  0.0857 0.1148 0.1108 0.0877 0.0513 ...
+#  $ (Intercept)                              : num  1.98e-25 1.14e-19 7.71e-14 6.38e-29 1.42e-17 ...
+#  $ Exposure                                 : num  0.343 0.144 0.318 0.319 0.38 ...
+#  $ k                                        : num  0.888 0.892 0.895 0.897 0.892 ...
+#  $ I(k^2)                                   : num  1 1 1 1 1 ...
+#  $ Age_at_lmp                               : num  1.03 1.01 1.03 1.01 1.02 ...
+#  $ `year(lmp)`                              : num  1.03 1.02 1.01 1.03 1.02 ...
+#  $ t_N180_42.ICD9_CKD_exceptARF             : num  2.207 0.748 0.894 1.388 1.419 ...
+#  $ t_N180_42.ICD9_HTN.Superset              : num  1.45 1.57 1.38 1.5 1.49 ...
+#  $ t_N180_42.ICD9_Asthma                    : num  0.765 0.815 0.834 0.865 0.504 ...
+#  $ t_N180_42.ICD9_Thyroid.Superset          : num  1.19 1.08 1.17 1.01 1.21 ...
+#  $ t_N180_42.ICD9_Depression.Superset       : num  0.982 0.866 1.259 1.041 1.2 ...
+#  $ t_N180_42.ICD9_SubstanceAbuse            : num  1.329 1.221 0.835 1.06 1.066 ...
+#  $ t_N180_42.ICD9_Bipolar                   : num  0.886 1.124 0.697 0.963 0.771 ...
+#  $ t_N180_42.ICD9_Anxiety                   : num  1.52 1.13 1.38 1.04 1.09 ...
+#  $ t_N180_42.ICD9_Acne                      : num  0.209 0.651 0.45 0.662 0.383 ...
+#  $ t_N180_42.ICD9_CPT_PregnancyTest.Superset: num  1.46 1.56 1.89 1.85 1.69 ...
+#  $ Exposure:k                               : num  1.05 1.09 1.03 1.05 1.03 ...
+#  $ Exposure:I(k^2)                          : num  0.999 0.999 1 0.999 1 ...
+# > bind_rows(boot.output$t0, boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
+# # A tibble: 2 x 6
+#   pNoEvent_k.cumprod0 pNoEvent_k.cumprod1 RiskDifference Exposure `Exposure:k` `Exposure:I(k^2)`
+#                 <dbl>               <dbl>          <dbl>    <dbl>        <dbl>             <dbl>
+# 1               0.657               0.762         0.105     0.339         1.04             1.000
+# 2               0.664               0.759         0.0951    0.347         1.04             1.000
+# > boot.output #----
 # 
 # ORDINARY NONPARAMETRIC BOOTSTRAP
 # 
 # 
 # Call:
 # boot(data = data, statistic = function.boot.statistic_RiskDifference, 
-#     R = nIteration, glm.formula = glm.formula, glm.weights = glm.weights, 
-#     coef.exp = T)
+#     R = nIteration, Interval = 7, glm.formula = glm.formula, 
+#     glm.weights = glm.weights, coef.exp = T)
 # 
 # 
 # Bootstrap Statistics :
 #          original        bias     std. error
-# t1*  40.000000000  0.000000e+00 0.0000000000
-# t2*   0.573045080  3.511850e-03 0.0125637383
-# t3*   0.696292010 -1.060822e-02 0.0240055076
-# t4*   0.123246930 -1.412007e-02 0.0270655026
-# t5*   0.009855443 -7.972915e-05 0.0007487581
-# t6*   0.332824553  2.391432e-02 0.1027704698
-# t7*   0.895475841 -9.466814e-05 0.0044124618
-# t8*   1.004014857  2.112864e-06 0.0001328992
-# t9*   1.038979833  3.618223e-03 0.0203703832
-# t10*  0.999527466 -7.589608e-05 0.0003991006
-# > boot.output %>% str #----
+# t1*  4.000000e+01  0.000000e+00 0.000000e+00
+# t2*  6.573246e-01  7.032197e-03 1.380559e-02
+# t3*  7.622908e-01 -2.852054e-03 2.001808e-02
+# t4*  1.049662e-01 -9.884251e-03 1.635798e-02
+# t5*  2.419275e-39  5.292805e+06 2.367015e+07
+# t6*  3.388790e-01  8.221787e-03 8.626298e-02
+# t7*  8.946474e-01 -6.547984e-04 4.692863e-03
+# t8*  1.004069e+00 -9.871162e-06 1.518756e-04
+# t9*  1.018015e+00  9.031684e-04 6.973439e-03
+# t10* 1.042311e+00 -3.974469e-03 2.461542e-02
+# t11* 7.632357e-01  1.566441e-01 5.419520e-01
+# t12* 1.458356e+00  4.705841e-02 8.814592e-02
+# t13* 7.022655e-01  8.231101e-03 1.372621e-01
+# t14* 1.053798e+00  5.248046e-02 9.392220e-02
+# t15* 9.874735e-01  8.620280e-02 1.806211e-01
+# t16* 1.143805e+00  2.618509e-02 2.294632e-01
+# t17* 9.421607e-01 -5.627713e-02 2.062355e-01
+# t18* 1.238583e+00 -2.095292e-02 2.377621e-01
+# t19* 4.391956e-01  1.289861e-02 1.319285e-01
+# t20* 1.697409e+00 -1.221973e-02 1.119179e-01
+# t21* 1.038660e+00  4.218374e-04 2.008776e-02
+# t22* 9.995132e-01  4.065091e-05 3.577571e-04
+# > boot.output %>% str(max.level = 1) #----
 # List of 11
-#  $ t0       : Named num [1:10] 40 0.57305 0.69629 0.12325 0.00986 ...
-#   ..- attr(*, "names")= chr [1:10] "max(k)" "pNoEvent_k.cumprod0" "pNoEvent_k.cumprod1" "RiskDifference" ...
-#  $ t        : num [1:1000, 1:10] 40 40 40 40 40 40 40 40 40 40 ...
-#  $ R        : num 1000
-#  $ data     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	95932 obs. of  4 variables:
-#   ..$ Dk_plus1        : logi [1:95932] FALSE FALSE FALSE FALSE FALSE FALSE ...
-#   ..$ Exposure        : num [1:95932] 0 0 0 0 0 0 0 0 0 0 ...
-#   ..$ k               : num [1:95932] 0 1 2 3 4 5 6 7 8 9 ...
-#   ..$ StabilizedWeight: num [1:95932] 0.95 0.95 0.95 0.95 0.95 ...
+#  $ t0       : Named num [1:22] 4.00e+01 6.57e-01 7.62e-01 1.05e-01 2.42e-39 ...
+#   ..- attr(*, "names")= chr [1:22] "max(k)" "pNoEvent_k.cumprod0" "pNoEvent_k.cumprod1" "RiskDifference" ...
+#  $ t        : num [1:20, 1:22] 40 40 40 40 40 40 40 40 40 40 ...
+#  $ R        : num 20
+#  $ data     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2797 obs. of  16 variables:
 #  $ seed     : int [1:626] 403 624 -169270483 -442010614 -603558397 -222347416 1489374793 865871222 1734802815 98005428 ...
-#  $ statistic:function (data, index, glm.formula, glm.weights = NULL, ...)  
-#   ..- attr(*, "srcref")= 'srcref' int [1:8] 1 42 20 1 42 1 1 20
-#   .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x00000213b48278a0> 
+#  $ statistic:function (data, index, glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + ., glm.weights = NULL, Interval = 1, ...)  
+#   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 42 56 1 42 1 1 56
+#   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x15f8efd8> 
 #  $ sim      : chr "ordinary"
-#  $ call     : language boot(data = data, statistic = function.boot.statistic_RiskDifference, R = nIteration, glm.formula = glm.formula, | __truncated__
+#  $ call     : language boot(data = data, statistic = function.boot.statistic_RiskDifference, R = nIteration, Interval = 7, glm.formula =| __truncated__
 #  $ stype    : chr "i"
-#  $ strata   : num [1:95932] 1 1 1 1 1 1 1 1 1 1 ...
-#  $ weights  : num [1:95932] 1.04e-05 1.04e-05 1.04e-05 1.04e-05 1.04e-05 ...
+#  $ strata   : num [1:2797] 1 1 1 1 1 1 1 1 1 1 ...
+#  $ weights  : num [1:2797] 0.000358 0.000358 0.000358 0.000358 0.000358 ...
 #  - attr(*, "class")= chr "boot"
 #  - attr(*, "boot_type")= chr "boot"
 
 
 
-
-
-
+#@ nIteration = 500 =====
+library(boot)
+data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
+    mutate(
+        Time2Censor = PrimaryOutcome123456.time
+        # , Censor = PrimaryOutcome123456
+        , Time2SpecificOutcome = PrimaryOutcome123456.time
+        , SpecificOutcome = PrimaryOutcome123456
+    ) %>%
+    select(
+        Time2Censor # , Censor
+        , Time2SpecificOutcome, SpecificOutcome
+        , Exposure
+        , Age_at_lmp, `year(lmp)`
+        , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset
+    )
+glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + .
+# glm.weights = data$StabilizedWeight
+glm.weights = NULL
+# nIteration = 10  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
+nIteration = 500  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
+set.seed(1)
+t0 = Sys.time()
+globalenv.counter = -1
+boot.output = boot(
+    data = data, Interval = 7
+    , statistic = function.boot.statistic_RiskDifference, glm.formula = glm.formula,  glm.weights = glm.weights, coef.exp = T
+    , R = nIteration
+)
+Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
+warnings()
 #@ bootstrap confidence interval (manual) ----
-boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} #----
-boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
-# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} #----
-# # A tibble: 1,000 x 10
-#    `max(k)` pNoEvent_k.cumprod0 pNoEvent_k.cumprod1 RiskDifference `(Intercept)` Exposure     k `I(k^2)` `Exposure:k` `Exposure:I(k^2)`
-#       <dbl>               <dbl>               <dbl>          <dbl>         <dbl>    <dbl> <dbl>    <dbl>        <dbl>             <dbl>
-#  1       40               0.603               0.687         0.0848       0.00980    0.322 0.893     1.00         1.04             1.000
-#  2       40               0.593               0.632         0.0396       0.00833    0.368 0.899     1.00         1.07             0.999
-#  3       40               0.590               0.680         0.0894       0.00996    0.340 0.897     1.00         1.03             1.000
-#  4       40               0.562               0.680         0.118        0.00873    0.363 0.902     1.00         1.05             0.999
-#  5       40               0.574               0.684         0.109        0.00927    0.451 0.892     1.00         1.02             1.000
-#  6       40               0.552               0.696         0.144        0.0101     0.465 0.894     1.00         1.04             0.999
-#  7       40               0.618               0.671         0.0529       0.00976    0.336 0.898     1.00         1.04             1.000
-#  8       40               0.586               0.695         0.108        0.00850    0.430 0.900     1.00         1.04             0.999
-#  9       40               0.556               0.689         0.133        0.0106     0.277 0.890     1.00         1.06             0.999
-# 10       40               0.572               0.662         0.0895       0.00901    0.295 0.899     1.00         1.06             0.999
-# # ... with 990 more rows
-# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
-#   40 
-# 1000 
-
 boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
-boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(25/2) + 0:1], .[trunc(975/2) + 0:1])}
-# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
-#      2.5%     97.5% 
-# 0.0554281 0.1617393 
-# > boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[c(25, 26)], .[c(975, 976)])}
-#            [,1]      [,2]
-# [1,] 0.05538754 0.1617143
-# [2,] 0.05542914 0.1627116
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
+boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% str #----
+bind_rows(boot.output$t0, boot.output %>% {set_names(as.tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
+boot.output #----
+boot.output %>% str(max.level = 1) #----
 
 
 
 
-
+                                               
+                                               
+                                               
+                                               
+                                               
+                                               
+                                               
+                                               
+                                               
+                                               
+#@ ======
 norm.inter <- function(t,alpha)
     # Interpolation on the normal quantile scale. 
     # For a non-integer order statistic this function interpolates between the surrounding order statistics using the normal quantile scale. 
