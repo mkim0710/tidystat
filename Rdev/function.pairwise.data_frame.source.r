@@ -1,7 +1,7 @@
 
 # function.cross_join.source.r
 
-# https://github.com/mkim0710/tidystat/new/master/Rdev/function.cross_join.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/function.cross_join.source.r
 # https://stackoverflow.com/questions/35406535/cross-join-in-dplyr-in-r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/function.pairwise.data_frame.source.r
 
