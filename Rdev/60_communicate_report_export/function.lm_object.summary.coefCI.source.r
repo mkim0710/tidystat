@@ -1,6 +1,48 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
 
 
+# #@ analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates ====
+# data = analyticDF2797.PersonTime7 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
+#     select(
+#         Dk_plus1, Exposure, k
+#         , Age_at_lmp, `year(lmp)`
+#         , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset 
+#     )
+# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates = glm(formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + . , data = data, family = binomial)
+# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column %>% as.tibble #----
+# # > analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column %>% as.tibble #----
+# # # A tibble: 18 x 5
+# #    rowname                                   `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
+# #    <chr>                                              <dbl>   <dbl>    <dbl>      <dbl>
+# #  1 (Intercept)                                         0       0    2.35e+10      0.12 
+# #  2 Exposure                                            0.34    0.17 6.90e- 1      0    
+# #  3 k                                                   0.89    0.87 9.20e- 1      0    
+# #  4 I(k^2)                                              1       1    1.00e+ 0      0    
+# #  5 Age_at_lmp                                          1.02    1    1.03e+ 0      0.01 
+# #  6 `year(lmp)`                                         1.04    0.99 1.10e+ 0      0.15 
+# #  7 t_N180_42.ICD9_CKD_exceptARF                        0.76    0.24 2.42e+ 0      0.65 
+# #  8 t_N180_42.ICD9_HTN.Superset                         1.46    1.25 1.69e+ 0      0    
+# #  9 t_N180_42.ICD9_Asthma                               0.7     0.47 1.04e+ 0      0.08 
+# # 10 t_N180_42.ICD9_Thyroid.Superset                     1.05    0.86 1.29e+ 0      0.62 
+# # 11 t_N180_42.ICD9_Depression.Superset                  0.99    0.7  1.39e+ 0      0.94 
+# # 12 t_N180_42.ICD9_SubstanceAbuse                       1.14    0.75 1.73e+ 0      0.53 
+# # 13 t_N180_42.ICD9_Bipolar                              0.94    0.59 1.50e+ 0      0.8  
+# # 14 t_N180_42.ICD9_Anxiety                              1.24    0.91 1.69e+ 0      0.18 
+# # 15 t_N180_42.ICD9_Acne                                 0.44    0.18 1.06e+ 0      0.07 
+# # 16 t_N180_42.ICD9_CPT_PregnancyTest.Superset           1.7     1.48 1.94e+ 0      0    
+# # 17 Exposure:k                                          1.04    0.96 1.12e+ 0      0.32 
+# # 18 Exposure:I(k^2)                                     1       1    1.00e+ 0      0.580
+
+
+
+
+
+
+
+
+
+
+#@ ==============
 function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2, p.adjust_method = c("fdr", "bonferroni")) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.source.r")
     if(class(lm_object) != "lm") {
