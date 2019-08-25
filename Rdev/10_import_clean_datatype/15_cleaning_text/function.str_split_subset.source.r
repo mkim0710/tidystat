@@ -270,6 +270,42 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 
 
 
+all.equal(
+    tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
+        # $concept_name.toupper.rm_METFORMIN
+        mutate(concept_name.toupper.rm_METFORMIN = 
+                   concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
+        ) %>% 
+        mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName))
+    , 
+    tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
+        # $concept_name.toupper.rm_METFORMIN
+        mutate(concept_name.toupper.rm_METFORMIN = 
+                   concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+        ) %>% 
+        mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
+)
+# > all.equal(
+# +     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
+# +         # $concept_name.toupper.rm_METFORMIN
+# +         mutate(concept_name.toupper.rm_METFORMIN = 
+# +                    concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
+# +         ) %>% 
+# +         mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName))
+# +     , 
+# +     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
+# +         # $concept_name.toupper.rm_METFORMIN
+# +         mutate(concept_name.toupper.rm_METFORMIN = 
+# +                    concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+# +         ) %>% 
+# +         mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
+# + )
+# [1] TRUE
+
+
+
+
+
 
 
 
