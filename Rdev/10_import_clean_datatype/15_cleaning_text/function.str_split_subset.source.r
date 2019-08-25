@@ -271,7 +271,37 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 
 
 
+
 #@ debugged v5 -----
+tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
+    # $concept_name.toupper.rm_METFORMIN
+    mutate(concept_name.toupper.rm_METFORMIN = 
+               concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+    ) %>% 
+    mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
+# > tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
+# +     # $concept_name.toupper.rm_METFORMIN
+# +     mutate(concept_name.toupper.rm_METFORMIN = 
+# +                concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+# +     ) %>% 
+# +     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
+# # A tibble: 49 x 4
+#    concept_name.toupper.rm_BrandName                                              is.combination concept_name.toupper.rm_METFORMIN duplicated
+#    <chr>                                                                          <lgl>          <chr>                             <lgl>     
+#  1 METFORMIN HYDROCHLORIDE 500 MG ORAL TABLET                                     FALSE          NA                                FALSE     
+#  2 24 HR METFORMIN HYDROCHLORIDE 500 MG EXTENDED RELEASE ORAL TABLET              FALSE          NA                                FALSE     
+#  3 METFORMIN HYDROCHLORIDE 1000 MG ORAL TABLET                                    FALSE          NA                                FALSE     
+#  4 24 HR METFORMIN HYDROCHLORIDE 750 MG EXTENDED RELEASE ORAL TABLET              FALSE          NA                                FALSE     
+#  5 METFORMIN HYDROCHLORIDE 850 MG ORAL TABLET                                     FALSE          NA                                FALSE     
+#  6 "MODIFIED 24 HR METFORMIN HYDROCHLORIDE 500 MG EXTENDED RELEASE ORAL TABLET "  FALSE          NA                                FALSE     
+#  7 "MODIFIED 24 HR METFORMIN HYDROCHLORIDE 1000 MG EXTENDED RELEASE ORAL TABLET " FALSE          NA                                FALSE     
+#  8 OSMOTIC 24 HR METFORMIN HYDROCHLORIDE 1000 MG EXTENDED RELEASE ORAL TABLET     FALSE          NA                                FALSE     
+#  9 "METFORMIN HYDROCHLORIDE 1000 MG / SITAGLIPTIN 50 MG ORAL TABLET "             TRUE           " SITAGLIPTIN 50 MG ORAL TABLET " FALSE     
+# 10 GLYBURIDE 5 MG / METFORMIN HYDROCHLORIDE 500 MG ORAL TABLET                    TRUE           "GLYBURIDE 5 MG "                 FALSE     
+# # ... with 39 more rows
+
+                                                                            
+                                                                            
 all.equal(
     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
         # $concept_name.toupper.rm_METFORMIN
