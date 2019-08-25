@@ -270,6 +270,8 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 
 
 
+
+#@ debugged v5 -----
 all.equal(
     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
         # $concept_name.toupper.rm_METFORMIN
