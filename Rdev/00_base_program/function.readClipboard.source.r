@@ -31,5 +31,5 @@ tibble::tribble(
 
 # https://www.johndcook.com/blog/r_excel_clipboard/
 objectname %>% writeClipboard
-objectname %>% write.table("clipboard", sep="\t", row.names=FALSE, col.names=FALSE)
+objectname %>% write.table("clipboard", sep="\t", row.names=F, col.names=T)
 
