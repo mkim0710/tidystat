@@ -33,3 +33,19 @@ tibble::tribble(
 objectname %>% writeClipboard
 objectname %>% write.table("clipboard", sep="\t", row.names=F, col.names=T)
 
+
+
+
+#@ nBreakdown.list =====
+nBreakdown.list = list()
+nBreakdown.list$Cohort                                  = ID_Criteria.lgl.tbl %>% nrow
+nBreakdown.list$Cohort1845                              = ID_Criteria.lgl.tbl %>% filter(Age_at_lmp %in% 18:45) %>% nrow
+nBreakdown.list$Cohort1845AnyDM                         = ID_Criteria.lgl.tbl %>% filter(Age_at_lmp %in% 18:45) %>% filter(Inc2.ia.1) %>% nrow
+nBreakdown.list$Cohort1845PregestationalDM              = ID_Criteria.lgl.tbl %>% filter(Age_at_lmp %in% 18:45) %>% filter(Inc2.ia.1) %>% filter(Inc2.ia.2) %>% nrow
+nBreakdown.list$Cohort1845PregestationalDMtype1         = ID_Criteria.lgl.tbl %>% filter(Age_at_lmp %in% 18:45) %>% filter(Inc2.ia.1) %>% filter(Inc2.ia.2) %>% filter(!Inc2.ia.3) %>% nrow
+nBreakdown.list$Cohort1845PregestationalDMtype2         = ID_Criteria.lgl.tbl %>% filter(Age_at_lmp %in% 18:45) %>% filter(Inc2.ia.1) %>% filter(Inc2.ia.2) %>% filter(Inc2.ia.3) %>% filter(Inc2.ia.4) %>% nrow
+nBreakdown.list$Cohort1845PregestationalDMunspecified   = ID_Criteria.lgl.tbl %>% filter(Age_at_lmp %in% 18:45) %>% filter(Inc2.ia.1) %>% filter(Inc2.ia.2) %>% filter(Inc2.ia.3) %>% filter(!Inc2.ia.4) %>% nrow
+nBreakdown.list %>% str #----
+nBreakdown.list %>% as.data.frame %>% t %>% as.data.frame %>% rownames_to_column %>% write.table("clipboard", sep="\t", row.names=F, col.names=T)
+
+
