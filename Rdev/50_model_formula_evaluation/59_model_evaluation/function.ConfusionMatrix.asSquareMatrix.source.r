@@ -1,5 +1,6 @@
 # function.ConfusionMatrix.asSquareMatrix.source.r
 
+library(tidyverse)
 InputMatrix.tbl = 
     structure(list(
         Actual = c("1a", "1b", "2a", "2b", "3a", "3b", "4")
