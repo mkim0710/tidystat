@@ -10,8 +10,12 @@ dataset.tableone = dataset %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     CreateTableOne(data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
+
+sink("dataset.tableone.txt")
 dataset.tableone %>% print(showAllLevels = T, smd = T) #----
+sink("dataset.tableone.IQR.txt")
 dataset.tableone %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
+sink()
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
 dataset.tableone %>% print(showAllLevels = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
@@ -41,8 +45,12 @@ dataset.tableone_by_exposure = dataset %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
+
+sink("dataset.tableone_by_exposure.txt")
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T) #----
+sink("dataset.tableone_by_exposure.IQR.txt")
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
+sink()
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
@@ -100,9 +108,12 @@ dataset.tableone_by_MissingPattern = dataset %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = varnames4MissingPattern, data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
-dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T) #----
-dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 
+sink("dataset.tableone_by_MissingPattern.txt")
+dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T) #----
+sink("dataset.tableone_by_MissingPattern.IQR.txt")
+dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
+sink()
 
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
@@ -186,8 +197,12 @@ dataset.svydesign.tableone = dataset.svydesign %>% select(-rowname, -PERSON_ID) 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(data = ., test = T, includeNA = T)
 vars4IQR = names(dataset.svydesign)[dataset.svydesign %>% map_lgl(is.numeric)]
-dataset.svydesign.tableone %>% print(showAllLevels = T, smd = T)
-dataset.svydesign.tableone %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR)
+
+sink("dataset.svydesign.tableone.txt")
+dataset.svydesign.tableone %>% print(showAllLevels = T, smd = T) #----
+sink("dataset.svydesign.tableone.IQR.txt")
+dataset.svydesign.tableone %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
+sink()
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
 dataset.svydesign.tableone %>% print(showAllLevels = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
@@ -214,8 +229,13 @@ dataset.svydesign.tableone_by_exposure = dataset.svydesign %>% select(-rowname, 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(strata = varnames4exposure, data = ., test = T)
 vars4IQR = names(dataset.svydesign)[dataset.svydesign %>% map_lgl(is.numeric)]
-dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T)
-dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR)
+
+sink("dataset.svydesign.tableone_by_exposure.txt")
+dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T) #----
+sink("dataset.svydesign.tableone_by_exposure.IQR.txt")
+dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
+sink()
+               
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
 dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
