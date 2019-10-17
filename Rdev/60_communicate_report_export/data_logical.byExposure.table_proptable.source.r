@@ -197,40 +197,40 @@ cbind(
 # +     , 
 # +     df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
 # +     , 
-# +     df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(3) #----
+# +     df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
 # + )
-#                                   Sum                                          
-# Intervention                0   1   1 0.000 0.006 0.002   0.000   0.629   0.235
-# Control                     1   0   1 0.004 0.000 0.002   0.376   0.000   0.235
-# Nothing                     0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# Ntotal                    266 159 425 1.000 1.000 1.000 100.000 100.000 100.000
-# PrimaryOutcome1.i.1         9   2  11 0.034 0.013 0.026   3.383   1.258   2.588
-# PrimaryOutcome1.i.2         7   1   8 0.026 0.006 0.019   2.632   0.629   1.882
-# PrimaryOutcome1.ii.1        2   4   6 0.008 0.025 0.014   0.752   2.516   1.412
-# PrimaryOutcome1.ii.2        0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# PrimaryOutcome1.iii         0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# PrimaryOutcome3             1   0   1 0.004 0.000 0.002   0.376   0.000   0.235
-# PrimaryOutcome4             0   1   1 0.000 0.006 0.002   0.000   0.629   0.235
-# PrimaryOutcome5             0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# PrimaryOutcome6             1   3   4 0.004 0.019 0.009   0.376   1.887   0.941
-# PrimaryOutcome1             8   5  13 0.030 0.031 0.031   3.008   3.145   3.059
-# PrimaryOutcome2            66  39 105 0.248 0.245 0.247  24.812  24.528  24.706
-# PrimaryOutcome123456       74  44 118 0.278 0.277 0.278  27.820  27.673  27.765
-# SecondaryOutcome1          59  21  80 0.222 0.132 0.188  22.180  13.208  18.824
-# SecondaryOutcome4           0   1   1 0.000 0.006 0.002   0.000   0.629   0.235
-# SecondaryOutcome5           0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# SecondaryOutcome6           1   3   4 0.004 0.019 0.009   0.376   1.887   0.941
-# SecondaryOutcome7           0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# SecondaryOutcome10          7   5  12 0.026 0.031 0.028   2.632   3.145   2.824
-# SecondaryOutcome13        121  89 210 0.455 0.560 0.494  45.489  55.975  49.412
-# SecondaryOutcome14          0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# SecondaryOutcome15          0   0   0 0.000 0.000 0.000   0.000   0.000   0.000
-# SecondaryOutcome15.i        6   2   8 0.023 0.013 0.019   2.256   1.258   1.882
-# SecondaryOutcome15.ii       0   1   1 0.000 0.006 0.002   0.000   0.629   0.235
-# SecondaryOutcome17         93  56 149 0.350 0.352 0.351  34.962  35.220  35.059
-# SecondaryOutcome20          1   0   1 0.004 0.000 0.002   0.376   0.000   0.235
-# SecondaryOutcome21          7   0   7 0.026 0.000 0.016   2.632   0.000   1.647
-# SecondaryOutcomeP1456fhkl 174  94 268 0.654 0.591 0.631  65.414  59.119  63.059
+#                                   Sum                                       
+# Intervention                0   1   1 0.000 0.006 0.002   0.00   0.63   0.24
+# Control                     1   0   1 0.004 0.000 0.002   0.38   0.00   0.24
+# Nothing                     0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# Ntotal                    266 159 425 1.000 1.000 1.000 100.00 100.00 100.00
+# PrimaryOutcome1.i.1         9   2  11 0.034 0.013 0.026   3.38   1.26   2.59
+# PrimaryOutcome1.i.2         7   1   8 0.026 0.006 0.019   2.63   0.63   1.88
+# PrimaryOutcome1.ii.1        2   4   6 0.008 0.025 0.014   0.75   2.52   1.41
+# PrimaryOutcome1.ii.2        0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# PrimaryOutcome1.iii         0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# PrimaryOutcome3             1   0   1 0.004 0.000 0.002   0.38   0.00   0.24
+# PrimaryOutcome4             0   1   1 0.000 0.006 0.002   0.00   0.63   0.24
+# PrimaryOutcome5             0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# PrimaryOutcome6             1   3   4 0.004 0.019 0.009   0.38   1.89   0.94
+# PrimaryOutcome1             8   5  13 0.030 0.031 0.031   3.01   3.14   3.06
+# PrimaryOutcome2            66  39 105 0.248 0.245 0.247  24.81  24.53  24.71
+# PrimaryOutcome123456       74  44 118 0.278 0.277 0.278  27.82  27.67  27.76
+# SecondaryOutcome1          59  21  80 0.222 0.132 0.188  22.18  13.21  18.82
+# SecondaryOutcome4           0   1   1 0.000 0.006 0.002   0.00   0.63   0.24
+# SecondaryOutcome5           0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# SecondaryOutcome6           1   3   4 0.004 0.019 0.009   0.38   1.89   0.94
+# SecondaryOutcome7           0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# SecondaryOutcome10          7   5  12 0.026 0.031 0.028   2.63   3.14   2.82
+# SecondaryOutcome13        121  89 210 0.455 0.560 0.494  45.49  55.97  49.41
+# SecondaryOutcome14          0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# SecondaryOutcome15          0   0   0 0.000 0.000 0.000   0.00   0.00   0.00
+# SecondaryOutcome15.i        6   2   8 0.023 0.013 0.019   2.26   1.26   1.88
+# SecondaryOutcome15.ii       0   1   1 0.000 0.006 0.002   0.00   0.63   0.24
+# SecondaryOutcome17         93  56 149 0.350 0.352 0.351  34.96  35.22  35.06
+# SecondaryOutcome20          1   0   1 0.004 0.000 0.002   0.38   0.00   0.24
+# SecondaryOutcome21          7   0   7 0.026 0.000 0.016   2.63   0.00   1.65
+# SecondaryOutcomeP1456fhkl 174  94 268 0.654 0.591 0.631  65.41  59.12  63.06
 
 
 
