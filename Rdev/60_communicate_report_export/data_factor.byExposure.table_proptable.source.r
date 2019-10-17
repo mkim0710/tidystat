@@ -81,7 +81,8 @@ data %>% mutate(Exposure = Intervention) %>%
         map2_df(select(., matches("_sum")), select(., matches("_mean")), function(x, y) {
             paste0(x, " (", round(y*100,2), "%)")
         }) 
-    )} %>% gather(key, value, -Exposure) %>% spread(Exposure, value)
+    )} %>% gather(key, value, -Exposure) %>% spread(Exposure, value) %>% 
+    print(n=99)
 # > data %>% mutate(Exposure = Intervention) %>% 
 # +     group_by(Exposure) %>% 
 # +     {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time"), -matches("date")), funs(sum, mean)))} %>% 
