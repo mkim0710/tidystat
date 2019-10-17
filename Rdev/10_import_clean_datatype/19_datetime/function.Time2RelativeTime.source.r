@@ -1,4 +1,5 @@
 # function.Time2RelativeTime.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/19_datetime/function.Time2RelativeTime.source.r
 
 dput(unlist(strsplit(Sys.getlocale(), ";")))
 dput(l10n_info())
