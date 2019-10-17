@@ -274,7 +274,12 @@ cbind(
 
 
 
-#@ ------
+
+
+
+
+
+#@ data_logical.byExposure.table_proptable.source.r ------
 
 data %>% 
     group_by(Intervention, Control, Nothing) %>%
@@ -363,6 +368,56 @@ data %>%
 # SecondaryOutcome21          7   0   7 0.026 0.000 0.016   2.63   0.00   1.65
 # SecondaryOutcomeP1456fhkl 174  94 268 0.654 0.591 0.631  65.41  59.12  63.06
 
+
+
+
+
+
+
+
+
+
+#@ data_factor.byExposure.table_proptable.source.r -----
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/data_factor.byExposure.table_proptable.source.r
+
+data = ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% 
+    select(Intervention, Control, Nothing, matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+"), SecondaryOutcomeP1456fhkl)
+data %>% mutate(Exposure = Intervention) %>% 
+    group_by(Exposure) %>% 
+    {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time"), -matches("date")), funs(sum, mean)))} %>% 
+    {bind_cols(
+        transmute(., Exposure = Exposure, `n()` = paste0(`n()`, " (100%)"))
+        ,
+        map2_df(select(., matches("_sum")), select(., matches("_mean")), function(x, y) {
+            paste0(x, " (", round(y*100,2), "%)")
+        }) 
+    )} %>% gather(key, value, -Exposure) %>% spread(Exposure, value) %>% 
+    print(n=99)
+# > data %>% mutate(Exposure = Intervention) %>% 
+# +     group_by(Exposure) %>% 
+# +     {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time"), -matches("date")), funs(sum, mean)))} %>% 
+# +     {bind_cols(
+# +         transmute(., Exposure = Exposure, `n()` = paste0(`n()`, " (100%)"))
+# +         ,
+# +         map2_df(select(., matches("_sum")), select(., matches("_mean")), function(x, y) {
+# +             paste0(x, " (", round(y*100,2), "%)")
+# +         }) 
+# +     )} %>% gather(key, value, -Exposure) %>% spread(Exposure, value)
+# Joining, by = "Exposure"
+# # A tibble: 28 x 3
+#    key                      `FALSE`     `TRUE`     
+#    <chr>                    <chr>       <chr>      
+#  1 n()                      266 (100%)  159 (100%) 
+#  2 PrimaryOutcome1.i.1_sum  9 (3.38%)   2 (1.26%)  
+#  3 PrimaryOutcome1.i.2_sum  7 (2.63%)   1 (0.63%)  
+#  4 PrimaryOutcome1.ii.1_sum 2 (0.75%)   4 (2.52%)  
+#  5 PrimaryOutcome1.ii.2_sum 0 (0%)      0 (0%)     
+#  6 PrimaryOutcome1.iii_sum  0 (0%)      0 (0%)     
+#  7 PrimaryOutcome1_sum      8 (3.01%)   5 (3.14%)  
+#  8 PrimaryOutcome123456_sum 74 (27.82%) 44 (27.67%)
+#  9 PrimaryOutcome2_sum      66 (24.81%) 39 (24.53%)
+# 10 PrimaryOutcome3_sum      1 (0.38%)   0 (0%)     
+# # ... with 18 more rows
 
 
 #@ end -----
