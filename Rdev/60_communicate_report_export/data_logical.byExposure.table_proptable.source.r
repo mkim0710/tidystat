@@ -384,7 +384,7 @@ data = ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>%
     select(Intervention, Control, Nothing, matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+"), SecondaryOutcomeP1456fhkl)
 data %>% mutate(Exposure = Intervention) %>% 
     group_by(Exposure) %>% 
-    {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time"), -matches("date")), funs(sum, mean)))} %>% 
+    {left_join(summarize(., n()), summarise_if(., is.logical, funs(sum, mean)))} %>% 
     {bind_cols(
         transmute(., Exposure = Exposure, `n()` = paste0(`n()`, " (100%)"))
         ,
