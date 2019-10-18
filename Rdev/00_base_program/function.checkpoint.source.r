@@ -36,23 +36,25 @@ getOption("repos")
 library(checkpoint)
 checkpoint("2019-04-15")  # default checkpoint for Microsoft R Open 3.5.3
 getOption("repos")
-# > checkpoint("2019-04-15")  # default checkpoint for Microsoft R Open 3.5.3
-# Can I create directory ~/.checkpoint for internal checkpoint use?
-# 
-# Continue (y/n)? getOption("repos")
-# Error in authorizeFileSystemUse(checkpointLocation) : 
-#   Cannot proceed without access to checkpoint directory
-# > checkpoint("2019-04-15")  # default checkpoint for Microsoft R Open 3.5.3
-# Can I create directory ~/.checkpoint for internal checkpoint use?
-# 
-# Continue (y/n)? y
-# Scanning for packages used in this project
-#   |==========================================================================================================================================================================| 100%
-# - Discovered 15 packages
-# Packages not available in repository and won't be installed:
-#  - benchmarkme
-# Installing packages used in this project 
-#  - Installing ‘boot’
+.libPaths()
+dput(installed.packages(.libPaths()[1])[, "Package"])
+# > getOption("repos")
+# [1] "https://mran.microsoft.com/snapshot/2019-04-15"
+# > .libPaths()
+# [1] "/home/mkim/.checkpoint/2019-04-15/lib/x86_64-pc-linux-gnu/3.4.3" "/home/mkim/.checkpoint/R-3.4.3"                                 
+# [3] "/usr/local/lib64/R/library"  
+# > dput(installed.packages(.libPaths()[1])[, "Package"])
+# structure(c("boot", "cli", "cmprsk", "cowplot", "datapasta", 
+# "DBI", "dplyr", "exactRankTests", "fansi", "ggpubr", "ggsci", 
+# "ggsignif", "glue", "haven", "km.ci", "KMsurv", "lubridate", 
+# "openxlsx", "pillar", "pkgconfig", "plogr", "polynom", "Rcpp", 
+# "rlang", "survival", "survMisc", "tableone", "tibble", "tidyselect", 
+# "tidyverse", "xtable"), .Names = c("boot", "cli", "cmprsk", "cowplot", 
+# "datapasta", "DBI", "dplyr", "exactRankTests", "fansi", "ggpubr", 
+# "ggsci", "ggsignif", "glue", "haven", "km.ci", "KMsurv", "lubridate", 
+# "openxlsx", "pillar", "pkgconfig", "plogr", "polynom", "Rcpp", 
+# "rlang", "survival", "survMisc", "tableone", "tibble", "tidyselect", 
+# "tidyverse", "xtable"))
 
 
 
