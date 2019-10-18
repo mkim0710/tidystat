@@ -27,7 +27,16 @@ dput(Sys.info())
 # "effective_user"))
 
 
+dput(R.Version())
 getOption("repos")
+# > dput(R.Version())
+# structure(list(platform = "x86_64-pc-linux-gnu", arch = "x86_64", 
+#     os = "linux-gnu", system = "x86_64, linux-gnu", status = "", 
+#     major = "3", minor = "4.3", year = "2017", month = "11", 
+#     day = "30", `svn rev` = "73796", language = "R", version.string = "R version 3.4.3 (2017-11-30)", 
+#     nickname = "Kite-Eating Tree"), .Names = c("platform", "arch", 
+# "os", "system", "status", "major", "minor", "year", "month", 
+# "day", "svn rev", "language", "version.string", "nickname"))
 # > getOption("repos")
 #                        CRAN 
 # "https://cran.rstudio.com/" 
@@ -63,6 +72,39 @@ dput(installed.packages(.libPaths()[1])[, "Package"])
 
 
 
+library(tidyverse)
+# > library(tidyverse)
+# ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+# ✔ ggplot2 2.2.1       ✔ purrr   0.2.4  
+# ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+# ✔ tidyr   0.8.1       ✔ stringr 1.2.0  
+# ✔ readr   1.1.1       ✔ forcats 0.3.0  
+# ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+# ✖ dplyr::filter() masks stats::filter()
+# ✖ dplyr::lag()    masks stats::lag()
+
+# select = dplyr::select
+getwd() %>% dput
+path4read = "../data/data.ID_DATE_DX.distinct/"
+path4write = "../data/data.ID_DATE_DX.distinct/"
+
+
+#@ objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"----
+objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
+filename = paste0(objectname, ".rds")
+filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+t0 = Sys.time()
+assign(objectname, readRDS(file.path(path4read, filename)) %>% as.tibble)
+Sys.time() - t0
+# > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+#                                                                                                                           filename       size      KB       MB       GB
+# 1 ../data/data.ID_DATE_DX.distinct//os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014.rds 5353198720 5227733 5105.208 4.985555# > t0 = Sys.time()
+# > assign(objectname, readRDS(file.path(path4read, filename)) %>% as.tibble)
+# Warning message:
+# `as.tibble()` is deprecated, use `as_tibble()` (but mind the new semantics).
+# This warning is displayed once per session. 
+# > Sys.time() - t0
+# Time difference of 28.87869 secs
 
 
 
