@@ -33,16 +33,21 @@ getOption("repos")
 # "https://cran.rstudio.com/" 
 # attr(,"RStudio")
 # [1] TRUE
+
 library(checkpoint)
-checkpoint("2019-04-15")  # default checkpoint for Microsoft R Open 3.5.3
+checkpoint("2019-04-15", scanForPackages = F)  # default checkpoint for Microsoft R Open 3.5.3
 getOption("repos")
 .libPaths()
 dput(installed.packages(.libPaths()[1])[, "Package"])
+# > checkpoint("2019-04-15", scanForPackages = F)  # default checkpoint for Microsoft R Open 3.5.3
+# Skipping package scanning
+# checkpoint process complete
+# ---
 # > getOption("repos")
 # [1] "https://mran.microsoft.com/snapshot/2019-04-15"
 # > .libPaths()
 # [1] "/home/mkim/.checkpoint/2019-04-15/lib/x86_64-pc-linux-gnu/3.4.3" "/home/mkim/.checkpoint/R-3.4.3"                                 
-# [3] "/usr/local/lib64/R/library"  
+# [3] "/usr/local/lib64/R/library"                                     
 # > dput(installed.packages(.libPaths()[1])[, "Package"])
 # structure(c("boot", "cli", "cmprsk", "cowplot", "datapasta", 
 # "DBI", "dplyr", "exactRankTests", "fansi", "ggpubr", "ggsci", 
@@ -55,6 +60,7 @@ dput(installed.packages(.libPaths()[1])[, "Package"])
 # "openxlsx", "pillar", "pkgconfig", "plogr", "polynom", "Rcpp", 
 # "rlang", "survival", "survMisc", "tableone", "tibble", "tidyselect", 
 # "tidyverse", "xtable"))
+
 
 
 
