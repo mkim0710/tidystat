@@ -1,54 +1,43 @@
 # function.ConfusionMatrix.Metrics.source.r
 
 library(tidyverse)
-# InputSquareMatrix.tbl <- read_delim("InputSquareMatrix.tbl.csv", "\t", escape_double = FALSE, trim_ws = TRUE)
+# InputSquareMatrix1.tbl <- read_delim("InputSquareMatrix.tbl.csv", "\t", escape_double = FALSE, trim_ws = TRUE)
+tribble_paste = datapasta::tribble_paste
+tibble::tribble(
+      ~Actual.old, ~Actual,
+             "Ia",     "I",
+             "Ib",     "I",
+            "IIa",    "II",
+            "IIb",    "II",
+           "IIIa",   "III",
+           "IIIb",   "III",
+             "IV",    "IV"
+      ) %>% bind_cols(read.table(file = "clipboard", sep = "\t", header=F)) %>%
+    set_names(c("Actual.old", "Actual", "I", "II", "III", "IV")) %>% 
+    tribble_paste #----
+InputMatrix1.tbl = tibble::tribble(
+    ~Actual.old, ~Actual, ~X1, ~X2, ~X3, ~X4,
+           "Ia",     "I",  45,   2,   1,   0,
+           "Ib",     "I",  17,   3,   1,   0,
+          "IIa",    "II",   3,   6,   1,   0,
+          "IIb",    "II",   3,   2,   1,   1,
+         "IIIa",   "III",   3,   5,   7,   4,
+         "IIIb",   "III",   0,   0,   0,   5,
+           "IV",    "IV",   1,   3,   1,  39
+    )
 
-InputMatrix.tbl = 
-    structure(list(
-        Actual = c("1a", "1b", "2a", "2b", "3a", "3b", "4")
-        , `1` = c(45, 17, 3, 3, 3, 0, 1)
-        , `2` = c(2, 3, 6, 2, 5, 0, 3)
-        , `3` = c(1, 1, 1, 1, 7, 0, 1)
-        , `4` = c(0, 0, 0, 1, 4, 5, 39)
-    ), class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA,-7L))
 
-
-#@ function.ConfusionMatrix.asSquareMatrix ===== 
-
-function.ConfusionMatrix.asSquareMatrix = function(InputMatrix.tbl) {
-    # https://github.com/mkim0710/tidystat/edit/master/Rdev/50_model_formula_evaluation/59_model_evaluation/function.ConfusionMatrix.asSquareMatrix.source.r
-    InputMatrix.tbl %>% {
-        mutate(., 
-               Actual.old = Actual
-               , Actual = str_extract(Actual, paste0("[", paste0(colnames(.), collapse = "|"), "]"))
-        )
-    } %>%
-        select(-matches(".old$")) %>% 
+InputSquareMatrix1.tbl = InputMatrix1.tbl %>% select(-matches(".old$")) %>% 
         group_by(Actual) %>% summarise_all(sum) %>% 
         as.tibble
-}
-
-InputSquareMatrix.tbl = InputMatrix.tbl %>% function.ConfusionMatrix.asSquareMatrix
-InputSquareMatrix.tbl %>% dput #----
-# > InputSquareMatrix.tbl %>% dput
-InputSquareMatrix.tbl = structure(list(
-    Actual = c("1", "2", "3", "4")
-    , `1` = c(62, 6, 3, 1)
-    , `2` = c(5, 8, 5, 3)
-    , `3` = c(2, 2, 7, 1)
-    , `4` = c(0, 1, 9, 39))
-    , class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA, -4L))
-InputSquareMatrix.tbl
-# > InputSquareMatrix.tbl
-# # A tibble: 4 x 5
-#   Actual   `1`   `2`   `3`   `4`
-#   <chr>  <dbl> <dbl> <dbl> <dbl>
-# 1 1         62     5     2     0
-# 2 2          6     8     2     1
-# 3 3          3     5     7     9
-# 4 4          1     3     1    39
-
-
+InputSquareMatrix1.tbl %>% tribble_paste
+InputSquareMatrix1.tbl = tibble::tribble(
+    ~Actual, ~X1, ~X2, ~X3, ~X4,
+        "I",  62,   5,   2,   0,
+       "II",   6,   8,   2,   1,
+      "III",   3,   5,   7,   9,
+       "IV",   1,   3,   1,  39
+    )
 
 
 function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
@@ -85,7 +74,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
     # 15 3     4         9 FALSE FALSE FALSE FALSE TRUE  FALSE FALSE TRUE 
     # 16 4     4        39 FALSE FALSE FALSE FALSE FALSE FALSE TRUE  TRUE 
     
-    
+    out$InputSquareMatrix.tbl.gather = InputSquareMatrix.tbl.gather
     
     for (i in sort(unique(InputSquareMatrix.tbl.gather$Actual))) {
         out[[paste0("ConfusionLongFormat", i)]] = 
@@ -253,6 +242,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
 
 
 
+
 # (mat = as.matrix(read.table(text="  setosa versicolor virginica
 #  setosa         29          0         0
 #  versicolor      0         20         2
@@ -263,9 +253,9 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
 # mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(mat)
 # mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(as.tibble(mat))
 
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix.tbl)
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics
-# > InputSquareMatrix.tbl.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix.tbl)
+InputSquareMatrix.tbl.ConfusionMatrix1.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix1.tbl)
+InputSquareMatrix.tbl.ConfusionMatrix1.Metrics
+# > InputSquareMatrix.tbl.ConfusionMatrix1.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix.tbl)
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 2: In .f(.x[[i]], ...) : NAs introduced by coercion
@@ -350,10 +340,10 @@ InputSquareMatrix.tbl.ConfusionMatrix.Metrics
 
 
 
-InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
-InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Sensitivity") %>% select(MacroAverage) %>% unlist %>% unname #-----
-InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Specificity") %>% select(MacroAverage) %>% unlist %>% unname #-----
-InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "c") %>% select(MacroAverage) %>% unlist %>% unname #-----
+InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
+InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Sensitivity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "Specificity") %>% select(MacroAverage) %>% unlist %>% unname #-----
+InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% filter(rowname == "c") %>% select(MacroAverage) %>% unlist %>% unname #-----
 # > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
 #              rowname                                                                  equation          V1          V2          V3          V4 MacroAverage
 # 1     varname4Actual                                                                      <NA>    Actual_1    Actual_2    Actual_3    Actual_4           NA
@@ -410,11 +400,11 @@ InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% f
 
 
 #@ =====
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
 # > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
 # [1] 0.7532468
 # Warning message:
@@ -441,7 +431,7 @@ InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual")
 
 
 #@ =====
-mat = InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix
+mat = InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix
 mat %>% dput
 # > mat %>% dput
 mat = structure(c(62, 6, 3, 1, 5, 8, 5, 3, 2, 2, 7, 1, 0, 1, 9, 39), .Dim = c(4L,
@@ -581,11 +571,11 @@ mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * 
 # [1] 0.9001339
 
 #@ =====
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
-InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sensitivity = TP/(Actual == TRUE), weighted by proportion of Predicted lables ----
+InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * colSums(.)/sum(.)} %>% sum # weighted mean of Specificity = TN/(Actual == FALSE), weighted by proportion of Predicted lables ----
 # > InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix %>% {sum(diag(.))/sum(.)} # Simple Accuracy ----
 # [1] 0.7532468
 # Warning message:
@@ -614,7 +604,7 @@ InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual")
 
 
 #@ =====
-mat = InputSquareMatrix.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix
+mat = InputSquareMatrix1.tbl %>% map_df(replace_na, 0) %>% column_to_rownames("Actual") %>% as.matrix
 mat %>% dput
 # > mat %>% dput
 mat = structure(c(62, 6, 3, 1, 5, 8, 5, 3, 2, 2, 7, 1, 0, 1, 9, 39), .Dim = c(4L,
