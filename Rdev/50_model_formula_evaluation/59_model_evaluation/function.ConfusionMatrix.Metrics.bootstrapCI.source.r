@@ -3,51 +3,44 @@
 
 library(tidyverse)
 # InputSquareMatrix.tbl <- read_delim("InputSquareMatrix.tbl.csv", "\t", escape_double = FALSE, trim_ws = TRUE)
+tribble_paste = datapasta::tribble_paste
+tibble::tribble(
+      ~Actual.old, ~Actual,
+             "Ia",     "I",
+             "Ib",     "I",
+            "IIa",    "II",
+            "IIb",    "II",
+           "IIIa",   "III",
+           "IIIb",   "III",
+             "IV",    "IV"
+      ) %>% bind_cols(read.table(file = "clipboard", sep = "\t", header=F)) %>%
+    set_names(c("Actual.old", "Actual", "I", "II", "III", "IV")) %>% 
+    tribble_paste #----
+InputMatrix1.tbl = tibble::tribble(
+    ~Actual.old, ~Actual, ~X1, ~X2, ~X3, ~X4,
+           "Ia",     "I",  45,   2,   1,   0,
+           "Ib",     "I",  17,   3,   1,   0,
+          "IIa",    "II",   3,   6,   1,   0,
+          "IIb",    "II",   3,   2,   1,   1,
+         "IIIa",   "III",   3,   5,   7,   4,
+         "IIIb",   "III",   0,   0,   0,   5,
+           "IV",    "IV",   1,   3,   1,  39
+    )
 
-# InputMatrix.tbl = 
-#     structure(list(
-#         Actual = c("1a", "1b", "2a", "2b", "3a", "3b", "4")
-#         , `1` = c(45, 17, 3, 3, 3, 0, 1)
-#         , `2` = c(2, 3, 6, 2, 5, 0, 3)
-#         , `3` = c(1, 1, 1, 1, 7, 0, 1)
-#         , `4` = c(0, 0, 0, 1, 4, 5, 39)
-#     ), class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA,-7L))
-# 
-# 
-# #@ function.ConfusionMatrix.asSquareMatrix ===== 
-# 
-# function.ConfusionMatrix.asSquareMatrix = function(InputMatrix.tbl) {
-#     # https://github.com/mkim0710/tidystat/edit/master/Rdev/50_model_formula_evaluation/59_model_evaluation/function.ConfusionMatrix.asSquareMatrix.source.r
-#     InputMatrix.tbl %>% {
-#         mutate(., 
-#                Actual.old = Actual
-#                , Actual = str_extract(Actual, paste0("[", paste0(colnames(.), collapse = "|"), "]"))
-#         )
-#     } %>%
-#         select(-matches(".old$")) %>% 
-#         group_by(Actual) %>% summarise_all(sum) %>% 
-#         as.tibble
-# }
 
-# InputSquareMatrix.tbl = InputMatrix.tbl %>% function.ConfusionMatrix.asSquareMatrix
-# InputSquareMatrix.tbl %>% dput #----
-# > InputSquareMatrix.tbl %>% dput
-InputSquareMatrix.tbl = structure(list(
-    Actual = c("1", "2", "3", "4")
-    , `1` = c(62, 6, 3, 1)
-    , `2` = c(5, 8, 5, 3)
-    , `3` = c(2, 2, 7, 1)
-    , `4` = c(0, 1, 9, 39))
-    , class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA, -4L))
-InputSquareMatrix.tbl
-# > InputSquareMatrix.tbl
-# # A tibble: 4 x 5
-#   Actual   `1`   `2`   `3`   `4`
-#   <chr>  <dbl> <dbl> <dbl> <dbl>
-# 1 1         62     5     2     0
-# 2 2          6     8     2     1
-# 3 3          3     5     7     9
-# 4 4          1     3     1    39
+InputSquareMatrix1.tbl = InputMatrix1.tbl %>% select(-matches(".old$")) %>% 
+        group_by(Actual) %>% summarise_all(sum) %>% 
+        as.tibble
+InputSquareMatrix1.tbl %>% tribble_paste
+InputSquareMatrix1.tbl = tibble::tribble(
+    ~Actual, ~X1, ~X2, ~X3, ~X4,
+        "I",  62,   5,   2,   0,
+       "II",   6,   8,   2,   1,
+      "III",   3,   5,   7,   9,
+       "IV",   1,   3,   1,  39
+    )
+
+
 
 
 
@@ -86,7 +79,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
     # 15 3     4         9 FALSE FALSE FALSE FALSE TRUE  FALSE FALSE TRUE 
     # 16 4     4        39 FALSE FALSE FALSE FALSE FALSE FALSE TRUE  TRUE 
     
-    
+    out$InputSquareMatrix.tbl.gather = InputSquareMatrix.tbl.gather
     
     for (i in sort(unique(InputSquareMatrix.tbl.gather$Actual))) {
         out[[paste0("ConfusionLongFormat", i)]] = 
@@ -254,6 +247,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
 
 
 
+
 # (mat = as.matrix(read.table(text="  setosa versicolor virginica
 #  setosa         29          0         0
 #  versicolor      0         20         2
@@ -264,15 +258,15 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
 # mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(mat)
 # mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(as.tibble(mat))
 
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix.tbl)
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics
-# > InputSquareMatrix.tbl.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix.tbl)
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix1.tbl)
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
+# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix1.tbl)
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 2: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 3: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 4: In .f(.x[[i]], ...) : NAs introduced by coercion
-# > InputSquareMatrix.tbl.ConfusionMatrix.Metrics
+# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
 # $`InputSquareMatrix.tbl`
 # # A tibble: 4 x 5
 #   Actual `1` `2` `3` `4`
@@ -348,20 +342,20 @@ InputSquareMatrix.tbl.ConfusionMatrix.Metrics
 
 
 
-#@ list_bootstrap.InputSquareMatrix.tbl =====
-df_Actual_Predicted = InputSquareMatrix.tbl %>% 
+#@ list_bootstrap.InputSquareMatrix1.tbl =====
+df_Actual_Predicted = InputSquareMatrix1.tbl %>% 
     gather(-Actual, key = "Predicted", value = "value") %>% 
     {slice(., unlist( map2(1:nrow(.), .$value, function(x, y) rep(x, y)) ) )} %>% select(Actual, Predicted)
 df_Actual_Predicted
 
 
-set.seed(1); list_bootstrap.InputSquareMatrix.tbl = 1:1000 %>% map(function(i) {
+set.seed(1); list_bootstrap.InputSquareMatrix1.tbl = 1:1000 %>% map(function(i) {
     out = df_Actual_Predicted[sample(nrow(df_Actual_Predicted), replace = T), ] %>% 
         group_by(Actual, Predicted) %>% summarize(value = n()) %>% spread(key = "Predicted", value = "value") %>% 
         map_df(replace_na, 0) %>% ungroup
 }) 
-list_bootstrap.InputSquareMatrix.tbl %>% str #----
-# > list_bootstrap.InputSquareMatrix.tbl %>% str #----
+list_bootstrap.InputSquareMatrix1.tbl %>% str #----
+# > list_bootstrap.InputSquareMatrix1.tbl %>% str #----
 # List of 1000
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #   ..$ Actual: chr [1:4] "1" "2" "3" "4"
@@ -387,19 +381,19 @@ list_bootstrap.InputSquareMatrix.tbl %>% str #----
 
 
 
-#@ list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics ====
+#@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics ====
 t0 = Sys.time()
-list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics =
-    list_bootstrap.InputSquareMatrix.tbl %>% map(function.ConfusionMatrix.Metrics)
-attributes(list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl = InputSquareMatrix.tbl
-attributes(list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl.ConfusionMatrix.Metrics = InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics =
+    list_bootstrap.InputSquareMatrix1.tbl %>% map(function.ConfusionMatrix.Metrics)
+attributes(list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl = InputSquareMatrix1.tbl
+attributes(list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl.ConfusionMatrix.Metrics = InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics
 Sys.time() - t0
 # > t0 = Sys.time()
-# > list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics =
-# +     list_bootstrap.InputSquareMatrix.tbl %>% map(function.ConfusionMatrix.Metrics)
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics =
+# +     list_bootstrap.InputSquareMatrix1.tbl %>% map(function.ConfusionMatrix.Metrics)
 # There were 50 or more warnings (use warnings() to see the first 50)
-# > attributes(list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl = InputSquareMatrix.tbl
-# > attributes(list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl.ConfusionMatrix.Metrics = InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics
+# > attributes(list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl = InputSquareMatrix1.tbl
+# > attributes(list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl.ConfusionMatrix.Metrics = InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 2: In .Primitive("as.double")(x, ...) : NAs introduced by coercion
@@ -411,12 +405,12 @@ Sys.time() - t0
 
 
 
-list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics %>% str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]] %>% str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix %>% str #-----
-list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix #-----
-# > list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics %>% str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] %>% str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix %>% str #-----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix #-----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% str(max.level = 1) #----
 # List of 1000
 #  $ :List of 6
 #  $ :List of 6
@@ -425,7 +419,7 @@ list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% co
 #   [list output truncated]
 #  - attr(*, "InputSquareMatrix.tbl")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #  - attr(*, "InputSquareMatrix.tbl.ConfusionMatrix.Metrics")=List of 6
-# > list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]] %>% str(max.level = 1) #----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] %>% str(max.level = 1) #----
 # List of 6
 #  $ InputSquareMatrix.tbl:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #  $ ConfusionLongFormat1 :Classes ‘grouped_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
@@ -441,7 +435,7 @@ list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% co
 #   ..- attr(*, "groups")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2 obs. of  2 variables:
 #   .. ..- attr(*, ".drop")= logi TRUE
 #  $ Metrics              :'data.frame':	21 obs. of  7 variables:
-# > list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% str(max.level = 1) #----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% str(max.level = 1) #----
 # 'data.frame':	21 obs. of  7 variables:
 #  $ rowname     : chr  "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #  $ equation    : chr  NA NA "True Negative = (Predicted == FALSE) & (Actual == FALSE)" "False Negative = (Predicted == FALSE) & (Actual == TRUE)" ...
@@ -454,12 +448,12 @@ list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% co
 #  $ V4          : Factor w/ 21 levels " 5"," 8.312500",..: 20 21 16 1 17 18 10 14 6 15 ...
 #   ..- attr(*, "names")= chr  "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #  $ MacroAverage: num  NA NA 103.8 11.8 11.8 ...
-# > list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix %>% str #-----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix %>% str #-----
 #  chr [1:21, 1:5] "Actual_1" "Predicted_1" " 74" "12" "12" "56" "0.8235294" "0.8604651" "0.8235294" "0.8604651" "0.8235294" ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:21] "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #   ..$ : chr [1:5] "V1" "V2" "V3" "V4" ...
-# > list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix #-----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix #-----
 #                   V1            V2            V3            V4            MacroAverage  
 # varname4Actual    "Actual_1"    "Actual_2"    "Actual_3"    "Actual_4"    NA            
 # varname4Predicted "Predicted_1" "Predicted_2" "Predicted_3" "Predicted_4" NA            
@@ -486,19 +480,19 @@ list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% co
 
 
 
-#@ InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI =====
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI = 
-    InputSquareMatrix.tbl.ConfusionMatrix.Metrics
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI =
-    InputSquareMatrix.tbl.ConfusionMatrix.Metrics$Metrics
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names %>% dput
-# > InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names %>% dput
+#@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI =====
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI = 
+    InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI =
+    InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names %>% dput
+# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names %>% dput
 # c("rowname", "equation", "V1", "V2", "V3", "V4", "MacroAverage")
 for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
-    InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI[[i]] =
+    InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI[[i]] =
         cbind(
-            InputSquareMatrix.tbl.ConfusionMatrix.Metrics$Metrics[[i]] %>% as.character %>% as.numeric
-            , list_bootstrap.InputSquareMatrix.tbl.ConfusionMatrix.Metrics %>% map(function(ls) {
+            InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics[[i]] %>% as.character %>% as.numeric
+            , list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% map(function(ls) {
                 ls$Metrics
             }) %>% transpose %>% {.[[i]]} %>% {set_names(., 1:length(.))} %>% as.tibble %>% map_df(as.character) %>% map_df(as.numeric) %>% 
                 apply(MARGIN = 1, FUN = quantile, probs = c(0.025, 0.975), na.rm = T) %>% t
@@ -506,8 +500,8 @@ for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
         mutate(`estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(`2.5%`,2)), ", ", sprintf("%.2f",round(`97.5%`,2)), ")")) %>% 
         {.$`estimate (95% CI) %.2f`}
 }
-InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI #----
-# > InputSquareMatrix.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI #----
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI #----
+# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI #----
 #              rowname                                                                  equation                    V1                      V2                      V3                     V4            MacroAverage
 # 1     varname4Actual                                                                      <NA>           NA (NA, NA)             NA (NA, NA)             NA (NA, NA)            NA (NA, NA)             NA (NA, NA)
 # 2  varname4Predicted                                                                      <NA>           NA (NA, NA)             NA (NA, NA)             NA (NA, NA)            NA (NA, NA)             NA (NA, NA)
