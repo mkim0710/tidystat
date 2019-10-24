@@ -62,48 +62,110 @@ dput(options("RStata.StataVersion"))
 # desired alpha = 0.05 for two-sided test
 # => n? 
 
+
 ?pwr.p.test
-
-
-mu1 = 80
-mu2 = 70
-sd = 20
-pwr.t.test(d = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.t.test(d = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# Usage
+# pwr.p.test(h = NULL, n = NULL, sig.level = 0.05, power = NULL,
+#     alternative = c("two.sided","less","greater"))
+# Arguments
+# h	
+# Effect size
+# n	
+# Number of observations
+# sig.level	
+# Significance level (Type I error probability)
+# power	
+# Power of test (1 minus Type II error probability)
+# alternative	
+# a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less"
 # 
-#      One-sample t test power calculation 
+# Details
+# These calculations use arcsine transformation of the proportion (see Cohen (1988))
 # 
-#               n = 33.36713
-#               d = 0.5
+# Exactly one of the parameters 'h','n','power' and 'sig.level' must be passed as NULL, and that parameter is determined from the others. Notice that the last one has non-NULL default so NULL must be explicitly passed if you want to compute it.
+
+p1 = 0.5
+p2 = 0.7
+# sd1 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!
+# sd2 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  # under null?!
+# sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
+pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# 
+#      proportion power calculation for binomial distribution (arcsine transformation) 
+# 
+#               h = 0.4115168
+#               n = 46.34804
 #       sig.level = 0.05
 #           power = 0.8
 #     alternative = two.sided
-stata.out = stata("power onemean 80 70, sd(20) alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# 
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# 
+#      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
+# 
+#               h = 0.4115168
+#               n = 92.69608
+#       sig.level = 0.05
+#           power = 0.8
+#     alternative = two.sided
+# 
+# NOTE: same sample sizes
+
+
+
+stata.out = stata("power oneproportion 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power onemean 80 70, sd(20) alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
-# . power onemean 80 70, sd(20) alpha(0.05) power(0.8)
+stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+stata.out
+# > stata.out = stata("power oneproportion 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# . power oneproportion 0.5 0.7, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
 # 
-# Estimated sample size for a one-sample mean test
-# t test
-# Ho: m = m0  versus  Ha: m != m0
+# Estimated sample size for a one-sample proportion test
+# Score z test
+# Ho: p = p0  versus  Ha: p != p0
 # 
 # Study parameters:
 # 
 #         alpha =    0.0500
 #         power =    0.8000
-#         delta =   -0.5000
-#            m0 =   80.0000
-#            ma =   70.0000
-#            sd =   20.0000
+#         delta =    0.2000
+#            p0 =    0.5000
+#            pa =    0.7000
 # 
 # Estimated sample size:
 # 
-#             N =        34
+#             N =        47
 # Error in foreign::read.dta(dtaOutFile, ...) : 
 #   unable to open file: 'No such file or directory'
-
+# > stata.out
+# NULL
+# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# . power twoproportions 0.5 0.7, alpha(0.05) power(0.8)
+# 
+# Performing iteration ...
+# 
+# Estimated sample sizes for a two-sample proportions test
+# Pearson's chi-squared test 
+# Ho: p2 = p1  versus  Ha: p2 != p1
+# 
+# Study parameters:
+# 
+#         alpha =    0.0500
+#         power =    0.8000
+#         delta =    0.2000  (difference)
+#            p1 =    0.5000
+#            p2 =    0.7000
+# 
+# Estimated sample sizes:
+# 
+#             N =       186
+#   N per group =        93
+# Error in foreign::read.dta(dtaOutFile, ...) : 
+#   unable to open file: 'No such file or directory'
 
 
 
@@ -157,6 +219,28 @@ stata.out
 # 
 # For these impossible conditions, currently a warning (warning) is signalled which may become an error (stop) in the future.
 
+
+
+p1 = 0.5
+p2 = 0.7
+# sd1 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!
+# sd2 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  # under null?!
+# sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
+power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# 
+#      Two-sample comparison of proportions power calculation 
+# 
+#               n = 92.99884
+#              p1 = 0.5
+#              p2 = 0.7
+#       sig.level = 0.05
+#           power = 0.8
+#     alternative = two.sided
+# 
+# NOTE: n is number in *each* group
+
+
 ?pwr.2p.test
 # Usage
 # pwr.2p.test(h = NULL, n = NULL, sig.level = 0.05, power = NULL, 
@@ -192,8 +276,6 @@ stata.out
 # 
 # Details
 # The effect size is 2*asin(sqrt(p1))-2*asin(sqrt(p2))
-
-
 
 
 
