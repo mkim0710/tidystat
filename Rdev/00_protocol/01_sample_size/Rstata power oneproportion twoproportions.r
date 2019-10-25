@@ -750,48 +750,252 @@ stata.out
 #####################################################################################################################
 #####################################################################################################################
 #####################################################################################################################
+alpha=0.05
+beta=0.20
+qnorm(1-alpha/2)
+qnorm(1-beta)
+# > alpha=0.05
+# > beta=0.20
+# > qnorm(1-alpha/2)
+# [1] 1.959964
+# > qnorm(1-beta)
+# [1] 0.8416212
+
+
+#####################################################################################################################
 # http://powerandsamplesize.com/Calculators/Test-1-Proportion/1-Sample-Equality ----
+# Chow S, Shao J, Wang H. 2008. Sample Size Calculations in Clinical Research. 2nd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
+# Chow S, Shao J, Wang H, Lokhnygina Y. 2017. Sample Size Calculations in Clinical Research. 3rd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
+# Chapter 4 Large Sample Tests for Proportions
+# 4.1 One-Sample Design                            
+# 4.1.1 Test for Equality
+
 p=0.5
 p0=0.3
 alpha=0.05
 beta=0.20
-(n=p*(1-p)*((qnorm(1-alpha/2)+qnorm(1-beta))/(p-p0))^2)
+(   n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2   )#----
 ceiling(n) # 50
-z=(p-p0)/sqrt(p*(1-p)/n)
-(Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
-# > (n=p*(1-p)*((qnorm(1-alpha/2)+qnorm(1-beta))/(p-p0))^2)
+z = (p-p0) / sqrt( p*(1-p) / n )
+(   Power = pnorm( z - qnorm(1-alpha/2) ) + pnorm( -z - qnorm(1-alpha/2) )   )#----
+# > (n=p*(1-p)*((qnorm(1-alpha/2)+qnorm(1-beta))/(p-p0))^2)#----
 # [1] 49.0555
 # > ceiling(n) # 50
 # [1] 50
 # > z=(p-p0)/sqrt(p*(1-p)/n)
-# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
+# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
 # [1] 0.800001
+
+
+
+
+p1 = 0.3
+p2 = 0.5
+# sd1 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!
+# sd2 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  # under null?!
+# sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
+pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# 
+#      proportion power calculation for binomial distribution (arcsine transformation) 
+# 
+#               h = 0.4115168
+#               n = 46.34804
+#       sig.level = 0.05
+#           power = 0.8
+#     alternative = two.sided
+# 
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# 
+#      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
+# 
+#               h = 0.4115168
+#               n = 92.69608
+#       sig.level = 0.05
+#           power = 0.8
+#     alternative = two.sided
+# 
+# NOTE: same sample sizes
+
+
+stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+stata.out
+stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+stata.out
+# > stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# . power oneproportion 0.3 0.5, alpha(0.05) power(0.8)
+# 
+# Performing iteration ...
+# 
+# Estimated sample size for a one-sample proportion test
+# Score z test
+# Ho: p = p0  versus  Ha: p != p0
+# 
+# Study parameters:
+# 
+#         alpha =    0.0500
+#         power =    0.8000
+#         delta =    0.2000
+#            p0 =    0.3000
+#            pa =    0.5000
+# 
+# Estimated sample size:
+# 
+#             N =        44
+# Error in foreign::read.dta(dtaOutFile, ...) : 
+#   unable to open file: 'No such file or directory'
+# > stata.out
+# NULL
+# > stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# . power twoproportions 0.3 0.5, alpha(0.05) power(0.8)
+# 
+# Performing iteration ...
+# 
+# Estimated sample sizes for a two-sample proportions test
+# Pearson's chi-squared test 
+# Ho: p2 = p1  versus  Ha: p2 != p1
+# 
+# Study parameters:
+# 
+#         alpha =    0.0500
+#         power =    0.8000
+#         delta =    0.2000  (difference)
+#            p1 =    0.3000
+#            p2 =    0.5000
+# 
+# Estimated sample sizes:
+# 
+#             N =       186
+#   N per group =        93
+# Error in foreign::read.dta(dtaOutFile, ...) : 
+#   unable to open file: 'No such file or directory'
+
+
+
+
 
 
 
 #####################################################################################################################
 # http://powerandsamplesize.com/Calculators/Compare-2-Proportions/2-Sample-Equality ----
+# Chow S, Shao J, Wang H. 2008. Sample Size Calculations in Clinical Research. 2nd Ed. Chapman & Hall/CRC Biostatistics Series. page 89.
+# Chow S, Shao J, Wang H, Lokhnygina Y. 2017. Sample Size Calculations in Clinical Research. 3rd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
+# Chapter 4 Large Sample Tests for Proportions
+# 4.2 Two-Sample Parallel Design
+# 4.2.1 Test for Equality
+
 pA=0.65
 pB=0.85
 kappa=1
 alpha=0.05
 beta=0.20
-(nB=(pA*(1-pA)/kappa+pB*(1-pB))*((qnorm(1-alpha/2)+qnorm(1-beta))/(pA-pB))^2)
+(    nB = ( pA*(1-pA)/kappa + pB*(1-pB) ) * ( (qnorm(1-alpha/2) + qnorm(1-beta)) / (pA-pB) )^2    )#----
 ceiling(nB) # 70
 z=(pA-pB)/sqrt(pA*(1-pA)/nB/kappa+pB*(1-pB)/nB)
-(Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
-# > (nB=(pA*(1-pA)/kappa+pB*(1-pB))*((qnorm(1-alpha/2)+qnorm(1-beta))/(pA-pB))^2)
+(    Power = pnorm( z - qnorm(1-alpha/2) ) + pnorm( -z - qnorm(1-alpha/2) )    )#----
+# > (nB=(pA*(1-pA)/kappa+pB*(1-pB))*((qnorm(1-alpha/2)+qnorm(1-beta))/(pA-pB))^2)#----
 # [1] 69.65881
 # > ceiling(nB) # 70
 # [1] 70
 # > z=(pA-pB)/sqrt(pA*(1-pA)/nB/kappa+pB*(1-pB)/nB)
-# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
+# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
 # [1] 0.800001
 
 
 
+p1 = 0.65
+p2 = 0.85
+# sd1 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!
+# sd2 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  # under null?!
+# sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
+pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# 
+#      proportion power calculation for binomial distribution (arcsine transformation) 
+# 
+#               h = 0.4707048
+#               n = 35.42495
+#       sig.level = 0.05
+#           power = 0.8
+#     alternative = two.sided
+# 
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# 
+#      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
+# 
+#               h = 0.4707048
+#               n = 70.84991
+#       sig.level = 0.05
+#           power = 0.8
+#     alternative = two.sided
+# 
+# NOTE: same sample sizes
 
 
+stata.out = stata("power oneproportion 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+stata.out
+stata.out = stata("power twoproportions 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+stata.out
+# > stata.out = stata("power oneproportion 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# . power oneproportion 0.65 0.85, alpha(0.05) power(0.8)
+# 
+# Performing iteration ...
+# 
+# Estimated sample size for a one-sample proportion test
+# Score z test
+# Ho: p = p0  versus  Ha: p != p0
+# 
+# Study parameters:
+# 
+#         alpha =    0.0500
+#         power =    0.8000
+#         delta =    0.2000
+#            p0 =    0.6500
+#            pa =    0.8500
+# 
+# Estimated sample size:
+# 
+#             N =        39
+# Error in foreign::read.dta(dtaOutFile, ...) : 
+#   unable to open file: 'No such file or directory'
+# > stata.out
+# NULL
+# > stata.out = stata("power twoproportions 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# . power twoproportions 0.65 0.85, alpha(0.05) power(0.8)
+# 
+# Performing iteration ...
+# 
+# Estimated sample sizes for a two-sample proportions test
+# Pearson's chi-squared test 
+# Ho: p2 = p1  versus  Ha: p2 != p1
+# 
+# Study parameters:
+# 
+#         alpha =    0.0500
+#         power =    0.8000
+#         delta =    0.2000  (difference)
+#            p1 =    0.6500
+#            p2 =    0.8500
+# 
+# Estimated sample sizes:
+# 
+#             N =       146
+#   N per group =        73
+# Error in foreign::read.dta(dtaOutFile, ...) : 
+#   unable to open file: 'No such file or directory'
+
+
+
+
+
+
+
+
+
+
+#####################################################################################################################
 #####################################################################################################################
 # http://powerandsamplesize.com/Calculators/Test-Odds-Ratio/Equality ----
 pA=0.40
@@ -799,19 +1003,19 @@ pB=0.25
 kappa=1
 alpha=0.05
 beta=0.20
-(OR=pA*(1-pB)/pB/(1-pA)) # 2
-(nB=(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))*((qnorm(1-alpha/2)+qnorm(1-beta))/log(OR))^2)
+(OR=pA*(1-pB)/pB/(1-pA))#----
+(nB=(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))*((qnorm(1-alpha/2)+qnorm(1-beta))/log(OR))^2)#----
 ceiling(nB) # 156
 z=log(OR)*sqrt(nB)/sqrt(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))
-(Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
-# > (OR=pA*(1-pB)/pB/(1-pA)) # 2
+(Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
+# > (OR=pA*(1-pB)/pB/(1-pA))#----
 # [1] 2
-# > (nB=(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))*((qnorm(1-alpha/2)+qnorm(1-beta))/log(OR))^2)
+# > (nB=(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))*((qnorm(1-alpha/2)+qnorm(1-beta))/log(OR))^2)#----
 # [1] 155.1959
 # > ceiling(nB) # 156
 # [1] 156
 # > z=log(OR)*sqrt(nB)/sqrt(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))
-# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
+# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
 # [1] 0.800001
 
 
