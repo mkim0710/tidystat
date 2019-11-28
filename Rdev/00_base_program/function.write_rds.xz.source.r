@@ -6,7 +6,10 @@ Sys.time() - t0
 system(paste0( 'xz -9 --threads=10 "', objectname, ".rds", '"' ))  # no --keep just in case using git
 Sys.time() - t0
 
-
+system("git pull")
+system("git add .")
+system('git commit -m "automatic commit using system()"')
+system("git push")
 
 
 
