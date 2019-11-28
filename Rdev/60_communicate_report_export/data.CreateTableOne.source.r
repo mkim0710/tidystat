@@ -13,6 +13,7 @@ vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 
 sink("dataset.tableone.txt")
 dataset.tableone %>% print(showAllLevels = T, smd = T) #----
+sink()
 sink("dataset.tableone.IQR.txt")
 dataset.tableone %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
@@ -48,6 +49,7 @@ vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 
 sink("dataset.tableone_by_exposure.txt")
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T) #----
+sink()
 sink("dataset.tableone_by_exposure.IQR.txt")
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
