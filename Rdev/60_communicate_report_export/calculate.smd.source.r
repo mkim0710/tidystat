@@ -1,4 +1,32 @@
 
+# https://en.wikipedia.org/wiki/Strictly_standardized_mean_difference
+
+
+## https://en.wikipedia.org/wiki/Strictly_standardized_mean_difference
+[@SMD_manual]
+= ([@Group2mean]-[@Group1mean]) / ([@Group2sd]^2+[@Group1sd]^2) ^0.5
+
+## https://en.wikipedia.org/wiki/Strictly_standardized_mean_difference
+[@SMD_manual2]
+= ([@Group2mean]-[@Group1mean]) / 
+(
+    (
+        ([@n2]-1) * [@Group2sd]^2 + 
+        ([@n1]-1) * [@Group1sd]^2
+    ) * 2 / ([@n2]+[@n1]-3.48)
+)^0.5
+
+
+# https://en.wikipedia.org/wiki/Effect_size#Cohen's_d
+[@Cohen_d]
+= ([@Group2mean]-[@Group1mean]) / 
+(
+    (
+        ([@n2]-1) * [@Group2sd]^2 + 
+        ([@n1]-1) * [@Group1sd]^2
+    ) 
+    / ([@n2]+[@n1]-2)
+)^0.5
 
 
 
