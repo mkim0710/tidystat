@@ -458,6 +458,22 @@ t.test(formula = fkcal ~ currsm, data = ffqtot)$p.value # Print the "structure" 
 
 
 
+#@ permutationP_multiple =====
+permutationP_multiple = list()
+for (i in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "aprot", "afiber", "adca", "adiron", "adphos", "adk", "adna", "advaiu", "advare", "adthiam", "adribo", "adniac", "advc", "atca", "atiron", "atvaiu", "atthiri", "atvc", "asuptoc") ) {
+    EmpiricalDistributionOfStatisticValue = permutation_results_multiple[[i]]
+    ObservedStatisticValue = ffqtot.select %>% group_by(currsm) %>% summarise(mean(eval(parse(text = i)))) %>% {.[2,2] - .[1,2]} %>% unlist
+    
+    permutationP_multiple[[i]] = sum(abs(EmpiricalDistributionOfStatisticValue) > abs(ObservedStatisticValue) ) / length(EmpiricalDistributionOfStatisticValue)  # two-tailed test
+    
+}
+permutationP_multiple = permutationP_multiple %>% unlist
+permutationP_multiple %>% str(max.level = 1) #-----
+# > permutationP_multiple %>% str(max.level = 1) #-----
+#  Named num [1:26] 0.746 0 0 0 0.752 0 0 0.086 0 0.088 ...
+#  - attr(*, "names")= chr [1:26] "fkcal" "atotfat" "asat" "aoleic" ...
+
+
 
 
 
