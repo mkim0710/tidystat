@@ -44,12 +44,17 @@ Sys.time() - t0
 library(tidyverse)
 getwd()
 path4write = getwd()
-objectname = "analyticDF.pmhx_negativetime.excluded.list_continuous"
+objectname = "data_list.AgeSexAdjusted"
+t0 = Sys.time()
 load(paste0(objectname, ".rda"))
+Sys.time() - t0
 write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+Sys.time() - t0
 
 objectname = ""
+t0 = Sys.time()
 load(paste0(objectname, ".rda"))
+Sys.time() - t0
 write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
-
+Sys.time() - t0
 
