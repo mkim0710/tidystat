@@ -3,6 +3,7 @@
 
 #@ end -----
 
+library(tidyverse)
 getwd()
 path4write = getwd()
 objectname = "d.NDCNUM_concept_name.join_redbook2019.STRNGTH_Manual"
@@ -36,3 +37,19 @@ assign(objectname
            as.tibble
 )
 Sys.time() - t0
+
+
+
+#@ -----
+library(tidyverse)
+getwd()
+path4write = getwd()
+objectname = "analyticDF.pmhx_negativetime.excluded.list_continuous"
+load(paste0(objectname, ".rda"))
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+
+objectname = ""
+load(paste0(objectname, ".rda"))
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+
+
