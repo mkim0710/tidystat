@@ -362,6 +362,61 @@ mycohort_1strata_tie %>% as.tibble
 # 12             322        38       49 FALSE Driver|>2750 KCals
 
 
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) %>% str(max.level = 1) #----
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) %>% str(max.level = 1) #----
+# [1] "*** 1-th iteration for .event.exit_age.unique.sort: 42"
+# [1] "which.Case: 1L"
+# [1] "which.Ctrl.Candidate: c(10L, 12L)"
+# [1] "incomplete: 0"
+# [1] "tmp.nCtrl: 2"
+# [1] "set.seed: 2"
+# [1] "which.Ctrl: c(10L, 12L)"
+# # A tibble: 3 x 10
+#   RowNum_original .entry_age .exit_age event strata             MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#             <int>      <int>     <dbl> <lgl> <fct>                       <int>           <int> <lgl>   <lgl>             <lgl>      
+# 1             125         31        42 TRUE  Driver|>2750 KCals              1               0 TRUE    FALSE             TRUE       
+# 2             284         40        57 FALSE Driver|>2750 KCals              1               1 FALSE   FALSE             TRUE       
+# 3             322         38        49 FALSE Driver|>2750 KCals              1               2 FALSE   FALSE             TRUE       
+# [1] "*** 2-th iteration for .event.exit_age.unique.sort: 56"
+# [1] "which.Case: 3L"
+# [1] "which.Ctrl.Candidate: c(4L, 6L, 11L)"
+# [1] "incomplete: 0"
+# [1] "tmp.nCtrl: 2"
+# [1] "set.seed: 3"
+# [1] "which.Ctrl: c(4L, 6L)"
+# # A tibble: 3 x 10
+#   RowNum_original .entry_age .exit_age event strata             MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#             <int>      <int>     <dbl> <lgl> <fct>                       <int>           <int> <lgl>   <lgl>             <lgl>      
+# 1             170         46        56 TRUE  Driver|>2750 KCals              2               0 TRUE    FALSE             TRUE       
+# 2             221         50        67 FALSE Driver|>2750 KCals              2               1 FALSE   FALSE             TRUE       
+# 3             244         49        65 TRUE  Driver|>2750 KCals              2               2 FALSE   FALSE             TRUE       
+# [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
+# [1] "*** 3-th iteration for .event.exit_age.unique.sort: 65"
+# [1] "which.Case: 8L"
+# [1] "which.Ctrl.Candidate: c(2L, 5L, 7L, 9L)"
+# [1] "incomplete: 0"
+# [1] "tmp.nCtrl: 2"
+# [1] "set.seed: 4"
+# [1] "which.Ctrl: c(7L, 2L)"
+# # A tibble: 3 x 10
+#   RowNum_original .entry_age .exit_age event strata             MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#             <int>      <int>     <dbl> <lgl> <fct>                       <int>           <int> <lgl>   <lgl>             <lgl>      
+# 1             249         59        65 TRUE  Driver|>2750 KCals              3               0 TRUE    FALSE             TRUE       
+# 2             247         60        70 FALSE Driver|>2750 KCals              3               1 FALSE   FALSE             TRUE       
+# 3             143         61        68 TRUE  Driver|>2750 KCals              3               2 FALSE   FALSE             TRUE       
+# [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
+# [1] "*** 4-th iteration for .event.exit_age.unique.sort: 68"
+# [1] "which.Case: integer(0)"
+# [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
+# List of 1
+#  $ data:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	12 obs. of  13 variables:
+#   ..- attr(*, ".event")= chr "event"
+#   ..- attr(*, ".entry")= chr "entry_age"
+#   ..- attr(*, ".exit")= chr "exit_age"
+#   ..- attr(*, ".MatchingRatio")= num 2
+#   ..- attr(*, "apply.na.omit")= logi FALSE
+#  - attr(*, "function.input")=List of 9
+
 mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F) %>% str(max.level = 1)
 mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% str(max.level = 1)
 mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% {.[c(2, 1, 3)]}
