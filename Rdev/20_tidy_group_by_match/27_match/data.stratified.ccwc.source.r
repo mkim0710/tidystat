@@ -332,17 +332,21 @@ data.ccwc = function(
 
 #@ test) data.ccwc() mycohort_1strata_tie ----
 library(tidyverse)
-mycohort_1strata_tie = structure(list(RowNum_original = c(125L, 143L, 170L, 221L, 236L, 
-244L, 247L, 249L, 258L, 284L, 315L, 322L), entry_age = c(31L, 
-61L, 46L, 50L, 59L, 49L, 60L, 59L, 57L, 40L, 47L, 38L), exit_age = c(42, 
-68, 56, 67, 70, 65, 70, 65, 70, 57, 63, 49), event = c(TRUE, 
-TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, 
-FALSE), strata = structure(c(6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 
-6L, 6L, 6L, 6L), .Label = c("Bank worker|<=2750 KCals", "Bank worker|>2750 KCals", 
-"Conductor|<=2750 KCals", "Conductor|>2750 KCals", "Driver|<=2750 KCals", 
-"Driver|>2750 KCals"), class = "factor")), row.names = c(NA, 
--12L), .Names = c("RowNum_original", "entry_age", "exit_age", 
-"event", "strata"), class = c("tbl_df", "tbl", "data.frame"))
+mycohort_1strata_tie = tibble::tribble(
+    ~RowNum_original, ~entry_age, ~exit_age, ~event,              ~strata,
+                125L,        31L,        42,   TRUE, "Driver|>2750 KCals",
+                143L,        61L,        68,   TRUE, "Driver|>2750 KCals",
+                170L,        46L,        56,   TRUE, "Driver|>2750 KCals",
+                221L,        50L,        67,  FALSE, "Driver|>2750 KCals",
+                236L,        59L,        70,  FALSE, "Driver|>2750 KCals",
+                244L,        49L,        65,   TRUE, "Driver|>2750 KCals",
+                247L,        60L,        70,  FALSE, "Driver|>2750 KCals",
+                249L,        59L,        65,   TRUE, "Driver|>2750 KCals",
+                258L,        57L,        70,  FALSE, "Driver|>2750 KCals",
+                284L,        40L,        57,  FALSE, "Driver|>2750 KCals",
+                315L,        47L,        63,  FALSE, "Driver|>2750 KCals",
+                322L,        38L,        49,  FALSE, "Driver|>2750 KCals"
+    )
 mycohort_1strata_tie %>% as.tibble
 # > mycohort_1strata_tie %>% as.tibble
 # # A tibble: 12 x 5
