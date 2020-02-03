@@ -34,3 +34,17 @@ if(!require(packagename, character.only = T)) {install.packages(packagename); re
 packagename = "moonBook"
 if(!require(packagename, character.only = T)) {devtools::install_github("cardiomoon/moonBook"); require(packagename, character.only = T)}
 
+
+
+
+for (packagename in c("dplyr", "readr")) {
+    if(packagename %in% installed.packages()[,"Package"]) {   # If that package is already installed, then just load it. install. (You don't want to re-install if it is already installed.)
+        require(packagename, character.only = T)
+    } else {  # If that package is not already installed, then install.
+        install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
+        require(packagename, character.only = T)
+    }
+}
+
+
+
