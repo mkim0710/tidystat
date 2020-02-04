@@ -1,5 +1,10 @@
 
 
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager") # If that package is not already installed, then install.
+if (!requireNamespace("multtest", quietly = TRUE)) BiocManager::install("multtest") # If that package is not already installed, then install.
+
+
+
 
 for (packagename in c("dplyr", "readr")) {
     if(packagename %in% installed.packages()[,"Package"]) {   
