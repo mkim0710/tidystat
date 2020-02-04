@@ -1,5 +1,9 @@
 
 
+if ("BiocManager" %in% installed.packages()[,"Package"]) print("Already installed") else install.packages("BiocManager") # If that package is not already installed, then install.
+if ("multtest" %in% installed.packages()[,"Package"]) print("Already installed") else BiocManager::install("multtest") # If that package is not already installed, then install.
+
+
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager") # If that package is not already installed, then install.
 if (!requireNamespace("multtest", quietly = TRUE)) BiocManager::install("multtest") # If that package is not already installed, then install.
 
