@@ -1117,9 +1117,11 @@ data.stratified.ccwc = function(
 
 
 #@ test) data.stratified.ccwc() diet ----
+.vars4strata = c("job", "energy.grp")
+varname4event = "event"
 diet.stratified.ccwc = diet %>% data.stratified.ccwc(
-    .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
-    , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
+    .vars4strata = .vars4strata, paste.collapse = "|"
+    , varname4event = varname4event, varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
     )
 # > diet.stratified.ccwc = diet %>% data.stratified.ccwc(
 # +     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
