@@ -1213,12 +1213,129 @@ diet.stratified.ccwc$data %>% group_by(!!!rlang::syms(c(.vars4strata, varname4ev
 
 
 
-
+diet.stratified.ccwc$data %>% select(RowNum_original, !!rlang::sym(varname4entry), !!rlang::sym(varname4exit), .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
+diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
+# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
+# # A tibble: 337 x 10
+#    RowNum_original entry_age exit_age .event strata                   MatchingPairID             MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+#              <int>     <dbl>    <dbl> <lgl>  <fct>                    <fct>                                <dbl> <lgl>   <lgl>             <lgl>      
+#  1              71      46.6     48.1 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               0 TRUE    FALSE             TRUE       
+#  2              61      47.5     67.5 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               1 FALSE   FALSE             TRUE       
+#  3             152      42.3     57.7 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               2 FALSE   FALSE             TRUE       
+#  4             186      44.6     49.1 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               0 TRUE    FALSE             TRUE       
+#  5              41      46.4     61.9 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               1 FALSE   FALSE             TRUE       
+#  6             156      48.9     68.8 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               2 FALSE   FALSE             TRUE       
+#  7             117      48.8     53.2 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               0 TRUE    FALSE             TRUE       
+#  8             120      51.2     62.6 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               1 FALSE   FALSE             TRUE       
+#  9               5      49.7     61   TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               2 FALSE   FALSE             TRUE       
+# 10               6      49.1     53.8 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_4               0 TRUE    FALSE             TRUE       
+# # ... with 327 more rows
+# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
+#     RowNum_original entry_age exit_age .event                   strata               MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
+# 1                71  46.57808 48.07397   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               0    TRUE             FALSE        TRUE
+# 2                61  47.52877 67.50137  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               1   FALSE             FALSE        TRUE
+# 3               152  42.27671 57.74795  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               2   FALSE             FALSE        TRUE
+# 4               186  44.61644 49.09589   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_2               0    TRUE             FALSE        TRUE
+# 5                41  46.40822 61.87945  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_2               1   FALSE             FALSE        TRUE
+# 6               156  48.90685 68.79452  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_2               2   FALSE             FALSE        TRUE
+# 7               117  48.79726 53.15342   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_3               0    TRUE             FALSE        TRUE
+# 8               120  51.15342 62.64110   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_3               1   FALSE             FALSE        TRUE
+# 9                 5  49.71781 61.00000   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_3               2   FALSE             FALSE        TRUE
+# 10                6  49.06027 53.80822   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_4               0    TRUE             FALSE        TRUE
+# 11               37  43.34521 62.98630  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_4               1   FALSE             FALSE        TRUE
+# 12              141  44.55068 60.02192  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_4               2   FALSE             FALSE        TRUE
+# 13               45  53.87671 54.77808   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_5               0    TRUE             FALSE        TRUE
+# 14              113  46.38904 66.19178  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_5               1   FALSE             FALSE        TRUE
+# 15              197  53.88767 70.04658  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_5               2   FALSE             FALSE        TRUE
+# 16               27  51.89863 55.41918   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_6               0    TRUE             FALSE        TRUE
+# 17              216  41.89589 61.78356  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_6               1   FALSE             FALSE        TRUE
+# 18               63  49.53425 69.09315  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_6               2   FALSE             FALSE        TRUE
+# 19               53  50.49863 58.37808   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_7               0    TRUE             FALSE        TRUE
+# 20               72  49.32603 64.79726  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_7               1   FALSE             FALSE        TRUE
+# 21               28  50.69589 70.04658  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_7               2   FALSE             FALSE        TRUE
+# 22              210  55.34247 58.79726   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_8               0    TRUE             FALSE        TRUE
+# 23               30  44.51507 64.56986  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_8               1   FALSE             FALSE        TRUE
+# 24                8  49.34247 69.23014  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_8               2   FALSE             FALSE        TRUE
+# 25               19  54.79178 59.59452   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_9               0    TRUE             FALSE        TRUE
+# 26               92  47.93151 65.76438   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_9               1   FALSE             FALSE        TRUE
+# 27               57  52.20274 70.04658  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_9               2   FALSE             FALSE        TRUE
+# 28              132  44.37260 61.59178   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_11               0    TRUE             FALSE        TRUE
+# 29               15  48.91233 68.63836  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_11               1   FALSE             FALSE        TRUE
+# 30              161  47.36164 62.75068  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_11               2   FALSE             FALSE        TRUE
+# 31              173  51.56438 62.41918   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_12               0    TRUE             FALSE        TRUE
+# 32              128  48.15068 65.03836  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_12               1   FALSE             FALSE        TRUE
+# 33               44  54.57534 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_12               2   FALSE             FALSE        TRUE
+# 34              160  47.84932 62.98356   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_14               0    TRUE             FALSE        TRUE
+# 35              109  48.65753 68.04932  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_14               1   FALSE             FALSE        TRUE
+# 36               24  52.73425 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_14               2   FALSE             FALSE        TRUE
+# 37               69  52.87671 63.66027   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_15               0    TRUE             FALSE        TRUE
+# 38              123  52.16164 69.96438  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_15               1   FALSE             FALSE        TRUE
+# 39               52  51.92055 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_15               2   FALSE             FALSE        TRUE
+# 40               99  53.97534 66.36986   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_17               0    TRUE             FALSE        TRUE
+# 41              177  48.68219 66.40822  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_17               1   FALSE             FALSE        TRUE
+# 42               79  55.40000 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_17               2   FALSE             FALSE        TRUE
+# 43              112  50.66301 68.26849   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_18               0    TRUE             FALSE        TRUE
+# 44               16  54.64110 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_18               1   FALSE             FALSE        TRUE
+# 45               38  55.10959 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_18               2   FALSE             FALSE        TRUE
+# 46                7  49.68493 67.48767  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 47               12  53.70685 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 48               18  55.25205 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 49               21  52.39726 69.20000  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 50               56  54.09589 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 51               58  46.38356 61.85479  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 52               59  54.69589 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 53               66  49.10685 64.57808  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 54               68  49.54247 66.51507  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 55               73  46.49589 66.46849  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 56               85  48.05753 63.44658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 57              103  45.51233 64.40000  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 58              114  55.46575 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 59              131  48.20000 65.08767  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 60              144  41.46027 57.01644  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 61              151  41.29041 56.84658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 62              154  43.41370 58.96986  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 63              158  49.26027 65.31233  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 64              174  46.79726 65.76986  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 65              184  50.09863 69.32055  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 66              188  51.81096 69.53699  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 67              198  49.36986 64.67397  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 68              201  45.46575 64.43836  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
+# 69              105  45.49589 47.93151   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_1               0    TRUE             FALSE        TRUE
+# 70              139  41.45479 60.50959  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_1               1   FALSE             FALSE        TRUE
+# 71              289  46.47945 66.36712  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_1               2   FALSE             FALSE        TRUE
+# 72              250  45.47397 49.09589   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_2               0    TRUE             FALSE        TRUE
+# 73              130  40.71781 56.27397  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_2               1   FALSE             FALSE        TRUE
+# 74              302  40.61918 57.34247  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_2               2   FALSE             FALSE        TRUE
+# 75              300  46.92329 50.01096   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_3               0    TRUE             FALSE        TRUE
+# 76              275  46.60274 65.99452  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_3               1   FALSE             FALSE        TRUE
+# 77               76  43.55342 59.10959  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_3               2   FALSE             FALSE        TRUE
+# 78              293  44.61096 51.73973   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_4               0    TRUE             FALSE        TRUE
+# 79              147  43.66849 63.55616  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_4               1   FALSE             FALSE        TRUE
+# 80              283  45.33151 57.46301   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_4               2   FALSE             FALSE        TRUE
+# 81               81  51.03288 52.73425   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_5               0    TRUE             FALSE        TRUE
+# 82              276  46.19452 64.99726  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_5               1   FALSE             FALSE        TRUE
+# 83              326  39.96712 57.69315  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_5               2   FALSE             FALSE        TRUE
+# 84              306  44.93425 53.97808   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_6               0    TRUE             FALSE        TRUE
+# 85              334  42.94521 62.50411  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_6               1   FALSE             FALSE        TRUE
+# 86              232  41.29041 61.26301  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_6               2   FALSE             FALSE        TRUE
+# 87              248  42.17534 55.83836   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_7               0    TRUE             FALSE        TRUE
+# 88              243  50.10137 65.15342  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_7               1   FALSE             FALSE        TRUE
+# 89              134  43.98630 62.95890  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_7               2   FALSE             FALSE        TRUE
+# 90              133  54.12055 57.23288   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_8               0    TRUE             FALSE        TRUE
+# 91              138  52.80274 70.04658  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_8               1   FALSE             FALSE        TRUE
+# 92               91  53.53699 70.04658  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_8               2   FALSE             FALSE        TRUE
+# 93              164  49.30137 58.76164   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_10               0    TRUE             FALSE        TRUE
+# 94              159  46.57534 63.54795  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_10               1   FALSE             FALSE        TRUE
+# 95               90  53.41918 63.46301   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_10               2   FALSE             FALSE        TRUE
+# 96              126  51.15616 58.90685   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_11               0    TRUE             FALSE        TRUE
+# 97              116  43.71781 60.44110  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_11               1   FALSE             FALSE        TRUE
+# 98              299  47.24658 64.97260  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_11               2   FALSE             FALSE        TRUE
+# 99              330  51.56986 62.54795   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_12               0    TRUE             FALSE        TRUE
+# 100             288  53.52603 70.04658  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_12               1   FALSE             FALSE        TRUE
+#  [ reached getOption("max.print") -- omitted 237 rows ]
 
 diet.stratified.ccwc %>% {.[c(2, 1, 3)]} #----
 diet.stratified.ccwc #----
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
 # > diet.stratified.ccwc %>% {.[c(2, 1, 3)]} #----
 # $data
 # # A tibble: 337 x 28
@@ -1593,124 +1710,7 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .even
 # attr(,"function.input")$apply.na.omit
 # [1] FALSE
 # 
-# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
-# # A tibble: 337 x 10
-#    RowNum_original entry_age exit_age .event strata                   MatchingPairID             MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
-#              <int>     <dbl>    <dbl> <lgl>  <fct>                    <fct>                                <dbl> <lgl>   <lgl>             <lgl>      
-#  1              71      46.6     48.1 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               0 TRUE    FALSE             TRUE       
-#  2              61      47.5     67.5 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               1 FALSE   FALSE             TRUE       
-#  3             152      42.3     57.7 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_1               2 FALSE   FALSE             TRUE       
-#  4             186      44.6     49.1 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               0 TRUE    FALSE             TRUE       
-#  5              41      46.4     61.9 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               1 FALSE   FALSE             TRUE       
-#  6             156      48.9     68.8 FALSE  Bank worker|<=2750 KCals Bank worker|<=2750 KCals_2               2 FALSE   FALSE             TRUE       
-#  7             117      48.8     53.2 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               0 TRUE    FALSE             TRUE       
-#  8             120      51.2     62.6 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               1 FALSE   FALSE             TRUE       
-#  9               5      49.7     61   TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_3               2 FALSE   FALSE             TRUE       
-# 10               6      49.1     53.8 TRUE   Bank worker|<=2750 KCals Bank worker|<=2750 KCals_4               0 TRUE    FALSE             TRUE       
-# # ... with 327 more rows
-# > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
-#     RowNum_original entry_age exit_age .event                   strata               MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
-# 1                71  46.57808 48.07397   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               0    TRUE             FALSE        TRUE
-# 2                61  47.52877 67.50137  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               1   FALSE             FALSE        TRUE
-# 3               152  42.27671 57.74795  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_1               2   FALSE             FALSE        TRUE
-# 4               186  44.61644 49.09589   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_2               0    TRUE             FALSE        TRUE
-# 5                41  46.40822 61.87945  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_2               1   FALSE             FALSE        TRUE
-# 6               156  48.90685 68.79452  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_2               2   FALSE             FALSE        TRUE
-# 7               117  48.79726 53.15342   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_3               0    TRUE             FALSE        TRUE
-# 8               120  51.15342 62.64110   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_3               1   FALSE             FALSE        TRUE
-# 9                 5  49.71781 61.00000   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_3               2   FALSE             FALSE        TRUE
-# 10                6  49.06027 53.80822   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_4               0    TRUE             FALSE        TRUE
-# 11               37  43.34521 62.98630  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_4               1   FALSE             FALSE        TRUE
-# 12              141  44.55068 60.02192  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_4               2   FALSE             FALSE        TRUE
-# 13               45  53.87671 54.77808   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_5               0    TRUE             FALSE        TRUE
-# 14              113  46.38904 66.19178  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_5               1   FALSE             FALSE        TRUE
-# 15              197  53.88767 70.04658  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_5               2   FALSE             FALSE        TRUE
-# 16               27  51.89863 55.41918   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_6               0    TRUE             FALSE        TRUE
-# 17              216  41.89589 61.78356  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_6               1   FALSE             FALSE        TRUE
-# 18               63  49.53425 69.09315  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_6               2   FALSE             FALSE        TRUE
-# 19               53  50.49863 58.37808   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_7               0    TRUE             FALSE        TRUE
-# 20               72  49.32603 64.79726  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_7               1   FALSE             FALSE        TRUE
-# 21               28  50.69589 70.04658  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_7               2   FALSE             FALSE        TRUE
-# 22              210  55.34247 58.79726   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_8               0    TRUE             FALSE        TRUE
-# 23               30  44.51507 64.56986  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_8               1   FALSE             FALSE        TRUE
-# 24                8  49.34247 69.23014  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_8               2   FALSE             FALSE        TRUE
-# 25               19  54.79178 59.59452   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_9               0    TRUE             FALSE        TRUE
-# 26               92  47.93151 65.76438   TRUE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_9               1   FALSE             FALSE        TRUE
-# 27               57  52.20274 70.04658  FALSE Bank worker|<=2750 KCals   Bank worker|<=2750 KCals_9               2   FALSE             FALSE        TRUE
-# 28              132  44.37260 61.59178   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_11               0    TRUE             FALSE        TRUE
-# 29               15  48.91233 68.63836  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_11               1   FALSE             FALSE        TRUE
-# 30              161  47.36164 62.75068  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_11               2   FALSE             FALSE        TRUE
-# 31              173  51.56438 62.41918   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_12               0    TRUE             FALSE        TRUE
-# 32              128  48.15068 65.03836  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_12               1   FALSE             FALSE        TRUE
-# 33               44  54.57534 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_12               2   FALSE             FALSE        TRUE
-# 34              160  47.84932 62.98356   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_14               0    TRUE             FALSE        TRUE
-# 35              109  48.65753 68.04932  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_14               1   FALSE             FALSE        TRUE
-# 36               24  52.73425 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_14               2   FALSE             FALSE        TRUE
-# 37               69  52.87671 63.66027   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_15               0    TRUE             FALSE        TRUE
-# 38              123  52.16164 69.96438  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_15               1   FALSE             FALSE        TRUE
-# 39               52  51.92055 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_15               2   FALSE             FALSE        TRUE
-# 40               99  53.97534 66.36986   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_17               0    TRUE             FALSE        TRUE
-# 41              177  48.68219 66.40822  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_17               1   FALSE             FALSE        TRUE
-# 42               79  55.40000 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_17               2   FALSE             FALSE        TRUE
-# 43              112  50.66301 68.26849   TRUE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_18               0    TRUE             FALSE        TRUE
-# 44               16  54.64110 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_18               1   FALSE             FALSE        TRUE
-# 45               38  55.10959 70.04658  FALSE Bank worker|<=2750 KCals  Bank worker|<=2750 KCals_18               2   FALSE             FALSE        TRUE
-# 46                7  49.68493 67.48767  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 47               12  53.70685 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 48               18  55.25205 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 49               21  52.39726 69.20000  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 50               56  54.09589 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 51               58  46.38356 61.85479  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 52               59  54.69589 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 53               66  49.10685 64.57808  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 54               68  49.54247 66.51507  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 55               73  46.49589 66.46849  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 56               85  48.05753 63.44658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 57              103  45.51233 64.40000  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 58              114  55.46575 70.04658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 59              131  48.20000 65.08767  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 60              144  41.46027 57.01644  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 61              151  41.29041 56.84658  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 62              154  43.41370 58.96986  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 63              158  49.26027 65.31233  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 64              174  46.79726 65.76986  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 65              184  50.09863 69.32055  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 66              188  51.81096 69.53699  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 67              198  49.36986 64.67397  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 68              201  45.46575 64.43836  FALSE Bank worker|<=2750 KCals Bank worker|<=2750 KCals_999             999   FALSE              TRUE       FALSE
-# 69              105  45.49589 47.93151   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_1               0    TRUE             FALSE        TRUE
-# 70              139  41.45479 60.50959  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_1               1   FALSE             FALSE        TRUE
-# 71              289  46.47945 66.36712  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_1               2   FALSE             FALSE        TRUE
-# 72              250  45.47397 49.09589   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_2               0    TRUE             FALSE        TRUE
-# 73              130  40.71781 56.27397  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_2               1   FALSE             FALSE        TRUE
-# 74              302  40.61918 57.34247  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_2               2   FALSE             FALSE        TRUE
-# 75              300  46.92329 50.01096   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_3               0    TRUE             FALSE        TRUE
-# 76              275  46.60274 65.99452  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_3               1   FALSE             FALSE        TRUE
-# 77               76  43.55342 59.10959  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_3               2   FALSE             FALSE        TRUE
-# 78              293  44.61096 51.73973   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_4               0    TRUE             FALSE        TRUE
-# 79              147  43.66849 63.55616  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_4               1   FALSE             FALSE        TRUE
-# 80              283  45.33151 57.46301   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_4               2   FALSE             FALSE        TRUE
-# 81               81  51.03288 52.73425   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_5               0    TRUE             FALSE        TRUE
-# 82              276  46.19452 64.99726  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_5               1   FALSE             FALSE        TRUE
-# 83              326  39.96712 57.69315  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_5               2   FALSE             FALSE        TRUE
-# 84              306  44.93425 53.97808   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_6               0    TRUE             FALSE        TRUE
-# 85              334  42.94521 62.50411  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_6               1   FALSE             FALSE        TRUE
-# 86              232  41.29041 61.26301  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_6               2   FALSE             FALSE        TRUE
-# 87              248  42.17534 55.83836   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_7               0    TRUE             FALSE        TRUE
-# 88              243  50.10137 65.15342  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_7               1   FALSE             FALSE        TRUE
-# 89              134  43.98630 62.95890  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_7               2   FALSE             FALSE        TRUE
-# 90              133  54.12055 57.23288   TRUE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_8               0    TRUE             FALSE        TRUE
-# 91              138  52.80274 70.04658  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_8               1   FALSE             FALSE        TRUE
-# 92               91  53.53699 70.04658  FALSE  Bank worker|>2750 KCals    Bank worker|>2750 KCals_8               2   FALSE             FALSE        TRUE
-# 93              164  49.30137 58.76164   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_10               0    TRUE             FALSE        TRUE
-# 94              159  46.57534 63.54795  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_10               1   FALSE             FALSE        TRUE
-# 95               90  53.41918 63.46301   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_10               2   FALSE             FALSE        TRUE
-# 96              126  51.15616 58.90685   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_11               0    TRUE             FALSE        TRUE
-# 97              116  43.71781 60.44110  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_11               1   FALSE             FALSE        TRUE
-# 98              299  47.24658 64.97260  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_11               2   FALSE             FALSE        TRUE
-# 99              330  51.56986 62.54795   TRUE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_12               0    TRUE             FALSE        TRUE
-# 100             288  53.52603 70.04658  FALSE  Bank worker|>2750 KCals   Bank worker|>2750 KCals_12               1   FALSE             FALSE        TRUE
-#  [ reached getOption("max.print") -- omitted 237 rows ]
+
 
 
 
