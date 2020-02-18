@@ -158,6 +158,27 @@ rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .
 
 
 
+
+#@ data.tab_strata_exposure() check minimum matching ratio -----
+
+analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") %>% summary #----
+# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") %>% summary #----
+# [1] "min(ratio, na.rm = T): 9"
+# [1] "min(ratio_inv, na.rm = T): 0"
+#    rowname               0                  1                 Sum                ratio         ratio_inv       
+#  Length:97          Length:97          Length:97          Length:97          Min.   :  9.0   Min.   :0.000000  
+#  Class :character   Class :AsIs        Class :AsIs        Class :character   1st Qu.:600.2   1st Qu.:0.000000  
+#  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :  Inf   Median :0.000000  
+#                                                                              Mean   :  Inf   Mean   :0.003196  
+#                                                                              3rd Qu.:  Inf   3rd Qu.:0.000000  
+#                                                                              Max.   :  Inf   Max.   :0.110000
+
+
+
+
+
+
+
 #@ -----
 data.strata_list = function(
     .mydata
