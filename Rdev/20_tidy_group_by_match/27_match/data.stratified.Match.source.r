@@ -159,9 +159,31 @@ rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .
 
 
 
-#@ data.tab_strata_exposure() check minimum matching ratio -----
 
+#@ data.tab_strata_exposure() check minimum matching ratio -----
+analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group"), .exposure = "evnttrth_C24_r") %>% summary #----
+analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic"), .exposure = "evnttrth_C24_r") %>% summary #----
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") %>% summary #----
+# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group"), .exposure = "evnttrth_C24_r") %>% summary #----
+# [1] "min(ratio, na.rm = T): 159.39"
+# [1] "min(ratio_inv, na.rm = T): 0"
+#    rowname               0                  1                 Sum                ratio          ratio_inv       
+#  Length:9           Length:9           Length:9           Length:9           Min.   : 159.4   Min.   :0.000000  
+#  Class :character   Class :AsIs        Class :AsIs        Class :character   1st Qu.: 325.0   1st Qu.:0.000000  
+#  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median : 669.6   Median :0.000000  
+#                                                                              Mean   :1082.2   Mean   :0.001111  
+#                                                                              3rd Qu.:1032.9   3rd Qu.:0.000000  
+#                                                                              Max.   :3914.7   Max.   :0.010000  
+# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic"), .exposure = "evnttrth_C24_r") %>% summary #----
+# [1] "min(ratio, na.rm = T): 127.16"
+# [1] "min(ratio_inv, na.rm = T): 0"
+#    rowname               0                  1                 Sum                ratio          ratio_inv       
+#  Length:33          Length:33          Length:33          Length:33          Min.   : 127.2   Min.   :0.000000  
+#  Class :character   Class :AsIs        Class :AsIs        Class :character   1st Qu.: 296.2   1st Qu.:0.000000  
+#  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median : 534.6   Median :0.000000  
+#                                                                              Mean   :1252.4   Mean   :0.001212  
+#                                                                              3rd Qu.:1343.0   3rd Qu.:0.000000  
+#                                                                              Max.   :8298.7   Max.   :0.010000  
 # > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") %>% summary #----
 # [1] "min(ratio, na.rm = T): 9"
 # [1] "min(ratio_inv, na.rm = T): 0"
@@ -171,7 +193,7 @@ analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.
 #  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :  Inf   Median :0.000000  
 #                                                                              Mean   :  Inf   Mean   :0.003196  
 #                                                                              3rd Qu.:  Inf   3rd Qu.:0.000000  
-#                                                                              Max.   :  Inf   Max.   :0.110000
+#                                                                              Max.   :  Inf   Max.   :0.110000  
 
 
 
