@@ -1214,6 +1214,8 @@ diet.stratified.ccwc$data %>% group_by(!!!rlang::syms(c(.vars4strata, varname4ev
 
 
 diet.stratified.ccwc$data %>% select(RowNum_original, !!rlang::sym(varname4entry), !!rlang::sym(varname4exit), .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
+diet.stratified.ccwc$data %>% select(RowNum_original, !!rlang::sym(varname4entry), !!rlang::sym(varname4exit), .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% 
+    filter(is.assigned) #----
 diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
 # > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
 # # A tibble: 337 x 10
