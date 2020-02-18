@@ -1121,10 +1121,6 @@ diet.stratified.ccwc = diet %>% data.stratified.ccwc(
     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
     , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
     )
-diet.stratified.ccwc %>% {.[c(2, 1, 3)]} #----
-diet.stratified.ccwc #----
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
-diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
 # > diet.stratified.ccwc = diet %>% data.stratified.ccwc(
 # +     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
 # +     , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
@@ -1178,6 +1174,49 @@ diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .even
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: c(244L, 143L)"
 # [1] "*** Caution) 9-th iteration for: 66.3698630136986 -> this case may have already been assigned as control"
 # [1] "*** Caution) 10-th iteration for: 68.0739726027397 -> this case may have already been assigned as control"
+
+
+
+
+diet.stratified.ccwc$data %>% group_by(!!!rlang::syms(.vars4strata)) %>% summarise( n(), `sum(event==T)` = eval(parse(text = paste0("sum(", varname4event, "==T)"))), `sum(event==F)` = eval(parse(text = paste0("sum(", varname4event, "==F)"))), sum(is.Case), sum(is.assigned)  ) #----
+diet.stratified.ccwc$data %>% group_by(!!!rlang::syms(c(.vars4strata, varname4event))) %>% summarise( n(), `sum(event==T)` = eval(parse(text = paste0("sum(", varname4event, "==T)"))), `sum(event==F)` = eval(parse(text = paste0("sum(", varname4event, "==F)"))), sum(is.Case), sum(is.assigned)  ) #----
+# > diet.stratified.ccwc$data %>% group_by(!!!rlang::syms(.vars4strata)) %>% summarise( n(), `sum(event==T)` = eval(parse(text = paste0("sum(", varname4event, "==T)"))), `sum(event==F)` = eval(parse(text = paste0("sum(", varname4event, "==F)"))), sum(is.Case), sum(is.assigned)  ) #----
+# # A tibble: 6 x 7
+# # Groups:   job [3]
+#   job         energy.grp   `n()` `sum(event==T)` `sum(event==F)` `sum(is.Case)` `sum(is.assigned)`
+#   <fct>       <fct>        <int>           <int>           <int>          <int>              <int>
+# 1 Driver      <=2750 KCals    48              13              35              8                 24
+# 2 Driver      >2750 KCals     54              10              44              6                 18
+# 3 Conductor   <=2750 KCals    39              11              28              6                 18
+# 4 Conductor   >2750 KCals     45              12              33              9                 27
+# 5 Bank worker <=2750 KCals    68              18              50             15                 45
+# 6 Bank worker >2750 KCals     83              16              67             13                 39
+# > diet.stratified.ccwc$data %>% group_by(!!!rlang::syms(c(.vars4strata, varname4event))) %>% summarise( n(), `sum(event==T)` = eval(parse(text = paste0("sum(", varname4event, "==T)"))), `sum(event==F)` = eval(parse(text = paste0("sum(", varname4event, "==F)"))), sum(is.Case), sum(is.assigned)  ) #----
+# # A tibble: 12 x 8
+# # Groups:   job, energy.grp [6]
+#    job         energy.grp   event `n()` `sum(event==T)` `sum(event==F)` `sum(is.Case)` `sum(is.assigned)`
+#    <fct>       <fct>        <lgl> <int>           <int>           <int>          <int>              <int>
+#  1 Driver      <=2750 KCals FALSE    35               0              35              0                 11
+#  2 Driver      <=2750 KCals TRUE     13              13               0              8                 13
+#  3 Driver      >2750 KCals  FALSE    44               0              44              0                  8
+#  4 Driver      >2750 KCals  TRUE     10              10               0              6                 10
+#  5 Conductor   <=2750 KCals FALSE    28               0              28              0                  7
+#  6 Conductor   <=2750 KCals TRUE     11              11               0              6                 11
+#  7 Conductor   >2750 KCals  FALSE    33               0              33              0                 15
+#  8 Conductor   >2750 KCals  TRUE     12              12               0              9                 12
+#  9 Bank worker <=2750 KCals FALSE    50               0              50              0                 27
+# 10 Bank worker <=2750 KCals TRUE     18              18               0             15                 18
+# 11 Bank worker >2750 KCals  FALSE    67               0              67              0                 23
+# 12 Bank worker >2750 KCals  TRUE     16              16               0             13                 16
+
+
+
+
+
+diet.stratified.ccwc %>% {.[c(2, 1, 3)]} #----
+diet.stratified.ccwc #----
+diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
+diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
 # > diet.stratified.ccwc %>% {.[c(2, 1, 3)]} #----
 # $data
 # # A tibble: 337 x 28
