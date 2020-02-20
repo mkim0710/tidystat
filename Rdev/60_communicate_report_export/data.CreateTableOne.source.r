@@ -90,6 +90,62 @@ list(
 
 
 
+               
+               
+#@ dataset.CreateTableOne.byCase -----
+varnames4exposure =  c("is.Case")
+# dataset.tableone_byCase = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+#     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
+dataset.tableone_byCase = dataset %>% 
+    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+    CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
+dataset.is.na.tableone_byCase = dataset %>%
+    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
+    map_df(is.na) %>% setNames(paste0(names(.), ".is.na") %>% str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
+    # mutate( !!rlang::sym(varnames4exposure) := dataset[[varnames4exposure]]) %>%
+    cbind(dataset[varnames4exposure]) %>%
+    as.data.frame %>%
+    CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T)
+
+vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
+
+sink("dataset.tableone_byCase.txt")
+dataset.tableone_byCase %>% print(showAllLevels = T, smd = T) #----
+sink()
+sink("dataset.tableone_byCase.IQR.txt")
+dataset.tableone_byCase %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
+sink()
+
+
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
+dataset.tableone_byCase %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
+    write.csv("dataset.tableone_byCase -clean.csv")
+# openxlsx::openXL("dataset.tableone_byCase -clean.csv")
+
+list(
+    tableone_byCase = dataset.tableone_byCase %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+        mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]}) %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group2, into = paste0("Group2", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group1larger = ifelse(Group1mean>Group2mean, 1, 0), Group2larger = ifelse(Group1mean<Group2mean, 1, 0)) # debug181115 mutate(Group1 = {.[[3]]}, Group2 = {.[[4]]})
+    , tableone_byCase.IQR = dataset.tableone_byCase %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
+    , is.na.tableone_byCase = dataset.is.na.tableone_byCase %>% print(showAllLevels = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
+) %>% openxlsx::write.xlsx("dataset.tableone_byCase.xlsx")
+# openxlsx::openXL("dataset.tableone_byCase.xlsx")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # dataset = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% filter(!is.na(Cigar)) %>% filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
