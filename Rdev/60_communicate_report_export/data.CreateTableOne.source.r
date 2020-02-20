@@ -28,7 +28,7 @@ sink()
 dataset.tableone %>% print(showAllLevels = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
     write.csv("dataset.tableone -clean.csv")
 dataset.is.na.tableone %>% print(showAllLevels = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
-    write.csv("ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.is.na.tableone -clean.csv")
+    write.csv("dataset.is.na.tableone -clean.csv")
 # openxlsx::openXL("dataset.tableone -clean.csv")
 
 list(
@@ -82,6 +82,12 @@ list(
     , is.na.tableone_by_exposure = dataset.is.na.tableone_by_exposure %>% print(showAllLevels = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
 ) %>% openxlsx::write.xlsx("dataset.tableone_by_exposure.xlsx")
 # openxlsx::openXL("dataset.tableone_by_exposure.xlsx")
+
+
+
+
+
+
 
 
 
