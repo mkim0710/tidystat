@@ -2,6 +2,7 @@
 
 
 
+
 function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
     library(survival)
     library(tidyverse)
@@ -114,6 +115,11 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
     # # structure(list(), .Names = character(0))
     
+    # degub 200222 for strata(MatchingPairID) -----
+#     Browse[2]> object.coxph$xlevels %>% str()
+# List of 2
+#  $ MatchingPairID        : chr [1:683] "Female|40-|SEcoQ1|Level 1-2_NA" "Female|40-|SEcoQ1|Level 3-6_NA" "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" ...
+#  $ strata(MatchingPairID): chr [1:587] "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" "Female|40-|SEcoQ1|None_3" "Female|40-|SEcoQ1|None_4" ...
     list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
     list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
     
@@ -211,16 +217,18 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 	tibble(varname = character(0), level = character(0), varnamelevel = character(0))
     # }
     # 
-                                                                                                                            
+               
+    # debug 200222) as.tibble() removes the rownames -_- -----                                                                            
+    # debug 200222) right_join() instead of full_join() to remove something like strata(MatchingPairID) -_- -----                                                                            
     #@ tbl_varname_level_coefficients ====
     if (length(list_levels) == 0) { # debug 181115 ----
-        tbl_varname_level_coefficients = tibble(varname = character(0), level = character(0), varnamelevel = character(0)) %>% full_join(
-                object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+        tbl_varname_level_coefficients = tibble(varname = character(0), level = character(0), varnamelevel = character(0)) %>% right_join(
+                tibble(varnamelevel = names(object.coxph$coefficients), coefficients = object.coxph$coefficients), by = "varnamelevel"
             ) #----
     } else {
         tbl_varname_level_coefficients = 
-            list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-                object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+            list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% right_join(
+                tibble(varnamelevel = names(object.coxph$coefficients), coefficients = object.coxph$coefficients), by = "varnamelevel"
             ) #----
     }
     
@@ -288,67 +296,71 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
         # > 5.5550 %>% sprintf_but_ceiling5(fmt='%#.2f')
         # [1] "5.56"
     }
-    res1[c("exp(coef)", "lower .95", "upper .95")] %>%
-        map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    res1[c("exp(coef)", "lower .95", "upper .95")] %>%
-        signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    res1[c("exp(coef)", "lower .95", "upper .95")] %>% str
-    res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
-        map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
-    # +     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    # # A tibble: 10 x 3
-    #    `exp(coef)`      `lower .95` `upper .95`
-    #    <chr>            <chr>       <chr>      
-    #  1 0.00             0.00        Inf        
-    #  2 0.00             0.00        Inf        
-    #  3 0.00             0.00        Inf        
-    #  4 4.56             0.34        60.57      
-    #  5 0.00             0.00        Inf        
-    #  6 0.00             0.00        Inf        
-    #  7 111699493356.72  0.00        Inf        
-    #  8 5.23             5.23        5.23       
-    #  9 4486328565244.22 0.00        Inf        
-    # 10 1.03             0.07        15.76      
-    # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
-    # +     signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    # # A tibble: 10 x 3
-    #    `exp(coef)`      `lower .95` `upper .95`
-    #    <chr>            <chr>       <chr>      
-    #  1 0.00             0.00        Inf        
-    #  2 0.00             0.00        Inf        
-    #  3 0.00             0.00        Inf        
-    #  4 4.56             0.34        60.60      
-    #  5 0.00             0.00        Inf        
-    #  6 0.00             0.00        Inf        
-    #  7 112000000000.00  0.00        Inf        
-    #  8 5.23             5.23        5.23       
-    #  9 4490000000000.00 0.00        Inf        
-    # 10 1.03             0.07        15.80   
-    # > res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
-    # +         map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    # # A tibble: 28 x 3
-    # `exp(coef)` `lower .95` `upper .95`
-    # <chr>       <chr>       <chr>      
-    #     1 0.00        0.00        Inf        
-    # 2 0.00        0.00        Inf        
-    # 3 0.00        0.00        Inf        
-    # 4 4.56        0.34        60.57      
-    # 5 0.00        0.00        Inf        
-    # 6 0.00        0.00        Inf        
-    # 7 99.99       0.00        Inf        
-    # 8 5.23        5.23        5.23       
-    # 9 99.99       0.00        Inf        
-    # 10 1.03        0.07        15.76      
-    # # ... with 18 more rows
+    # res1[c("exp(coef)", "lower .95", "upper .95")] %>%
+    #     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # res1[c("exp(coef)", "lower .95", "upper .95")] %>%
+    #     signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # res1[c("exp(coef)", "lower .95", "upper .95")] %>% str
+    # res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
+    #     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    # # +     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # # # A tibble: 10 x 3
+    # #    `exp(coef)`      `lower .95` `upper .95`
+    # #    <chr>            <chr>       <chr>      
+    # #  1 0.00             0.00        Inf        
+    # #  2 0.00             0.00        Inf        
+    # #  3 0.00             0.00        Inf        
+    # #  4 4.56             0.34        60.57      
+    # #  5 0.00             0.00        Inf        
+    # #  6 0.00             0.00        Inf        
+    # #  7 111699493356.72  0.00        Inf        
+    # #  8 5.23             5.23        5.23       
+    # #  9 4486328565244.22 0.00        Inf        
+    # # 10 1.03             0.07        15.76      
+    # # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
+    # # +     signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # # # A tibble: 10 x 3
+    # #    `exp(coef)`      `lower .95` `upper .95`
+    # #    <chr>            <chr>       <chr>      
+    # #  1 0.00             0.00        Inf        
+    # #  2 0.00             0.00        Inf        
+    # #  3 0.00             0.00        Inf        
+    # #  4 4.56             0.34        60.60      
+    # #  5 0.00             0.00        Inf        
+    # #  6 0.00             0.00        Inf        
+    # #  7 112000000000.00  0.00        Inf        
+    # #  8 5.23             5.23        5.23       
+    # #  9 4490000000000.00 0.00        Inf        
+    # # 10 1.03             0.07        15.80   
+    # # > res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
+    # # +         map_df(sprintf_but_ceiling5,  fmt = "%.2f")
+    # # # A tibble: 28 x 3
+    # # `exp(coef)` `lower .95` `upper .95`
+    # # <chr>       <chr>       <chr>      
+    # #     1 0.00        0.00        Inf        
+    # # 2 0.00        0.00        Inf        
+    # # 3 0.00        0.00        Inf        
+    # # 4 4.56        0.34        60.57      
+    # # 5 0.00        0.00        Inf        
+    # # 6 0.00        0.00        Inf        
+    # # 7 99.99       0.00        Inf        
+    # # 8 5.23        5.23        5.23       
+    # # 9 99.99       0.00        Inf        
+    # # 10 1.03        0.07        15.76      
+    # # # ... with 18 more rows
+    
+    # debug 200222 ----
+    # # Browse[2]> res1 %>% dput
+    # res1 = structure(list(rowname = "total_ddd_yr_ASPIRIN.dyd", `exp(coef)` = 0.978099509806593,
+    # `lower .95` = 0.891900198786099, `upper .95` = 1.07262970945176,
+    # `Pr(>|z|)` = 0.638042892543426), row.names = c(NA, -1L), class = "data.frame")
+    
     res2 = tibble(
         rowname = res1$rowname
         , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
             map_df(sprintf_but_ceiling5,  fmt = paste0("%.", digits, "f")) %>% 
-            add_column(" (", .after = "exp(coef)") %>%
-            add_column(", ", .after = "lower .95") %>%
-            add_column(")", .after = "upper .95") %>%
-            unite(sep = "") %>% unlist %>% gsub("99.99", ">100", .)
+            transmute(HRCI = paste0(`exp(coef)`, " (", `lower .95`, ", ", `upper .95`, ")") %>% gsub("99.99", ">100", .)) %>% unlist
         , p_value = paste0("p=", res1$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
         , star = res1$`Pr(>|z|)` %>% 
             cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
@@ -408,6 +420,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
 }
+
 
 
 
