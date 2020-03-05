@@ -1,3 +1,18 @@
+
+
+data %>% names %>% deparse %>% cat; cat("\n") #----
+data %>% names %>% paste(collapse = ", ") #----
+# > data %>% names %>% deparse %>% cat; cat("\n") #----
+# c("Time2Event", "Event", "Exposure")
+# > data %>% names %>% paste(collapse = ", ") #----
+# [1] "Time2Event, Event, Exposure"
+
+
+
+
+
+
+
 function.deparse.cat.width = function(x, deparse.width.cutoff = 500, cat.sep = "") {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.deparse.cat.width.source.r")
     cat(deparse(x, width.cutoff = deparse.width.cutoff), sep = cat.sep)
