@@ -2,12 +2,11 @@
 
 
 #@ end -----
-
-library(tidyverse)
 getwd()
 path4write = getwd()
 objectname = "d.NDCNUM_concept_name.join_redbook2019.STRNGTH_Manual"
 write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
+
 
 
 
