@@ -19,7 +19,7 @@ getwd()
 path4write = "../data/data.ID_DATE_DX.distinct"
 path4write = getwd()
 objectname = "d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.DDD"
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")))
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")))
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
 openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
 
