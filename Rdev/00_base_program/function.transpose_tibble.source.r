@@ -1,4 +1,61 @@
 
+analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+    group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
+    mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+    group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
+    mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+# > analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+# +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
+# +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+#                           Exposure0 Exposure1 Sum
+# PrimaryOutcome123456             60        34  94
+# SecondaryOutcomeP1456fhkl       128        65 193
+# PrimaryOutcome1                   5         4   9
+# PrimaryOutcome2                  52        30  82
+# PrimaryOutcome3                   5         0   5
+# PrimaryOutcome4                   0         0   0
+# PrimaryOutcome5                   0         0   0
+# PrimaryOutcome6                   0         3   3
+# SecondaryOutcome1                41        13  54
+# SecondaryOutcome4                 0         0   0
+# SecondaryOutcome5                 0         0   0
+# SecondaryOutcome6                 0         3   3
+# SecondaryOutcome7                 0         0   0
+# SecondaryOutcome10                6         3   9
+# SecondaryOutcome13               96        63 159
+# SecondaryOutcome14                0         0   0
+# SecondaryOutcome15                0         0   0
+# SecondaryOutcome17               71        38 109
+# SecondaryOutcome20                5         0   5
+# SecondaryOutcome21                5         0   5
+# Sum                             474       256 730
+# > analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+# +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
+# +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+#                           Exposure0  Exposure1        Sum
+# PrimaryOutcome123456          0.300 0.30088496 0.60088496
+# SecondaryOutcomeP1456fhkl     0.640 0.57522124 1.21522124
+# PrimaryOutcome1               0.025 0.03539823 0.06039823
+# PrimaryOutcome2               0.260 0.26548673 0.52548673
+# PrimaryOutcome3               0.025 0.00000000 0.02500000
+# PrimaryOutcome4               0.000 0.00000000 0.00000000
+# PrimaryOutcome5               0.000 0.00000000 0.00000000
+# PrimaryOutcome6               0.000 0.02654867 0.02654867
+# SecondaryOutcome1             0.205 0.11504425 0.32004425
+# SecondaryOutcome4             0.000 0.00000000 0.00000000
+# SecondaryOutcome5             0.000 0.00000000 0.00000000
+# SecondaryOutcome6             0.000 0.02654867 0.02654867
+# SecondaryOutcome7             0.000 0.00000000 0.00000000
+# SecondaryOutcome10            0.030 0.02654867 0.05654867
+# SecondaryOutcome13            0.480 0.55752212 1.03752212
+# SecondaryOutcome14            0.000 0.00000000 0.00000000
+# SecondaryOutcome15            0.000 0.00000000 0.00000000
+# SecondaryOutcome17            0.355 0.33628319 0.69128319
+# SecondaryOutcome20            0.025 0.00000000 0.02500000
+# SecondaryOutcome21            0.025 0.00000000 0.02500000
+# Sum                           2.370 2.26548673 4.63548673
+
     
 analyticDF2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time")), funs(sum, mean)))} %>% 
     {bind_cols(
