@@ -3,6 +3,82 @@
 
 
 
+
+
+
+analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+    {
+        f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
+            mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
+            gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+        f2 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
+            mutate(Exposure = case_when(Exposure==0 ~ "pDisease_Exposed0", Exposure==1 ~ "pDisease_Exposed1")) %>%
+            gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+        out = full_join(f1(.), f2(.)) ;
+        out$nExposed0 = sum(.$Exposure==0, na.rm = T)
+        out$nExposed1 = sum(.$Exposure==1, na.rm = T)
+        out = out %>% select(key, nExposed0, nExposed1, everything())
+        out
+    }
+# > analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+# +     {
+# +         f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
+# +             mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
+# +             gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+# +         f2 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
+# +             mutate(Exposure = case_when(Exposure==0 ~ "pDisease_Exposed0", Exposure==1 ~ "pDisease_Exposed1")) %>%
+# +             gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+# +         out = full_join(f1(.), f2(.)) ;
+# +         out$nExposed0 = sum(.$Exposure==0, na.rm = T)
+# +         out$nExposed1 = sum(.$Exposure==1, na.rm = T)
+# +         out = out %>% select(key, nExposed0, nExposed1, everything())
+# +         out
+# +     }
+# Joining, by = "key"
+# # A tibble: 20 x 7
+#    key                       nExposed0 nExposed1 nDisease1_Exposed0 nDisease1_Exposed1 pDisease_Exposed0 pDisease_Exposed1
+#    <chr>                         <int>     <int>              <int>              <int>             <dbl>             <dbl>
+#  1 PrimaryOutcome1                 200       113                  5                  4             0.025            0.0354
+#  2 PrimaryOutcome123456            200       113                 60                 34             0.3              0.301 
+#  3 PrimaryOutcome2                 200       113                 52                 30             0.26             0.265 
+#  4 PrimaryOutcome3                 200       113                  5                  0             0.025            0     
+#  5 PrimaryOutcome4                 200       113                  0                  0             0                0     
+#  6 PrimaryOutcome5                 200       113                  0                  0             0                0     
+#  7 PrimaryOutcome6                 200       113                  0                  3             0                0.0265
+#  8 SecondaryOutcome1               200       113                 41                 13             0.205            0.115 
+#  9 SecondaryOutcome10              200       113                  6                  3             0.03             0.0265
+# 10 SecondaryOutcome13              200       113                 96                 63             0.48             0.558 
+# 11 SecondaryOutcome14              200       113                  0                  0             0                0     
+# 12 SecondaryOutcome15              200       113                  0                  0             0                0     
+# 13 SecondaryOutcome17              200       113                 71                 38             0.355            0.336 
+# 14 SecondaryOutcome20              200       113                  5                  0             0.025            0     
+# 15 SecondaryOutcome21              200       113                  5                  0             0.025            0     
+# 16 SecondaryOutcome4               200       113                  0                  0             0                0     
+# 17 SecondaryOutcome5               200       113                  0                  0             0                0     
+# 18 SecondaryOutcome6               200       113                  0                  3             0                0.0265
+# 19 SecondaryOutcome7               200       113                  0                  0             0                0     
+# 20 SecondaryOutcomeP1456fhkl       200       113                128                 65             0.64             0.575 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #@ data ====
 data = ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% 
     select(Intervention, Control, Nothing, matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+"), SecondaryOutcomeP1456fhkl)
