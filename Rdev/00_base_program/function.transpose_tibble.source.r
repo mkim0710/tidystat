@@ -56,6 +56,73 @@ analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>%
 # SecondaryOutcome21            0.025 0.00000000 0.02500000
 # Sum                           2.370 2.26548673 4.63548673
 
+
+
+#@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====
+analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
+    analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+    {
+        f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
+            mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
+            gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+        out = f1(.)
+        
+        out$nExposed0 = sum(.$Exposure==0, na.rm = T)
+        out$nExposed1 = sum(.$Exposure==1, na.rm = T)
+        
+        out = out %>% mutate(
+            nDisease0_Exposed0 = nExposed0 - nDisease1_Exposed0
+            , nDisease0_Exposed1 = nExposed1 - nDisease1_Exposed1
+        )
+        out = out %>% select(key, nExposed0, nExposed1, everything())
+        
+        f2 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
+            mutate(Exposure = case_when(Exposure==0 ~ "pDisease_Exposed0", Exposure==1 ~ "pDisease_Exposed1")) %>%
+            gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+        out = full_join(out, f2(.), by = "key")
+
+        out = out %>% mutate(
+            `nDisease|Exposed0 (%) %.2f` = paste0(nDisease1_Exposed0, " (", sprintf("%.2f",round(pDisease_Exposed0*100,2)), "%)"),
+            `nDisease|Exposed1 (%) %.2f` = paste0(nDisease1_Exposed1, " (", sprintf("%.2f",round(pDisease_Exposed1*100,2)), "%)"),
+            `nDisease|Exposed0 (%) %.3f` = paste0(nDisease1_Exposed0, " (", sprintf("%.3f",round(pDisease_Exposed0*100,3)), "%)"),
+            `nDisease|Exposed1 (%) %.3f` = paste0(nDisease1_Exposed1, " (", sprintf("%.3f",round(pDisease_Exposed1*100,3)), "%)")
+        ) %>% select(`nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, `nDisease|Exposed0 (%) %.3f`, `nDisease|Exposed1 (%) %.3f`, everything())
+        
+        out
+    }
+analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
+# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
+# # A tibble: 20 x 9
+#    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` nExposed0 nExposed1 nDisease0_Exposed0 nDisease0_Exposed1 nDisease1_Exposed0 nDisease1_Exposed1
+#    <chr>                     <chr>                        <chr>                            <int>     <int>              <int>              <int>              <int>              <int>
+#  1 PrimaryOutcome1           5 (2.50%)                    4 (3.54%)                          200       113                195                109                  5                  4
+#  2 PrimaryOutcome123456      60 (30.00%)                  34 (30.09%)                        200       113                140                 79                 60                 34
+#  3 PrimaryOutcome2           52 (26.00%)                  30 (26.55%)                        200       113                148                 83                 52                 30
+#  4 PrimaryOutcome3           5 (2.50%)                    0 (0.00%)                          200       113                195                113                  5                  0
+#  5 PrimaryOutcome4           0 (0.00%)                    0 (0.00%)                          200       113                200                113                  0                  0
+#  6 PrimaryOutcome5           0 (0.00%)                    0 (0.00%)                          200       113                200                113                  0                  0
+#  7 PrimaryOutcome6           0 (0.00%)                    3 (2.65%)                          200       113                200                110                  0                  3
+#  8 SecondaryOutcome1         41 (20.50%)                  13 (11.50%)                        200       113                159                100                 41                 13
+#  9 SecondaryOutcome10        6 (3.00%)                    3 (2.65%)                          200       113                194                110                  6                  3
+# 10 SecondaryOutcome13        96 (48.00%)                  63 (55.75%)                        200       113                104                 50                 96                 63
+# 11 SecondaryOutcome14        0 (0.00%)                    0 (0.00%)                          200       113                200                113                  0                  0
+# 12 SecondaryOutcome15        0 (0.00%)                    0 (0.00%)                          200       113                200                113                  0                  0
+# 13 SecondaryOutcome17        71 (35.50%)                  38 (33.63%)                        200       113                129                 75                 71                 38
+# 14 SecondaryOutcome20        5 (2.50%)                    0 (0.00%)                          200       113                195                113                  5                  0
+# 15 SecondaryOutcome21        5 (2.50%)                    0 (0.00%)                          200       113                195                113                  5                  0
+# 16 SecondaryOutcome4         0 (0.00%)                    0 (0.00%)                          200       113                200                113                  0                  0
+# 17 SecondaryOutcome5         0 (0.00%)                    0 (0.00%)                          200       113                200                113                  0                  0
+# 18 SecondaryOutcome6         0 (0.00%)                    3 (2.65%)                          200       113                200                110                  0                  3
+# 19 SecondaryOutcome7         0 (0.00%)                    0 (0.00%)                          200       113                200                113                  0                  0
+# 20 SecondaryOutcomeP1456fhkl 128 (64.00%)                 65 (57.52%)                        200       113                 72                 48                128                 65
+
+
+
+
+
+
+
+
     
 analyticDF2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time")), funs(sum, mean)))} %>% 
     {bind_cols(
