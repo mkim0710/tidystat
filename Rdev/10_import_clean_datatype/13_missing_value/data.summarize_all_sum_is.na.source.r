@@ -40,7 +40,8 @@ data = analyticDF.TargetTrial2v40.2.206vs373 %>% mutate(Metformin = Intervention
            , t_N90_60.RxCONCEPT_NDC_metformin.DDD.meanSTRNGTHpD  # Mean dose of metformin (MG) per day from 12 weeks prior to LMP to GA 8 weeks
            , Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.any  # added 200425
     )
-data %>% summarise_all(list(~sum(is.na(.)))) %>% t # Caution) always check for missing values~!!! -----
+# data %>% summarise_all(list(~sum(is.na(.)))) %>% t # Caution) always check for missing values~!!! -----
+data %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----
 data %>% names %>% deparse %>% cat; cat("\n") #----
 data %>% names %>% paste(collapse = ", ") #----
 analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates = 
