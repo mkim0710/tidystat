@@ -231,10 +231,19 @@ data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>
 
 
 #@ ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure ====
+# ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure = 
+#     ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(
+#         ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm) %>%
+#             mutate_at(vars(matches("CONCEPT_NDC")), list(~if_else(., SVCDATE, as.Date(NA)))) %>% 
+#             filter(SVCDATE >= lmp - 90) %>% 
+#             filter(SVCDATE <= lmp + 120) %>% 
+#             group_by(ENROLID) %>% summarise_at(.vars = vars(matches("CONCEPT_NDC")), .funs = list(ndDate = n_distinct, minDate = min, maxDate = max), na.rm = T)
+#     ) %>% 
+#     map_df(function(x) if(class(x) == "Date") if_else(x == Inf | x == -Inf, as.Date(NA), as.Date(x)) else x) 
 ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure = 
     ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(
         ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm) %>%
-            mutate_at(vars(matches("CONCEPT_NDC")), list(~if_else(., SVCDATE, as.Date(NA)))) %>% 
+            mutate_at(vars(matches("CONCEPT_NDC")), function(vec) if_else(vec, SVCDATE, as.Date(NA)) ) %>% 
             filter(SVCDATE >= lmp - 90) %>% 
             filter(SVCDATE <= lmp + 120) %>% 
             group_by(ENROLID) %>% summarise_at(.vars = vars(matches("CONCEPT_NDC")), .funs = list(ndDate = n_distinct, minDate = min, maxDate = max), na.rm = T)
