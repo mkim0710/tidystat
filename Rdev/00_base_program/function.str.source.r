@@ -1,7 +1,8 @@
 # function.str.source.r
 
 
-ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD %>% str(list.len=length(.)) #-----
+# ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD %>% str(list.len=length(.)) #-----
+ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD %>% str(list.len=Inf) #-----
 # > ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD %>% str(list.len=length(.)) #-----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	313 obs. of  295 variables:
 #  $ ENROLID                                                      : num  6.60e+08 8.91e+08 1.03e+09 1.04e+09 1.04e+09 ...
