@@ -1,5 +1,5 @@
 # function.print.options.source.r
-
+# https://pillar.r-lib.org/reference/pillar-package.html#package-options
 
 options() %>% str(list.len=length(.)) #-----
 # > options() %>% str(list.len=length(.)) #-----
@@ -181,6 +181,29 @@ analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot
 
 
 
+analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot.list1$PrimaryOutcome123456 %>% 
+    {rbind( as.tibble(as.list(.$t0)), map_df( {set_names(as.tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
+    {options(pillar.min_title_chars = Inf); print(., n = 20, width = NULL, n_extra = Inf)} #-----
+# > analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot.list1$PrimaryOutcome123456 %>% 
+# +     {rbind( as.tibble(as.list(.$t0)), map_df( {set_names(as.tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
+# +     {options(pillar.min_title_chars = Inf); print(., n = 20, width = NULL, n_extra = Inf)} #-----
+# # A tibble: 3 x 45
+#   `max(k)` pNoEvent_k.cumprod0 pNoEvent_k.cumprod1 Risk0 Risk1 RiskDifference RiskRatio `(Intercept)` Exposure     k `I(k^2)`
+#      <dbl>               <dbl>               <dbl> <dbl> <dbl>          <dbl>     <dbl>         <dbl>    <dbl> <dbl>    <dbl>
+# 1       38               0.787               0.792 0.213 0.208       -0.00521     0.976     2.00e- 17 7.73e- 3 0.958     1.00
+# 2       38               0.714               0.715 0.137 0.131       -0.0779      0.673     6.20e-162 3.67e-33 0.915     1.00
+# 3       38               0.863               0.869 0.286 0.285        0.0627      1.36      3.22e+126 5.50e- 1 1.03      1.00
+# # ... with 34 more variables: Window4Eligible.RxCONCEPT_NDC_SU_TZD_etc.any <dbl>, lmp.year <dbl>, Age_at_lmp <dbl>,
+# #   t_N180_42.ICD9_CKD_exceptARF <dbl>, t_N180_42.ICD9_HTN.Superset <dbl>, t_N180_42.ICD9_Asthma <dbl>, t_N180_42.ICD9_Thyroid.Superset <dbl>,
+# #   t_N180_42.ICD9_Depression.Superset <dbl>, t_N180_42.ICD9_SubstanceAbuse <dbl>, t_N180_42.ICD9_Bipolar <dbl>, t_N180_42.ICD9_Anxiety <dbl>,
+# #   t_N180_42.ICD9_Hyperlipidemia <dbl>, t_N180_42.ICD9_Cerebrovascular <dbl>, t_N180_42.ICD9_Obesity <dbl>,
+# #   t_N180_42.ICD9_PolycysticOvaries <dbl>, t_N180_42.ICD9_Acne <dbl>, t_N180_42.ICD9_CPT_PregnancyTest.Superset <dbl>,
+# #   t_N180_42.ICD9_DMrenal <dbl>, t_N180_42.ICD9_DMophthalmic <dbl>, t_N180_42.ICD9_DMneurological <dbl>, t_N180_42.ICD9_DMperipheral <dbl>,
+# #   t_N180_42.ICD9_DMother <dbl>, t_N180_42.ICD9_DMunspecifiedCx <dbl>, t_N180_42.ICD9_DMuncontrolledT2 <dbl>, t_N180_0.Nvisits <dbl>,
+# #   t_N90_0.Nvisits <dbl>, t_N180_0.Nprocedures <dbl>, t_N90_0.Nprocedures <dbl>,
+# #   t_N180_N91.RxCONCEPT_NDC_insulin.DDD.meanSTRNGTHpD.replace_na <dbl>, t_N180_N91.RxCONCEPT_NDC_metformin.DDD.meanSTRNGTHpD.replace_na <dbl>,
+# #   t_N90_60.RxCONCEPT_NDC_insulin.DDD.meanSTRNGTHpD.replace_na <dbl>, t_N90_60.RxCONCEPT_NDC_metformin.DDD.meanSTRNGTHpD.replace_na <dbl>,
+# #   `Exposure:k` <dbl>, `Exposure:I(k^2)` <dbl>
 
 
 #@ end -----
