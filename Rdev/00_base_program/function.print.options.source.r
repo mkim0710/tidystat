@@ -206,4 +206,25 @@ analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot
 # #   `Exposure:k` <dbl>, `Exposure:I(k^2)` <dbl>
 
 
+
+
+
+#@ ------
+# https://github.com/r-lib/pillar/issues/101
+# kovla commented on Feb 11, 2018
+# Why not let the user decide how many characters they deem necessary? You have pillar.min_title_chars that controls column title truncation, why not implement something similar for character column width?
+# As an aside, the workaround I am currently using is to set the mentioned option to Inf, and use variable name that exceeds or equals the number of characters I need to be shown (e.g., ID____________). Of course, this workaround is the same as having the separate option for column width, only less convenient.
+
+# davidchall commented 26 days ago • 
+# Or how about an option to disable truncation?
+# options(pillar.truncate = FALSE)  # default: TRUE
+
+
+# https://github.com/r-lib/pillar/pull/178
+# statsmaths commented on Feb 4
+# Addresses #101 by implementing an option pillar.min_character_chars to give control over how wide to make characters for a character column. The option works similarly to pillar.min_title_chars. The default is currently 0 to be backwards compatible.
+# Like others, I needed this for a project I am working on (a bookdown book that needs users to see the full names of a kibble's character column) and was frustrated trying to get it to work. If there is a better approach to this, happy to adjust.
+
+
+
 #@ end -----
