@@ -1,7 +1,8 @@
 # function.print.options.source.r
 # https://pillar.r-lib.org/reference/pillar-package.html#package-options
 
-options() %>% str(list.len=length(.)) #-----
+# options() %>% str(list.len=length(.)) #-----
+options() %>% str(list.len=Inf) #-----
 # > options() %>% str(list.len=length(.)) #-----
 # List of 120
 #  $ add.smooth                          : logi TRUE
