@@ -3,6 +3,57 @@
 
 
 
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/15_cleaning_time/function.time_since_t0.source.r
+#@ -----
+data %>% mutate_if(lubridate::is.Date, function(vec) if_else(is.na(vec), as.Date("9999-12-31"), vec))
+data %>% mutate_if(lubridate::is.Date, function(vec) replace(vec, is.na(vec), as.Date("9999-12-31")))
+data %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31")))
+
+
+
+#@ mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)}) =====
+ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(matches("Window4Exposure"))
+ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(lmp, matches("Window4Exposure")) %>% 
+     mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)})  #----
+# > ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(matches("Window4Exposure"))
+# # A tibble: 313 x 9
+#    Window4Exposure.R~ Window4Exposure.Rx~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~
+#                 <int> <date>              <date>                          <int> <date>             <date>                          <int> <date>             <date>            
+#  1                  4 2013-05-01          2013-08-01                          2 2013-05-01         2013-08-02                         NA NA                 NA                
+#  2                  5 2015-01-23          2015-04-13                          2 2015-01-23         2015-04-23                         NA NA                 NA                
+#  3                  2 2012-03-12          2012-03-30                          2 2012-03-12         2012-03-29                         NA NA                 NA                
+#  4                  2 2012-10-04          2012-12-07                          1 2012-12-10         2012-12-10                         NA NA                 NA                
+#  5                  4 2012-12-23          2013-02-14                          1 2013-04-02         2013-04-02                         NA NA                 NA                
+#  6                  4 2014-02-24          2014-05-05                          1 2014-04-24         2014-04-24                         NA NA                 NA                
+#  7                  8 2013-05-14          2013-09-03                          1 2013-05-30         2013-05-30                         NA NA                 NA                
+#  8                  8 2011-12-09          2012-03-04                          4 2011-12-02         2012-03-02                         NA NA                 NA                
+#  9                  1 2014-01-15          2014-01-15                          4 2013-10-28         2014-02-13                         NA NA                 NA                
+# 10                  6 2012-05-26          2012-08-21                          3 2012-05-26         2012-08-20                         NA NA                 NA                
+# # ... with 303 more rows
+# > ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(lmp, matches("Window4Exposure")) %>% 
+# +      mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)})  #----
+# # A tibble: 313 x 10
+#      lmp Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.~ Window4Exposure.~ Window4Exposure.~ Window4Exposure.~ Window4Exposure.~
+#    <dbl>              <int>              <dbl>              <dbl>              <int>             <dbl>             <dbl>             <int>             <dbl>             <dbl>
+#  1     0                  4                 85                177                  2                85               178                NA                NA                NA
+#  2     0                  5                 69                149                  2                69               159                NA                NA                NA
+#  3     0                  2                 84                102                  2                84               101                NA                NA                NA
+#  4     0                  2                 87                151                  1               154               154                NA                NA                NA
+#  5     0                  4                 65                118                  1               165               165                NA                NA                NA
+#  6     0                  4                 62                132                  1               121               121                NA                NA                NA
+#  7     0                  8                 66                178                  1                82                82                NA                NA                NA
+#  8     0                  8                 80                166                  4                73               164                NA                NA                NA
+#  9     0                  1                145                145                  4                66               174                NA                NA                NA
+# 10     0                  6                 65                152                  3                65               151                NA                NA                NA
+# # ... with 303 more rows
+
+
+
+
+
+
+####################################################################
+
 letters[c(1:4, 2:6, 4:1)] %>% as.factor
 # letters[c(1:4, 2:6, 4:1)] %>% {factor(., levels = rev(.))}
 letters[c(1:4, 2:6, 4:1)] %>% {factor(., levels = rev(sort(unique(.))))}
