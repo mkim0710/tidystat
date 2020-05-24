@@ -122,9 +122,10 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 
 
 
-ID_lmp_Window4Exposure %>% rename_if(
-    function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
-    , function(chr) paste0("prefix.", chr) ) %>% str #----
+# ID_lmp_Window4Exposure %>% rename_if(
+#     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
+#     , function(chr) paste0("prefix.", chr) ) %>% str #----
+ID_lmp_Window4Exposure %>% rename_at(vars(-rowname), funs(paste0("prefix.", c.)) ) %>% str #----
 # > ID_lmp_Window4Exposure %>% rename_if(
 # +     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
 # +     , function(chr) paste0("prefix.", chr) ) %>% str #----
