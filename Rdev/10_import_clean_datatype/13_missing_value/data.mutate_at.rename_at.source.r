@@ -19,6 +19,10 @@ ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>%
     mutate_at(vars(matches("\\.ndDate$")), replace_na, 0) %>% 
     rename_at(vars(matches("\\.ndDate$")), paste0, ".replace_na") %>% 
     select_at(vars(matches("\\.replace_na"))) %>% summary #-----
+ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>% 
+    mutate_at(vars(matches("\\.ndDate$")), funs(replace_na(., 0))) %>% 
+    rename_at(vars(matches("\\.ndDate$")), funs(paste0(., ".replace_na"))) %>% 
+    select_at(vars(matches("\\.replace_na"))) %>% summary #-----
 # > ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>% 
 # +     select_at(vars(matches("\\.ndDate$"))) %>% summary #-----
 #  Window4Eligible.RxCONCEPT_NDC_insulin.ndDate Window4Eligible.RxCONCEPT_NDC_metformin.ndDate Window4Eligible.RxCONCEPT_NDC_SU_TZD_etc.ndDate
