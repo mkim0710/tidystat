@@ -16,24 +16,58 @@ nhanes_mice %>% str #-----
 #  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
 
 
-nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
+
 nhanes_mice %>% map_df(function(x) sum(is.na(x))) #----
-nhanes_mice %>% summarise_all(.funs = function(x) sum(is.na(x))) #----
-nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----
-# > nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
-# age bmi hyp chl 
-#   0   9   8  10 
+nhanes_mice %>% map_df(.f = function(x) sum(is.na(x))) #----
+nhanes_mice %>% map_df(.f = funs(sum(is.na(.)))) #----
 # > nhanes_mice %>% map_df(function(x) sum(is.na(x))) #----
 # # A tibble: 1 x 4
 #     age   bmi   hyp   chl
 #   <int> <int> <int> <int>
 # 1     0     9     8    10
+# > nhanes_mice %>% map_df(.f = function(x) sum(is.na(x))) #----
+# # A tibble: 1 x 4
+#     age   bmi   hyp   chl
+#   <int> <int> <int> <int>
+# 1     0     9     8    10
+# > nhanes_mice %>% map_df(.f = funs(sum(is.na(.)))) #----
+# Error: Can't convert a `fun_list` object to function
+# Call `rlang::last_error()` to see a backtrace
+
+
+nhanes_mice %>% summarise_all(function(x) sum(is.na(x))) #----
+nhanes_mice %>% summarise_all(.funs = function(x) sum(is.na(x))) #----
+nhanes_mice %>% summarise_all(funs(sum(is.na(.)))) #----
+nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----
+nhanes_mice %>% summarise_all(sum(is.na(.))) #----
+nhanes_mice %>% summarise_all(.funs = sum(is.na(.))) #----
+# > nhanes_mice %>% summarise_all(function(x) sum(is.na(x))) #----
+#   age bmi hyp chl
+# 1   0   9   8  10
 # > nhanes_mice %>% summarise_all(.funs = function(x) sum(is.na(x))) #----
+#   age bmi hyp chl
+# 1   0   9   8  10
+# > nhanes_mice %>% summarise_all(funs(sum(is.na(.)))) #----
 #   age bmi hyp chl
 # 1   0   9   8  10
 # > nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----
 #   age bmi hyp chl
 # 1   0   9   8  10
+# > nhanes_mice %>% summarise_all(sum(is.na(.))) #----
+# Error: Can't create call to non-callable object
+# Call `rlang::last_error()` to see a backtrace
+# > nhanes_mice %>% summarise_all(.funs = sum(is.na(.))) #----
+# Error: Can't create call to non-callable object
+# Call `rlang::last_error()` to see a backtrace
+
+
+
+nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
+# > nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
+# age bmi hyp chl 
+#   0   9   8  10 
+
+
 
 
 
