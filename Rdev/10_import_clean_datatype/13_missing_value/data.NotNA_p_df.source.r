@@ -1,6 +1,44 @@
 # data.NotNA_p_df.source.r
 
 
+# load("data/library(mice) nhanes_mice.rda")
+# load(url("https://github.com/mkim0710/tidystat/tree/master/data/library(mice) nhanes_mice.rda"))
+# # > load(url("https://github.com/mkim0710/tidystat/tree/master/data/library(mice) nhanes_mice.rda"))
+# # Error in load(url("https://github.com/mkim0710/tidystat/tree/master/data/library(mice) nhanes_mice.rda")) : 
+# #   the input does not start with a magic number compatible with loading from a connection
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library(mice) nhanes_mice.rda"))
+nhanes_mice %>% str #-----
+# > nhanes_mice %>% str #-----
+# 'data.frame':	25 obs. of  4 variables:
+#  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
+#  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...
+#  $ hyp: num  NA 1 1 NA 1 NA 1 1 1 NA ...
+#  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
+
+
+nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
+nhanes_mice %>% map_df(function(x) sum(is.na(x))) #----
+nhanes_mice %>% summarise_all(.funs = function(x) sum(is.na(x))) #----
+nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----
+# > nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
+# age bmi hyp chl 
+#   0   9   8  10 
+# > nhanes_mice %>% map_df(function(x) sum(is.na(x))) #----
+# # A tibble: 1 x 4
+#     age   bmi   hyp   chl
+#   <int> <int> <int> <int>
+# 1     0     9     8    10
+# > nhanes_mice %>% summarise_all(.funs = function(x) sum(is.na(x))) #----
+#   age bmi hyp chl
+# 1   0   9   8  10
+# > nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----
+#   age bmi hyp chl
+# 1   0   9   8  10
+
+
+
+
+#@ ------
 
 data.NotNA_p_df = function(data) {
     out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
@@ -19,11 +57,6 @@ data.NotNA_p_df = function(data) {
 # save(nhanes_mice, file = "data/library(mice) nhanes_mice.rda")
 
 library(tidyverse)
-# load("data/library(mice) nhanes_mice.rda")
-# load(url("https://github.com/mkim0710/tidystat/tree/master/data/library(mice) nhanes_mice.rda"))
-# # > load(url("https://github.com/mkim0710/tidystat/tree/master/data/library(mice) nhanes_mice.rda"))
-# # Error in load(url("https://github.com/mkim0710/tidystat/tree/master/data/library(mice) nhanes_mice.rda")) : 
-# #   the input does not start with a magic number compatible with loading from a connection
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library(mice) nhanes_mice.rda"))
 nhanes_mice %>% str #-----
 # > nhanes_mice %>% str #-----
