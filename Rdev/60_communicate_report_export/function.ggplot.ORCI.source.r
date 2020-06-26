@@ -3,6 +3,33 @@
 
 # https://github.com/cardiomoon/moonBook/blob/master/R/ORplot.R
 
+# https://api.rpubs.com/robincrlee/broom-coef
+library(broom)
+library(ggplot2)
+a <- 5
+b <- 3
+set.seed(1)
+x1 <- rnorm(1000, 40, 25)
+x2 <- rep(seq(1:100), 10)
+n_over <- sum()
+# x2[x2>70] <- rnorm()
+e <- rnorm(1000, 5, 10)
+
+y <-a*x1 - b*x2 + e
+data <- data.frame(y,x1,x2)
+
+m1 <- lm(y ~ ., data)
+coef <- tidy(m1, conf.int = TRUE)
+coef
+
+ggplot(coef, aes(term, estimate))+
+  geom_point()+
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
+  labs(title = "Coefficients of a linear regression model")
+
+
+
+
 
 
 
@@ -138,6 +165,7 @@ for (
     
 
 
+
 #@ end -----
 
 
@@ -148,6 +176,12 @@ objectname = "AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI"
 # write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
 openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
 openxlsx::openXL(paste0(objectname, ".xlsx"))
+
+
+
+
+
+
 
 
 
