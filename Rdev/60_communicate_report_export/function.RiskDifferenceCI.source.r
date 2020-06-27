@@ -776,4 +776,152 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 
 
+# https://stackoverflow.com/questions/8753531/repeat-rows-of-a-data-frame-n-times/8753732
+# https://stackoverflow.com/questions/11121385/repeat-rows-of-a-data-frame
+
+# nCasesExposed = 60
+# nCasesUnexposed = 45
+# nNoncasesExposed = 108
+# nNoncasesUnexposed = 341
+AnalyticDataset.byCaseExposure = 
+    tibble::tribble(
+    ~Case,      ~Exposure,          ~n,
+        T,              T,          60,
+        T,              F,          45,
+        F,              T,          108,
+        F,              F,          341,
+    )
+seq_len(nrow(AnalyticDataset.byCaseExposure))
+# > seq_len(nrow(AnalyticDataset.byCaseExposure))
+# [1] 1 2 3 4
+
+AnalyticDataset =
+    AnalyticDataset.byCaseExposure[rep(seq_len(nrow(AnalyticDataset.byCaseExposure)), AnalyticDataset.byCaseExposure$n), ] %>% 
+    select(-n)
+AnalyticDataset %>% str #----
+AnalyticDataset %>% table %>% addmargins #----
+# > AnalyticDataset %>% str #----
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	554 obs. of  2 variables:
+#  $ Case    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+#  $ Exposure: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+# > AnalyticDataset %>% table %>% addmargins #----
+#        Exposure
+# Case    FALSE TRUE Sum
+#   FALSE   341  108 449
+#   TRUE     45   60 105
+#   Sum     386  168 554
+
+
+AnalyticDataset.table = AnalyticDataset %>% table
+AnalyticDataset.table %>% str #----
+AnalyticDataset.table %>% dput #----
+# > AnalyticDataset.table %>% str #----
+#  'table' int [1:2, 1:2] 341 45 108 60
+#  - attr(*, "dimnames")=List of 2
+#   ..$ Case    : chr [1:2] "FALSE" "TRUE"
+#   ..$ Exposure: chr [1:2] "FALSE" "TRUE"
+# > AnalyticDataset.table %>% dput #----
+# structure(c(341L, 45L, 108L, 60L), .Dim = c(2L, 2L), .Dimnames = list(
+#     Case = c("FALSE", "TRUE"), Exposure = c("FALSE", "TRUE")), class = "table")
+
+AnalyticDataset.table %>% as.vector %>% dput #----
+# > AnalyticDataset.table %>% as.vector %>% dput #----
+# c(341L, 45L, 108L, 60L)
+
+AnalyticDataset.table["TRUE", "TRUE"]
+AnalyticDataset.table["TRUE", "FALSE"]
+AnalyticDataset.table["FALSE", "TRUE"]
+AnalyticDataset.table["FALSE", "FALSE"]
+# > AnalyticDataset.table["TRUE", "TRUE"]
+# [1] 60
+# > AnalyticDataset.table["TRUE", "FALSE"]
+# [1] 45
+# > AnalyticDataset.table["FALSE", "TRUE"]
+# [1] 108
+# > AnalyticDataset.table["FALSE", "FALSE"]
+# [1] 341
+
+
+
+AnalyticDataset.table[2:1, 2:1] #----
+AnalyticDataset.table[2:1, 2:1] %>% str #----
+AnalyticDataset.table[2:1, 2:1] %>% dput #----
+# > AnalyticDataset.table[2:1, 2:1] #----
+#        Exposure
+# Case    TRUE FALSE
+#   TRUE    60    45
+#   FALSE  108   341
+# > AnalyticDataset.table[2:1, 2:1] %>% str #----
+#  'table' int [1:2, 1:2] 60 108 45 341
+#  - attr(*, "dimnames")=List of 2
+#   ..$ Case    : chr [1:2] "TRUE" "FALSE"
+#   ..$ Exposure: chr [1:2] "TRUE" "FALSE"
+# > AnalyticDataset.table[2:1, 2:1] %>% dput #----
+# structure(c(60L, 108L, 45L, 341L), .Dim = c(2L, 2L), .Dimnames = list(
+#     Case = c("TRUE", "FALSE"), Exposure = c("TRUE", "FALSE")), class = "table")
+
+AnalyticDataset.table[2:1, 2:1] %>% as.vector #----
+AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector #----
+AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector %>% paste(collapse = " ") #----
+# > AnalyticDataset.table[2:1, 2:1] %>% as.vector #----
+# [1]  60 108  45 341
+# > AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector #----
+# [1]  60  45 108 341
+# > AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector %>% paste(collapse = " ") #----
+# [1] "60 45 108 341"
+
+
+nCasesExposed = AnalyticDataset.table["TRUE", "TRUE"]
+nCasesUnexposed = AnalyticDataset.table["TRUE", "FALSE"]
+nNoncasesExposed = AnalyticDataset.table["FALSE", "TRUE"]
+nNoncasesUnexposed = AnalyticDataset.table["FALSE", "FALSE"]
+
+stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# . cci 60 45 108 341
+#                                                          Proportion
+#                  |   Exposed   Unexposed  |      Total     Exposed
+# -----------------+------------------------+------------------------
+#            Cases |        60          45  |        105       0.5714
+#         Controls |       108         341  |        449       0.2405
+# -----------------+------------------------+------------------------
+#            Total |       168         386  |        554       0.3032
+#                  |                        |
+#                  |      Point estimate    |    [95% Conf. Interval]
+#                  |------------------------+------------------------
+#       Odds ratio |         4.209877       |    2.638216    6.721812 (exact)
+#  Attr. frac. ex. |         .7624633       |     .620956    .8512306 (exact)
+#  Attr. frac. pop |         .4356933       |
+#                  +-------------------------------------------------
+#                                chi2(1) =    44.10  Pr>chi2 = 0.0000
+# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# . csi 60 45 108 341
+# 
+#                  |   Exposed   Unexposed  |      Total
+# -----------------+------------------------+------------
+#            Cases |        60          45  |        105
+#         Noncases |       108         341  |        449
+# -----------------+------------------------+------------
+#            Total |       168         386  |        554
+#                  |                        |
+#             Risk |  .3571429    .1165803  |   .1895307
+#                  |                        |
+#                  |      Point estimate    |    [95% Conf. Interval]
+#                  |------------------------+------------------------
+#  Risk difference |         .2405625       |    .1613492    .3197759 
+#       Risk ratio |         3.063492       |    2.177394    4.310191 
+#  Attr. frac. ex. |         .6735751       |    .5407353    .7679917 
+#  Attr. frac. pop |         .3849001       |
+#                  +-------------------------------------------------
+#                                chi2(1) =    44.10  Pr>chi2 = 0.0000
+
+
+
+#@ end -----
+
+
+
+
+
 #@ end ----
