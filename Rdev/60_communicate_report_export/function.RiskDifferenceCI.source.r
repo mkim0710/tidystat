@@ -21,8 +21,8 @@
 # https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/PASS/Confidence_Intervals_for_the_Difference_Between_Two_Proportions.pdf
 
 # https://www.r-bloggers.com/computing-odds-ratios-in-r/
-
-
+# https://www.r-bloggers.com/relative-risk-ratios-and-odds-ratios-by-ellis2013nz/
+# https://a-little-book-of-r-for-biomedical-statistics.readthedocs.io/en/latest/src/biomedicalstats.html
 
 
 
