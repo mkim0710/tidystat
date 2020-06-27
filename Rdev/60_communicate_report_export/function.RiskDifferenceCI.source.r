@@ -719,4 +719,61 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 
 
+
+# https://sphweb.bumc.bu.edu/otlt/MPH-Modules/EP/EP713_Association/EP713_Association8.html#headingtaglink_3
+# Example) RR = 3.06, OR = 4.21 -----
+
+
+# https://sphweb.bumc.bu.edu/otlt/MPH-Modules/EP/EP713_Association/EP713_Association8.html#headingtaglink_3
+# Example) RR = 3.06, OR = 4.21 -----
+
+nCasesExposed = 60
+nCasesUnexposed = 45
+nNoncasesExposed = 108
+nNoncasesUnexposed = 341
+stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# . cci 60 45 108 341
+#                                                          Proportion
+#                  |   Exposed   Unexposed  |      Total     Exposed
+# -----------------+------------------------+------------------------
+#            Cases |        60          45  |        105       0.5714
+#         Controls |       108         341  |        449       0.2405
+# -----------------+------------------------+------------------------
+#            Total |       168         386  |        554       0.3032
+#                  |                        |
+#                  |      Point estimate    |    [95% Conf. Interval]
+#                  |------------------------+------------------------
+#       Odds ratio |         4.209877       |    2.638216    6.721812 (exact)
+#  Attr. frac. ex. |         .7624633       |     .620956    .8512306 (exact)
+#  Attr. frac. pop |         .4356933       |
+#                  +-------------------------------------------------
+#                                chi2(1) =    44.10  Pr>chi2 = 0.0000
+# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# . csi 60 45 108 341
+# 
+#                  |   Exposed   Unexposed  |      Total
+# -----------------+------------------------+------------
+#            Cases |        60          45  |        105
+#         Noncases |       108         341  |        449
+# -----------------+------------------------+------------
+#            Total |       168         386  |        554
+#                  |                        |
+#             Risk |  .3571429    .1165803  |   .1895307
+#                  |                        |
+#                  |      Point estimate    |    [95% Conf. Interval]
+#                  |------------------------+------------------------
+#  Risk difference |         .2405625       |    .1613492    .3197759 
+#       Risk ratio |         3.063492       |    2.177394    4.310191 
+#  Attr. frac. ex. |         .6735751       |    .5407353    .7679917 
+#  Attr. frac. pop |         .3849001       |
+#                  +-------------------------------------------------
+#                                chi2(1) =    44.10  Pr>chi2 = 0.0000
+
+
+
+
+
+
 #@ end ----
