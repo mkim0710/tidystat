@@ -20,6 +20,10 @@
 # http://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/BS704_Confidence_Intervals/BS704_Confidence_Intervals7.html
 # https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/PASS/Confidence_Intervals_for_the_Difference_Between_Two_Proportions.pdf
 
+# https://www.r-bloggers.com/computing-odds-ratios-in-r/
+
+
+
 
 
 
