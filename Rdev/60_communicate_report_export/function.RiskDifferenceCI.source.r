@@ -667,9 +667,15 @@ dput(options("RStata.StataVersion"))
 # list(RStata.StataVersion = NULL)
 
 
-stata("cci 189 104 10845 10933", data.in = NULL, data.out = T, stata.version = 15.1) #-----
-stata("csi 189 104 10845 10933", data.in = NULL, data.out = T, stata.version = 15.1) #-----
-# > stata("cci 189 104 10845 10933", data.in = NULL, data.out = T, stata.version = 15.1) #-----
+
+#@ ------
+nCasesExposed = 189
+nCasesUnexposed = 104
+nNoncasesExposed = 10845
+nNoncasesUnexposed = 10933
+stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
 # . cci 189 104 10845 10933
 #                                                          Proportion
 #                  |   Exposed   Unexposed  |      Total     Exposed
@@ -686,9 +692,7 @@ stata("csi 189 104 10845 10933", data.in = NULL, data.out = T, stata.version = 1
 #  Attr. frac. pop |         .2929594       |
 #                  +-------------------------------------------------
 #                                chi2(1) =    25.01  Pr>chi2 = 0.0000
-# Error in foreign::read.dta(dtaOutFile, ...) : 
-#   unable to open file: 'No such file or directory'
-# > stata("csi 189 104 10845 10933", data.in = NULL, data.out = T, stata.version = 15.1) #-----
+# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
 # . csi 189 104 10845 10933
 # 
 #                  |   Exposed   Unexposed  |      Total
@@ -708,8 +712,6 @@ stata("csi 189 104 10845 10933", data.in = NULL, data.out = T, stata.version = 1
 #  Attr. frac. pop |         .2901989       |
 #                  +-------------------------------------------------
 #                                chi2(1) =    25.01  Pr>chi2 = 0.0000
-# Error in foreign::read.dta(dtaOutFile, ...) : 
-#   unable to open file: 'No such file or directory'
 
 
 
