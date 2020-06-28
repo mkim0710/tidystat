@@ -83,6 +83,7 @@ ATC_RxNorm_NDC %>% str #-----
 
 
 function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02", OMOP_CommonDataModel = ATC_RxNorm_NDC) {
+    # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/12_import_vocabulary/function.OMOP_CommonDataModel.ATC_to_NDC.source.r
     
     #@ output.list =====
     output.list = list()
@@ -183,6 +184,11 @@ Sys.time() - t0
 # > Sys.time() - t0
 # Time difference of 3.515852 secs
 
+identical(ATC_C02_to_NDC, ATC_C02_to_NDC.new)
+# > identical(ATC_C02_to_NDC, ATC_C02_to_NDC.new)
+# [1] TRUE
+
+
 ATC_C02_to_NDC.new %>% str #-----
 # > ATC_C02_to_NDC.new %>% str #-----
 # List of 6
@@ -263,11 +269,6 @@ ATC_C02_to_NDC.new %>% str #-----
 #   ..$ valid_end_date  : int [1:4628] 20991231 20991231 20991231 20991231 20991231 20991231 20991231 20991231 20991231 20991231 ...
 #   ..$ invalid_reason  : chr [1:4628] NA NA NA NA ...
 #   ..- attr(*, "concept_id.selected")= int [1:4628] 750171 750557 750558 750559 750560 750561 750562 750563 750564 750863 ...
-
-identical(ATC_C02_to_NDC, ATC_C02_to_NDC.new)
-# > identical(ATC_C02_to_NDC, ATC_C02_to_NDC.new)
-# [1] TRUE
-
 
 
 #@ end -----
