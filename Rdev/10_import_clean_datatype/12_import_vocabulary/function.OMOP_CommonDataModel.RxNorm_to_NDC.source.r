@@ -83,6 +83,7 @@ ATC_RxNorm_NDC %>% str #-----
 
 
 function.OMOP_CommonDataModel.RxNorm_to_NDC = function(text4grepl.RxNorm = "clomiphene", OMOP_CommonDataModel = ATC_RxNorm_NDC) {
+    # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/12_import_vocabulary/function.OMOP_CommonDataModel.RxNorm_to_NDC.source.r
     
     #@ output.list =====
     output.list = list()
