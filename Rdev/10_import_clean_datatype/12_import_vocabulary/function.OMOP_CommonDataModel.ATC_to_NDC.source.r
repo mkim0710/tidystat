@@ -172,6 +172,11 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
 }
 
 
+
+# https://www.whocc.no/atc_ddd_index/?code=C
+# https://www.whocc.no/atc_ddd_index/?code=C02&showdescription=yes
+# https://en.wikipedia.org/wiki/ATC_code_C02
+
 t0 = Sys.time()
 ATC_C02_to_NDC.new = function.OMOP_CommonDataModel.ATC_to_NDC(text4grepl.ATC_code = "^C02", OMOP_CommonDataModel = ATC_RxNorm_NDC)
 Sys.time() - t0
