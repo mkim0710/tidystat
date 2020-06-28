@@ -145,10 +145,18 @@ function.OMOP_CommonDataModel.RxNorm_to_NDC = function(text4grepl.RxNorm = "clom
 }
 
 
-
-# https://www.whocc.no/atc_ddd_index/?code=C
-# https://www.whocc.no/atc_ddd_index/?code=C02&showdescription=yes
-# https://en.wikipedia.org/wiki/ATC_code_C02
+# https://www.aafp.org/afp/2016/0715/p106.html
+# 
+# https://en.wikipedia.org/wiki/ATC_code_G03
+# https://www.whocc.no/atc_ddd_index/?code=G03GB&showdescription=yes 
+# https://mor.nlm.nih.gov/RxNav/search?searchBy=String&searchTerm=clomifen
+# https://mor.nlm.nih.gov/RxNav/search?searchBy=String&searchTerm=clomiphene
+# https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=2596
+# 
+# https://en.wikipedia.org/wiki/ATC_code_L02
+# https://www.whocc.no/atc_ddd_index/?code=L02BG
+# https://mor.nlm.nih.gov/RxNav/search?searchBy=String&searchTerm=Letrozole
+# https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm=72965 
 
 t0 = Sys.time()
 RxNorm_clomiphene_to_NDC.new = function.OMOP_CommonDataModel.RxNorm_to_NDC(text4grepl.RxNorm = "clomiphene", OMOP_CommonDataModel = ATC_RxNorm_NDC)
