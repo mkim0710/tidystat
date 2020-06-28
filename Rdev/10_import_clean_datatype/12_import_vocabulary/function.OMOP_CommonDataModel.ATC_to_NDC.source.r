@@ -178,19 +178,24 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
 # https://www.whocc.no/atc_ddd_index/?code=C02&showdescription=yes
 # https://en.wikipedia.org/wiki/ATC_code_C02
 
+
+
+#@ ATC_C02_to_NDC =====
 t0 = Sys.time()
-ATC_C02_to_NDC.new = function.OMOP_CommonDataModel.ATC_to_NDC(text4grepl.ATC_code = "^C02", OMOP_CommonDataModel = ATC_RxNorm_NDC)
+ATC_C02_to_NDC = function.OMOP_CommonDataModel.ATC_to_NDC(text4grepl.ATC_code = "^C02", OMOP_CommonDataModel = ATC_RxNorm_NDC)
 Sys.time() - t0
 # > Sys.time() - t0
 # Time difference of 3.515852 secs
 
-identical(ATC_C02_to_NDC, ATC_C02_to_NDC.new)
-# > identical(ATC_C02_to_NDC, ATC_C02_to_NDC.new)
-# [1] TRUE
+getwd()
+path4write = getwd()
+objectname = "ATC_C02_to_NDC"
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+openxlsx::openXL(paste0(objectname, ".xlsx"))
 
-
-ATC_C02_to_NDC.new %>% str #-----
-# > ATC_C02_to_NDC.new %>% str #-----
+ATC_C02_to_NDC %>% str #-----
+# > ATC_C02_to_NDC %>% str #-----
 # List of 6
 #  $ Step01.CONCEPT.filter_ATC                           :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	109 obs. of  10 variables:
 #   ..$ concept_id      : int [1:109] 21600381 21600382 21600383 21600384 21600385 21600386 21600387 21600388 21600389 21600390 ...
@@ -269,17 +274,6 @@ ATC_C02_to_NDC.new %>% str #-----
 #   ..$ valid_end_date  : int [1:4628] 20991231 20991231 20991231 20991231 20991231 20991231 20991231 20991231 20991231 20991231 ...
 #   ..$ invalid_reason  : chr [1:4628] NA NA NA NA ...
 #   ..- attr(*, "concept_id.selected")= int [1:4628] 750171 750557 750558 750559 750560 750561 750562 750563 750564 750863 ...
-
-
-#@ end -----
-
-getwd()
-path4write = getwd()
-objectname = "ATC_C02_to_NDC"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
-openxlsx::openXL(paste0(objectname, ".xlsx"))
-
 
 
 
