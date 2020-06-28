@@ -1,17 +1,41 @@
 
 
 
+
+
 #@ end -----
+
 getwd()
 path4write = getwd()
-objectname = "d.NDCNUM_concept_name.join_redbook2019.STRNGTH_Manual"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
+objectname = "AnalyticDataset200621"
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+# openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+# openxlsx::openXL(paste0(objectname, ".xlsx"))
+
+
+
+
+#@ end -----
+
+getwd()
+path4write = getwd()
+objectname = "AnalyticDataset200621"
+# saveRDS( eval(parse(text = objectname)), xzfile(file.path(path4write, paste0(objectname, ".rds", "")), compression = 9) )
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")))
+# R.utils::gzip(file.path(path4write, paste0(objectname, ".rds")), overwrite=T, remove=F, compression = 9)
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "gz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+# openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+# openxlsx::openXL(paste0(objectname, ".xlsx"))
+
+
 
 #@ end -----
 getwd()
 path4write = getwd()
 objectname = "tblGADM_kor_level1_NL_NAME_1.SIDO_CD"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
 openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
 openxlsx::openXL(paste0(objectname, ".xlsx"))
 
