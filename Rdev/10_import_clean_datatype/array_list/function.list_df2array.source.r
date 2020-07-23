@@ -1,5 +1,7 @@
 # function.list_df2array.source.r
 # data.mice complete() group_by(exposure) summarize(n(), sum(event)).r
+# https://www.r-bloggers.com/tidyrcomplete-to-show-all-possible-combinations-of-variables/
+
 
 
 data.mice %>% summary #----
