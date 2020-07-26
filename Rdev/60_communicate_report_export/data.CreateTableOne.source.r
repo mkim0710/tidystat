@@ -16,10 +16,10 @@ dataset.is.na.tableone = dataset %>%
 
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 
-sink("dataset.tableone.txt")
+sink("dataset.tableone.txt", append = FALSE)
 dataset.tableone %>% print(showAllLevels = T, smd = T) #----
 sink()
-sink("dataset.tableone.IQR.txt")
+sink("dataset.tableone.IQR.txt", append = FALSE)
 dataset.tableone %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
 
