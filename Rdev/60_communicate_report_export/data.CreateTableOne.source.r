@@ -62,10 +62,10 @@ dataset.is.na.tableone_by_exposure = dataset %>%
 
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 
-sink("dataset.tableone_by_exposure.txt")
+sink("dataset.tableone_by_exposure.txt", append = FALSE)
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T) #----
 sink()
-sink("dataset.tableone_by_exposure.IQR.txt")
+sink("dataset.tableone_by_exposure.IQR.txt", append = FALSE)
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
 
@@ -109,10 +109,10 @@ dataset.is.na.tableone_byCase = dataset %>%
 
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 
-sink("dataset.tableone_byCase.txt")
+sink("dataset.tableone_byCase.txt", append = FALSE)
 dataset.tableone_byCase %>% print(showAllLevels = T, smd = T) #----
 sink()
-sink("dataset.tableone_byCase.IQR.txt")
+sink("dataset.tableone_byCase.IQR.txt", append = FALSE)
 dataset.tableone_byCase %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
 
@@ -188,9 +188,9 @@ dataset.tableone_by_MissingPattern = dataset %>%
     CreateTableOne(strata = varnames4MissingPattern, data = ., test = T, includeNA = T)
 vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
 
-sink("dataset.tableone_by_MissingPattern.txt")
+sink("dataset.tableone_by_MissingPattern.txt", append = FALSE)
 dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T) #----
-sink("dataset.tableone_by_MissingPattern.IQR.txt")
+sink("dataset.tableone_by_MissingPattern.IQR.txt", append = FALSE)
 dataset.tableone_by_MissingPattern %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
 
@@ -277,9 +277,9 @@ dataset.svydesign.tableone = dataset.svydesign %>% select(-rowname, -PERSON_ID) 
     svyCreateTableOne(data = ., test = T, includeNA = T)
 vars4IQR = names(dataset.svydesign)[dataset.svydesign %>% map_lgl(is.numeric)]
 
-sink("dataset.svydesign.tableone.txt")
+sink("dataset.svydesign.tableone.txt"), append = FALSE)
 dataset.svydesign.tableone %>% print(showAllLevels = T, smd = T) #----
-sink("dataset.svydesign.tableone.IQR.txt")
+sink("dataset.svydesign.tableone.IQR.txt", append = FALSE)
 dataset.svydesign.tableone %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
 
@@ -309,9 +309,9 @@ dataset.svydesign.tableone_by_exposure = dataset.svydesign %>% select(-rowname, 
     svyCreateTableOne(strata = varnames4exposure, data = ., test = T)
 vars4IQR = names(dataset.svydesign)[dataset.svydesign %>% map_lgl(is.numeric)]
 
-sink("dataset.svydesign.tableone_by_exposure.txt")
+sink("dataset.svydesign.tableone_by_exposure.txt", append = FALSE)
 dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T) #----
-sink("dataset.svydesign.tableone_by_exposure.IQR.txt")
+sink("dataset.svydesign.tableone_by_exposure.IQR.txt", append = FALSE)
 dataset.svydesign.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = vars4IQR) #----
 sink()
                
