@@ -1,6 +1,8 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratified.ccwc.source.r")
 
 #@ to do ----
+#@ MatchingPairID -> should be unique to each case~!!! (currently, one MatchingPairID may have 2 cases & 10 controls)
+#@ consider sampling controls with replacement? 
 #@ .entry_age_of_Case
 #@ EndTime.of.Case
 # 
