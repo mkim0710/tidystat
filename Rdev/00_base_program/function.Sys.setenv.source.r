@@ -56,6 +56,41 @@ Sys.setenv(LANGUAGE="en")
 
 
 
+# https://community.rstudio.com/t/rstudio-sys-setenv-does-not-persist/2105/3
+R.home()
+# > R.home()
+# [1] "C:/PROGRA~1/MICROS~4/ROPEN~1/R-35~1.3"
+
+library("lubridate")
+#> 
+#> Attaching package: 'lubridate'
+#> The following object is masked from 'package:base':
+#> 
+#>     date
+lubridate::tz(lubridate::ymd("2016-03-26"))
+#> Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'default/America/
+#> New_York'
+#> [1] "UTC"
+lubridate::tz(lubridate::ymd("2016-03-26"))
+#> [1] "UTC"
+
+Sys.setenv(TZ = "America/New_York")
+
+
+
+
+
+setme <- 
+"Sys.setenv(TZ='America/New_York') #some default not get any errors
+invisible(loadNamespace('rgeolocate'))
+invisible(loadNamespace('httr'))
+mytz <- rgeolocate::ip_api(httr::content(httr::GET('https://api.ipify.org?format=json'))[1])[['timezone']]
+Sys.setenv(TZ=mytz)"
+
+cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep='\n')
+
+
+
 
 
 
