@@ -60,6 +60,7 @@ Sys.setenv(LANGUAGE="en")
 R.home()
 # > R.home()
 # [1] "C:/PROGRA~1/MICROS~4/ROPEN~1/R-35~1.3"
+# C:\Program Files\Microsoft\R Open\R-3.5.3
 
 library("lubridate")
 #> 
