@@ -1,5 +1,4 @@
 
-Sys.getenv()
 sessionInfo()
 # > sessionInfo()
 # R version 3.5.3 (2019-03-11)
@@ -99,6 +98,15 @@ cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep='\n')
 
 
 
+
+
+
+# https://stackoverflow.com/questions/13575180/how-to-change-language-settings-in-r
+Sys.getenv()
+
+
+Sys.setlocale("LC_MESSAGES", "en_US.utf8")
+Sys.setlocale("LC_MESSAGES", "C")
 
 
 #@ end -----
