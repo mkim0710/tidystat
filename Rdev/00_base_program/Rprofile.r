@@ -49,6 +49,7 @@ Sys.setlocale("LC_ALL", "korean") #----
 
 #@ --------------
 # https://medium.com/@ValidScience/how-to-fix-rstudios-package-installation-on-windows-10-c1e602bf3a1f
+# https://www.accelebrate.com/library/how-to-articles/r-rstudio-library
 
 ## Before edit -----
 # > Sys.getenv("R_USER") 
