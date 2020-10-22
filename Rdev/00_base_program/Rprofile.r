@@ -28,3 +28,14 @@ Sys.setlocale("LC_ALL", "korean") #----
 # Caution) This is only for R, not Rstudio~!!
 # "C:\Program Files\Microsoft\R Open\R-4.0.2\bin\x64\rgui.exe" LANGUAGE=EN
 
+
+
+
+
+
+
+#@ --------------
+# https://medium.com/@ValidScience/how-to-fix-rstudios-package-installation-on-windows-10-c1e602bf3a1f
+# C:\Program Files\Microsoft\R Open\R-4.0.2\library\base\R
+
+
