@@ -36,6 +36,33 @@ Sys.setlocale("LC_ALL", "korean") #----
 
 #@ --------------
 # https://medium.com/@ValidScience/how-to-fix-rstudios-package-installation-on-windows-10-c1e602bf3a1f
+
+## Before edit -----
+# > Sys.getenv("R_LIBS_USER")
+# [1] "C:/Users/mkim0/Documents/R/win-library/4.0"
+
+
+# Go to ---
 # C:\Program Files\Microsoft\R Open\R-4.0.2\library\base\R
+# Edit Rprofile 
+# 
+# if(!nzchar(Sys.getenv("R_LIBS_USER")))
+#     Sys.setenv(R_LIBS_USER=
+#                file.path(Sys.getenv("R_USER"), "R",
+#                          "win-library",
+#                          paste(R.version$major,
+#                                sub("\\..*$", "", R.version$minor),
+#                                sep=".")
+#                          ))
+
+
+if(!nzchar(Sys.getenv("R_LIBS_USER")))
+    Sys.setenv(R_LIBS_USER=
+               file.path("c:/R packages download", "R",
+                         "win-library",
+                         paste(R.version$major,
+                               sub("\\..*$", "", R.version$minor),
+                               sep=".")
+                         ))
 
 
