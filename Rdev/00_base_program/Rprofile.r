@@ -3,6 +3,9 @@
 # https://community.rstudio.com/t/how-to-change-rstudio-display-language-into-english/46615
 Sys.getlocale()
 Sys.getenv()
+Sys.getenv("LANGUAGE")
+# > Sys.getenv("LANGUAGE")
+# [1] ""
 
 # https://stackoverflow.com/questions/12642651/in-r-how-to-get-error-messages-in-english
 Sys.setenv(LANGUAGE='en')
