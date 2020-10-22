@@ -16,6 +16,16 @@ Sys.setlocale("LC_ALL", "en_US.utf8")
 Sys.setlocale("LC_ALL", "korean") #----
 
 
+# https://stat.ethz.ch/R-manual/R-devel/library/base/html/locales.html
+# 
+# The following categories should always be supported: "LC_ALL", "LC_COLLATE", "LC_CTYPE", "LC_MONETARY", "LC_NUMERIC" and "LC_TIME". 
+# Some systems (not Windows) will also support "LC_MESSAGES", "LC_PAPER" and "LC_MEASUREMENT". 
+# 
+# Initially most aspects of the locale of R are set to "C" (which is the default for the C language and reflects North-American usage – also known as "POSIX").
+# 
+# Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.                                                          
+
+
 # https://thomasadventure.blog/posts/getting-r-to-print-english-error-messages/
 # To make this change persistent add Sys.setenv(lang = "en_US") to your .Rprofile file.
 
