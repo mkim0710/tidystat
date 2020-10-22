@@ -81,4 +81,22 @@ if(!nzchar(Sys.getenv("R_LIBS_USER")))
                                sep=".")
                          ))
 
+# > .libPaths()
+# [1] "C:/R packages download/R/win-library/4.0"          "C:/Program Files/Microsoft/R Open/R-4.0.2/library"
+
+
+
+
+# https://stackoverflow.com/questions/15170399/change-r-default-library-path-using-libpaths-in-rprofile-site-fails-to-work
+# 
+# The proper solution is to set environment variable R_LIBS_USER to the value of the file path to your desired library folder as opposed to getting RStudio to recognize a Rprofile.site file.
+# To set environment variable R_LIBS_USER in Windows, go to the Control Panel (System Properties -> Advanced system properties -> Environment Variables -> User Variables) to a desired value (the path to your library folder)
+# 
+# Setting R_LIBS_USER will ensure that the library shows up first in .libPaths() regardless of starting RStudio directly or by right-clicking an file and "Open With" to start RStudio.
+# 
+# The Rprofile solution can work if RStudio is always started by clicking the RStudio shortcut. In this case, setting the default working directory to the directory that houses your Rprofile will be sufficient.
+# The Rprofile solution does not work when clicking on a file to start RStudio because that changes the working directory away from the default working directory.
+
+
+
 
