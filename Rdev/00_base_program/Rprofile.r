@@ -48,9 +48,14 @@ Sys.setlocale("LC_ALL", "korean") #----
 
 
 #@ --------------
-# https://medium.com/@ValidScience/how-to-fix-rstudios-package-installation-on-windows-10-c1e602bf3a1f
+# https://stackoverflow.com/questions/31707941/how-do-i-change-the-default-library-path-for-r-packages
+# See help(Startup) and help(.libPaths) as you have several possibilities where this may have gotten set. Among them are
+# setting R_LIBS_USER
+# assigning .libPaths() in .Rprofile or Rprofile.site
+
 # https://www.accelebrate.com/library/how-to-articles/r-rstudio-library
 
+# https://medium.com/@ValidScience/how-to-fix-rstudios-package-installation-on-windows-10-c1e602bf3a1f
 ## Before edit -----
 # > Sys.getenv("R_USER") 
 # [1] "C:/Users/mkim0/Documents"
