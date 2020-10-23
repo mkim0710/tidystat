@@ -3,7 +3,51 @@
 library(tidyverse)
 library(icd)
 
-icd10_chapters %>% str
+
+?icd10_chapters
+?icd10_sub_chapters
+?icd10_comorbid
+?icd10_comorbid_ahrq
+?icd10_comorbid_ccs
+?icd10_comorbid_charlson
+?icd10_comorbid_elix
+?icd10_comorbid_hcc
+?icd10_comorbid_pccc_dx
+?icd10_comorbid_pccc_pcs
+?icd10_comorbid_quan_deyo
+?icd10_comorbid_quan_elix
+?icd10_comorbid_reduce
+
+
+?icd10_map_ahrq
+?icd10_map_ahrq_pcs
+?icd10_map_cc
+?icd10_map_ccs
+?icd10_map_charlson
+?icd10_map_elix
+?icd10_map_pccc_dx
+?icd10_map_pccc_pcs
+?icd10_map_quan_deyo
+?icd10_map_quan_elix
+
+
+icd10cm2019 %>% str #-----
+# > icd10cm2019 %>% str #-----
+# 'data.frame':	94444 obs. of  8 variables:
+#  $ code       : 'icd10cm' chr  "A00" "A000" "A001" "A009" ...
+#   ..- attr(*, "icd_short_diag")= logi TRUE
+#  $ billable   : logi  FALSE TRUE TRUE TRUE FALSE FALSE ...
+#  $ short_desc : chr  "Cholera" "Cholera due to Vibrio cholerae 01, biovar cholerae" "Cholera due to Vibrio cholerae 01, biovar eltor" "Cholera, unspecified" ...
+#  $ long_desc  : chr  "Cholera" "Cholera due to Vibrio cholerae 01, biovar cholerae" "Cholera due to Vibrio cholerae 01, biovar eltor" "Cholera, unspecified" ...
+#  $ three_digit: Factor w/ 1910 levels "A00","A01","A02",..: 1 1 1 1 2 2 2 2 2 2 ...
+#  $ major      : Factor w/ 1910 levels "Abdominal and pelvic pain",..: 264 264 264 264 1825 1825 1825 1825 1825 1825 ...
+#   ..- attr(*, "icd_short_diag")= logi TRUE
+#  $ sub_chapter: Factor w/ 283 levels "Intestinal Infectious Diseases",..: 1 1 1 1 1 1 1 1 1 1 ...
+#  $ chapter    : Factor w/ 21 levels "Certain infectious and parasitic diseases",..: 1 1 1 1 1 1 1 1 1 1 ...
+
+
+icd10_chapters %>% str #-----
+icd10_sub_chapters %>% str #----
 # > icd10_chapters %>% str -----
 # List of 21
 #  $ Certain infectious and parasitic diseases                                                          : Named chr [1:2] "A00" "B99"
@@ -48,9 +92,6 @@ icd10_chapters %>% str
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
 #  $ Factors influencing health status and contact with health services                                 : Named chr [1:2] "Z00" "Z99"
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
-
-
-icd10_sub_chapters %>% str
 # > icd10_sub_chapters %>% str ----
 # List of 279
 #  $ Intestinal Infectious Diseases                                                                                                                                                : Named chr [1:2] "A00" "A09"
