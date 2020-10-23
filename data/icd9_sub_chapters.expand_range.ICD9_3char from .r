@@ -3,12 +3,13 @@
 
 library(tidyverse)
 library(icd)
-
-
-
+packageVersion("icd")
 # > library(icd)
 # ‘icd’ downloads data when needed. set_icd_data_dir() creates a data directory. 
 # Default location is: ‘C:\Users\mkim0\AppData\Local/R/cache/R/icd’
+# > packageVersion("icd")
+# [1] ‘4.0.9’
+
 
 ?icd9_chapters
 ?icd9_sub_chapters
