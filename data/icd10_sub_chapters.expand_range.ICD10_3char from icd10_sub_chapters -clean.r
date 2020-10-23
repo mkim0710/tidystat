@@ -2,7 +2,7 @@
 
 library(tidyverse)
 library(icd)
-
+packageVersion("icd")
 
 ?icd10_chapters
 ?icd10_sub_chapters
