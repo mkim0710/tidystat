@@ -1066,6 +1066,7 @@ openxlsx::write.xlsx(ICD10_3char_sub_chapter.tibble, file = "ICD10_3char_sub_cha
 
 
 
+library(jsonlite)
 icd10_chapters %>% toJSON(pretty = T) %>% write("icd10_chapters.json")
 icd10_sub_chapters %>% toJSON(pretty = T) %>% write("icd10_sub_chapters.json")
 
