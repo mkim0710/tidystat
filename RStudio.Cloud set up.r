@@ -9,7 +9,7 @@ for (packagename in c("tidyverse", "datapasta")) {
     require(packagename, character.only = T)
   } else {  
     # If that package is not already installed, then install first.
-    install.packages(packagename)  # I am installing via "binary" because the installed R version is too old.
+    install.packages(packagename)
     # install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
     require(packagename, character.only = T)
   }
