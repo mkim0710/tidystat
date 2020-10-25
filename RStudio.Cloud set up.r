@@ -89,6 +89,8 @@ system("git remote -v")
 
 
 
+# https://community.rstudio.com/t/how-can-i-upload-csv-or-excel-files-existing-in-computer-to-rstudio-cloud/23621
+
 
 # Caution) do not forget to add .gitignore to .gitignore
 
