@@ -4,6 +4,13 @@
 # https://rstudio.cloud/project/1815856  # Shiny
 
 
+# Global Options > General > Save workspace to .RData on exit: Never
+# Global Options > Code > Insert spaces for tab: 4
+# Global Options > Code > Auto-indent code after paste: uncheck
+# Global Options > Code > Display > Show indent guides: check
+# Global Options > Git/SVN > SSH RSA key
+
+
 for (packagename in c("tidyverse", "datapasta")) {
   if(packagename %in% installed.packages()[,"Package"]) {   
     warning(paste0(packagename, ' %in% installed.packages()[,"Package"])'))
