@@ -61,7 +61,7 @@ for (packagename in c("tidyverse", "datapasta")) {
 # git remote -v
 
 system("git remote -v")
-system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git ")
+# system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git ")
 system("git remote -v")
 
 
