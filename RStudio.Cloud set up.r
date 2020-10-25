@@ -1,6 +1,6 @@
 # RStudio.Cloud set up.r 
-# https://rstudio.cloud/project/1815569
-# https://rstudio.cloud/project/1815559
+# https://rstudio.cloud/project/1815569  # RStudio.Cloud
+# https://rstudio.cloud/project/1815559  # tidystat
 
 
 for (packagename in c("tidyverse", "datapasta")) {
