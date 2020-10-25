@@ -1,4 +1,5 @@
 # git automatic commit.r
+# # To paste text in the terminal use Shift + Insert.
 
 system("git pull")
 system("git add .")
