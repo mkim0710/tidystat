@@ -44,6 +44,30 @@ for (packagename in c("tidyverse", "datapasta")) {
 
 
 
+
+# https://happygitwithr.com/ssh-keys.html#ssh-keys
+# How to see the remote URL(s) associated with the current repo in the shell:
+# git remote -v
+# 
+# An SSH remote will look like this:
+# git@github.com:USERNAME/REPOSITORY.git
+# 
+# whereas an HTTPS remote will look like this:
+# https://github.com/USERNAME/REPOSITORY.git
+# 
+# https://docs.github.com/en/free-pro-team@latest/github/using-git/changing-a-remotes-url
+# git remote -v
+# git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+# git remote -v
+
+system("git remote -v")
+system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git ")
+system("git remote -v")
+
+
+
+
+
 # Caution) do not forget to add .gitignore to .gitignore
 
 
