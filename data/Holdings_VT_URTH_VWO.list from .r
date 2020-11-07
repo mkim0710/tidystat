@@ -1,7 +1,7 @@
 # Holdings_VT_URTH_VWO.list from .r
 
 
-
+library(tidyverse)
 ?read_csv
 ?read_file
 
@@ -66,18 +66,72 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail %>% as.tibble #----
 Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail %>% as.tibble #----
 Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail %>% as.tibble #----
 Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
-# > Holdings_VT_raw %>% str #----
-#  chr "Holdings details\n\nTotal World Stock ETF (VT)\n\n\nEquity,as of 09/30/2020\n\n,SEDOL,HOLDINGS,TICKER,% OF FUND"| __truncated__
-# > Holdings_VT_raw %>% str_replace_all("(\\n){2,}", "\n") %>% str #----
-#  chr "Holdings details\nTotal World Stock ETF (VT)\nEquity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTO"| __truncated__
-# > Holdings_VT_raw %>% str_replace_all("(\\n){2,}", "\n") %>% str_replace(".*\\n", "") %>% str #----
-#  chr "Total World Stock ETF (VT)\nEquity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY"| __truncated__
-# > Holdings_VT_raw %>% str_replace_all("(\\n){2,}", "\n") %>% str_replace(".*\\n", "") %>% str_replace(".*\\n", "") %>% str #----
-#  chr "Equity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MAR"| __truncated__
-# > Holdings_VT_raw %>% str_replace_all("(\\n){2,}", "\n") %>% str_replace(".*\\n", "") %>% str_replace(".*\\n", "") %>% str_replace(".*\\n", "") %>% str #----
-#  chr ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES\n,20462"| __truncated__
-
-
+# > Holdings_VT_raw[7:length(Holdings_VT_raw)] %>% str #----
+#  chr [1:8817] "" ...
+# > Holdings_VT_raw[8:length(Holdings_VT_raw)] %>% str #----
+#  chr [1:8816] ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES" ...
+# > Holdings_VT_raw %>% tail %>% str #----
+#  chr [1:6] "" ...
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-5)] %>% tail %>% as.tibble #----
+# # A tibble: 6 x 1
+#   value                                                                              
+#   <chr>                                                                              
+# 1 ""                                                                                 
+# 2 ""                                                                                 
+# 3 "\"** There may be deviations when applying fair value and other considerations.\""
+# 4 ""                                                                                 
+# 5 ""                                                                                 
+# 6 ""                                                                                 
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-10)] %>% tail %>% as.tibble #----
+# # A tibble: 6 x 1
+#   value                                                   
+#   <chr>                                                   
+# 1 ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,FACE AMOUNT"        
+# 2 ",---,SLBBH1142,---,0.63%,\"$129,279,860.69\""          
+# 3 ",---,CMT MARKET LIQUIDITY,---,0.07%,\"$14,974,455.54\""
+# 4 ",---,SLCMT1142,---,0.06%,\"$12,023,830.01\""           
+# 5 ""                                                      
+# 6 ""                                                      
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail %>% as.tibble #----
+# # A tibble: 6 x 1
+#   value                                                                                                     
+#   <chr>                                                                                                     
+# 1 ",BMX6M13,United States Cash Management Bill,---,<0.01%,\"$576,780.74\",\"$577,000.00\",<0.01%,02/16/2021"
+# 2 ""                                                                                                        
+# 3 ""                                                                                                        
+# 4 "Short-term reserves,as of 09/30/2020"                                                                    
+# 5 ""                                                                                                        
+# 6 ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,FACE AMOUNT"                                                          
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail %>% as.tibble #----
+# # A tibble: 6 x 1
+#   value                                                                                                        
+#   <chr>                                                                                                        
+# 1 "Fixed income,as of 09/30/2020"                                                                              
+# 2 ""                                                                                                           
+# 3 ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,MARKET VALUE*,FACE AMOUNT,COUPON,MATURITY DATE"                          
+# 4 ",BMVZ900,United States Cash Management Bill,CMB,0.03%,\"$5,198,960.00\",\"$5,200,000.00\",<0.01%,12/15/2020"
+# 5 ",BKMH666,United States Treasury Bill,B,<0.01%,\"$1,723,431.08\",\"$1,724,000.00\",<0.01%,01/28/2021"        
+# 6 ",BMX6M13,United States Cash Management Bill,---,<0.01%,\"$576,780.74\",\"$577,000.00\",<0.01%,02/16/2021"   
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail %>% as.tibble #----
+# # A tibble: 6 x 1
+#   value                                                                                                         
+#   <chr>                                                                                                         
+# 1 ",B96RL59,Repco Home Finance Ltd.,REPCOHOME,<0.01%,Consumer Finance,IN,---,---,---"                           
+# 2 ",6569787,Retail Partners Co. Ltd.,8167,<0.01%,Food Retail,JP,---,---,---"                                    
+# 3 ",6338857,Pihsiang Machinery Manufacturing Co. Ltd.,1729,<0.01%,Health Care Equipment,TW,---,$0.01,\"38,000\""
+# 4 ""                                                                                                            
+# 5 ""                                                                                                            
+# 6 "Fixed income,as of 09/30/2020"                                                                               
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
+# # A tibble: 6 x 1
+#   value                                                                                                          
+#   <chr>                                                                                                          
+# 1 ",B4Y2RV9,Enerflex Ltd.,EFX,<0.01%,Oil & Gas Equipment & Services,CA,---,---,---"                              
+# 2 ",6511108,CNK International Co. Ltd.,039530,<0.01%,Precious Metals & Minerals,KR,---,$0.01,78"                 
+# 3 ",B13NPP2,Valid Solucoes e Servicos de Seguranca em Meios de Pagamento e Identificacao SA,VLID3,<0.01%,Commerc…
+# 4 ",B96RL59,Repco Home Finance Ltd.,REPCOHOME,<0.01%,Consumer Finance,IN,---,---,---"                            
+# 5 ",6569787,Retail Partners Co. Ltd.,8167,<0.01%,Food Retail,JP,---,---,---"                                     
+# 6 ",6338857,Pihsiang Machinery Manufacturing Co. Ltd.,1729,<0.01%,Health Care Equipment,TW,---,$0.01,\"38,000\"" 
 
 
 
