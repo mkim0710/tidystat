@@ -7,6 +7,115 @@
 
 
 
+#@ data_logical.table_proptable.source.r 
+# (no group_by)
+
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% summary %>% t #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% summary %>% t #----
+#                                                                         
+# SecondaryOutcome13.void  Mode :logical   FALSE:4456      TRUE :2246     
+# SecondaryOutcome13.i     Mode :logical   FALSE:5951      TRUE :751      
+# SecondaryOutcome13.i.1   Mode :logical   FALSE:6278      TRUE :424      
+# SecondaryOutcome13.i.2   Mode :logical   FALSE:6177      TRUE :525      
+# SecondaryOutcome13.ii.1  Mode :logical   FALSE:6337      TRUE :365      
+# SecondaryOutcome13.iii   Mode :logical   FALSE:5141      TRUE :1561     
+# SecondaryOutcome13.iii.1 Mode :logical   FALSE:5187      TRUE :1515     
+# SecondaryOutcome13.iii.2 Mode :logical   FALSE:6695      TRUE :7        
+# SecondaryOutcome13.iii.3 Mode :logical   FALSE:6607      TRUE :95       
+
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) %>% str #----
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) %>% str #----
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) %>% reduce(cbind) #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) %>% str #----
+# List of 9
+#  $ SecondaryOutcome13.void : 'table' int [1:2(1d)] 4456 2246
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.i    : 'table' int [1:2(1d)] 5951 751
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.i.1  : 'table' int [1:2(1d)] 6278 424
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.i.2  : 'table' int [1:2(1d)] 6177 525
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.ii.1 : 'table' int [1:2(1d)] 6337 365
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.iii  : 'table' int [1:2(1d)] 5141 1561
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.iii.1: 'table' int [1:2(1d)] 5187 1515
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.iii.2: 'table' int [1:2(1d)] 6695 7
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+#  $ SecondaryOutcome13.iii.3: 'table' int [1:2(1d)] 6607 95
+#   ..- attr(*, "dimnames")=List of 1
+#   .. ..$ : chr [1:2] "FALSE" "TRUE"
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) %>% str #----
+# tibble [9 x 2] (S3: tbl_df/tbl/data.frame)
+#  $ FALSE: int [1:9] 4456 5951 6278 6177 6337 5141 5187 6695 6607
+#  $ TRUE : int [1:9] 2246 751 424 525 365 1561 1515 7 95
+
+
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% 
+    # group_by(Intervention, Control, Nothing) %>%
+    add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% summarize_all(sum, na.rm = T) #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% 
+# +     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% summarize_all(sum, na.rm = T) #----
+# # A tibble: 1 x 10
+#   Ntotal SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~
+#    <int>            <int>            <int>            <int>            <int>            <int>            <int>            <int>
+# 1   6702             2246              751              424              525              365             1561             1515
+# # ... with 2 more variables: SecondaryOutcome13.iii.2 <int>, SecondaryOutcome13.iii.3 <int>
+
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% 
+    # group_by(Intervention, Control, Nothing) %>%
+    add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% summarize_all(sum, na.rm = T) %>% 
+    (
+        function(df) {
+            cbind(
+                df %>% t %>% addmargins(margin = 2) #----
+                , 
+                df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+                , 
+                df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+            )
+        }
+    )
+#                                Sum                          
+# Ntotal                   6702 6702 1.000 1.000 100.00 100.00
+# SecondaryOutcome13.void  2246 2246 0.335 0.335  33.51  33.51
+# SecondaryOutcome13.i      751  751 0.112 0.112  11.21  11.21
+# SecondaryOutcome13.i.1    424  424 0.063 0.063   6.33   6.33
+# SecondaryOutcome13.i.2    525  525 0.078 0.078   7.83   7.83
+# SecondaryOutcome13.ii.1   365  365 0.054 0.054   5.45   5.45
+# SecondaryOutcome13.iii   1561 1561 0.233 0.233  23.29  23.29
+# SecondaryOutcome13.iii.1 1515 1515 0.226 0.226  22.61  22.61
+# SecondaryOutcome13.iii.2    7    7 0.001 0.001   0.10   0.10
+# SecondaryOutcome13.iii.3   95   95 0.014 0.014   1.42   1.42
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
     analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
