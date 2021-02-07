@@ -1,5 +1,5 @@
 # function.Code_vec.list.dot_x.source.r
-
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.Code_vec.list.dot_x.source.r
 
 filename = "criteria.tbl - manual add 190901 Treatment Arm 191226 DDD 201005 preeclampsia.xlsx"
 ?openxlsx::getSheetNames
