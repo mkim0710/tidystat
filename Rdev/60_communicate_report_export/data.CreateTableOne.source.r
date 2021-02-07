@@ -50,6 +50,9 @@ dataset = dataset %>%
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(Intervention = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
+dataset %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+# dataset %>% mutate_if(is.numeric, replace_na, 0)
+                          
 varnames4exposure =  c("Intervention")
 # dataset.tableone_by_exposure = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
 #     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T, addOverall = T)
