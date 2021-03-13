@@ -3,77 +3,77 @@
 
 
 
-#@ function.11matching.by.factors() -----
-function.11matching.by.factors = function(data, varname4MatchingUpon = "diabetes", varnames4MatchingBy = c("age", "sex"), seed = 1) {
-    library(tidyverse)
-    if ("RowNum_original" %in% names(data)) {
-        warning('"RowNum_original" %in% names(data)')
-    } else {
-        data$RowNum_original = 1:nrow(data)
-    }
-    set.seed(seed)
-    data$runif = runif(nrow(data))
-    data[varnames4MatchingBy] = data[varnames4MatchingBy] %>% map_df(as.factor)
-    data$MatchingGroupID = data[varnames4MatchingBy] %>% apply(1, paste0, collapse = "_") %>% as.factor
-    data = data %>% arrange(MatchingGroupID, desc(!!rlang::sym(varname4MatchingUpon)), runif) %>% as.tibble
-    data.nest = data %>% group_by(MatchingGroupID) %>% nest
-    rm(data)
-    data.nest = data.nest %>% mutate(data = map2(data, MatchingGroupID, function(df, byVar) {
-        minMatch = (df[[varname4MatchingUpon]] %>% table %>% min)
-        # if(minMatch == 0) {
-        if(length(unique(df[[varname4MatchingUpon]])) < 2) {
-            out = df[0, ]
-        } else {
-            # df[[varname4MatchingUpon]] = df[[varname4MatchingUpon]] %>% as.factor
-            out = df[0, ]
-            # for (i in levels(df[[varname4MatchingUpon]])) {
-            for (i in unique(df[[varname4MatchingUpon]])) {
-                out = out %>% rbind(df[df[[varname4MatchingUpon]] == i, ][1:minMatch, ])
-            }
-            # out$MatchingPairID = paste(out$MatchingGroupID, 1:minMatch, sep = "_")
-            out$MatchingPairID = paste(as.character(byVar), 1:minMatch, sep = "_")
-        }
-        out
-    }))
-    data = data.nest %>% unnest
-    data
-}
 
-
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/framingham_baseline_2018.rda"))
-framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
-# > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
-# # A tibble: 10 x 7
-#    RowNum_original age   sex   diabetes   runif MatchingGroupID MatchingPairID
-#              <int> <fct> <fct>    <dbl>   <dbl> <fct>           <chr>         
-#  1            1359 55    1            1 0.159   55_1            55_1_1        
-#  2            1422 55    1            1 0.681   55_1            55_1_2        
-#  3            1996 55    1            1 0.775   55_1            55_1_3        
-#  4            3811 55    1            0 0.00427 55_1            55_1_1        
-#  5            4336 55    1            0 0.0539  55_1            55_1_2        
-#  6            3333 55    1            0 0.0742  55_1            55_1_3        
-#  7            2914 55    2            1 0.168   55_2            55_2_1        
-#  8            3136 55    2            1 0.298   55_2            55_2_2        
-#  9            3709 55    2            0 0.0132  55_2            55_2_1        
-# 10            3780 55    2            0 0.0204  55_2            55_2_2        
-
-
-framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID)
-# > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID)
-# # A tibble: 242 x 7
-#    RowNum_original age   sex   diabetes   runif MatchingGroupID MatchingPairID
-#              <int> <fct> <fct>    <dbl>   <dbl> <fct>           <chr>         
-#  1            1293 36    2            1 0.802   36_2            36_2_1        
-#  2            4268 36    2            0 0.0363  36_2            36_2_1        
-#  3            2323 39    1            1 0.808   39_1            39_1_1        
-#  4            3585 39    1            0 0.00553 39_1            39_1_1        
-#  5            2201 39    2            1 0.596   39_2            39_2_1        
-#  6            2255 39    2            0 0.00672 39_2            39_2_1        
-#  7             260 40    2            1 0.935   40_2            40_2_1        
-#  8            3065 40    2            0 0.00148 40_2            40_2_1        
-#  9            4247 41    1            1 0.709   41_1            41_1_1        
-# 10            1097 41    1            0 0.0138  41_1            41_1_1        
-# # ... with 232 more rows
+# #@ function.11matching.by.factors() -----
+# function.11matching.by.factors = function(data, varname4MatchingUpon = "diabetes", varnames4MatchingBy = c("age", "sex"), seed = 1) {
+#     library(tidyverse)
+#     if ("RowNum_original" %in% names(data)) {
+#         warning('"RowNum_original" %in% names(data)')
+#     } else {
+#         data$RowNum_original = 1:nrow(data)
+#     }
+#     set.seed(seed)
+#     data$runif = runif(nrow(data))
+#     data[varnames4MatchingBy] = data[varnames4MatchingBy] %>% map_df(as.factor)
+#     data$MatchingGroupID = data[varnames4MatchingBy] %>% apply(1, paste0, collapse = "_") %>% as.factor
+#     data = data %>% arrange(MatchingGroupID, desc(!!rlang::sym(varname4MatchingUpon)), runif) %>% as.tibble
+#     data.nest = data %>% group_by(MatchingGroupID) %>% nest
+#     rm(data)
+#     data.nest = data.nest %>% mutate(data = map2(data, MatchingGroupID, function(df, byVar) {
+#         minMatch = (df[[varname4MatchingUpon]] %>% table %>% min)
+#         # if(minMatch == 0) {
+#         if(length(unique(df[[varname4MatchingUpon]])) < 2) {
+#             out = df[0, ]
+#         } else {
+#             # df[[varname4MatchingUpon]] = df[[varname4MatchingUpon]] %>% as.factor
+#             out = df[0, ]
+#             # for (i in levels(df[[varname4MatchingUpon]])) {
+#             for (i in unique(df[[varname4MatchingUpon]])) {
+#                 out = out %>% rbind(df[df[[varname4MatchingUpon]] == i, ][1:minMatch, ])
+#             }
+#             # out$MatchingPairID = paste(out$MatchingGroupID, 1:minMatch, sep = "_")
+#             out$MatchingPairID = paste(as.character(byVar), 1:minMatch, sep = "_")
+#         }
+#         out
+#     }))
+#     data = data.nest %>% unnest
+#     data
+# }
+# 
+# load(url("https://github.com/mkim0710/tidystat/raw/master/data/framingham_baseline_2018.rda"))
+# framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
+# # > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
+# # # A tibble: 10 x 7
+# #    RowNum_original age   sex   diabetes   runif MatchingGroupID MatchingPairID
+# #              <int> <fct> <fct>    <dbl>   <dbl> <fct>           <chr>         
+# #  1            1359 55    1            1 0.159   55_1            55_1_1        
+# #  2            1422 55    1            1 0.681   55_1            55_1_2        
+# #  3            1996 55    1            1 0.775   55_1            55_1_3        
+# #  4            3811 55    1            0 0.00427 55_1            55_1_1        
+# #  5            4336 55    1            0 0.0539  55_1            55_1_2        
+# #  6            3333 55    1            0 0.0742  55_1            55_1_3        
+# #  7            2914 55    2            1 0.168   55_2            55_2_1        
+# #  8            3136 55    2            1 0.298   55_2            55_2_2        
+# #  9            3709 55    2            0 0.0132  55_2            55_2_1        
+# # 10            3780 55    2            0 0.0204  55_2            55_2_2        
+# 
+# 
+# framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID)
+# # > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID)
+# # # A tibble: 242 x 7
+# #    RowNum_original age   sex   diabetes   runif MatchingGroupID MatchingPairID
+# #              <int> <fct> <fct>    <dbl>   <dbl> <fct>           <chr>         
+# #  1            1293 36    2            1 0.802   36_2            36_2_1        
+# #  2            4268 36    2            0 0.0363  36_2            36_2_1        
+# #  3            2323 39    1            1 0.808   39_1            39_1_1        
+# #  4            3585 39    1            0 0.00553 39_1            39_1_1        
+# #  5            2201 39    2            1 0.596   39_2            39_2_1        
+# #  6            2255 39    2            0 0.00672 39_2            39_2_1        
+# #  7             260 40    2            1 0.935   40_2            40_2_1        
+# #  8            3065 40    2            0 0.00148 40_2            40_2_1        
+# #  9            4247 41    1            1 0.709   41_1            41_1_1        
+# # 10            1097 41    1            0 0.0138  41_1            41_1_1        
+# # # ... with 232 more rows
 
 
 
