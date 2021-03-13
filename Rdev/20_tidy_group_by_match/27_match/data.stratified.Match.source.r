@@ -39,6 +39,8 @@ function.11matching.by.factors = function(data, varname4MatchingUpon = "diabetes
     data
 }
 
+
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/framingham_baseline_2018.rda"))
 framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
 # > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
 # # A tibble: 10 x 7
