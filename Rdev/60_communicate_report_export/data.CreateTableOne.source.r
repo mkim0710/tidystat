@@ -84,6 +84,9 @@ dataset.tableone_by_exposure %>% print(showAllLevels = F, smd = T, nonnormal = N
 dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
     write.csv("dataset.tableone_by_exposure.AllLevels -clean.csv")
 # openxlsx::openXL("dataset.tableone_by_exposure.AllLevels -clean.csv")
+dataset.tableone_by_exposure %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+    write.csv("dataset.tableone_by_exposure.IQR -clean.csv")
+# openxlsx::openXL("dataset.tableone_by_exposure.IQR -clean.csv")
 
 list(
     `by_exposure -add column` = dataset.tableone_by_exposure %>% print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
