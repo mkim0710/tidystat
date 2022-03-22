@@ -104,11 +104,9 @@ c("infant_pregcohort_d_r4.sas7bdat", "infant_pregcohort_i_r4.sas7bdat",
 
 filenames = "infant_pregcohort_r_r4.sas7bdat"
 out.list = filenames %>% map(function(i) {
-    print("i")
-    print(i)
+    print(paste0("i", " = ", i))
     t0 = Sys.time()
-    print("t0")
-    print(t0)
+    print(paste0("t0", " = ", t0))
     assign(
         i
         , read_sas(paste0(path4read, i))
@@ -119,8 +117,7 @@ out.list = filenames %>% map(function(i) {
     # write_rds(eval(parse(text = i)), path = file.path(path4write, i, ".rds"), compress = "gz")
     rm(i)
     gc()
-    print("Sys.time() - t0")
-    print(Sys.time() - t0)
+    print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
     Sys.time() - t0
 }) %>% set_names(filenames)
 out.list %>% dput
@@ -165,11 +162,9 @@ filenames %>% dput
 # )
 
 out.list = filenames %>% map(function(i) {
-    print("i")
-    print(i)
+    print(paste0("i", " = ", i))
     t0 = Sys.time()
-    print("t0")
-    print(t0)
+    print(paste0("t0", " = ", t0))
     assign(
         i
         , read_sas(paste0(path4read, i))
@@ -180,8 +175,7 @@ out.list = filenames %>% map(function(i) {
     # write_rds(eval(parse(text = i)), path = file.path(path4write, i, ".rds"), compress = "gz")
     rm(i)
     gc()
-    print("Sys.time() - t0")
-    print(Sys.time() - t0)
+    print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
     Sys.time() - t0
 }) %>% set_names(filenames)
 out.list %>% dput
