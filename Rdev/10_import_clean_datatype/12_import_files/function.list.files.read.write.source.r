@@ -106,7 +106,7 @@ filenames = "infant_pregcohort_r_r4.sas7bdat"
 out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
     t0 = Sys.time()
-    print(paste0("t0", " = ", t0))
+#    print(paste0("t0", " = ", t0))
     assign(
         i
         , read_sas(paste0(path4read, i))
@@ -164,7 +164,7 @@ filenames %>% dput
 out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
     t0 = Sys.time()
-    print(paste0("t0", " = ", t0))
+#    print(paste0("t0", " = ", t0))
     assign(
         i
         , read_sas(paste0(path4read, i))
