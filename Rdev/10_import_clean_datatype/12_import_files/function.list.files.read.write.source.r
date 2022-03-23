@@ -1,5 +1,67 @@
 # function.list.files.read.write.source.r
 
+
+
+library(tidyverse)
+getwd() %>% dput #----
+
+path4read = getwd()
+path4write = getwd()
+path4read %>% dput
+path4write %>% dput
+
+
+list.files(path4read) %>% grep("sas7bdat$",. , value = T) %>% file.info %>% dput #----
+list.files(path4read) %>% grep("sas7bdat$",. , value = T) %>% file.info %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
+
+
+# list.files(path4read) read_sas() write_rds().r =====
+library(haven)
+?read_sas
+path4read = getwd()
+path4write = getwd()
+
+filenames = list.files(path4read) %>% grep(".sas7bdat$",. , value = T) 
+filenames %>% dput #----
+
+out.list = filenames %>% map(function(i) {
+    print(paste0("i", " = ", i))
+    t0 = Sys.time()
+    # print(paste0("t0", " = ", t0))
+    assign(
+        i
+        , read_sas(file.path(path4read, i))
+    )
+    print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
+    Sys.time() - t0
+}) %>% set_names(filenames)
+
+out.list2 = filenames %>% map(function(i) {
+    print("i")
+    print(i)
+    t0 = Sys.time()
+    # print(paste0("t0", " = ", t0))
+    # write_rds(eval(parse(text = i)), path = paste0(path4write, "/", i, ".rds"), compress = "none")
+    write_rds(eval(parse(text = i)), path = paste0(path4write, "/", i, ".rds"), compress = "gz")
+    rm(i)
+    gc()
+    print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
+    Sys.time() - t0
+}) %>% set_names(filenames)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # _r4.sas7bdat _r4_mod.sas7bdat file.info().r =====
 
 library(tidyverse)
