@@ -31,6 +31,7 @@ out.list = filenames %>% map(function(i) {
     assign(
         i
         , read_sas(file.path(path4read, i))
+        , envir = globalenv()
     )
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
     Sys.time() - t0
