@@ -1,4 +1,4 @@
-
+#@ function.df_recode_SEX ======
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) %>% summary #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) %>% summary #-----
 #  SEX       
