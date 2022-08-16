@@ -45,29 +45,30 @@ library(tableone)
                
                
                
-#@ dataset.CreateTableOne.by_exposure -----
-dataset = dataset %>% 
+#@ dataset.tableone.by_exposure -----
+dataset %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+dataset.select = dataset %>% as.data.frame %>% select(-rowname, -PERSON_ID) %>% 
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
-dataset %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
-# dataset %>% mutate_if(is.numeric, replace_na, 0)
+dataset.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+# dataset.select %>% mutate_if(is.numeric, replace_na, 0)
                           
 varnames4exposure =  c("InterventionGroup")
-# dataset.tableone_by_exposure = dataset %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+# dataset.tableone_by_exposure = dataset.select %>% as.data.frame %>% 
 #     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T, addOverall = T)
-dataset.tableone_by_exposure = dataset %>% 
+dataset.tableone_by_exposure = dataset.select %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T, addOverall = T)
-dataset.is.na.tableone_by_exposure = dataset %>%
+dataset.select.is.na.tableone_by_exposure = dataset.select %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
     map_df(is.na) %>% setNames(paste0(names(.), ".is.na") %>% str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
-    # mutate( !!rlang::sym(varnames4exposure) := dataset[[varnames4exposure]]) %>%
-    cbind(dataset[varnames4exposure]) %>%
+    # mutate( !!rlang::sym(varnames4exposure) := dataset.select[[varnames4exposure]]) %>%
+    cbind(dataset.select[varnames4exposure]) %>%
     as.data.frame %>%
     CreateTableOne(strata = varnames4exposure, data = ., test = T, includeNA = T, addOverall = T)
 
-vars4IQR = names(dataset)[dataset %>% map_lgl(is.numeric)]
+vars4IQR = names(dataset.select)[dataset.select %>% map_lgl(is.numeric)]
 
 sink("dataset.tableone_by_exposure.txt", append = FALSE)
 dataset.tableone_by_exposure %>% print(showAllLevels = F, smd = T) #----
@@ -99,7 +100,7 @@ list(
     , by_exposure.AllLevels = dataset.tableone_by_exposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
         mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     , by_exposure.IQR = dataset.tableone_by_exposure %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
-    , is.na.by_exposure = dataset.is.na.tableone_by_exposure %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
+    , is.na.by_exposure = dataset.select.is.na.tableone_by_exposure %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
 ) %>% openxlsx::write.xlsx("dataset.tableone_by_exposure.xlsx")
 openxlsx::openXL("dataset.tableone_by_exposure.xlsx")
 
