@@ -55,8 +55,10 @@ DataSet.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
 # DataSet.select %>% mutate_if(is.numeric, replace_na, 0)
                           
 VarNames4Exposure =  c("InterventionGroup")
-# DataSet.TableOne_byExposure = DataSet.select %>% as.data.frame %>% 
-#     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+ObjectName = "DataSet"
+ObjectName.TableOne_byExposure = paste0(ObjectName, ".TableOne_by", VarNames4Exposure)
+ObjectName.is.na.TableOne_byExposure = paste0(ObjectName, ".is.na.TableOne_by", VarNames4Exposure)
+                              
 DataSet.TableOne_byExposure = DataSet.select %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
@@ -68,7 +70,6 @@ DataSet.is.na.TableOne_byExposure = DataSet.select %>%
     as.data.frame %>%
     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 
-ObjectName.TableOne_byExposure = "DataSet.TableOne_byExposure"
 Vars4IQR = names(DataSet.select)[DataSet.select %>% map_lgl(is.numeric)]
 sink(paste0(ObjectName.TableOne_byExposure, ".txt"), append = FALSE)
 eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = F, smd = T) #----
@@ -78,8 +79,9 @@ eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = F, 
 sink()
 
 
-# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
-ObjectName.TableOne_byExposure = "DataSet.TableOne_byExposure"
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
+DataSet.is.na.TableOne_byExposure.print = eval(parse(text = paste0(ObjectName, ".is.na.TableOne_by", VarNames4Exposure))) %>% print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
+   
 DataSet.TableOne_byExposure.print = eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
 DataSet.TableOne_byExposure.print_showAllLevels = eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
 DataSet.TableOne_byExposure.print_showAllLevels.IQR = eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
@@ -92,20 +94,19 @@ DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(past
 # openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -IQR -clean.xlsx"))
 
 list(
-    `byExposure -add column` = DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+    `byExposure -add column` = DataSet.TableOne_byExposure.print %>% 
         select(rowname, Overall, `Group 0`, `Group 1`, SMD, p, test) %>% 
         mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
         add_column(Label = "", .before = "Overall") %>% {add_column(., `#` = 1:nrow(.), `#2` = "", Class = "", .before = 1)} %>%
         as.tibble
-    , byExposure = DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+    , byExposure = DataSet.TableOne_byExposure.print %>% 
         mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
-    , byExposure.AllLevels = DataSet.TableOne_byExposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+    , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% 
         mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
-    , byExposure.IQR = DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
-    , is.na.byExposure = DataSet.is.na.TableOne_byExposure %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
+    , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
+    , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
 ) %>% openxlsx::write.xlsx("DataSet.TableOne_byExposure.xlsx")
 openxlsx::openXL("DataSet.TableOne_byExposure.xlsx")
-
 
 
 
