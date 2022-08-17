@@ -60,7 +60,7 @@ VarNames4Exposure =  c("InterventionGroup")
 DataSet.TableOne_byExposure = DataSet.select %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
-DataSet.select.is.na.TableOne_byExposure = DataSet.select %>%
+DataSet.is.na.TableOne_byExposure = DataSet.select %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
     map_df(is.na) %>% setNames(paste0(names(.), ".is.na") %>% str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
     # mutate( !!rlang::sym(VarNames4Exposure) := DataSet.select[[VarNames4Exposure]]) %>%
@@ -68,26 +68,28 @@ DataSet.select.is.na.TableOne_byExposure = DataSet.select %>%
     as.data.frame %>%
     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 
+ObjectName.TableOne_byExposure = "DataSet.TableOne_byExposure"
 Vars4IQR = names(DataSet.select)[DataSet.select %>% map_lgl(is.numeric)]
-
-sink("DataSet.TableOne_byExposure.txt", append = FALSE)
-DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T) #----
+sink(paste0(ObjectName.TableOne_byExposure, ".txt"), append = FALSE)
+eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = F, smd = T) #----
 sink()
-sink("DataSet.TableOne_byExposure.IQR.txt", append = FALSE)
-DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) #----
+sink(paste0(ObjectName.TableOne_byExposure, " -IQR.txt"), append = FALSE)
+eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) #----
 sink()
 
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----
-DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
-    write.csv("DataSet.TableOne_byExposure -clean.csv")
-# openxlsx::openXL("DataSet.TableOne_byExposure -clean.csv")
-DataSet.TableOne_byExposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
-    write.csv("DataSet.TableOne_byExposure.AllLevels -clean.csv")
-# openxlsx::openXL("DataSet.TableOne_byExposure.AllLevels -clean.csv")
-DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
-    write.csv("DataSet.TableOne_byExposure.IQR -clean.csv")
-# openxlsx::openXL("DataSet.TableOne_byExposure.IQR -clean.csv")
+ObjectName.TableOne_byExposure = "DataSet.TableOne_byExposure"
+DataSet.TableOne_byExposure.print = eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
+DataSet.TableOne_byExposure.print_showAllLevels = eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
+DataSet.TableOne_byExposure.print_showAllLevels.IQR = eval(parse(text = ObjectName.TableOne_byExposure)) %>% print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
+
+DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -clean.xlsx"))
+# openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -clean.xlsx"))
+DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+# openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
+# openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -IQR -clean.xlsx"))
 
 list(
     `byExposure -add column` = DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
@@ -100,7 +102,7 @@ list(
     , byExposure.AllLevels = DataSet.TableOne_byExposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
         mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     , byExposure.IQR = DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
-    , is.na.byExposure = DataSet.select.is.na.TableOne_byExposure %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
+    , is.na.byExposure = DataSet.is.na.TableOne_byExposure %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
 ) %>% openxlsx::write.xlsx("DataSet.TableOne_byExposure.xlsx")
 openxlsx::openXL("DataSet.TableOne_byExposure.xlsx")
 
