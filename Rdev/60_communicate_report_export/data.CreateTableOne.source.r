@@ -14,13 +14,13 @@ library(tableone)
 #     as.data.frame %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 
-# vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
+# Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
 # sink("DataSet.TableOne.txt", append = FALSE)
 # DataSet.TableOne %>% print(showAllLevels = F, smd = T) #----
 # sink()
 # sink("DataSet.TableOne.IQR.txt", append = FALSE)
-# DataSet.TableOne %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR) #----
+# DataSet.TableOne %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) #----
 # sink()
 
 
@@ -33,7 +33,7 @@ library(tableone)
 
 # list(
 #     TableOne = DataSet.TableOne %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
-#     , TableOne.IQR = DataSet.TableOne %>% print(showAllLevels = F, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
+#     , TableOne.IQR = DataSet.TableOne %>% print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
 #     , is.na.TableOne = DataSet.is.na.TableOne %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
 # ) %>% openxlsx::write.xlsx("DataSet.TableOne.xlsx")
 # # openxlsx::openXL("DataSet.TableOne.xlsx")
@@ -54,27 +54,27 @@ DataSet.select = DataSet %>% as.data.frame %>% select(-rowname, -PERSON_ID) %>%
 DataSet.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
 # DataSet.select %>% mutate_if(is.numeric, replace_na, 0)
                           
-Varnames4Exposure =  c("InterventionGroup")
+VarNames4Exposure =  c("InterventionGroup")
 # DataSet.TableOne_byExposure = DataSet.select %>% as.data.frame %>% 
-#     CreateTableOne(strata = Varnames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+#     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 DataSet.TableOne_byExposure = DataSet.select %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
-    CreateTableOne(strata = Varnames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+    CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 DataSet.select.is.na.TableOne_byExposure = DataSet.select %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
     map_df(is.na) %>% setNames(paste0(names(.), ".is.na") %>% str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
-    # mutate( !!rlang::sym(Varnames4Exposure) := DataSet.select[[Varnames4Exposure]]) %>%
-    cbind(DataSet.select[Varnames4Exposure]) %>%
+    # mutate( !!rlang::sym(VarNames4Exposure) := DataSet.select[[VarNames4Exposure]]) %>%
+    cbind(DataSet.select[VarNames4Exposure]) %>%
     as.data.frame %>%
-    CreateTableOne(strata = Varnames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+    CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 
-vars4IQR = names(DataSet.select)[DataSet.select %>% map_lgl(is.numeric)]
+Vars4IQR = names(DataSet.select)[DataSet.select %>% map_lgl(is.numeric)]
 
 sink("DataSet.TableOne_byExposure.txt", append = FALSE)
 DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T) #----
 sink()
 sink("DataSet.TableOne_byExposure.IQR.txt", append = FALSE)
-DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR) #----
+DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) #----
 sink()
 
 
@@ -85,7 +85,7 @@ DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = NU
 DataSet.TableOne_byExposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
     write.csv("DataSet.TableOne_byExposure.AllLevels -clean.csv")
 # openxlsx::openXL("DataSet.TableOne_byExposure.AllLevels -clean.csv")
-DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
     write.csv("DataSet.TableOne_byExposure.IQR -clean.csv")
 # openxlsx::openXL("DataSet.TableOne_byExposure.IQR -clean.csv")
 
@@ -99,7 +99,7 @@ list(
         mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     , byExposure.AllLevels = DataSet.TableOne_byExposure %>% print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% # {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
         mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
-    , byExposure.IQR = DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
+    , byExposure.IQR = DataSet.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
     , is.na.byExposure = DataSet.select.is.na.TableOne_byExposure %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column
 ) %>% openxlsx::write.xlsx("DataSet.TableOne_byExposure.xlsx")
 openxlsx::openXL("DataSet.TableOne_byExposure.xlsx")
@@ -155,18 +155,18 @@ DataSet = DataSet %>% mutate(
 
 
 #@ DataSet.CreateTableOne.by_MissingPattern -----
-Varnames4MissingPattern =  c("MissingPattern")
+VarNames4MissingPattern =  c("MissingPattern")
 # DataSet.TableOne_by_MissingPattern = DataSet %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
-#     CreateTableOne(strata = Varnames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
+#     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
 DataSet.TableOne_by_MissingPattern = DataSet %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
-    CreateTableOne(strata = Varnames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
-vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
+    CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
+Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
 sink("DataSet.TableOne_by_MissingPattern.txt", append = FALSE)
 DataSet.TableOne_by_MissingPattern %>% print(showAllLevels = F, smd = T) #----
 sink("DataSet.TableOne_by_MissingPattern.IQR.txt", append = FALSE)
-DataSet.TableOne_by_MissingPattern %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR) #----
+DataSet.TableOne_by_MissingPattern %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) #----
 sink()
 
 
@@ -181,7 +181,7 @@ DataSet.TableOne_by_MissingPattern %>% print(showAllLevels = F, smd = T, nonnorm
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     openxlsx::write.xlsx("DataSet.TableOne_by_MissingPattern.xlsx")
 # openxlsx::openXL("DataSet.TableOne_by_MissingPattern.xlsx")
-DataSet.TableOne_by_MissingPattern %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+DataSet.TableOne_by_MissingPattern %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
 # openxlsx::openXL("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
 
@@ -250,12 +250,12 @@ DataSet.svydesign = DataSet %>% svydesign(id = ~PrimarySamplingUnit, strata = ~S
 DataSet.svydesign.TableOne = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
-vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
+Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
 sink("DataSet.svydesign.TableOne.txt"), append = FALSE)
 DataSet.svydesign.TableOne %>% print(showAllLevels = F, smd = T) #----
 sink("DataSet.svydesign.TableOne.IQR.txt", append = FALSE)
-DataSet.svydesign.TableOne %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR) #----
+DataSet.svydesign.TableOne %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) #----
 sink()
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
@@ -268,26 +268,26 @@ openxlsx::openXL("DataSet.svydesign.TableOne -clean.csv")
 DataSet.svydesign.TableOne %>% print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.svydesign.TableOne.xlsx")
 openxlsx::openXL("DataSet.svydesign.TableOne.xlsx")
-DataSet.svydesign.TableOne %>% print(showAllLevels = F, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+DataSet.svydesign.TableOne %>% print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.svydesign.TableOne.IQR.xlsx")
 openxlsx::openXL("DataSet.svydesign.TableOne.IQR.xlsx")
 
 
 #@ DataSet.svydesign.svyCreateTableOne.byExposure -----
-Varnames4Exposure =  c("treatment")
+VarNames4Exposure =  c("treatment")
 # DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
-#     svyCreateTableOne(strata = Varnames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+#     svyCreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 # # Error in dimnames(x) <- dn : 
 # #   length of 'dimnames' [2] not equal to array extent
 DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
-    svyCreateTableOne(strata = Varnames4Exposure, data = ., test = T)
-vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
+    svyCreateTableOne(strata = VarNames4Exposure, data = ., test = T)
+Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
 sink("DataSet.svydesign.TableOne_byExposure.txt", append = FALSE)
 DataSet.svydesign.TableOne_byExposure %>% print(showAllLevels = F, smd = T) #----
 sink("DataSet.svydesign.TableOne_byExposure.IQR.txt", append = FALSE)
-DataSet.svydesign.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR) #----
+DataSet.svydesign.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) #----
 sink()
                
 
@@ -302,7 +302,7 @@ DataSet.svydesign.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonn
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     openxlsx::write.xlsx("DataSet.svydesign.TableOne_byExposure.xlsx")
 openxlsx::openXL("DataSet.svydesign.TableOne_byExposure.xlsx")
-DataSet.svydesign.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+DataSet.svydesign.TableOne_byExposure %>% print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
 openxlsx::openXL("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
 
@@ -563,24 +563,24 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 
 
 #@ end ------
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list = list()
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list$by.evnttrth_C16_r =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.by.evnttrth_C16_r
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.dyd.gt0 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.dyd.gt0
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.bin30 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.bin30
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.dyd.gt1 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.dyd.gt1
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.dyd.gt4 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.dyd.gt4
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.cut365 =
-    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.cut365
-save(analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list, file = "analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list.rda")
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list = list()
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list$by.evnttrth_C16_r =
+    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.by.evnttrth_C16_r
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.dyd.gt0 =
+    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.dyd.gt0
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.bin30 =
+    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.bin30
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.dyd.gt1 =
+    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.dyd.gt1
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.dyd.gt4 =
+    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.dyd.gt4
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list$by.total_ddd_yr_ASPIRIN.cut365 =
+    analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.by.total_ddd_yr_ASPIRIN.cut365
+save(analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list, file = "analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list.rda")
 
-analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list %>% map(function(ob) {
+analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list %>% map(function(ob) {
     ob %>% print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
-}) %>% openxlsx::write.xlsx("analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_vars23.CreateTableOne.list.xlsx")
+}) %>% openxlsx::write.xlsx("analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list.xlsx")
 =======
 
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne %>% str(max.level = 1)
