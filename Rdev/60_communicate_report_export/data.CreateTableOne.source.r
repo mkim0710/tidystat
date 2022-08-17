@@ -58,6 +58,8 @@ VarNames4Exposure =  c("InterventionGroup")
 ObjectName = "DataSet"
 ObjectName.TableOne_byExposure = paste0(ObjectName, ".TableOne_by", VarNames4Exposure)
 ObjectName.is.na.TableOne_byExposure = paste0(ObjectName, ".is.na.TableOne_by", VarNames4Exposure)
+ObjectName.TableOne_byExposure
+ObjectName.is.na.TableOne_byExposure
                               
 DataSet.TableOne_byExposure = DataSet.select %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
