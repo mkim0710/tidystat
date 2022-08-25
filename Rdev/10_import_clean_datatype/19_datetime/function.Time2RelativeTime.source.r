@@ -18,6 +18,14 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DT
 #  Max.   :2013     Max.   :2013-12-31   Max.   :1827  
 #  NA's   :280829   NA's   :280829                     
 
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) %>% summary #-----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) %>% summary #-----
+#  DTH_I2025       DTH_I3052       DTH_I6069       DTH_I7079         DTH_I         DTH_I2079      
+#  Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+#  FALSE:2856      FALSE:2884      FALSE:2781      FALSE:2960      FALSE:2524      FALSE:2574     
+#  TRUE :113       TRUE :85        TRUE :188       TRUE :9         TRUE :431       TRUE :395      
+#  NA's :280829    NA's :280829    NA's :280829    NA's :280829    NA's :280843    NA's :280829   
+
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>%
     mutate(  across(matches("DTH")&where(is.logical), replace_na, F)  )%>%
     select(matches("DTH_I")) %>% summary #-----
