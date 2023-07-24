@@ -14,6 +14,13 @@ write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectna
 
 
 
+#@ end -----
+objectname = "NHID_GY20_0213.bind_rows"
+path4write = getwd()
+t0 = Sys.time()
+save( list = objectname, file = file.path(path4write, paste0(objectname, ".rda", "")), compress = "xz", compression_level = 9 )
+print(Sys.time() - t0)
+
 
 #@ end -----
 
