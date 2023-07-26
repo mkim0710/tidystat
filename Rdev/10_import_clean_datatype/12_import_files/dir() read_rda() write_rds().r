@@ -155,6 +155,8 @@ path4write = getwd()
 t0 = Sys.time()
 save( list = objectname, file = file.path(path4write, paste0(objectname, ".rda", "")), compress = "xz", compression_level = 9 )
 print(Sys.time() - t0)
+objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+rm(objectname, envir = .GlobalEnv)
 # > objectname = "NHID_GY20_0213.bind_rows"
 # > path4write = getwd()
 # > t0 = Sys.time()
@@ -164,6 +166,7 @@ print(Sys.time() - t0)
 
 
 objectNames = dir() %>% str_subset("[A-z]+.rda$") %>% str_replace(".rda$", "")
+objectNames
 for (objectname in objectNames) {
     # print(objectname)
     # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
@@ -176,7 +179,7 @@ for (objectname in objectNames) {
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
     objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
-    rm(objectname)
+    rm(objectname, envir = .GlobalEnv)
     gc()
 }
 # 1 NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK.ICD10_range_chapter.rda 116257880 113533.1 110.8722 0.1082736
@@ -372,6 +375,93 @@ for (objectname in objectNames) {
 # Time difference of 49.38688 secs
 #                                                                    filename     size       KB       MB         GB
 # 1 NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4.Metformin.rds.xz 12736792 12438.27 12.14675 0.01186206
+
+
+
+
+objectNames = dir() %>% str_subset("[A-z0-9]+.rda$") %>% str_replace(".rda$", "")
+objectNames
+for (objectname in objectNames) {
+    # print(objectname)
+    # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+    objectname %>% {file.info(paste0(., ".rda"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+    t0 = Sys.time()
+    load(paste0(objectname, ".rda"))
+    print(Sys.time() - t0)
+    write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+    print(Sys.time() - t0)
+    system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
+    print(Sys.time() - t0)
+    objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+    rm(objectname, envir = .GlobalEnv)
+    gc()
+}
+#                                                                       filename      size     KB       MB        GB
+# 1 NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.ge2.rda 125116408 122184 119.3203 0.1165237
+# Time difference of 3.38369 secs
+# Time difference of 4.259117 secs
+# Time difference of 2.407248 mins
+#                                                                          filename     size      KB       MB         GB
+# 1 NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.ge2.rds.xz 70119836 68476.4 66.87149 0.06530419
+#                                                                                  filename    size       KB     MB          GB
+# 1 NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73.rda 9453437 9231.872 9.0155 0.008804199
+# Time difference of 0.5440412 secs
+# Time difference of 0.7653902 secs
+# Time difference of 15.75556 secs
+#                                                                                     filename    size       KB       MB          GB
+# 1 NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73.rds.xz 4681996 4572.262 4.465099 0.004360449
+#                                                                                                      filename     size       KB       MB         GB
+# 1 NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73.SICK_SYM.GNL_NM_CD4.rda 23506705 22955.77 22.41774 0.02189233
+# Time difference of 1.319862 secs
+# Time difference of 1.839408 secs
+# Time difference of 30.42403 secs
+#                                                                                                         filename     size       KB       MB         GB
+# 1 NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73.SICK_SYM.GNL_NM_CD4.rds.xz 12759468 12460.42 12.16838 0.01188318
+#                             filename       size      KB       MB       GB
+# 1 NHID_GY20_0213.bind_rows.12478.rda 1144882604 1118049 1091.845 1.066255
+# Time difference of 3.268792 mins
+# Time difference of 4.383006 mins
+# Time difference of 15.96877 mins
+#                                filename      size       KB       MB        GB
+# 1 NHID_GY20_0213.bind_rows.12478.rds.xz 629539536 614784.7 600.3757 0.5863044
+#                                    filename       size      KB      MB       GB
+# 1 NHID_GY20_0213.bind_rows.factor.12478.rda 1162472267 1135227 1108.62 1.082637
+# Time difference of 39.33667 secs
+# Time difference of 1.00148 mins
+# Time difference of 7.278066 mins
+#                                       filename      size       KB       MB        GB
+# 1 NHID_GY20_0213.bind_rows.factor.12478.rds.xz 562685636 549497.7 536.6188 0.5240418
+#                                                                                           filename    size       KB       MB          GB
+# 1 NHID_GY20_0213.bind_rows.FORM_CD02.ICDclean.Date.by.PERSON_ID.FORM02.ICD_MAINSUB.I21I22.I200.rda 3633732 3548.566 3.465397 0.003384177
+# Time difference of 0.4009261 secs
+# Time difference of 0.505336 secs
+# Time difference of 6.086501 secs
+#                                                                                              filename    size       KB       MB          GB
+# 1 NHID_GY20_0213.bind_rows.FORM_CD02.ICDclean.Date.by.PERSON_ID.FORM02.ICD_MAINSUB.I21I22.I200.rds.xz 1667876 1628.785 1.590611 0.001553331
+#                                                                                                         filename     size       KB       MB         GB
+# 1 NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin.2084.rda 25214318 24623.36 24.04625 0.02348266
+# Time difference of 0.4290309 secs
+# Time difference of 0.7207489 secs
+# Time difference of 55.1244 secs
+#                                                                                                            filename     size      KB      MB        GB
+# 1 NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin.2084.rds.xz 15448780 15086.7 14.7331 0.0143878
+#                                  filename       size      KB       MB       GB
+# 1 NHID_GY60_0213.bind_rows.GNL_NM_CD4.rda 1248693865 1219428 1190.847 1.162937
+# Time difference of 1.884393 mins
+# Time difference of 2.99651 mins
+# Time difference of 17.72369 mins
+#                                     filename      size       KB      MB        GB
+# 1 NHID_GY60_0213.bind_rows.GNL_NM_CD4.rds.xz 738943072 721624.1 704.711 0.6881944
+#                                                       filename      size       KB       MB        GB
+# 1 NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4.rda 940232267 918195.6 896.6754 0.8756595
+# Time difference of 14.6973 secs
+# Time difference of 27.97628 secs
+# Time difference of 7.868866 mins
+#                                                          filename      size
+# 1 NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4.rds.xz 655732168
+#         KB       MB        GB
+# 1 640363.4 625.3549 0.6106982
+
 
 
 #@ end -----
