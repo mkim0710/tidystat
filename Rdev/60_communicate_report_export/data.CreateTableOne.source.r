@@ -7,7 +7,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     library(tidyverse)
     library(tableone)
     
-    # ObjectName.select = paste0(ObjectName, ".select")
+    ObjectName.select = paste0(ObjectName, ".select")
     ObjectName.TableOne_byExposure = paste0(ObjectName, ".TableOne_by", VarNames4Exposure)
     ObjectName.is.na.TableOne_byExposure = paste0(ObjectName, ".is.na.TableOne_by", VarNames4Exposure)
     ObjectName.select %>% cat;cat("\n") #----
@@ -33,7 +33,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
                map_df(is.na) %>% setNames(paste0(names(.), ".is.na") %>% str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
                # mutate( !!rlang::sym(VarNames4Exposure) := CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[[VarNames4Exposure]]) %>%
-               cbind(CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[VarNames4Exposure]) %>%
+               cbind(ObjectName.select[VarNames4Exposure]) %>%
                as.data.frame %>%
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
