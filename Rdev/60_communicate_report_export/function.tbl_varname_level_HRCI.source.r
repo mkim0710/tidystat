@@ -780,3 +780,16 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # $cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med
 # [1] "ok"
 
+
+                                          
+#@ end -----
+getwd()
+path4write = getwd()
+objectname = ""
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+openxlsx::openXL(paste0(objectname, ".xlsx"))
+
+
+
