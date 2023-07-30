@@ -23,6 +23,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.TableOne_by_SEX = CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
     #     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     
+    # browser()
     assign(ObjectName.TableOne_byExposure, 
            DataSet.select %>% 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
@@ -33,7 +34,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
                map_df(is.na) %>% setNames(paste0(names(.), ".is.na") %>% str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
                # mutate( !!rlang::sym(VarNames4Exposure) := CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[[VarNames4Exposure]]) %>%
-               cbind(ObjectName.select[VarNames4Exposure]) %>%
+               cbind(DataSet.select[VarNames4Exposure]) %>%
                as.data.frame %>%
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
@@ -169,6 +170,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     )
     
 }
+
 
 
 
