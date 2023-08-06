@@ -10,10 +10,11 @@ path4write = getwd()
 path4read %>% dput
 path4write %>% dput
 
-tribble_paste = datapasta::tribble_paste
-list.files(path4read) %>% grep("sas7bdat(.xz)?$",. , value = T) %>% {file.info(file.path(path4read,.))} %>% tribble_paste #----
-list.files(path4read) %>% grep("sas7bdat(.xz)?$",. , value = T) %>% {file.info(file.path(path4read,.))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
+filenames = list.files(path4read) %>% grep("sas7bdat(.xz)?$",. , value = T) 
 
+tribble_paste = datapasta::tribble_paste
+filenames %>% {file.info(file.path(path4read,.))} %>% tribble_paste #----
+filenames %>% {file.info(file.path(path4read,.))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
 
 # list.files(path4read) read_sas() write_rds().r =====
 library(haven)
