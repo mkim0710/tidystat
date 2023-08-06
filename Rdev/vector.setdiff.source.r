@@ -1,16 +1,17 @@
 # function.setdiff.source.r
 
-function.setdiff = function(x, y) {
+vector.setdiff = function(vec1, vec2) {
     out = list()
-    out$x = x = as.character(x)
-    out$y = y = as.character(y)
-    out$union = union(x, y)
-    out$intersect = intersect(x, y)
-    out$setdiff_x_y = setdiff(x, y)
-    out$setdiff_y_x = setdiff(y, x)
+    out$vec1 = vec1 = as.character(vec1)
+    out$vec2 = vec2 = as.character(vec2)
+    out$union = union(vec1, vec2)
+    out$intersect = intersect(vec1, vec2)
+    out$setdiff_1_2 = setdiff(vec1, vec2)
+    out$setdiff_2_1 = setdiff(vec2, vec1)
+    out$identical = identical(vec1, vec2)
     out
 }
-function.setdiff(
+vector.setdiff(
     NHID_JK_GJ_0213.bind_rows.integer.by.PERSON_ID.min.HCHK_YEAR %>% filter(AGE_GROUP %in% 5:17) %>% {.$PERSON_ID}
     , 
     NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin %>% {.$PERSON_ID}
