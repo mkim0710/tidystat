@@ -171,20 +171,21 @@ out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
     t0 = Sys.time()
 #    print(paste0("t0", " = ", t0))
+    i2 = i %>% str_replace_all(".xz$", "")
     assign(
-        i
-        , read_sas(paste0(path4read, i))
+        i2
+        , read_sas(file.path(path4read, i))
     )
     # save(list = i, file = file.path(path4write, i, ".rda"), compress = F)
     # write_rds(!!rlang::sym(i), path = paste0(path4write, "/", i, ".rds"), compress = "none")
-    write_rds(eval(parse(text = i)), path = paste0(path4write, "/", i, ".rds"), compress = "none")
-    # write_rds(eval(parse(text = i)), path = paste0(path4write, "/", i, ".rds"), compress = "gz")
-    rm(i)
+    write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    # write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    rm(i2)
     gc()
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
     Sys.time() - t0
 }) %>% set_names(filenames)
-out.list %>% dput
+out.list %>% dput #----
 # > out.list = filenames %>% map(function(i) {
 # +     print("i")
 # +     print(i)
@@ -229,20 +230,21 @@ out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
     t0 = Sys.time()
 #    print(paste0("t0", " = ", t0))
+    i2 = i %>% str_replace_all(".xz$", "")
     assign(
-        i
-        , read_sas(paste0(path4read, i))
+        i2
+        , read_sas(file.path(path4read, i))
     )
     # save(list = i, file = file.path(path4write, i, ".rda"), compress = F)
     # write_rds(!!rlang::sym(i), path = paste0(path4write, "/", i, ".rds"), compress = "none")
-    write_rds(eval(parse(text = i)), path = paste0(path4write, "/", i, ".rds"), compress = "none")
-    # write_rds(eval(parse(text = i)), path = paste0(path4write, "/", i, ".rds"), compress = "gz")
-    rm(i)
+    write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    # write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    rm(i2)
     gc()
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
     Sys.time() - t0
 }) %>% set_names(filenames)
-out.list %>% dput
+out.list %>% dput #----
 # > filenames %>% dput
 # c("infant_pregcohort_d_r4.sas7bdat", "infant_pregcohort_i_r4.sas7bdat", 
 # "infant_pregcohort_o_r4_mod.sas7bdat", "infant_pregcohort_o_r4.sas7bdat", 
