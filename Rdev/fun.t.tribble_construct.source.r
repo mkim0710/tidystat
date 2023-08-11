@@ -38,8 +38,7 @@ env.custom$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is 
 #' @return Nothing.
 #' @export
 #'
-# env.custom$tribble_paste <- function(input_table, output_context = env.custom$guess_output_context()){
-env.custom$tribble_paste <- function(input_table, output_context = env.custom$console_context()){  # mh edit
+env.custom$tribble_paste <- function(input_table, output_context = env.custom$guess_output_context()){
   output <- env.custom$tribble_construct(input_table, oc = output_context)
 
   switch(output_context$output_mode,
@@ -523,11 +522,17 @@ env.custom$custom_context <- function(output_mode = "console", nspc = 2, indent_
 
 
 #@ global functions ----
-fun.tribble_paste = env.custom$tribble_paste
-fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
-
+# fun.tribble_paste = env.custom$tribble_paste
+# fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
+fun.tribble_construct = function(df) {
+    out = env.custom$tribble_construct(df)
+    cat(out)
+}
+fun.t.tribble_construct = function(df) {
+    out = df %>% t %>% as.data.frame %>% rownames_to_column("varname")
+    out = env.custom$tribble_construct(out)
+    cat(out)
+}
 
 
 #@ end -----
-
-
