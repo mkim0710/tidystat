@@ -1,4 +1,4 @@
-# function.t.tribble_paste.source.r
+# fun.t.tribble_construct.source.r
 
 # tribble_paste = datapasta::tribble_paste
 # t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
