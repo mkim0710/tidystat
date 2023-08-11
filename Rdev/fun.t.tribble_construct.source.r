@@ -21,7 +21,7 @@
 #         "DFAB_REG_YM",         NA,         NA
 #     )
 
-
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
 
 if(!exists("env.custom")) env.custom = new.env()
 
