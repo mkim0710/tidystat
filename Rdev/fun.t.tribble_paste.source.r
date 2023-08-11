@@ -38,7 +38,8 @@ env.custom$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is 
 #' @return Nothing.
 #' @export
 #'
-env.custom$tribble_paste <- function(input_table, output_context = env.custom$guess_output_context()){
+# env.custom$tribble_paste <- function(input_table, output_context = env.custom$guess_output_context()){
+env.custom$tribble_paste <- function(input_table, output_context = env.custom$console_context()){  # mh edit
   output <- env.custom$tribble_construct(input_table, oc = output_context)
 
   switch(output_context$output_mode,
