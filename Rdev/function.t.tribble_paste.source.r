@@ -22,7 +22,7 @@
 
 
 
-env.custom = new.env()
+if(!exists("env.custom")) env.custom = new.env()
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
 # globalVariables(c(".rs.readUiPref","env.custom$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
