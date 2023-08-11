@@ -1,4 +1,5 @@
 # fun.t.tribble_construct.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.t.tribble_construct.source.r
 
 # tribble_paste = datapasta::tribble_paste
 # t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
@@ -536,3 +537,49 @@ fun.t.tribble_construct = function(df) {
 
 
 #@ end -----
+save.image(file = "env.custom.fun.t.tribble_construct.RData")
+
+# library(tidyverse)
+# df = 
+# tibble::tribble(
+#              ~varname,        ~V1,        ~V2,
+#              "STND_Y",     "2014",     "2014",
+#           "PERSON_ID", "67877095", "67877095",
+#                 "SEX",        "1",        "1",
+#                 "AGE",       "59",       "59",
+#             "DTH_MDY", "20141001", "20141001",
+#           "DTH_CODE1",      "I21",      "I21",
+#           "DTH_CODE2",         NA,         NA,
+#                "SIDO",       "41",       "41",
+#        "IPSN_TYPE_CD",        "6",        "6",
+#     "CTRB_PT_TYPE_CD",        "8",        "8",
+#         "DFAB_GRD_CD",        "0",        "0",
+#         "DFAB_PTN_CD",        "0",        "0",
+#         "DFAB_REG_YM",         NA,         NA
+#     )
+# df %>% fun.tribble_construct #----
+# df %>% fun.t.tribble_construct #----
+# # > df %>% fun.tribble_construct #----
+# # tibble::tribble(
+# #            ~varname,        ~V1,        ~V2,
+# #            "STND_Y",     "2014",     "2014",
+# #         "PERSON_ID", "67877095", "67877095",
+# #               "SEX",        "1",        "1",
+# #               "AGE",       "59",       "59",
+# #           "DTH_MDY", "20141001", "20141001",
+# #         "DTH_CODE1",      "I21",      "I21",
+# #         "DTH_CODE2",         NA,         NA,
+# #              "SIDO",       "41",       "41",
+# #      "IPSN_TYPE_CD",        "6",        "6",
+# #   "CTRB_PT_TYPE_CD",        "8",        "8",
+# #       "DFAB_GRD_CD",        "0",        "0",
+# #       "DFAB_PTN_CD",        "0",        "0",
+# #       "DFAB_REG_YM",         NA,         NA
+# #   )
+# # > df %>% fun.t.tribble_construct #----
+# # tibble::tribble(
+# #    ~varname,      ~V1,         ~V2,   ~V3,   ~V4,        ~V5,         ~V6,         ~V7,    ~V8,            ~V9,              ~V10,          ~V11,          ~V12,          ~V13,
+# #   "varname", "STND_Y", "PERSON_ID", "SEX", "AGE",  "DTH_MDY", "DTH_CODE1", "DTH_CODE2", "SIDO", "IPSN_TYPE_CD", "CTRB_PT_TYPE_CD", "DFAB_GRD_CD", "DFAB_PTN_CD", "DFAB_REG_YM",
+# #        "V1",   "2014",  "67877095",   "1",  "59", "20141001",       "I21",          NA,   "41",            "6",               "8",           "0",           "0",            NA,
+# #        "V2",   "2014",  "67877095",   "1",  "59", "20141001",       "I21",          NA,   "41",            "6",               "8",           "0",           "0",            NA
+# #   )
