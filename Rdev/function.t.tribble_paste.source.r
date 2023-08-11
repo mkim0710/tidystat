@@ -20,14 +20,16 @@
 #         "DFAB_REG_YM",         NA,         NA
 #     )
 
-env_datapasta = new.env()
+
+
+env.custom = new.env()
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
-# globalVariables(c(".rs.readUiPref","env_datapasta$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
-env_datapasta$.global_datapasta_env <- new.env()
-env_datapasta$.global_datapasta_env$decimal_mark <- "."
-env_datapasta$.global_datapasta_env$max_rows <- 200
-env_datapasta$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"
+# globalVariables(c(".rs.readUiPref","env.custom$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
+env.custom$.global_datapasta_env <- new.env()
+env.custom$.global_datapasta_env$decimal_mark <- "."
+env.custom$.global_datapasta_env$max_rows <- 200
+env.custom$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"
 #' tribble_paste
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and paste in at the cursor location in tribble format.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
@@ -36,15 +38,15 @@ env_datapasta$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. 
 #' @return Nothing.
 #' @export
 #'
-env_datapasta$tribble_paste <- function(input_table, output_context = env_datapasta$guess_output_context()){
-  output <- env_datapasta$tribble_construct(input_table, oc = output_context)
+env.custom$tribble_paste <- function(input_table, output_context = env.custom$guess_output_context()){
+  output <- env.custom$tribble_construct(input_table, oc = output_context)
 
   switch(output_context$output_mode,
          rstudioapi = rstudioapi::insertText(output),
          console = cat(output))
 }
 
-#' env_datapasta$tribble_format
+#' env.custom$tribble_format
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and paste to the clipboard in tribble format.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
 #' @param output_context an optional output context that defines the target and indentation. Default is console.
@@ -52,13 +54,13 @@ env_datapasta$tribble_paste <- function(input_table, output_context = env_datapa
 #' @return Nothing.
 #' @export
 #'
-env_datapasta$tribble_format <- function(input_table, output_context = env_datapasta$console_context()){
+env.custom$tribble_format <- function(input_table, output_context = env.custom$console_context()){
   if(!interactive()) stop("Cannot write to clipboard in non-interactive sessions.")
-  output <- env_datapasta$tribble_construct(input_table, oc = output_context)
+  output <- env.custom$tribble_construct(input_table, oc = output_context)
   clipr::write_clip(output)
 }
 
-#' env_datapasta$tribble_construct
+#' env.custom$tribble_construct
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and return as a character string.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
 #' @param oc an optional output context that defines the target and indentation. Default is console.
@@ -66,10 +68,10 @@ env_datapasta$tribble_format <- function(input_table, output_context = env_datap
 #' @return The parsed table text.
 #' @export
 #'
-env_datapasta$tribble_construct <- function(input_table, oc = env_datapasta$console_context()){
+env.custom$tribble_construct <- function(input_table, oc = env.custom$console_context()){
   # Determine input. Either clipboard or supplied table.
   if(missing(input_table)){
-    input_table <- env_datapasta$read_clip_tbl_guess()
+    input_table <- env.custom$read_clip_tbl_guess()
 
     if(is.null(input_table)){
       message("Could not paste clipboard as tibble. Text could not be parsed as table.")
@@ -82,8 +84,8 @@ env_datapasta$tribble_construct <- function(input_table, oc = env_datapasta$cons
       message("Could not format input_table as table. Unexpected class.")
       return(NULL)
     }
-    if(nrow(input_table) >= env_datapasta$.global_datapasta_env$max_rows){
-      message(paste0("Supplied large input_table (>= ",env_datapasta$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env_datapasta$dp_set_max_rows(n) to increase the limit."))
+    if(nrow(input_table) >= env.custom$.global_datapasta_env$max_rows){
+      message(paste0("Supplied large input_table (>= ",env.custom$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env.custom$dp_set_max_rows(n) to increase the limit."))
       return(NULL)
     }
     input_table_types <- lapply(input_table, class)
@@ -98,7 +100,7 @@ env_datapasta$tribble_construct <- function(input_table, oc = env_datapasta$cons
 
   # Find the max length of data as string in each column
   col_widths <- mapply(input_table,
-                       FUN = env_datapasta$column_width,
+                       FUN = env.custom$column_width,
                        column_type = input_table_types
                        )
 
@@ -132,7 +134,7 @@ env_datapasta$tribble_construct <- function(input_table, oc = env_datapasta$cons
              paste0(
                paste0(
                  mapply(
-                   env_datapasta$pad_to,
+                   env.custom$pad_to,
                    paste0("~",input_names_valid),
                    col_widths
                  ),
@@ -150,7 +152,7 @@ env_datapasta$tribble_construct <- function(input_table, oc = env_datapasta$cons
                                    paste0(
                                      paste0(
                                        mapply(
-                                         env_datapasta$render_type_pad_to,
+                                         env.custom$render_type_pad_to,
                                          col,
                                          input_table_types,
                                          col_widths
@@ -179,7 +181,7 @@ env_datapasta$tribble_construct <- function(input_table, oc = env_datapasta$cons
         strrep(" ",oc$indent_context+oc$nspc),
         input_names_valid,
         " = ",
-        mapply(env_datapasta$deparse_as,
+        mapply(env.custom$deparse_as,
                input_table,
                input_table_types),
         collapse = ",\n"
@@ -195,11 +197,11 @@ env_datapasta$tribble_construct <- function(input_table, oc = env_datapasta$cons
   return(output)
 }
 
-env_datapasta$deparse_as <- function(column, column_type) {
+env.custom$deparse_as <- function(column, column_type) {
   deparse(methods::as(column, column_type))
 }
 
-env_datapasta$column_width <- function(column, column_type) {
+env.custom$column_width <- function(column, column_type) {
 
   if (length(column) == 0)
     return(nchar(deparse(column)))
@@ -207,7 +209,7 @@ env_datapasta$column_width <- function(column, column_type) {
     return(
       suppressWarnings(
         max(vapply(X = column,
-                   FUN = env_datapasta$nchar_type,
+                   FUN = env.custom$nchar_type,
                    FUN.VALUE = numeric(1),
                    df_col_type = column_type
                    ),
@@ -219,24 +221,24 @@ env_datapasta$column_width <- function(column, column_type) {
 
 
 
-#' env_datapasta$nchar_type
+#' env.custom$nchar_type
 #'
 #' @param df_col_row a character string
 #' @param df_col_type the type the string will be converted to.
 #'
 #' @return The number of characters wide this data would be in when rendered in text
-env_datapasta$nchar_type <- function(df_col_row, df_col_type){
+env.custom$nchar_type <- function(df_col_row, df_col_type){
   n_chars <- nchar(df_col_row)
 
   if(length(df_col_type) > 1) df_col_type <- "complex" # We can't really handle it.
 
   add_chars <- switch(df_col_type,
                       "integer" = 1, #for the "L",
-                      "character" = 2 + env_datapasta$nquote_str(df_col_row) + env_datapasta$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "date" = 2 + env_datapasta$nquote_str(df_col_row) + env_datapasta$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "datetime" = 2 + env_datapasta$nquote_str(df_col_row) + env_datapasta$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "factor" = 2 + env_datapasta$nquote_str(df_col_row) + env_datapasta$nslash_str(df_col_row),
-                      "complex" = 2 + env_datapasta$nquote_str(df_col_row) + env_datapasta$nslash_str(df_col_row), #Assume we print as a quoted char
+                      "character" = 2 + env.custom$nquote_str(df_col_row) + env.custom$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "date" = 2 + env.custom$nquote_str(df_col_row) + env.custom$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "datetime" = 2 + env.custom$nquote_str(df_col_row) + env.custom$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "factor" = 2 + env.custom$nquote_str(df_col_row) + env.custom$nslash_str(df_col_row),
+                      "complex" = 2 + env.custom$nquote_str(df_col_row) + env.custom$nslash_str(df_col_row), #Assume we print as a quoted char
                       0) #0 for other types
   return(n_chars + add_chars)
 
@@ -247,25 +249,25 @@ env_datapasta$nchar_type <- function(df_col_row, df_col_type){
 #' @param char_vec the string to count quotes in
 #'
 #' @return a number, possibly 0.
-env_datapasta$nquote_str <- function(char_vec){
+env.custom$nquote_str <- function(char_vec){
   sum(gregexpr(pattern = "(\"|\')", text = char_vec)[[1]] > 0)
 }
 
-env_datapasta$nslash_str <- function(char_vec){
+env.custom$nslash_str <- function(char_vec){
   sum(gregexpr(pattern = "\\\\", text = char_vec)[[1]] > 0)
 }
-#' env_datapasta$pad_to
+#' env.custom$pad_to
 #' @description Left pad string to a certain size. A helper function for getting spacing in table correct.
 #' @param char_vec character vector.
 #' @param char_length length to pad to.
 #'
 #' @return char_vec left-padded with spaces to char_length.
 #'
-env_datapasta$pad_to <-function(char_vec, char_length){
+env.custom$pad_to <-function(char_vec, char_length){
   paste0(strrep(" ",char_length - nchar(char_vec)),char_vec)
 }
 
-#' env_datapasta$render_type
+#' env.custom$render_type
 #'
 #' @description Renders a character vector as R types for pasting into Rstudio.
 #' Strings are quoted. Numbers, NA, logicals etc are not.
@@ -277,7 +279,7 @@ env_datapasta$pad_to <-function(char_vec, char_length){
 #' character vector. The type attribute contains the type guessed by `readr`.
 #'
 #'
-env_datapasta$render_type <- function(char_vec, char_type){
+env.custom$render_type <- function(char_vec, char_type){
 
   if(length(char_type) > 1) char_type <- "complex"
   # We can't handle special classes. Just fall through defaults.
@@ -295,7 +297,7 @@ env_datapasta$render_type <- function(char_vec, char_type){
     output <- switch(char_type,
                      "integer" = paste0(as.integer(char_vec),"L"),
                      "double" = as.double(char_vec),
-                     "number" = readr::parse_number(char_vec, locale = readr::locale(decimal_mark = env_datapasta$.global_datapasta_env$decimal_mark)),
+                     "number" = readr::parse_number(char_vec, locale = readr::locale(decimal_mark = env.custom$.global_datapasta_env$decimal_mark)),
                      "numeric" = as.double(char_vec),
                      "logical" = as.logical(char_vec),
                      "factor" = ifelse(nchar(char_vec)!=0, deparse(char_vec), "NA"),
@@ -308,7 +310,7 @@ env_datapasta$render_type <- function(char_vec, char_type){
 }
 
 
-#' env_datapasta$render_type_pad_to
+#' env.custom$render_type_pad_to
 #' @description Based on a type and length, render a character string as the type in text.
 #' Pad to the desired length.
 #'
@@ -319,11 +321,11 @@ env_datapasta$render_type <- function(char_vec, char_type){
 #' @return a string containing the representation of char_vec as char_type in the RStudio source editor,
 #' left-padded with spaces to char_length.
 #'
-env_datapasta$render_type_pad_to <- function(char_vec, char_type, char_length){
-    env_datapasta$pad_to(env_datapasta$render_type(char_vec, char_type), char_length)
+env.custom$render_type_pad_to <- function(char_vec, char_type, char_length){
+    env.custom$pad_to(env.custom$render_type(char_vec, char_type), char_length)
 }
 
-#' env_datapasta$guess_sep
+#' env.custom$guess_sep
 #'
 #' @param char_vec a table from the clipboard in character vector form.
 #'
@@ -335,7 +337,7 @@ env_datapasta$render_type_pad_to <- function(char_vec, char_type, char_length){
 #'
 #' @return the separator selected to parse char_vec as a table
 #'
-env_datapasta$guess_sep <- function(char_vec){
+env.custom$guess_sep <- function(char_vec){
   candidate_seps <- c(",","\t","\\|",";")
   candidate_seps_pattern <- paste0("([", paste0(candidate_seps, collapse = ""),"])$", collapse = "")
   table_sample <- char_vec[1:min(length(char_vec),10)]
@@ -371,7 +373,7 @@ env_datapasta$guess_sep <- function(char_vec){
 #' and it tries to guess the separator.
 #'
 #' @return a parsed table from the clipboard. Separator is guessed.
-env_datapasta$read_clip_tbl_guess <- function (x = NULL, ...)
+env.custom$read_clip_tbl_guess <- function (x = NULL, ...)
 {
   if (is.null(x)) {
     # if no text is provided, look in clipboard or RStudio editor
@@ -386,7 +388,7 @@ env_datapasta$read_clip_tbl_guess <- function (x = NULL, ...)
   if (is.null(.dots$header))
     .dots$header <- FALSE
   if (is.null(.dots$sep)){
-    .dots$sep <- env_datapasta$guess_sep(x)
+    .dots$sep <- env.custom$guess_sep(x)
   }
   if (is.null(.dots$colClasses))
     .dots$colClasses <- "character"
@@ -421,7 +423,7 @@ env_datapasta$read_clip_tbl_guess <- function (x = NULL, ...)
 
 
 
-#' env_datapasta$dp_set_decimal_mark
+#' env.custom$dp_set_decimal_mark
 #'
 #' @param mark The decimal mark to use when parsing "number" type data, as guessed by readr::guess_parser.
 #' @description A function to optionally set the decimal mark if in a locale where it is not `.`. Will allow "3,14" to be parsed as 3.14, normally would be parsed as 314.
@@ -429,49 +431,49 @@ env_datapasta$read_clip_tbl_guess <- function (x = NULL, ...)
 #'
 #' @return NULL.
 #' @export
-env_datapasta$dp_set_decimal_mark <- function(mark){
-  env_datapasta$.global_datapasta_env$decimal_mark <- mark
+env.custom$dp_set_decimal_mark <- function(mark){
+  env.custom$.global_datapasta_env$decimal_mark <- mark
   invisible(NULL)
 }
 
-#' env_datapasta$dp_set_max_rows
+#' env.custom$dp_set_max_rows
 #'
-#' @param num_rows The number of rows of an input at which any of env_datapasta$tribble_construct() or df_construct() will abort parsing. Datapasta is untested on large tables. Use at own risk.
+#' @param num_rows The number of rows of an input at which any of env.custom$tribble_construct() or df_construct() will abort parsing. Datapasta is untested on large tables. Use at own risk.
 #'
 #' @return NULL
 #' @export
-env_datapasta$dp_set_max_rows <- function(num_rows){
-  env_datapasta$.global_datapasta_env$max_rows <- num_rows
+env.custom$dp_set_max_rows <- function(num_rows){
+  env.custom$.global_datapasta_env$max_rows <- num_rows
   invisible(NULL)
 }
 
-#' env_datapasta$guess_output_context
+#' env.custom$guess_output_context
 #'
 #' @description Return the a list containing the guessed output target context, either rstudio or the console.
 #'
 #' @return a list containing the output target, space size of indent, and number of indents at context.
-env_datapasta$guess_output_context <- function(){
+env.custom$guess_output_context <- function(){
   if(requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()){
-    output_context <- env_datapasta$rstudio_context()
+    output_context <- env.custom$rstudio_context()
   }else{
     # rstudioapi unavailable. fallback to console
-    output_context <- env_datapasta$console_context()
+    output_context <- env.custom$console_context()
   }
   output_context
 }
 
-#' @rdname env_datapasta$custom_context
+#' @rdname env.custom$custom_context
 #' @export
 #'
-env_datapasta$clipboard_context <- function(){
+env.custom$clipboard_context <- function(){
   output_context <- list(output_mode = "clipboard", nspc = 2, indent_context = 0, indent_head = FALSE)
   output_context
 }
 
-#' @rdname env_datapasta$custom_context
+#' @rdname env.custom$custom_context
 #' @export
 #'
-env_datapasta$rstudio_context <- function(){
+env.custom$rstudio_context <- function(){
   output_context <- list()
   output_context$indent_head <- FALSE #head already at cursor
   output_context$output_mode <- "rstudioapi"
@@ -486,26 +488,26 @@ env_datapasta$rstudio_context <- function(){
   output_context
 }
 
-#' @rdname env_datapasta$custom_context
+#' @rdname env.custom$custom_context
 #' @export
 #'
-env_datapasta$console_context <- function(){
+env.custom$console_context <- function(){
   output_context <- list(output_mode = "console", nspc = 2, indent_context = 0, indent_head = FALSE)
   output_context
 }
 
-#' @rdname env_datapasta$custom_context
+#' @rdname env.custom$custom_context
 #' @export
 #'
-env_datapasta$markdown_context <- function(){
+env.custom$markdown_context <- function(){
   output_context <- list(output_mode = "console", nspc = 2, indent_context = 4, indent_head = TRUE)
   output_context
 }
 
-#' env_datapasta$custom_context
+#' env.custom$custom_context
 #'
 #' @description the _context functions define lists of parameters for text formatting.
-#' The specific contexts return hard-coded values appropriate to the context they describe, while env_datapasta$custom_context allows definition of new contexts for custom formatting.
+#' The specific contexts return hard-coded values appropriate to the context they describe, while env.custom$custom_context allows definition of new contexts for custom formatting.
 #' @param output_mode A named output mode, controls the target of the _paste functions options are "rstudioapi" or "console"
 #' @param nspc The number of spaces for each indent level in the output context
 #' @param indent_context The number of spaces applied initially to all lines in the output context
@@ -513,14 +515,14 @@ env_datapasta$markdown_context <- function(){
 #' @return an output context. An input to _paste, _format, _construct functions used to format whitespace.
 #' @export
 #'
-env_datapasta$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
+env.custom$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
   output_context <- list(output_mode = output_mode, nspc = nspc, indent_context = indent_context, indent_head = indent_head)
   output_context
 }
 
 
 #@ global functions ----
-fun.tribble_paste = env_datapasta$tribble_paste
+fun.tribble_paste = env.custom$tribble_paste
 fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
 
 
