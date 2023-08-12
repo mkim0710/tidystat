@@ -16,24 +16,83 @@ path4write %>% dput
 load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
 # attach(env.custom)
 
+# regex4filename = "sas7bdat(.xz)?$"
 regex4filename = "sas7bdat(.xz)?$"
 env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 
 
 
+
+# nhis_heals_jk_d.sas7bdat %>% str #----
+# # > nhis_heals_jk_d.sas7bdat %>% str #----
+# # tibble [6,933,649 × 13] (S3: tbl_df/tbl/data.frame)
+# #  $ STND_Y         : chr [1:6933649] "2002" "2002" "2002" "2002" ...
+# #  $ PERSON_ID      : chr [1:6933649] "10000084" "10000158" "10000205" "10000355" ...
+# #  $ SEX            : chr [1:6933649] "1" "1" "1" "1" ...
+# #   ..- attr(*, "label")= chr "GENDER_CD"
+# #   ..- attr(*, "format.sas")= chr "$"
+# #  $ AGE            : num [1:6933649] 79 79 79 79 79 79 79 79 79 79 ...
+# #   ..- attr(*, "label")= chr "AGE_ID"
+# #  $ DTH_MDY        : chr [1:6933649] "" "" "" "" ...
+# #   ..- attr(*, "label")= chr "DTH_MDY"
+# #   ..- attr(*, "format.sas")= chr "$"
+# #  $ DTH_CODE1      : chr [1:6933649] "" "" "" "" ...
+# #  $ DTH_CODE2      : chr [1:6933649] "" "" "" "" ...
+# #  $ SIDO           : chr [1:6933649] "11" "43" "45" "27" ...
+# #  $ IPSN_TYPE_CD   : chr [1:6933649] "1" "6" "5" "1" ...
+# #  $ CTRB_PT_TYPE_CD: chr [1:6933649] "8" "9" "3" "10" ...
+# #  $ DFAB_GRD_CD    : chr [1:6933649] "0" "0" "0" "0" ...
+# #  $ DFAB_PTN_CD    : chr [1:6933649] "0" "0" "0" "0" ...
+# #  $ DFAB_REG_YM    : chr [1:6933649] "" "" "" "" ...
+# 
+# tmp.df = nhis_heals_jk_d.sas7bdat
+# for (ii in names(tmp.df)) {
+#     attr(tmp.df[[ii]], "format.sas") = NULL
+#     if (!is.null(attributes(tmp.df[[ii]])$label)) {
+#         if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
+#     }
+# }
+# tmp.df %>% str #----
+# # > tmp.df %>% str #----
+# # tibble [6,933,649 × 13] (S3: tbl_df/tbl/data.frame)
+# #  $ STND_Y         : chr [1:6933649] "2002" "2002" "2002" "2002" ...
+# #  $ PERSON_ID      : chr [1:6933649] "10000084" "10000158" "10000205" "10000355" ...
+# #  $ SEX            : chr [1:6933649] "1" "1" "1" "1" ...
+# #   ..- attr(*, "label")= chr "GENDER_CD"
+# #  $ AGE            : num [1:6933649] 79 79 79 79 79 79 79 79 79 79 ...
+# #   ..- attr(*, "label")= chr "AGE_ID"
+# #  $ DTH_MDY        : chr [1:6933649] "" "" "" "" ...
+# #  $ DTH_CODE1      : chr [1:6933649] "" "" "" "" ...
+# #  $ DTH_CODE2      : chr [1:6933649] "" "" "" "" ...
+# #  $ SIDO           : chr [1:6933649] "11" "43" "45" "27" ...
+# #  $ IPSN_TYPE_CD   : chr [1:6933649] "1" "6" "5" "1" ...
+# #  $ CTRB_PT_TYPE_CD: chr [1:6933649] "8" "9" "3" "10" ...
+# #  $ DFAB_GRD_CD    : chr [1:6933649] "0" "0" "0" "0" ...
+# #  $ DFAB_PTN_CD    : chr [1:6933649] "0" "0" "0" "0" ...
+# #  $ DFAB_REG_YM    : chr [1:6933649] "" "" "" "" ...
+
+
+
+
+
 #@ filenames ===========
 library(tidyverse)
-# filenames = c("nhis_heals_gj_d.sas7bdat", "nhis_heals_jk_d.sas7bdat")
-filenames = c("nhis_heals_jk_d.sas7bdat")
+filenames = c("nhis_heals_gj_d.sas7bdat", "nhis_heals_jk_d.sas7bdat")
 library(haven)
 out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
     t0 = Sys.time()
 #    print(paste0("t0", " = ", t0))
     tmp.df = read_sas(file.path(path4read, i))
+    for (ii in names(tmp.df)) {
+        attr(tmp.df[[ii]], "format.sas") = NULL
+        if (!is.null(attributes(tmp.df[[ii]])$label)) {
+            if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
+        }
+    }
     output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
-    write_rds(tmp.df, path = file.path(path4write, paste0(output_name, ".rds")), compress = "none")
+    write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
     rm(tmp.df)
     gc()
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
@@ -47,7 +106,6 @@ out.list %>% dput #----
 # > out.list %>% dput #----
 # list(nhis_heals_gj_d.sas7bdat = structure(1.54137681325277, class = "difftime", units = "mins"), 
 #     nhis_heals_jk_d.sas7bdat = structure(45.4666619300842, class = "difftime", units = "secs"))
-
 
 
 
