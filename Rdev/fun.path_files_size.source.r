@@ -57,14 +57,20 @@ fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|
 library(tidyverse)
 fun.path_files_size() #-----
 fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data") #-----
-fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rdata)$") #-----
-# > fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rdata)$") #-----
+fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
+# > fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
 # tibble::tribble(
-#                             ~filename,  ~size,    ~bytes,       ~KB,        ~MB,        ~GB,
-#   "RDataMining-Tweets-20160203.rdata", 282199, "282,199", "275.585", "0.269126", "2.63e-04",
-#              "rdmTweets-201306.RData", 196993, "196,993", "192.376", "0.187867", "1.83e-04",
-#                     "rdmTweets.RData", 102523, "102,523", "100.120", "0.097774", "9.55e-05",
-#                 "termDocMatrix.rdata",   1352, "  1,352", "  1.320", "0.001289", "1.26e-06",
-#                   "titanic.raw.rdata",    452, "    452", "  0.441", "0.000431", "4.21e-07"
+#                                         ~filename,    ~size,       ~bytes,         ~KB,        ~MB,        ~GB,
+#                              "ATC_RxNorm_NDC.rds", 79768376, "79,768,376", "77,898.80", "76.07305", "7.43e-02",
+#                                "fhs.index100.rds",   342010, "   342,010", "   333.99", " 0.32617", "3.19e-04",
+#                        "fhs.index100ge11le20.rds",    35515, "    35,515", "    34.68", " 0.03387", "3.31e-05",
+#                            "fhs.index100le10.rds",    35747, "    35,747", "    34.91", " 0.03409", "3.33e-05",
+#                   "Holdings_VT_URTH_VWO.list.rds",   387992, "   387,992", "   378.90", " 0.37002", "3.61e-04",
+#                                 "icd10cm2019.rds",  1432851, " 1,432,851", " 1,399.27", " 1.36647", "1.33e-03",
+#               "ICD9_3char_sub_chapter.tibble.rds",     8459, "     8,459", "     8.26", " 0.00807", "7.88e-06",
+#       "icd9_chapters.expand_range.ICD9_3char.rds",     2919, "     2,919", "     2.85", " 0.00278", "2.72e-06",
+#                  "icd9_chapters.expand_range.rds",    42833, "    42,833", "    41.83", " 0.04085", "3.99e-05",
+#   "icd9_sub_chapters.expand_range.ICD9_3char.rds",     5776, "     5,776", "     5.64", " 0.00551", "5.38e-06",
+#              "icd9_sub_chapters.expand_range.rds",    46898, "    46,898", "    45.80", " 0.04473", "4.37e-05",
+#                 "RDataMining-Tweets-20160212.rds",   282733, "   282,733", "   276.11", " 0.26964", "2.63e-04"
 #   )
-
