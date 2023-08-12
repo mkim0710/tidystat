@@ -1,5 +1,10 @@
 # fun.data.primarykey.source.r
 
+######### NEED MORE WORK~!
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/20_tidy_group_by_match/23_group_by_PersonID/function.filter.PrimaryKey_duplicated.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/fun.data.primarykey.source.r
+
+
 library(tidyverse)
 t0 = Sys.time()
 nhis_heals_jk.sas7bdat <- readRDS("D:/OneDrive - SNU/[][SASproject]/SASproject_KNHIS_HEALS0215/nhis_heals_jk.sas7bdat.rds")
