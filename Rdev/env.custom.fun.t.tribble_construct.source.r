@@ -1,27 +1,30 @@
 # env.custom.fun.t.tribble_construct.source.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
 
-# tribble_paste = datapasta::tribble_paste
-# t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
-# nhis_heals_jk.sas7bdat.duplicated %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste
-# tibble::tribble(
-#              ~varname,        ~V1,        ~V2,
-#              "STND_Y",     "2014",     "2014",
-#           "PERSON_ID", "67877095", "67877095",
-#                 "SEX",        "1",        "1",
-#                 "AGE",       "59",       "59",
-#             "DTH_MDY", "20141001", "20141001",
-#           "DTH_CODE1",      "I21",      "I21",
-#           "DTH_CODE2",         NA,         NA,
-#                "SIDO",       "41",       "41",
-#        "IPSN_TYPE_CD",        "6",        "6",
-#     "CTRB_PT_TYPE_CD",        "8",        "8",
-#         "DFAB_GRD_CD",        "0",        "0",
-#         "DFAB_PTN_CD",        "0",        "0",
-#         "DFAB_REG_YM",         NA,         NA
-#     )
 
+# # tribble_paste = datapasta::tribble_paste
+# # https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
 # load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# 
+# # t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
+# # nhis_heals_jk.sas7bdat.duplicated %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste
+# # tibble::tribble(
+# #              ~varname,        ~V1,        ~V2,
+# #              "STND_Y",     "2014",     "2014",
+# #           "PERSON_ID", "67877095", "67877095",
+# #                 "SEX",        "1",        "1",
+# #                 "AGE",       "59",       "59",
+# #             "DTH_MDY", "20141001", "20141001",
+# #           "DTH_CODE1",      "I21",      "I21",
+# #           "DTH_CODE2",         NA,         NA,
+# #                "SIDO",       "41",       "41",
+# #        "IPSN_TYPE_CD",        "6",        "6",
+# #     "CTRB_PT_TYPE_CD",        "8",        "8",
+# #         "DFAB_GRD_CD",        "0",        "0",
+# #         "DFAB_PTN_CD",        "0",        "0",
+# #         "DFAB_REG_YM",         NA,         NA
+# #     )
+
 
 if(!exists("env.custom")) env.custom = new.env()
 if(!exists("env.fun.hidden", envir = env.custom)) env.custom$env.fun.hidden = new.env()
