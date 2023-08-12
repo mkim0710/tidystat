@@ -11,11 +11,51 @@ path4write = getwd()
 path4read %>% dput
 path4write %>% dput
 
-filenames = list.files(path4read) %>% grep("sas7bdat(.xz)?$",. , value = T) 
+# tribble_paste = datapasta::tribble_paste
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# attach(env.custom)
 
-tribble_paste = datapasta::tribble_paste
-filenames %>% {file.info(file.path(path4read,.))} %>% tribble_paste #----
-filenames %>% {file.info(file.path(path4read,.))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
+regex4filename = "sas7bdat(.xz)?$"
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
+
+
+
+#@ filenames ===========
+library(tidyverse)
+# filenames = c("nhis_heals_gj_d.sas7bdat", "nhis_heals_jk_d.sas7bdat")
+filenames = c("nhis_heals_jk_d.sas7bdat")
+library(haven)
+out.list = filenames %>% map(function(i) {
+    print(paste0("i", " = ", i))
+    t0 = Sys.time()
+#    print(paste0("t0", " = ", t0))
+    tmp.df = read_sas(file.path(path4read, i))
+    output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+    write_rds(tmp.df, path = file.path(path4write, paste0(output_name, ".rds")), compress = "none")
+    rm(tmp.df)
+    gc()
+    print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
+    Sys.time() - t0
+}) %>% set_names(filenames)
+out.list %>% dput #----
+# [1] "i = nhis_heals_gj_d.sas7bdat"
+# [1] "Sys.time() - t0 = 1.54136161406835"
+# [1] "i = nhis_heals_jk_d.sas7bdat"
+# [1] "Sys.time() - t0 = 45.4658980369568"
+# > out.list %>% dput #----
+# list(nhis_heals_gj_d.sas7bdat = structure(1.54137681325277, class = "difftime", units = "mins"), 
+#     nhis_heals_jk_d.sas7bdat = structure(45.4666619300842, class = "difftime", units = "secs"))
+
+
+
+
+
+
+
+
+
 
 # list.files(path4read) read_sas() write_rds().r =====
 library(haven)
