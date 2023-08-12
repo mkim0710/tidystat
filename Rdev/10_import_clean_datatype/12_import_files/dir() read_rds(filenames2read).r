@@ -7,7 +7,7 @@ path4read %>% dput #----
 path4write %>% dput #----
 
 
-filenames2read = dir() %>% str_subset("sas7bdat.rds(.xz)?$")
+filenames2read = dir() %>% str_subset("\\.sas7bdat\\.rds(\\.xz)?$")
 filenames2read %>% dput #----
 # > filenames2read %>% dput #----
 # c("temp1.sas7bdat.rds.xz", "temp10.sas7bdat.rds.xz", "temp11.sas7bdat.rds.xz",
