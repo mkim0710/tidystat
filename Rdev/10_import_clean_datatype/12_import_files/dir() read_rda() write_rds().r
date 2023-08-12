@@ -7,65 +7,22 @@
 library(tidyverse)
 
 
-getwd()
+library(tidyverse)
+getwd() %>% dput #----
+
 path4read = getwd()
 path4write = getwd()
-?dir
-dir() %>% str #----
-dir() %>% str_subset(".rda$") %>% dput #----
-dir() %>% str_subset(".rda$") %>% str_replace(".rda$", "") %>% dput #----
-# > dir() %>% str #----
-#  chr [1:224] "-PC189378.Rhistory" "[Codes] Rproject_KNHIS - Shortcut.lnk" "02ID" ...
-# > dir() %>% str_subset(".rda$") %>% dput #----
-# c("KEY_SEQ.JK_GJ596284.rda", "KNHIS_feature.list.rda", "KNHIS_PERSON_ID.list.rda", 
-# "NHID_GJ_0213.bind_rows.factor.rda", "NHID_GJ_0213.bind_rows.integer.rda", 
-# "NHID_GJ_0213.bind_rows.rda", "NHID_GJ_0213.list.rda", "NHID_GY20_0213.bind_rows(except.billing).rda", 
+path4read %>% dput
+path4write %>% dput
 
-# objectNames = dir() %>% str_subset(".rda$") %>% str_replace(".rda$", "")
-# objectNames %>% dput #----
-# # > objectNames %>% dput #----
-# # > objectNames %>% dput #----
-# c("KEY_SEQ.JK_GJ596284", "KNHIS_feature.list", "KNHIS_PERSON_ID.list", 
-# "NHID_GJ_0213.bind_rows.factor", "NHID_GJ_0213.bind_rows.integer", 
-# "NHID_GJ_0213.bind_rows", "NHID_GJ_0213.list", "NHID_GY20_0213.bind_rows(except.billing)", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK.ICD10_range_chapter", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK.ICD10_range_sub_chapter", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.DM", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.ge2.by.PERSON_ID.ICD10_range_chapter", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.ge2.by.PERSON_ID.ICD10_range_sub_chapter", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.ge2", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.hyperG.FastingGlucose", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.hyperG", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73.SICK_SYM.GNL_NM_CD4.JK_GJ", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73.SICK_SYM.GNL_NM_CD4", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.Date.by.PERSON_ID.Exclusion.ICD_MAINSUB.R73.SICK_SYM", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.Date", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.MAIN_SUB_SICK.sub_chapter -void(icd10cm2016)", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.MAIN_SUB_SICK_3char.sub_chapter.Date", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.MAIN_SUB_SICK_3char.sub_chapter.factor", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean.MAIN_SUB_SICK_3char.sub_chapter", 
-# "NHID_GY20_0213.bind_rows.12478.ICDclean", "NHID_GY20_0213.bind_rows.12478", 
-# "NHID_GY20_0213.bind_rows.factor(except.billing)", "NHID_GY20_0213.bind_rows.factor.12478", 
-# "NHID_GY20_0213.bind_rows.FORM_CD02.factor(except.billing)", 
-# "NHID_GY20_0213.bind_rows.FORM_CD02.ICDclean.Date.by.PERSON_ID.FORM02.ICD_MAINSUB.I21I22.I200", 
-# "NHID_GY20_0213.bind_rows.FORM_CD02.ICDclean.Date", "NHID_GY20_0213.bind_rows.PERSON_ID.KEY_SEQ", 
-# "NHID_GY20_0213.bind_rows.PERSON_ID.KEY_SEQ.RECU_FR_DT", "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char(incl SICK_SYM)", 
-# "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin.2084", 
-# "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin", 
-# "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose", 
-# "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG", 
-# "NHID_GY40_0213.bind_rows.factor", "NHID_GY60_0213.bind_rows(16789)", 
-# "NHID_GY60_0213.bind_rows.GNL_NM_CD4(incl GNL_NM_CD)", "NHID_GY60_0213.bind_rows.GNL_NM_CD4.Metformin", 
-# "NHID_GY60_0213.bind_rows.GNL_NM_CD4", "NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT(16789)", 
-# "NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4(incl Dose)", 
-# "NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4(incl Dose, KEY_SEQ)", 
-# "NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4(incl Dose, KEY_SEQ, GNL_NM_CD)", 
-# "NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4.Metformin.by.PERSON_ID", 
-# "NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4.Metformin", 
-# "NHID_GY60_0213.bind_rows.PERSON_ID.RECU_FR_DT.GNL_NM_CD4")
+# tribble_paste = datapasta::tribble_paste
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# attach(env.custom)
 
+regex4filename = "\\.(rda)$"
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 
 
 objectNames = dir() %>% str_subset("[A-z]+.rda$") %>% str_replace(".rda$", "")
