@@ -1,5 +1,5 @@
-# fun.t.tribble_construct.source.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.t.tribble_construct.source.r
+# env.custom.fun.t.tribble_construct.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
 
 # tribble_paste = datapasta::tribble_paste
 # t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
