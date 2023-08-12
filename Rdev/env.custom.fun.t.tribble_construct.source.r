@@ -530,7 +530,7 @@ fun.tribble_construct = function(df) {
     cat(out)
 }
 fun.t.tribble_construct = function(df) {
-    out = df %>% t %>% as.data.frame %>% rownames_to_column("varname")
+    out = df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% as_tibble
     out = env.custom$tribble_construct(out)
     cat(out)
 }
