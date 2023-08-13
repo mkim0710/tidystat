@@ -76,6 +76,100 @@ filenames %>% dput #----
 
 
 
+
+
+
+
+# If the datasets are small : import all into a list ======
+fun.read_sas_files2list = function(filenames, path4read) {
+    library(tidyverse)
+    library(haven)
+    list.Sys.time = list()
+    list.sas7bdat = list()
+    
+    for (i in filenames) {
+        print(paste0("i", " = ", i))
+        t0 = Sys.time()
+        #    print(paste0("t0", " = ", t0))
+        tmp.df = read_sas(file.path(path4read, i))
+        for (ii in names(tmp.df)) {
+            attr(tmp.df[[ii]], "format.sas") = NULL
+            if (!is.null(attributes(tmp.df[[ii]])$label)) {
+                if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
+            }
+        }
+        output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+        # write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
+        list.sas7bdat[[output_name]] = tmp.df
+        rm(tmp.df)
+        # gc()
+        list.Sys.time[[i]] = Sys.time() - t0
+        print(list.Sys.time[[i]])
+    }
+    attributes(list.sas7bdat)$list.Sys.time = list.Sys.time
+    return(list.sas7bdat)
+}
+
+list.khj.sas7bdat = 
+    c("ad.sas7bdat", "dem.sas7bdat", "dem_med.sas7bdat", "dementia.sas7bdat", 
+      "diabetes.sas7bdat", "dm.sas7bdat", "dm_med.sas7bdat", "dth1.sas7bdat", 
+      "gj.sas7bdat", "jk1.sas7bdat", "vd.sas7bdat") %>% 
+    fun.read_sas_files2list(path4read)
+list.khj.sas7bdat %>% str(max.level = 1) #----
+# > list.khj.sas7bdat %>% str(max.level = 1) #----
+# List of 11
+#  $ ad.sas7bdat.rds      : tibble [25,527 × 3] (S3: tbl_df/tbl/data.frame)
+#  $ dem.sas7bdat.rds     : tibble [483,705 × 5] (S3: tbl_df/tbl/data.frame)
+#  $ dem_med.sas7bdat.rds : tibble [241,478 × 2] (S3: tbl_df/tbl/data.frame)
+#  $ dementia.sas7bdat.rds: tibble [483,705 × 4] (S3: tbl_df/tbl/data.frame)
+#  $ diabetes.sas7bdat.rds: tibble [7,354,775 × 4] (S3: tbl_df/tbl/data.frame)
+#  $ dm.sas7bdat.rds      : tibble [7,354,775 × 5] (S3: tbl_df/tbl/data.frame)
+#  $ dm_med.sas7bdat.rds  : tibble [5,705,947 × 2] (S3: tbl_df/tbl/data.frame)
+#  $ dth1.sas7bdat.rds    : tibble [47,518 × 3] (S3: tbl_df/tbl/data.frame)
+#  $ gj.sas7bdat.rds      : tibble [264,777 × 69] (S3: tbl_df/tbl/data.frame)
+#  $ jk1.sas7bdat.rds     : tibble [128,047 × 5] (S3: tbl_df/tbl/data.frame)
+#  $ vd.sas7bdat.rds      : tibble [8,852 × 3] (S3: tbl_df/tbl/data.frame)
+#  - attr(*, "list.Sys.time")=List of 11
+
+# If the datasets are very big : import & write_rds & rm one-by-one   ======
+fun.read_sas_write_rds1by1 = function(filenames, path4read) {
+    library(tidyverse)
+    library(haven)
+    list.Sys.time = list()
+    for (i in filenames) {
+        print(paste0("i", " = ", i))
+        t0 = Sys.time()
+        #    print(paste0("t0", " = ", t0))
+        tmp.df = read_sas(file.path(path4read, i))
+        for (ii in names(tmp.df)) {
+            attr(tmp.df[[ii]], "format.sas") = NULL
+            if (!is.null(attributes(tmp.df[[ii]])$label)) {
+                if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
+            }
+        }
+        output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+        write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
+        # rm(tmp.df)
+        # gc()
+        list.Sys.time[[i]] = Sys.time() - t0
+        print(list.Sys.time[[i]])
+    }
+    return(list.Sys.time)
+}
+list.Sys.time =
+    c("gy20_0207.sas7bdat") %>% 
+    fun.read_sas_write_rds1by1(path4read)
+list.Sys.time %>% str(max.level = 1) #----
+
+
+
+
+
+
+
+
+
+
 # If the datasets are small : import all into a list ======
 library(tidyverse)
 library(haven)
