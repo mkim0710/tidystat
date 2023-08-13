@@ -98,10 +98,10 @@ for (i in filenames) {
     output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
     # write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
     list.sas7bdat[[output_name]] = tmp.df
-    rm(tmp.df)
+    # rm(tmp.df)
     # gc()
-    print(Sys.time() - t0)
     list.Sys.time[[i]] = Sys.time() - t0
+    print(list.Sys.time[[i]])
 }
 list.Sys.time %>% dput #----
 list.sas7bdat %>% str(max.level = 1) #----
@@ -126,10 +126,10 @@ for (i in filenames) {
     }
     output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
     write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
-    rm(tmp.df)
-    gc()
-    print(Sys.time() - t0)
+    # rm(tmp.df)
+    # gc()
     list.Sys.time[[i]] = Sys.time() - t0
+    print(list.Sys.time[[i]])
 }
 list.Sys.time %>% dput #----
 
