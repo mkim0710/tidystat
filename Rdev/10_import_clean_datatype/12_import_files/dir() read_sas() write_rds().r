@@ -98,17 +98,20 @@ fun.read_sas_files2list = function(filenames, path4read) {
                 if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
             }
         }
-        output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+        output_name = i %>% str_replace_all("\\.xz$", "") %>% paste0(".rds")
+        output_name_simple = i %>% str_replace_all("\\.xz$", "") %>% str_replace_all("\\.sas7bdat", "")
         # write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
-        list.sas7bdat[[output_name]] = tmp.df
+        list.sas7bdat[[output_name_simple]] = tmp.df
         rm(tmp.df)
         # gc()
         list.Sys.time[[i]] = Sys.time() - t0
         print(list.Sys.time[[i]])
     }
-    attributes(list.sas7bdat)$list.Sys.time = list.Sys.time
+    # attributes(list.sas7bdat)$list.Sys.time = list.Sys.time
+    list.Sys.time %>% dput
     return(list.sas7bdat)
 }
+
 
 list.khj.sas7bdat = 
     c("ad.sas7bdat", "dem.sas7bdat", "dem_med.sas7bdat", "dementia.sas7bdat", 
