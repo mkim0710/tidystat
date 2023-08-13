@@ -5,8 +5,7 @@
 
 load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
 path4read = "../github_tidystat/data"
-fun.path_files_size(path4read, "\\.(rds)$") #-----
-
+env.custom$fun.path_files_size(path4read, "\\.(rds)$") #-----
 
 
 
