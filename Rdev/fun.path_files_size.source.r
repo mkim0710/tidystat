@@ -3,6 +3,16 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
 
 
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+
+
+
+
+
+
+
+
+
 library(tidyverse)
 getwd() %>% dput #----
 
@@ -37,6 +47,9 @@ path4write %>% dput
 # }
 
 load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+path4read = "../github_tidystat/data"
+env.custom$fun.path_files_size(path4read, "\\.(rds)$") #-----
+
 
 fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
     filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
