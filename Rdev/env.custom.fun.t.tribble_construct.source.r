@@ -622,7 +622,7 @@ df %>% fun.tribble_construct #----
 df %>% fun.df.transpose #----
 df %>% fun.t.tribble_construct #----
 path4read = "../github_tidystat/data"
-fun.path_files_size(path4read, "\\.(rds)$") #-----
+env.custom$fun.path_files_size(path4read, "\\.(rds)$") #-----
 # > df %>% fun.tribble_construct #----
 # tibble::tribble(
 #            ~varname,        ~V1,        ~V2,
