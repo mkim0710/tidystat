@@ -2,26 +2,21 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.path_files_size.source.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
 
-
-load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
-path4read = "../github_tidystat/data"
-env.custom$fun.path_files_size(path4read, "\\.(rds)$") #-----
-
-
-
-
-
-
 library(tidyverse)
 getwd() %>% dput #----
-
-path4read = getwd()
+path4read = "../github_tidystat/data"
 path4write = getwd()
-path4read %>% dput
-path4write %>% dput
 
-# filenames = list.files(path = path4read) %>% {grep("\\.(rdata|rda|rds)$", .,  ignore.case = T, value = T)}
-# filenames %>% dput #----
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# regex4filename = "\\.(rdata|rda|rds)$"
+regex4filename = "\\.rds$"
+# regex4filename = "\\.sas7bdat(\\.xz)?$"
+# regex4filename = "\\.sas7bdat$"
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
+
+
+
 
 
 # fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
@@ -45,10 +40,6 @@ path4write %>% dput
 #     out
 # }
 
-load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
-path4read = "../github_tidystat/data"
-env.custom$fun.path_files_size(path4read, "\\.(rds)$") #-----
-
 
 fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
     filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
@@ -68,8 +59,8 @@ fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|
 
 library(tidyverse)
 fun.path_files_size() #-----
-fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data") #-----
-fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
+fun.path_files_size("../../[][Rproject]/github_tidystat/data") #-----
+fun.path_files_size("../../[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
 # > fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
 # tibble::tribble(
 #                                         ~filename,    ~size,       ~bytes,         ~KB,        ~MB,        ~GB,
