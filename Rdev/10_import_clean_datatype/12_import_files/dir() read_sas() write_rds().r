@@ -29,16 +29,15 @@ path4write %>% dput #----
 load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
 # attach(env.custom)
 
-regex4filename = "sas7bdat(.xz)?$"
+# regex4filename = "\\.sas7bdat(\\.xz)?$"
+regex4filename = "\\.sas7bdat\\.xz$"
+list.files(path4read) %>% grep(regex4filename, ., value = T) %>% dput #----
 env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
 
-regex4filename = "sas7bdat$"
+regex4filename = "\\.sas7bdat$"
+list.files(path4read) %>% grep(regex4filename, ., value = T) %>% dput #----
 env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
 
-
-regex4filename = "sas7bdat$"
-filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
-filenames %>% dput #----
 
 
 
