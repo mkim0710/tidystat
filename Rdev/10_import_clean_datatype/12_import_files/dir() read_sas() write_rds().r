@@ -2,6 +2,54 @@
 # function.list.files.read.write.source.r
 
 
+library(tidyverse)
+getwd() %>% dput #----
+
+if(!exists("env.custom")) env.custom = new.env()
+env.custom$getwd = getwd()
+# env.custom$path0 = "../../[][Rproject]"
+env.custom$path0db = "D:/OneDrive - SNU/[][SASproject]"
+env.custom$data_base = "KNHIS_HEALS0215"
+env.custom$data_suffix = "_01"
+env.custom$path1db = paste0(env.custom$path0db, "/", env.custom$data_base, env.custom$data_suffix)
+
+env.custom$path0 = "D:/OneDrive - SNU/[][Rproject]"
+env.custom$project_base = "Rproject_HEALS0215"
+# env.custom$project_suffix = "GJ3"
+env.custom$path1 = paste0(env.custom$path0, "/", env.custom$project_base, env.custom$data_suffix)
+# env.custom$path2 = paste0(env.custom$path1, "/", env.custom$project_base, env.custom$data_suffix, env.custom$project_suffix)
+
+path4read = env.custom$path1db
+path4write = env.custom$path1
+path4read %>% dput #----
+path4write %>% dput #----
+
+# tribble_paste = datapasta::tribble_paste
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# attach(env.custom)
+
+regex4filename = "sas7bdat(.xz)?$"
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+
+regex4filename = "sas7bdat$"
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+
+
+regex4filename = "sas7bdat$"
+filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
+filenames %>% dput #----
+
+
+
+
+
+
+
+
+
+
+
 
 library(tidyverse)
 getwd() %>% dput #----
