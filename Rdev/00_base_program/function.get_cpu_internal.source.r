@@ -1,12 +1,57 @@
 
 
+get_cpu_internal <- function() {
+    os = tolower(R.version$os)
+
+    vendor_id <- NA
+    model_name <- NA
+    no_of_cores <- NA
+
+    switch(os,
+        linux = {
+            vendor_id <- system("awk '/vendor_id/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)
+            model_name <- system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)
+            no_of_cores <- as.numeric(system("nproc", intern=TRUE))
+        },
+        darwin = {
+            vendor_id <- system("sysctl -n machdep.cpu.vendor", intern=TRUE)
+            model_name <- system("sysctl -n machdep.cpu.brand_string", intern=TRUE)
+            no_of_cores <- as.numeric(system("sysctl -n hw.logicalcpu", intern=TRUE))
+        },
+        solaris = {
+            # vendor_id, model_name, and no_of_cores are already NA
+        },
+        {
+            # Assuming Windows for all other OS types
+            model_name <- system("wmic cpu get name", intern=TRUE)[2]
+            vendor_id <- system("wmic cpu get manufacturer", intern=TRUE)[2]
+            no_of_cores <- as.numeric(system("wmic cpu get NumberOfLogicalProcessors", intern=TRUE)[2])
+        }
+    )
+
+    list(
+        vendor_id=trimws(vendor_id), 
+        model_name = trimws(model_name), 
+        no_of_cores = no_of_cores
+    )
+}
+get_cpu_internal()
+
+
+
+
+
+
+
+
+
+
+
 library(parallel)
 detectCores()
 # > library(parallel)
 # > detectCores()
 # [1] 8
-
-
 
 # https://github.com/cran/benchmarkme/blob/master/R/timing_mean.R
 remove_white = function(x) gsub("(^[[:space:]]+|[[:space:]]+$)", "", x)
