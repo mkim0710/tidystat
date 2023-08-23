@@ -1,6 +1,25 @@
 # function.checkpoint.source.r
 
-
+get_system_summary = function() {
+    summary_list = list(
+        locale = paste(unique(unlist(strsplit(Sys.getlocale(), "/"))), collapse = "/"), # Combine the unique values
+        encoding = l10n_info()$codeset,
+        os_type = .Platform$OS.type,
+        os_sysname = as.character(Sys.info()["sysname"]),
+        os_version = as.character(Sys.info()["version"]),
+        machine_type = as.character(Sys.info()["machine"]),
+        GUI = .Platform$GUI
+    )
+}
+str(get_system_summary())
+# List of 7
+#  $ locale      : chr "en_US.UTF-8/C"
+#  $ encoding    : chr "UTF-8"
+#  $ os_type     : chr "unix"
+#  $ os_sysname  : chr "Darwin"
+#  $ os_version  : chr "Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:05 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T6000"
+#  $ machine_type: chr "arm64"
+#  $ GUI         : chr "RStudio"
 
 
 dput(unlist(strsplit(Sys.getlocale(), ";")))
