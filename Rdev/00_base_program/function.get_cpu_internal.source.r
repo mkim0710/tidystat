@@ -7,22 +7,25 @@ get_cpu_internal <- function() {
     model_name <- NA
     no_of_cores <- NA
 
-    switch(os,
+    os_type <- ifelse(grepl("^linux", os), "linux",
+                 ifelse(grepl("^darwin", os), "darwin",
+                 ifelse(grepl("^solaris", os), "solaris", "windows")))
+
+    switch(os_type,
         linux = {
             vendor_id <- system("awk '/vendor_id/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)
             model_name <- system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)
             no_of_cores <- as.numeric(system("nproc", intern=TRUE))
         },
         darwin = {
-            vendor_id <- system("sysctl -n machdep.cpu.vendor", intern=TRUE)
+            vendor_id <- "Apple"
             model_name <- system("sysctl -n machdep.cpu.brand_string", intern=TRUE)
             no_of_cores <- as.numeric(system("sysctl -n hw.logicalcpu", intern=TRUE))
         },
         solaris = {
             # vendor_id, model_name, and no_of_cores are already NA
         },
-        {
-            # Assuming Windows for all other OS types
+        windows = {
             model_name <- system("wmic cpu get name", intern=TRUE)[2]
             vendor_id <- system("wmic cpu get manufacturer", intern=TRUE)[2]
             no_of_cores <- as.numeric(system("wmic cpu get NumberOfLogicalProcessors", intern=TRUE)[2])
@@ -35,11 +38,11 @@ get_cpu_internal <- function() {
         no_of_cores = no_of_cores
     )
 }
-get_cpu_internal()
-
-
-
-
+str(get_cpu_internal())
+# List of 3
+#  $ vendor_id  : chr "Apple"
+#  $ model_name : chr "Apple M1 Max"
+#  $ no_of_cores: num 10
 
 
 
