@@ -1,16 +1,50 @@
 
+get_cpu_model <- function() {
+    os <- tolower(R.version$os)
+    if (grepl("^linux", os)) return(trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
+    if (grepl("^darwin", os)) return(trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
+    if (grepl("^windows", os)) return(trimws(system("wmic cpu get name", intern=TRUE)[2]))
+    NA
+}
+get_cpu_model()
+# [1] "Apple M1 Max"
+
+
+
+
+
+
+get_cpu_model <- function() {
+    os = tolower(R.version$os)    
+    os_type <- ifelse(grepl("^linux", os), "linux",
+               ifelse(grepl("^darwin", os), "darwin",
+               ifelse(grepl("^windows", os), "windows", "other")))
+    model_name <- switch(os_type,
+                         linux = system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE),
+                         darwin = system("sysctl -n machdep.cpu.brand_string", intern=TRUE),
+                         windows = system("wmic cpu get name", intern=TRUE)[2],
+                         other = NA
+    )
+    trimws(model_name)
+}
+get_cpu_model()
+# [1] "Apple M1 Max"
+
+
+
+
+
+
+
 
 get_cpu_internal <- function() {
     os = tolower(R.version$os)
-
     vendor_id <- NA
     model_name <- NA
     no_of_cores <- NA
-
     os_type <- ifelse(grepl("^linux", os), "linux",
                  ifelse(grepl("^darwin", os), "darwin",
                  ifelse(grepl("^solaris", os), "solaris", "windows")))
-
     switch(os_type,
         linux = {
             vendor_id <- system("awk '/vendor_id/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)
@@ -31,7 +65,6 @@ get_cpu_internal <- function() {
             no_of_cores <- as.numeric(system("wmic cpu get NumberOfLogicalProcessors", intern=TRUE)[2])
         }
     )
-
     list(
         vendor_id=trimws(vendor_id), 
         model_name = trimws(model_name), 
