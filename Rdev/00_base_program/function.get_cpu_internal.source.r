@@ -1,4 +1,5 @@
 
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
 get_cpu_model <- function() {
     os <- tolower(R.version$os)
     if (grepl("^linux", os)) return(trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
