@@ -1,6 +1,7 @@
 # function.checkpoint.source.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.source.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.source.r
 
 get_system_info = function() {
     summary_list = list(
