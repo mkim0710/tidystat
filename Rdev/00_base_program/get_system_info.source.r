@@ -1,5 +1,69 @@
+if(!exists("env.custom")) env.custom = new.env()
+env.custom$DocumentTitle0 = "get_system_info()"
+env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+env.custom$DocumentTitle1
+
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
+
+
+get_system_info = function() {
+    summary_list = list(
+        GUI = .Platform$GUI,
+        os_type = .Platform$OS.type,
+        os_sysname = as.character(Sys.info()["sysname"]),
+        os_version = as.character(Sys.info()["version"]),
+        machine_type = as.character(Sys.info()["machine"]),
+        machine_nodename = as.character(Sys.info()["nodename"]),
+        encoding = l10n_info()$codeset,
+        encoding_UTF8 = l10n_info()$`UTF-8`,
+        encoding_Latin1 = l10n_info()$`Latin-1`,
+        locale_COLLATE = Sys.getlocale(category = "LC_COLLATE"), 
+        locale_CTYPE = Sys.getlocale(category = "LC_CTYPE"), 
+        locale_NUMERIC = Sys.getlocale(category = "LC_NUMERIC"), 
+        locale_TIME = Sys.getlocale(category = "LC_TIME")
+    )
+}
+str(get_system_info())
+# > str(get_system_info())
+# List of 13
+#  $ GUI             : chr "RStudio"
+#  $ os_type         : chr "windows"
+#  $ os_sysname      : chr "Windows"
+#  $ os_version      : chr "build 19045"
+#  $ machine_type    : chr "x86-64"
+#  $ machine_nodename: chr "LIVAI7-8700"
+#  $ encoding        : NULL
+#  $ encoding_UTF8   : logi TRUE
+#  $ encoding_Latin1 : logi FALSE
+#  $ locale_COLLATE  : chr "Korean_Korea.utf8"
+#  $ locale_CTYPE    : chr "Korean_Korea.utf8"
+#  $ locale_NUMERIC  : chr "C"
+#  $ locale_TIME     : chr "Korean_Korea.utf8"
+
+# > str(get_system_info())
+# List of 13
+#  $ GUI             : chr "RStudio"
+#  $ os_type         : chr "unix"
+#  $ os_sysname      : chr "Darwin"
+#  $ os_version      : chr "Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:05 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T6000"
+#  $ machine_type    : chr "arm64"
+#  $ machine_nodename: chr "Min-Hyungs-MacBook-Pro.local"
+#  $ encoding        : chr "UTF-8"
+#  $ encoding_UTF8   : logi TRUE
+#  $ encoding_Latin1 : logi FALSE
+#  $ locale_COLLATE  : chr "en_US.UTF-8"
+#  $ locale_CTYPE    : chr "en_US.UTF-8"
+#  $ locale_NUMERIC  : chr "C"
+#  $ locale_TIME     : chr "en_US.UTF-8"
+
+dput(sessionInfo())
+
+
+
+
+
+# get_cpu_model().r
 get_cpu_model <- function() {
     os <- tolower(R.version$os)
     if (grepl("^linux", os)) return(trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
@@ -38,6 +102,7 @@ get_cpu_model()
 
 
 
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
 get_cpu_internal <- function() {
     os = tolower(R.version$os)
     vendor_id <- NA
