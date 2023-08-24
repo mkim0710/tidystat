@@ -1,10 +1,11 @@
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
 if(!exists("env.custom")) env.custom = new.env()
 env.custom$DocumentTitle0 = "get_system_info()"
 env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 env.custom$DocumentTitle1
 
 
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
 
 
 get_system_info = function() {
