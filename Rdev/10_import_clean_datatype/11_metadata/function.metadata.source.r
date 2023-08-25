@@ -20,12 +20,12 @@ list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".
 # out = list()
 # for (i in list.files.rda) {
 #     load(paste0("data/", i, ".rda"))
-#     out[[i]] = list( nrow = nrow(eval(parse(text = i))), ncol = ncol(eval(parse(text = i))), object.size = object.size(eval(parse(text = i))) )
+#     out[[i]] = list( nrow = nrow(get(i)), ncol = ncol(get(i)), object.size = object.size(get(i)) )
 #     rm(i)
 # }
 # # > for (i in list.files.rda) {
 # # +     load(paste0("data/", i, ".rda"))
-# # +     out[[i]] = list( nrow = nrow(eval(parse(text = i))), ncol = ncol(eval(parse(text = i))), object.size = object.size(eval(parse(text = i))) )
+# # +     out[[i]] = list( nrow = nrow(get(i)), ncol = ncol(get(i)), object.size = object.size(get(i)) )
 # # +     rm(i)
 # # + }
 # # Error in parse(text = i) : <text>:1:1: unexpected '['
@@ -41,7 +41,7 @@ list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".
 # out = list()
 # for (i in list.files.rda) {
 #     load(paste0("data/", i, ".rda"))
-#     out[[i]] = list( nrow = nrow(eval(parse(text = i))), ncol = ncol(eval(parse(text = i))), object.size = object.size(eval(parse(text = i))) )
+#     out[[i]] = list( nrow = nrow(get(i)), ncol = ncol(get(i)), object.size = object.size(get(i)) )
 #     rm(list = i)
 # }
 # 
@@ -125,7 +125,7 @@ list.files.rda.data.frame = list.files.rda %>% map_chr(function(i) {
     load(paste0("data/", i, ".rda"))
     out = NA
     if(exists(i)) {
-        if(is.data.frame(eval(parse(text = i)))) {
+        if(is.data.frame(get(i))) {
             out = i
         }
     }
@@ -155,18 +155,18 @@ list.files.rda.data.frame %>% na.omit %>% as.vector %>% dput
 #     # out.list[[i]]$object.size = NA
 #     if(exists(i)) {
 #         out.list[[i]] = list()
-#         out.list[[i]]$object.size = object.size(eval(parse(text = i)))
-#         out.list[[i]]$class = class(eval(parse(text = i)))
-#         out.list[[i]]$typeof = typeof(eval(parse(text = i)))
-#         out.list[[i]]$mode = mode(eval(parse(text = i)))
-#         out.list[[i]]$storage.mode = storage.mode(eval(parse(text = i)))
-#         # out.list[[i]]$attributes = attributes(eval(parse(text = i)))
-#         if(is.vector(eval(parse(text = i)))) { 
-#             out.list[[i]]$length = length(eval(parse(text = i)))
+#         out.list[[i]]$object.size = object.size(get(i))
+#         out.list[[i]]$class = class(get(i))
+#         out.list[[i]]$typeof = typeof(get(i))
+#         out.list[[i]]$mode = mode(get(i))
+#         out.list[[i]]$storage.mode = storage.mode(get(i))
+#         # out.list[[i]]$attributes = attributes(get(i))
+#         if(is.vector(get(i))) { 
+#             out.list[[i]]$length = length(get(i))
 #         }
-#         if(is.data.frame(eval(parse(text = i)))) {
-#             out.list[[i]]$nrow = nrow(eval(parse(text = i)))
-#             out.list[[i]]$ncol = ncol(eval(parse(text = i)))
+#         if(is.data.frame(get(i))) {
+#             out.list[[i]]$nrow = nrow(get(i))
+#             out.list[[i]]$ncol = ncol(get(i))
 #         }
 #     }
 #     rm(list = i, envir = .GlobalEnv)
@@ -225,19 +225,19 @@ for (i in list.files.rda) {
     # out.list[[i]]$object.size = NA
     if(exists(i)) {
         out.list[[i]] = list()
-        out.list[[i]]$object.size = object.size(eval(parse(text = i)))
-        out.list[[i]]$class = class(eval(parse(text = i)))
+        out.list[[i]]$object.size = object.size(get(i))
+        out.list[[i]]$class = class(get(i))
         if (length(out.list[[i]]$class) > 1) out.list[[i]]$class = out.list[[i]]$class %>% paste(collapse = "|")
-        out.list[[i]]$typeof = typeof(eval(parse(text = i)))
-        out.list[[i]]$mode = mode(eval(parse(text = i)))
-        out.list[[i]]$storage.mode = storage.mode(eval(parse(text = i)))
-        # out.list[[i]]$attributes = attributes(eval(parse(text = i)))
-        if(is.vector(eval(parse(text = i)))) { 
-            out.list[[i]]$length = length(eval(parse(text = i)))
+        out.list[[i]]$typeof = typeof(get(i))
+        out.list[[i]]$mode = mode(get(i))
+        out.list[[i]]$storage.mode = storage.mode(get(i))
+        # out.list[[i]]$attributes = attributes(get(i))
+        if(is.vector(get(i))) { 
+            out.list[[i]]$length = length(get(i))
         }
-        if(is.data.frame(eval(parse(text = i)))) {
-            out.list[[i]]$nrow = nrow(eval(parse(text = i)))
-            out.list[[i]]$ncol = ncol(eval(parse(text = i)))
+        if(is.data.frame(get(i))) {
+            out.list[[i]]$nrow = nrow(get(i))
+            out.list[[i]]$ncol = ncol(get(i))
         }
     }
     rm(list = i, envir = .GlobalEnv)
@@ -252,19 +252,19 @@ out.list %>% bind_rows(.id = ".id")
 # +     # out.list[[i]]$object.size = NA
 # +     if(exists(i)) {
 # +         out.list[[i]] = list()
-# +         out.list[[i]]$object.size = object.size(eval(parse(text = i)))
-# +         out.list[[i]]$class = class(eval(parse(text = i)))
+# +         out.list[[i]]$object.size = object.size(get(i))
+# +         out.list[[i]]$class = class(get(i))
 # +         if (length(out.list[[i]]$class) > 1) out.list[[i]]$class = out.list[[i]]$class %>% paste(collapse = "|")
-# +         out.list[[i]]$typeof = typeof(eval(parse(text = i)))
-# +         out.list[[i]]$mode = mode(eval(parse(text = i)))
-# +         out.list[[i]]$storage.mode = storage.mode(eval(parse(text = i)))
-# +         # out.list[[i]]$attributes = attributes(eval(parse(text = i)))
-# +         if(is.vector(eval(parse(text = i)))) { 
-# +             out.list[[i]]$length = length(eval(parse(text = i)))
+# +         out.list[[i]]$typeof = typeof(get(i))
+# +         out.list[[i]]$mode = mode(get(i))
+# +         out.list[[i]]$storage.mode = storage.mode(get(i))
+# +         # out.list[[i]]$attributes = attributes(get(i))
+# +         if(is.vector(get(i))) { 
+# +             out.list[[i]]$length = length(get(i))
 # +         }
-# +         if(is.data.frame(eval(parse(text = i)))) {
-# +             out.list[[i]]$nrow = nrow(eval(parse(text = i)))
-# +             out.list[[i]]$ncol = ncol(eval(parse(text = i)))
+# +         if(is.data.frame(get(i))) {
+# +             out.list[[i]]$nrow = nrow(get(i))
+# +             out.list[[i]]$ncol = ncol(get(i))
 # +         }
 # +     }
 # +     rm(list = i, envir = .GlobalEnv)
