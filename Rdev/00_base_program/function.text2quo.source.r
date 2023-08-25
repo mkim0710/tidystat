@@ -102,6 +102,20 @@ eval(parse(text = txt)) %>% dput
 # > eval(parse(text = txt)) %>% dput
 # 111
 
+
+txt
+get(txt)
+get(txt) %>% str
+get(txt) %>% dput
+# > txt
+# [1] "Variable1"
+# > get(txt)
+# [1] 111
+# > get(txt) %>% str
+#  num 111
+# > get(txt) %>% dput
+# 111
+
 expr(txt)
 expr(txt) %>% str
 expr(txt) %>% dput
