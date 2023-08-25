@@ -1,13 +1,15 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.source.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.source.r
 if(!exists("env.custom")) env.custom = new.env()
 env.custom$DocumentTitle0 = "get_system_info()"
 env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
-env.custom$DocumentTitle1
+cat(env.custom$DocumentTitle1); cat("\r\n");
+cat(env.custom$DocumentTitle1, ".R", sep = ""); cat("\r\n");
+cat(env.custom$DocumentTitle1, ".RMD", sep = ""); cat("\r\n");
 
 
-
-
+#% get_system_info() ====
 get_system_info = function() {
     summary_list = list(
         GUI = .Platform$GUI,
@@ -16,55 +18,91 @@ get_system_info = function() {
         os_version = as.character(Sys.info()["version"]),
         machine_type = as.character(Sys.info()["machine"]),
         machine_nodename = as.character(Sys.info()["nodename"]),
-        encoding = l10n_info()$codeset,
-        encoding_UTF8 = l10n_info()$`UTF-8`,
-        encoding_Latin1 = l10n_info()$`Latin-1`,
-        locale_COLLATE = Sys.getlocale(category = "LC_COLLATE"), 
-        locale_CTYPE = Sys.getlocale(category = "LC_CTYPE"), 
-        locale_NUMERIC = Sys.getlocale(category = "LC_NUMERIC"), 
-        locale_TIME = Sys.getlocale(category = "LC_TIME")
+        machine_cpu = if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Darwin") 
+            trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))
+        else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") 
+            trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE))
+        else if (.Platform$OS.type == "windows") 
+            trimws(system("wmic cpu get name", intern=TRUE)[2])
+        else NA,
+        Sys.getlocale = list(
+            LC_COLLATE = Sys.getlocale(category = "LC_COLLATE"), 
+            LC_CTYPE = Sys.getlocale(category = "LC_CTYPE"), 
+            LC_locale_NUMERIC = Sys.getlocale(category = "LC_NUMERIC"), 
+            LC_locale_TIME = Sys.getlocale(category = "LC_TIME")
+        ), 
+        l10n_info = list(
+            localization_UTF8 = l10n_info()$`UTF-8`,
+            localization_Latin1 = l10n_info()$`Latin-1`,  
+            localization_codeset = l10n_info()$codeset,
+            localization_codepage = l10n_info()$codepage,
+            localization_system.codepage = l10n_info()$system.codepage
+        )
     )
 }
 str(get_system_info())
-# > str(get_system_info())
-# List of 13
-#  $ GUI             : chr "RStudio"
-#  $ os_type         : chr "windows"
-#  $ os_sysname      : chr "Windows"
-#  $ os_version      : chr "build 19045"
-#  $ machine_type    : chr "x86-64"
-#  $ machine_nodename: chr "LIVAI7-8700"
-#  $ encoding        : NULL
-#  $ encoding_UTF8   : logi TRUE
-#  $ encoding_Latin1 : logi FALSE
-#  $ locale_COLLATE  : chr "Korean_Korea.utf8"
-#  $ locale_CTYPE    : chr "Korean_Korea.utf8"
-#  $ locale_NUMERIC  : chr "C"
-#  $ locale_TIME     : chr "Korean_Korea.utf8"
-
-# > str(get_system_info())
-# List of 13
+# ##@ MBP
+# List of 9
 #  $ GUI             : chr "RStudio"
 #  $ os_type         : chr "unix"
 #  $ os_sysname      : chr "Darwin"
 #  $ os_version      : chr "Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:05 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T6000"
 #  $ machine_type    : chr "arm64"
 #  $ machine_nodename: chr "Min-Hyungs-MacBook-Pro.local"
-#  $ encoding        : chr "UTF-8"
-#  $ encoding_UTF8   : logi TRUE
-#  $ encoding_Latin1 : logi FALSE
-#  $ locale_COLLATE  : chr "en_US.UTF-8"
-#  $ locale_CTYPE    : chr "en_US.UTF-8"
-#  $ locale_NUMERIC  : chr "C"
-#  $ locale_TIME     : chr "en_US.UTF-8"
+#  $ machine_cpu     : chr "Apple M1 Max"
+#  $ Sys.getlocale   :List of 4
+#   ..$ LC_COLLATE       : chr "en_US.UTF-8"
+#   ..$ LC_CTYPE         : chr "en_US.UTF-8"
+#   ..$ LC_locale_NUMERIC: chr "C"
+#   ..$ LC_locale_TIME   : chr "en_US.UTF-8"
+#  $ l10n_info       :List of 5
+#   ..$ localization_UTF8           : logi TRUE
+#   ..$ localization_Latin1         : logi FALSE
+#   ..$ localization_codeset        : chr "UTF-8"
+#   ..$ localization_codepage       : NULL
+#   ..$ localization_system.codepage: NULL
+#   
+# ##@ LIVAi7
+# List of 9
+#  $ GUI             : chr "RStudio"
+#  $ os_type         : chr "windows"
+#  $ os_sysname      : chr "Windows"
+#  $ os_version      : chr "build 19045"
+#  $ machine_type    : chr "x86-64"
+#  $ machine_nodename: chr "LIVAI7-8700"
+#  $ machine_cpu     : chr "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz"
+#  $ Sys.getlocale   :List of 4
+#   ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
+#   ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
+#   ..$ LC_locale_NUMERIC: chr "C"
+#   ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
+#  $ l10n_info       :List of 5
+#   ..$ localization_UTF8           : logi TRUE
+#   ..$ localization_Latin1         : logi FALSE
+#   ..$ localization_codeset        : NULL
+#   ..$ localization_codepage       : int 65001
+#   ..$ localization_system.codepage: int 65001
 
-dput(sessionInfo())
 
 
 
 
 
-# get_cpu_model().r
+
+
+#% get_cpu_model() else if()  ====
+get_cpu_model <- function() {
+    if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Darwin") (trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
+    else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") (trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
+    else if (.Platform$OS.type == "windows") trimws(system("wmic cpu get name", intern=TRUE)[2]) else NA
+}
+get_cpu_model()
+# [1] "Apple M1 Max"
+# [1] "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz"
+
+
+
+#% get_cpu_model() switch() ====
 ?.Platform
 get_cpu_model <- function() {
     os_type <- .Platform$OS.type
@@ -84,6 +122,9 @@ get_cpu_model()
 # [1] "Apple M1 Max"
 
 
+
+#% get_cpu_model() concise ====
+?.Platform
 get_cpu_model <- function() {
     if (.Platform$OS.type == "unix") {
         if (Sys.info()["sysname"] == "Darwin") return(trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
@@ -93,19 +134,145 @@ get_cpu_model <- function() {
     NA
 }
 get_cpu_model()
+# [1] "Apple M1 Max"
 
 
-?R.version
-# get_cpu_model.void <- function() {
-#     os <- tolower(R.version$os)
-#     if (grepl("^linux", os)) return(trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
-#     if (grepl("^darwin", os)) return(trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
-#     if (grepl("^windows", os)) return(trimws(system("wmic cpu get name", intern=TRUE)[2]))
-#     NA
-# }
-# get_cpu_model.void()
-# # [1] "Apple M1 Max"
 
+(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE))
+(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))
+(system("wmic cpu get name", intern=TRUE))
+
+
+
+
+
+
+
+
+# ?.Platform ----- 
+?.Platform
+str(.Platform)
+# ##@MBP
+# List of 8
+#  $ OS.type   : chr "unix"
+#  $ file.sep  : chr "/"
+#  $ dynlib.ext: chr ".so"
+#  $ GUI       : chr "RStudio"
+#  $ endian    : chr "little"
+#  $ pkgType   : chr "mac.binary.big-sur-arm64"
+#  $ path.sep  : chr ":"
+#  $ r_arch    : chr ""
+
+
+
+
+
+
+
+# ?Sys.info() ----- 
+?Sys.info
+dput(Sys.info())
+##@ MPB
+c(sysname = "Darwin", release = "22.6.0", version = "Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:05 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T6000", 
+nodename = "Min-Hyungs-MacBook-Pro.local", machine = "arm64", 
+login = "root", user = "mkim0710", effective_user = "mkim0710"
+)
+
+
+
+
+
+# ?sessionInfo() ----- 
+# ?R.Version() -----
+# ?Sys.getlocale() -----
+# ?Sys.timezone() -----
+# ?osVersion -----
+?sessionInfo
+str(sessionInfo(), max.level = 1)
+# dput(sessionInfo())
+identical(R.Version(), sessionInfo()$R.version)
+str(sessionInfo()$ R.version, max.level = 1)
+identical(Sys.getlocale(), sessionInfo()$locale)
+dput(Sys.getlocale())
+identical(Sys.timezone(), sessionInfo()$tzone)
+dput(Sys.timezone())
+identical(osVersion, sessionInfo()$running)
+dput(osVersion)
+# str(sessionInfo()$ loadedOnly, max.level = 1, give.attr = F)
+
+
+# ##@MBP
+# [1] TRUE
+# List of 14
+#  $ platform      : chr "aarch64-apple-darwin20"
+#  $ arch          : chr "aarch64"
+#  $ os            : chr "darwin20"
+#  $ system        : chr "aarch64, darwin20"
+#  $ status        : chr ""
+#  $ major         : chr "4"
+#  $ minor         : chr "3.1"
+#  $ year          : chr "2023"
+#  $ month         : chr "06"
+#  $ day           : chr "16"
+#  $ svn rev       : chr "84548"
+#  $ language      : chr "R"
+#  $ version.string: chr "R version 4.3.1 (2023-06-16)"
+#  $ nickname      : chr "Beagle Scouts"
+# [1] TRUE
+# "en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8"
+# [1] TRUE
+# "Asia/Seoul"
+# [1] TRUE
+# "macOS Ventura 13.5"
+
+
+
+
+
+
+
+
+#?l10n_info {base}
+‘A Latin-1 locale’ includes supersets (for printable characters) such as Windows codepage 1252 but not Latin-9 (ISO 8859-15).
+On Windows (where the resulting list contains codepage and system.codepage components additionally), common codepages are 1252 (Western European), 1250 (Central European), 1251 (Cyrillic), 1253 (Greek), 1254 (Turkish), 1255 (Hebrew), 1256 (Arabic), 1257 (Baltic), 1258 (Vietnamese), 874 (Thai), 932 (Japanese), 936 (Simplified Chinese), 949 (Korean) and 950 (Traditional Chinese). Codepage 28605 is Latin-9 and 65001 is UTF-8 (where supported). R does not allow the C locale, and uses 1252 as the default codepage.
+?l10n_info
+str(list(
+    localization_UTF8 = l10n_info()$`UTF-8`,
+    localization_Latin1 = l10n_info()$`Latin-1`,  
+    localization_codeset = l10n_info()$codeset,
+    localization_codepage = l10n_info()$codepage,
+    localization_system.codepage = l10n_info()$system.codepage
+))
+
+# ##@ MBP 
+# List of 5
+#  $ localization_UTF8           : logi TRUE
+#  $ localization_Latin1         : logi FALSE
+#  $ localization_codeset        : chr "UTF-8"
+#  $ localization_codepage       : NULL
+#  $ localization_system.codepage: NULL
+
+
+
+
+                                       
+
+
+#? getOption("repos") ------
+getOption("repos")
+# > getOption("repos")
+#                        CRAN 
+# "https://cran.rstudio.com/" 
+# attr(,"RStudio")
+# [1] TRUE
+
+
+
+
+
+    
+    
+#@ end -----
 
 
 
@@ -289,11 +456,6 @@ Sys.info() %>% as.list %>% str
 
 
 
-
-
-
-
-
-    
-    
 #@ end -----
+
+                                       
