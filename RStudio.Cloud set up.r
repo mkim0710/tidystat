@@ -7,7 +7,10 @@
 # Global Options > General > Save workspace to .RData on exit: Never
 # Global Options > Code > Insert spaces for tab: 4
 # Global Options > Code > Auto-indent code after paste: uncheck
-# Global Options > Code > Display > Show indent guides: check
+# Global Options > Code > Display > Show indent guides: check (Rainbow lines?)
+# Global Options > Code > Display > Syntax: Highlight R function calls
+# Global Options > Code > Display > Syntax: Use rainbow parentheses
+# Global Options > Appearance > Editor theme: Ambiance
 # Global Options > Git/SVN > SSH RSA key
 
 
