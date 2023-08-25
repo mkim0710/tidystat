@@ -67,6 +67,24 @@ dput(sessionInfo())
 # get_cpu_model().r
 ?.Platform
 get_cpu_model <- function() {
+    os_type <- .Platform$OS.type
+    sys_name <- Sys.info()["sysname"]
+    switch(os_type,
+           unix = {
+               switch(as.character(sys_name),
+                      Darwin = return(trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))),
+                      Linux = return(trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
+               )
+           },
+           windows = return(trimws(system("wmic cpu get name", intern=TRUE)[2])),
+           NA
+    )
+}
+get_cpu_model()
+# [1] "Apple M1 Max"
+
+
+get_cpu_model <- function() {
     if (.Platform$OS.type == "unix") {
         if (Sys.info()["sysname"] == "Darwin") return(trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
         return(trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
