@@ -786,10 +786,10 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 getwd()
 path4write = getwd()
 objectname = ""
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
-# openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = F, withFilter = F)
+# write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
+write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+# openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = F, withFilter = F)
 openxlsx::openXL(paste0(objectname, ".xlsx"))
 
 
