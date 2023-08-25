@@ -40,6 +40,7 @@ get_system_info = function() {
         )
     )
 }
+env.custom$get_system_info = get_system_info()
 str(get_system_info())
 # ##@ MBP
 # List of 9
