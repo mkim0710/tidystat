@@ -1,8 +1,6 @@
 # RStudio.Cloud set up.r 
-# https://rstudio.cloud/project/1815569  # RStudio.Cloud
-# https://rstudio.cloud/project/1815559  # tidystat
-# https://rstudio.cloud/project/1815856  # Shiny
-
+# https://posit.cloud/spaces/100015/content/6373416  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
+# https://posit.cloud/spaces/404673/content/6373521  # Shared Workspace@v - PositCloud@v
 
 # Global Options > General > Save workspace to .RData on exit: Never
 # Global Options > Code > Insert spaces for tab: 4
@@ -12,6 +10,7 @@
 # Global Options > Code > Display > Syntax: Use rainbow parentheses
 # Global Options > Appearance > Editor theme: Ambiance
 # Global Options > Git/SVN > SSH RSA key
+
 
 
 for (packagename in c("tidyverse", "datapasta")) {
