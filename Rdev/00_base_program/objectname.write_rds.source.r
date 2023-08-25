@@ -27,12 +27,12 @@ print(Sys.time() - t0)
 getwd()
 path4write = getwd()
 objectname = "AnalyticDataset200621"
-# saveRDS( eval(parse(text = objectname)), xzfile(file.path(path4write, paste0(objectname, ".rds", "")), compression = 9) )
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")))
+# saveRDS( get(objectname), xzfile(file.path(path4write, paste0(objectname, ".rds", "")), compression = 9) )
+# write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")))
 # R.utils::gzip(file.path(path4write, paste0(objectname, ".rds")), overwrite=T, remove=F, compression = 9)
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "gz", compression = 9 )
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
-# openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+# write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "gz", compression = 9 )
+write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+# openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
 # openxlsx::openXL(paste0(objectname, ".xlsx"))
 
 
@@ -41,9 +41,9 @@ write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectna
 getwd()
 path4write = getwd()
 objectname = "tblGADM_kor_level1_NL_NAME_1.SIDO_CD"
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+# write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
+write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
 openxlsx::openXL(paste0(objectname, ".xlsx"))
 
 
@@ -87,13 +87,13 @@ objectname = "data_list.AgeSexAdjusted"
 t0 = Sys.time()
 load(paste0(objectname, ".rda"))
 Sys.time() - t0
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")) )
 Sys.time() - t0
 
 objectname = ""
 t0 = Sys.time()
 load(paste0(objectname, ".rda"))
 Sys.time() - t0
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")) )
 Sys.time() - t0
 
