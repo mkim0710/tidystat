@@ -482,8 +482,8 @@ out.list = filenames %>% map(function(i) {
     )
     # save(list = i, file = file.path(path4write, i, ".rda"), compress = F)
     # write_rds(!!rlang::sym(i), path = paste0(path4write, "/", i, ".rds"), compress = "none")
-    write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
-    # write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    write_rds(get(i2), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    # write_rds(get(i2), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
     rm(i2)
     gc()
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
@@ -541,8 +541,8 @@ out.list = filenames %>% map(function(i) {
     )
     # save(list = i, file = file.path(path4write, i, ".rda"), compress = F)
     # write_rds(!!rlang::sym(i), path = paste0(path4write, "/", i, ".rds"), compress = "none")
-    write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
-    # write_rds(eval(parse(text = i2)), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    write_rds(get(i2), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
+    # write_rds(get(i2), path = file.path(path4write, paste0(i2, ".rds")), compress = "none")
     rm(i2)
     gc()
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
@@ -596,7 +596,7 @@ assign(
     , readRDS(paste0(path4read, filename))
 )
 Sys.time() - t0
-gsub(".rds$", "", filename) %>% {object.size(eval(parse(text = .)))} %>% {c(`bytes` = as.numeric(.), `KB` = as.numeric(.)/2^10, `MB` = as.numeric(.)/2^20, `GB` = as.numeric(.)/2^30)} %>% round(3) %>% format(scientific = FALSE) #----
+gsub(".rds$", "", filename) %>% {object.size(get(.))} %>% {c(`bytes` = as.numeric(.), `KB` = as.numeric(.)/2^10, `MB` = as.numeric(.)/2^20, `GB` = as.numeric(.)/2^30)} %>% round(3) %>% format(scientific = FALSE) #----
 # > filename = paste0("mscan_pregcohort_r4.sas7bdat", "", ".rds")
 # > filename %>% {file.info(paste0(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) #----
 #                                                            filename     size       KB       MB         GB
@@ -608,7 +608,7 @@ gsub(".rds$", "", filename) %>% {object.size(eval(parse(text = .)))} %>% {c(`byt
 # + )
 # > Sys.time() - t0
 # Time difference of 4.942991 secs
-# > gsub(".rds$", "", filename) %>% {object.size(eval(parse(text = .)))} %>% {c(`bytes` = as.numeric(.), `KB` = as.numeric(.)/2^10, `MB` = as.numeric(.)/2^20, `GB` = as.numeric(.)/2^30)} %>% round(3) %>% format(scientific = FALSE) #----
+# > gsub(".rds$", "", filename) %>% {object.size(get(.))} %>% {c(`bytes` = as.numeric(.), `KB` = as.numeric(.)/2^10, `MB` = as.numeric(.)/2^20, `GB` = as.numeric(.)/2^30)} %>% round(3) %>% format(scientific = FALSE) #----
 #           bytes              KB              MB              GB 
 # "964065520.000" "   941470.234" "      919.405" "        0.898" 
 
@@ -616,10 +616,10 @@ gsub(".rds$", "", filename) %>% {object.size(eval(parse(text = .)))} %>% {c(`byt
 
 
 data.frame(objectname = gsub(".rds$", "", filename)) %>% mutate(
-    tmp = objectname %>% map_dbl(function(txt) object.size(eval(parse(text = txt), envir = .GlobalEnv)) )
+    tmp = objectname %>% map_dbl(function(txt) object.size(get(i, envir = .GlobalEnv) )
 )
 # > data.frame(objectname = gsub(".rds$", "", filename)) %>% mutate(
-# +     tmp = objectname %>% map_dbl(function(txt) object.size(eval(parse(text = txt), envir = .GlobalEnv)) )
+# +     tmp = objectname %>% map_dbl(function(txt) object.size(get(i, envir = .GlobalEnv) )
 # + )
 #                     objectname tmp
 # 1 mscan_pregcohort_r4.sas7bdat  56
