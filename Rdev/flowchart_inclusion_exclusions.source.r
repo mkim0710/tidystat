@@ -1,5 +1,5 @@
 
-
+# [Flowchart][Graphviz] STROBE-CONSORT-Diagrams-in-R.RMD
 flowchart_inclusion_exclusions <- function(
         n_total, 
         n_eligible, 
