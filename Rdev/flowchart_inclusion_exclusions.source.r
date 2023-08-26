@@ -1,10 +1,10 @@
 
 
-
 flowchart_inclusion_exclusions <- function(
         n_total, 
         n_eligible, 
-        exclusions, 
+        vector_named_n_exclusions, 
+        n_analysis = NULL, 
         output_png_path = paste0("flowchart_inclusion_exclusions", "_", Sys.Date(), ".png")
 ) {
     library(DiagrammeR)
@@ -21,8 +21,8 @@ flowchart_inclusion_exclusions <- function(
     i <- 1
     total_exclusions <- 0
     
-    for (label in names(exclusions)) {
-        n_exclusion <- exclusions[label]
+    for (label in names(vector_named_n_exclusions)) {
+        n_exclusion <- vector_named_n_exclusions[label]
         total_exclusions <- total_exclusions + n_exclusion
         n_exclusion_formatted <- format(n_exclusion, big.mark = ",")
         
@@ -40,7 +40,12 @@ flowchart_inclusion_exclusions <- function(
         i <- i + 1
     }
     
-    n_analysis_formatted <- format(n_eligible - total_exclusions, big.mark = ",")
+    
+    if(is.null(n_analysis)) {
+        n_analysis_formatted <- format(n_eligible - total_exclusions, big.mark = ",")
+    } else {
+        n_analysis_formatted <- format(n_analysis, big.mark = ",")
+    }
     
     graph_code <- glue("
   digraph my_flowchart {{ 
@@ -68,8 +73,9 @@ flowchart_inclusion_exclusions <- function(
 }
 
 
-exclusions <- c("Excluded due to criteria A" = 100, "Excluded due to criteria B" = 200, "Excluded due to missing values" = 50)
-flowchart_inclusion_exclusions(n_total = 2000, n_eligible = 1500, exclusions = exclusions)
+vector_named_n_exclusions <- c("Excluded due to criteria A" = 100, "Excluded due to criteria B" = 200, "Excluded due to missing values" = 50)
+flowchart_inclusion_exclusions(n_total = 2000, n_eligible = 1500, vector_named_n_exclusions = vector_named_n_exclusions)
+flowchart_inclusion_exclusions(n_total = 2000, n_eligible = 1500, vector_named_n_exclusions = vector_named_n_exclusions, n_analysis = 1200)
 
 
 
