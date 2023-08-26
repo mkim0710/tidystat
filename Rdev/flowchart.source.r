@@ -12,23 +12,28 @@
 
 
 
+#@ ----------
+flowchart_inclusion_exclusion2 <- function(
+  n_total, 
+  n_eligible, 
+  n_exclusion1, 
+  n_exclusion2, 
+  label_exclusion1 = "Excluded due to exclusion criteria",
+  label_exclusion2 = "Excluded due to missing values",
+  output_png_path = paste0("flowchart_inclusion_exclusion2", "_", Sys.Date(), ".png")
+) {
+  library(DiagrammeR)
+  library(glue)
+  library(DiagrammeRsvg)
+  library(rsvg)
 
-library(DiagrammeR)
-library(glue)
-library(DiagrammeRsvg)
-library(rsvg)
-
-flowchart_inclusion_exclusion_missing <- function(n_total, n_eligible, n_exclusion1, n_missing, 
-                                output_png_path = paste0("flowchart_inclusion_exclusion_missing", "_", Sys.Date(), ".png")) {{
-  
-  # Use thousands separator for the numbers
+  # Formatting numbers with thousands separator
   n_total_formatted <- format(n_total, big.mark = ",")
   n_eligible_formatted <- format(n_eligible, big.mark = ",")
   n_exclusion1_formatted <- format(n_exclusion1, big.mark = ",")
-  n_missing_formatted <- format(n_missing, big.mark = ",")
-  n_analysis <- n_eligible - n_exclusion1 - n_missing
-  n_analysis_formatted <- format(n_analysis, big.mark = ",")
-  
+  n_exclusion2_formatted <- format(n_exclusion2, big.mark = ",")
+  n_analysis_formatted <- format(n_eligible - n_exclusion1 - n_exclusion2, big.mark = ",")
+
   g <- grViz(
     glue("
     digraph my_flowchart {{ 
@@ -41,14 +46,14 @@ flowchart_inclusion_exclusion_missing <- function(n_total, n_eligible, n_exclusi
       node0 -> node1;
 
       blank1[label = '', width = 0.01, height = 0.01]
-      excluded1[label = <Excluded due to<br/>exclusion criteria (n={n_exclusion1_formatted})>]
+      excluded1[label = <{label_exclusion1} (n={n_exclusion1_formatted})>]
 
       node1 -> blank1[dir = none];
       blank1 -> excluded1[minlen = 2];
       {{ rank = same; blank1 excluded1 }}
 
       blank2[label = '', width = 0.01, height = 0.01]
-      excluded2[label = <Excluded due to missing values (n={n_missing_formatted})>]
+      excluded2[label = <{label_exclusion2} (n={n_exclusion2_formatted})>]
 
       blank1 -> blank2[dir = none];
       blank2 -> excluded2[minlen = 2];
@@ -62,12 +67,13 @@ flowchart_inclusion_exclusion_missing <- function(n_total, n_eligible, n_exclusi
     }}")
   )
 
-  # Convert SVG directly to PNG
   rsvg_png(charToRaw(export_svg(g)), output_png_path)
-
   return(g)
-}}
-flowchart_inclusion_exclusion_missing(1500000, 1000, 100, 50)
+}
+flowchart_inclusion_exclusion2(10000, 9500, 300, 200, "Excluded for other reasons", "Excluded for being duplicate records")
+
+
+
 
 
 
