@@ -8,7 +8,8 @@
 # Global Options > Code > Display > Show indent guides: check (Rainbow lines?)
 # Global Options > Code > Display > Syntax: Highlight R function calls
 # Global Options > Code > Display > Syntax: Use rainbow parentheses
-# Global Options > Appearance > Editor theme: Ambiance
+# Global Options > Appearance > Editor theme: Ambiance -void
+# Global Options > Appearance > Editor theme: Twilight (better for RMD, red for titles)
 # Global Options > Git/SVN > SSH RSA key
 
 
