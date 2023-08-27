@@ -1,6 +1,6 @@
 # [Flowchart][Graphviz] library(DiagrammeR) flowchart_inclusion_exclusions().RMD
 
-flowchart_inclusion_exclusions_v2 <- function(
+flowchart_inclusion_exclusions_v3 <- function(
   list_n_inclusions = list(
     "Total population" = 2000,
     "Data available" = 1500,
@@ -113,8 +113,8 @@ flowchart_inclusion_exclusions_v2 <- function(
 }
 
 
-flowchart_inclusion_exclusions_v2()
-flowchart_inclusion_exclusions_v2(list_n_inclusions = list(
+flowchart_inclusion_exclusions_v3()
+flowchart_inclusion_exclusions_v3(list_n_inclusions = list(
     "Total population" = 2000,
     "Data available" = 1500,
     "Included for analysis" = 1200,
@@ -123,7 +123,7 @@ flowchart_inclusion_exclusions_v2(list_n_inclusions = list(
         "Excluded due to criteria A" = 100,
         "Excluded due to criteria B" = 200,
         "Excluded due to missing values" = 50))
-flowchart_inclusion_exclusions_v2(list_n_inclusions = list(
+flowchart_inclusion_exclusions_v3(list_n_inclusions = list(
     "A" = 2000,
     "b" = 1500,
     "c" = NA,
@@ -151,7 +151,7 @@ flowchart_inclusion_exclusions_v2(list_n_inclusions = list(
 
 
 
-flowchart_inclusion_exclusions_v1 <- function(
+flowchart_inclusion_exclusions_v2 <- function(
         n_total, 
         n_eligible, 
         list_n_exclusions, 
@@ -225,8 +225,8 @@ flowchart_inclusion_exclusions_v1 <- function(
 
 
 list_n_exclusions <- list("Excluded due to criteria A" = 100, "Excluded due to criteria B" = 200, "Excluded due to missing values" = 50)
-flowchart_inclusion_exclusions_v1(n_total = 2000, n_eligible = 1500, list_n_exclusions = list_n_exclusions, n_analysis = 1200)
-flowchart_inclusion_exclusions_v1(
+flowchart_inclusion_exclusions_v2(n_total = 2000, n_eligible = 1500, list_n_exclusions = list_n_exclusions, n_analysis = 1200)
+flowchart_inclusion_exclusions_v2(
     n_total = 2000, 
     n_eligible = 1500, 
     list_n_exclusions = list("Excluded due to criteria A" = 100, 
