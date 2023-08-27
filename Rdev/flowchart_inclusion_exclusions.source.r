@@ -74,8 +74,14 @@ flowchart_inclusion_exclusions <- function(
 
 
 list_n_exclusions <- list("Excluded due to criteria A" = 100, "Excluded due to criteria B" = 200, "Excluded due to missing values" = 50)
-flowchart_inclusion_exclusions(n_total = 2000, n_eligible = 1500, list_n_exclusions = list_n_exclusions)
 flowchart_inclusion_exclusions(n_total = 2000, n_eligible = 1500, list_n_exclusions = list_n_exclusions, n_analysis = 1200)
+flowchart_inclusion_exclusions(
+    n_total = 2000, 
+    n_eligible = 1500, 
+    list_n_exclusions = list("Excluded due to criteria A" = 100, 
+                             "Excluded due to criteria B" = 200, 
+                             "Excluded due to missing values" = 50),
+    n_analysis = NULL)
 
 
 
