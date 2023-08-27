@@ -81,8 +81,8 @@ flowchart_inclusion_exclusions(
     list_n_exclusions = list("Excluded due to criteria A" = 100, 
                              "Excluded due to criteria B" = 200, 
                              "Excluded due to missing values" = 50),
-    n_analysis = NULL)
-
+    n_analysis = NULL,
+    output_png_path = paste0("flowchart_inclusion_exclusions", "_", Sys.Date(), ".png"))
 
 
 #@ end -----
