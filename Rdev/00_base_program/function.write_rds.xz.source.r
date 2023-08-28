@@ -1,7 +1,7 @@
 
 objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
 t0 = Sys.time()
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")) )
 Sys.time() - t0
 system(paste0( 'xz -9 --threads=10 "', objectname, ".rds", '"' ))  # no --keep just in case using git
 Sys.time() - t0
@@ -15,7 +15,7 @@ system("git push")
 
 #@ -------
 # t0 = Sys.time()
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), "xz", compression = 9L )
+# write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")), "xz", compression = 9L )
 # Sys.time() - t0
 
 
@@ -25,7 +25,7 @@ path4write = "../data/data.ID_DATE_DX.distinct/"
 
 objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
 t0 = Sys.time()
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")) )
 Sys.time() - t0
 system(paste0( 'xz --keep -9 --threads=10 "', file.path(path4write, paste0(objectname, ".rds")), '"' ))
 Sys.time() - t0

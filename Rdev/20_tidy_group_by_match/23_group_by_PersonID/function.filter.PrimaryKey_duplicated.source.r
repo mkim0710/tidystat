@@ -2,6 +2,10 @@
 # function.group_by_n_gt1.source.r
 # function.duplicated_original.source.r
 
+######### NEED MORE WORK~!
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/20_tidy_group_by_match/23_group_by_PersonID/function.filter.PrimaryKey_duplicated.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/fun.data.primarykey.source.r
+
 
 # d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin2000 from .r ----
 tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
