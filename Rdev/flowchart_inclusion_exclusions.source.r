@@ -1,6 +1,7 @@
 # [Flowchart][Graphviz] library(DiagrammeR) flowchart_inclusion_exclusions().RMD
 
-flowchart_inclusion_exclusions_v3 <- function(
+library(tidyverse)
+flowchart_inclusion_exclusions_v3.3 <- function(
   list_n_inclusions = list(
     "Total population" = 2000,
     "Data available" = 1500,
@@ -20,34 +21,22 @@ flowchart_inclusion_exclusions_v3 <- function(
     library(rsvg)
     
     # 1. Check if list_n_inclusions contains exactly 4 elements.
-  if (length(list_n_inclusions) != 4) {
-    stop("The list_n_inclusions must contain exactly 4 elements.")
-  }
-  
+  if (length(list_n_inclusions) != 4) stop("The list_n_inclusions must contain exactly 4 elements.")
+
   # 2. Ensure all elements in list_n_inclusions and list_n_exclusions are either numeric or NA.
-  check_numeric_or_na <- function(vec) {
-    all(sapply(vec, function(x) is.numeric(x) || is.na(x)))
-  }
-  
-  if (!check_numeric_or_na(list_n_inclusions) || !check_numeric_or_na(list_n_exclusions)) {
-    stop("All elements in list_n_inclusions and list_n_exclusions must be numeric or NA.")
-  }
-  
+  # check_numeric_or_na <- function(vec) {all(map_lgl(vec, ~ is.numeric(.x) || is.na(.x)))}
+  check_numeric_or_na <- function(vec) {all(map_lgl(vec, function(.x) is.numeric(.x) || is.na(.x)))}
+  if (!check_numeric_or_na(list_n_inclusions) || !check_numeric_or_na(list_n_exclusions)) stop("All elements in list_n_inclusions and list_n_exclusions must be numeric or NA.")
+
   # 3. Ensure all elements have names, and the names do not contain problematic characters.
-  check_names <- function(vec) {
-    all(!is.na(names(vec))) && !any(grepl("[[:punct:]]", names(vec)))
-  }
-  
-  if (!check_names(list_n_inclusions) || !check_names(list_n_exclusions)) {
-    stop("All elements must have names, and names should not contain punctuation.")
-  }
-  
+  check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl("[^a-zA-Z0-9_.-]", names(vec)))
+  check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl("[[:punct:]]", names(vec)))
+  if (!check_names(list_n_inclusions) || !check_names(list_n_exclusions)) stop("All elements in list_n_inclusions and list_n_exclusions must have names. Names should only contain letters, numbers, underscores, periods, and hyphens.")
+
   # 4. Optionally, ensure the order of elements in list_n_inclusions makes logical sense.
   # We're assuming that the first item is the total number, so all subsequent numbers 
   # should be less than or equal to this.
-  if (!all(sapply(list_n_inclusions[-1], function(x) is.na(x) || x <= list_n_inclusions[[1]]))) {
-    stop("Elements in list_n_inclusions must decrease in number or be NA.")
-  }
+  if (!all(sapply(list_n_inclusions[-1], function(x) is.na(x) || x <= list_n_inclusions[[1]])))     stop("Elements in list_n_inclusions must decrease in number or be NA.")
   
     # Retrieve the values from list_n_inclusions
     n_total <- list_n_inclusions[[1]]
@@ -113,26 +102,27 @@ flowchart_inclusion_exclusions_v3 <- function(
 }
 
 
-flowchart_inclusion_exclusions_v3()
-flowchart_inclusion_exclusions_v3(list_n_inclusions = list(
-    "Total population" = 2000,
-    "Data available" = 1500,
-    "Included for analysis" = 1200,
-    "Data linked with external dataset" = NA),
+flowchart_inclusion_exclusions_v3.3()
+flowchart_inclusion_exclusions_v3.3(
+    list_n_inclusions = list(
+        "Total population" = 2000,
+        "Data available" = 1500,
+        "Included for analysis" = 1200,
+        "Data linked with external dataset" = NA),
     list_n_exclusions = list(
         "Excluded due to criteria A" = 100,
         "Excluded due to criteria B" = 200,
         "Excluded due to missing values" = 50))
-flowchart_inclusion_exclusions_v3(list_n_inclusions = list(
-    "A" = 2000,
-    "b" = 1500,
-    "c" = NA,
-    "d" = NA),
+flowchart_inclusion_exclusions_v3.3(
+    list_n_inclusions = list(
+        "A" = 2000,
+        "b" = 1500,
+        "c" = NA,
+        "d" = NA),
     list_n_exclusions = list(
         "Excluded due to criteria A" = 100,
         "Excluded due to criteria B" = 200,
         "Excluded due to missing values" = 50))
-
 
 
 
