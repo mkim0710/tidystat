@@ -1,32 +1,59 @@
 # function.checkpoint.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.source.r
 
+get_system_info = function() {
+    summary_list = list(
+        GUI = .Platform$GUI,
+        os_type = .Platform$OS.type,
+        os_sysname = as.character(Sys.info()["sysname"]),
+        os_version = as.character(Sys.info()["version"]),
+        machine_type = as.character(Sys.info()["machine"]),
+        machine_nodename = as.character(Sys.info()["nodename"]),
+        encoding = l10n_info()$codeset,
+        encoding_UTF8 = l10n_info()$`UTF-8`,
+        encoding_Latin1 = l10n_info()$`Latin-1`,
+        locale_COLLATE = Sys.getlocale(category = "LC_COLLATE"), 
+        locale_CTYPE = Sys.getlocale(category = "LC_CTYPE"), 
+        locale_NUMERIC = Sys.getlocale(category = "LC_NUMERIC"), 
+        locale_TIME = Sys.getlocale(category = "LC_TIME")
+    )
+}
+str(get_system_info())
+# > str(get_system_info())
+# List of 13
+#  $ GUI             : chr "RStudio"
+#  $ os_type         : chr "windows"
+#  $ os_sysname      : chr "Windows"
+#  $ os_version      : chr "build 19045"
+#  $ machine_type    : chr "x86-64"
+#  $ machine_nodename: chr "LIVAI7-8700"
+#  $ encoding        : NULL
+#  $ encoding_UTF8   : logi TRUE
+#  $ encoding_Latin1 : logi FALSE
+#  $ locale_COLLATE  : chr "Korean_Korea.utf8"
+#  $ locale_CTYPE    : chr "Korean_Korea.utf8"
+#  $ locale_NUMERIC  : chr "C"
+#  $ locale_TIME     : chr "Korean_Korea.utf8"
 
+# > str(get_system_info())
+# List of 13
+#  $ GUI             : chr "RStudio"
+#  $ os_type         : chr "unix"
+#  $ os_sysname      : chr "Darwin"
+#  $ os_version      : chr "Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:05 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T6000"
+#  $ machine_type    : chr "arm64"
+#  $ machine_nodename: chr "Min-Hyungs-MacBook-Pro.local"
+#  $ encoding        : chr "UTF-8"
+#  $ encoding_UTF8   : logi TRUE
+#  $ encoding_Latin1 : logi FALSE
+#  $ locale_COLLATE  : chr "en_US.UTF-8"
+#  $ locale_CTYPE    : chr "en_US.UTF-8"
+#  $ locale_NUMERIC  : chr "C"
+#  $ locale_TIME     : chr "en_US.UTF-8"
 
-
-dput(unlist(strsplit(Sys.getlocale(), ";")))
-dput(l10n_info())
-dput(.Platform)
-dput(Sys.info())
-# > dput(unlist(strsplit(Sys.getlocale(), ";")))
-# c("LC_CTYPE=en_US.UTF-8", "LC_NUMERIC=C", "LC_TIME=en_US.UTF-8", 
-# "LC_COLLATE=en_US.UTF-8", "LC_MONETARY=en_US.UTF-8", "LC_MESSAGES=en_US.UTF-8", 
-# "LC_PAPER=en_US.UTF-8", "LC_NAME=C", "LC_ADDRESS=C", "LC_TELEPHONE=C", 
-# "LC_MEASUREMENT=en_US.UTF-8", "LC_IDENTIFICATION=C")
-# > dput(l10n_info())
-# structure(list(MBCS = TRUE, `UTF-8` = TRUE, `Latin-1` = FALSE), .Names = c("MBCS", 
-# "UTF-8", "Latin-1"))
-# > dput(.Platform)
-# structure(list(OS.type = "unix", file.sep = "/", dynlib.ext = ".so", 
-#     GUI = "RStudio", endian = "little", pkgType = "source", path.sep = ":", 
-#     r_arch = ""), .Names = c("OS.type", "file.sep", "dynlib.ext", 
-# "GUI", "endian", "pkgType", "path.sep", "r_arch"))
-# > dput(Sys.info())
-# structure(c("Linux", "3.10.0-957.12.2.el7.x86_64", "#1 SMP Tue May 14 21:24:32 UTC 2019", 
-# "don.sph.harvard.edu", "x86_64", "unknown", "mkim", "mkim"), .Names = c("sysname", 
-# "release", "version", "nodename", "machine", "login", "user", 
-# "effective_user"))
-
-
+dput(sessionInfo())
 dput(R.Version())
 getOption("repos")
 # > dput(R.Version())

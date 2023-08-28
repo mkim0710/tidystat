@@ -4,6 +4,25 @@ library(tidyverse)
 getwd() %>% dput
 # > getwd() %>% dput
 # "../../[[[[SASproject]]]]/SAS_NHIS_HEALS"
+path4read = getwd()
+path4write = getwd()
+path4read %>% dput
+path4write %>% dput
+
+# tribble_paste = datapasta::tribble_paste
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# attach(env.custom)
+
+regex4filename = "\\.sas7bdat\\.rds(\\.xz)?$"
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
+
+
+
+
+
+
 
 nchar(path4read)
 substr(path4read, nchar(path4read), nchar(path4read))
@@ -36,8 +55,10 @@ filenames = c(
     ,  list.files(path4read) %>% grep(".sas7bdat.rds$|.sas7bdat.rda$",. , value = T)
 )
 filenames %>% dput #----
-filenames %>% {file.info(paste0(path4read, .))} %>% dput #----
-filenames %>% {file.info(paste0(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) #----
+
+tribble_paste = datapasta::tribble_paste
+filenames %>% {file.info(file.path(path4read,.))} %>% tribble_paste #----
+filenames %>% {file.info(file.path(path4read,.))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
 # > filenames %>% dput #----
 # c("nhis_heals_gjperson_id.sas7bdat", "nhis_heals_gy20_t1person_id.sas7bdat", 
 # "nhis_heals_gy30_t3person_id_hira.sas7bdat", "nhis_heals_gy40_t1person_id.sas7bdat", 

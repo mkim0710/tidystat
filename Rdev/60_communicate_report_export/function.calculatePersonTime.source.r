@@ -61,9 +61,23 @@ analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigne
 
 
 
-function.calculatePersonTime = function(dataset, varname4time, varname4event) {
-    
+function.calculatePersonTime <- function(dataset, varname4time, varname4event) {
+  # Extract the time variable
+  time <- dataset[[varname4time]]
+  
+  # If there's an event variable, we'll consider the time until the event
+  if (!is.null(dataset[[varname4event]])) {
+    event <- dataset[[varname4event]]
+    # Assuming event variable has 1 for event occurrence and 0 otherwise
+    time[event == 1] <- time[event == 1] * 0.5  # Adjusting the time for those with events (assuming we're taking half the time for the event year)
+  }
+  
+  # Summing up the total person-time
+  total_person_time <- sum(time)
+  
+  return(total_person_time)
 }
+
 
 
 
