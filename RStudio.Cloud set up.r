@@ -12,7 +12,10 @@
 # Global Options > Appearance > Editor theme: Twilight (better for RMD, red for titles)
 # Global Options > Git/SVN > SSH RSA key
 
-
+# https://support.posit.co/hc/en-us/articles/4422648539031-Compute-Hours-and-the-Background-Execution-Limit-in-Posit-Cloud#:~:text=Compute%20hours%20are%20calculated%20based,based%20on%20the%20current%20plan.
+# Resources> RAM 0.5, CPU 0.5, Background 1 hr
+# Cf) Cloud Free: 25 hrs/month
+# Cf) Cloud Student ($5/month): 75 hrs/month
 
 for (packagename in c("tidyverse", "datapasta")) {
   if(packagename %in% installed.packages()[,"Package"]) {   
