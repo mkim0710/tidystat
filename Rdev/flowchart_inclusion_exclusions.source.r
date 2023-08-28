@@ -1,7 +1,7 @@
 # [Flowchart][Graphviz] library(DiagrammeR) flowchart_inclusion_exclusions().RMD
 
 library(tidyverse)
-flowchart_inclusion_exclusions_v3.3 <- function(
+flowchart_inclusion_exclusions_v3.4 <- function(
   list_n_inclusions = list(
     "Total population" = 2000,
     "Data available" = 1500,
@@ -29,9 +29,13 @@ flowchart_inclusion_exclusions_v3.3 <- function(
   if (!check_numeric_or_na(list_n_inclusions) || !check_numeric_or_na(list_n_exclusions)) stop("All elements in list_n_inclusions and list_n_exclusions must be numeric or NA.")
 
   # 3. Ensure all elements have names, and the names do not contain problematic characters.
-  check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl("[^a-zA-Z0-9_.-]", names(vec)))
-  check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl("[[:punct:]]", names(vec)))
-  if (!check_names(list_n_inclusions) || !check_names(list_n_exclusions)) stop("All elements in list_n_inclusions and list_n_exclusions must have names. Names should only contain letters, numbers, underscores, periods, and hyphens.")
+  # check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl("[[:punct:]]", names(vec)))
+  # check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl("[^a-zA-Z0-9_ .-]", names(vec)))
+  # check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl("[^a-zA-Z0-9_ !@#$%&*()\\[\\]\\{\\},.<>=+:\\-\\r\\n]", names(vec)))
+  tmp_regex = "[^a-zA-Z0-9_ !@#$%&*()\\[\\]\\{\\},.+:\\-\\r\\n]"
+  check_names <- function(vec) all(!is.na(names(vec))) && !any(grepl(tmp_regex, names(vec)))
+
+  if (!check_names(list_n_inclusions) || !check_names(list_n_exclusions)) stop(paste0("All elements in list_n_inclusions and list_n_exclusions must have names. Names should only contain: ", tmp_regex))
 
   # 4. Optionally, ensure the order of elements in list_n_inclusions makes logical sense.
   # We're assuming that the first item is the total number, so all subsequent numbers 
@@ -102,8 +106,8 @@ flowchart_inclusion_exclusions_v3.3 <- function(
 }
 
 
-flowchart_inclusion_exclusions_v3.3()
-flowchart_inclusion_exclusions_v3.3(
+flowchart_inclusion_exclusions_v3.4()
+flowchart_inclusion_exclusions_v3.4(
     list_n_inclusions = list(
         "Total population" = 2000,
         "Data available" = 1500,
@@ -113,7 +117,7 @@ flowchart_inclusion_exclusions_v3.3(
         "Excluded due to criteria A" = 100,
         "Excluded due to criteria B" = 200,
         "Excluded due to missing values" = 50))
-flowchart_inclusion_exclusions_v3.3(
+flowchart_inclusion_exclusions_v3.4(
     list_n_inclusions = list(
         "A" = 2000,
         "b" = 1500,
@@ -123,7 +127,6 @@ flowchart_inclusion_exclusions_v3.3(
         "Excluded due to criteria A" = 100,
         "Excluded due to criteria B" = 200,
         "Excluded due to missing values" = 50))
-
 
 
 
