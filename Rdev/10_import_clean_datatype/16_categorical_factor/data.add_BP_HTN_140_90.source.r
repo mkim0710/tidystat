@@ -1,4 +1,4 @@
-https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_BP_HTN_140_90.source.r
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_BP_HTN_140_90.source.r
 
 data.add_BP_HTN_140_90 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {
     dataset %>%
