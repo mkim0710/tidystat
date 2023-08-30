@@ -39,6 +39,7 @@ nhis_heals_jk.sas7bdat.duplicated %>% print
 # 2 2014   67877095  1        59 20141001 I21       ""        41    6            8               0           0           "" 
 
 
+
 fun.numeric.addFormated = function(input.numeric, digits = 3, nsmall = 0, big.mark=",") {
     if(is.numeric(input.numeric)) {
         attributes(input.numeric)$Formated = input.numeric %>% format(digits = digits, nsmall = nsmall, big.mark = big.mark) 
@@ -57,6 +58,61 @@ fun.data.primarykey = function(inputdata, primarykey = c("PERSON_ID")) {
     out$data.primarykey.duplicated = inputdata %>% group_by_at(primarykey) %>% filter(n()>1)
     out
 }
+
+df_example <- tibble(
+  PERSON_ID = c(1, 2, 3, 4, 5, 1, 2),
+  YEAR = c(2021, 2021, 2021, 2021, 2021, 2022, 2022)
+)
+fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) %>% str #----
+fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
+# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) %>% str #----
+# List of 7
+#  $ data.dim                       : int [1:2] 7 2
+#   ..- attr(*, "Formated")= chr [1:2] "7" "2"
+#  $ data.nrow                      : int 7
+#   ..- attr(*, "Formated")= chr "7"
+#  $ data.primarykey                : chr "PERSON_ID"
+#  $ data.primarykey.n_distinct     : int 5
+#   ..- attr(*, "Formated")= chr "5"
+#  $ data.primarykey.n_distinct.diff: num -2
+#   ..- attr(*, "Formated")= chr "-2"
+#  $ data.primarykey.n_distinct.prop: num 0.714
+#   ..- attr(*, "Formated")= chr "0.714"
+#  $ data.primarykey.duplicated     : gropd_df [4 × 2] (S3: grouped_df/tbl_df/tbl/data.frame)
+#   ..$ PERSON_ID: num [1:4] 1 2 1 2
+#   ..$ YEAR     : num [1:4] 2021 2021 2022 2022
+#   ..- attr(*, "groups")= tibble [2 × 2] (S3: tbl_df/tbl/data.frame)
+#   .. ..$ PERSON_ID: num [1:2] 1 2
+#   .. ..$ .rows    : list<int> [1:2] 
+#   .. .. ..$ : int [1:2] 1 3
+#   .. .. ..$ : int [1:2] 2 4
+#   .. .. ..@ ptype: int(0) 
+#   .. ..- attr(*, ".drop")= logi TRUE
+# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
+# List of 7
+#  $ data.dim                       : int [1:2] 7 2
+#   ..- attr(*, "Formated")= chr [1:2] "7" "2"
+#  $ data.nrow                      : int 7
+#   ..- attr(*, "Formated")= chr "7"
+#  $ data.primarykey                : chr [1:2] "PERSON_ID" "YEAR"
+#  $ data.primarykey.n_distinct     : int 7
+#   ..- attr(*, "Formated")= chr "7"
+#  $ data.primarykey.n_distinct.diff: num 0
+#   ..- attr(*, "Formated")= chr "0"
+#  $ data.primarykey.n_distinct.prop: num 1
+#   ..- attr(*, "Formated")= chr "1"
+#  $ data.primarykey.duplicated     : gropd_df [0 × 2] (S3: grouped_df/tbl_df/tbl/data.frame)
+#   ..$ PERSON_ID: num(0) 
+#   ..$ YEAR     : num(0) 
+#   ..- attr(*, "groups")= tibble [0 × 3] (S3: tbl_df/tbl/data.frame)
+#   .. ..$ PERSON_ID: num(0) 
+#   .. ..$ YEAR     : num(0) 
+#   .. ..$ .rows    : list<int> [1:0] 
+#  list()
+#   .. .. ..@ ptype: int(0) 
+#   .. ..- attr(*, ".drop")= logi TRUE
+
+
 nhis_heals_jk.sas7bdat %>% fun.data.primarykey %>% str(max.level = 1) %>% system.time #----
 nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) %>% str(max.level = 1) %>% system.time #----
 # > nhis_heals_jk.sas7bdat %>% fun.data.primarykey %>% str(max.level = 1) %>% system.time #----
