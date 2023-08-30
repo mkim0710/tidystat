@@ -39,6 +39,9 @@ sample_data <- tibble(
   DTH_CODE1 = sample(c(paste0("I", 10:99), paste0("R", 95:99)), 100, replace = TRUE)
 ) %>% mutate(DTH_CODE1_1char = substr(DTH_CODE1, 1, 1))
 
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/add.Date_ICD_chapter.source.r
+#%% add.Date_ICD_chapter() =====
 add.Date_ICD_chapter <- function(dataset, varname4Date = "DTH.Date", varname4ICD_chapter = "DTH_CODE1_1char", ICD_chapter = "I") {
     
   col_name <- paste0(varname4Date, ".", ICD_chapter)
@@ -73,7 +76,8 @@ sample_data %>%
 
 
 
-
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/add.Date_ICD_chapter.source.r
+#%% add.Date_ICD() =====
 add.Date_ICD <- function(dataset, varname4Date = "DTH.Date", varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 20:25) {
   
   # Generate the ICD codes
@@ -128,7 +132,8 @@ sample_data <- tibble(
 )
 
 
-
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/add.Date_ICD_chapter.source.r
+#%% add.ICD_indicator() =====
 add.ICD_indicator <- function(dataset, varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 20:25) {
   # Generate the ICD codes
   ICD_codes <- paste0(ICD_chapter, ICD_number23_vector)
