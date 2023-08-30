@@ -1,3 +1,30 @@
+#%% data.add_BMI.cut4() ====
+library(dplyr)
+
+data.add_BMI.cut4 <- function(dataset, varname_Height, varname_Weight) {
+  
+  dataset <- dataset %>%
+    mutate(
+      BMI = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2,
+      BMI_lt185 = BMI < 18.5,
+      BMI_ge185lt230 = BMI >= 18.5 & BMI < 23,
+      BMI_ge230lt250 = BMI >= 23 & BMI < 25,
+      BMI_ge185lt250 = BMI >= 18.5 & BMI < 25,
+      BMI_ge250lt300 = BMI >= 25 & BMI < 30,
+      BMI_ge300 = BMI >= 30,
+      BMI_ge350 = BMI >= 35,
+      BMI_ge400 = BMI >= 40,
+      BMI.cut4 = cut(BMI, breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+    )
+  
+  return(dataset)
+}
+
+# Example of using the function:
+# updated_data <- data.add_BMI.cut4(df, "HeightColumnName", "WeightColumnName")
+
+
+
 
 #@ function.df_add_BMI.cut4 ======
 function.df_add_BMI.cut4 = function(df) {
