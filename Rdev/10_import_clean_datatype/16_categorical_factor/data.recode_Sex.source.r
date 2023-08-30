@@ -1,4 +1,4 @@
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.recode_SEX.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.recode_Sex.source.r
 #@ function.df_recode_SEX ======
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) %>% summary #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) %>% summary #-----
