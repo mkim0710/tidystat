@@ -1,7 +1,7 @@
 
 
 library(dplyr)
-
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_AgeGroup_Decade.source.r
 data.add_AgeGroup_Decade <- function(dataset, varname4Age = "AGE") {
   dataset %>%
     mutate(
