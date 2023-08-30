@@ -8,7 +8,7 @@ data.add_IncomeQuartile_MedicalAid <- function(DF) {
     return(DF) # Return the original DF if the column doesn't exist
   } else {
     DF$IncomeDecile <- as.numeric(DF$CTRB_PT_TYPE_CD) # Convert to numeric
-    DF$MedicalAid <- (DF$IncomeDecile == 0) * 1
+    DF$MedicalAid <- (DF$IncomeDecile == 0)
     
     # Add IncomeQuartile based on the distribution of Income
     DF$IncomeQuartile <- as.factor(cut(DF$IncomeDecile, 
@@ -23,10 +23,10 @@ data.add_IncomeQuartile_MedicalAid <- function(DF) {
 gj_jk.Date.DTH.recode = gj_jk.Date.DTH.recode %>% data.add_IncomeQuartile_MedicalAid
 gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) %>% summary
 # > gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) %>% summary
-#  CTRB_PT_TYPE_CD      MedicalAid        IncomeDecile    IncomeQuartile
-#  Length:31931       Min.   :0.000000   Min.   : 0.000   Q1:9302       
-#  Class :character   1st Qu.:0.000000   1st Qu.: 4.000   Q2:7873       
-#  Mode  :character   Median :0.000000   Median : 7.000   Q3:8346       
-#                     Mean   :0.002161   Mean   : 6.448   Q4:6410       
-#                     3rd Qu.:0.000000   3rd Qu.: 9.000                 
-#                     Max.   :1.000000   Max.   :10.000 
+#  CTRB_PT_TYPE_CD    MedicalAid       IncomeDecile    IncomeQuartile
+#  Length:31931       Mode :logical   Min.   : 0.000   Q1:9302       
+#  Class :character   FALSE:31862     1st Qu.: 4.000   Q2:7873       
+#  Mode  :character   TRUE :69        Median : 7.000   Q3:8346       
+#                                     Mean   : 6.448   Q4:6410       
+#                                     3rd Qu.: 9.000                 
+#                                     Max.   :10.000  
