@@ -1,3 +1,4 @@
+# https://github.com/mkim0710/tidystat/tree/master/Rdev/10_import_clean_datatype/16_categorical_factor
 # https://github.com/mkim0710/Rproject_MH/blob/master/Rpr.bind_rows/NHID_JK0213.bind_rows.Date.DTH_I2025I3052I6069I7079%20from%20.r
 
 
