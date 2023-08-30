@@ -101,3 +101,61 @@ nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) %>% str
 ?group_by_at
 #@ end -----
 
+
+
+
+
+
+
+
+
+library(tidyverse)
+
+check_primary_key <- function(df, varname_ID, varname_Time) {
+  
+  # Filter out rows with missing values in varname_ID or varname_Time
+  df_filtered <- df %>% filter(!is.na(df[[varname_ID]]) & !is.na(df[[varname_Time]]))
+  
+  # Calculating statistics
+  total_rows <- nrow(df_filtered)
+  distinct_ID <- n_distinct(df_filtered[[varname_ID]])
+  distinct_Time <- n_distinct(df_filtered[[varname_Time]])
+  distinct_ID_Time <- n_distinct(df_filtered %>% select(varname_ID, varname_Time))
+  
+  # Check for primary key
+  primary_key <- "None"
+  if (distinct_ID == total_rows) {
+    primary_key <- varname_ID
+  } else if (distinct_Time == total_rows) {
+    primary_key <- varname_Time
+  } else if (distinct_ID_Time == total_rows) {
+    primary_key <- paste(varname_ID, varname_Time, sep="_")
+  }
+  
+  list(
+    nrow = total_rows,
+    n_distinct_ID = distinct_ID,
+    n_distinct_Time = distinct_Time,
+    n_distinct_ID_Time = distinct_ID_Time,
+    varname_primary_key = primary_key
+  )
+}
+
+df_example <- data.frame(
+  PERSON_ID = c(1, 2, 3, 4, 5, 1, 2),
+  STND_Y = c(2021, 2021, 2021, 2021, 2021, 2022, 2022)
+)
+
+str(check_primary_key(df_example, "PERSON_ID", "STND_Y"))
+# > str(check_primary_key(df_example, "PERSON_ID", "STND_Y"))
+# List of 5
+#  $ nrow               : int 7
+#  $ n_distinct_ID      : int 5
+#  $ n_distinct_Time    : int 2
+#  $ n_distinct_ID_Time : int 7
+#  $ varname_primary_key: chr "PERSON_ID_STND_Y"
+
+
+#@ end -----
+
+
