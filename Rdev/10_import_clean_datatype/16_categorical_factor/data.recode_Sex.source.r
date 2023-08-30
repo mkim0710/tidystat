@@ -30,14 +30,19 @@ str((CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` 
 #  logi [1:283798] TRUE FALSE FALSE TRUE TRUE TRUE ...
 
 
-data.recode_SEX = function(dataset) {
-    df = df %>% mutate(Female = SEX == "2")
-    df = df %>% mutate(SEX = SEX %>% recode(`1` = "Male", `2` = "Female"))
-    df 
+library(dplyr)
+
+data.recode_Sex <- function(dataset, varname4Sex = "SEX", value4Female = "2") {
+    dataset %>%
+      mutate(
+        Female = if_else(get(varname4Sex) == value4Female, 1, 0),
+        Sex = as.factor(if_else(get(varname4Sex) == value4Female, "Female", "Male"))
+      )
 }
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_recode_SEX %>% select(SEX, Female) %>% summary #-----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_recode_SEX %>% select(SEX, Female) %>% summary #-----
-#      SEX           Female       
+
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_recode_SEX %>% select(Sex, Female) %>% summary #-----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% function.df_recode_SEX %>% select(Sex, Female) %>% summary #-----
+#      Sex           Female       
 #  Male  :148042   Mode :logical  
 #  Female:135756   FALSE:148042   
 #                  TRUE :135756   
