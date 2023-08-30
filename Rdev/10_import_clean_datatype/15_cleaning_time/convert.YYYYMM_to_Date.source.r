@@ -43,3 +43,19 @@ c("2023-01-31", "2023-02-28", "2023-03-31", "2023-04-30", "2023-05-31", "2023-06
   "2023-07-31", "2023-08-31", "2023-09-30", "2023-10-31", "2023-11-30", "2023-12-31")
 
 
+library(dplyr)
+library(lubridate)
+
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/15_cleaning_time/convert.YYYYMM_to_Date.source.r
+#%% convert.ymd_to_Date() =====
+convert.ymd_to_Date <- function(dataset, 
+                                varname4ymd = "RECU_FR_DT", 
+                                varname4Date = "RECU_FR_Date") {
+  
+  dataset <- dataset %>%
+    mutate(!!varname4Date := ymd(!!sym(varname4ymd))) %>%
+    select(-!!sym(varname4ymd))
+  
+  return(dataset)
+}
