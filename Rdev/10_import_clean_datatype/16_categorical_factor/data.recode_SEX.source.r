@@ -1,3 +1,4 @@
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.recode_SEX.source.r
 #@ function.df_recode_SEX ======
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) %>% summary #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) %>% summary #-----
@@ -29,7 +30,7 @@ str((CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` 
 #  logi [1:283798] TRUE FALSE FALSE TRUE TRUE TRUE ...
 
 
-function.df_recode_SEX = function(df) {
+data.recode_SEX = function(dataset) {
     df = df %>% mutate(Female = SEX == "2")
     df = df %>% mutate(SEX = SEX %>% recode(`1` = "Male", `2` = "Female"))
     df 
