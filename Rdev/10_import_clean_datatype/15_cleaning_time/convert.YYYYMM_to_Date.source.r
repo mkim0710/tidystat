@@ -1,3 +1,4 @@
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/15_cleaning_time/convert.YYYYMM_to_Date.source.r
 convert.YYYYMM_to_Date <- function(string_YYYYMM) {
     library(lubridate)
     ceiling_date(as.Date(paste0(string_YYYYMM, "01"), format="%Y%m%d"), "month") - days(1)
