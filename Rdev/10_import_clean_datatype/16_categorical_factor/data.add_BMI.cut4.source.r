@@ -6,7 +6,7 @@ data.add_BMI_calculated <- function(dataset, varname_Height = "HEIGHT", varname_
 
   # Check if BMI column exists
   if ("BMI" %in% names(dataset)) {
-    warning('"BMI" %in% names(dataset)')
+    warning('"BMI" %in% names(dataset)'); cat("\n"); 
     dataset <- dataset %>%
       mutate(
         BMI_calculated = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
@@ -39,6 +39,15 @@ data.add_BMI.cut4 <- function(dataset, varname_BMI = "BMI") {
   
   return(dataset)
 }
+
+
+gj_jk.Date.DTH.recode = 
+    gj_jk.Date.DTH.recode %>% 
+    data.add_BMI_calculated(varname_Height = "HEIGHT", varname_Weight = "WEIGHT") %>% 
+    data.add_BMI.cut4
+gj_jk.Date.DTH.recode %>% select(matches("BMI")) %>% summary
+all.equal(gj_jk.Date.DTH.recode$BMI_calculated, gj_jk.Date.DTH.recode$BMI)
+
 
 
 
