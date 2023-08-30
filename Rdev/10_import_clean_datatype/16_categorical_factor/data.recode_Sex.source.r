@@ -31,7 +31,7 @@ str((CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` 
 
 
 library(dplyr)
-
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.recode_Sex.source.r
 data.recode_Sex <- function(dataset, varname4Sex = "SEX", value4Female = "2") {
     dataset %>%
       mutate(
