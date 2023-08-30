@@ -47,6 +47,78 @@ fun.numeric.addFormated = function(input.numeric, digits = 3, nsmall = 0, big.ma
     input.numeric
 }
 
+fun.data.primarykey_v2 <- function(inputdata, primarykey = c("PERSON_ID")) {
+  
+  # Check if primary key columns exist
+  if (!all(primarykey %in% colnames(inputdata))) {
+    stop("One or more of the specified primary key columns do not exist in the provided data.")
+  }
+  
+  out = list()
+  out$data.dim = inputdata %>% dim %>% fun.numeric.addFormated
+  out$data.nrow = inputdata %>% nrow %>% fun.numeric.addFormated
+  out$data.primarykey = primarykey
+  out$data.primarykey.n_distinct = inputdata[primarykey] %>% distinct %>% nrow %>% fun.numeric.addFormated
+  out$data.primarykey.n_distinct.diff = (as.numeric(out$data.primarykey.n_distinct) - as.numeric(out$data.nrow)) %>% fun.numeric.addFormated
+  
+  # Formatting proportion with better precision
+  prop <- as.numeric(out$data.primarykey.n_distinct) / as.numeric(out$data.nrow)
+  out$data.primarykey.n_distinct.prop = sprintf("%.3f", prop)
+  
+  # Check for duplicates
+  duplicated_data = inputdata %>% dplyr::group_by_at(primarykey) %>% dplyr::filter(dplyr::n() > 1)
+  if (nrow(duplicated_data) > 0) {
+    out$data.primarykey.duplicated = duplicated_data
+  } else {
+    out$data.primarykey.duplicated = "No duplicated primary keys found"
+  }
+  
+  out
+}
+df_example <- tibble(
+  PERSON_ID = c(1, 2, 3, 4, 5, 1, 2),
+  YEAR = c(2021, 2021, 2021, 2021, 2021, 2022, 2022)
+)
+fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) %>% str #----
+fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
+# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) %>% str #----
+# List of 7
+#  $ data.dim                       : int [1:2] 7 2
+#   ..- attr(*, "Formated")= chr [1:2] "7" "2"
+#  $ data.nrow                      : int 7
+#   ..- attr(*, "Formated")= chr "7"
+#  $ data.primarykey                : chr "PERSON_ID"
+#  $ data.primarykey.n_distinct     : int 5
+#   ..- attr(*, "Formated")= chr "5"
+#  $ data.primarykey.n_distinct.diff: num -2
+#   ..- attr(*, "Formated")= chr "-2"
+#  $ data.primarykey.n_distinct.prop: chr "0.714"
+#  $ data.primarykey.duplicated     : gropd_df [4 × 2] (S3: grouped_df/tbl_df/tbl/data.frame)
+#   ..$ PERSON_ID: num [1:4] 1 2 1 2
+#   ..$ YEAR     : num [1:4] 2021 2021 2022 2022
+#   ..- attr(*, "groups")= tibble [2 × 2] (S3: tbl_df/tbl/data.frame)
+#   .. ..$ PERSON_ID: num [1:2] 1 2
+#   .. ..$ .rows    : list<int> [1:2] 
+#   .. .. ..$ : int [1:2] 1 3
+#   .. .. ..$ : int [1:2] 2 4
+#   .. .. ..@ ptype: int(0) 
+#   .. ..- attr(*, ".drop")= logi TRUE
+# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
+# List of 7
+#  $ data.dim                       : int [1:2] 7 2
+#   ..- attr(*, "Formated")= chr [1:2] "7" "2"
+#  $ data.nrow                      : int 7
+#   ..- attr(*, "Formated")= chr "7"
+#  $ data.primarykey                : chr [1:2] "PERSON_ID" "YEAR"
+#  $ data.primarykey.n_distinct     : int 7
+#   ..- attr(*, "Formated")= chr "7"
+#  $ data.primarykey.n_distinct.diff: num 0
+#   ..- attr(*, "Formated")= chr "0"
+#  $ data.primarykey.n_distinct.prop: chr "1.000"
+#  $ data.primarykey.duplicated     : chr "No duplicated primary keys found"
+
+
+
 fun.data.primarykey = function(inputdata, primarykey = c("PERSON_ID")) {
     out = list()
     out$data.dim = inputdata %>% dim %>% fun.numeric.addFormated
