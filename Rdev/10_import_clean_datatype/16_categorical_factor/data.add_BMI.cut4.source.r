@@ -1,27 +1,45 @@
 #%% data.add_BMI.cut4() ====
 library(dplyr)
 
-data.add_BMI.cut4 <- function(dataset, varname_Height, varname_Weight) {
-  
+
+data.add_BMI_calculated <- function(dataset, varname_Height = "HEIGHT", varname_Weight = "WEIGHT") {
+
+  # Check if BMI column exists
+  if ("BMI" %in% names(dataset)) {
+    warning('"BMI" %in% names(dataset)')
+    dataset <- dataset %>%
+      mutate(
+        BMI_calculated = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
+      )
+  } else {
+    dataset <- dataset %>%
+      mutate(
+        BMI = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
+      )
+  }
+    
+  return(dataset)
+}
+
+data.add_BMI.cut4 <- function(dataset, varname_BMI = "BMI") {
+
+  # Compute additional BMI-related columns
   dataset <- dataset %>%
     mutate(
-      BMI = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2,
-      BMI_lt185 = BMI < 18.5,
-      BMI_ge185lt230 = BMI >= 18.5 & BMI < 23,
-      BMI_ge230lt250 = BMI >= 23 & BMI < 25,
-      BMI_ge185lt250 = BMI >= 18.5 & BMI < 25,
-      BMI_ge250lt300 = BMI >= 25 & BMI < 30,
-      BMI_ge300 = BMI >= 30,
-      BMI_ge350 = BMI >= 35,
-      BMI_ge400 = BMI >= 40,
-      BMI.cut4 = cut(BMI, breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+      BMI_lt185 = !!sym(varname_BMI) < 18.5,
+      BMI_ge185lt230 = !!sym(varname_BMI) >= 18.5 & !!sym(varname_BMI) < 23,
+      BMI_ge230lt250 = !!sym(varname_BMI) >= 23 & !!sym(varname_BMI) < 25,
+      BMI_ge185lt250 = !!sym(varname_BMI) >= 18.5 & !!sym(varname_BMI) < 25,
+      BMI_ge250lt300 = !!sym(varname_BMI) >= 25 & !!sym(varname_BMI) < 30,
+      BMI_ge300 = !!sym(varname_BMI) >= 30,
+      BMI_ge350 = !!sym(varname_BMI) >= 35,
+      BMI_ge400 = !!sym(varname_BMI) >= 40,
+      BMI.cut4 = cut(!!sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
     )
   
   return(dataset)
 }
 
-# Example of using the function:
-# updated_data <- data.add_BMI.cut4(df, "HeightColumnName", "WeightColumnName")
 
 
 
