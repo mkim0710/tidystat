@@ -5,10 +5,70 @@
 
 
 
+function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
+    library(survival)
+    library(tidyverse)
+    
+    list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
+    list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
+                                                            
+    #@ tbl_varname_level_coefficients ====
+    if (length(list_levels) == 0) { # debug 181115 ----
+        tbl_varname_level_coefficients = tibble(varname = character(0), level = character(0), varnamelevel = character(0)) %>% right_join(
+                tibble(varnamelevel = names(object.coxph$coefficients), coefficients = object.coxph$coefficients), by = "varnamelevel"
+            ) #----
+    } else {
+        tbl_varname_level_coefficients = 
+            list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% right_join(
+                tibble(varnamelevel = names(object.coxph$coefficients), coefficients = object.coxph$coefficients), by = "varnamelevel"
+            ) #----
+    }
+    
+    tbl_varname_level_coefficients$coefficients[is.na(tbl_varname_level_coefficients$coefficients) & !is.na(tbl_varname_level_coefficients$level)] = 0
+    tbl_varname_level_coefficients$varname[is.na(tbl_varname_level_coefficients$varname)] = 
+        tbl_varname_level_coefficients$varnamelevel[is.na(tbl_varname_level_coefficients$varname)]
+        
+    #@ function.extractHR.focus.incl.reference() ----
+    res1 = summary(object.coxph)[c("coefficients", "conf.int")] %>% 
+        map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = c("rowname", "exp(coef)")) %>% 
+        {.[c("rowname", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")]}
+  
+    sprintf_but_ceiling5 = function(fmt='%#.2f', x, ...) {
+        sprintf(fmt = fmt, x + 10^(-9), ...)
+    }
+    
+    res2 = tibble(
+        rowname = res1$rowname
+        , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
+            map_df(sprintf_but_ceiling5,  fmt = paste0("%.", digits, "f")) %>% 
+            transmute(HRCI = paste0(`exp(coef)`, " (", `lower .95`, ", ", `upper .95`, ")") %>% gsub("99.99", ">100", .)) %>% unlist
+        , p_value = paste0("p=", res1$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
+        , star = res1$`Pr(>|z|)` %>% 
+            cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
+                , labels = c("***", "***", "** ", "*  ", ".  ", "   ") 
+                , include.lowest = T, right = T
+            )
+    )
+    res2    
+    res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
+    
+    tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
+    tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
+    tbl_varname_level_coefficients_res$HRCI[is.na(tbl_varname_level_coefficients_res$HRCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
+    
+    out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
+}
 
 
 
 
+
+
+
+
+
+
+#@ annotated version -------
 function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
     library(survival)
     library(tidyverse)
