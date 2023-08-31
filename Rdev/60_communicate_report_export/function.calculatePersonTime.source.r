@@ -88,6 +88,31 @@ function.calculatePersonTime <- function(dataset, varname4time, varname4event) {
 #@ end ------
 
 
+library(dplyr)
+library(lubridate)
+
+calculatePersonTime <- function(start_date, end_date) {
+  # Ensure the dates are of Date class
+  start_date <- as.Date(start_date)
+  end_date <- as.Date(end_date)
+  
+  # Calculate the duration for each individual
+  duration <- interval(start_date, end_date) %/% days(1)
+  
+  return(duration)
+}
+
+# Example usage:
+df <- data.frame(
+  id = 1:3,
+  start_date = as.Date(c("2020-01-01", "2019-01-01", "2018-01-01")),
+  end_date = as.Date(c("2020-12-31", "2019-12-31", "2020-06-01"))
+)
+
+df <- df %>% 
+  mutate(person_time = calculatePersonTime(start_date, end_date))
+
+print(df)
 
 
 
