@@ -91,3 +91,18 @@ data.variable.Date.nID_anyTRUE.v2(sample_data)
 
 
 
+
+
+
+
+#% microbenchmark() -----
+mbm <- microbenchmark(
+  v3.group_by_method = data.variable.Date.nID_anyTRUE.v3(sample_data),
+  v2.group_by_method = data.variable.Date.nID_anyTRUE.v2(sample_data),
+  v1.direct_filter_method = data.variable.Date.nID_anyTRUE.v1(sample_data),
+  times = 100
+)
+
+print(mbm)
+
+
