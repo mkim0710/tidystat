@@ -4,6 +4,7 @@
 library(dplyr)
 
 
+
 #$ sample_data =====
 # Create a sample dataset
 set.seed(123)
@@ -12,7 +13,8 @@ sample_data <- tibble(
     RECU_FR_Date.F0003.G30 = sample(c(as.Date('2023-08-30'), NA), 5000, replace = TRUE)
 )
 
-# Using group_by() method
+
+#@ Using group_by() method ----
 ##%% data.variable.Date.nID_anyTRUE.v3() =====
 data.variable.Date.nID_anyTRUE.v3 <- function(dataset, varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
@@ -53,7 +55,7 @@ data.variable.Date.nID_anyTRUE.v3(sample_data)
 
 
 
-# Using group_by() method
+#@ Using group_by() method ----
 ##%% data.variable.Date.nID_anyTRUE.v2() =====
 data.variable.Date.nID_anyTRUE.v2 <- function(dataset, varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
@@ -91,16 +93,50 @@ data.variable.Date.nID_anyTRUE.v2(sample_data)
 
 
 
-
-
+#@ Direct Filter Method using filter() & n_distinct -----
+##%% data.variable.Date.nID_anyTRUE.v1() =====
+data.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.Date = "RECU_FR_Date.F0003.G30") {
+    if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
+    
+    # Overall summary table for nTRUE
+    summary_table.nTRUE <- dataset %>%
+        summarise(
+            nrow = n(),
+            nd_ID = n_distinct(PERSON_ID),
+            nTRUE = sum(!is.na(!!sym(varname.Date))),
+            nNA = sum(is.na(!!sym(varname.Date)))
+        )
+    
+    nID_anyTRUE <- dataset %>% 
+        filter(!is.na(!!sym(varname.Date))) %>% 
+        select(PERSON_ID) %>% n_distinct()
+    
+    nID_anyNA <-  dataset %>% 
+        filter(is.na(!!sym(varname.Date))) %>% 
+        select(PERSON_ID) %>% n_distinct()
+    
+    result <- summary_table.nTRUE %>%
+        mutate(
+            nID_anyTRUE = nID_anyTRUE,
+            nID_anyNA = nID_anyNA
+        )
+    
+    return(result)
+}
+data.variable.Date.nID_anyTRUE.v1(sample_data)
+# > data.variable.Date.nID_anyTRUE.v1(sample_data)
+# # A tibble: 1 × 6
+#    nrow nd_ID nTRUE   nNA nID_anyTRUE nID_anyNA
+#   <int> <int> <int> <int>       <int>     <int>
+# 1  5000   988  2515  2485         921       924
 
 
 #% microbenchmark() -----
 mbm <- microbenchmark(
-  v3.group_by_method = data.variable.Date.nID_anyTRUE.v3(sample_data),
-  v2.group_by_method = data.variable.Date.nID_anyTRUE.v2(sample_data),
-  v1.direct_filter_method = data.variable.Date.nID_anyTRUE.v1(sample_data),
-  times = 100
+    v3.group_by_method = data.variable.Date.nID_anyTRUE.v3(sample_data),
+    v2.group_by_method = data.variable.Date.nID_anyTRUE.v2(sample_data),
+    v1.direct_filter_method = data.variable.Date.nID_anyTRUE.v1(sample_data),
+    times = 100
 )
 
 print(mbm)
