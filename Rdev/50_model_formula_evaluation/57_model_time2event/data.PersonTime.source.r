@@ -14,6 +14,31 @@
 
 set.seed(123)  # for reproducibility
 # Generate sample data
+tblID_Event_Time2Event <- tibble::tibble(
+  PERSON_ID = 10^5 + 1:10,
+  Female = sample(c(TRUE, FALSE), 10, replace = TRUE),  # Random event occurrence
+  Time2Event = sample(240:275, 10),  # Random times between 240 and 275
+  Event = sample(c(TRUE, FALSE), 10, replace = TRUE)  # Random event occurrence
+)
+print(tblID_Event_Time2Event)
+# > print(tblID_Event_Time2Event)
+# # A tibble: 10 × 4
+#    PERSON_ID Female Time2Event Event
+#        <dbl> <lgl>       <int> <lgl>
+#  1    100001 FALSE         267 FALSE
+#  2    100002 FALSE         248 TRUE 
+#  3    100003 TRUE          268 TRUE 
+#  4    100004 FALSE         247 TRUE 
+#  5    100005 TRUE          265 TRUE 
+#  6    100006 FALSE         246 FALSE
+#  7    100007 TRUE          249 TRUE 
+#  8    100008 TRUE          274 FALSE
+#  9    100009 TRUE          258 FALSE
+# 10    100010 TRUE          243 TRUE 
+
+
+set.seed(123)  # for reproducibility
+# Generate sample data
 analyticDF2797 <- tibble::tibble(
   ENROLID = c(130298303, 357944602, 514563701, 585415901, 597484206),
   PrimaryOutcome123456.time = sample(240:275, 5),  # Random times between 240 and 275
