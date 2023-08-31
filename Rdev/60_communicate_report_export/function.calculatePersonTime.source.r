@@ -1,5 +1,7 @@
-# https://github.com/mkim0710/tidystat/new/master/Rdev/60_communicate_report_export/function.calculatePersonTime.source.r
-
+#@ calculation of Person-Time, which is sum(time2event), and make Table 2. 
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.calculatePersonTime.source.r
+#@ Person-Time format of survival data.
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/data.PersonTime.source.r
 
 
 # analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode function.calculatePersonTime().r
