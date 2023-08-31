@@ -4,6 +4,53 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/data.PersonTime.source.r
 
 
+
+
+
+
+set.seed(123)  # for reproducibility
+# Generate sample data
+tblID_Event_Time2Event <- tibble::tibble(
+  PERSON_ID = 10^5 + 1:10,
+  Female = sample(c(TRUE, FALSE), 10, replace = TRUE),  # Random event occurrence
+  Time2Event = sample(240:275, 10),  # Random times between 240 and 275
+  Event = sample(c(TRUE, FALSE), 10, replace = TRUE)  # Random event occurrence
+)
+print(tblID_Event_Time2Event)
+# > print(tblID_Event_Time2Event)
+# # A tibble: 10 × 4
+#    PERSON_ID Female Time2Event Event
+#        <dbl> <lgl>       <int> <lgl>
+#  1    100001 FALSE         267 FALSE
+#  2    100002 FALSE         248 TRUE 
+#  3    100003 TRUE          268 TRUE 
+#  4    100004 FALSE         247 TRUE 
+#  5    100005 TRUE          265 TRUE 
+#  6    100006 FALSE         246 FALSE
+#  7    100007 TRUE          249 TRUE 
+#  8    100008 TRUE          274 FALSE
+#  9    100009 TRUE          258 FALSE
+# 10    100010 TRUE          243 TRUE 
+
+tblID_Event_Time2Event %>% 
+  group_by(Female) %>% 
+  summarise(
+    nEvents = sum(Event == 1),
+    PersonTime = sum(Time2Event),
+  )
+# # A tibble: 2 × 3
+#   Female nEvents PersonTime
+#   <lgl>    <int>      <int>
+# 1 FALSE        2       1008
+# 2 TRUE         4       1557
+
+
+
+
+
+
+
+
 # analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode function.calculatePersonTime().r
 
 
