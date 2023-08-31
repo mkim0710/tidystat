@@ -9,15 +9,14 @@
 
 
 library(dplyr)
-
-
-
-#$ sample_data =====
+library(tibble)
+library(rlang)
+# Define the dynamic variable name
+varname.ID <- "ENROLID"
 # Create a sample dataset
 set.seed(123)
 sample_data <- tibble(
-    !!sym(varname.ID) = sample(1:1000, 5000, replace = TRUE),
-    RECU_FR_Date.F0003.G30 = sample(c(as.Date('2023-08-30'), NA), 5000, replace = TRUE)
+  !!sym(varname.ID) := sample(1:1000, 5000, replace = TRUE)
 )
 
 
