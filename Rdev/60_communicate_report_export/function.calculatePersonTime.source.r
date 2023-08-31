@@ -116,3 +116,26 @@ print(df)
 
 
 
+library(dplyr)
+
+calculatePersonTime <- function(time, event = NULL) {
+  # If there's an event variable, adjust the time 
+  if (!is.null(event)) {
+    # Assuming event variable has 1 for event occurrence and 0 otherwise
+    time[event == 1] <- time[event == 1] * 0.5  # Adjusting the time for those with events (assuming we're taking half the time for the event year)
+  }
+  
+  return(time)
+}
+
+# Example Usage
+df <- data.frame(
+  id = 1:5,
+  years_observed = c(2, 3, 5, 1, 4),
+  event_occurred = c(0, 1, 0, 1, 0)
+)
+
+df <- df %>% 
+  mutate(person_time = calculatePersonTime(years_observed, event_occurred))
+
+print(df)
