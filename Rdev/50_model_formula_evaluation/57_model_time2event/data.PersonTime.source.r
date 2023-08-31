@@ -10,6 +10,83 @@
 # analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes from .r
 # analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes from .r
 
+
+
+set.seed(123)  # for reproducibility
+# Generate sample data
+analyticDF2797 <- tibble::tibble(
+  ENROLID = c(130298303, 357944602, 514563701, 585415901, 597484206),
+  PrimaryOutcome123456.time = sample(240:275, 5),  # Random times between 240 and 275
+  PrimaryOutcome123456 = sample(c(TRUE, FALSE), 5, replace = TRUE)  # Random event occurrence
+)
+print(analyticDF2797)
+# Output:
+# # A tibble: 5 x 3
+#      ENROLID PrimaryOutcome123456.time PrimaryOutcome123456
+#       <dbl>                     <int> <lgl>               
+# 1 130298303                       258 TRUE                
+# 2 357944602                       268 TRUE                
+# 3 514563701                       251 FALSE               
+# 4 585415901                       271 TRUE                
+# 5 597484206                       243 FALSE
+
+
+
+
+#@ analyticDF2797.PersonTime7 ====
+library(dplyr)
+library(purrr)
+library(tidyr)
+
+convert.tblID_Event_Time2Event.tblPersonTime_Event_Time2Event <- function(tblID_Event_Time2Event, 
+                                                                          varname4ID, 
+                                                                          varname4Event, 
+                                                                          varname4Time2Event, 
+                                                                          Interval) {
+  tblID_Event_Time2Event %>%
+    select(!!sym(varname4ID), !!sym(varname4Event), !!sym(varname4Time2Event)) %>%
+    mutate(PeriodSeq = map(!!sym(varname4Time2Event), ~1L:ceiling(.x/Interval))) %>%
+    unnest(PeriodSeq) %>%
+    mutate(
+      Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") %>% as.factor,
+      time = PeriodSeq * Interval,
+      event = (!!sym(varname4Event) == 1) & (!!sym(varname4Time2Event) <= PeriodSeq * Interval),
+      timesq = time*time,
+      k = PeriodSeq - 1,
+      Dk_plus1 = event
+    )
+}
+
+# Example Usage:
+# convert.tblID_Event_Time2Event.tblPersonTime_Event_Time2Event(analyticDF2797, "ENROLID", "PrimaryOutcome123456", "PrimaryOutcome123456.time", 84)
+# # A tibble: 18 × 10
+#      ENROLID PrimaryOutcome123456 PrimaryOutcome123456.time PeriodSeq Period     time event timesq     k Dk_plus1
+#        <dbl> <lgl>                                    <int>     <int> <fct>     <dbl> <lgl>  <dbl> <dbl> <lgl>   
+#  1 130298303 FALSE                                      270         1 (0,84]       84 FALSE   7056     0 FALSE   
+#  2 130298303 FALSE                                      270         2 (84,168]    168 FALSE  28224     1 FALSE   
+#  3 130298303 FALSE                                      270         3 (168,252]   252 FALSE  63504     2 FALSE   
+#  4 130298303 FALSE                                      270         4 (252,336]   336 FALSE 112896     3 FALSE   
+#  5 357944602 FALSE                                      254         1 (0,84]       84 FALSE   7056     0 FALSE   
+#  6 357944602 FALSE                                      254         2 (84,168]    168 FALSE  28224     1 FALSE   
+#  7 357944602 FALSE                                      254         3 (168,252]   252 FALSE  63504     2 FALSE   
+#  8 357944602 FALSE                                      254         4 (252,336]   336 FALSE 112896     3 FALSE   
+#  9 514563701 TRUE                                       253         1 (0,84]       84 FALSE   7056     0 FALSE   
+# 10 514563701 TRUE                                       253         2 (84,168]    168 FALSE  28224     1 FALSE   
+# 11 514563701 TRUE                                       253         3 (168,252]   252 FALSE  63504     2 FALSE   
+# 12 514563701 TRUE                                       253         4 (252,336]   336 TRUE  112896     3 TRUE    
+# 13 585415901 TRUE                                       242         1 (0,84]       84 FALSE   7056     0 FALSE   
+# 14 585415901 TRUE                                       242         2 (84,168]    168 FALSE  28224     1 FALSE   
+# 15 585415901 TRUE                                       242         3 (168,252]   252 TRUE   63504     2 TRUE    
+# 16 597484206 FALSE                                      249         1 (0,84]       84 FALSE   7056     0 FALSE   
+# 17 597484206 FALSE                                      249         2 (84,168]    168 FALSE  28224     1 FALSE   
+# 18 597484206 FALSE                                      249         3 (168,252]   252 FALSE  63504     2 FALSE   
+
+
+
+
+
+
+
 #@ analyticDF2797.PersonTime7 ====
 Interval = 7 * 12
 
