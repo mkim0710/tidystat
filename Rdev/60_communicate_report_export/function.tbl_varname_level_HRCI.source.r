@@ -59,6 +59,32 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
 }
 
+                                                                                                                        
+data.coxph.tbl_varname_level_HRCI <- function(dataset, varname4time, varname4event, covars) {
+  # Create the coxph model
+  cox_formula <- as.formula(paste("Surv(", varname4time, ",", varname4event, ") ~", paste(covars, collapse = " + ")))
+  coxph_object <- coxph(cox_formula, data = dataset)
+  
+  # Assuming you already have the function.tbl_varname_level_HRCI function defined earlier
+  tbl_varname_level_HRCI <- function.tbl_varname_level_HRCI(coxph_object)
+  
+  list(coxph_object = coxph_object, tbl_varname_level_HRCI = tbl_varname_level_HRCI)
+}
+
+# Mapping over the list of variable sets
+results <- map(list(
+  c("fsg_var_g", "AGE"),
+  c("fsg_var_g", "AGE", "SEX", "BP_HIGH", "BP_LWST", "TOT_CHOLE", "income", "smk", "ac", "cci_g"),
+  c("fsg_var_g", "AGE", "SEX", "BP_HIGH", "BP_LWST", "TOT_CHOLE", "income", "smk", "ac", "cci_g", "blds1"),
+  c("fsg_var_g", "AGE", "SEX", "BP_HIGH", "BP_LWST", "TOT_CHOLE", "income", "smk", "ac", "cci_g", "blds1", "blds2", "blds3")
+), ~data.coxph.tbl_varname_level_HRCI(dataset = temp11.sas7bdat, varname4time = "dem_fu", varname4event = "dem_true", covars = .x))
+
+                                                                                                                            
+
+
+
+
+
 
 
 
