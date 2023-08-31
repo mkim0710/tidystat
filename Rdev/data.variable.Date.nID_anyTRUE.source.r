@@ -3,6 +3,8 @@
 
 library(dplyr)
 
+
+#$ sample_data =====
 # Create a sample dataset
 set.seed(123)
 sample_data <- tibble(
@@ -11,6 +13,7 @@ sample_data <- tibble(
 )
 
 # Using group_by() method
+#%% data.variable.Date.nID_anyTRUE.v3() =====
 data.variable.Date.nID_anyTRUE.v3 <- function(dataset, varname.Date = "RECU_FR_Date.F0003.G30") {
   if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
 
