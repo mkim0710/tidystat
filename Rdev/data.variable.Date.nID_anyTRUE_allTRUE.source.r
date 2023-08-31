@@ -2,6 +2,12 @@
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/data.variable.Date.nID_anyTRUE_allTRUE.source.r
 # data.variable.Date.nID_anyTRUE_allTRUE.source.r
 
+
+#@ CONCLUSION ----------
+# data.variable.Date.nID_anyTRUE_allTRUE = data.variable.Date.nID_anyTRUE_allTRUE.v3
+# data.variable.Date.nID_anyTRUE = data.variable.Date.nID_anyTRUE.v1
+
+
 library(dplyr)
 
 
@@ -291,6 +297,4 @@ print(mbm)
 
 
 #@ end ---------
-data.variable.Date.nID_anyTRUE_allTRUE = data.variable.Date.nID_anyTRUE_allTRUE.v3
-data.variable.Date.nID_anyTRUE = data.variable.Date.nID_anyTRUE.v1
 
