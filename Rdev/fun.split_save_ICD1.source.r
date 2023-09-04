@@ -1,5 +1,5 @@
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.split_save_ICD1.source.r
 # fun.split_save_ICD1@ASROCKX300RYZEN.RMD
-# fun.split_save_ICD1.source.r
 
 format_time_diff <- function(diff_seconds) {
   diff_seconds <- as.numeric(diff_seconds, units = "secs")
