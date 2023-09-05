@@ -1,6 +1,10 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_TRUE_NA.source.r
 # nsc2_m20.Date.C0097.D0009.D3233.D3748.rmd
 
+
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_TRUE_NA.source.r
+#% data.variable.Date.nID_TRUE_NA <- function(dataset, ...){ ----
 data.variable.Date.nID_TRUE_NA <- function(dataset, ...){
   library(dplyr)
   
