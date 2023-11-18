@@ -1,7 +1,8 @@
 
 
-data %>% names %>% deparse %>% cat; cat("\n") #----
-data %>% names %>% paste(collapse = ", ") #----
+objectname = "KoGES201806vars_waves"
+get(objectname) %>% names %>% deparse %>% cat; cat("\n") #----
+get(objectname) %>% names %>% paste(collapse = ", ") %>% cat; cat("\n") #----
 # > data %>% names %>% deparse %>% cat; cat("\n") #----
 # c("Time2Event", "Event", "Exposure")
 # > data %>% names %>% paste(collapse = ", ") #----
