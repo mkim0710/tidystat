@@ -1,8 +1,10 @@
 
 
 objectname = "KoGES201806vars_waves"
-get(objectname) %>% names %>% deparse %>% cat; cat("\n") #----
-get(objectname) %>% names %>% paste(collapse = ", ") %>% cat; cat("\n") #----
+get(objectname) %>% names %>% deparse %>% cat; cat("\n") # dput() cat(deparse()) ----
+get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120),'\n\n',sep='\n')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+get(objectname) %>% names %>% {cat(deparse(., width.cutoff=500),'\n\n',sep='\n')} # dput() cat(deparse(., width.cutoff=500)), width.cutoff=500 is the max ----
+get(objectname) %>% names %>% paste(collapse = ", ") %>% cat; cat("\n") # paste(collapse = ", ") %>% cat ----
 # > data %>% names %>% deparse %>% cat; cat("\n") #----
 # c("Time2Event", "Event", "Exposure")
 # > data %>% names %>% paste(collapse = ", ") #----
