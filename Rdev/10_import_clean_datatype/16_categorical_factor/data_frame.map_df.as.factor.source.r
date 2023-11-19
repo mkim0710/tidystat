@@ -1,6 +1,47 @@
 # data_frame.map_df.as.factor.source.r
 
 
+
+
+convert_character_to_numeric <- function(column) {
+  if (is.character(column)) {
+    # Convert "NA" strings to actual NA values
+    column <- na_if(column, "NA")
+    
+    # Convert to numeric
+    numeric_column <- as.numeric(column)
+
+    if (sum(is.na(column)) == sum(is.na(numeric_column))) {
+      return(numeric_column)
+    }
+  }
+  return(column)
+}
+
+df <- data.frame(a = c("1", "2", "NA"), b = c("x", "y", "z"), c = c("3.5", "4.2", "5"), stringsAsFactors = FALSE)
+df <- df %>% mutate(across(everything(), convert_character_to_numeric))
+df %>% str
+# >% str
+# 'data.frame':	3 obs. of  3 variables:
+#  $ a: num  1 2 NA
+#  $ b: chr  "x" "y" "z"
+#  $ c: num  3.5 4.2 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 data_frame.map_df.as.factor = function (
     df
     , colnames_character.as.numeric.as.factor = c("rowname")
