@@ -3,7 +3,7 @@
 
 objectname = "KoGES201806vars_waves"
 get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-cat("----\n");get(objectname) %>% names %>% paste(collapse = ", ") %>% cat;cat("\n"); # tidyselect: paste(collapse = ", ") %>% cat ----
+get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
 
 
 objectname = "KoGES201806vars_waves"
