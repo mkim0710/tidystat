@@ -26,11 +26,10 @@ df %>% str
 #  $ a: num  1 2 NA
 #  $ b: chr  "x" "y" "z"
 #  $ c: num  3.5 4.2 5
-
-
-
-
-
+as1_7.na.Date.fct = as1_7.na.Date %>% 
+    mutate(across(everything(), convert_character_to_numeric)) %>% 
+    mutate_if(is.character, as.factor)
+as1_7.na.Date.fct %>% str
 
 
 
