@@ -17,6 +17,28 @@ convert_character_to_numeric <- function(column) {
   }
   return(column)
 }
+convert_character_to_factor <- function(column) {
+  if (is.character(column)) {
+    # Convert "NA" strings to actual NA values
+    column <- na_if(column, "NA")
+    
+    # Check the number of distinct values
+    distinct_count <- length(unique(column))
+    
+    if (distinct_count < 20) {
+      # Convert to factor if distinct values are less than 20
+      factor_column <- as.factor(column)
+      return(factor_column)
+    }
+  }
+  return(column)
+}
+
+# Applying the function to each column
+df <- df %>% mutate(across(everything(), convert_character_to_factor))
+
+# Check structure
+df %>% str
 
 df <- data.frame(a = c("1", "2", "NA"), b = c("x", "y", "z"), c = c("3.5", "4.2", "5"), stringsAsFactors = FALSE)
 df <- df %>% mutate(across(everything(), convert_character_to_numeric))
