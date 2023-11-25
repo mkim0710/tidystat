@@ -1,5 +1,40 @@
 # data_frame.map_df.as.factor.source.r
 
+convert_character_to_numeric_or_factor <- function(column) {
+  if (is.character(column)) {
+    # Convert "NA" strings to actual NA values
+    column <- na_if(column, "NA")
+    
+    # Check the number of distinct values
+    distinct_count <- length(unique(column))
+    
+    if (distinct_count < 20) {
+      # Convert to factor if distinct values are less than 20
+      factor_column <- as.factor(column)
+      return(factor_column)
+    } else {
+      # Convert to numeric if more than or equal to 20 distinct values
+      numeric_column <- as.numeric(column)
+      if (sum(is.na(column)) == sum(is.na(numeric_column))) {
+        return(numeric_column)
+      }
+    }
+  }
+  return(column)
+}
+df <- data.frame(a = c("1", "2", "NA"), b = c("x", "y", "z"), c = c("3.5", "4.2", "5"), stringsAsFactors = FALSE)
+df <- df %>% mutate(across(everything(), convert_character_to_numeric_or_factor))
+df %>% str
+# > df %>% str
+# 'data.frame':	3 obs. of  3 variables:
+#  $ a: Factor w/ 2 levels "1","2": 1 2 NA
+#  $ b: Factor w/ 3 levels "x","y","z": 1 2 3
+#  $ c: Factor w/ 3 levels "3.5","4.2","5": 1 2 3
+as1_7.na.Date.fct = as1_7.na.Date %>% 
+    mutate(across(everything(), convert_character_to_numeric)) %>% 
+    mutate_if(is.character, as.factor)
+as1_7.na.Date.fct %>% str
+
 
 
 
@@ -33,25 +68,14 @@ convert_character_to_factor <- function(column) {
   }
   return(column)
 }
-
-# Applying the function to each column
-df <- df %>% mutate(across(everything(), convert_character_to_factor))
-
-# Check structure
-df %>% str
-
 df <- data.frame(a = c("1", "2", "NA"), b = c("x", "y", "z"), c = c("3.5", "4.2", "5"), stringsAsFactors = FALSE)
-df <- df %>% mutate(across(everything(), convert_character_to_numeric))
+df <- df %>% mutate(across(everything(), convert_character_to_numeric)) %>% mutate(across(everything(), convert_character_to_factor))
 df %>% str
-# >% str
+# > df %>% str
 # 'data.frame':	3 obs. of  3 variables:
 #  $ a: num  1 2 NA
-#  $ b: chr  "x" "y" "z"
+#  $ b: Factor w/ 3 levels "x","y","z": 1 2 3
 #  $ c: num  3.5 4.2 5
-as1_7.na.Date.fct = as1_7.na.Date %>% 
-    mutate(across(everything(), convert_character_to_numeric)) %>% 
-    mutate_if(is.character, as.factor)
-as1_7.na.Date.fct %>% str
 
 
 
