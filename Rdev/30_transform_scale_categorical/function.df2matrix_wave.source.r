@@ -2,6 +2,7 @@
 library(dplyr)
 library(purrr)
 
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave.source.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2matrix_wave.source.r
 # function to convert a dataframe to a matrix
 function.df2matrix_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
