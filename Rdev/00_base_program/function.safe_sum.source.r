@@ -1,3 +1,27 @@
+
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.safe_sum.source.r
+function.safe_sum = function(x, y) {if_else(is.na(x)&is.na(y), NA, if_else(is.na(x),0,x)+if_else(is.na(y),0,y))}
+Vectorized.safe_sum = Vectorize(function.safe_sum)
+
+x_vector = c(1, NA, 3, NA)
+y_vector = c(NA, 2, NA, NA)
+function.safe_sum(x_vector, y_vector)
+Vectorized.safe_sum(x_vector, y_vector)
+# > function.safe_sum(x_vector, y_vector)
+# [1]  1  2  3 NA
+# > Vectorized.safe_sum(x_vector, y_vector)
+# [1]  1  2  3 NA
+
+
+
+
+
+
+
+
+
+#--------------
 library(dplyr)
 library(purrr)
 
