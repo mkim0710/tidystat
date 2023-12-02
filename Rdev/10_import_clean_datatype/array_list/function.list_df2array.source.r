@@ -4,9 +4,98 @@ library(dplyr)
 library(purrr)
 
 
+# Function to find the longest common prefix of two strings
+function.str2.longest_common_prefix <- function(str1, str2) {
+  chars1 <- strsplit(str1, "")[[1]]
+  chars2 <- strsplit(str2, "")[[1]]
+  min_length <- min(length(chars1), length(chars2))
+  chars1 <- chars1[1:min_length]
+  chars2 <- chars2[1:min_length]
+  prefix_length <- sum(map2_int(chars1, chars2, ~ ifelse(.x == .y, 1, 0)))
+  substring(str1, 1, prefix_length)
+}
+
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/array_list/function.list_df2array.source.r
+function.list_df2array <- function(list_of_tibbles) {
+  # Ensure the list is not empty
+  if (length(list_of_tibbles) == 0) {
+    stop("The list is empty")
+  }
+
+  # Check if all tibbles have the same dimensions
+  n_rows <- nrow(list_of_tibbles[[1]])
+  n_cols <- ncol(list_of_tibbles[[1]])
+
+  if (!all(map_dbl(list_of_tibbles, nrow) == n_rows) || 
+      !all(map_dbl(list_of_tibbles, ncol) == n_cols)) {
+    stop("Not all tibbles have the same dimensions")
+  }
+
+  # Extract row names and check if they are meaningful
+  row_names <- rownames(list_of_tibbles[[1]])
+  if (is.null(row_names) || all(row_names == as.character(seq_along(row_names)))) {
+    row_names <- NULL
+  }
+
+  # Process column names to find the longest common prefix
+  all_col_names <- map(list_of_tibbles, names)
+  common_col_names <- reduce(all_col_names, ~ map2_chr(.x, .y, function.str2.longest_common_prefix))
+
+  # Convert each tibble to a matrix and stack them
+  array_data <- array(dim = c(n_rows, n_cols, length(list_of_tibbles)))
+  for (i in seq_along(list_of_tibbles)) {
+    array_data[,,i] <- as.matrix(list_of_tibbles[[i]])
+  }
+
+  # Set dimnames
+  list_names <- names(list_of_tibbles)
+  dimnames(array_data) <- list(row_names, common_col_names, list_names)
+
+  return(array_data)
+}
+
+# Example usage
+df1 <- tibble(A0111 = c(1, NA, 3), A021 = c(4, NA, NA))
+df2 <- tibble(A0122 = c(NA, 2, 3), A022 = c(4, 5, NA))
+df3 <- tibble(A0133 = c(1, 2, NA), A023 = c(NA, 5, NA))
+
+example_list <- list(df1 = df1, df2 = df2, df3 = df3)
+tmp_array <- function.list_df2array(example_list)
+
+# Display the output
+print(tmp_array)
+# > print(tmp_array)
+# , , df1
+# 
+#      A01 A02
+# [1,]   1   4
+# [2,]  NA  NA
+# [3,]   3  NA
+# 
+# , , df2
+# 
+#      A01 A02
+# [1,]  NA   4
+# [2,]   2   5
+# [3,]   3  NA
+# 
+# , , df3
+# 
+#      A01 A02
+# [1,]   1  NA
+# [2,]   2   5
+# [3,]  NA  NA
+
+
+
+
+
+
+
+# ---------------------
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/array_list/function.list_df2array.source.r
 # Function to convert a list of tibbles to a 3D array
-function.list_df2array <- function(list_of_tibbles) {
+function.list_df2array_old <- function(list_of_tibbles) {
   # Ensure the list is not empty
   if (length(list_of_tibbles) == 0) {
     stop("The list is empty")
