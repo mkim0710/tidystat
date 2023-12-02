@@ -1,5 +1,90 @@
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/array_list/help.array.r
 
+structure(1:12, dim = c(3L, 4L), dimnames = list(paste0("X",1:3), paste0("Y",1:4)))
+structure(1:12, dim = c(3L, 4L), dimnames = list(paste0("X",1:3), paste0("Y",1:4))) %>% apply(MARGIN = 1, paste, collapse = ",")
+structure(1:12, dim = c(3L, 4L), dimnames = list(paste0("X",1:3), paste0("Y",1:4))) %>% apply(MARGIN = 2, paste, collapse = ",")
+# > structure(1:12, dim = c(3L, 4L), dimnames = list(paste0("X",1:3), paste0("Y",1:4)))
+#    Y1 Y2 Y3 Y4
+# X1  1  4  7 10
+# X2  2  5  8 11
+# X3  3  6  9 12
+# > structure(1:12, dim = c(3L, 4L), dimnames = list(paste0("X",1:3), paste0("Y",1:4))) %>% apply(MARGIN = 1, paste, collapse = ",")
+#         X1         X2         X3 
+# "1,4,7,10" "2,5,8,11" "3,6,9,12" 
+# > structure(1:12, dim = c(3L, 4L), dimnames = list(paste0("X",1:3), paste0("Y",1:4))) %>% apply(MARGIN = 2, paste, collapse = ",")
+#         Y1         Y2         Y3         Y4 
+#    "1,2,3"    "4,5,6"    "7,8,9" "10,11,12" 
+
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 1, paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 2, paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 3, paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 1:2, paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 2:3, paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = c(3, 1), paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = c(1, 3), paste, collapse = ",")
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))
+# , , Z1
+# 
+#    Y1 Y2 Y3 Y4
+# X1  1  4  7 10
+# X2  2  5  8 11
+# X3  3  6  9 12
+# 
+# , , Z2
+# 
+#    Y1 Y2 Y3 Y4
+# X1 13 16 19 22
+# X2 14 17 20 23
+# X3 15 18 21 24
+# 
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 1, paste, collapse = ",")
+#                     X1                     X2                     X3 
+# "1,4,7,10,13,16,19,22" "2,5,8,11,14,17,20,23" "3,6,9,12,15,18,21,24" 
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 2, paste, collapse = ",")
+#                  Y1                  Y2                  Y3                  Y4 
+#    "1,2,3,13,14,15"    "4,5,6,16,17,18"    "7,8,9,19,20,21" "10,11,12,22,23,24" 
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 3, paste, collapse = ",")
+#                                    Z1                                    Z2 
+#          "1,2,3,4,5,6,7,8,9,10,11,12" "13,14,15,16,17,18,19,20,21,22,23,24" 
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 1:2, paste, collapse = ",")
+#    Y1     Y2     Y3     Y4     
+# X1 "1,13" "4,16" "7,19" "10,22"
+# X2 "2,14" "5,17" "8,20" "11,23"
+# X3 "3,15" "6,18" "9,21" "12,24"
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = 2:3, paste, collapse = ",")
+#    Z1         Z2        
+# Y1 "1,2,3"    "13,14,15"
+# Y2 "4,5,6"    "16,17,18"
+# Y3 "7,8,9"    "19,20,21"
+# Y4 "10,11,12" "22,23,24"
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = c(3, 1), paste, collapse = ",")
+#    X1            X2            X3           
+# Z1 "1,4,7,10"    "2,5,8,11"    "3,6,9,12"   
+# Z2 "13,16,19,22" "14,17,20,23" "15,18,21,24"
+# > structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y",1:4), paste0("Z",1:2)))%>% apply(MARGIN = c(1, 3), paste, collapse = ",")
+#    Z1         Z2           
+# X1 "1,4,7,10" "13,16,19,22"
+# X2 "2,5,8,11" "14,17,20,23"
+# X3 "3,6,9,12" "15,18,21,24"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -------------------
 structure(1:12, dim = c(3L, 4L))
 structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 1, paste, collapse = ",")
 structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 2, paste, collapse = ",")
