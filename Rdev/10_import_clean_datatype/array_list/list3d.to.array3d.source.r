@@ -10,6 +10,12 @@ list3d.to.array3d = function(list3d) {
 #@ test: list3d.to.array3d() ------
 list3d = as.list(1:(3*4*2))
 dim(list3d) = c(3,4,2)
+list3d %>% dput
+# structure(list(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L, 21L, 22L, 23L, 24L), dim = c(3L, 4L, 2L))
+identical(
+    structure(list(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L, 21L, 22L, 23L, 24L), dim = c(3L, 4L, 2L))
+    , structure(as.list(1L:24L), dim = c(3L, 4L, 2L))
+) # TRUE 
 list3d
 list3d %>% str
 # > list3d
@@ -54,6 +60,11 @@ list3d %>% str
 #  $ : int 23
 #  $ : int 24
 #  - attr(*, "dim")= int [1:3] 3 4 2
+
+
+list3d.to.array3d(list3d) %>% dput
+# > list3d.to.array3d(list3d) %>% dput
+# structure(1:24, dim = c(3L, 4L, 2L))
 
 list3d.to.array3d(list3d)
 # > list3d.to.array3d(list3d)
