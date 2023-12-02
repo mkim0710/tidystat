@@ -1,4 +1,6 @@
-function.conditions_suffix <- function(vector_conditions) {
+# https://github.com/mkim0710/tidystat/tree/master/Rdev/10_import_clean_datatype/18_dichotomous_logical
+
+function.conditions2text <- function(vector_conditions) {
     vector_conditions = vector_conditions %>% trimws
     vector_conditions %>% 
         str_replace_all("==", "eq") %>% 
@@ -12,7 +14,7 @@ function.conditions_suffix <- function(vector_conditions) {
         as.vector
 }
 
-tibble(conditions = c('== 2', '== 1.1', " <= 2", "<2")) %>% mutate(conditions_suffix = function.conditions_suffix(conditions))
+tibble(conditions = c('== 2', '== 1.1', " <= 2", "<2")) %>% mutate(conditions_suffix = function.conditions2text(conditions))
 # # A tibble: 4 × 2
 #   conditions conditions_suffix
 #   <chr>      <chr>            
