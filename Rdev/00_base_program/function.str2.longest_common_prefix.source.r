@@ -3,6 +3,8 @@
 # Function to find the longest common prefix of two strings
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.str2.longest_common_prefix.source.r
 function.str2.longest_common_prefix <- function(str1, str2, print.intermediate = F) {
+    if(is.na(str1)) return(NA)
+    if(is.na(str2)) return(NA)
   vec_chars1 <- strsplit(str1, "")[[1]]
   vec_chars2 <- strsplit(str2, "")[[1]]
   if(print.intermediate) {print(vec_chars1) ; print(vec_chars2)}
@@ -21,7 +23,6 @@ function.str2.longest_common_prefix <- function(str1, str2, print.intermediate =
       }
   }
 }
-
 function.str2.longest_common_prefix("TestString", "TestString2", print.intermediate = T)
 function.str2.longest_common_prefix("A01_XYZ", "A01_ABZ", print.intermediate = T)
 function.str2.longest_common_prefix("Mismatch", "Example", print.intermediate = T)
