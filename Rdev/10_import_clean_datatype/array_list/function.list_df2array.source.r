@@ -6,18 +6,23 @@ library(purrr)
 
 # Function to find the longest common prefix of two strings
 # https://github.com/mkim0710/tidystat/new/master/Rdev/00_base_program/function.str2.longest_common_prefix.source.r
-function.str2.longest_common_prefix <- function(str1, str2) {
+function.str2.longest_common_prefix <- function(str1, str2, print.intermediate = F) {
   chars1 <- strsplit(str1, "")[[1]]
   chars2 <- strsplit(str2, "")[[1]]
+  if(print.intermediate) {print(chars1) ; print(chars2)}
   min_length <- min(length(chars1), length(chars2))
   chars1 <- chars1[1:min_length]
   chars2 <- chars2[1:min_length]
-  prefix_length <- which(map2_int(chars1, chars2, ~ ifelse(.x == .y, 1, 0)) == 0)[1] - 1
-  # print(prefix_length)
-  if (prefix_length == 0) {
-    return(NA)
+  if (identical(chars1, chars2)) {
+    return(str1)
   } else {
-    return(substring(str1, 1, prefix_length))
+    prefix_length <- which(map2_int(chars1, chars2, ~ ifelse(.x == .y, 1, 0)) == 0)[1] - 1
+    # print(prefix_length)
+      if (prefix_length == 0) {
+          return(NA)
+      } else {
+        return(substring(str1, 1, prefix_length))
+      }
   }
 }
 
