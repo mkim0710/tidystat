@@ -10,8 +10,7 @@ function.mutate_all.ExpressionText <- function(input_df, ExpressionText, use.Sta
         out_vector
     }
     output_df = input_df %>% mutate_all(vector.apply_ExpressionText, ExpressionText)
-    
-    
+        
     
     function.ExpressionText2StandardName <- function(vector_ExpressionText) {
         vector_ExpressionText = vector_ExpressionText %>% trimws
