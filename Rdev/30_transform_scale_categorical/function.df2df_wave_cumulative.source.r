@@ -4,8 +4,153 @@
 
 
 
+library(dplyr)
+library(purrr)
 
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave.source.r
+# function to convert a dataframe to a matrix
+function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
+    if(!is.numeric(vector_wave)) {
+        warning("vector_wave is not numeric"); cat("\n")
+        vector_wave = vector_wave %>% as.numeric
+    }
+    if(is.null(vector_colname_at_wave)) {
+        vector_colname_at_wave = names(df)
+    }
+    if(length(vector_wave) != length(vector_colname_at_wave)) {
+        stop("vector_wave and vector_colname_at_wave must have the same length")
+    }
+    # if(any(vector_colname_at_wave) %in% names(df)) {
+    #     stop("vector_colname_at_wave must included in names(df)")
+    # }
 
+    # Creating an empty matrix
+    # df_wave <- matrix(nrow = nrow(df), ncol = max(vector_wave))
+    df_wave = as.tibble(array(dim = c(nrow(df), max(vector_wave))))
+
+    for (i in seq_along(vector_wave)) {
+        if(print.intermediate) {
+            cat("Column name for time = ", vector_wave[i], " : ", vector_colname_at_wave[i], "\n")
+        }
+
+        # Check if the column name exists in the dataframe
+        if(!(vector_colname_at_wave[i] %in% names(df))) {
+            warning("Column ", vector_colname_at_wave[i], " does not exist in the dataframe"); cat("\n")
+            next
+        }
+        
+        df_wave[, vector_wave[i]] <- df[[vector_colname_at_wave[i]]]
+    }
+    colnames(df_wave)[vector_wave] = vector_colname_at_wave
+    # return(df_wave)
+    
+    df_wave_cumulative = as.tibble(array(dim = c(nrow(df), max(vector_wave))))
+    names(df_wave_cumulative) = paste0(names(df_wave), "_ever")
+    for (i in seq_along(df_wave_cumulative)) {
+        df_wave_cumulative[,i] = df_wave[,1:i] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)}
+    }
+    # return(df_wave_cumulative)
+    # bind_cols(df_wave, df_wave_cumulative)
+    list(df_wave = df_wave, df_wave_cumulative = df_wave_cumulative)
+}
+
+# Example usage with vectors
+tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
+tmp.df %>% str
+# tmp.df %>% as.matrix %>% str
+# tmp.df %>% head
+# > tmp.df %>% str
+# tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
+#  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
+#   ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#  $ A06_GLU60_TR_ge200: Named logi [1:10030] FALSE NA FALSE NA FALSE FALSE ...
+#   ..- attr(*, "names")= chr [1:10030] "92 >=200" "NA >=200" "148 >=200" "NA >=200" ...
+#  $ A07_GLU60_TR_ge200: Named logi [1:10030] NA NA FALSE NA FALSE NA ...
+#   ..- attr(*, "names")= chr [1:10030] "NA >=200" "NA >=200" "148 >=200" "NA >=200" ...
+# > tmp.df %>% as.matrix %>% str
+#  logi [1:10030, 1:3] FALSE FALSE FALSE NA FALSE FALSE ...
+#  - attr(*, "dimnames")=List of 2
+#   ..$ : NULL
+#   ..$ : chr [1:3] "A01_GLU60_TR_ge200" "A06_GLU60_TR_ge200" "A07_GLU60_TR_ge200"
+# > tmp.df %>% head
+# # A tibble: 6 × 3
+#   A01_GLU60_TR_ge200 A06_GLU60_TR_ge200 A07_GLU60_TR_ge200
+#   <lgl>              <lgl>              <lgl>             
+# 1 FALSE              FALSE              NA                
+# 2 FALSE              NA                 NA                
+# 3 FALSE              FALSE              FALSE             
+# 4 NA                 NA                 NA                
+# 5 FALSE              FALSE              FALSE             
+# 6 FALSE              FALSE              NA                
+
+tmp_df_wave_cumulative <- tmp.df %>% function.df2df_wave_cumulative(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)
+tmp_df_wave_cumulative %>% str
+# tmp_df_wave_cumulative %>% head
+tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table(vec, useNA = "always")))
+# > tmp_df_wave_cumulative %>% str
+# List of 2
+#  $ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
+#   ..$ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#   ..$ V2                : logi [1:10030] NA NA NA NA NA NA ...
+#   ..$ V3                : logi [1:10030] NA NA NA NA NA NA ...
+#   ..$ V4                : logi [1:10030] NA NA NA NA NA NA ...
+#   ..$ V5                : logi [1:10030] NA NA NA NA NA NA ...
+#   ..$ A06_GLU60_TR_ge200: Named logi [1:10030] FALSE NA FALSE NA FALSE FALSE ...
+#   .. ..- attr(*, "names")= chr [1:10030] "92 >=200" "NA >=200" "148 >=200" "NA >=200" ...
+#   ..$ A07_GLU60_TR_ge200: Named logi [1:10030] NA NA FALSE NA FALSE NA ...
+#   .. ..- attr(*, "names")= chr [1:10030] "NA >=200" "NA >=200" "148 >=200" "NA >=200" ...
+#  $ df_wave_cumulative: tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
+#   ..$ A01_GLU60_TR_ge200_ever: Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#   ..$ V2_ever                : Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#   ..$ V3_ever                : Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#   ..$ V4_ever                : Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#   ..$ V5_ever                : Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#   ..$ A06_GLU60_TR_ge200_ever: Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+#   ..$ A07_GLU60_TR_ge200_ever: Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
+#   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
+# > # tmp_df_wave_cumulative %>% head
+# > tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table(vec, useNA = "always")))
+# $A01_GLU60_TR_ge200_ever
+# vec
+#     0     1  <NA>   Sum 
+#  8077  1438   515 10030 
+# 
+# $V2_ever
+# vec
+#     0     1  <NA>   Sum 
+#  8077  1438   515 10030 
+# 
+# $V3_ever
+# vec
+#     0     1  <NA>   Sum 
+#  8077  1438   515 10030 
+# 
+# $V4_ever
+# vec
+#     0     1  <NA>   Sum 
+#  8077  1438   515 10030 
+# 
+# $V5_ever
+# vec
+#     0     1  <NA>   Sum 
+#  8077  1438   515 10030 
+# 
+# $A06_GLU60_TR_ge200_ever
+# vec
+#     0     1     2  <NA>   Sum 
+#  7257  2009   283   481 10030 
+# 
+# $A07_GLU60_TR_ge200_ever
+# vec
+#     0     1     2     3  <NA>   Sum 
+#  6801  2001   604   150   474 10030 
 
 
 
