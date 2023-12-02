@@ -1,6 +1,70 @@
 
 
+function.mutate_all.ExpressionText <- function(input_df, ExpressionText, use.StandardName = TRUE, print.intermediate = TRUE) {
+    if(length(ExpressionText) == 1) {
+        ExpressionText = rep(ExpressionText, ncol(input_df))
+    }
+    function.eval.parse.Vectorize = Vectorize(function(text4parse) {eval(parse(text = text4parse))})
+    vector.apply_ExpressionText <- function(input_vector, ExpressionText, print.intermediate = print.intermediate) {
+        out_vector = function.eval.parse.Vectorize(paste(input_vector, ExpressionText))
+        out_vector
+    }
+    output_df = input_df %>% mutate_all(vector.apply_ExpressionText, ExpressionText)
+    
+    
+    
+    function.ExpressionText2StandardName <- function(vector_ExpressionText) {
+        vector_ExpressionText = vector_ExpressionText %>% trimws
+        vector_ExpressionText %>% 
+            str_replace_all("==", "eq") %>% 
+            str_replace_all("<=", "le") %>% 
+            str_replace_all("<", "lt") %>% 
+            str_replace_all(">=", "ge") %>% 
+            str_replace_all(">", "gt") %>% 
+            str_replace_all("=", "eq") %>% 
+            str_replace_all("[[:punct:]&&[^\\._]]", "") %>%  # Remove all punctuation except dot
+            str_replace_all("\\d+\\.\\d+", function(x) gsub("\\.", "_", x)) %>%  # Replace dot in decimal numbers to underbar("_")
+            str_replace_all(" ", "") %>% 
+            as.vector
+    }
+    
+    if(use.StandardName) {
+        names(output_df) = str_c(names(input_df), "_", function.ExpressionText2StandardName(ExpressionText))
+    } else if(!use.StandardName) {
+        names(output_df) = str_c(names(input_df), ExpressionText)
+    }
+    
+    output_df = bind_cols(input_df, output_df)
+    output_df
+}
 
+
+# Example data
+data <- tibble(
+    A01_DM_C = c(1.1, 1, 2, 2, 1),
+    A02_DM_C = c(1, 2, 1, 2, 2),
+    A03_DM_C = c(2, 2, 2, 1, 1)
+)
+
+data %>% function.mutate_all.ExpressionText(" == 1.1") %>%
+    left_join(data %>% function.mutate_all.ExpressionText(">1")) %>% 
+    str
+# Joining with `by = join_by(A01_DM_C, A02_DM_C, A03_DM_C)`tibble [5 × 9] (S3: tbl_df/tbl/data.frame)
+#  $ A01_DM_C      : num [1:5] 1.1 1 2 2 1
+#  $ A02_DM_C      : num [1:5] 1 2 1 2 2
+#  $ A03_DM_C      : num [1:5] 2 2 2 1 1
+#  $ A01_DM_C_eq1_1: Named logi [1:5] TRUE FALSE FALSE FALSE FALSE
+#   ..- attr(*, "names")= chr [1:5] "1.1  == 1.1" "1  == 1.1" "2  == 1.1" "2  == 1.1" ...
+#  $ A02_DM_C_eq1_1: Named logi [1:5] FALSE FALSE FALSE FALSE FALSE
+#   ..- attr(*, "names")= chr [1:5] "1  == 1.1" "2  == 1.1" "1  == 1.1" "2  == 1.1" ...
+#  $ A03_DM_C_eq1_1: Named logi [1:5] FALSE FALSE FALSE FALSE FALSE
+#   ..- attr(*, "names")= chr [1:5] "2  == 1.1" "2  == 1.1" "2  == 1.1" "1  == 1.1" ...
+#  $ A01_DM_C_gt1  : Named logi [1:5] TRUE FALSE TRUE TRUE FALSE
+#   ..- attr(*, "names")= chr [1:5] "1.1 >1" "1 >1" "2 >1" "2 >1" ...
+#  $ A02_DM_C_gt1  : Named logi [1:5] FALSE TRUE FALSE TRUE TRUE
+#   ..- attr(*, "names")= chr [1:5] "1 >1" "2 >1" "1 >1" "2 >1" ...
+#  $ A03_DM_C_gt1  : Named logi [1:5] TRUE TRUE TRUE FALSE FALSE
+#   ..- attr(*, "names")= chr [1:5] "2 >1" "2 >1" "2 >1" "1 >1" ...
 
 
 
