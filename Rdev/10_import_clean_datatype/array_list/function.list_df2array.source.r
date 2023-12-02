@@ -1,4 +1,98 @@
 # function.list_df2array.source.r
+
+library(dplyr)
+library(purrr)
+
+
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/array_list/function.list_df2array.source.r
+# Function to convert a list of tibbles to a 3D array
+function.list_df2array <- function(list_of_tibbles) {
+  # Ensure the list is not empty
+  if (length(list_of_tibbles) == 0) {
+    stop("The list is empty")
+  }
+
+  # Check if all tibbles have the same dimensions
+  n_rows <- nrow(list_of_tibbles[[1]])
+  n_cols <- ncol(list_of_tibbles[[1]])
+
+  if (!all(map_dbl(list_of_tibbles, nrow) == n_rows) || 
+      !all(map_dbl(list_of_tibbles, ncol) == n_cols)) {
+    stop("Not all tibbles have the same dimensions")
+  }
+
+  # Convert each tibble to a matrix and stack them
+  array_data <- array(dim = c(n_rows, n_cols, length(list_of_tibbles)))
+  for (i in seq_along(list_of_tibbles)) {
+    array_data[,,i] <- as.matrix(list_of_tibbles[[i]])
+  }
+
+  return(array_data)
+}
+
+# Example tibbles
+df1 <- tibble(A01 = c(1, NA, 3), A02 = c(4, NA, NA))
+df2 <- tibble(A01 = c(NA, 2, 3), A02 = c(4, 5, NA))
+df3 <- tibble(A01 = c(1, 2, NA), A02 = c(NA, 5, NA))
+
+# List of tibbles
+example_list <- list(df1, df2, df3)
+
+# Applying the function
+tmp_array <- function.list_df2array(example_list)
+tmp.array %>% str
+# > tmp.array %>% str
+#  num [1:3, 1:2, 1:3] 1 NA 3 4 NA NA NA 2 3 4 ...
+
+
+# Expected output
+print(tmp.array)
+# , , 1
+# 
+#      [,1] [,2]
+# [1,]    1    4
+# [2,]   NA   NA
+# [3,]    3   NA
+# 
+# , , 2
+# 
+#      [,1] [,2]
+# [1,]   NA    4
+# [2,]    2    5
+# [3,]    3   NA
+# 
+# , , 3
+# 
+#      [,1] [,2]
+# [1,]    1   NA
+# [2,]    2    5
+# [3,]   NA   NA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------------------------------------------
+# function.list_df2array.source.r
 # data.mice complete() group_by(exposure) summarize(n(), sum(event)).r
 # https://www.r-bloggers.com/tidyrcomplete-to-show-all-possible-combinations-of-variables/
 
