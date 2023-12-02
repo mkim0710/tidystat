@@ -1,3 +1,28 @@
+
+## Compute row and column sums for a matrix:
+x <- cbind(x1 = 3, x2 = c(4:1, 2:5))
+x
+dimnames(x)[[1]] <- letters[1:8]
+apply(x, 2, mean)
+col.sums <- apply(x, 2, sum)
+row.sums <- apply(x, 1, sum)
+rbind(cbind(x, Rtot = row.sums), Ctot = c(col.sums, sum(col.sums)))
+
+all( apply(x,2, is.vector)) # TRUE [was not in R <= 0.63.2]
+
+## Sort the columns of a matrix
+apply(x, 2, sort)
+
+##- function with extra args:
+cave <- function(x, c1,c2) c(mean(x[c1]),mean(x[c2]))
+apply(x,1, cave,  c1="x1", c2=c("x1","x2"))
+
+ma <- matrix(c(1:4, 1, 6:8), nr = 2)
+ma
+apply(ma, 1, table)  #--> a list of length 2
+apply(ma, 1, quantile)# 5 x n matrix with rownames
+
+all(dim(ma) == dim(apply(ma, 1:2, sum)))## wasn't ok before R 0.63.1
 # > ## Compute row and column sums for a matrix:
 # > x <- cbind(x1 = 3, x2 = c(4:1, 2:5))
 # > x
