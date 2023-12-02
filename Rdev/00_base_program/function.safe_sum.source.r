@@ -1,0 +1,42 @@
+library(dplyr)
+library(purrr)
+
+# https://github.com/mkim0710/tidystat/new/master/Rdev/00_base_program/function.safe_sum.source.R
+function.safe_sum <- function(x, y) {
+  sum_vec <- ifelse(is.na(x), 0, x) + ifelse(is.na(y), 0, y)
+  ifelse(is.na(x) & is.na(y), NA, sum_vec)
+}
+
+# Example Data
+df1 <- tibble(A01 = c(1, NA, 3), A02 = c(4, NA, NA))
+df2 <- tibble(A01 = c(NA, 2, 3), A02 = c(4, 5, NA))
+df3 <- tibble(A01 = c(1, 2, NA), A02 = c(NA, 5, NA))
+df1 + df2
+sum(df1, df2)
+map2_df(df1, df2, function.safe_sum)
+# > df1 + df2
+#   A01 A02
+# 1  NA   8
+# 2  NA  NA
+# 3   6  NA
+# > sum(df1, df2)
+# [1] NA
+# > map2_df(df1, df2, function.safe_sum)
+# # A tibble: 3 × 2
+#     A01   A02
+#   <dbl> <dbl>
+# 1     1     8
+# 2     2     5
+# 3     6    NA
+
+
+
+example_list <- list(df1, df2, df3)
+reduce(example_list, ~ map2_df(.x, .y, function.safe_sum))
+# > reduce(example_list, ~ map2_df(.x, .y, function.safe_sum))
+# # A tibble: 3 × 2
+#     A01   A02
+#   <dbl> <dbl>
+# 1     2     8
+# 2     4    10
+# 3     6    NA
