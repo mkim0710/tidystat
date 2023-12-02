@@ -14,7 +14,7 @@ function.str2.longest_common_prefix <- function(str1, str2, print.intermediate =
   chars1 <- chars1[1:min_length]
   chars2 <- chars2[1:min_length]
   if (identical(chars1, chars2)) {
-    return(str1)
+    return(chars1)
   } else {
     prefix_length <- which(map2_int(chars1, chars2, ~ ifelse(.x == .y, 1, 0)) == 0)[1] - 1
     # print(prefix_length)
