@@ -1,5 +1,31 @@
 
 
+
+
+
+
+
+
+
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.safe_sum.source.r
+function.safe_sum = function(vector) {if_else(all(is.na(vector)), NA, sum(if_else(is.na(vector),0,vector)))}
+function.safe_sum(c(1, NA, 3, 4, NA, 5))
+function.safe_sum(c(NA, NA))
+# > function.safe_sum(c(1, NA, 3, 4, NA, 5))
+# [1] 13
+# > function.safe_sum(c(NA, NA))
+# [1] NA
+
+
+
+
+
+
+
+
+
+#--------------
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.safe_sum.source.r
 function.safe_sum = function(x, y) {if_else(is.na(x)&is.na(y), NA, if_else(is.na(x),0,x)+if_else(is.na(y),0,y))}
 Vectorized.safe_sum = Vectorize(function.safe_sum)
