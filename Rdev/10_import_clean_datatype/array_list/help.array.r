@@ -1,4 +1,50 @@
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/array_list/help.array.r
 
+structure(1:12, dim = c(3L, 4L))
+structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 1, paste, collapse = ",")
+structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 2, paste, collapse = ",")
+# > structure(1:12, dim = c(3L, 4L))
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    4    7   10
+# [2,]    2    5    8   11
+# [3,]    3    6    9   12
+# > structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 1, paste, collapse = ",")
+# [1] "1,4,7,10" "2,5,8,11" "3,6,9,12"
+# > structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 2, paste, collapse = ",")
+# [1] "1,2,3"    "4,5,6"    "7,8,9"    "10,11,12"
+
+structure(1:24, dim = c(3L, 4L, 2L))
+structure(1:24, dim = c(3L, 4L, 2L)) %>% apply(MARGIN = 1, paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L)) %>% apply(MARGIN = 2, paste, collapse = ",")
+structure(1:24, dim = c(3L, 4L, 2L)) %>% apply(MARGIN = 3, paste, collapse = ",")
+# > structure(1:24, dim = c(3L, 4L, 2L))
+# , , 1
+# 
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    4    7   10
+# [2,]    2    5    8   11
+# [3,]    3    6    9   12
+# 
+# , , 2
+# 
+#      [,1] [,2] [,3] [,4]
+# [1,]   13   16   19   22
+# [2,]   14   17   20   23
+# [3,]   15   18   21   24
+# 
+# > structure(1:24, dim = c(3L, 4L, 2L)) %>% apply(MARGIN = 1, paste, collapse = ",")
+# [1] "1,4,7,10,13,16,19,22" "2,5,8,11,14,17,20,23" "3,6,9,12,15,18,21,24"
+# > structure(1:24, dim = c(3L, 4L, 2L)) %>% apply(MARGIN = 2, paste, collapse = ",")
+# [1] "1,2,3,13,14,15"    "4,5,6,16,17,18"    "7,8,9,19,20,21"    "10,11,12,22,23,24"
+# > structure(1:24, dim = c(3L, 4L, 2L)) %>% apply(MARGIN = 3, paste, collapse = ",")
+# [1] "1,2,3,4,5,6,7,8,9,10,11,12"          "13,14,15,16,17,18,19,20,21,22,23,24"
+
+
+
+
+
+
+#-----------------
 ## Compute row and column sums for a matrix:
 x <- cbind(x1 = 3, x2 = c(4:1, 2:5))
 x
