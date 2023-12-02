@@ -5,7 +5,7 @@ library(purrr)
 
 
 # Function to find the longest common prefix of two strings
-# https://github.com/mkim0710/tidystat/new/master/Rdev/00_base_program/function.str2.longest_common_prefix.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.str2.longest_common_prefix.source.r
 function.str2.longest_common_prefix <- function(str1, str2) {
   chars1 <- strsplit(str1, "")[[1]]
   chars2 <- strsplit(str2, "")[[1]]
@@ -16,7 +16,7 @@ function.str2.longest_common_prefix <- function(str1, str2) {
   substring(str1, 1, prefix_length)
 }
 
-# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/array_list/function.list_df2array.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/function.list_df2array.source.r
 function.list_df2array <- function(list_of_tibbles) {
   # Ensure the list is not empty
   if (length(list_of_tibbles) == 0) {
