@@ -1,6 +1,5 @@
 
-
-function.mutate_all.ExpressionText <- function(input_df, ExpressionText, use.StandardName = TRUE, print.intermediate = TRUE) {
+function.mutate_all.apply_ExpressionText <- function(input_df, ExpressionText, use.StandardName = TRUE, print.intermediate = TRUE) {
     if(length(ExpressionText) == 1) {
         ExpressionText = rep(ExpressionText, ncol(input_df))
     }
@@ -10,7 +9,7 @@ function.mutate_all.ExpressionText <- function(input_df, ExpressionText, use.Sta
         out_vector
     }
     output_df = input_df %>% mutate_all(vector.apply_ExpressionText, ExpressionText)
-        
+    
     
     function.ExpressionText2StandardName <- function(vector_ExpressionText) {
         vector_ExpressionText = vector_ExpressionText %>% trimws
@@ -45,8 +44,8 @@ data <- tibble(
     A03_DM_C = c(2, 2, 2, 1, 1)
 )
 
-data %>% function.mutate_all.ExpressionText(" == 1.1") %>%
-    left_join(data %>% function.mutate_all.ExpressionText(">1")) %>% 
+data %>% function.mutate_all.apply_ExpressionText(" == 1.1") %>%
+    left_join(data %>% function.mutate_all.apply_ExpressionText(">1")) %>% 
     str
 # Joining with `by = join_by(A01_DM_C, A02_DM_C, A03_DM_C)`tibble [5 × 9] (S3: tbl_df/tbl/data.frame)
 #  $ A01_DM_C      : num [1:5] 1.1 1 2 2 1
