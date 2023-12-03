@@ -43,6 +43,19 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #--------------
 library(tidyverse)
 
