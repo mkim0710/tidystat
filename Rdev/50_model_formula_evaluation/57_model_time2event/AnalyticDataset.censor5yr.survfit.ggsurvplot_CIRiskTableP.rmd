@@ -1,0 +1,395 @@
+---
+title: "MHKim's R Notebook"
+output: html_notebook
+    df_print: tibble
+---
+
+# Rstudio RMarkDown Shortcuts
+https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE
+https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html
+Insert R chunk	Ctrl+Alt+I	Command+Option+I
+Preview HTML	Ctrl+Shift+K	Command+Shift+K
+Run all chunks above	Ctrl+Alt+P	Command+Option+P
+Run current chunk	Ctrl+Alt+C	Command+Option+C
+Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter
+Run next chunk	Ctrl+Alt+N	Command+Option+N
+Run all chunks	Ctrl+Alt+R	Command+Option+R
+Go to next chunk/title	Ctrl+PgDown	Command+PgDown
+Go to previous chunk/title	Ctrl+PgUp	Command+PgUp
+Show/hide document outline	Ctrl+Shift+O	Command+Shift+O
+F7 spell-check your document. 
+Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS). 
+
+
+#% env.custom
+##% env.custom$info
+###% env.custom$info$DocumentTitle1 ====
+```{r, paged.print=FALSE}
+# if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom")) env.custom = list()
+if(!exists("env.custom$info")) env.custom$info = list()
+env.custom$info$DocumentTitle0 = "Blank) env.custom.fun.t.tribble_construct"
+env.custom$info$DocumentTitle1 = paste0(env.custom$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env.custom$info$DocumentTitle1); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, ".R", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -dev.R", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -clean.R", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, ".RMD", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -dev.RMD", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -clean.RMD", sep = ""); cat("\r\n");
+```
+
+###% env.custom$info$info_system_info ====
+```{r, paged.print=FALSE}
+env.custom$info$get_system_info = function() {
+    summary_list = list(
+        GUI = .Platform$GUI,
+        OS.type = .Platform$OS.type,
+        OS.sysname = as.character(Sys.info()["sysname"]),
+        OS.version = as.character(Sys.info()["version"]),
+        machine.type = as.character(Sys.info()["machine"]),
+        machine.nodename = as.character(Sys.info()["nodename"]),
+        machine.CPU = if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Darwin") 
+            trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))
+        else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") 
+            trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE))
+        else if (.Platform$OS.type == "windows") 
+            trimws(system("wmic cpu get name", intern=TRUE)[2])
+        else NA,
+        Sys.getlocale = list(
+            LC_COLLATE = Sys.getlocale(category = "LC_COLLATE"), 
+            LC_CTYPE = Sys.getlocale(category = "LC_CTYPE"), 
+            LC_locale_NUMERIC = Sys.getlocale(category = "LC_NUMERIC"), 
+            LC_locale_TIME = Sys.getlocale(category = "LC_TIME")
+        ), 
+        l10n_info = list(
+            localization_UTF8 = l10n_info()$`UTF-8`,
+            localization_Latin1 = l10n_info()$`Latin-1`,  
+            localization_codeset = l10n_info()$codeset,
+            localization_codepage = l10n_info()$codepage,
+            localization_system.codepage = l10n_info()$system.codepage
+        )
+    )
+}
+env.custom$info$info_system_info = env.custom$info$get_system_info()
+str(env.custom$info$info_system_info)
+```
+
+
+
+@ASROCKX300RYZEN
+List of 9
+ $ GUI             : chr "RStudio"
+ $ os_type         : chr "windows"
+ $ os_sysname      : chr "Windows"
+ $ os_version      : chr "build 22621"
+ $ machine_type    : chr "x86-64"
+ $ machine_nodename: chr "ASROCKX300RYZEN"
+ $ machine_cpu     : chr "AMD Ryzen 5 5600G with Radeon Graphics"
+ $ Sys.getlocale   :List of 4
+  ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
+  ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
+  ..$ LC_locale_NUMERIC: chr "C"
+  ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
+ $ l10n_info       :List of 5
+  ..$ localization_UTF8           : logi TRUE
+  ..$ localization_Latin1         : logi FALSE
+  ..$ localization_codeset        : NULL
+  ..$ localization_codepage       : int 65001
+  ..$ localization_system.codepage: int 65001
+  
+  
+@LIVAI7-8700
+List of 9
+ $ GUI             : chr "RStudio"
+ $ os_type         : chr "windows"
+ $ os_sysname      : chr "Windows"
+ $ os_version      : chr "build 19045"
+ $ machine_type    : chr "x86-64"
+ $ machine_nodename: chr "LIVAI7-8700"
+ $ machine_cpu     : chr "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz"
+ $ Sys.getlocale   :List of 4
+  ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
+  ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
+  ..$ LC_locale_NUMERIC: chr "C"
+  ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
+ $ l10n_info       :List of 5
+  ..$ localization_UTF8           : logi TRUE
+  ..$ localization_Latin1         : logi FALSE
+  ..$ localization_codeset        : NULL
+  ..$ localization_codepage       : int 65001
+  ..$ localization_system.codepage: int 65001
+
+
+@Posit Cloud
+List of 9
+ $ GUI             : chr "RStudio"
+ $ os_type         : chr "unix"
+ $ os_sysname      : chr "Linux"
+ $ os_version      : chr "#96~18.04.1-Ubuntu SMP Mon Oct 17 02:57:48 UTC 2022"
+ $ machine_type    : chr "x86_64"
+ $ machine_nodename: chr "application-9677950-deployment-19172365-82455"
+ $ machine_cpu     : chr "AMD EPYC 7R13 Processor"
+ $ Sys.getlocale   :List of 4
+  ..$ LC_COLLATE       : chr "C.UTF-8"
+  ..$ LC_CTYPE         : chr "C.UTF-8"
+  ..$ LC_locale_NUMERIC: chr "C"
+  ..$ LC_locale_TIME   : chr "C.UTF-8"
+ $ l10n_info       :List of 5
+  ..$ localization_UTF8           : logi TRUE
+  ..$ localization_Latin1         : logi FALSE
+  ..$ localization_codeset        : chr "UTF-8"
+  ..$ localization_codepage       : NULL
+  ..$ localization_system.codepage: NULL
+  
+
+% env.custom$info$info_software_versions ====
+```{r, paged.print=FALSE}
+library(purrr)
+
+env.custom$info$get_software_versions <- function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
+  version_list <- list(OS.type = .Platform$OS.type, R.version = R.version$version.string)
+  version_list$RStudio_version <- ifelse(!is.null(.Platform$GUI) && .Platform$GUI == "RStudio" && exists("RStudio.Version"), RStudio.Version()$version, NA)
+  version_list$library_versions <- setNames(map(library_names, function(lib) {
+    if (!requireNamespace(lib, quietly = TRUE)) return(paste(lib, "not installed"))
+    (packageVersion(lib))
+  }), library_names)
+  return(version_list)
+}
+env.custom$info$info_software_versions = env.custom$info$get_software_versions(
+    library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr",
+                      "datapasta")
+)
+str(env.custom$info$info_software_versions)
+# dput(env.custom$info$info_software_versions)
+
+```
+
+
+################################################
+##% env.custom$path
+% env.custom$path$data_suffix ====
+% env.custom$path$project_suffix ====
+```{r, paged.print=FALSE}
+library(tidyverse); cat("\r\n"); 
+cat("\r\n"); cat("getwd() == "); dput(getwd()) #----
+env.custom$path$getwd = getwd()
+# env.custom$path$path0 = file.path("D:", "OneDrive - SNU", "[][Rproject]")
+# env.custom$path$project_base = "Rproject_HEALS0215"
+# env.custom$path$data_suffix = "_01"
+# # env.custom$path$data_suffix = ""
+# env.custom$path$project_suffix = "GJ3"
+# 
+# 
+# env.custom$path$path1 = file.path(env.custom$path$path0, paste0(env.custom$path$project_base, env.custom$path$data_suffix))
+# env.custom$path$path2 = file.path(env.custom$path$path1, paste0(env.custom$path$project_base, env.custom$path$data_suffix, env.custom$path$project_suffix))
+# 
+# path4read = env.custom$path$path1
+# # path4write = env.custom$path$path1
+# # path4write = env.custom$path$path2
+path4read = getwd()
+path4write = getwd()
+if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
+if (getwd() != path4write) warning("getwd() != path4write  == ") else cat("getwd() == path4write == "); dput(path4write)  #----
+```
+
+
+##% env.custom$fun.path_files_size() ====
+```{r, paged.print=FALSE}
+# tribble_paste = datapasta::tribble_paste
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# attach(env.custom)
+
+# regex4filename = "\\.rds(\\.xz)?$"
+regex4filename = "\\.rds\\.xz$"
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+env.custom$fun.path_files_size(path4read = path4write, regex4filename = regex4filename)
+
+cat("----\n"); #----
+regex4filename = "\\.rds$"
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+env.custom$fun.path_files_size(path4read = path4write, regex4filename = regex4filename)
+```
+
+
+
+#@@ START ------
+#$ objectname = "tblID_gj3_jk" ====
+##@ assign(objectname, readRDS(file.path(path4read, filename2read))) 
+```{r, paged.print=FALSE}
+# if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
+# objectname = "tblID_gj3_jk"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep = ""); 
+# filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
+# env.custom$fun.path_files_size(path4read = path4read, regex4filename = filename2read)
+# system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
+# get(objectname) %>% dim
+# get(objectname) %>% {.$PERSON_ID} %>% n_distinct
+# get(objectname) %>% {.$RN_INDI} %>% n_distinct
+# get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+# get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
+# cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep = ""); str(get(objectname), max.level = 2, give.attr = F); 
+# # get(objectname) %>% select_if(is.numeric) %>% summary #-----
+# # get(objectname) %>% select_if(is.logical) %>% summary #-----
+```
+
+
+#$ lung <- as.tibble(survival::lung) ======
+## Step 1: Load the Required Libraries and Data
+## Step 2: Exploratory Data Analysis
+```{r, paged.print=FALSE}
+library(survival)
+library(survminer)
+
+# Load the lung dataset
+# data("lung")
+lung <- as.tibble(survival::lung)
+lung
+summary(lung)
+```
+
+## Step 3: Kaplan-Meier Survival Curve
+```{r, paged.print=FALSE}
+# Create a survival object
+surv_obj <- Surv(time = lung$time, event = lung$status)
+
+# Fit a Kaplan-Meier survival curve
+km_fit <- survfit(surv_obj ~ 1, data = lung)
+
+# Plot the survival curve
+ggsurvplot(km_fit, data = lung, conf.int = TRUE, 
+           title = "Kaplan-Meier Survival Curve",
+           xlab = "Time in days", ylab = "Survival Probability")
+
+```
+
+## Step 4: Stratified Kaplan-Meier Survival Curve
+```{r, paged.print=FALSE}
+# Stratify the survival curves by a factor such as 'sex'
+km_fit_sex <- survfit(surv_obj ~ sex, data = lung)
+
+# Plot the stratified survival curves
+ggsurvplot(km_fit_sex, data = lung, palette = c("#00AFBB", "#FC4E07"),
+           conf.int = TRUE, 
+           title = "Survival Curves Stratified by Sex",
+           xlab = "Time in days", ylab = "Survival Probability")
+
+```
+
+## Step 5: Cox Proportional Hazards Model
+```{r, paged.print=FALSE}
+# Fit a Cox proportional hazards model
+cox_model <- coxph(surv_obj ~ sex + age + ph.ecog, data = lung)
+
+# Summary of the Cox model
+summary(cox_model)
+
+```
+
+## Step 6: Check Proportional Hazards Assumption
+```{r, paged.print=FALSE}
+# Test for proportional hazards
+cox.zph(cox_model)
+```
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.source.r
+##$ AnalyticDataset ====
+```{r, paged.print=FALSE}
+AnalyticDataset = lung %>% rename(event = status, Group = sex)
+AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
+
+?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+
+# AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
+# AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
+# AnalyticDataset.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+
+AnalyticDataset.survfit %>% ggsurvplot  # default fun = "pct"?
+```
+
+
+```{r, paged.print=FALSE}
+AnalyticDataset.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
+```
+
+
+
+```{r, paged.print=FALSE}
+AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
+AnalyticDataset.coxph %>% summary #----
+AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
+AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
+```
+
+
+##$ AnalyticDataset.censor1yr ====
+```{r, paged.print=FALSE}
+
+value_for_censor_at_1yr = 365 * 1
+value_for_break.time.by = 30
+AnalyticDataset.censor1yr = AnalyticDataset %>% mutate(
+    time.censor1yr = pmin(time, value_for_censor_at_1yr)
+    , event.censor1yr = ifelse(time < value_for_censor_at_1yr, event, 0)
+)
+AnalyticDataset.censor1yr.survfit = survfit(Surv(time = time.censor1yr, event = event.censor1yr) ~ Group, data = AnalyticDataset.censor1yr)
+
+# AnalyticDataset.censor1yr.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
+# AnalyticDataset.censor1yr.survfit %>% ggsurvplot(fun = "event")
+# AnalyticDataset.censor1yr.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+
+AnalyticDataset.censor1yr.survfit %>% ggsurvplot  # default fun = "pct"?
+
+```
+
+
+```{r, paged.print=FALSE}
+AnalyticDataset.censor1yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
+
+```
+
+
+```{r, paged.print=FALSE}
+AnalyticDataset.censor1yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+#@@ END -----
+```{r, paged.print=FALSE}
+#@@ END -----
+```
+
+#$ objectname = "AnalyticDataset200621" ====
+##@ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+```{r, paged.print=FALSE}
+# #@ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+# objectname = "AnalyticDataset200621"
+# system.time(write_rds( get(objectname),paste0(objectname, ".rds")))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")), compress = "gz" ))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+# # openxlsx::openXL(paste0(objectname, ".xlsx"))
+```
+
+
