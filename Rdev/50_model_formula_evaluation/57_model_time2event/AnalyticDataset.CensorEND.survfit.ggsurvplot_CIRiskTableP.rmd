@@ -1,1 +1,610 @@
-pending
+---
+title: "MHKim's R Notebook"
+output: html_notebook
+    df_print: tibble
+---
+
+# Rstudio RMarkDown Shortcuts
+https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE
+https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html
+Insert R chunk	Ctrl+Alt+I	Command+Option+I
+Preview HTML	Ctrl+Shift+K	Command+Shift+K
+Run all chunks above	Ctrl+Alt+P	Command+Option+P
+Run current chunk	Ctrl+Alt+C	Command+Option+C
+Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter
+Run next chunk	Ctrl+Alt+N	Command+Option+N
+Run all chunks	Ctrl+Alt+R	Command+Option+R
+Go to next chunk/title	Ctrl+PgDown	Command+PgDown
+Go to previous chunk/title	Ctrl+PgUp	Command+PgUp
+Show/hide document outline	Ctrl+Shift+O	Command+Shift+O
+F7 spell-check your document. 
+Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS). 
+
+
+#% env.custom
+##% env.custom$info
+###% env.custom$info$DocumentTitle1 ====
+```{r, paged.print=FALSE}
+# if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom")) env.custom = list()
+if(!exists("env.custom$info")) env.custom$info = list()
+env.custom$info$DocumentTitle0 = "Blank) env.custom.fun.t.tribble_construct"
+env.custom$info$DocumentTitle1 = paste0(env.custom$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env.custom$info$DocumentTitle1); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, ".R", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -dev.R", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -clean.R", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, ".RMD", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -dev.RMD", sep = ""); cat("\r\n");
+cat(env.custom$info$DocumentTitle1, " -clean.RMD", sep = ""); cat("\r\n");
+```
+
+###% env.custom$info$info_system_info ====
+```{r, paged.print=FALSE}
+env.custom$info$get_system_info = function() {
+    summary_list = list(
+        GUI = .Platform$GUI,
+        OS.type = .Platform$OS.type,
+        OS.sysname = as.character(Sys.info()["sysname"]),
+        OS.version = as.character(Sys.info()["version"]),
+        machine.type = as.character(Sys.info()["machine"]),
+        machine.nodename = as.character(Sys.info()["nodename"]),
+        machine.CPU = if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Darwin") 
+            trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))
+        else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") 
+            trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE))
+        else if (.Platform$OS.type == "windows") 
+            trimws(system("wmic cpu get name", intern=TRUE)[2])
+        else NA,
+        Sys.getlocale = list(
+            LC_COLLATE = Sys.getlocale(category = "LC_COLLATE"), 
+            LC_CTYPE = Sys.getlocale(category = "LC_CTYPE"), 
+            LC_locale_NUMERIC = Sys.getlocale(category = "LC_NUMERIC"), 
+            LC_locale_TIME = Sys.getlocale(category = "LC_TIME")
+        ), 
+        l10n_info = list(
+            localization_UTF8 = l10n_info()$`UTF-8`,
+            localization_Latin1 = l10n_info()$`Latin-1`,  
+            localization_codeset = l10n_info()$codeset,
+            localization_codepage = l10n_info()$codepage,
+            localization_system.codepage = l10n_info()$system.codepage
+        )
+    )
+}
+env.custom$info$info_system_info = env.custom$info$get_system_info()
+str(env.custom$info$info_system_info)
+```
+
+
+
+@ASROCKX300RYZEN
+List of 9
+ $ GUI             : chr "RStudio"
+ $ os_type         : chr "windows"
+ $ os_sysname      : chr "Windows"
+ $ os_version      : chr "build 22621"
+ $ machine_type    : chr "x86-64"
+ $ machine_nodename: chr "ASROCKX300RYZEN"
+ $ machine_cpu     : chr "AMD Ryzen 5 5600G with Radeon Graphics"
+ $ Sys.getlocale   :List of 4
+  ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
+  ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
+  ..$ LC_locale_NUMERIC: chr "C"
+  ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
+ $ l10n_info       :List of 5
+  ..$ localization_UTF8           : logi TRUE
+  ..$ localization_Latin1         : logi FALSE
+  ..$ localization_codeset        : NULL
+  ..$ localization_codepage       : int 65001
+  ..$ localization_system.codepage: int 65001
+  
+  
+@LIVAI7-8700
+List of 9
+ $ GUI             : chr "RStudio"
+ $ os_type         : chr "windows"
+ $ os_sysname      : chr "Windows"
+ $ os_version      : chr "build 19045"
+ $ machine_type    : chr "x86-64"
+ $ machine_nodename: chr "LIVAI7-8700"
+ $ machine_cpu     : chr "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz"
+ $ Sys.getlocale   :List of 4
+  ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
+  ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
+  ..$ LC_locale_NUMERIC: chr "C"
+  ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
+ $ l10n_info       :List of 5
+  ..$ localization_UTF8           : logi TRUE
+  ..$ localization_Latin1         : logi FALSE
+  ..$ localization_codeset        : NULL
+  ..$ localization_codepage       : int 65001
+  ..$ localization_system.codepage: int 65001
+
+
+@Posit Cloud
+List of 9
+ $ GUI             : chr "RStudio"
+ $ os_type         : chr "unix"
+ $ os_sysname      : chr "Linux"
+ $ os_version      : chr "#96~18.04.1-Ubuntu SMP Mon Oct 17 02:57:48 UTC 2022"
+ $ machine_type    : chr "x86_64"
+ $ machine_nodename: chr "application-9677950-deployment-19172365-82455"
+ $ machine_cpu     : chr "AMD EPYC 7R13 Processor"
+ $ Sys.getlocale   :List of 4
+  ..$ LC_COLLATE       : chr "C.UTF-8"
+  ..$ LC_CTYPE         : chr "C.UTF-8"
+  ..$ LC_locale_NUMERIC: chr "C"
+  ..$ LC_locale_TIME   : chr "C.UTF-8"
+ $ l10n_info       :List of 5
+  ..$ localization_UTF8           : logi TRUE
+  ..$ localization_Latin1         : logi FALSE
+  ..$ localization_codeset        : chr "UTF-8"
+  ..$ localization_codepage       : NULL
+  ..$ localization_system.codepage: NULL
+  
+
+% env.custom$info$info_software_versions ====
+```{r, paged.print=FALSE}
+library(purrr)
+
+env.custom$info$get_software_versions <- function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
+  version_list <- list(OS.type = .Platform$OS.type, R.version = R.version$version.string)
+  version_list$RStudio_version <- ifelse(!is.null(.Platform$GUI) && .Platform$GUI == "RStudio" && exists("RStudio.Version"), RStudio.Version()$version, NA)
+  version_list$library_versions <- setNames(map(library_names, function(lib) {
+    if (!requireNamespace(lib, quietly = TRUE)) return(paste(lib, "not installed"))
+    (packageVersion(lib))
+  }), library_names)
+  return(version_list)
+}
+env.custom$info$info_software_versions = env.custom$info$get_software_versions(
+    library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr",
+                      "datapasta")
+)
+str(env.custom$info$info_software_versions)
+# dput(env.custom$info$info_software_versions)
+
+```
+
+
+################################################
+##% env.custom$path
+% env.custom$path$data_suffix ====
+% env.custom$path$project_suffix ====
+```{r, paged.print=FALSE}
+library(tidyverse); cat("\r\n"); 
+cat("\r\n"); cat("getwd() == "); dput(getwd()) #----
+env.custom$path$getwd = getwd()
+# env.custom$path$path0 = file.path("D:", "OneDrive - SNU", "[][Rproject]")
+# env.custom$path$project_base = "Rproject_HEALS0215"
+# env.custom$path$data_suffix = "_01"
+# # env.custom$path$data_suffix = ""
+# env.custom$path$project_suffix = "GJ3"
+# 
+# 
+# env.custom$path$path1 = file.path(env.custom$path$path0, paste0(env.custom$path$project_base, env.custom$path$data_suffix))
+# env.custom$path$path2 = file.path(env.custom$path$path1, paste0(env.custom$path$project_base, env.custom$path$data_suffix, env.custom$path$project_suffix))
+# 
+# path4read = env.custom$path$path1
+# # path4write = env.custom$path$path1
+# # path4write = env.custom$path$path2
+path4read = getwd()
+path4write = getwd()
+if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
+if (getwd() != path4write) warning("getwd() != path4write  == ") else cat("getwd() == path4write == "); dput(path4write)  #----
+```
+
+
+##% env.custom$fun.path_files_size() ====
+```{r, paged.print=FALSE}
+# tribble_paste = datapasta::tribble_paste
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/Rdev/env.custom.fun.t.tribble_construct.RData"))
+# attach(env.custom)
+
+# regex4filename = "\\.rds(\\.xz)?$"
+regex4filename = "\\.rds\\.xz$"
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+env.custom$fun.path_files_size(path4read = path4write, regex4filename = regex4filename)
+
+cat("----\n"); #----
+regex4filename = "\\.rds$"
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+env.custom$fun.path_files_size(path4read = path4write, regex4filename = regex4filename)
+```
+
+
+#@@ START) Baseline ------
+#$ objectname = "as1.na.Date.fct.select89" ====
+##@ assign(objectname, readRDS(file.path(path4read, filename2read))) 
+```{r, paged.print=FALSE}
+if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
+objectname = "as1.na.Date.fct.select89"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep = ""); 
+filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = filename2read)
+system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
+get(objectname) %>% dim
+get(objectname) %>% {.$PERSON_ID} %>% n_distinct
+get(objectname) %>% {.$RN_INDI} %>% n_distinct
+get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
+cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep = ""); str(get(objectname), max.level = 2, give.attr = F); 
+# get(objectname) %>% select_if(is.numeric) %>% summary #-----
+# get(objectname) %>% select_if(is.logical) %>% summary #-----
+```
+
+
+#@@ START) Outcome ------
+#$ objectname = "as1_7.na.Date.fct.cumulative_DM.list" ====
+##@ assign(objectname, readRDS(file.path(path4read, filename2read))) 
+```{r, paged.print=FALSE}
+if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
+objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep = ""); 
+filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
+env.custom$fun.path_files_size(path4read = path4read, regex4filename = filename2read)
+system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
+get(objectname) %>% dim
+get(objectname) %>% {.$PERSON_ID} %>% n_distinct
+get(objectname) %>% {.$RN_INDI} %>% n_distinct
+get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
+cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep = ""); str(get(objectname), max.level = 2, give.attr = F); 
+# get(objectname) %>% select_if(is.numeric) %>% summary #-----
+# get(objectname) %>% select_if(is.logical) %>% summary #-----
+```
+
+
+
+##% as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
+```{r, paged.print=FALSE, fig.width=8, fig.height=6}
+as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
+```
+
+
+
+
+#$ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 -----
+```{r, paged.print=FALSE}
+# as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 =
+#     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
+#     transmute(Time2Event_NewDMv3 = case_when(
+#         NewDMv3_atWave1 == TRUE ~ 1,
+#         NewDMv3_atWave2 == TRUE ~ 2,
+#         NewDMv3_atWave3 == TRUE ~ 3,
+#         NewDMv3_atWave4 == TRUE ~ 4,
+#         NewDMv3_atWave5 == TRUE ~ 5,
+#         NewDMv3_atWave6 == TRUE ~ 6,
+#         NewDMv3_atWave7 == TRUE ~ 7,
+#         TRUE ~ NA_real_
+#     )) %>% 
+#     mutate(
+#         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
+#     )
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% str
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% summary
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% table(useNA = "always") %>% addmargins
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% str
+# tibble [10,030 × 2] (S3: tbl_df/tbl/data.frame)
+#  $ Time2Event_NewDMv3: num [1:10030] NA NA NA 1 NA NA NA NA 1 NA ...
+#  $ Event_NewDMv3     : logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% summary
+#  Time2Event_NewDMv3 Event_NewDMv3  
+#  Min.   :1.000      Mode :logical  
+#  1st Qu.:1.000      FALSE:7946     
+#  Median :1.000      TRUE :2084     
+#  Mean   :2.517                     
+#  3rd Qu.:4.000                     
+#  Max.   :7.000                     
+#  NA's   :7946                      
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% table(useNA = "always") %>% addmargins
+#                   Event_NewDMv3
+# Time2Event_NewDMv3 FALSE  TRUE  <NA>   Sum
+#               1        0  1185     0  1185
+#               2        0   138     0   138
+#               3        0   154     0   154
+#               4        0   136     0   136
+#               5        0   186     0   186
+#               6        0   146     0   146
+#               7        0   139     0   139
+#               <NA>  7946     0     0  7946
+#               Sum   7946  2084     0 10030
+```
+
+
+#$ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
+```{r, paged.print=FALSE}
+# as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 =
+#     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
+#     transmute(Time2Event_NewDMv3 = case_when(
+#         NewDMv3_atWave1 == TRUE ~ 1,
+#         NewDMv3_atWave2 == TRUE ~ 2,
+#         NewDMv3_atWave3 == TRUE ~ 3,
+#         NewDMv3_atWave4 == TRUE ~ 4,
+#         NewDMv3_atWave5 == TRUE ~ 5,
+#         NewDMv3_atWave6 == TRUE ~ 6,
+#         NewDMv3_atWave7 == TRUE ~ 7,
+#         TRUE ~ NA_real_
+#     )) %>% 
+#     transmute(
+#         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
+#         , Time2Censor_NewDMv3 = replace_na(Time2Event_NewDMv3, 7)
+#     )
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% str
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% summary
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% table(useNA = "always") %>% addmargins
+```
+
+
+#$ df_NewDMv3.NAtime =====
+```{r, paged.print=FALSE, fig.width=8, fig.height=6}
+df_NewDMv3.NAtime = as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% 
+    rename(event = Event_NewDMv3, time = Time2Event_NewDMv3) %>% 
+    mutate(StudyPopulation = !event | time > 1) %>% 
+    mutate(Group = StudyPopulation %>% as.integer) %>% 
+    as.tibble
+df_NewDMv3.NAtime
+df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# > df_NewDMv3.NAtime
+# # A tibble: 10,030 × 4
+#     time event StudyPopulation Group
+#    <dbl> <lgl> <lgl>           <int>
+#  1    NA FALSE TRUE                1
+#  2    NA FALSE TRUE                1
+#  3    NA FALSE TRUE                1
+#  4     1 TRUE  FALSE               0
+#  5    NA FALSE TRUE                1
+#  6    NA FALSE TRUE                1
+#  7    NA FALSE TRUE                1
+#  8    NA FALSE TRUE                1
+#  9     1 TRUE  FALSE               0
+# 10    NA FALSE TRUE                1
+# # ℹ 10,020 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+# > df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# .$StudyPopulation: FALSE
+#       time    event             Group   StudyPopulation
+#  Min.   :1   Mode:logical   Min.   :0   Mode :logical  
+#  1st Qu.:1   TRUE:1185      1st Qu.:0   FALSE:1185     
+#  Median :1                  Median :0                  
+#  Mean   :1                  Mean   :0                  
+#  3rd Qu.:1                  3rd Qu.:0                  
+#  Max.   :1                  Max.   :0                  
+# --------------------------------------------------------------------------------------------------------- 
+# .$StudyPopulation: TRUE
+#       time         event             Group   StudyPopulation
+#  Min.   :2.000   Mode :logical   Min.   :1   Mode:logical   
+#  1st Qu.:3.000   FALSE:7946      1st Qu.:1   TRUE:8845      
+#  Median :5.000   TRUE :899       Median :1                  
+#  Mean   :4.517                   Mean   :1                  
+#  3rd Qu.:6.000                   3rd Qu.:1                  
+#  Max.   :7.000                   Max.   :1                  
+#  NA's   :7946                                                                              
+```
+
+
+#$ df_NewDMv3.CensorEND 
+# [Plot] Stratified Kaplan-Meier Survival Curve
+```{r, paged.print=FALSE, fig.width=8, fig.height=6}
+library(tidyverse)
+# library(survival)
+# library(survminer)
+
+?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# df_NewDMv3.NAtime.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
+# df_NewDMv3.NAtime.survfit %>% ggsurvplot(fun = "event")
+# df_NewDMv3.NAtime.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+value_for_Censor_at_END = 7
+value_for_break.time.by = 1
+time_scale = "wave"
+varname4Group = "Group"
+df_NewDMv3.CensorEND = df_NewDMv3.NAtime %>% 
+    mutate(
+        time = time %>% replace_na(Inf)
+        # , event = event %>% replace_na(F)
+    ) %>% 
+    # mutate(event.CensorEND = ifelse(time <= value_for_Censor_at_END, event, F)) %>% 
+    # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) %>% 
+    mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) %>% 
+    mutate(time = pmin(time, value_for_Censor_at_END)) %>% 
+    as.tibble
+survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_NewDMv3.CensorEND %>% filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
+           , break.time.by = value_for_break.time.by
+           , conf.int = TRUE, risk.table = TRUE, pval = TRUE
+           , xlim = c(1, value_for_Censor_at_END), ylim = c(0, 1)
+           , title = paste0("Survival Curves Stratified by ", varname4Group)
+           , xlab = paste0("Time scale: ", time_scale), ylab = "Survival Probability")
+
+```
+
+
+#! Double-Check the event & time
+#$ df_NewDMv3.Time2Censor_NewDMv3 ====
+```{r, paged.print=FALSE}
+df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% 
+    rename(event = Event_NewDMv3, time = Time2Censor_NewDMv3) %>% 
+    mutate(StudyPopulation = !event | time > 1) %>% 
+    mutate(Group = StudyPopulation %>% as.integer) %>% 
+    as.tibble
+df_NewDMv3.Time2Censor_NewDMv3
+df_NewDMv3.Time2Censor_NewDMv3 %>% str
+df_NewDMv3.Time2Censor_NewDMv3 %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+df_NewDMv3.CensorEND %>% str
+df_NewDMv3.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+all.equal(df_NewDMv3.Time2Censor_NewDMv3 %>% select(time, event), df_NewDMv3.CensorEND %>% select(time, event))
+table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = "always") %>% addmargins
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+```{r, paged.print=FALSE}
+
+```
+
+
+# [Plot] Stratified Kaplan-Meier Survival Curve
+```{r, paged.print=FALSE, fig.width=8, fig.height=6}
+# library(tidyverse)
+# # library(survival)
+# # library(survminer)
+# ?survival::lung
+# df_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% as.tibble
+# # df_time2event %>% select(sex, Group) %>% str
+# # df_time2event %>% select(sex, Group) %>% table
+# # # > df_time2event %>% select(sex, Group) %>% str
+# # # 'data.frame':	228 obs. of  2 variables:
+# # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
+# # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
+# # # > df_time2event %>% select(sex, Group) %>% table
+# # #    Group
+# # # sex Female Male
+# # #   1      0  138
+# # #   2     90    0
+# df_time2event %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # > df_time2event %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # .$StudyPopulation: FALSE
+# #       time     event            Group   StudyPopulation
+# #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
+# #  1st Qu.:11   TRUE:9         Male  :8   FALSE:9        
+# #  Median :12                                            
+# #  Mean   :13                                            
+# #  3rd Qu.:13                                            
+# #  Max.   :26                                            
+# # ---------------------------------------------------------------------------------------------------------------------------------------------- 
+# # .$StudyPopulation: TRUE
+# #       time          event            Group     StudyPopulation
+# #  Min.   :  30.0   Mode :logical   Female: 89   Mode:logical   
+# #  1st Qu.: 176.5   FALSE:63        Male  :130   TRUE:219       
+# #  Median : 269.0   TRUE :156                                   
+# #  Mean   : 317.2                                               
+# #  3rd Qu.: 419.5                                               
+# #  Max.   :1022.0   
+# 
+# ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# # df_time2event.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
+# # df_time2event.survfit %>% ggsurvplot(fun = "event")
+# # df_time2event.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# value_for_Censor_at_END = 365 * 1
+# value_for_break.time.by = 30
+# time_scale = "days"
+# varname4Group = "Group"
+# df_time2event.CensorEND = df_time2event %>%
+#     mutate(
+#         time = time %>% replace_na(Inf)
+#         # , event = event %>% replace_na(F)
+#     ) %>%
+#     # mutate(event.CensorEND = ifelse(time <= value_for_Censor_at_END, event, F)) %>%
+#     # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) %>%
+#     mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) %>%
+#     mutate(time = pmin(time, value_for_Censor_at_END)) %>%
+#     as.tibble
+# df_time2event.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # > df_time2event.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # .$StudyPopulation: FALSE
+# #       time     event            Group   StudyPopulation
+# #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
+# #  1st Qu.:11   TRUE:9         Male  :8   FALSE:9        
+# #  Median :12                                            
+# #  Mean   :13                                            
+# #  3rd Qu.:13                                            
+# #  Max.   :26                                            
+# # ---------------------------------------------------------------------------------------------------------------------------------------------- 
+# # .$StudyPopulation: TRUE
+# #       time         event            Group     StudyPopulation
+# #  Min.   : 30.0   Mode :logical   Female: 89   Mode:logical   
+# #  1st Qu.:176.5   FALSE:107       Male  :130   TRUE:219       
+# #  Median :269.0   TRUE :112                                   
+# #  Mean   :253.6                                               
+# #  3rd Qu.:365.0                                               
+# #  Max.   :365.0                                               
+# survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_time2event.CensorEND %>% filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
+#            , break.time.by = value_for_break.time.by
+#            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
+#            , xlim = c(0, value_for_Censor_at_END), ylim = c(0, 1)
+#            , title = paste0("Survival Curves Stratified by ", varname4Group)
+#            , xlab = paste0("Time in ", time_scale), ylab = "Survival Probability")
+
+```
+
+
+#@@ END -----
+```{r, paged.print=FALSE}
+#@@ END -----
+```
+
+#$ objectname = "df_NewDMv3.NAtime200621" ====
+##@ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+```{r, paged.print=FALSE}
+# #@ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+# objectname = "df_NewDMv3.NAtime200621"
+# system.time(write_rds( get(objectname),paste0(objectname, ".rds")))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")), compress = "gz" ))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
+# # openxlsx::openXL(paste0(objectname, ".xlsx"))
+```
+
+
