@@ -1,5 +1,49 @@
 # plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP from .r
 
+# [Plot] Stratified Kaplan-Meier Survival Curve ---------
+# ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
+library(tidyverse)
+# library(survival)
+# library(survminer)
+?survival::lung 
+AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
+# AnalyticDataset %>% select(sex, Group) %>% str
+# AnalyticDataset %>% select(sex, Group) %>% table
+# # > AnalyticDataset %>% select(sex, Group) %>% str
+# # 'data.frame':	228 obs. of  2 variables:
+# #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
+# #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
+# # > AnalyticDataset %>% select(sex, Group) %>% table
+# #    Group
+# # sex Female Male
+# #   1      0  138
+# #   2     90    0
+AnalyticDataset %>% select(time, event, Group) %>% summary
+
+?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
+# AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
+# AnalyticDataset.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+value_for_censor_at_1yr = 365 * 1
+value_for_break.time.by = 30
+time_scale = "days"
+varname4Group = "Group"
+AnalyticDataset.censor1yr = AnalyticDataset %>% mutate(
+    # time.censor1yr = pmin(time, value_for_censor_at_1yr)
+    # , event.censor1yr = ifelse(time < value_for_censor_at_1yr, event, 0)
+    time = pmin(time, value_for_censor_at_1yr)
+    , event = ifelse(time < value_for_censor_at_1yr, event, F)
+)
+survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = AnalyticDataset.censor1yr), palette = c("#00AFBB", "#FC4E07")
+           , break.time.by = value_for_break.time.by
+           , conf.int = TRUE, risk.table = TRUE, pval = TRUE
+           , title = paste0("Survival Curves Stratified by ", varname4Group)
+           , xlab = paste0("Time in ", time_scale), ylab = "Survival Probability")
+
+
+
+
+#--------------
 library(tidyverse)
 
 library(readxl)
