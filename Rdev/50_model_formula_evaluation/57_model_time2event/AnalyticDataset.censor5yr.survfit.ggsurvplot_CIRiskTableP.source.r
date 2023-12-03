@@ -102,6 +102,7 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
 
 # value_for_censor_at_5yr = 365 * 5
 value_for_censor_at_5yr = 5
+value_for_break.time.by = 1
 AnalyticDataset.censor5yr = AnalyticDataset %>% mutate(
     time.censor5yr = pmin(time, value_for_censor_at_5yr)
     , event.censor5yr = ifelse(time < value_for_censor_at_5yr, event, 0)
@@ -116,11 +117,11 @@ AnalyticDataset.censor5yr.survfit %>% ggsurvplot  # default fun = "pct"?
 ggsave("plot_surv200401.censor5yr.survfit.ggsurvplot.pdf", width = 8, height = 6)
 pdf("plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
 # AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 png("plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
 # AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 
 
@@ -130,6 +131,7 @@ dev.off()
 
 # value_for_censor_at_10yr = 365 * 10
 value_for_censor_at_10yr = 10
+value_for_break.time.by = 1
 AnalyticDataset.censor10yr = AnalyticDataset %>% mutate(
     time.censor10yr = pmin(time, value_for_censor_at_10yr)
     , event.censor10yr = ifelse(time < value_for_censor_at_10yr, event, 0)
@@ -144,11 +146,11 @@ AnalyticDataset.censor10yr.survfit %>% ggsurvplot  # default fun = "pct"?
 ggsave("plot_surv200401.censor10yr.survfit.ggsurvplot.pdf", width = 8, height = 6)
 pdf("plot_surv200401.censor10yr.survfit.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
 # AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 png("plot_surv200401.censor10yr.survfit.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
 # AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 
 
@@ -272,11 +274,11 @@ AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot  # default fun
 ggsave("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot.pdf", width = 8, height = 6)
 pdf("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
 # AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 png("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
 # AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 
 
@@ -300,11 +302,11 @@ AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot  # default fu
 ggsave("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot.pdf", width = 8, height = 6)
 pdf("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
 # AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 png("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
 # AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
-AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = 1)
+AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
 
 
