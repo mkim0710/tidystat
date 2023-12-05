@@ -76,6 +76,7 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F) {
     if (is.character(vec)) {vec.as_character.as_factor = as.factor(vec)}
     if (is.logical(vec)) {vec.as_character.as_factor = vec}
     if (is.factor(vec)) {vec.as_character.as_factor = vec}
+    if (is.Date(vec)) {return(vec)}
     
     if (!is.null(levels(vec.as_character.as_factor))) {
         if (length(levels(vec.as_character.as_factor)) == 1) {
@@ -118,10 +119,10 @@ c("F", "T", "F") %>% function.dichotomous2logical %>% str %>% try
 c("F", "T", "F") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 c("No", "Yes", "No") %>% function.dichotomous2logical %>% str %>% try
 c("No", "Yes", "No") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-c("No", "Yes", "NA") %>% function.dichotomous2logical %>% str %>% try
-c("No", "Yes", "NA") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 factor(c("no", "yes", "no")) %>% function.dichotomous2logical %>% str %>% try
 factor(c("no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical %>% str %>% try
+factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 c(1, 2, 3) %>% function.dichotomous2logical %>% str %>% try
 c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 c(1, 1, 1) %>% function.dichotomous2logical %>% str %>% try
@@ -155,14 +156,6 @@ c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% funct
 # 경고: No is coded to 0 & Yes is coded to 1
 #  int [1:3] 0 1 0
 #  - attr(*, "function.dichotomous2logical")= chr "No is coded to 0 & Yes is coded to 1"
-# > c("No", "Yes", "NA") %>% function.dichotomous2logical %>% str %>% try
-# 경고: length(levels(vec.as_character.as_factor)) > 2
-#  chr [1:3] "No" "Yes" "NA"
-#  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
-# > c("No", "Yes", "NA") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-# 경고: length(levels(vec.as_character.as_factor)) > 2
-#  chr [1:3] "No" "Yes" "NA"
-#  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
 # > factor(c("no", "yes", "no")) %>% function.dichotomous2logical %>% str %>% try
 # 경고: no is coded to FALSE & yes is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
@@ -171,6 +164,14 @@ c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% funct
 # 경고: no is coded to 0 & yes is coded to 1
 #  int [1:3] 0 1 0
 #  - attr(*, "function.dichotomous2logical")= chr "no is coded to 0 & yes is coded to 1"
+# > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical %>% str %>% try
+# 경고: length(levels(vec.as_character.as_factor)) > 2
+#  Factor w/ 3 levels "NA","No","Yes": 2 3 1
+#  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
+# > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# 경고: length(levels(vec.as_character.as_factor)) > 2
+#  Factor w/ 3 levels "NA","No","Yes": 2 3 1
+#  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
 # > c(1, 2, 3) %>% function.dichotomous2logical %>% str %>% try
 # 경고: length(levels(vec.as_character.as_factor)) > 2
 #  num [1:3] 1 2 3
@@ -187,6 +188,8 @@ c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% funct
 # 경고: length(unique(vec.as_character.as_factor)) == 1 --> coded to 0
 #  int [1:3] 0 0 0
 #  - attr(*, "function.dichotomous2logical")= chr "length(unique(vec.as_character.as_factor)) == 1 --> coded to 0"
+# > c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% function.dichotomous2logical %>% str %>% try
+#  Date[1:3], format: "2024-01-01" "2024-01-02" "2024-01-03"
 
 
 
