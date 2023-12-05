@@ -93,6 +93,25 @@ function.dichotomous2logical = function(x, dichotomous2integer = F) {
 }
 
 
+c(F, T, F) %>% is.numeric
+c(F, T, F) %>% is.character
+c(F, T, F) %>% is.factor
+factor(c("no", "yes", "no")) %>% str
+factor(c("no", "yes", "no")) %>% is.numeric
+factor(c("no", "yes", "no")) %>% is.character
+# > c(F, T, F) %>% is.numeric
+# [1] FALSE
+# > c(F, T, F) %>% is.character
+# [1] FALSE
+# > c(F, T, F) %>% is.factor
+# [1] FALSE
+# > factor(c("no", "yes", "no")) %>% str
+#  Factor w/ 2 levels "no","yes": 1 2 1
+# > factor(c("no", "yes", "no")) %>% is.numeric
+# [1] FALSE
+# > factor(c("no", "yes", "no")) %>% is.character
+# [1] FALSE
+
 c(1, 2, 1) %>% function.dichotomous2logical %>% str %>% try
 c(1, 2, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 c(F, T, F) %>% function.dichotomous2logical %>% str %>% try
