@@ -25,6 +25,7 @@ function.df_factor.one_hot_encode <- function(input_df, sep4levelname = "_") {
             attributes(output_df)[[i]] = input_df.attributes[[i]]
         }
     }
+    if(identical(attributes(output_df)$row.names, 1:nrow(output_df))) rownames(output_df) = rownames(input_df)
     return(output_df)
 }
 
@@ -34,9 +35,35 @@ df_example <- tibble(
     size = as.factor(c("small", "large", "medium", "small"))
 )
 attributes(df_example)$test = "test"
+rownames(df_example) = LETTERS[1:nrow(df_example)]
+df_example %>% attributes %>% str
 input_df_factor.model.matrix_example <- function.df_factor.one_hot_encode(df_example)
-input_df_factor.model.matrix_example %>% str
 input_df_factor.model.matrix_example %>% attributes %>% str
+input_df_factor.model.matrix_example %>% str
+# > df_example <- tibble(
+# +     id = 1:4,
+# +     color = as.factor(c("red", "blue", "green", "red")),
+# +     size = as.factor(c("small", "large", "medium", "small"))
+# + )
+# > attributes(df_example)$test = "test"
+# > rownames(df_example) = LETTERS[1:nrow(df_example)]
+# 경고: Setting row names on a tibble is deprecated.
+# > df_example %>% attributes %>% str
+# List of 4
+#  $ class    : chr [1:3] "tbl_df" "tbl" "data.frame"
+#  $ row.names: chr [1:4] "A" "B" "C" "D"
+#  $ names    : chr [1:3] "id" "color" "size"
+#  $ test     : chr "test"
+# > input_df_factor.model.matrix_example <- function.df_factor.one_hot_encode(df_example)
+# 경고: Setting row names on a tibble is deprecated.
+# > input_df_factor.model.matrix_example %>% attributes %>% str
+# List of 6
+#  $ names                                : chr [1:6] "id" "color_blue" "color_green" "color_red" ...
+#  $ row.names                            : chr [1:4] "A" "B" "C" "D"
+#  $ class                                : chr [1:3] "tbl_df" "tbl" "data.frame"
+#  $ test                                 : chr "test"
+#  $ input_df_factor.colnames             : chr [1:2] "color" "size"
+#  $ input_df_factor.model.matrix.colnames: chr [1:5] "color_blue" "color_green" "color_red" "size_medium" ...
 # > input_df_factor.model.matrix_example %>% str
 # tibble [4 × 6] (S3: tbl_df/tbl/data.frame)
 #  $ id         : int [1:4] 1 2 3 4
@@ -68,14 +95,6 @@ input_df_factor.model.matrix_example %>% attributes %>% str
 #  - attr(*, "test")= chr "test"
 #  - attr(*, "input_df_factor.colnames")= chr [1:2] "color" "size"
 #  - attr(*, "input_df_factor.model.matrix.colnames")= chr [1:5] "color_blue" "color_green" "color_red" "size_medium" ...
-# > input_df_factor.model.matrix_example %>% attributes %>% str
-# List of 6
-#  $ names                                : chr [1:6] "id" "color_blue" "color_green" "color_red" ...
-#  $ row.names                            : int [1:4] 1 2 3 4
-#  $ class                                : chr [1:3] "tbl_df" "tbl" "data.frame"
-#  $ test                                 : chr "test"
-#  $ input_df_factor.colnames             : chr [1:2] "color" "size"
-#  $ input_df_factor.model.matrix.colnames: chr [1:5] "color_blue" "color_green" "color_red" "size_medium" ...
 
 
 
