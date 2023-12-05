@@ -1,22 +1,68 @@
 
-c(F, T, F) %>% is.numeric
-c(F, T, F) %>% is.character
-c(F, T, F) %>% is.factor
-factor(c("no", "yes", "no")) %>% str
-factor(c("no", "yes", "no")) %>% is.numeric
-factor(c("no", "yes", "no")) %>% is.character
-# > c(F, T, F) %>% is.numeric
-# [1] FALSE
-# > c(F, T, F) %>% is.character
-# [1] FALSE
-# > c(F, T, F) %>% is.factor
-# [1] FALSE
-# > factor(c("no", "yes", "no")) %>% str
+# http://adv-r.had.co.nz/Data-structures.html
+# https://adv-r.hadley.nz/vectors-chap.html
+list(
+    1:3,
+    c(1, 2, 1), 
+    c(F, T, F), 
+    c("F", "T", "F"), 
+    factor(c("no", "yes", "no")),
+    c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
+    ) %>% dput
+# > list(
+# +     1:3,
+# +     c(1, 2, 1), 
+# +     c(F, T, F), 
+# +     c("F", "T", "F"), 
+# +     factor(c("no", "yes", "no")),
+# +     c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
+# +     ) %>% dput
+# list(1:3, c(1, 2, 1), c(FALSE, TRUE, FALSE), c("F", "T", "F"), 
+#     structure(c(1L, 2L, 1L), levels = c("no", "yes"), class = "factor"), 
+#     structure(c(19723, 19724, 19725), class = "Date"))
+
+list(
+    1:3,
+    c(1, 2, 1), 
+    c(F, T, F), 
+    c("F", "T", "F"), 
+    factor(c("no", "yes", "no")),
+    c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
+    )  %>% {tibble(value = .)} %>% mutate(class = value %>% map_chr(class), typeof = value %>% map_chr(typeof), is.logical = value %>% map_lgl(is.logical), is.numeric = value %>% map_lgl(is.numeric), is.character = value %>% map_lgl(is.character), is.factor = value %>% map_lgl(is.factor), is.Date = value %>% map_lgl(is.Date), is.integer = value %>% map_lgl(is.integer), is.double = value %>% map_lgl(is.double), is.atomic = value %>% map_lgl(is.atomic))
+# > list(
+# +     1:3,
+# +     c(1, 2, 1), 
+# +     c(F, T, F), 
+# +     c("F", "T", "F"), 
+# +     factor(c("no", "yes", "no")),
+# +     c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
+# +     )  %>% {tibble(value = .)} %>% mutate(class = value %>% map_chr(class), typeof = value %>% map_chr(typeof), is.logical = value %>% map_lgl(is.logical), is.numeric = value %>% map_lgl(is.numeric), is.character = value %>% map_lgl(is.character), is.factor = value %>% map_lgl(is.factor), is.Date = value %>% map_lgl(is.Date), is.integer = value %>% map_lgl(is.integer), is.double = value %>% map_lgl(is.double), is.atomic = value %>% map_lgl(is.atomic))
+# # A tibble: 6 × 11
+#   value      class     typeof    is.logical is.numeric is.character is.factor is.Date is.integer is.double is.atomic
+#   <list>     <chr>     <chr>     <lgl>      <lgl>      <lgl>        <lgl>     <lgl>   <lgl>      <lgl>     <lgl>    
+# 1 <int [3]>  integer   integer   FALSE      TRUE       FALSE        FALSE     FALSE   TRUE       FALSE     TRUE     
+# 2 <dbl [3]>  numeric   double    FALSE      TRUE       FALSE        FALSE     FALSE   FALSE      TRUE      TRUE     
+# 3 <lgl [3]>  logical   logical   TRUE       FALSE      FALSE        FALSE     FALSE   FALSE      FALSE     TRUE     
+# 4 <chr [3]>  character character FALSE      FALSE      TRUE         FALSE     FALSE   FALSE      FALSE     TRUE     
+# 5 <fct [3]>  factor    integer   FALSE      FALSE      FALSE        TRUE      FALSE   FALSE      FALSE     TRUE     
+# 6 <date [3]> Date      double    FALSE      FALSE      FALSE        FALSE     TRUE    FALSE      TRUE      TRUE 
+
+factor(c("no", "yes")) %>% {data.frame(value = .)} %>% mutate(class = class(value), typeof = typeof(value), is.logical = is.logical(value), is.numeric = is.numeric(value), is.character = is.character(value), is.factor = is.factor(value), is.Date = is.Date(value), is.integer = is.integer(value), is.double = is.double(value)) 
+as.Date("2024-01-01") %>% {data.frame(value = .)} %>% mutate(class = class(value), typeof = typeof(value), is.logical = is.logical(value), is.numeric = is.numeric(value), is.character = is.character(value), is.factor = is.factor(value), is.Date = is.Date(value), is.integer = is.integer(value), is.double = is.double(value)) 
+# > factor(c("no", "yes")) %>% {data.frame(value = .)} %>% mutate(class = class(value), typeof = typeof(value), is.logical = is.logical(value), is.numeric = is.numeric(value), is.character = is.character(value), is.factor = is.factor(value), is.Date = is.Date(value), is.integer = is.integer(value), is.double = is.double(value)) 
+#   value  class  typeof is.logical is.numeric is.character is.factor is.Date is.integer is.double
+# 1    no factor integer      FALSE      FALSE        FALSE      TRUE   FALSE      FALSE     FALSE
+# 2   yes factor integer      FALSE      FALSE        FALSE      TRUE   FALSE      FALSE     FALSE
+# > as.Date("2024-01-01") %>% {data.frame(value = .)} %>% mutate(class = class(value), typeof = typeof(value), is.logical = is.logical(value), is.numeric = is.numeric(value), is.character = is.character(value), is.factor = is.factor(value), is.Date = is.Date(value), is.integer = is.integer(value), is.double = is.double(value)) 
+#        value class typeof is.logical is.numeric is.character is.factor is.Date is.integer is.double
+# 1 2024-01-01  Date double      FALSE      FALSE        FALSE     FALSE    TRUE      FALSE      TRUE
+
+factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep = ""); str(.)}
+# > factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep = ""); str(.)}
+# class:factor|typeof:integer|is.logical:FALSE|is.numeric:FALSE|is.character:FALSE|is.factor:TRUE|is.Date:FALSE
 #  Factor w/ 2 levels "no","yes": 1 2 1
-# > factor(c("no", "yes", "no")) %>% is.numeric
-# [1] FALSE
-# > factor(c("no", "yes", "no")) %>% is.character
-# [1] FALSE
+
+
 
 
 function.dichotomous2logical = function(vec, dichotomous2integer = F) {
@@ -80,6 +126,7 @@ c(1, 2, 3) %>% function.dichotomous2logical %>% str %>% try
 c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 c(1, 1, 1) %>% function.dichotomous2logical %>% str %>% try
 c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% function.dichotomous2logical %>% str %>% try
 # > c(1, 2, 1) %>% function.dichotomous2logical %>% str %>% try
 # 경고: 1 is coded to FALSE & 2 is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
