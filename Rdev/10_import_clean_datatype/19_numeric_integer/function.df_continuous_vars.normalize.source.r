@@ -9,8 +9,6 @@ function.df_continuous_vars.normalize <- function(input_df) {
                   ~ scale(.) %>% as.vector))
 }
 
-
-# Creating a sample dataframe with various types of columns
 example_df <- tibble(
   id = as.integer(1:10),
   age = as.integer(c(30, 25, 22, 35, 28, 27, 29, 30, 31, 33)),
@@ -22,17 +20,11 @@ example_df <- tibble(
   binary_numeric = c(1, 2, 1, 2, 1, 2, 1, 2, 1, 2), # Numeric column with values 1 & 2
   date = seq(ymd('2020-01-01'), by = "month", length.out = 10) # Date column
 )
-
-# Displaying the dataframe
-print(example_df)
-
-# Applying the function to the example dataframe
 normalized_df <- function.df_continuous_vars.normalize(example_df)
-
-# Displaying the first few rows of the original and normalized dataframes for comparison
-print("Original Data:")
-example_df %>% as.tibble
+# example_df %>% as.tibble
 example_df %>% summary
+# normalized_df %>% as.tibble
+normalized_df %>% summary
 # > example_df %>% as.tibble
 # # A tibble: 10 × 9
 #       id   age height gender logical factor_level2 factor_strings binary_numeric date      
@@ -56,10 +48,6 @@ example_df %>% summary
 #  3rd Qu.: 7.75   3rd Qu.:30.75   3rd Qu.:176.5                                                    Elderberry:1      3rd Qu.:2.0    3rd Qu.:2020-07-24  
 #  Max.   :10.00   Max.   :35.00   Max.   :182.0                                                    Fig       :1      Max.   :2.0    Max.   :2020-10-01  
 #                                                                                                   (Other)   :4                                         
-
-print("Normalized Data:")
-normalized_df %>% as.tibble
-normalized_df %>% summary
 # > normalized_df %>% as.tibble
 # # A tibble: 10 × 9
 #        id    age  height gender logical factor_level2 factor_strings binary_numeric date      
