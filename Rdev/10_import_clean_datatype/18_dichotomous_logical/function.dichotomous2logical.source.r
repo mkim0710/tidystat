@@ -62,16 +62,29 @@ factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "
 # class:factor|typeof:integer|is.logical:FALSE|is.numeric:FALSE|is.character:FALSE|is.factor:TRUE|is.Date:FALSE
 #  Factor w/ 2 levels "no","yes": 1 2 1
 
+attributes(factor(c("no", "yes", "no")))
+# > attributes(factor(c("no", "yes", "no")))
+# $levels
+# [1] "no"  "yes"
+# 
+# $class
+# [1] "factor"
 
 
 
+
+
+
+
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.source.r
 function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warning = T) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.source.r")
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     text4warning = ""
     coding0 = ifelse(dichotomous2integer == T, 0, "FALSE")
     coding1 = ifelse(dichotomous2integer == T, 1, "TRUE")
     vec.attributes = attributes(vec)
+    vec.attributes$class = NULL
+    vec.attributes$levels = NULL
     
     if (is.Date(vec)) {return(vec)}
     if (is.logical(vec)) {
