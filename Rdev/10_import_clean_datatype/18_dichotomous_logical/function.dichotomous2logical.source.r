@@ -28,7 +28,7 @@ list(
     c("F", "T", "F"), 
     factor(c("no", "yes", "no")),
     c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
-    )  %>% {tibble(value = .)} %>% mutate(class = value %>% map_chr(class), typeof = value %>% map_chr(typeof), is.logical = value %>% map_lgl(is.logical), is.numeric = value %>% map_lgl(is.numeric), is.character = value %>% map_lgl(is.character), is.factor = value %>% map_lgl(is.factor), is.Date = value %>% map_lgl(is.Date), is.integer = value %>% map_lgl(is.integer), is.double = value %>% map_lgl(is.double), is.atomic = value %>% map_lgl(is.atomic))
+    )  %>% {tibble(value = .)} %>% mutate(class = value %>% map_chr(class), typeof = value %>% map_chr(typeof), is.logical = value %>% map_lgl(is.logical), is.numeric = value %>% map_lgl(is.numeric), is.character = value %>% map_lgl(is.character), is.factor = value %>% map_lgl(is.factor), is.Date = value %>% map_lgl(is.Date), is.integer = value %>% map_lgl(is.integer), is.double = value %>% map_lgl(is.double), is.atomic = value %>% map_lgl(is.atomic), attributes = value %>% map(attributes))
 # > list(
 # +     1:3,
 # +     c(1, 2, 1), 
@@ -36,16 +36,16 @@ list(
 # +     c("F", "T", "F"), 
 # +     factor(c("no", "yes", "no")),
 # +     c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
-# +     )  %>% {tibble(value = .)} %>% mutate(class = value %>% map_chr(class), typeof = value %>% map_chr(typeof), is.logical = value %>% map_lgl(is.logical), is.numeric = value %>% map_lgl(is.numeric), is.character = value %>% map_lgl(is.character), is.factor = value %>% map_lgl(is.factor), is.Date = value %>% map_lgl(is.Date), is.integer = value %>% map_lgl(is.integer), is.double = value %>% map_lgl(is.double), is.atomic = value %>% map_lgl(is.atomic))
-# # A tibble: 6 × 11
-#   value      class     typeof    is.logical is.numeric is.character is.factor is.Date is.integer is.double is.atomic
-#   <list>     <chr>     <chr>     <lgl>      <lgl>      <lgl>        <lgl>     <lgl>   <lgl>      <lgl>     <lgl>    
-# 1 <int [3]>  integer   integer   FALSE      TRUE       FALSE        FALSE     FALSE   TRUE       FALSE     TRUE     
-# 2 <dbl [3]>  numeric   double    FALSE      TRUE       FALSE        FALSE     FALSE   FALSE      TRUE      TRUE     
-# 3 <lgl [3]>  logical   logical   TRUE       FALSE      FALSE        FALSE     FALSE   FALSE      FALSE     TRUE     
-# 4 <chr [3]>  character character FALSE      FALSE      TRUE         FALSE     FALSE   FALSE      FALSE     TRUE     
-# 5 <fct [3]>  factor    integer   FALSE      FALSE      FALSE        TRUE      FALSE   FALSE      FALSE     TRUE     
-# 6 <date [3]> Date      double    FALSE      FALSE      FALSE        FALSE     TRUE    FALSE      TRUE      TRUE 
+# +     )  %>% {tibble(value = .)} %>% mutate(class = value %>% map_chr(class), typeof = value %>% map_chr(typeof), is.logical = value %>% map_lgl(is.logical), is.numeric = value %>% map_lgl(is.numeric), is.character = value %>% map_lgl(is.character), is.factor = value %>% map_lgl(is.factor), is.Date = value %>% map_lgl(is.Date), is.integer = value %>% map_lgl(is.integer), is.double = value %>% map_lgl(is.double), is.atomic = value %>% map_lgl(is.atomic), attributes = value %>% map(attributes))
+# # A tibble: 6 × 12
+#   value      class     typeof    is.logical is.numeric is.character is.factor is.Date is.integer is.double is.atomic attributes      
+#   <list>     <chr>     <chr>     <lgl>      <lgl>      <lgl>        <lgl>     <lgl>   <lgl>      <lgl>     <lgl>     <list>          
+# 1 <int [3]>  integer   integer   FALSE      TRUE       FALSE        FALSE     FALSE   TRUE       FALSE     TRUE      <NULL>          
+# 2 <dbl [3]>  numeric   double    FALSE      TRUE       FALSE        FALSE     FALSE   FALSE      TRUE      TRUE      <NULL>          
+# 3 <lgl [3]>  logical   logical   TRUE       FALSE      FALSE        FALSE     FALSE   FALSE      FALSE     TRUE      <NULL>          
+# 4 <chr [3]>  character character FALSE      FALSE      TRUE         FALSE     FALSE   FALSE      FALSE     TRUE      <NULL>          
+# 5 <fct [3]>  factor    integer   FALSE      FALSE      FALSE        TRUE      FALSE   FALSE      FALSE     TRUE      <named list [2]>
+# 6 <date [3]> Date      double    FALSE      FALSE      FALSE        FALSE     TRUE    FALSE      TRUE      TRUE      <named list [1]>
 
 factor(c("no", "yes")) %>% {data.frame(value = .)} %>% mutate(class = class(value), typeof = typeof(value), is.logical = is.logical(value), is.numeric = is.numeric(value), is.character = is.character(value), is.factor = is.factor(value), is.Date = is.Date(value), is.integer = is.integer(value), is.double = is.double(value)) 
 as.Date("2024-01-01") %>% {data.frame(value = .)} %>% mutate(class = class(value), typeof = typeof(value), is.logical = is.logical(value), is.numeric = is.numeric(value), is.character = is.character(value), is.factor = is.factor(value), is.Date = is.Date(value), is.integer = is.integer(value), is.double = is.double(value)) 
