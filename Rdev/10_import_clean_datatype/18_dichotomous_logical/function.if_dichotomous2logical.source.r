@@ -57,6 +57,7 @@
 function.dichotomous2logical = function(x, dichotomous2integer = F) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.source.r")
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
+    text4warning = ""
     if (is.numeric(x)) {
         x = as.character(x)
     } 
@@ -72,10 +73,11 @@ function.dichotomous2logical = function(x, dichotomous2integer = F) {
     if (!is.null(levels(x))) {
         if (length(levels(x)) %in% 1:2) {
             if (dichotomous2integer == T) {
-                warning(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to 0 & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to 1"))
+                text4warning = paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to 0 & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to 1")
             } else {
-                warning(paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to FALSE & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to TRUE"))
+                text4warning = paste0(ifelse(is.null(levels(x)[1]), "NULL", levels(x)[1]), " is coded to FALSE & ", ifelse(is.null(levels(x)[2]), "NULL", levels(x)[2]), " is coded to TRUE")
             }
+            warning(text4warning)
             x = as.integer(x) - 1
         } else if (length(levels(x)) > 2) {
             stop("length(levels(x)) > 2")
@@ -86,8 +88,41 @@ function.dichotomous2logical = function(x, dichotomous2integer = F) {
     } else {
         x = as.logical(x) 
     }
+    if (!is.null(levels(x))) {
+        levels(x) = c("FALSE", "TRUE")
+    }
+    if(text4warning != "") {attributes(x)$warning = text4warning}
     x
 }
+
+
+
+c(1, 2, 1, 2) %>% function.dichotomous2logical %>% str %>% try
+c(1, 2, 1, 2) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+factor(c("yes", "no", "yes", "no")) %>% function.dichotomous2logical %>% str %>% try
+factor(c("yes", "no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+c(1, 2, 3) %>% function.dichotomous2logical %>% str %>% try
+c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+c(1, 1, 1) %>% function.dichotomous2logical %>% str %>% try
+c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > c(1, 2, 1, 2) %>% function.dichotomous2logical %>% str %>% try
+# 경고: 1 is coded to FALSE & 2 is coded to TRUE logi [1:4] FALSE TRUE FALSE TRUE
+#  - attr(*, "warning")= chr "1 is coded to FALSE & 2 is coded to TRUE"
+# > c(1, 2, 1, 2) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# 경고: 1 is coded to 0 & 2 is coded to 1 int [1:4] 0 1 0 1
+#  - attr(*, "warning")= chr "1 is coded to 0 & 2 is coded to 1"
+# > factor(c("yes", "no", "yes", "no")) %>% function.dichotomous2logical %>% str %>% try
+# 경고: no is coded to FALSE & yes is coded to TRUE logi [1:4] TRUE FALSE TRUE FALSE
+#  - attr(*, "warning")= chr "no is coded to FALSE & yes is coded to TRUE"
+# > factor(c("yes", "no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# 경고: no is coded to 0 & yes is coded to 1 int [1:4] 1 0 1 0
+#  - attr(*, "warning")= chr "no is coded to 0 & yes is coded to 1"
+# > c(1, 1, 1) %>% function.dichotomous2logical %>% str %>% try
+# 경고: length(unique(x)) == 1경고: 1 is coded to FALSE & NA is coded to TRUE logi [1:3] FALSE FALSE FALSE
+#  - attr(*, "warning")= chr "1 is coded to FALSE & NA is coded to TRUE"
+# > c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# 경고: length(unique(x)) == 1경고: 1 is coded to 0 & NA is coded to 1 int [1:3] 0 0 0
+#  - attr(*, "warning")= chr "1 is coded to 0 & NA is coded to 1"
 
 
 
@@ -98,16 +133,16 @@ c(T, F, T) %>% is.character
 c(T, F, T) %>% levels
 c(T, F, T) %>% levels %>% length
 c(T, F, T) %>% unique %>% length
-function.dichotomous2logical(c(T, T, T))
-function.dichotomous2logical(c(F, F, F))
-function.dichotomous2logical(c(T, F, T))
-function.dichotomous2logical(c("A", "A", "B", "B", "A"))
-function.dichotomous2logical(c("A", "A", "B", "C", "A"))
-function.dichotomous2logical(c(T, T, T), dichotomous2integer = T)
-function.dichotomous2logical(c(F, F, F), dichotomous2integer = T)
-function.dichotomous2logical(c(T, F, T), dichotomous2integer = T)
-function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T)
-function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T)
+function.dichotomous2logical(c(T, T, T)) %>% str %>% try
+function.dichotomous2logical(c(F, F, F)) %>% str %>% try
+function.dichotomous2logical(c(T, F, T)) %>% str %>% try
+function.dichotomous2logical(c("A", "A", "B", "B", "A")) %>% str %>% try
+function.dichotomous2logical(c("A", "A", "B", "C", "A")) %>% str %>% try
+function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) %>% str %>% try
+function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) %>% str %>% try
+function.dichotomous2logical(c(T, F, T), dichotomous2integer = T) %>% str %>% try
+function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T) %>% str %>% try
+function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) %>% str %>% try
 # > c(T, F, T) %>% is.numeric
 # [1] FALSE
 # > c(T, F, T) %>% is.character
@@ -118,42 +153,28 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 # [1] 0
 # > c(T, F, T) %>% unique %>% length
 # [1] 2
-# > function.dichotomous2logical(c(T, T, T))
-# [1] TRUE TRUE TRUE
-# Warning message:
-# In function.dichotomous2logical(c(T, T, T)) : length(unique(x)) == 1
-# > function.dichotomous2logical(c(F, F, F))
-# [1] FALSE FALSE FALSE
-# Warning message:
-# In function.dichotomous2logical(c(F, F, F)) : length(unique(x)) == 1
-# > function.dichotomous2logical(c(T, F, T))
-# [1]  TRUE FALSE  TRUE
-# > function.dichotomous2logical(c("A", "A", "B", "B", "A"))
-# [1] FALSE FALSE  TRUE  TRUE FALSE
-# Warning message:
-# In function.dichotomous2logical(c("A", "A", "B", "B", "A")) :
-#   A is coded to FALSE & B is coded to TRUE
-# > function.dichotomous2logical(c("A", "A", "B", "C", "A"))
+# > function.dichotomous2logical(c(T, T, T)) %>% str %>% try
+# 경고: length(unique(x)) == 1 logi [1:3] TRUE TRUE TRUE
+# > function.dichotomous2logical(c(F, F, F)) %>% str %>% try
+# 경고: length(unique(x)) == 1 logi [1:3] FALSE FALSE FALSE
+# > function.dichotomous2logical(c(T, F, T)) %>% str %>% try
+#  logi [1:3] TRUE FALSE TRUE
+# > function.dichotomous2logical(c("A", "A", "B", "B", "A")) %>% str %>% try
+# 경고: A is coded to FALSE & B is coded to TRUE logi [1:5] FALSE FALSE TRUE TRUE FALSE
+#  - attr(*, "warning")= chr "A is coded to FALSE & B is coded to TRUE"
+# > function.dichotomous2logical(c("A", "A", "B", "C", "A")) %>% str %>% try
 # Error in function.dichotomous2logical(c("A", "A", "B", "C", "A")) : 
 #   length(levels(x)) > 2
-# > function.dichotomous2logical(c(T, T, T), dichotomous2integer = T)
-# [1] 1 1 1
-# Warning message:
-# In function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) :
-#   length(unique(x)) == 1
-# > function.dichotomous2logical(c(F, F, F), dichotomous2integer = T)
-# [1] 0 0 0
-# Warning message:
-# In function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) :
-#   length(unique(x)) == 1
-# > function.dichotomous2logical(c(T, F, T), dichotomous2integer = T)
-# [1] 1 0 1
-# > function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T)
-# [1] 0 0 1 1 0
-# Warning message:
-# In function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T) :
-#   A is coded to 0 & B is coded to 1
-# > function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T)
+# > function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) %>% str %>% try
+# 경고: length(unique(x)) == 1 int [1:3] 1 1 1
+# > function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) %>% str %>% try
+# 경고: length(unique(x)) == 1 int [1:3] 0 0 0
+# > function.dichotomous2logical(c(T, F, T), dichotomous2integer = T) %>% str %>% try
+#  int [1:3] 1 0 1
+# > function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T) %>% str %>% try
+# 경고: A is coded to 0 & B is coded to 1 int [1:5] 0 0 1 1 0
+#  - attr(*, "warning")= chr "A is coded to 0 & B is coded to 1"
+# > function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) %>% str %>% try
 # Error in function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) : 
 #   length(levels(x)) > 2
 
