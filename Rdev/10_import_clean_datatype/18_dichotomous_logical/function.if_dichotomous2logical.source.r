@@ -65,7 +65,7 @@ factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "
 
 
 
-function.dichotomous2logical = function(vec, dichotomous2integer = F) {
+function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warning = T) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.source.r")
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     text4warning = ""
@@ -88,7 +88,7 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F) {
         } else if (length(levels(vec.as_character.as_factor)) > 2) {
             # stop("length(levels(vec.as_character.as_factor)) > 2")
             text4warning = "length(levels(vec.as_character.as_factor)) > 2"
-            warning(text4warning); cat('\n')
+            if(print.warning) {warning(text4warning); cat('\n')}
             attributes(vec)$function.dichotomous2logical = text4warning
             return(vec)
         }
@@ -108,9 +108,10 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F) {
         levels(vec.out) = c("FALSE", "TRUE")
     }
     
-    if(text4warning != "") {warning(text4warning); cat('\n'); attributes(vec.out)$function.dichotomous2logical = text4warning}
+    if(text4warning != "") {if(print.warning) {warning(text4warning); cat('\n')}; attributes(vec.out)$function.dichotomous2logical = text4warning}
     vec.out
 }
+
 c(1, 2, 1) %>% function.dichotomous2logical %>% str %>% try
 c(1, 2, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 c(F, T, F) %>% function.dichotomous2logical %>% str %>% try
