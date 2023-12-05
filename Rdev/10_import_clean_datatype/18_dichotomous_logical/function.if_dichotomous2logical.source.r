@@ -72,23 +72,33 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
     coding0 = ifelse(dichotomous2integer == T, 0, "FALSE")
     coding1 = ifelse(dichotomous2integer == T, 1, "TRUE")
     
+    if (is.Date(vec)) {return(vec)}
+    if (is.logical(vec)) {
+        vec.as_character.as_factor = vec
+        n_unique = length(unique(vec))
+        is.dichotomous = n_unique == 2
+    }
+
     if (is.numeric(vec)) {vec.as_character.as_factor = as.factor(as.character(vec))} 
     if (is.character(vec)) {vec.as_character.as_factor = as.factor(vec)}
-    if (is.logical(vec)) {vec.as_character.as_factor = vec}
     if (is.factor(vec)) {vec.as_character.as_factor = vec}
-    if (is.Date(vec)) {return(vec)}
     
     if (!is.null(levels(vec.as_character.as_factor))) {
-        if (length(levels(vec.as_character.as_factor)) == 1) {
+        n_unique = length(levels(vec.as_character.as_factor))
+        if (n_unique == 1) {
             text4warning = paste0("length(unique(vec.as_character.as_factor)) == 1 --> coded to ", coding0)
             vec.as_character.as_factor = as.integer(vec.as_character.as_factor) - 1L
-        } else if (length(levels(vec.as_character.as_factor)) == 2) {
+            is.dichotomous = F
+        } else if (n_unique == 2) {
             text4warning = paste0(ifelse(is.null(levels(vec.as_character.as_factor)[1]), "NULL", levels(vec.as_character.as_factor)[1]), " is coded to ", coding0, " & ", ifelse(is.null(levels(vec.as_character.as_factor)[2]), "NULL", levels(vec.as_character.as_factor)[2]), " is coded to ", coding1)
             vec.as_character.as_factor = as.integer(vec.as_character.as_factor) - 1L
-        } else if (length(levels(vec.as_character.as_factor)) > 2) {
+            is.dichotomous = T
+        } else if (n_unique > 2) {
             # stop("length(levels(vec.as_character.as_factor)) > 2")
             text4warning = "length(levels(vec.as_character.as_factor)) > 2"
             if(print.warning) {warning(text4warning); cat('\n')}
+            attributes(vec)$n_unique = n_unique
+            attributes(vec)$is.dichotomous = F
             attributes(vec)$function.dichotomous2logical = text4warning
             return(vec)
         }
@@ -108,6 +118,8 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
         levels(vec.out) = c("FALSE", "TRUE")
     }
     
+    attributes(vec.out)$n_unique = n_unique
+    attributes(vec.out)$is.dichotomous = is.dichotomous
     if(text4warning != "") {if(print.warning) {warning(text4warning); cat('\n')}; attributes(vec.out)$function.dichotomous2logical = text4warning}
     vec.out
 }
@@ -132,62 +144,94 @@ c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% funct
 # > c(1, 2, 1) %>% function.dichotomous2logical %>% str %>% try
 # 경고: 1 is coded to FALSE & 2 is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "1 is coded to FALSE & 2 is coded to TRUE"
 # > c(1, 2, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 # 경고: 1 is coded to 0 & 2 is coded to 1
 #  int [1:3] 0 1 0
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "1 is coded to 0 & 2 is coded to 1"
 # > c(F, T, F) %>% function.dichotomous2logical %>% str %>% try
 #  logi [1:3] FALSE TRUE FALSE
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 # > c(F, T, F) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 #  int [1:3] 0 1 0
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 # > c("F", "T", "F") %>% function.dichotomous2logical %>% str %>% try
 # 경고: F is coded to FALSE & T is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "F is coded to FALSE & T is coded to TRUE"
 # > c("F", "T", "F") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 # 경고: F is coded to 0 & T is coded to 1
 #  int [1:3] 0 1 0
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "F is coded to 0 & T is coded to 1"
 # > c("No", "Yes", "No") %>% function.dichotomous2logical %>% str %>% try
 # 경고: No is coded to FALSE & Yes is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "No is coded to FALSE & Yes is coded to TRUE"
 # > c("No", "Yes", "No") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 # 경고: No is coded to 0 & Yes is coded to 1
 #  int [1:3] 0 1 0
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "No is coded to 0 & Yes is coded to 1"
 # > factor(c("no", "yes", "no")) %>% function.dichotomous2logical %>% str %>% try
 # 경고: no is coded to FALSE & yes is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "no is coded to FALSE & yes is coded to TRUE"
 # > factor(c("no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 # 경고: no is coded to 0 & yes is coded to 1
 #  int [1:3] 0 1 0
+#  - attr(*, "n_unique")= int 2
+#  - attr(*, "is.dichotomous")= logi TRUE
 #  - attr(*, "function.dichotomous2logical")= chr "no is coded to 0 & yes is coded to 1"
 # > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical %>% str %>% try
 # 경고: length(levels(vec.as_character.as_factor)) > 2
 #  Factor w/ 3 levels "NA","No","Yes": 2 3 1
+#  - attr(*, "n_unique")= int 3
+#  - attr(*, "is.dichotomous")= logi FALSE
 #  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
 # > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 # 경고: length(levels(vec.as_character.as_factor)) > 2
 #  Factor w/ 3 levels "NA","No","Yes": 2 3 1
+#  - attr(*, "n_unique")= int 3
+#  - attr(*, "is.dichotomous")= logi FALSE
 #  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
 # > c(1, 2, 3) %>% function.dichotomous2logical %>% str %>% try
 # 경고: length(levels(vec.as_character.as_factor)) > 2
 #  num [1:3] 1 2 3
+#  - attr(*, "n_unique")= int 3
+#  - attr(*, "is.dichotomous")= logi FALSE
 #  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
 # > c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 # 경고: length(levels(vec.as_character.as_factor)) > 2
 #  num [1:3] 1 2 3
+#  - attr(*, "n_unique")= int 3
+#  - attr(*, "is.dichotomous")= logi FALSE
 #  - attr(*, "function.dichotomous2logical")= chr "length(levels(vec.as_character.as_factor)) > 2"
 # > c(1, 1, 1) %>% function.dichotomous2logical %>% str %>% try
 # 경고: length(unique(vec.as_character.as_factor)) == 1 --> coded to FALSE
 #  logi [1:3] FALSE FALSE FALSE
+#  - attr(*, "n_unique")= int 1
+#  - attr(*, "is.dichotomous")= logi FALSE
 #  - attr(*, "function.dichotomous2logical")= chr "length(unique(vec.as_character.as_factor)) == 1 --> coded to FALSE"
 # > c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
 # 경고: length(unique(vec.as_character.as_factor)) == 1 --> coded to 0
 #  int [1:3] 0 0 0
+#  - attr(*, "n_unique")= int 1
+#  - attr(*, "is.dichotomous")= logi FALSE
 #  - attr(*, "function.dichotomous2logical")= chr "length(unique(vec.as_character.as_factor)) == 1 --> coded to 0"
 # > c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% function.dichotomous2logical %>% str %>% try
 #  Date[1:3], format: "2024-01-01" "2024-01-02" "2024-01-03"
