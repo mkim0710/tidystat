@@ -28,9 +28,7 @@ function.matrix.split <- function(input_matrix, prop_train = 0.5, prop_validatio
   return(list(train_set = output_matrix_train, validation_set = output_matrix_validation, test_set = output_matrix_test))
 }
 
-# Example of using the function
-# Assuming 'your_input_matrix' is the input_matrixframe you want to split
-list_matrix.split <- function.matrix.split(your_input_matrix, prop_train = 0.5, prop_validation = 0.2)
-output_matrix_train <- list_matrix.split$training
-output_matrix_validation <- list_matrix.split$validation
-output_matrix_test <- list_matrix.split$test
+# list_matrix.split <- function.matrix.split(your_input_matrix, prop_train = 0.5, prop_validation = 0.2)
+# output_matrix_train <- list_matrix.split$training
+# output_matrix_validation <- list_matrix.split$validation
+# output_matrix_test <- list_matrix.split$test
