@@ -1,8 +1,8 @@
 
 library(tidyverse)
 
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/17_categorical_indicators/function.one_hot_encode.source.r
-function.one_hot_encode <- function(input_df, sep4levelname = "_") {
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/17_categorical_indicators/function.df_factor.one_hot_encode.source.r
+function.df_factor.one_hot_encode <- function(input_df, sep4levelname = "_") {
     input_df.attributes = input_df %>% attributes
     input_df.attributes$names = NULL
     input_df.attributes$class = NULL
@@ -34,7 +34,7 @@ df_example <- tibble(
     size = as.factor(c("small", "large", "medium", "small"))
 )
 attributes(df_example)$test = "test"
-input_df_factor.model.matrix_example <- function.one_hot_encode(df_example)
+input_df_factor.model.matrix_example <- function.df_factor.one_hot_encode(df_example)
 input_df_factor.model.matrix_example %>% str
 input_df_factor.model.matrix_example %>% attributes %>% str
 # > input_df_factor.model.matrix_example %>% str
