@@ -16,6 +16,15 @@ function.one_hot_encode <- function(df_data, sep4levelname = "_") {
 
   return(df_final)
 }
+
+df_example <- tibble(
+  id = 1:4,
+  color = as.factor(c("red", "blue", "green", "red")),
+  size = as.factor(c("small", "large", "medium", "small"))
+)
+
+df_encoded_example <- function.one_hot_encode(df_example)
+df_encoded_example
 # > df_example <- tibble(
 # +   id = 1:4,
 # +   color = as.factor(c("red", "blue", "green", "red")),
