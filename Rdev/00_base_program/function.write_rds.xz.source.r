@@ -1,6 +1,6 @@
 
 
-function.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "xz")) {
+fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "xz")) {
   # Set the default compress method and ensure the user input is one of the allowed choices
   compress <- match.arg(compress)
 
