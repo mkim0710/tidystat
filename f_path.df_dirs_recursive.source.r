@@ -240,12 +240,15 @@ f_path.df_dirs_recursive = function(input_path = ".") {
           ".*\\.RTF")
     
     df_dirs2 = df_dirs1 %>% filter(!str_detect(path.basename.UC, gitignore_escaped_select.UC %>% paste(collapse = "|")))
-    df_dirs2
-    
+
+    df_dirs3 = df_dirs2 %>% 
+        mutate(print_path_tree = map_chr(path.level, ~paste(rep("\t", .x-1), collapse = "")) %>% paste0(path.basename) ) 
+    df_dirs3
 }
 
 
 "Rdev" %>% f_path.df_dirs_recursive %>% str #----
+"Rdev" %>% f_path.df_dirs_recursive %>% select(-matches("\\.UC$"), -matches("\\.ext")) %>% as.data.frame #----
 # > "Rdev" %>% f_path.df_dirs_recursive %>% str #----
 # tibble [43 × 9] (S3: tbl_df/tbl/data.frame)
 #  $ path.level          : num [1:43] 1 2 2 2 2 2 2 2 2 2 ...
@@ -257,9 +260,6 @@ f_path.df_dirs_recursive = function(input_path = ".") {
 #  $ path.basename.UC    : chr [1:43] "RDEV" "-DEV" "00_BASE_PROGRAM" "00_PROTOCOL" ...
 #  $ path.basename.ext.UC: chr [1:43] "" "" "" "" ...
 #  $ full_path.UC        : chr [1:43] "RDEV" "RDEV/-DEV" "RDEV/00_BASE_PROGRAM" "RDEV/00_PROTOCOL" ...
-
-
-"Rdev" %>% f_path.df_dirs_recursive %>% select(-matches("\\.UC$"), -matches("\\.ext")) %>% as.data.frame #----
 # > "Rdev" %>% f_path.df_dirs_recursive %>% select(-matches("\\.UC$"), -matches("\\.ext")) %>% as.data.frame #----
 #    path.level                                   path.dirname                             path.basename                                                                      full_path
 # 1           1                                              .                                      Rdev                                                                           Rdev
@@ -398,62 +398,82 @@ f_path.df_dirs_recursive = function(input_path = ".") {
 # Rdev
 
 
+
 "Rdev" %>% f_path.df_dirs_recursive %>% 
-    mutate(path.level.tab = map_chr(path.level, ~paste(rep("\t", .x), collapse = "")) ) %>%
-    select(path.level.tab, path.basename) %>%
-    arrange(path.basename) %>%
-    transmute(concat = paste0(path.level.tab, path.basename)) %>%
-    unlist %>% 
-    paste(collapse = "\n") %>% cat #----
+    select(print_path_tree) %>%
+    as.tibble
+"Rdev" %>% f_path.df_dirs_recursive %>% 
+    select(print_path_tree) %>%
+    unlist %>% paste(collapse = "\n") %>% cat #----
 # > "Rdev" %>% f_path.df_dirs_recursive %>% 
-# +     mutate(path.level.tab = map_chr(path.level, ~paste(rep("\t", .x), collapse = "")) ) %>%
-# +     select(path.level.tab, path.basename) %>%
-# +     arrange(path.basename) %>%
-# +     transmute(concat = paste0(path.level.tab, path.basename)) %>%
-# +     unlist %>% 
-# +     paste(collapse = "\n") %>% cat #----
-# 		-dev
-# 		00_base_program
-# 		00_protocol
-# 			01_sample_size
-# 			05_count_eligible
-# 			06_count_exposure
-# 			07_count_outcome
-# 		10_import_clean_datatype
-# 			11_metadata
-# 			12_import_files
-# 			12_import_sqlite
-# 			12_import_vocabulary
-# 			13_duplicated
-# 			13_missing_value
-# 			13_split_fold
-# 			15_cleaning_text
-# 			15_cleaning_time
-# 			16_categorical_factor
-# 			17_categorical_indicators
-# 			18_dichotomous_logical
-# 			19_datetime
-# 			19_numeric_integer
-# 		20_tidy_group_by_match
-# 			23_group_by_PersonID
-# 			25_study_population
-# 			27_match
-# 		30_transform_scale_categorical
-# 		40_visualize_explore_bivariate_stratified
-# 			43_network
-# 			44_map
-# 			45_bivariate_measures
-# 			47_bivariate_partial_stratified
-# 		50_model_formula_evaluation
-# 			51_model_formula
-# 			53_model_selection
-# 			55_model_weighted
-# 			56_model_bootstrap
-# 			57_model_time2event
-# 			57_model_trajectory
-# 			59_model_evaluation
-# 		60_communicate_report_export
-# 	Rdev
-# 			array_list
+# +     select(print_path_tree) %>%
+# +     as.tibble
+# # A tibble: 43 × 1
+#    print_path_tree                              
+#    <chr>                                        
+#  1 "Rdev"                                       
+#  2 "\t-dev"                                     
+#  3 "\t00_base_program"                          
+#  4 "\t00_protocol"                              
+#  5 "\t10_import_clean_datatype"                 
+#  6 "\t20_tidy_group_by_match"                   
+#  7 "\t30_transform_scale_categorical"           
+#  8 "\t40_visualize_explore_bivariate_stratified"
+#  9 "\t50_model_formula_evaluation"              
+# 10 "\t60_communicate_report_export"             
+# # ℹ 33 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+# > "Rdev" %>% f_path.df_dirs_recursive %>% 
+# +     select(print_path_tree) %>%
+# +     unlist %>% paste(collapse = "\n") %>% cat #----
+# Rdev
+# 	-dev
+# 	00_base_program
+# 	00_protocol
+# 	10_import_clean_datatype
+# 	20_tidy_group_by_match
+# 	30_transform_scale_categorical
+# 	40_visualize_explore_bivariate_stratified
+# 	50_model_formula_evaluation
+# 	60_communicate_report_export
+# 		01_sample_size
+# 		05_count_eligible
+# 		06_count_exposure
+# 		07_count_outcome
+# 		11_metadata
+# 		12_import_files
+# 		12_import_sqlite
+# 		12_import_vocabulary
+# 		13_duplicated
+# 		13_missing_value
+# 		13_split_fold
+# 		15_cleaning_text
+# 		15_cleaning_time
+# 		16_categorical_factor
+# 		17_categorical_indicators
+# 		18_dichotomous_logical
+# 		19_datetime
+# 		19_numeric_integer
+# 		array_list
+# 		23_group_by_PersonID
+# 		25_study_population
+# 		27_match
+# 		43_network
+# 		44_map
+# 		45_bivariate_measures
+# 		47_bivariate_partial_stratified
+# 		51_model_formula
+# 		53_model_selection
+# 		55_model_weighted
+# 		56_model_bootstrap
+# 		57_model_time2event
+# 		57_model_trajectory
+# 		59_model_evaluation
+
+
+f_path.df_dirs_recursive() %>% 
+    select(print_path_tree) %>%
+    unlist %>% paste(collapse = "\n") %>% cat #----
+
 
 #@ end ----
