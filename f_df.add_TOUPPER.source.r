@@ -90,21 +90,22 @@ print(health_data_modified)
 
 
 #! f_df_add_TOUPPER =====
-# Function to uppercase and retain factor if original column was a factor
-uppercase_factor <- function(x) {
-  if (is.factor(x)) {
-    factor(toupper(levels(x))[x])
-  } else {
-    toupper(x)
-  }
-}
+
 
 # Function to add '.TOUPPER' columns to a data frame
 f_df_add_TOUPPER <- function(df) {
-  df %>%
-    mutate(across(.cols = c(where(is.character), where(is.factor)),
-                  .fns = list(TOUPPER = ~uppercase_factor(.)),
-                  .names = "{.col}.TOUPPER"))
+    # Function to uppercase and retain factor if original column was a factor
+    uppercase_factor <- function(x) {
+        if (is.factor(x)) {
+            factor(toupper(levels(x))[x])
+        } else {
+            toupper(x)
+        }
+    }
+    df %>%
+        mutate(across(.cols = c(where(is.character), where(is.factor)),
+                      .fns = list(TOUPPER = ~uppercase_factor(.)),
+                      .names = "{.col}.TOUPPER"))
 }
 
 # Example usage with a sample healthcare dataset
