@@ -27,15 +27,19 @@
 # #     )
 
 
-if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.fun.hidden", envir = env.custom)) env.custom$env.fun.hidden = new.env()
+# if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom")) env.custom = list()
+# env.custom = env.custom %>% as.environment
+# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
+if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
-# globalVariables(c(".rs.readUiPref","env.custom$env.fun.hidden$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
-env.custom$env.fun.hidden$.global_datapasta_env <- new.env()
-env.custom$env.fun.hidden$.global_datapasta_env$decimal_mark <- "."
-env.custom$env.fun.hidden$.global_datapasta_env$max_rows <- 200
-env.custom$env.fun.hidden$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"
+# globalVariables(c(".rs.readUiPref","env.custom$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
+env.custom$env.internal$.global_datapasta_env <- new.env()
+env.custom$env.internal$.global_datapasta_env$decimal_mark <- "."
+env.custom$env.internal$.global_datapasta_env$max_rows <- 200
+env.custom$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"
 #' tribble_paste
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and paste in at the cursor location in tribble format.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
@@ -44,15 +48,15 @@ env.custom$env.fun.hidden$.global_datapasta_env$no_clip_msg <- "Clipboard is not
 #' @return Nothing.
 #' @export
 #'
-env.custom$env.fun.hidden$tribble_paste <- function(input_table, output_context = env.custom$env.fun.hidden$guess_output_context()){
-  output <- env.custom$env.fun.hidden$tribble_construct(input_table, oc = output_context)
+env.custom$env.internal$tribble_paste <- function(input_table, output_context = env.custom$env.internal$guess_output_context()){
+  output <- env.custom$env.internal$tribble_construct(input_table, oc = output_context)
 
   switch(output_context$output_mode,
          rstudioapi = rstudioapi::insertText(output),
          console = cat(output))
 }
 
-#' env.custom$env.fun.hidden$tribble_format
+#' env.custom$env.internal$tribble_format
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and paste to the clipboard in tribble format.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
 #' @param output_context an optional output context that defines the target and indentation. Default is console.
@@ -60,13 +64,13 @@ env.custom$env.fun.hidden$tribble_paste <- function(input_table, output_context 
 #' @return Nothing.
 #' @export
 #'
-env.custom$env.fun.hidden$tribble_format <- function(input_table, output_context = env.custom$env.fun.hidden$console_context()){
+env.custom$env.internal$tribble_format <- function(input_table, output_context = env.custom$env.internal$console_context()){
   if(!interactive()) stop("Cannot write to clipboard in non-interactive sessions.")
-  output <- env.custom$env.fun.hidden$tribble_construct(input_table, oc = output_context)
+  output <- env.custom$env.internal$tribble_construct(input_table, oc = output_context)
   clipr::write_clip(output)
 }
 
-#' env.custom$env.fun.hidden$tribble_construct
+#' env.custom$env.internal$tribble_construct
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and return as a character string.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
 #' @param oc an optional output context that defines the target and indentation. Default is console.
@@ -74,10 +78,10 @@ env.custom$env.fun.hidden$tribble_format <- function(input_table, output_context
 #' @return The parsed table text.
 #' @export
 #'
-env.custom$env.fun.hidden$tribble_construct <- function(input_table, oc = env.custom$env.fun.hidden$console_context()){
+env.custom$env.internal$tribble_construct <- function(input_table, oc = env.custom$env.internal$console_context()){
   # Determine input. Either clipboard or supplied table.
   if(missing(input_table)){
-    input_table <- env.custom$env.fun.hidden$read_clip_tbl_guess()
+    input_table <- env.custom$env.internal$read_clip_tbl_guess()
 
     if(is.null(input_table)){
       message("Could not paste clipboard as tibble. Text could not be parsed as table.")
@@ -90,8 +94,8 @@ env.custom$env.fun.hidden$tribble_construct <- function(input_table, oc = env.cu
       message("Could not format input_table as table. Unexpected class.")
       return(NULL)
     }
-    if(nrow(input_table) >= env.custom$env.fun.hidden$.global_datapasta_env$max_rows){
-      message(paste0("Supplied large input_table (>= ",env.custom$env.fun.hidden$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env.custom$env.fun.hidden$dp_set_max_rows(n) to increase the limit."))
+    if(nrow(input_table) >= env.custom$env.internal$.global_datapasta_env$max_rows){
+      message(paste0("Supplied large input_table (>= ",env.custom$env.internal$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env.custom$env.internal$dp_set_max_rows(n) to increase the limit."))
       return(NULL)
     }
     input_table_types <- lapply(input_table, class)
@@ -106,7 +110,7 @@ env.custom$env.fun.hidden$tribble_construct <- function(input_table, oc = env.cu
 
   # Find the max length of data as string in each column
   col_widths <- mapply(input_table,
-                       FUN = env.custom$env.fun.hidden$column_width,
+                       FUN = env.custom$env.internal$column_width,
                        column_type = input_table_types
                        )
 
@@ -140,7 +144,7 @@ env.custom$env.fun.hidden$tribble_construct <- function(input_table, oc = env.cu
              paste0(
                paste0(
                  mapply(
-                   env.custom$env.fun.hidden$pad_to,
+                   env.custom$env.internal$pad_to,
                    paste0("~",input_names_valid),
                    col_widths
                  ),
@@ -158,7 +162,7 @@ env.custom$env.fun.hidden$tribble_construct <- function(input_table, oc = env.cu
                                    paste0(
                                      paste0(
                                        mapply(
-                                         env.custom$env.fun.hidden$render_type_pad_to,
+                                         env.custom$env.internal$render_type_pad_to,
                                          col,
                                          input_table_types,
                                          col_widths
@@ -187,7 +191,7 @@ env.custom$env.fun.hidden$tribble_construct <- function(input_table, oc = env.cu
         strrep(" ",oc$indent_context+oc$nspc),
         input_names_valid,
         " = ",
-        mapply(env.custom$env.fun.hidden$deparse_as,
+        mapply(env.custom$env.internal$deparse_as,
                input_table,
                input_table_types),
         collapse = ",\n"
@@ -203,11 +207,11 @@ env.custom$env.fun.hidden$tribble_construct <- function(input_table, oc = env.cu
   return(output)
 }
 
-env.custom$env.fun.hidden$deparse_as <- function(column, column_type) {
+env.custom$env.internal$deparse_as <- function(column, column_type) {
   deparse(methods::as(column, column_type))
 }
 
-env.custom$env.fun.hidden$column_width <- function(column, column_type) {
+env.custom$env.internal$column_width <- function(column, column_type) {
 
   if (length(column) == 0)
     return(nchar(deparse(column)))
@@ -215,7 +219,7 @@ env.custom$env.fun.hidden$column_width <- function(column, column_type) {
     return(
       suppressWarnings(
         max(vapply(X = column,
-                   FUN = env.custom$env.fun.hidden$nchar_type,
+                   FUN = env.custom$env.internal$nchar_type,
                    FUN.VALUE = numeric(1),
                    df_col_type = column_type
                    ),
@@ -227,24 +231,24 @@ env.custom$env.fun.hidden$column_width <- function(column, column_type) {
 
 
 
-#' env.custom$env.fun.hidden$nchar_type
+#' env.custom$env.internal$nchar_type
 #'
 #' @param df_col_row a character string
 #' @param df_col_type the type the string will be converted to.
 #'
 #' @return The number of characters wide this data would be in when rendered in text
-env.custom$env.fun.hidden$nchar_type <- function(df_col_row, df_col_type){
+env.custom$env.internal$nchar_type <- function(df_col_row, df_col_type){
   n_chars <- nchar(df_col_row)
 
   if(length(df_col_type) > 1) df_col_type <- "complex" # We can't really handle it.
 
   add_chars <- switch(df_col_type,
                       "integer" = 1, #for the "L",
-                      "character" = 2 + env.custom$env.fun.hidden$nquote_str(df_col_row) + env.custom$env.fun.hidden$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "date" = 2 + env.custom$env.fun.hidden$nquote_str(df_col_row) + env.custom$env.fun.hidden$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "datetime" = 2 + env.custom$env.fun.hidden$nquote_str(df_col_row) + env.custom$env.fun.hidden$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "factor" = 2 + env.custom$env.fun.hidden$nquote_str(df_col_row) + env.custom$env.fun.hidden$nslash_str(df_col_row),
-                      "complex" = 2 + env.custom$env.fun.hidden$nquote_str(df_col_row) + env.custom$env.fun.hidden$nslash_str(df_col_row), #Assume we print as a quoted char
+                      "character" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "date" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "datetime" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "factor" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row),
+                      "complex" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #Assume we print as a quoted char
                       0) #0 for other types
   return(n_chars + add_chars)
 
@@ -255,25 +259,25 @@ env.custom$env.fun.hidden$nchar_type <- function(df_col_row, df_col_type){
 #' @param char_vec the string to count quotes in
 #'
 #' @return a number, possibly 0.
-env.custom$env.fun.hidden$nquote_str <- function(char_vec){
+env.custom$env.internal$nquote_str <- function(char_vec){
   sum(gregexpr(pattern = "(\"|\')", text = char_vec)[[1]] > 0)
 }
 
-env.custom$env.fun.hidden$nslash_str <- function(char_vec){
+env.custom$env.internal$nslash_str <- function(char_vec){
   sum(gregexpr(pattern = "\\\\", text = char_vec)[[1]] > 0)
 }
-#' env.custom$env.fun.hidden$pad_to
+#' env.custom$env.internal$pad_to
 #' @description Left pad string to a certain size. A helper function for getting spacing in table correct.
 #' @param char_vec character vector.
 #' @param char_length length to pad to.
 #'
 #' @return char_vec left-padded with spaces to char_length.
 #'
-env.custom$env.fun.hidden$pad_to <-function(char_vec, char_length){
+env.custom$env.internal$pad_to <-function(char_vec, char_length){
   paste0(strrep(" ",char_length - nchar(char_vec)),char_vec)
 }
 
-#' env.custom$env.fun.hidden$render_type
+#' env.custom$env.internal$render_type
 #'
 #' @description Renders a character vector as R types for pasting into Rstudio.
 #' Strings are quoted. Numbers, NA, logicals etc are not.
@@ -285,7 +289,7 @@ env.custom$env.fun.hidden$pad_to <-function(char_vec, char_length){
 #' character vector. The type attribute contains the type guessed by `readr`.
 #'
 #'
-env.custom$env.fun.hidden$render_type <- function(char_vec, char_type){
+env.custom$env.internal$render_type <- function(char_vec, char_type){
 
   if(length(char_type) > 1) char_type <- "complex"
   # We can't handle special classes. Just fall through defaults.
@@ -303,7 +307,7 @@ env.custom$env.fun.hidden$render_type <- function(char_vec, char_type){
     output <- switch(char_type,
                      "integer" = paste0(as.integer(char_vec),"L"),
                      "double" = as.double(char_vec),
-                     "number" = readr::parse_number(char_vec, locale = readr::locale(decimal_mark = env.custom$env.fun.hidden$.global_datapasta_env$decimal_mark)),
+                     "number" = readr::parse_number(char_vec, locale = readr::locale(decimal_mark = env.custom$env.internal$.global_datapasta_env$decimal_mark)),
                      "numeric" = as.double(char_vec),
                      "logical" = as.logical(char_vec),
                      "factor" = ifelse(nchar(char_vec)!=0, deparse(char_vec), "NA"),
@@ -316,7 +320,7 @@ env.custom$env.fun.hidden$render_type <- function(char_vec, char_type){
 }
 
 
-#' env.custom$env.fun.hidden$render_type_pad_to
+#' env.custom$env.internal$render_type_pad_to
 #' @description Based on a type and length, render a character string as the type in text.
 #' Pad to the desired length.
 #'
@@ -327,11 +331,11 @@ env.custom$env.fun.hidden$render_type <- function(char_vec, char_type){
 #' @return a string containing the representation of char_vec as char_type in the RStudio source editor,
 #' left-padded with spaces to char_length.
 #'
-env.custom$env.fun.hidden$render_type_pad_to <- function(char_vec, char_type, char_length){
-    env.custom$env.fun.hidden$pad_to(env.custom$env.fun.hidden$render_type(char_vec, char_type), char_length)
+env.custom$env.internal$render_type_pad_to <- function(char_vec, char_type, char_length){
+    env.custom$env.internal$pad_to(env.custom$env.internal$render_type(char_vec, char_type), char_length)
 }
 
-#' env.custom$env.fun.hidden$guess_sep
+#' env.custom$env.internal$guess_sep
 #'
 #' @param char_vec a table from the clipboard in character vector form.
 #'
@@ -343,7 +347,7 @@ env.custom$env.fun.hidden$render_type_pad_to <- function(char_vec, char_type, ch
 #'
 #' @return the separator selected to parse char_vec as a table
 #'
-env.custom$env.fun.hidden$guess_sep <- function(char_vec){
+env.custom$env.internal$guess_sep <- function(char_vec){
   candidate_seps <- c(",","\t","\\|",";")
   candidate_seps_pattern <- paste0("([", paste0(candidate_seps, collapse = ""),"])$", collapse = "")
   table_sample <- char_vec[1:min(length(char_vec),10)]
@@ -379,7 +383,7 @@ env.custom$env.fun.hidden$guess_sep <- function(char_vec){
 #' and it tries to guess the separator.
 #'
 #' @return a parsed table from the clipboard. Separator is guessed.
-env.custom$env.fun.hidden$read_clip_tbl_guess <- function (x = NULL, ...)
+env.custom$env.internal$read_clip_tbl_guess <- function (x = NULL, ...)
 {
   if (is.null(x)) {
     # if no text is provided, look in clipboard or RStudio editor
@@ -394,7 +398,7 @@ env.custom$env.fun.hidden$read_clip_tbl_guess <- function (x = NULL, ...)
   if (is.null(.dots$header))
     .dots$header <- FALSE
   if (is.null(.dots$sep)){
-    .dots$sep <- env.custom$env.fun.hidden$guess_sep(x)
+    .dots$sep <- env.custom$env.internal$guess_sep(x)
   }
   if (is.null(.dots$colClasses))
     .dots$colClasses <- "character"
@@ -429,7 +433,7 @@ env.custom$env.fun.hidden$read_clip_tbl_guess <- function (x = NULL, ...)
 
 
 
-#' env.custom$env.fun.hidden$dp_set_decimal_mark
+#' env.custom$env.internal$dp_set_decimal_mark
 #'
 #' @param mark The decimal mark to use when parsing "number" type data, as guessed by readr::guess_parser.
 #' @description A function to optionally set the decimal mark if in a locale where it is not `.`. Will allow "3,14" to be parsed as 3.14, normally would be parsed as 314.
@@ -437,49 +441,49 @@ env.custom$env.fun.hidden$read_clip_tbl_guess <- function (x = NULL, ...)
 #'
 #' @return NULL.
 #' @export
-env.custom$env.fun.hidden$dp_set_decimal_mark <- function(mark){
-  env.custom$env.fun.hidden$.global_datapasta_env$decimal_mark <- mark
+env.custom$env.internal$dp_set_decimal_mark <- function(mark){
+  env.custom$env.internal$.global_datapasta_env$decimal_mark <- mark
   invisible(NULL)
 }
 
-#' env.custom$env.fun.hidden$dp_set_max_rows
+#' env.custom$env.internal$dp_set_max_rows
 #'
-#' @param num_rows The number of rows of an input at which any of env.custom$env.fun.hidden$tribble_construct() or df_construct() will abort parsing. Datapasta is untested on large tables. Use at own risk.
+#' @param num_rows The number of rows of an input at which any of env.custom$env.internal$tribble_construct() or df_construct() will abort parsing. Datapasta is untested on large tables. Use at own risk.
 #'
 #' @return NULL
 #' @export
-env.custom$env.fun.hidden$dp_set_max_rows <- function(num_rows){
-  env.custom$env.fun.hidden$.global_datapasta_env$max_rows <- num_rows
+env.custom$env.internal$dp_set_max_rows <- function(num_rows){
+  env.custom$env.internal$.global_datapasta_env$max_rows <- num_rows
   invisible(NULL)
 }
 
-#' env.custom$env.fun.hidden$guess_output_context
+#' env.custom$env.internal$guess_output_context
 #'
 #' @description Return the a list containing the guessed output target context, either rstudio or the console.
 #'
 #' @return a list containing the output target, space size of indent, and number of indents at context.
-env.custom$env.fun.hidden$guess_output_context <- function(){
+env.custom$env.internal$guess_output_context <- function(){
   if(requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()){
-    output_context <- env.custom$env.fun.hidden$rstudio_context()
+    output_context <- env.custom$env.internal$rstudio_context()
   }else{
     # rstudioapi unavailable. fallback to console
-    output_context <- env.custom$env.fun.hidden$console_context()
+    output_context <- env.custom$env.internal$console_context()
   }
   output_context
 }
 
-#' @rdname env.custom$env.fun.hidden$custom_context
+#' @rdname env.custom$env.internal$custom_context
 #' @export
 #'
-env.custom$env.fun.hidden$clipboard_context <- function(){
+env.custom$env.internal$clipboard_context <- function(){
   output_context <- list(output_mode = "clipboard", nspc = 2, indent_context = 0, indent_head = FALSE)
   output_context
 }
 
-#' @rdname env.custom$env.fun.hidden$custom_context
+#' @rdname env.custom$env.internal$custom_context
 #' @export
 #'
-env.custom$env.fun.hidden$rstudio_context <- function(){
+env.custom$env.internal$rstudio_context <- function(){
   output_context <- list()
   output_context$indent_head <- FALSE #head already at cursor
   output_context$output_mode <- "rstudioapi"
@@ -494,26 +498,26 @@ env.custom$env.fun.hidden$rstudio_context <- function(){
   output_context
 }
 
-#' @rdname env.custom$env.fun.hidden$custom_context
+#' @rdname env.custom$env.internal$custom_context
 #' @export
 #'
-env.custom$env.fun.hidden$console_context <- function(){
+env.custom$env.internal$console_context <- function(){
   output_context <- list(output_mode = "console", nspc = 2, indent_context = 0, indent_head = FALSE)
   output_context
 }
 
-#' @rdname env.custom$env.fun.hidden$custom_context
+#' @rdname env.custom$env.internal$custom_context
 #' @export
 #'
-env.custom$env.fun.hidden$markdown_context <- function(){
+env.custom$env.internal$markdown_context <- function(){
   output_context <- list(output_mode = "console", nspc = 2, indent_context = 4, indent_head = TRUE)
   output_context
 }
 
-#' env.custom$env.fun.hidden$custom_context
+#' env.custom$env.internal$custom_context
 #'
 #' @description the _context functions define lists of parameters for text formatting.
-#' The specific contexts return hard-coded values appropriate to the context they describe, while env.custom$env.fun.hidden$custom_context allows definition of new contexts for custom formatting.
+#' The specific contexts return hard-coded values appropriate to the context they describe, while env.custom$env.internal$custom_context allows definition of new contexts for custom formatting.
 #' @param output_mode A named output mode, controls the target of the _paste functions options are "rstudioapi" or "console"
 #' @param nspc The number of spaces for each indent level in the output context
 #' @param indent_context The number of spaces applied initially to all lines in the output context
@@ -521,7 +525,7 @@ env.custom$env.fun.hidden$markdown_context <- function(){
 #' @return an output context. An input to _paste, _format, _construct functions used to format whitespace.
 #' @export
 #'
-env.custom$env.fun.hidden$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
+env.custom$env.internal$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
   output_context <- list(output_mode = output_mode, nspc = nspc, indent_context = indent_context, indent_head = indent_head)
   output_context
 }
@@ -530,10 +534,10 @@ env.custom$env.fun.hidden$custom_context <- function(output_mode = "console", ns
 
 
 #@ global functions ----
-# fun.tribble_paste = env.custom$env.fun.hidden$tribble_paste
+# fun.tribble_paste = env.custom$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
 env.custom$fun.tribble_construct = function(df) {
-    out = env.custom$env.fun.hidden$tribble_construct(df)
+    out = env.custom$env.internal$tribble_construct(df)
     cat(out)
 }
 
@@ -546,7 +550,7 @@ env.custom$fun.df.transpose = function(df, varname4rowname = "varname") {
 
 env.custom$fun.t.tribble_construct = function(df) {
     out = env.custom$fun.df.transpose(df)
-    out = env.custom$env.fun.hidden$tribble_construct(out)
+    out = env.custom$env.internal$tribble_construct(out)
     cat(out)
 }
 
@@ -566,13 +570,14 @@ env.custom$fun.path_files_size = function(path4read = getwd(), regex4filename = 
 
 
 ls.str(env.custom) #-----
-ls.str(env.custom$env.fun.hidden) #-----
+ls.str(env.custom$env.internal) #-----
 # > ls.str(env.custom) #-----
-# env.fun.hidden : <environment: 0x000001767c305588> 
+# env.internal : <environment: 0x000001d6104168f8> 
 # fun.df.transpose : function (df, varname4rowname = "varname")  
+# fun.path_files_size : function (path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
 # fun.t.tribble_construct : function (df)  
 # fun.tribble_construct : function (df)  
-# > ls.str(env.custom$env.fun.hidden) #-----
+# > ls.str(env.custom$env.internal) #-----
 # clipboard_context : function ()  
 # column_width : function (column, column_type)  
 # console_context : function ()  
@@ -591,60 +596,84 @@ ls.str(env.custom$env.fun.hidden) #-----
 # render_type : function (char_vec, char_type)  
 # render_type_pad_to : function (char_vec, char_type, char_length)  
 # rstudio_context : function ()  
-# tribble_construct : function (input_table, oc = env.custom$env.fun.hidden$console_context())  
-# tribble_format : function (input_table, output_context = env.custom$env.fun.hidden$console_context())  
-# tribble_paste : function (input_table, output_context = env.custom$env.fun.hidden$guess_output_context())  
+# tribble_construct : function (input_table, oc = env.custom$env.internal$console_context())  
+# tribble_format : function (input_table, output_context = env.custom$env.internal$console_context())  
+# tribble_paste : function (input_table, output_context = env.custom$env.internal$guess_output_context())  
+
 
 
 #@ end -----
-attach(env.custom)
-save.image(file = "env.custom.fun.t.tribble_construct.RData")
+# attach(env.custom)
+# save.image(file = "env.custom.fun.t.tribble_construct.RData")
 
-saveRDS(env.custom$env.fun.hidden, paste0("env.custom$env.fun.hidden", ".rds"))
-saveRDS(env.custom$fun.tribble_construct, paste0("env.custom$fun.tribble_construct", ".rds"))
-saveRDS(env.custom$fun.t.tribble_construct, paste0("env.custom$fun.t.tribble_construct", ".rds"))
-saveRDS(env.custom$fun.path_files_size, paste0("env.custom$fun.path_files_size", ".rds"))
-saveRDS(env.custom$fun.df.transpose, paste0("env.custom$fun.df.transpose", ".rds"))
-
-
-#@ path_source = "D:/OneDrive/[][Rproject]/github_tidystat" -------
-path_source = "D:/OneDrive/[][Rproject]/github_tidystat"
-t0 = Sys.time()
-load((file.path(path_source, "env.custom.fun.t.tribble_construct.RData")))
-Sys.time() - t0 # Time difference of 0.002126932 secs
-t0 = Sys.time()
-env.custom$env.fun.hidden = read_rds(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
-env.custom$fun.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
-env.custom$fun.t.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
-env.custom$fun.path_files_size = read_rds(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
-env.custom$fun.df.transpose = read_rds(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
-Sys.time() - t0 # Time difference of 0.01374888 secs
-t0 = Sys.time()
-source(file.path(path_source, "env.custom.fun.t.tribble_construct.source.r"))
-Sys.time() - t0 # Time difference of 0.003256798 secs
+# saveRDS(env.custom$env.internal, paste0("env.custom$env.internal", ".rds"))
+# saveRDS(env.custom$fun.tribble_construct, paste0("env.custom$fun.tribble_construct", ".rds"))
+# saveRDS(env.custom$fun.t.tribble_construct, paste0("env.custom$fun.t.tribble_construct", ".rds"))
+# saveRDS(env.custom$fun.path_files_size, paste0("env.custom$fun.path_files_size", ".rds"))
+# saveRDS(env.custom$fun.df.transpose, paste0("env.custom$fun.df.transpose", ".rds"))
 
 
-#@ path_source = paste0("https://github.com/mkim0710/tidystat/raw/master", subpath_source) ----
-subpath_source = ""
-path_source = paste0("https://github.com/mkim0710/tidystat/raw/master", subpath_source)
+# #@ source_path = "D:/OneDrive/[][Rproject]/github_tidystat" -------
+# source_path = "D:/OneDrive/[][Rproject]/github_tidystat"
+# t0 = Sys.time()
+# load((file.path(source_path, "env.custom.fun.t.tribble_construct.RData")))
+# Sys.time() - t0 # Time difference of 0.002126932 secs
+# t0 = Sys.time()
+# env.custom$env.internal = read_rds(file.path(source_path, paste0("env.custom$env.internal", ".rds")))
+# env.custom$fun.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.tribble_construct", ".rds")))
+# env.custom$fun.t.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.t.tribble_construct", ".rds")))
+# env.custom$fun.path_files_size = read_rds(file.path(source_path, paste0("env.custom$fun.path_files_size", ".rds")))
+# env.custom$fun.df.transpose = read_rds(file.path(source_path, paste0("env.custom$fun.df.transpose", ".rds")))
+# Sys.time() - t0 # Time difference of 0.01374888 secs
+# t0 = Sys.time()
+# source(file.path(source_path, "env.custom.fun.t.tribble_construct.source.r"))
+# Sys.time() - t0 # Time difference of 0.003256798 secs
+
+
+# #@ source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath) ----
+# source_subpath = ""
+# source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath)
+# t0 = Sys.time()
+# load(url(file.path(source_path, "env.custom.fun.t.tribble_construct.RData")))
+# Sys.time() - t0 # Time difference of 0.7511199  secs
+# t0 = Sys.time()
+# env.custom$env.internal = read_rds(file.path(source_path, paste0("env.custom$env.internal", ".rds")))
+# env.custom$fun.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.tribble_construct", ".rds")))
+# env.custom$fun.t.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.t.tribble_construct", ".rds")))
+# env.custom$fun.path_files_size = read_rds(file.path(source_path, paste0("env.custom$fun.path_files_size", ".rds")))
+# env.custom$fun.df.transpose = read_rds(file.path(source_path, paste0("env.custom$fun.df.transpose", ".rds")))
+# Sys.time() - t0 # Time difference of 3.066839 secs
+
+
+
+
+#@ source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename)) ----
+# if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom")) env.custom = list()
+# env.custom = env.custom %>% as.environment
+# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
+if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+env.custom$source = list()
+env.custom$source$path_local = "D:/OneDrive/[][Rproject]/github_tidystat"
+env.custom$source$path_github = "https://github.com/mkim0710/tidystat/raw/master"
+env.custom$source$tmp_objectname = "env.custom.fun.t.tribble_construct"
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]] = list()
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname = env.custom$source$tmp_objectname
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename = paste0(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname, ".source.r")
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath = ""
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_local, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+# env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_github, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+
 t0 = Sys.time()
-load(url(file.path(path_source, "env.custom.fun.t.tribble_construct.RData")))
-Sys.time() - t0 # Time difference of 0.7511199  secs
-t0 = Sys.time()
-env.custom$env.fun.hidden = read_rds(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
-env.custom$fun.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
-env.custom$fun.t.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
-env.custom$fun.path_files_size = read_rds(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
-env.custom$fun.df.transpose = read_rds(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
-Sys.time() - t0 # Time difference of 3.066839 secs
-t0 = Sys.time()
-source(file.path(path_source, "env.custom.fun.t.tribble_construct.source.r"))
+source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename))
 Sys.time() - t0 # Time difference of 0.6328301  secs
 
 
 
-    
-    
+
+
+
+
 # > system.time(
 # +     source("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.source.r")
 # + )
