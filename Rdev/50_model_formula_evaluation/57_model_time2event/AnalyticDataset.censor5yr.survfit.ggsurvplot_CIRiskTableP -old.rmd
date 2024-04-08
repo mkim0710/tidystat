@@ -197,7 +197,7 @@ if (getwd() != path4write) warning("getwd() != path4write  == ") else cat("getwd
 ##% env.custom$fun.path_files_size() ====
 ```{r, paged.print=FALSE}
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
 # attach(env.custom)
 
@@ -294,7 +294,7 @@ summary(cox_model)
 cox.zph(cox_model)
 ```
 
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.dev.r
 ##$ AnalyticDataset ====
 ```{r, paged.print=FALSE}
 AnalyticDataset = lung %>% rename(event = status, Group = sex)

@@ -1,5 +1,5 @@
 # gitignore_escaped_select from gitignore.r
-# f_vec.extract_non_alphanumeric_list.source.r
+# f_vec.extract_non_alphanumeric_list.dev.r
 
 
 library(tidyverse)

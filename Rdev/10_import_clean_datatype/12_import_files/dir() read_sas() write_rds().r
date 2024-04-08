@@ -1,5 +1,5 @@
 # dir() read_sas() write_rds().r
-# function.list.files.read.write.source.r
+# function.list.files.read.write.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/12_import_files/dir()%20read_sas()%20write_rds().r
 
 library(tidyverse)
@@ -25,7 +25,7 @@ path4read %>% dput #----
 path4write %>% dput #----
 
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
 # attach(env.custom)
 
@@ -56,7 +56,7 @@ path4read = "../github_tidystat/data"
 path4write = getwd()
 
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
 # attach(env.custom)
 
