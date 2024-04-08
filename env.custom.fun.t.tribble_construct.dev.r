@@ -600,6 +600,48 @@ ls.str(env.custom$env.fun.hidden) #-----
 attach(env.custom)
 save.image(file = "env.custom.fun.t.tribble_construct.RData")
 
+saveRDS(env.custom$env.fun.hidden, paste0("env.custom$env.fun.hidden", ".rds"))
+saveRDS(env.custom$fun.tribble_construct, paste0("env.custom$fun.tribble_construct", ".rds"))
+saveRDS(env.custom$fun.t.tribble_construct, paste0("env.custom$fun.t.tribble_construct", ".rds"))
+saveRDS(env.custom$fun.path_files_size, paste0("env.custom$fun.path_files_size", ".rds"))
+saveRDS(env.custom$fun.df.transpose, paste0("env.custom$fun.df.transpose", ".rds"))
+
+
+
+path_source = "D:/OneDrive/[][Rproject]/github_tidystat"
+t0 = Sys.time()
+env.custom$env.fun.hidden = readRDS(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
+env.custom$fun.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
+env.custom$fun.t.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
+env.custom$fun.path_files_size = readRDS(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
+env.custom$fun.df.transpose = readRDS(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
+Sys.time() - t0
+t0 = Sys.time()
+source(file.path(path_source, "env.custom.fun.t.tribble_construct.source.r"))
+Sys.time() - t0
+
+subpath_source = ""
+path_source = paste0("https://github.com/mkim0710/tidystat/raw/master", subpath_source)
+t0 = Sys.time()
+env.custom$env.fun.hidden = readRDS(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
+env.custom$fun.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
+env.custom$fun.t.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
+env.custom$fun.path_files_size = readRDS(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
+env.custom$fun.df.transpose = readRDS(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
+Sys.time() - t0
+t0 = Sys.time()
+source(file.path(path_source, "env.custom.fun.t.tribble_construct.source.r"))
+Sys.time() - t0
+
+    
+    
+# > system.time(
+# +     source("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.source.r")
+# + )
+#    user  system elapsed 
+#    0.00    0.01    1.02 
+
+
 library(tidyverse)
 df =
 tibble::tribble(
