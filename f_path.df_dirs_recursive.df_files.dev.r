@@ -1,4 +1,6 @@
-#@ f_path.df_dirs_recursive.ls_files.df_files.dev.r
+#@ f_path.df_dirs_recursive.df_files.dev.r
+#         https://github.com/mkim0710/tidystat/blob/master/f_path.df_dirs_recursive.df_files.dev.r
+# source("https://github.com/mkim0710/tidystat/raw/master/f_path.df_dirs_recursive.df_files.source.r")
 
 
 #@ input_path = "Rdev" =====
@@ -32,7 +34,7 @@ dir(full.names = T) %>% str #----
 
 library(tidyverse)
 
-f_path.df_dirs_recursive.ls_files <- function(
+f_path.df_dirs_recursive.df_files <- function(
   input_path = ".", 
   max_depth = 9, 
   current_depth = 0, 
@@ -63,7 +65,7 @@ f_path.df_dirs_recursive.ls_files <- function(
         df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, tibble(path.level = current_depth + 1, full_path = dir))
         
         # Recursively process subdirectories
-        df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, f_path.df_dirs_recursive.ls_files(dir, max_depth, current_depth + 1, gitignore_escaped_select.UC))
+        df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, f_path.df_dirs_recursive.df_files(dir, max_depth, current_depth + 1, gitignore_escaped_select.UC))
     }
     
     if (current_depth == 0) {
@@ -173,8 +175,8 @@ f_path.df_dirs_recursive.ls_files <- function(
 
 
 
-#@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.ls_files() =======
-df_dirs_recursive = f_path.df_dirs_recursive.ls_files()
+#@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======
+df_dirs_recursive = f_path.df_dirs_recursive.df_files()
 df_dirs_recursive %>% str(max.level = 2) #----
 # df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse = "\n") %>% cat; cat("\n") #----
 # df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
@@ -183,7 +185,7 @@ df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_
 df_dirs_recursive %>% select(print_tree_path) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
 df_dirs_recursive %>% select(print_tree_path_files) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
 df_dirs_recursive %>% select(print_tree_path_files.rmd) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
-# > df_dirs_recursive = f_path.df_dirs_recursive.ls_files()
+# > df_dirs_recursive = f_path.df_dirs_recursive.df_files()
 # .Platform$file.sep:  / 
 # input_path0:  . 
 # Finished iterating through paths.
@@ -337,7 +339,7 @@ df_dirs_recursive %>% select(print_tree_path_files.rmd) %>% unlist %>% paste(col
 
 
 
-# df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.ls_files()
+# df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files()
 #' > df_dirs_recursive %>% select(print_tree_path_files) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
 #' @-dev/
 #' 	object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r
@@ -633,4 +635,43 @@ df_dirs_recursive %>% select(print_tree_path_files.rmd) %>% unlist %>% paste(col
 
 
 
+
+
+
+#@ end -----
+
+ls.str(env.custom) #-----
+ls.str(env.custom$env.internal) #-----
+# > ls.str(env.custom) #-----
+# env.internal : <environment: 0x000001f6d74c17b0>
+# f_path.df_dirs_recursive.df_files : function (input_path = ".", max_depth = 9, current_depth = 0, gitignore_escaped_select.UC = env.custom$gitignore_escaped_select.UC)
+# gitignore_escaped_select.UC :  chr [1:23] "\\.RPROJ\\.USER" "\\.RHISTORY" "\\.RDATA" "\\.RUSERDATA" ".*\\.ZIP" ".*\\.7Z" ".*\\.RPROJ" "\\.GITIGNORE" ...
+# > ls.str(env.custom$env.internal) #-----
+
 #@ end ----
+
+
+
+
+#@ source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename)) ----
+# if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom")) env.custom = list()
+# env.custom = env.custom %>% as.environment
+# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
+if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+env.custom$source = list()
+env.custom$source$path_local = "D:/OneDrive/[][Rproject]/github_tidystat"
+env.custom$source$path_github = "https://github.com/mkim0710/tidystat/raw/master"
+env.custom$source$tmp_objectname = "f_path.df_dirs_recursive.df_files"
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]] = list()
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname = env.custom$source$tmp_objectname
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename = paste0(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname, ".source.r")
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath = ""
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_local, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+# env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_github, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+
+t0 = Sys.time()
+source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename))
+Sys.time() - t0 # Time difference of 0.6328301  secs
+
+

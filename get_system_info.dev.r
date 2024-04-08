@@ -1,7 +1,16 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r
-if(!exists("env.custom")) env.custom = new.env()
+
+
+# if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom")) env.custom = list()
+# env.custom = env.custom %>% as.environment
+# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
+if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+
+if(!exists("env.custom$info")) env.custom$info = list()
+
 env.custom$DocumentTitle0 = "get_system_info()"
 env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 cat(env.custom$DocumentTitle1); cat("\r\n");
@@ -459,4 +468,27 @@ Sys.info() %>% as.list %>% str
 
 #@ end -----
 
-                                       
+
+#@ source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename)) ----
+# if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom")) env.custom = list()
+# env.custom = env.custom %>% as.environment
+# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
+if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+env.custom$source = list()
+env.custom$source$path_local = "D:/OneDrive/[][Rproject]/github_tidystat"
+env.custom$source$path_github = "https://github.com/mkim0710/tidystat/raw/master"
+env.custom$source$tmp_objectname = "get_system_info"
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]] = list()
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname = env.custom$source$tmp_objectname
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename = paste0(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname, ".source.r")
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath = ""
+env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_local, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+# env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_github, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+
+t0 = Sys.time()
+source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename))
+Sys.time() - t0 # Time difference of 0.6328301  secs
+
+
+
