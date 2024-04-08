@@ -12,7 +12,7 @@ Sys.setenv(LANGUAGE='en')
 Sys.setenv(lang = "en_US")
 Sys.setlocale("LC_ALL", "en_US.utf8")
 
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.iconv.source.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.iconv.dev.r
 Sys.setlocale("LC_ALL", "korean") #----
 
 
