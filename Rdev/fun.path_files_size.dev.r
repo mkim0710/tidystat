@@ -1,6 +1,6 @@
 # fun.path_files_size.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.path_files_size.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
 
 library(tidyverse)
 getwd() %>% dput #----
@@ -8,7 +8,7 @@ path4read = "../github_tidystat/data"
 path4write = getwd()
 
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
 # attach(env.custom)
 

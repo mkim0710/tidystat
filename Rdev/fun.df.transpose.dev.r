@@ -1,6 +1,6 @@
 # fun.df.transpose.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.df.transpose.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
 
 
 library(tidyverse)

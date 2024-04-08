@@ -3,7 +3,7 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.source.r")
 
 # # tribble_paste = datapasta::tribble_paste
-# # https://github.com/mkim0710/tidystat/blob/master/Rdev/env.custom.fun.t.tribble_construct.dev.r
+# # https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
 # load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
 # attach(env.custom)
 # 
@@ -607,31 +607,41 @@ saveRDS(env.custom$fun.path_files_size, paste0("env.custom$fun.path_files_size",
 saveRDS(env.custom$fun.df.transpose, paste0("env.custom$fun.df.transpose", ".rds"))
 
 
-
+#@ path_source = "D:/OneDrive/[][Rproject]/github_tidystat" -------
 path_source = "D:/OneDrive/[][Rproject]/github_tidystat"
 t0 = Sys.time()
-env.custom$env.fun.hidden = readRDS(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
-env.custom$fun.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
-env.custom$fun.t.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
-env.custom$fun.path_files_size = readRDS(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
-env.custom$fun.df.transpose = readRDS(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
-Sys.time() - t0
+load((file.path(path_source, "env.custom.fun.t.tribble_construct.RData")))
+Sys.time() - t0 # Time difference of 0.002126932 secs
+t0 = Sys.time()
+env.custom$env.fun.hidden = read_rds(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
+env.custom$fun.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
+env.custom$fun.t.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
+env.custom$fun.path_files_size = read_rds(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
+env.custom$fun.df.transpose = read_rds(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
+Sys.time() - t0 # Time difference of 0.01374888 secs
 t0 = Sys.time()
 source(file.path(path_source, "env.custom.fun.t.tribble_construct.source.r"))
-Sys.time() - t0
+Sys.time() - t0 # Time difference of 0.003256798 secs
 
+
+#@ path_source = paste0("https://github.com/mkim0710/tidystat/raw/master", subpath_source) ----
 subpath_source = ""
 path_source = paste0("https://github.com/mkim0710/tidystat/raw/master", subpath_source)
 t0 = Sys.time()
-env.custom$env.fun.hidden = readRDS(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
-env.custom$fun.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
-env.custom$fun.t.tribble_construct = readRDS(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
-env.custom$fun.path_files_size = readRDS(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
-env.custom$fun.df.transpose = readRDS(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
-Sys.time() - t0
+load(url(file.path(path_source, "env.custom.fun.t.tribble_construct.RData")))
+Sys.time() - t0 # Time difference of 0.7511199  secs
+t0 = Sys.time()
+env.custom$env.fun.hidden = read_rds(file.path(path_source, paste0("env.custom$env.fun.hidden", ".rds")))
+env.custom$fun.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.tribble_construct", ".rds")))
+env.custom$fun.t.tribble_construct = read_rds(file.path(path_source, paste0("env.custom$fun.t.tribble_construct", ".rds")))
+env.custom$fun.path_files_size = read_rds(file.path(path_source, paste0("env.custom$fun.path_files_size", ".rds")))
+env.custom$fun.df.transpose = read_rds(file.path(path_source, paste0("env.custom$fun.df.transpose", ".rds")))
+Sys.time() - t0 # Time difference of 3.066839 secs
 t0 = Sys.time()
 source(file.path(path_source, "env.custom.fun.t.tribble_construct.source.r"))
-Sys.time() - t0
+Sys.time() - t0 # Time difference of 0.6328301  secs
+
+
 
     
     
