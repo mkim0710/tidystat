@@ -5,7 +5,7 @@
 library(tidyverse)
 getwd() %>% dput #----
 
-if(!exists("env.custom")) env.custom = new.env()
+if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 env.custom$getwd = getwd()
 # env.custom$path0 = "../../[][Rproject]"
 env.custom$path0db = "D:/OneDrive - SNU/[][SASproject]"
@@ -25,18 +25,18 @@ path4read %>% dput #----
 path4write %>% dput #----
 
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
-load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
+# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env.custom)
 
 # regex4filename = "\\.sas7bdat(\\.xz)?$"
 regex4filename = "\\.sas7bdat\\.xz$"
 list.files(path4read) %>% grep(regex4filename, ., value = T) %>% dput #----
-env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 
 regex4filename = "\\.sas7bdat$"
 list.files(path4read) %>% grep(regex4filename, ., value = T) %>% dput #----
-env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 
 
 
@@ -56,15 +56,15 @@ path4read = "../github_tidystat/data"
 path4write = getwd()
 
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
-load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
+# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env.custom)
 
 # regex4filename = "\\.(rdata|rda|rds)$"
 # regex4filename = "\\.rds$"
 # regex4filename = "\\.sas7bdat(\\.xz)?$"
 regex4filename = "\\.sas7bdat$"
-env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 filenames %>% dput #----
 

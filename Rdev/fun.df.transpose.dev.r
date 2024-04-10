@@ -1,6 +1,6 @@
-# fun.df.transpose.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.df.transpose.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
+# f_df.transpose.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 
 
 library(tidyverse)
@@ -106,7 +106,7 @@ fstexample %>% attributes %>% str #----
 #  $ names    : chr [1:290] "pop" "rs2001142" "rs1894654" "rs2071924" ...
 
 
-fun.df.transpose = function(df, varname4rowname = "varname") {
+f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) %>% as_tibble
     out
@@ -114,9 +114,9 @@ fun.df.transpose = function(df, varname4rowname = "varname") {
 
 
 
-example_g1e %>% fun.df.transpose #-----
-fstexample %>% fun.df.transpose #-----
-# > example_g1e %>% fun.df.transpose #-----
+example_g1e %>% f_df.transpose #-----
+fstexample %>% f_df.transpose #-----
+# > example_g1e %>% f_df.transpose #-----
 # # A tibble: 32 × 1,645
 #    varname     V1     V2     V3     V4     V5     V6     V7     V8     V9    V10    V11    V12    V13    V14    V15    V16    V17    V18    V19    V20    V21
 #    <chr>    <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -138,7 +138,7 @@ fstexample %>% fun.df.transpose #-----
 # #   V72 <dbl>, V73 <dbl>, V74 <dbl>, V75 <dbl>, V76 <dbl>, V77 <dbl>, V78 <dbl>, V79 <dbl>, V80 <dbl>, V81 <dbl>, V82 <dbl>, V83 <dbl>, V84 <dbl>,
 # #   V85 <dbl>, V86 <dbl>, V87 <dbl>, V88 <dbl>, V89 <dbl>, V90 <dbl>, V91 <dbl>, V92 <dbl>, V93 <dbl>, V94 <dbl>, V95 <dbl>, V96 <dbl>, V97 <dbl>, …
 # # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
-# > fstexample %>% fun.df.transpose #-----
+# > fstexample %>% f_df.transpose #-----
 # # A tibble: 290 × 1,043
 #    varname    V1    V2    V3    V4    V5    V6    V7    V8    V9    V10   V11   V12   V13   V14   V15   V16   V17   V18   V19   V20   V21   V22   V23   V24  
 #    <chr>      <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
@@ -185,8 +185,8 @@ tibble::tribble(
         "DFAB_REG_YM",         NA,         NA
     )
 df
-df %>% fun.df.transpose #----
-# > df %>% fun.df.transpose #----
+df %>% f_df.transpose #----
+# > df %>% f_df.transpose #----
 # # A tibble: 2 × 14
 #   varname STND_Y PERSON_ID SEX   AGE   DTH_MDY  DTH_CODE1 DTH_CODE2 SIDO  IPSN_TYPE_CD CTRB_PT_TYPE_CD DFAB_GRD_CD DFAB_PTN_CD DFAB_REG_YM
 #   <chr>   <chr>  <chr>     <chr> <chr> <chr>    <chr>     <chr>     <chr> <chr>        <chr>           <chr>       <chr>       <chr>      

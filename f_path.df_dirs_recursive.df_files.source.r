@@ -3,11 +3,11 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/f_path.df_dirs_recursive.df_files.source.r")
 
 
-# if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.custom")) env.custom = list()
+# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 # env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
-if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 
 
 cat("Loading: ", "env.custom$gitignore_escaped_select.UC", "\n")
@@ -34,11 +34,17 @@ env.custom$f_path.df_dirs_recursive.df_files <- function(
     if (current_depth >= max_depth) {
         return(tibble())
     }
+    
+    if (!exists("f_path.df_dirs_recursive.df_files", envir = .GlobalEnv)) assign("f_path.df_dirs_recursive.df_files", env.custom$f_path.df_dirs_recursive.df_files, envir = .GlobalEnv)
 
     dirs <- list.dirs(input_path, full.names = TRUE, recursive = FALSE) %>%
         str_subset(paste0(gitignore_escaped_select.UC, collapse = "|") %>% regex(ignore_case = TRUE), negate = TRUE)
     
     df_dirs_recursive0 <- tibble(path.level = integer(), full_path = character())
+
+    if (current_depth == 0) {
+        df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, tibble(path.level = 0L, full_path = input_path))
+    }
     
     for (dir in dirs) {
         df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, tibble(path.level = current_depth + 1, full_path = dir))
@@ -52,15 +58,14 @@ env.custom$f_path.df_dirs_recursive.df_files <- function(
         
         df_dirs_recursive1 = df_dirs_recursive0 %>% 
             mutate(
-                path.parent = dirname(full_path)
+                path = full_path %>% {gsub(input_path, "", ., fixed = T)} %>% str_replace_all(paste0("^", .Platform$file.sep), "")
+                , normalized_path = normalizePath(full_path, winslash = "/", mustWork = FALSE)
+                , path.parent = dirname(full_path)
+                # , path.parent = if_else(full_path == ".", "..", dirname(full_path))
                 , path.basename = basename(full_path)
                 # , path.basename.ext = tools::file_ext(path.basename)
             ) %>% 
-            mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", .x - 1), collapse = "")) %>% paste0(path.basename) ) %>%
-            mutate(
-                path = full_path %>% {gsub(input_path, "", ., fixed = T)} %>% str_replace_all(paste0("^", .Platform$file.sep), "")
-                , normalized_path = normalizePath(full_path, winslash = "/", mustWork = FALSE)
-            ) %>% 
+            mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", max(.x - 1, 0)), collapse = "")) %>% paste0(path.basename) ) %>%
             # arrange(path.parent, path.basename) %>% 
             arrange(full_path) %>% 
             as.tibble
@@ -92,7 +97,7 @@ env.custom$f_path.df_dirs_recursive.df_files <- function(
                             path.level, 
                             files, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% paste(collapse = "\n")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 , print_tree_path_files.r = 
@@ -104,7 +109,7 @@ env.custom$f_path.df_dirs_recursive.df_files <- function(
                             path.level, 
                             files.r, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% paste(collapse = "\n")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 , print_tree_path_files.rmd = 
@@ -116,7 +121,7 @@ env.custom$f_path.df_dirs_recursive.df_files <- function(
                             path.level, 
                             files.rmd, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% paste(collapse = "\n")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 , print_tree_path_files.rds = 
@@ -128,7 +133,7 @@ env.custom$f_path.df_dirs_recursive.df_files <- function(
                             path.level, 
                             files.rds, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% paste(collapse = "\n")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 , print_tree_path_files.rda = 
@@ -140,7 +145,7 @@ env.custom$f_path.df_dirs_recursive.df_files <- function(
                             path.level, 
                             files.rda, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% paste(collapse = "\n")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 ) %>%

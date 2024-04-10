@@ -3,11 +3,11 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r
 
 
-# if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.custom")) env.custom = list()
+# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 # env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
-if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 
 if(!exists("env.custom$info")) env.custom$info = list()
 
@@ -470,25 +470,12 @@ Sys.info() %>% as.list %>% str
 
 
 #@ source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename)) ----
-# if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.custom")) env.custom = list()
-# env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
-if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
-env.custom$source = list()
-env.custom$source$path_local = "D:/OneDrive/[][Rproject]/github_tidystat"
-env.custom$source$path_github = "https://github.com/mkim0710/tidystat/raw/master"
-env.custom$source$tmp_objectname = "get_system_info"
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]] = list()
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname = env.custom$source$tmp_objectname
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename = paste0(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname, ".source.r")
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath = ""
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_local, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
-# env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_github, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
+# source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
-t0 = Sys.time()
-source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename))
-Sys.time() - t0 # Time difference of 0.6328301  secs
+objectname = "get_system_info"
+source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
+
 
 
 

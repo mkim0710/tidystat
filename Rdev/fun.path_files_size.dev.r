@@ -1,6 +1,6 @@
-# fun.path_files_size.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.path_files_size.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
+# f_path.size_files.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_path.size_files.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 
 library(tidyverse)
 getwd() %>% dput #----
@@ -8,15 +8,15 @@ path4read = "../github_tidystat/data"
 path4write = getwd()
 
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
-load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
+# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env.custom)
 
 # regex4filename = "\\.(rdata|rda|rds)$"
 regex4filename = "\\.rds$"
 # regex4filename = "\\.sas7bdat(\\.xz)?$"
 # regex4filename = "\\.sas7bdat$"
-env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 filenames %>% dput #----
 
@@ -25,7 +25,7 @@ filenames %>% dput #----
 
 
 
-# fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
+# f_path.size_files = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
 #     filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
 #     out = filenames %>% {file.info(file.path(path4read,.))} %>%
 #         rownames_to_column("filename") %>% select(filename, size) %>%
@@ -34,7 +34,7 @@ filenames %>% dput #----
 #     out
 # }
 
-# fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
+# f_path.size_files = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
 #     filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
 #     out = filenames %>% {file.info(file.path(path4read,.))} %>%
 #         rownames_to_column("filename") %>% select(filename, size) %>%
@@ -47,7 +47,7 @@ filenames %>% dput #----
 # }
 
 
-fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
+f_path.size_files = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
     filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
     out = filenames %>% {file.info(file.path(path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
@@ -56,7 +56,7 @@ fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|
                MB = format(size/2^20, digits = 3, big.mark=","), 
                GB = format(size/2^30, digits = 3, big.mark=","))
     out = out %>% mutate(filename = sub(path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
-    env.custom$fun.tribble_construct(out)
+    env.custom$f_df.tribble_construct(out)
 }
 
 
@@ -64,10 +64,10 @@ fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|
 #@ end -----
 
 library(tidyverse)
-fun.path_files_size() #-----
-fun.path_files_size("../../[][Rproject]/github_tidystat/data") #-----
-fun.path_files_size("../../[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
-# > fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
+f_path.size_files() #-----
+f_path.size_files("../../[][Rproject]/github_tidystat/data") #-----
+f_path.size_files("../../[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
+# > f_path.size_files("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
 # tibble::tribble(
 #                                         ~filename,    ~size,       ~bytes,         ~KB,        ~MB,        ~GB,
 #                              "ATC_RxNorm_NDC.rds", 79768376, "79,768,376", "77,898.80", "76.07305", "7.43e-02",

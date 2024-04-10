@@ -25,10 +25,10 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).
 ##% env.custom$info
 ###% env.custom$info$DocumentTitle1 ====
 ```{r, paged.print=FALSE}
-# if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.custom")) env.custom = list()
+# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 if(!exists("env.custom$info")) env.custom$info = list()
-env.custom$info$DocumentTitle0 = "Blank) env.custom.fun.t.tribble_construct"
+env.custom$info$DocumentTitle0 = "Blank) f_df.t.tribble_construct"
 env.custom$info$DocumentTitle1 = paste0(env.custom$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 cat(env.custom$info$DocumentTitle1); cat("\r\n");
 cat(env.custom$info$DocumentTitle1, ".R", sep = ""); cat("\r\n");
@@ -194,22 +194,22 @@ if (getwd() != path4write) warning("getwd() != path4write  == ") else cat("getwd
 ```
 
 
-##% env.custom$fun.path_files_size() ====
+##% env.custom$f_path.size_files() ====
 ```{r, paged.print=FALSE}
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
-load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
+# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env.custom)
 
 # regex4filename = "\\.rds(\\.xz)?$"
 regex4filename = "\\.rds\\.xz$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-env.custom$fun.path_files_size(path4read = path4write, regex4filename = regex4filename)
+env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 
 cat("----\n"); #----
 regex4filename = "\\.rds$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-env.custom$fun.path_files_size(path4read = path4write, regex4filename = regex4filename)
+env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```
 
 
@@ -220,7 +220,7 @@ env.custom$fun.path_files_size(path4read = path4write, regex4filename = regex4fi
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
 objectname = "as1.na.Date.fct.select89"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep = ""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
-env.custom$fun.path_files_size(path4read = path4read, regex4filename = filename2read)
+env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
 get(objectname) %>% dim
 get(objectname) %>% {.$PERSON_ID} %>% n_distinct
@@ -240,7 +240,7 @@ cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep 
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
 objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep = ""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
-env.custom$fun.path_files_size(path4read = path4read, regex4filename = filename2read)
+env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
 get(objectname) %>% dim
 get(objectname) %>% {.$PERSON_ID} %>% n_distinct
