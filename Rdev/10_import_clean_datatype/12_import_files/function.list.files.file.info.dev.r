@@ -10,12 +10,12 @@ path4read %>% dput
 path4write %>% dput
 
 # tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
-load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
+# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env.custom)
 
 regex4filename = "\\.sas7bdat\\.rds(\\.xz)?$"
-env.custom$fun.path_files_size(path4read = path4read, regex4filename = regex4filename)
+env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 
 

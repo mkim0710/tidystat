@@ -1,10 +1,10 @@
-# env.custom.fun.t.tribble_construct.dev.r
-#         https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
-# source("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.source.r")
+# f_df.t.tribble_construct.dev.r
+#         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+# source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
 
 # # tribble_paste = datapasta::tribble_paste
-# # https://github.com/mkim0710/tidystat/blob/master/env.custom.fun.t.tribble_construct.dev.r
-# load(url("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.RData"))
+# # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+# load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env.custom)
 # 
 # # t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
@@ -27,11 +27,11 @@
 # #     )
 
 
-# if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.custom")) env.custom = list()
+# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 # env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
-if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
@@ -536,25 +536,25 @@ env.custom$env.internal$custom_context <- function(output_mode = "console", nspc
 #@ global functions ----
 # fun.tribble_paste = env.custom$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
-env.custom$fun.tribble_construct = function(df) {
+env.custom$f_df.tribble_construct = function(df) {
     out = env.custom$env.internal$tribble_construct(df)
     cat(out)
 }
 
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/fun.df.transpose.dev.r
-env.custom$fun.df.transpose = function(df, varname4rowname = "varname") {
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
+env.custom$f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) %>% as_tibble
     out
 }
 
-env.custom$fun.t.tribble_construct = function(df) {
-    out = env.custom$fun.df.transpose(df)
+env.custom$f_df.t.tribble_construct = function(df) {
+    out = env.custom$f_df.transpose(df)
     out = env.custom$env.internal$tribble_construct(out)
     cat(out)
 }
 
-env.custom$fun.path_files_size = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
+env.custom$f_path.size_files = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
     filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
     out = filenames %>% {file.info(file.path(path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
@@ -563,7 +563,7 @@ env.custom$fun.path_files_size = function(path4read = getwd(), regex4filename = 
                MB = format(size/2^20, digits = 3, big.mark=","), 
                GB = format(size/2^30, digits = 3, big.mark=","))
     out = out %>% mutate(filename = sub(path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
-    env.custom$fun.tribble_construct(out)
+    env.custom$f_df.tribble_construct(out)
 }
 
 
@@ -573,10 +573,10 @@ ls.str(env.custom) #-----
 ls.str(env.custom$env.internal) #-----
 # > ls.str(env.custom) #-----
 # env.internal : <environment: 0x000001d6104168f8> 
-# fun.df.transpose : function (df, varname4rowname = "varname")  
-# fun.path_files_size : function (path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
-# fun.t.tribble_construct : function (df)  
-# fun.tribble_construct : function (df)  
+# f_df.transpose : function (df, varname4rowname = "varname")  
+# f_path.size_files : function (path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
+# f_df.t.tribble_construct : function (df)  
+# f_df.tribble_construct : function (df)  
 # > ls.str(env.custom$env.internal) #-----
 # clipboard_context : function ()  
 # column_width : function (column, column_type)  
@@ -604,29 +604,29 @@ ls.str(env.custom$env.internal) #-----
 
 #@ end -----
 # attach(env.custom)
-# save.image(file = "env.custom.fun.t.tribble_construct.RData")
+# save.image(file = "f_df.t.tribble_construct.RData")
 
 # saveRDS(env.custom$env.internal, paste0("env.custom$env.internal", ".rds"))
-# saveRDS(env.custom$fun.tribble_construct, paste0("env.custom$fun.tribble_construct", ".rds"))
-# saveRDS(env.custom$fun.t.tribble_construct, paste0("env.custom$fun.t.tribble_construct", ".rds"))
-# saveRDS(env.custom$fun.path_files_size, paste0("env.custom$fun.path_files_size", ".rds"))
-# saveRDS(env.custom$fun.df.transpose, paste0("env.custom$fun.df.transpose", ".rds"))
+# saveRDS(env.custom$f_df.tribble_construct, paste0("env.custom$f_df.tribble_construct", ".rds"))
+# saveRDS(env.custom$f_df.t.tribble_construct, paste0("env.custom$f_df.t.tribble_construct", ".rds"))
+# saveRDS(env.custom$f_path.size_files, paste0("env.custom$f_path.size_files", ".rds"))
+# saveRDS(env.custom$f_df.transpose, paste0("env.custom$f_df.transpose", ".rds"))
 
 
 # #@ source_path = "D:/OneDrive/[][Rproject]/github_tidystat" -------
 # source_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 # t0 = Sys.time()
-# load((file.path(source_path, "env.custom.fun.t.tribble_construct.RData")))
+# load((file.path(source_path, "f_df.t.tribble_construct.RData")))
 # Sys.time() - t0 # Time difference of 0.002126932 secs
 # t0 = Sys.time()
 # env.custom$env.internal = read_rds(file.path(source_path, paste0("env.custom$env.internal", ".rds")))
-# env.custom$fun.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.tribble_construct", ".rds")))
-# env.custom$fun.t.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.t.tribble_construct", ".rds")))
-# env.custom$fun.path_files_size = read_rds(file.path(source_path, paste0("env.custom$fun.path_files_size", ".rds")))
-# env.custom$fun.df.transpose = read_rds(file.path(source_path, paste0("env.custom$fun.df.transpose", ".rds")))
+# env.custom$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$f_df.tribble_construct", ".rds")))
+# env.custom$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$f_df.t.tribble_construct", ".rds")))
+# env.custom$f_path.size_files = read_rds(file.path(source_path, paste0("env.custom$f_path.size_files", ".rds")))
+# env.custom$f_df.transpose = read_rds(file.path(source_path, paste0("env.custom$f_df.transpose", ".rds")))
 # Sys.time() - t0 # Time difference of 0.01374888 secs
 # t0 = Sys.time()
-# source(file.path(source_path, "env.custom.fun.t.tribble_construct.source.r"))
+# source(file.path(source_path, "f_df.t.tribble_construct.source.r"))
 # Sys.time() - t0 # Time difference of 0.003256798 secs
 
 
@@ -634,39 +634,26 @@ ls.str(env.custom$env.internal) #-----
 # source_subpath = ""
 # source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath)
 # t0 = Sys.time()
-# load(url(file.path(source_path, "env.custom.fun.t.tribble_construct.RData")))
+# load(url(file.path(source_path, "f_df.t.tribble_construct.RData")))
 # Sys.time() - t0 # Time difference of 0.7511199  secs
 # t0 = Sys.time()
 # env.custom$env.internal = read_rds(file.path(source_path, paste0("env.custom$env.internal", ".rds")))
-# env.custom$fun.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.tribble_construct", ".rds")))
-# env.custom$fun.t.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$fun.t.tribble_construct", ".rds")))
-# env.custom$fun.path_files_size = read_rds(file.path(source_path, paste0("env.custom$fun.path_files_size", ".rds")))
-# env.custom$fun.df.transpose = read_rds(file.path(source_path, paste0("env.custom$fun.df.transpose", ".rds")))
+# env.custom$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$f_df.tribble_construct", ".rds")))
+# env.custom$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env.custom$f_df.t.tribble_construct", ".rds")))
+# env.custom$f_path.size_files = read_rds(file.path(source_path, paste0("env.custom$f_path.size_files", ".rds")))
+# env.custom$f_df.transpose = read_rds(file.path(source_path, paste0("env.custom$f_df.transpose", ".rds")))
 # Sys.time() - t0 # Time difference of 3.066839 secs
 
 
 
 
 #@ source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename)) ----
-# if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.custom")) env.custom = list()
-# env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
-if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
-env.custom$source = list()
-env.custom$source$path_local = "D:/OneDrive/[][Rproject]/github_tidystat"
-env.custom$source$path_github = "https://github.com/mkim0710/tidystat/raw/master"
-env.custom$source$tmp_objectname = "env.custom.fun.t.tribble_construct"
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]] = list()
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname = env.custom$source$tmp_objectname
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename = paste0(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$objectname, ".source.r")
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath = ""
-env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_local, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
-# env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path = paste0(env.custom$source$path_github, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$subpath)
+source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
+# source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
-t0 = Sys.time()
-source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename))
-Sys.time() - t0 # Time difference of 0.6328301  secs
+objectname = "f_df.t.tribble_construct"
+source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
+
 
 
 
@@ -675,7 +662,7 @@ Sys.time() - t0 # Time difference of 0.6328301  secs
 
 
 # > system.time(
-# +     source("https://github.com/mkim0710/tidystat/raw/master/env.custom.fun.t.tribble_construct.source.r")
+# +     source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
 # + )
 #    user  system elapsed 
 #    0.00    0.01    1.02 
@@ -699,12 +686,12 @@ tibble::tribble(
         "DFAB_PTN_CD",        "0",        "0",
         "DFAB_REG_YM",         NA,         NA
     )
-df %>% fun.tribble_construct #----
-df %>% fun.df.transpose #----
-df %>% fun.t.tribble_construct #----
+df %>% f_df.tribble_construct #----
+df %>% f_df.transpose #----
+df %>% f_df.t.tribble_construct #----
 path4read = "../github_tidystat/data"
-env.custom$fun.path_files_size(path4read, "\\.(rds)$") #-----
-# > df %>% fun.tribble_construct #----
+env.custom$f_path.size_files(path4read, "\\.(rds)$") #-----
+# > df %>% f_df.tribble_construct #----
 # tibble::tribble(
 #            ~varname,        ~V1,        ~V2,
 #            "STND_Y",     "2014",     "2014",
@@ -721,19 +708,19 @@ env.custom$fun.path_files_size(path4read, "\\.(rds)$") #-----
 #       "DFAB_PTN_CD",        "0",        "0",
 #       "DFAB_REG_YM",         NA,         NA
 #   )
-# > df %>% fun.df.transpose #----
+# > df %>% f_df.transpose #----
 # # A tibble: 2 × 14
 #   varname STND_Y PERSON_ID SEX   AGE   DTH_MDY  DTH_CODE1 DTH_CODE2 SIDO  IPSN_TYPE_CD CTRB_PT_TYPE_CD DFAB_GRD_CD DFAB_PTN_CD DFAB_REG_YM
 #   <chr>   <chr>  <chr>     <chr> <chr> <chr>    <chr>     <chr>     <chr> <chr>        <chr>           <chr>       <chr>       <chr>      
 # 1 V1      2014   67877095  1     59    20141001 I21       NA        41    6            8               0           0           NA         
 # 2 V2      2014   67877095  1     59    20141001 I21       NA        41    6            8               0           0           NA      
-# > df %>% fun.t.tribble_construct #----
+# > df %>% f_df.t.tribble_construct #----
 # tibble::tribble(
 #   ~varname, ~STND_Y, ~PERSON_ID, ~SEX, ~AGE,   ~DTH_MDY, ~DTH_CODE1, ~DTH_CODE2, ~SIDO, ~IPSN_TYPE_CD, ~CTRB_PT_TYPE_CD, ~DFAB_GRD_CD, ~DFAB_PTN_CD, ~DFAB_REG_YM,
 #       "V1",  "2014", "67877095",  "1", "59", "20141001",      "I21",         NA,  "41",           "6",              "8",          "0",          "0",           NA,
 #       "V2",  "2014", "67877095",  "1", "59", "20141001",      "I21",         NA,  "41",           "6",              "8",          "0",          "0",           NA
 #   )
-# > fun.path_files_size("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
+# > f_path.size_files("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
 # tibble::tribble(
 #                                         ~filename,    ~size,       ~bytes,         ~KB,        ~MB,        ~GB,
 #                              "ATC_RxNorm_NDC.rds", 79768376, "79,768,376", "77,898.80", "76.07305", "7.43e-02",

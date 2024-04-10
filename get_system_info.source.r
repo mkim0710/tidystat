@@ -3,11 +3,11 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r
 
 
-# if(!exists("env.custom")) env.custom = new.env()
-if(!exists("env.custom")) env.custom = list()
+# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 # env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) env.custom$env.internal = new.env()
-if(!exists("env.custom$env.internal")) env.custom$env.internal = new.env()
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 if(!exists("env.custom$info")) env.custom$info = list()
 
 #% get_system_info() ====
@@ -43,7 +43,15 @@ env.custom$info$get_system_info = function() {
     )
 }
 
-
+env.custom$info$get_software_versions <- function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
+  version_list <- list(OS.type = .Platform$OS.type, R.version = R.version$version.string)
+  version_list$RStudio_version <- ifelse(!is.null(.Platform$GUI) && .Platform$GUI == "RStudio" && exists("RStudio.Version"), paste(unlist(RStudio.Version()$version), collapse = "."), NA)
+  version_list$library_versions <- setNames(map(library_names, function(lib) {
+    if (!requireNamespace(lib, quietly = TRUE)) return(paste(lib, "not installed"))
+    paste(unlist(packageVersion(lib)), collapse = ".")
+  }), library_names)
+  return(version_list)
+}
 
 #@ end -----
 # ls.str(env.custom)
