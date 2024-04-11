@@ -69,7 +69,7 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
 if(!objectname %in% names(env.custom)) {
     cat("Loading: ", "env.custom$", objectname, "\n", sep = ""); 
     env.custom[[objectname]] = object
-    cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
+    # cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
 }
 
 # > for (env.custom.dependancy in c("f_df.tribble_construct")) {
