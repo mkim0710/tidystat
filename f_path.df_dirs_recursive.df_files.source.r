@@ -1,9 +1,21 @@
-#@ f_path.df_dirs_recursive.df_files.dev.r
-#         https://github.com/mkim0710/tidystat/blob/master/f_path.df_dirs_recursive.df_files.dev.r
-# source("https://github.com/mkim0710/tidystat/raw/master/f_path.df_dirs_recursive.df_files.source.r")
+# # objectname = "f_path.df_dirs_recursive.df_files"
+# # f_path.df_dirs_recursive.df_files.dev.r
+# # f_path.df_dirs_recursive.df_files.source.r
+# #         https://github.com/mkim0710/tidystat/blob/master/f_path.df_dirs_recursive.df_files.dev.r
+# # source("https://github.com/mkim0710/tidystat/raw/master/f_path.df_dirs_recursive.df_files.source.r")
+# # gitignore_escaped_select.UC.regex from gitignore.Rmd
+# # f_vec.extract_non_alphanumeric_list.dev.r
+# ###################################################################################################
+# objectname = "f_path.df_dirs_recursive.df_files"
+# cat("# ", 'objectname = "', objectname, '"', "\n",
+#     "# ", objectname, ".dev.r", "\n",
+#     "# ", objectname, ".source.r", "\n",
+#     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
+#     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+#     sep = "")
+# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 
-# gitignore_escaped_select.UC.regex from gitignore.Rmd
-# f_vec.extract_non_alphanumeric_list.dev.r
 
 
 library(tidyverse)

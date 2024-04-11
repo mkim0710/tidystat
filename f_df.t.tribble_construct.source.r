@@ -1,10 +1,24 @@
-# f_df.t.tribble_construct.source.r
-# f_df.tribble_construct.source.r
-# f_df.transpose.source.r
+# # f_df.t.tribble_construct.source.r
+# # f_df.tribble_construct.source.r
+# # f_df.transpose.source.r
+# 
+# # objectname = "f_df.t.tribble_construct"
+# # f_df.t.tribble_construct.dev.r
+# # f_df.t.tribble_construct.source.r
+# #         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
+# # source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
+# ###################################################################################################
+# objectname = "f_df.t.tribble_construct"
+# cat("# ", 'objectname = "', objectname, '"', "\n",
+#     "# ", objectname, ".dev.r", "\n",
+#     "# ", objectname, ".source.r", "\n",
+#     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
+#     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+#     sep = "")
+# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 
-# f_df.t.tribble_construct.dev.r
-#         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
-# source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
+
 
 library(tidyverse)
 

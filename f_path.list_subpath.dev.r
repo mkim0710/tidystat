@@ -1,4 +1,18 @@
+# objectname = "f_path.list_subpath"
 # f_path.list_subpath.dev.r
+# f_path.list_subpath.source.r
+#         https://github.com/mkim0710/tidystat/blob/master/f_path.list_subpath.dev.r
+# source("https://github.com/mkim0710/tidystat/raw/master/f_path.list_subpath.source.r")
+####################################################################################################
+objectname = "f_path.list_subpath"
+cat("# ", 'objectname = "', objectname, '"', "\n",
+    "# ", objectname, ".dev.r", "\n",
+    "# ", objectname, ".source.r", "\n",
+    "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
+    '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+    sep = "")
+rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 
 
 library(tidyverse)

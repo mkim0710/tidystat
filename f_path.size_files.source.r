@@ -1,7 +1,19 @@
-# f_path.size_files.source.r
+# objectname = "f_path.size_files"
 # f_path.size_files.dev.r
+# f_path.size_files.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_path.size_files.dev.r
 # source("https://github.com/mkim0710/tidystat/raw/master/f_path.size_files.source.r")
+####################################################################################################
+# objectname = "f_path.size_files"
+# cat("# ", 'objectname = "', objectname, '"', "\n",
+#     "# ", objectname, ".dev.r", "\n",
+#     "# ", objectname, ".source.r", "\n",
+#     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
+#     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+#     sep = "")
+# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
+
 
 library(tidyverse)
 
