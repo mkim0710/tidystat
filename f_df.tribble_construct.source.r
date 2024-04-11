@@ -9,14 +9,8 @@ if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), en
 if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
-    if(!"source_base_local" %in% names(env.custom$path)) {
-        env.custom$path$source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
-        cat("env.custom$path$source_base_local: ", env.custom$path$source_base_local, "\n")
-    }
-    if(!"source_base_github" %in% names(env.custom$path)) {
-        env.custom$path$source_base_github = "https://github.com/mkim0710/tidystat/raw/master"
-        cat("env.custom$path$source_base_github: ", env.custom$path$source_base_github, "\n")
-    }
+    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
+    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
 }
 #@ for (env.custom.dependancy in c("")) { -----
 for (env.custom.dependancy in c("f_df.t.tribble_construct")) {
