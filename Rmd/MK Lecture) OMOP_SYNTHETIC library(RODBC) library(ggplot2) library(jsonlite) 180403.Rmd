@@ -165,7 +165,8 @@ order by CONDITION_START_DATE
 ```
 
 ```{r}
-#@ total & MDD & pMDD (PERSON_ID_n_distinct, 1-year period prevalence/proportion) ------
+
+# @ total & MDD & pMDD (PERSON_ID_n_distinct, 1-year period prevalence/proportion) ------
 tblTotal = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
 	, GENDER_SOURCE_VALUE
@@ -246,7 +247,8 @@ g+geom_col(position = "fill")
 ```
 
 ```{r}
-#@ total & MDD & pMDD (n_distinct_PERSON_ID, 1-month period prevalence/proportion) ------
+
+# @ total & MDD & pMDD (n_distinct_PERSON_ID, 1-month period prevalence/proportion) ------
 tblTotal = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
 	, month(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_month
@@ -350,7 +352,8 @@ g+geom_area()
 ```
 
 ```{r}
-#@ total & MDD & pMDD (n_distinct_PERSON_ID, 1-year period prevalence/proportion, by state) ------
+
+# @ total & MDD & pMDD (n_distinct_PERSON_ID, 1-year period prevalence/proportion, by state) ------
 tblTotal = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
 	, STATE
@@ -422,7 +425,8 @@ detach("package:maps", unload=TRUE)
 ```
 
 ```{r}
-#@ CMS_SynPUF_CDMv5_YZ.json -----
+
+# @ CMS_SynPUF_CDMv5_YZ.json -----
 
 library(jsonlite)
 CMS_SynPUF_CDMv5_YZ.json = fromJSON(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/CMS_SynPUF_CDMv5_YZ.json"))
@@ -435,7 +439,8 @@ CMS_SynPUF_CDMv5_YZ.json[1000] %>% str
 ```
 
 ```{r}
-#@ CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(function(ls) { ----
+
+# @ CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(function(ls) { ----
 CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(function(ls) {
     ls %>% purrr::map(function(x) {
         if (is.list(x))

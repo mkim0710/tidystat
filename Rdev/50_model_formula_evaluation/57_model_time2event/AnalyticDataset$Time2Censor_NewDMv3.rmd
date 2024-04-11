@@ -4,7 +4,8 @@ output: html_notebook
     df_print: tibble
 ---
 
-# Rstudio RMarkDown Shortcuts
+# ---------------
+Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html
 Insert R chunk	Ctrl+Alt+I	Command+Option+I
@@ -21,7 +22,7 @@ F7 spell-check your document.
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS). 
 
 
-```{r, paged.print=FALSE}
+```{r, paged.print=FALSE, collapse=TRUE}
 # as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
 # # > as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
 # # List of 7
@@ -98,8 +99,9 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% str(max.level = 2)
 
 
 
-#$ -dev as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
-```{r, paged.print=FALSE}
+
+# $ -dev as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
+```{r, paged.print=FALSE, collapse=TRUE}
 # as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% str(max.level = 2)
 # # > as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% str(max.level = 2)
 # # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
@@ -155,8 +157,9 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>%
 #         Sum    1185   138   154   136   186   146  8085     0 10030
 ```
 
-#$ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
-```{r, paged.print=FALSE}
+
+# $ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
+```{r, paged.print=FALSE, collapse=TRUE}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 =
     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
     transmute(Time2Event_NewDMv3 = case_when(

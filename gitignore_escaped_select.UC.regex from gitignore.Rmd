@@ -37,8 +37,9 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 
 
 
-```{r, paged.print=FALSE}
-#@ gitignore = read_lines(".gitignore") =====
+```{r, paged.print=FALSE, collapse=TRUE}
+
+# @ gitignore = read_lines(".gitignore") =====
 # rstudioapi::navigateToFile(".gitignore")
 gitignore = read_lines(".gitignore", skip_empty_rows = T)
 # gitignore = gitignore %>% c(".*")
@@ -54,15 +55,16 @@ c(".Rproj.user", ".Rhistory", ".RData", ".Ruserdata", "*.zip",
 
 
 
-```{r, paged.print=FALSE}
+```{r, paged.print=FALSE, collapse=TRUE}
 gitignore %>% f_vec.extract_non_alphanumeric_list %>% unlist %>% unique %>% dput
 c(".", "*", ")", "-", " ")
 ```
 
 
 
-```{r, paged.print=FALSE}
-#@ gitignore_escaped =====
+```{r, paged.print=FALSE, collapse=TRUE}
+
+# @ gitignore_escaped =====
 gitignore_escaped = gitignore[gitignore != ""] %>% 
     str_replace_all("\\.", "\\\\.") %>% # Caution: dot should be handled before asterisk~!
     str_replace_all("\\*", "\\.\\*") %>%
@@ -85,8 +87,9 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 
 
 
-```{r, paged.print=FALSE}
-#@ gitignore_escaped_select =====
+```{r, paged.print=FALSE, collapse=TRUE}
+
+# @ gitignore_escaped_select =====
 gitignore_escaped %>% str_which("doc|xls|ppt")
 gitignore_escaped_select = gitignore_escaped %>% {.[-str_which(., "doc|xls|ppt")]}
 gitignore_escaped_select %>% dput #----
@@ -99,7 +102,7 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ".*\\-old\\..*", ".*\\-log.*\\..*", ".*\\.rtf")
 ```
 
-```{r, paged.print=FALSE}
+```{r, paged.print=FALSE, collapse=TRUE}
 # for (i_regex in unique(gitignore_escaped_select)) {
 #     df <- df_dir1 %>% filter(!str_detect(path.basename, i_regex))
 # }
@@ -107,8 +110,9 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 
 
 
-```{r, paged.print=FALSE}
-#@ gitignore_escaped_select.UC =====
+```{r, paged.print=FALSE, collapse=TRUE}
+
+# @ gitignore_escaped_select.UC =====
 gitignore_escaped_select.UC = gitignore_escaped_select %>% toupper %>% unique
 gitignore_escaped_select.UC %>% dput #----
 c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA", 
@@ -122,7 +126,7 @@ c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA",
 
 
 
-```{r, paged.print=FALSE}
+```{r, paged.print=FALSE, collapse=TRUE}
 gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>% 
     {paste0("(", ., ")")} %>% 
     paste(collapse = "|") %>% {paste0("^", ., "$")} %>% dput #----
@@ -131,16 +135,18 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 
 
 
-```{r, paged.print=FALSE}
-#@ end ----
+```{r, paged.print=FALSE, collapse=TRUE}
+
+# @ end ----
 
 
 ```
 
 
 
-```{r, paged.print=FALSE}
-#@ end ----
+```{r, paged.print=FALSE, collapse=TRUE}
+
+# @ end ----
 
 
 ```
