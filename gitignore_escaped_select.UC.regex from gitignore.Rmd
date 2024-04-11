@@ -39,6 +39,7 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 
 ```{r, paged.print=FALSE}
 #@ gitignore = read_lines(".gitignore") =====
+# rstudioapi::navigateToFile(".gitignore")
 gitignore = read_lines(".gitignore", skip_empty_rows = T)
 # gitignore = gitignore %>% c(".*")
 gitignore %>% dput
