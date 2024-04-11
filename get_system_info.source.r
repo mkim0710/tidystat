@@ -1,6 +1,26 @@
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r
+# # objectname = "get_system_info"
+# # cat("# ", 'objectname = "', objectname, '"', "\n",
+# #     "# ", objectname, ".dev.r", "\n",
+# #     "# ", objectname, ".source.r", "\n",
+# #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
+# #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+# #     sep = "")
+# # rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
+# # rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# ####################################################################################################
+# objectname = "get_system_info"
+# cat("# ", 'objectname = "', objectname, '"', "\n",
+#     "# ", objectname, ".dev.r", "\n",
+#     "# ", objectname, ".source.r", "\n",
+#     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
+#     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+#     sep = "")
+# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
+# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
+# # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.dev.r
+# # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r
+
 
 
 # if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
@@ -59,4 +79,11 @@ env.custom$info$get_software_versions <- function(library_names = c("tidyverse",
 # # env.internal : <environment: 0x0000024c23596368> 
 # # info : List of 1
 # #  $ get_system_info:function ()  
+
+
+# env.custom$info$info_system_info = env.custom$info$get_system_info()
+# # str(env.custom$info$info_system_info)
+# text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
+# text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
+# # text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
 
