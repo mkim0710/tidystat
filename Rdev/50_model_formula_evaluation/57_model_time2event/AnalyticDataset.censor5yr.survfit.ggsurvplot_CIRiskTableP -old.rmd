@@ -6,7 +6,7 @@ output: html_notebook
 
 # ---------------
 Rstudio RMarkDown Shortcuts
-```{text, include=FALSE}
+```{markdown, include=FALSE}
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
 Insert R chunk	Ctrl+Alt+I	Command+Option+I\
