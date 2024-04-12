@@ -20,8 +20,8 @@ if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), en
 # env.custom = env.custom %>% as.environment
 # if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
-if(!exists("env.custom$info")) env.custom$info = list()
-# if(!exists("env.custom$source")) env.custom$source = list()
+if(!"info" %in% names(env.custom)) env.custom$info = list()
+# if(!"source" %in% names(env.custom)) env.custom$source = list()
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
     # objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
