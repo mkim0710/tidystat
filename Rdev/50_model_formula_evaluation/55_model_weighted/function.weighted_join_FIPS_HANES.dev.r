@@ -17,8 +17,8 @@
 #     , P_AS_NonLatino = P_AS*(P_WH+P_AA+P_AS+P_Other4-P_Latino)/(P_WH+P_AA+P_AS+P_Other4)
 #     , P_Other4_NonLatino = P_Other4*(P_WH+P_AA+P_AS+P_Other4-P_Latino)/(P_WH+P_AA+P_AS+P_Other4)
 #     ) %>% select(FIPS, P_WH_NonLatino, P_AA_NonLatino, P_Latino, P_AS_NonLatino, P_Other4_NonLatino)
-# FACETS_data_2017.NA.NonLatino %>% as.tibble
-# # > FACETS_data_2017.NA.NonLatino %>% as.tibble
+# FACETS_data_2017.NA.NonLatino %>% as_tibble
+# # > FACETS_data_2017.NA.NonLatino %>% as_tibble
 # # # A tibble: 2,167 x 6
 # #          FIPS P_WH_NonLatino P_AA_NonLatino P_Latino P_AS_NonLatino P_Other4_NonLatino
 # #         <dbl>          <dbl>          <dbl>    <dbl>          <dbl>              <dbl>

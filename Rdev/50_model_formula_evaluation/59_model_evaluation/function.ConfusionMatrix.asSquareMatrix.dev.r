@@ -47,7 +47,7 @@ InputMatrix.tbl %>% {
 } %>%
     select(-matches(".old$")) %>% 
     group_by(Actual) %>% summarise_all(sum) %>% 
-    as.tibble
+    as_tibble
 # > InputMatrix.tbl %>% {
 # +     mutate(., 
 # +         Actual.old = Actual
@@ -56,7 +56,7 @@ InputMatrix.tbl %>% {
 # + } %>%
 # +     select(-matches(".old$")) %>% 
 # +     group_by(Actual) %>% summarise_all(sum) %>% 
-# +     as.tibble
+# +     as_tibble
 # # A tibble: 4 x 5
 #   Actual   `1`   `2`   `3`   `4`
 #   <chr>  <dbl> <dbl> <dbl> <dbl>
@@ -78,7 +78,7 @@ function.ConfusionMatrix.asSquareMatrix = function(InputMatrix.tbl) {
     } %>%
         select(-matches(".old$")) %>% 
         group_by(Actual) %>% summarise_all(sum) %>% 
-        as.tibble
+        as_tibble
 }
 
 

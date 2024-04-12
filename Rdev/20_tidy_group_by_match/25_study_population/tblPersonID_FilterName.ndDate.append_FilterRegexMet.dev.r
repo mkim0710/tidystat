@@ -62,7 +62,7 @@ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function(
                     # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min( eval(parse(text=varname4t)) , na.rm = T)
                     # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max( eval(parse(text=varname4t)) , na.rm = T)
                 ) %>%
-                as.tibble
+                as_tibble
             , by = varname4PersonID
         )
     out
@@ -176,7 +176,7 @@ tblPersonID_FilterName.ndDate.append_FilterMet <- function(
                     # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min( eval(parse(text=varname4t)) , na.rm = T)
                     # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max( eval(parse(text=varname4t)) , na.rm = T)
                 ) %>%
-                as.tibble
+                as_tibble
             , by = varname4PersonID
         )
     out

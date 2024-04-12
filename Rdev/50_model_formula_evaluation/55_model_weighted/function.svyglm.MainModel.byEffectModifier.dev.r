@@ -94,7 +94,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
         names(out) [names(out) == "2.5 %"] = "exp(2.5 %)"
         names(out) [names(out) == "97.5 %"] = "exp(97.5 %)"
     }
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }

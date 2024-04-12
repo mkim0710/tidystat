@@ -113,7 +113,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
             mutate(Label = Label %>% str_replace_all("lt([0-9]+)", "<\\1")) %>%
             mutate(Label = Label %>% str_replace_all("le([0-9]+)", "<=\\1")) %>%
             mutate(Label = Label %>% str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
-            as.tibble
+            as_tibble
         df
     }
     
@@ -378,7 +378,7 @@ function.df.edit_Label_Level = function(df) {
         mutate(Label = Label %>% str_replace_all("lt([0-9]+)", "<\\1")) %>%
         mutate(Label = Label %>% str_replace_all("le([0-9]+)", "<=\\1")) %>%
         mutate(Label = Label %>% str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
-        as.tibble
+        as_tibble
     df
 }
 
@@ -499,7 +499,7 @@ function.df.edit_Label_Level = function(df) {
         mutate(Label = Label %>% str_replace_all("lt([0-9]+)", "<\\1")) %>%
         mutate(Label = Label %>% str_replace_all("le([0-9]+)", "<=\\1")) %>%
         mutate(Label = Label %>% str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
-        as.tibble
+        as_tibble
     df
 }
 

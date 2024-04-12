@@ -30,7 +30,7 @@ InputMatrix1.tbl = tibble::tribble(
 
 InputSquareMatrix1.tbl = InputMatrix1.tbl %>% select(-matches(".old$")) %>% 
         group_by(Actual) %>% summarise_all(sum) %>% 
-        as.tibble
+        as_tibble
 InputSquareMatrix1.tbl %>% tribble_paste
 InputSquareMatrix1.tbl = tibble::tribble(
     ~Actual, ~X1, ~X2, ~X3, ~X4,
@@ -256,7 +256,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
 # 
 # 
 # mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(mat)
-# mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(as.tibble(mat))
+# mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(as_tibble(mat))
 
 InputSquareMatrix1.tbl.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix1.tbl)
 InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
@@ -494,9 +494,9 @@ for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
             InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics[[i]] %>% as.character %>% as.numeric
             , list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% map(function(ls) {
                 ls$Metrics
-            }) %>% transpose %>% {.[[i]]} %>% {set_names(., 1:length(.))} %>% as.tibble %>% map_df(as.character) %>% map_df(as.numeric) %>% 
+            }) %>% transpose %>% {.[[i]]} %>% {set_names(., 1:length(.))} %>% as_tibble %>% map_df(as.character) %>% map_df(as.numeric) %>% 
                 apply(MARGIN = 1, FUN = quantile, probs = c(0.025, 0.975), na.rm = T) %>% t
-        ) %>% as.tibble %>% 
+        ) %>% as_tibble %>% 
         mutate(`estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(`2.5%`,2)), ", ", sprintf("%.2f",round(`97.5%`,2)), ")")) %>% 
         {.$`estimate (95% CI) %.2f`}
 }

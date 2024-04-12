@@ -174,7 +174,7 @@ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean =
                     , by = c("Code.Cluster", "SIDO_CD", "SGG_CD")
                 ) %>% 
                     select(SIDO_CD, SIDO_NM, SGG_CD, SGG_NM, Code.Cluster, EMD_NM, everything(), -matches("^V[1-9]+")) %>% 
-                    as.tibble
+                    as_tibble
                 out = out %>% bind_cols(
                     df %>% select(matches("^V[1-9]+")) %>% 
                         map_df(function(vec) {
@@ -186,7 +186,7 @@ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean =
                             )
                             out = tbl$EMD_CD_NM
                         }) %>%
-                        as.tibble
+                        as_tibble
                 )
                 out
             })

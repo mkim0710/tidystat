@@ -349,8 +349,8 @@ mycohort_1strata_tie = tibble::tribble(
                 315L,        47L,        63,  FALSE, "Driver|>2750 KCals",
                 322L,        38L,        49,  FALSE, "Driver|>2750 KCals"
     )
-mycohort_1strata_tie %>% as.tibble
-# > mycohort_1strata_tie %>% as.tibble
+mycohort_1strata_tie %>% as_tibble
+# > mycohort_1strata_tie %>% as_tibble
 # # A tibble: 12 x 5
 #    RowNum_original entry_age exit_age event             strata
 #              <int>     <int>    <dbl> <lgl>             <fctr>
@@ -756,8 +756,8 @@ structure(list(RowNum_original_before_strata = c(39429L, 39894L,
 ), .Names = c("RowNum_original_before_strata", "entry", "EndTime.YM",
 "EndTime.is.MDD"))
 
-mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>% as.tibble
-# > mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>% as.tibble
+mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>% as_tibble
+# > mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>% as_tibble
 # # A tibble: 26 x 4
 #    RowNum_original_before_strata entry      EndTime.YM EndTime.is.MDD
 #                            <int> <date>     <date>     <lgl>         
@@ -833,8 +833,8 @@ structure(list(RowNum_original_before_strata = c(36092L, 37713L,
     EndTime.is.MDD = c(FALSE, FALSE, TRUE)), row.names = c(NA,
 -3L), class = c("tbl_df", "tbl", "data.frame"), .Names = c("RowNum_original_before_strata",
 "entry", "EndTime.YM", "EndTime.is.MDD"))
-mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as.tibble
-# > mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as.tibble
+mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as_tibble
+# > mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as_tibble
 # # A tibble: 3 x 4
 #   RowNum_original_before_strata entry      EndTime.YM EndTime.is.MDD
 #                           <int> <date>     <date>     <lgl>         
@@ -888,7 +888,7 @@ data.strata_list = function(
     out = map(
         levels(.mydata$strata)
         , function(chr) {
-            out2 = .mydata %>% filter(strata == !!chr) %>% as.tibble
+            out2 = .mydata %>% filter(strata == !!chr) %>% as_tibble
             # attr(out2, ".vars4strata") = .vars4strata
             out2
         }
@@ -912,8 +912,8 @@ diet = diet %>% mutate(
     , exit_age = as.numeric(dox - dob)/365
     , event = fail > 0
 )
-diet %>% as.tibble
-# > diet %>% as.tibble
+diet %>% as_tibble
+# > diet %>% as_tibble
 # # A tibble: 337 x 19
 #       id        doe        dox        dob          y  fail         job month  energy   height   weight    fat     fibre   energy.grp   chd RowNum_original entry_age exit_age event
 #    <dbl>     <date>     <date>     <date>      <dbl> <dbl>      <fctr> <dbl>   <dbl>    <dbl>    <dbl>  <dbl>     <dbl>       <fctr> <dbl>           <int>     <dbl>    <dbl> <lgl>
@@ -1490,7 +1490,7 @@ diet.stratified.ccwc #----
 #         FUN = paste, collapse = paste.collapse)
 #     .mydata$strata = .mydata$strata %>% as.factor
 #     out = map(levels(.mydata$strata), function(chr) {
-#         out2 = .mydata %>% filter(strata == (!(!chr))) %>% as.tibble
+#         out2 = .mydata %>% filter(strata == (!(!chr))) %>% as_tibble
 #         out2
 #     })
 #     names(out) = levels(.mydata$strata)

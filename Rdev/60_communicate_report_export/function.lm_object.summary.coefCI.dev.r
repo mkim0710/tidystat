@@ -9,8 +9,8 @@
 #         , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset 
 #     )
 # analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates = glm(formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + . , data = data, family = binomial)
-# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column %>% as.tibble #----
-# # > analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column %>% as.tibble #----
+# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column %>% as_tibble #----
+# # > analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column %>% as_tibble #----
 # # # A tibble: 18 x 5
 # #    rowname                                   `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 # #    <chr>                                              <dbl>   <dbl>    <dbl>      <dbl>
@@ -119,7 +119,7 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2,
     )
     out$rowname = NULL
     names(out) [1] = "rowname"
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }
@@ -242,7 +242,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
         names(out) [names(out) == "2.5 %"] = "exp(2.5 %)"
         names(out) [names(out) == "97.5 %"] = "exp(97.5 %)"
     }
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }
@@ -336,7 +336,7 @@ glm_object %>% function.glm_object.summary.exp
 #         names(out) [6] = "exp(2.5 %)"
 #         names(out) [7] = "exp(97.5 %)"
 #     }
-#     # out = out %>% as.tibble
+#     # out = out %>% as_tibble
 #     row.names(out) = NULL
 #     out
 # }
@@ -352,8 +352,8 @@ glm_object %>% function.glm_object.summary.exp
 # )
 # logan2$case = (logan2$occupation == logan2$tocc)
 # logan2 = logan2[order(logan2$id), ]
-# logan2 %>% as.tibble
-# # > logan2 %>% as.tibble
+# logan2 %>% as_tibble
+# # > logan2 %>% as_tibble
 # # # A tibble: 4,190 x 7
 # #    occupation         focc education      race    id         tocc  case
 # #  *     <fctr>       <fctr>     <int>    <fctr> <int>       <fctr> <lgl>
@@ -490,7 +490,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
         names(out) [names(out) == "2.5 %"] = "exp(2.5 %)"
         names(out) [names(out) == "97.5 %"] = "exp(97.5 %)"
     }
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }
@@ -507,8 +507,8 @@ logan2 = data.frame(
 )
 logan2$case = (logan2$occupation == logan2$tocc)
 logan2 = logan2[order(logan2$id), ]
-logan2 %>% as.tibble
-# > logan2 %>% as.tibble
+logan2 %>% as_tibble
+# > logan2 %>% as_tibble
 # # A tibble: 4,190 x 7
 #    occupation         focc education      race    id         tocc  case
 #  *     <fctr>       <fctr>     <int>    <fctr> <int>       <fctr> <lgl>

@@ -146,7 +146,7 @@ function.traj_clusters_by_sequence = function(input, seed = 1) {
         out[[i]] =
             factors %>% step3clusters(nclusters = i) %>% (
                 function(ls) {
-                    ls$measurments %>% as.tibble %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(ls$data %>% as.tibble, by = "IDvector") %>% select(-IDvector) %>% 
+                    ls$measurments %>% as_tibble %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(ls$data %>% as_tibble, by = "IDvector") %>% select(-IDvector) %>% 
                         gather(-ID, key = "sequence", value = "value") %>% mutate(sequence = as.numeric(as.factor(sequence))) %>%
                         left_join(ls$clusters %>% map_df(unlist), by = "ID")
                 })
@@ -263,9 +263,9 @@ function.traj_clusters_by_time = function(input, seed = 1) {
         out[[i]] =
             factors %>% step3clusters(nclusters = i) %>% (
                 function(ls) {
-                    ls$measurments %>% as.tibble %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(
-                        ls$data %>% as.tibble %>% gather(-IDvector, key = "sequence", value = "value") %>% 
-                            left_join(ls$time %>% as.tibble %>% gather(-IDvector, key = "sequence", value = "time_from_t0"), by = c("IDvector", "sequence"))
+                    ls$measurments %>% as_tibble %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(
+                        ls$data %>% as_tibble %>% gather(-IDvector, key = "sequence", value = "value") %>% 
+                            left_join(ls$time %>% as_tibble %>% gather(-IDvector, key = "sequence", value = "time_from_t0"), by = c("IDvector", "sequence"))
                         , by = "IDvector"
                     ) %>% select(-IDvector) %>%
                         mutate(sequence = as.numeric(as.factor(sequence))) %>%

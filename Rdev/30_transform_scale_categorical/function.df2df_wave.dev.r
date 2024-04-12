@@ -23,7 +23,7 @@ function.df2df_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, 
 
     # Creating an empty matrix
     # df_wave <- matrix(nrow = nrow(df), ncol = max(vector_wave))
-    df_wave = as.tibble(array(dim = c(nrow(df), max(vector_wave))))
+    df_wave = as_tibble(array(dim = c(nrow(df), max(vector_wave))))
 
     for (i in seq_along(vector_wave)) {
         if(print.intermediate) {

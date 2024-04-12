@@ -325,14 +325,14 @@ colnames(dummies) %>% str_replace_all("^.+\\.", "")
 
 #@ -----
 dummies %>% str
-dummies %>% as.tibble
+dummies %>% as_tibble
 dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 # > dummies %>% str
 #  num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:150] "1" "2" "3" "4" ...
 #   ..$ : chr [1:3] "Species.setosa" "Species.versicolor" "Species.virginica"
-# > dummies %>% as.tibble
+# > dummies %>% as_tibble
 # # A tibble: 150 x 3
 #    Species.setosa Species.versicolor Species.virginica
 #             <dbl>              <dbl>             <dbl>
@@ -368,7 +368,7 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 
 1:ncol(dummies) %>% str
 (dummies %*% 1:ncol(dummies)) %>% str
-(dummies %*% 1:ncol(dummies)) %>% as.tibble
+(dummies %*% 1:ncol(dummies)) %>% as_tibble
 (dummies %*% 1:ncol(dummies)) %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 # > 1:ncol(dummies) %>% str
 #  int [1:3] 1 2 3
@@ -377,7 +377,7 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:150] "1" "2" "3" "4" ...
 #   ..$ : NULL
-# > (dummies %*% 1:ncol(dummies)) %>% as.tibble
+# > (dummies %*% 1:ncol(dummies)) %>% as_tibble
 # # A tibble: 150 x 1
 #       V1
 #    <dbl>
@@ -398,11 +398,11 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 
 
 factor(dummies %*% 1:ncol(dummies), labels = header) %>% str
-factor(dummies %*% 1:ncol(dummies), labels = header) %>% as.tibble
+factor(dummies %*% 1:ncol(dummies), labels = header) %>% as_tibble
 factor(dummies %*% 1:ncol(dummies), labels = header) %>% {.[0:(length(.)/10-1) * 10 + 1]} #----
 # > factor(dummies %*% 1:ncol(dummies), labels = header) %>% str
 #  Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
-# > factor(dummies %*% 1:ncol(dummies), labels = header) %>% as.tibble
+# > factor(dummies %*% 1:ncol(dummies), labels = header) %>% as_tibble
 # # A tibble: 150 x 1
 #    value 
 #    <fct> 
@@ -542,10 +542,10 @@ n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head =
     ), class = "data.frame", row.names = c(NA, -10L))
 n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% mutate(
     Alcohol = cbind(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% function.indicators2factor
-) %>% as.tibble
+) %>% as_tibble
 # > n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% mutate(
 # +     Alcohol = cbind(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% function.indicators2factor
-# + ) %>% as.tibble
+# + ) %>% as_tibble
 # # A tibble: 10 x 4
 #    Alcohol_le1pwk Alcohol_ge2le3pwk Alcohol_ge4pwk Alcohol          
 #             <dbl>             <dbl>          <dbl> <fct>            

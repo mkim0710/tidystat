@@ -183,7 +183,7 @@ function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal
         names(out) [names(out) == "2.5 %"] = "exp(2.5 %)"
         names(out) [names(out) == "97.5 %"] = "exp(97.5 %)"
     }
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }
@@ -364,7 +364,7 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
         names(out) [names(out) == "2.5 %"] = "exp(2.5 %)"
         names(out) [names(out) == "97.5 %"] = "exp(97.5 %)"
     }
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }
@@ -570,7 +570,7 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
         names(out) [names(out) == "2.5 %"] = "exp(2.5 %)"
         names(out) [names(out) == "97.5 %"] = "exp(97.5 %)"
     }
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }

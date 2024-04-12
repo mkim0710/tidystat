@@ -276,8 +276,8 @@ trainset.cv.glmnet_alphas_cox = function(
 # save(CoxExample_tibble, file = "library(glmnet) CoxExample_tibble.rda")
 library(tidyverse)
 load("library(glmnet) CoxExample_tibble.rda")
-CoxExample_tibble %>% as.tibble
-# > CoxExample_tibble %>% as.tibble
+CoxExample_tibble %>% as_tibble
+# > CoxExample_tibble %>% as_tibble
 # # A tibble: 1,000 x 32
 #           time status         V1         V2          V3          V4          V5         V6          V7
 #          <dbl>  <dbl>      <dbl>      <dbl>       <dbl>       <dbl>       <dbl>      <dbl>       <dbl>
@@ -419,8 +419,8 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 #@ test) trainset.cv.glmnet_alphas_cox() trainsetCC69agg4i07_829 ----
 library(tidyverse)
 load("trainsetCC69agg4i07_829.rda")
-trainsetCC69agg4i07_829 %>% as.tibble
-# > trainsetCC69agg4i07_829 %>% as.tibble
+trainsetCC69agg4i07_829 %>% as_tibble
+# > trainsetCC69agg4i07_829 %>% as_tibble
 # # A tibble: 1,658 x 35
 #    is.Case EndTime    Sex AgeDecade AcquiredHypothyroidism AdjustmentDisorder Anemia Anxiety Arthritis AtrialFibrillation BenignProstatic BrainInjury Cataract
 #      <lgl>   <dbl> <fctr>     <dbl>                  <lgl>              <lgl>  <lgl>   <lgl>     <lgl>              <lgl>           <lgl>       <lgl>    <lgl>
@@ -1076,7 +1076,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
         names(out) [names(out) == "2.5 %"] = "exp(2.5 %)"
         names(out) [names(out) == "97.5 %"] = "exp(97.5 %)"
     }
-    # out = out %>% as.tibble
+    # out = out %>% as_tibble
     row.names(out) = NULL
     out
 }

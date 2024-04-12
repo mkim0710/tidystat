@@ -31,8 +31,8 @@ data.numeric.gather.group_by.summarise_all = function(data, round_digits = 3) {
 }
 
 # #@ test: iris) data.gather.group_by.summarise_all()
-# iris %>% as.tibble
-# # > iris %>% as.tibble
+# iris %>% as_tibble
+# # > iris %>% as_tibble
 # # # A tibble: 150 x 5
 # #    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 # #           <dbl>       <dbl>        <dbl>       <dbl>  <fctr>

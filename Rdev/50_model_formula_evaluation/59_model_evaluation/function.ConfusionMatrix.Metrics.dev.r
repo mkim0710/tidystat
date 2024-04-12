@@ -29,7 +29,7 @@ InputMatrix1.tbl = tibble::tribble(
 
 InputSquareMatrix1.tbl = InputMatrix1.tbl %>% select(-matches(".old$")) %>% 
         group_by(Actual) %>% summarise_all(sum) %>% 
-        as.tibble
+        as_tibble
 InputSquareMatrix1.tbl %>% tribble_paste
 InputSquareMatrix1.tbl = tibble::tribble(
     ~Actual, ~X1, ~X2, ~X3, ~X4,
@@ -251,7 +251,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
 # 
 # 
 # mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(mat)
-# mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(as.tibble(mat))
+# mat.ConfusionMatrix.Metrics = function.ConfusionMatrix.Metrics(as_tibble(mat))
 
 InputSquareMatrix.tbl.ConfusionMatrix1.Metrics = function.ConfusionMatrix.Metrics(InputSquareMatrix1.tbl)
 InputSquareMatrix.tbl.ConfusionMatrix1.Metrics
@@ -827,7 +827,7 @@ mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * 
 # 
 # ConfusionMatriActual; ConfusionMatrix4
 # 
-# function(TN, FN, FP, TP) {out = list(); out$TN = TN; out$Sensitivity = Sensitivity; out %>% as.tibble(); out %>% unlist() }
+# function(TN, FN, FP, TP) {out = list(); out$TN = TN; out$Sensitivity = Sensitivity; out %>% as_tibble(); out %>% unlist() }
 # 
 # $Metrics
 # rowname_equation %>% left_join(Metrics)

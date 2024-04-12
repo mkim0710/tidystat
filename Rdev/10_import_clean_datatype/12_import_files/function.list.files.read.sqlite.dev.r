@@ -81,7 +81,7 @@ mydb %>% dbListTables
 #         right_join(
 #             NHID_JK0213.bind_rows %>% filter(STND_Y == 2002) %>% filter(AGE_GROUP %in% 5:18) %>% select(PERSON_ID)
 #         ) %>% select(KEY_SEQ) %>% distinct
-# KEY_SEQ.02ID.2089 %>% as.tibble
+# KEY_SEQ.02ID.2089 %>% as_tibble
 # # > KEY_SEQ.02ID.2089 =
 # # +     NHID_GY20_0213.bind_rows.12478.ICDclean %>%
 # # +         right_join(
@@ -90,7 +90,7 @@ mydb %>% dbListTables
 # # Joining, by = "PERSON_ID"
 # # Warning message:
 # # Column `PERSON_ID` joining factors with different levels, coercing to character vector 
-# # > KEY_SEQ.02ID.2089 %>% as.tibble
+# # > KEY_SEQ.02ID.2089 %>% as_tibble
 # # # A tibble: 87,978,631 x 1
 # #    KEY_SEQ     
 # #    <fct>       

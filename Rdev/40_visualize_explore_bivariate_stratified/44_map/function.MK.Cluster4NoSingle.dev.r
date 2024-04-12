@@ -137,14 +137,14 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
                                ) %>%
                                mutate(n_Code = data %>% map_int(nrow)) %>%
                                cbind(
-                                   .$data %>% map(t) %>% map(as.tibble) %>% bind_rows
+                                   .$data %>% map(t) %>% map(as_tibble) %>% bind_rows
                                ) %>%
                                select(-data) %>%
                                rename(Code.Cluster = Code.new) %>%
-                               as.tibble
+                               as_tibble
                            , by = "Code.Cluster"
                 ) %>%
-                as.tibble
+                as_tibble
         )
         iteration.out$warningmessage.vec = warningmessage.vec 
         iteration.out$Code4MergeFromToDF = Code4MergeFromToDF
@@ -208,14 +208,14 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
                 group_by(Code.new) %>% nest %>% 
                 mutate(n_Code = data %>% map_int(nrow)) %>% 
                 cbind(
-                    .$data %>% map(t) %>% map(as.tibble) %>% bind_rows
+                    .$data %>% map(t) %>% map(as_tibble) %>% bind_rows
                 ) %>% 
                 select(-data) %>% 
                 rename(Code.Cluster = Code.new) %>% 
-                as.tibble
+                as_tibble
             , by = "Code.Cluster"
         ) %>% 
-        as.tibble
+        as_tibble
     Results.iteration.list[[1]]$warningmessage.vec = warningmessage.vec 
     attr(Results.iteration.list[[1]], "iteration_info") = list(
         type_of_iteration = "initial data before iteration"

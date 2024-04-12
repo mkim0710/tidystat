@@ -24,7 +24,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
 
     # Creating an empty matrix
     # df_wave <- matrix(nrow = nrow(df), ncol = max(vector_wave))
-    df_wave = as.tibble(array(dim = c(nrow(df), max(vector_wave))))
+    df_wave = as_tibble(array(dim = c(nrow(df), max(vector_wave))))
 
     for (i in seq_along(vector_wave)) {
         if(print.intermediate) {
@@ -42,7 +42,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
     colnames(df_wave)[vector_wave] = vector_colname_at_wave
     # return(df_wave)
     
-    df_wave_cumulative = as.tibble(array(dim = c(nrow(df), max(vector_wave))))
+    df_wave_cumulative = as_tibble(array(dim = c(nrow(df), max(vector_wave))))
     names(df_wave_cumulative) = paste0(names(df_wave), "_cumulative")
     for (i in seq_along(df_wave_cumulative)) {
         # df_wave_cumulative[,i] = df_wave[,1:i] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% unname

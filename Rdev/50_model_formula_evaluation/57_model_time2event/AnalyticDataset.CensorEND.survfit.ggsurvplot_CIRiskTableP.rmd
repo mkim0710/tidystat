@@ -4,9 +4,9 @@ output: html_notebook
     df_print: tibble
 ---
 
-# ---------------
-Rstudio RMarkDown Shortcuts
+# _______________
 ```{markdown, include=FALSE}
+##### Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
 Insert R chunk	Ctrl+Alt+I	Command+Option+I\
@@ -24,14 +24,27 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 ```
 
+```{r, setup, include=FALSE}
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+# The YAML approach allows you to set options globally for a specific output forma
+# The setup chunk approach sets chunk options globally for the document regardless of the output format
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# The advantage of utilizing parameters is that you can pass these values to a call to the render() function.
+knitr::opts_chunk$set(
+  comment = '##', fig.width = 10, fig.height = 6, 
+  collapse=TRUE, 
+  tidy.opts=list(width.cutoff=80), tidy=TRUE
+)
+```
+
 <font size="3">% env.custom</font>\
 <font size="3">% env.custom\$info</font>\
 
-##### % env.custom\$info\$DocumentTitle1
+#### % env.custom\$info\$DocumentTitle1
 ```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
 # if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
-if(!exists("env.custom$info")) env.custom$info = list()
+if(!"info" %in% names(env.custom)) env.custom$info = list()
 env.custom$info$DocumentTitle0 = "Blank) f_df.t.tribble_construct"
 env.custom$info$DocumentTitle1 = paste0(env.custom$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 cat(env.custom$info$DocumentTitle1, "\r\n", 
@@ -44,7 +57,7 @@ cat(env.custom$info$DocumentTitle1, "\r\n",
     sep = "")
 ```
 
-##### % env.custom\$info\$info_system_info
+#### % env.custom\$info\$info_system_info
 ```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
 
 # @ source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")) ) ----
@@ -134,7 +147,7 @@ List of 9
 
 
 ################################################
-##### % env.custom$path    
+#### % env.custom$path    
 <font size="2">% env.custom\$path\$data_suffix</font>\
 <font size="2">% env.custom\$path\$project_suffix</font>\
 ```{r, paged.print=FALSE, collapse=TRUE, echo=FALSE}
@@ -181,7 +194,7 @@ env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4file
 ```
 
 
-#@@ START) Baseline ------
+# @@ START) Baseline ------
 # $ objectname = "as1.na.Date.fct.select89" ====
 @ assign(objectname, readRDS(file.path(path4read, filename2read))) 
 ```{r, paged.print=FALSE, collapse=TRUE}
@@ -201,7 +214,7 @@ cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep 
 ```
 
 
-#@@ START) Outcome ------
+# @@ START) Outcome ------
 # $ objectname = "as1_7.na.Date.fct.cumulative_DM.list" ====
 @ assign(objectname, readRDS(file.path(path4read, filename2read))) 
 ```{r, paged.print=FALSE, collapse=TRUE}
@@ -311,7 +324,7 @@ df_NewDMv3.NAtime = as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>%
     rename(event = Event_NewDMv3, time = Time2Event_NewDMv3) %>% 
     mutate(StudyPopulation = !event | time > 1) %>% 
     mutate(Group = StudyPopulation %>% as.integer) %>% 
-    as.tibble
+    as_tibble
 df_NewDMv3.NAtime
 df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # > df_NewDMv3.NAtime
@@ -355,7 +368,7 @@ df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$Study
 
 # $ df_NewDMv3.CensorEND 
 # [Plot] Stratified Kaplan-Meier Survival Curve
-```{r, paged.print=FALSE, fig.width=8, fig.height=6}
+```{r, paged.print=FALSE, fig.width=8, fig.height=6, include=FALSE}
 library(tidyverse)
 # library(survival)
 # library(survminer)
@@ -377,7 +390,7 @@ df_NewDMv3.CensorEND = df_NewDMv3.NAtime %>%
     # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) %>% 
     mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) %>% 
     mutate(time = pmin(time, value_for_Censor_at_END)) %>% 
-    as.tibble
+    as_tibble
 survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_NewDMv3.CensorEND %>% filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
            , break.time.by = value_for_break.time.by
            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
@@ -396,7 +409,7 @@ df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censo
     rename(event = Event_NewDMv3, time = Time2Censor_NewDMv3) %>% 
     mutate(StudyPopulation = !event | time > 1) %>% 
     mutate(Group = StudyPopulation %>% as.integer) %>% 
-    as.tibble
+    as_tibble
 df_NewDMv3.Time2Censor_NewDMv3
 df_NewDMv3.Time2Censor_NewDMv3 %>% str
 df_NewDMv3.Time2Censor_NewDMv3 %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
@@ -478,12 +491,12 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
 
 
 # [Plot] Stratified Kaplan-Meier Survival Curve
-```{r, paged.print=FALSE, fig.width=8, fig.height=6}
+```{r, paged.print=FALSE, fig.width=8, fig.height=6, include=FALSE}
 # library(tidyverse)
 # # library(survival)
 # # library(survminer)
 # ?survival::lung
-# df_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% as.tibble
+# df_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% as_tibble
 # # df_time2event %>% select(sex, Group) %>% str
 # # df_time2event %>% select(sex, Group) %>% table
 # # # > df_time2event %>% select(sex, Group) %>% str
@@ -532,7 +545,7 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
 #     # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) %>%
 #     mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) %>%
 #     mutate(time = pmin(time, value_for_Censor_at_END)) %>%
-#     as.tibble
+#     as_tibble
 # df_time2event.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # > df_time2event.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # .$StudyPopulation: FALSE
@@ -563,14 +576,14 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
 
 
 # @@ END -----
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
 # @@ END -----
 ```
 
 # $ objectname = "df_NewDMv3.NAtime200621" ====
 
-## @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
-```{r, paged.print=FALSE, collapse=TRUE}
+###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
 # 
 # @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
 # objectname = "df_NewDMv3.NAtime200621"
