@@ -88,18 +88,18 @@ env.custom$env.internal$tribble_construct <- function(input_table, oc = env.cust
     input_table <- env.custom$env.internal$read_clip_tbl_guess()
 
     if(is.null(input_table)){
-      message("Could not paste clipboard as tibble. Text could not be parsed as table.")
+      cat("Could not paste clipboard as tibble. Text could not be parsed as table.")
       return(NULL)
     }
     # Parse data types from string using readr::guess_parser
     input_table_types <- attr(input_table, "col_types")
   }else{
     if(!is.data.frame(input_table) && !is_tibble(input_table)){
-      message("Could not format input_table as table. Unexpected class.")
+      cat("Could not format input_table as table. Unexpected class.")
       return(NULL)
     }
     if(nrow(input_table) >= env.custom$env.internal$.global_datapasta_env$max_rows){
-      message(paste0("Supplied large input_table (>= ",env.custom$env.internal$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env.custom$env.internal$dp_set_max_rows(n) to increase the limit."))
+      cat(paste0("Supplied large input_table (>= ",env.custom$env.internal$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env.custom$env.internal$dp_set_max_rows(n) to increase the limit."))
       return(NULL)
     }
     input_table_types <- lapply(input_table, class)
