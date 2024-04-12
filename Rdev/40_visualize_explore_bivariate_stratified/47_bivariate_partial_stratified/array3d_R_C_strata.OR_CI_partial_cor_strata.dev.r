@@ -30,7 +30,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
     out
 }
 #@ test) array3d_R_C_strata2df() --------
-# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as_tibble()
 # # A tibble: 78 x 4
 #      Var1   Var2   Var3  Freq
 #  * <fctr> <fctr> <fctr> <int>
@@ -64,7 +64,7 @@ matrix2x2.OR_CI = function(matrix2x2) {
     } else {
         print("error: not matrix2x2")
     }
-    out %>% as.tibble
+    out %>% as_tibble
 }
 
 
@@ -118,7 +118,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
     # if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)
     if( length(dim(array3d_R_C_strata)) == 3 & dim(array3d_R_C_strata)[1] == 2 & dim(array3d_R_C_strata)[2] == 2 ) {
         out = list()
-        OR_CI_crude = matrix2x2.OR_CI(apply(array3d_R_C_strata, 1:2, sum)) %>% as.tibble %>% rownames_to_column()
+        OR_CI_crude = matrix2x2.OR_CI(apply(array3d_R_C_strata, 1:2, sum)) %>% as_tibble %>% rownames_to_column()
         
         Ri = array3d_R_C_strata[1,1,] * array3d_R_C_strata[2,2,] / apply(array3d_R_C_strata, 3, sum)
         Si = array3d_R_C_strata[1,2,] * array3d_R_C_strata[2,1,] / apply(array3d_R_C_strata, 3, sum)
@@ -170,12 +170,12 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
             , Strata = paste0("Strata", function.sequence_with_leading_zeros(dim(array3d_R_C_strata.rename)[3]))
         )
         N_spread = full_join(
-            apply(array3d_R_C_strata.rename, 1:2, sum) %>% as.table %>% as.tibble() %>%
+            apply(array3d_R_C_strata.rename, 1:2, sum) %>% as.table %>% as_tibble() %>%
                 unite(Row, Col, col = "Row_Col", sep = "_") %>%
                 spread(key = Row_Col, value = n) %>%
                 add_column(Strata = "", .before = 1)
             ,
-            array3d_R_C_strata.rename %>% as.table %>% as.tibble() %>%
+            array3d_R_C_strata.rename %>% as.table %>% as_tibble() %>%
                 unite(Row, Col, col = "Row_Col", sep = "_") %>%
                 spread(key = Row_Col, value = n)
             , by = c("Strata", "Row1_Col1", "Row1_Col2", "Row2_Col1", "Row2_Col2")
@@ -222,7 +222,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
 # [1,]    9   11
 # [2,]   10   12
 
-# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as_tibble()
 # # A tibble: 78 x 4
 #      Var1   Var2   Var3  Freq
 #  * <fctr> <fctr> <fctr> <int>

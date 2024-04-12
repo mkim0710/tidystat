@@ -29,7 +29,7 @@ if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), en
 # if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
 
-if(!exists("env.custom$info")) env.custom$info = list()
+if(!"info" %in% names(env.custom)) env.custom$info = list()
 
 env.custom$DocumentTitle0 = "get_system_info()"
 env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))

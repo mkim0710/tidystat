@@ -16,8 +16,8 @@ auc(roc_obj)
 # > auc(roc_obj)
 # Area under the curve: 0.825
 
-roc_obj[c("sensitivities", "specificities")] %>% as.tibble
-# > roc_obj[c("response", "predictor", "sensitivities", "specificities")] %>% as.tibble
+roc_obj[c("sensitivities", "specificities")] %>% as_tibble
+# > roc_obj[c("response", "predictor", "sensitivities", "specificities")] %>% as_tibble
 # # A tibble: 20 x 4
 #    response predictor sensitivities specificities
 #       <dbl>     <dbl>         <dbl>         <dbl>

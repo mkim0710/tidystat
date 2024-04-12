@@ -14,7 +14,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
     list_levels = object.glm$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
     list_levels = c(list_levels, which(object.glm$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
           
-    # debug 200222) as.tibble() removes the rownames -_- -----                                                                            
+    # debug 200222) as_tibble() removes the rownames -_- -----                                                                            
     # debug 200222) right_join() instead of full_join() to remove something like strata(MatchingPairID) -_- -----                                                                            
     #@ tbl_varname_level_coefficients ====
     if (length(list_levels) == 0) { # debug 181115 ----

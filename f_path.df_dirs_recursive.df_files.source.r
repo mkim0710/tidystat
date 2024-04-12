@@ -87,7 +87,7 @@ object = function(
             mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", max(.x - 1, 0)), collapse = "")) %>% paste0(path.basename) ) %>%
             # arrange(path.parent, path.basename) %>% 
             arrange(full_path) %>% 
-            as.tibble
+            as_tibble
         
         df_dirs_recursive2 = df_dirs_recursive1 %>% 
             select(path.level, path, 
@@ -95,7 +95,7 @@ object = function(
                    # path.basename.ext, 
                    full_path, normalized_path, 
                    print_tree_path) %>%
-            as.tibble
+            as_tibble
         
         df_dirs_recursive.ls_files1 = df_dirs_recursive2 %>% mutate(
             files = full_path %>% map(function(chr) {list.files(chr, include.dirs = FALSE) %>% str_subset(paste0(gitignore_escaped_select.UC.regex, collapse = "|") %>% regex(ignore_case = TRUE), negate = TRUE)}) 
@@ -181,7 +181,7 @@ object = function(
                         )
                     )
             ) %>%
-            as.tibble
+            as_tibble
         df_out = df_dirs_recursive.ls_files2
     } else {
         df_out = df_dirs_recursive0

@@ -21,11 +21,11 @@ example_df <- tibble(
   date = seq(ymd('2020-01-01'), by = "month", length.out = 10) # Date column
 )
 normalized_df <- function.df_continuous_vars.normalize(example_df)
-# example_df %>% as.tibble
+# example_df %>% as_tibble
 example_df %>% summary
-# normalized_df %>% as.tibble
+# normalized_df %>% as_tibble
 normalized_df %>% summary
-# > example_df %>% as.tibble
+# > example_df %>% as_tibble
 # # A tibble: 10 × 9
 #       id   age height gender logical factor_level2 factor_strings binary_numeric date      
 #    <int> <int>  <dbl> <chr>  <lgl>   <fct>         <fct>                   <dbl> <date>    
@@ -48,7 +48,7 @@ normalized_df %>% summary
 #  3rd Qu.: 7.75   3rd Qu.:30.75   3rd Qu.:176.5                                                    Elderberry:1      3rd Qu.:2.0    3rd Qu.:2020-07-24  
 #  Max.   :10.00   Max.   :35.00   Max.   :182.0                                                    Fig       :1      Max.   :2.0    Max.   :2020-10-01  
 #                                                                                                   (Other)   :4                                         
-# > normalized_df %>% as.tibble
+# > normalized_df %>% as_tibble
 # # A tibble: 10 × 9
 #        id    age  height gender logical factor_level2 factor_strings binary_numeric date      
 #     <dbl>  <dbl>   <dbl> <chr>  <lgl>   <fct>         <fct>                   <dbl> <date>    

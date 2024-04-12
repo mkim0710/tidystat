@@ -334,7 +334,7 @@ termDocMatrix.t.df.lgl.comat.gather = termDocMatrix.t.df.lgl.comat %>% as.data.f
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-    arrange(R) %>% as.tibble
+    arrange(R) %>% as_tibble
 termDocMatrix.t.df.lgl.comat.gather
 identical(nrow(termDocMatrix.t.df.lgl.comat.gather), ncol(termDocMatrix.t.df.lgl.comat) * nrow(termDocMatrix.t.df.lgl.comat))
 # save(termDocMatrix.t.df.lgl.comat.gather, file = "data/termDocMatrix.t.df.lgl.comat.gather.rda")
@@ -343,7 +343,7 @@ identical(nrow(termDocMatrix.t.df.lgl.comat.gather), ncol(termDocMatrix.t.df.lgl
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-# +     arrange(R) %>% as.tibble
+# +     arrange(R) %>% as_tibble
 # > termDocMatrix.t.df.lgl.comat.gather
 # # A tibble: 441 x 6
 #    rowname       V1           V2 cooccurence     R     C
@@ -372,7 +372,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>%
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-    arrange(R) %>% as.tibble %>% filter(R < C)
+    arrange(R) %>% as_tibble %>% filter(R < C)
 termDocMatrix.t.df.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(termDocMatrix.t.df.lgl.comat) * {nrow(termDocMatrix.t.df.lgl.comat) - 1} / 2)
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
@@ -380,7 +380,7 @@ identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-# +     arrange(R) %>% as.tibble %>% filter(R < C)
+# +     arrange(R) %>% as_tibble %>% filter(R < C)
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri
 # # A tibble: 210 x 6
 #    rowname       V1           V2 cooccurence     R     C
@@ -696,7 +696,7 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
-# +     arrange(R) %>% as.tibble %>% filter(R < C)
+# +     arrange(R) %>% as_tibble %>% filter(R < C)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 # # A tibble: 465 x 6
 #    rowname                     V1                 V2 cooccurence     R     C

@@ -16,7 +16,7 @@
 #     data$runif = runif(nrow(data))
 #     data[varnames4MatchingBy] = data[varnames4MatchingBy] %>% map_df(as.factor)
 #     data$MatchingGroupID = data[varnames4MatchingBy] %>% apply(1, paste0, collapse = "_") %>% as.factor
-#     data = data %>% arrange(MatchingGroupID, desc(!!rlang::sym(varname4MatchingUpon)), runif) %>% as.tibble
+#     data = data %>% arrange(MatchingGroupID, desc(!!rlang::sym(varname4MatchingUpon)), runif) %>% as_tibble
 #     data.nest = data %>% group_by(MatchingGroupID) %>% nest
 #     rm(data)
 #     data.nest = data.nest %>% mutate(data = map2(data, MatchingGroupID, function(df, byVar) {
@@ -216,7 +216,7 @@ data.strata_list = function(
     out = map(
         levels(.mydata$strata)
         , function(chr) {
-            out2 = .mydata %>% filter(strata == !!chr) %>% as.tibble
+            out2 = .mydata %>% filter(strata == !!chr) %>% as_tibble
             # attr(out2, ".vars4strata") = .vars4strata
             out2
         }
@@ -235,8 +235,8 @@ data.strata_list = function(
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
-rhc_mydata %>% as.tibble
-# > rhc_mydata %>% as.tibble
+rhc_mydata %>% as_tibble
+# > rhc_mydata %>% as_tibble
 # # A tibble: 5,735 x 14
 #      ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut
 #    <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>
@@ -524,7 +524,7 @@ data.Match = function(
             } else {
                 
                 
-                tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
+                tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as_tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
                 tmpDf$MatchingCtrlNum = 1:.MatchingRatio
                 # tmpDf
                 
@@ -546,13 +546,13 @@ data.Match = function(
                 
                 tmpDf4 = left_join(tmpDf3, .mydata.exposure.vars4Matching.na.omit[, c(RowNum_original_before_strata, "RowNum_original", "RowNum_after_na.omit")], by = "RowNum_after_na.omit")
                 
-                # .mydataMatching = .mydata %>% rownames_to_column() %>% as.tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                # .mydataMatching = .mydata %>% rownames_to_column() %>% as_tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
                 # .mydataMatching = inner_join(.mydataMatching, tmpDf3, by = "rowname") %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
                 .mydataMatching = inner_join(.mydata, tmpDf4, by = c(RowNum_original_before_strata, "RowNum_original")) %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
                 
                 # .mydataMatching$MatchingPairID = paste0()
                 # .mydataMatching
-                out$data = .mydataMatching %>% as.tibble
+                out$data = .mydataMatching %>% as_tibble
                 if (add_tableone_pre_post == T) {
                     out$tableone_post_total = CreateTableOne(
                         vars = .vars4Matching, strata = .exposure
@@ -1411,7 +1411,7 @@ data.stratified.Match = function(
         out = map(
             levels(.mydata$strata)
             , function(chr) {
-                out2 = .mydata %>% filter(strata == !!chr) %>% as.tibble
+                out2 = .mydata %>% filter(strata == !!chr) %>% as_tibble
                 # attr(out2, ".vars4strata") = .vars4strata
                 out2
             }
@@ -1619,7 +1619,7 @@ data.stratified.Match = function(
                 } else {
                     
                     
-                    tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as.tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
+                    tmpDf = .mydata.Match[c("index.treated","index.control")] %>% as_tibble() %>% mutate(MatchingPairID = as.numeric(as.factor(index.treated)))
                     tmpDf$MatchingCtrlNum = 1:.MatchingRatio
                     # tmpDf
                     
@@ -1641,13 +1641,13 @@ data.stratified.Match = function(
                     
                     tmpDf4 = left_join(tmpDf3, .mydata.exposure.vars4Matching.na.omit[, c(RowNum_original_before_strata, "RowNum_original", "RowNum_after_na.omit")], by = "RowNum_after_na.omit")
                     
-                    # .mydataMatching = .mydata %>% rownames_to_column() %>% as.tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
+                    # .mydataMatching = .mydata %>% rownames_to_column() %>% as_tibble()  # bug fix 170826 - rowname are altered when apply.na.omit == T
                     # .mydataMatching = inner_join(.mydataMatching, tmpDf3, by = "rowname") %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
                     .mydataMatching = inner_join(.mydata, tmpDf4, by = c(RowNum_original_before_strata, "RowNum_original")) %>% arrange(MatchingPairID, MatchingCtrlNum)  # bug fix 170826 - rowname are altered when apply.na.omit == T
                     
                     # .mydataMatching$MatchingPairID = paste0()
                     # .mydataMatching
-                    out$data = .mydataMatching %>% as.tibble
+                    out$data = .mydataMatching %>% as_tibble
                     if (add_tableone_pre_post == T) {
                         out$tableone_post_total = CreateTableOne(
                             vars = .vars4Matching, strata = .exposure

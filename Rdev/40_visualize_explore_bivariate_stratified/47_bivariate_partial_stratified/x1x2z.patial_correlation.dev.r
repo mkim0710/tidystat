@@ -31,7 +31,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
 }
 
 #@ test) array3d_R_C_strata2df() --------
-# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as.tibble()
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as_tibble()
 # # A tibble: 78 x 4
 #      Var1   Var2   Var3  Freq
 #  * <fctr> <fctr> <fctr> <int>
@@ -129,7 +129,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
         ) %>% setNames(cor_method)
     }
     
-    out %>% map(t) %>% map(as.tibble) %>% bind_rows(.id = "method") %>% select(method, starts_with("unadjusted_cor"), starts_with("partial_cor"))
+    out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(method, starts_with("unadjusted_cor"), starts_with("partial_cor"))
 }
 
 
@@ -448,8 +448,8 @@ x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp
 
 #@ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
-tmp.df %>% as.tibble
-# > tmp.df %>% as.tibble
+tmp.df %>% as_tibble
+# > tmp.df %>% as_tibble
 # # A tibble: 78 x 4
 #    Var1  Var2  Var3   Freq
 #  * <fct> <fct> <fct> <int>
@@ -571,8 +571,8 @@ x1x2z.partial_correlation_scalar(x1 = stackloss$Air.Flow, x2 = stackloss$Water.T
 
 #@ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_scalar() ------
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
-tmp.df %>% as.tibble
-# > tmp.df %>% as.tibble
+tmp.df %>% as_tibble
+# > tmp.df %>% as_tibble
 # # A tibble: 78 x 4
 #    Var1  Var2  Var3   Freq
 #  * <fct> <fct> <fct> <int>

@@ -64,8 +64,8 @@ df_dirs_recursive = env.custom$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive %>% str(max.level = 2) #----
 # df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse = "") %>% cat; cat("\n") #----
 # df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse = "") %>% cat; cat("\n")  #----
-df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) %>% as.tibble %>% print(n=99) #----
-# df_dirs_recursive %>% select(print_tree_path) %>% as.tibble
+df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) %>% as_tibble %>% print(n=99) #----
+# df_dirs_recursive %>% select(print_tree_path) %>% as_tibble
 df_dirs_recursive %>% select(print_tree_path) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
 df_dirs_recursive %>% select(print_tree_path_files) %>% unlist %>% paste(collapse = "") %>% cat; cat("\n")  #----
 df_dirs_recursive %>% select(print_tree_path_files.rmd) %>% unlist %>% paste(collapse = "") %>% cat; cat("\n")  #----
@@ -94,7 +94,7 @@ df_dirs_recursive %>% select(print_tree_path_files.rmd) %>% unlist %>% paste(col
 #'  $ print_tree_path_files.rda: chr [1:61] "@./\nf_df.t.tribble_construct.RData.xz\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #' > # df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse = "") %>% cat; cat("\n") #----
 #' > # df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse = "") %>% cat; cat("\n")  #----
-#' > df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) %>% as.tibble %>% print(n=99) #----
+#' > df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) %>% as_tibble %>% print(n=99) #----
 #' # A tibble: 61 × 5
 #'    path.level path.parent                                      path.basename                             path                                            full_path
 #'         <dbl> <chr>                                            <chr>                                     <chr>                                           <chr>    
@@ -159,7 +159,7 @@ df_dirs_recursive %>% select(print_tree_path_files.rmd) %>% unlist %>% paste(col
 #' 59          2 ./other                                          VBA                                       "other/VBA"                                     ./other/…
 #' 60          1 .                                                tests                                     "tests"                                         ./tests  
 #' 61          1 .                                                vignettes                                 "vignettes"                                     ./vignet…
-#' > # df_dirs_recursive %>% select(print_tree_path) %>% as.tibble
+#' > # df_dirs_recursive %>% select(print_tree_path) %>% as_tibble
 #' > df_dirs_recursive %>% select(print_tree_path) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
 #' .
 #' -info

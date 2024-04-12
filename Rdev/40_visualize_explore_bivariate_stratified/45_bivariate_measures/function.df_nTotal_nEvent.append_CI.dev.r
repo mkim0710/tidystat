@@ -318,13 +318,13 @@ prop.test(df_nTotal_nEvent$nEvent, df_nTotal_nEvent$nTotal, correct = F)
         df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
         , prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int
     )
-}) %>% reduce(rbind) %>% unname %>% as.tibble %>% set_names(c("p", "ll", "ul")) #----
+}) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", "ll", "ul")) #----
 # > 1:nrow(df_nTotal_nEvent) %>% map(function(i) {
 # +     out = c(
 # +         df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
 # +         , prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int
 # +     )
-# + }) %>% reduce(rbind) %>% unname %>% as.tibble %>% set_names(c("p", "ll", "ul")) #----
+# + }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", "ll", "ul")) #----
 # # A tibble: 7 x 3
 #       p    ll    ul
 #   <dbl> <dbl> <dbl>
@@ -347,7 +347,7 @@ function.df_nTotal_nEvent.append_CI = function(df_nTotal_nEvent, method=c("wilso
                 df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
                 , prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int
             )
-        }) %>% reduce(rbind) %>% unname %>% as.tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".wilson") )) #----
+        }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".wilson") )) #----
     }
     if (method == "exact") {
         out = 1:nrow(df_nTotal_nEvent) %>% map(function(i) {
@@ -355,7 +355,7 @@ function.df_nTotal_nEvent.append_CI = function(df_nTotal_nEvent, method=c("wilso
                 df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
                 , binom.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i])$conf.int
             )
-        }) %>% reduce(rbind) %>% unname %>% as.tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".exact") )) #----
+        }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".exact") )) #----
     }
     if (method == "asymptotic") {
         alpha = 0.05
@@ -364,7 +364,7 @@ function.df_nTotal_nEvent.append_CI = function(df_nTotal_nEvent, method=c("wilso
             p_hat = df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
             n = df_nTotal_nEvent$nTotal[i]
             p_hat + c(0,-1,1)*z*sqrt(p_hat*(1-p_hat)/n)
-        }) %>% reduce(rbind) %>% unname %>% as.tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".asymptotic") )) #----
+        }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".asymptotic") )) #----
     }
     out = bind_cols(df_nTotal_nEvent, out)
     out

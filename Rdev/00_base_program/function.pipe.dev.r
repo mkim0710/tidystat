@@ -174,7 +174,7 @@ d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC
          filter(`sum(DAYSUPP)` >= 180) %>% 
          
          left_join(df) %>%
-         as.tibble
+         as_tibble
     ) %>% 
     mutate(SVCDATE - lmp, enddate - lmp) %>% 
     select(ENROLID, lmp, `enddate - lmp`, `n()`, `SVCDATE - lmp`, DAYSUPP, everything()) %>% 
@@ -191,7 +191,7 @@ d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC
 # +          filter(`sum(DAYSUPP)` >= 180) %>% 
 # +          
 # +          left_join(df) %>%
-# +          as.tibble
+# +          as_tibble
 # +     ) %>% 
 # +     mutate(SVCDATE - lmp, enddate - lmp) %>% 
 # +     select(ENROLID, lmp, `enddate - lmp`, `n()`, `SVCDATE - lmp`, DAYSUPP, everything()) %>% 

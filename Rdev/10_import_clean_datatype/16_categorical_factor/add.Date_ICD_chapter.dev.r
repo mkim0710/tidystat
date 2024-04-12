@@ -57,7 +57,7 @@ sample_data %>%
     add.Date_ICD_chapter(varname4Date = "DTH.Date", varname4ICD_chapter = "DTH_CODE1_1char", ICD_chapter = "I") %>% 
     add.Date_ICD_chapter(varname4Date = "DTH.Date", varname4ICD_chapter = "DTH_CODE1_1char", ICD_chapter = "R") %>% 
     add.Date_ICD_chapter(varname4Date = "DTH.Date", varname4ICD_chapter = "DTH_CODE1_1char", ICD_chapter = "C") %>% 
-    as.tibble()
+    as_tibble()
 # # A tibble: 100 × 8
 #    STND_Y PERSON_ID DTH.Date   DTH_CODE1 DTH_CODE1_1char DTH.Date.I DTH.Date.R DTH.Date.C
 #     <int>     <int> <date>     <chr>     <chr>           <date>     <date>     <date>    
@@ -98,7 +98,7 @@ sample_data %>%
     add.Date_ICD(varname4Date = "DTH.Date", varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 30:52) %>% 
     add.Date_ICD(varname4Date = "DTH.Date", varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 60:69) %>% 
     add.Date_ICD(varname4Date = "DTH.Date", varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 70:79) %>% 
-    as.tibble()
+    as_tibble()
 # # A tibble: 100 × 8
 #    STND_Y PERSON_ID DTH.Date   DTH_CODE1 DTH.Date.I2025 DTH.Date.I3052 DTH.Date.I6069 DTH.Date.I7079
 #     <int>     <int> <date>     <chr>     <date>         <date>         <date>         <date>        
@@ -154,7 +154,7 @@ sample_data %>%
     add.ICD_indicator(varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 30:52) %>% 
     add.ICD_indicator(varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 60:69) %>% 
     add.ICD_indicator(varname4ICD = "DTH_CODE1", ICD_chapter = "I", ICD_number23_vector = 70:79) %>% 
-    as.tibble
+    as_tibble
 # # A tibble: 100 × 8
 #    STND_Y PERSON_ID DTH.Date   DTH_CODE1 DTH_CODE1.I2025 DTH_CODE1.I3052 DTH_CODE1.I6069 DTH_CODE1.I7079
 #     <int>     <int> <date>     <chr>     <lgl>           <lgl>           <lgl>           <lgl>          

@@ -16,7 +16,7 @@ tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rm
         , t0.wday = lubridate::wday(t0)
         , t0.floor_month = t0 %>% {lubridate::floor_date(., "month")}
     ) %>% 
-    as.tibble #----
+    as_tibble #----
 # > tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rmNA01_2018 %>% 
 # +     select(`first visit.x`) %>% 
 # +     mutate(
@@ -28,7 +28,7 @@ tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rm
 # +         , t0.wday = lubridate::wday(t0)
 # +         , t0.floor_month = t0 %>% {lubridate::floor_date(., "month")}
 # +     ) %>% 
-# +     as.tibble #----
+# +     as_tibble #----
 # # A tibble: 1,391 x 8
 #    `first visit.x` t0         t0.year t0.month t0.yday t0.mday t0.wday t0.floor_month
 #              <dbl> <date>       <dbl>    <dbl>   <dbl>   <int>   <dbl> <date>        

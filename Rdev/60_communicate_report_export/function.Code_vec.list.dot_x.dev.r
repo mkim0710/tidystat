@@ -27,7 +27,7 @@ for (
             vars(matches("Evaluation"), matches("FilterName"))
             , .funs = function(vec) {vec %>% gsub("&amp;", "&", ., fixed = T) %>% gsub("&gt;", ">", ., fixed = T) %>% gsub("&lt;", "<", ., fixed = T)}
         ) %>%
-        as.tibble
+        as_tibble
 }
 
 

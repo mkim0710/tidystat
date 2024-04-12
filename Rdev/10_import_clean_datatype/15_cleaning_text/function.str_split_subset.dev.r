@@ -49,7 +49,7 @@ c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_subset,"^(?!.*a)") %>% 
 #@ debugged v4 -----
 tmp.df = 
     d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper %>% table %>% 
-    sort(decreasing = T) %>% as.tibble %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
+    sort(decreasing = T) %>% as_tibble %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
     # $is.combination
     mutate( is.combination = grepl("/", concept_name.toupper) ) %>%  
     # $BrandName
@@ -61,7 +61,7 @@ tmp.df =
     # # $concept_name.toupper.rm_METFORMIN
     # mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
     # filter(!is.combination | {is.combination & !grepl("METFORMIN", concept_name.toupper.rm_METFORMIN)}) %>% 
-    as.tibble
+    as_tibble
 tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
 tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
     # $concept_name.toupper.rm_METFORMIN
@@ -78,7 +78,7 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 # > #@ debugged v4 -----
 # > tmp.df = 
 # +     d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper %>% table %>% 
-# +     sort(decreasing = T) %>% as.tibble %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
+# +     sort(decreasing = T) %>% as_tibble %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
 # +     # $is.combination
 # +     mutate( is.combination = grepl("/", concept_name.toupper) ) %>%  
 # +     # $BrandName
@@ -90,7 +90,7 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 # +     # # $concept_name.toupper.rm_METFORMIN
 # +     # mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
 # +     # filter(!is.combination | {is.combination & !grepl("METFORMIN", concept_name.toupper.rm_METFORMIN)}) %>% 
-# +     as.tibble
+# +     as_tibble
 # > tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
 # # A tibble: 49 x 3
 #    concept_name.toupper.rm_BrandName                                                           is.combination duplicated

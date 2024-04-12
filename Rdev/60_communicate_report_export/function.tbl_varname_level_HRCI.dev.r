@@ -259,7 +259,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # A tibble: 0 x 3
     # # ... with 3 variables: varname <chr>, level <chr>, varnamelevel <chr>
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-    # +             object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +             object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
     # +         ) #----
     # # A tibble: 6 x 4
     #   varname   level varnamelevel             coefficients
@@ -298,7 +298,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # Browse[1]> list_levels %>% length
     # [1] 0
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-    # +             object.coxph$coefficients %>% as.tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +             object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
     # +         ) #----
     # Error in mutate_impl(.data, dots) : 
     #   Evaluation error: object 'level' not found.
@@ -310,7 +310,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # }
     # 
                
-    # debug 200222) as.tibble() removes the rownames -_- -----                                                                            
+    # debug 200222) as_tibble() removes the rownames -_- -----                                                                            
     # debug 200222) right_join() instead of full_join() to remove something like strata(MatchingPairID) -_- -----                                                                            
     #@ tbl_varname_level_coefficients ====
     if (length(list_levels) == 0) { # debug 181115 ----
@@ -355,8 +355,8 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     res1 = summary(object.coxph)[c("coefficients", "conf.int")] %>% 
         map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = c("rowname", "exp(coef)")) %>% 
         {.[c("rowname", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")]}
-    # res1 %>% as.tibble
-    # # > res1 %>% as.tibble
+    # res1 %>% as_tibble
+    # # > res1 %>% as_tibble
     # # # A tibble: 10 x 5
     # #    rowname                             `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
     # #    <chr>                                     <dbl>       <dbl>       <dbl>      <dbl>

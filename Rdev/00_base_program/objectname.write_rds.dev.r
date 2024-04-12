@@ -73,7 +73,7 @@ print(objectname)
 t0 = Sys.time()
 assign(objectname
        , readRDS(file.path(path4read, filename)) %>% 
-           as.tibble
+           as_tibble
 )
 Sys.time() - t0
 

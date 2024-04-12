@@ -192,7 +192,7 @@ function.char_cho_joong_jong2hangul = function(txt) {
     #  [1] 12596 12623 12596 12641 12596    32 12609 12643 12613 12615 12627 12610 12615 12628    32 12593 12623 12614 12599 12623    46    32 12615 12640 12615 12643 12593 12622
     # [29] 12623 12596    32 12613 12643 12593 12623 12596 12615 12643 12615 12627 12614 12599 12623    46
     
-    df = txt %>% strsplit("") %>% unlist %>% as.tibble
+    df = txt %>% strsplit("") %>% unlist %>% as_tibble
     df = df %>% mutate(txt.utf8ToInt = value %>% map_int(utf8ToInt))
     df = df %>% mutate(
         hangul = txt.utf8ToInt %in% c(12593:12622, 12623:12643)

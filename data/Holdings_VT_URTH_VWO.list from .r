@@ -60,19 +60,19 @@ Holdings_VT_raw %>% str #----
 Holdings_VT_raw[7:length(Holdings_VT_raw)] %>% str #----
 Holdings_VT_raw[8:length(Holdings_VT_raw)] %>% str #----
 Holdings_VT_raw %>% tail %>% str #----
-Holdings_VT_raw[8:(length(Holdings_VT_raw)-5)] %>% tail %>% as.tibble #----
-Holdings_VT_raw[8:(length(Holdings_VT_raw)-10)] %>% tail %>% as.tibble #----
-Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail %>% as.tibble #----
-Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail %>% as.tibble #----
-Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail %>% as.tibble #----
-Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
+Holdings_VT_raw[8:(length(Holdings_VT_raw)-5)] %>% tail %>% as_tibble #----
+Holdings_VT_raw[8:(length(Holdings_VT_raw)-10)] %>% tail %>% as_tibble #----
+Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail %>% as_tibble #----
+Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail %>% as_tibble #----
+Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail %>% as_tibble #----
+Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as_tibble #----
 # > Holdings_VT_raw[7:length(Holdings_VT_raw)] %>% str #----
 #  chr [1:8817] "" ...
 # > Holdings_VT_raw[8:length(Holdings_VT_raw)] %>% str #----
 #  chr [1:8816] ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES" ...
 # > Holdings_VT_raw %>% tail %>% str #----
 #  chr [1:6] "" ...
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-5)] %>% tail %>% as.tibble #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-5)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                              
 #   <chr>                                                                              
@@ -82,7 +82,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
 # 4 ""                                                                                 
 # 5 ""                                                                                 
 # 6 ""                                                                                 
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-10)] %>% tail %>% as.tibble #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-10)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                   
 #   <chr>                                                   
@@ -92,7 +92,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
 # 4 ",---,SLCMT1142,---,0.06%,\"$12,023,830.01\""           
 # 5 ""                                                      
 # 6 ""                                                      
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail %>% as.tibble #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                                     
 #   <chr>                                                                                                     
@@ -102,7 +102,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
 # 4 "Short-term reserves,as of 09/30/2020"                                                                    
 # 5 ""                                                                                                        
 # 6 ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,FACE AMOUNT"                                                          
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail %>% as.tibble #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                                        
 #   <chr>                                                                                                        
@@ -112,7 +112,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
 # 4 ",BMVZ900,United States Cash Management Bill,CMB,0.03%,\"$5,198,960.00\",\"$5,200,000.00\",<0.01%,12/15/2020"
 # 5 ",BKMH666,United States Treasury Bill,B,<0.01%,\"$1,723,431.08\",\"$1,724,000.00\",<0.01%,01/28/2021"        
 # 6 ",BMX6M13,United States Cash Management Bill,---,<0.01%,\"$576,780.74\",\"$577,000.00\",<0.01%,02/16/2021"   
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail %>% as.tibble #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                                         
 #   <chr>                                                                                                         
@@ -122,7 +122,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
 # 4 ""                                                                                                            
 # 5 ""                                                                                                            
 # 6 "Fixed income,as of 09/30/2020"                                                                               
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as.tibble #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                                          
 #   <chr>                                                                                                          
@@ -222,12 +222,12 @@ Holdings_VWO_raw %>% str #----
 Holdings_VWO_raw[7:length(Holdings_VWO_raw)] %>% str #----
 Holdings_VWO_raw[8:length(Holdings_VWO_raw)] %>% str #----
 Holdings_VWO_raw %>% tail %>% str #----
-Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-5)] %>% tail %>% as.tibble #----
-Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-10)] %>% tail %>% as.tibble #----
-Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-15)] %>% tail %>% as.tibble #----
-Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-20)] %>% tail %>% as.tibble #----
-Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-25)] %>% tail %>% as.tibble #----
-Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
+Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-5)] %>% tail %>% as_tibble #----
+Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-10)] %>% tail %>% as_tibble #----
+Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-15)] %>% tail %>% as_tibble #----
+Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-20)] %>% tail %>% as_tibble #----
+Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-25)] %>% tail %>% as_tibble #----
+Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as_tibble #----
 # > Holdings_VWO_raw %>% str #----
 #  chr [1:5048] "Holdings details" "" "FTSE Emerging Markets ETF (VWO)" "" "" "Equity,as of 09/30/2020" "" ...
 # > Holdings_VWO_raw[7:length(Holdings_VWO_raw)] %>% str #----
@@ -236,7 +236,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
 #  chr [1:5041] ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES" ...
 # > Holdings_VWO_raw %>% tail %>% str #----
 #  chr [1:6] "" ...
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-5)] %>% tail %>% as.tibble #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-5)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                              
 #   <chr>                                                                              
@@ -246,7 +246,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
 # 4 ""                                                                                 
 # 5 ""                                                                                 
 # 6 ""                                                                                 
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-10)] %>% tail %>% as.tibble #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-10)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                      
 #   <chr>                                                      
@@ -256,7 +256,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
 # 4 ",---,SLCMT1142,---,0.18%,\"$160,779,901.44\""             
 # 5 ""                                                         
 # 6 ""                                                         
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-15)] %>% tail %>% as.tibble #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-15)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                  
 #   <chr>                                                                                  
@@ -266,7 +266,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
 # 4 "Short-term reserves,as of 09/30/2020"                                                 
 # 5 ""                                                                                     
 # 6 ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,FACE AMOUNT"                                       
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-20)] %>% tail %>% as.tibble #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-20)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                                          
 #   <chr>                                                                                                          
@@ -276,7 +276,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
 # 4 ",BMC5BZ8,TREASURY BILL,TBILL,0.05%,\"$39,996,884.00\",\"$40,000,000.00\",<0.01%,11/03/2020"                   
 # 5 ",BKMH666,United States Treasury Bill,B,0.04%,\"$31,788,487.25\",\"$31,799,000.00\",<0.01%,01/28/2021"         
 # 6 ",BK7K295,TREASURY BILL,TBILL,<0.01%,\"$729,824.73\",\"$730,000.00\",<0.01%,12/31/2020"                        
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-25)] %>% tail %>% as.tibble #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-25)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                                 
 #   <chr>                                                                                                 
@@ -286,7 +286,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
 # 4 ""                                                                                                    
 # 5 "Fixed income,as of 09/30/2020"                                                                       
 # 6 ""                                                                                                    
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as.tibble #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail %>% as_tibble #----
 # # A tibble: 6 x 1
 #   value                                                                                                            
 #   <chr>                                                                                                            
@@ -437,8 +437,8 @@ Holdings_URTH_raw = read_lines(txt4url)
 Holdings_URTH_raw %>% str #----
 Holdings_URTH_raw[9:length(Holdings_URTH_raw)] %>% str #----
 Holdings_URTH_raw[10:length(Holdings_URTH_raw)] %>% str #----
-Holdings_URTH_raw[10:(length(Holdings_URTH_raw))] %>% tail %>% as.tibble #----
-Holdings_URTH_raw[10:(length(Holdings_URTH_raw)-1)] %>% tail %>% as.tibble #----
+Holdings_URTH_raw[10:(length(Holdings_URTH_raw))] %>% tail %>% as_tibble #----
+Holdings_URTH_raw[10:(length(Holdings_URTH_raw)-1)] %>% tail %>% as_tibble #----
 
 #@ Holdings_URTH =====
 Holdings_URTH = 
