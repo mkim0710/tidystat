@@ -94,7 +94,7 @@ object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID",
     # cat("----\n> ", "summary(get(objectname) %>% dplyr::select_if(is.factor))", "\n", sep = ""); get(objectname) %>% dplyr::select_if(is.logical) %>% summary #-----
 }
 if(!objectname %in% names(env.custom)) {
-    cat("Loading: ", "env.custom$", objectname, "\n", sep = ""); 
+    packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
     # cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
 }

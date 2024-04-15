@@ -29,7 +29,7 @@ if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.int
 objectname = "gitignore_escaped_select.UC.regex"
 object = "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|(.*\\.7Z)|(.*\\.R\\.GZ)|(.*\\.R\\.XZ)|(.*\\.RMD\\.GZ)|(.*\\.RMD\\.XZ)|(.*\\.RPROJ)|(\\.GITIGNORE)|(\\.GIT)|(\\.GITHUB)|(MH\\).*\\.R)|(.*\\.LNK)|(.*ALIAS)|(.*\\- VOID.*\\..*)|(.*\\-VOID.*\\..*)|(.*\\- INFO\\..*)|(.*\\-INFO\\..*)|(.*\\-DEV.*\\..*)|(.*DEBUG.*\\..*)|(\\-TMP)|(.*\\- TMP.*\\..*)|(.*\\-TMP.*\\..*)|(.*\\- OLD\\..*)|(.*\\-OLD\\..*)|(.*\\-LOG.*\\..*)|(.*\\.RTF)$"    
 if(!objectname %in% names(env.custom)) {
-    cat("Loading: ", "env.custom$", objectname, "\n", sep = ""); 
+    packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
     # cat("> env.custom$", objectname, "()\n", sep = ""); tmp.function = env.custom[[objectname]]; tmp.function()  # Run the loaded function by default
 }

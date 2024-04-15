@@ -88,7 +88,7 @@ object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, pr
     return(vec_subpath)
 }
 if(!objectname %in% names(env.custom)) {
-    cat("Loading: ", "env.custom$", objectname, "\n", sep = ""); 
+    packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
     # cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
 }
@@ -153,7 +153,7 @@ object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, pr
     return(vec_subpath)
 }
 if(!objectname %in% names(env.custom)) {
-    cat("Loading: ", "env.custom$", objectname, "\n", sep = ""); 
+    packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
     # cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
 }
@@ -171,7 +171,7 @@ object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, pr
     }
 }
 if(!objectname %in% names(env.custom)) {
-    cat("Loading: ", "env.custom$", objectname, "\n", sep = ""); 
+    packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
     # cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
 }
