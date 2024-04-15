@@ -5,7 +5,7 @@ output: html_notebook
 ---
 
 # _______________
-```{markdown, include=FALSE}
+```{markdown Rstudio-RMarkDown-Shortcuts, include=FALSE}
 ##### Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
@@ -24,21 +24,30 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 ```
 
-```{r, setup, include=FALSE}
-# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
-# The YAML approach allows you to set options globally for a specific output forma
-# The setup chunk approach sets chunk options globally for the document regardless of the output format
-# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
-# The advantage of utilizing parameters is that you can pass these values to a call to the render() function.
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   comment = '##', fig.width = 10, fig.height = 6, 
   collapse=TRUE, 
+  # message=FALSE, warning=FALSE, error=FALSE,
   tidy.opts=list(width.cutoff=80), tidy=TRUE
 )
+knitr::opts_knit$set(global.par = TRUE)
+
 ```
 
-<font size="3">% env.custom</font>\
-<font size="3">% env.custom\$info</font>\
+
+```{r loadPackages, include=FALSE}
+suppressPackageStartupMessages({for (packagename in c("tidyverse")) {if (!require(packagename, character.only = TRUE)) install.packages(packagename); library(packagename, character.only = TRUE)}}); cat("\r\n");
+source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
+objectname = "f_df.t.tribble_construct"
+source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")) )
+# source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
+```
+
+
+
+<font size="3">\% env.custom</font>\
+<font size="3">\% env.custom\$info</font>\
 
 #### % env.custom\$info\$DocumentTitle1
 ```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
@@ -57,8 +66,8 @@ cat(env.custom$info$DocumentTitle1, "\r\n",
     sep = "")
 ```
 
-#### % env.custom\$info\$info_system_info
-```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
+#### \% env.custom\$info\$info_system_info
+```{r envCustomInfo, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
 
 # @ source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")) ) ----
 objectname = "get_system_info"
@@ -163,7 +172,7 @@ env.custom$path$getwd = getwd()
 # 
 # env.custom$path$path4read = file.path(env.custom$path$path0, paste0(env.custom$path$project_base, env.custom$path$data_suffix))
 # env.custom$path$path4write = file.path(env.custom$path$path4read, paste0(env.custom$path$project_base, env.custom$path$data_suffix, env.custom$path$project_suffix))
-cat("> str(env.custom$path)\n"); str(env.custom$path)  
+cat("> str(env.custom$path)\n"); str(env.custom$path, max.level = 1, give.attr = F)  
 # 
 # path4read  = env.custom$path$path4read
 # # path4write = env.custom$path$path4read
@@ -400,7 +409,7 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 ```
 
 # @@ END -----
-```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
+```{r END, paged.print=FALSE, collapse=TRUE, include=FALSE}
 # @@ END -----
 ```
 
