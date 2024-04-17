@@ -41,7 +41,7 @@ if(!"path" %in% names(env.custom)) {
 
 #@ objectname = "f_filename.find_subpath" =========
 objectname = "f_filename.find_subpath"
-object = function(filename, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE) {
+object = function(filename, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
     if (print.intermediate) {
         cat("Searching: ", input_path, strrep(" ", max(50-nchar(input_path),0)), "\t at depth ", 0, "\n", sep="")
     }
@@ -49,7 +49,7 @@ object = function(filename, input_path = ".", max_depth = 3, print.intermediate 
     if (file.exists(file.path(input_path, filename))) {
         return(file.path(input_path, filename))
     } else if (BreathFirstSearch) {
-        return(env.custom$f_filename.find_subpath.BreathFirstSearch(filename, input_path, max_depth, print.intermediate))
+        return(env.custom$f_filename.find_subpath.BreathFirstSearch(filename=filename, input_path=input_path, max_depth=max_depth, print.intermediate=print.intermediate, findMultiple=findMultiple))
     } else {
         return(NULL)
     }
@@ -64,11 +64,12 @@ if(!objectname %in% names(env.custom)) {
 
 #@ objectname = "f_filename.find_subpath.BreathFirstSearch" =========
 objectname = "f_filename.find_subpath.BreathFirstSearch"
-object = function(filename, input_path = ".", max_depth = 3, print.intermediate = FALSE) {
+object = function(filename, input_path = ".", max_depth = 3, print.intermediate = FALSE, findMultiple = FALSE) {
     # Breath-first search for the filename in the subdirectories of the input_path
     # Initialize the queue with the input_path at depth 0
     list_list_path_depth <- list(list(path = input_path, depth = 0))
     list_subpath <- list()
+    list_out = list()
     
     # Process the queue
     while (length(list_list_path_depth) > 0) {
@@ -89,7 +90,8 @@ object = function(filename, input_path = ".", max_depth = 3, print.intermediate 
                         cat("Queue length: ", length(list_list_path_depth)+1, "\n", sep="")
                     }
                     if (file.exists(file.path(i_files_subpath, filename))) {
-                        return(file.path(i_files_subpath, filename))
+                        if (findMultiple == FALSE) return(file.path(i_files_subpath, filename))
+                        list_out <- c(list_out, list(file.path(i_files_subpath, filename)))
                     }
                     # Enqueue subdirectories with incremented depth
                     list_list_path_depth <- c(list_list_path_depth, list(list(path = i_files_subpath, depth = list_path_depth.current$depth + 1)))
@@ -98,17 +100,16 @@ object = function(filename, input_path = ".", max_depth = 3, print.intermediate 
         }
     }
 
-    # Flatten the list_subpath to make it a character vector
-    vec_subpath <- unlist(list_subpath, use.names = FALSE)
-    
-    # Print the final vector of subpaths if requested
-    if (print.intermediate) {
+    if (length(list_out) == 0) {
         cat("----------- File not found while searching following subpaths:\n")
+        vec_subpath <- unlist(list_subpath, use.names = FALSE)
         vec_subpath %>% {cat(deparse(., width.cutoff=500), '\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
         return(NULL)
     }
         
-    return(vec_subpath)
+    # # Flatten the list_subpath to make it a character vector
+    vec_out <- unlist(list_out, use.names = FALSE)
+    return(vec_out)
 }
 
 

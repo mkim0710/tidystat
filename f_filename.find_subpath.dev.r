@@ -173,5 +173,24 @@ env.custom$f_filename.find_subpath(filename, input_path = dirname(env.custom$pat
 # Searching: D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01    	 at depth 1; Queue length: 9
 # [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/tblID_gj3_jk.rds"
 
+filename = "metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
+env.custom$f_filename.find_subpath(filename, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
+# > env.custom$f_filename.find_subpath(filename, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
+# [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"   
+# [2] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
+# [3] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_10/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
+# [4] "D:/OneDrive/[][Rproject]/Rproject_NSC0219/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"     
+# [5] "D:/OneDrive/[][Rproject]/Rproject_NSC0219_01/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"  
+
+filename = "tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
+env.custom$f_filename.find_subpath(filename, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
+# > env.custom$f_filename.find_subpath(filename, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
+# [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"   
+# [2] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
+# [3] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_10/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
+# [4] "D:/OneDrive/[][Rproject]/Rproject_NSC0219/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"     
+# [5] "D:/OneDrive/[][Rproject]/Rproject_NSC0219_01/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
+
+
 
 #@ end -----
