@@ -5,7 +5,7 @@ output: html_notebook
 ---
 
 # _______________
-```{markdown Rstudio-RMarkDown-Shortcuts, include=FALSE}
+```{markdown Rstudio-RMarkDown-Shortcuts, include=FALSE, eval=FALSE}
 ##### Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
@@ -25,10 +25,11 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 ```
 
 ```{r setup, include=FALSE}
+# str(knitr::opts_chunk$get())
 knitr::opts_chunk$set(
   comment = '##', fig.width = 10, fig.height = 6, 
-  collapse=TRUE, 
-  # message=FALSE, warning=FALSE, error=FALSE,
+  collapse=TRUE, results='hold', 
+  # echo=TRUE, message=TRUE, warning=TRUE, error=TRUE,
   tidy.opts=list(width.cutoff=80), tidy=TRUE
 )
 knitr::opts_knit$set(global.par = TRUE)
@@ -49,7 +50,7 @@ source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(object
 <font size="3">\% env.custom</font>\
 <font size="3">\% env.custom\$info</font>\
 
-#### % env.custom\$info\$DocumentTitle1
+#### \% env.custom\$info\$DocumentTitle1
 ```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
 # if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
 if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
@@ -67,7 +68,7 @@ cat(env.custom$info$DocumentTitle1, "\r\n",
 ```
 
 #### \% env.custom\$info\$info_system_info
-```{r envCustomInfo, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
+```{r envCustom-Info, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
 
 # @ source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")) ) ----
 objectname = "get_system_info"
@@ -156,10 +157,10 @@ List of 9
 
 
 ################################################
-#### % env.custom$path    
-<font size="2">% env.custom\$path\$data_suffix</font>\
-<font size="2">% env.custom\$path\$project_suffix</font>\
-```{r, paged.print=FALSE, collapse=TRUE, echo=FALSE}
+#### \% env.custom\$path    
+<font size="2">\% env.custom\$path\$data_suffix</font>\
+<font size="2">\% env.custom\$path\$project_suffix</font>\
+```{r envCustom-Path, paged.print=FALSE, collapse=TRUE, echo=FALSE}
 library(tidyverse); cat("\r\n"); 
 cat("\r\n"); cat("getwd() == "); dput(getwd()) #----
 env.custom$path$getwd = getwd()
@@ -367,7 +368,7 @@ AnalyticDataset.censor1yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, p
 
 
 # [Plot] Stratified Kaplan-Meier Survival Curve
-```{r, paged.print=FALSE, fig.width=8, fig.height=6, include=FALSE}
+```{r plotWidth8Height6, paged.print=FALSE, fig.width=8, fig.height=6, echo=FALSE, message=FALSE, results=FALSE}
 library(tidyverse)
 # library(survival)
 # library(survminer)
@@ -409,14 +410,14 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 ```
 
 # @@ END -----
-```{r END, paged.print=FALSE, collapse=TRUE, include=FALSE}
+```{r END, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
 # @@ END -----
 ```
 
 # $ objectname = "AnalyticDataset200621" ====
 
 ###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
-```{r, paged.print=FALSE, collapse=TRUE, include=FALSE}
+```{r writeRDS, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
 # 
 # @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
 # objectname = "AnalyticDataset200621"
