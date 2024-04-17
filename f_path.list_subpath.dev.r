@@ -22,13 +22,13 @@ f_path.list_subpath <- function(input_path = ".", max_depth = 3, include_input_p
     if (BreadthFirstSearch) {
         f_path.list_subpath.BreathFirstSearch(input_path, max_depth, include_input_path, print.intermediate)
     } else {
-        f_path.list_subpath.DepthFirstSearch(input_path, max_depth, include_input_path, print.intermediate)
+        f_path.list_subpath.DepthFirstSearch_recursive(input_path, max_depth, include_input_path, print.intermediate)
     }
 }
 
 
-#% f_path.list_subpath.DepthFirstSearch =====
-f_path.list_subpath.DepthFirstSearch <- function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
+#% f_path.list_subpath.DepthFirstSearch_recursive =====
+f_path.list_subpath.DepthFirstSearch_recursive <- function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
     # Initialize .initial_max_depth with max_depth on the first call
     if (is.na(.initial_max_depth)) {
         .initial_max_depth <- max_depth
@@ -50,7 +50,7 @@ f_path.list_subpath.DepthFirstSearch <- function(input_path = ".", max_depth = 3
     vec_files_subpath.excl_origin <- list.files(input_path, full.names = TRUE)
     for (i_files_subpath in vec_files_subpath.excl_origin) {
         if (file.info(i_files_subpath)$isdir) {
-            subvec_files_subpath.excl_origin <- f_path.list_subpath.DepthFirstSearch(i_files_subpath, max_depth - 1, FALSE, print.intermediate, .initial_max_depth = .initial_max_depth)
+            subvec_files_subpath.excl_origin <- f_path.list_subpath.DepthFirstSearch_recursive(i_files_subpath, max_depth - 1, FALSE, print.intermediate, .initial_max_depth = .initial_max_depth)
             
             if (print.intermediate && length(subvec_files_subpath.excl_origin) > 0) {
                 cat("Subdirectories of ", i_files_subpath, ": ", length(subvec_files_subpath.excl_origin), "\n")
@@ -76,9 +76,9 @@ f_path.list_subpath.DepthFirstSearch <- function(input_path = ".", max_depth = 3
 }
 
 
-f_path.list_subpath.DepthFirstSearch(print.intermediate = T) %>% as.list %>% str #----
-f_path.list_subpath.DepthFirstSearch(getwd()) %>% as.list %>% str #----
-# > f_path.list_subpath.DepthFirstSearch(print.intermediate = T) %>% as.list %>% str #----
+f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) %>% as.list %>% str #----
+f_path.list_subpath.DepthFirstSearch_recursive(getwd()) %>% as.list %>% str #----
+# > f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) %>% as.list %>% str #----
 # Subdirectories of  ./data :  1 
 # Subdirectories of  ./other :  8 
 # Subdirectories of  ./Rdev/00_protocol :  4 
@@ -152,7 +152,7 @@ f_path.list_subpath.DepthFirstSearch(getwd()) %>% as.list %>% str #----
 #  $ : chr "./Rplot"
 #  $ : chr "./tests"
 #  $ : chr "./vignettes"
-# > f_path.list_subpath.DepthFirstSearch(getwd()) %>% as.list %>% str #----
+# > f_path.list_subpath.DepthFirstSearch_recursive(getwd()) %>% as.list %>% str #----
 # List of 62
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat"
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat/-info"
