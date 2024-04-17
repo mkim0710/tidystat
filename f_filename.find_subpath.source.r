@@ -43,7 +43,7 @@ if(!"path" %in% names(env.custom)) {
 objectname = "f_filename.find_subpath"
 object = function(filename, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE) {
     if (print.intermediate) {
-        cat("Searching: ", input_path, " at depth ", 0, "\n")
+        cat("Searching: ", input_path, strrep(" ", max(50-nchar(input_path),0)), "\t at depth ", 0, "\n", sep="")
     }
     
     if (file.exists(file.path(input_path, filename))) {
@@ -85,8 +85,8 @@ object = function(filename, input_path = ".", max_depth = 3, print.intermediate 
             for (i_files_subpath in vec_files_subpath) {
                 if (file.info(i_files_subpath)$isdir) {
                     if (print.intermediate) {
-                        cat("Searching: ", i_files_subpath, " at depth ", list_path_depth.current$depth+1, "\n")
-                        cat("Queue length: ", length(list_list_path_depth)+1, "\n")
+                        cat("Searching: ", i_files_subpath, strrep(" ", max(50-nchar(i_files_subpath),0)), "\t at depth ", list_path_depth.current$depth+1, "; ", sep="")
+                        cat("Queue length: ", length(list_list_path_depth)+1, "\n", sep="")
                     }
                     if (file.exists(file.path(i_files_subpath, filename))) {
                         return(file.path(i_files_subpath, filename))
@@ -103,8 +103,9 @@ object = function(filename, input_path = ".", max_depth = 3, print.intermediate 
     
     # Print the final vector of subpaths if requested
     if (print.intermediate) {
-        cat("File not found while searching following subpaths:\n")
-        dput(vec_subpath)
+        cat("----------- File not found while searching following subpaths:\n")
+        vec_subpath %>% {cat(deparse(., width.cutoff=500), '\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+        return(NULL)
     }
         
     return(vec_subpath)
@@ -119,119 +120,136 @@ if(!objectname %in% names(env.custom)) {
 
 
 
-
 # filename = "fhs.index100le10.rds"
-# f_filename.find_subpath(filename, print.intermediate = T)
-# # > filename = "fhs.index100le10.rds"
-# # > f_filename.find_subpath(filename, print.intermediate = T)
-# # Searching:  .  at depth  0 
-# # Searching:  ./-info  at depth  1 
-# # Queue length:  1 
-# # Searching:  ./-tmp  at depth  1 
-# # Queue length:  2 
-# # Searching:  ./data  at depth  1 
-# # Queue length:  3 
+# env.custom$f_filename.find_subpath(filename, print.intermediate = T)
+# # > env.custom$f_filename.find_subpath(filename, print.intermediate = T)
+# # Searching: .                                                 	 at depth 0
+# # Searching: ./-info                                           	 at depth 1; Queue length: 1
+# # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
+# # Searching: ./-tmp                                            	 at depth 1; Queue length: 3
+# # Searching: ./data                                            	 at depth 1; Queue length: 4
 # # [1] "./data/fhs.index100le10.rds"
 # 
 # filename = "help.array.r"
-# f_filename.find_subpath(filename, print.intermediate = T)
-# # > filename = "help.array.r"
-# # > f_filename.find_subpath(filename, print.intermediate = T)
-# # Searching:  .  at depth  0 
-# # Searching:  ./-info  at depth  1 
-# # Queue length:  1 
-# # Searching:  ./-tmp  at depth  1 
-# # Queue length:  2 
-# # Searching:  ./data  at depth  1 
-# # Queue length:  3 
-# # Searching:  ./examples  at depth  1 
-# # Queue length:  4 
-# # Searching:  ./other  at depth  1 
-# # Queue length:  5 
-# # Searching:  ./Rdev  at depth  1 
-# # Queue length:  6 
-# # Searching:  ./Rmd  at depth  1 
-# # Queue length:  7 
-# # Searching:  ./Rplot  at depth  1 
-# # Queue length:  8 
-# # Searching:  ./tests  at depth  1 
-# # Queue length:  9 
-# # Searching:  ./vignettes  at depth  1 
-# # Queue length:  10 
-# # Searching:  ./data/ATC_RxNorm_NDC  at depth  2 
-# # Queue length:  8 
-# # Searching:  ./other/Bash  at depth  2 
-# # Queue length:  7 
-# # Searching:  ./other/Batch  at depth  2 
-# # Queue length:  8 
-# # Searching:  ./other/C  at depth  2 
-# # Queue length:  9 
-# # Searching:  ./other/Excel  at depth  2 
-# # Queue length:  10 
-# # Searching:  ./other/ODBC  at depth  2 
-# # Queue length:  11 
-# # Searching:  ./other/SAS  at depth  2 
-# # Queue length:  12 
-# # Searching:  ./other/Stata  at depth  2 
-# # Queue length:  13 
-# # Searching:  ./other/VBA  at depth  2 
-# # Queue length:  14 
-# # Searching:  ./Rdev/-dev  at depth  2 
-# # Queue length:  14 
-# # Searching:  ./Rdev/00_base_program  at depth  2 
-# # Queue length:  15 
-# # Searching:  ./Rdev/00_protocol  at depth  2 
-# # Queue length:  16 
-# # Searching:  ./Rdev/10_import_clean_datatype  at depth  2 
-# # Queue length:  17 
-# # Searching:  ./Rdev/20_tidy_group_by_match  at depth  2 
-# # Queue length:  18 
-# # Searching:  ./Rdev/30_transform_scale_categorical  at depth  2 
-# # Queue length:  19 
-# # Searching:  ./Rdev/40_visualize_explore_bivariate_stratified  at depth  2 
-# # Queue length:  20 
-# # Searching:  ./Rdev/50_model_formula_evaluation  at depth  2 
-# # Queue length:  21 
-# # Searching:  ./Rdev/60_communicate_report_export  at depth  2 
-# # Queue length:  22 
-# # Searching:  ./Rdev/00_protocol/01_sample_size  at depth  3 
-# # Queue length:  7 
-# # Searching:  ./Rdev/00_protocol/05_count_eligible  at depth  3 
-# # Queue length:  8 
-# # Searching:  ./Rdev/00_protocol/06_count_exposure  at depth  3 
-# # Queue length:  9 
-# # Searching:  ./Rdev/00_protocol/07_count_outcome  at depth  3 
-# # Queue length:  10 
-# # Searching:  ./Rdev/10_import_clean_datatype/11_metadata  at depth  3 
-# # Queue length:  10 
-# # Searching:  ./Rdev/10_import_clean_datatype/12_import_files  at depth  3 
-# # Queue length:  11 
-# # Searching:  ./Rdev/10_import_clean_datatype/12_import_sqlite  at depth  3 
-# # Queue length:  12 
-# # Searching:  ./Rdev/10_import_clean_datatype/12_import_vocabulary  at depth  3 
-# # Queue length:  13 
-# # Searching:  ./Rdev/10_import_clean_datatype/13_duplicated  at depth  3 
-# # Queue length:  14 
-# # Searching:  ./Rdev/10_import_clean_datatype/13_missing_value  at depth  3 
-# # Queue length:  15 
-# # Searching:  ./Rdev/10_import_clean_datatype/13_split_fold  at depth  3 
-# # Queue length:  16 
-# # Searching:  ./Rdev/10_import_clean_datatype/15_cleaning_text  at depth  3 
-# # Queue length:  17 
-# # Searching:  ./Rdev/10_import_clean_datatype/15_cleaning_time  at depth  3 
-# # Queue length:  18 
-# # Searching:  ./Rdev/10_import_clean_datatype/16_categorical_factor  at depth  3 
-# # Queue length:  19 
-# # Searching:  ./Rdev/10_import_clean_datatype/17_categorical_indicators  at depth  3 
-# # Queue length:  20 
-# # Searching:  ./Rdev/10_import_clean_datatype/18_dichotomous_logical  at depth  3 
-# # Queue length:  21 
-# # Searching:  ./Rdev/10_import_clean_datatype/19_datetime  at depth  3 
-# # Queue length:  22 
-# # Searching:  ./Rdev/10_import_clean_datatype/19_numeric_integer  at depth  3 
-# # Queue length:  23 
-# # Searching:  ./Rdev/10_import_clean_datatype/array_list  at depth  3 
-# # Queue length:  24 
+# env.custom$f_filename.find_subpath(filename, print.intermediate = T)
+# # > env.custom$f_filename.find_subpath(filename, print.intermediate = T)
+# # Searching: .                                                 	 at depth 0
+# # Searching: ./-info                                           	 at depth 1; Queue length: 1
+# # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
+# # Searching: ./-tmp                                            	 at depth 1; Queue length: 3
+# # Searching: ./data                                            	 at depth 1; Queue length: 4
+# # Searching: ./examples                                        	 at depth 1; Queue length: 5
+# # Searching: ./other                                           	 at depth 1; Queue length: 6
+# # Searching: ./Rdev                                            	 at depth 1; Queue length: 7
+# # Searching: ./Rmd                                             	 at depth 1; Queue length: 8
+# # Searching: ./Rplot                                           	 at depth 1; Queue length: 9
+# # Searching: ./tests                                           	 at depth 1; Queue length: 10
+# # Searching: ./vignettes                                       	 at depth 1; Queue length: 11
+# # Searching: ./data/ATC_RxNorm_NDC                             	 at depth 2; Queue length: 8
+# # Searching: ./other/Bash                                      	 at depth 2; Queue length: 7
+# # Searching: ./other/Batch                                     	 at depth 2; Queue length: 8
+# # Searching: ./other/C                                         	 at depth 2; Queue length: 9
+# # Searching: ./other/Excel                                     	 at depth 2; Queue length: 10
+# # Searching: ./other/ODBC                                      	 at depth 2; Queue length: 11
+# # Searching: ./other/SAS                                       	 at depth 2; Queue length: 12
+# # Searching: ./other/Stata                                     	 at depth 2; Queue length: 13
+# # Searching: ./other/VBA                                       	 at depth 2; Queue length: 14
+# # Searching: ./Rdev/-dev                                       	 at depth 2; Queue length: 14
+# # Searching: ./Rdev/00_base_program                            	 at depth 2; Queue length: 15
+# # Searching: ./Rdev/00_protocol                                	 at depth 2; Queue length: 16
+# # Searching: ./Rdev/10_import_clean_datatype                   	 at depth 2; Queue length: 17
+# # Searching: ./Rdev/20_tidy_group_by_match                     	 at depth 2; Queue length: 18
+# # Searching: ./Rdev/30_transform_scale_categorical             	 at depth 2; Queue length: 19
+# # Searching: ./Rdev/40_visualize_explore_bivariate_stratified  	 at depth 2; Queue length: 20
+# # Searching: ./Rdev/50_model_formula_evaluation                	 at depth 2; Queue length: 21
+# # Searching: ./Rdev/60_communicate_report_export               	 at depth 2; Queue length: 22
+# # Searching: ./Rdev/00_protocol/01_sample_size                 	 at depth 3; Queue length: 7
+# # Searching: ./Rdev/00_protocol/05_count_eligible              	 at depth 3; Queue length: 8
+# # Searching: ./Rdev/00_protocol/06_count_exposure              	 at depth 3; Queue length: 9
+# # Searching: ./Rdev/00_protocol/07_count_outcome               	 at depth 3; Queue length: 10
+# # Searching: ./Rdev/10_import_clean_datatype/11_metadata       	 at depth 3; Queue length: 10
+# # Searching: ./Rdev/10_import_clean_datatype/12_import_files   	 at depth 3; Queue length: 11
+# # Searching: ./Rdev/10_import_clean_datatype/12_import_sqlite  	 at depth 3; Queue length: 12
+# # Searching: ./Rdev/10_import_clean_datatype/12_import_vocabulary	 at depth 3; Queue length: 13
+# # Searching: ./Rdev/10_import_clean_datatype/13_duplicated     	 at depth 3; Queue length: 14
+# # Searching: ./Rdev/10_import_clean_datatype/13_missing_value  	 at depth 3; Queue length: 15
+# # Searching: ./Rdev/10_import_clean_datatype/13_split_fold     	 at depth 3; Queue length: 16
+# # Searching: ./Rdev/10_import_clean_datatype/15_cleaning_text  	 at depth 3; Queue length: 17
+# # Searching: ./Rdev/10_import_clean_datatype/15_cleaning_time  	 at depth 3; Queue length: 18
+# # Searching: ./Rdev/10_import_clean_datatype/16_categorical_factor	 at depth 3; Queue length: 19
+# # Searching: ./Rdev/10_import_clean_datatype/17_categorical_indicators	 at depth 3; Queue length: 20
+# # Searching: ./Rdev/10_import_clean_datatype/18_dichotomous_logical	 at depth 3; Queue length: 21
+# # Searching: ./Rdev/10_import_clean_datatype/19_datetime       	 at depth 3; Queue length: 22
+# # Searching: ./Rdev/10_import_clean_datatype/19_numeric_integer	 at depth 3; Queue length: 23
+# # Searching: ./Rdev/10_import_clean_datatype/array_list        	 at depth 3; Queue length: 24
 # # [1] "./Rdev/10_import_clean_datatype/array_list/help.array.r"
-
-
+# 
+# filename = "does not exist.r"
+# env.custom$f_filename.find_subpath(filename, print.intermediate = T)
+# # > env.custom$f_filename.find_subpath(filename, print.intermediate = T)
+# # Searching: .                                                 	 at depth 0
+# # Searching: ./-info                                           	 at depth 1; Queue length: 1
+# # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
+# # Searching: ./-tmp                                            	 at depth 1; Queue length: 3
+# # Searching: ./data                                            	 at depth 1; Queue length: 4
+# # Searching: ./examples                                        	 at depth 1; Queue length: 5
+# # Searching: ./other                                           	 at depth 1; Queue length: 6
+# # Searching: ./Rdev                                            	 at depth 1; Queue length: 7
+# # Searching: ./Rmd                                             	 at depth 1; Queue length: 8
+# # Searching: ./Rplot                                           	 at depth 1; Queue length: 9
+# # Searching: ./tests                                           	 at depth 1; Queue length: 10
+# # Searching: ./vignettes                                       	 at depth 1; Queue length: 11
+# # Searching: ./data/ATC_RxNorm_NDC                             	 at depth 2; Queue length: 8
+# # Searching: ./other/Bash                                      	 at depth 2; Queue length: 7
+# # Searching: ./other/Batch                                     	 at depth 2; Queue length: 8
+# # Searching: ./other/C                                         	 at depth 2; Queue length: 9
+# # Searching: ./other/Excel                                     	 at depth 2; Queue length: 10
+# # Searching: ./other/ODBC                                      	 at depth 2; Queue length: 11
+# # Searching: ./other/SAS                                       	 at depth 2; Queue length: 12
+# # Searching: ./other/Stata                                     	 at depth 2; Queue length: 13
+# # Searching: ./other/VBA                                       	 at depth 2; Queue length: 14
+# # Searching: ./Rdev/-dev                                       	 at depth 2; Queue length: 14
+# # Searching: ./Rdev/00_base_program                            	 at depth 2; Queue length: 15
+# # Searching: ./Rdev/00_protocol                                	 at depth 2; Queue length: 16
+# # Searching: ./Rdev/10_import_clean_datatype                   	 at depth 2; Queue length: 17
+# # Searching: ./Rdev/20_tidy_group_by_match                     	 at depth 2; Queue length: 18
+# # Searching: ./Rdev/30_transform_scale_categorical             	 at depth 2; Queue length: 19
+# # Searching: ./Rdev/40_visualize_explore_bivariate_stratified  	 at depth 2; Queue length: 20
+# # Searching: ./Rdev/50_model_formula_evaluation                	 at depth 2; Queue length: 21
+# # Searching: ./Rdev/60_communicate_report_export               	 at depth 2; Queue length: 22
+# # Searching: ./Rdev/00_protocol/01_sample_size                 	 at depth 3; Queue length: 7
+# # Searching: ./Rdev/00_protocol/05_count_eligible              	 at depth 3; Queue length: 8
+# # Searching: ./Rdev/00_protocol/06_count_exposure              	 at depth 3; Queue length: 9
+# # Searching: ./Rdev/00_protocol/07_count_outcome               	 at depth 3; Queue length: 10
+# # Searching: ./Rdev/10_import_clean_datatype/11_metadata       	 at depth 3; Queue length: 10
+# # Searching: ./Rdev/10_import_clean_datatype/12_import_files   	 at depth 3; Queue length: 11
+# # Searching: ./Rdev/10_import_clean_datatype/12_import_sqlite  	 at depth 3; Queue length: 12
+# # Searching: ./Rdev/10_import_clean_datatype/12_import_vocabulary	 at depth 3; Queue length: 13
+# # Searching: ./Rdev/10_import_clean_datatype/13_duplicated     	 at depth 3; Queue length: 14
+# # Searching: ./Rdev/10_import_clean_datatype/13_missing_value  	 at depth 3; Queue length: 15
+# # Searching: ./Rdev/10_import_clean_datatype/13_split_fold     	 at depth 3; Queue length: 16
+# # Searching: ./Rdev/10_import_clean_datatype/15_cleaning_text  	 at depth 3; Queue length: 17
+# # Searching: ./Rdev/10_import_clean_datatype/15_cleaning_time  	 at depth 3; Queue length: 18
+# # Searching: ./Rdev/10_import_clean_datatype/16_categorical_factor	 at depth 3; Queue length: 19
+# # Searching: ./Rdev/10_import_clean_datatype/17_categorical_indicators	 at depth 3; Queue length: 20
+# # Searching: ./Rdev/10_import_clean_datatype/18_dichotomous_logical	 at depth 3; Queue length: 21
+# # Searching: ./Rdev/10_import_clean_datatype/19_datetime       	 at depth 3; Queue length: 22
+# # Searching: ./Rdev/10_import_clean_datatype/19_numeric_integer	 at depth 3; Queue length: 23
+# # Searching: ./Rdev/10_import_clean_datatype/array_list        	 at depth 3; Queue length: 24
+# # Searching: ./Rdev/20_tidy_group_by_match/23_group_by_PersonID	 at depth 3; Queue length: 24
+# # Searching: ./Rdev/20_tidy_group_by_match/25_study_population 	 at depth 3; Queue length: 25
+# # Searching: ./Rdev/20_tidy_group_by_match/27_match            	 at depth 3; Queue length: 26
+# # Searching: ./Rdev/40_visualize_explore_bivariate_stratified/43_network	 at depth 3; Queue length: 25
+# # Searching: ./Rdev/40_visualize_explore_bivariate_stratified/44_map	 at depth 3; Queue length: 26
+# # Searching: ./Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures	 at depth 3; Queue length: 27
+# # Searching: ./Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified	 at depth 3; Queue length: 28
+# # Searching: ./Rdev/50_model_formula_evaluation/51_model_formula	 at depth 3; Queue length: 28
+# # Searching: ./Rdev/50_model_formula_evaluation/53_model_selection	 at depth 3; Queue length: 29
+# # Searching: ./Rdev/50_model_formula_evaluation/55_model_weighted	 at depth 3; Queue length: 30
+# # Searching: ./Rdev/50_model_formula_evaluation/56_model_bootstrap	 at depth 3; Queue length: 31
+# # Searching: ./Rdev/50_model_formula_evaluation/57_model_time2event	 at depth 3; Queue length: 32
+# # Searching: ./Rdev/50_model_formula_evaluation/57_model_trajectory	 at depth 3; Queue length: 33
+# # Searching: ./Rdev/50_model_formula_evaluation/59_model_evaluation	 at depth 3; Queue length: 34
+# # ----------- File not found while searching following subpaths:
+# # c(".", "./-info", "./-personal -old", "./-tmp", "./data", "./examples", "./other", "./Rdev", "./Rmd", "./Rplot", "./tests", "./vignettes", "./data/ATC_RxNorm_NDC", "./other/Bash", "./other/Batch", "./other/C", "./other/Excel", "./other/ODBC", "./other/SAS", "./other/Stata", "./other/VBA", "./Rdev/-dev", "./Rdev/00_base_program", "./Rdev/00_protocol", "./Rdev/10_import_clean_datatype", "./Rdev/20_tidy_group_by_match", "./Rdev/30_transform_scale_categorical", "./Rdev/40_visualize_explore_bivariate_stratified", "./Rdev/50_model_formula_evaluation", "./Rdev/60_communicate_report_export", "./Rdev/00_protocol/01_sample_size", "./Rdev/00_protocol/05_count_eligible", "./Rdev/00_protocol/06_count_exposure", "./Rdev/00_protocol/07_count_outcome", "./Rdev/10_import_clean_datatype/11_metadata", "./Rdev/10_import_clean_datatype/12_import_files", "./Rdev/10_import_clean_datatype/12_import_sqlite", "./Rdev/10_import_clean_datatype/12_import_vocabulary", "./Rdev/10_import_clean_datatype/13_duplicated", "./Rdev/10_import_clean_datatype/13_missing_value", "./Rdev/10_import_clean_datatype/13_split_fold", "./Rdev/10_import_clean_datatype/15_cleaning_text", "./Rdev/10_import_clean_datatype/15_cleaning_time", "./Rdev/10_import_clean_datatype/16_categorical_factor", "./Rdev/10_import_clean_datatype/17_categorical_indicators", "./Rdev/10_import_clean_datatype/18_dichotomous_logical", "./Rdev/10_import_clean_datatype/19_datetime", "./Rdev/10_import_clean_datatype/19_numeric_integer", "./Rdev/10_import_clean_datatype/array_list", "./Rdev/20_tidy_group_by_match/23_group_by_PersonID", "./Rdev/20_tidy_group_by_match/25_study_population", "./Rdev/20_tidy_group_by_match/27_match", "./Rdev/40_visualize_explore_bivariate_stratified/43_network", "./Rdev/40_visualize_explore_bivariate_stratified/44_map", "./Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures", "./Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified", "./Rdev/50_model_formula_evaluation/51_model_formula", "./Rdev/50_model_formula_evaluation/53_model_selection", "./Rdev/50_model_formula_evaluation/55_model_weighted", "./Rdev/50_model_formula_evaluation/56_model_bootstrap", "./Rdev/50_model_formula_evaluation/57_model_time2event", "./Rdev/50_model_formula_evaluation/57_model_trajectory", "./Rdev/50_model_formula_evaluation/59_model_evaluation")
+# # NULL
