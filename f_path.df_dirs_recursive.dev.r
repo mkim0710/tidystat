@@ -72,7 +72,16 @@ f_path.df_dirs_recursive <- function(
             mutate(
                 path.parent = dirname(full_path)
                 , path.basename = basename(full_path)
-                # , path.basename.ext = tools::file_ext(path.basename)
+                # # , path.basename.ext = tools::file_ext(path.basename)
+                # # # > tools::file_ext
+                # # # function (x) 
+                # # # {
+                # # #     pos <- regexpr("\\.([[:alnum:]]+)$", x)
+                # # #     ifelse(pos > -1L, substring(x, pos + 1L), "")
+                # # # }
+                # # # <bytecode: 0x0000020ed66821a0>
+                # # # <environment: namespace:tools>
+                # path.basename %>% str_extract("\\.([[:alnum:]]+)$") %>% str_replace("^\\.", "")
             ) %>% 
             mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", .x - 1), collapse = "")) %>% paste0(path.basename) ) %>%
             mutate(
