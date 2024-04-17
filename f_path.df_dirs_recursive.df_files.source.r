@@ -83,6 +83,16 @@ object = function(
                 # , path.parent = if_else(full_path == ".", "..", dirname(full_path))
                 , path.basename = basename(full_path)
                 # , path.basename.ext = tools::file_ext(path.basename)
+                # # , path.basename.ext = tools::file_ext(path.basename)
+                # # # > tools::file_ext
+                # # # function (x) 
+                # # # {
+                # # #     pos <- regexpr("\\.([[:alnum:]]+)$", x)
+                # # #     ifelse(pos > -1L, substring(x, pos + 1L), "")
+                # # # }
+                # # # <bytecode: 0x0000020ed66821a0>
+                # # # <environment: namespace:tools>
+                # path.basename %>% str_extract("\\.([[:alnum:]]+)$") %>% str_replace("^\\.", "")
             ) %>% 
             mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", max(.x - 1, 0)), collapse = "")) %>% paste0(path.basename) ) %>%
             # arrange(path.parent, path.basename) %>% 
