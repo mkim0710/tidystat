@@ -566,7 +566,7 @@ env.custom$f_df.t.tribble_construct = function(df) {
 #@ for (env.custom.dependancy in c("")) { -----
 for (env.custom.dependancy in c("f_path.size_files")) {
     if(!env.custom.dependancy %in% names(env.custom)) {
-        cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))
+        if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
         objectname = env.custom.dependancy
         source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
     }

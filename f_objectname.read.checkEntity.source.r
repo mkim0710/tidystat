@@ -30,9 +30,9 @@ if(!"path" %in% names(env.custom)) {
     objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
 }
 #@ for (env.custom.dependancy in c("")) { -----
-for (env.custom.dependancy in c("f_filename.find_subpath", "f_path.size_files")) {
+for (env.custom.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
     if(!env.custom.dependancy %in% names(env.custom)) {
-        cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))
+        if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
         objectname = env.custom.dependancy
         source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
     }
@@ -50,9 +50,9 @@ object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID",
     } else if(file.exists(file.path(path4read, paste0(filename.ext, ".xz")))) {
         filename.ext = paste0(filename.ext, ".xz")
     } else if(BreathFirstSearch) {
-        path.filename.ext = env.custom$f_filename.find_subpath(filename.ext, input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
+        path.filename.ext = env.custom$f_filename.ext.find_subpath(filename.ext, input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
         if (is.null(path.filename.ext)) {
-            path.filename.ext = env.custom$f_filename.find_subpath(paste0(filename.ext, ".xz"), input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
+            path.filename.ext = env.custom$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
             if (is.null(path.filename.ext)) error(paste0(filename.ext, " does not exist!")) ;
         }
         path4read = dirname(path.filename.ext)
