@@ -31,7 +31,7 @@ if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.int
 if(!"info" %in% names(env.custom)) env.custom$info = list()
 
 #% get_system_info() ====
-cat("Loading: ", "env.custom$info$get_system_info", "\n")
+packageStartupMessage(paste0("Loading: ", "env.custom$", "info$get_system_info")); 
 env.custom$info$get_system_info = function() {
     summary_list = list(
         GUI = .Platform$GUI,
