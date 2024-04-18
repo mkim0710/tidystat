@@ -14,98 +14,15 @@ cat("# ", 'objectname = "', objectname, '"', "\n",
 rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
 
+source("f_objectname.read.checkEntity.source.r")
 
 
-library(tidyverse)
-
-# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
-if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
-# env.custom = as.environment(env.custom)
-# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
-if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
-
-if(!"path" %in% names(env.custom)) {
-    env.custom$path = list()
-    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
-}
-#@ for (env.custom.dependancy in c("")) { -----
-for (env.custom.dependancy in c("f_filename.find_subpath", "f_path.size_files")) {
-    if(!env.custom.dependancy %in% names(env.custom)) {
-        cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))
-        objectname = env.custom.dependancy
-        source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
-    }
-}
-
-
-
-# #@@ START ------
-# path4read  = env.custom$path$path1
-# path4write = env.custom$path$path2
-# if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
-# if (getwd() != path4write) warning("getwd() != path4write  == ") else cat("getwd() == path4write == "); dput(path4write)  #----
-
-
-f_objectname.read.checkEntity = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID", "PERSON_ID", "RN_INDI"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
-    if (getwd() != path4read) {warningText = paste0('getwd() != path4read == "', path4read, '"');  warning(warningText); cat("Warning: ", warningText, "\n")} else {cat("getwd() == path4read ==", path4read, "\n")} #----
-    cat('objectname = "', objectname, '"\n', sep = "");
-    filename.ext = paste0(objectname, ".", ext)
-    if(file.exists(file.path(path4read, filename.ext))) {
-    } else if(file.exists(file.path(path4read, paste0(filename.ext, ".xz")))) {
-        filename.ext = paste0(filename.ext, ".xz")
-    } else if(BreathFirstSearch) {
-        path.filename.ext = env.custom$f_filename.find_subpath(filename.ext, input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
-        if (is.null(path.filename.ext)) {
-            path.filename.ext = env.custom$f_filename.find_subpath(paste0(filename.ext, ".xz"), input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
-            if (is.null(path.filename.ext)) error(paste0(filename.ext, " does not exist!")) ;
-        }
-        path4read = dirname(path.filename.ext)
-        cat('Found subpath: ', 'path4read = "', path4read, '"\n', sep = "");
-        filename.ext = basename(path.filename.ext)
-    } else {
-        error(paste0(filename.ext, " does not exist!")) ;
-    }
-    cat('filename.ext = "', filename.ext, '"\n', sep = "");
-
-    # filename.ext.regex = filename.ext %>%  
-    #     str_replace_all("\\.", "\\\\.") %>%
-    #     str_replace_all("\\(", "\\\\(") %>% 
-    #     str_replace_all("\\)", "\\\\)") %>% 
-    #     str_replace_all("\\[", "\\\\[") %>% 
-    #     str_replace_all("\\]", "\\\\]") %>% 
-    #     str_replace_all("\\-", "\\\\-") 
-    filename.ext.regex <- filename.ext %>% str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
-    env.custom$f_path.size_files(path4read = path4read, regex4filename = filename.ext.regex)
-    
-    system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir = .GlobalEnv))
-
-    # cat("----\n")
-    CodeText = "dim(get(objectname))"; cat(CodeText); cat(" = "); dput(eval(parse(text = CodeText))); 
-    for (varname in varname4ID) {
-      if(varname %in% names(get(objectname))) {
-          CodeText = paste0("n_distinct(get(objectname)$", varname, ")"); cat(CodeText); cat(" = "); dput(eval(parse(text = CodeText))); 
-      } else {
-          {warningText = paste0('varname for ID not identified.');  warning(warningText); cat("Warning: ", warningText, "\n")}
-      }
-    }
-    cat("----\n> ", "names(get(objectname))", "\n", sep = ""); get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-    cat("----\n> ", "names(get(objectname))", "\n", sep = ""); get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat(., '\n\n', sep='')}; # tidydplyr::select: paste(collapse = ", ") %>% cat ----
-    cat("----\n> "); CodeText = "str(get(objectname), max.level = 2, give.attr = F)"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
-    cat("----\n> "); CodeText = "as_tibble(get(objectname))"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
-    cat("----\n> "); CodeText = "tail(rownames_to_column(get(objectname)))"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
-    # cat("----\n> ", "summary(get(objectname) %>% dplyr::select_if(is.numeric))", "\n", sep = ""); get(objectname) %>% dplyr::select_if(is.numeric) %>% summary #-----
-    # cat("----\n> ", "summary(get(objectname) %>% dplyr::select_if(is.logical))", "\n", sep = ""); get(objectname) %>% dplyr::select_if(is.logical) %>% summary #-----
-    # cat("----\n> ", "summary(get(objectname) %>% dplyr::select_if(is.factor))", "\n", sep = ""); get(objectname) %>% dplyr::select_if(is.logical) %>% summary #-----
-}
-
-
-
+#$ objectname = "fhs.index100le10" =======
 objectname = "fhs.index100le10"
-f_objectname.read.checkEntity(objectname = objectname)
-f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
+env.custom$f_objectname.read.checkEntity(objectname = objectname)
+env.custom$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
 # > objectname = "fhs.index100le10"
-# > f_objectname.read.checkEntity(objectname = objectname)
+# > env.custom$f_objectname.read.checkEntity(objectname = objectname)
 # Warning:  getwd() != path4read == "." 
 # objectname = "fhs.index100le10"
 # Found subpath: path4read = "./data"
@@ -233,15 +150,15 @@ f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
 # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning messages:
-# 1: In f_objectname.read.checkEntity(objectname = objectname) :
+# 1: In env.custom$f_objectname.read.checkEntity(objectname = objectname) :
 #   getwd() != path4read == "."
-# 2: In f_objectname.read.checkEntity(objectname = objectname) :
+# 2: In env.custom$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
-# 3: In f_objectname.read.checkEntity(objectname = objectname) :
+# 3: In env.custom$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
-# 4: In f_objectname.read.checkEntity(objectname = objectname) :
+# 4: In env.custom$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
-# > f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
+# > env.custom$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
 # Warning:  getwd() != path4read == "." 
 # objectname = "fhs.index100le10"
 # Found subpath: path4read = "./data"
@@ -367,7 +284,10 @@ f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
 # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning message:
-# In f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid") :
+# In env.custom$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid") :
 #   getwd() != path4read == "."
 
 
+
+
+#@ end -----
