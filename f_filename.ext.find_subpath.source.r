@@ -126,7 +126,7 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
 
 
 if(!objectname %in% names(env.custom)) {
-    packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
+    # packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
     # cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
 }

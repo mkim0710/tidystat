@@ -37,7 +37,8 @@ if(!"path" %in% names(env.custom)) {
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
 # globalVariables(c(".rs.readUiPref","env.custom$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
-cat("Loading: ", "env.custom$env.internal$.global_datapasta_env", "\n")
+# env.internal.objectname = ".global_datapasta_env"
+# packageStartupMessage(paste0("Loading: ", "env.custom$env.internal$", env.internal.objectname)); 
 env.custom$env.internal$.global_datapasta_env <- new.env()
 env.custom$env.internal$.global_datapasta_env$decimal_mark <- "."
 env.custom$env.internal$.global_datapasta_env$max_rows <- 200
@@ -50,7 +51,8 @@ env.custom$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not a
 #' @return Nothing.
 #' @export
 #'
-# cat("Loading: ", "env.custom$env.internal$tribble_paste", "\n")
+# env.internal.objectname = "tribble_paste"
+# packageStartupMessage(paste0("Loading: ", "env.custom$env.internal$", env.internal.objectname)); 
 env.custom$env.internal$tribble_paste <- function(input_table, output_context = env.custom$env.internal$guess_output_context()){
   output <- env.custom$env.internal$tribble_construct(input_table, oc = output_context)
 
@@ -67,7 +69,8 @@ env.custom$env.internal$tribble_paste <- function(input_table, output_context = 
 #' @return Nothing.
 #' @export
 #'
-# cat("Loading: ", "env.custom$env.internal$tribble_format", "\n")
+# env.internal.objectname = "tribble_format"
+# packageStartupMessage(paste0("Loading: ", "env.custom$env.internal$", env.internal.objectname)); 
 env.custom$env.internal$tribble_format <- function(input_table, output_context = env.custom$env.internal$console_context()){
   if(!interactive()) stop("Cannot write to clipboard in non-interactive sessions.")
   output <- env.custom$env.internal$tribble_construct(input_table, oc = output_context)
@@ -540,21 +543,24 @@ env.custom$env.internal$custom_context <- function(output_mode = "console", nspc
 #@ global functions ----
 # fun.tribble_paste = env.custom$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
-cat("Loading: ", "env.custom$f_df.tribble_construct", "\n")
+objectname = "f_df.tribble_construct"
+packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
 env.custom$f_df.tribble_construct = function(df) {
     out = env.custom$env.internal$tribble_construct(df)
     cat(out)
 }
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
-cat("Loading: ", "env.custom$f_df.transpose", "\n")
+objectname = "f_df.transpose"
+packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
 env.custom$f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) %>% as_tibble
     out
 }
 
-cat("Loading: ", "env.custom$f_df.t.tribble_construct", "\n")
+objectname = "f_df.t.tribble_construct"
+packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
 env.custom$f_df.t.tribble_construct = function(df) {
     out = env.custom$f_df.transpose(df)
     out = env.custom$env.internal$tribble_construct(out)
