@@ -4,7 +4,7 @@
 #     "# ", objectname, ".source.r", "\n",
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
-#     sep = "")
+#     sep="")
 # rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 # rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
 ####################################################################################################
@@ -14,7 +14,7 @@ cat("# ", 'objectname = "', objectname, '"', "\n",
     "# ", objectname, ".source.r", "\n",
     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
-    sep = "")
+    sep="")
 rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
@@ -34,8 +34,8 @@ if(!"info" %in% names(env.custom)) env.custom$info = list()
 env.custom$DocumentTitle0 = "get_system_info()"
 env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 cat(env.custom$DocumentTitle1); cat("\r\n");
-cat(env.custom$DocumentTitle1, ".R", sep = ""); cat("\r\n");
-cat(env.custom$DocumentTitle1, ".RMD", sep = ""); cat("\r\n");
+cat(env.custom$DocumentTitle1, ".R", sep=""); cat("\r\n");
+cat(env.custom$DocumentTitle1, ".RMD", sep=""); cat("\r\n");
 
 
 #% get_system_info() ====
@@ -494,13 +494,13 @@ source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.int
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
 objectname = "get_system_info"
-source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
+source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
 
 
 env.custom$info$info_system_info = env.custom$info$get_system_info()
 # str(env.custom$info$info_system_info)
-text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
-text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
-# text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
+text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
+text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
+# text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
 
 

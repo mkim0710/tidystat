@@ -24,12 +24,14 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 ```
 
-```{r setup, include=FALSE}
+```{r setup, eval=TRUE, include=FALSE}
 # str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), '\n', sep='')
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width = 7, fig.height = 7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width = NULL, out.height = NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
+  eval=TRUE, echo=TRUE, results='hold', collapse=TRUE, 
   comment = '##', fig.width = 10, fig.height = 6, 
-  collapse=TRUE, results='hold', 
-  # echo=TRUE, message=TRUE, warning=TRUE, error=TRUE,
+  # warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
   tidy.opts=list(width.cutoff=80), tidy=TRUE
 )
 knitr::opts_knit$set(global.par = TRUE)
@@ -37,11 +39,10 @@ knitr::opts_knit$set(global.par = TRUE)
 ```
 
 
-```{r loadPackages, include=FALSE}
+```{r loadPackages, eval=TRUE, include=FALSE}
 suppressPackageStartupMessages({for (packagename in c("tidyverse")) {if (!require(packagename, character.only = TRUE)) install.packages(packagename); library(packagename, character.only = TRUE)}}); cat("\r\n");
 source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
-objectname = "f_df.t.tribble_construct"
-source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")) )
+sourcename = "f_df.t.tribble_construct"; source(file.path(file.path(env.custom$path$source_base_local,""), paste0(sourcename,".source.r")) )
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 ```
 
@@ -64,20 +65,17 @@ cat(env.custom$info$DocumentTitle1, "\r\n",
     env.custom$info$DocumentTitle1, ".Rmd", "\r\n", 
     env.custom$info$DocumentTitle1, " -dev.Rmd", "\r\n", 
     env.custom$info$DocumentTitle1, " -clean.Rmd", "\r\n", 
-    sep = "")
+    sep="")
 ```
 
 #### \% env.custom\$info\$info_system_info
-```{r envCustom-Info, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
-
-# @ source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")) ) ----
-objectname = "get_system_info"
-source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")) )
+```{r envCustom-Info-NoEchoNoMsgNoResult, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
+sourcename = "get_system_info"; source(file.path(file.path(env.custom$path$source_base_local,""), paste0(sourcename,".source.r")) )
 env.custom$info$info_system_info = env.custom$info$get_system_info()
 # str(env.custom$info$info_system_info)
-text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
-text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
-# text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep = "")
+text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
+text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
+# text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
 
 env.custom$info$info_software_versions = env.custom$info$get_software_versions(
     library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr",
@@ -160,7 +158,7 @@ List of 9
 #### \% env.custom\$path    
 <font size="2">\% env.custom\$path\$data_suffix</font>\
 <font size="2">\% env.custom\$path\$project_suffix</font>\
-```{r envCustom-Path, paged.print=FALSE, collapse=TRUE, echo=FALSE}
+```{r envCustom-Path-NoEcho, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE}
 library(tidyverse); cat("\r\n"); 
 cat("\r\n"); cat("getwd() == "); dput(getwd()) #----
 env.custom$path$getwd = getwd()
@@ -206,10 +204,12 @@ env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4file
 
 # @@ START) Baseline ------
 # $ objectname = "as1.na.Date.fct.select89" ====
-@ assign(objectname, readRDS(file.path(path4read, filename2read))) 
+@ assign(objectname, read_rds(file.path(path4read, paste0(objectname, ".rds")))) 
+```{r width80, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE}
+options(width = 80)
 ```{r, paged.print=FALSE, collapse=TRUE}
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
-objectname = "as1.na.Date.fct.select89"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep = ""); 
+objectname = "as1.na.Date.fct.select89"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
 env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
@@ -218,7 +218,7 @@ get(objectname) %>% {.$PERSON_ID} %>% n_distinct
 get(objectname) %>% {.$RN_INDI} %>% n_distinct
 get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
 get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
-cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep = ""); str(get(objectname), max.level = 2, give.attr = F); 
+cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # get(objectname) %>% select_if(is.numeric) %>% summary #-----
 # get(objectname) %>% select_if(is.logical) %>% summary #-----
 ```
@@ -226,10 +226,12 @@ cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep 
 
 # @@ START) Outcome ------
 # $ objectname = "as1_7.na.Date.fct.cumulative_DM.list" ====
-@ assign(objectname, readRDS(file.path(path4read, filename2read))) 
+@ assign(objectname, read_rds(file.path(path4read, paste0(objectname, ".rds")))) 
+```{r width80, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE}
+options(width = 80)
 ```{r, paged.print=FALSE, collapse=TRUE}
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
-objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep = ""); 
+objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
 env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
@@ -238,7 +240,7 @@ get(objectname) %>% {.$PERSON_ID} %>% n_distinct
 get(objectname) %>% {.$RN_INDI} %>% n_distinct
 get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
 get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
-cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep = ""); str(get(objectname), max.level = 2, give.attr = F); 
+cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # get(objectname) %>% select_if(is.numeric) %>% summary #-----
 # get(objectname) %>% select_if(is.logical) %>% summary #-----
 ```
@@ -378,7 +380,8 @@ df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$Study
 
 # $ df_NewDMv3.CensorEND 
 # [Plot] Stratified Kaplan-Meier Survival Curve
-```{r plotWidth8Height6, paged.print=FALSE, fig.width=8, fig.height=6, echo=FALSE, message=FALSE, results=FALSE}
+```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
+# {r plotWidth10Height6, results='hold', collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 library(tidyverse)
 # library(survival)
 # library(survminer)
@@ -430,78 +433,93 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
+options(width = 80)
 
 ```
 
 
 # [Plot] Stratified Kaplan-Meier Survival Curve
-```{r plotWidth8Height6, paged.print=FALSE, fig.width=8, fig.height=6, echo=FALSE, message=FALSE, results=FALSE}
+```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
+# {r plotWidth10Height6, results='hold', collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 # library(tidyverse)
 # # library(survival)
 # # library(survminer)
@@ -586,11 +604,11 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
 
 
 # @@ END -----
-```{r END, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
+```{r END-NoEvalNoEchoNoMsgNoResult, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
 # @@ END -----
 ```
 
-```{r RenderMessages, eval=FALSE, include=FALSE}
+```{comment RenderMessages, eval=FALSE, include=FALSE}
 dput(names(knitr::knit_engines$get()))
 ```
 
@@ -598,7 +616,7 @@ dput(names(knitr::knit_engines$get()))
 # $ objectname = "df_NewDMv3.NAtime200621" ====
 
 ###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
-```{r writeRDS, paged.print=FALSE, collapse=TRUE, echo=FALSE, message=FALSE, results=FALSE}
+```{r writeRDS-NoEvalNoEchoNoMsgNoResult, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
 # 
 # @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
 # objectname = "df_NewDMv3.NAtime200621"

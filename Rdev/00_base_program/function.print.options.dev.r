@@ -8,7 +8,7 @@ options() %>% str(list.len=Inf) #-----
 #  $ add.smooth                          : logi TRUE
 #  $ ambiguousMethodSelection            :function (cond)  
 #  $ askpass                             :function (prompt)  
-#  $ asksecret                           :function (name, title = name, prompt = paste(name, ":", sep = ""))  
+#  $ asksecret                           :function (name, title = name, prompt = paste(name, ":", sep=""))  
 #  $ askYesNo                            :function (msg, ...)  
 #  $ browser                             :function (url)  
 #  $ browserNLdisabled                   : logi FALSE
