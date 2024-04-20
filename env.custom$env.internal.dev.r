@@ -10,7 +10,7 @@ cat("# ", 'objectname = "', objectname, '"', "\n",
     "# ", objectname, ".source.r", "\n",
     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
-    sep = "")
+    sep="")
 rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
 
@@ -25,13 +25,13 @@ if(!"info" %in% names(env.custom)) env.custom$info = list()
 # if(!"source" %in% names(env.custom)) env.custom$source = list()
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
-    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
+    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
+    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
 } 
-objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
-objectname = "path4read"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
-objectname = "path4write"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
-objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep = "")};
+objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
+objectname = "path4read"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
+objectname = "path4write"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
+objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
 
 
 
@@ -48,8 +48,8 @@ objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!
 # } else {
 #     path1 = NA; path2 = NA; path3 = NA; 
 # }
-# # cat("path1: ", path1, "\n", "path2: ", path2, "\n", "path3: ", path3, "\n", sep = "")
-# # > cat("path1: ", path1, "\n", "path2: ", path2, "\n", "path3: ", path3, "\n", sep = "")
+# # cat("path1: ", path1, "\n", "path2: ", path2, "\n", "path3: ", path3, "\n", sep="")
+# # > cat("path1: ", path1, "\n", "path2: ", path2, "\n", "path3: ", path3, "\n", sep="")
 # # path1: D:/OneDrive/[][Rproject]/github_tidystat
 # # path2: D:/OneDrive/[][Rproject]/github_tidystat/Rdev
 # # path3: NA
@@ -142,9 +142,9 @@ str(env.custom$path)
 # source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 # # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
-# #@ source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))----
+# #@ source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))----
 # objectname = "get_system_info"
-# source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
+# source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
 
 
 

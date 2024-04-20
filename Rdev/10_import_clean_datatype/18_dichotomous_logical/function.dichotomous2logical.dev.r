@@ -57,8 +57,8 @@ as.Date("2024-01-01") %>% {data.frame(value = .)} %>% mutate(class = class(value
 #        value class typeof is.logical is.numeric is.character is.factor is.Date is.integer is.double
 # 1 2024-01-01  Date double      FALSE      FALSE        FALSE     FALSE    TRUE      FALSE      TRUE
 
-factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep = ""); str(.)}
-# > factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep = ""); str(.)}
+factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep=""); str(.)}
+# > factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep=""); str(.)}
 # class:factor|typeof:integer|is.logical:FALSE|is.numeric:FALSE|is.character:FALSE|is.factor:TRUE|is.Date:FALSE
 #  Factor w/ 2 levels "no","yes": 1 2 1
 

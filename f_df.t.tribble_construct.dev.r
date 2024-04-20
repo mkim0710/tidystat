@@ -10,7 +10,7 @@ cat("# ", 'objectname = "', objectname, '"', "\n",
     "# ", objectname, ".source.r", "\n",
     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
-    sep = "")
+    sep="")
 rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
 
@@ -665,7 +665,7 @@ source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.int
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
 objectname = "f_df.t.tribble_construct"
-source(file.path(file.path(env.custom$path$source_base_local, ""), paste0(objectname, ".source.r")))
+source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
 
 
 

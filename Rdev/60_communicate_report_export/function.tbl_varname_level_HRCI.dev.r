@@ -378,7 +378,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     #         add_column(" (", .after = "exp(coef)") %>%
     #         add_column(", ", .after = "lower .95") %>%
     #         add_column("), p = ", .after = "upper .95") %>%
-    #         unite(sep = "") %>% unlist %>% gsub("p = 0.000", "p < 0.001", .)
+    #         unite(sep="") %>% unlist %>% gsub("p = 0.000", "p < 0.001", .)
     # )
   
     sprintf_but_ceiling5 = function(fmt='%#.2f', x, ...) {

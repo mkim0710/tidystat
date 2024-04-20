@@ -219,7 +219,7 @@ function.char_cho_joong_jong2hangul = function(txt) {
         out = data %>% map_chr(function(data) {
             # data$value %>% print
             # data$value %>% function.cho_joong_jong2hangul %>% print
-            data$value %>% paste(collapse = "") %>% function.cho_joong_jong2hangul
+            data$value %>% paste(collapse="") %>% function.cho_joong_jong2hangul
         })
     ) %>% {.$out} %>% paste0(collapse = "")
 }

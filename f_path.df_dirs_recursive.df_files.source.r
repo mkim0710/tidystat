@@ -12,7 +12,7 @@
 #     "# ", objectname, ".source.r", "\n",
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
-#     sep = "")
+#     sep="")
 # rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
 # rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
 
@@ -31,7 +31,7 @@ object = "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|
 if(!objectname %in% names(env.custom)) {
     packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
-    # cat("> env.custom$", objectname, "()\n", sep = ""); tmp.function = env.custom[[objectname]]; tmp.function()  # Run the loaded function by default
+    # cat("> env.custom$", objectname, "()\n", sep=""); tmp.function = env.custom[[objectname]]; tmp.function()  # Run the loaded function by default
 }
 
 
@@ -127,7 +127,7 @@ object = function(
                             path.level, 
                             files, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 , print_tree_path_files.r = 
@@ -139,7 +139,7 @@ object = function(
                             path.level, 
                             files.r, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 , print_tree_path_files.rmd = 
@@ -151,7 +151,7 @@ object = function(
                             path.level, 
                             files.rmd, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
                 # , print_tree_path_files.rds = 
@@ -163,7 +163,7 @@ object = function(
                 #             path.level, 
                 #             files.rds, 
                 #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                 #         ) 
                 #     )
                 # , print_tree_path_files.rda = 
@@ -175,7 +175,7 @@ object = function(
                 #             path.level, 
                 #             files.rda, 
                 #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                 #         ) 
                 #     )
                 , print_tree_path_files.data =
@@ -187,7 +187,7 @@ object = function(
                             path.level,
                             files.data,
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n")
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse = "") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         )
                     )
             ) %>%
@@ -201,10 +201,10 @@ object = function(
 if(!objectname %in% names(env.custom)) {
     packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
-    # cat("> env.custom$", objectname, "()\n", sep = ""); get(objectname, envir = env.custom)() # Run the loaded function by default
+    # cat("> env.custom$", objectname, "()\n", sep=""); get(objectname, envir = env.custom)() # Run the loaded function by default
 }
 
-# > cat("> env.custom$", objectname, "()\n", sep = ""); tmp.function = env.custom[[objectname]]; tmp.function()  # Run the loaded function by default
+# > cat("> env.custom$", objectname, "()\n", sep=""); tmp.function = env.custom[[objectname]]; tmp.function()  # Run the loaded function by default
 # > env.custom$f_path.df_dirs_recursive.df_files()
 # .Platform$file.sep:  / 
 # input_path0:  . 
