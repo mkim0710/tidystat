@@ -590,6 +590,11 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
 # @@ END -----
 ```
 
+```{r RenderMessages, eval=FALSE, include=FALSE}
+dput(names(knitr::knit_engines$get()))
+```
+
+
 # $ objectname = "df_NewDMv3.NAtime200621" ====
 
 ###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----

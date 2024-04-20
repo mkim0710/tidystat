@@ -414,6 +414,11 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 # @@ END -----
 ```
 
+```{r RenderMessages, eval=FALSE, include=FALSE}
+dput(names(knitr::knit_engines$get()))
+```
+
+
 # $ objectname = "AnalyticDataset200621" ====
 
 ###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
