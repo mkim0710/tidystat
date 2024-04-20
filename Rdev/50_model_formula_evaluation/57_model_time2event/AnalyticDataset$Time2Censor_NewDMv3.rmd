@@ -22,7 +22,8 @@ F7 spell-check your document.
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS). 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
 # # > as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
 # # List of 7
@@ -101,7 +102,8 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% str(max.level = 2)
 
 
 # $ -dev as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% str(max.level = 2)
 # # > as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% str(max.level = 2)
 # # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
@@ -159,7 +161,8 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>%
 
 
 # $ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 =
     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
     transmute(Time2Event_NewDMv3 = case_when(

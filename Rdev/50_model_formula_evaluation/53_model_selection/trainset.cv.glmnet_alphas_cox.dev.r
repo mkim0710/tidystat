@@ -195,7 +195,7 @@ trainset.cv.glmnet_alphas_cox = function(
             print(paste0("saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha == T : ", paste0(return_name.i.tmp, ".rds") ))
         }
         if(save.png == TRUE) {
-            png(paste0(return_name.i.tmp , "_plot.png"), width = png.size, height =  png.size, units = "px", bg = "transparent"); 
+            png(paste0(return_name.i.tmp , "_plot.png"), width=png.size, height =  png.size, units = "px", bg = "transparent"); 
             plot(out, main =  paste0(return_name.i.tmp, "_plot"), cex.main = 0.5); 
             dev.off(); 
             print(paste0("plot(object_cvglmnet) : ", paste0(return_name.i.tmp , "_plot.png") ))

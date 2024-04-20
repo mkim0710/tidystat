@@ -626,8 +626,8 @@ Holdings_VT_URTH_VWO.list =
 getwd()
 path4write = getwd()
 objectname = "Holdings_VT_URTH_VWO.list"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
-openxlsx::openXL(paste0(objectname, ".xlsx"))
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname,".xlsx"), asTable = T, withFilter = T)
+openxlsx::openXL(paste0(objectname,".xlsx"))
 
 

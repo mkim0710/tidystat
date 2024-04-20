@@ -190,9 +190,9 @@ Sys.time() - t0
 getwd()
 path4write = getwd()
 objectname = "ATC_C02_to_NDC"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
-openxlsx::openXL(paste0(objectname, ".xlsx"))
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname,".xlsx"), asTable = T, withFilter = T)
+openxlsx::openXL(paste0(objectname,".xlsx"))
 
 ATC_C02_to_NDC %>% str #-----
 # > ATC_C02_to_NDC %>% str #-----

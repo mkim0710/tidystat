@@ -61,7 +61,7 @@ flowchart_inclusion_exclusions_v3.4 <- function(
         n_exclusion_formatted <- format(n_exclusion, big.mark = ",")
         
         exclusion_part <- glue("
-    blank{i}[label = '', width = 0.01, height = 0.01]
+    blank{i}[label = '', width=0.01, height = 0.01]
     excluded{i}[label = <{label} (n={n_exclusion_formatted})>]
     {prev_node} -> blank{i}[dir = none];
     blank{i} -> excluded{i}[minlen = 2];
@@ -83,7 +83,7 @@ flowchart_inclusion_exclusions_v3.4 <- function(
     graph_code <- glue("
   digraph my_flowchart {{ 
     graph[splines = ortho]
-    node [fontname = Helvetica, shape = box, width = 4, height = 1]
+    node [fontname = Helvetica, shape = box, width=4, height = 1]
     
     node1[label = <{names(list_n_inclusions)[1]}<br/>(n = {n_total_formatted})>]
     node2[label = <{names(list_n_inclusions)[2]}<br/>(n = {n_eligible_formatted})>]
@@ -171,7 +171,7 @@ flowchart_inclusion_exclusions_v2 <- function(
         n_exclusion_formatted <- format(n_exclusion, big.mark = ",")
         
         exclusion_part <- glue("
-    blank{i}[label = '', width = 0.01, height = 0.01]
+    blank{i}[label = '', width=0.01, height = 0.01]
     excluded{i}[label = <{label} (n={n_exclusion_formatted})>]
     {prev_node} -> blank{i}[dir = none];
     blank{i} -> excluded{i}[minlen = 2];
@@ -194,7 +194,7 @@ flowchart_inclusion_exclusions_v2 <- function(
     graph_code <- glue("
   digraph my_flowchart {{ 
     graph[splines = ortho]
-    node [fontname = Helvetica, shape = box, width = 4, height = 1]
+    node [fontname = Helvetica, shape = box, width=4, height = 1]
     
     node0[label = <Total population<br/>(n = {n_total_formatted})>]
     node1[label = <Eligible population<br/>(n = {n_eligible_formatted})>]

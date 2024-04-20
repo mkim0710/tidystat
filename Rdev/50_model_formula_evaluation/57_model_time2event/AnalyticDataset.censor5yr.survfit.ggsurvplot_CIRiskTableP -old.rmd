@@ -5,7 +5,7 @@ output: html_notebook
 ---
 
 # _______________
-```{markdown Rstudio-RMarkDown-Shortcuts, include=FALSE, eval=FALSE}
+```{comment Rstudio-RMarkDown-Shortcuts, include=FALSE, eval=FALSE}
 ##### Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
@@ -26,11 +26,11 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 
 ```{r setup, eval=TRUE, include=FALSE}
 # str(knitr::opts_chunk$get())
-# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), '\n', sep='')
-# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width = 7, fig.height = 7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width = NULL, out.height = NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=100), '\n', sep='')
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
   eval=TRUE, echo=TRUE, results='hold', collapse=TRUE, 
-  comment = '##', fig.width = 10, fig.height = 6, 
+  comment='##', fig.width=10, fig.height=6, 
   # warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
   tidy.opts=list(width.cutoff=80), tidy=TRUE
 )
@@ -184,7 +184,8 @@ if (getwd() != path4write) warning("getwd() != path4write  == ") else cat("getwd
 
 
 ##% env.custom$f_path.size_files() ====
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
@@ -192,12 +193,12 @@ load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_constru
 
 # regex4filename = "\\.rds(\\.xz)?$"
 regex4filename = "\\.rds\\.xz$"
-list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 
 cat("----\n"); #----
 regex4filename = "\\.rds$"
-list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```
 
@@ -206,19 +207,18 @@ env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4file
 # @@ START ------
 
 # $ objectname = "tblID_gj3_jk" ====
-@ assign(objectname, read_rds(file.path(path4read, paste0(objectname, ".rds")))) 
-```{r width80, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE}
-options(width = 80)
-```{r, paged.print=FALSE, collapse=TRUE}
+@ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
+```{r objectname-read.checkEntity, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
 # objectname = "tblID_gj3_jk"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
-# filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
+# filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 # env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 # system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
 # get(objectname) %>% dim
 # get(objectname) %>% {.$PERSON_ID} %>% n_distinct
 # get(objectname) %>% {.$RN_INDI} %>% n_distinct
-# get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+# get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
 # get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
 # cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # # get(objectname) %>% select_if(is.numeric) %>% summary #-----
@@ -230,7 +230,8 @@ options(width = 80)
 # $ lung <- as_tibble(survival::lung) ======
 ## Step 1: Load the Required Libraries and Data
 ## Step 2: Exploratory Data Analysis
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 library(tidyverse)
 library(survival)
 library(survminer)
@@ -272,7 +273,8 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = stat
 ```
 
 ## Step 5: Cox Proportional Hazards Model
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # Fit a Cox proportional hazards model
 cox_model <- coxph(surv_obj ~ sex + age + ph.ecog, data = survival::lung)
 
@@ -282,7 +284,8 @@ summary(cox_model)
 ```
 
 ## Step 6: Check Proportional Hazards Assumption
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # Test for proportional hazards
 cox.zph(cox_model)
 ```
@@ -290,7 +293,8 @@ cox.zph(cox_model)
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.dev.r
 
 ## $ AnalyticDataset ====
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 AnalyticDataset = lung %>% rename(event = status, Group = sex)
 AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 
@@ -304,13 +308,15 @@ AnalyticDataset.survfit %>% ggsurvplot  # default fun = "pct"?
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 AnalyticDataset.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 ```
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 AnalyticDataset.coxph %>% summary #----
 AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
@@ -320,7 +326,8 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
 
 
 ## $ AnalyticDataset.censor1yr ====
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 value_for_censor_at_1yr = 365 * 1
 value_for_break.time.by = 30
@@ -339,32 +346,34 @@ AnalyticDataset.censor1yr.survfit %>% ggsurvplot  # default fun = "pct"?
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 AnalyticDataset.censor1yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 
 ```
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 AnalyticDataset.censor1yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
@@ -425,14 +434,14 @@ dput(names(knitr::knit_engines$get()))
 
 # $ objectname = "AnalyticDataset200621" ====
 
-###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResult, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
 # 
-# @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+# @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
-# system.time(write_rds( get(objectname),paste0(objectname, ".rds")))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")), compress = "gz" ))
+# system.time(write_rds( get(objectname),paste0(objectname,".rds")))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
 # # openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
 # # openxlsx::openXL(paste0(objectname, ".xlsx"))

@@ -154,13 +154,13 @@ for (
         mutate(rowname = paste(c("1st", "2nd", "3rd", "4th"), "quartile")) %>% 
         ggplot(aes(x = rowname, y = `exp(Estimate)`)) + 
         geom_hline(aes(yintercept = 1), linetype = "dashed") +
-        geom_point() + geom_errorbar(aes(ymin = `exp(2.5 %)`, ymax = `exp(97.5 %)`), width = 0.1)
+        geom_point() + geom_errorbar(aes(ymin = `exp(2.5 %)`, ymax = `exp(97.5 %)`), width=0.1)
     g
     g+theme_bw()+theme(legend.position="bottom")
     g+labs(x = "PM25.tn1m_tn12m.mean.quartile")
     
     filename = paste0("AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI", "$", i, "$", "PM25.tn1m_tn12m.mean.quartile", ".ggplot")
-    ggsave(paste0(filename, ".pdf"), width = 8, height = 6)
+    ggsave(paste0(filename, ".pdf"), width=8, height = 6)
 }
     
 
@@ -173,9 +173,9 @@ for (
 getwd()
 path4write = getwd()
 objectname = "AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI"
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")), compress = "gz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
-openxlsx::openXL(paste0(objectname, ".xlsx"))
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")), compress = "gz", compression = 9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname,".xlsx"), asTable = T, withFilter = T)
+openxlsx::openXL(paste0(objectname,".xlsx"))
 
 
 

@@ -5,8 +5,8 @@
 # #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 # #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
 # #     sep="")
-# # rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
-# # rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# # rstudioapi::navigateToFile(paste0(objectname,".source.r"))
+# # rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 # ####################################################################################################
 # objectname = "get_system_info"
 # cat("# ", 'objectname = "', objectname, '"', "\n",
@@ -15,8 +15,8 @@
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.dev.r
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r

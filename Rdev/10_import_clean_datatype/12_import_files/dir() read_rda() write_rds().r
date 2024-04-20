@@ -55,9 +55,9 @@ objectNames %>% dput #----
 # objectNames = c("KEY_SEQ.JK_GJ596284", "KNHIS_feature.list", "KNHIS_PERSON_ID.list")
 # for (objectname in objectNames) {
 #     t0 = Sys.time()
-#     load(paste0(objectname, ".rda"))
+#     load(paste0(objectname,".rda"))
 #     print(Sys.time() - t0)
-#     write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+#     write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")) )
 #     print(Sys.time() - t0)
 #     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
 #     print(Sys.time() - t0)
@@ -110,14 +110,14 @@ objectNames %>% dput #----
 objectname = "NHID_GY20_0213.bind_rows"
 path4write = getwd()
 t0 = Sys.time()
-save( list = objectname, file = file.path(path4write, paste0(objectname, ".rda", "")), compress = "xz", compression_level = 9 )
+save( list = objectname, file = file.path(path4write, paste0(objectname,".rda", "")), compress = "xz", compression_level = 9 )
 print(Sys.time() - t0)
 objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
 rm(objectname, envir = .GlobalEnv)
 # > objectname = "NHID_GY20_0213.bind_rows"
 # > path4write = getwd()
 # > t0 = Sys.time()
-# > save( list = objectname, file = file.path(path4write, paste0(objectname, ".rda", "")), compress = "xz", compression_level = 9 )
+# > save( list = objectname, file = file.path(path4write, paste0(objectname,".rda", "")), compress = "xz", compression_level = 9 )
 # > print(Sys.time() - t0)
 # Time difference of 1.84348 hours
 
@@ -129,9 +129,9 @@ for (objectname in objectNames) {
     # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
     objectname %>% {file.info(paste0(., ".rda"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
     t0 = Sys.time()
-    load(paste0(objectname, ".rda"))
+    load(paste0(objectname,".rda"))
     print(Sys.time() - t0)
-    write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+    write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")) )
     print(Sys.time() - t0)
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
@@ -343,9 +343,9 @@ for (objectname in objectNames) {
     # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
     objectname %>% {file.info(paste0(., ".rda"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
     t0 = Sys.time()
-    load(paste0(objectname, ".rda"))
+    load(paste0(objectname,".rda"))
     print(Sys.time() - t0)
-    write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds")) )
+    write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")) )
     print(Sys.time() - t0)
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
@@ -425,5 +425,5 @@ for (objectname in objectNames) {
 
 # objectname = ""
 # path4write = getwd()
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
 

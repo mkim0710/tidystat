@@ -17,7 +17,7 @@ for (env.custom.dependancy in c("f_df.t.tribble_construct")) {
     if(!env.custom.dependancy %in% names(env.custom)) {
         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
         objectname = env.custom.dependancy
-        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
+        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
     }
 }
 
