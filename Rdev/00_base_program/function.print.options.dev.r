@@ -107,7 +107,7 @@ options() %>% str(list.len=Inf) #-----
 #  $ scipen                              : num 0
 #  $ shiny.launch.browser                :function (url)  
 #   ..- attr(*, "shinyViewerType")= num 3
-#  $ shinygadgets.showdialog             :function (caption, url, width = NULL, height = NULL)  
+#  $ shinygadgets.showdialog             :function (caption, url, width=NULL, height = NULL)  
 #  $ show.coef.Pvalues                   : logi TRUE
 #  $ show.error.messages                 : logi TRUE
 #  $ show.signif.stars                   : logi TRUE
@@ -155,10 +155,10 @@ options() %>% str(list.len=Inf) #-----
 
 analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot.list1$PrimaryOutcome123456 %>% 
     {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
-    {options(pillar.min_title_chars = Inf); print(., n = 20, width = 130, n_extra = Inf)} #-----
+    {options(pillar.min_title_chars = Inf); print(., n = 20, width=130, n_extra = Inf)} #-----
 # > analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot.list1$PrimaryOutcome123456 %>% 
 # +     {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
-# +     {options(pillar.min_title_chars = Inf); print(., n = 20, width = 130, n_extra = Inf)} #-----
+# +     {options(pillar.min_title_chars = Inf); print(., n = 20, width=130, n_extra = Inf)} #-----
 # # A tibble: 3 x 45
 #   `max(k)` pNoEvent_k.cumprod0 pNoEvent_k.cumprod1 Risk0 Risk1 RiskDifference RiskRatio `(Intercept)` Exposure     k `I(k^2)`
 #      <dbl>               <dbl>               <dbl> <dbl> <dbl>          <dbl>     <dbl>         <dbl>    <dbl> <dbl>    <dbl>
@@ -184,10 +184,10 @@ analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot
 
 analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot.list1$PrimaryOutcome123456 %>% 
     {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
-    {options(pillar.min_title_chars = Inf); print(., n = 20, width = NULL, n_extra = Inf)} #-----
+    {options(pillar.min_title_chars = Inf); print(., n = 20, width=NULL, n_extra = Inf)} #-----
 # > analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot.list1$PrimaryOutcome123456 %>% 
 # +     {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
-# +     {options(pillar.min_title_chars = Inf); print(., n = 20, width = NULL, n_extra = Inf)} #-----
+# +     {options(pillar.min_title_chars = Inf); print(., n = 20, width=NULL, n_extra = Inf)} #-----
 # # A tibble: 3 x 45
 #   `max(k)` pNoEvent_k.cumprod0 pNoEvent_k.cumprod1 Risk0 Risk1 RiskDifference RiskRatio `(Intercept)` Exposure     k `I(k^2)`
 #      <dbl>               <dbl>               <dbl> <dbl> <dbl>          <dbl>     <dbl>         <dbl>    <dbl> <dbl>    <dbl>

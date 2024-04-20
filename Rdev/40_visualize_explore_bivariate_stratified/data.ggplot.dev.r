@@ -25,8 +25,8 @@ dataset %>%
         legend.justification = c(0.5, 0),
         legend.position = c(0.5, 1),
         legend.direction = "horizontal")
-ggsave("dataset filter(!is.Case) cor() ggplot().png", width = 7, height = 7)
-ggsave("dataset filter(!is.Case) cor() ggplot().pdf", width = 7, height = 7)
+ggsave("dataset filter(!is.Case) cor() ggplot().png", width=7, height = 7)
+ggsave("dataset filter(!is.Case) cor() ggplot().pdf", width=7, height = 7)
 
 
 

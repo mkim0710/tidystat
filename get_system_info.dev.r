@@ -5,8 +5,8 @@
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 ####################################################################################################
 objectname = "get_system_info"
 cat("# ", 'objectname = "', objectname, '"', "\n",
@@ -15,8 +15,8 @@ cat("# ", 'objectname = "', objectname, '"', "\n",
     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
     sep="")
-rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
-rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+rstudioapi::navigateToFile(paste0(objectname,".source.r"))
+rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r
@@ -494,7 +494,7 @@ source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.int
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
 objectname = "get_system_info"
-source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
+source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
 
 
 env.custom$info$info_system_info = env.custom$info$get_system_info()

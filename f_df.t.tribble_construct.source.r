@@ -15,8 +15,8 @@
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 
 
 
@@ -574,7 +574,7 @@ for (env.custom.dependancy in c("f_path.size_files")) {
     if(!env.custom.dependancy %in% names(env.custom)) {
         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
         objectname = env.custom.dependancy
-        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
+        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
     }
 }
 

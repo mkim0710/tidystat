@@ -11,8 +11,8 @@
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 
 
 
@@ -34,7 +34,7 @@ for (env.custom.dependancy in c("f_filename.ext.find_subpath", "f_path.size_file
     if(!env.custom.dependancy %in% names(env.custom)) {
         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
         objectname = env.custom.dependancy
-        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
+        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
     }
 }
 
@@ -45,7 +45,7 @@ objectname = "f_objectname.read.checkEntity"
 object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID", "PERSON_ID", "RN_INDI"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
     if (getwd() != path4read) {warningText = paste0('getwd() != path4read == "', path4read, '"');  warning(warningText); cat("Warning: ", warningText, "\n")} else {cat("getwd() == path4read ==", path4read, "\n")} #----
     cat('objectname = "', objectname, '"\n', sep="");
-    filename.ext = paste0(objectname, ".", ext)
+    filename.ext = paste0(objectname,".", ext)
     if(file.exists(file.path(path4read, filename.ext))) {
     } else if(file.exists(file.path(path4read, paste0(filename.ext, ".xz")))) {
         filename.ext = paste0(filename.ext, ".xz")
@@ -84,7 +84,7 @@ object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID",
           {warningText = paste0('varname for ID not identified.');  warning(warningText); cat("Warning: ", warningText, "\n")}
       }
     }
-    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% {cat(deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
     cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat(., '\n\n', sep='')}; # tidydplyr::select: paste(collapse = ", ") %>% cat ----
     cat("----\n> "); CodeText = "str(get(objectname), max.level = 2, give.attr = F)"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
     cat("----\n> "); CodeText = "as_tibble(get(objectname))"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));

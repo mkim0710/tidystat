@@ -154,7 +154,7 @@ function.traj_clusters_by_sequence = function(input, seed = 1) {
     dir.create("Rplot", showWarnings = FALSE)
     for (i in 1:ncluster) {
         out[[i]] %>% ggplot(aes(x = sequence, y = value, group = ID, color = as.factor(as.numeric(as.factor(ID))%%10)))+geom_line()+facet_wrap(~cluster)+theme(legend.position="none")
-        ggsave(paste0("Rplot/traj_clusters_by_sequence", ".", i, ".png"), width = 7, height = 7)
+        ggsave(paste0("Rplot/traj_clusters_by_sequence", ".", i, ".png"), width=7, height = 7)
     }
     out
 }
@@ -278,7 +278,7 @@ function.traj_clusters_by_time = function(input, seed = 1) {
         out[[i]] %>%
             ggplot(aes(x = time_from_t0, y = value, group = ID, color = as.factor(as.numeric(as.factor(ID))%%10)))+geom_line()+facet_wrap(~cluster)+theme(legend.position="none")+
             xlim(0, xlim.max)
-        ggsave(paste0("Rplot/traj_clusters_by_time", ".", i, ".png"), width = 7, height = 7)
+        ggsave(paste0("Rplot/traj_clusters_by_time", ".", i, ".png"), width=7, height = 7)
     }
     out
 }

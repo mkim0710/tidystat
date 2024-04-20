@@ -37,9 +37,9 @@ data_V1_V2_EdgeWeight.igraph = function(
     , seed = 1
 ) {
     # , edge.color = rgb(0.5, 0.5, 0.5)
-    # , edge.width = 5 * ( E(g)$weight - min(E(g)$weight) ) / ( max(E(g)$weight) - min(E(g)$weight)
+    # , edge.width=5 * ( E(g)$weight - min(E(g)$weight) ) / ( max(E(g)$weight) - min(E(g)$weight)
     
-    # , edge.width = 5 * E(g)$weight / max(E(g)$weight)
+    # , edge.width=5 * E(g)$weight / max(E(g)$weight)
     # , edge.color = c(rgb(.5,0,0,.8), rgb(0,0,.5,.8))[(E(g)$weight > 0) + 1]
     
     packagename_to_unload = "statnet"
@@ -136,8 +136,8 @@ data_V1_V2_EdgeWeight.igraph = function(
             warning(paste0("weight.max.scale1 == TRUE) E(g)$weight = E(g)$weight / max(E(g)$weight)"))
         }
     }
-    E(g)$width = weight.multiplier * E(g)$weight
-    edge.width = E(g)$width
+    E(g)$width=weight.multiplier * E(g)$weight
+    edge.width=E(g)$width
     
     # E(g)$color = c(rgb(0,0,.6), rgb(.8,0,0))[(df.V1_V2_EdgeWeight[[varname.edgeColor.NegBluePosRed]] > 0) + 1]
     # E(g)$color[is.na(df.V1_V2_EdgeWeight[[varname.edgeColor.NegBluePosRed]])] = "grey"
@@ -193,7 +193,7 @@ data_V1_V2_EdgeWeight.igraph = function(
     # egam =(log(E(g)$weight)+.4) / max(log(E(g)$weight)+.4)
     # egam = 5 * ( E(g)$weight - min(E(g)$weight) ) / ( max(E(g)$weight) - min(E(g)$weight) ) 
     # E(g)$color = rgb(.5, .5, 0, egam)
-    # E(g)$width = egam
+    # E(g)$width=egam
     
     par(mfrow = par.mfrow.device)
     par(mar = par.mar.device)
@@ -211,14 +211,14 @@ data_V1_V2_EdgeWeight.igraph = function(
                 layout = eval(parse(text = layout))
                 , vertex.size = vertex.size, vertex.color = vertex.color
                 , vertex.label.color = vertex.label.color, vertex.label.cex = vertex.label.cex
-                , edge.color = edge.color, edge.width = edge.width
+                , edge.color = edge.color, edge.width=edge.width
             )
             print(paste0("out.graphic.device == T) ", tmp.name))
         }
         if(out.png.pdf == T) {
             for (i in 1:2){
                 if (i == 1) {
-                    png(paste0(out.png.pdf.path, tmp.name, ".png"), width = 1000, height = 1000)
+                    png(paste0(out.png.pdf.path, tmp.name, ".png"), width=1200, height = 1000)
                     print(paste0("out.png.pdf == T) File created: ", paste0(tmp.name, ".png")))
                 } else if (i == 2) {
                     pdf(paste0(out.png.pdf.path, tmp.name, ".pdf"))
@@ -228,7 +228,7 @@ data_V1_V2_EdgeWeight.igraph = function(
                     layout = eval(parse(text = layout))
                     , vertex.size = vertex.size, vertex.color = vertex.color
                     , vertex.label.color = vertex.label.color, vertex.label.cex = vertex.label.cex
-                    , edge.color = edge.color, edge.width = edge.width
+                    , edge.color = edge.color, edge.width=edge.width
                 )
                 dev.off()
             }

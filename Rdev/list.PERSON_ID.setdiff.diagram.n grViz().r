@@ -219,7 +219,7 @@ rsvg::rsvg_png(charToRaw(out.grViz.svg), paste0(out.filename, ".png"))
 #@ end ----
 objectname = "list.PERSON_ID.setdiff.diagram"
 path4write = getwd()
-write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 )
+write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
 
 
 

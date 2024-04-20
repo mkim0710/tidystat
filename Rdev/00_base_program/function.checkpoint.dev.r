@@ -118,7 +118,7 @@ path4write = "../data/data.ID_DATE_DX.distinct/"
 
 #@ objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"----
 objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
-filename = paste0(objectname, ".rds")
+filename = paste0(objectname,".rds")
 filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
 t0 = Sys.time()
 assign(objectname, readRDS(file.path(path4read, filename)) %>% as_tibble)

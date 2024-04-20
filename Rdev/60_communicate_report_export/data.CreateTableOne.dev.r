@@ -7,9 +7,9 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     library(tidyverse)
     library(tableone)
     
-    ObjectName.select = paste0(ObjectName, ".select")
-    ObjectName.TableOne_byExposure = paste0(ObjectName, ".TableOne_by", VarNames4Exposure)
-    ObjectName.is.na.TableOne_byExposure = paste0(ObjectName, ".is.na.TableOne_by", VarNames4Exposure)
+    ObjectName.select = paste0(objectname,".select")
+    ObjectName.TableOne_byExposure = paste0(objectname,".TableOne_by", VarNames4Exposure)
+    ObjectName.is.na.TableOne_byExposure = paste0(objectname,".is.na.TableOne_by", VarNames4Exposure)
     ObjectName.select %>% cat;cat("\n") #----
     ObjectName.TableOne_byExposure %>% cat;cat("\n") #----
     ObjectName.is.na.TableOne_byExposure %>% cat;cat("\n") #----
@@ -283,9 +283,9 @@ DataSet.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
                           
 VarNames4Exposure =  c("InterventionGroup")
 ObjectName = "DataSet"
-ObjectName.select = paste0(ObjectName, ".select")
-ObjectName.TableOne_byExposure = paste0(ObjectName, ".TableOne_by", VarNames4Exposure)
-ObjectName.is.na.TableOne_byExposure = paste0(ObjectName, ".is.na.TableOne_by", VarNames4Exposure)
+ObjectName.select = paste0(objectname,".select")
+ObjectName.TableOne_byExposure = paste0(objectname,".TableOne_by", VarNames4Exposure)
+ObjectName.is.na.TableOne_byExposure = paste0(objectname,".is.na.TableOne_by", VarNames4Exposure)
 ObjectName.select %>% cat;cat("\n") #----
 ObjectName.TableOne_byExposure %>% cat;cat("\n") #----
 ObjectName.is.na.TableOne_byExposure %>% cat;cat("\n") #----

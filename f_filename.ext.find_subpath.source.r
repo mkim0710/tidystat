@@ -11,8 +11,8 @@
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname, ".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname, ".dev.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
+# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 
 library(tidyverse)
 
@@ -32,7 +32,7 @@ if(!"path" %in% names(env.custom)) {
 #     if(!env.custom.dependancy %in% names(env.custom)) {
 #         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
 #         objectname = env.custom.dependancy
-#         source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname, ".source.r")))
+#         source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
 #     }
 # }
 
@@ -115,7 +115,7 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
     if (length(list_out) == 0) {
         cat("----------- File not found while searching following subpaths:\n")
         vec_subpath <- unlist(list_subpath, use.names = FALSE)
-        vec_subpath %>% {cat(deparse(., width.cutoff=500), '\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+        vec_subpath %>% {cat(deparse(., width.cutoff=500), '\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
         return(NULL)
     }
         

@@ -171,12 +171,12 @@ AnalyticDataset.censor5yr.survfit = survfit(Surv(time = time.censor5yr, event = 
 # AnalyticDataset.censor5yr.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 
 AnalyticDataset.censor5yr.survfit %>% ggsurvplot  # default fun = "pct"?
-ggsave("plot_surv200401.censor5yr.survfit.ggsurvplot.pdf", width = 8, height = 6)
-pdf("plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
+ggsave("plot_surv200401.censor5yr.survfit.ggsurvplot.pdf", width=8, height = 6)
+pdf("plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP.pdf", width=16, height = 12)
 # AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
-png("plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
+png("plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP.png", width=1200, height = 600)
 # AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor5yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
@@ -200,12 +200,12 @@ AnalyticDataset.censor10yr.survfit = survfit(Surv(time = time.censor10yr, event 
 # AnalyticDataset.censor10yr.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 
 AnalyticDataset.censor10yr.survfit %>% ggsurvplot  # default fun = "pct"?
-ggsave("plot_surv200401.censor10yr.survfit.ggsurvplot.pdf", width = 8, height = 6)
-pdf("plot_surv200401.censor10yr.survfit.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
+ggsave("plot_surv200401.censor10yr.survfit.ggsurvplot.pdf", width=8, height = 6)
+pdf("plot_surv200401.censor10yr.survfit.ggsurvplot_CIRiskTableP.pdf", width=16, height = 12)
 # AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
-png("plot_surv200401.censor10yr.survfit.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
+png("plot_surv200401.censor10yr.survfit.ggsurvplot_CIRiskTableP.png", width=1200, height = 600)
 # AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor10yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
@@ -328,12 +328,12 @@ AnalyticDataset.censor5yr.survfit_byPredictedStage = survfit(Surv(time = time.ce
 # AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 
 AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot  # default fun = "pct"?
-ggsave("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot.pdf", width = 8, height = 6)
-pdf("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
+ggsave("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot.pdf", width=8, height = 6)
+pdf("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.pdf", width=16, height = 12)
 # AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
-png("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
+png("plot_surv200401.censor5yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.png", width=1200, height = 600)
 # AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor5yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
@@ -356,12 +356,12 @@ AnalyticDataset.censor10yr.survfit_byPredictedStage = survfit(Surv(time = time.c
 # AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 
 AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot  # default fun = "pct"?
-ggsave("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot.pdf", width = 8, height = 6)
-pdf("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.pdf", width = 16, height = 12)
+ggsave("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot.pdf", width=8, height = 6)
+pdf("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.pdf", width=16, height = 12)
 # AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()
-png("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.png", width = 800, height = 600)
+png("plot_surv200401.censor10yr.survfit_byPredictedStage.ggsurvplot_CIRiskTableP.png", width=1200, height = 600)
 # AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 AnalyticDataset.censor10yr.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 dev.off()

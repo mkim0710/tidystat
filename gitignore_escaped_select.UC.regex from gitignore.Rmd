@@ -25,8 +25,8 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 
 ```{r setup, eval=TRUE, include=FALSE}
 # str(knitr::opts_chunk$get())
-# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), '\n', sep='')
-# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width = 7, fig.height = 7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width = NULL, out.height = NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=100), '\n', sep='')
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 ```
 
 ```{r}
@@ -59,7 +59,8 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 # @ gitignore = read_lines(".gitignore") =====
 # rstudioapi::navigateToFile(".gitignore")
@@ -77,14 +78,16 @@ c(".Rproj.user", ".Rhistory", ".RData", ".Ruserdata", "*.zip",
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 gitignore %>% f_vec.extract_non_alphanumeric_list %>% unlist %>% unique %>% dput
 c(".", "*", ")", "-", " ")
 ```
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 # @ gitignore_escaped =====
 gitignore_escaped = gitignore[gitignore != ""] %>% 
@@ -109,7 +112,8 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 # @ gitignore_escaped_select =====
 gitignore_escaped %>% str_which("doc|xls|ppt")
@@ -124,7 +128,8 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ".*\\-old\\..*", ".*\\-log.*\\..*", ".*\\.rtf")
 ```
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # for (i_regex in unique(gitignore_escaped_select)) {
 #     df <- df_dir1 %>% filter(!str_detect(path.basename, i_regex))
 # }
@@ -132,7 +137,8 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 # @ gitignore_escaped_select.UC =====
 gitignore_escaped_select.UC = gitignore_escaped_select %>% toupper %>% unique
@@ -148,7 +154,8 @@ c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA",
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>% 
     {paste0("(", ., ")")} %>% 
     paste(collapse = "|") %>% {paste0("^", ., "$")} %>% dput #----
@@ -157,7 +164,8 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 # @ end ----
 
@@ -166,7 +174,8 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 
 
 
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 # @ end ----
 

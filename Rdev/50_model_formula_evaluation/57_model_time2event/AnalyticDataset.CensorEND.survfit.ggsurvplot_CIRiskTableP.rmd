@@ -5,7 +5,7 @@ output: html_notebook
 ---
 
 # _______________
-```{markdown Rstudio-RMarkDown-Shortcuts, include=FALSE, eval=FALSE}
+```{comment Rstudio-RMarkDown-Shortcuts, include=FALSE, eval=FALSE}
 ##### Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
@@ -26,11 +26,11 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 
 ```{r setup, eval=TRUE, include=FALSE}
 # str(knitr::opts_chunk$get())
-# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), '\n', sep='')
-# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width = 7, fig.height = 7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width = NULL, out.height = NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=100), '\n', sep='')
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
   eval=TRUE, echo=TRUE, results='hold', collapse=TRUE, 
-  comment = '##', fig.width = 10, fig.height = 6, 
+  comment='##', fig.width=10, fig.height=6, 
   # warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
   tidy.opts=list(width.cutoff=80), tidy=TRUE
 )
@@ -184,7 +184,8 @@ if (getwd() != path4write) warning("getwd() != path4write  == ") else cat("getwd
 
 
 ##% env.custom$f_path.size_files() ====
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
@@ -192,31 +193,30 @@ load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_constru
 
 # regex4filename = "\\.rds(\\.xz)?$"
 regex4filename = "\\.rds\\.xz$"
-list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 
 cat("----\n"); #----
 regex4filename = "\\.rds$"
-list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat('----\n', deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```
 
 
 # @@ START) Baseline ------
 # $ objectname = "as1.na.Date.fct.select89" ====
-@ assign(objectname, read_rds(file.path(path4read, paste0(objectname, ".rds")))) 
-```{r width80, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE}
-options(width = 80)
-```{r, paged.print=FALSE, collapse=TRUE}
+@ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
+```{r objectname-read.checkEntity, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
 objectname = "as1.na.Date.fct.select89"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
-filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
+filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
 get(objectname) %>% dim
 get(objectname) %>% {.$PERSON_ID} %>% n_distinct
 get(objectname) %>% {.$RN_INDI} %>% n_distinct
-get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
 get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
 cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # get(objectname) %>% select_if(is.numeric) %>% summary #-----
@@ -226,19 +226,18 @@ cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=
 
 # @@ START) Outcome ------
 # $ objectname = "as1_7.na.Date.fct.cumulative_DM.list" ====
-@ assign(objectname, read_rds(file.path(path4read, paste0(objectname, ".rds")))) 
-```{r width80, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE}
-options(width = 80)
-```{r, paged.print=FALSE, collapse=TRUE}
+@ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
+```{r objectname-read.checkEntity, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
 objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
-filename2read = if(file.exists(file.path(path4read, paste0(objectname, ".rds")))) paste0(objectname, ".rds") else paste0(objectname, ".rds.xz")
+filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir = .GlobalEnv))
 get(objectname) %>% dim
 get(objectname) %>% {.$PERSON_ID} %>% n_distinct
 get(objectname) %>% {.$RN_INDI} %>% n_distinct
-get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=120), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+get(objectname) %>% names %>% {cat('----\n', deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
 get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat('----\n', ., '\n\n', sep='')}; # tidyselect: paste(collapse = ", ") %>% cat ----
 cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # get(objectname) %>% select_if(is.numeric) %>% summary #-----
@@ -257,7 +256,8 @@ as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
 
 
 # $ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 -----
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 =
 #     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
 #     transmute(Time2Event_NewDMv3 = case_when(
@@ -306,7 +306,8 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% table(useNA = "alway
 
 
 # $ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 # as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 =
 #     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
 #     transmute(Time2Event_NewDMv3 = case_when(
@@ -417,7 +418,8 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 #! Double-Check the event & time
 
 # $ df_NewDMv3.Time2Censor_NewDMv3 ====
-```{r, paged.print=FALSE, collapse=TRUE}
+```{r, results="hold", collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% 
     rename(event = Event_NewDMv3, time = Time2Censor_NewDMv3) %>% 
     mutate(StudyPopulation = !event | time > 1) %>% 
@@ -433,86 +435,86 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment = '', R.options=list(width=80)}
-options(width = 80)
+```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+options(width=120)
 
 ```
 
@@ -615,14 +617,14 @@ dput(names(knitr::knit_engines$get()))
 
 # $ objectname = "df_NewDMv3.NAtime200621" ====
 
-###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResult, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
 # 
-# @ write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))) -----
+# @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "df_NewDMv3.NAtime200621"
-# system.time(write_rds( get(objectname),paste0(objectname, ".rds")))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds"))))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds")), compress = "gz" ))
+# system.time(write_rds( get(objectname),paste0(objectname,".rds")))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
 # # openxlsx::write.xlsx(get(objectname), file = paste0(objectname, ".xlsx"), asTable = T, withFilter = T)
 # # openxlsx::openXL(paste0(objectname, ".xlsx"))
