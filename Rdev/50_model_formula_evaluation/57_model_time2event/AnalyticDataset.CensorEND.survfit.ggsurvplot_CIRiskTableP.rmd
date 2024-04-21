@@ -32,9 +32,9 @@ knitr::opts_chunk$set(
   eval=TRUE, echo=TRUE, results='hold', collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results='hold' does not work
   comment='', fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment='##' does not work?
   warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
-  tidy.opts=list(width.cutoff=80), tidy=TRUE, 
+  tidy.opts=list(width.cutoff=120), tidy=TRUE, 
   R.options = list(width=120), paged.print=FALSE
-)  # Rstudio Notebook does not use knitr::opts_chunk?? 
+) 
 knitr::opts_knit$set(global.par = TRUE)
 ```
 
@@ -47,7 +47,7 @@ env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep=
 
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results='hide'}
-suppressPackageStartupMessages({for(packagename in c("tidyverse")){if(!require(packagename,character.only=TRUE))install.packages(packagename);library(packagename,character.only=TRUE)}});cat("\r\n");
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")){if(!require(packagename,character.only=TRUE))install.packages(packagename);library(packagename,character.only=TRUE)}});cat("\r\n");
 source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 sourcename = "f_df.t.tribble_construct"; suppressPackageStartupMessages(source(file.path(file.path(env.custom$path$source_base_local,""), paste0(sourcename,".source.r")) ))
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
@@ -400,7 +400,7 @@ time_scale = "wave"
 varname4Group = "Group"
 df_NewDMv3.CensorEND = df_NewDMv3.NAtime %>% 
     mutate(
-        time = time %>% replace_na(Inf)
+        time = time %>% replace_na(time, Inf)
         # , event = event %>% replace_na(F)
     ) %>% 
     # mutate(event.CensorEND = ifelse(time <= value_for_Censor_at_END, event, F)) %>% 
@@ -511,7 +511,7 @@ options(width=120)
 # varname4Group = "Group"
 # df_time2event.CensorEND = df_time2event %>%
 #     mutate(
-#         time = time %>% replace_na(Inf)
+#         time = time %>% replace_na(time, Inf)
 #         # , event = event %>% replace_na(F)
 #     ) %>%
 #     # mutate(event.CensorEND = ifelse(time <= value_for_Censor_at_END, event, F)) %>%
