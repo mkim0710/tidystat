@@ -42,13 +42,13 @@ object = function(
         input_path = ".", 
         max_depth = 9, 
         current_depth = 0, 
-        gitignore_escaped_select.UC.regex = env.custom$gitignore_escaped_select.UC.regex
+        gitignore_escaped_select.UC.regex = env.custom$gitignore_escaped_select.UC.regex, 
+        print.message = TRUE
 ) {
     if (!dir.exists(input_path)) {
         stop("The specified input_path does not exist or is not a directory.")
     }
-    if (current_depth == 0) cat(".Platform$file.sep: ", .Platform$file.sep, "\n")
-    if (current_depth == 0) {cat("input_path0: ", input_path0 = input_path, "\n")}
+    if (print.message) {if (current_depth == 0) message(paste0(".Platform$file.sep: ", .Platform$file.sep, "; ", "input_path0: ", input_path0 = input_path))}
     if (current_depth >= max_depth) {
         return(tibble())
     }
@@ -69,11 +69,11 @@ object = function(
         df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, tibble(path.level = current_depth + 1, full_path = dir))
         
         # Recursively process subdirectories
-        df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, f_path.df_dirs_recursive.df_files(dir, max_depth, current_depth + 1, gitignore_escaped_select.UC.regex))
+        df_dirs_recursive0 <- bind_rows(df_dirs_recursive0, f_path.df_dirs_recursive.df_files(dir, max_depth, current_depth + 1, gitignore_escaped_select.UC.regex, print.message))
     }
     
     if (current_depth == 0) {
-        cat("Finished iterating through paths.\n")
+        if (print.message) message("Finished iterating through paths.")
         
         df_dirs_recursive1 = df_dirs_recursive0 %>% 
             mutate(
@@ -109,11 +109,12 @@ object = function(
         
         df_dirs_recursive.ls_files1 = df_dirs_recursive2 %>% mutate(
             files = full_path %>% map(function(chr) {list.files(chr, include.dirs = FALSE) %>% str_subset(paste0(gitignore_escaped_select.UC.regex, collapse = "|") %>% regex(ignore_case = TRUE), negate = TRUE)}) 
-            , files.r = full_path %>% map(function(chr) {list.files(chr, "\\.r$", ignore.case = T, include.dirs = FALSE)}) 
-            , files.rmd = full_path %>% map(function(chr) {list.files(chr, "\\.rmd$", ignore.case = T, include.dirs = FALSE)}) 
+            , files.codes = full_path %>% map(function(chr) {list.files(chr, "\\.(r|rmd|txt|doc|docx|docm|ppt|pptx|pptm)$", ignore.case = T, include.dirs = FALSE)}) 
+            # , files.rmd = full_path %>% map(function(chr) {list.files(chr, "\\.rmd$", ignore.case = T, include.dirs = FALSE)}) 
             # , files.rds = full_path %>% map(function(chr) {list.files(chr, "\\.rds(.xz)?$", ignore.case = T, include.dirs = FALSE)}) 
             # , files.rda = full_path %>% map(function(chr) {list.files(chr, "\\.rda(ta)?(.xz)?$", ignore.case = T, include.dirs = FALSE)}) 
-            , files.data = full_path %>% map(function(chr) {list.files(chr, "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", ignore.case = T, include.dirs = FALSE)}) 
+            # , files.ppt = full_path %>% map(function(chr) {list.files(chr, "\\.(ppt|pptx|pptm)$", ignore.case = T, include.dirs = FALSE)}) 
+            , files.data = full_path %>% map(function(chr) {list.files(chr, "\\.(rdata|rda|rds|csv|sas7bdat|xls|xlsx|data|dta)(\\.[gx]z)?$", ignore.case = T, include.dirs = FALSE)}) 
         )
         
         df_dirs_recursive.ls_files2 = df_dirs_recursive.ls_files1 %>% 
@@ -130,26 +131,38 @@ object = function(
                             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
-                , print_tree_path_files.r = 
+                , print_tree_path_files.codes = 
                     paste0(
                         "@", 
                         print_tree_path,
                         "/\n",
                         map2_chr(
                             path.level, 
-                            files.r, 
+                            files.codes, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
                             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
-                , print_tree_path_files.rmd = 
+                # , print_tree_path_files.rmd = 
+                #     paste0(
+                #         "@", 
+                #         print_tree_path,
+                #         "/\n",
+                #         map2_chr(
+                #             path.level, 
+                #             files.rmd, 
+                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #         ) 
+                #     )
+                , print_tree_path_files.ppt = 
                     paste0(
                         "@", 
                         print_tree_path,
                         "/\n",
                         map2_chr(
                             path.level, 
-                            files.rmd, 
+                            files.ppt, 
                             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
                             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
