@@ -33,9 +33,9 @@ if(!"info" %in% names(env.custom)) env.custom$info = list()
 
 env.custom$DocumentTitle0 = "get_system_info()"
 env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
-cat(env.custom$DocumentTitle1); cat("\r\n");
-cat(env.custom$DocumentTitle1, ".R", sep=""); cat("\r\n");
-cat(env.custom$DocumentTitle1, ".RMD", sep=""); cat("\r\n");
+cat(env.custom$DocumentTitle1);cat("\r\n");
+cat(env.custom$DocumentTitle1, ".R", sep="");cat("\r\n");
+cat(env.custom$DocumentTitle1, ".RMD", sep="");cat("\r\n");
 
 
 #% get_system_info() ====
