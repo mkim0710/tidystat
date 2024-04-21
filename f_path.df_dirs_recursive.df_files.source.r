@@ -109,7 +109,7 @@ object = function(
         
         df_dirs_recursive.ls_files1 = df_dirs_recursive2 %>% mutate(
             files = full_path %>% map(function(chr) {list.files(chr, include.dirs = FALSE) %>% str_subset(paste0(gitignore_escaped_select.UC.regex, collapse = "|") %>% regex(ignore_case = TRUE), negate = TRUE)}) 
-            , files.codes = full_path %>% map(function(chr) {list.files(chr, "\\.(r|rmd|txt|doc|docx|docm|ppt|pptx|pptm)$", ignore.case = T, include.dirs = FALSE)}) 
+            , files.codes = full_path %>% map(function(chr) {list.files(chr, "\\.(r|rmd|txt|pdf|doc|docx|docm|ppt|pptx|pptm)$", ignore.case = T, include.dirs = FALSE)}) 
             # , files.rmd = full_path %>% map(function(chr) {list.files(chr, "\\.rmd$", ignore.case = T, include.dirs = FALSE)}) 
             # , files.rds = full_path %>% map(function(chr) {list.files(chr, "\\.rds(.xz)?$", ignore.case = T, include.dirs = FALSE)}) 
             # , files.rda = full_path %>% map(function(chr) {list.files(chr, "\\.rda(ta)?(.xz)?$", ignore.case = T, include.dirs = FALSE)}) 
@@ -155,18 +155,18 @@ object = function(
                 #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                 #         ) 
                 #     )
-                , print_tree_path_files.ppt = 
-                    paste0(
-                        "@", 
-                        print_tree_path,
-                        "/\n",
-                        map2_chr(
-                            path.level, 
-                            files.ppt, 
-                            # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
-                        ) 
-                    )
+                # , print_tree_path_files.ppt = 
+                #     paste0(
+                #         "@", 
+                #         print_tree_path,
+                #         "/\n",
+                #         map2_chr(
+                #             path.level, 
+                #             files.ppt, 
+                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #         ) 
+                #     )
                 # , print_tree_path_files.rds = 
                 #     paste0(
                 #         "@", 
