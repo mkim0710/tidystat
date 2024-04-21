@@ -5,7 +5,7 @@ output: html_notebook
 ---
 
 # _______________
-```{comment Rstudio-RMarkDown-Shortcuts, include=FALSE, eval=FALSE}
+```{r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} 
 ##### Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
@@ -29,20 +29,27 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 # cat(deparse(knitr::opts_chunk$get(), width.cutoff=100), '\n', sep='')
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
-  eval=TRUE, echo=TRUE, results='hold', collapse=TRUE, 
-  comment='##', fig.width=10, fig.height=6, 
-  # warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
-  tidy.opts=list(width.cutoff=80), tidy=TRUE
-)
+  eval=TRUE, echo=TRUE, results='hold', collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results='hold' does not work
+  comment='', fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment='##' does not work?
+  warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
+  tidy.opts=list(width.cutoff=80), tidy=TRUE, 
+  R.options = list(width=120), paged.print=FALSE
+)  # Rstudio Notebook does not use knitr::opts_chunk?? 
 knitr::opts_knit$set(global.par = TRUE)
-
 ```
 
 
-```{r loadPackages, eval=TRUE, include=FALSE}
-suppressPackageStartupMessages({for (packagename in c("tidyverse")) {if (!require(packagename, character.only = TRUE)) install.packages(packagename); library(packagename, character.only = TRUE)}}); cat("\r\n");
+```{r options-width-NoEchoHideResults, echo=FALSE, results='hide'}
+if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+if(!"info" %in% names(env.custom)) env.custom$info = list()
+env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep="")
+```
+
+
+```{r loadPackages-NoEchoHideResults, echo=FALSE, results='hide'}
+suppressPackageStartupMessages({for(packagename in c("tidyverse")){if(!require(packagename,character.only=TRUE))install.packages(packagename);library(packagename,character.only=TRUE)}});cat("\r\n");
 source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
-sourcename = "f_df.t.tribble_construct"; source(file.path(file.path(env.custom$path$source_base_local,""), paste0(sourcename,".source.r")) )
+sourcename = "f_df.t.tribble_construct"; suppressPackageStartupMessages(source(file.path(file.path(env.custom$path$source_base_local,""), paste0(sourcename,".source.r")) ))
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 ```
 
@@ -69,18 +76,14 @@ cat(env.custom$info$DocumentTitle1, "\r\n",
 ```
 
 #### \% env.custom\$info\$info_system_info
-```{r envCustom-Info-NoEchoNoMsgNoResult, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
-sourcename = "get_system_info"; source(file.path(file.path(env.custom$path$source_base_local,""), paste0(sourcename,".source.r")) )
+```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results='hide'}
+sourcename = "get_system_info"; suppressPackageStartupMessages(source(file.path(file.path(env.custom$path$source_base_local,""), paste0(sourcename,".source.r")) ))
 env.custom$info$info_system_info = env.custom$info$get_system_info()
 # str(env.custom$info$info_system_info)
 text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
 text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
 # text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
-
-env.custom$info$info_software_versions = env.custom$info$get_software_versions(
-    library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr",
-                      "datapasta")
-)
+env.custom$info$info_software_versions = env.custom$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env.custom$info$info_software_versions)
 ```
 
@@ -158,8 +161,8 @@ List of 9
 #### \% env.custom\$path    
 <font size="2">\% env.custom\$path\$data_suffix</font>\
 <font size="2">\% env.custom\$path\$project_suffix</font>\
-```{r envCustom-Path-NoEcho, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE}
-library(tidyverse); cat("\r\n"); 
+```{r envCustom-Path-NoEcho, echo=FALSE, results='hold', collapse=TRUE, paged.print=FALSE}
+library(tidyverse);cat("\r\n"); 
 cat("\r\n"); cat("getwd() == "); dput(getwd()) #----
 env.custom$path$getwd = getwd()
 # env.custom$path$path0 = file.path("D:", "OneDrive - SNU", "[][Rproject]")
@@ -206,7 +209,7 @@ env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4file
 # @@ START) Baseline ------
 # $ objectname = "as1.na.Date.fct.select89" ====
 @ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
-```{r objectname-read.checkEntity, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+```{r objectname-read.checkEntity, echo=TRUE, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
 options(width=120)
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
 objectname = "as1.na.Date.fct.select89"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
@@ -227,7 +230,7 @@ cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=
 # @@ START) Outcome ------
 # $ objectname = "as1_7.na.Date.fct.cumulative_DM.list" ====
 @ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
-```{r objectname-read.checkEntity, echo=TRUE, warning=TRUE, error=TRUE, message=TRUE, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
+```{r objectname-read.checkEntity, echo=TRUE, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
 options(width=120)
 if (getwd() != path4read) warning("getwd() != path4read == ") else cat("getwd() == path4read == "); dput(path4read)  #----
 objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat("----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
@@ -459,66 +462,6 @@ options(width=120)
 ```
 
 
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
-```{r, results='hold', collapse=TRUE, paged.print=FALSE, comment='', R.options=list(width=120)}
-options(width=120)
-
-```
-
-
 # [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results='hold', collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
@@ -606,9 +549,11 @@ options(width=120)
 
 
 # @@ END -----
-```{r END-NoEvalNoEchoNoMsgNoResult, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
 # @@ END -----
+
 ```
+
 
 ```{comment RenderMessages, eval=FALSE, include=FALSE}
 dput(names(knitr::knit_engines$get()))
@@ -616,9 +561,8 @@ dput(names(knitr::knit_engines$get()))
 
 
 # $ objectname = "df_NewDMv3.NAtime200621" ====
-
 ###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
-```{r writeRDS-NoEvalNoEchoNoMsgNoResult, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
+```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results='hide', collapse=TRUE, paged.print=FALSE}
 # 
 # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "df_NewDMv3.NAtime200621"
