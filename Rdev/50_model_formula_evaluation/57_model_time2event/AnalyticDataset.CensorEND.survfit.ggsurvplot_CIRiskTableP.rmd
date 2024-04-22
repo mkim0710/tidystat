@@ -370,7 +370,7 @@ df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$Study
 #  Mean   :1                  Mean   :0                  
 #  3rd Qu.:1                  3rd Qu.:0                  
 #  Max.   :1                  Max.   :0                  
-# -------------------------------------------------------------------------------------------------------- 
+# ------------------------------------------------------------------------------------------ 
 # .$StudyPopulation: TRUE
 #       time         event             Group   StudyPopulation
 #  Min.   :2.000   Mode :logical   Min.   :1   Mode:logical   
@@ -384,13 +384,16 @@ df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$Study
 
 
 
-# \$ df_NewDMv3.CensorEND 
+# \$ df_NewDMv3.CensorEND # @@ START) Analysis ------
+
+# \$ objectname = "analyticDF_time2event" ====
 # [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results='hold', collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
-library(tidyverse)
-# library(survival)
-# library(survminer)
+options(width=120)
+suppressPackageStartupMessages(library(tidyverse))
+# suppressPackageStartupMessages(library(survival))
+# suppressPackageStartupMessages(library(survminer))
 
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # df_NewDMv3.NAtime.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
@@ -463,7 +466,9 @@ options(width=120)
 
 ```
 
+# @@ START) Analysis ------
 
+# \$ objectname = "analyticDF_time2event" ====
 # [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results='hold', collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
@@ -493,7 +498,7 @@ options(width=120)
 # #  Mean   :13                                            
 # #  3rd Qu.:13                                            
 # #  Max.   :26                                            
-# # --------------------------------------------------------------------------------------------------------------------------------------------- 
+# # ------------------------------------------------------------------------------------------ 
 # # .$StudyPopulation: TRUE
 # #       time          event            Group     StudyPopulation
 # #  Min.   :  30.0   Mode :logical   Female: 89   Mode:logical   
@@ -531,7 +536,7 @@ options(width=120)
 # #  Mean   :13                                            
 # #  3rd Qu.:13                                            
 # #  Max.   :26                                            
-# # --------------------------------------------------------------------------------------------------------------------------------------------- 
+# # ------------------------------------------------------------------------------------------ 
 # # .$StudyPopulation: TRUE
 # #       time         event            Group     StudyPopulation
 # #  Min.   : 30.0   Mode :logical   Female: 89   Mode:logical   

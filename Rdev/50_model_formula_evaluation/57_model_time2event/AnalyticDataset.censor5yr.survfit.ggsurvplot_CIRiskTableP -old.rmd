@@ -383,13 +383,16 @@ options(width=120)
 ```
 
 
+# @@ START) Analysis ------
 
+# \$ objectname = "analyticDF_time2event" ====
 # [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results='hold', collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
-library(tidyverse)
-# library(survival)
-# library(survminer)
+options(width=120)
+suppressPackageStartupMessages(library(tidyverse))
+# suppressPackageStartupMessages(library(survival))
+# suppressPackageStartupMessages(library(survminer))
 ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
 # AnalyticDataset %>% select(sex, Group) %>% str

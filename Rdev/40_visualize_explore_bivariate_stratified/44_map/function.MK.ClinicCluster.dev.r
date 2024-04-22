@@ -30,7 +30,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     
     
     
-    # ------------------------------------------------------------------------------------------------------------- 
+    # ------------------------------------------------------------------------------------------ 
     #@ Internal functions =====
 
     # ODMatrix_rowP.ftn receives input.ODMatrix and input.ODMatrix as input, and normalize by a rowSums vector (which is a column vector). 
@@ -164,7 +164,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     
     
     
-    # -------------------------------------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------------------
     
     
     #@@@@ Start of tuning =====
@@ -227,7 +227,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     
     
     # browser()
-    # ------------------------------------------------------------------------------------------------------------- 
+    # ------------------------------------------------------------------------------------------ 
     #@ iteration) Code4MergeFrom = PopulationDF.last %>% filter(Pop < Min.Pop) %>% arrange(Pop) %>% {.$Code} ======
     # warning("Starting iteration for Min.Pop")
     # print(Sys.time() - t0)
@@ -290,7 +290,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     
     
     
-    # ------------------------------------------------------------------------------------------------------------- 
+    # ------------------------------------------------------------------------------------------ 
     #@ iteration) Code4MergeFrom = Cluster.tbl %>% filter(OD.diag_rowP < Min.SC) %>% arrange(OD.diag_rowP) %>% {.$Code.Cluster} ======
     # warning("Starting iteration for Min.SC")
     # print(Sys.time() - t0)
