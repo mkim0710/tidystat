@@ -348,7 +348,7 @@ out.list2 = filenames %>% map(function(i) {
     t0 = Sys.time()
     # print(paste0("t0", " = ", t0))
     # write_rds(get(i), path = paste0(path4write, "/", i, ".rds"), compress = "none")
-    write_rds(get(i), path = paste0(path4write, "/", i, ".rds"), compress = "gz")
+    write_rds(get(i), path = paste0(path4write, "/", i, ".rds"), compress="gz")
     rm(i)
     gc()
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))

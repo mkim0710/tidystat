@@ -133,5 +133,5 @@ list.sas7bdat_PERSON_ID.setdiff %>% str #----
 #@ end ----
 objectname = "list.sas7bdat_PERSON_ID.setdiff"
 path4write = getwd()
-write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
 

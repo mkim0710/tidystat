@@ -47,8 +47,8 @@ tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$right_anti_join %>% nro
 getwd()
 path4write = getwd()
 objectname = "tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list"
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")), compress = "gz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname,".xlsx"), asTable = T, withFilter = T)
+# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 openxlsx::openXL(paste0(objectname,".xlsx"))
 
 ?read_excel

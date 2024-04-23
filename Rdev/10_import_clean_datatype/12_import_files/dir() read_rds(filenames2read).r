@@ -116,4 +116,4 @@ list.sas7bdat %>% str(max.level = 1) #----
 #@ end ----
 objectname = "list.sas7bdat"
 path4write = getwd()
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )

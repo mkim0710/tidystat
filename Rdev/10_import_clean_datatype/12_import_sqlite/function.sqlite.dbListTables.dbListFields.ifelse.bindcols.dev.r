@@ -318,7 +318,7 @@ openxlsx::write.xlsx(
         if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
     }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
     , "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
-    , asTable = T
+    , asTable=TRUE
 )
 openxlsx::openXL(
     "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"

@@ -751,13 +751,13 @@ icd9_sub_chapters.expand_range.ICD9_3char %>% toJSON(pretty = T) %>% write("icd9
 getwd()
 path4write = getwd()
 objectname = "icd9_chapters.expand_range"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "gz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="gz", compression=9 )
 objectname = "icd9_chapters.expand_range.ICD9_3char"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "gz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="gz", compression=9 )
 objectname = "icd9_sub_chapters.expand_range"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "gz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="gz", compression=9 )
 objectname = "icd9_sub_chapters.expand_range.ICD9_3char"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "gz", compression = 9 )
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="gz", compression=9 )
 
 
 

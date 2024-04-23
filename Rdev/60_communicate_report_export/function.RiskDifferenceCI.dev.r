@@ -512,8 +512,8 @@ getwd()
 path4write = getwd()
 objectname = "analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
 # write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")))
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")), compress = "gz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname,".xlsx"), asTable = T, withFilter = T)
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 openxlsx::openXL(paste0(objectname,".xlsx"))
 
 

@@ -93,11 +93,11 @@ filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filena
 assign(filename, read_dta(file.path(path4read, filename))    )
 get(filename) %>% str #----
 path4write = getwd()
-write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress = "xz", compression = 9 )
+write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress="xz", compression=9 )
 
 assign(objectname, get(filename) %>% function.dta.rm_attr   )
 get(objectname) %>% str #----
-write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
 # > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
 #                                                         filename    size       KB       MB          GB
 # 1 D:/OneDrive - SNU/[][Rproject]/Rproject_KOGES/AS1_MASTER_C.dta 8083711 7894.249 7.709228 0.007528543
@@ -139,11 +139,11 @@ filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filena
 assign(filename, read_dta(file.path(path4read, filename))    )
 get(filename) %>% str #----
 path4write = getwd()
-write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress = "xz", compression = 9 )
+write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress="xz", compression=9 )
 
 assign(objectname, get(filename) %>% function.dta.rm_attr   )
 get(objectname) %>% str #----
-write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
 # > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
 #                                                         filename     size       KB       MB         GB
 # 1 D:/OneDrive - SNU/[][Rproject]/Rproject_KOGES/CT1_MASTER_C.dta 56938475 55603.98 54.30076 0.05302809
@@ -189,11 +189,11 @@ filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filena
 assign(filename, read_dta(file.path(path4read, filename))    )
 get(filename) %>% str #----
 path4write = getwd()
-write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress = "xz", compression = 9 )
+write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress="xz", compression=9 )
 
 assign(objectname, get(filename) %>% function.dta.rm_attr   )
 get(objectname) %>% str #----
-write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
 # > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
 #                                                         filename    size       KB       MB          GB
 # 1 D:/OneDrive - SNU/[][Rproject]/Rproject_KOGES/NC1_MASTER_C.dta 6998195 6834.175 6.673999 0.006517577
@@ -250,5 +250,5 @@ list_MASTER_C$NC1_MASTER_C = NC1_MASTER_C
 
 objectname = "list_MASTER_C"
 path4write = getwd()
-write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
+system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
 

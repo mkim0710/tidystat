@@ -50,7 +50,7 @@ system("git push")
 
 #@ -------
 # t0 = Sys.time()
-# write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), "xz", compression = 9L )
+# write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), "xz", compression=9L )
 # Sys.time() - t0
 
 
@@ -70,10 +70,10 @@ Sys.time() - t0
 #@ -------
 
 # t0 = Sys.time()
-# write_rds(ID_Covariates.tbl, "ID_Covariates.tbl(v38).rds", "xz", compression = 9)
+# write_rds(ID_Covariates.tbl, "ID_Covariates.tbl(v38).rds", "xz", compression=9)
 # Sys.time() - t0
 # # > t0 = Sys.time()
-# # > write_rds(ID_Covariates.tbl, "ID_Covariates.tbl(v38).rds", "xz", compression = 9)
+# # > write_rds(ID_Covariates.tbl, "ID_Covariates.tbl(v38).rds", "xz", compression=9)
 # # > Sys.time() - t0
 # # Time difference of 3.1327 mins
 
