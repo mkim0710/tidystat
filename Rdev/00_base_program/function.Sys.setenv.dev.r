@@ -91,7 +91,7 @@ invisible(loadNamespace('httr'))
 mytz <- rgeolocate::ip_api(httr::content(httr::GET('https://api.ipify.org?format=json'))[1])[['timezone']]
 Sys.setenv(TZ=mytz)"
 
-cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep='\n')
+cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep="\n")
 
 
 

@@ -113,7 +113,7 @@ t0 = Sys.time()
 save( list = objectname, file = file.path(path4write, paste0(objectname,".rda", "")), compress = "xz", compression_level = 9 )
 print(Sys.time() - t0)
 objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
-rm(objectname, envir = .GlobalEnv)
+rm(objectname, envir=.GlobalEnv)
 # > objectname = "NHID_GY20_0213.bind_rows"
 # > path4write = getwd()
 # > t0 = Sys.time()
@@ -136,7 +136,7 @@ for (objectname in objectNames) {
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
     objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
-    rm(objectname, envir = .GlobalEnv)
+    rm(objectname, envir=.GlobalEnv)
     gc()
 }
 # 1 NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK.ICD10_range_chapter.rda 116257880 113533.1 110.8722 0.1082736
@@ -350,7 +350,7 @@ for (objectname in objectNames) {
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
     objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
-    rm(objectname, envir = .GlobalEnv)
+    rm(objectname, envir=.GlobalEnv)
     gc()
 }
 #                                                                       filename      size     KB       MB        GB

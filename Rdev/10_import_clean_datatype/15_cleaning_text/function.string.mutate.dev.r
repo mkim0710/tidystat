@@ -1229,20 +1229,20 @@ string %>% dput
 # )
 
 # Another reasonably straightforward way is to use regular expressions and sub: ----
-sub('.*(?=.$)', '', string, perl=T)  # So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
-sub('.*(?=.{2}$)', '', string, perl=T)  # where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
-sub('.*(?=.{3}$)', '', string, perl=T)  # for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:
-# > sub('.*(?=.$)', '', string, perl=T)  # So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
+sub('.*(?=.$)', "", string, perl=T)  # So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
+sub('.*(?=.{2}$)', "", string, perl=T)  # where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
+sub('.*(?=.{3}$)', "", string, perl=T)  # for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:
+# > sub('.*(?=.$)', "", string, perl=T)  # So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
 # [1] "s" "s" "s"
-# > sub('.*(?=.{2}$)', '', string, perl=T)  # where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
+# > sub('.*(?=.{2}$)', "", string, perl=T)  # where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
 # [1] "us" "os" "cs"
-# > sub('.*(?=.{3}$)', '', string, perl=T)  # for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:
+# > sub('.*(?=.{3}$)', "", string, perl=T)  # for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:
 # [1] "mus" "ros" "ics"
 
 n = 3
-sub(paste('.+(?=.{', n, '})', sep=''), '', string, perl=T)
+sub(paste('.+(?=.{', n, '})', sep=""), "", string, perl=T)
 # > n = 3
-# > sub(paste('.+(?=.{', n, '})', sep=''), '', string, perl=T)
+# > sub(paste('.+(?=.{', n, '})', sep=""), "", string, perl=T)
 # [1] "mus" "ros" "ics"
 
 
