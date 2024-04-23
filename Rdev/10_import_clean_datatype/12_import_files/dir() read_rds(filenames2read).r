@@ -72,7 +72,7 @@ filenames = list.files(path4read) %>% grep(regex4filename, ., value = T)
 for (i1 in filenames2read) {
     i2 = i1 %>% str_replace_all("\\.xz$", "") %>% str_replace_all("\\.rds$", "")
     print(paste0("i2", " = ", i2))
-    rm(list = i2, envir = .GlobalEnv)
+    rm(list = i2, envir=.GlobalEnv)
 }
 
 

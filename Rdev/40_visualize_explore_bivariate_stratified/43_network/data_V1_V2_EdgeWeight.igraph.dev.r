@@ -77,22 +77,22 @@ data_V1_V2_EdgeWeight.igraph = function(
     # [1] ".Random.seed"                              "data_V1_V2_EdgeWeight.igraph"              "termDocMatrix"
     # [4] "termDocMatrix.t.df"                        "termDocMatrix.t.df.lgl.comat"                  "termDocMatrix.t.df.lgl.comat.gather"
     # [7] "termDocMatrix.t.df.lgl.comat.gather.lower.tri" "termDocMatrix.t.df.lgl.comat.gather.upper.tri"
-    # Browse[2]> ls(envir = .GlobalEnv)
+    # Browse[2]> ls(envir=.GlobalEnv)
     # [1] "data_V1_V2_EdgeWeight.igraph"              "termDocMatrix"                             "termDocMatrix.t.df"
     # [4] "termDocMatrix.t.df.lgl.comat"                  "termDocMatrix.t.df.lgl.comat.gather"           "termDocMatrix.t.df.lgl.comat.gather.lower.tri"
     # [7] "termDocMatrix.t.df.lgl.comat.gather.upper.tri"
     # 
-    # # ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir = .GlobalEnv), get(".", envir = parent.frame())))
-    # ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir = .GlobalEnv), get(".", envir = parent.frame())))
-    # Browse[2]> ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir = .GlobalEnv), get(".", envir = parent.frame(n = 2))))
+    # # ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir=.GlobalEnv), get(".", envir = parent.frame())))
+    # ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir=.GlobalEnv), get(".", envir = parent.frame())))
+    # Browse[2]> ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir=.GlobalEnv), get(".", envir = parent.frame(n = 2))))
     # [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-    # Browse[2]> ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir = .GlobalEnv), df.V1_V2_EdgeWeight))
+    # Browse[2]> ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir=.GlobalEnv), df.V1_V2_EdgeWeight))
     # [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE
     
     if(out.name.prefix == ".") {
         print(paste0("Caution: out.name.prefix == \".\") "))
         warning(paste0("Caution: out.name.prefix == \".\") "))
-        out.name.prefix.tmp = ls(envir = globalenv())[{ ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir = .GlobalEnv), df.V1_V2_EdgeWeight)) }]
+        out.name.prefix.tmp = ls(envir = globalenv())[{ ls(envir = globalenv()) %>% map_lgl(function(x) identical(get(x, envir=.GlobalEnv), df.V1_V2_EdgeWeight)) }]
         if (length(out.name.prefix.tmp) == 0) {
             print(paste0("Caution: guessing df.V1_V2_EdgeWeight in .GlobalEnv) failed..."))
         } else if (length(out.name.prefix.tmp) == 1) {

@@ -5,7 +5,7 @@
 library(tidyverse)
 getwd() %>% dput #----
 
-if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 env.custom$getwd = getwd()
 # env.custom$path0 = "../../[][Rproject]"
 env.custom$path0db = "D:/OneDrive - SNU/[][SASproject]"
@@ -616,10 +616,10 @@ gsub(".rds$", "", filename) %>% {object.size(get(.))} %>% {c(`bytes` = as.numeri
 
 
 data.frame(objectname = gsub(".rds$", "", filename)) %>% mutate(
-    tmp = objectname %>% map_dbl(function(txt) object.size(get(i, envir = .GlobalEnv) )
+    tmp = objectname %>% map_dbl(function(txt) object.size(get(i, envir=.GlobalEnv) )
 )
 # > data.frame(objectname = gsub(".rds$", "", filename)) %>% mutate(
-# +     tmp = objectname %>% map_dbl(function(txt) object.size(get(i, envir = .GlobalEnv) )
+# +     tmp = objectname %>% map_dbl(function(txt) object.size(get(i, envir=.GlobalEnv) )
 # + )
 #                     objectname tmp
 # 1 mscan_pregcohort_r4.sas7bdat  56

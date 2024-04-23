@@ -16,11 +16,11 @@
 
 library(tidyverse)
 
-# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
-if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+# if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = as.environment(env.custom)
-# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
-if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
@@ -115,7 +115,7 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
     if (length(list_out) == 0) {
         cat("----------- File not found while searching following subpaths:\n")
         vec_subpath <- unlist(list_subpath, use.names = FALSE)
-        vec_subpath %>% {cat(deparse(., width.cutoff=500), '\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
+        vec_subpath %>% {cat(deparse(., width.cutoff=500), "\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
         return(NULL)
     }
         

@@ -129,7 +129,7 @@ list.files.rda.data.frame = list.files.rda %>% map_chr(function(i) {
             out = i
         }
     }
-    rm(list = i, envir = .GlobalEnv)
+    rm(list = i, envir=.GlobalEnv)
     out
 })
 list.files.rda.data.frame %>% dput
@@ -169,7 +169,7 @@ list.files.rda.data.frame %>% na.omit %>% as.vector %>% dput
 #             out.list[[i]]$ncol = ncol(get(i))
 #         }
 #     }
-#     rm(list = i, envir = .GlobalEnv)
+#     rm(list = i, envir=.GlobalEnv)
 #     out.list
 # }
 # out.list %>% str
@@ -240,7 +240,7 @@ for (i in list.files.rda) {
             out.list[[i]]$ncol = ncol(get(i))
         }
     }
-    rm(list = i, envir = .GlobalEnv)
+    rm(list = i, envir=.GlobalEnv)
 }
 out.list %>% str
 out.list %>% bind_rows(.id = ".id")
@@ -267,7 +267,7 @@ out.list %>% bind_rows(.id = ".id")
 # +             out.list[[i]]$ncol = ncol(get(i))
 # +         }
 # +     }
-# +     rm(list = i, envir = .GlobalEnv)
+# +     rm(list = i, envir=.GlobalEnv)
 # +     out.list
 # + }
 # [1] "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)"
@@ -277,7 +277,7 @@ out.list %>% bind_rows(.id = ".id")
 # [1] "trainsetCC69agg4i07_829.cv.glmnet_alphas_cox"
 # [1] "trainsetCC69agg4i07_829"
 # Warning message:
-# In rm(list = i, envir = .GlobalEnv) :
+# In rm(list = i, envir=.GlobalEnv) :
 #   object 'trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)' not found
 # > out.list %>% str
 # List of 5

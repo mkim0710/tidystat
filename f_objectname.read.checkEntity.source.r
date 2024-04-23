@@ -18,11 +18,11 @@
 
 library(tidyverse)
 
-# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
-if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+# if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = as.environment(env.custom)
-# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
-if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
@@ -73,7 +73,7 @@ object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID",
     filename.ext.regex <- filename.ext %>% str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
     env.custom$f_path.size_files(path4read = path4read, regex4filename = filename.ext.regex)
     
-    system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir = .GlobalEnv))
+    system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir=.GlobalEnv))
 
     # cat("----\n")
     CodeText = "dim(get(objectname))"; cat(CodeText); cat(" = "); dput(eval(parse(text = CodeText))); 
@@ -84,8 +84,8 @@ object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID",
           {warningText = paste0('varname for ID not identified.');  warning(warningText); cat("Warning: ", warningText, "\n")}
       }
     }
-    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% {cat(deparse(., width.cutoff=100), '\n\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
-    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat(., '\n\n', sep='')}; # tidydplyr::select: paste(collapse = ", ") %>% cat ----
+    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat(., "\n\n", sep="")}; # tidydplyr::select: paste(collapse = ", ") %>% cat ----
     cat("----\n> "); CodeText = "str(get(objectname), max.level = 2, give.attr = F)"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
     cat("----\n> "); CodeText = "as_tibble(get(objectname))"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
     cat("----\n> "); CodeText = "tail(rownames_to_column(get(objectname)))"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));

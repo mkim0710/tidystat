@@ -61,7 +61,7 @@ flowchart_inclusion_exclusions_v3.4 <- function(
         n_exclusion_formatted <- format(n_exclusion, big.mark = ",")
         
         exclusion_part <- glue("
-    blank{i}[label = '', width=0.01, height = 0.01]
+    blank{i}[label = "", width=0.01, height = 0.01]
     excluded{i}[label = <{label} (n={n_exclusion_formatted})>]
     {prev_node} -> blank{i}[dir = none];
     blank{i} -> excluded{i}[minlen = 2];
@@ -171,7 +171,7 @@ flowchart_inclusion_exclusions_v2 <- function(
         n_exclusion_formatted <- format(n_exclusion, big.mark = ",")
         
         exclusion_part <- glue("
-    blank{i}[label = '', width=0.01, height = 0.01]
+    blank{i}[label = "", width=0.01, height = 0.01]
     excluded{i}[label = <{label} (n={n_exclusion_formatted})>]
     {prev_node} -> blank{i}[dir = none];
     blank{i} -> excluded{i}[minlen = 2];

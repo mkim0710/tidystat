@@ -23,19 +23,19 @@ rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
 
 
 
-# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
-if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+# if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
-if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 
 if(!"info" %in% names(env.custom)) env.custom$info = list()
 
 env.custom$DocumentTitle0 = "get_system_info()"
 env.custom$DocumentTitle1 = paste0(env.custom$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
-cat(env.custom$DocumentTitle1);cat("\r\n");
-cat(env.custom$DocumentTitle1, ".R", sep="");cat("\r\n");
-cat(env.custom$DocumentTitle1, ".RMD", sep="");cat("\r\n");
+cat(env.custom$DocumentTitle1);cat("\n");
+cat(env.custom$DocumentTitle1, ".r", sep="");cat("\n");
+cat(env.custom$DocumentTitle1, ".Rmd", sep="");cat("\n");
 
 
 #% get_system_info() ====

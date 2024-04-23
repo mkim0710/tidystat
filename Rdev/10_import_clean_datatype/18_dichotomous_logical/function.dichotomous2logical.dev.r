@@ -110,7 +110,7 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
         } else if (n_unique > 2) {
             # stop("length(levels(vec.as_character.as_factor)) > 2")
             text4warning = "n_unique > 2"
-            if(print.warning) {warning(text4warning); cat('\n')}
+            if(print.warning) {warning(text4warning); cat("\n")}
             attributes(vec)$n_unique = n_unique
             # attributes(vec)$is.dichotomous = F
             # attributes(vec)$function.dichotomous2logical = text4warning
@@ -135,7 +135,7 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
     attributes(vec.out) = vec.attributes
     attributes(vec.out)$n_unique = n_unique
     # attributes(vec.out)$is.dichotomous = is.dichotomous
-    if(text4warning != "") {if(print.warning) {warning(text4warning); cat('\n')}; attributes(vec.out)$function.dichotomous2logical = text4warning}
+    if(text4warning != "") {if(print.warning) {warning(text4warning); cat("\n")}; attributes(vec.out)$function.dichotomous2logical = text4warning}
     vec.out
 }
 

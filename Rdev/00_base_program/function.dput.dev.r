@@ -106,7 +106,7 @@ dput_small1<- function(x,
     }
 
     line_sep <- if (multiline) "\n    " else ""
-    cat(sep='',name," <- ",create_fun,"(\n  ",
+    cat(sep="",name," <- ",create_fun,"(\n  ",
         paste0(unlist(
           Map(function(item,nm) paste0(nm,if(nm=="") "" else " = ",paste(capture.output(dput(item)),collapse=line_sep)),
               x,if(is.null(names(x))) rep("",length(x)) else names(x))),
@@ -146,7 +146,7 @@ dput_small3 <- function(df,
                     paste0("~",names(df),collapse=", "),
                     ",\n  ",lines,"\n)")
   cat(output)
-  sapply(names(df), function(x) if(is.factor(df[[x]])) cat(sep='','\n',name,'$',x,' <- factor(', name,'$',x,')'))
+  sapply(names(df), function(x) if(is.factor(df[[x]])) cat(sep="","\n",name,'$',x,' <- factor(', name,'$',x,')'))
   invisible(NULL)
 }
 

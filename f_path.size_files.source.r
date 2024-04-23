@@ -17,11 +17,11 @@
 
 library(tidyverse)
 
-# if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
-if(!exists("env.custom", envir = .GlobalEnv)) assign("env.custom", new.env(), envir = .GlobalEnv)
+# if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = as.environment(env.custom)
-# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
-if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir = .GlobalEnv)
+# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
+if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
@@ -54,7 +54,7 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
             return()
         }
     }
-    filenames %>% {cat(deparse(., width.cutoff=100), '\n', sep='')} # dput() cat(deparse(., width.cutoff=100)), width.cutoff=500 is the max ----
+    filenames %>% {cat(deparse(., width.cutoff=120), "\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
     cat("----\n"); #----
     out = filenames %>% {file.info(file.path(path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
