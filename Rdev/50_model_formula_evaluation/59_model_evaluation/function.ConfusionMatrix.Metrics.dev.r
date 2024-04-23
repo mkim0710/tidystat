@@ -841,6 +841,6 @@ mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * 
 
 #@ end ----
 # saveRDS(InputSquareMatrix.tbl.ConfusionMatrix.Metrics, file = "InputSquareMatrix.tbl.ConfusionMatrix.Metrics.rds")
-# openxlsx::write.xlsx(InputSquareMatrix.tbl.ConfusionMatrix.Metrics, "InputSquareMatrix.tbl.ConfusionMatrix.Metrics.xlsx", asTable = T)
+# openxlsx::write.xlsx(InputSquareMatrix.tbl.ConfusionMatrix.Metrics, "InputSquareMatrix.tbl.ConfusionMatrix.Metrics.xlsx", asTable=TRUE)
 
 

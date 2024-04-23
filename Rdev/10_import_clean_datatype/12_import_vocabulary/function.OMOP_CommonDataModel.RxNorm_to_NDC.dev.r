@@ -170,8 +170,8 @@ Sys.time() - t0
 getwd()
 path4write = getwd()
 objectname = "RxNorm_clomiphene_to_NDC"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname,".xlsx"), asTable = T, withFilter = T)
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 openxlsx::openXL(paste0(objectname,".xlsx"))
 
 RxNorm_clomiphene_to_NDC %>% str #----
@@ -245,8 +245,8 @@ Sys.time() - t0
 getwd()
 path4write = getwd()
 objectname = "RxNorm_letrozole_to_NDC"
-write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds", "")), compress = "xz", compression = 9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file = paste0(objectname,".xlsx"), asTable = T, withFilter = T)
+write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
+openxlsx::write.xlsx(eval(parse(text = objectname)), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 openxlsx::openXL(paste0(objectname,".xlsx"))
 
 RxNorm_letrozole_to_NDC %>% str #----

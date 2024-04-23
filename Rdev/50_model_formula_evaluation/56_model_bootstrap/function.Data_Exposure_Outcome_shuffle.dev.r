@@ -11,7 +11,7 @@ library(openxlsx)
 getwd()                                            # See the current working directory. ----
 ffqtot = readRDS("ffqtot.rds")                     # No need to write the path, if the file is in the current working directory.
 ffqtot                                             # If you enter the object name, it will print the object into the Console in the default method.
-write.xlsx(ffqtot, "ffqtot.xlsx", asTable = TRUE)  # If you want to look into the dataset via spreadsheet, I'd recommend exporting into a MS Excel file.
+write.xlsx(ffqtot, "ffqtot.xlsx", asTable=TRUE)  # If you want to look into the dataset via spreadsheet, I'd recommend exporting into a MS Excel file.
 openXL("ffqtot.xlsx")                              # If the package is properly installed, this commmand will open the file via MS Excel.
 # > ffqtot ----
 # # A tibble: 2,143 x 43
