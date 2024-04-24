@@ -396,9 +396,9 @@ suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survminer))
 ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
-# AnalyticDataset %>% select(sex, Group) %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+# AnalyticDataset %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 # AnalyticDataset %>% select(sex, Group) %>% table
-# # > AnalyticDataset %>% select(sex, Group) %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+# # > AnalyticDataset %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...

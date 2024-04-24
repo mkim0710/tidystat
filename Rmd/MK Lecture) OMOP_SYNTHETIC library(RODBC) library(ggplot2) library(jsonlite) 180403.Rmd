@@ -435,7 +435,7 @@ CMS_SynPUF_CDMv5_YZ.json %>% length
 ```
 
 ```{r}
-CMS_SynPUF_CDMv5_YZ.json[1000] %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+CMS_SynPUF_CDMv5_YZ.json[1000] %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 ```
 
 ```{r}
