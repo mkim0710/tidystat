@@ -280,10 +280,10 @@ options(width=120)
 #     mutate(
 #         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
 #     )
-as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% summary
 as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% table(useNA = "always") %>% addmargins
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 # tibble [10,030 × 2] (S3: tbl_df/tbl/data.frame)
 #  $ Time2Event_NewDMv3: num [1:10030] NA NA NA 1 NA NA NA NA 1 NA ...
 #  $ Event_NewDMv3     : logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
@@ -331,7 +331,7 @@ options(width=120)
 #         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
 #         , Time2Censor_NewDMv3 = replace_na(Time2Event_NewDMv3, 7)
 #     )
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% summary
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% table(useNA = "always") %>% addmargins
 ```
@@ -436,9 +436,9 @@ df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censo
     mutate(Group = StudyPopulation %>% as.integer) %>% 
     as_tibble
 df_NewDMv3.Time2Censor_NewDMv3
-df_NewDMv3.Time2Censor_NewDMv3 %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+df_NewDMv3.Time2Censor_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 df_NewDMv3.Time2Censor_NewDMv3 %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-df_NewDMv3.CensorEND %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+df_NewDMv3.CensorEND %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 df_NewDMv3.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 all.equal(df_NewDMv3.Time2Censor_NewDMv3 %>% select(time, event), df_NewDMv3.CensorEND %>% select(time, event))
 table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = "always") %>% addmargins
@@ -478,10 +478,10 @@ options(width=120)
 # # library(survival)
 # # library(survminer)
 # ?survival::lung
-# df_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% {cat("> as_tibble(",deparse(substitute(.)),")","\n", sep=""); as_tibble(.)}
-# # df_time2event %>% select(sex, Group) %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+# df_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% {cat("> ",deparse(substitute(.))," %>% as_tibble %>% print(n=99)","\n", sep=""); print(as_tibble(.),n=99)}
+# # df_time2event %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 # # df_time2event %>% select(sex, Group) %>% table
-# # # > df_time2event %>% select(sex, Group) %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
+# # # > df_time2event %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
 # # # 'data.frame':	228 obs. of  2 variables:
 # # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
