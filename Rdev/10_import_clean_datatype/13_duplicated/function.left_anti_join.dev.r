@@ -47,16 +47,16 @@ tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$right_anti_join %>% nro
 getwd()
 path4write = getwd()
 objectname = "tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list"
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
-openxlsx::write.xlsx(eval(parse(text = objectname)), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
+# write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
+openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 openxlsx::openXL(paste0(objectname,".xlsx"))
 
 ?read_excel
 
 library(readxl)
 assign(objectname, read_excel(paste0(objectname, " -manual.xlsx"), sheet = "manual"))
-str(eval(parse(text = objectname)), max.level = 1) #----
-# > str(eval(parse(text = objectname)), max.level = 1) #----
+str(get(objectname), max.level = 1) #----
+# > str(get(objectname), max.level = 1) #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	229 obs. of  37 variables:
 #  $ OBJECTID_level2: num  1 2 3 4 5 6 7 8 9 10 ...
 #  $ ID_0           : num  213 213 213 213 213 213 213 213 213 213 ...

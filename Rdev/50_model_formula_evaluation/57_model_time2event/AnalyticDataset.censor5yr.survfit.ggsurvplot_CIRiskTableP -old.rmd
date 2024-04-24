@@ -220,7 +220,8 @@ options(width=120)
 # filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 # env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 # system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
-# get(objectname) %>% dim
+# cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
+
 # get(objectname) %>% {.$PERSON_ID} %>% n_distinct
 # get(objectname) %>% {.$RN_INDI} %>% n_distinct
 # get(objectname) %>% names %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
@@ -395,9 +396,9 @@ suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survminer))
 ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
-# AnalyticDataset %>% select(sex, Group) %>% str
+# AnalyticDataset %>% select(sex, Group) %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
 # AnalyticDataset %>% select(sex, Group) %>% table
-# # > AnalyticDataset %>% select(sex, Group) %>% str
+# # > AnalyticDataset %>% select(sex, Group) %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...

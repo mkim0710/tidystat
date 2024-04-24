@@ -179,10 +179,10 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 =
         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
         , Time2Censor_NewDMv3 = replace_na(Time2Event_NewDMv3, 7)
     )
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% str
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% summary
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% table(useNA = "always") %>% addmargins
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% str
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat("> str(",deparse(substitute(.)),")","\n", sep=""); str(.)}
 # tibble [10,030 × 2] (S3: tbl_df/tbl/data.frame)
 #  $ Event_NewDMv3      : logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
 #  $ Time2Censor_NewDMv3: num [1:10030] 7 7 7 1 7 7 7 7 1 7 ...

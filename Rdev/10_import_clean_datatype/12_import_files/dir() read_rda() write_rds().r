@@ -57,7 +57,7 @@ objectNames %>% dput #----
 #     t0 = Sys.time()
 #     load(paste0(objectname,".rda"))
 #     print(Sys.time() - t0)
-#     write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")) )
+#     write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")) )
 #     print(Sys.time() - t0)
 #     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
 #     print(Sys.time() - t0)
@@ -131,7 +131,7 @@ for (objectname in objectNames) {
     t0 = Sys.time()
     load(paste0(objectname,".rda"))
     print(Sys.time() - t0)
-    write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")) )
+    write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")) )
     print(Sys.time() - t0)
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
@@ -345,7 +345,7 @@ for (objectname in objectNames) {
     t0 = Sys.time()
     load(paste0(objectname,".rda"))
     print(Sys.time() - t0)
-    write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds")) )
+    write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")) )
     print(Sys.time() - t0)
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
@@ -425,5 +425,5 @@ for (objectname in objectNames) {
 
 # objectname = ""
 # path4write = getwd()
-# write_rds( eval(parse(text = objectname)), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
+# write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
 
