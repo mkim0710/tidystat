@@ -1,6 +1,8 @@
 # function.setdiff.dev.r
 
-vector.setdiff = function(vec1, vec2) {
+
+
+f_vec1_vec2.setdiff = function(vec1, vec2) {
     out = list()
     out$vec1 = vec1 = as.character(vec1)
     out$vec2 = vec2 = as.character(vec2)
@@ -11,7 +13,7 @@ vector.setdiff = function(vec1, vec2) {
     out$identical = identical(vec1, vec2)
     out
 }
-vector.setdiff(
+f_vec1_vec2.setdiff(
     NHID_JK_GJ_0213.bind_rows.integer.by.PERSON_ID.min.HCHK_YEAR %>% filter(AGE_GROUP %in% 5:17) %>% {.$PERSON_ID}
     , 
     NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin %>% {.$PERSON_ID}
