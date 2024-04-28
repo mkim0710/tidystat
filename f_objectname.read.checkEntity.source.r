@@ -44,7 +44,10 @@ for (env.custom.dependancy in c("f_filename.ext.find_subpath", "f_path.size_file
 #@ objectname = "f_objectname.read.checkEntity" =========
 objectname = "f_objectname.read.checkEntity"
 object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
-    if (getwd() != path4read) {warningText = paste0('getwd() != path4read == "', path4read, '"');warning(warningText);cat("Warning: ",warningText,"\n")} else {cat("getwd() == path4read ==", path4read, "\n")} #----
+    MessageText1 = "getwd()"
+    MessageText2 = paste0('path4read == "',path4read,'"')
+    if (getwd() != path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+
     cat('objectname = "', objectname, '"\n', sep="");
     filename.ext = paste0(objectname,".", ext)
     if(file.exists(file.path(path4read, filename.ext))) {
@@ -77,9 +80,21 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir=.GlobalEnv))
 
     # cat(strrep("-",80),"\n",sep="")
-    cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="") 
-    for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_distinct(",objectname,"$",varname,") = ",n_distinct(get(objectname)[[varname]]),"\n", sep="")}
-    if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {warningText = paste0('varname for ID not identified.');warning(warningText);cat("Warning: ",warningText,"\n")}
+    cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
+    # Error: attributes(get(objectname))$n_distinct = list()
+    if( !"n_distinct" %in% names(attributes(.GlobalEnv[[objectname]])) ) attributes(.GlobalEnv[[objectname]])$n_distinct = list()
+    for (varname in vec_varname4ID) {
+        if(varname %in% names(get(objectname))) {
+            attributes(.GlobalEnv[[objectname]])$n_distinct[[varname]] = n_distinct(get(objectname)[[varname]])
+            DataSetName.nrow = nrow(get(objectname))
+            varname.n_distinct = attributes(.GlobalEnv[[objectname]])$n_distinct[[varname]]
+
+            MessageText1 = paste0("nrow(",objectname,")")
+            MessageText2 = paste0("n_distinct(",objectname,"$",varname,") = ",varname.n_distinct)
+            if (DataSetName.nrow != varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+        }
+    }
+    if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
 
     cat(strrep("#",80),"\n",sep=""); 
     cat("> names(",objectname,") %>% deparse(width.cutoff=120) %>% cat","\n", sep=""); get(objectname) %>% names %>% deparse(width.cutoff=120) %>% cat("\n\n",sep="") # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
