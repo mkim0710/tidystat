@@ -1,5 +1,11 @@
 # data_frame.map_df.as.factor.dev.r
 
+# if(!exists("objectname0")) objectname0 = objectname
+# objectname = objectname0
+# assign( paste0(objectname,".NA"), get(objectname) %>% mutate_if(is.factor, as.character) %>%  mutate_if(is.character, na_if, "") %>% mutate_if(is.character, na_if, "N/A") %>% mutate_if(is.character, na_if, "NA") %>% as_tibble )
+# get(paste0(objectname,".NA"))
+
+
 convert_character_to_numeric_or_factor <- function(column) {
   if (is.character(column)) {
     # Convert "NA" strings to actual NA values
