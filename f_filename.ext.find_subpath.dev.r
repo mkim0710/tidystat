@@ -245,8 +245,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "tblID_gj3_jk.rds"
-env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base_local), print.intermediate = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base_local), print.intermediate = T)
+env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = T)
+# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = T)
 # Searching: D:/OneDrive/[][Rproject]                          	 at depth 0
 # Searching: D:/OneDrive/[][Rproject]/github_tidystat          	 at depth 1; Queue length: 1
 # Searching: D:/OneDrive/[][Rproject]/Microsoft R Open 4.0.2   	 at depth 1; Queue length: 2
@@ -260,8 +260,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.cu
 # [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/tblID_gj3_jk.rds"
 
 filename.ext = "metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
-env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
+env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
+# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
 # [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"   
 # [2] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
 # [3] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_10/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
@@ -269,8 +269,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.cu
 # [5] "D:/OneDrive/[][Rproject]/Rproject_NSC0219_01/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"  
 
 filename.ext = "tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
-env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base_local), print.intermediate = F, findMultiple = T)
+env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
+# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
 # [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"   
 # [2] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
 # [3] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_10/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"

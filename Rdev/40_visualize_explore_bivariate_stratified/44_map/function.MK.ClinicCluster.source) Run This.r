@@ -22,7 +22,7 @@ if(area.level == "SouthKorea") SIDO_CD4filter = c("11", "21", "22", "23", "24", 
 
 
 for (packagename in c("tidyverse", "openxlsx")) {
-    if(!require(packagename, character.only = T)) {install.packages(packagename); require(packagename, character.only = T)}
+    if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
 }
 dput(unlist(strsplit(Sys.getlocale(), ";"))) #----
 dput(l10n_info()) #----

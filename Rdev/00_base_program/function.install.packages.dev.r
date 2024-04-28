@@ -15,11 +15,11 @@ library(multtest)
 for (packagename in c("dplyr", "readr")) {
     if(packagename %in% installed.packages()[,"Package"]) {   
         # If that package is already installed, then just load it. (You don't want to re-install if it is already installed.)
-        require(packagename, character.only = T)
+        require(packagename,character.only=TRUE)
     } else {  
         # If that package is not already installed, then install first.
         install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
-        require(packagename, character.only = T)
+        require(packagename,character.only=TRUE)
     }
 }
 
@@ -34,11 +34,11 @@ for (packagename in c("dplyr", "readr")) {
 #     if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
 # }
 for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-    if(!require(packagename, character.only = T)) {install.packages(packagename); require(packagename, character.only = T)}
+    if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
 }
 # 
 # for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-#     if(!require(packagename, character.only = T)) install.packages(packagename)
+#     if(!require(packagename,character.only=TRUE)) install.packages(packagename)
 # }
 # 
 # # https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them
@@ -57,8 +57,8 @@ c("moonBook") %>%
 
 
 packagename = "devtools"
-if(!require(packagename, character.only = T)) {install.packages(packagename); require(packagename, character.only = T)}
+if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
 packagename = "moonBook"
-if(!require(packagename, character.only = T)) {devtools::install_github("cardiomoon/moonBook"); require(packagename, character.only = T)}
+if(!require(packagename,character.only=TRUE)) {devtools::install_github("cardiomoon/moonBook"); require(packagename,character.only=TRUE)}
 
 

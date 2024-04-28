@@ -25,15 +25,16 @@ if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.int
 
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
-    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
-}
+    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+    env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
+} 
 #@ for (env.custom.dependancy in c("")) { -----
 for (env.custom.dependancy in c("f_df.tribble_construct")) {
     if(!env.custom.dependancy %in% names(env.custom)) {
         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
-        objectname = env.custom.dependancy
-        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
+        sourcename = env.custom.dependancy
+        source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
     }
 }
 
@@ -55,7 +56,7 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
         }
     }
     filenames %>% {cat(deparse(., width.cutoff=120), "\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-    cat("----\n"); #----
+    cat(strrep("-",80),"\n",sep=""); #----
     out = filenames %>% {file.info(file.path(path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
@@ -64,19 +65,19 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
                GB = format(size/2^30, digits = 3, big.mark=","))
     out = out %>% mutate(filename = sub(path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
     env.custom$f_df.tribble_construct(out)
-    cat("----\n"); #----
+    cat(strrep("-",80),"\n",sep=""); #----
 } 
 if(!objectname %in% names(env.custom)) {
     packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
-    # cat("> env.custom$", objectname, "()\n", sep=""); get(objectname, envir = env.custom)() # Run the loaded function by default
+    # cat("> env.custom$",objectname,"()\n",sep=""); get(objectname, envir=env.custom)() # Run the loaded function by default
 }
 
 # > for (env.custom.dependancy in c("f_df.tribble_construct")) {
 # +     if(!env.custom.dependancy %in% names(env.custom)) {
 # +         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
 # +         objectname = env.custom.dependancy
-# +         source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
+# +         source(file.path(env.custom$path$source_base,"",paste0(objectname,".source.r")))
 # +     }
 # + }
 # sys.nframe() = 0

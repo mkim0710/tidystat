@@ -487,8 +487,8 @@ txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = '", "') %
 
 
 
-ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) %>% names %>% paste(collapse = ", ") %>% cat #----
-# > ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) %>% names %>% paste(collapse = ", ") %>% cat #----
+ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) %>% names %>% paste(collapse=", ") %>% cat #----
+# > ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) %>% names %>% paste(collapse=", ") %>% cat #----
 # btw_n365_enddate.ICD250_6480_6488, btw_n90_enddate.ICD250_6480_6488, btw_141_enddate.ICD6480_ICD6488, btw_n90_140.NDC_anyDM, btw_n90_140.ICD6480_ICD6488, criterion1, criterion2
 
 ENROLID.2353768.join_criteria.na_rm.2plus %>% 

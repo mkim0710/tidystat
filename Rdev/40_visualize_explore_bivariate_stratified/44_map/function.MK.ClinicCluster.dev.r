@@ -264,7 +264,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
         index4MergeInto = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance[Code4MergeFrom[1], ] %>% which.max
         if(length(index4MergeInto) == 0) {
             # warning("length(index4MergeInto) == 0)")
-            i.warningmessage = paste0("[", type_of_iteration, "]", "Remaining Code4MergeFrom, but cannot find where to merge: ", Code4MergeFrom %>% paste(collapse = ", "))
+            i.warningmessage = paste0("[", type_of_iteration, "]", "Remaining Code4MergeFrom, but cannot find where to merge: ", Code4MergeFrom %>% paste(collapse=", "))
             # warning(i.warningmessage)
             cat(i.warningmessage)
             # Results.iteration.list[[length(Results.iteration.list)]]$Cluster.tbl$warning = i.warningmessage
@@ -329,7 +329,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
         index4MergeInto = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance[Code4MergeFrom[1], ] %>% which.max
         if(length(index4MergeInto) == 0) {
             # warning("length(index4MergeInto) == 0)")
-            i.warningmessage = paste0("[", type_of_iteration, "]", "Remaining Code4MergeFrom, but cannot find where to merge: ", Code4MergeFrom %>% paste(collapse = ", "))
+            i.warningmessage = paste0("[", type_of_iteration, "]", "Remaining Code4MergeFrom, but cannot find where to merge: ", Code4MergeFrom %>% paste(collapse=", "))
             # warning(i.warningmessage)
             cat(i.warningmessage)
             # Results.iteration.list[[length(Results.iteration.list)]]$Cluster.tbl$warning = i.warningmessage

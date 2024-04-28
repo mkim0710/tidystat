@@ -2,6 +2,22 @@
 # https://posit.cloud/spaces/100015/content/6373416  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # https://posit.cloud/spaces/404673/content/6373521  # Shared Workspace@v - PositCloud@v
 
+
+# rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, filename))
+if (.Platform$OS.type == "unix") {
+    path4APPDATA_RStudio = "~/.config/rstudio"
+} else if (.Platform$OS.type == "windows") {
+    path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")
+} 
+
+rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
+
+if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates"))
+if(!file.exists(file.path(path4APPDATA_RStudio, "templates", "default.R"))) file.create(file.path(path4APPDATA_RStudio, "templates", "default.R"))
+rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", "default.R"))
+
+
+
 # Global Options > General > Save workspace to .RData on exit: Never
 # Global Options > Code > Insert spaces for tab: 4
 # Global Options > Code > Auto-indent code after paste: uncheck
@@ -21,12 +37,12 @@ for (packagename in c("tidyverse", "datapasta")) {
   if(packagename %in% installed.packages()[,"Package"]) {   
     warning(paste0(packagename, ' %in% installed.packages()[,"Package"])'))
     # If that package is already installed, then just load it. (You don't want to re-install if it is already installed.)
-    require(packagename, character.only = T)
+    require(packagename,character.only=TRUE)
   } else {  
     # If that package is not already installed, then install first.
     install.packages(packagename)
     # install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
-    require(packagename, character.only = T)
+    require(packagename,character.only=TRUE)
   }
 }
 
@@ -40,12 +56,12 @@ for (packagename in c("icd")) {
     if(packagename %in% installed.packages()[,"Package"]) {   
         # If that package is already installed, then just load it. (You don't want to re-install if it is already installed.)
         warning(paste0(packagename, ' %in% installed.packages()[,"Package"])'))
-        require(packagename, character.only = T)
+        require(packagename,character.only=TRUE)
     } else {  
         # If that package is not already installed, then install first.
         install.packages(packagename)
         # install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
-        require(packagename, character.only = T)
+        require(packagename,character.only=TRUE)
     }
 }
 # https://packagemanager.rstudio.com/client/#/repos/1/packages/icd

@@ -53,8 +53,8 @@ library(tidyverse)
 #@ source(file.path(env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$path, env.custom$source[[paste0("source.", env.custom$source$tmp_objectname)]]$filename)) ----
 source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
-objectname = "f_path.df_dirs_recursive.df_files"
-source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
+sourcename = "f_path.df_dirs_recursive.df_files"
+source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
 
 
 

@@ -493,14 +493,14 @@ Sys.info() %>% as.list %>% str
 source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
-objectname = "get_system_info"
-source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
+sourcename = "get_system_info"
+source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
 
 
 env.custom$info$info_system_info = env.custom$info$get_system_info()
 # str(env.custom$info$info_system_info)
-text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
-text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
-# text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
+CodeText = "env.custom$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+CodeText = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+# CodeText = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
 
 

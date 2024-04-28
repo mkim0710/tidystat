@@ -20,14 +20,15 @@ if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envi
 # env.custom = env.custom %>% as.environment
 # if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
+
+
 if(!"info" %in% names(env.custom)) env.custom$info = list()
 # if(!"source" %in% names(env.custom)) env.custom$source = list()
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
-    # objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
-    # objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
     objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
     objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+    env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
 } 
 # objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
 # objectname = "path4read"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
@@ -90,10 +91,10 @@ for (i in 1:(max_hierarchy)) {
 # source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 # # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
-# #@ source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r"))); ----
+# #@ source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r"))); ----
 
 # objectname = "get_system_info";
 
-# #  source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r"))); 
+# #  source(file.path(env.custom$path$source_base,"",paste0(objectname,".source.r"))); 
 
 

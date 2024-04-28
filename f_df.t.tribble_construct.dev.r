@@ -664,8 +664,8 @@ ls.str(env.custom$env.internal) #-----
 source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
-objectname = "f_df.t.tribble_construct"
-source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
+sourcename = "f_df.t.tribble_construct"
+source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
 
 
 
