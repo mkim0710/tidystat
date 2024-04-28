@@ -394,7 +394,7 @@ df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$Study
 
 # \$ df_NewDMv3.CensorEND # @@ START) Analysis ------
 
-# \$ objectname = "analyticDF_time2event" ====
+# \$ DataSetName = "analyticDF_time2event" ====
 # [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
@@ -476,7 +476,7 @@ options(width=120)
 
 # @@ START) Analysis ------
 
-# \$ objectname = "analyticDF_time2event" ====
+# \$ DataSetName = "analyticDF_time2event" ====
 # [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
