@@ -4,17 +4,13 @@
 
 
 # rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, filename))
-if (.Platform$OS.type == "unix") {
-    path4APPDATA_RStudio = "~/.config/rstudio"
-} else if (.Platform$OS.type == "windows") {
-    path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")
-} 
+if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
 
 rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
 
 if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates"))
-filename = "default.R"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename))) file.create(file.path(path4APPDATA_RStudio, "templates", filename)); rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", filename))
-filename = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename))) file.create(file.path(path4APPDATA_RStudio, "templates", filename)); rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", filename))
+filename.ext = "default.R"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", filename.ext)); rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", filename.ext))
+filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", filename.ext)); rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", filename.ext))
 
 
 
