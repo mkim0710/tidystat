@@ -83,7 +83,7 @@ env.custom$info$get_software_versions <- function(library_names = c("tidyverse",
 
 # env.custom$info$info_system_info = env.custom$info$get_system_info()
 # # str(env.custom$info$info_system_info)
-# text4parse = "env.custom$info$info_system_info$machine_nodename"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
-# text4parse = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
-# # text4parse = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(text4parse, ' = "', eval(parse(text = text4parse)), '"', "\n", sep="")
+# CodeText = "env.custom$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+# CodeText = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+# # CodeText = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
 

@@ -26,15 +26,16 @@ if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.int
 
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
-    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
-}
+    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+    env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
+} 
 #@ for (env.custom.dependancy in c("")) { -----
 for (env.custom.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
     if(!env.custom.dependancy %in% names(env.custom)) {
         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
-        objectname = env.custom.dependancy
-        source(file.path(file.path(env.custom$path$source_base_local,""), paste0(objectname,".source.r")))
+        sourcename = env.custom.dependancy
+        source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
     }
 }
 
@@ -42,8 +43,8 @@ for (env.custom.dependancy in c("f_filename.ext.find_subpath", "f_path.size_file
 
 #@ objectname = "f_objectname.read.checkEntity" =========
 objectname = "f_objectname.read.checkEntity"
-object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID", "PERSON_ID", "RN_INDI"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
-    if (getwd() != path4read) {warningText = paste0('getwd() != path4read == "', path4read, '"');  warning(warningText); cat("Warning: ", warningText, "\n")} else {cat("getwd() == path4read ==", path4read, "\n")} #----
+object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
+    if (getwd() != path4read) {warningText = paste0('getwd() != path4read == "', path4read, '"');warning(warningText);cat("Warning: ",warningText,"\n")} else {cat("getwd() == path4read ==", path4read, "\n")} #----
     cat('objectname = "', objectname, '"\n', sep="");
     filename.ext = paste0(objectname,".", ext)
     if(file.exists(file.path(path4read, filename.ext))) {
@@ -75,34 +76,43 @@ object = function(objectname, ext = "rds", path4read = ".", varname4ID = c("ID",
     
     system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir=.GlobalEnv))
 
-    # cat("----\n")
-    CodeText = "dim(get(objectname))"; cat(CodeText); cat(" = "); dput(eval(parse(text = CodeText))); 
-    for (varname in varname4ID) {
-      if(varname %in% names(get(objectname))) {
-          CodeText = paste0("n_distinct(get(objectname)$", varname, ")"); cat(CodeText); cat(" = "); dput(eval(parse(text = CodeText))); 
-      } else {
-          {warningText = paste0('varname for ID not identified.');  warning(warningText); cat("Warning: ", warningText, "\n")}
-      }
-    }
-    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-    cat("----\n> ", "names(get(objectname))", "\n", sep=""); get(objectname) %>% names %>% paste(collapse = ", ") %>% {cat(., "\n\n", sep="")}; # tidydplyr::select: paste(collapse = ", ") %>% cat ----
-    cat("----\n> "); CodeText = "str(get(objectname), max.level = 2, give.attr = F)"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
-    cat("----\n> "); CodeText = "as_tibble(get(objectname))"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
-    cat("----\n> "); CodeText = "tail(rownames_to_column(get(objectname)))"; cat(CodeText); cat("\n"); eval(parse(text = CodeText));
-    # cat("----\n> ", "summary(get(objectname) %>% dplyr::select_if(is.numeric))", "\n", sep=""); get(objectname) %>% dplyr::select_if(is.numeric) %>% summary #-----
-    # cat("----\n> ", "summary(get(objectname) %>% dplyr::select_if(is.logical))", "\n", sep=""); get(objectname) %>% dplyr::select_if(is.logical) %>% summary #-----
-    # cat("----\n> ", "summary(get(objectname) %>% dplyr::select_if(is.factor))", "\n", sep=""); get(objectname) %>% dplyr::select_if(is.logical) %>% summary #-----
+    # cat(strrep("-",80),"\n",sep="")
+    cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="") 
+    for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_distinct(",objectname,"$",varname,") = ",n_distinct(get(objectname)[[varname]]),"\n", sep="")}
+    if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {warningText = paste0('varname for ID not identified.');warning(warningText);cat("Warning: ",warningText,"\n")}
+
+    cat(strrep("#",80),"\n",sep=""); 
+    cat("> names(",objectname,") %>% deparse(width.cutoff=120) %>% cat","\n", sep=""); get(objectname) %>% names %>% deparse(width.cutoff=120) %>% cat("\n\n",sep="") # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+    cat(strrep("-",80),"\n",sep=""); 
+    cat("> names(",objectname,') %>% paste(collapse=", ") %>% cat',"\n", sep=""); get(objectname) %>% names %>% paste(collapse=", ") %>% cat("\n\n",sep=""); # tidydplyr::select: paste(collapse=", ") %>% cat ----
+    
+    cat(strrep("#",80),"\n",sep=""); 
+    cat("> ",objectname," %>% str(max.level=2, give.attr=FALSE)","\n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
+    
+    cat(strrep("#",80),"\n",sep=""); 
+    cat("> ",objectname," %>% as_tibble %>% print(n=99)","\n", sep=""); print(as_tibble(get(objectname)),n=99)
+    cat(strrep("~",80),"\n",sep=""); 
+    cat("> ",objectname," %>% rownames_to_column %>% tail","\n", sep=""); print(tail(rownames_to_column(get(objectname))))
+    # t0=Sys.time()
+    # cat(strrep("-",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.numeric))"," %>% summary","\n", sep=""); get(objectname) %>% dplyr::select_if(is.numeric) %>% summary #-----
+    # Sys.time()-t0
+    # cat(strrep("-",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.logical))"," %>% summary","\n", sep=""); get(objectname) %>% dplyr::select_if(is.logical) %>% summary #-----
+    # Sys.time()-t0
+    # cat(strrep("-",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," %>% summary","\n", sep=""); get(objectname) %>% dplyr::select_if(is.factor) %>% summary #-----
+    # Sys.time()-t0
+    # cat(strrep("-",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," %>% summary","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) %>% summary #-----
+    # Sys.time()-t0
 }
 if(!objectname %in% names(env.custom)) {
     packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
     env.custom[[objectname]] = object
-    # cat("> env.custom$", objectname, "()\n", sep=""); get(objectname, envir = env.custom)() # Run the loaded function by default
+    # cat("> env.custom$",objectname,"()\n",sep=""); get(objectname, envir=env.custom)() # Run the loaded function by default
 }
 
 
 # objectname = "fhs.index100le10"
 # env.custom$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".")
-# env.custom$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".", varname4ID = "randid")
+# env.custom$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".", vec_varname4ID = "randid")
 # # > objectname = "fhs.index100le10"
 # # > f_objectname.read.checkEntity(objectname = objectname)
 # # Warning:  getwd() != path4read == "." 
@@ -240,7 +250,7 @@ if(!objectname %in% names(env.custom)) {
 # #   varname for ID not identified.
 # # 4: In f_objectname.read.checkEntity(objectname = objectname) :
 # #   varname for ID not identified.
-# # > f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
+# # > f_objectname.read.checkEntity(objectname = objectname, vec_varname4ID = "randid")
 # # Warning:  getwd() != path4read == "." 
 # # objectname = "fhs.index100le10"
 # # Found subpath: path4read = "./data"
@@ -366,7 +376,7 @@ if(!objectname %in% names(env.custom)) {
 # # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # # Warning message:
-# # In f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid") :
+# # In f_objectname.read.checkEntity(objectname = objectname, vec_varname4ID = "randid") :
 # #   getwd() != path4read == "."
 
 
