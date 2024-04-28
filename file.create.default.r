@@ -23,6 +23,6 @@ if (.Platform$OS.type == "unix") {
 } 
 
 if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates"))
-if(!file.exists(file.path(path4APPDATA_RStudio, "templates", "default.R"))) file.create(file.path(path4APPDATA_RStudio, "templates", "default.R"))
-rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", "default.R"))
+filename = "default.R"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename))) file.create(file.path(path4APPDATA_RStudio, "templates", filename)); rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", filename))
+filename = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename))) file.create(file.path(path4APPDATA_RStudio, "templates", filename)); rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", filename))
 
