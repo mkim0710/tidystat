@@ -157,9 +157,7 @@ sourcename = "f_df.t.tribble_construct"; suppressPackageStartupMessages(source( 
 ```
 
 <font size="3">\% env.custom</font>\
-<font size="3">\% env.custom\$info</font>\
 
-#### \% env.custom\$info\$info_system_info
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
@@ -175,7 +173,7 @@ env.custom$info$info_software_versions = env.custom$info$get_software_versions(l
 ```
 
 
-#### \% env.custom\$info\$DocumentTitle1
+###### env.custom\$info\$DocumentTitle1 ====
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
 env.custom$info$DocumentTitle0 = paste0("00env.custom.minimum", "-", basename(getwd()))
 env.custom$info$DocumentTitle1 = paste0(env.custom$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
@@ -187,10 +185,10 @@ cat(env.custom$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ```
 
 
-# @@ START) Data ------
+# @@ START) Data ------------
 
 
-# \$ objectname = "example_data" ====
+## \$ objectname = "example_data" ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
@@ -238,47 +236,6 @@ example_data %>% f_tblID.minWave_maxWave("INS0")
 
 
 
-# \$ objectname = "analyticDF_time2event" ====
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
-# suppressPackageStartupMessages(library(survival))
-# suppressPackageStartupMessages(library(survminer))
-?survival::lung
-analyticDF_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% dplyr::select(-status, -sex) %>% {cat("> ",deparse(substitute(.))," %>% as_tibble %>% print(n=99)","\n", sep=""); print(as_tibble(.),n=99)}
-# analyticDF_time2event %>% dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-# analyticDF_time2event %>% dplyr::select(sex, Group) %>% table
-# # > analyticDF_time2event %>% dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-# # 'data.frame':	228 obs. of  2 variables:
-# #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
-# #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# # > analyticDF_time2event %>% dplyr::select(sex, Group) %>% table
-# #    Group
-# # sex Female Male
-# #   1      0  138
-# #   2     90    0
-# analyticDF_time2event %>% dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # > analyticDF_time2event %>% dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # .$StudyPopulation: FALSE
-# #       time     event            Group   StudyPopulation
-# #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
-# #  1st Qu.:11   TRUE:9         Male  :8   FALSE:9        
-# #  Median :12                                            
-# #  Mean   :13                                            
-# #  3rd Qu.:13                                            
-# #  Max.   :26                                            
-# # ------------------------------------------------------------------------------------------ 
-# # .$StudyPopulation: TRUE
-# #       time          event            Group     StudyPopulation
-# #  Min.   :  30.0   Mode :logical   Female: 89   Mode:logical   
-# #  1st Qu.: 176.5   FALSE:63        Male  :130   TRUE:219       
-# #  Median : 269.0   TRUE :156                                   
-# #  Mean   : 317.2                                               
-# #  3rd Qu.: 419.5                                               
-# #  Max.   :1022.0   
-
-```
-
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -328,9 +285,9 @@ options(width=120)
 ```
 
 
-# @@ END -----
+# @@ END ------------
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
-# @@ END -----
+# @@ END ------------
 
 ```
 
@@ -354,10 +311,7 @@ dput(names(knitr::knit_engines$get()))
 ```
 
 
-# \$ objectname = "AnalyticDataset200621" ====
-###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
-```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
-# 
+```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname),paste0(objectname,".rds")))
