@@ -130,6 +130,7 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ".*\\-old\\..*", ".*\\-log.*\\..*", ".*\\.rtf")
 ```
 
+
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # for (i_regex in unique(gitignore_escaped_select)) {
