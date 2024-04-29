@@ -2,7 +2,7 @@
 
 
 objectname = "KoGES201806vars_waves"
-get(objectname) %>% names %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+get(objectname) %>% names %>% deparse(width.cutoff=120-15) %>% cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) %>% cat(sep="\n"); # width.cutoff=500 is the max ----
 get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") %>% cat ----
 
 
@@ -12,7 +12,7 @@ get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120),"\n\n",sep="")} 
 
 objectname = "KoGES201806vars_waves"
 cat(strrep("-",80),"\n",sep=""); get(objectname) %>% names %>% deparse %>% cat # dput() cat(deparse()) ----
-cat(strrep("-",80),"\n",sep=""); get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120),sep="\n")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+cat(strrep("-",80),"\n",sep=""); get(objectname) %>% names %>% deparse(width.cutoff=120-15) %>% cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) %>% cat(sep="\n"); # width.cutoff=500 is the max ----
 cat(strrep("-",80),"\n",sep=""); get(objectname) %>% names %>% paste(collapse=", ") %>% cat;cat("\n"); # tidyselect: paste(collapse=", ") %>% cat ----
 # > data %>% names %>% deparse %>% cat; cat("\n") #----
 # c("Time2Event", "Event", "Exposure")
