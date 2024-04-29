@@ -116,7 +116,7 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
     if (length(list_out) == 0) {
         cat("----------- File not found while searching following subpaths:\n")
         vec_subpath <- unlist(list_subpath, use.names = FALSE)
-        vec_subpath %>% {cat(deparse(., width.cutoff=500), "\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+        vec_subpath %>% deparse(width.cutoff=500) %>% cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) %>% cat(sep="\n"); # width.cutoff=500 is the max ----
         return(NULL)
     }
         

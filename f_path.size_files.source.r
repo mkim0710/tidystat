@@ -55,7 +55,7 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
             return()
         }
     }
-    filenames %>% {cat(deparse(., width.cutoff=120), "\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
+    filenames %>% deparse(width.cutoff=120-15) %>% cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) %>% cat(sep="\n"); # width.cutoff=500 is the max ----
     cat(strrep("-",80),"\n",sep=""); #----
     out = filenames %>% {file.info(file.path(path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
