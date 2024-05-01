@@ -1,5 +1,5 @@
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.update.Rprofile.dev.r
-# https://github.com/mkim0710/tidystat/edit/master/Rdev/00_base_program/function.Sys.setenv.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/function.update.Rprofile.dev.r
+# https://github.com/mkim0710/tidystat/edit/master/function.Sys.setenv.dev.r
 # ################################################################################
 # --------------------------------------------------------------------------------
 # ================================================================================
