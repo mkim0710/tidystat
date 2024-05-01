@@ -109,4 +109,15 @@ Sys.setlocale("LC_MESSAGES", "en_US.utf8")
 Sys.setlocale("LC_MESSAGES", "C")
 
 
+
+# https://stackoverflow.com/questions/39340185/how-to-set-the-default-language-of-date-in-r
+Sys.setlocale("LC_TIME", "C")
+
+Sys.setlocale("LC_TIME", "English") # Windows
+Sys.setlocale("LC_TIME", "en") # Solaris: details are OS-dependent
+Sys.setlocale("LC_TIME", "en_US") # Many Unix-alikes
+Sys.setlocale("LC_TIME", "en_US.UTF-8") # Linux, macOS, other Unix-alikes
+Sys.setlocale("LC_TIME", "en_US.utf8") # some Linux versions
+
+
 #@ end -----
