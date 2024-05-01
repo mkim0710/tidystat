@@ -43,7 +43,7 @@ for (env.custom.dependancy in c("f_filename.ext.find_subpath", "f_path.size_file
 
 #@ objectname = "f_objectname.read.checkEntity" =========
 objectname = "f_objectname.read.checkEntity"
-object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
+object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('path4read == "',path4read,'"')
     if (getwd() != path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
@@ -105,7 +105,7 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     cat("> ",objectname," %>% str(max.level=2, give.attr=FALSE)","\n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
     
     cat(strrep("#",80),"\n",sep=""); 
-    cat("> ",objectname," %>% as_tibble %>% print(n=99)","\n", sep=""); print(as_tibble(get(objectname)),n=99)
+    cat("> ",objectname," %>% as_tibble %>% print(n=9)","\n", sep=""); print(as_tibble(get(objectname)),n=9)
     cat(strrep("~",80),"\n",sep=""); 
     cat("> ",objectname," %>% rownames_to_column %>% tail %>% as_tibble","\n", sep=""); print(as_tibble(tail(rownames_to_column(get(objectname)))))
     # t0=Sys.time()
