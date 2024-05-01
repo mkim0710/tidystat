@@ -1,3 +1,12 @@
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.update.Rprofile.dev.r
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/00_base_program/function.Sys.setenv.dev.r
+# ################################################################################
+# --------------------------------------------------------------------------------
+# ================================================================================
+# --------------------------------------------------------------------------------
+# ################################################################################
+
+
 # Define the path to the .Rprofile file in the user's home directory
 r_profile_path <- file.path(Sys.getenv("HOME"), ".Rprofile")
 
