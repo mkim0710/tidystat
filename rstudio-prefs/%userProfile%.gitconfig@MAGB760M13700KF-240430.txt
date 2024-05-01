@@ -1,0 +1,11 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = mkim0710
+	email = mkim0710@gmail.com
+[core]
+	autocrlf = input
+	excludesFile = C:/Users/mkim0/.gitignore
