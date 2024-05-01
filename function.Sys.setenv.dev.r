@@ -1,5 +1,5 @@
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.update.Rprofile.dev.r
-# https://github.com/mkim0710/tidystat/edit/master/Rdev/00_base_program/function.Sys.setenv.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/function.update.Rprofile.dev.r
+# https://github.com/mkim0710/tidystat/edit/master/function.Sys.setenv.dev.r
 # ################################################################################
 # --------------------------------------------------------------------------------
 # ================================================================================
@@ -38,7 +38,22 @@ sessionInfo()
 # [50] assertthat_0.2.1 httr_1.4.0       rstudioapi_0.10  R6_2.4.0         nlme_3.1-137     compiler_3.5.3 
 
 
+# ================================================================================
+# https://community.rstudio.com/t/rstudio-sys-setenv-does-not-persist/2105/3
+R.home()
+# > R.home()
+# [1] "C:/PROGRA~1/MICROS~4/ROPEN~1/R-35~1.3"
+# C:\Program Files\Microsoft\R Open\R-3.5.3
+# C:\Program Files\Microsoft\R Open\R-3.5.3\etc\Rconsole
+# C:\Program Files\Microsoft\R Open\R-3.5.3\etc\Renviron.site
+# C:\Program Files\Microsoft\R Open\R-3.5.3\etc\Rprofile.site
 
+
+# ################################################################################
+# --------------------------------------------------------------------------------
+# ================================================================================
+# --------------------------------------------------------------------------------
+# ################################################################################
 # https://cran.r-project.org/web/packages/startup/vignettes/startup-intro.html
 
 Sys.getenv("R_ENVIRON_USER")
@@ -55,88 +70,6 @@ paste0(Sys.getenv("R_PROFILE_USER"), ".d")
 # > paste0(Sys.getenv("R_PROFILE_USER"), ".d")
 # [1] ".d"
 
-
-# https://stackoverflow.com/questions/12760491/the-r-console-is-in-my-native-language-how-can-i-set-r-to-english
-    
-Sys.setenv(LANG = "en")
-Sys.setenv(LANGUAGE="en")
-
-
-
-# https://community.rstudio.com/t/rstudio-sys-setenv-does-not-persist/2105/3
-R.home()
-# > R.home()
-# [1] "C:/PROGRA~1/MICROS~4/ROPEN~1/R-35~1.3"
-# C:\Program Files\Microsoft\R Open\R-3.5.3
-# C:\Program Files\Microsoft\R Open\R-3.5.3\etc\Rconsole
-# C:\Program Files\Microsoft\R Open\R-3.5.3\etc\Renviron.site
-# C:\Program Files\Microsoft\R Open\R-3.5.3\etc\Rprofile.site
-
-
-library("lubridate")
-#> 
-#> Attaching package: 'lubridate'
-#> The following object is masked from 'package:base':
-#> 
-#>     date
-lubridate::tz(lubridate::ymd("2016-03-26"))
-#> Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'default/America/
-#> New_York'
-#> [1] "UTC"
-lubridate::tz(lubridate::ymd("2016-03-26"))
-#> [1] "UTC"
-
-Sys.setenv(TZ = "America/New_York")
-
-
-
-
-
-setme <- 
-"Sys.setenv(TZ='America/New_York') #some default not get any errors
-invisible(loadNamespace('rgeolocate'))
-invisible(loadNamespace('httr'))
-mytz <- rgeolocate::ip_api(httr::content(httr::GET('https://api.ipify.org?format=json'))[1])[['timezone']]
-Sys.setenv(TZ=mytz)"
-
-cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep="\n")
-
-
-
-
-
-
-
-
-
-# https://stackoverflow.com/questions/13575180/how-to-change-language-settings-in-r
-Sys.getenv()
-
-
-Sys.setlocale("LC_MESSAGES", "en_US.utf8")
-Sys.setlocale("LC_MESSAGES", "C")
-
-
-
-# https://stackoverflow.com/questions/39340185/how-to-set-the-default-language-of-date-in-r
-Sys.setlocale("LC_TIME", "C")
-
-Sys.setlocale("LC_TIME", "English") # Windows
-Sys.setlocale("LC_TIME", "en") # Solaris: details are OS-dependent
-Sys.setlocale("LC_TIME", "en_US") # Many Unix-alikes
-Sys.setlocale("LC_TIME", "en_US.UTF-8") # Linux, macOS, other Unix-alikes
-Sys.setlocale("LC_TIME", "en_US.utf8") # some Linux versions
-
-
-#@ end -----
-
-
-
-
-# ################################################################################
-# --------------------------------------------------------------------------------
-# ================================================================================
-# --------------------------------------------------------------------------------
 # ################################################################################
 # https://community.rstudio.com/t/how-to-change-rstudio-display-language-into-english/46615
 Sys.getlocale()
@@ -144,11 +77,20 @@ Sys.getenv()
 Sys.getenv("LANGUAGE")
 # > Sys.getenv("LANGUAGE")
 # [1] ""
+# ================================================================================
+# https://stackoverflow.com/questions/12760491/the-r-console-is-in-my-native-language-how-can-i-set-r-to-english
+    
+Sys.setenv(LANG = "en")
+Sys.setenv(LANGUAGE="en")
 
 # https://stackoverflow.com/questions/12642651/in-r-how-to-get-error-messages-in-english
 Sys.setenv(LANGUAGE='en')
 Sys.setenv(lang = "en_US")
+
 Sys.setlocale("LC_ALL", "en_US.utf8")
+
+Sys.setlocale("LC_MESSAGES", "en_US.utf8")
+Sys.setlocale("LC_MESSAGES", "C")
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.iconv.dev.r
 Sys.setlocale("LC_ALL", "korean") #----
@@ -179,6 +121,57 @@ Sys.setlocale("LC_ALL", "korean") #----
 # Caution) This is only for R, not Rstudio~!!
 # "C:\Program Files\Microsoft\R Open\R-4.0.2\bin\x64\rgui.exe" LANGUAGE=EN
 
+
+
+
+
+
+
+
+# ################################################################################
+# --------------------------------------------------------------------------------
+# ================================================================================
+# --------------------------------------------------------------------------------
+# ################################################################################
+# https://stackoverflow.com/questions/39340185/how-to-set-the-default-language-of-date-in-r
+Sys.setlocale("LC_TIME", "C")
+
+Sys.setlocale("LC_TIME", "English") # Windows
+Sys.setlocale("LC_TIME", "en") # Solaris: details are OS-dependent
+Sys.setlocale("LC_TIME", "en_US") # Many Unix-alikes
+Sys.setlocale("LC_TIME", "en_US.UTF-8") # Linux, macOS, other Unix-alikes
+Sys.setlocale("LC_TIME", "en_US.utf8") # some Linux versions
+
+
+
+# ================================================================================
+library("lubridate")
+#> 
+#> Attaching package: 'lubridate'
+#> The following object is masked from 'package:base':
+#> 
+#>     date
+lubridate::tz(lubridate::ymd("2016-03-26"))
+#> Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'default/America/
+#> New_York'
+#> [1] "UTC"
+lubridate::tz(lubridate::ymd("2016-03-26"))
+#> [1] "UTC"
+
+Sys.setenv(TZ = "America/New_York")
+
+
+
+
+
+setme <- 
+"Sys.setenv(TZ='America/New_York') #some default not get any errors
+invisible(loadNamespace('rgeolocate'))
+invisible(loadNamespace('httr'))
+mytz <- rgeolocate::ip_api(httr::content(httr::GET('https://api.ipify.org?format=json'))[1])[['timezone']]
+Sys.setenv(TZ=mytz)"
+
+cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep="\n")
 
 
 
