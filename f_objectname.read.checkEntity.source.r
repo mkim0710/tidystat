@@ -57,13 +57,13 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
         path.filename.ext = env.custom$f_filename.ext.find_subpath(filename.ext, input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
         if (is.null(path.filename.ext)) {
             path.filename.ext = env.custom$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
-            if (is.null(path.filename.ext)) error(paste0(filename.ext, " does not exist!")) ;
+            if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) ;
         }
         path4read = dirname(path.filename.ext)
         cat('Found subpath: ', 'path4read = "', path4read, '"\n', sep="");
         filename.ext = basename(path.filename.ext)
     } else {
-        error(paste0(filename.ext, " does not exist!")) ;
+        warning(paste0(filename.ext, " does not exist!")) ;
     }
     cat('filename.ext = "', filename.ext, '"\n', sep="");
 
@@ -105,9 +105,9 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     cat("> ",objectname," %>% str(max.level=2, give.attr=FALSE)","\n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
     
     cat(strrep("#",80),"\n",sep=""); 
-    cat("> ",objectname," %>% as_tibble %>% print(n=9)","\n", sep=""); print(as_tibble(get(objectname)),n=9)
+    cat("> ",objectname," %>% as_tibble %>% print(n=9)","\n", sep=""); print( as_tibble(get(objectname)), n=9);
     cat(strrep("~",80),"\n",sep=""); 
-    cat("> ",objectname," %>% rownames_to_column %>% tail %>% as_tibble","\n", sep=""); print(as_tibble(tail(rownames_to_column(get(objectname)))))
+    cat("> ",objectname," %>% rownames_to_column %>% tail %>% as_tibble","\n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
     # t0=Sys.time()
     # cat(strrep("-",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.numeric))"," %>% summary","\n", sep=""); get(objectname) %>% dplyr::select_if(is.numeric) %>% summary #-----
     # Sys.time()-t0
