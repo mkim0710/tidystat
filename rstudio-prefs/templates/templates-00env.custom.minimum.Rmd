@@ -149,11 +149,14 @@ env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep=
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")){if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("\n");
 if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+## env.custom\$path ====
 if(!"path" %in% names(env.custom)) env.custom$path = list()
 objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
+## env.custom\$env.internal ====
 sourcename = "env.custom$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+#### env.custom\$f_df.t.tribble_construct() ====
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 ```
 
@@ -163,6 +166,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(env.custom)) env.custom$info = list()
+#### env.custom\$info\$get_system_info() ====
 sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$info$info_system_info = env.custom$info$get_system_info()
 # str(env.custom$info$info_system_info)
@@ -206,8 +210,9 @@ path4write = env.custom$path$path4write
 ```
 
 
-#### f_path.df_dirs_recursive.df_files() ----
+#### env.custom\$f_path.df_dirs_recursive.df_files() ----
 ```{r dfDIRsRecursive-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+#### env.custom\$f_path.df_dirs_recursive.df_files() ----
 sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
 env.custom$path$print_tree_path = env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% 
@@ -224,7 +229,9 @@ env.custom$path$print_tree_path_files.data %>% cat
 
 #### env.custom\$f_path.size_files() ----
 ```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide"}
+#### env.custom\$f_path.size_files() ----
 sourcename = "f_path.size_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+#### env.custom\$f_objectname.read.checkEntity() ----
 sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$f_path.size_files(path4read = path4read)
 ```
@@ -261,7 +268,9 @@ suppressPackageStartupMessages(library(tidyverse))
 DataSetName = "analyticDF_time2event"
 assign(
     DataSetName, 
-    survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% dplyr::select(-status, -sex)
+    survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>%
+        # dplyr::select(-status, -sex)
+        dplyr::select(-status)
 )
 analyticDF_time2event %>% {cat("> ",deparse(substitute(.))," %>% as_tibble %>% print(n=9)","\n", sep=""); print(as_tibble(.),n=9)}
 analyticDF_time2event %>% {cat("> ",deparse(substitute(.))," %>% rownames_to_column %>% tail %>% as_tibble","\n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
@@ -298,31 +307,67 @@ analyticDF_time2event %>% {cat("> ",deparse(substitute(.))," %>% rownames_to_col
 
 ```
 
+## ------ < Key Variables Check > ------
+### \$ varname4ID  -----
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" %>% str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+sourcename = "data.NotNA_p_df"
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+
+varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] %>% str
+get(DataSetName) %>% dim
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] %>% n_distinct
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] %>% env.custom$data.NotNA_p_df(.)
+
+varname4CompositKey = c("age", "sex")
+vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] %>% apply(MARGIN = 1, paste0, collapse = "-")
+vecCompositeKey %>% n_distinct
+```
+
+
+
+#### \$ varname4outcome -----
+#### \$ varname4time -----
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+varname4outcome = "event"
+varname4time = c("time", "age")
+get(DataSetName)[c(varname4outcome, varname4time)] %>% 
+    mutate_if(is.factor, as.character) %>%  
+    mutate_if(is.character, na_if, "") %>% mutate_if(is.character, na_if, "N/A") %>% mutate_if(is.character, na_if, "NA") %>% 
+    mutate_if(is.character, as.factor) %>% 
+    summary
+
+```
+
+
+##### \$ varname4measures -----
+##### \$ varname4labs -----
+##### \$ varname4lifestyle -----
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
 
 ## ------ < Data Availability Check > ------
 ### \$ paste0(DataSetName,".NA",".rmNotNA0")  ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.nproptable.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.summarize_all_sum_is.na.dev.r
-# get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
-data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
-    colnames(out)[which(colnames(out) == ".")] = "IsNA"
-    out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
-    out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
-    out = out %>% add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
-    out = out %>% arrange(IsNA)
-    out
-}
+# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" %>% str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+sourcename = "data.NotNA_p_df"
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+
 assign( paste0(DataSetName,".NA"), get(DataSetName) %>% mutate_if(is.factor, as.character) %>%  mutate_if(is.character, na_if, "") %>% mutate_if(is.character, na_if, "N/A") %>% mutate_if(is.character, na_if, "NA") %>% as_tibble )
 assign( paste0(DataSetName,".NA",".rmNotNA0"), get(paste0(DataSetName,".NA")) %>% select_if(function(vec) !all(is.na(vec))) )
 cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"\n", sep="") 
 cat("dim(",DataSetName,".NA",".rmNotNA0",") = ",deparse(dim(get(paste0(DataSetName,".NA",".rmNotNA0")))),"\n", sep="") 
 cat(strrep("#",80),"\n",sep=""); 
-cat("> ",DataSetName,".NA"," %>% data.NotNA_p_df","\n", sep=""); data.NotNA_p_df(get(paste0(DataSetName,".NA")))
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_anyTRUE_allTRUE.dev.r
+cat("> ",DataSetName,".NA"," %>% env.custom$data.NotNA_p_df(.)","\n", sep=""); env.custom$data.NotNA_p_df(get(paste0(DataSetName,".NA")))
 ```
 
 
@@ -330,7 +375,7 @@ cat("> ",DataSetName,".NA"," %>% data.NotNA_p_df","\n", sep=""); data.NotNA_p_df
 ### \$ paste0(DataSetName,".NA",".rmNotNA0",".fct") ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI", "NIHID")
+vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,".NA",".rmNotNA0")))) cat("n_distinct(",paste0(DataSetName,".NA",".rmNotNA0"),"$",varname,") = ",n_distinct(get(paste0(DataSetName,".NA",".rmNotNA0"))[[varname]]),"\n", sep="")}
 
 

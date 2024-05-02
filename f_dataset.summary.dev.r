@@ -3,7 +3,7 @@
 
 
 cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="") 
-vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI", "NIHID")
+vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_distinct(",objectname,"$",varname,") = ",n_distinct(get(objectname)[[varname]]),"\n", sep="")}
 
 
