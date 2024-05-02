@@ -417,6 +417,10 @@ current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename
         file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", template.filename.ext)
         , file.path(env.custom$path$path0, "Rproject_Rmd", template.filename.ext)
     )) {if(current.path.filename.ext != destination.path.filename.ext) {
+        destination.path.filename = destination.path.filename.ext %>% str_remove("\\.([[:alnum:]]+)$")
+        destination.ext = destination.path.filename.ext %>% str_extract("\\.([[:alnum:]]+)$")
+        backup.filename = paste0(destination.path.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext)
+        file.copy(from=destination.path.filename.ext, to=backup.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.filename))
         if(file.copy(from=current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
         if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     }}
