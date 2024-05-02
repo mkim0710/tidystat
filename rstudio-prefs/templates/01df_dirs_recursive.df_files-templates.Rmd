@@ -238,6 +238,11 @@ env.custom$path$print_tree_path_files.data = env.custom$path$df_dirs_recursive.d
 ```
 
 
+##### \$ env.custom\$path\$df_dirs_recursive.df_files\$path
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+env.custom$path$df_dirs_recursive.df_files$path %>% unique %>% paste0(collapse = "\n") %>% cat
+```
+
 ##### \$ env.custom\$path\$print_tree_path_files.codes
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 env.custom$path$print_tree_path_files.codes %>% cat
