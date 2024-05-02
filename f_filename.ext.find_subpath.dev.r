@@ -5,14 +5,22 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/f_filename.ext.find_subpath.source.r")
 ####################################################################################################
 objectname = "f_filename.ext.find_subpath"
-cat("# ", 'objectname = "', objectname, '"', "\n",
-    "# ", objectname, ".dev.r", "\n",
-    "# ", objectname, ".source.r", "\n",
-    "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
-    '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
+source_base_github = "https://github.com/mkim0710/tidystat/raw/master"
+source_base_github_blob = "https://github.com/mkim0710/tidystat/blob/master"
+subpath = ""
+sourcename = objectname
+dev.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
+source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+cat("# ", 'sourcename = "', sourcename, '"', "\n",
+    "# ", sourcename, ".dev.r", "\n",
+    "# ", sourcename, ".source.r", "\n",
+    '#         ', source_base_github_blob,"/",dev.subpath.filename.ext, "\n",
+    '# source("', source_base_github,"/",source.subpath.filename.ext,'")', "\n",
     sep="")
-rstudioapi::navigateToFile(paste0(objectname,".source.r"))
-rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
+current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
+if(!file.exists(source.subpath.filename.ext)) file.create(source.subpath.filename.ext); file.edit(source.subpath.filename.ext); file.edit(current.path.filename.ext);
 
 
 

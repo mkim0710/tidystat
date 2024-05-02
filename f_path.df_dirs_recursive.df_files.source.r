@@ -1,20 +1,30 @@
-# # objectname = "f_path.df_dirs_recursive.df_files"
+# # sourcename = "f_path.df_dirs_recursive.df_files"
 # # f_path.df_dirs_recursive.df_files.dev.r
 # # f_path.df_dirs_recursive.df_files.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_path.df_dirs_recursive.df_files.dev.r
 # # source("https://github.com/mkim0710/tidystat/raw/master/f_path.df_dirs_recursive.df_files.source.r")
-# # gitignore_escaped_select.UC.regex from gitignore.Rmd
-# # f_vec.extract_non_alphanumeric_list.dev.r
-# ###################################################################################################
+# # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/f_path.df_dirs_recursive.df_files.dev.r")
+# # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/f_path.df_dirs_recursive.df_files.source.r")
+# # ###################################################################################################
 # objectname = "f_path.df_dirs_recursive.df_files"
-# cat("# ", 'objectname = "', objectname, '"', "\n",
-#     "# ", objectname, ".dev.r", "\n",
-#     "# ", objectname, ".source.r", "\n",
-#     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
-#     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+# source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
+# source_base_github = "https://github.com/mkim0710/tidystat/raw/master"
+# source_base_github_blob = "https://github.com/mkim0710/tidystat/blob/master"
+# subpath = ""
+# sourcename = objectname
+# dev.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
+# source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+# cat("# ", 'sourcename = "', sourcename, '"', "\n",
+#     "# ", sourcename, ".dev.r", "\n",
+#     "# ", sourcename, ".source.r", "\n",
+#     '#         ', source_base_github_blob,"/",dev.subpath.filename.ext, "\n",
+#     '# source("', source_base_github,"/",source.subpath.filename.ext,'")', "\n",
+#     '# file.edit("', source_base_local,"/",dev.subpath.filename.ext,'")', "\n",
+#     '# file.edit("', source_base_local,"/",source.subpath.filename.ext,'")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
+# current.path.filename.ext=rstudioapi::getSourceEditorContext()$path
+# if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
+# if(!file.exists(source.subpath.filename.ext)) file.create(source.subpath.filename.ext); file.edit(source.subpath.filename.ext); file.edit(current.path.filename.ext);
 
 
 
@@ -56,7 +66,7 @@ object = function(
     if (!exists("f_path.df_dirs_recursive.df_files", envir=.GlobalEnv)) assign("f_path.df_dirs_recursive.df_files", env.custom$f_path.df_dirs_recursive.df_files, envir=.GlobalEnv)
     
     dirs = list.dirs(input_path, full.names = TRUE, recursive = FALSE) %>% 
-        str_subset(paste0("^", input_path, .Platform$file.sep, "\\.") %>% regex(ignore_case = TRUE), negate = TRUE) %>%  # exclude basename starting with dot
+        str_subset(paste0(input_path, .Platform$file.sep, ".") %>% fixed(ignore_case = TRUE), negate = TRUE) %>%  # exclude basename starting with dot
         str_subset(gitignore_escaped_select.UC.regex %>% regex(ignore_case = TRUE), negate = TRUE)
     
     df_dirs_recursive0 <- tibble(path.level = integer(), full_path = character())
@@ -143,7 +153,7 @@ object = function(
                             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
                         ) 
                     )
-                # , print_tree_path_files.rmd = 
+                # , print_tree_path_files.codes = 
                 #     paste0(
                 #         "@", 
                 #         print_tree_path,
@@ -237,7 +247,7 @@ if(!objectname %in% names(env.custom)) {
 # 10          3 "Rdev/00_… 07_count_out… ./Rdev/00_… ./Rdev/0… D:/OneDrive/[]… "\t\t07_count_… <chr> <chr>   <chr [0]> <chr [0]>  "@\t\t07_count_outco… "@\t\t07_count_outcom…
 # # ℹ 51 more rows
 # # ℹ abbreviated name: ¹​print_tree_path_files.r
-# # ℹ 2 more variables: print_tree_path_files.rmd <chr>, print_tree_path_files.data <chr>
+# # ℹ 2 more variables: print_tree_path_files.codes <chr>, print_tree_path_files.data <chr>
 # # ℹ Use `print(n = ...)` to see more rows
 
 
