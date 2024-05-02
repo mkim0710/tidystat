@@ -84,6 +84,8 @@ for (i in 1:(max_hierarchy)) {
     env.custom$path[[paste0("path", i)]] = env.custom$path$list_path_hierarchy[[i+1]]
 }
 
+if(!"tmp" %in% names(env.custom)) env.custom$tmp = list()
+
 # cat("> str(env.custom$path$list_path_hierarchy)\n"); str(env.custom$path$list_path_hierarchy)
 # cat("> str(env.custom$path)\n"); str(env.custom$path)    
 
