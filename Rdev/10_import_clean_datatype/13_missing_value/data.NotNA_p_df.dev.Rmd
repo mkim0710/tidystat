@@ -1,0 +1,323 @@
+---
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:  
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document: 
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+mainfont: Arial
+monofont: Consolas
+header-includes: 
+  - \usepackage{kotex}
+  - \usepackage{fontspec}
+  - \setmainhangulfont{HCR Batang}
+  - \setsanshangulfont{HCR Dotum}
+  - \setmonohangulfont{HCR Dotum}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Arial', 'Helvetica', sans-serif; }
+h1.title { font-size: 28px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 12px; font-family: 'Consolas', 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 12px; font-family: 'Consolas', 'Source Code Pro', monospace; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# _______________
+```{r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} 
+##### Rstudio RMarkDown Shortcuts
+https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
+https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
+Insert R chunk	Ctrl+Alt+I	Command+Option+I\
+Preview HTML	Ctrl+Shift+K	Command+Shift+K\
+Run all chunks above	Ctrl+Alt+P	Command+Option+P\
+Run current chunk	Ctrl+Alt+C	Command+Option+C\
+Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter\
+Run next chunk	Ctrl+Alt+N	Command+Option+N\
+Run all chunks	Ctrl+Alt+R	Command+Option+R\
+Go to next chunk/title	Ctrl+PgDown	Command+PgDown\
+Go to previous chunk/title	Ctrl+PgUp	Command+PgUp\
+Show/hide document outline	Ctrl+Shift+O	Command+Shift+O\
+F7 spell-check your document.\
+Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
+\
+*** Caution: \% \$ \# \* \
+*** Caution: RMarkdown does not support the use of the pipe operator (%>%). Use the pipe operator in the code chunk instead.\
+```
+
+
+```{r setup, eval=TRUE, include=FALSE}
+Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "\n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
+    tidy.opts=list(width.cutoff=120), tidy=TRUE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+```
+
+
+```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!"info" %in% names(env.custom)) env.custom$info = list()
+env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep="")
+```
+
+
+```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")){if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("\n");
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!"path" %in% names(env.custom)) env.custom$path = list()
+objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
+sourcename = "env.custom$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+```
+
+<font size="3">\% env.custom</font>\
+
+```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!"info" %in% names(env.custom)) env.custom$info = list()
+sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+env.custom$info$info_system_info = env.custom$info$get_system_info()
+# str(env.custom$info$info_system_info)
+CodeText = "env.custom$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+CodeText = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+# CodeText = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+env.custom$info$info_software_versions = env.custom$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
+# str(env.custom$info$info_software_versions)
+```
+
+
+###### env.custom\$path ====
+```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @ subpath, sourcename ======
+subpath = "Rdev\10_import_clean_datatype\13_missing_value"
+sourcename = "data.NotNA_p_df"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+env.custom$path$subpath = subpath
+env.custom$path$sourcename = sourcename
+env.custom$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
+env.custom$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.Rmd")
+env.custom$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+cat("# ",'sourcename = "',sourcename,'"', "\n",
+    "# ",sourcename,".dev.r", "\n",
+    "# ",sourcename,".source.r", "\n",
+    '#         ',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r, "\n",
+    '# source("',env.custom$path$source_base_github,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
+    '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
+    '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.Rmd,'")', "\n",
+    '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
+    sep="")
+env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+# if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base, "rstudio-prefs", "templates", "default.R"),to=env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$current.path.filename.ext);
+if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base, "rstudio-prefs", "templates", "templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$current.path.filename.ext);
+if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base, "rstudio-prefs", "templates", "default.R"),to=env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$current.path.filename.ext);
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+```
+
+
+# @@ START) data.NotNA_p_df.source.r ------------
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(tidyverse)
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
+nhanes_mice %>% str #-----
+# > nhanes_mice %>% str #-----
+# 'data.frame':	25 obs. of  4 variables:
+#  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
+#  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...
+#  $ hyp: num  NA 1 1 NA 1 NA 1 1 1 NA ...
+#  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
+
+nhanes_mice %>% {data.NotNA_p_df = function(data) {
+    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
+    colnames(out)[which(colnames(out) == ".")] = "IsNA"
+    out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data))
+    out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
+    out = out %>% add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
+    out = out %>% arrange(IsNA)
+    out
+}; data.NotNA_p_df(.)}
+nhanes_mice %>% data.NotNA_p_df
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
+# @@ END ------------
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
+# @@ END ------------
+
+```
+
+
+```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
+# @@ update default notebook.Rmd -----
+template.filename.ext = "templates-00env.custom.minimum.Rmd"
+current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename(current.path.filename.ext) == template.filename.ext) {
+    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") %>% str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+    if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) ;
+    
+    destination.path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+    for ( destination.path.filename.ext in c(
+        file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", template.filename.ext)
+        , file.path(env.custom$path$path0, "Rproject_Rmd", template.filename.ext)
+    )) {if(current.path.filename.ext != destination.path.filename.ext) {
+        destination.filename = basename(destination.path.filename.ext) %>% str_remove("\\.([[:alnum:]]+)$")
+        destination.ext = basename(destination.path.filename.ext) %>% str_extract("\\.([[:alnum:]]+)$")
+        backup.path.filename = file.path(env.custom$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
+        file.copy(from=destination.path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
+        if(file.copy(from=current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
+        if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+    }}
+    file.edit(current.path.filename.ext);
+}
+# template.filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", template.filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))
+```
+
+
+```{comment RenderMessages, eval=FALSE, include=FALSE}
+dput(names(knitr::knit_engines$get()))
+```
+
+
+```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
+# objectname = "AnalyticDataset200621"
+# system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
+# system.time(write_rds( get(paste0(objectname,".NA",".rmNotNA0",".fct")), paste0(objectname,".NA",".rmNotNA0",".fct",".rds") ))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
+# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
+# # openxlsx::openXL(paste0(objectname, ".xlsx"))
+```
+
+

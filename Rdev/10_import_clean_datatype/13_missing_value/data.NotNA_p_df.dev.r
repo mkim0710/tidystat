@@ -32,8 +32,8 @@ env.custom$path$df_dirs_recursive.df_files$path %>% unique %>% paste0(collapse =
 env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% dplyr::select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") %>% cat
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @ subpath, sourcename ======
-subpath = "rstudio-prefs/templates"
-sourcename = "default.template"
+subpath = "Rdev\10_import_clean_datatype\13_missing_value"
+sourcename = "data.NotNA_p_df"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 env.custom$path$subpath = subpath
 env.custom$path$sourcename = sourcename
