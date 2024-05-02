@@ -9,13 +9,13 @@
 # https://stackoverflow.com/questions/50750866/rstudio-global-settings-options-export-import
 # https://support.posit.co/hc/en-us/articles/200534577-Resetting-RStudio-Desktop-s-State
 # https://github.com/r-lib/rappdirs/blob/main/R/utils.R
-# rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, filename))
+# file.edit(file.path(path4APPDATA_RStudio, filename))
 if (.Platform$OS.type == "unix") {
     path4APPDATA_RStudio = "~/.config/rstudio"
 } else if (.Platform$OS.type == "windows") {
     path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")
 } 
-rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
+file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
 # --------------------------------------------------------------------------------
 # Specify the path to the RStudio preferences file
 rstudio_prefs_json_path <- file.path(path4APPDATA_RStudio, "rstudio-prefs.json")
@@ -26,7 +26,7 @@ if (file.exists(rstudio_prefs_json_path)) {
   file.copy(rstudio_prefs_json_path, backup_file_path)
   cat("Backup of the existing preferences file created at: ", backup_file_path, "\n")
 }
-rstudioapi::navigateToFile(backup_file_path)
+file.edit(backup_file_path)
 # Define the JSON content as a string
 rstudio_prefs_json_new <- '{
     "save_workspace": "never",
@@ -59,7 +59,7 @@ if (tolower(overwrite) == "yes") {
 } else {
   cat("Operation aborted. The preferences file has not been overwritten.\n")
 }
-rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
+file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
 # ################################################################################
 # --------------------------------------------------------------------------------
 # ================================================================================

@@ -11,8 +11,8 @@
 #     "#         https://github.com/mkim0710/tidystat/blob/master/", "Rdev/10_import_clean_datatype/12_import_files/" objectname, ".dev.r", "\n",
 #     '# source("https://github.com/mkim0710/tidystat/raw/master/', "Rdev/10_import_clean_datatype/12_import_files/", objectname, '.source.r")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
+# file.edit(paste0(objectname,".source.r"))
+# file.edit(paste0(objectname,".dev.r"))
 
 
 library(tidyverse)

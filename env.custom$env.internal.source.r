@@ -5,14 +5,24 @@
 # # source("https://github.com/mkim0710/tidystat/raw/master/env.custom$env.internal.source.r")
 # ####################################################################################################
 # objectname = "env.custom$env.internal"
-# cat("# ", 'objectname = "', objectname, '"', "\n",
-#     "# ", objectname, ".dev.r", "\n",
-#     "# ", objectname, ".source.r", "\n",
-#     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
-#     '# source("https://github.com/mkim0710/tidystat/raw/master/', objectname, '.source.r")', "\n",
+# source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
+# source_base_github = "https://github.com/mkim0710/tidystat/raw/master"
+# source_base_github_blob = "https://github.com/mkim0710/tidystat/blob/master"
+# subpath = ""
+# sourcename = objectname
+# dev.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
+# source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+# cat("# ", 'sourcename = "', sourcename, '"', "\n",
+#     "# ", sourcename, ".dev.r", "\n",
+#     "# ", sourcename, ".source.r", "\n",
+#     '#         ', source_base_github_blob,"/",dev.subpath.filename.ext, "\n",
+#     '# source("', source_base_github,"/",source.subpath.filename.ext,'")', "\n",
+#     '# file.edit("', source_base_local,"/",dev.subpath.filename.ext,'")', "\n",
+#     '# file.edit("', source_base_local,"/",source.subpath.filename.ext,'")', "\n",
 #     sep="")
-# rstudioapi::navigateToFile(paste0(objectname,".source.r"))
-# rstudioapi::navigateToFile(paste0(objectname,".dev.r"))
+# current.path.filename.ext=rstudioapi::getSourceEditorContext()$path
+# if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
+# if(!file.exists(source.subpath.filename.ext)) file.create(source.subpath.filename.ext); file.edit(source.subpath.filename.ext); file.edit(current.path.filename.ext);
 
 
 # if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
@@ -24,12 +34,10 @@ if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.int
 
 if(!"info" %in% names(env.custom)) env.custom$info = list()
 # if(!"source" %in% names(env.custom)) env.custom$source = list()
-if(!"path" %in% names(env.custom)) {
-    env.custom$path = list()
-    objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-    env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
-} 
+if(!"path" %in% names(env.custom)) env.custom$path = list()
+objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
 # objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
 # objectname = "path4read"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
 # objectname = "path4write"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; at("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
