@@ -315,9 +315,10 @@ dput(names(knitr::knit_engines$get()))
 
 
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-# @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
-# system.time(write_rds( get(objectname),paste0(objectname,".rds")))
+# system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
+# system.time(write_rds( get(paste0(objectname,".NA",".rmNotNA0",".fct")), paste0(objectname,".NA",".rmNotNA0",".fct",".rds") ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
