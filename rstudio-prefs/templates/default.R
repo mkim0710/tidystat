@@ -20,10 +20,15 @@ if(!"path" %in% names(env.custom)) {
     objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
     env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
 } 
-sourcename = "env.custom$env.internal"; subpath=""; source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,source.subpath.filename.ext) ))
-sourcename = "f_df.t.tribble_construct"; subpath=""; source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,source.subpath.filename.ext) ))
-sourcename = "get_system_info"; subpath=""; source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,source.subpath.filename.ext) ))
+sourcename = "env.custom$env.internal"; subpath=""; source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,source.subpath.filename.ext) ))
+sourcename = "f_df.t.tribble_construct"; subpath=""; source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,source.subpath.filename.ext) ))
+sourcename = "get_system_info"; subpath=""; source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,source.subpath.filename.ext) ))
 env.custom$info$info_system_info = env.custom$info$get_system_info()
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,source.subpath.filename.ext) ))
+env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
+env.custom$path$df_dirs_recursive.df_files$path %>% unique %>% paste0(collapse = "\n") %>% cat
+env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% dplyr::select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") %>% cat
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @ subpath, sourcename ======
 subpath = "rstudio-prefs/templates"
@@ -77,10 +82,10 @@ if(env.custom$path$default.filename.ext == basename(env.custom$path$current.path
         file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$default.filename.ext)
         , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$default.filename.ext)
     )) {if(env.custom$path$current.path.filename.ext != destination.path.filename.ext) {
-        destination.path.filename = destination.path.filename.ext %>% str_remove("\\.([[:alnum:]]+)$")
-        destination.ext = destination.path.filename.ext %>% str_extract("\\.([[:alnum:]]+)$")
-        backup.filename = paste0(destination.path.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext)
-        file.copy(from=destination.path.filename.ext, to=backup.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.filename))
+        destination.filename = basename(destination.path.filename.ext) %>% str_remove("\\.([[:alnum:]]+)$")
+        destination.ext = basename(destination.path.filename.ext) %>% str_extract("\\.([[:alnum:]]+)$")
+        backup.path.filename = file.path(env.custom$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
+        file.copy(from=destination.path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
         if(file.copy(from=env.custom$path$current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
         if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     }}
