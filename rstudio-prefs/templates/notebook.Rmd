@@ -232,11 +232,19 @@ env.custom$f_path.size_files(path4read = path4read)
 ```
 
 
-#### @ Open R Notebook ------------
-```{r open-envCustom-dfDirs, eval=TRUE, include=FALSE}
-filename.ext = paste0("00env.custom","-",basename(getwd()),".Rmd"); if(!file.exists(filename.ext)) file.create(filename.ext); filename.ext0=rstudioapi::getSourceEditorContext()$path;rstudioapi::navigateToFile(filename.ext);rstudioapi::navigateToFile(filename.ext0);
-filename.ext = paste0("01df_dirs_recursive.df_files","-",basename(getwd()),".Rmd"); if(!file.exists(filename.ext)) file.create(filename.ext); filename.ext0=rstudioapi::getSourceEditorContext()$path;rstudioapi::navigateToFile(filename.ext);rstudioapi::navigateToFile(filename.ext0);
-filename.ext = paste0("10CodeBook","-",basename(getwd()),".Rmd"); if(!file.exists(filename.ext)) file.create(filename.ext); filename.ext0=rstudioapi::getSourceEditorContext()$path;rstudioapi::navigateToFile(filename.ext);rstudioapi::navigateToFile(filename.ext0);
+#### @ Open R Notebooks ------------
+```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!"tmp" %in% names(env.custom)) env.custom$tmp = list()
+env.custom$tmp$CodeFileName.ext0=rstudioapi::getSourceEditorContext()$path 
+for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+    env.custom$tmp$CodeFileName.ext = paste0(CodeFileBaseName,"-",basename(getwd()),".Rmd");
+    if(env.custom$tmp$CodeFileName.ext != env.custom$tmp$CodeFileName.ext0) {
+        if(!file.exists(env.custom$tmp$CodeFileName.ext)) file.create(env.custom$tmp$CodeFileName.ext)
+        rstudioapi::navigateToFile(env.custom$tmp$CodeFileName.ext);
+        rstudioapi::navigateToFile(env.custom$tmp$CodeFileName.ext0);
+    }
+}
 ```
 
 
@@ -400,12 +408,12 @@ options(width=120)
 ```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ update default notebook.Rmd -----
 # filename.ext = file.path(env.custom$path$source_base_local,"Rproject_Rmd","00env.custom.minimum.Rmd")
-filename.ext = "templates-00env.custom.minimum.Rmd"; if(file.exists(filename.ext)) {
+filename.ext0=rstudioapi::getSourceEditorContext()$path; if(basename(filename.ext0) == "templates-00env.custom.minimum.Rmd") {
     if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
     if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) ;
-    if(file.copy(from=filename.ext, to=file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"), overwrite=TRUE)) message(paste0("Update successful: ", file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"))) else message(paste0("Update failed: ", file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"))) ;
-    filename.ext0=rstudioapi::getSourceEditorContext()$path;
-    rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"));
+    
+    file.copy.destination = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=filename.ext, to=file.copy.destination, overwrite=TRUE)) message(paste0("Update successful: ", file.copy.destination)) else warning(paste0("Update failed: ", file.copy.destination)); rstudioapi::navigateToFile(file.copy.destination);
+    file.copy.destination = file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", "notebook.Rmd"); if(file.copy(from=filename.ext, to=file.copy.destination, overwrite=TRUE)) message(paste0("Update successful: ", file.copy.destination)) else warning(paste0("Update failed: ", file.copy.destination)); rstudioapi::navigateToFile(file.copy.destination);
     rstudioapi::navigateToFile(filename.ext0);
 }
 # filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", filename.ext)); rstudioapi::navigateToFile(file.path(path4APPDATA_RStudio, "templates", filename.ext))
