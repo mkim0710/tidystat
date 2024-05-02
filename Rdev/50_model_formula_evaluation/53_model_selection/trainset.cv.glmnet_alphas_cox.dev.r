@@ -273,9 +273,9 @@ trainset.cv.glmnet_alphas_cox = function(
 # library(glmnet)
 # data(CoxExample)
 # CoxExample_tibble = bind_cols(as_tibble(y), as_tibble(x))
-# save(CoxExample_tibble, file = "library(glmnet) CoxExample_tibble.rda")
+# save(CoxExample_tibble, file = "library_glmnet_CoxExample_tibble.rda")
 library(tidyverse)
-load("library(glmnet) CoxExample_tibble.rda")
+load("library_glmnet_CoxExample_tibble.rda")
 CoxExample_tibble %>% as_tibble
 # > CoxExample_tibble %>% as_tibble
 # # A tibble: 1,000 x 32

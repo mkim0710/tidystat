@@ -5,18 +5,18 @@
 # subpath = ""
 # sourcename = objectname
 # dev.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
-# source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+# subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
 # cat("# ", 'sourcename = "', sourcename, '"', "\n",
 #     "# ", sourcename, ".dev.r", "\n",
 #     "# ", sourcename, ".source.r", "\n",
 #     '#         ', source_base_github_blob,"/",dev.subpath.filename.ext, "\n",
-#     '# source("', source_base_github,"/",source.subpath.filename.ext,'")', "\n",
+#     '# source("', source_base_github,"/",subpath.filename.source.r,'")', "\n",
 #     '# file.edit("', source_base_local,"/",dev.subpath.filename.ext,'")', "\n",
-#     '# file.edit("', source_base_local,"/",source.subpath.filename.ext,'")', "\n",
+#     '# file.edit("', source_base_local,"/",subpath.filename.source.r,'")', "\n",
 #     sep="")
 # current.path.filename.ext=rstudioapi::getSourceEditorContext()$path
 # if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
-# if(!file.exists(source.subpath.filename.ext)) file.create(source.subpath.filename.ext); file.edit(source.subpath.filename.ext); file.edit(current.path.filename.ext);
+# if(!file.exists(subpath.filename.source.r)) file.create(subpath.filename.source.r); file.edit(subpath.filename.source.r); file.edit(current.path.filename.ext);
 ####################################################################################################
 objectname = "get_system_info"
 source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
@@ -25,16 +25,16 @@ source_base_github_blob = "https://github.com/mkim0710/tidystat/blob/master"
 subpath = ""
 sourcename = objectname
 dev.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
-source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
 cat("# ", 'sourcename = "', sourcename, '"', "\n",
     "# ", sourcename, ".dev.r", "\n",
     "# ", sourcename, ".source.r", "\n",
     '#         ', source_base_github_blob,"/",dev.subpath.filename.ext, "\n",
-    '# source("', source_base_github,"/",source.subpath.filename.ext,'")', "\n",
+    '# source("', source_base_github,"/",subpath.filename.source.r,'")', "\n",
     sep="")
 current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
-if(!file.exists(source.subpath.filename.ext)) file.create(source.subpath.filename.ext); file.edit(source.subpath.filename.ext); file.edit(current.path.filename.ext);
+if(!file.exists(subpath.filename.source.r)) file.create(subpath.filename.source.r); file.edit(subpath.filename.source.r); file.edit(current.path.filename.ext);
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.get_cpu_internal.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r

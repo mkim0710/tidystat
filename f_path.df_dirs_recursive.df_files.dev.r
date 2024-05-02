@@ -15,18 +15,18 @@ source_base_github_blob = "https://github.com/mkim0710/tidystat/blob/master"
 subpath = ""
 sourcename = objectname
 dev.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
-source.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
 cat("# ", 'sourcename = "', sourcename, '"', "\n",
     "# ", sourcename, ".dev.r", "\n",
     "# ", sourcename, ".source.r", "\n",
     '#         ', source_base_github_blob,"/",dev.subpath.filename.ext, "\n",
-    '# source("', source_base_github,"/",source.subpath.filename.ext,'")', "\n",
+    '# source("', source_base_github,"/",subpath.filename.source.r,'")', "\n",
     '# file.edit("', source_base_local,"/",dev.subpath.filename.ext,'")', "\n",
-    '# file.edit("', source_base_local,"/",source.subpath.filename.ext,'")', "\n",
+    '# file.edit("', source_base_local,"/",subpath.filename.source.r,'")', "\n",
     sep="")
 current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
-if(!file.exists(source.subpath.filename.ext)) file.create(source.subpath.filename.ext); file.edit(source.subpath.filename.ext); file.edit(current.path.filename.ext);
+if(!file.exists(subpath.filename.source.r)) file.create(subpath.filename.source.r); file.edit(subpath.filename.source.r); file.edit(current.path.filename.ext);
 
 
 
@@ -605,10 +605,10 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(c
 #' 	traj_clusters_by_time.9.png
 #' @data/
 #' 	[[Github_file_size_limit_100MB]]
-#' 	[Survival Analysis] addicts.dta.rda
-#' 	[Survival Analysis] anderson.dta.rda
-#' 	[Survival Analysis] bladder.dta.rda
-#' 	[Survival Analysis] vets.dta.rda
+#' 	SurvivalAnalysis_addicts.dta.rda
+#' 	SurvivalAnalysis_anderson.dta.rda
+#' 	SurvivalAnalysis_bladder.dta.rda
+#' 	SurvivalAnalysis_vets.dta.rda
 #' 	ATC_RxNorm_NDC
 #' 	ATC_RxNorm_NDC.rds
 #' 	CDMv5_CONCEPT.rda
@@ -672,16 +672,16 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(c
 #' 	jinseob2kim_lecture-snuhlab_master_data_example_bnc.rds
 #' 	jinseob2kim_lecture-snuhlab_master_data_example_g1e.csv
 #' 	jinseob2kim_lecture-snuhlab_master_data_example_g1e.rds
-#' 	library(CrossScreening) nhanes.fish.match.rda
-#' 	library(CrossScreening) nhanes.fish.rda
-#' 	library(Epi) diet.rda
-#' 	library(glmnet) CoxExample_tibble.rda
+#' 	library_CrossScreening_nhanes.fish.match.rda
+#' 	library_CrossScreening_nhanes.fish.rda
+#' 	library_Epi_diet.rda
+#' 	library_glmnet_CoxExample_tibble.rda
 #' 	library(icd) icd_is_valid().r
-#' 	library(Matching) lalonde.rda
-#' 	library(mice) nhanes_mice.rda
-#' 	library(NHANES) NHANES.rda
-#' 	library(NHANES) NHANES48.na.omit.rda
-#' 	library(NHANES) NHANESraw.rda
+#' 	library_Matching_lalonde.rda
+#' 	library_mice_nhanes_mice.rda
+#' 	library_NHANES_NHANES.rda
+#' 	library_NHANES_NHANES48.na.omit.rda
+#' 	library_NHANES_NHANESraw.rda
 #' 	Population-EUC-KR.CSV
 #' 	Population-UTF-8.CSV
 #' 	Population.CSV

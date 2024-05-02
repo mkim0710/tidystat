@@ -905,7 +905,7 @@ data.strata_list = function(
 
 #@ test) data.strata_list() diet.rda -----
 # data(diet, package = "Epi")
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library(Epi) diet.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_Epi_diet.rda"))
 diet = diet %>% mutate(
     RowNum_original = 1:nrow(.)
     , entry_age = as.numeric(doe - dob)/365
