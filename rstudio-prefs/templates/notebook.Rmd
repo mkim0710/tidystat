@@ -324,7 +324,7 @@ cat("> ",DataSetName,".NA"," %>% data.NotNA_p_df","\n", sep=""); data.NotNA_p_df
 ### \$ paste0(DataSetName,".NA",".rmNotNA0",".fct") ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI")
+vec_varname4ID = c("ID", "PERSON_ID", "RN_INDI", "NIHID")
 for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,".NA",".rmNotNA0")))) cat("n_distinct(",paste0(DataSetName,".NA",".rmNotNA0"),"$",varname,") = ",n_distinct(get(paste0(DataSetName,".NA",".rmNotNA0"))[[varname]]),"\n", sep="")}
 
 
@@ -418,9 +418,10 @@ dput(names(knitr::knit_engines$get()))
 
 
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-# @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
-# system.time(write_rds( get(objectname),paste0(objectname,".rds")))
+# system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
+# system.time(write_rds( get(paste0(objectname,".NA",".rmNotNA0",".fct")), paste0(objectname,".NA",".rmNotNA0",".fct",".rds") ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
