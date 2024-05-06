@@ -3,7 +3,8 @@
 # f_path.list_subpath.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_path.list_subpath.dev.r
 # source("https://github.com/mkim0710/tidystat/raw/master/f_path.list_subpath.source.r")
-####################################################################################################
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 objectname = "f_path.list_subpath"
 source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
 source_base_github = "https://github.com/mkim0710/tidystat/raw/master"

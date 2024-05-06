@@ -7,7 +7,8 @@
 # #     sep="")
 # # file.edit(paste0(objectname,".source.r"))
 # # file.edit(paste0(objectname,".dev.r"))
-# ####################################################################################################
+# #|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # objectname = "get_system_info"
 # source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
 # source_base_github = "https://github.com/mkim0710/tidystat/raw/master"

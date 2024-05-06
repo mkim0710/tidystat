@@ -3,7 +3,8 @@
 # # env.custom$env.internal.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/env.custom$env.internal.dev.r
 # # source("https://github.com/mkim0710/tidystat/raw/master/env.custom$env.internal.source.r")
-# ####################################################################################################
+# #|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # objectname = "env.custom$env.internal"
 # source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
 # source_base_github = "https://github.com/mkim0710/tidystat/raw/master"
@@ -79,7 +80,7 @@ env.custom$path$f_path0.list_path_hierarchy <- function(path0, path_last = getwd
     }
     
     # Ensure the list is of length max_hierarchy, filling excess with NA
-    list_path_hierarchy <- list_path[1:min(max_hierarchy+1, length(list_path))]
+    list_path_hierarchy <- list_path[seq_len(min(max_hierarchy+1, length(list_path)))]
     if (length(list_path_hierarchy) < max_hierarchy+1) {
         list_path_hierarchy <- c(list_path_hierarchy, rep(NA, max_hierarchy+1 - length(list_path_hierarchy)))
     }

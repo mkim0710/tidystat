@@ -10,7 +10,7 @@
 
 
 
-#@@@@ For a function, see the link below~!!!! ========================================================
+#@@@@ For a function, see the link below~!!!! ................................................................................
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.tbl_varname_level_HRCI.dev.r
 
 
@@ -20,7 +20,7 @@
 
 
 
-#@@@@ A quick & dirty way below~!!! ==================================================================
+#@@@@ A quick & dirty way below~!!! ................................................................................
 #@ analyticDF2797.coxphTimeOutcome_Exposure_tt ====
 library(survival)
 data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 

@@ -3,7 +3,8 @@
 # f_list_df.bind_rows.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/12_import_files/f_list_df.bind_rows.dev.r
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/12_import_files/f_list_df.bind_rows.source.r")
-####################################################################################################
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # objectname = "f_list_df.bind_rows"
 # cat("# ", 'objectname = "', objectname, '"', "\n",
 #     "# ", objectname, ".dev.r", "\n",

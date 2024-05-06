@@ -1,5 +1,5 @@
 
-#@@@@ Cf) A quick & dirty way below~!!! ==================================================================
+#@@@@ Cf) A quick & dirty way below~!!! ................................................................................
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.HazardRatios.spread.dev.r
 
 
