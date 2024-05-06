@@ -52,7 +52,7 @@ eval(parse(text = paste(c(2,2,1.1), ">1")))
 
 
 
-#=========================================
+#................................................................................
 apply_ExpressionText <- function(input_vector, ExpressionText, print.intermediate = TRUE) {
     function.eval.parse.Vectorize = Vectorize(function(CodeText) {eval(parse(text=CodeText))}) 
     out_vector = function.eval.parse.Vectorize(paste(input_vector, ExpressionText))

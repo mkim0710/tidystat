@@ -225,7 +225,7 @@ out.list %>% str(max.level = 1)
 #   valid_end_date = col_integer(),
 #   invalid_reason = col_character()
 # )
-# |================================================================================================| 100%  159 MB
+# |................................................................................| 100%  159 MB
 # [1] "filename"
 # [1] "CONCEPT_SYNONYM"
 # Parsed with column specification:
@@ -259,7 +259,7 @@ out.list %>% str(max.level = 1)
 #   valid_end_date = col_integer(),
 #   invalid_reason = col_character()
 # )
-# |================================================================================================| 100%    9 MB
+# |................................................................................| 100%    9 MB
 # [1] "filename"
 # [1] "RELATIONSHIP"
 # Parsed with column specification:

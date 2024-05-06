@@ -3,7 +3,8 @@
 # f_df.t.tribble_construct.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 # source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
-####################################################################################################
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 objectname = "f_df.t.tribble_construct"
 source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
 source_base_github = "https://github.com/mkim0710/tidystat/raw/master"

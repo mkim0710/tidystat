@@ -3,7 +3,8 @@
 # f_objectname.read.checkEntity.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_objectname.read.checkEntity.dev.r
 # source("https://github.com/mkim0710/tidystat/raw/master/f_objectname.read.checkEntity.source.r")
-####################################################################################################
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 objectname = "f_objectname.read.checkEntity"
 source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
 source_base_github = "https://github.com/mkim0710/tidystat/raw/master"

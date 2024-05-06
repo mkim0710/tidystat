@@ -3,7 +3,8 @@
 # env.custom$env.internal.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/env.custom$env.internal.dev.r
 # source("https://github.com/mkim0710/tidystat/raw/master/env.custom$env.internal.source.r")
-####################################################################################################
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 objectname = "env.custom$env.internal"
 source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
 source_base_github = "https://github.com/mkim0710/tidystat/raw/master"

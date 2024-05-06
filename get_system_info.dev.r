@@ -17,7 +17,8 @@
 # current.path.filename.ext=rstudioapi::getSourceEditorContext()$path
 # if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
 # if(!file.exists(subpath.filename.source.r)) file.create(subpath.filename.source.r); file.edit(subpath.filename.source.r); file.edit(current.path.filename.ext);
-####################################################################################################
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 objectname = "get_system_info"
 source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
 source_base_github = "https://github.com/mkim0710/tidystat/raw/master"
