@@ -114,7 +114,6 @@ F7 spell-check your document.\
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 *** Caution: \% \$ \# \* \
-*** Caution: RMarkdown does not support the use of the pipe operator (%>%). Use the pipe operator in the code chunk instead.\
 ```
 
 
@@ -215,10 +214,10 @@ example_data <- data.frame(
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_tblID.minWave_maxWave <- function(data, pattern) {
-  data %>%
+  data |>
     mutate(
       minWaveINS0 = pmap_dbl(
-        .l = select(., matches(pattern)),
+        .l = dplyr::select(., matches(pattern)),
         .f = ~ {
           values <- c(...)
           indices <- which(!is.na(values))
@@ -226,15 +225,15 @@ f_tblID.minWave_maxWave <- function(data, pattern) {
         }
       ),
       maxWaveINS0 = pmap_dbl(
-        .l = select(., matches(pattern)),
+        .l = dplyr::select(., matches(pattern)),
         .f = ~ {
           values <- c(...)
           indices <- which(!is.na(values))
           if (length(indices) == 0) NA_real_ else as.numeric(indices[length(indices)])
         }
       )
-    ) %>%
-    select(ID, matches(pattern), minWaveINS0, maxWaveINS0)  # Retain ID and calculated columns
+    ) |>
+    dplyr::select(ID, matches(pattern), minWaveINS0, maxWaveINS0)  # Retain ID and calculated columns
 }
 example_data %>% f_tblID.minWave_maxWave("INS0")
 ```
@@ -303,7 +302,7 @@ options(width=120)
 # @@ update default notebook.Rmd -----
 # filename.ext = file.path(env.custom$path$source_base_local,"Rproject_Rmd","00env.custom.minimum.Rmd")
 filename.ext = "templates-00env.custom.minimum.Rmd"; if(file.exists(filename.ext)) {
-    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") %>% str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
     if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) ;
     if(file.copy(from=filename.ext, to=file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"), overwrite=TRUE)) message(paste0("Update successful: ", file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"))) else message(paste0("Update failed: ", file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"))) ;
     file.edit(file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"))
@@ -321,7 +320,7 @@ dput(names(knitr::knit_engines$get()))
 # # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
-# system.time(write_rds( get(paste0(objectname,".NA",".rmNotNA0",".fct")), paste0(objectname,".NA",".rmNotNA0",".fct",".rds") ))
+# system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
