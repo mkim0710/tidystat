@@ -114,7 +114,6 @@ F7 spell-check your document.\
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 *** Caution: \% \$ \# \* \
-*** Caution: RMarkdown does not support the use of the pipe operator (%>%). Use the pipe operator in the code chunk instead.\
 ```
 
 
@@ -227,13 +226,13 @@ for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "
 ```{r dfDIRsRecursive-NoEchoHideResults, echo=FALSE, results="hide"}
 sourcename = "f_path.df_dirs_recursive.df_files"; suppressPackageStartupMessages(source( file.path(file.path(env.custom$path$source_base,""), paste0(sourcename,".source.r")) ))
 env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
-env.custom$path$print_tree_path = env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% 
+env.custom$path$print_tree_path = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
 # env.custom$path$print_tree_path |> cat()
-env.custom$path$print_tree_path_files.codes = env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% 
+env.custom$path$print_tree_path_files.codes = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
 # env.custom$path$print_tree_path_files.codes |> cat()
-env.custom$path$print_tree_path_files.data = env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% 
+env.custom$path$print_tree_path_files.data = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
 # env.custom$path$print_tree_path_files.data |> cat()
 ```
@@ -241,7 +240,7 @@ env.custom$path$print_tree_path_files.data = env.custom$path$df_dirs_recursive.d
 
 ##### \$ env.custom\$path\$df_dirs_recursive.df_files\$path
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
-env.custom$path$df_dirs_recursive.df_files$path %>% unique %>% paste0(collapse = "\n") |> cat()
+env.custom$path$df_dirs_recursive.df_files$path |> unique() %>% paste0(collapse = "\n") |> cat()
 ```
 
 ##### \$ env.custom\$path\$print_tree_path_files.codes

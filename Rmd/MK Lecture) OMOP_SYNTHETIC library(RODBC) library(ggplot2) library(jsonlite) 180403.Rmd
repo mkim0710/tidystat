@@ -121,7 +121,7 @@ VISIT_OCCURRENCE = sqlQuery(channel, "
 select *
 from VISIT_OCCURRENCE
 ;")
-VISIT_OCCURRENCE %>% summarise_all(n_distinct) %>% t
+VISIT_OCCURRENCE |> summarise_all(n_distinct) %>% t
 
 ```
 
@@ -219,7 +219,7 @@ tblMDDp
 ```
 
 ```{r}
-g = tblMDDp %>% ggplot(aes(x = as.factor(CONDITION_START_year), y = n_distinct_PERSON_ID, group = GENDER_SOURCE_VALUE, color = GENDER_SOURCE_VALUE, fill = GENDER_SOURCE_VALUE))
+g = tblMDDp |> ggplot(aes(x = as.factor(CONDITION_START_year), y = n_distinct_PERSON_ID, group = GENDER_SOURCE_VALUE, color = GENDER_SOURCE_VALUE, fill = GENDER_SOURCE_VALUE))
 
 ```
 
@@ -302,7 +302,7 @@ tblMDDp
 ```
 
 ```{r}
-g = tblMDDp %>% 
+g = tblMDDp |> 
     ggplot(aes(
         x = as.factor(CONDITION_START_month)
         , y = n_distinct_PERSON_ID
@@ -413,7 +413,7 @@ tblMDDp %>% full_join(., tibble(state.abb, state.name, state.name.tolower = tolo
 ```{r}
 library(maps)
 map = map_data("state")
-g = tblMDDp %>% full_join(., tibble(state.abb, state.name, state.name.tolower = tolower(state.name)), by = c("STATE" = "state.abb")) %>% 
+g = tblMDDp %>% full_join(., tibble(state.abb, state.name, state.name.tolower = tolower(state.name)), by = c("STATE" = "state.abb")) |> 
     ggplot(aes(fill = n_distinct_PERSON_ID)) + 
     facet_grid(CONDITION_START_year~.)
 g+geom_map(aes(map_id = state.name.tolower), map = map)+expand_limits(x=map$long, y=map$lat)
@@ -432,7 +432,7 @@ CMS_SynPUF_CDMv5_YZ.json %>% length
 ```
 
 ```{r}
-CMS_SynPUF_CDMv5_YZ.json[1000] %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
+CMS_SynPUF_CDMv5_YZ.json[1000] %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 ```
 
 ```{r}
@@ -452,7 +452,7 @@ CMS_SynPUF_CDMv5_YZ.json.map_df
 ```
 
 ```{r}
-g = CMS_SynPUF_CDMv5_YZ.json.map_df %>% 
+g = CMS_SynPUF_CDMv5_YZ.json.map_df |> 
     ggplot(aes(x = sex, y = appt, color = sex))
 ```
 
