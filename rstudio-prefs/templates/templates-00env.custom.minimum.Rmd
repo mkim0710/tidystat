@@ -70,8 +70,8 @@ h4 { font-size: 16px; font-family: 'Arial', 'Helvetica', sans-serif; line-height
 h5 { font-size: 14px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
 h6 { font-size: 12px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
 table, td, th, figure, figcaption { font-size: 10px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
-code { font-size: 12px; font-family: 'Consolas', 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
-pre { font-size: 12px; font-family: 'Consolas', 'Source Code Pro', monospace; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+code { font-size: 12px; font-family: 'Cascadia Code SemiBold', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 12px; font-family: 'Cascadia Code SemiBold', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 </style>
 
 <!-- font-size: 0.9em; /* 90% of inherited font size */ -->
@@ -128,7 +128,8 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 knitr::opts_chunk$set(
     eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
     comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
-    warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=TRUE, 
     R.options = list(width=120), paged.print=FALSE
 ) 
@@ -216,19 +217,19 @@ path4write = env.custom$path$path4write
 sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
 env.custom$path$print_tree_path = env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% 
-    dplyr::select(print_tree_path) %>% unlist %>% paste(collapse="") 
-# env.custom$path$print_tree_path %>% cat
+    dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
+# env.custom$path$print_tree_path |> cat()
 env.custom$path$print_tree_path_files.codes = env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% 
-    dplyr::select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") 
-# env.custom$path$print_tree_path_files.codes %>% cat
+    dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
+# env.custom$path$print_tree_path_files.codes |> cat()
 env.custom$path$print_tree_path_files.data = env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% 
-    dplyr::select(print_tree_path_files.data) %>% unlist %>% paste(collapse="") 
-env.custom$path$print_tree_path_files.data %>% cat
+    dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
+env.custom$path$print_tree_path_files.data |> cat()
 ```
 
 
 #### env.custom\$f_path.size_files() ----
-```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide"}
+```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=FALSE, results="hide"}
 #### env.custom\$f_path.size_files() ----
 sourcename = "f_path.size_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 #### env.custom\$f_objectname.read.checkEntity() ----
@@ -442,13 +443,13 @@ options(width=120)
 
 
 # @@ END ------------
-```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ END ------------
 
 ```
 
 
-```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
+```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ update default notebook.Rmd -----
 template.filename.ext = "templates-00env.custom.minimum.Rmd"
 current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename(current.path.filename.ext) == template.filename.ext) {
@@ -478,7 +479,7 @@ dput(names(knitr::knit_engines$get()))
 ```
 
 
-```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 # # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
