@@ -1,0 +1,137 @@
+#|________________________________________________________________________________|#  
+//#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+//#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+[F1] Configure Display Language → en/kr
+//#|________________________________________________________________________________|#  
+//#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+Code Insiders
+[Commonly Used] [Files: Auto Save] off (default) → afterDelay?
+    "files.autoSave": "onWindowChange",
+[Text Editor] [Files] [Auto Save] off (default) → afterDelay?
+    "files.autoSave": "onWindowChange",
+[Text Editor] [Files] [Auto Save Delay] 1000 milliseconds (default) 
+[Text Editor] [Files] [Default Language] "" (default) → "R"?
+[Text Editor] [Files] [Encoding] Files: Encoding UTF-8 (default)
+    "files.encoding": "utf8"
+[Text Editor] [Files] Auto Guess Encoding (Applies to all profiles)
+    "files.autoGuessEncoding": true,
+    "workbench.settings.applyToAllProfiles": [
+        "files.autoGuessEncoding"
+    ],
+    "files.eol": "\n"
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+[Commonly Used] [Editor: Font Family] Consolas, 'Courier New', monospace (default) → 'Cascadia Code SemiBold', Consolas, 'Courier New', monospace
+    "editor.fontFamily": "'Cascadia Code SemiBold', Consolas, 'Courier New', monospace"
+    "editor.fontLigatures": true
+[Commonly Used] [Editor: Tab Size] 4 (default) → 유지?
+    "editor.tabSize": 4
+[Commonly Used] [Editor: Render Whitespace] selection (default) → boundary (except single space between words)
+    "editor.renderWhitespace": "boundary"
+[Commonly Used] [Editor: Insert Spaces] Insert spaces when pressing Tab - Check (default) → 유지?
+    "editor.insertSpaces": true
+[Commonly Used] [Editor: Word Wrap] Off (default) → bounded로 변경
+    "editor.wordWrap": "bounded"
+[Commonly Used] [Editor: Word Wrap Column] 80 → 120으로 변경
+    "editor.wordWrapColumn": 120
+[Text Editor] [Editor: Auto Indent] full (default)
+    "editor.autoIndent": "full"
+[Text Editor] [Editor: Auto Surround] - languageDefined (default)
+    "editor.autoSurround": "languageDefined"
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+    "security.workspace.trust.untrustedFiles": "open",
+    "update.showReleaseNotes": false,
+    "extensions.ignoreRecommendations": false (default) → true,??
+//#|________________________________________________________________________________|#  
+//#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+@ Extension: Render Line Endings v1.8.1 Josip Medved medo64.com
+    "code-eol.highlightNonDefault": false
+    "code-eol.crlfCharacter": "↵"
+    "code-eol.newlineCharacter": "↓"
+    "code-eol.returnCharacter": "←"
+@ R
+    "files.associations": {
+        "*.rmd": "markdown"
+    },
+    "r.rterm.windows": "C:/Program Files/R/R-4.3.3/bin/x64/R.exe",
+    "r.rpath.windows": "C:/Program Files/R/R-4.3.3/bin/x64/R.exe",
+R > Session: Level Of Object Detail: Minimal → Detailed
+    "r.session.levelOfObjectDetail": "Detailed"
+R > Session > Data: Row Limit 0 → 1000
+    "r.session.data.rowLimit": 1000
+R > Plot: Use Httpgd (check)
+    "r.plot.useHttpgd": true
+
+
+//#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+
+
+
+
+//#|________________________________________________________________________________|#  
+//#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+//#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+[@@ Key Bindings]
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+shift+c",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+k ctrl+k",
+        "command": "editor.action.addCommentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-editor.action.addCommentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "editor.action.reindentlines",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+        "snippet": " %>% "
+        }
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "workbench.action.terminal.sendSequence",
+        "when": "terminalFocus",
+        "args": {
+        "text": " %>% "
+        }
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+        "snippet": "# section -----------------------------------------------------------\n"
+        }
+    },
+    {
+        "key": "ctrl+alt+i",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {
+        "snippet": "```{r}\n$0\n```"
+        }
+    }
+]
+//#|________________________________________________________________________________|#  
+//#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+//#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+//#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
