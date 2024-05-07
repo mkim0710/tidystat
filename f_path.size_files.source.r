@@ -67,7 +67,7 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
         }
     }
     filenames %>% deparse(width.cutoff=120-15) %>% cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) %>% cat(sep="\n"); # width.cutoff=500 is the max ----
-    cat(strrep("-",80),"\n",sep=""); #----
+    cat(strrep("~",80),"\n",sep=""); #----
     out = filenames %>% {file.info(file.path(path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
@@ -76,7 +76,7 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
                GB = format(size/2^30, digits = 3, big.mark=","))
     out = out %>% mutate(filename = sub(path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
     env.custom$f_df.tribble_construct(out)
-    cat(strrep("-",80),"\n",sep=""); #----
+    cat(strrep("~",80),"\n",sep=""); #----
 } 
 if(!objectname %in% names(env.custom)) {
     packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 

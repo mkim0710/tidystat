@@ -114,7 +114,6 @@ F7 spell-check your document.\
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 *** Caution: \% \$ \# \* \
-*** Caution: RMarkdown does not support the use of the pipe operator (%>%). Use the pipe operator in the code chunk instead.\
 ```
 
 
@@ -180,7 +179,7 @@ env.custom$info$info_software_versions = env.custom$info$get_software_versions(l
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @ subpath, sourcename ======
-subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" %>% str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 sourcename = "data.NotNA_p_df"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 env.custom$path$subpath = subpath
@@ -209,7 +208,7 @@ if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
-subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" %>% str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 sourcename = "data.NotNA_p_df"
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 ```
@@ -219,8 +218,8 @@ subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename
 options(width=120)
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
-nhanes_mice %>% str #-----
-# > nhanes_mice %>% str #-----
+nhanes_mice |> str() #-----
+# > nhanes_mice |> str() #-----
 # 'data.frame':	25 obs. of  4 variables:
 #  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
 #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...
@@ -228,15 +227,15 @@ nhanes_mice %>% str #-----
 #  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
 
 nhanes_mice %>% {data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
+    out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
     colnames(out)[which(colnames(out) == ".")] = "IsNA"
-    out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data))
-    out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
-    out = out %>% add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
-    out = out %>% arrange(IsNA)
+    out = out |> mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data))
+    out = out |> add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
+    out = out |> add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
+    out = out |> arrange(IsNA)
     out
 }; env.custom$data.NotNA_p_df(.)}
-nhanes_mice %>% env.custom$data.NotNA_p_df(.)
+nhanes_mice |> env.custom$data.NotNA_p_df()
 ```
 
 
@@ -292,7 +291,7 @@ dput(names(knitr::knit_engines$get()))
 # # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
-# system.time(write_rds( get(paste0(objectname,".NA",".rmNotNA0",".fct")), paste0(objectname,".NA",".rmNotNA0",".fct",".rds") ))
+# system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
