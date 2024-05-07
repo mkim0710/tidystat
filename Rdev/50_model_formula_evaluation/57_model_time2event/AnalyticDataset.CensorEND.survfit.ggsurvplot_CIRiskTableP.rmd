@@ -23,7 +23,6 @@ F7 spell-check your document.\
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 *** Caution: \% \$ \# \* \
-*** Caution: RMarkdown does not support the use of the pipe operator (%>%). Use the pipe operator in the code chunk instead.\
 ```
 
 ```{r setup, eval=TRUE, include=FALSE}
@@ -33,7 +32,8 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 knitr::opts_chunk$set(
   eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
   comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
-  warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
+  warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
   tidy.opts=list(width.cutoff=120), tidy=TRUE, 
   R.options = list(width=120), paged.print=FALSE
 ) 
@@ -201,7 +201,7 @@ regex4filename = "\\.rds\\.xz$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 
-cat(strrep("-",80),"\n",sep=""); #----
+cat(strrep("~",80),"\n",sep=""); #----
 regex4filename = "\\.rds$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
@@ -220,13 +220,13 @@ env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2re
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
 cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
 
-get(objectname) %>% {.$PERSON_ID} %>% n_distinct
-get(objectname) %>% {.$RN_INDI} %>% n_distinct
+get(objectname) %>% {.$PERSON_ID} |> n_distinct()
+get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) %>% names %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") %>% cat ----
+get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ----
 cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
-# get(objectname) %>% select_if(is.numeric) %>% summary #-----
-# get(objectname) %>% select_if(is.logical) %>% summary #-----
+# get(objectname) |> select_if(is.numeric) |> summary() #-----
+# get(objectname) |> select_if(is.logical) |> summary() #-----
 ```
 
 
@@ -242,20 +242,20 @@ env.custom$f_path.size_files(path4read = path4read, regex4filename = filename2re
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
 cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
 
-get(objectname) %>% {.$PERSON_ID} %>% n_distinct
-get(objectname) %>% {.$RN_INDI} %>% n_distinct
+get(objectname) %>% {.$PERSON_ID} |> n_distinct()
+get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) %>% names %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") %>% cat ----
+get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ----
 cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
-# get(objectname) %>% select_if(is.numeric) %>% summary #-----
-# get(objectname) %>% select_if(is.logical) %>% summary #-----
+# get(objectname) |> select_if(is.numeric) |> summary() #-----
+# get(objectname) |> select_if(is.logical) |> summary() #-----
 ```
 
 
 
-##% as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
+##% as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
-as1_7.na.Date.fct.cumulative_DM.list %>% str(max.level = 2)
+as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
 ```
 
 
@@ -280,14 +280,14 @@ options(width=120)
 #     mutate(
 #         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
 #     )
-as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% summary
-as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% table(useNA = "always") %>% addmargins
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> summary()
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always") |> addmargins
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # tibble [10,030 × 2] (S3: tbl_df/tbl/data.frame)
 #  $ Time2Event_NewDMv3: num [1:10030] NA NA NA 1 NA NA NA NA 1 NA ...
 #  $ Event_NewDMv3     : logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% summary
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> summary()
 #  Time2Event_NewDMv3 Event_NewDMv3  
 #  Min.   :1.000      Mode :logical  
 #  1st Qu.:1.000      FALSE:7946     
@@ -296,7 +296,7 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% table(useNA = "alway
 #  3rd Qu.:4.000                     
 #  Max.   :7.000                     
 #  NA's   :7946                      
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% table(useNA = "always") %>% addmargins
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always") |> addmargins
 #                   Event_NewDMv3
 # Time2Event_NewDMv3 FALSE  TRUE  <NA>   Sum
 #               1        0  1185     0  1185
@@ -331,22 +331,22 @@ options(width=120)
 #         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
 #         , Time2Censor_NewDMv3 = replace_na(Time2Event_NewDMv3, 7)
 #     )
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% summary
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% table(useNA = "always") %>% addmargins
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> summary()
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins
 ```
 
 
 
 # \$ df_NewDMv3.NAtime =====
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
-df_NewDMv3.NAtime = as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% 
-    rename(event = Event_NewDMv3, time = Time2Event_NewDMv3) %>% 
-    mutate(StudyPopulation = !event | time > 1) %>% 
-    mutate(Group = StudyPopulation %>% as.integer) %>% 
-    as_tibble
+df_NewDMv3.NAtime = as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> 
+    rename(event = Event_NewDMv3, time = Time2Event_NewDMv3) |> 
+    mutate(StudyPopulation = !event | time > 1) |> 
+    mutate(Group = StudyPopulation |> as.integer()) |> 
+    as_tibble()
 df_NewDMv3.NAtime
-df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+df_NewDMv3.NAtime |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # > df_NewDMv3.NAtime
 # # A tibble: 10,030 × 4
 #     time event StudyPopulation Group
@@ -363,7 +363,7 @@ df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$Study
 # 10    NA FALSE TRUE                1
 # # ℹ 10,020 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# > df_NewDMv3.NAtime %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# > df_NewDMv3.NAtime |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # .$StudyPopulation: FALSE
 #       time    event             Group   StudyPopulation
 #  Min.   :1   Mode:logical   Min.   :0   Mode :logical  
@@ -398,24 +398,24 @@ suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survminer))
 
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
-# df_NewDMv3.NAtime.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
-# df_NewDMv3.NAtime.survfit %>% ggsurvplot(fun = "event")
-# df_NewDMv3.NAtime.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
+# df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "event")
+# df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 value_for_Censor_at_END = 7
 value_for_break.time.by = 1
 time_scale = "wave"
 varname4Group = "Group"
-df_NewDMv3.CensorEND = df_NewDMv3.NAtime %>% 
+df_NewDMv3.CensorEND = df_NewDMv3.NAtime |> 
     mutate(
-        time = time %>% replace_na(Inf)
-        # , event = event %>% replace_na(F)
-    ) %>% 
-    # mutate(event.CensorEND = ifelse(time <= value_for_Censor_at_END, event, F)) %>% 
-    # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) %>% 
-    mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) %>% 
-    mutate(time = pmin(time, value_for_Censor_at_END)) %>% 
-    as_tibble
-survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_NewDMv3.CensorEND %>% filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
+        time = time |> replace_na(Inf)
+        # , event = event |> replace_na(F)
+    ) |> 
+    # mutate(event.CensorEND = ifelse(time <= value_for_Censor_at_END, event, F)) |> 
+    # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) |> 
+    mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) |> 
+    mutate(time = pmin(time, value_for_Censor_at_END)) |> 
+    as_tibble()
+survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_NewDMv3.CensorEND |> filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
            , break.time.by = value_for_break.time.by
            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
            , xlim = c(1, value_for_Censor_at_END), ylim = c(0, 1)
@@ -430,17 +430,17 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 # \$ df_NewDMv3.Time2Censor_NewDMv3 ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% 
-    rename(event = Event_NewDMv3, time = Time2Censor_NewDMv3) %>% 
-    mutate(StudyPopulation = !event | time > 1) %>% 
-    mutate(Group = StudyPopulation %>% as.integer) %>% 
-    as_tibble
+df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> 
+    rename(event = Event_NewDMv3, time = Time2Censor_NewDMv3) |> 
+    mutate(StudyPopulation = !event | time > 1) |> 
+    mutate(Group = StudyPopulation |> as.integer()) |> 
+    as_tibble()
 df_NewDMv3.Time2Censor_NewDMv3
-df_NewDMv3.Time2Censor_NewDMv3 %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-df_NewDMv3.Time2Censor_NewDMv3 %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-df_NewDMv3.CensorEND %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-df_NewDMv3.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-all.equal(df_NewDMv3.Time2Censor_NewDMv3 %>% select(time, event), df_NewDMv3.CensorEND %>% select(time, event))
+df_NewDMv3.Time2Censor_NewDMv3 %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+df_NewDMv3.Time2Censor_NewDMv3 |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+df_NewDMv3.CensorEND %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+df_NewDMv3.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+all.equal(df_NewDMv3.Time2Censor_NewDMv3 |> dplyr::select(time, event), df_NewDMv3.CensorEND |> dplyr::select(time, event))
 table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = "always") %>% addmargins
 ```
 
@@ -478,20 +478,20 @@ options(width=120)
 # # library(survival)
 # # library(survminer)
 # ?survival::lung
-# df_time2event = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor, StudyPopulation = time >= 30) %>% {cat("> ",deparse(substitute(.))," %>% as_tibble %>% print(n=99)","\n", sep=""); print(as_tibble(.),n=99)}
-# # df_time2event %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-# # df_time2event %>% select(sex, Group) %>% table
-# # # > df_time2event %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
+# df_time2event = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) %>% {cat("> ",deparse(substitute(.))," |> as_tibble() |> print(n=99)","\n", sep=""); print(as_tibble(.),n=99)}
+# # df_time2event |> dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+# # df_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
+# # # > df_time2event |> dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # # # 'data.frame':	228 obs. of  2 variables:
 # # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# # # > df_time2event %>% select(sex, Group) %>% table
+# # # > df_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
 # # #    Group
 # # # sex Female Male
 # # #   1      0  138
 # # #   2     90    0
-# df_time2event %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # > df_time2event %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# df_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # > df_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # .$StudyPopulation: FALSE
 # #       time     event            Group   StudyPopulation
 # #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
@@ -511,25 +511,25 @@ options(width=120)
 # #  Max.   :1022.0   
 # 
 # ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
-# # df_time2event.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
-# # df_time2event.survfit %>% ggsurvplot(fun = "event")
-# # df_time2event.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# # df_time2event.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
+# # df_time2event.survfit |> ggsurvplot(fun = "event")
+# # df_time2event.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 # value_for_Censor_at_END = 365 * 1
 # value_for_break.time.by = 30
 # time_scale = "days"
 # varname4Group = "Group"
 # df_time2event.CensorEND = df_time2event %>%
 #     mutate(
-#         time = time %>% replace_na(Inf)
-#         # , event = event %>% replace_na(F)
+#         time = time |> replace_na(Inf)
+#         # , event = event |> replace_na(F)
 #     ) %>%
 #     # mutate(event.CensorEND = ifelse(time <= value_for_Censor_at_END, event, F)) %>%
 #     # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) %>%
 #     mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) %>%
 #     mutate(time = pmin(time, value_for_Censor_at_END)) %>%
 #     as_tibble
-# df_time2event.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # > df_time2event.CensorEND %>% select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# df_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
+# # > df_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # .$StudyPopulation: FALSE
 # #       time     event            Group   StudyPopulation
 # #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
@@ -547,7 +547,7 @@ options(width=120)
 # #  Mean   :253.6                                               
 # #  3rd Qu.:365.0                                               
 # #  Max.   :365.0                                               
-# survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_time2event.CensorEND %>% filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
+# survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_time2event.CensorEND |> filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
 #            , break.time.by = value_for_break.time.by
 #            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
 #            , xlim = c(0, value_for_Censor_at_END), ylim = c(0, 1)
@@ -558,7 +558,7 @@ options(width=120)
 
 
 # @@ END ------------
-```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ END ------------
 
 ```
@@ -571,7 +571,7 @@ dput(names(knitr::knit_engines$get()))
 
 ## \$ objectname = "df_NewDMv3.NAtime200621" ====
 ###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
-```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
+```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
 # 
 # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "df_NewDMv3.NAtime200621"

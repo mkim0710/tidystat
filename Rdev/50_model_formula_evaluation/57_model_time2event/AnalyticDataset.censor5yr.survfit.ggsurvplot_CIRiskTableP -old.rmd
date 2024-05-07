@@ -23,7 +23,6 @@ F7 spell-check your document.\
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 \
 *** Caution: \% \$ \# \* \
-*** Caution: RMarkdown does not support the use of the pipe operator (%>%). Use the pipe operator in the code chunk instead.\
 ```
 
 ```{r setup, eval=TRUE, include=FALSE}
@@ -33,7 +32,8 @@ Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
 knitr::opts_chunk$set(
   eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
   comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
-  warning=TRUE, error=TRUE, message=TRUE, include=TRUE, 
+  warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
   tidy.opts=list(width.cutoff=120), tidy=TRUE, 
   R.options = list(width=120), paged.print=FALSE
 ) 
@@ -201,7 +201,7 @@ regex4filename = "\\.rds\\.xz$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 
-cat(strrep("-",80),"\n",sep=""); #----
+cat(strrep("~",80),"\n",sep=""); #----
 regex4filename = "\\.rds$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
 env.custom$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
@@ -222,13 +222,13 @@ options(width=120)
 # system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
 # cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
 
-# get(objectname) %>% {.$PERSON_ID} %>% n_distinct
-# get(objectname) %>% {.$RN_INDI} %>% n_distinct
+# get(objectname) %>% {.$PERSON_ID} |> n_distinct()
+# get(objectname) %>% {.$RN_INDI} |> n_distinct()
 # get(objectname) %>% names %>% {cat("----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----
-# get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") %>% cat ----
+# get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ----
 # cat("----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
-# # get(objectname) %>% select_if(is.numeric) %>% summary #-----
-# # get(objectname) %>% select_if(is.logical) %>% summary #-----
+# # get(objectname) |> select_if(is.numeric) |> summary() #-----
+# # get(objectname) |> select_if(is.logical) |> summary() #-----
 ```
 
 
@@ -301,22 +301,22 @@ cox.zph(cox_model)
 ## \$ AnalyticDataset ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-AnalyticDataset = lung %>% rename(event = status, Group = sex)
+AnalyticDataset = lung |> rename(event = status, Group = sex)
 AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# AnalyticDataset.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
+# AnalyticDataset.survfit |> ggsurvplot(fun = "event")
+# AnalyticDataset.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 
-AnalyticDataset.survfit %>% ggsurvplot  # default fun = "pct"?
+AnalyticDataset.survfit |> ggsurvplot  # default fun = "pct"?
 ```
 
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-AnalyticDataset.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
+AnalyticDataset.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T)
 ```
 
 
@@ -324,7 +324,7 @@ AnalyticDataset.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
-AnalyticDataset.coxph %>% summary #----
+AnalyticDataset.coxph |> summary() #----
 AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
 ```
@@ -337,31 +337,31 @@ options(width=120)
 
 value_for_censor_at_1yr = 365 * 1
 value_for_break.time.by = 30
-AnalyticDataset.censor1yr = AnalyticDataset %>% mutate(
+AnalyticDataset.censor1yr = AnalyticDataset |> mutate(
     time.censor1yr = pmin(time, value_for_censor_at_1yr)
     , event.censor1yr = ifelse(time < value_for_censor_at_1yr, event, 0)
 )
 AnalyticDataset.censor1yr.survfit = survfit(Surv(time = time.censor1yr, event = event.censor1yr) ~ Group, data = AnalyticDataset.censor1yr)
 
-# AnalyticDataset.censor1yr.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
-# AnalyticDataset.censor1yr.survfit %>% ggsurvplot(fun = "event")
-# AnalyticDataset.censor1yr.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# AnalyticDataset.censor1yr.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
+# AnalyticDataset.censor1yr.survfit |> ggsurvplot(fun = "event")
+# AnalyticDataset.censor1yr.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 
-AnalyticDataset.censor1yr.survfit %>% ggsurvplot  # default fun = "pct"?
-
-```
-
-
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-AnalyticDataset.censor1yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
+AnalyticDataset.censor1yr.survfit |> ggsurvplot  # default fun = "pct"?
 
 ```
 
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-AnalyticDataset.censor1yr.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
+AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
+
+```
+
+
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
 
 ```
 
@@ -395,29 +395,29 @@ suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
 # suppressPackageStartupMessages(library(survminer))
 ?survival::lung 
-AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
-# AnalyticDataset %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
-# AnalyticDataset %>% select(sex, Group) %>% table
-# # > AnalyticDataset %>% select(sex, Group) %>% {cat("> ",deparse(substitute(.))," %>% str","\n", sep=""); str(.)}
+AnalyticDataset = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor())
+# AnalyticDataset |> dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+# AnalyticDataset |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
+# # > AnalyticDataset |> dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# # > AnalyticDataset %>% select(sex, Group) %>% table
+# # > AnalyticDataset |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
 # #    Group
 # # sex Female Male
 # #   1      0  138
 # #   2     90    0
-AnalyticDataset %>% select(time, event, Group) %>% summary
+AnalyticDataset |> dplyr::select(time, event, Group) |> summary()
 
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
-# AnalyticDataset.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
+# AnalyticDataset.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
+# AnalyticDataset.survfit |> ggsurvplot(fun = "event")
+# AnalyticDataset.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
 value_for_censor_at_1yr = 365 * 1
 value_for_break.time.by = 30
 time_scale = "days"
 varname4Group = "Group"
-AnalyticDataset.censor1yr = AnalyticDataset %>% mutate(
+AnalyticDataset.censor1yr = AnalyticDataset |> mutate(
     # time.censor1yr = pmin(time, value_for_censor_at_1yr)
     # , event.censor1yr = ifelse(time < value_for_censor_at_1yr, event, 0)
     time = pmin(time, value_for_censor_at_1yr)
@@ -432,7 +432,7 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 ```
 
 # @@ END ------------
-```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, error=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ END ------------
 
 ```
@@ -443,11 +443,11 @@ dput(names(knitr::knit_engines$get()))
 ```
 
 
-```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, error=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 # # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
-# system.time(write_rds( get(paste0(objectname,".NA",".rmNotNA0",".fct")), paste0(objectname,".NA",".rmNotNA0",".fct",".rds") ))
+# system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
