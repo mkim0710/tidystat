@@ -50,11 +50,11 @@ if(!objectname %in% names(env.custom)) {
 
 objectname = "f_path.df_dirs_recursive.df_files"
 object = function(
-        input_path = ".", 
-        max_depth = 9, 
-        current_depth = 0, 
-        gitignore_escaped_select.UC.regex = env.custom$gitignore_escaped_select.UC.regex, 
-        print.message = TRUE
+    input_path = ".", 
+    max_depth = 9, 
+    current_depth = 0, 
+    gitignore_escaped_select.UC.regex = env.custom$gitignore_escaped_select.UC.regex, 
+    print.message = TRUE
 ) {
     if (!dir.exists(input_path)) {
         stop("The specified input_path does not exist or is not a directory.")
