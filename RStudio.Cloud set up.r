@@ -89,6 +89,9 @@ for (packagename in c("icd")) {
 # system('git config --global user.email "mkim0710@gmail.com"')
 # system('git config --global user.name "mkim0710@RStudio.Cloud"')
 
+# system('git config --global user.email "mhkim710@gmail.com"')
+# system('git config --global user.name "mhkim@rocker@MAGB760M13700KF"')
+
 
 
 
@@ -108,9 +111,17 @@ for (packagename in c("icd")) {
 # git remote -v
 
 system("git remote -v")
-# system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git ")
-system("git remote -v")
+# > system("git remote -v")
+# origin	https://github.com/mkim0710/tidystat (fetch)
+# origin	https://github.com/mkim0710/tidystat (push)
 
+# system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git ")
+system("git remote set-url origin git@github.com:mkim0710/tidystat.git ")
+
+system("git remote -v")
+# > system("git remote -v")
+# origin	git@github.com:mkim0710/tidystat.git (fetch)
+# origin	git@github.com:mkim0710/tidystat.git (push)
 
 
 
@@ -118,7 +129,7 @@ system("git remote -v")
 
 
 # Caution) do not forget to add .gitignore to .gitignore
-
+file.edit(".gitignore")
 
 #@ end ----
 
