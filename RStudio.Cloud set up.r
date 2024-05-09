@@ -67,6 +67,7 @@ for (packagename in c("icd")) {
 # Tools > Global options > Git > Create key
 # https://github.com/settings/keys
 
+file.edit("/home/rstudio/.ssh/id_ed25519.pub")
 
 # >>> /usr/bin/git commit -F /tmp/Rtmpw9zfpP/git-commit-message-8a2e196d1d.txt --amend
 # 
@@ -130,6 +131,11 @@ system("git remote -v")
 
 # Caution) do not forget to add .gitignore to .gitignore
 file.edit(".gitignore")
+
+
+
+
+
 
 #@ end ----
 
