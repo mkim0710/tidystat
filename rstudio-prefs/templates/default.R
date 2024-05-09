@@ -40,6 +40,49 @@ sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.s
 env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
 env.custom$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat()
 env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat()
+# Rdev
+# Rdev/-dev
+# Rdev/00_base_program
+# Rdev/00_protocol
+# Rdev/00_protocol/01_sample_size
+# Rdev/00_protocol/05_count_eligible
+# Rdev/00_protocol/06_count_exposure
+# Rdev/00_protocol/07_count_outcome
+# Rdev/10_import_clean_datatype
+# Rdev/10_import_clean_datatype/11_metadata
+# Rdev/10_import_clean_datatype/12_import_files
+# Rdev/10_import_clean_datatype/12_import_sqlite
+# Rdev/10_import_clean_datatype/12_import_vocabulary
+# Rdev/10_import_clean_datatype/13_duplicated
+# Rdev/10_import_clean_datatype/13_missing_value
+# Rdev/10_import_clean_datatype/13_split_fold
+# Rdev/10_import_clean_datatype/15_cleaning_text
+# Rdev/10_import_clean_datatype/15_cleaning_time
+# Rdev/10_import_clean_datatype/16_categorical_factor
+# Rdev/10_import_clean_datatype/17_categorical_indicators
+# Rdev/10_import_clean_datatype/18_dichotomous_logical
+# Rdev/10_import_clean_datatype/19_datetime
+# Rdev/10_import_clean_datatype/19_numeric_integer
+# Rdev/10_import_clean_datatype/array_list
+# Rdev/20_tidy_group_by_match
+# Rdev/20_tidy_group_by_match/23_group_by_PersonID
+# Rdev/20_tidy_group_by_match/25_study_population
+# Rdev/20_tidy_group_by_match/27_match
+# Rdev/30_transform_scale_categorical
+# Rdev/40_visualize_explore_bivariate_stratified
+# Rdev/40_visualize_explore_bivariate_stratified/43_network
+# Rdev/40_visualize_explore_bivariate_stratified/44_map
+# Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
+# Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
+# Rdev/50_model_formula_evaluation
+# Rdev/50_model_formula_evaluation/51_model_formula
+# Rdev/50_model_formula_evaluation/53_model_selection
+# Rdev/50_model_formula_evaluation/55_model_weighted
+# Rdev/50_model_formula_evaluation/56_model_bootstrap
+# Rdev/50_model_formula_evaluation/57_model_time2event
+# Rdev/50_model_formula_evaluation/57_model_trajectory
+# Rdev/50_model_formula_evaluation/59_model_evaluation
+# Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
