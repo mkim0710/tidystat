@@ -2,6 +2,7 @@
 # https://posit.cloud/spaces/100015/content/6373416  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # https://posit.cloud/spaces/404673/content/6373521  # Shared Workspace@v - PositCloud@v
 
+# # To paste text in the terminal use Shift + Insert. (Or Ctrl + Shift + v)
 
 # file.edit(file.path(path4APPDATA_RStudio, filename))
 if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
@@ -23,6 +24,9 @@ filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "
 # Global Options > Appearance > Editor theme: Ambiance -void
 # Global Options > Appearance > Editor theme: Twilight (better for RMD, red for titles)
 # Global Options > Git/SVN > SSH RSA key
+file.edit("/home/rstudio/.ssh/id_ed25519.pub")
+file.edit("/home/rstudio/.ssh/id_ed25519")
+system("git status")
 
 # https://support.posit.co/hc/en-us/articles/4422648539031-Compute-Hours-and-the-Background-Execution-Limit-in-Posit-Cloud#:~:text=Compute%20hours%20are%20calculated%20based,based%20on%20the%20current%20plan.
 # Resources> RAM 0.5, CPU 0.5, Background 1 hr
