@@ -1,3 +1,15 @@
+
+
+# restarted = rstudioapi::restartSession()  # ctrl+shift+f10
+# for (i in 1:10) {
+#     if (exists("restarted")) {message("R session restarted"); break} 
+#     Sys.sleep(0.5)
+#     if (i == 10) {warning("R session restart failed")}
+# }
+
+
+
+
 # function.detachAllPackages <- function() {
 #   # Get the names of all loaded packages
 #   loadedPackages <- search()
@@ -8,6 +20,7 @@
 #     }
 #   }
 # }
+
 
 
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
@@ -34,7 +47,51 @@
 
 
 
-
 # @ MH =====
 # invisible(lapply(search()[search() %in% paste0("package:",names(sessionInfo()$otherPkgs))], detach, character.only=TRUE, unload=TRUE))
+
+
+#@ 
+detach_packages_safely <- function() {
+  library(tools)  # For parsing package dependencies
+
+  # Get list of currently loaded namespaces
+  pkgs <- names(sessionInfo()$otherPkgs)
+
+  # Determine the dependency tree
+  dep_list <- sapply(pkgs, function(pkg) {
+    deps <- package_dependencies(pkg, db = available.packages(), which = c("Depends", "Imports", "LinkingTo"), recursive = TRUE)
+    return(unlist(deps))
+  }, simplify = FALSE)
+
+  # Flatten the list if nested and count dependencies
+  dep_counts <- sapply(dep_list, function(deps) {
+    length(unique(deps))
+  })
+
+  # Sort packages by the number of other packages that depend on them
+  pkg_order <- order(dep_counts, decreasing = TRUE)
+  sorted_pkgs <- pkgs[pkg_order]
+
+  # Detach packages in the order determined, from least dependent to most dependent
+  results <- sapply(sorted_pkgs, function(pkg) {
+    package_name <- paste0("package:", pkg)
+    if (package_name %in% search()) {
+      tryCatch({
+        detach(name = package_name, unload = TRUE, character.only = TRUE)
+        paste("Detached", pkg)
+      }, error = function(e) {
+        paste("Failed to detach", pkg, ":", e$message)
+      })
+    } else {
+      paste("Package not loaded:", pkg)
+    }
+  }, simplify = FALSE)
+
+  return(results)
+}
+
+# Run the function
+invisible(detach_packages_safely())
+
 
