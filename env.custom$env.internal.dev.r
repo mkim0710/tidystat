@@ -1,8 +1,11 @@
-# objectname = "env.custom$env.internal"
+# sourcename = "env.custom$env.internal"
 # env.custom$env.internal.dev.r
 # env.custom$env.internal.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/env.custom$env.internal.dev.r
 # source("https://github.com/mkim0710/tidystat/raw/master/env.custom$env.internal.source.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/env.custom$env.internal.dev.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/env.custom$env.internal.source.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/internal.f_path0.list_path_hierarchy.dev.r")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 objectname = "env.custom$env.internal"
@@ -18,11 +21,12 @@ cat("# ", 'sourcename = "', sourcename, '"', "\n",
     "# ", sourcename, ".source.r", "\n",
     '#         ', source_base_github_blob,"/",dev.subpath.filename.ext, "\n",
     '# source("', source_base_github,"/",subpath.filename.source.r,'")', "\n",
+    '# file.edit("', source_base_local,"/",dev.subpath.filename.ext,'")', "\n",
+    '# file.edit("', source_base_local,"/",subpath.filename.source.r,'")', "\n",
     sep="")
-current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+current.path.filename.ext=rstudioapi::getSourceEditorContext()$path
 if(!file.exists(dev.subpath.filename.ext)) file.create(dev.subpath.filename.ext); file.edit(dev.subpath.filename.ext); file.edit(current.path.filename.ext);
 if(!file.exists(subpath.filename.source.r)) file.create(subpath.filename.source.r); file.edit(subpath.filename.source.r); file.edit(current.path.filename.ext);
-
 
 
 # if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
