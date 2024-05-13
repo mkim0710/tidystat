@@ -57,14 +57,14 @@ f_git.03_final.pull_rebase_push = function(intern = TRUE) {
     # # system("git pull --ff-only origin master") # If your branch can be fast-forwarded
     # # system("git pull --rebase origin master") # If you want to maintain a linear project history by replaying your changes on top of the fetched changes
     # system("git pull --rebase") # If you want to maintain a linear project history by replaying your changes on top of the fetched changes
-    Text4SystemCommand = "git status"; out.list[Text4SystemCommand] = list(system(Text4SystemCommand, intern = intern))
+    Text4SystemCommand = "git pull --rebase"; out.list[Text4SystemCommand] = list(system(Text4SystemCommand, intern = intern))
     # # system("git config --global push.default simple") # simple (default in Git 2.0 and later): Pushes the current branch to its upstream branch, but only if the branch names match, and it refuses to push if the upstream branch does not already exist.
     # # system("git config --global push.default matching") # matching (default prior to Git 2.0): Pushes branches to the remote branches with the same name. 
     # # system("git config --global push.default current") # Pushes the current branch to the remote branch of the same name.
     # # system("git config --global push.default upstream") # Pushes the current branch to its upstream branch.
     # # system("git config --global push.default nothing") # Disables automatic pushing. This requires a branch to be explicitly specified.
     # system("git push") # Pushes branches based on the configuration of push.default. It is context-sensitive and relies on previous setup or defaults.
-    Text4SystemCommand = "git status"; out.list[Text4SystemCommand] = list(system(Text4SystemCommand, intern = intern))
+    Text4SystemCommand = "git push"; out.list[Text4SystemCommand] = list(system(Text4SystemCommand, intern = intern))
     # # system("git push origin") # Pushes to the origin remote, relying on push.default for branch specifics.
     # # system("git push origin master") # Explicitly pushes the local master branch to the master branch at the origin remote, useful for precise control over what is being pushed and where.
     # system("git status") 
@@ -84,8 +84,10 @@ if (file.exists(".git")) {
 } else {
     message("No Git repository detected in the current project.")
 }
-
-
+if (file.exists(".git")) f_git.01_start.pull(intern = TRUE)
+if (file.exists(".git")) f_git.02_interim.fetch_add_commit(intern = TRUE)
+if (file.exists(".git")) f_git.03_final.pull_rebase_push(intern = TRUE)
+    
 # if (file.exists(".git")) {
 #     message("Git repository detected. Checking status and pulling latest changes...")
 #     tryCatch({
