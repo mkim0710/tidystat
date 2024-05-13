@@ -24,6 +24,9 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 for(packagename in c("tidyverse")){if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 ## env.custom\$path ====
+# path2look = "/"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
+# path2look = "~"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
+# path2look = "."; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
 if(!"path" %in% names(env.custom)) env.custom$path = list()
 objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
@@ -33,59 +36,60 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 ## env.custom\$env.internal ====
 sourcename = "env.custom$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 #### env.custom\$f_df.t.tribble_construct() ====
-sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-#### env.custom\$info\$get_system_info() ====
 sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$info$info_system_info = env.custom$info$get_system_info()
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### env.custom\$f_path.df_dirs_recursive.df_files() ----
-sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
-env.custom$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat()
-env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat()
-# Rdev
-# Rdev/-dev
-# Rdev/00_base_program
-# Rdev/00_protocol
-# Rdev/00_protocol/01_sample_size
-# Rdev/00_protocol/05_count_eligible
-# Rdev/00_protocol/06_count_exposure
-# Rdev/00_protocol/07_count_outcome
-# Rdev/10_import_clean_datatype
-# Rdev/10_import_clean_datatype/11_metadata
-# Rdev/10_import_clean_datatype/12_import_files
-# Rdev/10_import_clean_datatype/12_import_sqlite
-# Rdev/10_import_clean_datatype/12_import_vocabulary
-# Rdev/10_import_clean_datatype/13_duplicated
-# Rdev/10_import_clean_datatype/13_missing_value
-# Rdev/10_import_clean_datatype/13_split_fold
-# Rdev/10_import_clean_datatype/15_cleaning_text
-# Rdev/10_import_clean_datatype/15_cleaning_time
-# Rdev/10_import_clean_datatype/16_categorical_factor
-# Rdev/10_import_clean_datatype/17_categorical_indicators
-# Rdev/10_import_clean_datatype/18_dichotomous_logical
-# Rdev/10_import_clean_datatype/19_datetime
-# Rdev/10_import_clean_datatype/19_numeric_integer
-# Rdev/10_import_clean_datatype/array_list
-# Rdev/20_tidy_group_by_match
-# Rdev/20_tidy_group_by_match/23_group_by_PersonID
-# Rdev/20_tidy_group_by_match/25_study_population
-# Rdev/20_tidy_group_by_match/27_match
-# Rdev/30_transform_scale_categorical
-# Rdev/40_visualize_explore_bivariate_stratified
-# Rdev/40_visualize_explore_bivariate_stratified/43_network
-# Rdev/40_visualize_explore_bivariate_stratified/44_map
-# Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
-# Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
-# Rdev/50_model_formula_evaluation
-# Rdev/50_model_formula_evaluation/51_model_formula
-# Rdev/50_model_formula_evaluation/53_model_selection
-# Rdev/50_model_formula_evaluation/55_model_weighted
-# Rdev/50_model_formula_evaluation/56_model_bootstrap
-# Rdev/50_model_formula_evaluation/57_model_time2event
-# Rdev/50_model_formula_evaluation/57_model_trajectory
-# Rdev/50_model_formula_evaluation/59_model_evaluation
-# Rdev/60_communicate_report_export
+# sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# #### env.custom\$info\$get_system_info() ====
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# #### env.custom\$f_path.df_dirs_recursive.df_files() ----
+# sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
+# env.custom$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat()
+# env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat()
+# # Rdev
+# # Rdev/-dev
+# # Rdev/00_base_program
+# # Rdev/00_protocol
+# # Rdev/00_protocol/01_sample_size
+# # Rdev/00_protocol/05_count_eligible
+# # Rdev/00_protocol/06_count_exposure
+# # Rdev/00_protocol/07_count_outcome
+# # Rdev/10_import_clean_datatype
+# # Rdev/10_import_clean_datatype/11_metadata
+# # Rdev/10_import_clean_datatype/12_import_files
+# # Rdev/10_import_clean_datatype/12_import_sqlite
+# # Rdev/10_import_clean_datatype/12_import_vocabulary
+# # Rdev/10_import_clean_datatype/13_duplicated
+# # Rdev/10_import_clean_datatype/13_missing_value
+# # Rdev/10_import_clean_datatype/13_split_fold
+# # Rdev/10_import_clean_datatype/15_cleaning_text
+# # Rdev/10_import_clean_datatype/15_cleaning_time
+# # Rdev/10_import_clean_datatype/16_categorical_factor
+# # Rdev/10_import_clean_datatype/17_categorical_indicators
+# # Rdev/10_import_clean_datatype/18_dichotomous_logical
+# # Rdev/10_import_clean_datatype/19_datetime
+# # Rdev/10_import_clean_datatype/19_numeric_integer
+# # Rdev/10_import_clean_datatype/array_list
+# # Rdev/20_tidy_group_by_match
+# # Rdev/20_tidy_group_by_match/23_group_by_PersonID
+# # Rdev/20_tidy_group_by_match/25_study_population
+# # Rdev/20_tidy_group_by_match/27_match
+# # Rdev/30_transform_scale_categorical
+# # Rdev/40_visualize_explore_bivariate_stratified
+# # Rdev/40_visualize_explore_bivariate_stratified/43_network
+# # Rdev/40_visualize_explore_bivariate_stratified/44_map
+# # Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
+# # Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
+# # Rdev/50_model_formula_evaluation
+# # Rdev/50_model_formula_evaluation/51_model_formula
+# # Rdev/50_model_formula_evaluation/53_model_selection
+# # Rdev/50_model_formula_evaluation/55_model_weighted
+# # Rdev/50_model_formula_evaluation/56_model_bootstrap
+# # Rdev/50_model_formula_evaluation/57_model_time2event
+# # Rdev/50_model_formula_evaluation/57_model_trajectory
+# # Rdev/50_model_formula_evaluation/59_model_evaluation
+# # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
@@ -102,19 +106,26 @@ cat("# ",'sourcename = "',sourcename,'"', "\n",
     "# ",sourcename,".dev.r", "\n",
     "# ",sourcename,".source.r", "\n",
     '# utils::browseURL("',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
-    '# source("',env.custom$path$source_base_github,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
+    '# source(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.source.r,'"))', "\n",
+    '# # source("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
+    '# # source("',env.custom$path$source_base_github,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
     '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
     '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.Rmd,'")', "\n",
     '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
     sep="")
 env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 if(sourcename == "default.template") { warning('sourcename == "default.template"') } else {
-    # if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base, "rstudio-prefs", "templates", "default.R"),to=env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$current.path.filename.ext);
-    if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base, "rstudio-prefs", "templates", "templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$current.path.filename.ext);
-    if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base, "rstudio-prefs", "templates", "default.R"),to=env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$current.path.filename.ext);
+    # # if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$current.path.filename.ext);
+    # if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$current.path.filename.ext);
+    # if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$current.path.filename.ext);
+    file2create = env.custom$path$subpath.filename.dev.Rmd; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env.custom$path$current.path.filename.ext);
+    file2create = env.custom$path$subpath.filename.source.r; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env.custom$path$current.path.filename.ext);
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+
+
+
 
 
 
@@ -137,21 +148,29 @@ if(sourcename == "default.template") { warning('sourcename == "default.template"
 env.custom$path$default.filename.ext = "default.R"
 env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 
+
+env.custom$env.internal$f_filename.ext.create_backup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup")) {
+    copying_path.filename = basename(copying_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
+    copying_ext = basename(copying_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
+    backup_path.filename.ext = file.path(backup_path, paste0(copying_path.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),copying_ext))
+    if(!dir.exists(backup_path)) dir.create(backup_path, recursive = TRUE)
+    file.copy(from=copying_path.filename.ext, to=backup_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_path.filename.ext))
+}
+
 if(env.custom$path$default.filename.ext == basename(env.custom$path$current.path.filename.ext)) {
-    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
-    if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) ;
+    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
+    destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ;
+    destination.path.filename.ext = file.path(destination.path, "default.R"); 
+    env.custom$env.internal$f_filename.ext.create_backup(copying_path.filename.ext = destination.path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"))
     
-    destination.path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "default.R"); 
     if(file.copy(from=env.custom$path$current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); 
-    if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+    # if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+    if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+    
     for ( destination.path.filename.ext in c(
         file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$default.filename.ext)
         , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$default.filename.ext)
-    )) {if(env.custom$path$current.path.filename.ext != destination.path.filename.ext) {
-        destination.filename = basename(destination.path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-        destination.ext = basename(destination.path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
-        backup.path.filename = file.path(env.custom$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
-        file.copy(from=destination.path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
+    )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$current.path.filename.ext != destination.path.filename.ext) {
         if(file.copy(from=env.custom$path$current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
         if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     }}
