@@ -41,7 +41,7 @@ env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% dplyr
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
 subpath = r"(rstudio-prefs\templates)" %>% str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# # utils::browseURL(subpath)
+# if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "default.template"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$subpath = subpath

@@ -35,7 +35,7 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
 subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# utils::browseURL(subpath)
+if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "f_df.t.tribble_construct"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$subpath = subpath
@@ -698,7 +698,7 @@ ls.str(env.custom$env.internal) #-----
 
 # #@ source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath) ----
 # source_subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# utils::browseURL(subpath)
+if(subpath!="") utils::browseURL(normalizePath(subpath))
 # source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath)
 # t0 = Sys.time()
 # load(url(file.path(source_path, "f_df.t.tribble_construct.RData")))
