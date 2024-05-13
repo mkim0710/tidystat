@@ -473,8 +473,8 @@ current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename
 ```
 
 
-```{comment RenderMessages, eval=FALSE, include=FALSE}
-dput(names(knitr::knit_engines$get()))
+```{r RenderMessages, eval=FALSE, include=FALSE}
+# dput(names(knitr::knit_engines$get()))
 ```
 
 

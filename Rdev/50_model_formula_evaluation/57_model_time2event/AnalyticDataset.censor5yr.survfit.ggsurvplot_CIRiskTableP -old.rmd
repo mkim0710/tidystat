@@ -438,8 +438,8 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 ```
 
 
-```{comment RenderMessages, eval=FALSE, include=FALSE}
-dput(names(knitr::knit_engines$get()))
+```{r RenderMessages, eval=FALSE, include=FALSE}
+# dput(names(knitr::knit_engines$get()))
 ```
 
 

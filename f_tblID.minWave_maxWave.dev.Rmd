@@ -311,8 +311,8 @@ filename.ext = "templates-00env.custom.minimum.Rmd"; if(file.exists(filename.ext
 ```
 
 
-```{comment RenderMessages, eval=FALSE, include=FALSE}
-dput(names(knitr::knit_engines$get()))
+```{r RenderMessages, eval=FALSE, include=FALSE}
+# dput(names(knitr::knit_engines$get()))
 ```
 
 
