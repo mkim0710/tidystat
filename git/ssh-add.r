@@ -13,7 +13,7 @@ else
 fi
        ', intern = TRUE); dput(system.output_vec)
 "SSH Agent already running on PID 2732"
-str_extract(system.output, "[0-9]+$")
+str_extract(system.output_vec, "[0-9]+$")
 "2732"
 
 
@@ -24,7 +24,10 @@ system('ps aux | grep ssh-agent')
 # rstudio   2732  0.0  0.0   7980  3496 ?        Ss   07:59   0:00 ssh-agent -s
 # rstudio   2777  0.0  0.0   2892   284 ?        S    08:21   0:00 sh -c ps aux | grep ssh-agent
 # rstudio   2779  0.0  0.0   6480  2216 ?        S    08:21   0:00 grep ssh-agent
-
+# > system('ps aux | grep ssh-agent')
+# rstudio    720  0.0  0.0   7980  3372 ?        Ss   14:50   0:00 ssh-agent -s
+# rstudio    745  0.0  0.0   2892   288 ?        S    14:50   0:00 sh -c ps aux | grep ssh-agent
+# rstudio    747  0.0  0.0   6612  2280 ?        S    14:50   0:00 grep ssh-agent
 # system("kill 3214")
 
 
