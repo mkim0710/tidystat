@@ -74,16 +74,16 @@ f_git.03_final.pull_rebase_push = function(intern = TRUE) {
 
 
 
-if (file.exists(".git")) {
-    message("Git repository detected. Checking status and pulling latest changes...")
-    out.list = list()
-    out.list$`f_git.01_start.pull` = f_git.01_start.pull(intern = TRUE)
-    out.list$`f_git.02_interim.fetch_add_commit` = f_git.02_interim.fetch_add_commit(intern = TRUE)
-    out.list$`f_git.03_final.pull_rebase_push` = f_git.03_final.pull_rebase_push(intern = TRUE)
-    str(out.list)
-} else {
-    message("No Git repository detected in the current project.")
-}
+# if (file.exists(".git")) {
+#     message("Git repository detected. Checking status and pulling latest changes...")
+#     out.list = list()
+#     out.list$`f_git.01_start.pull` = f_git.01_start.pull(intern = TRUE)
+#     out.list$`f_git.02_interim.fetch_add_commit` = f_git.02_interim.fetch_add_commit(intern = TRUE)
+#     out.list$`f_git.03_final.pull_rebase_push` = f_git.03_final.pull_rebase_push(intern = TRUE)
+#     str(out.list)
+# } else {
+#     message("No Git repository detected in the current project.")
+# }
 if (file.exists(".git")) f_git.01_start.pull(intern = TRUE)
 if (file.exists(".git")) f_git.02_interim.fetch_add_commit(intern = TRUE)
 if (file.exists(".git")) f_git.03_final.pull_rebase_push(intern = TRUE)
