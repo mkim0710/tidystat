@@ -3,7 +3,7 @@ title: "gitignore_escaped_select.UC.regex from gitignore.Rmd"
 output: html_notebook
 ---
 
-```{r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} 
+```{r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE}
 # ##### Rstudio RMarkDown Shortcuts
 # https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
 # https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
