@@ -5,11 +5,14 @@
 # source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 objectname = "f_df.t.tribble_construct"
-source_base_local = "D:/OneDrive/[][Rproject]/github_tidystat"
-source_base_github = "https://github.com/mkim0710/tidystat/raw/master"
-source_base_github_blob = "https://github.com/mkim0710/tidystat/blob/master"
-subpath = ""
+subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+utils::browseURL(subpath)
 sourcename = objectname
 dev.subpath.filename.ext = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
@@ -653,7 +656,8 @@ ls.str(env.custom$env.internal) #-----
 
 
 # #@ source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath) ----
-# source_subpath = ""
+# source_subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+utils::browseURL(subpath)
 # source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath)
 # t0 = Sys.time()
 # load(url(file.path(source_path, "f_df.t.tribble_construct.RData")))
