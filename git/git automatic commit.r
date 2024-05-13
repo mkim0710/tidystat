@@ -33,6 +33,7 @@ f_git.01_start.pull = function(intern = TRUE) {
 
 f_git.02_interim.fetch_add_commit = function(intern = TRUE) {
     # 2. Before Making Commits - Stay Updated About Remote Changes: git fetch before any of my git commit
+    out.list = list()
     # system("git status") 
     Text4SystemCommand = "git status"; out.list[Text4SystemCommand] = list(system(Text4SystemCommand, intern = intern))
     # system("git fetch")  # Before Making Commits - Stay Updated About Remote Changes. Fetches updates for all branches from the default remote, updating remote-tracking branches.
@@ -50,6 +51,7 @@ f_git.02_interim.fetch_add_commit = function(intern = TRUE) {
 
 f_git.03_final.pull_rebase_push = function(intern = TRUE) {
     # 3. Before Pushing Changes - Final Sync and Merge/Rebase: git pull before any of my push
+    out.list = list()
     # system("git status") 
     Text4SystemCommand = "git status"; out.list[Text4SystemCommand] = list(system(Text4SystemCommand, intern = intern))
     # # system("git pull --ff-only origin master") # If your branch can be fast-forwarded
