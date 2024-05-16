@@ -61,9 +61,9 @@ cat("# ",'sourcename = "',sourcename,'"', "\n",
     '# source(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.source.r,'"))', "\n",
     '# # source("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
     '# # source("',env.custom$path$source_base_github,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
-    '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
-    '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.Rmd,'")', "\n",
-    '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
+    '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.dev.r,'"))', "\n",
+    '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.dev.Rmd,'"))', "\n",
+    '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.source.r,'"))', "\n",
     sep="")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
