@@ -134,11 +134,11 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) data -----
-#$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
-path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
+# #@@ START) data -----
+# #$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
+# path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# if(file.exists(paste0(path4read,"/",objectname,".rds"))) assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
 
 
