@@ -1,8 +1,40 @@
 # Rocker set up -private.r 
 # Rocker set up.r 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# rm(list=ls())
+# rstudioapi::restartSession()  # ctrl+shift+f10
+# https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
+# sourcename = "function.detachAllPackages"; subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+for(packagename in c("tidyverse")){if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
+if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+## env.custom\$path ====
+# path2look = "/"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
+# path2look = "~"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
+# path2look = "."; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
+if(!"path" %in% names(env.custom)) env.custom$path = list()
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)
+objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+
+
+
+
 file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh")
 file.edit("Rocker set up.r")
-file.edit("Rocker set up -private.r")
+# file.edit("Rocker set up -private.r")
 
 
 # # To paste text in the terminal use Shift + Insert. (Or Ctrl + Shift + v)
@@ -163,7 +195,29 @@ file.edit(".gitignore")
 
 
 
+#@ ROOT=TRUE ----
+# https://stackoverflow.com/questions/64562427/how-to-add-rocker-verse-configuration-root-true-to-docker-compose-file
 
+#@ PASSWORD= ----
+# https://github.com/rocker-org/rocker-versioned2/issues/237
+# https://github.com/rocker-org/rocker/issues/255
+# https://github.com/rocker-org/rocker-versioned2/issues/294
+# https://github.com/rocker-org/rocker-versioned2/pull/298
+
+# @ copilot-enabled=1 ------
+# https://github.com/rstudio/rstudio/issues/13612
+# https://github.com/rstudio/rstudio/issues/13718
+# https://chatgpt.com/c/4b8f922c-327a-4b0b-871e-18c07575a4d9
+
+system("sudo R")
+system("sudo chmod 666 /etc/rstudio/rsession.conf")
+file_path <- "/etc/rstudio/rsession.conf"
+lines <- readLines(file_path, warn = FALSE)
+modified_lines <- lines[!grepl("^copilot-enabled=", lines)]
+modified_lines = c(modified_lines, "copilot-enabled=1", "")
+writeLines(modified_lines, file_path)
+file.edit(file_path)
+system("sudo chmod 644 /etc/rstudio/rsession.conf")
 
 
 #@ end ----
