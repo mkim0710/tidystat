@@ -256,6 +256,19 @@ for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "
 # @@ CODEBOOK ------------
 
 
+#@@ START) source -----
+### \$ subpath, sourcename ======
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# # if(subpath!="") utils::browseURL(normalizePath(subpath))
+# sourcename = "default.template"
+# subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+# # % (source( file.path(env.custom$path$source_base,subpath.filename.source.r) )) ----
+# (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+```
+
+
 # @@ START) Data ------------
 
 ## \$ DataSetName = "analyticDF_time2event" ====
@@ -312,7 +325,7 @@ analyticDF_time2event %>% {cat("> ",deparse(substitute(.))," |> rownames_to_colu
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
-subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 sourcename = "data.NotNA_p_df"
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 
@@ -358,7 +371,7 @@ options(width=120)
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
-subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 sourcename = "data.NotNA_p_df"
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 

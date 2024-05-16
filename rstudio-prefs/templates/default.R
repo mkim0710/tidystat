@@ -18,7 +18,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -38,17 +38,17 @@ objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$pat
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # ## env.custom\$env.internal ====
-# sourcename = "env.custom$env.internal"; subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # #### env.custom\$f_df.t.tribble_construct() ====
-# sourcename = "get_system_info"; subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "get_system_info"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 # env.custom$info$info_system_info = env.custom$info$get_system_info()
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# sourcename = "f_df.t.tribble_construct"; subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "f_df.t.tribble_construct"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 # #### env.custom\$info\$get_system_info() ====
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # #### env.custom\$f_path.df_dirs_recursive.df_files() ----
-# sourcename = "f_path.df_dirs_recursive.df_files"; subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "f_path.df_dirs_recursive.df_files"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 # env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
 # env.custom$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat()
 # env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat()
@@ -98,12 +98,13 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
-# $ subpath, sourcename ======
+### $ subpath, sourcename ======
 subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "default.template"
-# % source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) ) ----
-# source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) )
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+# % (source( file.path(env.custom$path$source_base,subpath.filename.source.r) )) ----
+# (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$subpath = subpath
 env.custom$path$sourcename = sourcename
@@ -137,10 +138,7 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 #$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
 path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-if(file.exists(paste0(path4read,"/",objectname,".rds"))) assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
-
-
-
+assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
 
 

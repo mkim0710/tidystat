@@ -39,7 +39,7 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
-# $ subpath, sourcename ======
+# \$ subpath, sourcename ======
 subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "data.CreateTableOne"
