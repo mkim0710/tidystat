@@ -1,8 +1,13 @@
 # sourcename = "default.template"
 # default.template.dev.r
 # default.template.source.r
-#         https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.template.dev.r
-# source("https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/templates/default.template.source.r")
+# utils::browseURL("/rstudio-prefs/templates/default.template.dev.r")
+# source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.template.source.r"))
+# # source("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.source.r")
+# # source("https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/templates/default.template.source.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.dev.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.dev.Rmd")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.source.r")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -92,10 +97,13 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 # # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @ subpath, sourcename ======
+#@@ START) source -----
+# $ subpath, sourcename ======
 subpath = r"(rstudio-prefs\templates)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "default.template"
+# % source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) ) ----
+# source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) )
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$subpath = subpath
 env.custom$path$sourcename = sourcename
@@ -116,7 +124,7 @@ cat("# ",'sourcename = "',sourcename,'"', "\n",
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-if(sourcename == "default.template") { warning('sourcename == "default.template"') } else {
+if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> str_detect("^default")') } else {
     # # if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$current.path.filename.ext);
     # if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$current.path.filename.ext);
     # if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$current.path.filename.ext);
@@ -125,16 +133,11 @@ if(sourcename == "default.template") { warning('sourcename == "default.template"
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-
-
-
-
-
-
-
-
-
-
+#@@ START) data -----
+#$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
+path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
 
 
@@ -146,7 +149,7 @@ if(sourcename == "default.template") { warning('sourcename == "default.template"
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @@ update default.R -----
+# %% update default.R -----
 env.custom$path$default.filename.ext = "default.R"
 env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 
@@ -178,6 +181,7 @@ if(env.custom$path$default.filename.ext == basename(env.custom$path$current.path
     }}
     file.edit(env.custom$path$current.path.filename.ext);
 }
+#@@ END -----
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
