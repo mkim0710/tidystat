@@ -178,156 +178,61 @@ env.custom$info$info_software_versions = env.custom$info$get_software_versions(l
 ```
 
 
-
-
 # @@ CODEBOOK ------------
 
 
 # @@ START) Data ------------
 
-## \$ DataSetName = "analyticDF_time2event" ====
+## \$ DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds" ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
-# suppressPackageStartupMessages(library(survival))
-# suppressPackageStartupMessages(library(survminer))
-?survival::lung
-DataSetName = "analyticDF_time2event"
-assign(
-    DataSetName, 
-    survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
-        # dplyr::select(-status, -sex)
-        dplyr::select(-status)
-)
-analyticDF_time2event %>% {cat("> ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","\n", sep=""); print(as_tibble(.),n=9)}
-analyticDF_time2event %>% {cat("> ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","\n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
-# analyticDF_time2event |> dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
-# analyticDF_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
-# # > analyticDF_time2event |> dplyr::select(sex, Group) %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
-# # 'data.frame':	228 obs. of  2 variables:
-# #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
-# #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# # > analyticDF_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
-# #    Group
-# # sex Female Male
-# #   1      0  138
-# #   2     90    0
-# analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # > analyticDF_time2event |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-# # .$StudyPopulation: FALSE
-# #       time     event            Group   StudyPopulation
-# #  Min.   : 5   Mode:logical   Female:1   Mode :logical  
-# #  1st Qu.:11   TRUE:9         Male  :8   FALSE:9        
-# #  Median :12                                            
-# #  Mean   :13                                            
-# #  3rd Qu.:13                                            
-# #  Max.   :26                                            
-# # ------------------------------------------------------------------------------------------ 
-# # .$StudyPopulation: TRUE
-# #       time          event            Group     StudyPopulation
-# #  Min.   :  30.0   Mode :logical   Female: 89   Mode:logical   
-# #  1st Qu.: 176.5   FALSE:63        Male  :130   TRUE:219       
-# #  Median : 269.0   TRUE :156                                   
-# #  Mean   : 317.2                                               
-# #  3rd Qu.: 419.5                                               
-# #  Max.   :1022.0   
+#$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
+path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
-```
-
-## ------ < Key Variables Check > ------
-### \$ varname4ID  -----
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
-subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-sourcename = "data.NotNA_p_df"
-subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-
-varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str()
-get(DataSetName) |> dim()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> n_distinct()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env.custom$data.NotNA_p_df()
-
-varname4CompositKey = c("age", "sex")
-vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] |> apply(MARGIN = 1, paste0, collapse = "-")
-vecCompositeKey |> n_distinct()
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
+# PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
+# HEIGHT, WEIGHT, 
+# BP_HIGH, BP_LWST, BLDS, 
+# TOT_CHOLE, 
+# HMG, OLIG_PROTE_CD, SGOT_AST, SGPT_ALT, GAMMA_GTP, FMLY_HPRTS_PATIEN_YN, FMLY_APOP_PATIEN_YN, FMLY_HDISE_PATIEN_YN, FMLY_DIABML_PATIEN_YN, FMLY_CANCER_PATIEN_YN, SMK_STAT_TYPE_RSPS_CD, DRNK_HABIT_RSPS_CD, TM1_DRKQTY_RSPS_CD, 
+# WAIST, TRIGLYCERIDE, HDL_CHOLE, LDL_CHOLE, 
+# CREATININE, HCHK_APOP_PMH_YN, HCHK_HDISE_PMH_YN, HCHK_HPRTS_PMH_YN, HCHK_DIABML_PMH_YN, HCHK_HPLPDM_PMH_YN, HCHK_ETCDSE_PMH_YN, PAST_SMK_TERM_RSPS_CD, PAST_DSQTY_RSPS_CD, CUR_SMK_TERM_RSPS_CD, CUR_DSQTY_RSPS_CD, MOV20_WEK_FREQ_ID, MOV30_WEK_FREQ_ID, WLK30_WEK_FREQ_ID, HCHK_PHSS_PMH_YN, n.ICD_E0814, minDate.ICD_E0814, maxDate.ICD_E0814, diffDate.ICD_E0814, n.ICD_I1016, minDate.ICD_I1016, maxDate.ICD_I1016, diffDate.ICD_I1016, n.ICD_I2025, minDate.ICD_I2025, maxDate.ICD_I2025, diffDate.ICD_I2025, n.ICD_I3052, minDate.ICD_I3052, maxDate.ICD_I3052, diffDate.ICD_I3052, n.ICD_I6069, minDate.ICD_I6069, maxDate.ICD_I6069, diffDate.ICD_I6069, n.ICD_I7079, minDate.ICD_I7079, maxDate.ICD_I7079, diffDate.ICD_I7079, Female, BMI, BMI_lt185, BMI_ge185lt230, BMI_ge230lt250, BMI_ge185lt250, BMI_ge250lt300, BMI_ge300, BMI_ge350, BMI_ge400, 
+# BMI.cut4, FPG, 
+# FPG_ge100, FPG_ge126, 
+# SBP, DBP, BP_ESCESH2018, 
+# FPG_ge100lt126, 
+# TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, WAIST_ge9080, WAIST_ge9085, BP_ge130_85, 
+# nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
+# nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
 ```
 
 
-
-#### \$ varname4outcome -----
-#### \$ varname4time -----
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-varname4outcome = "event"
-varname4time = c("time", "age")
-get(DataSetName)[c(varname4outcome, varname4time)] |> 
-    mutate_if(is.factor, as.character) |>  
-    mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> 
-    mutate_if(is.character, as.factor) |> 
-    summary()
-
-```
-
-
-##### \$ varname4measures -----
-##### \$ varname4labs -----
-##### \$ varname4lifestyle -----
+### %>% function.DataSet.TableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-```
-
-
-## ------ < Data Availability Check > ------
-### \$ paste0(DataSetName,".Date",".NA",".rmAllNA")  ====
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
-subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-sourcename = "data.NotNA_p_df"
-subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-
-assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
-assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
-cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"\n", sep="") 
-cat("dim(",DataSetName,".Date",".NA",".rmAllNA",") = ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"\n", sep="") 
-cat(strrep("%",80),"\n",sep=""); 
-cat("> ",DataSetName,".Date",".NA"," |> env.custom$data.NotNA_p_df()","\n", sep=""); env.custom$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
-```
-
-
-## ------ < DataSet Summary > ------
-### \$ paste0(DataSetName,".Date",".NA",".rmAllNA",".fct") ====
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))) cat("n_distinct(",paste0(DataSetName,".Date",".NA",".rmAllNA"),"$",varname,") = ",n_distinct(get(paste0(DataSetName,".Date",".NA",".rmAllNA"))[[varname]]),"\n", sep="")}
-
-
-t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.numeric))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.numeric) |> summary() #-----
-Sys.time()-t0
-t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.logical))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.logical) |> summary() #-----
-Sys.time()-t0
-
-t0=Sys.time()
-cat(strrep("%",80),"\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," = ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> mutate_if(is.character, as.factor)","\n", sep=""); assign( paste0(DataSetName,".Date",".NA",".rmAllNA",".fct"), get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> mutate_if(is.character, as.factor) )
-Sys.time()-t0
-
-t0=Sys.time()
-cat(strrep("+",80),"\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")) |> select_if(is.factor) |> summary() #-----
-Sys.time()-t0
-# cat(strrep("~",80),"\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.character) |> map_df(as.factor) |> summary() #-----
-# Sys.time()-t0
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
-```
-
-
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% 
+    select(
+        SEX,
+        HEIGHT, WEIGHT, 
+        BMI.cut4, 
+        WAIST, 
+        WAIST_ge9080, WAIST_ge9085, 
+        SBP, DBP, BP_ESCESH2018, 
+        BP_ge130_85, 
+        FPG, 
+        FPG_ge100, FPG_ge126, 
+        TOT_CHOLE, 
+        TRIGLYCERIDE, 
+        HDL_CHOLE, LDL_CHOLE, 
+        TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
+        nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
+        nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
+    ) %>% function.DataSet.TableOne_byExposure.xlsx(ObjectName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select_MetS", VarNames4Exposure =  c("SEX"))
 
 ```
 
@@ -378,31 +283,6 @@ options(width=120)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-```
-
-
-```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
-# @@ update default notebook.Rmd -----
-template.filename.ext = "templates-00env.custom.minimum.Rmd"
-current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename(current.path.filename.ext) == template.filename.ext) {
-    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
-    if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) ;
-    
-    destination.path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
-    for ( destination.path.filename.ext in c(
-        file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", template.filename.ext)
-        , file.path(env.custom$path$path0, "Rproject_Rmd", template.filename.ext)
-    )) {if(current.path.filename.ext != destination.path.filename.ext) {
-        destination.filename = basename(destination.path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-        destination.ext = basename(destination.path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
-        backup.path.filename = file.path(env.custom$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
-        file.copy(from=destination.path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
-        if(file.copy(from=current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
-        if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
-    }}
-    file.edit(current.path.filename.ext);
-}
-# template.filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", template.filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))
 ```
 
 
