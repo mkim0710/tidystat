@@ -18,7 +18,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "function.detachAllPackages"; subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -72,7 +72,6 @@ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
-# PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, HEIGHT, WEIGHT, BP_HIGH, BP_LWST, BLDS, TOT_CHOLE, HMG, OLIG_PROTE_CD, SGOT_AST, SGPT_ALT, GAMMA_GTP, FMLY_HPRTS_PATIEN_YN, FMLY_APOP_PATIEN_YN, FMLY_HDISE_PATIEN_YN, FMLY_DIABML_PATIEN_YN, FMLY_CANCER_PATIEN_YN, SMK_STAT_TYPE_RSPS_CD, DRNK_HABIT_RSPS_CD, TM1_DRKQTY_RSPS_CD, WAIST, TRIGLYCERIDE, HDL_CHOLE, LDL_CHOLE, CREATININE, HCHK_APOP_PMH_YN, HCHK_HDISE_PMH_YN, HCHK_HPRTS_PMH_YN, HCHK_DIABML_PMH_YN, HCHK_HPLPDM_PMH_YN, HCHK_ETCDSE_PMH_YN, PAST_SMK_TERM_RSPS_CD, PAST_DSQTY_RSPS_CD, CUR_SMK_TERM_RSPS_CD, CUR_DSQTY_RSPS_CD, MOV20_WEK_FREQ_ID, MOV30_WEK_FREQ_ID, WLK30_WEK_FREQ_ID, HCHK_PHSS_PMH_YN, n.ICD_E0814, minDate.ICD_E0814, maxDate.ICD_E0814, diffDate.ICD_E0814, n.ICD_I1016, minDate.ICD_I1016, maxDate.ICD_I1016, diffDate.ICD_I1016, n.ICD_I2025, minDate.ICD_I2025, maxDate.ICD_I2025, diffDate.ICD_I2025, n.ICD_I3052, minDate.ICD_I3052, maxDate.ICD_I3052, diffDate.ICD_I3052, n.ICD_I6069, minDate.ICD_I6069, maxDate.ICD_I6069, diffDate.ICD_I6069, n.ICD_I7079, minDate.ICD_I7079, maxDate.ICD_I7079, diffDate.ICD_I7079, Female, BMI, BMI_lt185, BMI_ge185lt230, BMI_ge230lt250, BMI_ge185lt250, BMI_ge250lt300, BMI_ge300, BMI_ge350, BMI_ge400, BMI.cut4, FPG, FPG_ge100, FPG_ge126, SBP, DBP, BP_ESCESH2018, FPG_ge100lt126, TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, WAIST_ge9080, WAIST_ge9085, BP_ge130_85, nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
 # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
 # HEIGHT, WEIGHT, 
 # BP_HIGH, BP_LWST, BLDS, 
@@ -140,10 +139,10 @@ library(tableone)
 # Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
 # sink("DataSet.TableOne.txt", append = FALSE)
-# DataSet.TableOne |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
+# DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
 # sink()
 # sink("DataSet.TableOne.IQR.txt", append = FALSE)
-# DataSet.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+# DataSet.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 # sink()
 
 
@@ -202,17 +201,17 @@ assign(ObjectName.is.na.TableOne_byExposure,
 )
 
 Vars4IQR = names(eval(parse(text = ObjectName.select)))[eval(parse(text = ObjectName.select)) %>% map_lgl(is.numeric)]
-# eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
-# eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
-# eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
+# eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+# eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+# eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
 sink(paste0(ObjectName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
-eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
+eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
 sink()
 sink(paste0(ObjectName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
-eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 sink()
 sink(paste0(ObjectName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
-eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
+eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
 sink()
 
 
@@ -576,9 +575,9 @@ DataSet.TableOne_by_MissingPattern = DataSet %>%
 Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
 sink("DataSet.TableOne_by_MissingPattern.txt", append = FALSE)
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
+DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
 sink("DataSet.TableOne_by_MissingPattern.IQR.txt", append = FALSE)
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 sink()
 
 
@@ -665,9 +664,9 @@ DataSet.svydesign.TableOne = DataSet.svydesign %>% select(-rowname, -PERSON_ID) 
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
 sink("DataSet.svydesign.TableOne.txt"), append = FALSE)
-DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
+DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
 sink("DataSet.svydesign.TableOne.IQR.txt", append = FALSE)
-DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 sink()
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
@@ -697,9 +696,9 @@ DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
 sink("DataSet.svydesign.TableOne_byExposure.txt", append = FALSE)
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T) # print(showAllLevels = F, smd = T) ----
+DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
 sink("DataSet.svydesign.TableOne_byExposure.IQR.txt", append = FALSE)
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 sink()
                
 
@@ -830,7 +829,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
     i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, ob) } ))
 
     # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
-    # print(Sys.time())
+    ###### |> print(Sys.time())
     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
@@ -846,7 +845,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # +     i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, ob) } ))
 # + 
 # +     # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
-# +     # print(Sys.time())
+# +     ###### |> print(Sys.time())
 # +     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
 # +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 # + 
@@ -880,7 +879,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
     i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, ob) } ))
 
     # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
-    # print(Sys.time())
+    ###### |> print(Sys.time())
     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
