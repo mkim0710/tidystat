@@ -1,6 +1,9 @@
-# RStudio.Cloud set up.r 
-# https://posit.cloud/spaces/100015/content/6373416  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
-# https://posit.cloud/spaces/404673/content/6373521  # Shared Workspace@v - PositCloud@v
+# Rocker set up -private.r 
+# Rocker set up.r 
+file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh")
+file.edit("Rocker set up.r")
+file.edit("Rocker set up -private.r")
+
 
 # # To paste text in the terminal use Shift + Insert. (Or Ctrl + Shift + v)
 
