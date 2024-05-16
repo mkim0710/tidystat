@@ -5,9 +5,9 @@ paste0("package:",packagename_to_unload)
 for (packagename_to_unload in packagename_to_unload) {
     if(paste0("package:",packagename_to_unload) %in% search()) {
         detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
-        paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") %>% cat;cat("\n")
+        paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat();cat("\n")
     } else {
-        # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") %>% cat;cat("\n")
+        # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat();cat("\n")
     }
 }
 library(intergraph)
@@ -20,13 +20,13 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet =
     termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% asNetwork
 save(termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet, file = "data/termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet.rda")
 
-#@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 1) -----
+#@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) -----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% network.size #----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% summary #----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% summary %>% str(max.level = 1) #----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 1) #----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 2) #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() |> str(max.level = 1) #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #----
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet #----
 #  Network attributes:
 #   vertices = 21 
@@ -46,7 +46,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 2) #--
 #     C color cooccurence R rowname weight width 
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% network.size #----
 # [1] 21
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% summary #----
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() #----
 # Network attributes:
 #   vertices = 21
 #   directed = FALSE
@@ -140,7 +140,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 2) #--
 # [208,]   19   20
 # [209,]   19   21
 # [210,]   20   21
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% summary %>% str(max.level = 1) #----
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() |> str(max.level = 1) #----
 # List of 5
 #  $ mel:List of 210
 #  $ gal:List of 10
@@ -148,7 +148,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 2) #--
 #  $ iel:List of 21
 #  $ oel:List of 21
 #  - attr(*, "class")= chr "summary.network"
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 1) #----
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) #----
 # List of 5
 #  $ mel:List of 210
 #  $ gal:List of 7
@@ -156,7 +156,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 2) #--
 #  $ iel:List of 21
 #  $ oel:List of 21
 #  - attr(*, "class")= chr "network"
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% str(max.level = 2) #----
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #----
 # List of 5
 #  $ mel:List of 210
 #   ..$ :List of 3
@@ -274,12 +274,12 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% components
 # [1] 1
 
 #@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() %>% {.$gdist} %>% max -----
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() %>% str #----
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() |> str() #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() %>% {.$gdist} %>% max #----
 lgc = termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% component.largest(result="graph") #----
 lgc %>% geodist() %>% {.$gdist} %>% max #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() #----
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() %>% str #----
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() |> str() #----
 # List of 2
 #  $ counts: num [1:21, 1:21] 1 1 1 1 1 1 1 1 1 1 ...
 #  $ gdist : num [1:21, 1:21] 0 1 1 1 1 1 1 1 1 1 ...
@@ -379,9 +379,9 @@ object_statnet.summary_df = function(object_statnet) {
     for (packagename_to_unload in packagename_to_unload) {
         if(paste0("package:",packagename_to_unload) %in% search()) {
             detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
-            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") %>% cat;cat("\n")
+            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat();cat("\n")
         } else {
-            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") %>% cat;cat("\n")
+            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat();cat("\n")
         }
     }
     library(intergraph)

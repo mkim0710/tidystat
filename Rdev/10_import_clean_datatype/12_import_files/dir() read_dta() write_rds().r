@@ -8,11 +8,11 @@ library(haven)
 ?read_dta
 
 
-getwd() %>% dput #----
+getwd() |> dput() #----
 path4read = getwd()
 path4write = getwd()
-path4read %>% dput
-path4write %>% dput
+path4read |> dput()
+path4write |> dput()
 
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
@@ -26,14 +26,14 @@ filenames = list.files(path4read) %>% grep(regex4filename, ., value = T)
 
 
 
-dir() %>% str #----
-dir() %>% str_subset(".dta$") %>% dput #----
-dir() %>% str_subset(".dta$") %>% str_replace(".dta$", "") %>% dput #----
-# > dir() %>% str #----
+dir() |> str() #----
+dir() |> str_subset(".dta$") |> dput() #----
+dir() |> str_subset(".dta$") |> str_replace(".dta$", "") |> dput() #----
+# > dir() |> str() #----
 #  chr [1:5] "AS1_MASTER_C.dta" "CT1_MASTER_C.dta" "FM Cleaning pheno" "NC1_MASTER_C.dta" "Rproject_KOGES.Rproj"
-# > dir() %>% str_subset(".dta") %>% dput #----
+# > dir() |> str_subset(".dta") |> dput() #----
 # c("AS1_MASTER_C.dta", "CT1_MASTER_C.dta", "NC1_MASTER_C.dta")
-# > dir() %>% str_subset(".dta$") %>% str_replace(".dta$", "") %>% dput #----
+# > dir() |> str_subset(".dta$") |> str_replace(".dta$", "") |> dput() #----
 # c("AS1_MASTER_C", "CT1_MASTER_C", "NC1_MASTER_C")
 
 
@@ -71,8 +71,8 @@ function.dta.rm_attr = function(dta) {
     dta
 }
 
-AS1_MASTER_C.dta %>% function.dta.rm_attr %>% str #----
-# > AS1_MASTER_C %>% function.dta.rm_attr %>% str #----
+AS1_MASTER_C.dta %>% function.dta.rm_attr |> str() #----
+# > AS1_MASTER_C %>% function.dta.rm_attr |> str() #----
 # tibble[,511] [5,493 x 511] (S3: tbl_df/tbl/data.frame)
 #  $ DIST_ID            : chr [1:5493] "NIH20D3000109" "NIH20D3000141" "NIH20D3000264" "NIH20D3000671" ...
 #  $ AS1_AREA           : num [1:5493] 2 2 2 1 1 1 1 1 2 1 ...
@@ -89,19 +89,19 @@ AS1_MASTER_C.dta %>% function.dta.rm_attr %>% str #----
 #@ objectname =======
 objectname = "AS1_MASTER_C"
 filename = paste0(objectname,".dta")
-filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 assign(filename, read_dta(file.path(path4read, filename))    )
-get(filename) %>% str #----
+get(filename) |> str() #----
 path4write = getwd()
 write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress="xz", compression=9 )
 
 assign(objectname, get(filename) %>% function.dta.rm_attr   )
-get(objectname) %>% str #----
+get(objectname) |> str() #----
 system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
-# > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+# > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 #                                                         filename    size       KB       MB          GB
 # 1 D:/OneDrive - SNU/[][Rproject]/Rproject_KOGES/AS1_MASTER_C.dta 8083711 7894.249 7.709228 0.007528543
-# > get(objectname) %>% str #----
+# > get(objectname) |> str() #----
 # tibble[,511] [5,493 x 511] (S3: tbl_df/tbl/data.frame)
 #  $ DIST_ID            : chr [1:5493] "NIH20D3000109" "NIH20D3000141" "NIH20D3000264" "NIH20D3000671" ...
 #   ..- attr(*, "label")= chr "DIST_ID"
@@ -121,7 +121,7 @@ system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,
 #  $ AS1_PDHT           : num [1:5493] 1 1 1 1 1 1 1 1 1 1 ...
 #   ..- attr(*, "label")= chr "AS1_PDHT"
 #   ..- attr(*, "format.stata")= chr "%10.0g"
-# > get(objectname) %>% str #----
+# > get(objectname) |> str() #----
 # tibble[,511] [5,493 x 511] (S3: tbl_df/tbl/data.frame)
 #  $ DIST_ID            : chr [1:5493] "NIH20D3000109" "NIH20D3000141" "NIH20D3000264" "NIH20D3000671" ...
 #  $ AS1_AREA           : num [1:5493] 2 2 2 1 1 1 1 1 2 1 ...
@@ -135,20 +135,20 @@ system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,
 #@ objectname =======
 objectname = "CT1_MASTER_C"
 filename = paste0(objectname,".dta")
-filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 assign(filename, read_dta(file.path(path4read, filename))    )
-get(filename) %>% str #----
+get(filename) |> str() #----
 path4write = getwd()
 write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress="xz", compression=9 )
 
 assign(objectname, get(filename) %>% function.dta.rm_attr   )
-get(objectname) %>% str #----
+get(objectname) |> str() #----
 system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
-# > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+# > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 #                                                         filename     size       KB       MB         GB
 # 1 D:/OneDrive - SNU/[][Rproject]/Rproject_KOGES/CT1_MASTER_C.dta 56938475 55603.98 54.30076 0.05302809
 # > assign(objectname, read_dta(file.path(path4read, paste0(objectname,".dta")))    )
-# > get(objectname) %>% str #----
+# > get(objectname) |> str() #----
 # tibble[,333] [58,600 x 333] (S3: tbl_df/tbl/data.frame)
 #  $ DIST_ID         : chr [1:58600] "NIH20D4000001" "NIH20D4000005" "NIH20D4000014" "NIH20D4000025" ...
 #   ..- attr(*, "label")= chr "DIST_ID"
@@ -162,7 +162,7 @@ system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,
 #  $ CT1_EDATE       : num [1:58600] 201011 201011 200804 201007 201006 ...
 #   ..- attr(*, "label")= chr "CT1_EDATE"
 #   ..- attr(*, "format.stata")= chr "%10.0g"
-# > get(objectname) %>% str #----
+# > get(objectname) |> str() #----
 # tibble[,333] [58,600 x 333] (S3: tbl_df/tbl/data.frame)
 #  $ DIST_ID         : chr [1:58600] "NIH20D4000001" "NIH20D4000005" "NIH20D4000014" "NIH20D4000025" ...
 #  $ CT1_DATA_CLASS  : chr [1:58600] "Q11" "Q11" "Q09" "Q11" ...
@@ -185,20 +185,20 @@ system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,
 #@ objectname =======
 objectname = "NC1_MASTER_C"
 filename = paste0(objectname,".dta")
-filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 assign(filename, read_dta(file.path(path4read, filename))    )
-get(filename) %>% str #----
+get(filename) |> str() #----
 path4write = getwd()
 write_rds( get(filename), file.path(path4write, paste0(filename, ".rds", "")), compress="xz", compression=9 )
 
 assign(objectname, get(filename) %>% function.dta.rm_attr   )
-get(objectname) %>% str #----
+get(objectname) |> str() #----
 system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
-# > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+# > filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 #                                                         filename    size       KB       MB          GB
 # 1 D:/OneDrive - SNU/[][Rproject]/Rproject_KOGES/NC1_MASTER_C.dta 6998195 6834.175 6.673999 0.006517577
 # > assign(objectname, read_dta(file.path(path4read, paste0(objectname,".dta")))    )
-# > get(objectname) %>% str #----
+# > get(objectname) |> str() #----
 # tibble[,296] [8,105 x 296] (S3: tbl_df/tbl/data.frame)
 #  $ DIST_ID         : chr [1:8105] "NIH20D2000086" "NIH20D2000284" "NIH20D2000329" "NIH20D2000621" ...
 #   ..- attr(*, "label")= chr "DIST_ID"
@@ -215,7 +215,7 @@ system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,
 #  $ NC1_SEX         : num [1:8105] 1 1 2 1 2 2 1 2 2 2 ...
 #   ..- attr(*, "label")= chr "NC1_SEX"
 #   ..- attr(*, "format.stata")= chr "%10.0g"
-# > get(objectname) %>% str #----
+# > get(objectname) |> str() #----
 # tibble[,296] [8,105 x 296] (S3: tbl_df/tbl/data.frame)
 #  $ DIST_ID         : chr [1:8105] "NIH20D2000086" "NIH20D2000284" "NIH20D2000329" "NIH20D2000621" ...
 #  $ NC1_DATA_CLASS  : chr [1:8105] "Q14" "Q02" "Q03" "Q17" ...
@@ -239,7 +239,7 @@ system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,
 
 
 #@ end -----
-# > dir() %>% str_subset(".dta$") %>% str_replace(".dta$", "") %>% dput #----
+# > dir() |> str_subset(".dta$") |> str_replace(".dta$", "") |> dput() #----
 # c("AS1_MASTER_C", "CT1_MASTER_C", "NC1_MASTER_C")
 
 #@ list_MASTER_C =========

@@ -14,23 +14,23 @@ nhis_heals_gj.sas7bdat <- readRDS("D:/OneDrive - SNU/[][SASproject]/SASproject_K
 Sys.time() - t0
 
 
-nhis_heals_jk.sas7bdat %>% dim #----
+nhis_heals_jk.sas7bdat |> dim() #----
 nhis_heals_jk.sas7bdat %>% {n_distinct(.$PERSON_ID)} #----
-nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct %>% dim #----
-nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct %>% dim #----
+nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct |> dim() #----
+nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct |> dim() #----
 t0=Sys.time()
 nhis_heals_jk.sas7bdat.duplicated = nhis_heals_jk.sas7bdat %>% group_by_at(vars(STND_Y, PERSON_ID)) %>% filter(n()>1)
 Sys.time()-t0
-nhis_heals_jk.sas7bdat.duplicated %>% print
-# > nhis_heals_jk.sas7bdat %>% dim #----
+nhis_heals_jk.sas7bdat.duplicated |> print()
+# > nhis_heals_jk.sas7bdat |> dim() #----
 # [1] 6933650      13
 # > nhis_heals_jk.sas7bdat %>% {n_distinct(.$PERSON_ID)} #----
 # [1] 514866
-# > nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct %>% dim #----
+# > nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct |> dim() #----
 # [1] 514866      1
-# > nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct %>% dim #----
+# > nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct |> dim() #----
 # [1] 6933649       2
-# > nhis_heals_jk.sas7bdat.duplicated %>% print
+# > nhis_heals_jk.sas7bdat.duplicated |> print()
 # # A tibble: 2 × 13
 # # Groups:   STND_Y, PERSON_ID [1]
 #   STND_Y PERSON_ID SEX     AGE DTH_MDY  DTH_CODE1 DTH_CODE2 SIDO  IPSN_TYPE_CD CTRB_PT_TYPE_CD DFAB_GRD_CD DFAB_PTN_CD DFAB_REG_YM
@@ -55,7 +55,7 @@ fun.data.primarykey_v2 <- function(inputdata, primarykey = c("PERSON_ID")) {
   }
   
   out = list()
-  out$data.dim = inputdata %>% dim %>% fun.numeric.addFormated
+  out$data.dim = inputdata |> dim() %>% fun.numeric.addFormated
   out$data.nrow = inputdata %>% nrow %>% fun.numeric.addFormated
   out$data.primarykey = primarykey
   out$data.primarykey.n_distinct = inputdata[primarykey] %>% distinct %>% nrow %>% fun.numeric.addFormated
@@ -79,9 +79,9 @@ df_example <- tibble(
   PERSON_ID = c(1, 2, 3, 4, 5, 1, 2),
   YEAR = c(2021, 2021, 2021, 2021, 2021, 2022, 2022)
 )
-fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) %>% str #----
-fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
-# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) %>% str #----
+fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) |> str() #----
+fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
+# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) |> str() #----
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -103,7 +103,7 @@ fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str 
 #   .. .. ..$ : int [1:2] 2 4
 #   .. .. ..@ ptype: int(0) 
 #   .. ..- attr(*, ".drop")= logi TRUE
-# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
+# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -121,7 +121,7 @@ fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str 
 
 fun.data.primarykey = function(inputdata, primarykey = c("PERSON_ID")) {
     out = list()
-    out$data.dim = inputdata %>% dim %>% fun.numeric.addFormated
+    out$data.dim = inputdata |> dim() %>% fun.numeric.addFormated
     out$data.nrow = inputdata %>% nrow %>% fun.numeric.addFormated
     out$data.primarykey = primarykey
     out$data.primarykey.n_distinct = inputdata[primarykey] %>% distinct %>% nrow %>% fun.numeric.addFormated
@@ -135,9 +135,9 @@ df_example <- tibble(
   PERSON_ID = c(1, 2, 3, 4, 5, 1, 2),
   YEAR = c(2021, 2021, 2021, 2021, 2021, 2022, 2022)
 )
-fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) %>% str #----
-fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
-# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) %>% str #----
+fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) |> str() #----
+fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
+# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) |> str() #----
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -160,7 +160,7 @@ fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #--
 #   .. .. ..$ : int [1:2] 2 4
 #   .. .. ..@ ptype: int(0) 
 #   .. ..- attr(*, ".drop")= logi TRUE
-# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #----
+# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -185,9 +185,9 @@ fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) %>% str #--
 #   .. ..- attr(*, ".drop")= logi TRUE
 
 
-nhis_heals_jk.sas7bdat %>% fun.data.primarykey %>% str(max.level = 1) %>% system.time #----
-nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) %>% str(max.level = 1) %>% system.time #----
-# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey %>% str(max.level = 1) %>% system.time #----
+nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1) %>% system.time #----
+nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1) %>% system.time #----
+# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1) %>% system.time #----
 # List of 7
 #  $ data.dim                       : int [1:2] 6933650 13
 #   ..- attr(*, "Formated")= chr [1:2] "6,933,650" "       13"
@@ -205,7 +205,7 @@ nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) %>% str
 #   .. ..- attr(*, ".drop")= logi TRUE
 #  사용자  시스템 elapsed 
 #    3.31    0.11    5.50 
-# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) %>% str(max.level = 1) %>% system.time #----
+# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1) %>% system.time #----
 # List of 7
 #  $ data.dim                       : int [1:2] 6933650 13
 #   ..- attr(*, "Formated")= chr [1:2] "6,933,650" "       13"

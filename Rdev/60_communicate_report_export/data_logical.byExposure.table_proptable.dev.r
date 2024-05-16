@@ -10,8 +10,8 @@
 #@ data_logical.table_proptable.dev.r 
 # (no group_by)
 
-dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% summary %>% t #----
-# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% summary %>% t #----
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) |> summary() %>% t #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) |> summary() %>% t #----
 #                                                                         
 # SecondaryOutcome13.void  Mode :logical   FALSE:4456      TRUE :2246     
 # SecondaryOutcome13.i     Mode :logical   FALSE:5951      TRUE :751      
@@ -23,10 +23,10 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_
 # SecondaryOutcome13.iii.2 Mode :logical   FALSE:6695      TRUE :7        
 # SecondaryOutcome13.iii.3 Mode :logical   FALSE:6607      TRUE :95       
 
-dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) %>% str #----
-dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) %>% str #----
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) |> str() #----
+dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) |> str() #----
 dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) %>% reduce(cbind) #----
-# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) %>% str #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) |> str() #----
 # List of 9
 #  $ SecondaryOutcome13.void : 'table' int [1:2(1d)] 4456 2246
 #   ..- attr(*, "dimnames")=List of 1
@@ -55,7 +55,7 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_
 #  $ SecondaryOutcome13.iii.3: 'table' int [1:2(1d)] 6607 95
 #   ..- attr(*, "dimnames")=List of 1
 #   .. ..$ : chr [1:2] "FALSE" "TRUE"
-# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) %>% str #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) |> str() #----
 # tibble [9 x 2] (S3: tbl_df/tbl/data.frame)
 #  $ FALSE: int [1:9] 4456 5951 6278 6177 6337 5141 5187 6695 6607
 #  $ TRUE : int [1:9] 2246 751 424 525 365 1561 1515 7 95
@@ -264,9 +264,9 @@ ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>%
 
 
 ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% select(matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+")) %>% 
-    add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% map(sum, na.rm = T) %>% str #----
+    add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% map(sum, na.rm = T) |> str() #----
 # > ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% select(matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+")) %>% 
-# +     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% map(sum, na.rm = T) %>% str #----
+# +     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% map(sum, na.rm = T) |> str() #----
 # List of 27
 #  $ Ntotal               : int 425
 #  $ PrimaryOutcome1.i.1  : int 11

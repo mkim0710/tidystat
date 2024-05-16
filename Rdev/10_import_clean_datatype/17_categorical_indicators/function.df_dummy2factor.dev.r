@@ -39,8 +39,8 @@ as.logical(1.1)
 
 #@ test) function.dummy2factor() iris.Species.dummy -----
 library(tidyverse)
-# model.matrix(~ Species, data = iris) %>% str
-# # > model.matrix(~ Species, data = iris) %>% str
+# model.matrix(~ Species, data = iris) |> str()
+# # > model.matrix(~ Species, data = iris) |> str()
 # #  num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ : chr [1:150] "1" "2" "3" "4" ...
@@ -49,8 +49,8 @@ library(tidyverse)
 # #  - attr(*, "contrasts")=List of 1
 # #   ..$ Species: chr "contr.treatment"
 # 
-# useful::build.x(~ Species, data = iris, contrasts = F) %>% str
-# # > useful::build.x(~ Species, data = iris, contrasts = F) %>% str
+# useful::build.x(~ Species, data = iris, contrasts = F) |> str()
+# # > useful::build.x(~ Species, data = iris, contrasts = F) |> str()
 # #  num [1:150, 1:4] 1 1 1 1 1 1 1 1 1 1 ...
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ : chr [1:150] "1" "2" "3" "4" ...
@@ -63,9 +63,9 @@ library(tidyverse)
 # #   .. .. ..$ : chr [1:3] "setosa" "versicolor" "virginica"
 # 
 # library(caret)
-# dummyVars(~ Species, data = iris) %>% str
-# predict(dummyVars(~ Species, data = iris), newdata = iris) %>% str
-# # > dummyVars(~ Species, data = iris) %>% str
+# dummyVars(~ Species, data = iris) |> str()
+# predict(dummyVars(~ Species, data = iris), newdata = iris) |> str()
+# # > dummyVars(~ Species, data = iris) |> str()
 # # List of 9
 # #  $ call      : language dummyVars.default(formula = ~Species, data = iris)
 # #  $ form      :Class 'formula'  language ~Species
@@ -92,7 +92,7 @@ library(tidyverse)
 # #  $ levelsOnly: logi FALSE
 # #  $ fullRank  : logi FALSE
 # #  - attr(*, "class")= chr "dummyVars"
-# # > predict(dummyVars(~ Species, data = iris), newdata = iris) %>% str
+# # > predict(dummyVars(~ Species, data = iris), newdata = iris) |> str()
 # #  num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ : chr [1:150] "1" "2" "3" "4" ...
@@ -101,9 +101,9 @@ library(tidyverse)
 # iris.Species.dummy = predict(dummyVars(~ Species, data = iris), newdata = iris)
 # save(iris.Species.dummy, file = "data/iris.Species.dummy.rda")
 load("data/iris.Species.dummy.rda")
-iris.Species.dummy %>% str
+iris.Species.dummy |> str()
 iris.Species.dummy[c(1,51,101,150),]
-# > iris.Species.dummy %>% str
+# > iris.Species.dummy |> str()
 #  num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:150] "1" "2" "3" "4" ...
@@ -115,16 +115,16 @@ iris.Species.dummy[c(1,51,101,150),]
 # 101              0                  0                 1
 # 150              0                  0                 1
 
-iris.Species.dummy %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
-iris.Species.dummy %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+iris.Species.dummy %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
+iris.Species.dummy %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 iris.Species.dummy %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 iris.Species.dummy %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
-# > iris.Species.dummy %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 # Warning message:
 # In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   !is.logical(as.matrix(df_dummy))
-# > iris.Species.dummy %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 # Warning message:
 # In function.df_dummy2factor(., varname_prefix = "Species.") :
@@ -144,20 +144,20 @@ iris.Species.dummy %>% as.data.frame %>% function.df_dummy2factor(varname_prefix
 
 iris.Species.dummy2 = iris.Species.dummy
 iris.Species.dummy2[1,] = c(0,0,1.1) 
-iris.Species.dummy2 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
-iris.Species.dummy2 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+iris.Species.dummy2 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
+iris.Species.dummy2 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 iris.Species.dummy2 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 iris.Species.dummy2 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 # > iris.Species.dummy2 = iris.Species.dummy
 # > iris.Species.dummy2[1,] = c(0,0,1.1) 
-# > iris.Species.dummy2 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy2 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: 3 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   !is.logical(as.matrix(df_dummy))
 # 2: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   any(as.matrix(df_dummy)!=0 & as.matrix(df_dummy)!=1, na.rm = T)
-# > iris.Species.dummy2 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy2 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: 3 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :
@@ -184,20 +184,20 @@ iris.Species.dummy2 %>% as.data.frame %>% function.df_dummy2factor(varname_prefi
 
 iris.Species.dummy3 = iris.Species.dummy
 iris.Species.dummy3[1,] = c(0,NA,1) 
-iris.Species.dummy3 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
-iris.Species.dummy3 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+iris.Species.dummy3 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
+iris.Species.dummy3 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 iris.Species.dummy3 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 iris.Species.dummy3 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 # > iris.Species.dummy3 = iris.Species.dummy
 # > iris.Species.dummy3[1,] = c(0,NA,1) 
-# > iris.Species.dummy3 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy3 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: NA 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   any(is.na(df_dummy))
 # 2: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   !is.logical(as.matrix(df_dummy))
-# > iris.Species.dummy3 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy3 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: NA 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :
@@ -224,20 +224,20 @@ iris.Species.dummy3 %>% as.data.frame %>% function.df_dummy2factor(varname_prefi
 
 iris.Species.dummy4 = iris.Species.dummy
 iris.Species.dummy4[1,] = c(0,1,1) 
-iris.Species.dummy4 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
-iris.Species.dummy4 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+iris.Species.dummy4 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
+iris.Species.dummy4 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 iris.Species.dummy4 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 iris.Species.dummy4 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 # > iris.Species.dummy4 = iris.Species.dummy
 # > iris.Species.dummy4[1,] = c(0,1,1) 
-# > iris.Species.dummy4 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy4 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: NA 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   !is.logical(as.matrix(df_dummy))
 # 2: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   any(rowSums(df_dummy.logical.numeric)!=1, na.rm = T)
-# > iris.Species.dummy4 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy4 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: NA 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :
@@ -264,20 +264,20 @@ iris.Species.dummy4 %>% as.data.frame %>% function.df_dummy2factor(varname_prefi
 
 iris.Species.dummy5 = iris.Species.dummy
 iris.Species.dummy5[1,] = c(0,0,0) 
-iris.Species.dummy5 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
-iris.Species.dummy5 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+iris.Species.dummy5 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
+iris.Species.dummy5 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 iris.Species.dummy5 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 iris.Species.dummy5 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% {.[c(1,51,101,150)]}
 # > iris.Species.dummy5 = iris.Species.dummy
 # > iris.Species.dummy5[1,] = c(0,0,0) 
-# > iris.Species.dummy5 %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy5 %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: NA 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   !is.logical(as.matrix(df_dummy))
 # 2: In function.df_dummy2factor(., varname_prefix = "Species.") :
 #   any(rowSums(df_dummy.logical.numeric)!=1, na.rm = T)
-# > iris.Species.dummy5 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") %>% str
+# > iris.Species.dummy5 %>% as.data.frame %>% function.df_dummy2factor(varname_prefix = "Species.") |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: NA 1 1 1 1 1 1 1 1 1 ...
 # Warning messages:
 # 1: In function.df_dummy2factor(., varname_prefix = "Species.") :

@@ -4,9 +4,9 @@ library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/icd9_chapters.expand_range.ICD9_3char.rda"))
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/icd9_sub_chapters.expand_range.ICD9_3char.rda"))
 
-icd9_chapters.expand_range.ICD9_3char %>% str #----
-icd9_sub_chapters.expand_range.ICD9_3char %>% str #----
-# > icd9_chapters.expand_range.ICD9_3char %>% str #----
+icd9_chapters.expand_range.ICD9_3char |> str() #----
+icd9_sub_chapters.expand_range.ICD9_3char |> str() #----
+# > icd9_chapters.expand_range.ICD9_3char |> str() #----
 # List of 19
 #  $ Infectious And Parasitic Diseases                                                                 : chr [1:123] "001" "002" "003" "004" ...
 #  $ Neoplasms                                                                                         : chr [1:94] "140" "141" "142" "143" ...
@@ -27,7 +27,7 @@ icd9_sub_chapters.expand_range.ICD9_3char %>% str #----
 #  $ Injury And Poisoning                                                                              : chr [1:190] "800" "801" "802" "803" ...
 #  $ Supplementary Classification Of Factors Influencing Health Status And Contact With Health Services: chr [1:90] "V01" "V02" "V03" "V04" ...
 #  $ Supplementary Classification Of External Causes Of Injury And Poisoning                           : chr [1:24] "E00" "E01" "E02" "E03" ...
-# > icd9_sub_chapters.expand_range.ICD9_3char %>% str #----
+# > icd9_sub_chapters.expand_range.ICD9_3char |> str() #----
 # List of 162
 #  $ Intestinal Infectious Diseases                                                                                                                             : chr [1:9] "001" "002" "003" "004" ...
 #  $ Tuberculosis                                                                                                                                               : chr [1:9] "010" "011" "012" "013" ...
@@ -140,13 +140,13 @@ icd9_sub_chapters.expand_range.ICD9_3char %>% str #----
 
 
 #@ icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----
-icd9_chapters.expand_range.ICD9_3char %>% str
-icd9_chapters.expand_range.ICD9_3char %>% reduce(c) %>% str
-icd9_chapters.expand_range.ICD9_3char %>% names %>% str
-icd9_chapters.expand_range.ICD9_3char %>% {rep(names(.), times = map_dbl(., length))} %>% str
-icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% str
+icd9_chapters.expand_range.ICD9_3char |> str()
+icd9_chapters.expand_range.ICD9_3char %>% reduce(c) |> str()
+icd9_chapters.expand_range.ICD9_3char %>% names |> str()
+icd9_chapters.expand_range.ICD9_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
+icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str()
 icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe
-# > icd9_chapters.expand_range.ICD9_3char %>% str
+# > icd9_chapters.expand_range.ICD9_3char |> str()
 # List of 19
 #  $ Infectious And Parasitic Diseases                                                                 : chr [1:123] "001" "002" "003" "004" ...
 #  $ Neoplasms                                                                                         : chr [1:94] "140" "141" "142" "143" ...
@@ -167,13 +167,13 @@ icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.),
 #  $ Injury And Poisoning                                                                              : chr [1:190] "800" "801" "802" "803" ...
 #  $ Supplementary Classification Of Factors Influencing Health Status And Contact With Health Services: chr [1:90] "V01" "V02" "V03" "V04" ...
 #  $ Supplementary Classification Of External Causes Of Injury And Poisoning                           : chr [1:24] "E00" "E01" "E02" "E03" ...
-# > icd9_chapters.expand_range.ICD9_3char %>% reduce(c) %>% str
+# > icd9_chapters.expand_range.ICD9_3char %>% reduce(c) |> str()
 #  chr [1:1042] "001" "002" "003" "004" "005" "006" "007" "008" "009" "010" "011" "012" "013" "014" "015" "016" "017" ...
-# > icd9_chapters.expand_range.ICD9_3char %>% names %>% str
+# > icd9_chapters.expand_range.ICD9_3char %>% names |> str()
 #  chr [1:19] "Infectious And Parasitic Diseases" "Neoplasms" ...
-# > icd9_chapters.expand_range.ICD9_3char %>% {rep(names(.), times = map_dbl(., length))} %>% str
+# > icd9_chapters.expand_range.ICD9_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
 #  chr [1:1042] "Infectious And Parasitic Diseases" "Infectious And Parasitic Diseases" ...
-# > icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% str
+# > icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str()
 #  Named chr [1:1042] "001" "002" "003" "004" "005" "006" "007" "008" "009" "010" "011" "012" "013" "014" "015" "016" ...
 #  - attr(*, "names")= chr [1:1042] "Infectious And Parasitic Diseases" "Infectious And Parasitic Diseases" "Infectious And Parasitic Diseases" "Infectious And Parasitic Diseases" ...
 # > icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe

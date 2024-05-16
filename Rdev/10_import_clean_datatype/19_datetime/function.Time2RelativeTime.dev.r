@@ -7,8 +7,8 @@
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH =
     CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% 
     mutate(time2DTH = as.numeric(replace_na(DTH_YM, as.Date("2014-01-01")) - as.Date("2008-12-31"))) #-----
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DTH_Y, DTH_YM, time2DTH) %>% summary #-----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DTH_Y, DTH_YM, time2DTH) %>% summary #-----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DTH_Y, DTH_YM, time2DTH) |> summary() #-----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DTH_Y, DTH_YM, time2DTH) |> summary() #-----
 #      DTH_Y            DTH_YM              time2DTH   
 #  Min.   :2009     Min.   :2009-03-31   Min.   :  90  
 #  1st Qu.:2011     1st Qu.:2011-04-30   1st Qu.:1827  
@@ -18,8 +18,8 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DT
 #  Max.   :2013     Max.   :2013-12-31   Max.   :1827  
 #  NA's   :280829   NA's   :280829                     
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) %>% summary #-----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) %>% summary #-----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) |> summary() #-----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) |> summary() #-----
 #  DTH_I2025       DTH_I3052       DTH_I6069       DTH_I7079         DTH_I         DTH_I2079      
 #  Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical  
 #  FALSE:2856      FALSE:2884      FALSE:2781      FALSE:2960      FALSE:2524      FALSE:2574     
@@ -28,10 +28,10 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(ma
 
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>%
     mutate(  across(matches("DTH")&where(is.logical), replace_na, F)  )%>%
-    select(matches("DTH_I")) %>% summary #-----
+    select(matches("DTH_I")) |> summary() #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>%
 # +     mutate(  across(matches("DTH")&where(is.logical), replace_na, F)  )%>%
-# +     select(matches("DTH_I")) %>% summary #-----
+# +     select(matches("DTH_I")) |> summary() #-----
 #  DTH_I2025       DTH_I3052       DTH_I6069       DTH_I7079         DTH_I         DTH_I2079      
 #  Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical  
 #  FALSE:283685    FALSE:283713    FALSE:283610    FALSE:283789    FALSE:283367    FALSE:283403   
@@ -93,7 +93,7 @@ sessionInfo() #----
 
 
 
-ID_Eligible_Exposure.TargetTrial2v2.159vs266[1:5, ] %>% select(lmp, matches("Window4Exposure")) %>% add_column(Dummy = T, .before = 1) %>% add_column(rownum = 1:nrow(.), .before = 1) %>% rownames_to_column %>% dput #----
+ID_Eligible_Exposure.TargetTrial2v2.159vs266[1:5, ] %>% select(lmp, matches("Window4Exposure")) %>% add_column(Dummy = T, .before = 1) %>% add_column(rownum = 1:nrow(.), .before = 1) %>% rownames_to_column |> dput() #----
 ID_lmp_Window4Exposure = structure(list(
     rowname = c("1", "2", "3", "4", "5")
     , rownum = 1:5
@@ -111,10 +111,10 @@ ID_lmp_Window4Exposure = structure(list(
 ), row.names = c(NA, -5L), class = c("tbl_df", "tbl", "data.frame") )
 
 
-ID_lmp_Window4Exposure %>% str #----    
-ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) ) %>% str #----
-ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31"))) %>% str #----
-# > ID_lmp_Window4Exposure %>% str #----    
+ID_lmp_Window4Exposure |> str() #----    
+ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) ) |> str() #----
+ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31"))) |> str() #----
+# > ID_lmp_Window4Exposure |> str() #----    
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
 #  $ rowname                                         : chr  "1" "2" "3" "4" ...
 #  $ rownum                                          : int  1 2 3 4 5
@@ -129,7 +129,7 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.ndDate : int  NA NA NA NA NA
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.minDate: Date, format: NA NA NA NA ...
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.maxDate: Date, format: NA NA NA NA ...
-# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) ) %>% str #----
+# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) ) |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
 #  $ rowname                                         : chr  "1" "2" "3" "4" ...
 #  $ rownum                                          : int  1 2 3 4 5
@@ -144,7 +144,7 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.ndDate : int  NA NA NA NA NA
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.minDate: num  NA NA NA NA NA
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.maxDate: num  NA NA NA NA NA
-# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31"))) %>% str #----
+# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31"))) |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
 #  $ rowname                                         : chr  "1" "2" "3" "4" ...
 #  $ rownum                                          : int  1 2 3 4 5
@@ -165,11 +165,11 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 
 # ID_lmp_Window4Exposure %>% rename_if(
 #     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
-#     , function(chr) paste0("prefix.", chr) ) %>% str #----
-ID_lmp_Window4Exposure %>% rename_at(vars(-rowname), funs(paste0("prefix.", c.)) ) %>% str #----
+#     , function(chr) paste0("prefix.", chr) ) |> str() #----
+ID_lmp_Window4Exposure %>% rename_at(vars(-rowname), funs(paste0("prefix.", c.)) ) |> str() #----
 # > ID_lmp_Window4Exposure %>% rename_if(
 # +     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
-# +     , function(chr) paste0("prefix.", chr) ) %>% str #----
+# +     , function(chr) paste0("prefix.", chr) ) |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
 #  $ rowname                                                : chr  "1" "2" "3" "4" ...
 #  $ prefix.rownum                                          : int  1 2 3 4 5

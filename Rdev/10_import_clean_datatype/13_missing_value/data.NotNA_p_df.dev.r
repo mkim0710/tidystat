@@ -38,12 +38,12 @@ env.custom$info$info_system_info = env.custom$info$get_system_info()
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
-env.custom$path$df_dirs_recursive.df_files$path %>% unique %>% paste0(collapse = "\n") %>% cat
-env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% dplyr::select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") %>% cat
+env.custom$path$df_dirs_recursive.df_files$path |> unique %>% paste0(collapse = "\n") |> cat()
+env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% dplyr::select(print_tree_path_files.codes) |> unlist() %>% paste(collapse="") |> cat()
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
-subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" %>% str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 sourcename = "data.NotNA_p_df"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$subpath = subpath
@@ -74,8 +74,8 @@ if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.
 # # Error in load(url("https://github.com/mkim0710/tidystat/tree/master/data/library_mice_nhanes_mice.rda")) : 
 # #   the input does not start with a magic number compatible with loading from a connection
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
-nhanes_mice %>% str #-----
-# > nhanes_mice %>% str #-----
+nhanes_mice |> str() #-----
+# > nhanes_mice |> str() #-----
 # 'data.frame':	25 obs. of  4 variables:
 #  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
 #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...
@@ -159,8 +159,8 @@ data.NotNA_p_df = function(data) {
 
 library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
-nhanes_mice %>% str #-----
-# > nhanes_mice %>% str #-----
+nhanes_mice |> str() #-----
+# > nhanes_mice |> str() #-----
 # 'data.frame':	25 obs. of  4 variables:
 #  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
 #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...

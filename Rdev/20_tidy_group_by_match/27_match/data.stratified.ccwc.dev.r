@@ -197,8 +197,8 @@ data.ccwc = function(
             , is.Ctrl.Candidate = T
             , is.assigned = F
         )
-        .event.exit_age.unique.sort = .mydata %>% filter(.event == T) %>% select(.exit_age) %>% unlist %>% unname %>% unique %>% sort
-        # Browse[2]> .event.exit_age.unique.sort %>% str
+        .event.exit_age.unique.sort = .mydata %>% filter(.event == T) %>% select(.exit_age) |> unlist() %>% unname |> unique %>% sort
+        # Browse[2]> .event.exit_age.unique.sort |> str()
         # num 14790
         # print(paste0(".event.exit_age.unique.sort: ", deparse(.event.exit_age.unique.sort) ))
         incomplete = 0
@@ -219,7 +219,7 @@ data.ccwc = function(
                 which.Case = which({ ({ .mydata.ccwc[[".exit_age"]] == .event.exit_age.unique.sort[i] }) & .mydata.ccwc[[".event"]] == T & .mydata.ccwc$is.assigned == F })  # this case may have already been assigned as control
             }  # debug 180516
 
-            # Browse[2]> which.Case %>% str
+            # Browse[2]> which.Case |> str()
             # int 2
             if(print.process == T) print(paste0("which.Case: ", deparse(which.Case)))
             if (length(which.Case) == 0) {
@@ -235,7 +235,7 @@ data.ccwc = function(
                 # Q) why (t.entry<=tf)?
 
                 which.Ctrl.Candidate = which({ .mydata.ccwc$is.Ctrl.Candidate == T & (.mydata.ccwc[[".entry_age"]] <= .event.exit_age.unique.sort[i]) & (.mydata.ccwc[[".exit_age"]] >= .event.exit_age.unique.sort[i]) })
-                # which.Ctrl.Candidate %>% str
+                # which.Ctrl.Candidate |> str()
                 # print(.mydata.ccwc[c(which.Case, which.Ctrl.Candidate), ] %>% select(RowNum_original, .entry_age, .exit_age, varname4event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned))
                 if(print.process == T) print(paste0("which.Ctrl.Candidate: ", deparse(which.Ctrl.Candidate)))
 				
@@ -349,8 +349,8 @@ mycohort_1strata_tie = tibble::tribble(
                 315L,        47L,        63,  FALSE, "Driver|>2750 KCals",
                 322L,        38L,        49,  FALSE, "Driver|>2750 KCals"
     )
-mycohort_1strata_tie %>% as_tibble
-# > mycohort_1strata_tie %>% as_tibble
+mycohort_1strata_tie |> as_tibble()
+# > mycohort_1strata_tie |> as_tibble()
 # # A tibble: 12 x 5
 #    RowNum_original entry_age exit_age event             strata
 #              <int>     <int>    <dbl> <lgl>             <fctr>
@@ -368,8 +368,8 @@ mycohort_1strata_tie %>% as_tibble
 # 12             322        38       49 FALSE Driver|>2750 KCals
 
 
-mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) %>% str(max.level = 1) #----
-# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) %>% str(max.level = 1) #----
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) |> str(max.level = 1) #----
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = T) |> str(max.level = 1) #----
 # [1] "*** 1-th iteration for .event.exit_age.unique.sort: 42"
 # [1] "which.Case: 1L"
 # [1] "which.Ctrl.Candidate: c(10L, 12L)"
@@ -423,11 +423,11 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #   ..- attr(*, "apply.na.omit")= logi FALSE
 #  - attr(*, "function.input")=List of 9
 
-mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F) %>% str(max.level = 1)
-mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% str(max.level = 1)
+mycohort_1strata_tie %>% mutate(origin = 30) %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = "origin", print.process = F) |> str(max.level = 1)
+mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) |> str(max.level = 1)
 mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% {.[c(2, 1, 3)]}
 mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F)
-# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% str(max.level = 1)
+# > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) |> str(max.level = 1)
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
 # [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
@@ -610,7 +610,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
 #             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
 #         .event.exit_age.unique.sort = .mydata %>% filter(.event == 
-#             T) %>% select(.exit_age) %>% unlist %>% unname %>% 
+#             T) %>% select(.exit_age) |> unlist() %>% unname %>% 
 #             unique %>% sort
 #         incomplete = 0
 #         ties <- FALSE
@@ -756,8 +756,8 @@ structure(list(RowNum_original_before_strata = c(39429L, 39894L,
 ), .Names = c("RowNum_original_before_strata", "entry", "EndTime.YM",
 "EndTime.is.MDD"))
 
-mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>% as_tibble
-# > mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>% as_tibble
+mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE |> as_tibble()
+# > mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE |> as_tibble()
 # # A tibble: 26 x 4
 #    RowNum_original_before_strata entry      EndTime.YM EndTime.is.MDD
 #                            <int> <date>     <date>     <lgl>         
@@ -833,8 +833,8 @@ structure(list(RowNum_original_before_strata = c(36092L, 37713L,
     EndTime.is.MDD = c(FALSE, FALSE, TRUE)), row.names = c(NA,
 -3L), class = c("tbl_df", "tbl", "data.frame"), .Names = c("RowNum_original_before_strata",
 "entry", "EndTime.YM", "EndTime.is.MDD"))
-mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as_tibble
-# > mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% as_tibble
+mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE |> as_tibble()
+# > mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE |> as_tibble()
 # # A tibble: 3 x 4
 #   RowNum_original_before_strata entry      EndTime.YM EndTime.is.MDD
 #                           <int> <date>     <date>     <lgl>         
@@ -888,7 +888,7 @@ data.strata_list = function(
     out = map(
         levels(.mydata$strata)
         , function(chr) {
-            out2 = .mydata %>% filter(strata == !!chr) %>% as_tibble
+            out2 = .mydata %>% filter(strata == !!chr) |> as_tibble()
             # attr(out2, ".vars4strata") = .vars4strata
             out2
         }
@@ -912,8 +912,8 @@ diet = diet %>% mutate(
     , exit_age = as.numeric(dox - dob)/365
     , event = fail > 0
 )
-diet %>% as_tibble
-# > diet %>% as_tibble
+diet |> as_tibble()
+# > diet |> as_tibble()
 # # A tibble: 337 x 19
 #       id        doe        dox        dob          y  fail         job month  energy   height   weight    fat     fibre   energy.grp   chd RowNum_original entry_age exit_age event
 #    <dbl>     <date>     <date>     <date>      <dbl> <dbl>      <fctr> <dbl>   <dbl>    <dbl>    <dbl>  <dbl>     <dbl>       <fctr> <dbl>           <int>     <dbl>    <dbl> <lgl>
@@ -930,10 +930,10 @@ diet %>% as_tibble
 # # ... with 327 more rows
 
 diet.strata_list = diet %>% data.strata_list(.vars4strata = c("job", "energy.grp"), paste.collapse = "|")
-diet.strata_list %>% str(max.level = 1)
+diet.strata_list |> str(max.level = 1)
 diet.strata_list[[1]]
 # > diet.strata_list = diet %>% data.strata_list(.vars4strata = c("job", "energy.grp"), paste.collapse = "|")
-# > diet.strata_list %>% str(max.level = 1)
+# > diet.strata_list |> str(max.level = 1)
 # List of 6
 #  $ Bank worker|<=2750 KCals:Classes ??tbl_df??, ??tbl?? and 'data.frame':	68 obs. of  20 variables:
 #  $ Bank worker|>2750 KCals :Classes ??tbl_df??, ??tbl?? and 'data.frame':	83 obs. of  20 variables:
@@ -1490,7 +1490,7 @@ diet.stratified.ccwc #----
 #         FUN = paste, collapse = paste.collapse)
 #     .mydata$strata = .mydata$strata %>% as.factor
 #     out = map(levels(.mydata$strata), function(chr) {
-#         out2 = .mydata %>% filter(strata == (!(!chr))) %>% as_tibble
+#         out2 = .mydata %>% filter(strata == (!(!chr))) |> as_tibble()
 #         out2
 #     })
 #     names(out) = levels(.mydata$strata)
@@ -1593,7 +1593,7 @@ diet.stratified.ccwc #----
 #         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
 #             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
 #         .event.exit_age.unique.sort = .mydata %>% filter(.event == 
-#             T) %>% select(.exit_age) %>% unlist %>% unname %>% 
+#             T) %>% select(.exit_age) |> unlist() %>% unname %>% 
 #             unique %>% sort
 #         incomplete = 0
 #         ties <- FALSE

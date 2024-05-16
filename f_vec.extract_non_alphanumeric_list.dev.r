@@ -21,7 +21,7 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 # Example usage of the function
 input_vec <- c("Hello, World!", "R4 & Python?", "123% Ready!", "12345")
 result <- f_vec.extract_non_alphanumeric_list(input_vec)
-result %>% dput
+result |> dput()
 list(`Hello, World!` = c(",", " ", "!"), `R4 & Python?` = c(" ", "&", " ", "?"), `123% Ready!` = c("%", " ", "!"), `12345` = character(0))
 
 

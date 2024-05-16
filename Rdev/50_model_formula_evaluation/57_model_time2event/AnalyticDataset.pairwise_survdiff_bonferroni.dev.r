@@ -73,10 +73,10 @@ AnalyticDataset.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table
 
 
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
-AnalyticDataset.coxph %>% summary #----
+AnalyticDataset.coxph |> summary() #----
 AnalyticDataset.coxph %>% cox.zph  # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph
-# > AnalyticDataset.coxph %>% summary #----
+# > AnalyticDataset.coxph |> summary() #----
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 # 
@@ -118,10 +118,10 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph
 
 
 AnalyticDataset.coxph_byPredictedStage <- coxph(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
-AnalyticDataset.coxph_byPredictedStage %>% summary #----
+AnalyticDataset.coxph_byPredictedStage |> summary() #----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
-# > AnalyticDataset.coxph_byPredictedStage %>% summary #----
+# > AnalyticDataset.coxph_byPredictedStage |> summary() #----
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ PredictedStage, 
 #     data = AnalyticDataset)

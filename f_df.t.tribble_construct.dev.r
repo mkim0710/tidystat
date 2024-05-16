@@ -610,7 +610,7 @@ env.custom$f_df.tribble_construct = function(df) {
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
 env.custom$f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
-    out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) %>% as_tibble
+    out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }
 

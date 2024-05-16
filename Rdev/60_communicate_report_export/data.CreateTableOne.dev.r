@@ -70,8 +70,8 @@ path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") %>% cat;cat("\n") ###### %>% cat ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") %>% cat;cat("\n") ###### %>% cat ----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
 # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, HEIGHT, WEIGHT, BP_HIGH, BP_LWST, BLDS, TOT_CHOLE, HMG, OLIG_PROTE_CD, SGOT_AST, SGPT_ALT, GAMMA_GTP, FMLY_HPRTS_PATIEN_YN, FMLY_APOP_PATIEN_YN, FMLY_HDISE_PATIEN_YN, FMLY_DIABML_PATIEN_YN, FMLY_CANCER_PATIEN_YN, SMK_STAT_TYPE_RSPS_CD, DRNK_HABIT_RSPS_CD, TM1_DRKQTY_RSPS_CD, WAIST, TRIGLYCERIDE, HDL_CHOLE, LDL_CHOLE, CREATININE, HCHK_APOP_PMH_YN, HCHK_HDISE_PMH_YN, HCHK_HPRTS_PMH_YN, HCHK_DIABML_PMH_YN, HCHK_HPLPDM_PMH_YN, HCHK_ETCDSE_PMH_YN, PAST_SMK_TERM_RSPS_CD, PAST_DSQTY_RSPS_CD, CUR_SMK_TERM_RSPS_CD, CUR_DSQTY_RSPS_CD, MOV20_WEK_FREQ_ID, MOV30_WEK_FREQ_ID, WLK30_WEK_FREQ_ID, HCHK_PHSS_PMH_YN, n.ICD_E0814, minDate.ICD_E0814, maxDate.ICD_E0814, diffDate.ICD_E0814, n.ICD_I1016, minDate.ICD_I1016, maxDate.ICD_I1016, diffDate.ICD_I1016, n.ICD_I2025, minDate.ICD_I2025, maxDate.ICD_I2025, diffDate.ICD_I2025, n.ICD_I3052, minDate.ICD_I3052, maxDate.ICD_I3052, diffDate.ICD_I3052, n.ICD_I6069, minDate.ICD_I6069, maxDate.ICD_I6069, diffDate.ICD_I6069, n.ICD_I7079, minDate.ICD_I7079, maxDate.ICD_I7079, diffDate.ICD_I7079, Female, BMI, BMI_lt185, BMI_ge185lt230, BMI_ge230lt250, BMI_ge185lt250, BMI_ge250lt300, BMI_ge300, BMI_ge350, BMI_ge400, BMI.cut4, FPG, FPG_ge100, FPG_ge126, SBP, DBP, BP_ESCESH2018, FPG_ge100lt126, TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, WAIST_ge9080, WAIST_ge9085, BP_ge130_85, nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
 # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
 # HEIGHT, WEIGHT, 
@@ -182,9 +182,9 @@ ObjectName = "DataSet"
 ObjectName.select = paste0(objectname,".select")
 ObjectName.TableOne_byExposure = paste0(objectname,".TableOne_by", VarNames4Exposure)
 ObjectName.is.na.TableOne_byExposure = paste0(objectname,".is.na.TableOne_by", VarNames4Exposure)
-ObjectName.select %>% cat;cat("\n") ###### %>% cat ----
-ObjectName.TableOne_byExposure %>% cat;cat("\n") ###### %>% cat ----
-ObjectName.is.na.TableOne_byExposure %>% cat;cat("\n") ###### %>% cat ----
+ObjectName.select |> cat();cat("\n") ###### |> cat() ----
+ObjectName.TableOne_byExposure |> cat();cat("\n") ###### |> cat() ----
+ObjectName.is.na.TableOne_byExposure |> cat();cat("\n") ###### |> cat() ----
                               
 assign(ObjectName.TableOne_byExposure, 
        eval(parse(text = ObjectName.select)) %>% 
@@ -194,7 +194,7 @@ assign(ObjectName.TableOne_byExposure,
 assign(ObjectName.is.na.TableOne_byExposure, 
        eval(parse(text = ObjectName.select)) %>% 
            {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
-           map_df(is.na) %>% setNames(paste0(names(.), ".is.na") %>% str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
+           map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
            # mutate( !!rlang::sym(VarNames4Exposure) := CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[[VarNames4Exposure]]) %>%
            cbind(CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[VarNames4Exposure]) %>%
            as.data.frame %>%
@@ -217,12 +217,12 @@ sink()
 
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
-DataSet.is.na.TableOne_byExposure.print = eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
+DataSet.is.na.TableOne_byExposure.print = eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 DataSet.is.na.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
 
-DataSet.TableOne_byExposure.print = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
-DataSet.TableOne_byExposure.print_showAllLevels = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
-DataSet.TableOne_byExposure.print_showAllLevels.IQR = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as_tibble(rownames = "Variable")
+DataSet.TableOne_byExposure.print = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.TableOne_byExposure.print_showAllLevels = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.TableOne_byExposure.print_showAllLevels.IQR = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 DataSet.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
 DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ----
 DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
@@ -240,9 +240,9 @@ function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_b
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
-        mutate(VarType = if_else(Variable %>% str_detect("%"), "factor", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("^   "), "level", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("mean"), "numeric", VarType), Variable = Variable %>% str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
         mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
         mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
         mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
@@ -260,20 +260,20 @@ function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_b
 
 function.df.edit_Label_Level = function(df) {
     df = df %>% 
-        mutate(Level = if_else(VarType  == "level", Variable %>% str_replace_all("^   ", ""), Level)) %>% 
-        mutate(Level = if_else(Variable %>% str_detect(" = "), Variable %>% str_extract(" = .*$") %>% str_replace_all("^ = ", ""), Level)) %>% 
+        mutate(Level = if_else(VarType  == "level", Variable |> str_replace_all("^   ", ""), Level)) %>% 
+        mutate(Level = if_else(Variable |> str_detect(" = "), Variable |> str_extract(" = .*$") |> str_replace_all("^ = ", ""), Level)) %>% 
         mutate(Level = if_else(Level == "TRUE", "", Level)) %>% 
         mutate(Level = if_else(Level == "NA", "N/A", Level)) %>% 
         mutate(Label = if_else(VarType  %in% c("factor", "numeric"), Variable, Label)) %>% 
-        mutate(Label = if_else(Variable %>% str_detect(" = "), Label %>% str_extract("^.* = ") %>% str_replace_all(" = $", ""), Label)) %>% 
-        mutate(Label = Label %>% str_replace_all("[_\\.]", " ")) %>%
-        mutate(Label = Label %>% str_replace_all("ge([0-9]+)lt([0-9]+)", "[\\1~,\\2)")) %>%
-        mutate(Label = Label %>% str_replace_all("gt([0-9]+)le([0-9]+)", "(\\1~,\\2]")) %>%
-        mutate(Label = Label %>% str_replace_all("gt([0-9]+)", ">\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("ge([0-9]+)", ">=\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("lt([0-9]+)", "<\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("le([0-9]+)", "<=\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
+        mutate(Label = if_else(Variable |> str_detect(" = "), Label |> str_extract("^.* = ") |> str_replace_all(" = $", ""), Label)) %>% 
+        mutate(Label = Label |> str_replace_all("[_\\.]", " ")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)lt([0-9]+)", "[\\1~,\\2)")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)le([0-9]+)", "(\\1~,\\2]")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)", ">\\1")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)", ">=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("lt([0-9]+)", "<\\1")) %>%
+        mutate(Label = Label |> str_replace_all("le([0-9]+)", "<=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
         as_tibble
     df
 }
@@ -284,9 +284,9 @@ function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(Data
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
-        mutate(VarType = if_else(Variable %>% str_detect("%"), "factor", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("^   "), "level", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("mean"), "numeric", VarType), Variable = Variable %>% str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
         mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
         mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
         mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
@@ -328,9 +328,9 @@ function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_b
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
-        mutate(VarType = if_else(Variable %>% str_detect("%"), "factor", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("^   "), "level", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("mean"), "numeric", VarType), Variable = Variable %>% str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
         mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
         mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
         mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
@@ -381,20 +381,20 @@ DataSet.TableOne_byExposure.print.addCols |> print(n=999) #----
 
 function.df.edit_Label_Level = function(df) {
     df = df %>% 
-        mutate(Level = if_else(VarType  == "level", Variable %>% str_replace_all("^   ", ""), Level)) %>% 
-        mutate(Level = if_else(Variable %>% str_detect(" = "), Variable %>% str_extract(" = .*$") %>% str_replace_all("^ = ", ""), Level)) %>% 
+        mutate(Level = if_else(VarType  == "level", Variable |> str_replace_all("^   ", ""), Level)) %>% 
+        mutate(Level = if_else(Variable |> str_detect(" = "), Variable |> str_extract(" = .*$") |> str_replace_all("^ = ", ""), Level)) %>% 
         mutate(Level = if_else(Level == "TRUE", "", Level)) %>% 
         mutate(Level = if_else(Level == "NA", "N/A", Level)) %>% 
         mutate(Label = if_else(VarType  %in% c("factor", "numeric"), Variable, Label)) %>% 
-        mutate(Label = if_else(Variable %>% str_detect(" = "), Label %>% str_extract("^.* = ") %>% str_replace_all(" = $", ""), Label)) %>% 
-        mutate(Label = Label %>% str_replace_all("[_\\.]", " ")) %>%
-        mutate(Label = Label %>% str_replace_all("ge([0-9]+)lt([0-9]+)", "[\\1~,\\2)")) %>%
-        mutate(Label = Label %>% str_replace_all("gt([0-9]+)le([0-9]+)", "(\\1~,\\2]")) %>%
-        mutate(Label = Label %>% str_replace_all("gt([0-9]+)", ">\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("ge([0-9]+)", ">=\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("lt([0-9]+)", "<\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("le([0-9]+)", "<=\\1")) %>%
-        mutate(Label = Label %>% str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
+        mutate(Label = if_else(Variable |> str_detect(" = "), Label |> str_extract("^.* = ") |> str_replace_all(" = $", ""), Label)) %>% 
+        mutate(Label = Label |> str_replace_all("[_\\.]", " ")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)lt([0-9]+)", "[\\1~,\\2)")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)le([0-9]+)", "(\\1~,\\2]")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)", ">\\1")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)", ">=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("lt([0-9]+)", "<\\1")) %>%
+        mutate(Label = Label |> str_replace_all("le([0-9]+)", "<=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
         as_tibble
     df
 }
@@ -470,9 +470,9 @@ function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(Data
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
-        mutate(VarType = if_else(Variable %>% str_detect("%"), "factor", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("^   "), "level", VarType), Variable = Variable %>% str_replace_all(" \\(%\\)", "")) %>% 
-        mutate(VarType = if_else(Variable %>% str_detect("mean"), "numeric", VarType), Variable = Variable %>% str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
         mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
         mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
         mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
@@ -549,8 +549,8 @@ DataSet = DataSet %>% mutate(
     , PMHx_highBP.lgl = PMHx_highBP %>% as.logical
 )
 
-DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) %>% summary #----
-# > DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) %>% summary #----
+DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #----
+# > DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #----
 #  N1GM0392_recode  N1GM0394_recode      Cigar        
 #  Min.   : 0.000   Min.   : 0.000   Min.   :  24.99  
 #  1st Qu.: 0.214   1st Qu.: 0.000   1st Qu.:  24.99  
@@ -732,8 +732,8 @@ df %>%
 
 
 #@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne -----
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne %>% str(max.level = 1)
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne %>% str(max.level = 1)
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne |> str(max.level = 1)
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne |> str(max.level = 1)
 # List of 5
 #  $ _3yr:List of 3
 #   ..- attr(*, "class")= chr "TableOne"
@@ -747,7 +747,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 #   ..- attr(*, "class")= chr "TableOne"
 
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is %>% str
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is |> str()
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is %>% filter(level == "DTH_MDY")
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is
 #       n miss p.miss          level  freq   percent cum.percent
@@ -755,7 +755,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # 2 53377    0      0        DTH_MDY  4920  9.217453   11.396294
 # 3 53377    0      0   RECU_FR_DT_C 40873 76.574180   87.970474
 # 4 53377    0      0 RECU_FR_DT_C16  6421 12.029526  100.000000
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is %>% str
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is |> str()
 # 'data.frame':	4 obs. of  7 variables:
 #  $ n          : int  53377 53377 53377 53377
 #  $ miss       : int  0 0 0 0
@@ -773,7 +773,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # 1 53377    0      0 DTH_MDY 4920 9.217453    11.39629
 
 attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable,"xtabs")$enddate.is
-attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable,"xtabs")$enddate.is %>% str
+attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable,"xtabs")$enddate.is |> str()
 attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable,"xtabs")$enddate.is %>% sum
 # > attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable,"xtabs")$enddate.is
 #                 is.dropped_5yr
@@ -782,7 +782,7 @@ attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_3456
 #   DTH_MDY         12341   4920
 #   RECU_FR_DT_C    56833  40873
 #   RECU_FR_DT_C16   6737   6421
-# > attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable,"xtabs")$enddate.is %>% str
+# > attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable,"xtabs")$enddate.is |> str()
 #  'xtabs' int [1:4, 1:2] 385578 12341 56833 6737 1163 4920 40873 6421
 #  - attr(*, "dimnames")=List of 2
 #   ..$ enddate.is    : chr [1:4] "2013-12-31" "DTH_MDY" "RECU_FR_DT_C" "RECU_FR_DT_C16"
@@ -934,8 +934,8 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # 4   _6yr 63438    0      0 RECU_FR_DT_C16 7333 11.55932         100       10061            912
 # 5   _7yr 74397    0      0 RECU_FR_DT_C16 8312 11.17249         100       10959            979
 
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% str
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% str
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is |> str()
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is |> str()
 # 'data.frame':	20 obs. of  8 variables:
 #  $ parent     : chr  "_3yr" "_3yr" "_3yr" "_3yr" ...
 #  $ n          : int  33330 33330 33330 33330 43643 43643 43643 43643 53377 53377 ...

@@ -40,8 +40,8 @@ province
 
 province = province %>% mutate(ue91_gt500 = ue91 > 500)
 
-province %>% summary
-# > province %>% summary
+province |> summary()
+# > province |> summary()
 #        id            str         clu              wt         ue91            lab91          poststr     
 #  Min.   :1.00   Min.   :1   Min.   : 1.00   Min.   :4   Min.   : 127.0   Min.   :  675   Min.   :1.000  
 #  1st Qu.:2.75   1st Qu.:1   1st Qu.: 4.75   1st Qu.:4   1st Qu.: 175.8   1st Qu.: 1268   1st Qu.:1.000  
@@ -87,8 +87,8 @@ sum(province$wt * province$ue91)
 # [1] 26440
 
 
-province.prelim.design.without_fpc %>% svytotal(~ue91, .) %>% str
-# > province.prelim.design.without_fpc %>% svytotal(~ue91, .) %>% str
+province.prelim.design.without_fpc %>% svytotal(~ue91, .) |> str()
+# > province.prelim.design.without_fpc %>% svytotal(~ue91, .) |> str()
 #  'svystat' Named num 26440
 #  - attr(*, "names")= chr "ue91"
 #  - attr(*, "var")= num [1, 1] 2.35e+08
@@ -121,8 +121,8 @@ sum(province$wt * province$ue91_gt500)
 # > sum(province$wt * province$ue91_gt500)
 # [1] 12
 
-province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) %>% str
-# > province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) %>% str
+province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> str()
+# > province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> str()
 #  'svystat' Named num [1:2] 20 12
 #  - attr(*, "names")= chr [1:2] "ue91_gt500FALSE" "ue91_gt500TRUE"
 #  - attr(*, "var")= num [1:2, 1:2] 34.3 -34.3 -34.3 34.3

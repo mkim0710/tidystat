@@ -8,7 +8,7 @@ list(
     c("F", "T", "F"), 
     factor(c("no", "yes", "no")),
     c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
-    ) %>% dput
+    ) |> dput()
 # > list(
 # +     1:3,
 # +     c(1, 2, 1), 
@@ -16,7 +16,7 @@ list(
 # +     c("F", "T", "F"), 
 # +     factor(c("no", "yes", "no")),
 # +     c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03"))
-# +     ) %>% dput
+# +     ) |> dput()
 # list(1:3, c(1, 2, 1), c(FALSE, TRUE, FALSE), c("F", "T", "F"), 
 #     structure(c(1L, 2L, 1L), levels = c("no", "yes"), class = "factor"), 
 #     structure(c(19723, 19724, 19725), class = "Date"))
@@ -139,96 +139,96 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
     vec.out
 }
 
-c(1, 2, 1) %>% function.dichotomous2logical %>% str %>% try
-c(1, 2, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-c(F, T, F) %>% function.dichotomous2logical %>% str %>% try
-c(F, T, F) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-c("F", "T", "F") %>% function.dichotomous2logical %>% str %>% try
-c("F", "T", "F") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-c("No", "Yes", "No") %>% function.dichotomous2logical %>% str %>% try
-c("No", "Yes", "No") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-factor(c("no", "yes", "no")) %>% function.dichotomous2logical %>% str %>% try
-factor(c("no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical %>% str %>% try
-factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-c(1, 2, 3) %>% function.dichotomous2logical %>% str %>% try
-c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-c(1, 1, 1) %>% function.dichotomous2logical %>% str %>% try
-c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
-c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% function.dichotomous2logical %>% str %>% try
-# > c(1, 2, 1) %>% function.dichotomous2logical %>% str %>% try
+c(1, 2, 1) %>% function.dichotomous2logical |> str() %>% try
+c(1, 2, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+c(F, T, F) %>% function.dichotomous2logical |> str() %>% try
+c(F, T, F) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+c("F", "T", "F") %>% function.dichotomous2logical |> str() %>% try
+c("F", "T", "F") %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+c("No", "Yes", "No") %>% function.dichotomous2logical |> str() %>% try
+c("No", "Yes", "No") %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+factor(c("no", "yes", "no")) %>% function.dichotomous2logical |> str() %>% try
+factor(c("no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical |> str() %>% try
+factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+c(1, 2, 3) %>% function.dichotomous2logical |> str() %>% try
+c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+c(1, 1, 1) %>% function.dichotomous2logical |> str() %>% try
+c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
+c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% function.dichotomous2logical |> str() %>% try
+# > c(1, 2, 1) %>% function.dichotomous2logical |> str() %>% try
 # 경고: n_unique == 2 --> 1 is coded to FALSE & 2 is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> 1 is coded to FALSE & 2 is coded to TRUE"
-# > c(1, 2, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > c(1, 2, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 # 경고: n_unique == 2 --> 1 is coded to 0 & 2 is coded to 1
 #  int [1:3] 0 1 0
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> 1 is coded to 0 & 2 is coded to 1"
-# > c(F, T, F) %>% function.dichotomous2logical %>% str %>% try
+# > c(F, T, F) %>% function.dichotomous2logical |> str() %>% try
 #  logi [1:3] FALSE TRUE FALSE
 #  - attr(*, "n_unique")= int 2
-# > c(F, T, F) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > c(F, T, F) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 #  int [1:3] 0 1 0
 #  - attr(*, "n_unique")= int 2
-# > c("F", "T", "F") %>% function.dichotomous2logical %>% str %>% try
+# > c("F", "T", "F") %>% function.dichotomous2logical |> str() %>% try
 # 경고: n_unique == 2 --> F is coded to FALSE & T is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> F is coded to FALSE & T is coded to TRUE"
-# > c("F", "T", "F") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > c("F", "T", "F") %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 # 경고: n_unique == 2 --> F is coded to 0 & T is coded to 1
 #  int [1:3] 0 1 0
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> F is coded to 0 & T is coded to 1"
-# > c("No", "Yes", "No") %>% function.dichotomous2logical %>% str %>% try
+# > c("No", "Yes", "No") %>% function.dichotomous2logical |> str() %>% try
 # 경고: n_unique == 2 --> No is coded to FALSE & Yes is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> No is coded to FALSE & Yes is coded to TRUE"
-# > c("No", "Yes", "No") %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > c("No", "Yes", "No") %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 # 경고: n_unique == 2 --> No is coded to 0 & Yes is coded to 1
 #  int [1:3] 0 1 0
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> No is coded to 0 & Yes is coded to 1"
-# > factor(c("no", "yes", "no")) %>% function.dichotomous2logical %>% str %>% try
+# > factor(c("no", "yes", "no")) %>% function.dichotomous2logical |> str() %>% try
 # 경고: n_unique == 2 --> no is coded to FALSE & yes is coded to TRUE
 #  logi [1:3] FALSE TRUE FALSE
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> no is coded to FALSE & yes is coded to TRUE"
-# > factor(c("no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > factor(c("no", "yes", "no")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 # 경고: n_unique == 2 --> no is coded to 0 & yes is coded to 1
 #  int [1:3] 0 1 0
 #  - attr(*, "n_unique")= int 2
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 2 --> no is coded to 0 & yes is coded to 1"
-# > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical %>% str %>% try
+# > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical |> str() %>% try
 # 경고: n_unique > 2
 #  Factor w/ 3 levels "NA","No","Yes": 2 3 1
 #  - attr(*, "n_unique")= int 3
-# > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > factor(c("No", "Yes", "NA")) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 # 경고: n_unique > 2
 #  Factor w/ 3 levels "NA","No","Yes": 2 3 1
 #  - attr(*, "n_unique")= int 3
-# > c(1, 2, 3) %>% function.dichotomous2logical %>% str %>% try
+# > c(1, 2, 3) %>% function.dichotomous2logical |> str() %>% try
 # 경고: n_unique > 2
 #  num [1:3] 1 2 3
 #  - attr(*, "n_unique")= int 3
-# > c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > c(1, 2, 3) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 # 경고: n_unique > 2
 #  num [1:3] 1 2 3
 #  - attr(*, "n_unique")= int 3
-# > c(1, 1, 1) %>% function.dichotomous2logical %>% str %>% try
+# > c(1, 1, 1) %>% function.dichotomous2logical |> str() %>% try
 # 경고: n_unique == 1 --> coded to FALSE
 #  logi [1:3] FALSE FALSE FALSE
 #  - attr(*, "n_unique")= int 1
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 1 --> coded to FALSE"
-# > c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) %>% str %>% try
+# > c(1, 1, 1) %>% function.dichotomous2logical(dichotomous2integer = TRUE) |> str() %>% try
 # 경고: n_unique == 1 --> coded to 0
 #  int [1:3] 0 0 0
 #  - attr(*, "n_unique")= int 1
 #  - attr(*, "function.dichotomous2logical")= chr "n_unique == 1 --> coded to 0"
-# > c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% function.dichotomous2logical %>% str %>% try
+# > c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% function.dichotomous2logical |> str() %>% try
 #  Date[1:3], format: "2024-01-01" "2024-01-02" "2024-01-03"
 
 
@@ -245,51 +245,51 @@ c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% funct
 library(tidyverse)
 c(T, F, T) %>% is.numeric
 c(T, F, T) %>% is.character
-c(T, F, T) %>% levels
-c(T, F, T) %>% levels %>% length
-c(T, F, T) %>% unique %>% length
-function.dichotomous2logical(c(T, T, T)) %>% str %>% try
-function.dichotomous2logical(c(F, F, F)) %>% str %>% try
-function.dichotomous2logical(c(T, F, T)) %>% str %>% try
-function.dichotomous2logical(c("A", "A", "B", "B", "A")) %>% str %>% try
-function.dichotomous2logical(c("A", "A", "B", "C", "A")) %>% str %>% try
-function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) %>% str %>% try
-function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) %>% str %>% try
-function.dichotomous2logical(c(T, F, T), dichotomous2integer = T) %>% str %>% try
-function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T) %>% str %>% try
-function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) %>% str %>% try
+c(T, F, T) |> levels()
+c(T, F, T) |> levels() %>% length
+c(T, F, T) |> unique %>% length
+function.dichotomous2logical(c(T, T, T)) |> str() %>% try
+function.dichotomous2logical(c(F, F, F)) |> str() %>% try
+function.dichotomous2logical(c(T, F, T)) |> str() %>% try
+function.dichotomous2logical(c("A", "A", "B", "B", "A")) |> str() %>% try
+function.dichotomous2logical(c("A", "A", "B", "C", "A")) |> str() %>% try
+function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) |> str() %>% try
+function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) |> str() %>% try
+function.dichotomous2logical(c(T, F, T), dichotomous2integer = T) |> str() %>% try
+function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T) |> str() %>% try
+function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) |> str() %>% try
 # > c(T, F, T) %>% is.numeric
 # [1] FALSE
 # > c(T, F, T) %>% is.character
 # [1] FALSE
-# > c(T, F, T) %>% levels
+# > c(T, F, T) |> levels()
 # NULL
-# > c(T, F, T) %>% levels %>% length
+# > c(T, F, T) |> levels() %>% length
 # [1] 0
-# > c(T, F, T) %>% unique %>% length
+# > c(T, F, T) |> unique %>% length
 # [1] 2
-# > function.dichotomous2logical(c(T, T, T)) %>% str %>% try
+# > function.dichotomous2logical(c(T, T, T)) |> str() %>% try
 # 경고: length(unique(x)) == 1 logi [1:3] TRUE TRUE TRUE
-# > function.dichotomous2logical(c(F, F, F)) %>% str %>% try
+# > function.dichotomous2logical(c(F, F, F)) |> str() %>% try
 # 경고: length(unique(x)) == 1 logi [1:3] FALSE FALSE FALSE
-# > function.dichotomous2logical(c(T, F, T)) %>% str %>% try
+# > function.dichotomous2logical(c(T, F, T)) |> str() %>% try
 #  logi [1:3] TRUE FALSE TRUE
-# > function.dichotomous2logical(c("A", "A", "B", "B", "A")) %>% str %>% try
+# > function.dichotomous2logical(c("A", "A", "B", "B", "A")) |> str() %>% try
 # 경고: A is coded to FALSE & B is coded to TRUE logi [1:5] FALSE FALSE TRUE TRUE FALSE
 #  - attr(*, "warning")= chr "A is coded to FALSE & B is coded to TRUE"
-# > function.dichotomous2logical(c("A", "A", "B", "C", "A")) %>% str %>% try
+# > function.dichotomous2logical(c("A", "A", "B", "C", "A")) |> str() %>% try
 # Error in function.dichotomous2logical(c("A", "A", "B", "C", "A")) : 
 #   length(levels(x)) > 2
-# > function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) %>% str %>% try
+# > function.dichotomous2logical(c(T, T, T), dichotomous2integer = T) |> str() %>% try
 # 경고: length(unique(x)) == 1 int [1:3] 1 1 1
-# > function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) %>% str %>% try
+# > function.dichotomous2logical(c(F, F, F), dichotomous2integer = T) |> str() %>% try
 # 경고: length(unique(x)) == 1 int [1:3] 0 0 0
-# > function.dichotomous2logical(c(T, F, T), dichotomous2integer = T) %>% str %>% try
+# > function.dichotomous2logical(c(T, F, T), dichotomous2integer = T) |> str() %>% try
 #  int [1:3] 1 0 1
-# > function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T) %>% str %>% try
+# > function.dichotomous2logical(c("A", "A", "B", "B", "A"), dichotomous2integer = T) |> str() %>% try
 # 경고: A is coded to 0 & B is coded to 1 int [1:5] 0 0 1 1 0
 #  - attr(*, "warning")= chr "A is coded to 0 & B is coded to 1"
-# > function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) %>% str %>% try
+# > function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) |> str() %>% try
 # Error in function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T) : 
 #   length(levels(x)) > 2
 
@@ -359,24 +359,24 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 
 
 #@ ------
-df$FamilyIncome_ge7000 %>% head(10) %>% dput
-# > df$FamilyIncome_ge7000 %>% head(10) %>% dput
+df$FamilyIncome_ge7000 %>% head(10) |> dput()
+# > df$FamilyIncome_ge7000 %>% head(10) |> dput()
 # c(0, 1, 0, 1, 1, 0, NA, 1, 0, 0)
-df$FamilyIncome_ge7000 %>% str
-df$FamilyIncome_ge7000 %>% unique
-df$FamilyIncome_ge7000 %>% unique %>% length
-df$FamilyIncome_ge7000 %>% na.omit %>% unique
-df$FamilyIncome_ge7000 %>% na.omit %>% unique %>% length
-# > df$FamilyIncome_ge7000 %>% str
+df$FamilyIncome_ge7000 |> str()
+df$FamilyIncome_ge7000 |> unique
+df$FamilyIncome_ge7000 |> unique %>% length
+df$FamilyIncome_ge7000 %>% na.omit |> unique
+df$FamilyIncome_ge7000 %>% na.omit |> unique %>% length
+# > df$FamilyIncome_ge7000 |> str()
 #  num [1:14407] 0 1 0 1 1 0 NA 1 0 0 ...
 #  - attr(*, "format.stata")= chr "%9.0g"
-# > df$FamilyIncome_ge7000 %>% unique
+# > df$FamilyIncome_ge7000 |> unique
 # [1]  0  1 NA
-# > df$FamilyIncome_ge7000 %>% unique %>% length
+# > df$FamilyIncome_ge7000 |> unique %>% length
 # [1] 3
-# > df$FamilyIncome_ge7000 %>% na.omit %>% unique
+# > df$FamilyIncome_ge7000 %>% na.omit |> unique
 # [1] 0 1
-# > df$FamilyIncome_ge7000 %>% na.omit %>% unique %>% length
+# > df$FamilyIncome_ge7000 %>% na.omit |> unique %>% length
 # [1] 2
 
 
@@ -458,11 +458,11 @@ attributes(data4FullModel.by_varname_level.list_list)$attributes =
         , data.map.levels = data %>% map(levels)
     )
 
-data4FullModel.by_varname_level.list_list %>% str(max.level = 1) #----
-data4FullModel.by_varname_level.list_list %>% str(max.level = 2) #----
-# data4FullModel.by_varname_level.list_list$SEX$Male %>% str(max.level = 1) #----
-data4FullModel.by_varname_level.list_list$Male$`TRUE` %>% str(max.level = 1) #----
-# > data4FullModel.by_varname_level.list_list %>% str(max.level = 1) #----
+data4FullModel.by_varname_level.list_list |> str(max.level = 1) #----
+data4FullModel.by_varname_level.list_list |> str(max.level = 2) #----
+# data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----
+data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #----
+# > data4FullModel.by_varname_level.list_list |> str(max.level = 1) #----
 # List of 14
 #  $ AllSubjects        :List of 1
 #  $ Cigar.cut100       :List of 3
@@ -479,7 +479,7 @@ data4FullModel.by_varname_level.list_list$Male$`TRUE` %>% str(max.level = 1) #--
 #  $ nutrition_fat      : list()
 #  $ nutrition_carb     : list()
 #  - attr(*, "attributes")=List of 11
-# > data4FullModel.by_varname_level.list_list %>% str(max.level = 2) #----
+# > data4FullModel.by_varname_level.list_list |> str(max.level = 2) #----
 # List of 14
 #  $ AllSubjects        :List of 1
 #   ..$ AllSubjects:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	14407 obs. of  15 variables:
@@ -531,8 +531,8 @@ data4FullModel.by_varname_level.list_list$Male$`TRUE` %>% str(max.level = 1) #--
 #   ..$ data.map.typeof   :List of 15
 #   ..$ data.map.class    :List of 15
 #   ..$ data.map.levels   :List of 15
-# > # data4FullModel.by_varname_level.list_list$SEX$Male %>% str(max.level = 1) #----
-# > data4FullModel.by_varname_level.list_list$Male$`TRUE` %>% str(max.level = 1) #----
+# > # data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----
+# > data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5810 obs. of  15 variables:
 #  $ ihd                : Factor w/ 2 levels "FALSE","TRUE": 2 1 1 1 1 2 1 1 1 1 ...
 #  $ timeihd            : num  59 253 0 94 253 104 253 253 196 54 ...

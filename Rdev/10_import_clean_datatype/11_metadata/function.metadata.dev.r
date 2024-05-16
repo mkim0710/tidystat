@@ -33,8 +33,8 @@ list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".
 # #     ^
 
 
-# ls() %>% grep(".dta$", ., value = T) %>% dput
-# # > ls() %>% grep(".dta$", ., value = T) %>% dput
+# ls() %>% grep(".dta$", ., value = T) |> dput()
+# # > ls() %>% grep(".dta$", ., value = T) |> dput()
 # c("addicts.dta", "anderson.dta", "bladder.dta", "vets.dta")
 # list.files.rda = c("addicts.dta", "anderson.dta", "bladder.dta", "vets.dta")
 # 
@@ -45,8 +45,8 @@ list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".
 #     rm(list = i)
 # }
 # 
-# out %>% str
-# # > out %>% str
+# out |> str()
+# # > out |> str()
 # # List of 4
 # #  $ addicts.dta :List of 3
 # #   ..$ nrow       : int 238
@@ -84,16 +84,16 @@ list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".
 # # 4: In bind_rows_(x, .id) :
 # #   Vectorizing 'object_size' elements may not preserve their attributes
 # 
-# object.size(diet) %>% str
-# # > object.size(diet) %>% str
+# object.size(diet) |> str()
+# # > object.size(diet) |> str()
 # #  'object_size' num 63544
 
 
 
 list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".rda$", "", .)
 list.files.rda = list.files.rda %>% grep("^trainset", ., value = T)
-list.files.rda %>% dput
-# > list.files.rda %>% dput
+list.files.rda |> dput()
+# > list.files.rda |> dput()
 # c("trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)", "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", 
 # "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph", 
 # "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.statnet", 
@@ -111,8 +111,8 @@ list.files.rda %>% dput
 #     rm(list = i)
 #     out
 # })
-# list.files.rda.data.frame %>% dput
-# # > list.files.rda.data.frame %>% dput
+# list.files.rda.data.frame |> dput()
+# # > list.files.rda.data.frame |> dput()
 # # c(NA, "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph", 
 # # "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.statnet", 
 # # "trainsetCC69agg4i07_829.cv.glmnet_alphas_cox", "trainsetCC69agg4i07_829"
@@ -132,17 +132,17 @@ list.files.rda.data.frame = list.files.rda %>% map_chr(function(i) {
     rm(list = i, envir=.GlobalEnv)
     out
 })
-list.files.rda.data.frame %>% dput
-list.files.rda.data.frame %>% na.omit %>% dput
-list.files.rda.data.frame %>% na.omit %>% as.vector %>% dput
-# > list.files.rda.data.frame %>% dput
+list.files.rda.data.frame |> dput()
+list.files.rda.data.frame %>% na.omit |> dput()
+list.files.rda.data.frame %>% na.omit %>% as.vector |> dput()
+# > list.files.rda.data.frame |> dput()
 # c(NA, "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", NA, NA, 
 # NA, "trainsetCC69agg4i07_829")
-# > list.files.rda.data.frame %>% na.omit %>% dput
+# > list.files.rda.data.frame %>% na.omit |> dput()
 # structure(c("trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", 
 # "trainsetCC69agg4i07_829"), na.action = structure(c(1L, 3L, 4L, 
 # 5L), class = "omit"))
-# > list.files.rda.data.frame %>% na.omit %>% as.vector %>% dput
+# > list.files.rda.data.frame %>% na.omit %>% as.vector |> dput()
 # c("trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", "trainsetCC69agg4i07_829"
 # )
 
@@ -172,9 +172,9 @@ list.files.rda.data.frame %>% na.omit %>% as.vector %>% dput
 #     rm(list = i, envir=.GlobalEnv)
 #     out.list
 # }
-# out.list %>% str
+# out.list |> str()
 # out.list %>% bind_rows(.id = ".id")
-# # > out.list %>% str
+# # > out.list |> str()
 # # List of 6
 # #  $ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)          :List of 1
 # #   ..$ object.size: logi NA
@@ -242,7 +242,7 @@ for (i in list.files.rda) {
     }
     rm(list = i, envir=.GlobalEnv)
 }
-out.list %>% str
+out.list |> str()
 out.list %>% bind_rows(.id = ".id")
 # > out.list = list()
 # > for (i in list.files.rda) {
@@ -279,7 +279,7 @@ out.list %>% bind_rows(.id = ".id")
 # Warning message:
 # In rm(list = i, envir=.GlobalEnv) :
 #   object 'trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)' not found
-# > out.list %>% str
+# > out.list |> str()
 # List of 5
 #  $ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather                  :List of 7
 #   ..$ object.size : 'object_size' num 356480

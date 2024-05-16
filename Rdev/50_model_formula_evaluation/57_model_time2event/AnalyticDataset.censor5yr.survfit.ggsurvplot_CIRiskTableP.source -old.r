@@ -7,9 +7,9 @@ library(tidyverse)
 # library(survminer)
 ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
-# AnalyticDataset %>% select(sex, Group) %>% str
+# AnalyticDataset %>% select(sex, Group) |> str()
 # AnalyticDataset %>% select(sex, Group) %>% table
-# # > AnalyticDataset %>% select(sex, Group) %>% str
+# # > AnalyticDataset %>% select(sex, Group) |> str()
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
@@ -18,7 +18,7 @@ AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group 
 # # sex Female Male
 # #   1      0  138
 # #   2     90    0
-AnalyticDataset %>% select(time, event, Group) %>% summary
+AnalyticDataset %>% select(time, event, Group) |> summary()
 
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
@@ -112,10 +112,10 @@ AnalyticDataset.survfit %>% ggsurvplot(conf.int = T, risk.table = T, pval = T)
 
 
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
-AnalyticDataset.coxph %>% summary #----
+AnalyticDataset.coxph |> summary() #----
 AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.coxph %>% summary #----
+# > AnalyticDataset.coxph |> summary() #----
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 # 
@@ -212,10 +212,10 @@ dev.off()
 
 
 AnalyticDataset.censor10yr.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset.censor10yr)
-AnalyticDataset.censor10yr.coxph %>% summary #----
+AnalyticDataset.censor10yr.coxph |> summary() #----
 AnalyticDataset.censor10yr.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.censor10yr.coxph %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.censor10yr.coxph %>% summary #----
+# > AnalyticDataset.censor10yr.coxph |> summary() #----
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ Group, data = AnalyticDataset.censor10yr)
 # 
@@ -275,10 +275,10 @@ AnalyticDataset.survfit_byPredictedStage %>% ggsurvplot(conf.int = T, risk.table
 
 
 AnalyticDataset.coxph_byPredictedStage <- coxph(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
-AnalyticDataset.coxph_byPredictedStage %>% summary #----
+AnalyticDataset.coxph_byPredictedStage |> summary() #----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.coxph_byPredictedStage %>% summary #----
+# > AnalyticDataset.coxph_byPredictedStage |> summary() #----
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ PredictedStage, 
 #     data = AnalyticDataset)
@@ -368,10 +368,10 @@ dev.off()
 
 
 AnalyticDataset.censor10yr.coxph_byPredictedStage <- coxph(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset.censor10yr)
-AnalyticDataset.censor10yr.coxph_byPredictedStage %>% summary #----
+AnalyticDataset.censor10yr.coxph_byPredictedStage |> summary() #----
 AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.censor10yr.coxph_byPredictedStage %>% summary #----
+# > AnalyticDataset.censor10yr.coxph_byPredictedStage |> summary() #----
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ PredictedStage, 
 #     data = AnalyticDataset.censor10yr)

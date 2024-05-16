@@ -21,11 +21,11 @@ example_df <- tibble(
   date = seq(ymd('2020-01-01'), by = "month", length.out = 10) # Date column
 )
 normalized_df <- function.df_continuous_vars.normalize(example_df)
-# example_df %>% as_tibble
-example_df %>% summary
-# normalized_df %>% as_tibble
-normalized_df %>% summary
-# > example_df %>% as_tibble
+# example_df |> as_tibble()
+example_df |> summary()
+# normalized_df |> as_tibble()
+normalized_df |> summary()
+# > example_df |> as_tibble()
 # # A tibble: 10 × 9
 #       id   age height gender logical factor_level2 factor_strings binary_numeric date      
 #    <int> <int>  <dbl> <chr>  <lgl>   <fct>         <fct>                   <dbl> <date>    
@@ -39,7 +39,7 @@ normalized_df %>% summary
 #  8     8    30    169 F      FALSE   B             Honeydew                    2 2020-08-01
 #  9     9    31    173 M      TRUE    A             Icaco                       1 2020-09-01
 # 10    10    33    182 F      FALSE   B             Jackfruit                   2 2020-10-01
-# > example_df %>% summary
+# > example_df |> summary()
 #        id             age            height         gender           logical        factor_level2    factor_strings binary_numeric      date           
 #  Min.   : 1.00   Min.   :22.00   Min.   :165.0   Length:10          Mode :logical   A:5           Apple     :1      Min.   :1.0    Min.   :2020-01-01  
 #  1st Qu.: 3.25   1st Qu.:27.25   1st Qu.:169.2   Class :character   FALSE:5         B:5           Banana    :1      1st Qu.:1.0    1st Qu.:2020-03-08  
@@ -48,7 +48,7 @@ normalized_df %>% summary
 #  3rd Qu.: 7.75   3rd Qu.:30.75   3rd Qu.:176.5                                                    Elderberry:1      3rd Qu.:2.0    3rd Qu.:2020-07-24  
 #  Max.   :10.00   Max.   :35.00   Max.   :182.0                                                    Fig       :1      Max.   :2.0    Max.   :2020-10-01  
 #                                                                                                   (Other)   :4                                         
-# > normalized_df %>% as_tibble
+# > normalized_df |> as_tibble()
 # # A tibble: 10 × 9
 #        id    age  height gender logical factor_level2 factor_strings binary_numeric date      
 #     <dbl>  <dbl>   <dbl> <chr>  <lgl>   <fct>         <fct>                   <dbl> <date>    
@@ -62,7 +62,7 @@ normalized_df %>% summary
 #  8  0.826  0.265 -0.756  F      FALSE   B             Honeydew                    2 2020-08-01
 #  9  1.16   0.530 -0.0184 M      TRUE    A             Icaco                       1 2020-09-01
 # 10  1.49   1.06   1.64   F      FALSE   B             Jackfruit                   2 2020-10-01
-# > normalized_df %>% summary
+# > normalized_df |> summary()
 #        id               age              height           gender           logical        factor_level2    factor_strings binary_numeric      date           
 #  Min.   :-1.4863   Min.   :-1.8562   Min.   :-1.4930   Length:10          Mode :logical   A:5           Apple     :1      Min.   :1.0    Min.   :2020-01-01  
 #  1st Qu.:-0.7432   1st Qu.:-0.4640   1st Qu.:-0.7096   Class :character   FALSE:5         B:5           Banana    :1      1st Qu.:1.0    1st Qu.:2020-03-08  

@@ -56,7 +56,7 @@ getwd()
 path4read = getwd()
 objectname = "d.NDCNUM_concept_name.join_redbook2019.STRNGTH_Manual"
 filename = paste0(objectname,".rds")
-filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+filename %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 
 assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))    )
 

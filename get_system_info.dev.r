@@ -518,20 +518,20 @@ function.get_ram()
 library(benchmarkme)
 library(tidyverse)
 
-get_cpu() %>% str
-get_ram() %>% str
-get_platform_info() %>% str
-get_r_version() %>% str
-Sys.info() %>% as.list %>% str
-# > get_cpu() %>% str
+get_cpu() |> str()
+get_ram() |> str()
+get_platform_info() |> str()
+get_r_version() |> str()
+Sys.info() %>% as.list |> str()
+# > get_cpu() |> str()
 # List of 3
 # $ vendor_id  : chr "GenuineIntel"
 # $ model_name : chr "Intel(R) Xeon(R) CPU E5-2667 v3 @ 3.20GHz"
 # $ no_of_cores: int 32
-# > get_ram() %>% str
+# > get_ram() |> str()
 # Class 'bytes'  Named num 3.38e+11
 # ..- attr(*, "names")= chr "ram"
-# > get_platform_info() %>% str
+# > get_platform_info() |> str()
 # List of 8
 # $ OS.type   : chr "unix"
 # $ file.sep  : chr "/"
@@ -541,7 +541,7 @@ Sys.info() %>% as.list %>% str
 # $ pkgType   : chr "source"
 # $ path.sep  : chr ":"
 # $ r_arch    : chr ""
-# > get_r_version() %>% str
+# > get_r_version() |> str()
 # List of 14
 # $ platform      : chr "x86_64-pc-linux-gnu"
 # $ arch          : chr "x86_64"

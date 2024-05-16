@@ -1,8 +1,8 @@
 # ATC_RxNorm_NDC from .r
 
 library(tidyverse)
-# getwd() %>% dput
-# # > getwd() %>% dput
+# getwd() |> dput()
+# # > getwd() |> dput()
 # # "X:/mkim/Rproject"
 # # path4read = "//DON/marketscan_users/smacdonald/"
 # # path4write = "//DON/marketscan_users/mkim/"
@@ -16,8 +16,8 @@ path4write = "ATC_RxNorm_NDC/"
 
 #@ filenames = list.files(path4read) %>% grep("csv$",. , value = T) ====
 filenames = list.files(path4read) %>% grep("csv$",. , value = T) 
-filenames %>% dput
-# > filenames %>% dput
+filenames |> dput()
+# > filenames |> dput()
 # c("CONCEPT.csv", "CONCEPT_ANCESTOR.csv", "CONCEPT_CLASS.csv", 
 # "CONCEPT_RELATIONSHIP.csv", "CONCEPT_SYNONYM.csv", "DOMAIN.csv", 
 # "DRUG_STRENGTH.csv", "RELATIONSHIP.csv", "VOCABULARY.csv")
@@ -153,7 +153,7 @@ out.list = filenames %>% map(function(i) {
     # Sys.time() - t0
     out
 }) %>% set_names(filenames)
-out.list %>% str(max.level = 1)
+out.list |> str(max.level = 1)
 # > out.list = filenames %>% map(function(i) {
 # +     .extension = ".csv"
 # +     # i = gsub(".rds$", "", i)
@@ -281,7 +281,7 @@ out.list %>% str(max.level = 1)
 #   vocabulary_version = col_character(),
 #   vocabulary_concept_id = col_integer()
 # )
-# > out.list %>% str(max.level = 1)
+# > out.list |> str(max.level = 1)
 # List of 9
 #  $ CONCEPT.csv             :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1132568 obs. of  10 variables:
 #   ..- attr(*, "spec")=List of 2
@@ -314,17 +314,17 @@ out.list %>% str(max.level = 1)
 
 
 #@ names(out.list) = names(out.list) %>% gsub(paste0(.extension, "$"), "", .) =====
-names(out.list) %>% dput
+names(out.list) |> dput()
 .extension = ".csv"
 names(out.list) = names(out.list) %>% gsub(paste0(.extension, "$"), "", .)
-names(out.list) %>% dput
-# > names(out.list) %>% dput
+names(out.list) |> dput()
+# > names(out.list) |> dput()
 # c("CONCEPT.csv", "CONCEPT_ANCESTOR.csv", "CONCEPT_CLASS.csv", 
 # "CONCEPT_RELATIONSHIP.csv", "CONCEPT_SYNONYM.csv", "DOMAIN.csv", 
 # "DRUG_STRENGTH.csv", "RELATIONSHIP.csv", "VOCABULARY.csv")
 # > .extension = ".csv"
 # > names(out.list) = names(out.list) %>% gsub(paste0(.extension, "$"), "", .)
-# > names(out.list) %>% dput
+# > names(out.list) |> dput()
 # c("CONCEPT", "CONCEPT_ANCESTOR", "CONCEPT_CLASS", "CONCEPT_RELATIONSHIP", 
 # "CONCEPT_SYNONYM", "DOMAIN", "DRUG_STRENGTH", "RELATIONSHIP", 
 # "VOCABULARY")

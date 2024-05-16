@@ -14,7 +14,7 @@
 # trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag
 # identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-# trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% str
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat |> str()
 # # > trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag
 # #    AcquiredHypothyroidism        AdjustmentDisorder                    Anemia                   Anxiety                 Arthritis        AtrialFibrillation           BenignProstatic 
 # #                        29                         1                        20                       106                       599                         0                         1 
@@ -30,7 +30,7 @@
 # # [1] TRUE
 # # > identical((trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums), (trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # # [1] TRUE
-# # > trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% str
+# # > trainsetCC69agg4i07_829.Ctrl.lgl.comat |> str()
 # #  num [1:31, 1:31] 29 0 1 5 20 0 0 0 9 1 ...
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ : chr [1:31] "AcquiredHypothyroidism" "AdjustmentDisorder" "Anemia" "Anxiety" ...
@@ -43,7 +43,7 @@
 #     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 #     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 #     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-#     arrange(R) %>% as_tibble
+#     arrange(R) |> as_tibble()
 # trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather
 # identical(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat))
 # # save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.rda")
@@ -52,7 +52,7 @@
 # # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-# # +     arrange(R) %>% as_tibble
+# # +     arrange(R) |> as_tibble()
 # # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather
 # # # A tibble: 961 x 6
 # #    rowname                     V1                     V2 cooccurence     R     C
@@ -88,7 +88,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
         mutate(rowname = RC, upper.tri = ifelse( R==C, 0, (C-R)/abs(C-R) ) ) %>% column_to_rownames %>% 
-        arrange(R) %>% as_tibble
+        arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
         # out$varname1 = out$V1 %>% as.character
         # out$varname2 = out$V2 %>% as.character
@@ -238,7 +238,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
     # if (any(is.na(out$cooccurence))) {
     #     warning("any(is.na(out$cooccurence))")
     # }
-    out %>% as_tibble
+    out |> as_tibble()
 }
 
 
@@ -246,11 +246,11 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
 library(tidyverse)
 load("data/trainsetCC69agg4i07_829.rda")
 trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% filter(is.Case != T) %>% select(-is.Case)
-# trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) %>% summary
+# trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()
 # trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums
 # # trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums
-trainsetCC69agg4i07_829.Ctrl.lgl %>% str
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% str
+trainsetCC69agg4i07_829.Ctrl.lgl |> str()
+# > trainsetCC69agg4i07_829.Ctrl.lgl |> str()
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	829 obs. of  31 variables:
 #  $ AcquiredHypothyroidism   : logi  FALSE FALSE FALSE FALSE FALSE TRUE ...
 #  $ AdjustmentDisorder       : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
@@ -425,7 +425,7 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
-# +     arrange(R) %>% as_tibble %>% filter(R < C)
+# +     arrange(R) |> as_tibble() %>% filter(R < C)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 # # A tibble: 465 x 7
 #                        V1                 V2 cooccurence    RC     R     C upper.tri

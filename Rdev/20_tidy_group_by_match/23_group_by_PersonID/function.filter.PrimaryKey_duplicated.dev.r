@@ -93,8 +93,8 @@ Sys.time() - t0
 # > Sys.time() - t0
 # Time difference of 10.28465 secs
 
-enrolid_mom_duplicated %>% str
-# > enrolid_mom_duplicated %>% str
+enrolid_mom_duplicated |> str()
+# > enrolid_mom_duplicated |> str()
 #  chr [1:92] "239829107" "1093751903" "1106849502" "1127317301" "1178104602" "1235845901" "1250572403" "1334742802" ...
 
 

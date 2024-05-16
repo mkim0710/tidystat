@@ -44,7 +44,7 @@ matrix2x2.OR_CI_phi = function(matrix2x2) {
     } else {
         print("error: not matrix2x2")
     }
-    out %>% as_tibble
+    out |> as_tibble()
 }
 
 

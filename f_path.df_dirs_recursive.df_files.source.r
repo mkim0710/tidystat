@@ -130,7 +130,7 @@ object = function(
         
         df_dirs_recursive1 = df_dirs_recursive0 %>% 
             mutate(
-                path = full_path %>% {gsub(input_path, "", ., fixed = T)} %>% str_replace_all(paste0("^", .Platform$file.sep), "")
+                path = full_path %>% {gsub(input_path, "", ., fixed = T)} |> str_replace_all(paste0("^", .Platform$file.sep), "")
                 , normalized_path = normalizePath(full_path, winslash = "/", mustWork = FALSE)
                 , path.parent = dirname(full_path)
                 # , path.parent = if_else(full_path == ".", "..", dirname(full_path))
@@ -145,7 +145,7 @@ object = function(
                 # # # }
                 # # # <bytecode: 0x0000020ed66821a0>
                 # # # <environment: namespace:tools>
-                # path.basename %>% str_extract("\\.([[:alnum:]]+)$") %>% str_replace("^\\.", "")
+                # path.basename |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
             ) %>% 
             mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", max(.x - 1, 0)), collapse = "")) %>% paste0(path.basename) ) %>%
             # arrange(path.parent, path.basename) %>% 
@@ -161,7 +161,7 @@ object = function(
             as_tibble
         
         df_dirs_recursive.ls_files1 = df_dirs_recursive2 %>% mutate(
-            files = full_path %>% map(function(chr) {list.files(chr, include.dirs = FALSE) %>% str_subset(paste0(gitignore_escaped_select.UC.regex, collapse = "|") %>% regex(ignore_case = TRUE), negate = TRUE)}) 
+            files = full_path %>% map(function(chr) {list.files(chr, include.dirs = FALSE) |> str_subset(paste0(gitignore_escaped_select.UC.regex, collapse = "|") %>% regex(ignore_case = TRUE), negate = TRUE)}) 
             , files.codes = full_path %>% map(function(chr) {list.files(chr, "\\.(r|rmd|txt|pdf|doc|docx|docm|ppt|pptx|pptm)$", ignore.case = T, include.dirs = FALSE)}) 
             # , files.rmd = full_path %>% map(function(chr) {list.files(chr, "\\.rmd$", ignore.case = T, include.dirs = FALSE)}) 
             # , files.rds = full_path %>% map(function(chr) {list.files(chr, "\\.rds(.xz)?$", ignore.case = T, include.dirs = FALSE)}) 

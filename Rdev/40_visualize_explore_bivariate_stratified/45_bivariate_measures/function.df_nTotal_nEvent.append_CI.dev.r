@@ -5,7 +5,7 @@
 #@ ?prop.test =====
 ?prop.test
 prop.test(10, 100)
-prop.test(10, 100) %>% str #-----
+prop.test(10, 100) |> str() #-----
 # > prop.test(10, 100)
 # 
 # 	1-sample proportions test with continuity correction
@@ -19,7 +19,7 @@ prop.test(10, 100) %>% str #-----
 #   p 
 # 0.1 
 # 
-# > prop.test(10, 100) %>% str
+# > prop.test(10, 100) |> str()
 # List of 9
 #  $ statistic  : Named num 62.4
 #   ..- attr(*, "names")= chr "X-squared"
@@ -43,7 +43,7 @@ prop.test(10, 100) %>% str #-----
 #@ ?binom.test =====
 ?binom.test
 binom.test(10, 100)
-binom.test(10, 100) %>% str #-----
+binom.test(10, 100) |> str() #-----
 # > binom.test(10, 100)
 # 
 # 	Exact binomial test
@@ -57,7 +57,7 @@ binom.test(10, 100) %>% str #-----
 # probability of success 
 #                    0.1 
 # 
-# > binom.test(10, 100) %>% str #-----
+# > binom.test(10, 100) |> str() #-----
 # List of 9
 #  $ statistic  : Named num 10
 #   ..- attr(*, "names")= chr "number of successes"
@@ -112,12 +112,12 @@ simpasym <- function(n, p, z=qnorm(0.975), cc=TRUE){
   }
   out
 }
-simpasym(100, 0.1) %>% unlist
-simpasym(100, 0.1, cc=F) %>% unlist
-# > simpasym(100, 0.1) %>% unlist
+simpasym(100, 0.1) |> unlist()
+simpasym(100, 0.1, cc=F) |> unlist()
+# > simpasym(100, 0.1) |> unlist()
 #         lb         ub 
 # 0.03620108 0.16379892 
-# > simpasym(100, 0.1, cc=F) %>% unlist
+# > simpasym(100, 0.1, cc=F) |> unlist()
 #         lb         ub 
 # 0.04120108 0.15879892 
 
@@ -140,12 +140,12 @@ scoreint <- function(n, p, z=qnorm(0.975), cc=TRUE){
   }
   out
 }
-scoreint(100, 0.1) %>% unlist
-scoreint(100, 0.1, cc=F) %>% unlist
-# > scoreint(100, 0.1) %>% unlist
+scoreint(100, 0.1) |> unlist()
+scoreint(100, 0.1, cc=F) |> unlist()
+# > scoreint(100, 0.1) |> unlist()
 #        lb        ub 
 # 0.0516301 0.1803577 
-# > scoreint(100, 0.1, cc=F) %>% unlist
+# > scoreint(100, 0.1, cc=F) |> unlist()
 #         lb         ub 
 # 0.05522914 0.17436566 
 
@@ -243,25 +243,25 @@ binom.test(10, 100)$conf.int %>% as.vector #-----
 # [1] 0.04900469 0.17622260
 
 prop.test(10, 100, correct = T)$conf.int %>% as.vector #-----
-scoreint(100, 0.1) %>% unlist %>% unname
+scoreint(100, 0.1) |> unlist() %>% unname
 # > prop.test(10, 100, correct = T)$conf.int %>% as.vector #-----
 # [1] 0.0516301 0.1803577
-# > scoreint(100, 0.1) %>% unlist %>% unname
+# > scoreint(100, 0.1) |> unlist() %>% unname
 # [1] 0.0516301 0.1803577
 
 prop.test(10, 100, correct = F)$conf.int %>% as.vector #-----
-scoreint(100, 0.1, cc=F) %>% unlist %>% unname
+scoreint(100, 0.1, cc=F) |> unlist() %>% unname
 # > prop.test(10, 100, correct = F)$conf.int %>% as.vector #-----
 # [1] 0.05522914 0.17436566
-# > scoreint(100, 0.1, cc=F) %>% unlist %>% unname
+# > scoreint(100, 0.1, cc=F) |> unlist() %>% unname
 # [1] 0.05522914 0.17436566
 
-simpasym(100, 0.1) %>% unlist %>% unname
-simpasym(100, 0.1, cc=F) %>% unlist %>% unname
+simpasym(100, 0.1) |> unlist() %>% unname
+simpasym(100, 0.1, cc=F) |> unlist() %>% unname
 function.n_p.CI(100, 0.1)
-# > simpasym(100, 0.1) %>% unlist %>% unname
+# > simpasym(100, 0.1) |> unlist() %>% unname
 # [1] 0.03620108 0.16379892
-# > simpasym(100, 0.1, cc=F) %>% unlist %>% unname
+# > simpasym(100, 0.1, cc=F) |> unlist() %>% unname
 # [1] 0.04120108 0.15879892
 # > function.n_p.CI(100, 0.1)
 # [1] 0.04120108 0.15879892
@@ -318,13 +318,13 @@ prop.test(df_nTotal_nEvent$nEvent, df_nTotal_nEvent$nTotal, correct = F)
         df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
         , prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int
     )
-}) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", "ll", "ul")) #----
+}) %>% reduce(rbind) %>% unname |> as_tibble() %>% set_names(c("p", "ll", "ul")) #----
 # > 1:nrow(df_nTotal_nEvent) %>% map(function(i) {
 # +     out = c(
 # +         df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
 # +         , prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int
 # +     )
-# + }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", "ll", "ul")) #----
+# + }) %>% reduce(rbind) %>% unname |> as_tibble() %>% set_names(c("p", "ll", "ul")) #----
 # # A tibble: 7 x 3
 #       p    ll    ul
 #   <dbl> <dbl> <dbl>
@@ -347,7 +347,7 @@ function.df_nTotal_nEvent.append_CI = function(df_nTotal_nEvent, method=c("wilso
                 df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
                 , prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int
             )
-        }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".wilson") )) #----
+        }) %>% reduce(rbind) %>% unname |> as_tibble() %>% set_names(c("p", paste0(c("ll", "ul"), ".wilson") )) #----
     }
     if (method == "exact") {
         out = 1:nrow(df_nTotal_nEvent) %>% map(function(i) {
@@ -355,7 +355,7 @@ function.df_nTotal_nEvent.append_CI = function(df_nTotal_nEvent, method=c("wilso
                 df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
                 , binom.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i])$conf.int
             )
-        }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".exact") )) #----
+        }) %>% reduce(rbind) %>% unname |> as_tibble() %>% set_names(c("p", paste0(c("ll", "ul"), ".exact") )) #----
     }
     if (method == "asymptotic") {
         alpha = 0.05
@@ -364,7 +364,7 @@ function.df_nTotal_nEvent.append_CI = function(df_nTotal_nEvent, method=c("wilso
             p_hat = df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
             n = df_nTotal_nEvent$nTotal[i]
             p_hat + c(0,-1,1)*z*sqrt(p_hat*(1-p_hat)/n)
-        }) %>% reduce(rbind) %>% unname %>% as_tibble %>% set_names(c("p", paste0(c("ll", "ul"), ".asymptotic") )) #----
+        }) %>% reduce(rbind) %>% unname |> as_tibble() %>% set_names(c("p", paste0(c("ll", "ul"), ".asymptotic") )) #----
     }
     out = bind_cols(df_nTotal_nEvent, out)
     out

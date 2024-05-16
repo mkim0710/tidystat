@@ -88,7 +88,7 @@ if(!objectname %in% names(env.custom)) {
 }
 
 # > Morticd10 = Morticd10_list %>% f_list_df.bind_rows
-# > Morticd10 %>% str
+# > Morticd10 |> str()
 # spc_tbl_ [4,930,305 × 39] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 #  $ Country   : num [1:4930305] 1400 1400 1400 1400 1400 1400 1400 1400 1400 1400 ...
 #  $ Admin1    : chr [1:4930305] NA NA NA NA ...
