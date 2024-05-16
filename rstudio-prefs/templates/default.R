@@ -1,13 +1,9 @@
-# sourcename = "default.template"
-# default.template.dev.r
-# default.template.source.r
-# utils::browseURL("/rstudio-prefs/templates/default.template.dev.r")
-# source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.template.source.r"))
-# # source("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.source.r")
-# # source("https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/templates/default.template.source.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.dev.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.dev.Rmd")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.template.source.r")
+# default.Rdefault.R
+# utils::browseURL("/rstudio-prefs/templates/default.R")
+# source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"))
+# # source("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R")
+# # source("https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/templates/default.R")
+file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
