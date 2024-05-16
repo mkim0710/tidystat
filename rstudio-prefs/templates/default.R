@@ -1,9 +1,10 @@
-# default.Rdefault.R
+# default.R
 # utils::browseURL("/rstudio-prefs/templates/default.R")
 # source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"))
 # # source("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R")
 # # source("https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/templates/default.R")
-file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"))
+# file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"))
+# file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -135,6 +136,14 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 # path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # if(file.exists(paste0(path4read,"/",objectname,".rds"))) assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
+
+
+
+
+
+
+
+
 
 
 
