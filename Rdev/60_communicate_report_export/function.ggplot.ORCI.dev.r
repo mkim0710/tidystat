@@ -47,14 +47,14 @@ AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI$full_join =
         
         out = input_object_name_of_map_function_to_investigate %>% 
             mutate(
-                tmp = paste0(ORCI, ", p=", p_value) %>% str_replace_all("=<", "<")
+                tmp = paste0(ORCI, ", p=", p_value) |> str_replace_all("=<", "<")
             ) %>% 
             select(rowname, tmp)
         names(out)[2] = names(parent.x)[i]
         out
     }) %>% reduce(full_join)
-AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI %>% str #-----
-# > AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI %>% str #-----
+AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI |> str() #-----
+# > AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI |> str() #-----
 # List of 6
 #  $ glm_LC_Stage234_1var:'data.frame':	6 obs. of  14 variables:
 #   ..$ rowname      : chr [1:6] "(Intercept)" "PM25.tn1m.floor_month.cut[16,36)" "PM25.tn1m.floor_month.cut[36,76)" "PM25.tn1m_tn12m.mean.quartile[22.1,23.7)" ...

@@ -8,7 +8,7 @@ dataset = sqlQuery(channel, paste("
 SELECT *
 FROM [DM_DEID].[jyp2001].[PAT_PHQ_IDEN]
 ;")) %>% mutate(ID = as.numeric(as.factor(PAT_ID)), value = Value, time = CONTACT_DATE)
-dataset %>% str
+dataset |> str()
 
 
 function.t0_value_ge20.dup_max.lag.n_d0 = function(dataset, varname4ID = "ID", varname4value = "value", varname4time = "time") {
@@ -95,8 +95,8 @@ function.dataset.transform = function(dataset, varname4value = "value", varname4
 }
 
 dataset.transform = function.dataset.transform(dataset)
-dataset.transform %>% str
-# > dataset.transform %>% str
+dataset.transform |> str()
+# > dataset.transform |> str()
 # List of 3
 #  $ data    :'data.frame':	65 obs. of  6 variables:
 #   ..$ ID: Factor w/ 1583 levels "1","2","3","4",..: 27 41 43 99 137 140 161 173 226 277 ...
@@ -146,7 +146,7 @@ function.traj_clusters_by_sequence = function(input, seed = 1) {
         out[[i]] =
             factors %>% step3clusters(nclusters = i) %>% (
                 function(ls) {
-                    ls$measurments %>% as_tibble %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(ls$data %>% as_tibble, by = "IDvector") %>% select(-IDvector) %>% 
+                    ls$measurments |> as_tibble() %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(ls$data |> as_tibble(), by = "IDvector") %>% select(-IDvector) %>% 
                         gather(-ID, key = "sequence", value = "value") %>% mutate(sequence = as.numeric(as.factor(sequence))) %>%
                         left_join(ls$clusters %>% map_df(unlist), by = "ID")
                 })
@@ -159,14 +159,14 @@ function.traj_clusters_by_sequence = function(input, seed = 1) {
     out
 }
 traj_clusters_by_sequence = function.traj_clusters_by_sequence(dataset.transform)
-traj_clusters_by_sequence %>% str
+traj_clusters_by_sequence |> str()
 # > traj_clusters_by_sequence = function.traj_clusters_by_sequence(dataset.transform)
 # [1] "Correlation of m5 and m6 : 1"
 # [1] "Correlation of m12 and m13 : 1"
 # [1] "Correlation of m17 and m18 : 1"
 # [1] "m6 is removed because it is perfectly correlated with m5"   "m13 is removed because it is perfectly correlated with m12"
 # [1] "Computing reduced correlation e-values..."
-# > traj_clusters_by_sequence %>% str
+# > traj_clusters_by_sequence |> str()
 # List of 15
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	325 obs. of  4 variables:
 #   ..$ ID      : Factor w/ 1583 levels "1","2","3","4",..: 27 41 43 99 137 140 161 173 226 277 ...
@@ -263,9 +263,9 @@ function.traj_clusters_by_time = function(input, seed = 1) {
         out[[i]] =
             factors %>% step3clusters(nclusters = i) %>% (
                 function(ls) {
-                    ls$measurments %>% as_tibble %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(
-                        ls$data %>% as_tibble %>% gather(-IDvector, key = "sequence", value = "value") %>% 
-                            left_join(ls$time %>% as_tibble %>% gather(-IDvector, key = "sequence", value = "time_from_t0"), by = c("IDvector", "sequence"))
+                    ls$measurments |> as_tibble() %>% select(ID) %>% mutate(IDvector = as.numeric(ID)) %>% left_join(
+                        ls$data |> as_tibble() %>% gather(-IDvector, key = "sequence", value = "value") %>% 
+                            left_join(ls$time |> as_tibble() %>% gather(-IDvector, key = "sequence", value = "time_from_t0"), by = c("IDvector", "sequence"))
                         , by = "IDvector"
                     ) %>% select(-IDvector) %>%
                         mutate(sequence = as.numeric(as.factor(sequence))) %>%
@@ -283,7 +283,7 @@ function.traj_clusters_by_time = function(input, seed = 1) {
     out
 }
 traj_clusters_by_time = function.traj_clusters_by_time(dataset.transform)
-traj_clusters_by_time %>% str
+traj_clusters_by_time |> str()
 # > traj_clusters_by_time = function.traj_clusters_by_time(dataset.transform)
 # [1] "No correlations found. That is good."
 # [1] "Computing reduced correlation e-values..."
@@ -297,7 +297,7 @@ traj_clusters_by_time %>% str
 # 7: Removed 33 rows containing missing values (geom_path). 
 # 8: Removed 33 rows containing missing values (geom_path). 
 # 9: Removed 33 rows containing missing values (geom_path). 
-# > traj_clusters_by_time %>% str
+# > traj_clusters_by_time |> str()
 # List of 9
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	325 obs. of  5 variables:
 #   ..$ ID          : Factor w/ 1583 levels "1","2","3","4",..: 27 27 27 27 27 41 41 41 41 41 ...

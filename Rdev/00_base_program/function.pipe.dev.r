@@ -178,7 +178,7 @@ d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC
     ) %>% 
     mutate(SVCDATE - lmp, enddate - lmp) %>% 
     select(ENROLID, lmp, `enddate - lmp`, `n()`, `SVCDATE - lmp`, DAYSUPP, everything()) %>% 
-    arrange(lmp, ENROLID, SVCDATE) %>% print(n=99) #----
+    arrange(lmp, ENROLID, SVCDATE) |> print(n=99) #----
 # > d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin.2797 %>% 
 # +     filter(CONCEPT_NDC_metformin) %>% 
 # +     filter(lmp + 7*6 <= SVCDATE & SVCDATE < lmp + 7*23) %>% 
@@ -195,7 +195,7 @@ d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC
 # +     ) %>% 
 # +     mutate(SVCDATE - lmp, enddate - lmp) %>% 
 # +     select(ENROLID, lmp, `enddate - lmp`, `n()`, `SVCDATE - lmp`, DAYSUPP, everything()) %>% 
-# +     arrange(lmp, ENROLID, SVCDATE) %>% print(n=99) #----
+# +     arrange(lmp, ENROLID, SVCDATE) |> print(n=99) #----
 # Joining, by = "ENROLID"
 # # A tibble: 65 x 31
 #    ENROLID lmp        `enddate - lmp` `n()` `SVCDATE - lmp` DAYSUPP `sum(DAYSUPP)` `mean(DAYSUPP)` `mean(\`dose*ME~ Exposure enddate    SVCDATE    PDDATE     NDCNUM METQTY   QTY `max(enddate)`

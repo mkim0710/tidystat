@@ -16,8 +16,8 @@ function.read_excel_allsheets <- function(filename, col_names = TRUE, col_types 
     out
 }
 MarketScan_Introduction2README = function.read_excel_allsheets("MarketScan_Introduction2README.xlsx", col_names = F)
-MarketScan_Introduction2README %>% str
-# > MarketScan_Introduction2README %>% str
+MarketScan_Introduction2README |> str()
+# > MarketScan_Introduction2README |> str()
 # List of 16
 #  $ LS.WOMEN_PREGCOHORT_S_R4     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	47 obs. of  2 variables:
 #   ..$ X__1: chr [1:47] "Summary" "# of Observations" "# of Unique ENROLID" "ADMDATE" ...

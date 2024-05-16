@@ -3,9 +3,9 @@
 
 library(tidyverse)
 ATC_RxNorm_NDC = readRDS("ATC_RxNorm_NDC.rds")
-ATC_RxNorm_NDC %>% str(max.level = 1) #-----
-ATC_RxNorm_NDC %>% str #-----
-# > ATC_RxNorm_NDC %>% str(max.level = 1) #-----
+ATC_RxNorm_NDC |> str(max.level = 1) #-----
+ATC_RxNorm_NDC |> str() #-----
+# > ATC_RxNorm_NDC |> str(max.level = 1) #-----
 # List of 9
 #  $ CONCEPT             :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1132568 obs. of  10 variables:
 #  $ CONCEPT_ANCESTOR    :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1807275 obs. of  4 variables:
@@ -16,7 +16,7 @@ ATC_RxNorm_NDC %>% str #-----
 #  $ DRUG_STRENGTH       :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	196806 obs. of  12 variables:
 #  $ RELATIONSHIP        :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	478 obs. of  6 variables:
 #  $ VOCABULARY          :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	27 obs. of  5 variables:
-# > ATC_RxNorm_NDC %>% str #-----
+# > ATC_RxNorm_NDC |> str() #-----
 # List of 9
 #  $ CONCEPT             :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1132568 obs. of  10 variables:
 #   ..$ concept_id      : int [1:1132568] 0 21604228 21604186 21604092 40254475 21605302 21605290 21605288 40256693 40256481 ...
@@ -100,7 +100,7 @@ function.OMOP_CommonDataModel.RxNorm_to_NDC = function(text4grepl.RxNorm = "clom
 
     
     #@ output.list$Step15.DRUG_STRENGTH.filter_RxNorm_concept_id ======
-    concept_id.selected = output.list$Step11.CONCEPT.filter_RxNorm$concept_id %>% unique %>% sort
+    concept_id.selected = output.list$Step11.CONCEPT.filter_RxNorm$concept_id |> unique %>% sort
     output.list$Step15.DRUG_STRENGTH.filter_RxNorm_concept_id =
         OMOP_CommonDataModel$DRUG_STRENGTH %>% 
         filter(drug_concept_id %in% concept_id.selected | ingredient_concept_id %in% concept_id.selected) %>% 
@@ -112,7 +112,7 @@ function.OMOP_CommonDataModel.RxNorm_to_NDC = function(text4grepl.RxNorm = "clom
     
     #@ output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id ======
     concept_id.selected = 
-        output.list$Step11.CONCEPT.filter_RxNorm$concept_id %>% unique %>% sort
+        output.list$Step11.CONCEPT.filter_RxNorm$concept_id |> unique %>% sort
     
     output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id =
         OMOP_CommonDataModel$CONCEPT_RELATIONSHIP %>%
@@ -133,7 +133,7 @@ function.OMOP_CommonDataModel.RxNorm_to_NDC = function(text4grepl.RxNorm = "clom
             , 
             output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id %>% 
                 filter(vocabulary_id_2 == "NDC") %>% {.$concept_id_2}
-        ) %>% unique %>% sort
+        ) |> unique %>% sort
     output.list$Step21.CONCEPT.filter_NDC =
         OMOP_CommonDataModel$CONCEPT %>% 
         filter(concept_id %in% concept_id.selected) %>% 
@@ -174,8 +174,8 @@ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")),
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 openxlsx::openXL(paste0(objectname,".xlsx"))
 
-RxNorm_clomiphene_to_NDC %>% str #----
-# > RxNorm_clomiphene_to_NDC %>% str #----
+RxNorm_clomiphene_to_NDC |> str() #----
+# > RxNorm_clomiphene_to_NDC |> str() #----
 # List of 4
 #  $ Step11.CONCEPT.filter_RxNorm                        :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	19 obs. of  10 variables:
 #   ..$ concept_id      : int [1:19] 40236647 40236648 40236652 40236650 40236651 40236649 36216656 36216657 19011940 1598820 ...
@@ -249,8 +249,8 @@ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")),
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 openxlsx::openXL(paste0(objectname,".xlsx"))
 
-RxNorm_letrozole_to_NDC %>% str #----
-# > RxNorm_letrozole_to_NDC %>% str #----
+RxNorm_letrozole_to_NDC |> str() #----
+# > RxNorm_letrozole_to_NDC |> str() #----
 # List of 4
 #  $ Step11.CONCEPT.filter_RxNorm                        :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	15 obs. of  10 variables:
 #   ..$ concept_id      : int [1:15] 36219872 36219873 1315947 1592194 1592640 1592195 1592641 1592196 1592642 19022830 ...

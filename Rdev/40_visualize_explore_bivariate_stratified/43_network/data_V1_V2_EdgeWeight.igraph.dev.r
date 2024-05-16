@@ -46,9 +46,9 @@ data_V1_V2_EdgeWeight.igraph = function(
     for (packagename_to_unload in packagename_to_unload) {
         if(paste0("package:",packagename_to_unload) %in% search()) {
             detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
-            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") %>% cat;cat("\n")
+            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat();cat("\n")
         } else {
-            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") %>% cat;cat("\n")
+            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat();cat("\n")
         }
     }
     library(tidyverse)
@@ -110,7 +110,7 @@ data_V1_V2_EdgeWeight.igraph = function(
     ?gsub
     # out.png.pdf.path = "Rplot"
     # out.png.pdf.path = "\\Rplot\\"
-    # out.png.pdf.path %>% cat
+    # out.png.pdf.path |> cat()
     out.png.pdf.path = gsub("\\", "/", out.png.pdf.path, fixed = T)
     if (grepl("/$", out.png.pdf.path) != T) out.png.pdf.path = paste0(out.png.pdf.path, "/")
     if (!dir.exists(out.png.pdf.path)){
@@ -147,7 +147,7 @@ data_V1_V2_EdgeWeight.igraph = function(
     
     if (edgeColor_vector0to1.by.weight) {
         E(g)$color = edgeColor_vector0to1.colorRampPalette[round(E(g)$weight * 100)+1]
-        # Browse[2]> round(E(g)$weight * 100) %>% summary
+        # Browse[2]> round(E(g)$weight * 100) |> summary()
         #  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
         # 0.000   0.000   0.000   3.032   3.000 100.000
     } else if (!is.null(varname4edgeColor_vector0to1)) {
@@ -244,11 +244,11 @@ data_V1_V2_EdgeWeight.igraph = function(
 library(tidyverse)
 load("data/termDocMatrix.rdata")
 termDocMatrix.t.df = termDocMatrix %>% t %>% as_data_frame
-termDocMatrix.t.df %>% map_df(as.factor) %>% summary
+termDocMatrix.t.df %>% map_df(as.factor) |> summary()
 termDocMatrix.t.df %>% colSums
 termDocMatrix.t.df %>% map_df(as.logical) %>% colSums
-termDocMatrix.t.df %>% str
-# > termDocMatrix.t.df %>% map_df(as.factor) %>% summary
+termDocMatrix.t.df |> str()
+# > termDocMatrix.t.df %>% map_df(as.factor) |> summary()
 #  analysis applications code    computing data    examples introduction mining  network package parallel positions postdoctoral r      research series  slides  social  time    tutorial users  
 #  0:131    0:145        0:145   0:144     0:101   0:137    0:144        0:107   0:137   0:133   0:146    0:143     0:143        0:84   0:142    0:146   0:138   0:142   0:146   0:138    0:136  
 #  1: 23    1:  9        1:  9   1: 10     1: 44   1: 17    1: 10        1: 43   1: 17   1: 19   1:  8    1: 11     1: 11        1:57   1: 10    1:  8   1: 16   1: 12   1:  8   1: 15    1: 18  
@@ -264,7 +264,7 @@ termDocMatrix.t.df %>% str
 #           23            9            9           10           53           17           10           47           17           21            8           11           11           70 
 #     research       series       slides       social         time     tutorial        users 
 #           12            8           16           12            8           16           18 
-# > termDocMatrix.t.df %>% str
+# > termDocMatrix.t.df |> str()
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	154 obs. of  21 variables:
 #  $ analysis    : num  0 0 0 0 0 0 0 0 0 0 ...
 #  $ applications: num  0 0 0 0 0 0 0 0 0 0 ...
@@ -291,7 +291,7 @@ termDocMatrix.t.df %>% str
 # termDocMatrix.t.df.comat %>% diag
 # identical((termDocMatrix.t.df %>% colSums), (termDocMatrix.t.df.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # identical((termDocMatrix.t.df %>% map_df(as.logical) %>% colSums), (termDocMatrix.t.df.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-# termDocMatrix.t.df.lgl.comat %>% str
+# termDocMatrix.t.df.lgl.comat |> str()
 # # > termDocMatrix.t.df.comat = t(as.matrix(termDocMatrix.t.df)) %*% as.matrix(termDocMatrix.t.df)  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # # > termDocMatrix.t.df.comat %>% diag
 # #     analysis applications         code    computing         data     examples introduction       mining      network      package     parallel    positions postdoctoral 
@@ -302,7 +302,7 @@ termDocMatrix.t.df %>% str
 # # [1] FALSE
 # # > identical((termDocMatrix.t.df %>% map_df(as.logical) %>% colSums), (termDocMatrix.t.df.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # # [1] FALSE
-# # > termDocMatrix.t.df.lgl.comat %>% str
+# # > termDocMatrix.t.df.lgl.comat |> str()
 # #  num [1:21, 1:21] 23 0 1 0 4 4 2 4 12 2 ...
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ : chr [1:21] "analysis" "applications" "code" "computing" ...
@@ -312,7 +312,7 @@ termDocMatrix.t.df.lgl.comat = t(as.matrix(termDocMatrix.t.df %>% map_df(as.logi
 termDocMatrix.t.df.lgl.comat %>% diag
 identical((termDocMatrix.t.df %>% colSums), (termDocMatrix.t.df.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 identical((termDocMatrix.t.df %>% map_df(as.logical) %>% colSums), (termDocMatrix.t.df.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
-termDocMatrix.t.df.lgl.comat %>% str
+termDocMatrix.t.df.lgl.comat |> str()
 # > termDocMatrix.t.df.lgl.comat = t(as.matrix(termDocMatrix.t.df %>% map_df(as.logical))) %*% as.matrix(termDocMatrix.t.df %>% map_df(as.logical))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # > termDocMatrix.t.df.lgl.comat %>% diag
 #     analysis applications         code    computing         data     examples introduction       mining      network      package     parallel    positions postdoctoral            r 
@@ -323,7 +323,7 @@ termDocMatrix.t.df.lgl.comat %>% str
 # [1] FALSE
 # > identical((termDocMatrix.t.df %>% map_df(as.logical) %>% colSums), (termDocMatrix.t.df.lgl.comat %>% diag))  # Caution) Cooccurrence matrix can be made from the matrix product when the data is binary (logical)
 # [1] TRUE
-# > termDocMatrix.t.df.lgl.comat %>% str
+# > termDocMatrix.t.df.lgl.comat |> str()
 #  num [1:21, 1:21] 23 0 1 0 4 4 2 4 12 2 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:21] "analysis" "applications" "code" "computing" ...
@@ -334,7 +334,7 @@ termDocMatrix.t.df.lgl.comat.gather = termDocMatrix.t.df.lgl.comat %>% as.data.f
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-    arrange(R) %>% as_tibble
+    arrange(R) |> as_tibble()
 termDocMatrix.t.df.lgl.comat.gather
 identical(nrow(termDocMatrix.t.df.lgl.comat.gather), ncol(termDocMatrix.t.df.lgl.comat) * nrow(termDocMatrix.t.df.lgl.comat))
 # save(termDocMatrix.t.df.lgl.comat.gather, file = "data/termDocMatrix.t.df.lgl.comat.gather.rda")
@@ -343,7 +343,7 @@ identical(nrow(termDocMatrix.t.df.lgl.comat.gather), ncol(termDocMatrix.t.df.lgl
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-# +     arrange(R) %>% as_tibble
+# +     arrange(R) |> as_tibble()
 # > termDocMatrix.t.df.lgl.comat.gather
 # # A tibble: 441 x 6
 #    rowname       V1           V2 cooccurence     R     C
@@ -372,7 +372,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>%
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-    arrange(R) %>% as_tibble %>% filter(R < C)
+    arrange(R) |> as_tibble() %>% filter(R < C)
 termDocMatrix.t.df.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(termDocMatrix.t.df.lgl.comat) * {nrow(termDocMatrix.t.df.lgl.comat) - 1} / 2)
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
@@ -380,7 +380,7 @@ identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-# +     arrange(R) %>% as_tibble %>% filter(R < C)
+# +     arrange(R) |> as_tibble() %>% filter(R < C)
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri
 # # A tibble: 210 x 6
 #    rowname       V1           V2 cooccurence     R     C
@@ -439,13 +439,13 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% tkplot
 
 
 
-#@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 1) ------
+#@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1) ------
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 1)
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 2)
-termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% str
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1)
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph |> str(max.level = 2)
+termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis |> str()
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "env")
 # save(termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph, file = "data/termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph.rda")
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph
@@ -473,7 +473,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "
 #  [1] applications code         computing    data         examples     introduction mining       network      package     
 # [10] parallel     positions    postdoctoral r            research     series       slides       social       time        
 # [19] tutorial     users       
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 1)
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1)
 # List of 10
 #  $ :List of 1
 #  $ :List of 1
@@ -486,7 +486,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "
 #  $ :List of 1
 #  $ :List of 1
 #  - attr(*, "class")= chr "igraph"
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 2)
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph |> str(max.level = 2)
 # List of 10
 #  $ :List of 1
 #   ..$ analysis:Class 'igraph.vs'  atomic [1:20] 2 3 4 5 6 7 8 9 10 11 ...
@@ -529,7 +529,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "
 #   .. .. ..- attr(*, "env")=<weakref> 
 #   .. .. ..- attr(*, "graph")= chr "c535cb56-eea6-11e7-857e-d13d2de48e1b"
 #  - attr(*, "class")= chr "igraph"
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% str
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis |> str()
 # Class 'igraph.vs'  atomic [1:20] 2 3 4 5 6 7 8 9 10 11 ...
 #   ..- attr(*, "env")=<weakref> 
 #   ..- attr(*, "graph")= chr "c535cb56-eea6-11e7-857e-d13d2de48e1b"
@@ -543,12 +543,12 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "
 library(tidyverse)
 load("data/trainsetCC69agg4i07_829.rda")
 trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% filter(is.Case != T) %>% select(-is.Case)
-trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) %>% summary
+trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()
 trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums
 # trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums
-trainsetCC69agg4i07_829.Ctrl.lgl %>% str
+trainsetCC69agg4i07_829.Ctrl.lgl |> str()
 # > trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% filter(is.Case != T) %>% select(-is.Case)
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) %>% summary
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()
 #  AcquiredHypothyroidism AdjustmentDisorder   Anemia     Anxiety    Arthritis   AtrialFibrillation BenignProstatic BrainInjury  Cataract   ChronicKidney  Diabetes   Dysthymia    Epilepsy  
 #  FALSE:800              FALSE:828          FALSE:809   FALSE:723   FALSE:230   FALSE:829          FALSE:828       FALSE:823   FALSE:599   FALSE:800     FALSE:696   FALSE:827   FALSE:825  
 #  TRUE : 29              TRUE :  1          TRUE : 20   TRUE :106   TRUE :599                      TRUE :  1       TRUE :  6   TRUE :230   TRUE : 29     TRUE :133   TRUE :  2   TRUE :  4  
@@ -570,7 +570,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% str
 #              LiverDisease    ObstructiveLungDisease           CancerSurvivors 
 #                       118                       154                        15 
 # > # trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% str
+# > trainsetCC69agg4i07_829.Ctrl.lgl |> str()
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	829 obs. of  31 variables:
 #  $ AcquiredHypothyroidism   : logi  FALSE FALSE FALSE FALSE FALSE TRUE ...
 #  $ AdjustmentDisorder       : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
@@ -696,7 +696,7 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
-# +     arrange(R) %>% as_tibble %>% filter(R < C)
+# +     arrange(R) |> as_tibble() %>% filter(R < C)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 # # A tibble: 465 x 6
 #    rowname                     V1                 V2 cooccurence     R     C
@@ -765,13 +765,13 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph %>% tkplot
 
 
 
-#@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 1) ------
+#@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1) ------
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypothyroidism
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 1)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 2)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypothyroidism %>% str
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1)
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph |> str(max.level = 2)
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypothyroidism |> str()
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypothyroidism %>% attr(., "env")
 # save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph.rda")
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph
@@ -805,7 +805,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypo
 # [16] HeartFailure              Hyperlipidemia            Hypertension              IschemicHeart             Migraine_ChronicHeadache 
 # [21] MobilityImpairments       Osteoporosis              PelvicFx                  PersonalityDisorders      SpinalCordInjury         
 # [26] StrokeTIA                 AlzheimerDementia         LiverDisease              ObstructiveLungDisease    CancerSurvivors          
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 1)
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1)
 # List of 10
 #  $ :List of 1
 #  $ :List of 1
@@ -818,7 +818,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypo
 #  $ :List of 1
 #  $ :List of 1
 #  - attr(*, "class")= chr "igraph"
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph %>% str(max.level = 2)
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph |> str(max.level = 2)
 # List of 10
 #  $ :List of 1
 #   ..$ AcquiredHypothyroidism:Class 'igraph.vs'  atomic [1:30] 2 3 4 5 6 7 8 9 10 11 ...
@@ -861,7 +861,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypo
 #   .. .. ..- attr(*, "env")=<weakref> 
 #   .. .. ..- attr(*, "graph")= chr "cf5642e8-efd2-11e7-857e-d13d2de48e1b"
 #  - attr(*, "class")= chr "igraph"
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypothyroidism %>% str
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypothyroidism |> str()
 # Class 'igraph.vs'  atomic [1:30] 2 3 4 5 6 7 8 9 10 11 ...
 #   ..- attr(*, "env")=<weakref> 
 #   ..- attr(*, "graph")= chr "cf5642e8-efd2-11e7-857e-d13d2de48e1b"

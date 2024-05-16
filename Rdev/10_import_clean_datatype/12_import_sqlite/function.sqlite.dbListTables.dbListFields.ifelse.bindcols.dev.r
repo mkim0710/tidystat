@@ -3,8 +3,8 @@
 
 
 library(tidyverse)
-getwd() %>% dput
-# > getwd() %>% dput
+getwd() |> dput()
+# > getwd() |> dput()
 # "X:/mkim/Rproject"
 # path4read = "//DON/marketscan_users/smacdonald/"
 # path4write = "//DON/marketscan_users/mkim/"
@@ -18,17 +18,17 @@ library(DBI)
 mydb <- dbConnect(RSQLite::SQLite(), paste0(path4write, "r4.sas7bdat.sqlite"))
 
 
-mydb %>% {DBI::dbListTables(.)} %>% dput #----
+mydb %>% {DBI::dbListTables(.)} |> dput() #----
 t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0('
-    select count(*) from "', chr, '"'))} %>% unlist
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
+    select count(*) from "', chr, '"'))} |> unlist()
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
 Sys.time() - t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% dbListFields(chr)
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
-# > mydb %>% {DBI::dbListTables(.)} %>% dput #----
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
+# > mydb %>% {DBI::dbListTables(.)} |> dput() #----
 # c("infant_pregcohort_d_r4.sas7bdat", "infant_pregcohort_i_r4.sas7bdat", 
 # "infant_pregcohort_o_r4.sas7bdat", "infant_pregcohort_o_r4_mod.sas7bdat", 
 # "infant_pregcohort_r_r4.sas7bdat", "infant_pregcohort_s_r4.sas7bdat", 
@@ -42,8 +42,8 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # > t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
-# +     select count(*) from "', chr, '"'))} %>% unlist
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
+# +     select count(*) from "', chr, '"'))} |> unlist()
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
 # structure(list(`count(*)` = c(6717955, 1184201, 82689932, 119756995, 
 # 321397, 22047659, 25068708, 26707411, 40401516, 2738787, 45466555, 
 # 2358125, 233728576, 330453652, 17434069, 47285165, 35285704, 
@@ -61,7 +61,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # Time difference of 23.4821 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% dbListFields(chr)
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
 # structure(list(infant_pregcohort_d_r4.sas7bdat = c("enrolid", 
 # "EFAMID", "NDCNUM", "SVCDATE", "DOBYR", "YEAR", "AGE", "DAYSUPP", 
 # "GENERID", "METQTY", "MHSACOVG", "PDDATE", "PHARMID", "QTY", 
@@ -181,17 +181,17 @@ mydb.dbListTables.dbListFields =
     }) %>% setNames(mydb %>% {DBI::dbListTables(.)})
 
 
-mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
-# > mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
+mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique |> str()
+# > mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique |> str()
 #  chr [1:149] "enrolid" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
 
 
 # mydb.dbListTables.dbListFields %>% map(function(vec) {
-#     if_else(vec %in% (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), T, F)
-# }) %>% str
+#     if_else(vec %in% (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), T, F)
+# }) |> str()
 # # > mydb.dbListTables.dbListFields %>% map(function(vec) {
-# # +     if_else(vec %in% (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), T, F)
-# # + }) %>% str
+# # +     if_else(vec %in% (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), T, F)
+# # + }) |> str()
 # # List of 18
 # #  $ infant_pregcohort_d_r4.sas7bdat    : logi [1:33] TRUE TRUE TRUE TRUE TRUE TRUE ...
 # #  $ infant_pregcohort_i_r4.sas7bdat    : logi [1:64] TRUE TRUE TRUE TRUE TRUE TRUE ...
@@ -214,11 +214,11 @@ mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
 
 
 mydb.dbListTables.dbListFields %>% map(function(vec) {
-    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-}) %>% str
+    if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+}) |> str()
 # > mydb.dbListTables.dbListFields %>% map(function(vec) {
-# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-# + }) %>% str
+# +     if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+# + }) |> str()
 # List of 18
 #  $ infant_pregcohort_d_r4.sas7bdat    : logi [1:149] TRUE TRUE TRUE TRUE TRUE TRUE ...
 #  $ infant_pregcohort_i_r4.sas7bdat    : logi [1:149] TRUE TRUE FALSE FALSE TRUE TRUE ...
@@ -241,10 +241,10 @@ mydb.dbListTables.dbListFields %>% map(function(vec) {
 
 
 mydb.dbListTables.dbListFields %>% map(function(vec) {
-    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+    if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
 }) %>% bind_cols
 # > mydb.dbListTables.dbListFields %>% map(function(vec) {
-# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
+# +     if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
 # + }) %>% bind_cols
 # # A tibble: 149 x 18
 #    infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… mscan_delivrang…
@@ -266,11 +266,11 @@ mydb.dbListTables.dbListFields %>% map(function(vec) {
 
 
 mydb.dbListTables.dbListFields %>% map(function(vec) {
-    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-}) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1)
+    if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+}) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), .before = 1)
 # > mydb.dbListTables.dbListFields %>% map(function(vec) {
-# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-# + }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1)
+# +     if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+# + }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), .before = 1)
 # # A tibble: 149 x 19
 #    varname infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho…
 #    <chr>   <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>           
@@ -291,11 +291,11 @@ mydb.dbListTables.dbListFields %>% map(function(vec) {
 
 
 mydb.dbListTables.dbListFields %>% map(function(vec) {
-    if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-}) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+    if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+}) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), .before = 1) %>% arrange(varname)
 # > mydb.dbListTables.dbListFields %>% map(function(vec) {
-# +     if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-# + }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+# +     if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+# + }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), .before = 1) %>% arrange(varname)
 # # A tibble: 149 x 19
 #    varname infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho… infant_pregcoho…
 #    <chr>   <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>            <lgl>           
@@ -315,8 +315,8 @@ mydb.dbListTables.dbListFields %>% map(function(vec) {
 
 openxlsx::write.xlsx(
     mydb.dbListTables.dbListFields %>% map(function(vec) {
-        if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-    }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+        if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+    }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), .before = 1) %>% arrange(varname)
     , "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
     , asTable=TRUE
 )
@@ -332,21 +332,21 @@ openxlsx::openXL(
 
 
 
-#@ mydb.dbListTables.dbListFields %>% unlist %>% unname %>% toupper %>% unique ------
+#@ mydb.dbListTables.dbListFields |> unlist() %>% unname %>% toupper |> unique ------
 ?unique
-mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
-mydb.dbListTables.dbListFields %>% unlist %>% unname %>% toupper %>% unique %>% str
-# > mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %>% str
+mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique |> str()
+mydb.dbListTables.dbListFields |> unlist() %>% unname %>% toupper |> unique |> str()
+# > mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique |> str()
 #  chr [1:149] "enrolid" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
-# > mydb.dbListTables.dbListFields %>% unlist %>% unname %>% toupper %>% unique %>% str
+# > mydb.dbListTables.dbListFields |> unlist() %>% unname %>% toupper |> unique |> str()
 #  chr [1:146] "ENROLID" "EFAMID" "NDCNUM" "SVCDATE" "DOBYR" "YEAR" "AGE" "DAYSUPP" "GENERID" "METQTY" "MHSACOVG" "PDDATE" "PHARMID" "QTY" "REFILL" "THERCLS" ...
 
 
 
 mydb.dbListTables.dbListFields.ifelse.bindcols =
     mydb.dbListTables.dbListFields %>% map(function(vec) {
-        if_else((mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique %in% vec), T, F)
-    }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields %>% unlist %>% unname %>% unique), .before = 1) %>% arrange(varname)
+        if_else((mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique %in% vec), T, F)
+    }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields |> unlist() %>% unname |> unique), .before = 1) %>% arrange(varname)
 
 
 

@@ -75,28 +75,28 @@ if(sourcename == "default.template") { warning('sourcename == "default.template"
 
 #@ input_path = "Rdev" =====
 library(tidyverse)
-dir(full.names = FALSE) %>% str #----
-dir(full.names = T) %>% str #----
-# dir(full.names = T, recursive = T) %>% str #----
+dir(full.names = FALSE) |> str() #----
+dir(full.names = T) |> str() #----
+# dir(full.names = T, recursive = T) |> str() #----
 # input_path = "Rdev"
-# dir(input_path, full.names = T, recursive = T) %>% str #----
-# dir(input_path, full.names = T, recursive = T, include.dirs = T) %>% str #----
-# setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) %>% str #----
-# list.dirs(input_path, full.names = TRUE) %>% str #----
-# # > dir(full.names = FALSE) %>% str #----
+# dir(input_path, full.names = T, recursive = T) |> str() #----
+# dir(input_path, full.names = T, recursive = T, include.dirs = T) |> str() #----
+# setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) |> str() #----
+# list.dirs(input_path, full.names = TRUE) |> str() #----
+# # > dir(full.names = FALSE) |> str() #----
 # #  chr [1:37] "-info" "-tmp" "-void.r" "[[Stat]] CRAN R - Shortcut.lnk" "bfg-1.13.0.jar" "bfg.txt" "bfg.zip" ...
-# # > dir(full.names = T) %>% str #----
+# # > dir(full.names = T) |> str() #----
 # #  chr [1:37] "./-info" "./-tmp" "./-void.r" "./[[Stat]] CRAN R - Shortcut.lnk" "./bfg-1.13.0.jar" "./bfg.txt" "./bfg.zip" ...
-# # > dir(full.names = T, recursive = T) %>% str #----
+# # > dir(full.names = T, recursive = T) |> str() #----
 # #  chr [1:444] "./-info/facets_2017 - annotate (3) tableone_by_P_WH.ge.5.zip" "./-info/facets_2017 - annotate.xlsx - 바로 가기.lnk" ...
 # # > input_path = "Rdev"
-# # > dir(input_path, full.names = T, recursive = T) %>% str #----
+# # > dir(input_path, full.names = T, recursive = T) |> str() #----
 # #  chr [1:231] "Rdev/-dev/object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
-# # > dir(input_path, full.names = T, recursive = T, include.dirs = T) %>% str #----
+# # > dir(input_path, full.names = T, recursive = T, include.dirs = T) |> str() #----
 # #  chr [1:273] "Rdev/-dev" "Rdev/-dev/object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
-# # > setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) %>% str #----
+# # > setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) |> str() #----
 # #  chr [1:42] "Rdev/-dev" "Rdev/00_base_program" "Rdev/00_protocol" "Rdev/00_protocol/01_sample_size" ...
-# # > list.dirs(input_path, full.names = TRUE) %>% str #----
+# # > list.dirs(input_path, full.names = TRUE) |> str() #----
 # #  chr [1:43] "Rdev" "Rdev/-dev" "Rdev/00_base_program" "Rdev/00_protocol" "Rdev/00_protocol/01_sample_size" ...
 
 
@@ -116,19 +116,19 @@ source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
 
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======
 df_dirs_recursive = env.custom$f_path.df_dirs_recursive.df_files()
-df_dirs_recursive %>% str(max.level = 2) #----
-# df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") %>% cat; cat("\n") #----
-# df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") %>% cat; cat("\n")  #----
-df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) %>% as_tibble %>% print(n=99) #----
-# df_dirs_recursive %>% select(print_tree_path) %>% as_tibble
-df_dirs_recursive %>% select(print_tree_path) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files) %>% unlist %>% paste(collapse="") %>% cat; cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") %>% cat; cat("\n")  #----
+df_dirs_recursive |> str(max.level = 2) #----
+# df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") |> cat(); cat("\n") #----
+# df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
+# df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
+df_dirs_recursive %>% select(print_tree_path) |> unlist() %>% paste(collapse = "\n") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(print_tree_path_files) |> unlist() %>% paste(collapse="") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() %>% paste(collapse="") |> cat(); cat("\n")  #----
 # > df_dirs_recursive = f_path.df_dirs_recursive.df_files()
 # .Platform$file.sep:  / 
 # input_path0:  . 
 # Finished iterating through paths.
-#' > df_dirs_recursive %>% str(max.level = 2) #----
+#' > df_dirs_recursive |> str(max.level = 2) #----
 #' tibble [61 × 17] (S3: tbl_df/tbl/data.frame)
 #'  $ path.level               : num [1:61] 0 1 1 2 2 2 3 3 3 3 ...
 #'  $ path                     : chr [1:61] "" "-info" "Rdev" "Rdev/-dev" ...
@@ -147,9 +147,9 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(c
 #'  $ print_tree_path_files.codes: chr [1:61] "@./\nf_df.t.tribble_construct -old.Rmd\nf_df.t.tribble_construct.Rmd\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rds: chr [1:61] "@./\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rda: chr [1:61] "@./\nf_df.t.tribble_construct.RData.xz\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
-#' > # df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") %>% cat; cat("\n") #----
-#' > # df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") %>% cat; cat("\n")  #----
-#' > df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) %>% as_tibble %>% print(n=99) #----
+#' > # df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") |> cat(); cat("\n") #----
+#' > # df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") |> cat(); cat("\n")  #----
+#' > df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
 #' # A tibble: 61 × 5
 #'    path.level path.parent                                      path.basename                             path                                            full_path
 #'         <dbl> <chr>                                            <chr>                                     <chr>                                           <chr>    
@@ -214,8 +214,8 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(c
 #' 59          2 ./other                                          VBA                                       "other/VBA"                                     ./other/…
 #' 60          1 .                                                tests                                     "tests"                                         ./tests  
 #' 61          1 .                                                vignettes                                 "vignettes"                                     ./vignet…
-#' > # df_dirs_recursive %>% select(print_tree_path) %>% as_tibble
-#' > df_dirs_recursive %>% select(print_tree_path) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
+#' > # df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
+#' > df_dirs_recursive %>% select(print_tree_path) |> unlist() %>% paste(collapse = "\n") |> cat(); cat("\n")  #----
 #' .
 #' -info
 #' Rdev
@@ -277,7 +277,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(c
 #' 	VBA
 #' tests
 #' vignettes
-#' > df_dirs_recursive %>% select(print_tree_path_files) %>% unlist %>% paste(collapse="") %>% cat; cat("\n")  #----
+#' > df_dirs_recursive %>% select(print_tree_path_files) |> unlist() %>% paste(collapse="") |> cat(); cat("\n")  #----
 #' @./
 #' -info
 #' bfg-1.13.0.jar
@@ -784,7 +784,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(c
 #' @tests/
 #' @vignettes/
 #' 
-#' > df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") %>% cat; cat("\n")  #----
+#' > df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() %>% paste(collapse="") |> cat(); cat("\n")  #----
 #' @./
 #' f_df.t.tribble_construct -old.Rmd
 #' f_df.t.tribble_construct.Rmd
@@ -862,14 +862,14 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(c
 
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======
 df_dirs_recursive = env.custom$f_path.df_dirs_recursive.df_files()
-df_dirs_recursive %>% str(max.level = 2) #----
-# df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") %>% cat; cat("\n") #----
-# df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") %>% cat; cat("\n")  #----
-df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) %>% as_tibble %>% print(n=99) #----
-# df_dirs_recursive %>% select(print_tree_path) %>% as_tibble
-df_dirs_recursive %>% select(print_tree_path) %>% unlist %>% paste(collapse = "\n") %>% cat; cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files) %>% unlist %>% paste(collapse="") %>% cat; cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") %>% cat; cat("\n")  #----
+df_dirs_recursive |> str(max.level = 2) #----
+# df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") |> cat(); cat("\n") #----
+# df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
+# df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
+df_dirs_recursive %>% select(print_tree_path) |> unlist() %>% paste(collapse = "\n") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(print_tree_path_files) |> unlist() %>% paste(collapse="") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() %>% paste(collapse="") |> cat(); cat("\n")  #----
 
 
 

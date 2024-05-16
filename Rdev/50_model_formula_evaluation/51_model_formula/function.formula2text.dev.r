@@ -2,14 +2,14 @@
 
 
 formula4MainModel = Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year
-formula4MainModel %>% str
-# > formula4MainModel %>% str
+formula4MainModel |> str()
+# > formula4MainModel |> str()
 # Class 'formula'  language Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4| __truncated__
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
 formula4MainModel %>% as.list
-formula4MainModel %>% as.list %>% str
-# > formula4MainModel %>% as.list %>% str
+formula4MainModel %>% as.list |> str()
+# > formula4MainModel %>% as.list |> str()
 # List of 3
 #  $ : symbol ~
 #  $ : symbol Depressed
@@ -18,8 +18,8 @@ formula4MainModel %>% as.list %>% str
 #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
 
-formula4MainModel[[3]] %>% str
-# > formula4MainModel[[3]] %>% str
+formula4MainModel[[3]] |> str()
+# > formula4MainModel[[3]] |> str()
 #  language SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college | __truncated__
 formula4MainModel[[3]]
 
@@ -40,8 +40,8 @@ formula4MainModel %>% deparse
 # [2] "    AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + "   
 # [3] "    HIQ_6 + HUQ_3_lt_1year"                
 
-formula4MainModel %>% dput %>% str
-# > formula4MainModel %>% dput %>% str
+formula4MainModel |> dput() |> str()
+# > formula4MainModel |> dput() |> str()
 # Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + 
 #     AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + 
 #     HIQ_6 + HUQ_3_lt_1year
@@ -111,8 +111,8 @@ paste("my text", format(frm))
 library(tidyverse)
 require(mice)
 
-nhanes2 %>% dput
-# > nhanes2 %>% dput
+nhanes2 |> dput()
+# > nhanes2 |> dput()
 # structure(list(age = structure(c(1L, 2L, 1L, 3L, 1L, 3L, 1L, 
 # 1L, 2L, 2L, 1L, 2L, 3L, 2L, 1L, 1L, 3L, 2L, 1L, 3L, 1L, 1L, 1L, 
 # 3L, 2L), .Label = c("20-39", "40-59", "60-99"), class = "factor"), 

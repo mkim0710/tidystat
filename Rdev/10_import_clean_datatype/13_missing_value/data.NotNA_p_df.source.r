@@ -44,8 +44,8 @@ packageStartupMessage("Loading: env.custom$data.NotNA_p_df = function(data)")
 
 # library(tidyverse)
 # load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
-# nhanes_mice %>% str #-----
-# # > nhanes_mice %>% str #-----
+# nhanes_mice |> str() #-----
+# # > nhanes_mice |> str() #-----
 # # 'data.frame':	25 obs. of  4 variables:
 # #  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
 # #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...

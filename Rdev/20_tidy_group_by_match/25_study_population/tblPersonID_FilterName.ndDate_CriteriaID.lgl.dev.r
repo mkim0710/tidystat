@@ -1,6 +1,6 @@
 
-tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} %>% dput #----
-# > tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} %>% dput #----
+tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} |> dput() #----
+# > tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} |> dput() #----
 tblPersonID_FilterName.ndDate = structure(list(ENROLID = c(171946801, 1210879901, 1282775301,
 2068053701, 27240989002, 27945818803, 28503004201), t_NInf_154.ICD250x1_250x3.ndDate = c(2L,
 5L, 1L, 3L, 1L, 2L, 1L), t_NInf_0.RxCONCEPT_NDC_metformin.ndDate = c(1L,
@@ -10,8 +10,8 @@ tblPersonID_FilterName.ndDate = structure(list(ENROLID = c(171946801, 1210879901
 
 
 # tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation = bind_rows(Criteria.tbl.list$ExclusionCriteria.tbl, Criteria.tbl.list$InclusionCriteria.tbl)
-Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) %>% dput #----
-# > Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) %>% dput #----
+Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) |> dput() #----
+# > Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) |> dput() #----
 tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation = structure(list(CriteriaID = c("Exc3", "Exc4"), CriteriaShortName = c("ICD9_DMt1",
 "Rx_Metformin.lt2"), t_begin.int = c(-Inf, -Inf), t_end.int = c(154,
 0), CodeType = c("ICD9", "Rx"), Code_vec = c(NA_character_, NA_character_
@@ -38,14 +38,14 @@ tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation
 
 #@ Regular Expression -----
 Evaluation.i = "((t_42_280.CPT88016 > 0)) | ((t_42_308.ICD774 > 0)) & ((t_42_308.CPT36450_36455_36456_82785_82784_82787 >= 0)) * 0 + 3/1 - 2 == 1"
-Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit(c(">", "<", "==", "+", "-", "*", "/", "&", "|"), fixed = T) %>% unlist
-Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit("==|>|<|&|-|/|\\+|\\*|\\|") %>% unlist
+Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist() |> str()split(c(">", "<", "==", "+", "-", "*", "/", "&", "|"), fixed = T) |> unlist()
+Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist() |> str()split("==|>|<|&|-|/|\\+|\\*|\\|") |> unlist()
 # > #@ Regular Expression -----
 # > Evaluation.i = "((t_42_280.CPT88016 > 0)) | ((t_42_308.ICD774 > 0)) & ((t_42_308.CPT36450_36455_36456_82785_82784_82787 >= 0)) * 0 + 3/1 - 2 == 1"
-# > Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit(c(">", "<", "==", "+", "-", "*", "/", "&", "|"), fixed = T) %>% unlist
+# > Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist() |> str()split(c(">", "<", "==", "+", "-", "*", "/", "&", "|"), fixed = T) |> unlist()
 # [1] "t_42_280.CPT88016"                                 "0|t_42_308.ICD774"                                
 # [3] "0&t_42_308.CPT36450_36455_36456_82785_82784_82787" "0*0+3/1-2==1"                                     
-# > Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit("==|>|<|&|-|/|\\+|\\*|\\|") %>% unlist
+# > Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist() |> str()split("==|>|<|&|-|/|\\+|\\*|\\|") |> unlist()
 #  [1] "t_42_280.CPT88016"                               "0"                                              
 #  [3] "t_42_308.ICD774"                                 "0"                                              
 #  [5] "t_42_308.CPT36450_36455_36456_82785_82784_82787" "0"                                              
@@ -72,7 +72,7 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
     CriteriaID.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$CriteriaID
     
     Evaluation.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Evaluation
-    Evaluation.i.ElementVector = Evaluation.i %>% gsub(" |\\(|\\)", "", .) %>% strsplit(c(">=", "<=")) %>% unlist %>% strsplit("==|>|<|&|-|/|\\+|\\*") %>% unlist
+    Evaluation.i.ElementVector = Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist() |> str()split("==|>|<|&|-|/|\\+|\\*") |> unlist()
     Evaluation.minDate.i = tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[i,]$Evaluation.minDate
         
     if ( !all(Evaluation.i.ElementVector %>% {.[is.na(as.numeric(.))] %in% names(data4evaluation)}) ) {   

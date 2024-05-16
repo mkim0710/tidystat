@@ -55,12 +55,12 @@ tblID_Event_Time2Event %>%
 
 
 
-analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr %>% summary #----
-analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr %>% {./365} %>% summary #----
-# > analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr %>% summary #----
+analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr |> summary() #----
+analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr %>% {./365} |> summary() #----
+# > analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr |> summary() #----
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #       3    2312    2556    2246    2556    2556 
-# > analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr %>% {./365} %>% summary #----
+# > analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode$fuduration_yr %>% {./365} |> summary() #----
 #     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 # 0.008219 6.333562 7.002740 6.154781 7.002740 7.002740 
 

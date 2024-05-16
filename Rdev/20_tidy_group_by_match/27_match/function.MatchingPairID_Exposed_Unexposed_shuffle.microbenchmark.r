@@ -86,7 +86,7 @@ data = data_frame(
 set.seed(1)
 data = data %>% mutate(Outcome = isExposed + 10 + rnorm(2 * n, 0, 3) + (((1:nrow(data) + 1) %/% 2) %% 5) )
 data
-data %>% summary
+data |> summary()
 # > data
 # # A tibble: 200 x 4
 #    PERSON_ID MatchingPairID isExposed   Outcome
@@ -102,7 +102,7 @@ data %>% summary
 #  9         9              5     FALSE 11.727344
 # 10        10              5      TRUE 10.083835
 # # ... with 190 more rows
-# > data %>% summary
+# > data |> summary()
 #    PERSON_ID   MatchingPairID isExposed          Outcome
 #  1      :  1   1      :  2    Mode :logical   Min.   : 5.257
 #  2      :  1   2      :  2    FALSE:100       1st Qu.:10.466

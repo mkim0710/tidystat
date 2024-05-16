@@ -129,9 +129,9 @@ f_path.list_subpath.DepthFirstSearch_recursive <- function(input_path = ".", max
 }
 
 
-f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) %>% as.list %>% str #----
-f_path.list_subpath.DepthFirstSearch_recursive(getwd()) %>% as.list %>% str #----
-# > f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) %>% as.list %>% str #----
+f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) %>% as.list |> str() #----
+f_path.list_subpath.DepthFirstSearch_recursive(getwd()) %>% as.list |> str() #----
+# > f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) %>% as.list |> str() #----
 # Subdirectories of  ./data :  1 
 # Subdirectories of  ./other :  8 
 # Subdirectories of  ./Rdev/00_protocol :  4 
@@ -205,7 +205,7 @@ f_path.list_subpath.DepthFirstSearch_recursive(getwd()) %>% as.list %>% str #---
 #  $ : chr "./Rplot"
 #  $ : chr "./tests"
 #  $ : chr "./vignettes"
-# > f_path.list_subpath.DepthFirstSearch_recursive(getwd()) %>% as.list %>% str #----
+# > f_path.list_subpath.DepthFirstSearch_recursive(getwd()) %>% as.list |> str() #----
 # List of 62
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat"
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat/-info"
@@ -330,9 +330,9 @@ f_path.list_subpath.BreathFirstSearch <- function(input_path = ".", max_depth = 
 
 
 
-f_path.list_subpath.BreathFirstSearch(print.intermediate = T) %>% as.list %>% str #----
-f_path.list_subpath.BreathFirstSearch(getwd()) %>% as.list %>% str #----
-# > f_path.list_subpath.BreathFirstSearch(print.intermediate = T) %>% as.list %>% str #----
+f_path.list_subpath.BreathFirstSearch(print.intermediate = T) %>% as.list |> str() #----
+f_path.list_subpath.BreathFirstSearch(getwd()) %>% as.list |> str() #----
+# > f_path.list_subpath.BreathFirstSearch(print.intermediate = T) %>% as.list |> str() #----
 # Processing:  .  at depth  0 
 # Queue length:  0 
 # Processing:  ./-info  at depth  1 
@@ -523,7 +523,7 @@ f_path.list_subpath.BreathFirstSearch(getwd()) %>% as.list %>% str #----
 #  $ : chr "./Rdev/50_model_formula_evaluation/57_model_time2event"
 #  $ : chr "./Rdev/50_model_formula_evaluation/57_model_trajectory"
 #  $ : chr "./Rdev/50_model_formula_evaluation/59_model_evaluation"
-# > f_path.list_subpath.BreathFirstSearch(getwd()) %>% as.list %>% str #----
+# > f_path.list_subpath.BreathFirstSearch(getwd()) %>% as.list |> str() #----
 # List of 62
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat"
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat/-info"
@@ -596,10 +596,10 @@ f_path.list_subpath.BreathFirstSearch(getwd()) %>% as.list %>% str #----
 
 #@ end -----
 
-f_path.list_subpath(print.intermediate = T) %>% str
-f_path.list_subpath(print.intermediate = T, BreadthFirstSearch = T) %>% str
-f_path.list_subpath(getwd()) %>% str
-# > f_path.list_subpath(print.intermediate = T) %>% str
+f_path.list_subpath(print.intermediate = T) |> str()
+f_path.list_subpath(print.intermediate = T, BreadthFirstSearch = T) |> str()
+f_path.list_subpath(getwd()) |> str()
+# > f_path.list_subpath(print.intermediate = T) |> str()
 # Subdirectories of  ./data :  1 
 # Subdirectories of  ./other :  8 
 # Subdirectories of  ./Rdev/00_protocol :  4 
@@ -611,7 +611,7 @@ f_path.list_subpath(getwd()) %>% str
 # Structure of the final list of subpaths at the top level:
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
-# > f_path.list_subpath(print.intermediate = T, BreadthFirstSearch = T) %>% str
+# > f_path.list_subpath(print.intermediate = T, BreadthFirstSearch = T) |> str()
 # Processing:  .  at depth  0 
 # Queue length:  0 
 # Processing:  ./-info  at depth  1 
@@ -740,6 +740,6 @@ f_path.list_subpath(getwd()) %>% str
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...
 # NULL
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...
-# > f_path.list_subpath(getwd()) %>% str
+# > f_path.list_subpath(getwd()) |> str()
 #  chr [1:62] "D:/OneDrive/[][Rproject]/github_tidystat" "D:/OneDrive/[][Rproject]/github_tidystat/-info" "D:/OneDrive/[][Rproject]/github_tidystat/-tmp" ...
 

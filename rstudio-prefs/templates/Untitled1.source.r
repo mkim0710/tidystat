@@ -35,12 +35,12 @@ env.custom$info$info_system_info = env.custom$info$get_system_info()
 #### env.custom\$f_path.df_dirs_recursive.df_files() ----
 sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
-env.custom$path$df_dirs_recursive.df_files$path %>% unique %>% paste0(collapse = "\n") %>% cat
-env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% dplyr::select(print_tree_path_files.codes) %>% unlist %>% paste(collapse="") %>% cat
+env.custom$path$df_dirs_recursive.df_files$path |> unique %>% paste0(collapse = "\n") |> cat()
+env.custom$path$df_dirs_recursive.df_files %>% filter(path.level <= 2) %>% dplyr::select(print_tree_path_files.codes) |> unlist() %>% paste(collapse="") |> cat()
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
-subpath = r"(rstudio-prefs\templates)" %>% str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+subpath = r"(rstudio-prefs\templates)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "default.template"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -89,7 +89,7 @@ env.custom$path$default.filename.ext = "default.R"
 env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 
 if(env.custom$path$default.filename.ext == basename(env.custom$path$current.path.filename.ext)) {
-    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") %>% str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
     if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) ;
     
     destination.path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "default.R"); 
@@ -99,8 +99,8 @@ if(env.custom$path$default.filename.ext == basename(env.custom$path$current.path
         file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$default.filename.ext)
         , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$default.filename.ext)
     )) {if(env.custom$path$current.path.filename.ext != destination.path.filename.ext) {
-        destination.filename = basename(destination.path.filename.ext) %>% str_remove("\\.([[:alnum:]]+)$")
-        destination.ext = basename(destination.path.filename.ext) %>% str_extract("\\.([[:alnum:]]+)$")
+        destination.filename = basename(destination.path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
+        destination.ext = basename(destination.path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
         backup.path.filename = file.path(env.custom$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
         file.copy(from=destination.path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
         if(file.copy(from=env.custom$path$current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));

@@ -609,7 +609,7 @@ objectname = "f_df.transpose"
 packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
 env.custom$f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
-    out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) %>% as_tibble
+    out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }
 

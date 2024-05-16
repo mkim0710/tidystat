@@ -3,8 +3,8 @@
 
 library(tidyverse)
 list.PERSON_ID.setdiff = read_rds("list.PERSON_ID.setdiff.rds")
-list.PERSON_ID.setdiff %>% str #----
-# > list.PERSON_ID.setdiff %>% str #----
+list.PERSON_ID.setdiff |> str() #----
+# > list.PERSON_ID.setdiff |> str() #----
 # List of 8
 #  $ temp2:List of 7
 #   ..$ vec1       : chr [1:264777] "10000084" "10001637" "10004213" "10006065" ...
@@ -73,8 +73,8 @@ list.PERSON_ID.setdiff %>% str #----
 
 list.PERSON_ID.setdiff.keep =
     list.PERSON_ID.setdiff %>% keep(function(ls) !ls$identical)
-list.PERSON_ID.setdiff.keep %>% str #----
-# > list.PERSON_ID.setdiff.keep %>% str #----
+list.PERSON_ID.setdiff.keep |> str() #----
+# > list.PERSON_ID.setdiff.keep |> str() #----
 # List of 3
 #  $ temp6:List of 7
 #   ..$ vec1       : chr [1:264777] "10000084" "10001637" "10004213" "10006065" ...
@@ -134,8 +134,8 @@ for (i in 1:length(list.PERSON_ID.setdiff.keep)) {
     list.PERSON_ID.setdiff.diagram[[paste0("setdiff_", i-1, "_", i)]] = list.PERSON_ID.setdiff.keep[[i]]$setdiff_1_2
     list.PERSON_ID.setdiff.diagram[[paste0("n", i)]] = list.PERSON_ID.setdiff.keep[[i]]$vec2
 }
-list.PERSON_ID.setdiff.diagram %>% str #-----
-# > list.PERSON_ID.setdiff.diagram %>% str #-----
+list.PERSON_ID.setdiff.diagram |> str() #-----
+# > list.PERSON_ID.setdiff.diagram |> str() #-----
 # List of 7
 #  $ n0         : chr [1:264777] "10000084" "10001637" "10004213" "10006065" ...
 #  $ setdiff_0_1: chr [1:211655] "30761968" "30826346" "31100750" "31269616" ...
@@ -147,8 +147,8 @@ list.PERSON_ID.setdiff.diagram %>% str #-----
 
 list.PERSON_ID.setdiff.diagram.n =
     list.PERSON_ID.setdiff.diagram %>% map(length)
-list.PERSON_ID.setdiff.diagram.n %>% str
-# > list.PERSON_ID.setdiff.diagram.n %>% str
+list.PERSON_ID.setdiff.diagram.n |> str()
+# > list.PERSON_ID.setdiff.diagram.n |> str()
 # List of 7
 #  $ n0         : int 264777
 #  $ setdiff_0_1: int 211655

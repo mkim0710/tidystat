@@ -167,8 +167,8 @@ tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.
 
 
 
-res1[1:10,] %>% dput
-# > res1[1:10,] %>% dput
+res1[1:10,] |> dput()
+# > res1[1:10,] |> dput()
 res10 = 
 structure(list(rowname = c("total_ddd_yr_ASPIRIN.cut[0.001,30)",
 "total_ddd_yr_ASPIRIN.cut[30,365)", "total_ddd_yr_ASPIRIN.cut[365,730)",

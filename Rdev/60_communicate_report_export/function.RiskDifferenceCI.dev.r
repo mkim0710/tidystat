@@ -71,10 +71,10 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 #     out
 # }
 # 
-# function.RiskDifferenceCI(189, 104, 10845, 10933) %>% str #-----
-# function.RiskDifferenceCI(10845, 10933, 189, 104) %>% str #-----
-# function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
-# # > function.RiskDifferenceCI(189, 104, 10845, 10933) %>% str #-----
+# function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
+# function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
+# function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
+# # > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
 # # List of 3
 # #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.33
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
@@ -82,7 +82,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
 # #  $ RiskDifference: Named num [1:3] 0.00771 0.00469 0.01072
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
-# # > function.RiskDifferenceCI(10845, 10933, 189, 104) %>% str #-----
+# # > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
 # # List of 3
 # #  $ OddsRatio     : Named num [1:3] 0.546 0.429 0.694
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
@@ -90,7 +90,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
 # #  $ RiskDifference: Named num [1:3] -0.00771 -0.01072 -0.00469
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
-# # > function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
+# # > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 # # List of 3
 # #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.33
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
@@ -148,13 +148,13 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 #     names(RiskDifference) = paste0("RiskDifference", c("", ".ll", ".ul"))
 #     
 #     # out = list(OddsRatio = OddsRatio, RiskRatio = RiskRatio, RiskDifference = RiskDifference)
-#     out = c(OddsRatio, RiskRatio, RiskDifference) %>% as_tibble
+#     out = c(OddsRatio, RiskRatio, RiskDifference) |> as_tibble()
 #     out
 # }
-# function.RiskDifferenceCI(189, 104, 10845, 10933) %>% str #-----
-# function.RiskDifferenceCI(10845, 10933, 189, 104) %>% str #-----
-# function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
-# # > function.RiskDifferenceCI(189, 104, 10845, 10933) %>% str #-----
+# function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
+# function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
+# function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
+# # > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
 # # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  9 variables:
 # #  $ OddsRatio        : num 1.83
 # #  $ OddsRatio.ll     : num 1.44
@@ -165,7 +165,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #  $ RiskDifference   : num 0.00771
 # #  $ RiskDifference.ll: num 0.00464
 # #  $ RiskDifference.ul: num 0.0108
-# # > function.RiskDifferenceCI(10845, 10933, 189, 104) %>% str #-----
+# # > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
 # # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  9 variables:
 # #  $ OddsRatio        : num 0.546
 # #  $ OddsRatio.ll     : num 0.429
@@ -176,7 +176,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #  $ RiskDifference   : num -0.00771
 # #  $ RiskDifference.ll: num -0.246
 # #  $ RiskDifference.ul: num 0.23
-# # > function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
+# # > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 # # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  9 variables:
 # #  $ OddsRatio        : num 1.83
 # #  $ OddsRatio.ll     : num 1.44
@@ -213,7 +213,7 @@ function.RiskDifferenceCI = function(nDisease0_Exposed0, nDisease0_Exposed1, nDi
         `Estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(Estimate,2)), " (", sprintf("%.2f",round(Estimate.ll,2)), ", ", sprintf("%.2f",round(Estimate.ul,2)), ")")
         , `Estimate (95% CI) %.3f` = paste0(sprintf("%.3f",round(Estimate,3)), " (", sprintf("%.3f",round(Estimate.ll,3)), ", ", sprintf("%.3f",round(Estimate.ul,3)), ")")
     ) %>% select(`Estimate (95% CI) %.2f`, `Estimate (95% CI) %.3f`, everything())
-    names(OddsRatio) = names(OddsRatio) %>% str_replace_all("Estimate", "OddsRatio")
+    names(OddsRatio) = names(OddsRatio) |> str_replace_all("Estimate", "OddsRatio")
 
     # http://sphweb.bumc.bu.edu/otlt/MPH-Modules/EP/EP713_RandomError/EP713_RandomError4.html
     # https://www.medcalc.org/manual/relativerisk_oddsratio.php
@@ -228,7 +228,7 @@ function.RiskDifferenceCI = function(nDisease0_Exposed0, nDisease0_Exposed1, nDi
         `Estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(Estimate,2)), " (", sprintf("%.2f",round(Estimate.ll,2)), ", ", sprintf("%.2f",round(Estimate.ul,2)), ")")
         , `Estimate (95% CI) %.3f` = paste0(sprintf("%.3f",round(Estimate,3)), " (", sprintf("%.3f",round(Estimate.ll,3)), ", ", sprintf("%.3f",round(Estimate.ul,3)), ")")
     ) %>% select(`Estimate (95% CI) %.2f`, `Estimate (95% CI) %.3f`, everything())
-    names(RiskRatio) = names(RiskRatio) %>% str_replace_all("Estimate", "RiskRatio")
+    names(RiskRatio) = names(RiskRatio) |> str_replace_all("Estimate", "RiskRatio")
 
     # https://www.medcalc.org/manual/relativerisk_oddsratio.php
     # http://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/BS704_Confidence_Intervals/BS704_Confidence_Intervals7.html
@@ -244,16 +244,16 @@ function.RiskDifferenceCI = function(nDisease0_Exposed0, nDisease0_Exposed1, nDi
         , `Percent (95% CI) %.2f` = paste0(sprintf("%.2f",round(Estimate*100,2)), "% (", sprintf("%.2f",round(Estimate.ll*100,2)), "%, ", sprintf("%.2f",round(Estimate.ul*100,2)), "%)")
         , `Percent (95% CI) %.3f` = paste0(sprintf("%.3f",round(Estimate*100,3)), "% (", sprintf("%.3f",round(Estimate.ll*100,3)), "%, ", sprintf("%.3f",round(Estimate.ul*100,3)), "%)")
     ) %>% select(`Estimate (95% CI) %.2f`, `Estimate (95% CI) %.3f`, `Percent (95% CI) %.2f`, `Percent (95% CI) %.3f`, everything())
-    names(RiskDifference) = names(RiskDifference) %>% str_replace_all("Estimate", "RiskDifference")
+    names(RiskDifference) = names(RiskDifference) |> str_replace_all("Estimate", "RiskDifference")
 
     # out = list(OddsRatio = OddsRatio, RiskRatio = RiskRatio, RiskDifference = RiskDifference)
     out = bind_cols(OddsRatio, RiskRatio, RiskDifference)
     out
 }
-function.RiskDifferenceCI(189, 104, 10845, 10933) %>% str #-----
-function.RiskDifferenceCI(10845, 10933, 189, 104) %>% str #-----
-function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
-# > function.RiskDifferenceCI(189, 104, 10845, 10933) %>% str #-----
+function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
+function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
+function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
+# > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr "1.83 (1.44, 2.33)"
 #  $ OddsRatio (95% CI) %.3f     : chr "1.832 (1.440, 2.331)"
@@ -272,7 +272,7 @@ function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
 #  $ RiskDifference              : num 0.00771
 #  $ RiskDifference.ll           : num 0.00464
 #  $ RiskDifference.ul           : num 0.0108
-# > function.RiskDifferenceCI(10845, 10933, 189, 104) %>% str #-----
+# > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr "0.55 (0.43, 0.69)"
 #  $ OddsRatio (95% CI) %.3f     : chr "0.546 (0.429, 0.694)"
@@ -291,7 +291,7 @@ function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
 #  $ RiskDifference              : num -0.00771
 #  $ RiskDifference.ll           : num -0.246
 #  $ RiskDifference.ul           : num 0.23
-# > function.RiskDifferenceCI(10933, 10845, 104, 189) %>% str #-----
+# > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr "1.83 (1.44, 2.33)"
 #  $ OddsRatio (95% CI) %.3f     : chr "1.832 (1.440, 2.331)"
@@ -379,9 +379,9 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 
 
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
-    {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} %>% str
+    {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str()
 # > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% 
-# +     {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} %>% str
+# +     {function.RiskDifferenceCI(.$nDisease0_Exposed0, .$nDisease0_Exposed1, .$nDisease1_Exposed0, .$nDisease1_Exposed1)} |> str()
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr  "1.43 (0.38, 5.44)" "1.00 (0.61, 1.66)" "1.03 (0.61, 1.74)" "0.00 (0.00, NaN)" ...
 #  $ OddsRatio (95% CI) %.3f     : chr  "1.431 (0.376, 5.441)" "1.004 (0.607, 1.661)" "1.029 (0.609, 1.737)" "0.000 (0.000, NaN)" ...
@@ -419,7 +419,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$selec
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select3f =
     analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, matches("3f"))
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----
-analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI %>% str #----
+analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----
 # > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----
 # # A tibble: 20 x 7
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` `OddsRatio (95% CI) %.2f` `RiskRatio (95% CI) %.2f` `RiskDifference (95% CI) %.2f` `Percent (95% CI) %.2f`   
@@ -444,7 +444,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI %>% s
 # 18 SecondaryOutcome6         0 (0.00%)                    3 (2.65%)                    Inf (NaN, Inf)            Inf (NaN, Inf)            0.03 (-Inf, Inf)               2.65% (-Inf%, Inf%)       
 # 19 SecondaryOutcome7         0 (0.00%)                    0 (0.00%)                    NaN (NaN, NaN)            NaN (NaN, NaN)            0.00 (-Inf, Inf)               0.00% (-Inf%, Inf%)       
 # 20 SecondaryOutcomeP1456fhkl 128 (64.00%)                 65 (57.52%)                  0.76 (0.48, 1.22)         0.90 (0.74, 1.09)         -0.06 (-0.25, 0.12)            -6.48% (-25.43%, 12.47%)  
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI %>% str #----
+# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----
 # List of 4
 #  $ FullTable:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  30 variables:
 #   ..$ nDisease|Exposed0 (%) %.2f  : chr [1:20] "5 (2.50%)" "60 (30.00%)" "52 (26.00%)" "5 (2.50%)" ...
@@ -542,7 +542,7 @@ openxlsx::openXL(paste0(objectname,".xlsx"))
 #     riskratio(matrix(c(nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1),nrow = 2, ncol = 2), ...)
 # }
 # function.epitools.RelativeRiskCI(1017,2260,165,992) #----
-# function.epitools.RelativeRiskCI(1017,2260,165,992) %>% str #----
+# function.epitools.RelativeRiskCI(1017,2260,165,992) |> str() #----
 # function.epitools.RelativeRiskCI(1017,2260,165,992) %>% {.$measure[2,]} #----
 # # > function.epitools.RelativeRiskCI(1017,2260,165,992) #----
 # # $data
@@ -569,7 +569,7 @@ openxlsx::openXL(paste0(objectname,".xlsx"))
 # # 
 # # attr(,"method")
 # # [1] "Unconditional MLE & normal approximation (Wald) CI"
-# # > function.epitools.RelativeRiskCI(1017,2260,165,992) %>% str #----
+# # > function.epitools.RelativeRiskCI(1017,2260,165,992) |> str() #----
 # # List of 4
 # #  $ data      : num [1:3, 1:3] 1017 2260 3277 165 992 ...
 # #   ..- attr(*, "dimnames")=List of 2
@@ -612,24 +612,24 @@ function.epitools.RelativeRiskCI = function(nDisease0_Exposed0, nDisease0_Expose
     out = list(OddsRatio = OddsRatio, RiskRatio = RiskRatio, RiskDifference = RiskDifference)
     out
 }
-function.epitools.RelativeRiskCI(189, 104, 10845, 10933) %>% str #-----
-function.epitools.RelativeRiskCI(10845, 10933, 189, 104) %>% str #-----
-function.epitools.RelativeRiskCI(10933, 10845, 104, 189) %>% str #-----
-# > function.epitools.RelativeRiskCI(189, 104, 10845, 10933) %>% str #-----
+function.epitools.RelativeRiskCI(189, 104, 10845, 10933) |> str() #-----
+function.epitools.RelativeRiskCI(10845, 10933, 189, 104) |> str() #-----
+function.epitools.RelativeRiskCI(10933, 10845, 104, 189) |> str() #-----
+# > function.epitools.RelativeRiskCI(189, 104, 10845, 10933) |> str() #-----
 # List of 3
 #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.34
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskRatio     : Named num [1:3] 1.01 1 1.01
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskDifference: logi NA
-# > function.epitools.RelativeRiskCI(10845, 10933, 189, 104) %>% str #-----
+# > function.epitools.RelativeRiskCI(10845, 10933, 189, 104) |> str() #-----
 # List of 3
 #  $ OddsRatio     : Named num [1:3] 0.546 0.428 0.693
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskRatio     : Named num [1:3] 0.55 0.434 0.698
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskDifference: logi NA
-# > function.epitools.RelativeRiskCI(10933, 10845, 104, 189) %>% str #-----
+# > function.epitools.RelativeRiskCI(10933, 10845, 104, 189) |> str() #-----
 # List of 3
 #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.34
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
@@ -806,9 +806,9 @@ seq_len(nrow(AnalyticDataset.byCaseExposure))
 AnalyticDataset =
     AnalyticDataset.byCaseExposure[rep(seq_len(nrow(AnalyticDataset.byCaseExposure)), AnalyticDataset.byCaseExposure$n), ] %>% 
     select(-n)
-AnalyticDataset %>% str #----
+AnalyticDataset |> str() #----
 AnalyticDataset %>% table %>% addmargins #----
-# > AnalyticDataset %>% str #----
+# > AnalyticDataset |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	554 obs. of  2 variables:
 #  $ Case    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #  $ Exposure: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
@@ -881,19 +881,19 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 # #@ AnalyticDataset.table ====
 # AnalyticDataset.table = AnalyticDataset %>% table
-# AnalyticDataset.table %>% str #----
-# AnalyticDataset.table %>% dput #----
-# # > AnalyticDataset.table %>% str #----
+# AnalyticDataset.table |> str() #----
+# AnalyticDataset.table |> dput() #----
+# # > AnalyticDataset.table |> str() #----
 # #  'table' int [1:2, 1:2] 341 45 108 60
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ Case    : chr [1:2] "FALSE" "TRUE"
 # #   ..$ Exposure: chr [1:2] "FALSE" "TRUE"
-# # > AnalyticDataset.table %>% dput #----
+# # > AnalyticDataset.table |> dput() #----
 # # structure(c(341L, 45L, 108L, 60L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("FALSE", "TRUE"), Exposure = c("FALSE", "TRUE")), class = "table")
 # 
-# AnalyticDataset.table %>% as.vector %>% dput #----
-# # > AnalyticDataset.table %>% as.vector %>% dput #----
+# AnalyticDataset.table %>% as.vector |> dput() #----
+# # > AnalyticDataset.table %>% as.vector |> dput() #----
 # # c(341L, 45L, 108L, 60L)
 # 
 # AnalyticDataset.table["TRUE", "TRUE"]
@@ -912,19 +912,19 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # 
 # 
 # AnalyticDataset.table[2:1, 2:1] #----
-# AnalyticDataset.table[2:1, 2:1] %>% str #----
-# AnalyticDataset.table[2:1, 2:1] %>% dput #----
+# AnalyticDataset.table[2:1, 2:1] |> str() #----
+# AnalyticDataset.table[2:1, 2:1] |> dput() #----
 # # > AnalyticDataset.table[2:1, 2:1] #----
 # #        Exposure
 # # Case    TRUE FALSE
 # #   TRUE    60    45
 # #   FALSE  108   341
-# # > AnalyticDataset.table[2:1, 2:1] %>% str #----
+# # > AnalyticDataset.table[2:1, 2:1] |> str() #----
 # #  'table' int [1:2, 1:2] 60 108 45 341
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ Case    : chr [1:2] "TRUE" "FALSE"
 # #   ..$ Exposure: chr [1:2] "TRUE" "FALSE"
-# # > AnalyticDataset.table[2:1, 2:1] %>% dput #----
+# # > AnalyticDataset.table[2:1, 2:1] |> dput() #----
 # # structure(c(60L, 108L, 45L, 341L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("TRUE", "FALSE"), Exposure = c("TRUE", "FALSE")), class = "table")
 # 

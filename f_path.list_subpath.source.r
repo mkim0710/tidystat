@@ -236,7 +236,7 @@ if(!objectname %in% names(env.custom)) {
 
 #@ end -----
 
-# > f_path.list_subpath(print.intermediate = T) %>% str
+# > f_path.list_subpath(print.intermediate = T) |> str()
 # Subdirectories of  ./data :  1 
 # Subdirectories of  ./other :  8 
 # Subdirectories of  ./Rdev/00_protocol :  4 
@@ -248,7 +248,7 @@ if(!objectname %in% names(env.custom)) {
 # Structure of the final list of subpaths at the top level:
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
-# > f_path.list_subpath(print.intermediate = T, BreadthFirstSearch = T) %>% str
+# > f_path.list_subpath(print.intermediate = T, BreadthFirstSearch = T) |> str()
 # Processing:  .  at depth  0 
 # Queue length:  0 
 # Processing:  ./-info  at depth  1 
@@ -377,7 +377,7 @@ if(!objectname %in% names(env.custom)) {
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...
 # NULL
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./examples" "./other" "./Rdev" "./Rmd" "./Rplot" "./tests" "./vignettes" "./data/ATC_RxNorm_NDC" "./other/Bash" ...
-# > f_path.list_subpath(getwd()) %>% str
+# > f_path.list_subpath(getwd()) |> str()
 #  chr [1:62] "D:/OneDrive/[][Rproject]/github_tidystat" "D:/OneDrive/[][Rproject]/github_tidystat/-info" "D:/OneDrive/[][Rproject]/github_tidystat/-tmp" ...
 
 

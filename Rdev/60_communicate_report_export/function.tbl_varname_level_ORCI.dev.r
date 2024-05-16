@@ -45,7 +45,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
         object.glm.summary.coef.df$Estimate = exp(object.glm.summary.coef.df$Estimate)
     }
     
-    # object.glm.summary.coef.df %>% full_join(object.glm.confint.df) %>% names %>% dput
+    # object.glm.summary.coef.df %>% full_join(object.glm.confint.df) %>% names |> dput()
     # # Joining, by = "rowname"
     # # c("rowname", "Estimate", "Std. Error", "z value", "Pr(>|z|)", "2.5 %", "97.5 %")
     res1 = object.glm.summary.coef.df %>% full_join(object.glm.confint.df) %>% 
@@ -63,7 +63,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
         rowname = res1$rowname
         , ORCI = res1[c("Estimate", "2.5 %", "97.5 %")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
             map_df(sprintf_but_ceiling5,  fmt = paste0("%.", digits, "f")) %>% 
-            transmute(ORCI = paste0(Estimate, " (", `2.5 %`, ", ", `97.5 %`, ")") %>% gsub("99.99", ">100", .)) %>% unlist
+            transmute(ORCI = paste0(Estimate, " (", `2.5 %`, ", ", `97.5 %`, ")") %>% gsub("99.99", ">100", .)) |> unlist()
         , p_value = paste0("p=", res1$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
         , star = res1$`Pr(>|z|)` %>% 
             cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
@@ -79,7 +79,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
     tbl_varname_level_coefficients_res$Estimate[is.na(tbl_varname_level_coefficients_res$Estimate) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
     tbl_varname_level_coefficients_res$ORCI[is.na(tbl_varname_level_coefficients_res$ORCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
     
-    # tbl_varname_level_coefficients_res %>% names %>% dput 
+    # tbl_varname_level_coefficients_res %>% names |> dput() 
     # c("varname", "level", "varnamelevel", "coefficients", "ORCI", "p_value", "star", "Estimate", "2.5 %", "97.5 %", "Pr(>|z|)")
     out = tbl_varname_level_coefficients_res %>% select(varname, level, ORCI, p_value, star, everything())
 }

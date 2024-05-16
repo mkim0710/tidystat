@@ -3,7 +3,7 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/12_import_files/dir()%20read_sas()%20write_rds().r
 
 library(tidyverse)
-getwd() %>% dput #----
+getwd() |> dput() #----
 
 if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
 env.custom$getwd = getwd()
@@ -21,8 +21,8 @@ env.custom$path1 = paste0(env.custom$path0, "/", env.custom$project_base, env.cu
 
 path4read = env.custom$path1db
 path4write = env.custom$path1
-path4read %>% dput #----
-path4write %>% dput #----
+path4read |> dput() #----
+path4write |> dput() #----
 
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
@@ -31,11 +31,11 @@ load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_constru
 
 # regex4filename = "\\.sas7bdat(\\.xz)?$"
 regex4filename = "\\.sas7bdat\\.xz$"
-list.files(path4read) %>% grep(regex4filename, ., value = T) %>% dput #----
+list.files(path4read) %>% grep(regex4filename, ., value = T) |> dput() #----
 env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 
 regex4filename = "\\.sas7bdat$"
-list.files(path4read) %>% grep(regex4filename, ., value = T) %>% dput #----
+list.files(path4read) %>% grep(regex4filename, ., value = T) |> dput() #----
 env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 
 
@@ -51,7 +51,7 @@ env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filen
 
 
 library(tidyverse)
-getwd() %>% dput #----
+getwd() |> dput() #----
 path4read = "../github_tidystat/data"
 path4write = getwd()
 
@@ -66,13 +66,13 @@ load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_constru
 regex4filename = "\\.sas7bdat$"
 env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
-filenames %>% dput #----
+filenames |> dput() #----
 
 
 
 
-# nhis_heals_jk_d.sas7bdat %>% str #----
-# # > nhis_heals_jk_d.sas7bdat %>% str #----
+# nhis_heals_jk_d.sas7bdat |> str() #----
+# # > nhis_heals_jk_d.sas7bdat |> str() #----
 # # tibble [6,933,649 × 13] (S3: tbl_df/tbl/data.frame)
 # #  $ STND_Y         : chr [1:6933649] "2002" "2002" "2002" "2002" ...
 # #  $ PERSON_ID      : chr [1:6933649] "10000084" "10000158" "10000205" "10000355" ...
@@ -100,8 +100,8 @@ filenames %>% dput #----
 #         if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
 #     }
 # }
-# tmp.df %>% str #----
-# # > tmp.df %>% str #----
+# tmp.df |> str() #----
+# # > tmp.df |> str() #----
 # # tibble [6,933,649 × 13] (S3: tbl_df/tbl/data.frame)
 # #  $ STND_Y         : chr [1:6933649] "2002" "2002" "2002" "2002" ...
 # #  $ PERSON_ID      : chr [1:6933649] "10000084" "10000158" "10000205" "10000355" ...
@@ -145,8 +145,8 @@ fun.read_sas_files2list = function(filenames, path4read) {
                 if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
             }
         }
-        output_name = i %>% str_replace_all("\\.xz$", "") %>% paste0(".rds")
-        output_name_simple = i %>% str_replace_all("\\.xz$", "") %>% str_replace_all("\\.sas7bdat", "")
+        output_name = i |> str_replace_all("\\.xz$", "") %>% paste0(".rds")
+        output_name_simple = i |> str_replace_all("\\.xz$", "") |> str_replace_all("\\.sas7bdat", "")
         # write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
         list.sas7bdat[[output_name_simple]] = tmp.df
         rm(tmp.df)
@@ -155,7 +155,7 @@ fun.read_sas_files2list = function(filenames, path4read) {
         print(list.Sys.time[[i]])
     }
     # attributes(list.sas7bdat)$list.Sys.time = list.Sys.time
-    list.Sys.time %>% dput
+    list.Sys.time |> dput()
     return(list.sas7bdat)
 }
 
@@ -165,8 +165,8 @@ list.khj.sas7bdat =
       "diabetes.sas7bdat", "dm.sas7bdat", "dm_med.sas7bdat", "dth1.sas7bdat", 
       "gj.sas7bdat", "jk1.sas7bdat", "vd.sas7bdat") %>% 
     fun.read_sas_files2list(path4read)
-list.khj.sas7bdat %>% str(max.level = 1) #----
-# > list.khj.sas7bdat %>% str(max.level = 1) #----
+list.khj.sas7bdat |> str(max.level = 1) #----
+# > list.khj.sas7bdat |> str(max.level = 1) #----
 # List of 11
 #  $ ad.sas7bdat.rds      : tibble [25,527 × 3] (S3: tbl_df/tbl/data.frame)
 #  $ dem.sas7bdat.rds     : tibble [483,705 × 5] (S3: tbl_df/tbl/data.frame)
@@ -197,7 +197,7 @@ fun.read_sas_write_rds1by1 = function(filenames, path4read) {
                 if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
             }
         }
-        output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+        output_name = i |> str_replace_all(".xz$", "") %>% paste0(".rds")
         write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
         # rm(tmp.df)
         # gc()
@@ -209,7 +209,7 @@ fun.read_sas_write_rds1by1 = function(filenames, path4read) {
 list.Sys.time =
     c("gy20_0207.sas7bdat") %>% 
     fun.read_sas_write_rds1by1(path4read)
-list.Sys.time %>% str(max.level = 1) #----
+list.Sys.time |> str(max.level = 1) #----
 
 
 
@@ -239,7 +239,7 @@ for (i in filenames) {
             if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
         }
     }
-    output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+    output_name = i |> str_replace_all(".xz$", "") %>% paste0(".rds")
     # write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
     list.sas7bdat[[output_name]] = tmp.df
     # rm(tmp.df)
@@ -247,8 +247,8 @@ for (i in filenames) {
     list.Sys.time[[i]] = Sys.time() - t0
     print(list.Sys.time[[i]])
 }
-list.Sys.time %>% dput #----
-list.sas7bdat %>% str(max.level = 1) #----
+list.Sys.time |> dput() #----
+list.sas7bdat |> str(max.level = 1) #----
 
 
 
@@ -268,14 +268,14 @@ for (i in filenames) {
             if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
         }
     }
-    output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+    output_name = i |> str_replace_all(".xz$", "") %>% paste0(".rds")
     write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
     # rm(tmp.df)
     # gc()
     list.Sys.time[[i]] = Sys.time() - t0
     print(list.Sys.time[[i]])
 }
-list.Sys.time %>% dput #----
+list.Sys.time |> dput() #----
 
 
 
@@ -296,19 +296,19 @@ out.list = filenames %>% map(function(i) {
             if (attributes(tmp.df[[ii]])$label == ii) attributes(tmp.df[[ii]])$label = NULL
         }
     }
-    output_name = i %>% str_replace_all(".xz$", "") %>% paste0(".rds")
+    output_name = i |> str_replace_all(".xz$", "") %>% paste0(".rds")
     write_rds(tmp.df, path = file.path(path4write, output_name), compress = "none")
     rm(tmp.df)
     gc()
     print(Sys.time() - t0)
     Sys.time() - t0
 }) %>% set_names(filenames)
-out.list %>% dput #----
+out.list |> dput() #----
 # [1] "i = nhis_heals_gj_d.sas7bdat"
 # [1] "Sys.time() - t0 = 1.54136161406835"
 # [1] "i = nhis_heals_jk_d.sas7bdat"
 # [1] "Sys.time() - t0 = 45.4658980369568"
-# > out.list %>% dput #----
+# > out.list |> dput() #----
 # list(nhis_heals_gj_d.sas7bdat = structure(1.54137681325277, class = "difftime", units = "mins"), 
 #     nhis_heals_jk_d.sas7bdat = structure(45.4666619300842, class = "difftime", units = "secs"))
 
@@ -327,7 +327,7 @@ path4read = getwd()
 path4write = getwd()
 
 filenames = list.files(path4read) %>% grep(".sas7bdat$",. , value = T) 
-filenames %>% dput #----
+filenames |> dput() #----
 
 out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
@@ -371,22 +371,22 @@ out.list2 = filenames %>% map(function(i) {
 # _r4.sas7bdat _r4_mod.sas7bdat file.info().r =====
 
 library(tidyverse)
-getwd() %>% dput
-# > getwd() %>% dput
+getwd() |> dput()
+# > getwd() |> dput()
 # "X:/mkim/Rproject"
 path4read = "//DON/marketscan_users/smacdonald/"
 path4write = "//DON/marketscan_users/mkim/"
 path4read = path4read %>% {ifelse(substr(., nchar(.), nchar(.)) == "/", ., paste0(., "/"))}
 path4write = path4write %>% {ifelse(substr(., nchar(.), nchar(.)) == "/", ., paste0(., "/"))}
-path4read %>% dput
-path4write %>% dput
+path4read |> dput()
+path4write |> dput()
 
 
-# list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% {file.info(paste0(path4read, .))} %>% dput #----
+# list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% {file.info(paste0(path4read, .))} |> dput() #----
 # list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% {file.info(paste0(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
-list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% file.info %>% dput #----
+list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% file.info |> dput() #----
 list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% file.info %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
-# > list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% {file.info(paste0(path4read, .))} %>% dput #----
+# > list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T) %>% {file.info(paste0(path4read, .))} |> dput() #----
 structure(list(size = c(646184960, 361234432, 9943646208, 5766774784, 
 51642368, 3356622848, 1608515584, 1072300032, 4191027200, 719060992, 
 26229080064, 15912534016, 2723807232, 7011303424, 2264006656, 
@@ -457,8 +457,8 @@ path4write = "/proj/marketscan_users/marketscan/mkim/"
 
 
 filenames = list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T)
-filenames %>% dput
-# > filenames %>% dput
+filenames |> dput()
+# > filenames |> dput()
 c("infant_pregcohort_d_r4.sas7bdat", "infant_pregcohort_i_r4.sas7bdat", 
   "infant_pregcohort_o_r4_mod.sas7bdat", "infant_pregcohort_o_r4.sas7bdat", 
   "infant_pregcohort_r_r4.sas7bdat", "infant_pregcohort_s_r4_mod.sas7bdat", 
@@ -475,7 +475,7 @@ out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
     t0 = Sys.time()
 #    print(paste0("t0", " = ", t0))
-    i2 = i %>% str_replace_all(".xz$", "")
+    i2 = i |> str_replace_all(".xz$", "")
     assign(
         i2
         , read_sas(file.path(path4read, i))
@@ -489,7 +489,7 @@ out.list = filenames %>% map(function(i) {
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
     Sys.time() - t0
 }) %>% set_names(filenames)
-out.list %>% dput #----
+out.list |> dput() #----
 # > out.list = filenames %>% map(function(i) {
 # +     print("i")
 # +     print(i)
@@ -513,13 +513,13 @@ out.list %>% dput #----
 # [1] "2018-09-01 20:51:13 EDT"
 # [1] "Sys.time() - t0"
 # Time difference of 3.642375 secs
-# > out.list %>% dput
+# > out.list |> dput()
 structure(list(infant_pregcohort_r_r4.sas7bdat = structure(3.64281630516052, units = "secs", class = "difftime")), .Names = "infant_pregcohort_r_r4.sas7bdat")
 
 
 filenames = list.files(path4read) %>% grep("_r4.sas7bdat$|_r4_mod.sas7bdat$",. , value = T) %>% grep("^(infant_pregcohort)|(women_pregcohort)",. , value = T)
-filenames %>% dput
-# > filenames %>% dput
+filenames |> dput()
+# > filenames |> dput()
 # c("infant_pregcohort_d_r4.sas7bdat", "infant_pregcohort_i_r4.sas7bdat", 
 # "infant_pregcohort_o_r4_mod.sas7bdat", "infant_pregcohort_o_r4.sas7bdat", 
 # "infant_pregcohort_r_r4.sas7bdat", "infant_pregcohort_s_r4_mod.sas7bdat", 
@@ -534,7 +534,7 @@ out.list = filenames %>% map(function(i) {
     print(paste0("i", " = ", i))
     t0 = Sys.time()
 #    print(paste0("t0", " = ", t0))
-    i2 = i %>% str_replace_all(".xz$", "")
+    i2 = i |> str_replace_all(".xz$", "")
     assign(
         i2
         , read_sas(file.path(path4read, i))
@@ -548,8 +548,8 @@ out.list = filenames %>% map(function(i) {
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
     Sys.time() - t0
 }) %>% set_names(filenames)
-out.list %>% dput #----
-# > filenames %>% dput
+out.list |> dput() #----
+# > filenames |> dput()
 # c("infant_pregcohort_d_r4.sas7bdat", "infant_pregcohort_i_r4.sas7bdat", 
 # "infant_pregcohort_o_r4_mod.sas7bdat", "infant_pregcohort_o_r4.sas7bdat", 
 # "infant_pregcohort_r_r4.sas7bdat", "infant_pregcohort_s_r4_mod.sas7bdat", 

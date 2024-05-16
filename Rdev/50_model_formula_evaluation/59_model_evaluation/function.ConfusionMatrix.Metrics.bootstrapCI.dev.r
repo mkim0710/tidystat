@@ -212,9 +212,9 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
     # out$Metrics = out$Metrics %>% column_to_rownames %>% t %>% as.data.frame %>% rownames_to_column %>% 
     out$Metrics = out$Metrics %>% t %>% as.data.frame 
     
-    # out$Metrics %>% dput
-    # out$Metrics %>% map_df(as.numeric) %>% dput
-    # out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans %>% dput
+    # out$Metrics |> dput()
+    # out$Metrics %>% map_df(as.numeric) |> dput()
+    # out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans |> dput()
     
     out$Metrics$MacroAverage = out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans
     
@@ -354,8 +354,8 @@ set.seed(1); list_bootstrap.InputSquareMatrix1.tbl = 1:1000 %>% map(function(i) 
         group_by(Actual, Predicted) %>% summarize(value = n()) %>% spread(key = "Predicted", value = "value") %>% 
         map_df(replace_na, 0) %>% ungroup
 }) 
-list_bootstrap.InputSquareMatrix1.tbl %>% str #----
-# > list_bootstrap.InputSquareMatrix1.tbl %>% str #----
+list_bootstrap.InputSquareMatrix1.tbl |> str() #----
+# > list_bootstrap.InputSquareMatrix1.tbl |> str() #----
 # List of 1000
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #   ..$ Actual: chr [1:4] "1" "2" "3" "4"
@@ -405,12 +405,12 @@ Sys.time() - t0
 
 
 
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] %>% str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix %>% str #-----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] |> str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics |> str(max.level = 1) #----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix |> str() #-----
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix #-----
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% str(max.level = 1) #----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1) #----
 # List of 1000
 #  $ :List of 6
 #  $ :List of 6
@@ -419,7 +419,7 @@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% c
 #   [list output truncated]
 #  - attr(*, "InputSquareMatrix.tbl")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #  - attr(*, "InputSquareMatrix.tbl.ConfusionMatrix.Metrics")=List of 6
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] %>% str(max.level = 1) #----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] |> str(max.level = 1) #----
 # List of 6
 #  $ InputSquareMatrix.tbl:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
 #  $ ConfusionLongFormat1 :Classes ‘grouped_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	4 obs. of  5 variables:
@@ -435,7 +435,7 @@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% c
 #   ..- attr(*, "groups")=Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2 obs. of  2 variables:
 #   .. ..- attr(*, ".drop")= logi TRUE
 #  $ Metrics              :'data.frame':	21 obs. of  7 variables:
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% str(max.level = 1) #----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics |> str(max.level = 1) #----
 # 'data.frame':	21 obs. of  7 variables:
 #  $ rowname     : chr  "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #  $ equation    : chr  NA NA "True Negative = (Predicted == FALSE) & (Actual == FALSE)" "False Negative = (Predicted == FALSE) & (Actual == TRUE)" ...
@@ -448,7 +448,7 @@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% c
 #  $ V4          : Factor w/ 21 levels " 5"," 8.312500",..: 20 21 16 1 17 18 10 14 6 15 ...
 #   ..- attr(*, "names")= chr  "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #  $ MacroAverage: num  NA NA 103.8 11.8 11.8 ...
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix %>% str #-----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix |> str() #-----
 #  chr [1:21, 1:5] "Actual_1" "Predicted_1" " 74" "12" "12" "56" "0.8235294" "0.8604651" "0.8235294" "0.8604651" "0.8235294" ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:21] "varname4Actual" "varname4Predicted" "TN" "FN" ...
@@ -485,8 +485,8 @@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI =
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
 InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI =
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics
-InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names %>% dput
-# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names %>% dput
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names |> dput()
+# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names |> dput()
 # c("rowname", "equation", "V1", "V2", "V3", "V4", "MacroAverage")
 for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI[[i]] =
@@ -494,9 +494,9 @@ for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
             InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics[[i]] %>% as.character %>% as.numeric
             , list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% map(function(ls) {
                 ls$Metrics
-            }) %>% transpose %>% {.[[i]]} %>% {set_names(., 1:length(.))} %>% as_tibble %>% map_df(as.character) %>% map_df(as.numeric) %>% 
+            }) %>% transpose %>% {.[[i]]} %>% {set_names(., 1:length(.))} |> as_tibble() %>% map_df(as.character) %>% map_df(as.numeric) %>% 
                 apply(MARGIN = 1, FUN = quantile, probs = c(0.025, 0.975), na.rm = T) %>% t
-        ) %>% as_tibble %>% 
+        ) |> as_tibble() %>% 
         mutate(`estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(`2.5%`,2)), ", ", sprintf("%.2f",round(`97.5%`,2)), ")")) %>% 
         {.$`estimate (95% CI) %.2f`}
 }

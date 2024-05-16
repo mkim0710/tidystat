@@ -41,7 +41,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
         rowname = res1$rowname
         , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
             map_df(sprintf_but_ceiling5,  fmt = paste0("%.", digits, "f")) %>% 
-            transmute(HRCI = paste0(`exp(coef)`, " (", `lower .95`, ", ", `upper .95`, ")") %>% gsub("99.99", ">100", .)) %>% unlist
+            transmute(HRCI = paste0(`exp(coef)`, " (", `lower .95`, ", ", `upper .95`, ")") %>% gsub("99.99", ">100", .)) |> unlist()
         , p_value = paste0("p=", res1$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
         , star = res1$`Pr(>|z|)` %>% 
             cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
@@ -116,21 +116,21 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #   Loglik converged before variable  4,6,10 ; beta may be infinite. 
     # 
     # 
-    # #@ object.coxph$coefficients %>% names %>% dput ----
-    # object.coxph$coefficients %>% names %>% dput
-    # # > object.coxph$coefficients %>% names %>% dput
+    # #@ object.coxph$coefficients %>% names |> dput() ----
+    # object.coxph$coefficients %>% names |> dput()
+    # # > object.coxph$coefficients %>% names |> dput()
     # # c("AGE", "SEXFemale", "CigaretteCurrentSmokerTRUE", "BMI_Q_yr18.5-", 
     # # "BMI_Q_yr23-", "BMI_Q_yr25-", "BMI_Q_yr30-", "CCI_yr", "pmhx_DM_OR_glucose_ge126TRUE", 
     # # "total_ddd_yr_METFORMIN.ge30[30,Inf]")
     # 
     # 
-    # #@ object.coxph$formula %>% str ----
-    # object.coxph$formula %>% str
-    # object.coxph$formula %>% as.list %>% str
-    # # > object.coxph$formula %>% str
+    # #@ object.coxph$formula |> str() ----
+    # object.coxph$formula |> str()
+    # object.coxph$formula %>% as.list |> str()
+    # # > object.coxph$formula |> str()
     # # Class 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
     # #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-    # # > object.coxph$formula %>% as.list %>% str
+    # # > object.coxph$formula %>% as.list |> str()
     # # List of 3
     # #  $ : symbol ~
     # #  $ : language Surv(time = fuduration_yr, event = evnttrth_C24_r)
@@ -138,12 +138,12 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #  - attr(*, "class")= chr "formula"
     # #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
     # 
-    # #@ object.coxph$terms %>% str ----
-    # object.coxph$terms %>% str
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+    # #@ object.coxph$terms |> str() ----
+    # object.coxph$terms |> str()
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
     # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
-    # # > object.coxph$terms %>% str
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
+    # # > object.coxph$terms |> str()
     # # Classes 'terms', 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
     # #   ..- attr(*, "variables")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
     # #   ..- attr(*, "factors")= int [1:8, 1:7] 0 1 0 0 0 0 0 0 0 0 ...
@@ -162,20 +162,20 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #   ..- attr(*, "predvars")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
     # #   ..- attr(*, "dataClasses")= Named chr [1:8] "nmatrix.2" "numeric" "factor" "logical" ...
     # #   .. ..- attr(*, "names")= chr [1:8] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "AGE" "SEX" "CigaretteCurrentSmoker" ...
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
     # # List of 2
     # #  $ CigaretteCurrentSmoker  : chr [1:2] "FALSE" "TRUE"
     # #  $ pmhx_DM_OR_glucose_ge126: chr [1:2] "FALSE" "TRUE"
     # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
     # # named list()
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
     # # structure(list(), .Names = character(0))
     # 
     # 
     # 
-    # #@ object.coxph$xlevels %>% str(max.level = 1) ----
-    # object.coxph$xlevels %>% str(max.level = 1)
-    # # > object.coxph$xlevels %>% str(max.level = 1)
+    # #@ object.coxph$xlevels |> str(max.level = 1) ----
+    # object.coxph$xlevels |> str(max.level = 1)
+    # # > object.coxph$xlevels |> str(max.level = 1)
     # # List of 3
     # #  $ SEX                        : chr [1:2] "Male" "Female"
     # #  $ BMI_Q_yr                   : chr [1:5] "0-" "18.5-" "23-" "25-" ...
@@ -183,16 +183,16 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 
     # 
     # 
-    # # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} %>% str
-    # # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} %>% str
+    # # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
+    # # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
     # # # List of 5
     # # #  $ SEcoQ4                : logi [1:2] FALSE TRUE
     # # #  $ Disability_Any        : logi [1:2] FALSE TRUE
     # # #  $ CigaretteCurrentSmoker: logi [1:2] FALSE TRUE
     # # #  $ Drink_ge3pwk          : logi [1:2] FALSE TRUE
     # # #  $ Excercise_ge3pwk      : logi [1:2] FALSE TRUE
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
     # # List of 5
     # #  $ SEcoQ4                : chr [1:2] "FALSE" "TRUE"
     # #  $ Disability_Any        : chr [1:2] "FALSE" "TRUE"
@@ -201,14 +201,14 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #  $ Excercise_ge3pwk      : chr [1:2] "FALSE" "TRUE"
     # 
     # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
     # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
     # # named list()
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
     # # structure(list(), .Names = character(0))
     
     # degub 200222 for strata(MatchingPairID) -----
-#     Browse[2]> object.coxph$xlevels %>% str()
+#     Browse[2]> object.coxph$xlevels |> str()
 # List of 2
 #  $ MatchingPairID        : chr [1:683] "Female|40-|SEcoQ1|Level 1-2_NA" "Female|40-|SEcoQ1|Level 3-6_NA" "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" ...
 #  $ strata(MatchingPairID): chr [1:587] "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" "Female|40-|SEcoQ1|None_3" "Female|40-|SEcoQ1|None_4" ...
@@ -243,7 +243,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 2 AGE_group 50-   AGE_group50-
     # 3 AGE_group 60-   AGE_group60-
     # 4 AGE_group 70-   AGE_group70-
-    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% dput
+    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) |> dput()
     # structure(list(varname = c("AGE_group", "AGE_group", "AGE_group", 
     # "AGE_group"), level = c("40-", "50-", "60-", "70-"), varnamelevel = c("AGE_group40-", 
     # "AGE_group50-", "AGE_group60-", "AGE_group70-")), class = c("tbl_df", 
@@ -251,7 +251,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% filter(varname == "varname")
     # # A tibble: 0 x 3
     # # ... with 3 variables: varname <chr>, level <chr>, varnamelevel <chr>
-    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% filter(varname == "varname") %>% dput
+    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% filter(varname == "varname") |> dput()
     # structure(list(varname = character(0), level = character(0), 
     #     varnamelevel = character(0)), class = c("tbl_df", "tbl", 
     # "data.frame"), row.names = c(NA, 0L))
@@ -259,7 +259,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # A tibble: 0 x 3
     # # ... with 3 variables: varname <chr>, level <chr>, varnamelevel <chr>
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-    # +             object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
     # +         ) #----
     # # A tibble: 6 x 4
     #   varname   level varnamelevel             coefficients
@@ -270,7 +270,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 4 AGE_group 70-   AGE_group70-                   1.91  
     # 5 NA        NA    total_ddd_yr_ASPIRIN.dyd       0.0176
     # 6 NA        NA    total_ddd_yr_NSAID.dyd         0.0245
-    # Browse[2]> tbl_varname_level_coefficients %>% dput
+    # Browse[2]> tbl_varname_level_coefficients |> dput()
     # structure(list(varname = c("AGE_group", "AGE_group", "AGE_group", 
     # "AGE_group", NA, NA), level = c("40-", "50-", "60-", "70-", NA, 
     # NA), varnamelevel = c("AGE_group40-", "AGE_group50-", "AGE_group60-", 
@@ -291,14 +291,14 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 6 total_ddd_yr_NSAID.dyd   NA    total_ddd_yr_NSAID.dyd         0.0245
     # 
     # 
-    # Browse[1]> list_levels %>% str
+    # Browse[1]> list_levels |> str()
     #  list()
-    # Browse[1]> list_levels %>% dput
+    # Browse[1]> list_levels |> dput()
     # list()
     # Browse[1]> list_levels %>% length
     # [1] 0
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-    # +             object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
     # +         ) #----
     # Error in mutate_impl(.data, dots) : 
     #   Evaluation error: object 'level' not found.
@@ -328,8 +328,8 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     tbl_varname_level_coefficients$varname[is.na(tbl_varname_level_coefficients$varname)] = 
         tbl_varname_level_coefficients$varnamelevel[is.na(tbl_varname_level_coefficients$varname)]
     
-    # tbl_varname_level_coefficients %>% print(n=99) #----
-    # # > tbl_varname_level_coefficients %>% print(n=99) #----
+    # tbl_varname_level_coefficients |> print(n=99) #----
+    # # > tbl_varname_level_coefficients |> print(n=99) #----
     # # # A tibble: 15 x 4
     # # varname                     level    varnamelevel                        coefficients
     # # <chr>                       <chr>    <chr>                                      <dbl>
@@ -355,8 +355,8 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     res1 = summary(object.coxph)[c("coefficients", "conf.int")] %>% 
         map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = c("rowname", "exp(coef)")) %>% 
         {.[c("rowname", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")]}
-    # res1 %>% as_tibble
-    # # > res1 %>% as_tibble
+    # res1 |> as_tibble()
+    # # > res1 |> as_tibble()
     # # # A tibble: 10 x 5
     # #    rowname                             `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
     # #    <chr>                                     <dbl>       <dbl>       <dbl>      <dbl>
@@ -378,7 +378,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     #         add_column(" (", .after = "exp(coef)") %>%
     #         add_column(", ", .after = "lower .95") %>%
     #         add_column("), p = ", .after = "upper .95") %>%
-    #         unite(sep="") %>% unlist %>% gsub("p = 0.000", "p < 0.001", .)
+    #         unite(sep="") |> unlist() %>% gsub("p = 0.000", "p < 0.001", .)
     # )
   
     sprintf_but_ceiling5 = function(fmt='%#.2f', x, ...) {
@@ -392,7 +392,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     #     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
     # res1[c("exp(coef)", "lower .95", "upper .95")] %>%
     #     signif(digits = digits + 1) %>% map_df(sprintf_but_ceiling5,  fmt = "%.2f")
-    # res1[c("exp(coef)", "lower .95", "upper .95")] %>% str
+    # res1[c("exp(coef)", "lower .95", "upper .95")] |> str()
     # res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
     #     map_df(sprintf_but_ceiling5,  fmt = "%.2f")
     # # > res10[c("exp(coef)", "lower .95", "upper .95")] %>%
@@ -443,7 +443,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # # ... with 18 more rows
     
     # debug 200222 ----
-    # # Browse[2]> res1 %>% dput
+    # # Browse[2]> res1 |> dput()
     # res1 = structure(list(rowname = "total_ddd_yr_ASPIRIN.dyd", `exp(coef)` = 0.978099509806593,
     # `lower .95` = 0.891900198786099, `upper .95` = 1.07262970945176,
     # `Pr(>|z|)` = 0.638042892543426), row.names = c(NA, -1L), class = "data.frame")
@@ -452,7 +452,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
         rowname = res1$rowname
         , HRCI = res1[c("exp(coef)", "lower .95", "upper .95")] %>% {.[. > 99.99 & . < Inf] = 99.99; .} %>% 
             map_df(sprintf_but_ceiling5,  fmt = paste0("%.", digits, "f")) %>% 
-            transmute(HRCI = paste0(`exp(coef)`, " (", `lower .95`, ", ", `upper .95`, ")") %>% gsub("99.99", ">100", .)) %>% unlist
+            transmute(HRCI = paste0(`exp(coef)`, " (", `lower .95`, ", ", `upper .95`, ")") %>% gsub("99.99", ">100", .)) |> unlist()
         , p_value = paste0("p=", res1$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
         , star = res1$`Pr(>|z|)` %>% 
             cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
@@ -482,9 +482,9 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
     tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
     tbl_varname_level_coefficients_res$HRCI[is.na(tbl_varname_level_coefficients_res$HRCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
-    # tbl_varname_level_coefficients_res %>% print(n=99)
-    # tbl_varname_level_coefficients_res %>% names %>% dput
-    # # > tbl_varname_level_coefficients_res %>% print(n=99)
+    # tbl_varname_level_coefficients_res |> print(n=99)
+    # tbl_varname_level_coefficients_res %>% names |> dput()
+    # # > tbl_varname_level_coefficients_res |> print(n=99)
     # # # A tibble: 15 x 11
     # # varname                     level    varnamelevel                        coefficients HRCI                           p_value star  `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
     # # <chr>                       <chr>    <chr>                                      <dbl> <chr>                          <chr>   <fct>       <dbl>       <dbl>       <dbl>      <dbl>
@@ -503,11 +503,11 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # 13 pmhx_DM_OR_glucose_ge126    TRUE     pmhx_DM_OR_glucose_ge126TRUE               0.832 "        2.299 (0.232, 22.81)" p=0.477 "   "     2.30e+0      0.232        22.8     0.477  
     # # 14 AGE                         NA       AGE                                        0.227 "        1.255 (1.085,  1.45)" p=0.002 ***       1.26e+0      1.08          1.45    0.00225
     # # 15 CCI_yr                      NA       CCI_yr                                     0.138 "        1.148 (0.667,  1.97)" p=0.619 "   "     1.15e+0      0.667         1.97    0.619  
-    # # > tbl_varname_level_coefficients_res %>% names %>% dput
+    # # > tbl_varname_level_coefficients_res %>% names |> dput()
     # # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
     # # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
-    # # txt %>% str_extract_all("[A-z0-9_]+") %>% str
-    # # txt %>% str_extract_all("[A-z0-9_]+") %>% unlist %>% paste0(collapse = ', ') %>% {paste0('select(', ., ')')} %>% cat
+    # # txt |> str_extract_all("[A-z0-9_]+") |> str()
+    # # txt |> str_extract_all("[A-z0-9_]+") |> unlist() %>% paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat()
     # # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
     
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
@@ -522,8 +522,8 @@ name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% str(max.level = 1)
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% str(max.level = 1)
+analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1)
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list |> str(max.level = 1)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
@@ -559,10 +559,10 @@ data_list.cut.coxph_list.HRCI =
             '!is.list(list_object.coxph)'
         }
     })
-data_list.cut.coxph_list.HRCI %>% str(max.level = 1)
-data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
-data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
-# > data_list.cut.coxph_list.HRCI %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI |> str(max.level = 1)
+data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med |> str(max.level = 1)
+data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` |> str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI |> str(max.level = 1)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :List of 5
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :List of 5
@@ -571,14 +571,14 @@ data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Beh
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :List of 5
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:List of 5
 #  $ function.tbl_varname_level_coefHR                                : chr "!is.list(list_object.coxph)"
-# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med |> str(max.level = 1)
 # List of 5
 #  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	36 obs. of  11 variables:
 #  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	38 obs. of  11 variables:
 #  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	42 obs. of  11 variables:
 #  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	44 obs. of  11 variables:
-# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med$`_5yr` |> str(max.level = 1)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ varname     : chr  "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" "total_ddd_yr_ASPIRIN.cut" ...
 #  $ level       : chr  "[0,0.001)" "[0.001,30)" "[30,365)" "[365,730)" ...
@@ -616,10 +616,10 @@ name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
 
-data_list.cut.coxph_list.HRCI %>% str(max.level = 1)
-data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% str(max.level = 1)
-data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
-# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NA) %>% str(max.level = 1)
+data_list.cut.coxph_list.HRCI |> str(max.level = 1)
+data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) |> str(max.level = 1)
+data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact |> str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NA) |> str(max.level = 1)
 # List of 7
 #  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:
@@ -628,7 +628,7 @@ data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4Main
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ function.tbl_varname_level_coefHR                                : logi NA
-# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact %>% str(max.level = 1)
+# > data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact |> str(max.level = 1)
 # List of 6
 #  $ cut_model2_ASPIRIN_AGE_group                                     :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	11 obs. of  11 variables:
 #  $ cut_model3_ASPIRIN_AGE_group_NSAID                               :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	18 obs. of  11 variables:
@@ -644,7 +644,7 @@ data_main.cut.coxph_list.HRCI =
                                      
                                      
                                      
-# data_main.cut.coxph_list.HRCI %>% map() select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print #----
+# data_main.cut.coxph_list.HRCI %>% map() select(varname, level, HRCI, p_value, star) %>% as.data.frame |> print() #----
 data_main.cut.coxph_list.HRCI %>% map(function(ob) {
     # Codes to insert inside in the beginning annonymous function for map
     parent.x = get(".x", envir = parent.frame())
@@ -654,7 +654,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
     # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
-    ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print
+    ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame |> print()
     "ok"
 })
 # > data_main.cut.coxph_list.HRCI %>% map(function(ob) {
@@ -666,7 +666,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # +     # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
 # +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 # + 
-# +     ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame %>% print
+# +     ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame |> print()
 # +     "ok"
 # + })
 # Beginning .f() map from list element [[1]] named: cut_model2_ASPIRIN_AGE_group  #---- 

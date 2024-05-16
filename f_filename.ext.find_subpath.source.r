@@ -105,7 +105,7 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
     # # # }
     # # # <bytecode: 0x0000020ed66821a0>
     # # # <environment: namespace:tools>
-    ext = filename.ext %>% str_extract("\\.([[:alnum:]]+)$") %>% str_replace("^\\.", "")
+    ext = filename.ext |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
     if (is.na(ext)) {stop("Error: filename.ext must have an extension.")}
     
     if (print.intermediate) {
@@ -169,7 +169,7 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
     if (length(list_out) == 0) {
         cat("----------- File not found while searching following subpaths:\n")
         vec_subpath <- unlist(list_subpath, use.names = FALSE)
-        vec_subpath %>% deparse(width.cutoff=500) %>% cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) %>% cat(sep="\n"); # width.cutoff=500 is the max ----
+        vec_subpath %>% deparse(width.cutoff=500) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
         return(NULL)
     }
         

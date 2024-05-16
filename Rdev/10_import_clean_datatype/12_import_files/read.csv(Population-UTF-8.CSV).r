@@ -42,17 +42,17 @@ readr::guess_encoding("Population.csv") #----
 # 2 GB18030        0.64
 
 Population <- read.csv("Population.csv", header = TRUE) #----
-Population %>% str
-# > Population %>% str
+Population |> str()
+# > Population |> str()
 # 'data.frame':	163 obs. of  3 variables:
 #  $ Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name: Factor w/ 162 levels "´ã¾ç±º","´çÁø½Ã",..: 67 160 3 133 34 4 24 70 72 73 ...
 #  $ Pop : int  9992758 3613809 2459573 2770503 1401447 1467564 1082720 129322 1050602 937702 ...
 
 Population <- read.csv("Population.csv", header = TRUE, encoding="EUC-KR") #----
-Population %>% str
+Population |> str()
 # > Population <- read.csv("Population.csv", header = TRUE, encoding="EUC-KR") #----
-# > Population %>% str
+# > Population |> str()
 # 'data.frame':	163 obs. of  3 variables:
 #  $ Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name: Factor w/ 162 levels "´ã¾ç±º","´çÁø½Ã",..: 67 160 3 133 34 4 24 70 72 73 ...
@@ -61,18 +61,18 @@ Population %>% str
 
 
 Population <- read.csv("Population-UTF-8.CSV", header = TRUE) #----
-Population %>% str
+Population |> str()
 # > Population <- read.csv("Population-UTF-8.CSV", header = TRUE) #----
-# > Population %>% str
+# > Population |> str()
 # 'data.frame':	163 obs. of  3 variables:
 #  $ ï..Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name   : Factor w/ 162 levels "ê´´ì‚°êµ°","ê´‘ëª…ì‹œ",..: 96 31 56 124 4 57 149 90 71 91 ...
 #  $ Pop    : int  9992758 3613809 2459573 2770503 1401447 1467564 1082720 129322 1050602 937702 ...
 
 Population <- read.csv("Population-UTF-8.CSV", header = TRUE, encoding="UTF-8") #----
-Population %>% str
+Population |> str()
 # > Population <- read.csv("Population-UTF-8.CSV", header = TRUE, encoding="UTF-8") #----
-# > Population %>% str
+# > Population |> str()
 # 'data.frame':	163 obs. of  3 variables:
 #  $ X.U.FEFF.Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name         : Factor w/ 162 levels "가평군","강릉시",..: 64 54 41 115 19 42 104 68 70 66 ...
@@ -80,9 +80,9 @@ Population %>% str
 
 
 Population <- read.csv("Population-UTF-8.CSV", header = TRUE, encoding="UTF-8") %>% {set_names(., gsub("^X\\.U\\.FEFF\\.", "", names(.)))} #----
-Population %>% str
+Population |> str()
 # > Population <- read.csv("Population-UTF-8.CSV", header = TRUE, encoding="UTF-8") %>% {set_names(., gsub("^X\\.U\\.FEFF\\.", "", names(.)))} #----
-# > Population %>% str
+# > Population |> str()
 # 'data.frame':	163 obs. of  3 variables:
 #  $ Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name: Factor w/ 162 levels "가평군","강릉시",..: 64 54 41 115 19 42 104 68 70 66 ...
@@ -99,7 +99,7 @@ Population %>% str
 #@ ?read_csv =====
 ?read_csv
 Population <- read_csv("Population-UTF-8.CSV", col_names = TRUE) #----
-Population %>% str
+Population |> str()
 # > Population <- read_csv("Population-UTF-8.CSV", col_names = TRUE) #----
 # Parsed with column specification:
 # cols(
@@ -107,7 +107,7 @@ Population %>% str
 #   Name = col_character(),
 #   Pop = col_integer()
 # )
-# > Population %>% str
+# > Population |> str()
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	163 obs. of  3 variables:
 #  $ Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name: chr  "<U+C11C><U+C6B8>" "<U+BD80><U+C0B0>" "<U+B300><U+AD6C>" "<U+C778><U+CC9C>" ...
@@ -126,7 +126,7 @@ Population %>% str
 
 
 Population <- read_csv("Population-UTF-8.CSV", col_names = TRUE, locale = locale(encoding = "UTF-8")) #----
-Population %>% str
+Population |> str()
 # > Population <- read_csv("Population-UTF-8.CSV", col_names = TRUE, locale = locale(encoding = "UTF-8")) #----
 # Parsed with column specification:
 # cols(
@@ -134,7 +134,7 @@ Population %>% str
 #   Name = col_character(),
 #   Pop = col_integer()
 # )
-# > Population %>% str
+# > Population |> str()
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	163 obs. of  3 variables:
 #  $ Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name: chr  "<U+C11C><U+C6B8>" "<U+BD80><U+C0B0>" "<U+B300><U+AD6C>" "<U+C778><U+CC9C>" ...
@@ -153,7 +153,7 @@ Population %>% str
 
 
 Population <- read_csv("Population-UTF-8.CSV", col_names = TRUE, locale = locale(encoding = "UTF-8", asciify = TRUE)) #----
-Population %>% str
+Population |> str()
 # > Population <- read_csv("Population-UTF-8.CSV", col_names = TRUE, locale = locale(encoding = "UTF-8", asciify = TRUE)) #----
 # Parsed with column specification:
 # cols(
@@ -161,7 +161,7 @@ Population %>% str
 #   Name = col_character(),
 #   Pop = col_integer()
 # )
-# > Population %>% str
+# > Population |> str()
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	163 obs. of  3 variables:
 #  $ Code: int  11010 21010 22010 23010 24010 25010 26010 29010 31011 31021 ...
 #  $ Name: chr  "<U+C11C><U+C6B8>" "<U+BD80><U+C0B0>" "<U+B300><U+AD6C>" "<U+C778><U+CC9C>" ...
@@ -202,8 +202,8 @@ Sys.setlocale("LC_ALL", "korean") #----
 # https://github.com/tidyverse/readr/issues/834 ====
 path4read = "BLS_추출파일/"
 subpath = "기저질환/"
-dir(paste0(path4read, subpath)) %>% dput #----
-# > dir(paste0(path4read, subpath)) %>% dput #----
+dir(paste0(path4read, subpath)) |> dput() #----
+# > dir(paste0(path4read, subpath)) |> dput() #----
 # c("1.COPD.xlsx", "2.Asthma.xlsx", "3.TB1.xlsx", "4.TB2.xlsx", 
 # "5.ILD.xlsx", "6.Bronchiectasis.xlsx", "7.Pneumonia1.xlsx", "8.Pneumonia2.xlsx", 
 # "9.Pneumonia3.xlsx")
@@ -211,7 +211,7 @@ dir(paste0(path4read, subpath)) %>% dput #----
 path4read = "BLS_추출파일/"
 subpath = "기저질환/"
 list190220[[subpath]] = list()
-for (ii in dir(paste0(path4read, subpath)) %>% str_subset(".xls")) {
+for (ii in dir(paste0(path4read, subpath)) |> str_subset(".xls")) {
     # print(ii)
     tmp.xlsx <- tempfile(fileext = ".xlsx")
     file.copy(paste0(path4read, subpath, ii), tmp.xlsx)

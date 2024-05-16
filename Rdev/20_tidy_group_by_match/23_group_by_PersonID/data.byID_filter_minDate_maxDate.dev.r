@@ -88,8 +88,8 @@ warnings()
 
 
 
-ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure %>% map(function(x) tibble(is.Inf = sum(x == Inf, na.rm = T), is.NInf = sum(x == -Inf, na.rm = T), is.na = sum(is.na(x))) ) %>% bind_rows(.id = ".id") %>% print(n = 99) #----
-# > ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure %>% map(function(x) tibble(is.Inf = sum(x == Inf, na.rm = T), is.NInf = sum(x == -Inf, na.rm = T), is.na = sum(is.na(x))) ) %>% bind_rows(.id = ".id") %>% print(n = 99) #----
+ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure %>% map(function(x) tibble(is.Inf = sum(x == Inf, na.rm = T), is.NInf = sum(x == -Inf, na.rm = T), is.na = sum(is.na(x))) ) %>% bind_rows(.id = ".id") |> print(n = 99) #----
+# > ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure %>% map(function(x) tibble(is.Inf = sum(x == Inf, na.rm = T), is.NInf = sum(x == -Inf, na.rm = T), is.na = sum(is.na(x))) ) %>% bind_rows(.id = ".id") |> print(n = 99) #----
 # # A tibble: 67 x 4
 #    .id                                                       is.Inf is.NInf is.na
 #    <chr>                                                      <int>   <int> <int>
@@ -172,37 +172,37 @@ as.Date(-Inf)
 # Error in as.Date.numeric(-Inf) : 'origin' must be supplied
 
 
-structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% dput
+structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") |> dput()
 structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")
-structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% summary #----
-structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf, as.Date(NA), as.Date(.))} %>% summary #----
-structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} %>% summary #----
-structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} %>% summary #----
-structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, (NA), (.))} %>% summary #----
-# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% dput
+structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") |> summary() #----
+structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf, as.Date(NA), as.Date(.))} |> summary() #----
+structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} |> summary() #----
+structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} |> summary() #----
+structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, (NA), (.))} |> summary() #----
+# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") |> dput()
 # structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")
 # > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")
 # [1] "2011-12-10" NA           NA           NA           "2011-02-28"
-# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% summary #----
+# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") |> summary() #----
 #         Min.      1st Qu.       Median         Mean      3rd Qu.         Max.         NA's 
 #           NA           NA "2011-07-20"           NA           NA           NA          "1" 
-# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf, as.Date(NA), as.Date(.))} %>% summary #----
+# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf, as.Date(NA), as.Date(.))} |> summary() #----
 #         Min.      1st Qu.       Median         Mean      3rd Qu.         Max.         NA's 
 #           NA           NA "2011-02-28"           NA "2011-07-20" "2011-12-10"          "2" 
-# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} %>% summary #----
+# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {if_else(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} |> summary() #----
 #         Min.      1st Qu.       Median         Mean      3rd Qu.         Max.         NA's 
 # "2011-02-28" "2011-05-10" "2011-07-20" "2011-07-20" "2011-09-29" "2011-12-10"          "3" 
-# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} %>% summary #----
+# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, as.Date(NA), as.Date(.))} |> summary() #----
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 #   15033   15104   15176   15176   15247   15318       3 
-# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, (NA), (.))} %>% summary #----
+# > structure(c(15318, -Inf, NA, Inf, 15033), class = "Date") %>% {ifelse(. == Inf | . == -Inf, (NA), (.))} |> summary() #----
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 #   15033   15104   15176   15176   15247   15318       3 
 
-data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == (Inf) | x == (-Inf), as.Date(NA), as.Date(x))) %>% summary #-----
-data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == as.Date(Inf) | x == as.Date(-Inf), as.Date(NA), as.Date(x))) %>% summary #-----
-data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(as.numeric(x) == (Inf) | as.numeric(x) == (-Inf), as.Date(NA), as.Date(x))) %>% summary #-----
-# > data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == (Inf) | x == (-Inf), as.Date(NA), as.Date(x))) %>% summary #-----
+data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == (Inf) | x == (-Inf), as.Date(NA), as.Date(x))) |> summary() #-----
+data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == as.Date(Inf) | x == as.Date(-Inf), as.Date(NA), as.Date(x))) |> summary() #-----
+data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(as.numeric(x) == (Inf) | as.numeric(x) == (-Inf), as.Date(NA), as.Date(x))) |> summary() #-----
+# > data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == (Inf) | x == (-Inf), as.Date(NA), as.Date(x))) |> summary() #-----
 #      value           
 #  Min.   :2011-02-28  
 #  1st Qu.:2011-05-10  
@@ -211,10 +211,10 @@ data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>
 #  3rd Qu.:2011-09-29  
 #  Max.   :2011-12-10  
 #  NA's   :3           
-# > data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == as.Date(Inf) | x == as.Date(-Inf), as.Date(NA), as.Date(x))) %>% summary #-----
+# > data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(x == as.Date(Inf) | x == as.Date(-Inf), as.Date(NA), as.Date(x))) |> summary() #-----
 # Error in as.Date.numeric(Inf) : 'origin' must be supplied
 # Called from: as.Date.numeric(Inf)
-# > data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(as.numeric(x) == (Inf) | as.numeric(x) == (-Inf), as.Date(NA), as.Date(x))) %>% summary #-----
+# > data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>% map_df(function(x) if_else(as.numeric(x) == (Inf) | as.numeric(x) == (-Inf), as.Date(NA), as.Date(x))) |> summary() #-----
 #      value           
 #  Min.   :2011-02-28  
 #  1st Qu.:2011-05-10  

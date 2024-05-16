@@ -16,8 +16,8 @@ auc(roc_obj)
 # > auc(roc_obj)
 # Area under the curve: 0.825
 
-roc_obj[c("sensitivities", "specificities")] %>% as_tibble
-# > roc_obj[c("response", "predictor", "sensitivities", "specificities")] %>% as_tibble
+roc_obj[c("sensitivities", "specificities")] |> as_tibble()
+# > roc_obj[c("response", "predictor", "sensitivities", "specificities")] |> as_tibble()
 # # A tibble: 20 x 4
 #    response predictor sensitivities specificities
 #       <dbl>     <dbl>         <dbl>         <dbl>
@@ -56,7 +56,7 @@ function.vec_actual_prediction.threshold_roc = function(vec_actual, vec_predicti
         out = NA
         attr(out, "ErrorMessage") = "length(vec_actual) != length(vec_prediction)"
     } else {
-        out = tibble(threshold = vec_prediction %>% unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+        out = tibble(threshold = vec_prediction |> unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
             mutate(
                 TP = threshold %>% map_dbl(function(i) {sum(vec_actual == T & vec_prediction >= i)})
                 , FP = threshold %>% map_dbl(function(i) {sum(vec_actual != T & vec_prediction >= i)})
@@ -99,8 +99,8 @@ vec_actual_prediction.treshold_roc %>% arrange(FPR, TPR) %>%
 vec_actual_prediction.treshold_roc %>% arrange(1 - Specificity, Sensitivity) %>% 
     ggplot(aes(x = 1 - Specificity, y = Sensitivity)) + geom_point() + geom_line() + coord_cartesian(xlim = c(0,1), ylim = c(0,1))
 vec_actual_prediction.treshold_roc
-vec_actual_prediction.treshold_roc %>% str #----
-# > vec_actual_prediction.treshold_roc %>% str #----
+vec_actual_prediction.treshold_roc |> str() #----
+# > vec_actual_prediction.treshold_roc |> str() #----
 # Classes ‘tbl_df’, ‘tbl’, ‘object.threshold_roc’ and 'data.frame':	20 obs. of  24 variables:
 #  $ threshold      : num  -Inf 1.5 2.5 3.5 4.5 ...
 #  $ TP             : num  10 10 10 10 10 9 9 9 8 8 ...
@@ -133,7 +133,7 @@ vec_actual_prediction.treshold_roc %>% str #----
 
 #@ -----
 function.df_actual_prediction.threshold_roc = function(df_actual_prediction, varname4actual = "actual", varname4prediction = "prediction") {
-    out = tibble(threshold = df_actual_prediction[[varname4prediction]] %>% unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+    out = tibble(threshold = df_actual_prediction[[varname4prediction]] |> unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
         mutate(
             TP = threshold %>% map_dbl(function(i) {sum(df_actual_prediction[[varname4actual]] == T & df_actual_prediction[[varname4prediction]] >= i)})
             , FP = threshold %>% map_dbl(function(i) {sum(df_actual_prediction[[varname4actual]] != T & df_actual_prediction[[varname4prediction]] >= i)})
@@ -170,7 +170,7 @@ function.df_actual_prediction.threshold_roc = function(df_actual_prediction, var
 
 df_actual_prediction.treshold_roc = df_actual_prediction %>% function.df_actual_prediction.threshold_roc #-----
 df_actual_prediction.treshold_roc
-df_actual_prediction.treshold_roc %>% str #----
+df_actual_prediction.treshold_roc |> str() #----
 # > df_actual_prediction.treshold_roc
 # # A tibble: 20 x 24
 #    threshold    TP    FP    FN    TN total Sensitivity Specificity     PPV     NPV   TPR   FPR F1score F2score F.5score     OR    LRp     LRn     phi
@@ -196,7 +196,7 @@ df_actual_prediction.treshold_roc %>% str #----
 # 19      19.5     1     0     9    10    20         0.1         1     1       0.526   0.1 0       0.182   0.122    0.357 Inf    Inf      0.900   0.229
 # 20     Inf       0     0    10    10    20         0           1   NaN       0.5     0   0     NaN     NaN      NaN     NaN    NaN      1     NaN    
 # # ... with 5 more variables: SimpleAgreement <dbl>, TN_expected <dbl>, TP_expected <dbl>, ChanceAgreement <dbl>, Cohen_kappa <dbl>
-# > df_actual_prediction.treshold_roc %>% str #----
+# > df_actual_prediction.treshold_roc |> str() #----
 # Classes ‘tbl_df’, ‘tbl’, ‘object.threshold_roc’ and 'data.frame':	20 obs. of  24 variables:
 #  $ threshold      : num  -Inf 1.5 2.5 3.5 4.5 ...
 #  $ TP             : num  10 10 10 10 10 9 9 9 8 8 ...
@@ -270,7 +270,7 @@ function.vec_actual_prediction.auc = function(vec_actual, vec_prediction) {
         out = NA
         attr(out, "ErrorMessage") = "length(vec_actual) != length(vec_prediction)"
     } else {
-        out = tibble(threshold = vec_prediction %>% unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+        out = tibble(threshold = vec_prediction |> unique %>% sort(decreasing = F) %>% {(. + lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
             mutate(
                 TP = threshold %>% map_dbl(function(i) {sum(vec_actual == T & vec_prediction >= i)})
                 , FP = threshold %>% map_dbl(function(i) {sum(vec_actual != T & vec_prediction >= i)})

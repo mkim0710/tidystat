@@ -237,8 +237,8 @@ tblPersonID_FilterName.ndDate %>% select(ENROLID) %>%
 
 
 # tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation = bind_rows(Criteria.tbl.list$ExclusionCriteria.tbl, Criteria.tbl.list$InclusionCriteria.tbl)
-Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) %>% dput #----
-# > Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) %>% dput #----
+Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) |> dput() #----
+# > Criteria.tbl.list$ExclusionCriteria.tbl[3:4, ] %>% select(-note) |> dput() #----
 tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation = 
     structure(list(CriteriaID = c("Exc3", "Exc4"), CriteriaShortName = c("ICD9_DMt1",
     "Rx_Metformin.lt2"), t_begin.int = c(-Inf, -Inf), t_end.int = c(154,
@@ -345,8 +345,8 @@ tblPersonID_FilterName.ndDate %>% na.omit
 # 7 28503004201                                1                                       2
 
 
-tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} %>% dput #----
-# > tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} %>% dput #----
+tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} |> dput() #----
+# > tblPersonID_FilterName.ndDate %>% na.omit %>% {attr(., "na.action") = NULL; .} |> dput() #----
 structure(list(ENROLID = c(171946801, 1210879901, 1282775301,
 2068053701, 27240989002, 27945818803, 28503004201), t_NInf_154.ICD250x1_250x3.ndDate = c(2L,
 5L, 1L, 3L, 1L, 2L, 1L), t_NInf_0.RxCONCEPT_NDC_metformin.ndDate = c(1L,

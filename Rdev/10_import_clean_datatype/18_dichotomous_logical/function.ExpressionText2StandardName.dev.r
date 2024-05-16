@@ -20,8 +20,8 @@ function.convert_to_standard_name <- function(names_vector, prefix_before_number
 # Example usage
 original_names <- c("0", "0.5", "1", "alpha", "beta1")
 standard_names <- function.convert_to_standard_name(original_names)
-standard_names %>% dput
-# > standard_names %>% dput
+standard_names |> dput()
+# > standard_names |> dput()
 # c("a0", "a0_5", "a1", "alpha", "beta1")
 
 
