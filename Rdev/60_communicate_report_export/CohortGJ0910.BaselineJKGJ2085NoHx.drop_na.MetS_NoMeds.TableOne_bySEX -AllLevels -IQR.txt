@@ -1,0 +1,74 @@
+                                          Stratified by SEX
+                                           Overall                 Male                    Female                 
+  n                                        283798                  148042                  135756                 
+  SEX = Female (%)                         135756 (47.8)                0 ( 0.0)           135756 (100.0)         
+  HEIGHT (median [IQR])                    164.00 [157.00, 171.00] 170.00 [166.00, 175.00] 157.00 [153.00, 161.00]
+  WEIGHT (median [IQR])                     62.00 [55.00, 71.00]    69.00 [63.00, 76.00]    56.00 [51.00, 61.00]  
+  BMI.cut4 (%)                                                                                                    
+     [0,18.5)                               11948 ( 4.2)             3598 ( 2.4)             8350 (  6.2)         
+     [18.5,25)                             185640 (65.4)            90614 (61.2)            95026 ( 70.0)         
+     [25,30)                                76940 (27.1)            48558 (32.8)            28382 ( 20.9)         
+     [30,Inf]                                9270 ( 3.3)             5272 ( 3.6)             3998 (  2.9)         
+  WAIST (median [IQR])                      80.00 [73.00, 86.00]    83.00 [78.00, 88.00]    75.00 [69.00, 81.00]  
+  WAIST_ge9080 = TRUE (%)                   72265 (25.5)            30845 (20.8)            41420 ( 30.5)         
+  WAIST_ge9085 = TRUE (%)                   51101 (18.0)            30845 (20.8)            20256 ( 14.9)         
+  SBP (median [IQR])                       120.00 [110.00, 130.00] 122.00 [115.00, 131.00] 118.00 [110.00, 130.00]
+  DBP (median [IQR])                        76.00 [70.00, 80.00]    80.00 [70.00, 83.00]    72.00 [68.00, 80.00]  
+  BP_ESCESH2018 (%)                                                                                               
+     (1) Optimal BP                        111610 (39.3)            44231 (29.9)            67379 ( 49.6)         
+     (2) Normal BP                          71381 (25.2)            40275 (27.2)            31106 ( 22.9)         
+     (3) High Normal BP                     62210 (21.9)            39531 (26.7)            22679 ( 16.7)         
+     (4) HTN Grade 1                        28045 ( 9.9)            17119 (11.6)            10926 (  8.0)         
+     (5) HTN Grade 2                         8548 ( 3.0)             5556 ( 3.8)             2992 (  2.2)         
+     (6) HTN Grade 3                         2004 ( 0.7)             1330 ( 0.9)              674 (  0.5)         
+  BP_ge130_85 = TRUE (%)                   100807 (35.5)            63536 (42.9)            37271 ( 27.5)         
+  FPG (median [IQR])                        93.00 [85.00, 101.00]   94.00 [86.00, 104.00]   91.00 [84.00, 99.00]  
+  FPG_ge100 = TRUE (%)                      82300 (29.0)            50645 (34.2)            31655 ( 23.3)         
+  FPG_ge126 = TRUE (%)                      15242 ( 5.4)            10100 ( 6.8)             5142 (  3.8)         
+  TOT_CHOLE (median [IQR])                 192.00 [170.00, 218.00] 193.00 [170.00, 217.00] 192.00 [169.00, 218.00]
+  TRIGLYCERIDE (median [IQR])              106.00 [73.00, 159.00]  125.00 [86.00, 185.00]   89.00 [63.00, 130.00] 
+  HDL_CHOLE (median [IQR])                  54.00 [46.00, 64.00]    51.00 [43.00, 60.00]    58.00 [49.00, 67.00]  
+  LDL_CHOLE (median [IQR])                 111.00 [91.00, 134.00]  111.00 [90.00, 134.00]  112.00 [91.00, 135.00] 
+  TRIGLYCERIDE_ge150 = TRUE (%)             79872 (28.1)            55624 (37.6)            24248 ( 17.9)         
+  HDL_CHOLE_lt4050 = TRUE (%)               55369 (19.5)            20211 (13.7)            35158 ( 25.9)         
+  nMetS_NoMeds_WAIST_ge9080 (median [IQR])   1.00 [0.00, 2.00]       1.00 [1.00, 2.00]       1.00 [0.00, 2.00]    
+  nMetS_NoMeds_WAIST_ge9080.ge3 = TRUE (%)  53776 (18.9)            30578 (20.7)            23198 ( 17.1)         
+  nMetS_NoMeds_WAIST_ge9085 (median [IQR])   1.00 [0.00, 2.00]       1.00 [1.00, 2.00]       1.00 [0.00, 2.00]    
+  nMetS_NoMeds_WAIST_ge9085.ge3 = TRUE (%)  48581 (17.1)            30578 (20.7)            18003 ( 13.3)         
+                                          Stratified by SEX
+                                           p      test    SMD   
+  n                                                             
+  SEX = Female (%)                         <0.001            NaN
+  HEIGHT (median [IQR])                    <0.001 nonnorm  2.112
+  WEIGHT (median [IQR])                    <0.001 nonnorm  1.410
+  BMI.cut4 (%)                             <0.001          0.317
+     [0,18.5)                                                   
+     [18.5,25)                                                  
+     [25,30)                                                    
+     [30,Inf]                                                   
+  WAIST (median [IQR])                     <0.001 nonnorm  0.969
+  WAIST_ge9080 = TRUE (%)                  <0.001          0.223
+  WAIST_ge9085 = TRUE (%)                  <0.001          0.155
+  SBP (median [IQR])                       <0.001 nonnorm  0.400
+  DBP (median [IQR])                       <0.001 nonnorm  0.436
+  BP_ESCESH2018 (%)                        <0.001          0.427
+     (1) Optimal BP                                             
+     (2) Normal BP                                              
+     (3) High Normal BP                                         
+     (4) HTN Grade 1                                            
+     (5) HTN Grade 2                                            
+     (6) HTN Grade 3                                            
+  BP_ge130_85 = TRUE (%)                   <0.001          0.328
+  FPG (median [IQR])                       <0.001 nonnorm  0.210
+  FPG_ge100 = TRUE (%)                     <0.001          0.242
+  FPG_ge126 = TRUE (%)                     <0.001          0.136
+  TOT_CHOLE (median [IQR])                 <0.001 nonnorm  0.001
+  TRIGLYCERIDE (median [IQR])              <0.001 nonnorm  0.505
+  HDL_CHOLE (median [IQR])                 <0.001 nonnorm  0.267
+  LDL_CHOLE (median [IQR])                 <0.001 nonnorm  0.055
+  TRIGLYCERIDE_ge150 = TRUE (%)            <0.001          0.451
+  HDL_CHOLE_lt4050 = TRUE (%)              <0.001          0.311
+  nMetS_NoMeds_WAIST_ge9080 (median [IQR]) <0.001 nonnorm  0.197
+  nMetS_NoMeds_WAIST_ge9080.ge3 = TRUE (%) <0.001          0.091
+  nMetS_NoMeds_WAIST_ge9085 (median [IQR]) <0.001 nonnorm  0.335
+  nMetS_NoMeds_WAIST_ge9085.ge3 = TRUE (%) <0.001          0.198
