@@ -53,6 +53,7 @@ env.custom$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="",""
 cat("# ",'sourcename = "',sourcename,'"', "\n",
     "# ",sourcename,".dev.r", "\n",
     "# ",sourcename,".source.r", "\n",
+    '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
     '# utils::browseURL("',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
     '# source("',env.custom$path$source_base_github,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
     '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
