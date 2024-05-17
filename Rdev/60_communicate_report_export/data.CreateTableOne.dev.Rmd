@@ -184,6 +184,18 @@ env.custom$info$info_software_versions = env.custom$info$get_software_versions(l
 # @@ CODEBOOK ------------
 
 
+#@@ START) source -----
+### \$ subpath, sourcename ======
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# if(subpath!="") utils::browseURL(normalizePath(subpath))
+sourcename = "data.CreateTableOne"
+# % source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) ) ----
+source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) )
+```
+
+
 # @@ START) Data ------------
 
 ## \$ DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds" ====

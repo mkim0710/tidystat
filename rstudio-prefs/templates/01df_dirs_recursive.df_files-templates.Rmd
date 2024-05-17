@@ -214,14 +214,14 @@ if(!exists("env.custom", envir=.GlobalEnv))
     assign("env.custom", new.env(), envir=.GlobalEnv)
 if(!"tmp" %in% names(env.custom)) env.custom$tmp = list()
 env.custom$tmp$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
-    env.custom$tmp$CodeFileName.ext = paste0(CodeFileBaseName,"-",basename(getwd()),".Rmd");
-    if(env.custom$tmp$CodeFileName.ext != env.custom$tmp$current.path.filename.ext) {
-        if(!file.exists(env.custom$tmp$CodeFileName.ext)) file.create(env.custom$tmp$CodeFileName.ext)
-        file.edit(env.custom$tmp$CodeFileName.ext);
-        file.edit(env.custom$tmp$current.path.filename.ext);
-    }
-}
+# for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+#     env.custom$tmp$CodeFileName.ext = paste0(CodeFileBaseName,"-",basename(getwd()),".Rmd");
+#     if(env.custom$tmp$CodeFileName.ext != env.custom$tmp$current.path.filename.ext) {
+#         if(!file.exists(env.custom$tmp$CodeFileName.ext)) file.create(env.custom$tmp$CodeFileName.ext)
+#         file.edit(env.custom$tmp$CodeFileName.ext);
+#         file.edit(env.custom$tmp$current.path.filename.ext);
+#     }
+# }
 ```
 
 # @@ START) dfDirs ------------
