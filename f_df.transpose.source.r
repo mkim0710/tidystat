@@ -2,8 +2,8 @@
 # f_df.tribble_construct.source.r
 # f_df.transpose.source.r
 
-# if(!exists("env.custom", envir=.GlobalEnv))
-#     assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv))
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 if(!exists("env.custom", envir=.GlobalEnv))
     assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = env.custom %>% as.environment
