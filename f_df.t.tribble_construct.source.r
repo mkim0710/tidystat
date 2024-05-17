@@ -79,8 +79,7 @@ sourcename = "f_df.t.tribble_construct"
 library(tidyverse)
 
 
-if(!exists("env.custom", envir=.GlobalEnv))
-    assign("env.custom", new.env(), envir=.GlobalEnv)sign("env.custom", new.env(), envir=.GlobalEnv)
+
 if(!exists("env.custom", envir=.GlobalEnv))
     assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = env.custom %>% as.environment
