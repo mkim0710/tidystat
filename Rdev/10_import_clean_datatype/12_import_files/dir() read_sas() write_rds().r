@@ -5,7 +5,7 @@
 library(tidyverse)
 getwd() |> dput() #----
 
-if(!exists("env.custom", envir=.GlobalEnv)) 
+if(!exists("env.custom", envir=.GlobalEnv))
     assign("env.custom", new.env(), envir=.GlobalEnv)
 env.custom$getwd = getwd()
 # env.custom$path0 = "../../[][Rproject]"
