@@ -151,6 +151,7 @@ filename = "f_path.size_files" |> paste0(c(".source.r",".dev.r")); subpath=r"()"
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### \% f_df -----
+filename = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$current.path.filename.ext)
 filename = "f_objectname.read.checkEntity" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$current.path.filename.ext)
 filename = "f_filename.ext.find_subpath" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$current.path.filename.ext)
 #|________________________________________________________________________________|#  
