@@ -83,7 +83,10 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #@@ START) source -----
 env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ RUN ALL ABOVE: CTRL+ALT+B -----
+#| RUN ALL ABOVE: CTRL+ALT+B |#
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ Default Templates -----
@@ -96,8 +99,8 @@ source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ###@ RStudio.Cloud set up.r -----
-file.edit("RStudio.Cloud set up.r")
-file.edit(".gitignore")
+file.edit("RStudio.Cloud set up.r"); file.edit(env.custom$path$current.path.filename.ext)
+file.edit(".gitignore"); file.edit(env.custom$path$current.path.filename.ext)
 
 # file.edit(file.path(path4APPDATA_RStudio, filename))
 if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
