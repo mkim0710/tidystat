@@ -52,6 +52,53 @@ file.edit("[Working Files List].r"); file.edit(env.custom$path$current.path.file
 sourcename = "get_system_info"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 env.custom$info$info_system_info = env.custom$info$get_system_info()
 env.custom$info$info_system_info |> str()
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @MAGB760M13700KF |#
+# > env.custom$info$info_system_info |> str()
+# List of 9
+#  $ GUI             : chr "RStudio"
+#  $ os_type         : chr "windows"
+#  $ os_sysname      : chr "Windows"
+#  $ os_version      : chr "build 19045"
+#  $ machine_type    : chr "x86-64"
+#  $ machine_nodename: chr "MAGB760M13700KF"
+#  $ machine_cpu     : chr "13th Gen Intel(R) Core(TM) i7-13700KF"
+#  $ Sys.getlocale   :List of 4
+#   ..$ LC_COLLATE       : chr "en_US.utf8"
+#   ..$ LC_CTYPE         : chr "en_US.utf8"
+#   ..$ LC_locale_NUMERIC: chr "C"
+#   ..$ LC_locale_TIME   : chr "en_US.utf8"
+#  $ l10n_info       :List of 5
+#   ..$ localization_UTF8           : logi TRUE
+#   ..$ localization_Latin1         : logi FALSE
+#   ..$ localization_codeset        : NULL
+#   ..$ localization_codepage       : int 65001
+#   ..$ localization_system.codepage: int 65001
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @Mac |#
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @Posit.Cloud |#
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @Rocker |#
+# List of 9
+#  $ GUI             : chr "RStudio"
+#  $ os_type         : chr "unix"
+#  $ os_sysname      : chr "Linux"
+#  $ os_version      : chr "#1 SMP Thu Jan 11 04:09:03 UTC 2024"
+#  $ machine_type    : chr "x86_64"
+#  $ machine_nodename: chr "059a785fbdc6"
+#  $ machine_cpu     : chr "13th Gen Intel(R) Core(TM) i7-13700KF"
+#  $ Sys.getlocale   :List of 4
+#   ..$ LC_COLLATE       : chr "en_US.utf8"
+#   ..$ LC_CTYPE         : chr "en_US.utf8"
+#   ..$ LC_locale_NUMERIC: chr "C"
+#   ..$ LC_locale_TIME   : chr "en_US.utf8"
+#  $ l10n_info       :List of 5
+#   ..$ localization_UTF8           : logi TRUE
+#   ..$ localization_Latin1         : logi FALSE
+#   ..$ localization_codeset        : chr "UTF-8"
+#   ..$ localization_codepage       : NULL
+#   ..$ localization_system.codepage: NULL
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##### env.custom\$f_df.t.tribble_construct() ====
 sourcename = "f_df.t.tribble_construct"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
@@ -303,7 +350,8 @@ browseURL("https://github.com/settings/keys")
 # 
 # https://docs.github.com/en/free-pro-team@latest/github/using-git/changing-a-remotes-url
 # git remote -v
-# git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+# # git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+# git config remote.origin.url git@github.com:USERNAME/REPOSITORY.git
 # git remote -v
 
 system("git remote -v")
@@ -312,7 +360,7 @@ system("git remote -v")
 # origin	https://github.com/mkim0710/tidystat (push)
 
 # system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git")
-system("git remote set-url origin git@github.com:mkim0710/tidystat.git")
+system("git config remote.origin.url git@github.com:mkim0710/tidystat.git")
 
 system("git remote -v")
 # > system("git remote -v")
