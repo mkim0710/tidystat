@@ -87,13 +87,13 @@ ExpressionText = " == 1.1"
 function.apply_ExpressionText(data$A01_DM_C, ExpressionText)
 
 ExpressionText = " == 1.1"
-data %>% map(~paste(.x, ExpressionText)) %>% str
+data %>% map(~paste(.x, ExpressionText)) |> str()
 
-data %>% map(~function.apply_ExpressionText(.x, ExpressionText)) %>% str
-data %>% map_df(~function.apply_ExpressionText(.x, ExpressionText)) %>% str
-data %>% map_df(~tibble(function.apply_ExpressionText(.x, ExpressionText))) %>% str
-data %>% map_df(~unname(function.apply_ExpressionText(.x, ExpressionText))) %>% str
-data %>% mutate_all(function.apply_ExpressionText, ExpressionText) %>% str
+data %>% map(~function.apply_ExpressionText(.x, ExpressionText)) |> str()
+data %>% map_df(~function.apply_ExpressionText(.x, ExpressionText)) |> str()
+data %>% map_df(~tibble(function.apply_ExpressionText(.x, ExpressionText))) |> str()
+data %>% map_df(~unname(function.apply_ExpressionText(.x, ExpressionText))) |> str()
+data %>% mutate_all(function.apply_ExpressionText, ExpressionText) |> str()
 # 1.1  == 1.1   1  == 1.1   2  == 1.1   2  == 1.1   1  == 1.1 
 #        TRUE       FALSE       FALSE       FALSE       FALSE 
 # List of 3

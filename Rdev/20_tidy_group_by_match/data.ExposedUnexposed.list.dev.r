@@ -83,8 +83,8 @@ str(data.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_v
 #   ..$ isExposed : logi [1:260] FALSE FALSE FALSE FALSE FALSE FALSE ...
 
 library(tableone)
-lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T) %>% print(smd = T, nonnormal = "age")
-# > lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T) %>% print(smd = T, nonnormal = "age")
+lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T) |> print(smd = T, nonnormal = "age")
+# > lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T) |> print(smd = T, nonnormal = "age")
 #                       Stratified by isExposed
 #                        FALSE                  TRUE                   SMD   
 #   n                        260                    185                      

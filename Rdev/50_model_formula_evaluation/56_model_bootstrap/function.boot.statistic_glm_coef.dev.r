@@ -51,7 +51,7 @@ warnings()
 boot.output$t0
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)
 boot.output
-boot.output %>% str #----
+boot.output |> str() #----
 # > boot.output$t0
 #     (Intercept)        Exposure               k          I(k^2)      Exposure:k Exposure:I(k^2) 
 #     0.009855443     0.332824553     0.895475841     1.004014857     1.038979833     0.999527466 
@@ -77,7 +77,7 @@ boot.output %>% str #----
 # t4* 1.004014857  2.112864e-06 0.0001328992
 # t5* 1.038979833  3.618223e-03 0.0203703832
 # t6* 0.999527466 -7.589608e-05 0.0003991006
-# > boot.output %>% str #----
+# > boot.output |> str() #----
 # List of 11
 #  $ t0       : Named num [1:6] 0.00986 0.33282 0.89548 1.00401 1.03898 ...
 #   ..- attr(*, "names")= chr [1:6] "(Intercept)" "Exposure" "k" "I(k^2)" ...
@@ -121,8 +121,8 @@ boot.output.ci
 # Calculations and Intervals on Original Scale
 
 
-boot.output.ci %>% str
-# > boot.output.ci %>% str
+boot.output.ci |> str()
+# > boot.output.ci |> str()
 # List of 4
 #  $ R      : int 1000
 #  $ t0     : Named num 0.333
@@ -253,8 +253,8 @@ norm.inter <- function(t,alpha)
 
 
 
-boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t %>% as.data.frame %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) %>% as_tibble #----
-# > boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t %>% as.data.frame %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) %>% as_tibble #----
+boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t %>% as.data.frame %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----
+# > boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t %>% as.data.frame %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----
 # # A tibble: 6 x 5
 #   rowname         `estimate (95% CI)` `exp(coef(.))` `2.5 %` `97.5 %`
 #   <chr>           <chr>                        <dbl>   <dbl>    <dbl>
@@ -269,7 +269,7 @@ boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.
 #@ end -----
 write_rds(boot.output, "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.rds", "xz", compression=9)
 openxlsx::write.xlsx(
-    boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t %>% as.data.frame %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) %>% as_tibble #----
+    boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t %>% as.data.frame %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----
     , "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.ci.xlsx", asTable=TRUE
 )
 

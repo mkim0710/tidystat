@@ -4,7 +4,7 @@
 
 
 function.eval.parse.Vectorize = Vectorize(function(CodeText) {eval(parse(text=CodeText))}) 
-function.eval.parse.Vectorize(paste(c(2,1,1.1), ">1")) %>% str
+function.eval.parse.Vectorize(paste(c(2,1,1.1), ">1")) |> str()
  # Named logi [1:3] TRUE FALSE TRUE
  # - attr(*, "names")= chr [1:3] "2 >1" "1 >1" "1.1 >1"
 
@@ -13,7 +13,7 @@ function.eval.parse.Vectorize(paste(c(2,1,1.1), ">1")) %>% str
 function.eval.parse.Vectorize_old = function(CodeText) {
     Vectorize(function(x) {eval(parse(text = x))}) (CodeText)
 }
-function.eval.parse.Vectorize_old(paste(c(2,1,1.1), ">1")) %>% str
+function.eval.parse.Vectorize_old(paste(c(2,1,1.1), ">1")) |> str()
  # Named logi [1:3] TRUE FALSE TRUE
  # - attr(*, "names")= chr [1:3] "2 >1" "1 >1" "1.1 >1"
 
@@ -70,13 +70,13 @@ ExpressionText = " == 1.1"
 apply_ExpressionText(data$A01_DM_C, ExpressionText)
 
 ExpressionText = " == 1.1"
-data %>% map(~paste(.x, ExpressionText)) %>% str
+data %>% map(~paste(.x, ExpressionText)) |> str()
 
-data %>% map(~apply_ExpressionText(.x, ExpressionText)) %>% str
-data %>% map_df(~apply_ExpressionText(.x, ExpressionText)) %>% str
-data %>% map_df(~tibble(apply_ExpressionText(.x, ExpressionText))) %>% str
-data %>% map_df(~unname(apply_ExpressionText(.x, ExpressionText))) %>% str
-data %>% mutate_all(apply_ExpressionText, ExpressionText) %>% str
+data %>% map(~apply_ExpressionText(.x, ExpressionText)) |> str()
+data %>% map_df(~apply_ExpressionText(.x, ExpressionText)) |> str()
+data %>% map_df(~tibble(apply_ExpressionText(.x, ExpressionText))) |> str()
+data %>% map_df(~unname(apply_ExpressionText(.x, ExpressionText))) |> str()
+data %>% mutate_all(apply_ExpressionText, ExpressionText) |> str()
 # 1.1  == 1.1   1  == 1.1   2  == 1.1   2  == 1.1   1  == 1.1 
 #        TRUE       FALSE       FALSE       FALSE       FALSE 
 # List of 3

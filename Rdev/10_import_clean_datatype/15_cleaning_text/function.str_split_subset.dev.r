@@ -1,35 +1,35 @@
 # function.str_split_subset.dev.r
 
 
-"a/b" %>% str_split("/") %>% str #----
-c("a/b", "c/a", "b", "a") %>% str_split("/") %>% str #----
-c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_match,"a") %>% str #----
-c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_match_all,"a") %>% str #----
-c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_match_all,"a") %>% map(unlist) %>% str #----
-c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_subset,"a") %>% str #----
-c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_subset,"^(?!.*a)") %>% str #----
-# > "a/b" %>% str_split("/") %>% str #----
+"a/b" |> str_split("/") |> str() #----
+c("a/b", "c/a", "b", "a") |> str_split("/") |> str() #----
+c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_match,"a") |> str() #----
+c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_match_all,"a") |> str() #----
+c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_match_all,"a") %>% map(unlist) |> str() #----
+c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_subset,"a") |> str() #----
+c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_subset,"^(?!.*a)") |> str() #----
+# > "a/b" |> str_split("/") |> str() #----
 # List of 1
 #  $ : chr [1:2] "a" "b"
-# > c("a/b", "c/a", "b", "a") %>% str_split("/") %>% str #----
+# > c("a/b", "c/a", "b", "a") |> str_split("/") |> str() #----
 # List of 4
 #  $ : chr [1:2] "a" "b"
 #  $ : chr [1:2] "c" "a"
 #  $ : chr "b"
 #  $ : chr "a"
-# > c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_match,"a") %>% str #----
+# > c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_match,"a") |> str() #----
 # List of 4
 #  $ : chr [1:2, 1] "a" NA
 #  $ : chr [1:2, 1] NA "a"
 #  $ : chr [1, 1] NA
 #  $ : chr [1, 1] "a"
-# > c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_subset,"a") %>% str #----
+# > c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_subset,"a") |> str() #----
 # List of 4
 #  $ : chr "a"
 #  $ : chr "a"
 #  $ : chr(0) 
 #  $ : chr "a"
-# > c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_subset,"^(?!.*a)") %>% str #----
+# > c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_subset,"^(?!.*a)") |> str() #----
 # List of 4
 #  $ : chr "b"
 #  $ : chr "c"
@@ -49,11 +49,11 @@ c("a/b", "c/a", "b", "a") %>% str_split("/") %>% map(str_subset,"^(?!.*a)") %>% 
 #@ debugged v4 -----
 tmp.df = 
     d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper %>% table %>% 
-    sort(decreasing = T) %>% as_tibble %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
+    sort(decreasing = T) |> as_tibble() %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
     # $is.combination
     mutate( is.combination = grepl("/", concept_name.toupper) ) %>%  
     # $BrandName
-    mutate( BrandName = concept_name.toupper %>% str_extract_all("\\[.+\\]") %>% map_chr(paste0, collapse = ", ") %>% na_if("") ) %>% 
+    mutate( BrandName = concept_name.toupper |> str_extract_all("\\[.+\\]") %>% map_chr(paste0, collapse = ", ") %>% na_if("") ) %>% 
     mutate( concept_name.toupper.rm_BrandName = concept_name.toupper %>% gsub("\\[.+\\]", "", .) ) %>% 
     # $concept_name.toupper.METFORMIN
     mutate(concept_name.toupper.METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.METFORMIN, sep = "/") %>% 
@@ -62,27 +62,27 @@ tmp.df =
     # mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
     # filter(!is.combination | {is.combination & !grepl("METFORMIN", concept_name.toupper.rm_METFORMIN)}) %>% 
     as_tibble
-tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
+tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) |> print(n=99)
 tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
     # $concept_name.toupper.rm_METFORMIN
     mutate(concept_name.toupper.METFORMIN = 
-               concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "METFORMIN") %>% map_chr(paste, collapse = "|")
+               concept_name.toupper.rm_BrandName |> str_split("/") %>% map(str_subset, "METFORMIN") %>% map_chr(paste, collapse = "|")
     ) %>% 
-    mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
+    mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) |> print(n=99)
 tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
     # $concept_name.toupper.rm_METFORMIN
     mutate(concept_name.toupper.rm_METFORMIN = 
-               concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
+               concept_name.toupper.rm_BrandName |> str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
     ) %>% 
-    mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
+    mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) |> print(n=99)
 # > #@ debugged v4 -----
 # > tmp.df = 
 # +     d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper %>% table %>% 
-# +     sort(decreasing = T) %>% as_tibble %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
+# +     sort(decreasing = T) |> as_tibble() %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
 # +     # $is.combination
 # +     mutate( is.combination = grepl("/", concept_name.toupper) ) %>%  
 # +     # $BrandName
-# +     mutate( BrandName = concept_name.toupper %>% str_extract_all("\\[.+\\]") %>% map_chr(paste0, collapse = ", ") %>% na_if("") ) %>% 
+# +     mutate( BrandName = concept_name.toupper |> str_extract_all("\\[.+\\]") %>% map_chr(paste0, collapse = ", ") %>% na_if("") ) %>% 
 # +     mutate( concept_name.toupper.rm_BrandName = concept_name.toupper %>% gsub("\\[.+\\]", "", .) ) %>% 
 # +     # $concept_name.toupper.METFORMIN
 # +     mutate(concept_name.toupper.METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.METFORMIN, sep = "/") %>% 
@@ -91,7 +91,7 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 # +     # mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
 # +     # filter(!is.combination | {is.combination & !grepl("METFORMIN", concept_name.toupper.rm_METFORMIN)}) %>% 
 # +     as_tibble
-# > tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
+# > tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) |> print(n=99)
 # # A tibble: 49 x 3
 #    concept_name.toupper.rm_BrandName                                                           is.combination duplicated
 #    <chr>                                                                                       <lgl>          <lgl>     
@@ -147,9 +147,9 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 # > tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
 # +     # $concept_name.toupper.rm_METFORMIN
 # +     mutate(concept_name.toupper.METFORMIN = 
-# +                concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "METFORMIN") %>% map_chr(paste, collapse = "|")
+# +                concept_name.toupper.rm_BrandName |> str_split("/") %>% map(str_subset, "METFORMIN") %>% map_chr(paste, collapse = "|")
 # +     ) %>% 
-# +     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
+# +     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) |> print(n=99)
 # # A tibble: 49 x 4
 #    concept_name.toupper.rm_BrandName                                is.combination concept_name.toupper.METFORMIN                          duplicated
 #    <chr>                                                            <lgl>          <chr>                                                   <lgl>     
@@ -205,9 +205,9 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 # > tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
 # +     # $concept_name.toupper.rm_METFORMIN
 # +     mutate(concept_name.toupper.rm_METFORMIN = 
-# +                concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
+# +                concept_name.toupper.rm_BrandName |> str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
 # +     ) %>% 
-# +     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) %>% print(n=99)
+# +     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) |> print(n=99)
 # # A tibble: 49 x 4
 #    concept_name.toupper.rm_BrandName                                            is.combination concept_name.toupper.rm_METFORMIN           duplicated
 #    <chr>                                                                        <lgl>          <chr>                                       <lgl>     
@@ -276,13 +276,13 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
 tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
     # $concept_name.toupper.rm_METFORMIN
     mutate(concept_name.toupper.rm_METFORMIN = 
-               concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+               concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) |> unlist() %>% {if(length(.)==0) as.character(NA) else .} })
     ) %>% 
     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
 # > tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
 # +     # $concept_name.toupper.rm_METFORMIN
 # +     mutate(concept_name.toupper.rm_METFORMIN = 
-# +                concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+# +                concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) |> unlist() %>% {if(length(.)==0) as.character(NA) else .} })
 # +     ) %>% 
 # +     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
 # # A tibble: 49 x 4
@@ -306,14 +306,14 @@ all.equal(
     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
         # $concept_name.toupper.rm_METFORMIN
         mutate(concept_name.toupper.rm_METFORMIN = 
-                   concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
+                   concept_name.toupper.rm_BrandName |> str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
         ) %>% 
         mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName))
     , 
     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
         # $concept_name.toupper.rm_METFORMIN
         mutate(concept_name.toupper.rm_METFORMIN = 
-                   concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+                   concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) |> unlist() %>% {if(length(.)==0) as.character(NA) else .} })
         ) %>% 
         mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
 )
@@ -321,14 +321,14 @@ all.equal(
 # +     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
 # +         # $concept_name.toupper.rm_METFORMIN
 # +         mutate(concept_name.toupper.rm_METFORMIN = 
-# +                    concept_name.toupper.rm_BrandName %>% str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
+# +                    concept_name.toupper.rm_BrandName |> str_split("/") %>% map(str_subset, "^(?!.*METFORMIN).*$") %>% map_chr(paste, collapse = "|") %>% na_if("")
 # +         ) %>% 
 # +         mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName))
 # +     , 
 # +     tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>% 
 # +         # $concept_name.toupper.rm_METFORMIN
 # +         mutate(concept_name.toupper.rm_METFORMIN = 
-# +                    concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) %>% unlist %>% {if(length(.)==0) as.character(NA) else .} })
+# +                    concept_name.toupper.rm_BrandName %>% map_chr(function(txt) {tibble(value = txt) %>% separate_rows(value, sep = "/") %>% filter(!grepl("METFORMIN", value)) |> unlist() %>% {if(length(.)==0) as.character(NA) else .} })
 # +         ) %>% 
 # +         mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) 
 # + )

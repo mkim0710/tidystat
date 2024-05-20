@@ -24,14 +24,14 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
     # library(tidyverse)
     x1x2z.df = array3d_R_C_strata %>% as.table %>% as.data.frame
     
-    index = map(1:nrow(x1x2z.df), function(i) rep(i, x1x2z.df[i,4])) %>% unlist
+    index = map(1:nrow(x1x2z.df), function(i) rep(i, x1x2z.df[i,4])) |> unlist()
     out = x1x2z.df[index, ]
     # out = out %>% map_df(as.numeric)
     out
 }
 
 #@ test) array3d_R_C_strata2df() --------
-# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) %>% as_tibble()
+# > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) |> as_tibble()
 # # A tibble: 78 x 4
 #      Var1   Var2   Var3  Freq
 #  * <fctr> <fctr> <fctr> <int>
@@ -67,7 +67,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
             , function(i) {
                 unadjusted_cor = cor(x1.binary2numeric, x2.binary2numeric, method = cor_method[i])
                 partial_cor = cor(resid1, resid2, method = cor_method[i])
-                list(unadjusted_cor = unadjusted_cor, partial_cor = partial_cor) %>% unlist
+                list(unadjusted_cor = unadjusted_cor, partial_cor = partial_cor) |> unlist()
             }
         ) %>% setNames(cor_method)
     } else if (p.value == T) {
@@ -75,10 +75,10 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
             seq_along(cor_method)
             , function(i) {
                 #@ cf) output from cor.test() ----
-                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") %>% str
-                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% str
-                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") %>% str
-                # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") %>% str
+                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
+                # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
+                # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
                 # # List of 9
                 # #  $ statistic  : Named num 5.47
                 # #   ..- attr(*, "names")= chr "t"
@@ -103,7 +103,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
                 # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
                 # #   Cannot compute exact p-value with ties
                 #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-                # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} %>% str
+                # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
                 # List of 4
                 #  $ estimate : Named num 0.733
                 #   ..- attr(*, "names")= chr "rho"
@@ -117,11 +117,11 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
                 unadjusted_cor = cor.test(x1.binary2numeric, x2.binary2numeric, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
                 if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
                 names(unadjusted_cor) = paste0("unadjusted_cor.", names(unadjusted_cor))
-                unadjusted_cor = unadjusted_cor %>% unlist  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
+                unadjusted_cor = unadjusted_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
                 names(unadjusted_cor)[1] = "unadjusted_cor"
                 partial_cor = cor.test(resid1, resid2, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
                 if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
-                partial_cor = partial_cor %>% unlist  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
+                partial_cor = partial_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
                 names(partial_cor) = paste0("partial_cor.", names(partial_cor))
                 names(partial_cor)[1] = "partial_cor"
                 c(unadjusted_cor, partial_cor)  # concategate two named vectors (unlist)
@@ -152,8 +152,8 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 # 2 spearman          0.733       0.598
 # 3 kendall           0.596       0.446
 
-x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) %>% str
-# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) %>% str
+x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  3 variables:
 #  $ method        : chr  "pearson" "spearman" "kendall"
 #  $ unadjusted_cor: num  0.782 0.733 0.596
@@ -179,8 +179,8 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 # 4: In cor.test.default(resid1, resid2, method = cor_method[i]) :
 #   Cannot compute exact p-value with ties
 
-x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) %>% str
-# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) %>% str
+x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str()
+# > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.) |> str()
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  15 variables:
 #  $ method                    : chr  "pearson" "spearman" "kendall"
 #  $ unadjusted_cor            : num  0.782 0.733 0.596
@@ -239,7 +239,7 @@ data$diff3_1 = (data$isExposed * data$Outcome) / 2 + rnorm(2 * n, 0, 3)
 data$Outcome3 = data$Outcome + data$diff3_1
 data$Outcome3.gt0 = (data$Outcome3 > 0)
 data
-data %>% summary
+data |> summary()
 cor(map_df(data[,c(-1,-2)], as.numeric)) %>% round(3)
 # > data
 # # A tibble: 200 x 12
@@ -256,7 +256,7 @@ cor(map_df(data[,c(-1,-2)], as.numeric)) %>% round(3)
 #  9         9              5     FALSE      1  1.1515627        TRUE  0.5355828  1.687145         TRUE  4.3254612  5.477023934         TRUE
 # 10        10              5      TRUE      1  1.3892232        TRUE  2.2249369  3.614160         TRUE -1.3980033 -0.008780037        FALSE
 # # ... with 190 more rows
-# > data %>% summary
+# > data |> summary()
 #    PERSON_ID   MatchingPairID isExposed       Strata     Outcome         Outcome.gt0        diff2_1           Outcome2         Outcome2.gt0       diff3_1           Outcome3         Outcome3.gt0
 #  1      :  1   1      :  2    Mode :logical   -1:66   Min.   :-5.32995   Mode :logical   Min.   :-8.4106   Min.   :-11.64243   Mode :logical   Min.   :-8.7316   Min.   :-11.24646   Mode :logical
 #  2      :  1   2      :  2    FALSE:100       0 :68   1st Qu.:-1.32357   FALSE:100       1st Qu.:-1.8846   1st Qu.: -2.60940   FALSE:102       1st Qu.:-2.1801   1st Qu.: -3.06493   FALSE:99
@@ -362,13 +362,13 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
     if (p.value == F) {
         unadjusted_cor = cor(x1.binary2numeric, x2.binary2numeric, method = cor_method)
         partial_cor = cor(resid1, resid2, method = cor_method)
-        out = list(unadjusted_cor = unadjusted_cor, partial_cor = partial_cor) %>% unlist
+        out = list(unadjusted_cor = unadjusted_cor, partial_cor = partial_cor) |> unlist()
     } else if (p.value == T) {
         #@ cf) output from cor.test() ----
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") %>% str
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% str
-        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") %>% str
-        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") %>% str
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
+        # cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
+        # # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
         # # List of 9
         # #  $ statistic  : Named num 5.47
         # #   ..- attr(*, "names")= chr "t"
@@ -393,7 +393,7 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
         # # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         # #   Cannot compute exact p-value with ties
         #@ caution)  %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} may make $`NA` when there is no $conf.int
-        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} %>% str
+        # > cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c("estimate", "conf.int", "p.value", "statistic")]} |> str()
         # List of 4
         #  $ estimate : Named num 0.733
         #   ..- attr(*, "names")= chr "rho"
@@ -407,11 +407,11 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
         unadjusted_cor = cor.test(x1.binary2numeric, x2.binary2numeric, method = cor_method) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
         if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
         names(unadjusted_cor) = paste0("unadjusted_cor.", names(unadjusted_cor))
-        unadjusted_cor = unadjusted_cor %>% unlist  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
+        unadjusted_cor = unadjusted_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
         names(unadjusted_cor)[1] = "unadjusted_cor"
         partial_cor = cor.test(resid1, resid2, method = cor_method) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
         if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
-        partial_cor = partial_cor %>% unlist  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
+        partial_cor = partial_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
         names(partial_cor) = paste0("partial_cor.", names(partial_cor))
         names(partial_cor)[1] = "partial_cor"
         out = c(unadjusted_cor, partial_cor)  # concategate two named vectors (unlist)
@@ -429,7 +429,7 @@ x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp
 #              0.7818523              0.7356413
 
 x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T)
-x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) %>% str
+x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str()
 # > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T)
 #             unadjusted_cor_pearson unadjusted_cor.conf.int.LL_pearson 
 #                       7.818523e-01                       5.285640e-01 
@@ -441,15 +441,15 @@ x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp
 #                       4.453981e-01                       8.859727e-01 
 #        partial_cor.p.value_pearson    partial_cor.statistic.t_pearson 
 #                       1.444546e-04                       4.733867e+00 
-# > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) %>% str
+# > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., p.value = T) |> str()
 #  Named num [1:10] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 #  - attr(*, "names")= chr [1:10] "unadjusted_cor_pearson" "unadjusted_cor.conf.int.LL_pearson" "unadjusted_cor.conf.int.UL_pearson" "unadjusted_cor.p.value_pearson" ...
 
 
 #@ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
-tmp.df %>% as_tibble
-# > tmp.df %>% as_tibble
+tmp.df |> as_tibble()
+# > tmp.df |> as_tibble()
 # # A tibble: 78 x 4
 #    Var1  Var2  Var3   Freq
 #  * <fct> <fct> <fct> <int>
@@ -490,7 +490,7 @@ x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]
 
 
 x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T)
-x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) %>% str
+x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) |> str()
 # > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T)
 #             unadjusted_cor_pearson unadjusted_cor.conf.int.LL_pearson 
 #                        -0.01201250                        -0.23391796 
@@ -502,7 +502,7 @@ x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]
 #                        -0.23862629                         0.20631299 
 #        partial_cor.p.value_pearson    partial_cor.statistic.t_pearson 
 #                         0.88257114                        -0.14820801 
-# > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) %>% str
+# > x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]], convert_binary2numeric = T, p.value = T) |> str()
 #  Named num [1:10] -0.012 -0.234 0.211 0.917 -0.105 ...
 #  - attr(*, "names")= chr [1:10] "unadjusted_cor_pearson" "unadjusted_cor.conf.int.LL_pearson" "unadjusted_cor.conf.int.UL_pearson" "unadjusted_cor.p.value_pearson" ...
 
@@ -571,8 +571,8 @@ x1x2z.partial_correlation_scalar(x1 = stackloss$Air.Flow, x2 = stackloss$Water.T
 
 #@ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_scalar() ------
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
-tmp.df %>% as_tibble
-# > tmp.df %>% as_tibble
+tmp.df |> as_tibble()
+# > tmp.df |> as_tibble()
 # # A tibble: 78 x 4
 #    Var1  Var2  Var3   Freq
 #  * <fct> <fct> <fct> <int>

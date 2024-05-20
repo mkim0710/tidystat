@@ -93,13 +93,13 @@ boot.output = boot(
 Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
 #@ bootstrap confidence interval (manual) ----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% str #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
 boot.output #----
-boot.output %>% str(max.level = 1) #----
+boot.output |> str(max.level = 1) #----
 # 0..1..2..3..4..5..6..7..8..9..10..11..12..13..14..15..16..17..18..19..20..> Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 # Time difference of 27.27654 secs
 # > warnings()
@@ -114,17 +114,17 @@ boot.output %>% str(max.level = 1) #----
 #   no non-missing arguments to max; returning -Inf
 # > 
 # > #@ bootstrap confidence interval (manual) ----
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
 #       2.5%      97.5% 
 # 0.06483304 0.12071529 
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
 #            [,1]      [,2]
 # [1,] 0.05131718 0.1148298
 # [2,] 0.07977163 0.1260402
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
 # 40 
 # 20 
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% str #----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  22 variables:
 #  $ max(k)                                   : num  40 40 40 40 40 40 40 40 40 40 ...
 #  $ pNoEvent_k.cumprod0                      : num  0.645 0.652 0.678 0.677 0.661 ...
@@ -189,7 +189,7 @@ boot.output %>% str(max.level = 1) #----
 # t20* 1.697409e+00 -1.221973e-02 1.119179e-01
 # t21* 1.038660e+00  4.218374e-04 2.008776e-02
 # t22* 9.995132e-01  4.065091e-05 3.577571e-04
-# > boot.output %>% str(max.level = 1) #----
+# > boot.output |> str(max.level = 1) #----
 # List of 11
 #  $ t0       : Named num [1:22] 4.00e+01 6.57e-01 7.62e-01 1.05e-01 2.42e-39 ...
 #   ..- attr(*, "names")= chr [1:22] "max(k)" "pNoEvent_k.cumprod0" "pNoEvent_k.cumprod1" "RiskDifference" ...
@@ -243,13 +243,13 @@ boot.output = boot(
 Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
 #@ bootstrap confidence interval (manual) ----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% quantile(probs = c(0.025, 0.975)) #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} %>% unlist %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor %>% summary #-----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% str #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
 boot.output #----
-boot.output %>% str(max.level = 1) #----
+boot.output |> str(max.level = 1) #----
 
 
 
@@ -305,7 +305,7 @@ analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci =
         , `estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")")
         , `estimate (95% CI) %.3f` = paste0(sprintf("%.3f",round(V1,3)), " (", sprintf("%.3f",round(V2,3)), ", ", sprintf("%.3f",round(V3,3)), ")")
         , `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3
-    ) %>% as_tibble #----
+    ) |> as_tibble() #----
 analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
 # > analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
 # # A tibble: 13 x 6

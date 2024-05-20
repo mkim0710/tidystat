@@ -170,82 +170,82 @@ identical(a * a, 2)
 #@ https://stackoverflow.com/questions/3476782/check-if-the-number-is-integer =====
 
 
--8.9 %>% dput
--0.5 %>% dput
--0.1 %>% dput
-0 %>% dput
-0.1 %>% dput
-0.5 %>% dput
-8.9 %>% dput
-9.0 %>% dput
-# > -8.9 %>% dput
+-8.9 |> dput()
+-0.5 |> dput()
+-0.1 |> dput()
+0 |> dput()
+0.1 |> dput()
+0.5 |> dput()
+8.9 |> dput()
+9.0 |> dput()
+# > -8.9 |> dput()
 # -8.9
-# > -0.5 %>% dput
+# > -0.5 |> dput()
 # -0.5
-# > -0.1 %>% dput
+# > -0.1 |> dput()
 # -0.1
-# > 0 %>% dput
+# > 0 |> dput()
 # 0
-# > 0.1 %>% dput
+# > 0.1 |> dput()
 # 0.1
-# > 0.5 %>% dput
+# > 0.5 |> dput()
 # 0.5
-# > 8.9 %>% dput
+# > 8.9 |> dput()
 # 8.9
-# > 9.0 %>% dput
+# > 9.0 |> dput()
 # 9
 
 
--8.9 %>% round %>% dput
--0.5 %>% round %>% dput
--0.1 %>% round %>% dput
-0 %>% round %>% dput
-0.1 %>% round %>% dput
-0.5 %>% round %>% dput
-8.9 %>% round %>% dput
-9.0 %>% round %>% dput
-# > -8.9 %>% round %>% dput
+-8.9 %>% round |> dput()
+-0.5 %>% round |> dput()
+-0.1 %>% round |> dput()
+0 %>% round |> dput()
+0.1 %>% round |> dput()
+0.5 %>% round |> dput()
+8.9 %>% round |> dput()
+9.0 %>% round |> dput()
+# > -8.9 %>% round |> dput()
 # -9
-# > -0.5 %>% round %>% dput
+# > -0.5 %>% round |> dput()
 # 0
-# > -0.1 %>% round %>% dput
+# > -0.1 %>% round |> dput()
 # 0
-# > 0 %>% round %>% dput
+# > 0 %>% round |> dput()
 # 0
-# > 0.1 %>% round %>% dput
+# > 0.1 %>% round |> dput()
 # 0
-# > 0.5 %>% round %>% dput
+# > 0.5 %>% round |> dput()
 # 0
-# > 8.9 %>% round %>% dput
+# > 8.9 %>% round |> dput()
 # 9
-# > 9.0 %>% round %>% dput
+# > 9.0 %>% round |> dput()
 # 9
 
 
 
--8.9 %>% {.%%1} %>% dput
--0.5 %>% {.%%1} %>% dput
--0.1 %>% {.%%1} %>% dput
-0 %>% {.%%1} %>% dput
-0.1 %>% {.%%1} %>% dput
-0.5 %>% {.%%1} %>% dput
-8.9 %>% {.%%1} %>% dput
-9.0 %>% {.%%1} %>% dput
-# > -8.9 %>% {.%%1} %>% dput
+-8.9 %>% {.%%1} |> dput()
+-0.5 %>% {.%%1} |> dput()
+-0.1 %>% {.%%1} |> dput()
+0 %>% {.%%1} |> dput()
+0.1 %>% {.%%1} |> dput()
+0.5 %>% {.%%1} |> dput()
+8.9 %>% {.%%1} |> dput()
+9.0 %>% {.%%1} |> dput()
+# > -8.9 %>% {.%%1} |> dput()
 # 0.0999999999999996
-# > -0.5 %>% {.%%1} %>% dput
+# > -0.5 %>% {.%%1} |> dput()
 # 0.5
-# > -0.1 %>% {.%%1} %>% dput
+# > -0.1 %>% {.%%1} |> dput()
 # 0.9
-# > 0 %>% {.%%1} %>% dput
+# > 0 %>% {.%%1} |> dput()
 # 0
-# > 0.1 %>% {.%%1} %>% dput
+# > 0.1 %>% {.%%1} |> dput()
 # 0.1
-# > 0.5 %>% {.%%1} %>% dput
+# > 0.5 %>% {.%%1} |> dput()
 # 0.5
-# > 8.9 %>% {.%%1} %>% dput
+# > 8.9 %>% {.%%1} |> dput()
 # 0.9
-# > 9.0 %>% {.%%1} %>% dput
+# > 9.0 %>% {.%%1} |> dput()
 # 0
 
 

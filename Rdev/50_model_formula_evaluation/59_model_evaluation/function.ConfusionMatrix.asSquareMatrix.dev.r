@@ -15,7 +15,7 @@ InputMatrix.tbl =
 InputMatrix.tbl %>% gather(key = "Predicted", value = "value", -Actual) %>%
     mutate(
         Actual.old = Actual
-        , Actual = Actual %>% str_extract(paste0("[", Predicted %>% unique %>% paste0(collapse = "|"), "]"))
+        , Actual = Actual |> str_extract(paste0("[", Predicted |> unique %>% paste0(collapse = "|"), "]"))
     ) %>% 
     select(Actual, Predicted, value) %>% 
     group_by(Actual, Predicted) %>% summarise(value = sum(value)) %>% 
@@ -23,7 +23,7 @@ InputMatrix.tbl %>% gather(key = "Predicted", value = "value", -Actual) %>%
 # > InputMatrix.tbl %>% gather(key = "Predicted", value = "value", -Actual) %>%
 # +     mutate(
 # +         Actual.old = Actual
-# +         , Actual = Actual %>% str_extract(paste0("[", Predicted %>% unique %>% paste0(collapse = "|"), "]"))
+# +         , Actual = Actual |> str_extract(paste0("[", Predicted |> unique %>% paste0(collapse = "|"), "]"))
 # +     ) %>% 
 # +     select(Actual, Predicted, value) %>% 
 # +     group_by(Actual, Predicted) %>% summarise(value = sum(value)) %>% 
@@ -83,8 +83,8 @@ function.ConfusionMatrix.asSquareMatrix = function(InputMatrix.tbl) {
 
 
 InputSquareMatrix = InputMatrix.tbl %>% function.ConfusionMatrix.asSquareMatrix
-InputSquareMatrix %>% dput #----
-# > InputSquareMatrix %>% dput
+InputSquareMatrix |> dput() #----
+# > InputSquareMatrix |> dput()
 InputSquareMatrix = structure(list(
     Actual = c("1", "2", "3", "4")
     , `1` = c(62, 6, 3, 1)

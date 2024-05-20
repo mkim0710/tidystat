@@ -1,7 +1,7 @@
 # library(icd) icd_is_valid().r
 
-icd10cm2016 %>% select(three_digit, sub_chapter) %>% distinct %>% str
-# > icd10cm2016 %>% select(three_digit, sub_chapter) %>% distinct %>% str
+icd10cm2016 %>% select(three_digit, sub_chapter) %>% distinct |> str()
+# > icd10cm2016 %>% select(three_digit, sub_chapter) %>% distinct |> str()
 # 'data.frame':	1910 obs. of  2 variables:
 #  $ three_digit: Factor w/ 1903 levels "A00","A01","A02",..: 1 2 3 4 5 6 7 8 9 10 ...
 #  $ sub_chapter: Factor w/ 279 levels "Intestinal Infectious Diseases",..: 1 1 1 1 1 1 1 1 1 1 ...

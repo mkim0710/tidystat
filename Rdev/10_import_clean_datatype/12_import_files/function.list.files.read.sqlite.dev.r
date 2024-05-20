@@ -9,8 +9,8 @@
 
 
 library(tidyverse)
-getwd() %>% dput
-# > getwd() %>% dput
+getwd() |> dput()
+# > getwd() |> dput()
 # "X:/mkim/Rproject"
 # path4read = "//DON/marketscan_users/smacdonald/"
 # path4write = "//DON/marketscan_users/mkim/"
@@ -81,7 +81,7 @@ mydb %>% dbListTables
 #         right_join(
 #             NHID_JK0213.bind_rows %>% filter(STND_Y == 2002) %>% filter(AGE_GROUP %in% 5:18) %>% select(PERSON_ID)
 #         ) %>% select(KEY_SEQ) %>% distinct
-# KEY_SEQ.02ID.2089 %>% as_tibble
+# KEY_SEQ.02ID.2089 |> as_tibble()
 # # > KEY_SEQ.02ID.2089 =
 # # +     NHID_GY20_0213.bind_rows.12478.ICDclean %>%
 # # +         right_join(
@@ -90,7 +90,7 @@ mydb %>% dbListTables
 # # Joining, by = "PERSON_ID"
 # # Warning message:
 # # Column `PERSON_ID` joining factors with different levels, coercing to character vector 
-# # > KEY_SEQ.02ID.2089 %>% as_tibble
+# # > KEY_SEQ.02ID.2089 |> as_tibble()
 # # # A tibble: 87,978,631 x 1
 # #    KEY_SEQ     
 # #    <fct>       
@@ -127,16 +127,16 @@ Sys.time() - t0
 # > Sys.time() - t0
 # Time difference of 4.532779 mins
 
-KEY_SEQ.02ID.2089 %>% str
-# > KEY_SEQ.02ID.2089 %>% str
+KEY_SEQ.02ID.2089 |> str()
+# > KEY_SEQ.02ID.2089 |> str()
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	87978631 obs. of  1 variable:
 #  $ KEY_SEQ: Factor w/ 119362188 levels "200200000001",..: NA 1024407 376164 1873519 3606711 7046463 7046462 10201978 10201977 28751683 ...
 
-NHID_GY60_0213.bind_rows.GNL_NM_CD4$KEY_SEQ %>% str
-# > NHID_GY60_0213.bind_rows$KEY_SEQ %>% str
+NHID_GY60_0213.bind_rows.GNL_NM_CD4$KEY_SEQ |> str()
+# > NHID_GY60_0213.bind_rows$KEY_SEQ |> str()
 #  num [1:396777916] 2e+11 2e+11 2e+11 2e+11 2e+11 ...
-NHID_GY60_0213.bind_rows.GNL_NM_CD4$KEY_SEQ %>% unique %>% str
-# > NHID_GY60_0213.bind_rows$KEY_SEQ %>% unique %>% str
+NHID_GY60_0213.bind_rows.GNL_NM_CD4$KEY_SEQ |> unique |> str()
+# > NHID_GY60_0213.bind_rows$KEY_SEQ |> unique |> str()
 #  num [1:88178104] 2e+11 2e+11 2e+11 2e+11 2e+11 ...
 
 
@@ -200,8 +200,8 @@ rm(NHID_GJ_0213.bind_rows.integer)
 
 
 #@ end -----
-getwd() %>% dput
-# > getwd() %>% dput
+getwd() |> dput()
+# > getwd() |> dput()
 # "X:/mkim/Rproject"
 # path4read = "//DON/marketscan_users/smacdonald/"
 # path4write = "//DON/marketscan_users/mkim/"
@@ -212,25 +212,25 @@ path4write = "../"
 mydb <- DBI::dbConnect(RSQLite::SQLite(), paste0(path4write, "KNHIS.02ID.2089.SICK_SYM_3char.sqlite"))
 
 
-mydb %>% {DBI::dbListTables(.)} %>% dput #----
+mydb %>% {DBI::dbListTables(.)} |> dput() #----
 t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0('
-    select count(*) from "', chr, '"'))} %>% unlist
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
+    select count(*) from "', chr, '"'))} |> unlist()
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
 Sys.time() - t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% dbListFields(chr)
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
-# > mydb %>% {DBI::dbListTables(.)} %>% dput #----
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
+# > mydb %>% {DBI::dbListTables(.)} |> dput() #----
 c("NHID_GJ_0213.bind_rows.integer", "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char", 
 "NHID_GY60_0213.bind_rows.GNL_NM_CD4", "NHID_JK0213.bind_rows"
 )
 # > t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
-# +     select count(*) from "', chr, '"'))} %>% unlist
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
+# +     select count(*) from "', chr, '"'))} |> unlist()
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
 structure(list(`count(*)` = c(2294874, 227954977, 291467211,
 8335791)), .Names = "count(*)", row.names = c("NHID_GJ_0213.bind_rows.integer", 
 "NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char", "NHID_GY60_0213.bind_rows.GNL_NM_CD4", 
@@ -239,7 +239,7 @@ structure(list(`count(*)` = c(2294874, 227954977, 291467211,
 # Time difference of 59.01476 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% dbListFields(chr)
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
 structure(list(NHID_GJ_0213.bind_rows.integer = c("PERSON_ID", 
 "HCHK_YEAR", "YKIHO_GUBUN_CD", "HEIGHT", "WEIGHT", "BP_HIGH", 
 "BP_LWST", "BLDS", "TOT_CHOLE", "HMG", "GLY_CD", "OLIG_OCCU_CD", 

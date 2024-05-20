@@ -53,8 +53,8 @@ ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% s
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD = tblGADM_kor_level2.join_level1.SIDO_SGG_CD %>% 
     mutate_if(is.character, as.factor)
 
-tblGADM_kor_level2.join_level1.SIDO_SGG_CD %>% str #----
-# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD %>% str #----
+tblGADM_kor_level2.join_level1.SIDO_SGG_CD |> str() #----
+# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	229 obs. of  37 variables:
 #  $ OBJECTID_level2: num  1 2 3 4 5 6 7 8 9 10 ...
 #  $ ID_0           : num  213 213 213 213 213 213 213 213 213 213 ...
@@ -127,10 +127,10 @@ letters[c(1:4, 2:6, 4:1)]%>% {factor(., levels = sample(unique(.)))}
 
 
 
-set.seed(1); sample(24) %>% as.numeric %>% dput
-set.seed(1); sample(12) %>% as.numeric %>% dput
-set.seed(1); sample(9) %>% as.numeric %>% dput
-set.seed(1); sample(6) %>% as.numeric %>% dput
+set.seed(1); sample(24) %>% as.numeric |> dput()
+set.seed(1); sample(12) %>% as.numeric |> dput()
+set.seed(1); sample(9) %>% as.numeric |> dput()
+set.seed(1); sample(6) %>% as.numeric |> dput()
 c(7, 9, 13, 20, 5, 18, 19, 12, 11, 1, 3, 14, 23, 21, 8, 16, 6, 24, 22, 4, 17, 15, 2, 10)
 c(4, 5, 6, 9, 2, 7, 10, 12, 3, 1, 11, 8)
 c(3, 9, 5, 6, 2, 4, 8, 7, 1)
@@ -165,8 +165,8 @@ letters[c(1:4, 7:1, 4:1)] %>% as.factor %>% as.integer %>% {(. - 1) %% 3 + 1}
 
 
 
-analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% str(give.attr = F)
-# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% str(give.attr = F)
+analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` |> str(give.attr = F)
+# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` |> str(give.attr = F)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  22 variables:
 #  $ AGE                   : num  70 52 42 44 56 54 43 58 45 55 ...
 #  $ AGE_group             : Factor w/ 4 levels "40-","50-","60-",..: 4 2 1 1 2 2 1 2 1 2 ...
@@ -202,17 +202,17 @@ analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% str(give.attr = F)
 
 
 breaks = c(0, .001, 30, Inf)
-((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) %>% dput
-((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) %>% summary
-((0:20)/10000 >= 0.001) %>% summary 
-# > ((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) %>% dput
+((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) |> dput()
+((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) |> summary()
+((0:20)/10000 >= 0.001) |> summary() 
+# > ((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) |> dput()
 # structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 
 # 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L), .Label = c("[0,0.001)", "[0.001,30)", 
 # "[30,Inf]"), class = "factor")
-# > ((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) %>% summary
+# > ((0:20)/10000) %>% cut(breaks, include.lowest = T, right = F) |> summary()
 #  [0,0.001) [0.001,30)   [30,Inf] 
 #         10         11          0 
-# > ((0:20)/10000 >= 0.001) %>% summary
+# > ((0:20)/10000 >= 0.001) |> summary()
 #    Mode   FALSE    TRUE 
 # logical      10      11 
 
@@ -270,20 +270,20 @@ for (i in 3:7) {
 ?as.factor
 
 ?dplyr::recode
-analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr %>% summary
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr %>% summary
+analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
 #     0-  18.5-    23-    25-    30-   NA's 
 #   9872 162466 127857 148005  13155    134
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr %>% levels %>% dput
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr %>% levels %>% dput
+analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dput()
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dput()
 # c("0-", "18.5-", "23-", "25-", "30-")
 
 txt = "BMI_lt23, BMI_ge23lt25, BMI_cut2325"
-txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
+txt |> str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') |> cat()
 # > txt = "BMI_lt23, BMI_ge23lt25, BMI_cut2325"
-# > txt %>% str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') %>% cat
+# > txt |> str_extract_all("[A-z0-9_]+") %>% paste0(collapse = '", "') |> cat()
 # c("BMI_lt23", "BMI_ge23lt25", "BMI_cut2325")
 
 
@@ -297,7 +297,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_ge25 = BMI_Q_yr %in% c("25-", "30-")
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
         )
-    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
@@ -306,7 +306,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 # +             , BMI_ge25 = BMI_Q_yr %in% c("25-", "30-")
 # +             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
 # +         )
-# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 #   BMI_Q_yr       BMI_lt23       BMI_ge23lt25     BMI_ge25        BMI_cut2325  
 #  0-   :  9872   Mode :logical   Mode :logical   Mode :logical   Min.   :-Inf  
 #  18.5-:162466   FALSE:289151    FALSE:333632    FALSE:300329    1st Qu.:   0  
@@ -334,7 +334,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_ge25 = BMI_Q_yr %>% match(c("25-", "30-"))
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
         )
-    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
@@ -343,7 +343,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 # +             , BMI_ge25 = BMI_Q_yr %>% match(c("25-", "30-"))
 # +             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
 # +         )
-# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 #   BMI_Q_yr         BMI_lt23       BMI_ge23lt25       BMI_ge25       BMI_cut2325    
 #  0-   :  9872   Min.   :1.00     Min.   :1        Min.   :1.00     Min.   : NA     
 #  18.5-:162466   1st Qu.:2.00     1st Qu.:1        1st Qu.:1.00     1st Qu.: NA     
@@ -362,7 +362,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_ge25 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("25-", "30-"))}
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
         )
-    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
@@ -371,7 +371,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 # +             , BMI_ge25 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("25-", "30-"))}
 # +             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100)
 # +         )
-# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 #   BMI_Q_yr         BMI_lt23       BMI_ge23lt25       BMI_ge25       BMI_cut2325    
 #  0-   :  9872   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
 #  18.5-:162466   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
@@ -423,7 +423,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_ge25 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("25-", "30-"))}
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100) %>% as.ordered
         )
-    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
     map(function(df) {
         df = df %>% mutate(
@@ -432,7 +432,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
             , BMI_ge25 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("25-", "30-"))}
             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100) %>% ordered(label = c("BMI_lt23", "BMI_ge23lt25", "BMI_cut2325"))
         )
-    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+    }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% 
 # +     map(function(df) {
 # +         df = df %>% mutate(
@@ -441,7 +441,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 # +             , BMI_ge25 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("25-", "30-"))}
 # +             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100) %>% as.ordered
 # +         )
-# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 #   BMI_Q_yr         BMI_lt23       BMI_ge23lt25       BMI_ge25      BMI_cut2325  
 #  0-   :  9872   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   0   :172338  
 #  18.5-:162466   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1   :127857  
@@ -458,7 +458,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 # +             , BMI_ge25 = BMI_Q_yr %>% {ifelse(is.na(.), ., . %in% c("25-", "30-"))}
 # +             , BMI_cut2325 = log10(BMI_lt23 + BMI_ge23lt25*10 + BMI_ge25*100) %>% ordered(label = c("BMI_lt23", "BMI_ge23lt25", "BMI_cut2325"))
 # +         )
-# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) %>% summary
+# +     }) %>% {.[["_5yr"]]} %>% select(matches("BMI")) |> summary()
 #   BMI_Q_yr         BMI_lt23       BMI_ge23lt25       BMI_ge25            BMI_cut2325    
 #  0-   :  9872   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   BMI_lt23    :172338  
 #  18.5-:162466   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   BMI_ge23lt25:127857  
@@ -484,16 +484,16 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut =
 
 
 
-analyticDF_C24.drop_pmhx_negativetime.list.cut %>% str(max.level = 1) #----
-analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` %>% str(give.attr = F) #----
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut %>% str(max.level = 1)
+analyticDF_C24.drop_pmhx_negativetime.list.cut |> str(max.level = 1) #----
+analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut |> str(max.level = 1)
 # List of 5
 #  $ _3yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	481536 obs. of  44 variables:
 #  $ _4yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	471223 obs. of  44 variables:
 #  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  44 variables:
 #  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	451428 obs. of  44 variables:
 #  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	440469 obs. of  44 variables:
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` %>% str(give.attr = F) #----
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  44 variables:
 #  $ AGE                         : num  70 52 42 44 56 54 43 58 45 55 ...
 #  $ AGE_group                   : Factor w/ 4 levels "40-","50-","60-",..: 4 2 1 1 2 2 1 2 1 2 ...
@@ -548,10 +548,10 @@ analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordere
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered
 as.characther.as.factor = function(vec) as.factor(as.character(vec))
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% str
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} |> str()
 factor.unordered = function(vec) factor(vec, ordered = F)
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
-analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% str
+analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} |> str()
 # > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
 # [1] TRUE
 # > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
@@ -561,12 +561,12 @@ analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordere
 # > as.characther.as.factor = function(vec) as.factor(as.character(vec))
 # > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% is.ordered
 # [1] FALSE
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} %>% str
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.characther.as.factor) %>% {.$BMI_cut2325} |> str()
 #  Factor w/ 3 levels "BMI_ge23lt25",..: 1 1 3 3 1 3 3 2 1 2 ...
 # > factor.unordered = function(vec) factor(vec, ordered = F)
 # > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% is.ordered
 # [1] FALSE
-# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} %>% str
+# > analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor.unordered) %>% {.$BMI_cut2325} |> str()
 #  Factor w/ 3 levels "BMI_lt23","BMI_ge23lt25",..: 2 2 1 1 2 1 1 3 2 3 ...
 
 

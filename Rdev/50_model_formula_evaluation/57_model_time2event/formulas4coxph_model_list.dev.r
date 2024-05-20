@@ -95,8 +95,8 @@ varnames4coxph_model_list.Cigar_ge50$Cigar.Cigarette.Age.Sex.Race.Alcohol.Social
       , "HighSchoolLastYear", "FamilyIncome_ge7000"  # Social
       , "nutrition_calories", "nutrition_protein", "nutrition_fat", "nutrition_carb"  # nutrition
     )
-varnames4coxph_model_list.Cigar_ge50 %>% str #----
-# > varnames4coxph_model_list.Cigar_ge50 %>% str #----
+varnames4coxph_model_list.Cigar_ge50 |> str() #----
+# > varnames4coxph_model_list.Cigar_ge50 |> str() #----
 # List of 11
 #  $ Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition: chr [1:17] "ihd" "timeihd" "Cigar_ge50" "CigarettePackYear" ...
 #  $ Cigar.Cigarette.Age.Sex.Race.Hx.Alcohol.Social.nutrition    : chr [1:16] "ihd" "timeihd" "Cigar_ge50" "CigarettePackYear" ...
@@ -114,12 +114,12 @@ varnames4coxph_model_list.Cigar_ge50 %>% str #----
 varname4time = "timeihd"
 varname4event = "ihd"
 
-varnames4coxph_model_list.Cigar_ge50$Unadjusted %>% dput
-# > varnames4coxph_model_list.Cigar_ge50$Unadjusted %>% dput
+varnames4coxph_model_list.Cigar_ge50$Unadjusted |> dput()
+# > varnames4coxph_model_list.Cigar_ge50$Unadjusted |> dput()
 # c("ihd", "timeihd", "Cigar_ge50")
 
-varnames4coxph_model_list.Cigar_ge50$Cigar.Cigarette.Age.Sex %>% dput
-# > varnames4coxph_model_list.Cigar_ge50$Cigar.Cigarette.Age.Sex %>% dput
+varnames4coxph_model_list.Cigar_ge50$Cigar.Cigarette.Age.Sex |> dput()
+# > varnames4coxph_model_list.Cigar_ge50$Cigar.Cigarette.Age.Sex |> dput()
 # c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male")
 
 
@@ -154,8 +154,8 @@ c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdif
 # <environment: 0x000000001d2718e8
 
 
-c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula %>% dput
-# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula %>% dput
+c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula |> dput()
+# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula |> dput()
 # Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male
 
 
@@ -164,8 +164,8 @@ formulas4coxph_model_list.Cigar_ge50 =
     varnames4coxph_model_list.Cigar_ge50 %>% map(function(vec) {
         vec %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
     })
-formulas4coxph_model_list.Cigar_ge50 %>% str
-# > formulas4coxph_model_list.Cigar_ge50 %>% str
+formulas4coxph_model_list.Cigar_ge50 |> str()
+# > formulas4coxph_model_list.Cigar_ge50 |> str()
 # List of 11
 #  $ Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition:Class 'formula'  language Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + bmi4category + PMHx_diabetes + PMH| __truncated__
 #   .. ..- attr(*, ".Environment")=<environment: 0x000000003a807628> 
@@ -192,8 +192,8 @@ formulas4coxph_model_list.Cigar_ge50 %>% str
 
 
 
-formulas4coxph_model_list.Cigar_ge50 %>% dput
-# > formulas4coxph_model_list.Cigar_ge50 %>% dput
+formulas4coxph_model_list.Cigar_ge50 |> dput()
+# > formulas4coxph_model_list.Cigar_ge50 |> dput()
 # list(Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition = Surv(timeihd, 
 #     ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male + RaceWhite + 
 #     bmi4category + PMHx_diabetes + PMHx_highBP + Alcohol_3cat + 

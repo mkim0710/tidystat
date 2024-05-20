@@ -1,13 +1,13 @@
 # function.list.files.file.info.dev.r
 
 library(tidyverse)
-getwd() %>% dput
-# > getwd() %>% dput
+getwd() |> dput()
+# > getwd() |> dput()
 # "../../[[[[SASproject]]]]/SAS_NHIS_HEALS"
 path4read = getwd()
 path4write = getwd()
-path4read %>% dput
-path4write %>% dput
+path4read |> dput()
+path4write |> dput()
 
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
@@ -41,11 +41,11 @@ path4read = "../../[[[[SASproject]]]]/SAS_NHIS_HEALS"
 path4write = "../../[[[[Rproject]]]]/Rproject_NHIS_HEALS"
 path4read = path4read %>% {ifelse(substr(., nchar(.), nchar(.)) == "/", ., paste0(., "/"))}
 path4write = path4write %>% {ifelse(substr(., nchar(.), nchar(.)) == "/", ., paste0(., "/"))}
-path4read %>% dput
-path4write %>% dput
-# > path4read %>% dput
+path4read |> dput()
+path4write |> dput()
+# > path4read |> dput()
 # "../../[[[[SASproject]]]]/SAS_NHIS_HEALS/"
-# > path4write %>% dput
+# > path4write |> dput()
 # "../../[[[[Rproject]]]]/Rproject_NHIS_HEALS/"
 
 
@@ -54,16 +54,16 @@ filenames = c(
     list.files(path4read) %>% grep(".sas7bdat$",. , value = T)
     ,  list.files(path4read) %>% grep(".sas7bdat.rds$|.sas7bdat.rda$",. , value = T)
 )
-filenames %>% dput #----
+filenames |> dput() #----
 
 tribble_paste = datapasta::tribble_paste
 filenames %>% {file.info(file.path(path4read,.))} %>% tribble_paste #----
 filenames %>% {file.info(file.path(path4read,.))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = round(size/2^10, 2), MB = round(KB/2^10, 2), GB = round(MB/2^10, 2)) #----
-# > filenames %>% dput #----
+# > filenames |> dput() #----
 # c("nhis_heals_gjperson_id.sas7bdat", "nhis_heals_gy20_t1person_id.sas7bdat", 
 # "nhis_heals_gy30_t3person_id_hira.sas7bdat", "nhis_heals_gy40_t1person_id.sas7bdat", 
 # "nhis_heals_jk.sas7bdat")
-# > filenames %>% {file.info(paste0(path4read, .))} %>% dput #----
+# > filenames %>% {file.info(paste0(path4read, .))} |> dput() #----
 # structure(list(size = c(491192320, 12380667904, 29939400704, 
 # 18363383808, 306774016), isdir = c(FALSE, FALSE, FALSE, FALSE, 
 # FALSE), mode = structure(c(438L, 438L, 438L, 438L, 438L), class = "octmode"), 

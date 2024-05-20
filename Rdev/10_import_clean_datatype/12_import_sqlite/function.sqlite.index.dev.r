@@ -2,8 +2,8 @@
 
 
 library(tidyverse)
-getwd() %>% dput
-# > getwd() %>% dput
+getwd() |> dput()
+# > getwd() |> dput()
 # "X:/mkim/Rproject"
 # path4read = "//DON/marketscan_users/smacdonald/"
 # path4write = "//DON/marketscan_users/mkim/"
@@ -17,17 +17,17 @@ library(DBI)
 mydb <- dbConnect(RSQLite::SQLite(), paste0(path4write, "r4.sas7bdat.sqlite"))
 
 
-mydb %>% {DBI::dbListTables(.)} %>% dput #----
+mydb %>% {DBI::dbListTables(.)} |> dput() #----
 t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0('
-    select count(*) from "', chr, '"'))} %>% unlist
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
+    select count(*) from "', chr, '"'))} |> unlist()
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
 Sys.time() - t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% dbListFields(chr)
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
-# > mydb %>% {DBI::dbListTables(.)} %>% dput #----
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
+# > mydb %>% {DBI::dbListTables(.)} |> dput() #----
 # c("infant_pregcohort_d_r4.sas7bdat", "infant_pregcohort_i_r4.sas7bdat", 
 # "infant_pregcohort_o_r4.sas7bdat", "infant_pregcohort_o_r4_mod.sas7bdat", 
 # "infant_pregcohort_r_r4.sas7bdat", "infant_pregcohort_s_r4.sas7bdat", 
@@ -41,8 +41,8 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # > t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
-# +     select count(*) from "', chr, '"'))} %>% unlist
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput #----
+# +     select count(*) from "', chr, '"'))} |> unlist()
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
 # structure(list(`count(*)` = c(6717955, 1184201, 82689932, 119756995, 
 # 321397, 22047659, 25068708, 26707411, 40401516, 2738787, 45466555, 
 # 2358125, 233728576, 330453652, 17434069, 47285165, 35285704, 
@@ -60,7 +60,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # Time difference of 23.4821 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% dbListFields(chr)
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput #----
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
 # structure(list(infant_pregcohort_d_r4.sas7bdat = c("enrolid", 
 # "EFAMID", "NDCNUM", "SVCDATE", "DOBYR", "YEAR", "AGE", "DAYSUPP", 
 # "GENERID", "METQTY", "MHSACOVG", "PDDATE", "PHARMID", "QTY", 
@@ -176,25 +176,25 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 library(tidyverse)
 mydb <- DBI::dbConnect(RSQLite::SQLite(), "KNHIS.JK_GJ596284.SICK_SYM.INDEX.sqlite")
 
-mydb %>% {DBI::dbListTables(.)} %>% dput
+mydb %>% {DBI::dbListTables(.)} |> dput()
 t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0("
-    select count(*) from '", chr, "'"))} %>% unlist
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput
+    select count(*) from '", chr, "'"))} |> unlist()
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput()
 Sys.time() - t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% DBI::dbListFields(chr)
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput
-# > mydb %>% {DBI::dbListTables(.)} %>% dput
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput()
+# > mydb %>% {DBI::dbListTables(.)} |> dput()
 c("NHID_GJ_0213.bind_rows.integer", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor", 
 "NHID_GY40_0213.bind_rows.factor", "NHID_GY60_0213.bind_rows.GNL_NM_CD4", 
 "NHID_JK0213.bind_rows")
 # > t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
-# +     select count(*) from "', chr, '"'))} %>% unlist
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") %>% dput
+# +     select count(*) from "', chr, '"'))} |> unlist()
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput()
 structure(list(`count(*)` = c(2210067, 74606011, 190462550, 246770921, 
 6879688)), row.names = c("NHID_GJ_0213.bind_rows.integer", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor", 
 "NHID_GY40_0213.bind_rows.factor", "NHID_GY60_0213.bind_rows.GNL_NM_CD4", 
@@ -203,7 +203,7 @@ structure(list(`count(*)` = c(2210067, 74606011, 190462550, 246770921,
 # Time difference of 41.92452 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% DBI::dbListFields(chr)
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% dput
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput()
 list(NHID_GJ_0213.bind_rows.integer = c("HCHK_YEAR", "PERSON_ID", 
 "YKIHO_GUBUN_CD", "HEIGHT", "WEIGHT", "BP_HIGH", "BP_LWST", "BLDS", 
 "TOT_CHOLE", "HMG", "GLY_CD", "OLIG_OCCU_CD", "OLIG_PH", "OLIG_PROTE_CD", 
@@ -485,13 +485,13 @@ mydb %>% {DBI::dbGetQuery(
 SELECT *
 FROM sqlite_master
               ")
-)} %>% {.$tbl_name} %>% dput
+)} %>% {.$tbl_name} |> dput()
 # > mydb %>% {DBI::dbGetQuery(
 # +     ., paste0("
 # + SELECT *
 # + FROM sqlite_master
 # +               ")
-# + )} %>% {.$tbl_name} %>% dput
+# + )} %>% {.$tbl_name} |> dput()
 c("NHID_JK0213.bind_rows", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor",
 "NHID_GY60_0213.bind_rows.GNL_NM_CD4", "NHID_GJ_0213.bind_rows.integer",
 "NHID_GY40_0213.bind_rows.factor")

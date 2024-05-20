@@ -20,10 +20,10 @@
 
 
 substring("statistics", 1:10, 1:10)
-"statistics" %>% str_split("") %>% unlist
+"statistics" |> str_split("") |> unlist()
 # > substring("statistics", 1:10, 1:10)
 #  [1] "s" "t" "a" "t" "i" "s" "t" "i" "c" "s"
-# > "statistics" %>% str_split("") %>% unlist
+# > "statistics" |> str_split("") |> unlist()
 #  [1] "s" "t" "a" "t" "i" "s" "t" "i" "c" "s"
 
 (ff <- factor(substring("statistics", 1:10, 1:10), levels = letters))
@@ -163,9 +163,9 @@ x <- c("Man", "Male", "Man", "Lady", "Female")
 
 ## Using addNA() ----
 Month <- airquality$Month
-Month %>% dput
+Month |> dput()
 # > Month <- airquality$Month
-# > Month %>% dput
+# > Month |> dput()
 # c(5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 
 # 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 
 # 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 
@@ -177,8 +177,8 @@ Month %>% dput
 # 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 
 # 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L)
 
-addNA(Month) %>% dput
-# > addNA(Month) %>% dput
+addNA(Month) |> dput()
+# > addNA(Month) |> dput()
 # structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
 # 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
 # 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
@@ -229,8 +229,8 @@ str(iris)
 # # 2              1                  0                 0
 # # 3              1                  0                 0
 #  
-# dummies %>% dput
-# > dummies %>% dput
+# dummies |> dput()
+# > dummies |> dput()
 dummies = structure(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
@@ -276,7 +276,7 @@ dummies = structure(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 
 #@ header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))] ----
 colnames(dummies)
-strsplit(colnames(dummies), '[.]') %>% str
+strsplit(colnames(dummies), '[.]') |> str()
 unlist(strsplit(colnames(dummies), '[.]'))
 1:ncol(dummies)
 2 * (1:ncol(dummies))
@@ -284,7 +284,7 @@ unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))]
 header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))]
 # > colnames(dummies)
 # [1] "Species.setosa"     "Species.versicolor" "Species.virginica" 
-# > strsplit(colnames(dummies), '[.]') %>% str
+# > strsplit(colnames(dummies), '[.]') |> str()
 # List of 3
 #  $ : chr [1:2] "Species" "setosa"
 #  $ : chr [1:2] "Species" "versicolor"
@@ -300,22 +300,22 @@ header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))]
 
 
 
-colnames(dummies) %>% strsplit("\\.") %>% str
-colnames(dummies) %>% strsplit("\\.") %>% map(function(vec) vec[2]) %>% unlist
-# > colnames(dummies) %>% strsplit("\\.") %>% str
+colnames(dummies) |> str()split("\\.") |> str()
+colnames(dummies) |> str()split("\\.") %>% map(function(vec) vec[2]) |> unlist()
+# > colnames(dummies) |> str()split("\\.") |> str()
 # List of 3
 #  $ : chr [1:2] "Species" "setosa"
 #  $ : chr [1:2] "Species" "versicolor"
 #  $ : chr [1:2] "Species" "virginica"
-# > colnames(dummies) %>% strsplit("\\.") %>% map(function(vec) vec[2]) %>% unlist
+# > colnames(dummies) |> str()split("\\.") %>% map(function(vec) vec[2]) |> unlist()
 # [1] "setosa"     "versicolor" "virginica" 
 
 
 colnames(dummies) %>% gsub("^.+\\.", "", .)
-colnames(dummies) %>% str_replace_all("^.+\\.", "")
+colnames(dummies) |> str_replace_all("^.+\\.", "")
 # > colnames(dummies) %>% gsub("^.+\\.", "", .)
 # [1] "setosa"     "versicolor" "virginica" 
-# > colnames(dummies) %>% str_replace_all("^.+\\.", "")
+# > colnames(dummies) |> str_replace_all("^.+\\.", "")
 # [1] "setosa"     "versicolor" "virginica" 
 
 
@@ -324,15 +324,15 @@ colnames(dummies) %>% str_replace_all("^.+\\.", "")
 
 
 #@ -----
-dummies %>% str
-dummies %>% as_tibble
+dummies |> str()
+dummies |> as_tibble()
 dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
-# > dummies %>% str
+# > dummies |> str()
 #  num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:150] "1" "2" "3" "4" ...
 #   ..$ : chr [1:3] "Species.setosa" "Species.versicolor" "Species.virginica"
-# > dummies %>% as_tibble
+# > dummies |> as_tibble()
 # # A tibble: 150 x 3
 #    Species.setosa Species.versicolor Species.virginica
 #             <dbl>              <dbl>             <dbl>
@@ -366,18 +366,18 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 # 141              0                  0                 1
 
 
-1:ncol(dummies) %>% str
-(dummies %*% 1:ncol(dummies)) %>% str
-(dummies %*% 1:ncol(dummies)) %>% as_tibble
+1:ncol(dummies) |> str()
+(dummies %*% 1:ncol(dummies)) |> str()
+(dummies %*% 1:ncol(dummies)) |> as_tibble()
 (dummies %*% 1:ncol(dummies)) %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
-# > 1:ncol(dummies) %>% str
+# > 1:ncol(dummies) |> str()
 #  int [1:3] 1 2 3
-# > (dummies %*% 1:ncol(dummies)) %>% str
+# > (dummies %*% 1:ncol(dummies)) |> str()
 #  num [1:150, 1] 1 1 1 1 1 1 1 1 1 1 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:150] "1" "2" "3" "4" ...
 #   ..$ : NULL
-# > (dummies %*% 1:ncol(dummies)) %>% as_tibble
+# > (dummies %*% 1:ncol(dummies)) |> as_tibble()
 # # A tibble: 150 x 1
 #       V1
 #    <dbl>
@@ -397,12 +397,12 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 #   1   1   1   1   1   2   2   2   2   2   3   3   3   3   3 
 
 
-factor(dummies %*% 1:ncol(dummies), labels = header) %>% str
-factor(dummies %*% 1:ncol(dummies), labels = header) %>% as_tibble
+factor(dummies %*% 1:ncol(dummies), labels = header) |> str()
+factor(dummies %*% 1:ncol(dummies), labels = header) |> as_tibble()
 factor(dummies %*% 1:ncol(dummies), labels = header) %>% {.[0:(length(.)/10-1) * 10 + 1]} #----
-# > factor(dummies %*% 1:ncol(dummies), labels = header) %>% str
+# > factor(dummies %*% 1:ncol(dummies), labels = header) |> str()
 #  Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
-# > factor(dummies %*% 1:ncol(dummies), labels = header) %>% as_tibble
+# > factor(dummies %*% 1:ncol(dummies), labels = header) |> as_tibble()
 # # A tibble: 150 x 1
 #    value 
 #    <fct> 
@@ -447,8 +447,8 @@ all.equal(species, iris$Species)
 #@ function.indicators2factor = function(input.matrix, level = colnames(input.matrix)) { ======
 function.indicators2factor = function(input.matrix, labels = colnames(input.matrix), str_replace_all.pattern2remove = NULL, remove_colnames_before_dot = T) {
     # https://github.com/mkim0710/tidystat/blob/master/R/function.indicators2factor.dev.r
-    if (!is.null(str_replace_all.pattern2remove)) labels = labels %>% str_replace_all(str_replace_all.pattern2remove, "")
-    if (remove_colnames_before_dot) labels = labels %>% str_replace_all("^.+\\.", "")
+    if (!is.null(str_replace_all.pattern2remove)) labels = labels |> str_replace_all(str_replace_all.pattern2remove, "")
+    if (remove_colnames_before_dot) labels = labels |> str_replace_all("^.+\\.", "")
     if (is.data.frame(input.matrix)) input.matrix = as.matrix(input.matrix)
     out = factor(input.matrix %*% 1:ncol(input.matrix), labels = labels)
     out
@@ -465,8 +465,8 @@ function.indicators2factor = function(input.matrix, labels = colnames(input.matr
 # # 2              1                  0                 0
 # # 3              1                  0                 0
 #  
-# dummies %>% dput
-# > dummies %>% dput
+# dummies |> dput()
+# > dummies |> dput()
 input.matrix = structure(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
@@ -533,7 +533,7 @@ all.equal(dummies %>% function.indicators2factor, iris$Species)
 
 
 # n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head = n1_2016_withlabels_EPI522_merge_n2_recode1026_drop %>% select(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% head(10) %>% as.data.frame
-# n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% dput
+# n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head |> dput()
 n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head = 
     structure(list(
         Alcohol_le1pwk = c(0, NA, 1, 0, NA, 0, NA, 0, NA, 0)
@@ -542,10 +542,10 @@ n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head =
     ), class = "data.frame", row.names = c(NA, -10L))
 n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% mutate(
     Alcohol = cbind(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% function.indicators2factor
-) %>% as_tibble
+) |> as_tibble()
 # > n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% mutate(
 # +     Alcohol = cbind(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% function.indicators2factor
-# + ) %>% as_tibble
+# + ) |> as_tibble()
 # # A tibble: 10 x 4
 #    Alcohol_le1pwk Alcohol_ge2le3pwk Alcohol_ge4pwk Alcohol          
 #             <dbl>             <dbl>          <dbl> <fct>            

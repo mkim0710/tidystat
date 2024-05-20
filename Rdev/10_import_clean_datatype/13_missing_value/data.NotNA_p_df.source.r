@@ -23,15 +23,15 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
-if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv))
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 
 env.custom$data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
-    colnames(out)[which(colnames(out) == ".")] = "IsNA"
-    out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
-    out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
-    out = out %>% add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
-    out = out %>% arrange(IsNA)
+    out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> setNames("IsNA") |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
+    out = out |> mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
+    out = out |> add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
+    out = out |> add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
+    out = out |> arrange(IsNA)
     out
 }
 
@@ -44,8 +44,8 @@ packageStartupMessage("Loading: env.custom$data.NotNA_p_df = function(data)")
 
 # library(tidyverse)
 # load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
-# nhanes_mice %>% str #-----
-# # > nhanes_mice %>% str #-----
+# nhanes_mice |> str() #-----
+# # > nhanes_mice |> str() #-----
 # # 'data.frame':	25 obs. of  4 variables:
 # #  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
 # #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...

@@ -42,15 +42,17 @@ knitr::opts_knit$set(global.par = TRUE)
 
 
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
-if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv)) 
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(env.custom)) env.custom$info = list()
 env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
 
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
-suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")){if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("\n");
-if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("\n");
+if(!exists("env.custom", envir=.GlobalEnv)) 
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 ## env.custom\$path ====
 if(!"path" %in% names(env.custom)) env.custom$path = list()
 objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
@@ -68,7 +70,8 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
 
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
-if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv)) 
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(env.custom)) env.custom$info = list()
 #### env.custom\$info\$get_system_info() ====
 sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
@@ -84,7 +87,7 @@ env.custom$info$info_software_versions = env.custom$info$get_software_versions(l
 
 ###### env.custom\$info\$DocumentTitle1 ====
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
-env.custom$info$DocumentTitle0 = paste0("00env.custom", "-", basename(getwd()))
+env.custom$info$DocumentTitle0 = paste0("00env.custom","-",basename(getwd()))
 env.custom$info$DocumentTitle1 = paste0(env.custom$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 cat(env.custom$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
     env.custom$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
