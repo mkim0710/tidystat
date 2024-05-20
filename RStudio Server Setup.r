@@ -318,6 +318,7 @@ path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
 # file.edit("~/.ssh/id_rsa"); file.edit(env.custom$path$current.path.filename.ext)
 file.edit("~/.ssh/id_ed25519.pub"); file.edit(env.custom$path$current.path.filename.ext)
 file.edit("~/.ssh/id_ed25519"); file.edit(env.custom$path$current.path.filename.ext)
+system("sudo chmod 400 ~/.ssh/id_ed25519")
 
 path.file = file.path(env.custom$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path.file)) file.edit(path.file)
 path.file = file.path(env.custom$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path.file)) file.edit(path.file)
