@@ -181,8 +181,20 @@ library(jsonlite)
 # Define the path to the sources directory
 sources_dir <- file.path(".Rproj.user", "E3EEE3A9", "sources")
 
+# Function to list directories and wait if the result is empty
+list_dirs_with_wait <- function(path) {
+  dirs <- list.dirs(path, recursive = FALSE)
+  while (length(dirs) == 0) {
+    Sys.sleep(1) # Wait for 1 second before retrying
+    dirs <- list.dirs(path, recursive = FALSE)
+  }
+  return(dirs)
+}
+
 # List all directories in the sources directory
-all_dirs <- list.dirs(sources_dir, recursive = FALSE)
+all_dirs <- list_dirs_with_wait(sources_dir)
+
+# Filter for session directories
 session_dirs <- all_dirs[grepl("session-", basename(all_dirs))]
 
 print("List of session directories:")
@@ -271,20 +283,10 @@ recovered_files <- lapply(session_files, function(file) {
 print("Recovered files:")
 print(recovered_files)
 
-
-# > library(jsonlite)
-# > 
-# > # Define the path to the sources directory
-# > sources_dir <- file.path(".Rproj.user", "E3EEE3A9", "sources")
-# > 
-# > # List all directories in the sources directory
-# > all_dirs <- list.dirs(sources_dir, recursive = FALSE)
-# > session_dirs <- all_dirs[grepl("session-", basename(all_dirs))]
-# > 
 # > print("List of session directories:")
 # [1] "List of session directories:"
 # > print(session_dirs)
-# [1] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3"
+# [1] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35"
 # > 
 # > # Check if there are any session directories
 # > if (length(session_dirs) == 0) {
@@ -295,26 +297,26 @@ print(recovered_files)
 # > most_recent_session <- session_dirs[which.max(file.info(session_dirs)$mtime)]
 # > 
 # > print(paste("Most recent session directory:", most_recent_session))
-# [1] "Most recent session directory: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3"
+# [1] "Most recent session directory: .Rproj.user/E3EEE3A9/sources/session-b71e3d35"
 # > 
 # > # List all files in the most recent session directory
 # > session_files <- list.files(most_recent_session, full.names = TRUE)
 # > print("List of session files:")
 # [1] "List of session files:"
 # > print(session_files)
-#  [1] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/06A2BF28"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/06A2BF28-contents"
-#  [3] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/10460832"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/10460832-contents"
-#  [5] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/22452B12"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/22452B12-contents"
-#  [7] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/638F50C0"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/638F50C0-contents"
-#  [9] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/690764CF"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/690764CF-contents"
-# [11] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/8249F163"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/8249F163-contents"
-# [13] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/9879D8CD"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/9879D8CD-contents"
-# [15] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/A05040E0"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/A05040E0-contents"
-# [17] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/D14D3FDE"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/D14D3FDE-contents"
-# [19] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/E01BF946"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/E01BF946-contents"
-# [21] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/F29AB6E7"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/F29AB6E7-contents"
-# [23] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/FFF77695"          ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/FFF77695-contents"
-# [25] ".Rproj.user/E3EEE3A9/sources/session-b1bc67b3/lock_file"        
+#  [1] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/06A2BF28"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/06A2BF28-contents"
+#  [3] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/10460832"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/10460832-contents"
+#  [5] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12-contents"
+#  [7] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0-contents"
+#  [9] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF-contents"
+# [11] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163-contents"
+# [13] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD-contents"
+# [15] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0-contents"
+# [17] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/D14D3FDE"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/D14D3FDE-contents"
+# [19] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/E01BF946"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/E01BF946-contents"
+# [21] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/F29AB6E7"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/F29AB6E7-contents"
+# [23] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/FFF77695"          ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/FFF77695-contents"
+# [25] ".Rproj.user/E3EEE3A9/sources/session-b71e3d35/lock_file"        
 # > 
 # > # Create output folder if it doesn't exist
 # > out_folder <- "recovered_untitled_files"
@@ -379,11 +381,11 @@ print(recovered_files)
 # +   }
 # +   return(NULL)
 # + })
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/06A2BF28"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/06A2BF28-contents"
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/06A2BF28"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/06A2BF28-contents"
 # [1] "Metadata content: {\n  \"id\": [\"06A2BF28\"],\n  \"path\": [\"~/github_tidystat/Rdev/00_base_program/f_session_recover.dev.02-void.Rmd\"],\n  \"project_path\": [\"Rdev/00_base_program/f_session_recover.dev.02-void.Rmd\"],\n  \"type\": [\"r_markdown\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716217704695],\n  \"source_on_save\": [false],\n  \"relative_order\": [12],\n  \"properties\": {\n    \"tempName\": [\"Untitled1\"],\n    \"chunk_output_type\": [\"inline\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"373,0\"],\n    \"scrollLine\": [\"0\"],\n    \"last_setup_crc32\": [\"\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716220043],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716220043660],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/06A2BF28"
-# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/06A2BF28"
+# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/06A2BF28"
+# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/06A2BF28"
 # $id
 # [1] "06A2BF28"
 # 
@@ -461,17 +463,17 @@ print(recovered_files)
 # $read_only_alternatives
 # list()
 # 
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/06A2BF28-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/10460832"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/10460832-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/06A2BF28-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/10460832"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/10460832-contents"
 # [1] "Metadata content: {\n  \"id\": [\"10460832\"],\n  \"path\": [\"~/github_tidystat/RStudio.Cloud set up.r\"],\n  \"project_path\": [\"RStudio.Cloud set up.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716207751572],\n  \"source_on_save\": [false],\n  \"relative_order\": [10],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"250,0\"],\n    \"scrollLine\": [\"231\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716207751],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716207751],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/10460832 is not untitled or has no tempName."
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/10460832-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/22452B12"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/22452B12-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/10460832 is not untitled or has no tempName."
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/10460832-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12-contents"
 # [1] "Metadata content: {\n  \"id\": [\"22452B12\"],\n  \"path\": [\"~/github_tidystat/Rdev/00_base_program/f_session_recover.RsRecovr.r\"],\n  \"project_path\": [\"Rdev/00_base_program/f_session_recover.RsRecovr.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716210525925],\n  \"source_on_save\": [false],\n  \"relative_order\": [11],\n  \"properties\": {\n    \"tempName\": [\"Untitled1\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"363,0\"],\n    \"scrollLine\": [\"0\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716210669],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716210669335],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/22452B12"
-# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/22452B12"
+# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12"
+# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12"
 # $id
 # [1] "22452B12"
 # 
@@ -543,32 +545,32 @@ print(recovered_files)
 # $read_only_alternatives
 # list()
 # 
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/22452B12-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/638F50C0"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/638F50C0-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0-contents"
 # [1] "Metadata content: {\n  \"id\": [\"638F50C0\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.dev.r\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/data.CreateTableOne.dev.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907877019],\n  \"source_on_save\": [false],\n  \"relative_order\": [3],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"44,31\"],\n    \"scrollLine\": [\"0\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/638F50C0 is not untitled or has no tempName."
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/638F50C0-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/690764CF"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/690764CF-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0 is not untitled or has no tempName."
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF-contents"
 # [1] "Metadata content: {\n  \"id\": [\"690764CF\"],\n  \"path\": [\"~/github_tidystat/RStudio Server Setup.r\"],\n  \"project_path\": [\"RStudio Server Setup.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716002841867],\n  \"source_on_save\": [false],\n  \"relative_order\": [7],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"259,37\"],\n    \"scrollLine\": [\"0\"],\n    \"docOutlineVisible\": [\"1\"],\n    \"docOutlineSize\": [\"201\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716190102],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716190102458],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/690764CF is not untitled or has no tempName."
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/690764CF-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/8249F163"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/8249F163-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF is not untitled or has no tempName."
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163-contents"
 # [1] "Metadata content: {\n  \"id\": [\"8249F163\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.dev.Rmd\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/data.CreateTableOne.dev.Rmd\"],\n  \"type\": [\"r_markdown\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907877182],\n  \"source_on_save\": [false],\n  \"relative_order\": [4],\n  \"properties\": {\n    \"chunk_output_type\": [\"inline\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"201,26\"],\n    \"scrollLine\": [\"0\"],\n    \"last_setup_crc32\": [\"\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1715915023],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1715915023634],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/8249F163 is not untitled or has no tempName."
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/8249F163-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/9879D8CD"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/9879D8CD-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163 is not untitled or has no tempName."
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD-contents"
 # [1] "Metadata content: {\n  \"id\": [\"9879D8CD\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.source.r\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/data.CreateTableOne.source.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907876927],\n  \"source_on_save\": [false],\n  \"relative_order\": [2],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"9,118\"],\n    \"scrollLine\": [\"0\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/9879D8CD is not untitled or has no tempName."
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/9879D8CD-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/A05040E0"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/A05040E0-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD is not untitled or has no tempName."
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0-contents"
 # [1] "Metadata content: {\n  \"id\": [\"A05040E0\"],\n  \"path\": [\"~/github_tidystat/[Working Files List].r\"],\n  \"project_path\": [\"[Working Files List].r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716006288276],\n  \"source_on_save\": [false],\n  \"relative_order\": [1],\n  \"properties\": {\n    \"tempName\": [\"Untitled1\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"111,0\"],\n    \"scrollLine\": [\"0\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/A05040E0"
-# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/A05040E0"
+# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0"
+# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0"
 # $id
 # [1] "A05040E0"
 # 
@@ -643,12 +645,12 @@ print(recovered_files)
 # $read_only_alternatives
 # list()
 # 
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/A05040E0-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/D14D3FDE"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/D14D3FDE-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/D14D3FDE"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/D14D3FDE-contents"
 # [1] "Metadata content: {\n  \"id\": [\"D14D3FDE\"],\n  \"path\": [\"~/github_tidystat/Rocker set up.r\"],\n  \"project_path\": [\"Rocker set up.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715936980872],\n  \"source_on_save\": [false],\n  \"relative_order\": [5],\n  \"properties\": {\n    \"tempName\": [\"Untitled1\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"85,40\"],\n    \"scrollLine\": [\"0\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/D14D3FDE"
-# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/D14D3FDE"
+# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/D14D3FDE"
+# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/D14D3FDE"
 # $id
 # [1] "D14D3FDE"
 # 
@@ -723,20 +725,20 @@ print(recovered_files)
 # $read_only_alternatives
 # list()
 # 
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/D14D3FDE-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/E01BF946"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/E01BF946-contents"
-# [1] "Metadata content: {\n  \"id\": [\"E01BF946\"],\n  \"path\": [\"~/github_tidystat/Rdev/00_base_program/f_session_recover.dev.02.r\"],\n  \"project_path\": [\"Rdev/00_base_program/f_session_recover.dev.02.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716215549628],\n  \"source_on_save\": [false],\n  \"relative_order\": [12],\n  \"properties\": {\n    \"tempName\": [\"Untitled1\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"319,0\"],\n    \"scrollLine\": [\"0\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716217518],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716217518288],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/E01BF946"
-# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/E01BF946"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/D14D3FDE-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/E01BF946"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/E01BF946-contents"
+# [1] "Metadata content: {\n  \"id\": [\"E01BF946\"],\n  \"path\": [\"~/github_tidystat/Rdev/00_base_program/f_session_recover.dev.03.r\"],\n  \"project_path\": [\"Rdev/00_base_program/f_session_recover.dev.03.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716215549628],\n  \"source_on_save\": [false],\n  \"relative_order\": [12],\n  \"properties\": {\n    \"tempName\": [\"Untitled1\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"288,0\"],\n    \"scrollLine\": [\"240\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716220308],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716220308719],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
+# [1] "Recovering untitled file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/E01BF946"
+# [1] "Processing metadata file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/E01BF946"
 # $id
 # [1] "E01BF946"
 # 
 # $path
-# [1] "~/github_tidystat/Rdev/00_base_program/f_session_recover.dev.02.r"
+# [1] "~/github_tidystat/Rdev/00_base_program/f_session_recover.dev.03.r"
 # 
 # $project_path
-# [1] "Rdev/00_base_program/f_session_recover.dev.02.r"
+# [1] "Rdev/00_base_program/f_session_recover.dev.03.r"
 # 
 # $type
 # [1] "r_source"
@@ -770,10 +772,10 @@ print(recovered_files)
 # [1] "Source"
 # 
 # $properties$cursorPosition
-# [1] "319,0"
+# [1] "288,0"
 # 
 # $properties$scrollLine
-# [1] "0"
+# [1] "240"
 # 
 # $properties$docOutlineVisible
 # [1] "1"
@@ -783,7 +785,7 @@ print(recovered_files)
 # [1] ""
 # 
 # $lastKnownWriteTime
-# [1] 1716217518
+# [1] 1716220308
 # 
 # $encoding
 # [1] "UTF-8"
@@ -795,7 +797,7 @@ print(recovered_files)
 # [1] ""
 # 
 # $last_content_update
-# [1] 1.716218e+12
+# [1] 1.71622e+12
 # 
 # $read_only
 # [1] FALSE
@@ -803,19 +805,19 @@ print(recovered_files)
 # $read_only_alternatives
 # list()
 # 
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/E01BF946-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/F29AB6E7"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/F29AB6E7-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/E01BF946-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/F29AB6E7"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/F29AB6E7-contents"
 # [1] "Metadata content: {\n  \"id\": [\"F29AB6E7\"],\n  \"path\": [\"~/.config/rstudio/rstudio-prefs.json\"],\n  \"project_path\": {},\n  \"type\": [\"json\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1716207751453],\n  \"source_on_save\": [false],\n  \"relative_order\": [9],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"36,1\"],\n    \"scrollLine\": [\"0\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716208632],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716208632976],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/F29AB6E7 is not untitled or has no tempName."
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/F29AB6E7-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/FFF77695"
-# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/FFF77695-contents"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/F29AB6E7 is not untitled or has no tempName."
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/F29AB6E7-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/FFF77695"
+# [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/FFF77695-contents"
 # [1] "Metadata content: {\n  \"id\": [\"FFF77695\"],\n  \"path\": [\"~/github_tidystat/f_df.t.tribble_construct.source.r\"],\n  \"project_path\": [\"f_df.t.tribble_construct.source.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715914763202],\n  \"source_on_save\": [false],\n  \"relative_order\": [6],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"57,93\"],\n    \"scrollLine\": [\"0\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716165863],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716165863],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/FFF77695 is not untitled or has no tempName."
-# [1] "File .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/FFF77695-contents is a content file, skipping."
-# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/lock_file"
-# [1] "Content file does not exist for metadata file: .Rproj.user/E3EEE3A9/sources/session-b1bc67b3/lock_file"
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/FFF77695 is not untitled or has no tempName."
+# [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/FFF77695-contents is a content file, skipping."
+# [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/lock_file"
+# [1] "Content file does not exist for metadata file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/lock_file"
 # > 
 # > # Print the paths of recovered files
 # > print("Recovered files:")
@@ -895,4 +897,5 @@ print(recovered_files)
 # 
 # [[25]]
 # NULL
+
 
