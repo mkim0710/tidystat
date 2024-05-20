@@ -161,25 +161,25 @@ map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<
 
 #@ test) map.parent_name() 1:3 -------
 library(tidyverse)
-set.seed(1); 1:3 %>% map(rnorm, n = 10) %>% str
-set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F) %>% str
-set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10, .add.attributes = F) %>% str
-set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F, .print.Sys.time = T) %>% str
-set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .max.object.size.to.store = 10) %>% str
-set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10) %>% str
-set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10) %>% str
+set.seed(1); 1:3 %>% map(rnorm, n = 10) |> str()
+set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F) |> str()
+set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10, .add.attributes = F) |> str()
+set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F, .print.Sys.time = T) |> str()
+set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .max.object.size.to.store = 10) |> str()
+set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10) |> str()
+set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10) |> str()
 
-set.seed(1); 1:3 %>% map(~rnorm(10, .x)) %>% str
-# set.seed(1); 1:3 %>% map.parent_name(~rnorm(10, .x)) %>% str
-set.seed(1); 1:3 %>% map(function(x) rnorm(10, x)) %>% str
-set.seed(1); 1:3 %>% map.parent_name(.f = function(x) rnorm(10, x)) %>% str
-set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
-# > set.seed(1); 1:3 %>% map(rnorm, n = 10) %>% str
+set.seed(1); 1:3 %>% map(~rnorm(10, .x)) |> str()
+# set.seed(1); 1:3 %>% map.parent_name(~rnorm(10, .x)) |> str()
+set.seed(1); 1:3 %>% map(function(x) rnorm(10, x)) |> str()
+set.seed(1); 1:3 %>% map.parent_name(.f = function(x) rnorm(10, x)) |> str()
+set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) |> str()
+# > set.seed(1); 1:3 %>% map(rnorm, n = 10) |> str()
 # List of 3
 #  $ : num [1:10] 0.374 1.184 0.164 2.595 1.33 ...
 #  $ : num [1:10] 3.512 2.39 1.379 -0.215 3.125 ...
 #  $ : num [1:10] 3.92 3.78 3.07 1.01 3.62 ...
-# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F) %>% str
+# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F) |> str()
 # [1] "Finished .f() map from vector element [1] named: NULL"
 # [1] "Finished .f() map from vector element [2] named: NULL"
 # [1] "Finished .f() map from vector element [3] named: NULL"
@@ -187,7 +187,7 @@ set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
 #  $ 1: num [1:10] 0.374 1.184 0.164 2.595 1.33 ...
 #  $ 2: num [1:10] 3.512 2.39 1.379 -0.215 3.125 ...
 #  $ 3: num [1:10] 3.92 3.78 3.07 1.01 3.62 ...
-# > set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10, .add.attributes = F) %>% str
+# > set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10, .add.attributes = F) |> str()
 # [1] "Finished .f() map from vector element [1] named: NULL"
 # [1] "Finished .f() map from vector element [2] named: NULL"
 # [1] "Finished .f() map from vector element [3] named: NULL"
@@ -195,7 +195,7 @@ set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
 #  $ 1: num [1:10] 0.374 1.184 0.164 2.595 1.33 ...
 #  $ 2: num [1:10] 3.512 2.39 1.379 -0.215 3.125 ...
 #  $ 3: num [1:10] 3.92 3.78 3.07 1.01 3.62 ...
-# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F, .print.Sys.time = T) %>% str
+# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F, .print.Sys.time = T) |> str()
 # [1] "2017-08-26 02:22:35 EDT"
 # [1] "Finished .f() map from vector element [1] named: NULL"
 # [1] "2017-08-26 02:22:35 EDT"
@@ -206,7 +206,7 @@ set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
 #  $ 1: num [1:10] 0.374 1.184 0.164 2.595 1.33 ...
 #  $ 2: num [1:10] 3.512 2.39 1.379 -0.215 3.125 ...
 #  $ 3: num [1:10] 3.92 3.78 3.07 1.01 3.62 ...
-# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .max.object.size.to.store = 10) %>% str
+# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .max.object.size.to.store = 10) |> str()
 # [1] "Finished .f() map from vector element [1] named: NULL"
 # [1] "Finished .f() map from vector element [2] named: NULL"
 # [1] "Finished .f() map from vector element [3] named: NULL"
@@ -224,7 +224,7 @@ set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
 #   ..$ vec                : chr "Not stored b/c object.size larger than 10"
 #   ..$ .f.name            : chr "rnorm"
 #   ..$ .f                 :function (n, mean = 0, sd = 1)  
-# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10) %>% str
+# > set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10) |> str()
 # [1] "Finished .f() map from vector element [1] named: NULL"
 # [1] "Finished .f() map from vector element [2] named: NULL"
 # [1] "Finished .f() map from vector element [3] named: NULL"
@@ -242,7 +242,7 @@ set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
 #   ..$ vec                : int [1:3] 1 2 3
 #   ..$ .f.name            : chr "rnorm"
 #   ..$ .f                 :function (n, mean = 0, sd = 1)  
-# > set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10) %>% str
+# > set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10) |> str()
 # [1] "Finished .f() map from vector element [1] named: NULL"
 # [1] "Finished .f() map from vector element [2] named: NULL"
 # [1] "Finished .f() map from vector element [3] named: NULL"
@@ -261,8 +261,8 @@ set.seed(1); 1:3 %>% map.parent_name2(.f = function(x) rnorm(10, x)) %>% str
 #   ..$ .f.name            : chr "rnorm"
 #   ..$ .f                 :function (n, mean = 0, sd = 1)
 
-mtcars[, 1:3] %>% split(.$cyl) %>% str
-# > mtcars[, 1:3] %>% split(.$cyl) %>% str
+mtcars[, 1:3] %>% split(.$cyl) |> str()
+# > mtcars[, 1:3] %>% split(.$cyl) |> str()
 # List of 3
 #  $ 4:'data.frame':	11 obs. of  3 variables:
 #   ..$ mpg : num [1:11] 22.8 24.4 22.8 32.4 30.4 33.9 21.5 27.3 26 30.4 ...
@@ -278,22 +278,22 @@ mtcars[, 1:3] %>% split(.$cyl) %>% str
 #   ..$ disp: num [1:14] 360 360 276 276 276 ...
 
 
-mtcars %>% split(.$cyl) %>% map(nrow) %>% str
-mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .add.attributes = F) %>% str
-mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .add.attributes = F) %>% str
-mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .max.object.size.to.store = 10^4) %>% str
-mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .max.object.size.to.store = 10^4) %>% str
-mtcars %>% split(.$cyl) %>% map(~nrow(.x)) %>% str
-# mtcars %>% split(.$cyl) %>% map.parent_name(~nrow(.x)) %>% str
-mtcars %>% split(.$cyl) %>% map(function(x) nrow(x)) %>% str
-mtcars %>% split(.$cyl) %>% map.parent_name(function(x) nrow(x)) %>% str
-mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) nrow(x)) %>% str
-# > mtcars %>% split(.$cyl) %>% map(nrow) %>% str
+mtcars %>% split(.$cyl) %>% map(nrow) |> str()
+mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .add.attributes = F) |> str()
+mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .add.attributes = F) |> str()
+mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .max.object.size.to.store = 10^4) |> str()
+mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .max.object.size.to.store = 10^4) |> str()
+mtcars %>% split(.$cyl) %>% map(~nrow(.x)) |> str()
+# mtcars %>% split(.$cyl) %>% map.parent_name(~nrow(.x)) |> str()
+mtcars %>% split(.$cyl) %>% map(function(x) nrow(x)) |> str()
+mtcars %>% split(.$cyl) %>% map.parent_name(function(x) nrow(x)) |> str()
+mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) nrow(x)) |> str()
+# > mtcars %>% split(.$cyl) %>% map(nrow) |> str()
 # List of 3
 #  $ 4: int 11
 #  $ 6: int 7
 #  $ 8: int 14
-# > mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .add.attributes = F) %>% str
+# > mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .add.attributes = F) |> str()
 # [1] "Finished .f() map from list element [[1]] named: 4"
 # [1] "Finished .f() map from list element [[2]] named: 6"
 # [1] "Finished .f() map from list element [[3]] named: 8"
@@ -301,7 +301,7 @@ mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) nrow(x)) %>% str
 #  $ 4: int 11
 #  $ 6: int 7
 #  $ 8: int 14
-# > mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .add.attributes = F) %>% str
+# > mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .add.attributes = F) |> str()
 # [1] "Finished .f() map from list element [[1]] named: 4"
 # [1] "Finished .f() map from list element [[2]] named: 6"
 # [1] "Finished .f() map from list element [[3]] named: 8"
@@ -309,7 +309,7 @@ mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) nrow(x)) %>% str
 #  $ 4: int 11
 #  $ 6: int 7
 #  $ 8: int 14
-# > mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .max.object.size.to.store = 10^4) %>% str
+# > mtcars %>% split(.$cyl) %>% map.parent_name(nrow, .max.object.size.to.store = 10^4) |> str()
 # [1] "Finished .f() map from list element [[1]] named: 4"
 # [1] "Finished .f() map from list element [[2]] named: 6"
 # [1] "Finished .f() map from list element [[3]] named: 8"
@@ -330,7 +330,7 @@ mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) nrow(x)) %>% str
 #   ..$ vec                : chr "Not stored b/c object.size larger than 10000"
 #   ..$ .f.name            : chr "nrow"
 #   ..$ .f                 :function (x)  
-# > mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .max.object.size.to.store = 10^4) %>% str
+# > mtcars %>% split(.$cyl) %>% map.parent_name2(nrow, .max.object.size.to.store = 10^4) |> str()
 # [1] "Finished .f() map from list element [[1]] named: 4"
 # [1] "Finished .f() map from list element [[2]] named: 6"
 # [1] "Finished .f() map from list element [[3]] named: 8"
@@ -352,15 +352,15 @@ mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) nrow(x)) %>% str
 #   ..$ .f.name            : chr "nrow"
 #   ..$ .f                 :function (x) 
 
-mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% str(max.level = 1)
-mtcars %>% split(.$cyl) %>% map.parent_name(lm, formula = mpg ~ wt) %>% str(max.level = 1)
-mtcars %>% split(.$cyl) %>% map.parent_name2(lm, formula = mpg ~ wt) %>% str(max.level = 1)
-mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) %>% str(max.level = 1)
-# mtcars %>% split(.$cyl) %>% map.parent_name(~ lm(mpg ~ wt, data = .x)) %>% str(max.level = 1)
-mtcars %>% split(.$cyl) %>% map(function(x) lm(mpg ~ wt, data = x)) %>% str(max.level = 1)
-mtcars %>% split(.$cyl) %>% map.parent_name(function(x) lm(mpg ~ wt, data = x)) %>% str(max.level = 1)
-mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) lm(mpg ~ wt, data = x)) %>% str(max.level = 1)
-# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% str(max.level = 1)
+mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) |> str(max.level = 1)
+mtcars %>% split(.$cyl) %>% map.parent_name(lm, formula = mpg ~ wt) |> str(max.level = 1)
+mtcars %>% split(.$cyl) %>% map.parent_name2(lm, formula = mpg ~ wt) |> str(max.level = 1)
+mtcars %>% split(.$cyl) %>% map(~ lm(mpg ~ wt, data = .x)) |> str(max.level = 1)
+# mtcars %>% split(.$cyl) %>% map.parent_name(~ lm(mpg ~ wt, data = .x)) |> str(max.level = 1)
+mtcars %>% split(.$cyl) %>% map(function(x) lm(mpg ~ wt, data = x)) |> str(max.level = 1)
+mtcars %>% split(.$cyl) %>% map.parent_name(function(x) lm(mpg ~ wt, data = x)) |> str(max.level = 1)
+mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) lm(mpg ~ wt, data = x)) |> str(max.level = 1)
+# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) |> str(max.level = 1)
 # List of 3
 #  $ 4:List of 12
 #   ..- attr(*, "class")= chr "lm"
@@ -368,7 +368,7 @@ mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) lm(mpg ~ wt, data = x))
 #   ..- attr(*, "class")= chr "lm"
 #  $ 8:List of 12
 #   ..- attr(*, "class")= chr "lm"
-# > mtcars %>% split(.$cyl) %>% map.parent_name(lm, formula = mpg ~ wt) %>% str(max.level = 1)
+# > mtcars %>% split(.$cyl) %>% map.parent_name(lm, formula = mpg ~ wt) |> str(max.level = 1)
 # [1] ".f() map from list element [[1]] named: 4"
 # [1] ".f() map from list element [[2]] named: 6"
 # [1] ".f() map from list element [[3]] named: 8"
@@ -383,7 +383,7 @@ mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) lm(mpg ~ wt, data = x))
 #   ..- attr(*, "class")= chr "lm"
 #   ..- attr(*, "parent_name")= chr "8"
 #  - attr(*, "function.input")=List of 7
-# > mtcars %>% split(.$cyl) %>% map.parent_name2(lm, formula = mpg ~ wt) %>% str(max.level = 1)
+# > mtcars %>% split(.$cyl) %>% map.parent_name2(lm, formula = mpg ~ wt) |> str(max.level = 1)
 # [1] ".f() map from list element [[1]] named: 4"
 # [1] ".f() map from list element [[2]] named: 6"
 # [1] ".f() map from list element [[3]] named: 8"
@@ -399,15 +399,15 @@ mtcars %>% split(.$cyl) %>% map.parent_name2(function(x) lm(mpg ~ wt, data = x))
 #   ..- attr(*, "parent_name")= chr "8"
 #  - attr(*, "function.input")=List of 7
 
-mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map(length) %>% str
-mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name(length, .max.object.size.to.store = 10^4) %>% str
-mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name2(length, .max.object.size.to.store = 10^4) %>% str
-# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map(length) %>% str
+mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map(length) |> str()
+mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name(length, .max.object.size.to.store = 10^4) |> str()
+mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name2(length, .max.object.size.to.store = 10^4) |> str()
+# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map(length) |> str()
 # List of 3
 #  $ 4: int 12
 #  $ 6: int 12
 #  $ 8: int 12
-# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name(length, .max.object.size.to.store = 10^4) %>% str
+# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name(length, .max.object.size.to.store = 10^4) |> str()
 # [1] ".f() map from list element [[1]] named: 4"
 # [1] ".f() map from list element [[2]] named: 6"
 # [1] ".f() map from list element [[3]] named: 8"
@@ -428,7 +428,7 @@ mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name2(len
 #   ..$ vec                : chr "Not stored b/c object.size larger than 10000"
 #   ..$ .f.name            : chr "length"
 #   ..$ .f                 :function (x)  
-# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name2(length, .max.object.size.to.store = 10^4) %>% str
+# > mtcars %>% split(.$cyl) %>% map(lm, formula = mpg ~ wt) %>% map.parent_name2(length, .max.object.size.to.store = 10^4) |> str()
 # [1] ".f() map from list element [[1]] named: 4"
 # [1] ".f() map from list element [[2]] named: 6"
 # [1] ".f() map from list element [[3]] named: 8"

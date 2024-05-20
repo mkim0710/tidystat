@@ -21,8 +21,8 @@ data.add_IncomeQuartile_MedicalAid <- function(DF) {
 }
 
 gj_jk.Date.DTH.recode = gj_jk.Date.DTH.recode %>% data.add_IncomeQuartile_MedicalAid
-gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) %>% summary
-# > gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) %>% summary
+gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) |> summary()
+# > gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) |> summary()
 #  CTRB_PT_TYPE_CD    MedicalAid       IncomeDecile    IncomeQuartile
 #  Length:31931       Mode :logical   Min.   : 0.000   Q1:9302       
 #  Class :character   FALSE:31862     1st Qu.: 4.000   Q2:7873       

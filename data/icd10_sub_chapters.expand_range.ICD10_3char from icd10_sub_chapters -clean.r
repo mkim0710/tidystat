@@ -31,8 +31,8 @@ packageVersion("icd")
 ?icd10_map_quan_elix
 
 
-icd10cm2019 %>% str #-----
-# > icd10cm2019 %>% str #-----
+icd10cm2019 |> str() #-----
+# > icd10cm2019 |> str() #-----
 # 'data.frame':	94444 obs. of  8 variables:
 #  $ code       : 'icd10cm' chr  "A00" "A000" "A001" "A009" ...
 #   ..- attr(*, "icd_short_diag")= logi TRUE
@@ -46,9 +46,9 @@ icd10cm2019 %>% str #-----
 #  $ chapter    : Factor w/ 21 levels "Certain infectious and parasitic diseases",..: 1 1 1 1 1 1 1 1 1 1 ...
 
 
-icd10_chapters %>% str #-----
-icd10_sub_chapters %>% str #----
-# > icd10_chapters %>% str -----
+icd10_chapters |> str() #-----
+icd10_sub_chapters |> str() #----
+# > icd10_chapters |> str() -----
 # List of 21
 #  $ Certain infectious and parasitic diseases                                                          : Named chr [1:2] "A00" "B99"
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
@@ -92,7 +92,7 @@ icd10_sub_chapters %>% str #----
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
 #  $ Factors influencing health status and contact with health services                                 : Named chr [1:2] "Z00" "Z99"
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
-# > icd10_sub_chapters %>% str ----
+# > icd10_sub_chapters |> str() ----
 # List of 279
 #  $ Intestinal Infectious Diseases                                                                                                                                                : Named chr [1:2] "A00" "A09"
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
@@ -304,8 +304,8 @@ icd10_sub_chapters %>% str #----
 
 #@ icd10_chapters.expand_range = icd10_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])}) ------
 icd10_chapters.expand_range = icd10_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])})
-icd10_chapters.expand_range %>% str
-# > icd10_chapters.expand_range %>% str
+icd10_chapters.expand_range |> str()
+# > icd10_chapters.expand_range |> str()
 # List of 21
 #  $ Certain infectious and parasitic diseases                                                          :Classes 'icd10cm', 'icd10', 'character'  atomic [1:1292] A00 A000 A001 A009 ...
 #   .. ..- attr(*, "icd_short_diag")= logi TRUE
@@ -354,8 +354,8 @@ icd10_chapters.expand_range %>% str
 
 
 icd10_chapters.expand_range.ICD10_3char = icd10_chapters.expand_range %>% map(function(x) unique(substr(x, 1, 3)))
-icd10_chapters.expand_range.ICD10_3char %>% str
-# > icd10_chapters.expand_range.ICD10_3char %>% str ----
+icd10_chapters.expand_range.ICD10_3char |> str()
+# > icd10_chapters.expand_range.ICD10_3char |> str() ----
 # List of 21
 #  $ Certain infectious and parasitic diseases                                                          : chr [1:167] "A00" "A01" "A02" "A03" ...
 #  $ Neoplasms                                                                                          : chr [1:141] "C00" "C01" "C02" "C03" ...
@@ -388,8 +388,8 @@ icd10_chapters.expand_range.ICD10_3char %>% str
 
 #@ icd10_sub_chapters.expand_range = icd10_sub_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])}) ----
 icd10_sub_chapters.expand_range = icd10_sub_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])})
-icd10_sub_chapters.expand_range %>% str
-# > icd10_sub_chapters.expand_range %>% str -----
+icd10_sub_chapters.expand_range |> str()
+# > icd10_sub_chapters.expand_range |> str() -----
 # List of 279
 #  $ Intestinal Infectious Diseases                                                                                                                                                :Classes 'icd10cm', 'icd10', 'character'  atomic [1:92] A00 A000 A001 A009 ...
 #   .. ..- attr(*, "icd_short_diag")= logi TRUE
@@ -595,8 +595,8 @@ icd10_sub_chapters.expand_range %>% str
 
 
 icd10_sub_chapters.expand_range.ICD10_3char = icd10_sub_chapters.expand_range %>% map(function(x) unique(substr(x, 1, 3)))
-icd10_sub_chapters.expand_range.ICD10_3char %>% str
-# > icd10_sub_chapters.expand_range.ICD10_3char %>% str -----
+icd10_sub_chapters.expand_range.ICD10_3char |> str()
+# > icd10_sub_chapters.expand_range.ICD10_3char |> str() -----
 # List of 279
 #  $ Intestinal Infectious Diseases                                                                                                                                                : chr [1:10] "A00" "A01" "A02" "A03" ...
 #  $ Tuberculosis                                                                                                                                                                  : chr [1:4] "A15" "A17" "A18" "A19"

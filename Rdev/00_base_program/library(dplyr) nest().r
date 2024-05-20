@@ -4,8 +4,8 @@
 
 
 ?nest
-as_tibble(chickwts) %>% nest(weight) %>% {.[1:2,]} %>% dput
-# > as_tibble(chickwts) %>% nest(weight) %>% {.[1:2,]} %>% dput
+as_tibble(chickwts) %>% nest(weight) %>% {.[1:2,]} |> dput()
+# > as_tibble(chickwts) %>% nest(weight) %>% {.[1:2,]} |> dput()
 # structure(list(feed = structure(2:3, .Label = c("casein", "horsebean", 
 # "linseed", "meatmeal", "soybean", "sunflower"), class = "factor"), 
 #     data = list(structure(list(weight = c(179, 160, 136, 227, 

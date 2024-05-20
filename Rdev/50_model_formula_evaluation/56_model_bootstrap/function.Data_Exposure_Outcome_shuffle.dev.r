@@ -66,20 +66,20 @@ ffqtot %>% select(currsm, fkcal)
 # 10      0 2130.
 # # ... with 2,133 more rows
 
-ffqtot$currsm %>% str
+ffqtot$currsm |> str()
 set.seed(1)
-ffqtot$currsm %>% sample %>% str
-ffqtot$currsm %>% sample %>% str
-ffqtot$currsm %>% sample %>% str
-# > ffqtot$currsm %>% str
+ffqtot$currsm %>% sample |> str()
+ffqtot$currsm %>% sample |> str()
+ffqtot$currsm %>% sample |> str()
+# > ffqtot$currsm |> str()
 #  num [1:2143] 1 0 0 0 0 0 0 0 0 0 ...
 #  - attr(*, "label")= chr "currsm"
 # > set.seed(1)
-# > ffqtot$currsm %>% sample %>% str
+# > ffqtot$currsm %>% sample |> str()
 #  num [1:2143] 1 0 0 0 0 0 0 0 1 0 ...
-# > ffqtot$currsm %>% sample %>% str
+# > ffqtot$currsm %>% sample |> str()
 #  num [1:2143] 0 0 0 0 0 0 0 0 0 1 ...
-# > ffqtot$currsm %>% sample %>% str
+# > ffqtot$currsm %>% sample |> str()
 #  num [1:2143] 1 0 0 0 1 0 0 0 0 0 ...
 
 
@@ -199,8 +199,8 @@ for (i in 1:500) {
     ffqtot.select.permutation_list[[i]] = ffqtot.select
     ffqtot.select.permutation_list[[i]]$currsm = sample(ffqtot.select$currsm)
 }
-ffqtot.select.permutation_list %>% str(max.level = 1) #----
-# > ffqtot.select.permutation_list %>% str(max.level = 1) #----
+ffqtot.select.permutation_list |> str(max.level = 1) #----
+# > ffqtot.select.permutation_list |> str(max.level = 1) #----
 # List of 500
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2143 obs. of  27 variables:
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2143 obs. of  27 variables:
@@ -304,8 +304,8 @@ for (i in 1:length(ffqtot.select.permutation_list)) {
     permutation_results_single[[i]] = ffqtot.select.permutation_list[[i]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]}
 }
 permutation_results_single = unlist(permutation_results_single)
-permutation_results_single %>% str #----
-# > permutation_results_single %>% str #----
+permutation_results_single |> str() #----
+# > permutation_results_single |> str() #----
 #  Named num [1:500] -56.8 -138.2 -41.2 -39.7 -55.9 ...
 #  - attr(*, "names")= chr [1:500] "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" ...
 
@@ -317,7 +317,7 @@ for (i in 1:length(ffqtot.select.permutation_list)) {
     permutation_results_single[[i]] = ffqtot.select.permutation_list[[i]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]}
 }
 permutation_results_single = unlist(permutation_results_single)
-permutation_results_single %>% str #----
+permutation_results_single |> str() #----
 
 
 
@@ -400,14 +400,14 @@ permutation_results_multiple #----
 # # ... with 490 more rows
 
 
-# > permutation_results_single %>% str #----
+# > permutation_results_single |> str() #----
 #  Named num [1:500] -56.8 -138.2 -41.2 -39.7 -55.9 ...
 #  - attr(*, "names")= chr [1:500] "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" ...
 
 
 
 EmpiricalDistributionOfStatisticValue = permutation_results_multiple$fkcal
-ObservedStatisticValue = ffqtot.select %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} %>% unlist
+ObservedStatisticValue = ffqtot.select %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} |> unlist()
 
 hist(EmpiricalDistributionOfStatisticValue, col = "gray", breaks = 100)
 abline(v = ObservedStatisticValue, col = "blue", lwd = 2)
@@ -462,14 +462,14 @@ t.test(formula = fkcal ~ currsm, data = ffqtot)$p.value # Print the "structure" 
 permutationP_multiple = list()
 for (i in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "aprot", "afiber", "adca", "adiron", "adphos", "adk", "adna", "advaiu", "advare", "adthiam", "adribo", "adniac", "advc", "atca", "atiron", "atvaiu", "atthiri", "atvc", "asuptoc") ) {
     EmpiricalDistributionOfStatisticValue = permutation_results_multiple[[i]]
-    ObservedStatisticValue = ffqtot.select %>% group_by(currsm) %>% summarise(mean(eval(parse(text = i)))) %>% {.[2,2] - .[1,2]} %>% unlist
+    ObservedStatisticValue = ffqtot.select %>% group_by(currsm) %>% summarise(mean(eval(parse(text = i)))) %>% {.[2,2] - .[1,2]} |> unlist()
     
     permutationP_multiple[[i]] = sum(abs(EmpiricalDistributionOfStatisticValue) > abs(ObservedStatisticValue) ) / length(EmpiricalDistributionOfStatisticValue)  # two-tailed test
     
 }
-permutationP_multiple = permutationP_multiple %>% unlist
-permutationP_multiple %>% str(max.level = 1) #-----
-# > permutationP_multiple %>% str(max.level = 1) #-----
+permutationP_multiple = permutationP_multiple |> unlist()
+permutationP_multiple |> str(max.level = 1) #-----
+# > permutationP_multiple |> str(max.level = 1) #-----
 #  Named num [1:26] 0.746 0 0 0 0.752 0 0 0.086 0 0.088 ...
 #  - attr(*, "names")= chr [1:26] "fkcal" "atotfat" "asat" "aoleic" ...
 

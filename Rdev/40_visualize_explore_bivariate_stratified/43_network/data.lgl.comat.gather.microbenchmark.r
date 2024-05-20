@@ -17,7 +17,7 @@ data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-        arrange(R) %>% as_tibble
+        arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
         # out$varname1 = out$V1 %>% as.character
         # out$varname2 = out$V2 %>% as.character
@@ -154,7 +154,7 @@ data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
 #        dimnames = list(Guess = c("Milk", "Tea"),
 #                        Truth = c("Milk", "Tea")))
 # fisher.test(TeaTasting)
-# fisher.test(TeaTasting) %>% str
+# fisher.test(TeaTasting) |> str()
 # List of 7
 #  $ p.value    : num 0.486
 #  $ conf.int   : atomic [1:2] 0.212 621.934
@@ -167,8 +167,8 @@ data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
 #  $ method     : chr "Fisher's Exact Test for Count Data"
 #  $ data.name  : chr "TeaTasting"
 #  - attr(*, "class")= chr "htest"
-chisq.test(TeaTasting) %>% str
-# > chisq.test(TeaTasting) %>% str
+chisq.test(TeaTasting) |> str()
+# > chisq.test(TeaTasting) |> str()
 # List of 9
 #  $ statistic: Named num 0.5
 #   ..- attr(*, "names")= chr "X-squared"
@@ -210,7 +210,7 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
         gather(-V1, key = "V2", value = "cooccurence") %>%
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>%
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
-        arrange(R) %>% as_tibble
+        arrange(R) |> as_tibble()
     if (.Fisher.exact.test == T | .cor.test == T) {
         # out$varname1 = out$V1 %>% as.character
         # out$varname2 = out$V2 %>% as.character
@@ -336,7 +336,7 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
 #         gather(-V1, key = "V2", value = "cooccurence") %>% 
 #         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 #         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-#         arrange(R) %>% as_tibble
+#         arrange(R) |> as_tibble()
 #     if (.Fisher.exact.test == T | .cor.test == T) {
 #         # out$varname1 = out$V1 %>% as.character
 #         # out$varname2 = out$V2 %>% as.character
@@ -463,7 +463,7 @@ data.lgl.comat.gather2 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-        arrange(R) %>% as_tibble
+        arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
         # out$varname1 = out$V1 %>% as.character
         # out$varname2 = out$V2 %>% as.character
@@ -612,7 +612,7 @@ data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
         mutate(rowname = RC) %>% column_to_rownames %>% 
-        arrange(R) %>% as_tibble
+        arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
         # out$varname1 = out$V1 %>% as.character
         # out$varname2 = out$V2 %>% as.character
@@ -750,7 +750,7 @@ data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     # if (any(is.na(out$cooccurence))) {
     #     warning("any(is.na(out$cooccurence))")
     # }
-    out %>% as_tibble
+    out |> as_tibble()
 }
 
 data.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
@@ -766,7 +766,7 @@ data.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
         mutate(rowname = RC) %>% column_to_rownames %>% 
-        arrange(R) %>% as_tibble
+        arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
         # out$varname1 = out$V1 %>% as.character
         # out$varname2 = out$V2 %>% as.character
@@ -920,7 +920,7 @@ data.lgl.comat.gather5 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
         mutate(rowname = RC) %>% column_to_rownames %>% 
-        arrange(R) %>% as_tibble
+        arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
         # out$varname1 = out$V1 %>% as.character
         # out$varname2 = out$V2 %>% as.character

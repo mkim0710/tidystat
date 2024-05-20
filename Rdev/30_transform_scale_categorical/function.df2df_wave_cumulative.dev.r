@@ -59,10 +59,10 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
 
 # Example usage with vectors
 tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
-tmp.df %>% str
-# tmp.df %>% as.matrix %>% str
+tmp.df |> str()
+# tmp.df %>% as.matrix |> str()
 # tmp.df %>% head
-# > tmp.df %>% str
+# > tmp.df |> str()
 # tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
 #   ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
@@ -70,7 +70,7 @@ tmp.df %>% str
 #   ..- attr(*, "names")= chr [1:10030] "92 >=200" "NA >=200" "148 >=200" "NA >=200" ...
 #  $ A07_GLU60_TR_ge200: Named logi [1:10030] NA NA FALSE NA FALSE NA ...
 #   ..- attr(*, "names")= chr [1:10030] "NA >=200" "NA >=200" "148 >=200" "NA >=200" ...
-# > tmp.df %>% as.matrix %>% str
+# > tmp.df %>% as.matrix |> str()
 #  logi [1:10030, 1:3] FALSE FALSE FALSE NA FALSE FALSE ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
@@ -87,10 +87,10 @@ tmp.df %>% str
 # 6 FALSE              FALSE              NA                
 
 tmp_df_wave_cumulative <- tmp.df %>% function.df2df_wave_cumulative(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)
-tmp_df_wave_cumulative %>% str
+tmp_df_wave_cumulative |> str()
 # tmp_df_wave_cumulative %>% head
 tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table(vec, useNA = "always")))
-# > tmp_df_wave_cumulative %>% str
+# > tmp_df_wave_cumulative |> str()
 # List of 2
 #  $ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #   ..$ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
@@ -160,10 +160,10 @@ tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table
 list_df_wave_cumulative <- list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>%
     map(function(dfi) {dfi %>% function.df2df_wave_cumulative(vector_wave = as.numeric(sub("A0(\\d+)_.*", "\\1", names(.))), print.intermediate = F)})
 
-list_df_wave_cumulative %>% str(max.level = 2)
-list_df_wave_cumulative$DM_C %>% str
-list_df_wave_cumulative$GLU60_TR %>% str
-# > list_df_wave_cumulative %>% str(max.level = 2)
+list_df_wave_cumulative |> str(max.level = 2)
+list_df_wave_cumulative$DM_C |> str()
+list_df_wave_cumulative$GLU60_TR |> str()
+# > list_df_wave_cumulative |> str(max.level = 2)
 # List of 7
 #  $ DM_C     :List of 2
 #   ..$ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
@@ -186,7 +186,7 @@ list_df_wave_cumulative$GLU60_TR %>% str
 #  $ DRUGINS  :List of 2
 #   ..$ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #   ..$ df_wave_cumulative: tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
-# > list_df_wave_cumulative$DM_C %>% str
+# > list_df_wave_cumulative$DM_C |> str()
 # List of 2
 #  $ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #   ..$ A01_DM_C_eq2: Named logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
@@ -217,7 +217,7 @@ list_df_wave_cumulative$GLU60_TR %>% str
 #   .. ..- attr(*, "names")= chr [1:10030] "1 ==2" "1 ==2" "1 ==2" "2 ==2" ...
 #   ..$ A07_DM_C_eq2_cumulative: Named int [1:10030] 0 0 0 7 0 0 0 0 4 0 ...
 #   .. ..- attr(*, "names")= chr [1:10030] "1 ==2" "1 ==2" "1 ==2" "2 ==2" ...
-# > list_df_wave_cumulative$GLU60_TR %>% str
+# > list_df_wave_cumulative$GLU60_TR |> str()
 # List of 2
 #  $ df_wave           : tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #   ..$ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
@@ -254,8 +254,8 @@ list_df_wave_cumulative$GLU60_TR %>% str
 
 
 #@ debugged - NA if all NAs ----------
-# as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) %>% summary
-# # > as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) %>% summary
+# as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) |> summary()
+# # > as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) |> summary()
 # #   A01_GLU60_TR  
 # #  Min.   : 14.0  
 # #  1st Qu.:115.0  
@@ -288,7 +288,7 @@ tmp.df_wave[,1:5] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol
 tmp.df_wave[,1:6] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
 tmp.df_wave[,1:7] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
 tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins 
-tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% str
+tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} |> str()
 # > tmp.df_wave[,1] %>% table(useNA = "always") %>% addmargins
 # A01_GLU60_TR_ge200
 # FALSE  TRUE  <NA>   Sum 
@@ -313,7 +313,7 @@ tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), N
 # .
 #     0     1     2     3  <NA>   Sum 
 #  6801  2001   604   150   474 10030 
-# > tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% str
+# > tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} |> str()
 #  Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
 #  - attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
 
@@ -339,8 +339,8 @@ tmp.df_wave[,1] %>% rowwise %>% mutate(colSums = sum(c_across(everything()), na.
 #@ void) should make NA if all NAs ---------------
 # https://stackoverflow.com/questions/33672059/rowsums-with-all-na
 
-# as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) %>% summary
-# # > as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) %>% summary
+# as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) |> summary()
+# # > as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) |> summary()
 # #   A01_GLU60_TR  
 # #  Min.   : 14.0  
 # #  1st Qu.:115.0  
@@ -373,7 +373,7 @@ tmp.df_wave[,1:5] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmarg
 tmp.df_wave[,1:6] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
 tmp.df_wave[,1:7] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
 tmp.df_wave %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
-tmp.df_wave %>% rowSums(na.rm = T) %>% str
+tmp.df_wave %>% rowSums(na.rm = T) |> str()
 # > tmp.df_wave[,1] %>% table(useNA = "always") %>% addmargins
 # A01_GLU60_TR_ge200
 # FALSE  TRUE  <NA>   Sum 
@@ -398,6 +398,6 @@ tmp.df_wave %>% rowSums(na.rm = T) %>% str
 # .
 #     0     1     2     3  <NA>   Sum 
 #  7275  2001   604   150     0 10030 
-# > tmp.df_wave %>% rowSums(na.rm = T) %>% str
+# > tmp.df_wave %>% rowSums(na.rm = T) |> str()
 #  num [1:10030] 0 0 0 0 0 0 1 0 0 0 ...
 

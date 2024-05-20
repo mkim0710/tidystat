@@ -13,24 +13,27 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+if(!exists("env.custom", envir=.GlobalEnv))
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-for(packagename in c("tidyverse")){if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
-if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ## env.custom\$path ====
-# path2look = "/"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
-# path2look = "~"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
-# path2look = "."; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE);
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
+# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
 if(!"path" %in% names(env.custom)) env.custom$path = list()
-objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env.custom$path[[objectname]] = object;
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env.custom$path[[objectname]] = object;
 env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)
-objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "getwd"; object = getwd(); env.custom$path[[objectname]] = object;
+objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); env.custom$path[[objectname]] = object;
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
@@ -46,6 +49,7 @@ sourcename = "f_objectname.read.checkEntity"
 # cat("# ",'sourcename = "',sourcename,'"', "\n",
 #     "# ",sourcename,".dev.r", "\n",
 #     "# ",sourcename,".source.r", "\n",
+#     '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
 #     '# utils::browseURL("',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
 #     '# source(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.source.r,'"))', "\n",
 #     '# # source("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
@@ -71,16 +75,18 @@ sourcename = "f_objectname.read.checkEntity"
 
 library(tidyverse)
 
-# if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
-if(!exists("env.custom", envir=.GlobalEnv)) assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv))
+    assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env.custom", envir=.GlobalEnv))
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = as.environment(env.custom)
 # if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 
 if(!"path" %in% names(env.custom)) {
     env.custom$path = list()
-    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env.custom$path[[objectname]] = object;
+    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env.custom$path[[objectname]] = object;
     env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
 } 
 #@ for (env.custom.dependancy in c("")) { -----
@@ -127,7 +133,7 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     #     str_replace_all("\\[", "\\\\[") %>% 
     #     str_replace_all("\\]", "\\\\]") %>% 
     #     str_replace_all("\\-", "\\\\-") 
-    filename.ext.regex <- filename.ext %>% str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
+    filename.ext.regex <- filename.ext |> str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
     env.custom$f_path.size_files(path4read = path4read, regex4filename = filename.ext.regex)
     
     system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir=.GlobalEnv))
@@ -150,25 +156,25 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
 
     cat(strrep("%",80),"\n",sep=""); 
-    cat("> names(",objectname,') %>% deparse(width.cutoff=120-15) %>% cat(sep="\\n")',"\n", sep=""); get(objectname) %>% names %>% deparse(width.cutoff=120-15) %>% cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) %>% cat(sep="\n"); # width.cutoff=500 is the max ----
+    cat("> names(",objectname,') %>% deparse(width.cutoff=120-15) |> cat(sep="\\n")',"\n", sep=""); get(objectname) %>% names %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
     cat(strrep("~",80),"\n",sep=""); 
-    cat("> names(",objectname,') %>% paste(collapse=", ") %>% cat(sep="\\n")',"\n", sep=""); get(objectname) %>% names %>% paste(collapse=", ") %>% cat(sep="\n");cat("\n"); # tidydplyr::select: paste(collapse=", ") %>% cat ----
+    cat("> names(",objectname,') %>% paste(collapse=", ") |> cat(sep="\\n")',"\n", sep=""); get(objectname) %>% names %>% paste(collapse=", ") |> cat(sep="\n");cat("\n"); # tidydplyr::select: paste(collapse=", ") |> cat() ----
     
     cat(strrep("%",80),"\n",sep=""); 
-    cat("> ",objectname," %>% str(max.level=2, give.attr=FALSE)","\n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
+    cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","\n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
     
     cat(strrep("%",80),"\n",sep=""); 
-    cat("> ",objectname," %>% as_tibble %>% print(n=9)","\n", sep=""); print( as_tibble(get(objectname)), n=9);
+    cat("> ",objectname," |> as_tibble() |> print(n=9)","\n", sep=""); print( as_tibble(get(objectname)), n=9);
     cat(strrep("~",80),"\n",sep=""); 
-    cat("> ",objectname," %>% rownames_to_column %>% tail %>% as_tibble","\n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
+    cat("> ",objectname," %>% rownames_to_column %>% tail |> as_tibble()","\n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
     # t0=Sys.time()
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.numeric))"," %>% summary","\n", sep=""); get(objectname) %>% dplyr::select_if(is.numeric) %>% summary #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.numeric))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.logical))"," %>% summary","\n", sep=""); get(objectname) %>% dplyr::select_if(is.logical) %>% summary #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.logical))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.logical) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," %>% summary","\n", sep=""); get(objectname) %>% dplyr::select_if(is.factor) %>% summary #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.factor) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," %>% summary","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) %>% summary #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time()-t0
 }
 if(!objectname %in% names(env.custom)) {

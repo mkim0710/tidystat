@@ -3,13 +3,13 @@
 library(tidyverse)
 path4read = getwd()
 path4write = getwd()
-path4read %>% dput #----
-path4write %>% dput #----
+path4read |> dput() #----
+path4write |> dput() #----
 
 
-filenames2read = dir() %>% str_subset("\\.sas7bdat\\.rds(\\.xz)?$")
-filenames2read %>% dput #----
-# > filenames2read %>% dput #----
+filenames2read = dir() |> str_subset("\\.sas7bdat\\.rds(\\.xz)?$")
+filenames2read |> dput() #----
+# > filenames2read |> dput() #----
 # c("temp1.sas7bdat.rds.xz", "temp10.sas7bdat.rds.xz", "temp11.sas7bdat.rds.xz",
 # "temp2.sas7bdat.rds.xz", "temp3.sas7bdat.rds.xz", "temp4.sas7bdat.rds.xz",
 # "temp5.sas7bdat.rds.xz", "temp6.sas7bdat.rds.xz", "temp7.sas7bdat.rds.xz",
@@ -17,12 +17,12 @@ filenames2read %>% dput #----
 
 
 library(tidyverse)
-getwd() %>% dput #----
+getwd() |> dput() #----
 
 path4read = getwd()
 path4write = getwd()
-path4read %>% dput
-path4write %>% dput
+path4read |> dput()
+path4write |> dput()
 
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
@@ -39,7 +39,7 @@ filenames = list.files(path4read) %>% grep(regex4filename, ., value = T)
 
 # for (i1 in filenames2read) {
 #     t0 = Sys.time()
-#     i2 = i1 %>% str_replace_all("\\.xz$", "") %>% str_replace_all("\\.rds$", "")
+#     i2 = i1 |> str_replace_all("\\.xz$", "") |> str_replace_all("\\.rds$", "")
 #     print(paste0("i2", " = ", i2))
 #     assign(
 #         i2
@@ -70,7 +70,7 @@ filenames = list.files(path4read) %>% grep(regex4filename, ., value = T)
 
 
 for (i1 in filenames2read) {
-    i2 = i1 %>% str_replace_all("\\.xz$", "") %>% str_replace_all("\\.rds$", "")
+    i2 = i1 |> str_replace_all("\\.xz$", "") |> str_replace_all("\\.rds$", "")
     print(paste0("i2", " = ", i2))
     rm(list = i2, envir=.GlobalEnv)
 }
@@ -80,15 +80,15 @@ for (i1 in filenames2read) {
 list.sas7bdat = list()
 for (i1 in filenames2read) {
     t0 = Sys.time()
-    i2 = i1 %>% str_replace_all("\\.xz$", "") %>% str_replace_all("\\.rds$", "") %>% str_replace_all("\\.sas7bdat$", "")
+    i2 = i1 |> str_replace_all("\\.xz$", "") |> str_replace_all("\\.rds$", "") |> str_replace_all("\\.sas7bdat$", "")
     print(paste0("i2", " = ", i2))
     list.sas7bdat[[i2]] = read_rds(file.path(path4read, i1))
     print(paste0("Sys.time() - t0", " = ", Sys.time() - t0))
 }
 
 
-list.sas7bdat %>% str(max.level = 1) #----
-# > list.sas7bdat %>% str(max.level = 1) #----
+list.sas7bdat |> str(max.level = 1) #----
+# > list.sas7bdat |> str(max.level = 1) #----
 # List of 10
 #  $ temp1 : tibble [264,777 x 75] (S3: tbl_df/tbl/data.frame)
 #   ..- attr(*, "label")= chr "                                "

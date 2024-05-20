@@ -21,12 +21,12 @@ dput(Sys.info()) #----
 
 
 
-korpopmap1 %>% str(max.level = 1) #----
-korpopmap1 %>% str(max.level = 2) #----
-korpopmap1@data %>% str #----
-# > korpopmap1 %>% str(max.level = 1) #----
+korpopmap1 |> str(max.level = 1) #----
+korpopmap1 |> str(max.level = 2) #----
+korpopmap1@data |> str() #----
+# > korpopmap1 |> str(max.level = 1) #----
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
-# > korpopmap1 %>% str(max.level = 2) #----
+# > korpopmap1 |> str(max.level = 2) #----
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16
@@ -34,15 +34,15 @@ korpopmap1@data %>% str #----
 #   ..@ bbox       : num [1:2, 1:2] 124.6 33.2 130.9 38.6
 #   .. ..- attr(*, "dimnames")=List of 2
 #   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-# > korpopmap1@data %>% str #----
+# > korpopmap1@data |> str() #----
 # 'data.frame':	16 obs. of  42 variables:
 # Error in nchar(x, type = "w", allowNA = TRUE) : 
 #   invalid multibyte string, element 18
 
 
 korpopmap1@data %>% colnames
-korpopmap1@data %>% colnames %>% dput
-# > korpopmap1@data %>% colnames %>% dput
+korpopmap1@data %>% colnames |> dput()
+# > korpopmap1@data %>% colnames |> dput()
 # c("SP_ID", "FID", "code", "code1", "long", "lat", "order", "hole", 
 # "piece", "group", "id", "FID.data", "code.data", "code.1", "name", 
 # "name_eng", "base_year", "C\xed뻾\xec젙援ъ뿭蹂\x84_\xec쓭硫대룞", 
@@ -88,10 +88,10 @@ Sys.setlocale("LC_ALL", "korean") #----
 # [1] "LC_COLLATE=Korean_Korea.949;LC_CTYPE=Korean_Korea.949;LC_MONETARY=Korean_Korea.949;LC_NUMERIC=C;LC_TIME=Korean_Korea.949"
 
 
-# korpopmap1 %>% str(max.level = 1) #----
-korpopmap1 %>% str(max.level = 2) #----
-korpopmap1@data %>% str #----
-# > korpopmap1 %>% str(max.level = 2) #----
+# korpopmap1 |> str(max.level = 1) #----
+korpopmap1 |> str(max.level = 2) #----
+korpopmap1@data |> str() #----
+# > korpopmap1 |> str(max.level = 2) #----
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16
@@ -99,7 +99,7 @@ korpopmap1@data %>% str #----
 #   ..@ bbox       : num [1:2, 1:2] 124.6 33.2 130.9 38.6
 #   .. ..- attr(*, "dimnames")=List of 2
 #   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-# > korpopmap1@data %>% str #----
+# > korpopmap1@data |> str() #----
 # 'data.frame':	16 obs. of  42 variables:
 # Error in nchar(x, type = "w", allowNA = TRUE) : 
 #   invalid multibyte string, element 18
@@ -126,16 +126,16 @@ saveRDS(korpopmap1.UTF8, "korpopmap1.UTF8.rds")
 
 # http://blog.naver.com/PostView.nhn?blogId=n2ll_&logNo=221427614530&categoryNo=7&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
 library(tidyverse)
-korpopmap1@data %>% names %>% iconv(from = "EUC-KR", to = "UTF-8") %>% dput
-korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "CP949") %>% dput
-korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") %>% dput
-# > korpopmap1@data %>% names %>% iconv(from = "EUC-KR", to = "UTF-8") %>% dput
+korpopmap1@data %>% names %>% iconv(from = "EUC-KR", to = "UTF-8") |> dput()
+korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "CP949") |> dput()
+korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
+# > korpopmap1@data %>% names %>% iconv(from = "EUC-KR", to = "UTF-8") |> dput()
 # c("SP_ID", "FID", "code", "code1", "long", "lat", "order", "hole", 
 # "piece", "group", "id", "FID.data", "code.data", "code.1", "name", 
 # "name_eng", "base_year", NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 # NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "region", 
 # "code1.data")
-# > korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "CP949") %>% dput
+# > korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "CP949") |> dput()
 # c("SP_ID", "FID", "code", "code1", "long", "lat", "order", "hole", 
 # "piece", "group", "id", "FID.data", "code.data", "code.1", "name", 
 # "name_eng", "base_year", "C행정구역별_읍면동", "행정구역별_읍면동", 
@@ -145,7 +145,7 @@ korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") %>% dput
 # "주택_계_호", "단독주택_호", "아파트_호", "연립주택_호", "다세대주택_호", 
 # "비거주용_건물내_주택_호", "주택이외의_거처_호", "region", "code1.data"
 # )
-# > korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") %>% dput
+# > korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
 # c("SP_ID", "FID", "code", "code1", "long", "lat", "order", "hole", 
 # "piece", "group", "id", "FID.data", "code.data", "code.1", "name", 
 # "name_eng", "base_year", "C행정구역별_읍면동", "행정구역별_읍면동", 
@@ -166,8 +166,8 @@ korpopmap1.CP949 = korpopmap1
 korpopmap1.CP949@data = korpopmap1.CP949@data %>% map_df(iconv, from = "UTF-8", to = "CP949")
 names(korpopmap1.CP949@data) = names(korpopmap1.CP949@data) %>% iconv(from = "UTF-8", to = "CP949")
 
-korpopmap1.CP949@data %>% str #----
-# > korpopmap1.CP949@data %>% str #----
+korpopmap1.CP949@data |> str() #----
+# > korpopmap1.CP949@data |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	16 obs. of  42 variables:
 #  $ SP_ID                  : chr  "15" "14" "13" "12" ...
 #  $ FID                    : chr  "15" "14" "13" "12" ...
@@ -215,10 +215,10 @@ korpopmap1.CP949@data %>% str #----
 
 
 
-Encoding(names(korpopmap1@data)) %>% dput
-Encoding(names(korpopmap1.UTF8@data)) %>% dput
-Encoding(names(korpopmap1.CP949@data)) %>% dput
-# > Encoding(names(korpopmap1@data)) %>% dput
+Encoding(names(korpopmap1@data)) |> dput()
+Encoding(names(korpopmap1.UTF8@data)) |> dput()
+Encoding(names(korpopmap1.CP949@data)) |> dput()
+# > Encoding(names(korpopmap1@data)) |> dput()
 # c("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
 # "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
 # "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
@@ -227,7 +227,7 @@ Encoding(names(korpopmap1.CP949@data)) %>% dput
 # "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
 # "unknown", "unknown", "unknown", "unknown", "unknown", "unknown"
 # )
-# > Encoding(names(korpopmap1.UTF8@data)) %>% dput
+# > Encoding(names(korpopmap1.UTF8@data)) |> dput()
 # c("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
 # "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
 # "unknown", "unknown", "unknown", "unknown", "unknown", "UTF-8", 
@@ -235,7 +235,7 @@ Encoding(names(korpopmap1.CP949@data)) %>% dput
 # "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", 
 # "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", "UTF-8", 
 # "UTF-8", "unknown", "unknown")
-# > Encoding(names(korpopmap1.CP949@data)) %>% dput
+# > Encoding(names(korpopmap1.CP949@data)) |> dput()
 # c("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
 # "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
 # "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", 
@@ -289,10 +289,10 @@ saveRDS(kormaps2014_kormap1, "kormaps2014_kormap1.rds")
 saveRDS(kormaps2014_kormap21, "kormaps2014_kormap21.rds")
 saveRDS(kormaps2014_kormap321, "kormaps2014_kormap321.rds")
 
-kormaps2014_kormap1 %>% str #----
-kormaps2014_kormap21 %>% str #----
-kormaps2014_kormap321 %>% str #----
-# > kormaps2014_kormap1 %>% str #----
+kormaps2014_kormap1 |> str() #----
+kormaps2014_kormap21 |> str() #----
+kormaps2014_kormap321 |> str() #----
+# > kormaps2014_kormap1 |> str() #----
 # 'data.frame':	8831 obs. of  15 variables:
 #  $ id           : chr  "0" "0" "0" "0" ...
 #  $ long         : num  138 138 138 138 138 ...
@@ -309,7 +309,7 @@ kormaps2014_kormap321 %>% str #----
 #  $ SIDO_NM.CP949: Factor w/ 17 levels "강원도","경기도",..: 9 9 9 9 9 9 9 9 9 9 ...
 #  $ region       : Factor w/ 17 levels "11","21","22",..: 1 1 1 1 1 1 1 1 1 1 ...
 #  $ code         : Factor w/ 17 levels "11","21","22",..: 1 1 1 1 1 1 1 1 1 1 ...
-# > kormaps2014_kormap21 %>% str #----
+# > kormaps2014_kormap21 |> str() #----
 # 'data.frame':	20397 obs. of  18 variables:
 #  $ id              : chr  "0" "0" "0" "0" ...
 #  $ long            : num  138 138 138 138 138 ...
@@ -329,7 +329,7 @@ kormaps2014_kormap321 %>% str #----
 #  $ SIDO_CD         : Factor w/ 17 levels "11","21","22",..: 1 1 1 1 1 1 1 1 1 1 ...
 #  $ SIDO_NM         : Factor w/ 17 levels "강원도","경기도",..: 9 9 9 9 9 9 9 9 9 9 ...
 #  $ SIDO_NM.UTF8    : Factor w/ 17 levels "媛뺤썝\xeb룄",..: 9 9 9 9 9 9 9 9 9 9 ...
-# > kormaps2014_kormap321 %>% str #----
+# > kormaps2014_kormap321 |> str() #----
 # 'data.frame':	73474 obs. of  21 variables:
 #  $ id             : chr  "0" "0" "0" "0" ...
 #  $ long           : num  138 138 138 138 138 ...
@@ -377,8 +377,8 @@ names(kormaps2014_korpop3.CP949) = names(kormaps2014_korpop3.CP949) %>% iconv(fr
 kormaps2014_korpop3.CP949 = kormaps2014_korpop3.CP949 %>% map_df(function(vec) {if(is.factor(vec)) vec = as.character(vec); if(is.character(vec)) vec = vec %>% iconv(from = "UTF-8", to = "CP949"); vec})
 saveRDS(kormaps2014_korpop3.CP949, "kormaps2014_korpop3.CP949.rds")
 
-kormaps2014_korpop3.CP949 %>% str #----
-# > kormaps2014_korpop3.CP949 %>% str #----
+kormaps2014_korpop3.CP949 |> str() #----
+# > kormaps2014_korpop3.CP949 |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	3492 obs. of  25 variables:
 #  $ C행정구역별_읍면동     : chr  "'1101053" "'1101054" "'1101055" "'1101056" ...
 #  $ 행정구역별_읍면동      : chr  "  사직동" "  삼청동" "  부암동" "  평창동" ...

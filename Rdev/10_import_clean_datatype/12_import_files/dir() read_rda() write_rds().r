@@ -8,12 +8,12 @@ library(tidyverse)
 
 
 library(tidyverse)
-getwd() %>% dput #----
+getwd() |> dput() #----
 
 path4read = getwd()
 path4write = getwd()
-path4read %>% dput
-path4write %>% dput
+path4read |> dput()
+path4write |> dput()
 
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
@@ -25,9 +25,9 @@ env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filen
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 
 
-objectNames = dir() %>% str_subset("[A-z]+.rda$") %>% str_replace(".rda$", "")
-objectNames %>% dput #----
-# > objectNames %>% dput #----
+objectNames = dir() |> str_subset("[A-z]+.rda$") |> str_replace(".rda$", "")
+objectNames |> dput() #----
+# > objectNames |> dput() #----
 # c("NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK.ICD10_range_chapter", 
 # "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK.ICD10_range_sub_chapter", 
 # "NHID_GY20_0213.bind_rows.12478.ICDclean.by.PERSON_ID.MAIN_SICK_3char.DM", 
@@ -112,7 +112,7 @@ path4write = getwd()
 t0 = Sys.time()
 save( list = objectname, file = file.path(path4write, paste0(objectname,".rda", "")), compress="xz", compression_level=9 )
 print(Sys.time() - t0)
-objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
 rm(objectname, envir=.GlobalEnv)
 # > objectname = "NHID_GY20_0213.bind_rows"
 # > path4write = getwd()
@@ -122,12 +122,12 @@ rm(objectname, envir=.GlobalEnv)
 # Time difference of 1.84348 hours
 
 
-objectNames = dir() %>% str_subset("[A-z]+.rda$") %>% str_replace(".rda$", "")
+objectNames = dir() |> str_subset("[A-z]+.rda$") |> str_replace(".rda$", "")
 objectNames
 for (objectname in objectNames) {
     # print(objectname)
-    # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
-    objectname %>% {file.info(paste0(., ".rda"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+    # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
+    objectname %>% {file.info(paste0(., ".rda"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
     t0 = Sys.time()
     load(paste0(objectname,".rda"))
     print(Sys.time() - t0)
@@ -135,7 +135,7 @@ for (objectname in objectNames) {
     print(Sys.time() - t0)
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
-    objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+    objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
     rm(objectname, envir=.GlobalEnv)
     gc()
 }
@@ -336,12 +336,12 @@ for (objectname in objectNames) {
 
 
 
-objectNames = dir() %>% str_subset("[A-z0-9]+.rda$") %>% str_replace(".rda$", "")
+objectNames = dir() |> str_subset("[A-z0-9]+.rda$") |> str_replace(".rda$", "")
 objectNames
 for (objectname in objectNames) {
     # print(objectname)
-    # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
-    objectname %>% {file.info(paste0(., ".rda"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+    # objectname %>% {file.info(file.path(path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
+    objectname %>% {file.info(paste0(., ".rda"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
     t0 = Sys.time()
     load(paste0(objectname,".rda"))
     print(Sys.time() - t0)
@@ -349,7 +349,7 @@ for (objectname in objectNames) {
     print(Sys.time() - t0)
     system(paste0('xz --keep -9 --threads=10 "', objectname, '.rds', '"'))
     print(Sys.time() - t0)
-    objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) %>% print #----
+    objectname %>% {file.info(paste0(., ".rds.xz"))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
     rm(objectname, envir=.GlobalEnv)
     gc()
 }

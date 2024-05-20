@@ -24,7 +24,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Expo
 
 #@ test) function.MatchingPairID_Exposed_Unexposed_shuffle() ---------
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_CrossScreening_nhanes.fish.match.rda"))
-nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column %>% as_tibble
+nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column |> as_tibble()
 names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
 nhanes.fish.match.rename
 # > nhanes.fish.match.rename
@@ -103,18 +103,18 @@ function.MatchingPairID_Exposed_Unexposed_shuffle_vec = function(MatchingPairID_
 
 #@ test) function.MatchingPairID_Exposed_Unexposed_shuffle_vec() ---------
 set.seed(1)
-function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% str
-function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% str
-# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% str
+function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> str()
+function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> str()
+# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> str()
 #  int [1:234] 433 309 820 111 45 828 829 83 831 859 ...
-# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% str
+# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> str()
 #  int [1:234] 433 489 820 111 45 281 661 83 831 859 ...
-function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% summary
-function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% summary
-# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% summary
+function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> summary()
+function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> summary()
+# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> summary()
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
 #     1.0   326.2   547.0   548.1   795.5  1106.0
-# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) %>% summary
+# > function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> summary()
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
 #     8.0   294.0   531.5   540.8   816.2  1101.0
 
@@ -147,7 +147,7 @@ data = data_frame(
 set.seed(1)
 data = data %>% mutate(Outcome = isExposed * 100 / n + 10 + rnorm(2 * n, 0, 3) + (((1:nrow(data) + 1) %/% 2) %% 5) )
 data
-data %>% summary
+data |> summary()
 # > data
 # # A tibble: 20,000 x 4
 #    PERSON_ID MatchingPairID isExposed   Outcome
@@ -163,7 +163,7 @@ data %>% summary
 #  9         9              5     FALSE 11.727344
 # 10        10              5      TRUE  9.093835
 # # ... with 19,990 more rows
-# > data %>% summary
+# > data |> summary()
 #    PERSON_ID     MatchingPairID  isExposed          Outcome
 #  1      :    1   1      :    2   Mode :logical   Min.   :-2.898
 #  2      :    1   2      :    2   FALSE:10000     1st Qu.: 9.731
@@ -269,7 +269,7 @@ sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  #
 
 
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_CrossScreening_nhanes.fish.match.rda"))
-nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column %>% as_tibble
+nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column |> as_tibble()
 names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
 nhanes.fish.match.rename
 # > nhanes.fish.match.rename
@@ -361,28 +361,28 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairI
 
 #@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec() --------
 set.seed(1)
-function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
-function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
-function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
-# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
 #  Factor w/ 200 levels "1","2","3","4",..: 1 4 6 7 9 12 14 16 17 19 ...
-# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
 #  Factor w/ 200 levels "1","2","3","4",..: 2 4 5 8 10 11 13 16 18 19 ...
-# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) %>% str
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
 #  Factor w/ 200 levels "1","2","3","4",..: 1 4 6 8 10 11 14 15 18 20 ...
 
 set.seed(1)
-function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
-function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
-function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
-function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
-# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
+function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
 #  int [1:234] 433 309 820 111 45 828 829 83 831 859 ...
-# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
 #  int [1:234] 433 489 820 111 45 281 661 83 831 859 ...
-# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
 #  int [1:234] 433 489 785 111 827 281 661 900 831 859 ...
-# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) %>% str
+# > function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID) |> str()
 #  int [1:234] 1003 489 820 166 45 828 829 83 831 859 ...
 
 

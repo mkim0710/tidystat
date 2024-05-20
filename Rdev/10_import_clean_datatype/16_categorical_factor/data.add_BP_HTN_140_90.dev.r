@@ -77,8 +77,8 @@ gj_jk.Date.DTH.recode =
     data.add_BP_KSH2018 %>% 
     data.add_BP_ESCESH2018 %>% 
     data.add_BP_ACC2017
-gj_jk.Date.DTH.recode %>% select(matches("BP_")) %>% summary
-# > gj_jk.Date.DTH.recode %>% select(matches("BP_")) %>% summary
+gj_jk.Date.DTH.recode %>% select(matches("BP_")) |> summary()
+# > gj_jk.Date.DTH.recode %>% select(matches("BP_")) |> summary()
 #     BP_HIGH         BP_LWST       BP_HTN_140_90                           BP_KSH2018                         BP_ESCESH2018                          BP_ACC2017   
 #  Min.   : 78.0   Min.   : 34.00   Mode :logical   (1) Optimal                  :9073   (1) Optimal BP               :9073   (1) Normal                   : 9073  
 #  1st Qu.:115.0   1st Qu.: 70.00   FALSE:24531     (2) Normal                   :6980   (2) Normal BP                :7808   (2) Elevated                 : 3447  

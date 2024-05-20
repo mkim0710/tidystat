@@ -115,11 +115,11 @@ data.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID",
     
     nID_anyTRUE <- dataset %>% 
         filter(!is.na(!!sym(varname.Date))) %>% 
-        select(!!sym(varname.ID)) %>% n_distinct()
+        select(!!sym(varname.ID)) |> n_distinct()
     
     nID_anyNA <-  dataset %>% 
         filter(is.na(!!sym(varname.Date))) %>% 
-        select(!!sym(varname.ID)) %>% n_distinct()
+        select(!!sym(varname.ID)) |> n_distinct()
     
     result <- summary_table.nTRUE %>%
         mutate(
@@ -226,11 +226,11 @@ data.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PER
     
     nID_anyTRUE <- dataset %>% 
         filter(!is.na(!!sym(varname.Date))) %>% 
-        select(!!sym(varname.ID)) %>% n_distinct()
+        select(!!sym(varname.ID)) |> n_distinct()
     
     nID_anyNA <-  dataset %>% 
         filter(is.na(!!sym(varname.Date))) %>% 
-        select(!!sym(varname.ID)) %>% n_distinct()
+        select(!!sym(varname.ID)) |> n_distinct()
     
     # Calculating nID_allTRUE
     # nID_allTRUE <- dataset %>%
