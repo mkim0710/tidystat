@@ -369,8 +369,8 @@ base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ git remote set-url origin git@github.com:mkim0710/tidystat.git ----
-#|  @ git remote set-url origin git@github.com:mkim0710/tidystat.git  
+### @ git remote set-url origin git@github.com:mkim0710/Rproject_.git ----
+#|  @ git remote set-url origin git@github.com:mkim0710/Rproject_.git  
 # https://happygitwithr.com/ssh-keys.html#ssh-keys
 # How to see the remote URL(s) associated with the current repo in the shell:
 # git remote -v
