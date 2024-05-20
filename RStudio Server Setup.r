@@ -1,6 +1,13 @@
-# RStudio.Cloud set up.r 
+# RStudio Server Setup.r 
+# RStudio.Cloud Setup.r 
 # https://posit.cloud/spaces/100015/content/6373416  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # https://posit.cloud/spaces/404673/content/6373521  # Shared Workspace@v - PositCloud@v
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Rocker Setup.r
+file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh")
+# file.edit("Rocker set up.r")
+# file.edit("Rocker set up -private.r")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| To paste text in the terminal use Shift + Insert. (Or Ctrl + Shift + v) |#
@@ -227,7 +234,7 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 # file.edit(file.path(path4APPDATA_RStudio, filename))
 if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
 
-file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
+file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json")); file.edit(env.custom$path$current.path.filename.ext)
 
 # Global Options > General > Save workspace to .RData on exit: Never
 # Global Options > Code > Insert spaces for tab: 4
@@ -249,9 +256,53 @@ file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
 
 
 
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ START) copilot @ RStudio Server -----
+
+
+###@ ROOT=TRUE ----
+# https://stackoverflow.com/questions/64562427/how-to-add-rocker-verse-configuration-root-true-to-docker-compose-file
+
+###@ PASSWORD= ----
+# https://github.com/rocker-org/rocker-versioned2/issues/237
+# https://github.com/rocker-org/rocker/issues/255
+# https://github.com/rocker-org/rocker-versioned2/issues/294
+# https://github.com/rocker-org/rocker-versioned2/pull/298
+
+###@ copilot-enabled=1 ------
+# https://github.com/rstudio/rstudio/issues/13612
+# https://github.com/rstudio/rstudio/issues/13718
+# https://chatgpt.com/c/4b8f922c-327a-4b0b-871e-18c07575a4d9
+
+system("sudo R")
+system("sudo chmod 666 /etc/rstudio/rsession.conf")
+file_path <- "/etc/rstudio/rsession.conf"
+lines <- readLines(file_path, warn = FALSE)
+modified_lines <- lines[!grepl("^copilot-enabled=", lines)]
+modified_lines = c(modified_lines, "copilot-enabled=1", "")
+writeLines(modified_lines, file_path)
+file.edit(file_path)
+system("sudo chmod 644 /etc/rstudio/rsession.conf")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+quit()
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#| Tools > Global Options > Copilot > login |#
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) git setup -----
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+### @ .gitignore ----
+#|  @ .gitignore  
+
+# Caution) do not forget to add .gitignore to .gitignore
+# file.edit("~/.gitignore"); file.edit(env.custom$path$current.path.filename.ext)
+file.edit(".gitignore"); file.edit(env.custom$path$current.path.filename.ext)
+
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### @ Git/SVN > SSH Key ----
@@ -262,10 +313,11 @@ file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json"))
 
 # > "~" |> normalizePath(winslash="/")
 # [1] "/home/rstudio"
-# file.edit("~/.ssh/id_rsa.pub")
-# file.edit("~/.ssh/id_rsa")
-file.edit("~/.ssh/id_ed25519.pub")
-file.edit("~/.ssh/id_ed25519")
+path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
+# file.edit("~/.ssh/id_rsa.pub"); file.edit(env.custom$path$current.path.filename.ext)
+# file.edit("~/.ssh/id_rsa"); file.edit(env.custom$path$current.path.filename.ext)
+file.edit("~/.ssh/id_ed25519.pub"); file.edit(env.custom$path$current.path.filename.ext)
+file.edit("~/.ssh/id_ed25519"); file.edit(env.custom$path$current.path.filename.ext)
 
 path.file = file.path(env.custom$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path.file)) file.edit(path.file)
 path.file = file.path(env.custom$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path.file)) file.edit(path.file)
@@ -347,16 +399,6 @@ system("git remote -v")
 # origin	git@github.com:mkim0710/tidystat.git (fetch)
 # origin	git@github.com:mkim0710/tidystat.git (push)
 
-
-
-#|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ .gitignore ----
-#|  @ .gitignore  
-
-
-# Caution) do not forget to add .gitignore to .gitignore
-file.edit(".gitignore")
 
 
 
