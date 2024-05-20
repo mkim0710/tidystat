@@ -189,6 +189,14 @@ cat("# ",'sourcename = "',sourcename,'"', "\n",
 "/" |> normalizePath(winslash="/")
 "~" |> normalizePath(winslash="/")
 "." |> normalizePath(winslash="/")
+tibble(symbol = c("/", "~", ".")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/")) 
+# > tibble(symbol = c("/", "~", ".")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/")) 
+# # A tibble: 3 × 2
+#   symbol normalizePath                
+#   <chr>  <chr>                        
+# 1 /      /                            
+# 2 ~      /home/rstudio                
+# 3 .      /home/rstudio/github_tidystat
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @MAGB760M13700KF D:/OneDrive/Documents |#
 # > "/" |> normalizePath(winslash="/")
@@ -292,10 +300,17 @@ filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "
 # https://github.com/maurolepore/cloudgithub
 # Connecting rstudio.cloud and GitHub
 # Tools > Global Options > Git/SVN > SSH key
-# file.edit("/home/rstudio/.ssh/id_rsa.pub")
-# file.edit("/home/rstudio/.ssh/id_rsa")
-file.edit("/home/rstudio/.ssh/id_ed25519.pub")
-file.edit("/home/rstudio/.ssh/id_ed25519")
+
+# > "~" |> normalizePath(winslash="/")
+# [1] "/home/rstudio"
+# file.edit("~/.ssh/id_rsa.pub")
+# file.edit("~/.ssh/id_rsa")
+file.edit("~/.ssh/id_ed25519.pub")
+file.edit("~/.ssh/id_ed25519")
+
+path.file = file.path(env.custom$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path.file)) file.edit(path.file)
+path.file = file.path(env.custom$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path.file)) file.edit(path.file)
+
 system("git status")
 
 # https://github.com/settings/keys
@@ -303,7 +318,13 @@ browseURL("https://github.com/settings/keys")
 #' @Rocker@MAGB760M13700KF 240509
 #' SHA256:PXJBET0lW71UCJsf7ai2UXdF9/i8vsTY3er+n+rIcx8
 #' Added on May 10, 2024
-
+base64_fingerprint = "~/.ssh/id_ed25519.pub" |> readLines() |> str_extract(" .*? ") |> str_replace_all(" ","") |>
+    base64_decode() |> sha256() |> base64_encode()
+base64_fingerprint |> str_length()
+# 256 bits (32 bytes) = 64 (=256/4) hexadecimal characters = 42.67 (=256/6) ASCII characters in base64 
+# Cf) 6 bits per character => 2^6 = 64 different ASCII character in base64 encoding
+base64_fingerprint |> str_replace_all("=$", "")  # Remove padding from the end of the string, making 43 characters
+base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |> str_replace_all("\\/", "_")  # Replace + with - and / with _ to make it URL safe
 
 
 #|________________________________________________________________________________|#  
