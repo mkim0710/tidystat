@@ -35,7 +35,7 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput()
 # > ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput() ----
-c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
+.Rproj.user.shared.list.files1 = c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
 "notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9800d5f74/chunks.json", 
 "notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9a2e5d569/chunks.json", 
 "notebooks/40C0E44C-data.CreateTableOne.dev/1/s/c2kv2ircdtmr9/000002.csv", 
@@ -104,12 +104,24 @@ c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json",
 "notebooks/9EC9A4B0-f_git.03_final.pull_rebase_push.dev/1/s/cyrnlj0ymdq5k/00000f.csv", 
 "notebooks/9EC9A4B0-f_git.03_final.pull_rebase_push.dev/1/s/czk7rsj2uariz/00000f.csv", 
 "notebooks/patch-chunk-names", "notebooks/paths")
-
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+function_setdiff = function(x, y) {
+    out = list()
+    out$setdiff_x_y = setdiff(x, y)
+    out$setdiff_y_x = setdiff(y, x)
+    out
+}
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+function_setdiff(".Rproj.user/shared" |> list.files(recursive = TRUE), .Rproj.user.shared.list.files1) |> str()
+# > function_setdiff(".Rproj.user/shared" |> list.files(recursive = TRUE), .Rproj.user.shared.list.files1) |> str()
+# List of 2
+#  $ setdiff_x_y: chr(0) 
+#  $ setdiff_y_x: chr "notebooks/6E4A1B4B-notebook/1/s/chunks.json"
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE) |> dput()
 # > ".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE) |> dput() ----
-c("build_options", "copilot_options", "pcs/debug-breakpoints.pper", 
+.Rproj.user.E3EEE3A9.list.files1 = c("build_options", "copilot_options", "pcs/debug-breakpoints.pper", 
 "pcs/files-pane.pper", "pcs/packages-pane.pper", "pcs/source-pane.pper", 
 "pcs/windowlayoutstate.pper", "pcs/workbench-pane.pper", "persistent-state", 
 "saved_source_markers", "sources/prop/00965602", "sources/prop/0173D0A4", 
@@ -156,15 +168,40 @@ c("build_options", "copilot_options", "pcs/debug-breakpoints.pper",
 "sources/session-36531e49/FB61A0E1-contents", "sources/session-36531e49/FFF77695", 
 "sources/session-36531e49/FFF77695-contents", "sources/session-36531e49/lock_file"
 )
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+function_setdiff(".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE), .Rproj.user.E3EEE3A9.list.files1) |> str()
+# > function_setdiff(".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE), .Rproj.user.E3EEE3A9.list.files1) |> str()
+# List of 2
+#  $ setdiff_x_y: chr [1:25] "sources/prop/5057B9B6" "sources/prop/C8C3257E" "sources/session-bc8d1df6/10460832" "sources/session-bc8d1df6/10460832-contents" ...
+#  $ setdiff_y_x: chr [1:43] "sources/session-36531e49/0E61B345-contents" "sources/session-36531e49/10460832" "sources/session-36531e49/10460832-contents" "sources/session-36531e49/174795B9-contents" ...
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 library(jsonlite)
 
-# Define the path to the session directory
-session_dir <- file.path(".Rproj.user", "E3EEE3A9", "sources", "session-36531e49")
+# Define the path to the sources directory
+sources_dir <- file.path(".Rproj.user", "E3EEE3A9", "sources")
 
-# List all files in the session directory
-session_files <- list.files(session_dir, full.names = TRUE)
+# List all directories in the sources directory
+all_dirs <- list.dirs(sources_dir, recursive = FALSE)
+session_dirs <- all_dirs[grepl("session-", basename(all_dirs))]
+
+print("List of session directories:")
+print(session_dirs)
+
+# Check if there are any session directories
+if (length(session_dirs) == 0) {
+  stop("No session directories found.")
+}
+
+# Get the most recent session directory
+most_recent_session <- session_dirs[which.max(file.info(session_dirs)$mtime)]
+
+print(paste("Most recent session directory:", most_recent_session))
+
+# List all files in the most recent session directory
+session_files <- list.files(most_recent_session, full.names = TRUE)
+print("List of session files:")
+print(session_files)
 
 # Create output folder if it doesn't exist
 out_folder <- "recovered_untitled_files"
@@ -174,6 +211,8 @@ dir.create(out_folder, showWarnings = FALSE)
 recover_untitled_source_file <- function(metadata_file, content_file, out_folder) {
   # Read the metadata
   metadata <- fromJSON(metadata_file)
+  print(paste("Processing metadata file:", metadata_file))
+  print(metadata)
   
   # Determine the output filename
   if (!is.null(metadata$properties$tempName)) {
@@ -208,17 +247,31 @@ recover_untitled_source_file <- function(metadata_file, content_file, out_folder
 recovered_files <- lapply(session_files, function(file) {
   if (!grepl("-contents$", file)) {
     content_file <- paste0(file, "-contents")
+    print(paste("Checking file:", file))
     if (file.exists(content_file)) {
+      print(paste("Content file exists:", content_file))
       metadata <- fromJSON(file)
+      print(paste("Metadata content:", toJSON(metadata, pretty = TRUE)))
       if (!is.null(metadata$properties$tempName) && grepl("Untitled", metadata$properties$tempName)) {
-        recover_untitled_source_file(file, content_file, out_folder)
+        print(paste("Recovering untitled file:", file))
+        return(recover_untitled_source_file(file, content_file, out_folder))
+      } else {
+        print(paste("File", file, "is not untitled or has no tempName."))
       }
+    } else {
+      print(paste("Content file does not exist for metadata file:", file))
     }
+  } else {
+    print(paste("File", file, "is a content file, skipping."))
   }
+  return(NULL)
 })
 
 # Print the paths of recovered files
-str(recovered_files)
+print("Recovered files:")
+print(recovered_files)
+
+
 # > str(recovered_files)
 # List of 43
 #  $ : NULL
