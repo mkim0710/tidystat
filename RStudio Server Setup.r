@@ -421,10 +421,10 @@ system("git remote -v")
 # hint: invocation.
 # fatal: Need to specify how to reconcile divergent branches.
 
-system("git config --global pull.rebase false")
+"git config --global pull.rebase false" |> system(intern = TRUE)
 ##@ -> This is the default behavior of git pull. So, you don't need to set it.???
 ##@ -> Even though the default strategy is merge, Git requires an explicit confirmation in some situations, especially when dealing with divergent branches.~!!!
-system("git config --global pull.rebase")
+"git config --global pull.rebase" |> system(intern = TRUE)
 # > system("git config --global pull.rebase")
 # false
 #|________________________________________________________________________________|#  
