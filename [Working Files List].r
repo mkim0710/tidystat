@@ -100,8 +100,8 @@ source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-###@ RStudio.Cloud set up.r -----
-file.edit("RStudio.Cloud set up.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+###@ RStudio Server Setup.r -----
+file.edit("RStudio Server Setup.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 
 # file.edit(file.path(path4APPDATA_RStudio, filename))
