@@ -12,7 +12,6 @@
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#|
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
@@ -40,8 +39,8 @@ env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_loca
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-file.edit("[Working Files List].r"); file.edit(env.custom$path$current.path.filename.ext)
+env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+file.edit("[Working Files List].r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### env.custom\$env.internal ====
 # sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
@@ -131,11 +130,11 @@ cat("# ",'sourcename = "',sourcename,'"', "\n",
     sep="")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> str_detect("^default")') } else {
-    # # if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$current.path.filename.ext);
-    # if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$current.path.filename.ext);
-    # if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$current.path.filename.ext);
-    file2open = env.custom$path$subpath.filename.dev.Rmd; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env.custom$path$current.path.filename.ext);
-    file2open = env.custom$path$subpath.filename.source.r; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env.custom$path$current.path.filename.ext);
+    # # if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$subpath.filename.dev.r); file.edit(env.custom$path$CurrentSource.path.filename.ext);
+    # if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$subpath.filename.dev.Rmd); file.edit(env.custom$path$CurrentSource.path.filename.ext);
+    # if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$subpath.filename.source.r); file.edit(env.custom$path$CurrentSource.path.filename.ext);
+    file2open = env.custom$path$subpath.filename.dev.Rmd; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env.custom$path$CurrentSource.path.filename.ext);
+    file2open = env.custom$path$subpath.filename.source.r; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env.custom$path$CurrentSource.path.filename.ext);
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -169,7 +168,7 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # %% update default.R -----
 env.custom$path$default.filename.ext = "default.R"
-env.custom$path$current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
+env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 
 
 env.custom$env.internal$f_filename.ext.create_backup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup")) {
@@ -180,24 +179,24 @@ env.custom$env.internal$f_filename.ext.create_backup = function(copying_path.fil
     file.copy(from=copying_path.filename.ext, to=backup_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_path.filename.ext))
 }
 
-if(env.custom$path$default.filename.ext == basename(env.custom$path$current.path.filename.ext)) {
+if(env.custom$path$default.filename.ext == basename(env.custom$path$CurrentSource.path.filename.ext)) {
     if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
     destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ;
     destination.path.filename.ext = file.path(destination.path, "default.R"); 
     env.custom$env.internal$f_filename.ext.create_backup(copying_path.filename.ext = destination.path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"))
     
-    if(file.copy(from=env.custom$path$current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); 
+    if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); 
     # if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     
     for ( destination.path.filename.ext in c(
         file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$default.filename.ext)
         , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$default.filename.ext)
-    )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$current.path.filename.ext != destination.path.filename.ext) {
-        if(file.copy(from=env.custom$path$current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
+    )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$CurrentSource.path.filename.ext != destination.path.filename.ext) {
+        if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
         if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     }}
-    file.edit(env.custom$path$current.path.filename.ext);
+    file.edit(env.custom$path$CurrentSource.path.filename.ext);
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
