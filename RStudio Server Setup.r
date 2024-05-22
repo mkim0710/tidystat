@@ -421,9 +421,12 @@ system("git remote -v")
 # hint: invocation.
 # fatal: Need to specify how to reconcile divergent branches.
 
-# system("git config --global pull.rebase false")
-##@ -> This is the default behavior of git pull. So, you don't need to set it.
-
+system("git config --global pull.rebase false")
+##@ -> This is the default behavior of git pull. So, you don't need to set it.???
+##@ -> Even though the default strategy is merge, Git requires an explicit confirmation in some situations, especially when dealing with divergent branches.~!!!
+system("git config --global pull.rebase")
+# > system("git config --global pull.rebase")
+# false
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) Posit.Cloud -----
