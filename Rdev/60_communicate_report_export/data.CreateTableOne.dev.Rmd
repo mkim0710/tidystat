@@ -198,17 +198,19 @@ source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source
 
 # @@ START) Data ------------
 
-## \$ DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds" ====
+## \$ DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols" ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 #$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
-path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
+# path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+path4read = "./data"
+objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols"
+assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds.xz")) )
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
 # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
 # HEIGHT, WEIGHT, 
 # BP_HIGH, BP_LWST, BLDS, 
@@ -230,7 +232,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(colla
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% 
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols %>% 
     select(
         SEX,
         HEIGHT, WEIGHT, 
@@ -247,7 +249,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>%
         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-    ) %>% function.DataSet.TableOne_byExposure.xlsx(ObjectName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select_MetS", VarNames4Exposure =  c("SEX"))
+    ) %>% function.DataSet.TableOne_byExposure.xlsx(ObjectName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols.select_MetS", VarNames4Exposure =  c("SEX"))
 
 ```
 
