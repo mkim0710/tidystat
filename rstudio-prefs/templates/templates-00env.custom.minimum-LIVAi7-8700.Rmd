@@ -244,14 +244,14 @@ env.custom$f_path.size_files(path4read = path4read)
 ```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
 if(!exists("env.custom", envir=.GlobalEnv)) 
     assign("env.custom", new.env(), envir=.GlobalEnv)
+env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 if(!"tmp" %in% names(env.custom)) env.custom$tmp = list()
-env.custom$tmp$CodeCurrent.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
-    env.custom$tmp$CodeFileName.ext = paste0(CodeFileBaseName,"-",basename(getwd()),".Rmd");
-    if(env.custom$tmp$CodeFileName.ext != env.custom$tmp$CodeCurrent.path.filename.ext) {
-        if(!file.exists(env.custom$tmp$CodeFileName.ext)) file.create(env.custom$tmp$CodeFileName.ext)
-        file.edit(env.custom$tmp$CodeFileName.ext);
-        file.edit(env.custom$tmp$CodeCurrent.path.filename.ext);
+for (SourceFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+    env.custom$tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(getwd()),".Rmd");
+    if(env.custom$tmp$SourceFileName.ext != basename(env.custom$path$CurrentSource.path.filename.ext)) {
+        if(!file.exists(env.custom$tmp$SourceFileName.ext)) file.create(env.custom$tmp$SourceFileName.ext)
+        file.edit(env.custom$tmp$SourceFileName.ext);
+        file.edit(env.custom$path$CurrentSource.path.filename.ext);
     }
 }
 ```
@@ -461,23 +461,23 @@ options(width=120)
 ```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ update default notebook.Rmd -----
 template.filename.ext = "templates-00env.custom.minimum.Rmd"
-current.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename(current.path.filename.ext) == template.filename.ext) {
+CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename(CurrentSource.path.filename.ext) == template.filename.ext) {
     if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
     if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) ;
     
-    destination.path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+    destination.path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     for ( destination.path.filename.ext in c(
         file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", template.filename.ext)
         , file.path(env.custom$path$path0, "Rproject_Rmd", template.filename.ext)
-    )) {if(current.path.filename.ext != destination.path.filename.ext) {
+    )) {if(CurrentSource.path.filename.ext != destination.path.filename.ext) {
         destination.filename = basename(destination.path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
         destination.ext = basename(destination.path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
         backup.path.filename = file.path(env.custom$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
         file.copy(from=destination.path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
-        if(file.copy(from=current.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
+        if(file.copy(from=CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
         if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
     }}
-    file.edit(current.path.filename.ext);
+    file.edit(CurrentSource.path.filename.ext);
 }
 # template.filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", template.filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))
 ```
