@@ -202,92 +202,28 @@ source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source
 ## \$ DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01" ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# suppressPackageStartupMessages(library(tidyverse))
-# #$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
-# # path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-# rm("path4read")
-# rm("objectname")
-# library(tidyverse)
-# path4read = "./data"
-# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# paste0(path4read,"/",objectname,".rds")
-# file.exists(paste0(path4read,"/",objectname,".rds"))
-# assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
-# # > paste0(path4read,"/",objectname,".rds")
-# # [1] "./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds"
-# # > file.exists(paste0(path4read,"/",objectname,".rds"))
-# # [1] FALSE
-# # > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
-# # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
-# 
-# CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
-```
-
-```{r}
-library(tidyverse)
-
-# Function to log file availability
-log_file_availability <- function(path) {
-  if (file.exists(path)) {
-    cat(Sys.time(), " - File exists\n")
-  } else {
-    cat(Sys.time(), " - File does not exist\n")
-  }
-}
-
-# Function to safely read an RDS file with logging
-safely_read_rds_with_logging <- function(path, max_attempts = 9) {
-  attempt <- 1
-  while (!file.exists(path) && attempt <= max_attempts) {
-    log_file_availability(path)  # Log file existence
-    Sys.sleep(1)  # Wait for 1 second before retrying
-    attempt <- attempt + 1
-  }
-  if (file.exists(path)) {
-    log_file_availability(path)  # Final log if file exists
-    read_rds(path)
-  } else {
-    stop("File not available after ", max_attempts, " attempts.")
-  }
-}
-
-path4read = "data"
+suppressPackageStartupMessages(library(tidyverse))
+#$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
+# path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+subpath = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-paste0(path4read,"/",objectname,".rds")
-file.exists(paste0(path4read,"/",objectname,".rds"))
-assign( objectname, safely_read_rds_with_logging(paste0(path4read,"/",objectname,".rds")) )
-rstudioapi::getSourceEditorContext()$path
+path.filename.ext = ifelse(
+    file.exists(paste0(subpath,"/",objectname,".rds"))
+    , paste0(subpath,"/",objectname,".rds")
+    , paste0(env.custom$path$source_base_github,"/",subpath,"/",objectname,".rds")
+)
+cat("path.filename.ext = ", path.filename.ext, "\n", sep = "")
+assign( objectname, read_rds(path.filename.ext) )
+# > paste0(path4read,"/",objectname,".rds")
+# [1] "./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds"
+# > file.exists(paste0(path4read,"/",objectname,".rds"))
+# [1] FALSE
+# > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
+# Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
+
+CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
 ```
-
-
-
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-# suppressPackageStartupMessages(library(tidyverse))
-# #$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
-# # path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-# rm("path4read")
-# rm("objectname")
-# library(tidyverse)
-# path4read = "./data"
-# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# paste0(path4read,"/",objectname,".rds")
-# file.exists(paste0(path4read,"/",objectname,".rds"))
-# assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
-# # > paste0(path4read,"/",objectname,".rds")
-# # [1] "./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds"
-# # > file.exists(paste0(path4read,"/",objectname,".rds"))
-# # [1] FALSE
-# # > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
-# # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
-# 
-# CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
-```
-
 
 
 ### %>% function.DataSet.TableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))
