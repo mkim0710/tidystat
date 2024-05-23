@@ -55,7 +55,7 @@ if(!exists("env.custom", envir=.GlobalEnv))
     assign("env.custom", new.env(), envir=.GlobalEnv)
 ## env.custom\$path ====
 if(!"path" %in% names(env.custom)) env.custom$path = list()
-objectname = "source_base_local"; object = "D:/OneDrive/[][Rproject]/github_tidystat"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
 ## env.custom\$env.internal ====
@@ -176,7 +176,7 @@ env.custom$path$getwd = getwd()
 # # env.custom$path$data_suffix = ""
 # env.custom$path$project_suffix = "GJ3"
 # 
-# 
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # env.custom$path$path4read = file.path(env.custom$path$path0, paste0(env.custom$path$project_base, env.custom$path$data_suffix))
 # env.custom$path$path4write = file.path(env.custom$path$path4read, paste0(env.custom$path$project_base, env.custom$path$data_suffix, env.custom$path$project_suffix))
 cat("> str(env.custom$path)\n"); str(env.custom$path, max.level = 1, give.attr = F)  
