@@ -200,7 +200,7 @@ objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$pat
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-file.edit("[Working Files List].r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+file.edit(paste0(env.custom$path$path1,"/","[Working Files List].r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 # env.custom$path$project_base = "Rproject_HEALS0215"
 # env.custom$path$data_suffix = "_01"
 # # env.custom$path$data_suffix = ""
@@ -253,7 +253,7 @@ path4write = env.custom$path$path4write
 # env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 # if(!"tmp" %in% names(env.custom)) env.custom$tmp = list()
 # for (SourceFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
-#     env.custom$tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(getwd()),".Rmd");
+#     env.custom$tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env.custom$path$path1),".Rmd");
 #     if(env.custom$tmp$SourceFileName.ext != basename(env.custom$path$CurrentSource.path.filename.ext)) {
 #         if(!file.exists(env.custom$tmp$SourceFileName.ext)) file.create(env.custom$tmp$SourceFileName.ext)
 #         file.edit(env.custom$tmp$SourceFileName.ext);
@@ -548,6 +548,10 @@ CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(ba
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+```
+
+```{r}
+getwd()
 ```
 
 
