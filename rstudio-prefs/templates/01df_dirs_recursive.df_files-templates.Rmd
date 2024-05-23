@@ -191,11 +191,16 @@ cat(env.custom$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ###### env.custom\$path ====
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 # cat("getwd() == "); dput(getwd()) #----
+objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+file.edit("[Working Files List].r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 # env.custom$path$project_base = "Rproject_HEALS0215"
 # env.custom$path$data_suffix = "_01"
 # # env.custom$path$data_suffix = ""
 # env.custom$path$project_suffix = "GJ3"
-# 
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # env.custom$path$path4read = file.path(env.custom$path$path0, paste0(env.custom$path$project_base, env.custom$path$data_suffix))
 # env.custom$path$path4write = file.path(env.custom$path$path1, paste0(env.custom$path$project_base, env.custom$path$data_suffix, env.custom$path$project_suffix))
 env.custom$path$path4read = ifelse(is.na(env.custom$path$path1), getwd(), env.custom$path$path1)
