@@ -73,23 +73,32 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 # }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-
-
-
 if(!exists("env.custom", envir=.GlobalEnv))
     assign("env.custom", new.env(), envir=.GlobalEnv)
 # env.custom = env.custom %>% as.environment
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
-
-
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#@ env.custom$env.internal$f_filename.ext.createBackup ====
+env.custom$env.internal$f_filename.ext.createBackup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M") {
+    copying_path.filename = basename(copying_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
+    copying_ext = basename(copying_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
+    backup_path.filename.ext = file.path(backup_path, paste0(copying_path.filename,"-",format(Sys.time(),timeFormat),copying_ext))
+    if(!dir.exists(backup_path)) dir.create(backup_path, recursive = TRUE)
+    file.copy(from=copying_path.filename.ext, to=backup_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_path.filename.ext))
+}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if(!"info" %in% names(env.custom)) env.custom$info = list()
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # if(!"source" %in% names(env.custom)) env.custom$source = list()
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if(!"path" %in% names(env.custom)) env.custom$path = list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env.custom$path[[objectname]] = object;
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env.custom$path[[objectname]] = object;
 objectname = "source_base_github_blob"; object = "https://github.com/mkim0710/tidystat/blob/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
 # objectname = "path4read"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; cat("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
 # objectname = "path4write"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object; at("env.custom$path$", objectname, ": ", env.custom$path[[objectname]], "\n", sep="")};
@@ -100,27 +109,28 @@ objectname = "path4write"; object = getwd(); if(!objectname %in% names(env.custo
 library(tidyverse)
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); env.custom$path[[objectname]] = object;
 # object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd()))
-# if (.Platform$OS.type == "windows") {object = file.path("D:", "OneDrive", "[][Rproject]")} else if (dir.exists("/home/rstudio")) {object = "/home/rstudio"} else {object = dirname(getwd())}; 
+# if (.Platform$OS.type == "windows") {object = file.path("D:", "OneDrive", "[][Rproject]")} else if (dir.exists("/home/rstudio")) {object = "/home/rstudio"} else {object = dirname(getwd())};
 # object = ifelse(dir.exists(file.path("D:","OneDrive","[][Rproject]")), file.path("D:","OneDrive","[][Rproject]"), ifelse(dir.exists("/home/rstudio"), "/home/rstudio", ifelse(dir.exists("/cloud"), "/cloud", dirname(getwd()))))
 
-
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #% f_path0.list_path_hierarchy =======
 # source("https://github.com/mkim0710/tidystat/raw/master/internal.f_path0.list_path_hierarchy.source.r")
 sourcename = "internal.f_path0.list_path_hierarchy"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-
-
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 max_hierarchy = 3
 env.custom$path$list_path_hierarchy = env.custom$path$f_path0.list_path_hierarchy(path0 = env.custom$path$path0, path_last = getwd(), max_hierarchy = max_hierarchy, print.intermediate = FALSE)
 for (i in 1:(max_hierarchy)) {
     env.custom$path[[paste0("path", i)]] = env.custom$path$list_path_hierarchy[[i+1]]
 }
 
-
-
 # cat("> str(env.custom$path$list_path_hierarchy)\n"); str(env.custom$path$list_path_hierarchy)
 # cat("> str(env.custom$path)\n"); str(env.custom$path)    
 
-#@ end -----
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ END -----
 # source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 # # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
 
@@ -129,5 +139,11 @@ for (i in 1:(max_hierarchy)) {
 # objectname = "get_system_info";
 
 # #  source(file.path(env.custom$path$source_base,"",paste0(objectname,".source.r"))); 
-
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
