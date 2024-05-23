@@ -174,11 +174,11 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# %% update default.R -----
-env.custom$path$default.filename.ext = "default.R"
+# %% update template (default.R) -----
+env.custom$path$RTemplate.filename.ext = "default.R"
+env.custom$path$MyTemplate.filename.ext = "default.R"
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
-
-
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 env.custom$env.internal$f_filename.ext.create_backup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup")) {
     copying_path.filename = basename(copying_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
     copying_ext = basename(copying_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
@@ -186,23 +186,23 @@ env.custom$env.internal$f_filename.ext.create_backup = function(copying_path.fil
     if(!dir.exists(backup_path)) dir.create(backup_path, recursive = TRUE)
     file.copy(from=copying_path.filename.ext, to=backup_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_path.filename.ext))
 }
-
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if (.Platform$OS.type == "windows") {
-    if(env.custom$path$default.filename.ext == basename(env.custom$path$CurrentSource.path.filename.ext)) {
+    if(env.custom$path$MyTemplate.filename.ext == basename(env.custom$path$CurrentSource.path.filename.ext)) {
         if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
         destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ;
-        destination.path.filename.ext = file.path(destination.path, "default.R"); 
+        destination.path.filename.ext = file.path(destination.path, env.custom$path$RTemplate.filename.ext); 
         env.custom$env.internal$f_filename.ext.create_backup(copying_path.filename.ext = destination.path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"))
         
         if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); 
         if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
         
         for ( destination.path.filename.ext in c(
-            file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$default.filename.ext)
-            , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$default.filename.ext)
+            file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$MyTemplate.filename.ext)
+            , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$MyTemplate.filename.ext)
         )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$CurrentSource.path.filename.ext != destination.path.filename.ext) {
             if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
-            if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+            # if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
         }}
         file.edit(env.custom$path$CurrentSource.path.filename.ext);
     }
