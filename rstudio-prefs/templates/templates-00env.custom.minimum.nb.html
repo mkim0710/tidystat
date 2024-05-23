@@ -2955,6 +2955,24 @@ pre { font-size: 12px; font-family: 'Cascadia Code SemiBold', Consolas, 'Source 
 <h6>env.custom$path ====</h6>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiPiBzdHIoZW52LmN1c3RvbSRwYXRoKVxuTGlzdCBvZiAxNFxuICQgc291cmNlX2Jhc2VfbG9jYWwgICAgICAgICAgICAgIDogY2hyIFwifi9naXRodWJfdGlkeXN0YXRcIlxuICQgc291cmNlX2Jhc2VfZ2l0aHViICAgICAgICAgICAgIDogY2hyIFwiaHR0cHM6Ly9naXRodWIuY29tL21raW0wNzEwL3RpZHlzdGF0L3Jhdy9tYXN0ZXJcIlxuICQgc291cmNlX2Jhc2UgICAgICAgICAgICAgICAgICAgIDogY2hyIFwifi9naXRodWJfdGlkeXN0YXRcIlxuICQgZ2V0d2QgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwiL2hvbWUvcnN0dWRpby9naXRodWJfdGlkeXN0YXQvcnN0dWRpby1wcmVmcy90ZW1wbGF0ZXNcIlxuICQgcGF0aDAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwiL2hvbWUvcnN0dWRpb1wiXG4gJCBzb3VyY2VfYmFzZV9naXRodWJfYmxvYiAgICAgICAgOiBjaHIgXCJodHRwczovL2dpdGh1Yi5jb20vbWtpbTA3MTAvdGlkeXN0YXQvYmxvYi9tYXN0ZXJcIlxuICQgcGF0aDRyZWFkICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwiL2hvbWUvcnN0dWRpby9naXRodWJfdGlkeXN0YXRcIlxuICQgcGF0aDR3cml0ZSAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwiL2hvbWUvcnN0dWRpby9naXRodWJfdGlkeXN0YXQvcnN0dWRpby1wcmVmcy90ZW1wbGF0ZXNcIlxuICQgZl9wYXRoMC5saXN0X3BhdGhfaGllcmFyY2h5ICAgIDpmdW5jdGlvbiAocGF0aDAsIHBhdGhfbGFzdCA9IGdldHdkKCksIG1heF9oaWVyYXJjaHkgPSA1LCBwcmludC5pbnRlcm1lZGlhdGUgPSBGQUxTRSkgIFxuICQgbGlzdF9wYXRoX2hpZXJhcmNoeSAgICAgICAgICAgIDpMaXN0IG9mIDRcbiAkIHBhdGgxICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBcIi9ob21lL3JzdHVkaW8vZ2l0aHViX3RpZHlzdGF0XCJcbiAkIHBhdGgyICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBcIi9ob21lL3JzdHVkaW8vZ2l0aHViX3RpZHlzdGF0L3JzdHVkaW8tcHJlZnNcIlxuICQgcGF0aDMgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwiL2hvbWUvcnN0dWRpby9naXRodWJfdGlkeXN0YXQvcnN0dWRpby1wcmVmcy90ZW1wbGF0ZXNcIlxuICQgQ3VycmVudFNvdXJjZS5wYXRoLmZpbGVuYW1lLmV4dDogY2hyIFwifi9naXRodWJfdGlkeXN0YXQvcnN0dWRpby1wcmVmcy90ZW1wbGF0ZXMvdGVtcGxhdGVzLTAwZW52LmN1c3RvbS5taW5pbXVtLlJtZFwiXG4ifQ== -->
+<pre><code>&gt; str(env.custom$path)
+List of 14
+ $ source_base_local              : chr &quot;~/github_tidystat&quot;
+ $ source_base_github             : chr &quot;https://github.com/mkim0710/tidystat/raw/master&quot;
+ $ source_base                    : chr &quot;~/github_tidystat&quot;
+ $ getwd                          : chr &quot;/home/rstudio/github_tidystat/rstudio-prefs/templates&quot;
+ $ path0                          : chr &quot;/home/rstudio&quot;
+ $ source_base_github_blob        : chr &quot;https://github.com/mkim0710/tidystat/blob/master&quot;
+ $ path4read                      : chr &quot;/home/rstudio/github_tidystat&quot;
+ $ path4write                     : chr &quot;/home/rstudio/github_tidystat/rstudio-prefs/templates&quot;
+ $ f_path0.list_path_hierarchy    :function (path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE)  
+ $ list_path_hierarchy            :List of 4
+ $ path1                          : chr &quot;/home/rstudio/github_tidystat&quot;
+ $ path2                          : chr &quot;/home/rstudio/github_tidystat/rstudio-prefs&quot;
+ $ path3                          : chr &quot;/home/rstudio/github_tidystat/rstudio-prefs/templates&quot;
+ $ CurrentSource.path.filename.ext: chr &quot;~/github_tidystat/rstudio-prefs/templates/templates-00env.custom.minimum.Rmd&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3027,7 +3045,7 @@ pre { font-size: 12px; font-family: 'Cascadia Code SemiBold', Consolas, 'Source 
 <h2>$ DataSetName = “analyticDF_time2event” ====</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG5zdXBwcmVzc1BhY2thZ2VTdGFydHVwTWVzc2FnZXMobGlicmFyeSh0aWR5dmVyc2UpKVxuIyBzdXBwcmVzc1BhY2thZ2VTdGFydHVwTWVzc2FnZXMobGlicmFyeShzdXJ2aXZhbCkpXG4jIHN1cHByZXNzUGFja2FnZVN0YXJ0dXBNZXNzYWdlcyhsaWJyYXJ5KHN1cnZtaW5lcikpXG4/c3Vydml2YWw6Omx1bmdcbkRhdGFTZXROYW1lID0gXCJhbmFseXRpY0RGX3RpbWUyZXZlbnRcIlxuYXNzaWduKFxuICAgIERhdGFTZXROYW1lLCBcbiAgICBzdXJ2aXZhbDo6bHVuZyB8PiBtdXRhdGUoZXZlbnQgPSBhcy5sb2dpY2FsKHN0YXR1cy0xKSwgR3JvdXAgPSBjKFwiTWFsZVwiLCBcIkZlbWFsZVwiKVtzZXhdIHw+IGFzLmZhY3RvcigpLCBTdHVkeVBvcHVsYXRpb24gPSB0aW1lID49IDMwKSB8PlxuICAgICAgICAjIGRwbHlyOjpzZWxlY3QoLXN0YXR1cywgLXNleClcbiAgICAgICAgZHBseXI6OnNlbGVjdCgtc3RhdHVzKVxuKVxuYW5hbHl0aWNERl90aW1lMmV2ZW50ICU+JSB7Y2F0KFwiPiBcIixkZXBhcnNlKHN1YnN0aXR1dGUoLikpLFwiIHw+IGFzX3RpYmJsZSgpIHw+IHByaW50KG49OSlcIixcIlxcblwiLCBzZXA9XCJcIik7IHByaW50KGFzX3RpYmJsZSguKSxuPTkpfVxuYW5hbHl0aWNERl90aW1lMmV2ZW50ICU+JSB7Y2F0KFwiPiBcIixkZXBhcnNlKHN1YnN0aXR1dGUoLikpLFwiIHw+IHJvd25hbWVzX3RvX2NvbHVtbigpIHw+IHRhaWwoKSB8PiBhc190aWJibGUoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgcHJpbnQoYXNfdGliYmxlKHRhaWwocm93bmFtZXNfdG9fY29sdW1uKC4pKSkpfVxuIyBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdChzZXgsIEdyb3VwKSAlPiUge2NhdChcIj4gXCIsZGVwYXJzZShzdWJzdGl0dXRlKC4pKSxcIiB8PiBzdHIoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgc3RyKC4pfVxuIyBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdChzZXgsIEdyb3VwKSB8PiB0YWJsZSh1c2VOQT1cImFsd2F5c1wiKSB8PiBhZGRtYXJnaW5zXG4jICMgPiBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdChzZXgsIEdyb3VwKSAlPiUge2NhdChcIj4gXCIsZGVwYXJzZShzdWJzdGl0dXRlKC4pKSxcIiB8PiBzdHIoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgc3RyKC4pfVxuIyAjICdkYXRhLmZyYW1lJzpcdDIyOCBvYnMuIG9mICAyIHZhcmlhYmxlczpcbiMgIyAgJCBzZXggIDogbnVtICAxIDEgMSAxIDEgMSAyIDIgMSAxIC4uLlxuIyAjICAkIEdyb3VwOiBGYWN0b3Igdy8gMiBsZXZlbHMgXCJGZW1hbGVcIixcIk1hbGVcIjogMiAyIDIgMiAyIDIgMSAxIDIgMiAuLi5cbiMgIyA+IGFuYWx5dGljREZfdGltZTJldmVudCB8PiBkcGx5cjo6c2VsZWN0KHNleCwgR3JvdXApIHw+IHRhYmxlKHVzZU5BPVwiYWx3YXlzXCIpIHw+IGFkZG1hcmdpbnNcbiMgIyAgICBHcm91cFxuIyAjIHNleCBGZW1hbGUgTWFsZVxuIyAjICAgMSAgICAgIDAgIDEzOFxuIyAjICAgMiAgICAgOTAgICAgMFxuIyBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdCh0aW1lLCBldmVudCwgR3JvdXAsIFN0dWR5UG9wdWxhdGlvbikgJT4lIGJ5KC4kU3R1ZHlQb3B1bGF0aW9uLCBzdW1tYXJ5KVxuIyAjID4gYW5hbHl0aWNERl90aW1lMmV2ZW50IHw+IGRwbHlyOjpzZWxlY3QodGltZSwgZXZlbnQsIEdyb3VwLCBTdHVkeVBvcHVsYXRpb24pICU+JSBieSguJFN0dWR5UG9wdWxhdGlvbiwgc3VtbWFyeSlcbiMgIyAuJFN0dWR5UG9wdWxhdGlvbjogRkFMU0VcbiMgIyAgICAgICB0aW1lICAgICBldmVudCAgICAgICAgICAgIEdyb3VwICAgU3R1ZHlQb3B1bGF0aW9uXG4jICMgIE1pbi4gICA6IDUgICBNb2RlOmxvZ2ljYWwgICBGZW1hbGU6MSAgIE1vZGUgOmxvZ2ljYWwgIFxuIyAjICAxc3QgUXUuOjExICAgVFJVRTo5ICAgICAgICAgTWFsZSAgOjggICBGQUxTRTo5ICAgICAgICBcbiMgIyAgTWVkaWFuIDoxMiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4jICMgIE1lYW4gICA6MTMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIyAjICAzcmQgUXUuOjEzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiMgIyAgTWF4LiAgIDoyNiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4jICMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIFxuIyAjIC4kU3R1ZHlQb3B1bGF0aW9uOiBUUlVFXG4jICMgICAgICAgdGltZSAgICAgICAgICBldmVudCAgICAgICAgICAgIEdyb3VwICAgICBTdHVkeVBvcHVsYXRpb25cbiMgIyAgTWluLiAgIDogIDMwLjAgICBNb2RlIDpsb2dpY2FsICAgRmVtYWxlOiA4OSAgIE1vZGU6bG9naWNhbCAgIFxuIyAjICAxc3QgUXUuOiAxNzYuNSAgIEZBTFNFOjYzICAgICAgICBNYWxlICA6MTMwICAgVFJVRToyMTkgICAgICAgXG4jICMgIE1lZGlhbiA6IDI2OS4wICAgVFJVRSA6MTU2ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiMgIyAgTWVhbiAgIDogMzE3LjIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIyAjICAzcmQgUXUuOiA0MTkuNSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4jICMgIE1heC4gICA6MTAyMi4wICAgXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG5zdXBwcmVzc1BhY2thZ2VTdGFydHVwTWVzc2FnZXMobGlicmFyeSh0aWR5dmVyc2UpKVxuIyBzdXBwcmVzc1BhY2thZ2VTdGFydHVwTWVzc2FnZXMobGlicmFyeShzdXJ2aXZhbCkpXG4jIHN1cHByZXNzUGFja2FnZVN0YXJ0dXBNZXNzYWdlcyhsaWJyYXJ5KHN1cnZtaW5lcikpXG4/c3Vydml2YWw6Omx1bmdcbkRhdGFTZXROYW1lID0gXCJhbmFseXRpY0RGX3RpbWUyZXZlbnRcIlxuYXNzaWduKFxuICAgIERhdGFTZXROYW1lLCBcbiAgICBzdXJ2aXZhbDo6bHVuZyB8PiBtdXRhdGUoZXZlbnQgPSBhcy5sb2dpY2FsKHN0YXR1cy0xKSwgR3JvdXAgPSBjKFwiTWFsZVwiLCBcIkZlbWFsZVwiKVtzZXhdIHw+IGFzLmZhY3RvcigpLCBTdHVkeVBvcHVsYXRpb24gPSB0aW1lID49IDMwKSB8PlxuICAgICAgICAjIGRwbHlyOjpzZWxlY3QoLXN0YXR1cywgLXNleClcbiAgICAgICAgZHBseXI6OnNlbGVjdCgtc3RhdHVzKVxuKVxuYW5hbHl0aWNERl90aW1lMmV2ZW50ICU+JSB7Y2F0KFwiPiBcIixkZXBhcnNlKHN1YnN0aXR1dGUoLikpLFwiIHw+IGFzX3RpYmJsZSgpIHw+IHByaW50KG49OSlcIixcIlxcblwiLCBzZXA9XCJcIik7IHByaW50KGFzX3RpYmJsZSguKSxuPTkpfVxuYGBgIn0= -->
 <pre class="r"><code>options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
@@ -3040,9 +3058,42 @@ assign(
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
 )
-analyticDF_time2event %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot; |&gt; as_tibble() |&gt; print(n=9)&quot;,&quot;\n&quot;, sep=&quot;&quot;); print(as_tibble(.),n=9)}
-analyticDF_time2event %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot; |&gt; rownames_to_column() |&gt; tail() |&gt; as_tibble()&quot;,&quot;\n&quot;, sep=&quot;&quot;); print(as_tibble(tail(rownames_to_column(.))))}
-# analyticDF_time2event |&gt; dplyr::select(sex, Group) %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot; |&gt; str()&quot;,&quot;\n&quot;, sep=&quot;&quot;); str(.)}
+analyticDF_time2event %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot; |&gt; as_tibble() |&gt; print(n=9)&quot;,&quot;\n&quot;, sep=&quot;&quot;); print(as_tibble(.),n=9)}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiPiBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gYXNfdGliYmxlKCkgfD4gcHJpbnQobj05KVxuIyBBIHRpYmJsZTogMjI4IMOXIDEyXG4gICBpbnN0ICB0aW1lICAgYWdlICAgc2V4IHBoLmVjb2cgcGgua2Fybm8gcGF0Lmthcm5vIG1lYWwuY2FsIHd0Lmxvc3MgZXZlbnQgR3JvdXAgIFN0dWR5UG9wdWxhdGlvblxuICA8ZGJsPiA8ZGJsPiA8ZGJsPiA8ZGJsPiAgIDxkYmw+ICAgIDxkYmw+ICAgICA8ZGJsPiAgICA8ZGJsPiAgIDxkYmw+IDxsZ2w+IDxmY3Q+ICA8bGdsPiAgICAgICAgICBcbjEgICAgIDMgICAzMDYgICAgNzQgICAgIDEgICAgICAgMSAgICAgICA5MCAgICAgICAxMDAgICAgIDExNzUgICAgICBOQSBUUlVFICBNYWxlICAgVFJVRSAgICAgICAgICAgXG4yICAgICAzICAgNDU1ICAgIDY4ICAgICAxICAgICAgIDAgICAgICAgOTAgICAgICAgIDkwICAgICAxMjI1ICAgICAgMTUgVFJVRSAgTWFsZSAgIFRSVUUgICAgICAgICAgIFxuMyAgICAgMyAgMTAxMCAgICA1NiAgICAgMSAgICAgICAwICAgICAgIDkwICAgICAgICA5MCAgICAgICBOQSAgICAgIDE1IEZBTFNFIE1hbGUgICBUUlVFICAgICAgICAgICBcbjQgICAgIDUgICAyMTAgICAgNTcgICAgIDEgICAgICAgMSAgICAgICA5MCAgICAgICAgNjAgICAgIDExNTAgICAgICAxMSBUUlVFICBNYWxlICAgVFJVRSAgICAgICAgICAgXG41ICAgICAxICAgODgzICAgIDYwICAgICAxICAgICAgIDAgICAgICAxMDAgICAgICAgIDkwICAgICAgIE5BICAgICAgIDAgVFJVRSAgTWFsZSAgIFRSVUUgICAgICAgICAgIFxuNiAgICAxMiAgMTAyMiAgICA3NCAgICAgMSAgICAgICAxICAgICAgIDUwICAgICAgICA4MCAgICAgIDUxMyAgICAgICAwIEZBTFNFIE1hbGUgICBUUlVFICAgICAgICAgICBcbjcgICAgIDcgICAzMTAgICAgNjggICAgIDIgICAgICAgMiAgICAgICA3MCAgICAgICAgNjAgICAgICAzODQgICAgICAxMCBUUlVFICBGZW1hbGUgVFJVRSAgICAgICAgICAgXG44ICAgIDExICAgMzYxICAgIDcxICAgICAyICAgICAgIDIgICAgICAgNjAgICAgICAgIDgwICAgICAgNTM4ICAgICAgIDEgVFJVRSAgRmVtYWxlIFRSVUUgICAgICAgICAgIFxuOSAgICAgMSAgIDIxOCAgICA1MyAgICAgMSAgICAgICAxICAgICAgIDcwICAgICAgICA4MCAgICAgIDgyNSAgICAgIDE2IFRSVUUgIE1hbGUgICBUUlVFICAgICAgICAgICBcbiMg4oS5IDIxOSBtb3JlIHJvd3NcbiMg4oS5IFVzZSBgcHJpbnQobiA9IC4uLilgIHRvIHNlZSBtb3JlIHJvd3NcbiJ9 -->
+<pre><code>&gt; analyticDF_time2event |&gt; as_tibble() |&gt; print(n=9)
+# A tibble: 228 × 12
+   inst  time   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss event Group  StudyPopulation
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt; &lt;fct&gt;  &lt;lgl&gt;          
+1     3   306    74     1       1       90       100     1175      NA TRUE  Male   TRUE           
+2     3   455    68     1       0       90        90     1225      15 TRUE  Male   TRUE           
+3     3  1010    56     1       0       90        90       NA      15 FALSE Male   TRUE           
+4     5   210    57     1       1       90        60     1150      11 TRUE  Male   TRUE           
+5     1   883    60     1       0      100        90       NA       0 TRUE  Male   TRUE           
+6    12  1022    74     1       1       50        80      513       0 FALSE Male   TRUE           
+7     7   310    68     2       2       70        60      384      10 TRUE  Female TRUE           
+8    11   361    71     2       2       60        80      538       1 TRUE  Female TRUE           
+9     1   218    53     1       1       70        80      825      16 TRUE  Male   TRUE           
+# ℹ 219 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5hbHl0aWNERl90aW1lMmV2ZW50ICU+JSB7Y2F0KFwiPiBcIixkZXBhcnNlKHN1YnN0aXR1dGUoLikpLFwiIHw+IHJvd25hbWVzX3RvX2NvbHVtbigpIHw+IHRhaWwoKSB8PiBhc190aWJibGUoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgcHJpbnQoYXNfdGliYmxlKHRhaWwocm93bmFtZXNfdG9fY29sdW1uKC4pKSkpfVxuYGBgIn0= -->
+<pre class="r"><code>analyticDF_time2event %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot; |&gt; rownames_to_column() |&gt; tail() |&gt; as_tibble()&quot;,&quot;\n&quot;, sep=&quot;&quot;); print(as_tibble(tail(rownames_to_column(.))))}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiPiBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gcm93bmFtZXNfdG9fY29sdW1uKCkgfD4gdGFpbCgpIHw+IGFzX3RpYmJsZSgpXG4jIEEgdGliYmxlOiA2IMOXIDEzXG4gIHJvd25hbWUgIGluc3QgIHRpbWUgICBhZ2UgICBzZXggcGguZWNvZyBwaC5rYXJubyBwYXQua2Fybm8gbWVhbC5jYWwgd3QubG9zcyBldmVudCBHcm91cCAgU3R1ZHlQb3B1bGF0aW9uXG4gIDxjaHI+ICAgPGRibD4gPGRibD4gPGRibD4gPGRibD4gICA8ZGJsPiAgICA8ZGJsPiAgICAgPGRibD4gICAgPGRibD4gICA8ZGJsPiA8bGdsPiA8ZmN0PiAgPGxnbD4gICAgICAgICAgXG4xIDIyMyAgICAgICAgIDEgICAxMTYgICAgNzYgICAgIDEgICAgICAgMSAgICAgICA4MCAgICAgICAgODAgICAgICAgTkEgICAgICAgMCBUUlVFICBNYWxlICAgVFJVRSAgICAgICAgICAgXG4yIDIyNCAgICAgICAgIDEgICAxODggICAgNzcgICAgIDEgICAgICAgMSAgICAgICA4MCAgICAgICAgNjAgICAgICAgTkEgICAgICAgMyBGQUxTRSBNYWxlICAgVFJVRSAgICAgICAgICAgXG4zIDIyNSAgICAgICAgMTMgICAxOTEgICAgMzkgICAgIDEgICAgICAgMCAgICAgICA5MCAgICAgICAgOTAgICAgIDIzNTAgICAgICAtNSBGQUxTRSBNYWxlICAgVFJVRSAgICAgICAgICAgXG40IDIyNiAgICAgICAgMzIgICAxMDUgICAgNzUgICAgIDIgICAgICAgMiAgICAgICA2MCAgICAgICAgNzAgICAgIDEwMjUgICAgICAgNSBGQUxTRSBGZW1hbGUgVFJVRSAgICAgICAgICAgXG41IDIyNyAgICAgICAgIDYgICAxNzQgICAgNjYgICAgIDEgICAgICAgMSAgICAgICA5MCAgICAgICAxMDAgICAgIDEwNzUgICAgICAgMSBGQUxTRSBNYWxlICAgVFJVRSAgICAgICAgICAgXG42IDIyOCAgICAgICAgMjIgICAxNzcgICAgNTggICAgIDIgICAgICAgMSAgICAgICA4MCAgICAgICAgOTAgICAgIDEwNjAgICAgICAgMCBGQUxTRSBGZW1hbGUgVFJVRSAgICAgICAgICAgXG4ifQ== -->
+<pre><code>&gt; analyticDF_time2event |&gt; rownames_to_column() |&gt; tail() |&gt; as_tibble()
+# A tibble: 6 × 13
+  rowname  inst  time   age   sex ph.ecog ph.karno pat.karno meal.cal wt.loss event Group  StudyPopulation
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt; &lt;fct&gt;  &lt;lgl&gt;          
+1 223         1   116    76     1       1       80        80       NA       0 TRUE  Male   TRUE           
+2 224         1   188    77     1       1       80        60       NA       3 FALSE Male   TRUE           
+3 225        13   191    39     1       0       90        90     2350      -5 FALSE Male   TRUE           
+4 226        32   105    75     2       2       60        70     1025       5 FALSE Female TRUE           
+5 227         6   174    66     1       1       90       100     1075       1 FALSE Male   TRUE           
+6 228        22   177    58     2       1       80        90     1060       0 FALSE Female TRUE           </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdChzZXgsIEdyb3VwKSAlPiUge2NhdChcIj4gXCIsZGVwYXJzZShzdWJzdGl0dXRlKC4pKSxcIiB8PiBzdHIoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgc3RyKC4pfVxuIyBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdChzZXgsIEdyb3VwKSB8PiB0YWJsZSh1c2VOQT1cImFsd2F5c1wiKSB8PiBhZGRtYXJnaW5zXG4jICMgPiBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdChzZXgsIEdyb3VwKSAlPiUge2NhdChcIj4gXCIsZGVwYXJzZShzdWJzdGl0dXRlKC4pKSxcIiB8PiBzdHIoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgc3RyKC4pfVxuIyAjICdkYXRhLmZyYW1lJzpcdDIyOCBvYnMuIG9mICAyIHZhcmlhYmxlczpcbiMgIyAgJCBzZXggIDogbnVtICAxIDEgMSAxIDEgMSAyIDIgMSAxIC4uLlxuIyAjICAkIEdyb3VwOiBGYWN0b3Igdy8gMiBsZXZlbHMgXCJGZW1hbGVcIixcIk1hbGVcIjogMiAyIDIgMiAyIDIgMSAxIDIgMiAuLi5cbiMgIyA+IGFuYWx5dGljREZfdGltZTJldmVudCB8PiBkcGx5cjo6c2VsZWN0KHNleCwgR3JvdXApIHw+IHRhYmxlKHVzZU5BPVwiYWx3YXlzXCIpIHw+IGFkZG1hcmdpbnNcbiMgIyAgICBHcm91cFxuIyAjIHNleCBGZW1hbGUgTWFsZVxuIyAjICAgMSAgICAgIDAgIDEzOFxuIyAjICAgMiAgICAgOTAgICAgMFxuIyBhbmFseXRpY0RGX3RpbWUyZXZlbnQgfD4gZHBseXI6OnNlbGVjdCh0aW1lLCBldmVudCwgR3JvdXAsIFN0dWR5UG9wdWxhdGlvbikgJT4lIGJ5KC4kU3R1ZHlQb3B1bGF0aW9uLCBzdW1tYXJ5KVxuIyAjID4gYW5hbHl0aWNERl90aW1lMmV2ZW50IHw+IGRwbHlyOjpzZWxlY3QodGltZSwgZXZlbnQsIEdyb3VwLCBTdHVkeVBvcHVsYXRpb24pICU+JSBieSguJFN0dWR5UG9wdWxhdGlvbiwgc3VtbWFyeSlcbiMgIyAuJFN0dWR5UG9wdWxhdGlvbjogRkFMU0VcbiMgIyAgICAgICB0aW1lICAgICBldmVudCAgICAgICAgICAgIEdyb3VwICAgU3R1ZHlQb3B1bGF0aW9uXG4jICMgIE1pbi4gICA6IDUgICBNb2RlOmxvZ2ljYWwgICBGZW1hbGU6MSAgIE1vZGUgOmxvZ2ljYWwgIFxuIyAjICAxc3QgUXUuOjExICAgVFJVRTo5ICAgICAgICAgTWFsZSAgOjggICBGQUxTRTo5ICAgICAgICBcbiMgIyAgTWVkaWFuIDoxMiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4jICMgIE1lYW4gICA6MTMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIyAjICAzcmQgUXUuOjEzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiMgIyAgTWF4LiAgIDoyNiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4jICMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIFxuIyAjIC4kU3R1ZHlQb3B1bGF0aW9uOiBUUlVFXG4jICMgICAgICAgdGltZSAgICAgICAgICBldmVudCAgICAgICAgICAgIEdyb3VwICAgICBTdHVkeVBvcHVsYXRpb25cbiMgIyAgTWluLiAgIDogIDMwLjAgICBNb2RlIDpsb2dpY2FsICAgRmVtYWxlOiA4OSAgIE1vZGU6bG9naWNhbCAgIFxuIyAjICAxc3QgUXUuOiAxNzYuNSAgIEZBTFNFOjYzICAgICAgICBNYWxlICA6MTMwICAgVFJVRToyMTkgICAgICAgXG4jICMgIE1lZGlhbiA6IDI2OS4wICAgVFJVRSA6MTU2ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiMgIyAgTWVhbiAgIDogMzE3LjIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIyAjICAzcmQgUXUuOiA0MTkuNSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4jICMgIE1heC4gICA6MTAyMi4wICAgXG5cbmBgYCJ9 -->
+<pre class="r"><code># analyticDF_time2event |&gt; dplyr::select(sex, Group) %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot; |&gt; str()&quot;,&quot;\n&quot;, sep=&quot;&quot;); str(.)}
 # analyticDF_time2event |&gt; dplyr::select(sex, Group) |&gt; table(useNA=&quot;always&quot;) |&gt; addmargins
 # # &gt; analyticDF_time2event |&gt; dplyr::select(sex, Group) %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot; |&gt; str()&quot;,&quot;\n&quot;, sep=&quot;&quot;); str(.)}
 # # &#39;data.frame&#39;:   228 obs. of  2 variables:
@@ -3083,7 +3134,7 @@ analyticDF_time2event %&gt;% {cat(&quot;&gt; &quot;,deparse(substitute(.)),&quot
 <h3>$ varname4ID —–</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG4jIHNvdXJjZShcImh0dHBzOi8vZ2l0aHViLmNvbS9ta2ltMDcxMC90aWR5c3RhdC9yYXcvbWFzdGVyL1JkZXYvMTBfaW1wb3J0X2NsZWFuX2RhdGF0eXBlLzEzX21pc3NpbmdfdmFsdWUvZGF0YS5Ob3ROQV9wX2RmLnNvdXJjZS5yXCIpXG5zdWJwYXRoPXJcIihSZGV2XFwxMF9pbXBvcnRfY2xlYW5fZGF0YXR5cGVcXDEzX21pc3NpbmdfdmFsdWUpXCJ8PnN0cl9yZXBsYWNlX2FsbChcIlxcXFxcXFxcXCIsXCIvXCIpICAjIFVzaW5nIFJhdyBTdHJpbmdzIGluIFIgNC4wLjAgYW5kIExhdGVyOiBUaGUgcmF3IHN0cmluZyBsaXRlcmFsLCBkZW5vdGVkIGJ5IHJcIiguLi4pXCIsIHdpbGwgbm90IHByb2Nlc3MgXFwgYXMgYW4gZXNjYXBlIGNoYXJhY3Rlci5cbnNvdXJjZW5hbWUgPSBcImRhdGEuTm90TkFfcF9kZlwiXG5zdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yID0gcGFzdGUwKHN1YnBhdGgsaWZlbHNlKHN1YnBhdGg9PVwiXCIsXCJcIixcIi9cIiksc291cmNlbmFtZSxcIi5zb3VyY2UuclwiKTsgc3VwcHJlc3NQYWNrYWdlU3RhcnR1cE1lc3NhZ2VzKHNvdXJjZSggZmlsZS5wYXRoKGVudi5jdXN0b20kcGF0aCRzb3VyY2VfYmFzZSxzdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yKSApKVxuXG52YXJuYW1lNElEID0gYyhcIklEXCIsIFwiQ29tcG9zaXRlS2V5XCIsIFwiUEVSU09OX0lEXCIsIFwiUk5fSU5ESVwiLCBcIk5JSElEXCIpXG5nZXQoRGF0YVNldE5hbWUpW2ludGVyc2VjdCh2YXJuYW1lNElELCBjb2xuYW1lcyhnZXQoRGF0YVNldE5hbWUpKSldIHw+IHN0cigpXG5nZXQoRGF0YVNldE5hbWUpIHw+IGRpbSgpXG5nZXQoRGF0YVNldE5hbWUpW2ludGVyc2VjdCh2YXJuYW1lNElELCBjb2xuYW1lcyhnZXQoRGF0YVNldE5hbWUpKSldIHw+IG5fZGlzdGluY3QoKVxuZ2V0KERhdGFTZXROYW1lKVtpbnRlcnNlY3QodmFybmFtZTRJRCwgY29sbmFtZXMoZ2V0KERhdGFTZXROYW1lKSkpXSB8PiBlbnYuY3VzdG9tJGRhdGEuTm90TkFfcF9kZigpXG5cbnZhcm5hbWU0Q29tcG9zaXRLZXkgPSBjKFwiYWdlXCIsIFwic2V4XCIpXG52ZWNDb21wb3NpdGVLZXkgPSBnZXQoRGF0YVNldE5hbWUpW2ludGVyc2VjdCh2YXJuYW1lNENvbXBvc2l0S2V5LCBjb2xuYW1lcyhnZXQoRGF0YVNldE5hbWUpKSldIHw+IGFwcGx5KE1BUkdJTiA9IDEsIHBhc3RlMCwgY29sbGFwc2UgPSBcIi1cIilcbnZlY0NvbXBvc2l0ZUtleSB8PiBuX2Rpc3RpbmN0KClcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG4jIHNvdXJjZShcImh0dHBzOi8vZ2l0aHViLmNvbS9ta2ltMDcxMC90aWR5c3RhdC9yYXcvbWFzdGVyL1JkZXYvMTBfaW1wb3J0X2NsZWFuX2RhdGF0eXBlLzEzX21pc3NpbmdfdmFsdWUvZGF0YS5Ob3ROQV9wX2RmLnNvdXJjZS5yXCIpXG5zdWJwYXRoPXJcIihSZGV2XFwxMF9pbXBvcnRfY2xlYW5fZGF0YXR5cGVcXDEzX21pc3NpbmdfdmFsdWUpXCJ8PnN0cl9yZXBsYWNlX2FsbChcIlxcXFxcXFxcXCIsXCIvXCIpICAjIFVzaW5nIFJhdyBTdHJpbmdzIGluIFIgNC4wLjAgYW5kIExhdGVyOiBUaGUgcmF3IHN0cmluZyBsaXRlcmFsLCBkZW5vdGVkIGJ5IHJcIiguLi4pXCIsIHdpbGwgbm90IHByb2Nlc3MgXFwgYXMgYW4gZXNjYXBlIGNoYXJhY3Rlci5cbnNvdXJjZW5hbWUgPSBcImRhdGEuTm90TkFfcF9kZlwiXG5zdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yID0gcGFzdGUwKHN1YnBhdGgsaWZlbHNlKHN1YnBhdGg9PVwiXCIsXCJcIixcIi9cIiksc291cmNlbmFtZSxcIi5zb3VyY2UuclwiKTsgc3VwcHJlc3NQYWNrYWdlU3RhcnR1cE1lc3NhZ2VzKHNvdXJjZSggZmlsZS5wYXRoKGVudi5jdXN0b20kcGF0aCRzb3VyY2VfYmFzZSxzdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yKSApKVxuXG52YXJuYW1lNElEID0gYyhcIklEXCIsIFwiQ29tcG9zaXRlS2V5XCIsIFwiUEVSU09OX0lEXCIsIFwiUk5fSU5ESVwiLCBcIk5JSElEXCIpXG5nZXQoRGF0YVNldE5hbWUpW2ludGVyc2VjdCh2YXJuYW1lNElELCBjb2xuYW1lcyhnZXQoRGF0YVNldE5hbWUpKSldIHw+IHN0cigpXG5gYGAifQ== -->
 <pre class="r"><code>options(width=120)
 # source(&quot;https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r&quot;)
 subpath=r&quot;(Rdev\10_import_clean_datatype\13_missing_value)&quot;|&gt;str_replace_all(&quot;\\\\&quot;,&quot;/&quot;)  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r&quot;(...)&quot;, will not process \ as an escape character.
@@ -3091,15 +3142,38 @@ sourcename = &quot;data.NotNA_p_df&quot;
 subpath.filename.source.r = paste0(subpath,ifelse(subpath==&quot;&quot;,&quot;&quot;,&quot;/&quot;),sourcename,&quot;.source.r&quot;); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 
 varname4ID = c(&quot;ID&quot;, &quot;CompositeKey&quot;, &quot;PERSON_ID&quot;, &quot;RN_INDI&quot;, &quot;NIHID&quot;)
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |&gt; str()
-get(DataSetName) |&gt; dim()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |&gt; n_distinct()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |&gt; env.custom$data.NotNA_p_df()
-
-varname4CompositKey = c(&quot;age&quot;, &quot;sex&quot;)
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |&gt; str()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MjI4IG9icy4gb2YgIDAgdmFyaWFibGVzXG4ifQ== -->
+<pre><code>&#39;data.frame&#39;:   228 obs. of  0 variables</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0KERhdGFTZXROYW1lKSB8PiBkaW0oKVxuYGBgIn0= -->
+<pre class="r"><code>get(DataSetName) |&gt; dim()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIyOCAgMTJcbiJ9 -->
+<pre><code>[1] 228  12</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0KERhdGFTZXROYW1lKVtpbnRlcnNlY3QodmFybmFtZTRJRCwgY29sbmFtZXMoZ2V0KERhdGFTZXROYW1lKSkpXSB8PiBuX2Rpc3RpbmN0KClcbmBgYCJ9 -->
+<pre class="r"><code>get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |&gt; n_distinct()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
+<pre><code>[1] 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0KERhdGFTZXROYW1lKVtpbnRlcnNlY3QodmFybmFtZTRJRCwgY29sbmFtZXMoZ2V0KERhdGFTZXROYW1lKSkpXSB8PiBlbnYuY3VzdG9tJGRhdGEuTm90TkFfcF9kZigpXG5gYGAifQ== -->
+<pre class="r"><code>get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |&gt; env.custom$data.NotNA_p_df()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFJvd051bSAgICAgdmFybmFtZSAgICBJc05BICAgICAgIElzTkFfcF9kZiAgTm90TkEgICAgICBOb3ROQV9wX2RmIE5Sb3cgICAgICBcbjwwIHJvd3M+IChvciAwLWxlbmd0aCByb3cubmFtZXMpXG4ifQ== -->
+<pre><code>[1] RowNum     varname    IsNA       IsNA_p_df  NotNA      NotNA_p_df NRow      
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFybmFtZTRDb21wb3NpdEtleSA9IGMoXCJhZ2VcIiwgXCJzZXhcIilcbnZlY0NvbXBvc2l0ZUtleSA9IGdldChEYXRhU2V0TmFtZSlbaW50ZXJzZWN0KHZhcm5hbWU0Q29tcG9zaXRLZXksIGNvbG5hbWVzKGdldChEYXRhU2V0TmFtZSkpKV0gfD4gYXBwbHkoTUFSR0lOID0gMSwgcGFzdGUwLCBjb2xsYXBzZSA9IFwiLVwiKVxudmVjQ29tcG9zaXRlS2V5IHw+IG5fZGlzdGluY3QoKVxuYGBgIn0= -->
+<pre class="r"><code>varname4CompositKey = c(&quot;age&quot;, &quot;sex&quot;)
 vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] |&gt; apply(MARGIN = 1, paste0, collapse = &quot;-&quot;)
 vecCompositeKey |&gt; n_distinct()</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDcxXG4ifQ== -->
+<pre><code>[1] 71</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="varname4outcome" class="section level4">
@@ -3109,7 +3183,7 @@ vecCompositeKey |&gt; n_distinct()</code></pre>
 <h4>$ varname4time —–</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG52YXJuYW1lNG91dGNvbWUgPSBcImV2ZW50XCJcbnZhcm5hbWU0dGltZSA9IGMoXCJ0aW1lXCIsIFwiYWdlXCIpXG5nZXQoRGF0YVNldE5hbWUpW2ModmFybmFtZTRvdXRjb21lLCB2YXJuYW1lNHRpbWUpXSB8PiBcbiAgICBtdXRhdGVfaWYoaXMuZmFjdG9yLCBhcy5jaGFyYWN0ZXIpIHw+ICBcbiAgICBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBuYV9pZiwgXCJcIikgfD4gbXV0YXRlX2lmKGlzLmNoYXJhY3RlciwgbmFfaWYsIFwiTi9BXCIpIHw+IG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIG5hX2lmLCBcIk5BXCIpIHw+IFxuICAgIG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIGFzLmZhY3RvcikgfD4gXG4gICAgc3VtbWFyeSgpXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG52YXJuYW1lNG91dGNvbWUgPSBcImV2ZW50XCJcbnZhcm5hbWU0dGltZSA9IGMoXCJ0aW1lXCIsIFwiYWdlXCIpXG5nZXQoRGF0YVNldE5hbWUpW2ModmFybmFtZTRvdXRjb21lLCB2YXJuYW1lNHRpbWUpXSB8PiBcbiAgICBtdXRhdGVfaWYoaXMuZmFjdG9yLCBhcy5jaGFyYWN0ZXIpIHw+ICBcbiAgICBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBuYV9pZiwgXCJcIikgfD4gbXV0YXRlX2lmKGlzLmNoYXJhY3RlciwgbmFfaWYsIFwiTi9BXCIpIHw+IG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIG5hX2lmLCBcIk5BXCIpIHw+IFxuICAgIG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIGFzLmZhY3RvcikgfD4gXG4gICAgc3VtbWFyeSgpXG5gYGAifQ== -->
 <pre class="r"><code>options(width=120)
 varname4outcome = &quot;event&quot;
 varname4time = c(&quot;time&quot;, &quot;age&quot;)
@@ -3117,9 +3191,17 @@ get(DataSetName)[c(varname4outcome, varname4time)] |&gt;
     mutate_if(is.factor, as.character) |&gt;  
     mutate_if(is.character, na_if, &quot;&quot;) |&gt; mutate_if(is.character, na_if, &quot;N/A&quot;) |&gt; mutate_if(is.character, na_if, &quot;NA&quot;) |&gt; 
     mutate_if(is.character, as.factor) |&gt; 
-    summary()
-</code></pre>
+    summary()</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgZXZlbnQgICAgICAgICAgICAgIHRpbWUgICAgICAgICAgICAgYWdlICAgICAgIFxuIE1vZGUgOmxvZ2ljYWwgICBNaW4uICAgOiAgIDUuMCAgIE1pbi4gICA6MzkuMDAgIFxuIEZBTFNFOjYzICAgICAgICAxc3QgUXUuOiAxNjYuOCAgIDFzdCBRdS46NTYuMDAgIFxuIFRSVUUgOjE2NSAgICAgICBNZWRpYW4gOiAyNTUuNSAgIE1lZGlhbiA6NjMuMDAgIFxuICAgICAgICAgICAgICAgICBNZWFuICAgOiAzMDUuMiAgIE1lYW4gICA6NjIuNDUgIFxuICAgICAgICAgICAgICAgICAzcmQgUXUuOiAzOTYuNSAgIDNyZCBRdS46NjkuMDAgIFxuICAgICAgICAgICAgICAgICBNYXguICAgOjEwMjIuMCAgIE1heC4gICA6ODIuMDAgIFxuIn0= -->
+<pre><code>   event              time             age       
+ Mode :logical   Min.   :   5.0   Min.   :39.00  
+ FALSE:63        1st Qu.: 166.8   1st Qu.:56.00  
+ TRUE :165       Median : 255.5   Median :63.00  
+                 Mean   : 305.2   Mean   :62.45  
+                 3rd Qu.: 396.5   3rd Qu.:69.00  
+                 Max.   :1022.0   Max.   :82.00  </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="varname4measures" class="section level5">
@@ -3148,7 +3230,7 @@ get(DataSetName)[c(varname4outcome, varname4time)] |&gt;
 <h3>$ paste0(DataSetName,“.Date”,“.NA”,“.rmAllNA”) ====</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG4jIHNvdXJjZShcImh0dHBzOi8vZ2l0aHViLmNvbS9ta2ltMDcxMC90aWR5c3RhdC9yYXcvbWFzdGVyL1JkZXYvMTBfaW1wb3J0X2NsZWFuX2RhdGF0eXBlLzEzX21pc3NpbmdfdmFsdWUvZGF0YS5Ob3ROQV9wX2RmLnNvdXJjZS5yXCIpXG5zdWJwYXRoPXJcIihSZGV2XFwxMF9pbXBvcnRfY2xlYW5fZGF0YXR5cGVcXDEzX21pc3NpbmdfdmFsdWUpXCJ8PnN0cl9yZXBsYWNlX2FsbChcIlxcXFxcXFxcXCIsXCIvXCIpICAjIFVzaW5nIFJhdyBTdHJpbmdzIGluIFIgNC4wLjAgYW5kIExhdGVyOiBUaGUgcmF3IHN0cmluZyBsaXRlcmFsLCBkZW5vdGVkIGJ5IHJcIiguLi4pXCIsIHdpbGwgbm90IHByb2Nlc3MgXFwgYXMgYW4gZXNjYXBlIGNoYXJhY3Rlci5cbnNvdXJjZW5hbWUgPSBcImRhdGEuTm90TkFfcF9kZlwiXG5zdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yID0gcGFzdGUwKHN1YnBhdGgsaWZlbHNlKHN1YnBhdGg9PVwiXCIsXCJcIixcIi9cIiksc291cmNlbmFtZSxcIi5zb3VyY2UuclwiKTsgc3VwcHJlc3NQYWNrYWdlU3RhcnR1cE1lc3NhZ2VzKHNvdXJjZSggZmlsZS5wYXRoKGVudi5jdXN0b20kcGF0aCRzb3VyY2VfYmFzZSxzdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yKSApKVxuXG5hc3NpZ24oIHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIiksIGdldChEYXRhU2V0TmFtZSkgfD4gbXV0YXRlX2lmKGlzLmZhY3RvciwgYXMuY2hhcmFjdGVyKSB8PiBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBuYV9pZiwgXCJcIikgfD4gbXV0YXRlX2lmKGlzLmNoYXJhY3RlciwgbmFfaWYsIFwiTi9BXCIpIHw+IG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIG5hX2lmLCBcIk5BXCIpIHw+IGFzX3RpYmJsZSgpIClcbmFzc2lnbiggcGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIiksIGdldChwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIpKSB8PiBzZWxlY3RfaWYoZnVuY3Rpb24odmVjKSAhYWxsKGlzLm5hKHZlYykpKSApXG5jYXQoXCJkaW0oXCIsRGF0YVNldE5hbWUsXCIpID0gXCIsZGVwYXJzZShkaW0oZ2V0KERhdGFTZXROYW1lKSkpLFwiXFxuXCIsIHNlcD1cIlwiKSBcbmNhdChcImRpbShcIixEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIsXCIpID0gXCIsZGVwYXJzZShkaW0oZ2V0KHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIpKSkpLFwiXFxuXCIsIHNlcD1cIlwiKSBcbmNhdChzdHJyZXAoXCIlXCIsODApLFwiXFxuXCIsc2VwPVwiXCIpOyBcbmNhdChcIj4gXCIsRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIgfD4gZW52LmN1c3RvbSRkYXRhLk5vdE5BX3BfZGYoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgZW52LmN1c3RvbSRkYXRhLk5vdE5BX3BfZGYoZ2V0KHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIikpKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG4jIHNvdXJjZShcImh0dHBzOi8vZ2l0aHViLmNvbS9ta2ltMDcxMC90aWR5c3RhdC9yYXcvbWFzdGVyL1JkZXYvMTBfaW1wb3J0X2NsZWFuX2RhdGF0eXBlLzEzX21pc3NpbmdfdmFsdWUvZGF0YS5Ob3ROQV9wX2RmLnNvdXJjZS5yXCIpXG5zdWJwYXRoPXJcIihSZGV2XFwxMF9pbXBvcnRfY2xlYW5fZGF0YXR5cGVcXDEzX21pc3NpbmdfdmFsdWUpXCJ8PnN0cl9yZXBsYWNlX2FsbChcIlxcXFxcXFxcXCIsXCIvXCIpICAjIFVzaW5nIFJhdyBTdHJpbmdzIGluIFIgNC4wLjAgYW5kIExhdGVyOiBUaGUgcmF3IHN0cmluZyBsaXRlcmFsLCBkZW5vdGVkIGJ5IHJcIiguLi4pXCIsIHdpbGwgbm90IHByb2Nlc3MgXFwgYXMgYW4gZXNjYXBlIGNoYXJhY3Rlci5cbnNvdXJjZW5hbWUgPSBcImRhdGEuTm90TkFfcF9kZlwiXG5zdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yID0gcGFzdGUwKHN1YnBhdGgsaWZlbHNlKHN1YnBhdGg9PVwiXCIsXCJcIixcIi9cIiksc291cmNlbmFtZSxcIi5zb3VyY2UuclwiKTsgc3VwcHJlc3NQYWNrYWdlU3RhcnR1cE1lc3NhZ2VzKHNvdXJjZSggZmlsZS5wYXRoKGVudi5jdXN0b20kcGF0aCRzb3VyY2VfYmFzZSxzdWJwYXRoLmZpbGVuYW1lLnNvdXJjZS5yKSApKVxuXG5hc3NpZ24oIHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIiksIGdldChEYXRhU2V0TmFtZSkgfD4gbXV0YXRlX2lmKGlzLmZhY3RvciwgYXMuY2hhcmFjdGVyKSB8PiBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBuYV9pZiwgXCJcIikgfD4gbXV0YXRlX2lmKGlzLmNoYXJhY3RlciwgbmFfaWYsIFwiTi9BXCIpIHw+IG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIG5hX2lmLCBcIk5BXCIpIHw+IGFzX3RpYmJsZSgpIClcbmFzc2lnbiggcGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIiksIGdldChwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIpKSB8PiBzZWxlY3RfaWYoZnVuY3Rpb24odmVjKSAhYWxsKGlzLm5hKHZlYykpKSApXG5jYXQoXCJkaW0oXCIsRGF0YVNldE5hbWUsXCIpID0gXCIsZGVwYXJzZShkaW0oZ2V0KERhdGFTZXROYW1lKSkpLFwiXFxuXCIsIHNlcD1cIlwiKSBcbmBgYCJ9 -->
 <pre class="r"><code>options(width=120)
 # source(&quot;https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r&quot;)
 subpath=r&quot;(Rdev\10_import_clean_datatype\13_missing_value)&quot;|&gt;str_replace_all(&quot;\\\\&quot;,&quot;/&quot;)  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r&quot;(...)&quot;, will not process \ as an escape character.
@@ -3157,11 +3239,42 @@ subpath.filename.source.r = paste0(subpath,ifelse(subpath==&quot;&quot;,&quot;&q
 
 assign( paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;), get(DataSetName) |&gt; mutate_if(is.factor, as.character) |&gt; mutate_if(is.character, na_if, &quot;&quot;) |&gt; mutate_if(is.character, na_if, &quot;N/A&quot;) |&gt; mutate_if(is.character, na_if, &quot;NA&quot;) |&gt; as_tibble() )
 assign( paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;), get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;)) |&gt; select_if(function(vec) !all(is.na(vec))) )
-cat(&quot;dim(&quot;,DataSetName,&quot;) = &quot;,deparse(dim(get(DataSetName))),&quot;\n&quot;, sep=&quot;&quot;) 
-cat(&quot;dim(&quot;,DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;) = &quot;,deparse(dim(get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)))),&quot;\n&quot;, sep=&quot;&quot;) 
-cat(strrep(&quot;%&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); 
-cat(&quot;&gt; &quot;,DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot; |&gt; env.custom$data.NotNA_p_df()&quot;,&quot;\n&quot;, sep=&quot;&quot;); env.custom$data.NotNA_p_df(get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;)))</code></pre>
+cat(&quot;dim(&quot;,DataSetName,&quot;) = &quot;,deparse(dim(get(DataSetName))),&quot;\n&quot;, sep=&quot;&quot;) </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZGltKGFuYWx5dGljREZfdGltZTJldmVudCkgPSBjKDIyOEwsIDEyTClcbiJ9 -->
+<pre><code>dim(analyticDF_time2event) = c(228L, 12L)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiZGltKFwiLERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIixcIikgPSBcIixkZXBhcnNlKGRpbShnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpKSksXCJcXG5cIiwgc2VwPVwiXCIpIFxuYGBgIn0= -->
+<pre class="r"><code>cat(&quot;dim(&quot;,DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;) = &quot;,deparse(dim(get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)))),&quot;\n&quot;, sep=&quot;&quot;) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZGltKGFuYWx5dGljREZfdGltZTJldmVudC5EYXRlLk5BLnJtQWxsTkEpID0gYygyMjhMLCAxMkwpXG4ifQ== -->
+<pre><code>dim(analyticDF_time2event.Date.NA.rmAllNA) = c(228L, 12L)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KHN0cnJlcChcIiVcIiw4MCksXCJcXG5cIixzZXA9XCJcIik7IFxuYGBgIn0= -->
+<pre class="r"><code>cat(strrep(&quot;%&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSVcbiJ9 -->
+<pre><code>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiPiBcIixEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIiB8PiBlbnYuY3VzdG9tJGRhdGEuTm90TkFfcF9kZigpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBlbnYuY3VzdG9tJGRhdGEuTm90TkFfcF9kZihnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiKSkpXG5gYGAifQ== -->
+<pre class="r"><code>cat(&quot;&gt; &quot;,DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot; |&gt; env.custom$data.NotNA_p_df()&quot;,&quot;\n&quot;, sep=&quot;&quot;); env.custom$data.NotNA_p_df(get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiPiBhbmFseXRpY0RGX3RpbWUyZXZlbnQuRGF0ZS5OQSB8PiBlbnYuY3VzdG9tJGRhdGEuTm90TkFfcF9kZigpXG4gICBSb3dOdW0gICAgICAgICB2YXJuYW1lIElzTkEgSXNOQV9wX2RmIE5vdE5BIE5vdE5BX3BfZGYgTlJvd1xuMSAgICAgICAyICAgICAgICAgICAgdGltZSAgICAwICAgICAwLjAwMCAgIDIyOCAgICAgIDEuMDAwICAyMjhcbjIgICAgICAgMyAgICAgICAgICAgICBhZ2UgICAgMCAgICAgMC4wMDAgICAyMjggICAgICAxLjAwMCAgMjI4XG4zICAgICAgIDQgICAgICAgICAgICAgc2V4ICAgIDAgICAgIDAuMDAwICAgMjI4ICAgICAgMS4wMDAgIDIyOFxuNCAgICAgIDEwICAgICAgICAgICBldmVudCAgICAwICAgICAwLjAwMCAgIDIyOCAgICAgIDEuMDAwICAyMjhcbjUgICAgICAxMSAgICAgICAgICAgR3JvdXAgICAgMCAgICAgMC4wMDAgICAyMjggICAgICAxLjAwMCAgMjI4XG42ICAgICAgMTIgU3R1ZHlQb3B1bGF0aW9uICAgIDAgICAgIDAuMDAwICAgMjI4ICAgICAgMS4wMDAgIDIyOFxuNyAgICAgICAxICAgICAgICAgICAgaW5zdCAgICAxICAgICAwLjAwNCAgIDIyNyAgICAgIDAuOTk2ICAyMjhcbjggICAgICAgNSAgICAgICAgIHBoLmVjb2cgICAgMSAgICAgMC4wMDQgICAyMjcgICAgICAwLjk5NiAgMjI4XG45ICAgICAgIDYgICAgICAgIHBoLmthcm5vICAgIDEgICAgIDAuMDA0ICAgMjI3ICAgICAgMC45OTYgIDIyOFxuMTAgICAgICA3ICAgICAgIHBhdC5rYXJubyAgICAzICAgICAwLjAxMyAgIDIyNSAgICAgIDAuOTg3ICAyMjhcbjExICAgICAgOSAgICAgICAgIHd0Lmxvc3MgICAxNCAgICAgMC4wNjEgICAyMTQgICAgICAwLjkzOSAgMjI4XG4xMiAgICAgIDggICAgICAgIG1lYWwuY2FsICAgNDcgICAgIDAuMjA2ICAgMTgxICAgICAgMC43OTQgIDIyOFxuIn0= -->
+<pre><code>&gt; analyticDF_time2event.Date.NA |&gt; env.custom$data.NotNA_p_df()
+   RowNum         varname IsNA IsNA_p_df NotNA NotNA_p_df NRow
+1       2            time    0     0.000   228      1.000  228
+2       3             age    0     0.000   228      1.000  228
+3       4             sex    0     0.000   228      1.000  228
+4      10           event    0     0.000   228      1.000  228
+5      11           Group    0     0.000   228      1.000  228
+6      12 StudyPopulation    0     0.000   228      1.000  228
+7       1            inst    1     0.004   227      0.996  228
+8       5         ph.ecog    1     0.004   227      0.996  228
+9       6        ph.karno    1     0.004   227      0.996  228
+10      7       pat.karno    3     0.013   225      0.987  228
+11      9         wt.loss   14     0.061   214      0.939  228
+12      8        meal.cal   47     0.206   181      0.794  228</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3172,27 +3285,92 @@ cat(&quot;&gt; &quot;,DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot; |&gt;
 <h3>$ paste0(DataSetName,“.Date”,“.NA”,“.rmAllNA”,“.fct”) ====</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG52ZWNfdmFybmFtZTRJRCA9IGMoXCJJRFwiLCBcIkNvbXBvc2l0ZUtleVwiLCBcIlBFUlNPTl9JRFwiLCBcIlJOX0lORElcIiwgXCJOSUhJRFwiKVxuZm9yICh2YXJuYW1lIGluIHZlY192YXJuYW1lNElEKSB7aWYodmFybmFtZSAlaW4lIG5hbWVzKGdldChwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSkpKSBjYXQoXCJuX2Rpc3RpbmN0KFwiLHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIpLFwiJFwiLHZhcm5hbWUsXCIpID0gXCIsbl9kaXN0aW5jdChnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpW1t2YXJuYW1lXV0pLFwiXFxuXCIsIHNlcD1cIlwiKX1cblxuXG50MD1TeXMudGltZSgpXG5jYXQoc3RycmVwKFwiflwiLDgwKSxcIlxcblwiLHNlcD1cIlwiKTsgY2F0KFwiPiBcIixwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSxcIiB8PiBzZWxlY3RfaWYoaXMubnVtZXJpYykpXCIsXCIgfD4gc3VtbWFyeSgpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpIHw+IHNlbGVjdF9pZihpcy5udW1lcmljKSB8PiBzdW1tYXJ5KCkgIy0tLS0tXG5TeXMudGltZSgpLXQwXG50MD1TeXMudGltZSgpXG5jYXQoc3RycmVwKFwiflwiLDgwKSxcIlxcblwiLHNlcD1cIlwiKTsgY2F0KFwiPiBcIixwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSxcIiB8PiBzZWxlY3RfaWYoaXMubG9naWNhbCkpXCIsXCIgfD4gc3VtbWFyeSgpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpIHw+IHNlbGVjdF9pZihpcy5sb2dpY2FsKSB8PiBzdW1tYXJ5KCkgIy0tLS0tXG5TeXMudGltZSgpLXQwXG5cbnQwPVN5cy50aW1lKClcbmNhdChzdHJyZXAoXCIlXCIsODApLFwiXFxuXCIsc2VwPVwiXCIpOyBjYXQoXCI+IFwiLHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIsXCIuZmN0XCIpLFwiID0gXCIscGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIiksXCIgfD4gbXV0YXRlX2lmKGlzLmNoYXJhY3RlciwgYXMuZmFjdG9yKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgYXNzaWduKCBwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiLFwiLmZjdFwiKSwgZ2V0KHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIpKSB8PiBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBhcy5mYWN0b3IpIClcblN5cy50aW1lKCktdDBcblxudDA9U3lzLnRpbWUoKVxuY2F0KHN0cnJlcChcIitcIiw4MCksXCJcXG5cIixzZXA9XCJcIik7IGNhdChcIj4gXCIscGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIixcIi5mY3RcIiksXCIgfD4gc2VsZWN0X2lmKGlzLmZhY3RvcikpXCIsXCIgfD4gc3VtbWFyeSgpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIixcIi5mY3RcIikpIHw+IHNlbGVjdF9pZihpcy5mYWN0b3IpIHw+IHN1bW1hcnkoKSAjLS0tLS1cblN5cy50aW1lKCktdDBcbiMgY2F0KHN0cnJlcChcIn5cIiw4MCksXCJcXG5cIixzZXA9XCJcIik7IGNhdChcIj4gXCIscGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIiksXCIgfD4gc2VsZWN0X2lmKGlzLmZhY3RvcikpXCIsXCIgfD4gc3VtbWFyeSgpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpIHw+IHNlbGVjdF9pZihpcy5jaGFyYWN0ZXIpIHw+IG1hcF9kZihhcy5mYWN0b3IpIHw+IHN1bW1hcnkoKSAjLS0tLS1cbiMgU3lzLnRpbWUoKS10MFxuIyBodHRwczovL2dpdGh1Yi5jb20vbWtpbTA3MTAvdGlkeXN0YXQvYmxvYi9tYXN0ZXIvUmRldi8xMF9pbXBvcnRfY2xlYW5fZGF0YXR5cGUvMThfZGljaG90b21vdXNfbG9naWNhbC9mdW5jdGlvbi5kaWNob3RvbW91czJsb2dpY2FsLmRldi5yXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub3B0aW9ucyh3aWR0aD0xMjApXG52ZWNfdmFybmFtZTRJRCA9IGMoXCJJRFwiLCBcIkNvbXBvc2l0ZUtleVwiLCBcIlBFUlNPTl9JRFwiLCBcIlJOX0lORElcIiwgXCJOSUhJRFwiKVxuZm9yICh2YXJuYW1lIGluIHZlY192YXJuYW1lNElEKSB7aWYodmFybmFtZSAlaW4lIG5hbWVzKGdldChwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSkpKSBjYXQoXCJuX2Rpc3RpbmN0KFwiLHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIpLFwiJFwiLHZhcm5hbWUsXCIpID0gXCIsbl9kaXN0aW5jdChnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpW1t2YXJuYW1lXV0pLFwiXFxuXCIsIHNlcD1cIlwiKX1cblxuXG50MD1TeXMudGltZSgpXG5jYXQoc3RycmVwKFwiflwiLDgwKSxcIlxcblwiLHNlcD1cIlwiKTsgY2F0KFwiPiBcIixwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSxcIiB8PiBzZWxlY3RfaWYoaXMubnVtZXJpYykpXCIsXCIgfD4gc3VtbWFyeSgpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpIHw+IHNlbGVjdF9pZihpcy5udW1lcmljKSB8PiBzdW1tYXJ5KCkgIy0tLS0tXG5gYGAifQ== -->
 <pre class="r"><code>options(width=120)
 vec_varname4ID = c(&quot;ID&quot;, &quot;CompositeKey&quot;, &quot;PERSON_ID&quot;, &quot;RN_INDI&quot;, &quot;NIHID&quot;)
 for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)))) cat(&quot;n_distinct(&quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot;$&quot;,varname,&quot;) = &quot;,n_distinct(get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;))[[varname]]),&quot;\n&quot;, sep=&quot;&quot;)}
 
 
 t0=Sys.time()
-cat(strrep(&quot;~&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; select_if(is.numeric))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; select_if(is.numeric) |&gt; summary() #-----
-Sys.time()-t0
-t0=Sys.time()
-cat(strrep(&quot;~&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; select_if(is.logical))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; select_if(is.logical) |&gt; summary() #-----
-Sys.time()-t0
-
-t0=Sys.time()
-cat(strrep(&quot;%&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;),&quot; = &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; mutate_if(is.character, as.factor)&quot;,&quot;\n&quot;, sep=&quot;&quot;); assign( paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;), get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; mutate_if(is.character, as.factor) )
-Sys.time()-t0
-
-t0=Sys.time()
-cat(strrep(&quot;+&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;),&quot; |&gt; select_if(is.factor))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;)) |&gt; select_if(is.factor) |&gt; summary() #-----
-Sys.time()-t0
-# cat(strrep(&quot;~&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; select_if(is.factor))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; select_if(is.character) |&gt; map_df(as.factor) |&gt; summary() #-----
+cat(strrep(&quot;~&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; select_if(is.numeric))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; select_if(is.numeric) |&gt; summary() #-----</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoifn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5cbj4gYW5hbHl0aWNERl90aW1lMmV2ZW50LkRhdGUuTkEucm1BbGxOQSB8PiBzZWxlY3RfaWYoaXMubnVtZXJpYykpIHw+IHN1bW1hcnkoKVxuICAgICAgaW5zdCAgICAgICAgICAgIHRpbWUgICAgICAgICAgICAgYWdlICAgICAgICAgICAgIHNleCAgICAgICAgICAgcGguZWNvZyAgICAgICAgICBwaC5rYXJubyAgICAgICAgcGF0Lmthcm5vICAgICBcbiBNaW4uICAgOiAxLjAwICAgTWluLiAgIDogICA1LjAgICBNaW4uICAgOjM5LjAwICAgTWluLiAgIDoxLjAwMCAgIE1pbi4gICA6MC4wMDAwICAgTWluLiAgIDogNTAuMDAgICBNaW4uICAgOiAzMC4wMCAgXG4gMXN0IFF1LjogMy4wMCAgIDFzdCBRdS46IDE2Ni44ICAgMXN0IFF1Ljo1Ni4wMCAgIDFzdCBRdS46MS4wMDAgICAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46IDc1LjAwICAgMXN0IFF1LjogNzAuMDAgIFxuIE1lZGlhbiA6MTEuMDAgICBNZWRpYW4gOiAyNTUuNSAgIE1lZGlhbiA6NjMuMDAgICBNZWRpYW4gOjEuMDAwICAgTWVkaWFuIDoxLjAwMDAgICBNZWRpYW4gOiA4MC4wMCAgIE1lZGlhbiA6IDgwLjAwICBcbiBNZWFuICAgOjExLjA5ICAgTWVhbiAgIDogMzA1LjIgICBNZWFuICAgOjYyLjQ1ICAgTWVhbiAgIDoxLjM5NSAgIE1lYW4gICA6MC45NTE1ICAgTWVhbiAgIDogODEuOTQgICBNZWFuICAgOiA3OS45NiAgXG4gM3JkIFF1LjoxNi4wMCAgIDNyZCBRdS46IDM5Ni41ICAgM3JkIFF1Ljo2OS4wMCAgIDNyZCBRdS46Mi4wMDAgICAzcmQgUXUuOjEuMDAwMCAgIDNyZCBRdS46IDkwLjAwICAgM3JkIFF1LjogOTAuMDAgIFxuIE1heC4gICA6MzMuMDAgICBNYXguICAgOjEwMjIuMCAgIE1heC4gICA6ODIuMDAgICBNYXguICAgOjIuMDAwICAgTWF4LiAgIDozLjAwMDAgICBNYXguICAgOjEwMC4wMCAgIE1heC4gICA6MTAwLjAwICBcbiBOQSdzICAgOjEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5BJ3MgICA6MSAgICAgICAgTkEncyAgIDoxICAgICAgICBOQSdzICAgOjMgICAgICAgXG4gICAgbWVhbC5jYWwgICAgICAgICB3dC5sb3NzICAgICAgIFxuIE1pbi4gICA6ICA5Ni4wICAgTWluLiAgIDotMjQuMDAwICBcbiAxc3QgUXUuOiA2MzUuMCAgIDFzdCBRdS46ICAwLjAwMCAgXG4gTWVkaWFuIDogOTc1LjAgICBNZWRpYW4gOiAgNy4wMDAgIFxuIE1lYW4gICA6IDkyOC44ICAgTWVhbiAgIDogIDkuODMyICBcbiAzcmQgUXUuOjExNTAuMCAgIDNyZCBRdS46IDE1Ljc1MCAgXG4gTWF4LiAgIDoyNjAwLjAgICBNYXguICAgOiA2OC4wMDAgIFxuIE5BJ3MgICA6NDcgICAgICAgTkEncyAgIDoxNCAgICAgICBcbiJ9 -->
+<pre><code>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+&gt; analyticDF_time2event.Date.NA.rmAllNA |&gt; select_if(is.numeric)) |&gt; summary()
+      inst            time             age             sex           ph.ecog          ph.karno        pat.karno     
+ Min.   : 1.00   Min.   :   5.0   Min.   :39.00   Min.   :1.000   Min.   :0.0000   Min.   : 50.00   Min.   : 30.00  
+ 1st Qu.: 3.00   1st Qu.: 166.8   1st Qu.:56.00   1st Qu.:1.000   1st Qu.:0.0000   1st Qu.: 75.00   1st Qu.: 70.00  
+ Median :11.00   Median : 255.5   Median :63.00   Median :1.000   Median :1.0000   Median : 80.00   Median : 80.00  
+ Mean   :11.09   Mean   : 305.2   Mean   :62.45   Mean   :1.395   Mean   :0.9515   Mean   : 81.94   Mean   : 79.96  
+ 3rd Qu.:16.00   3rd Qu.: 396.5   3rd Qu.:69.00   3rd Qu.:2.000   3rd Qu.:1.0000   3rd Qu.: 90.00   3rd Qu.: 90.00  
+ Max.   :33.00   Max.   :1022.0   Max.   :82.00   Max.   :2.000   Max.   :3.0000   Max.   :100.00   Max.   :100.00  
+ NA&#39;s   :1                                                        NA&#39;s   :1        NA&#39;s   :1        NA&#39;s   :3       
+    meal.cal         wt.loss       
+ Min.   :  96.0   Min.   :-24.000  
+ 1st Qu.: 635.0   1st Qu.:  0.000  
+ Median : 975.0   Median :  7.000  
+ Mean   : 928.8   Mean   :  9.832  
+ 3rd Qu.:1150.0   3rd Qu.: 15.750  
+ Max.   :2600.0   Max.   : 68.000  
+ NA&#39;s   :47       NA&#39;s   :14       </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLnRpbWUoKS10MFxuYGBgIn0= -->
+<pre class="r"><code>Sys.time()-t0</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGltZSBkaWZmZXJlbmNlIG9mIDAuMDA3Mzk1MjY3IHNlY3NcbiJ9 -->
+<pre><code>Time difference of 0.007395267 secs</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudDA9U3lzLnRpbWUoKVxuY2F0KHN0cnJlcChcIn5cIiw4MCksXCJcXG5cIixzZXA9XCJcIik7IGNhdChcIj4gXCIscGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIiksXCIgfD4gc2VsZWN0X2lmKGlzLmxvZ2ljYWwpKVwiLFwiIHw+IHN1bW1hcnkoKVwiLFwiXFxuXCIsIHNlcD1cIlwiKTsgZ2V0KHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIpKSB8PiBzZWxlY3RfaWYoaXMubG9naWNhbCkgfD4gc3VtbWFyeSgpICMtLS0tLVxuYGBgIn0= -->
+<pre class="r"><code>t0=Sys.time()
+cat(strrep(&quot;~&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; select_if(is.logical))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; select_if(is.logical) |&gt; summary() #-----</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoifn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5cbj4gYW5hbHl0aWNERl90aW1lMmV2ZW50LkRhdGUuTkEucm1BbGxOQSB8PiBzZWxlY3RfaWYoaXMubG9naWNhbCkpIHw+IHN1bW1hcnkoKVxuICAgZXZlbnQgICAgICAgICBTdHVkeVBvcHVsYXRpb25cbiBNb2RlIDpsb2dpY2FsICAgTW9kZSA6bG9naWNhbCAgXG4gRkFMU0U6NjMgICAgICAgIEZBTFNFOjkgICAgICAgIFxuIFRSVUUgOjE2NSAgICAgICBUUlVFIDoyMTkgICAgICBcbiJ9 -->
+<pre><code>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+&gt; analyticDF_time2event.Date.NA.rmAllNA |&gt; select_if(is.logical)) |&gt; summary()
+   event         StudyPopulation
+ Mode :logical   Mode :logical  
+ FALSE:63        FALSE:9        
+ TRUE :165       TRUE :219      </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLnRpbWUoKS10MFxuYGBgIn0= -->
+<pre class="r"><code>Sys.time()-t0</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGltZSBkaWZmZXJlbmNlIG9mIDAuMDA0MDA4MjkzIHNlY3NcbiJ9 -->
+<pre><code>Time difference of 0.004008293 secs</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudDA9U3lzLnRpbWUoKVxuY2F0KHN0cnJlcChcIiVcIiw4MCksXCJcXG5cIixzZXA9XCJcIik7IGNhdChcIj4gXCIscGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIixcIi5mY3RcIiksXCIgPSBcIixwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSxcIiB8PiBtdXRhdGVfaWYoaXMuY2hhcmFjdGVyLCBhcy5mYWN0b3IpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBhc3NpZ24oIHBhc3RlMChEYXRhU2V0TmFtZSxcIi5EYXRlXCIsXCIuTkFcIixcIi5ybUFsbE5BXCIsXCIuZmN0XCIpLCBnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIikpIHw+IG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIGFzLmZhY3RvcikgKVxuYGBgIn0= -->
+<pre class="r"><code>t0=Sys.time()
+cat(strrep(&quot;%&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;),&quot; = &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; mutate_if(is.character, as.factor)&quot;,&quot;\n&quot;, sep=&quot;&quot;); assign( paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;), get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; mutate_if(is.character, as.factor) )</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSVcbj4gYW5hbHl0aWNERl90aW1lMmV2ZW50LkRhdGUuTkEucm1BbGxOQS5mY3QgPSBhbmFseXRpY0RGX3RpbWUyZXZlbnQuRGF0ZS5OQS5ybUFsbE5BIHw+IG11dGF0ZV9pZihpcy5jaGFyYWN0ZXIsIGFzLmZhY3RvcilcbiJ9 -->
+<pre><code>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+&gt; analyticDF_time2event.Date.NA.rmAllNA.fct = analyticDF_time2event.Date.NA.rmAllNA |&gt; mutate_if(is.character, as.factor)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLnRpbWUoKS10MFxuYGBgIn0= -->
+<pre class="r"><code>Sys.time()-t0</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGltZSBkaWZmZXJlbmNlIG9mIDAuMDA4NDU0MDg0IHNlY3NcbiJ9 -->
+<pre><code>Time difference of 0.008454084 secs</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudDA9U3lzLnRpbWUoKVxuY2F0KHN0cnJlcChcIitcIiw4MCksXCJcXG5cIixzZXA9XCJcIik7IGNhdChcIj4gXCIscGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIixcIi5mY3RcIiksXCIgfD4gc2VsZWN0X2lmKGlzLmZhY3RvcikpXCIsXCIgfD4gc3VtbWFyeSgpXCIsXCJcXG5cIiwgc2VwPVwiXCIpOyBnZXQocGFzdGUwKERhdGFTZXROYW1lLFwiLkRhdGVcIixcIi5OQVwiLFwiLnJtQWxsTkFcIixcIi5mY3RcIikpIHw+IHNlbGVjdF9pZihpcy5mYWN0b3IpIHw+IHN1bW1hcnkoKSAjLS0tLS1cbmBgYCJ9 -->
+<pre class="r"><code>t0=Sys.time()
+cat(strrep(&quot;+&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;),&quot; |&gt; select_if(is.factor))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;,&quot;.fct&quot;)) |&gt; select_if(is.factor) |&gt; summary() #-----</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKytcbj4gYW5hbHl0aWNERl90aW1lMmV2ZW50LkRhdGUuTkEucm1BbGxOQS5mY3QgfD4gc2VsZWN0X2lmKGlzLmZhY3RvcikpIHw+IHN1bW1hcnkoKVxuICAgIEdyb3VwICAgIFxuIEZlbWFsZTogOTAgIFxuIE1hbGUgIDoxMzggIFxuIn0= -->
+<pre><code>++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+&gt; analyticDF_time2event.Date.NA.rmAllNA.fct |&gt; select_if(is.factor)) |&gt; summary()
+    Group    
+ Female: 90  
+ Male  :138  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLnRpbWUoKS10MFxuYGBgIn0= -->
+<pre class="r"><code>Sys.time()-t0</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGltZSBkaWZmZXJlbmNlIG9mIDAuMDAzOTExNzM0IHNlY3NcbiJ9 -->
+<pre><code>Time difference of 0.003911734 secs</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjYXQoc3RycmVwKFwiflwiLDgwKSxcIlxcblwiLHNlcD1cIlwiKTsgY2F0KFwiPiBcIixwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSxcIiB8PiBzZWxlY3RfaWYoaXMuZmFjdG9yKSlcIixcIiB8PiBzdW1tYXJ5KClcIixcIlxcblwiLCBzZXA9XCJcIik7IGdldChwYXN0ZTAoRGF0YVNldE5hbWUsXCIuRGF0ZVwiLFwiLk5BXCIsXCIucm1BbGxOQVwiKSkgfD4gc2VsZWN0X2lmKGlzLmNoYXJhY3RlcikgfD4gbWFwX2RmKGFzLmZhY3RvcikgfD4gc3VtbWFyeSgpICMtLS0tLVxuIyBTeXMudGltZSgpLXQwXG4jIGh0dHBzOi8vZ2l0aHViLmNvbS9ta2ltMDcxMC90aWR5c3RhdC9ibG9iL21hc3Rlci9SZGV2LzEwX2ltcG9ydF9jbGVhbl9kYXRhdHlwZS8xOF9kaWNob3RvbW91c19sb2dpY2FsL2Z1bmN0aW9uLmRpY2hvdG9tb3VzMmxvZ2ljYWwuZGV2LnJcbmBgYCJ9 -->
+<pre class="r"><code># cat(strrep(&quot;~&quot;,80),&quot;\n&quot;,sep=&quot;&quot;); cat(&quot;&gt; &quot;,paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;),&quot; |&gt; select_if(is.factor))&quot;,&quot; |&gt; summary()&quot;,&quot;\n&quot;, sep=&quot;&quot;); get(paste0(DataSetName,&quot;.Date&quot;,&quot;.NA&quot;,&quot;.rmAllNA&quot;)) |&gt; select_if(is.character) |&gt; map_df(as.factor) |&gt; summary() #-----
 # Sys.time()-t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r</code></pre>
 <!-- rnb-source-end -->
@@ -3278,10 +3456,18 @@ Sys.time()-t0
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0d2QoKVxuYGBgIn0= -->
 <pre class="r"><code>getwd()</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiL2hvbWUvcnN0dWRpby9naXRodWJfdGlkeXN0YXQvcnN0dWRpby1wcmVmcy90ZW1wbGF0ZXNcIlxuIn0= -->
+<pre><code>[1] &quot;/home/rstudio/github_tidystat/rstudio-prefs/templates&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiKiBUbyByZXZlcnQgdG8gdGhlIGxhc3QgY29tbWl0ZWQgZmlsZSwgcnVuIHRoZSBmb2xsb3dpbmcgdGVybWluYWwgY29tbWFuZDpcblwiZ2l0IGNoZWNrb3V0IC0tIH4vZ2l0aHViX3RpZHlzdGF0L3JzdHVkaW8tcHJlZnMvdGVtcGxhdGVzL3RlbXBsYXRlcy0wMGVudi5jdXN0b20ubWluaW11bS5SbWRcIiB8PiBzeXN0ZW0oaW50ZXJuPVRSVUUpXG5cImdpdCBjaGVja291dCAtLSB+L2dpdGh1Yl90aWR5c3RhdC9yc3R1ZGlvLXByZWZzL3RlbXBsYXRlcy90ZW1wbGF0ZXMtMDBlbnYuY3VzdG9tLm1pbmltdW0ubmIuaHRtbFwiIHw+IHN5c3RlbShpbnRlcm49VFJVRSlcbiJ9 -->
+<pre><code>* To revert to the last commited file, run the following terminal command:
+&quot;git checkout -- ~/github_tidystat/rstudio-prefs/templates/templates-00env.custom.minimum.Rmd&quot; |&gt; system(intern=TRUE)
+&quot;git checkout -- ~/github_tidystat/rstudio-prefs/templates/templates-00env.custom.minimum.nb.html&quot; |&gt; system(intern=TRUE)</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
