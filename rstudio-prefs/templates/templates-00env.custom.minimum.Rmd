@@ -411,7 +411,7 @@ assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.fact
 assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
 cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"\n", sep="") 
 cat("dim(",DataSetName,".Date",".NA",".rmAllNA",") = ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"\n", sep="") 
-cat(strrep("%",80),"\n",sep=""); 
+cat("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%","\n",sep=""); 
 cat("> ",DataSetName,".Date",".NA"," |> env.custom$data.NotNA_p_df()","\n", sep=""); env.custom$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
 ```
 
@@ -432,7 +432,7 @@ cat(strrep("~",80),"\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmA
 Sys.time()-t0
 
 t0=Sys.time()
-cat(strrep("%",80),"\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," = ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> mutate_if(is.character, as.factor)","\n", sep=""); assign( paste0(DataSetName,".Date",".NA",".rmAllNA",".fct"), get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> mutate_if(is.character, as.factor) )
+cat("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%","\n",sep=""); cat("> ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," = ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> mutate_if(is.character, as.factor)","\n", sep=""); assign( paste0(DataSetName,".Date",".NA",".rmAllNA",".fct"), get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> mutate_if(is.character, as.factor) )
 Sys.time()-t0
 
 t0=Sys.time()
@@ -506,10 +506,10 @@ env.custom$path$RTemplate.filename.ext = "notebook.Rmd"
 env.custom$path$MyTemplate.filename.ext = "templates-00env.custom.minimum.Rmd"
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-env.custom$env.internal$f_filename.ext.create_backup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup")) {
+env.custom$env.internal$f_filename.ext.create_backup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M") {
     copying_path.filename = basename(copying_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
     copying_ext = basename(copying_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
-    backup_path.filename.ext = file.path(backup_path, paste0(copying_path.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),copying_ext))
+    backup_path.filename.ext = file.path(backup_path, paste0(copying_path.filename,"-",format(Sys.time(),timeFormat),copying_ext))
     if(!dir.exists(backup_path)) dir.create(backup_path, recursive = TRUE)
     file.copy(from=copying_path.filename.ext, to=backup_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_path.filename.ext))
 }
