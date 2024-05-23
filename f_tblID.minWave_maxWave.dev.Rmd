@@ -297,6 +297,13 @@ options(width=120)
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ END ------------
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ```
 
 
@@ -319,23 +326,9 @@ filename.ext = "templates-00env.custom.minimum.Rmd"; if(file.exists(filename.ext
 ```
 
 
-```{r gitCheckout-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-#|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-cat("* To revert to the last commited file, run the following terminal command:\n", 
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n",
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE)',"\n", sep="")
-#|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-```
-
-
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
@@ -345,6 +338,15 @@ cat("* To revert to the last commited file, run the following terminal command:\
 # # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # openxlsx::openXL(paste0(objectname, ".xlsx"))
+```
+
+
+```{r gitCheckout-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+cat("* To revert to the last commited file, run the following terminal command:\n", 
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n",
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE)',"\n", sep="")
 ```
 
 
