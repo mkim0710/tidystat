@@ -143,10 +143,18 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) data -----
-# #$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
-# path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-# if(file.exists(paste0(path4read,"/",objectname,".rds"))) assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
+# #$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ====
+# # path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# subpath = "data"
+# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# path.filename.ext = ifelse(
+#     file.exists(paste0(subpath,"/",DataSetName,".rds"))
+#     , paste0(subpath,"/",DataSetName,".rds")
+#     , paste0(env.custom$path$source_base_github,"/",subpath,"/",DataSetName,".rds")
+# )
+# cat("path.filename.ext = ", path.filename.ext, "\n", sep = "")
+# assign( DataSetName, read_rds(path.filename.ext) )
 
 
 
