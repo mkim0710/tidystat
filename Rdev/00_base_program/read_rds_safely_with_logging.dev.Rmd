@@ -221,7 +221,7 @@ path4write = env.custom$path$path4write
 
 
 #@@ START) source -----
-### \$ subpath, sourcename ======
+### \$ subpath, sourcename = "default.template" ======
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
