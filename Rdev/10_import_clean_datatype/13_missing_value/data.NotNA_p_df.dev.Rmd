@@ -70,8 +70,8 @@ h4 { font-size: 16px; font-family: 'Arial', 'Helvetica', sans-serif; line-height
 h5 { font-size: 14px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
 h6 { font-size: 12px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
 table, td, th, figure, figcaption { font-size: 10px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
-code { font-size: 12px; font-family: 'Cascadia Code SemiBold', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
-pre { font-size: 12px; font-family: 'Cascadia Code SemiBold', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 </style>
 
 <!-- font-size: 0.9em; /* 90% of inherited font size */ -->
@@ -305,13 +305,22 @@ options(width=120)
 ```
 
 
-```{r RenderMessages, eval=TRUE, include=FALSE}
-cat(" dput(names(knitr::knit_engines$get())) ","\n", sep="")
+```{r Render, eval=TRUE, include=FALSE}
+# if (Sys.getenv("PARENT_RENDERING") != "YES") {
+#     cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
+#     Sys.setenv(PARENT_RENDERING = "YES")
+#     rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document")
+#     Sys.setenv(PARENT_RENDERING = "NO")
+# }
+cat(' "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document")',"\n", sep="")
+# cat(" dput(names(knitr::knit_engines$get())) ","\n", sep="")
 ```
 
 
 ```{r createBackup, eval=TRUE, include=FALSE}
-cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path = "',dirname(rstudioapi::getSourceEditorContext()$path),'", timeFormat = "%y%m%d") ',"\n", sep="")
+env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_path = dirname(rstudioapi::getSourceEditorContext()$path), timeFormat = "%y%m%d_%H", overwrite=TRUE)
+env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_path = dirname(rstudioapi::getSourceEditorContext()$path), timeFormat = "%y%m%d_%H", overwrite=TRUE)
+cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path = "',dirname(rstudioapi::getSourceEditorContext()$path),'", timeFormat = "%y%m%d", overwrite=TRUE) ',"\n", sep="")
 ```
 
 
