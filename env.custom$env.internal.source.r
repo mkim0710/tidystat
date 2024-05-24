@@ -130,6 +130,51 @@ for (i in 1:(max_hierarchy)) {
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#% f_path.is_git_tracked  =======
+# Function to check if the current project or any of its parent directories are tracked by Git
+env.custom$env.internal$f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
+    # Normalize the path
+    path <- normalizePath(path, winslash = "/", mustWork = TRUE)
+    
+    # Traverse up the directory tree if check_parents is TRUE
+    while (TRUE) {
+        # Check if the .git directory exists in the current path
+        git_dir <- file.path(path, ".git")
+        if (dir.exists(git_dir)) {
+            return(git_dir)
+        }
+        
+        # If not checking parent directories, return NA
+        if (!check_parents) {
+            return(NA)
+        }
+        
+        # Move to the parent directory
+        parent_path <- dirname(path)
+        
+        # If the parent directory is the same as the current directory, we've reached the root
+        if (parent_path == path) {
+            return(NA)
+        }
+        
+        # Update the current path to the parent path
+        path <- parent_path
+    }
+}
+
+# # Usage example: Check if the current working directory or its parent directories are tracked by Git
+# git_path <- is_git_tracked(check_parents = TRUE)
+# if (!is.na(git_path)) {
+#   message("The current project is tracked by Git at: ", git_path)
+# } else {
+#   message("The current project is not tracked by Git.")
+# }
+
+env.custom$path$git_path = env.custom$env.internal$f_path.is_git_tracked()
+# env.custom$path$no_git = is.na(env.custom$path$git_path)
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----
 # source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env.custom$env.internal.source.r"))
 # # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env.custom$env.internal.source.r"))
