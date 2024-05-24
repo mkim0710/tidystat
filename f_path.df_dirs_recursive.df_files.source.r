@@ -272,7 +272,7 @@ object = function(
 }
 if(!objectname %in% names(env.custom)) {
     packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
-    env.custom[[objectname]] = object
+    env.custom$env.internal[[objectname]] = object
     # cat("> env.custom$",objectname,"()\n",sep=""); get(objectname, envir=env.custom)() # Run the loaded function by default
 }
 
