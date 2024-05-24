@@ -219,11 +219,11 @@ path4write = env.custom$path$path4write
 ```
 
 
-#### env.custom\$f_path.df_dirs_recursive.df_files() ----
+#### env.custom\$env.internal\$f_path.df_dirs_recursive.df_files() ----
 ```{r dfDIRsRecursive-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
-# #### env.custom\$f_path.df_dirs_recursive.df_files() ----
+# #### env.custom\$env.internal\$f_path.df_dirs_recursive.df_files() ----
 # sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-# env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
+# env.custom$path$df_dirs_recursive.df_files = env.custom$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
 # env.custom$path$print_tree_path = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
 # # env.custom$path$print_tree_path |> cat()
