@@ -271,7 +271,7 @@ object = function(
     return(df_out)
 }
 if(!objectname %in% names(env.custom)) {
-    packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
+    packageStartupMessage(paste0("Loading: ", "env.custom$env.internal$", objectname)); 
     env.custom$env.internal[[objectname]] = object
     # cat("> env.custom$",objectname,"()\n",sep=""); get(objectname, envir=env.custom)() # Run the loaded function by default
 }
