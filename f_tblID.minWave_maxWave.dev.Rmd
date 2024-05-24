@@ -2,7 +2,7 @@
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
 title: "`r params$doc_title`"
 author: "MHKim"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
   html_notebook:  
     toc: yes
@@ -133,7 +133,7 @@ knitr::opts_chunk$set(
     R.options = list(width=120), paged.print=FALSE
 ) 
 # knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
-# knitr::opts_chunk$set(message=NA) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
 # *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
 knitr::opts_knit$set(global.par = TRUE)
 ```
@@ -148,7 +148,7 @@ env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep=
 
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
-suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("\n");
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
 if(!exists("env.custom", envir=.GlobalEnv)) 
     assign("env.custom", new.env(), envir=.GlobalEnv)
 ## env.custom\$path ====
@@ -295,8 +295,6 @@ options(width=120)
 
 # @@ END ------------
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
-# @@ END ------------
-
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -304,6 +302,7 @@ options(width=120)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# @@ END ------------
 ```
 
 
@@ -318,11 +317,6 @@ filename.ext = "templates-00env.custom.minimum.Rmd"; if(file.exists(filename.ext
     file.edit(file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"))
 }
 # filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", filename.ext))
-```
-
-
-```{r RenderMessages, eval=FALSE, include=FALSE}
-# dput(names(knitr::knit_engines$get()))
 ```
 
 
@@ -341,15 +335,20 @@ filename.ext = "templates-00env.custom.minimum.Rmd"; if(file.exists(filename.ext
 ```
 
 
-```{r createBackup-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-cat('env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path = "',dirname(rstudioapi::getSourceEditorContext()$path),'", timeFormat = "%y%m%d")',"\n", sep="")
+```{r RenderMessages, eval=TRUE, include=FALSE}
+cat(" dput(names(knitr::knit_engines$get())) ","\n", sep="")
 ```
 
 
-```{r gitCheckout-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-cat("* To revert to the last commited file, run the following terminal command:\n", 
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n",
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE)',"\n", sep="")
+```{r createBackup, eval=TRUE, include=FALSE}
+cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path = "',dirname(rstudioapi::getSourceEditorContext()$path),'", timeFormat = "%y%m%d") ',"\n", sep="")
+```
+
+
+```{r gitCheckout, eval=TRUE, include=FALSE}
+cat(" * To revert to the last commited file, run the following terminal command:\n", 
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE) ',"\n",
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE) ',"\n", sep="")
 ```
 
 

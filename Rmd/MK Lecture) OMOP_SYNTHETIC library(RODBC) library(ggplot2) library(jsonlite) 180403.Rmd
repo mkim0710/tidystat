@@ -427,12 +427,12 @@ detach("package:maps", unload=TRUE)
 
 library(jsonlite)
 CMS_SynPUF_CDMv5_YZ.json = fromJSON(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/CMS_SynPUF_CDMv5_YZ.json"))
-CMS_SynPUF_CDMv5_YZ.json %>% length
+CMS_SynPUF_CDMv5_YZ.json |> length()
 
 ```
 
 ```{r}
-CMS_SynPUF_CDMv5_YZ.json[1000] %>% {cat("> ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+CMS_SynPUF_CDMv5_YZ.json[1000] %>% {cat(" > ",deparse(substitute(.))," |> str() ","\n", sep=""); str(.)}
 ```
 
 ```{r}

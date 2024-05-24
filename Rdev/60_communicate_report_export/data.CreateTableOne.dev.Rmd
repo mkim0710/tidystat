@@ -2,7 +2,7 @@
 # https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
 title: "`r params$doc_title`"
 author: "MHKim"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
   html_notebook:  
     toc: yes
@@ -133,7 +133,7 @@ knitr::opts_chunk$set(
     R.options = list(width=120), paged.print=FALSE
 ) 
 # knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
-# knitr::opts_chunk$set(message=NA) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
 # *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
 knitr::opts_knit$set(global.par = TRUE)
 ```
@@ -148,7 +148,7 @@ env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep=
 
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
-suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("\n");
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
 if(!exists("env.custom", envir=.GlobalEnv)) 
     assign("env.custom", new.env(), envir=.GlobalEnv)
 ## env.custom\$path ====
@@ -213,7 +213,7 @@ path.filename.ext = ifelse(
     , paste0(subpath,"/",objectname,".rds")
     , paste0(env.custom$path$source_base_github,"/",subpath,"/",objectname,".rds")
 )
-cat("path.filename.ext = ", path.filename.ext, "\n", sep = "")
+cat(" path.filename.ext = ", path.filename.ext, "\n", sep = "")
 assign( objectname, read_rds(path.filename.ext) )
 # > paste0(path4read,"/",objectname,".rds")
 # [1] "./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds"
@@ -222,7 +222,7 @@ assign( objectname, read_rds(path.filename.ext) )
 # > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
 # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
 
-CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% names %>% paste0(collapse = ", ") |> cat();cat("\n") ###### |> cat() ----
+CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() %>% paste0(collapse = ", ") |> cat();cat(" \n") ###### |> cat() ----
 ```
 
 
@@ -291,8 +291,6 @@ options(width=120)
 
 # @@ END ------------
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
-# @@ END ------------
-
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -300,11 +298,7 @@ options(width=120)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-```
-
-
-```{r RenderMessages, eval=FALSE, include=FALSE}
-# dput(names(knitr::knit_engines$get()))
+# @@ END ------------
 ```
 
 
@@ -323,15 +317,20 @@ options(width=120)
 ```
 
 
-```{r createBackup-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-cat('env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path = "',dirname(rstudioapi::getSourceEditorContext()$path),'", timeFormat = "%y%m%d")',"\n", sep="")
+```{r RenderMessages, eval=TRUE, include=FALSE}
+cat(" dput(names(knitr::knit_engines$get())) ","\n", sep="")
 ```
 
 
-```{r gitCheckout-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-cat("* To revert to the last commited file, run the following terminal command:\n", 
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n",
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE)',"\n", sep="")
+```{r createBackup, eval=TRUE, include=FALSE}
+cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path = "',dirname(rstudioapi::getSourceEditorContext()$path),'", timeFormat = "%y%m%d") ',"\n", sep="")
+```
+
+
+```{r gitCheckout, eval=TRUE, include=FALSE}
+cat(" * To revert to the last commited file, run the following terminal command:\n", 
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE) ',"\n",
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE) ',"\n", sep="")
 ```
 
 
