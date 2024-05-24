@@ -133,7 +133,7 @@ knitr::opts_chunk$set(
     R.options = list(width=120), paged.print=FALSE
 ) 
 # knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
-# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=NA) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
 # *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
 knitr::opts_knit$set(global.par = TRUE)
 ```
@@ -223,7 +223,7 @@ path4write = env.custom$path$path4write
 ```{r dfDIRsRecursive-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 # #### env.custom\$f_path.df_dirs_recursive.df_files() ----
 # sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-# env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
+# env.custom$path$df_dirs_recursive.df_files = env.custom$f_path.df_dirs_recursive.df_files(input_path=".", print.message=NA)
 # env.custom$path$print_tree_path = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
 # # env.custom$path$print_tree_path |> cat()
@@ -237,7 +237,7 @@ path4write = env.custom$path$path4write
 
 
 #### env.custom\$f_path.size_files() ----
-```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=FALSE, results="hide"}
+```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # #### env.custom\$f_path.size_files() ----
 # sourcename = "f_path.size_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 # #### env.custom\$f_objectname.read.checkEntity() ----
@@ -487,7 +487,7 @@ options(width=120)
 
 
 # @@ END ------------
-```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=FALSE, results="hide", collapse=TRUE, paged.print=FALSE}
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ END ------------
 
 #|________________________________________________________________________________|#  
@@ -558,9 +558,12 @@ if (.Platform$OS.type == "windows") {
 ```
 
 
+```{r createBackup-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+cat('env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path = "',dirname(rstudioapi::getSourceEditorContext()$path),'", timeFormat = "%y%m%d")',"\n", sep="")
+```
+
+
 ```{r gitCheckout-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
-#|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 cat("* To revert to the last commited file, run the following terminal command:\n", 
     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE)',"\n", sep="")
