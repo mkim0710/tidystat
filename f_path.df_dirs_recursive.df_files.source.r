@@ -112,7 +112,7 @@ object = function(
         return(tibble())
     }
     
-    if (!exists("f_path.df_dirs_recursive.df_files", envir=.GlobalEnv)) assign("f_path.df_dirs_recursive.df_files", env.custom$f_path.df_dirs_recursive.df_files, envir=.GlobalEnv)
+    if (!exists("f_path.df_dirs_recursive.df_files", envir=.GlobalEnv)) assign("f_path.df_dirs_recursive.df_files", env.custom$env.internal$f_path.df_dirs_recursive.df_files, envir=.GlobalEnv)
     
     dirs = list.dirs(input_path, full.names = TRUE, recursive = FALSE) %>% 
         str_subset(paste0(input_path, .Platform$file.sep, ".") %>% fixed(ignore_case = TRUE), negate = TRUE) %>%  # exclude basename starting with dot
@@ -277,7 +277,7 @@ if(!objectname %in% names(env.custom)) {
 }
 
 # > cat("> env.custom$", objectname, "()\n", sep=""); tmp.function = env.custom[[objectname]]; tmp.function()  # Run the loaded function by default
-# > env.custom$f_path.df_dirs_recursive.df_files()
+# > env.custom$env.internal$f_path.df_dirs_recursive.df_files()
 # .Platform$file.sep:  / 
 # input_path0:  . 
 # Finished iterating through paths.

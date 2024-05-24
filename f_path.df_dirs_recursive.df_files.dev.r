@@ -119,7 +119,7 @@ source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
 
 
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======
-df_dirs_recursive = env.custom$f_path.df_dirs_recursive.df_files()
+df_dirs_recursive = env.custom$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
 # df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") |> cat(); cat("\n") #----
 # df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") |> cat(); cat("\n")  #----
@@ -865,7 +865,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() %>% paste(
 
 
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======
-df_dirs_recursive = env.custom$f_path.df_dirs_recursive.df_files()
+df_dirs_recursive = env.custom$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
 # df_dirs_recursive %>% {.$full_path} %>% sort %>% paste(collapse="") |> cat(); cat("\n") #----
 # df_dirs_recursive %>% {.$path.basename} %>% sort %>% paste(collapse="") |> cat(); cat("\n")  #----
