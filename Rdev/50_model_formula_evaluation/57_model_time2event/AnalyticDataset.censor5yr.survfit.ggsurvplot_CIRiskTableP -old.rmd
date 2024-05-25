@@ -399,9 +399,9 @@ suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survminer))
 ?survival::lung 
 AnalyticDataset = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor())
-# AnalyticDataset |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str() ","\n", sep=""); str(.)}
+# AnalyticDataset |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # AnalyticDataset |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
-# # > AnalyticDataset |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str() ","\n", sep=""); str(.)}
+# # > AnalyticDataset |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
@@ -475,14 +475,14 @@ env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = 
 #     env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # }
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", sep="")
-cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path="-backup", timeFormat="%y%m%d", overwrite=TRUE) ',"\n", sep="")
+cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
 
 
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 cat(" * To revert to the last commited file, run the following terminal command:\n", 
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE) ',"\n",
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE) ',"\n", sep="")
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n",
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE)',"\n", sep="")
 ```
 
 
