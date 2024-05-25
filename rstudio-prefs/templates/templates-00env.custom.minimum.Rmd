@@ -317,11 +317,11 @@ assign(
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
 )
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9) ","\n", sep=""); print(as_tibble(.),n=9)}
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble() ","\n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
-# analyticDF_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str() ","\n", sep=""); str(.)}
+analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=9)","\n", sep=""); print(as_tibble(.),n=9)}
+analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_column() |> tail() |> as_tibble()","\n", sep=""); print(as_tibble(tail(rownames_to_column(.))))}
+# analyticDF_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # analyticDF_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
-# # > analyticDF_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str() ","\n", sep=""); str(.)}
+# # > analyticDF_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
@@ -411,8 +411,8 @@ assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.fact
 assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
 cat(" dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"\n", sep="") 
 cat(" dim(",DataSetName,".Date",".NA",".rmAllNA",") = ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"\n", sep="") 
-cat(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ","\n",sep=""); 
-cat(" > ",DataSetName,".Date",".NA"," |> env.custom$data.NotNA_p_df() ","\n", sep=""); env.custom$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
+cat(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%","\n",sep=""); 
+cat(" > ",DataSetName,".Date",".NA"," |> env.custom$data.NotNA_p_df()","\n", sep=""); env.custom$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
 ```
 
 
@@ -425,20 +425,20 @@ for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,".
 
 
 t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.numeric))"," |> summary() ","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.numeric) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.numeric))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.numeric) |> summary() #-----
 Sys.time()-t0
 t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.logical))"," |> summary() ","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.logical) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.logical))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.logical) |> summary() #-----
 Sys.time()-t0
 
 t0=Sys.time()
-cat(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ","\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," = ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> mutate_if(is.character, as.factor) ","\n", sep=""); assign( paste0(DataSetName,".Date",".NA",".rmAllNA",".fct"), get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> mutate_if(is.character, as.factor) )
+cat(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%","\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," = ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> mutate_if(is.character, as.factor)","\n", sep=""); assign( paste0(DataSetName,".Date",".NA",".rmAllNA",".fct"), get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> mutate_if(is.character, as.factor) )
 Sys.time()-t0
 
 t0=Sys.time()
-cat(strrep("+",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," |> select_if(is.factor))"," |> summary() ","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")) |> select_if(is.factor) |> summary() #-----
+cat(strrep("+",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")) |> select_if(is.factor) |> summary() #-----
 Sys.time()-t0
-# cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.factor))"," |> summary() ","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.character) |> map_df(as.factor) |> summary() #-----
+# cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.character) |> map_df(as.factor) |> summary() #-----
 # Sys.time()-t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
@@ -565,14 +565,14 @@ env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = 
 #     env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # }
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", sep="")
-cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path="-backup", timeFormat="%y%m%d", overwrite=TRUE) ',"\n", sep="")
+cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
 
 
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 cat(" * To revert to the last commited file, run the following terminal command:\n", 
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE) ',"\n",
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE) ',"\n", sep="")
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n",
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"),'" |> system(intern=TRUE)',"\n", sep="")
 ```
 
 
