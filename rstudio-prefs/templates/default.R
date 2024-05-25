@@ -178,7 +178,7 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 # %% update template (default.R) -----
 env.custom$path$RTemplate.filename.ext = "default.R"
 env.custom$path$MyTemplate.filename.ext = "default.R"
-if (!sourceTemplate.path.filename.ext %in% env.custom$path)
+if (!"sourceTemplate.path.filename.ext" %in% env.custom$path)
     env.custom$path$sourceTemplate.path.filename.ext = rstudioapi::getSourceEditorContext()$path;
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if (.Platform$OS.type == "windows") {
