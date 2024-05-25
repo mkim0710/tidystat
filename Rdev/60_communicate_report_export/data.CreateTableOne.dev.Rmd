@@ -318,8 +318,8 @@ options(width=120)
 
 
 ```{r createBackup, eval=TRUE, include=FALSE}
-env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-# env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+# env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
 
 
@@ -327,10 +327,10 @@ env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = 
 # if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #     cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
 #     Sys.setenv(PARENT_RENDERING = "YES"); rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
-#     env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#     env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # }
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", sep="")
-cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
+cat(' env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
 
 

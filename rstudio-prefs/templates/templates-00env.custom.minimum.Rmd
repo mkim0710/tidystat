@@ -505,30 +505,30 @@ env.custom$path$RTemplate.filename.ext = "notebook.Rmd"
 env.custom$path$MyTemplate.filename.ext = "templates-00env.custom.minimum.Rmd"
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-env.custom$env.internal$f_filename.ext.createBackup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M") {
-    copying_path.filename = basename(copying_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-    copying_ext = basename(copying_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
-    backup_path.filename.ext = file.path(backup_path, paste0(copying_path.filename,"-",format(Sys.time(),timeFormat),copying_ext))
-    if(!dir.exists(backup_path)) dir.create(backup_path, recursive = TRUE)
-    file.copy(from=copying_path.filename.ext, to=backup_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_path.filename.ext))
+env.custom$env.internal$f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_to_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M") {
+    from_path.filename = basename(backup_from_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
+    copying_ext = basename(backup_from_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
+    backup_to_path.filename.ext = file.path(backup_to_path, paste0(from_path.filename,"-",format(Sys.time(),timeFormat),copying_ext))
+    if(!dir.exists(backup_to_path)) dir.create(backup_to_path, recursive = TRUE)
+    file.copy(from=backup_from_path.filename.ext, to=backup_to_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_to_path.filename.ext))
 }
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if (.Platform$OS.type == "windows") {
     if(basename(env.custom$path$CurrentSource.path.filename.ext) == env.custom$path$MyTemplate.filename.ext) {
         if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
-        destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ; cat('browseURL("',destination.path,'")',"\n", sep="") ;
-        destination.path.filename.ext = file.path(destination.path, env.custom$path$RTemplate.filename.ext);
-        backup_path = file.path(env.custom$path$path0, "-backup") ; env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = destination.path.filename.ext, backup_path=backup_path) ; cat('browseURL("',backup_path,'")',"\n", sep="") ;
+        destination_path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination_path)) dir.create(destination_path, recursive=TRUE) ; cat('browseURL("',destination_path,'")',"\n", sep="") ;
+        destination_path.filename.ext = file.path(destination_path, env.custom$path$RTemplate.filename.ext);
+        backup_to_path = file.path(env.custom$path$path0, "-backup") ; env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path) ; cat('browseURL("',backup_to_path,'")',"\n", sep="") ;
         
-        if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));  
-        if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination.path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+        if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));  
+        if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)};
         
-        for ( destination.path.filename.ext in c(
+        for ( destination_path.filename.ext in c(
             file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$MyTemplate.filename.ext)
             , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$MyTemplate.filename.ext)
-        )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$CurrentSource.path.filename.ext != destination.path.filename.ext) {
-            if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
-            # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination.path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+        )) {if(dir.exists(dirname(destination_path.filename.ext)) & env.custom$path$CurrentSource.path.filename.ext != destination_path.filename.ext) {
+            if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
+            # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)};
         }}
         file.edit(env.custom$path$CurrentSource.path.filename.ext);
     }
@@ -553,8 +553,8 @@ if (.Platform$OS.type == "windows") {
 
 
 ```{r createBackup, eval=TRUE, include=FALSE}
-env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-# env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+# env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
 
 
@@ -562,10 +562,10 @@ env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = 
 # if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #     cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
 #     Sys.setenv(PARENT_RENDERING = "YES"); rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
-#     env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#     env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # }
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", sep="")
-cat(' env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
+cat(' env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
 
 
