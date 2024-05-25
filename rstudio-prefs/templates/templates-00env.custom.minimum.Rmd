@@ -516,9 +516,9 @@ env.custom$env.internal$f_filename.ext.createBackup = function(copying_path.file
 if (.Platform$OS.type == "windows") {
     if(basename(env.custom$path$CurrentSource.path.filename.ext) == env.custom$path$MyTemplate.filename.ext) {
         if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
-        destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ;
+        destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ; cat('browseURL("',destination.path,'")',"\n", sep="") ;
         destination.path.filename.ext = file.path(destination.path, env.custom$path$RTemplate.filename.ext);
-        env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = destination.path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"))
+        backup_path = file.path(env.custom$path$path0, "-backup") ; env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = destination.path.filename.ext, backup_path=backup_path) ; cat('browseURL("',backup_path,'")',"\n", sep="") ;
         
         if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));  
         if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination.path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};

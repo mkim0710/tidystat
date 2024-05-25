@@ -178,29 +178,26 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 # %% update template (default.R) -----
 env.custom$path$RTemplate.filename.ext = "default.R"
 env.custom$path$MyTemplate.filename.ext = "default.R"
-if (!"sourceTemplate.path.filename.ext" %in% env.custom$path)
-    env.custom$path$sourceTemplate.path.filename.ext = rstudioapi::getSourceEditorContext()$path;
+env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if (.Platform$OS.type == "windows") {
-    print("env.custom$path$MyTemplate.filename.ext == basename(env.custom$path$sourceTemplate.path.filename.ext)")
-    print(env.custom$path$MyTemplate.filename.ext == basename(env.custom$path$sourceTemplate.path.filename.ext))
-    if(env.custom$path$MyTemplate.filename.ext == basename(env.custom$path$sourceTemplate.path.filename.ext)) {
+    if(env.custom$path$MyTemplate.filename.ext == basename(env.custom$path$CurrentSource.path.filename.ext)) {
         if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
-        destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ;
+        destination.path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination.path)) dir.create(destination.path, recursive=TRUE) ; cat('browseURL("',destination.path,'")',"\n", sep="") ; 
         destination.path.filename.ext = file.path(destination.path, env.custom$path$RTemplate.filename.ext); 
-        env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = destination.path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"))
+        backup_path = file.path(env.custom$path$path0, "-backup") ; env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = destination.path.filename.ext, backup_path=backup_path) ; cat('browseURL("',backup_path,'")',"\n", sep="") ;
         
-        if(file.copy(from=env.custom$path$sourceTemplate.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); 
+        if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext)); 
         if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination.path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
         
         for ( destination.path.filename.ext in c(
             file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$MyTemplate.filename.ext)
             , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$MyTemplate.filename.ext)
-        )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$sourceTemplate.path.filename.ext != destination.path.filename.ext) {
-            if(file.copy(from=env.custom$path$sourceTemplate.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
+        )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$CurrentSource.path.filename.ext != destination.path.filename.ext) {
+            if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
             # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination.path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
         }}
-        file.edit(env.custom$path$sourceTemplate.path.filename.ext);
+        file.edit(env.custom$path$CurrentSource.path.filename.ext);
     }
 }
 #|________________________________________________________________________________|#  
@@ -208,3 +205,10 @@ if (.Platform$OS.type == "windows") {
 #@@ END -----
 cat("* To revert to the last commited file, run the following terminal command:\n", 
     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n", sep="")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
