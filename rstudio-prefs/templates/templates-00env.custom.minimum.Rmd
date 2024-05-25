@@ -521,14 +521,14 @@ if (.Platform$OS.type == "windows") {
         env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = destination.path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"))
         
         if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));  
-        if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+        if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination.path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
         
         for ( destination.path.filename.ext in c(
             file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$MyTemplate.filename.ext)
             , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$MyTemplate.filename.ext)
         )) {if(dir.exists(dirname(destination.path.filename.ext)) & env.custom$path$CurrentSource.path.filename.ext != destination.path.filename.ext) {
             if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination.path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination.path.filename.ext)) else warning(paste0("Update failed: ", destination.path.filename.ext));
-            # if (.Platform$OS.type == "windows") {shell(paste0("notepad.exe ",destination.path.filename.ext),wait=FALSE)} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
+            # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination.path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination.path.filename.ext),wait=FALSE)};
         }}
         file.edit(env.custom$path$CurrentSource.path.filename.ext);
     }
