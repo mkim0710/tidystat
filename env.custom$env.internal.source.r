@@ -81,12 +81,26 @@ if(!exists("env.custom", envir=.GlobalEnv))
 if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #@ env.custom$env.internal$f_filename.ext.createBackup ====
-env.custom$env.internal$f_filename.ext.createBackup = function(copying_path.filename.ext, backup_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
-    copying_path.filename = basename(copying_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-    copying_ext = basename(copying_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
-    backup_path.filename.ext = file.path(backup_path, paste0(copying_path.filename,"-",format(Sys.time(),timeFormat),copying_ext))
-    if(!dir.exists(backup_path)) dir.create(backup_path, recursive = TRUE)
-    file.copy(from=copying_path.filename.ext, to=backup_path.filename.ext, overwrite=overwrite); message(paste0("Backup file created: ",backup_path.filename.ext))
+env.custom$env.internal$f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, backup_to_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
+    if(is.na(backup_from_ext)) {
+        backup_from_path.filename = basename(backup_from_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
+        backup_from_ext = basename(backup_from_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+    } else {
+        backup_from_path.filename = basename(backup_from_path.filename.ext) |> str_remove(paste0("\\.",backup_from_ext|>str_replace_all("\\.","\\\\."),"$"))
+    }
+    
+    backup_to_path.filename.ext = file.path( backup_to_path, paste0(backup_from_path.filename,"-",format(Sys.time(),timeFormat),".",backup_from_ext) )
+    if(!dir.exists(backup_to_path)) dir.create(backup_to_path, recursive = TRUE)
+    file.copy(from=backup_from_path.filename.ext, to=backup_to_path.filename.ext, overwrite=overwrite); message(paste0("Backup file created: ",backup_to_path.filename.ext))
+}
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#@ env.custom$env.internal$f_path_path.backup.overwrite ====
+env.custom$env.internal$f_path_path.backup.overwrite <- function(overwrite_from_path.filename.ext, destination_path.filename.ext, backup_to_path = dirname(destination_path.filename.ext), timeFormat = "%y%m%d") {
+    if(file.exists(destination_path.filename.ext)) {
+        env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path, timeFormat=timeFormat) ; 
+        cat('browseURL("',backup_to_path,'")',"\n", sep="") ; 
+        if(file.copy(from=overwrite_from_path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
+    } else {warning(paste0("File does not exist: ", destination_path.filename.ext))}
 }
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if(!"info" %in% names(env.custom)) env.custom$info = list()
