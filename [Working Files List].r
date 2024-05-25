@@ -10,9 +10,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-if(!exists("env.custom", envir=.GlobalEnv))
-    assign("env.custom", new.env(), envir=.GlobalEnv)
+# sourcename = "function.detachAllcommaPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -25,12 +23,29 @@ for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE)
 # path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
 # path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
 # path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+if(!exists("env.custom", envir=.GlobalEnv))
+    assign("env.custom", new.env(), envir=.GlobalEnv)
 if(!"path" %in% names(env.custom)) env.custom$path = list()
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env.custom$path[[objectname]] = object;
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env.custom$path[[objectname]] = object;
 env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 objectname = "getwd"; object = getwd(); env.custom$path[[objectname]] = object;
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); env.custom$path[[objectname]] = object;
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+### env.custom\$env.internal ====
+sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##### env.custom\$info\$get_system_info() ====
+# sourcename = "get_system_info"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# env.custom$info$info_system_info = env.custom$info$get_system_info()
+# env.custom$info$info_system_info |> str()
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##### env.custom\$f_df.t.tribble_construct() ====
+# sourcename = "f_df.t.tribble_construct"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # #### env.custom\$env.internal\$f_path.df_dirs_recursive.df_files() ----
 # sourcename = "f_path.df_dirs_recursive.df_files"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
 # env.custom$path$df_dirs_recursive.df_files = env.custom$env.internal$f_path.df_dirs_recursive.df_files(input_path=env.custom$path$path1, print.message=FALSE)
@@ -92,12 +107,11 @@ file.edit("[Working Files List].r"); file.edit(env.custom$path$CurrentSource.pat
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ Default Templates -----
-file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"))
-source(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"))
-
-
+# env.custom$path$sourceTemplate.path.filename.ext = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); env.custom$path$sourceTemplate.path.filename.ext |> source(local=FALSE, echo=TRUE, print.eval=TRUE, spaced=FALSE, verbose=FALSE, max.deparse.length=150, width.cutoff=500L, chdir=TRUE, prompt.echo="> ", continue.echo="+ ", skip.echo=Inf)
+# if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(env.custom$path$sourceTemplate.path.filename.ext)) )}
+# if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',env.custom$path$sourceTemplate.path.filename.ext, '""')  )}
+if (.Platform$OS.type == "windows") {shell.exec(shQuote("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R"))} else {file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R")); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+if (.Platform$OS.type == "windows") {shell.exec(shQuote("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"))} else {file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd")); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ###@ RStudio Server Setup.r -----
@@ -122,6 +136,15 @@ file.edit("/home/rstudio/.ssh/id_ed25519.pub"); file.edit(env.custom$path$Curren
 #@ git -----
 subpath="git"; filename = "ssh-add@Rocker.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 subpath="git"; filename = "git config --global core.autocrlf input.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)c
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+### \% .gitignore -----
+file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+if ("D:/OneDrive/[][Rproject]/github_tidystat" == getwd() |> normalizePath(winslash="/")) {
+    destination.path.filename.ext = file.path(Sys.getenv('USERPROFILE'), ".gitignore") |> normalizePath(winslash="/"); env.custom$env.internal$f_filename.ext.createBackup(copying_path.filename.ext = destination.path.filename.ext, backup_path = file.path(destination.path.filename.ext |> dirname(), "-backup"))
+
+}
+
+
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 subpath="git"; filename = "git automatic commit.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 subpath="git"; filename = "git stash.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
