@@ -56,7 +56,8 @@ sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### \% .gitignore -----
-file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 overwrite_from_path.filename.ext = paste0(overwrite_from_path, "/.gitignore")
 if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
