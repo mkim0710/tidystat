@@ -159,12 +159,13 @@ subpath="git"; filename = "f_git.03_final.pull_rebase_push" |> paste0(c(".source
 #@ Default Templates -----
 ### \% sourceTemplate.path.filename.ext -----
 # env.custom$path$sourceTemplate.path.filename.ext = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); env.custom$path$sourceTemplate.path.filename.ext |> source(local=FALSE, echo=TRUE, print.eval=TRUE, spaced=FALSE, verbose=FALSE, max.deparse.length=150, width.cutoff=500L, chdir=TRUE, prompt.echo="> ", continue.echo="+ ", skip.echo=Inf)
-# if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(env.custom$path$sourceTemplate.path.filename.ext)) )}
+# # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(env.custom$path$sourceTemplate.path.filename.ext)) )}
 # if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',env.custom$path$sourceTemplate.path.filename.ext, '""')  )}
 #### \% default.R -----
-path.file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {shell.exec(shQuote(path.file2edit))} else {file.edit(path.file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+# file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {shell.exec(shQuote(file2edit))} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {shell.exec(shQuote(file2edit))} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 #### \% templates-00env.custom.minimum.Rmd -----
-path.file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {shell.exec(shQuote(path.file2edit))} else {file.edit(path.file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+# file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {shell.exec(shQuote(file2edit))} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env.custom$env.internal -----
