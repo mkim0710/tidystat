@@ -504,15 +504,7 @@ options(width=120)
 env.custom$path$RTemplate.filename.ext = "notebook.Rmd"
 env.custom$path$MyTemplate.filename.ext = "templates-00env.custom.minimum.Rmd"
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-env.custom$env.internal$f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_to_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M") {
-    from_path.filename = basename(backup_from_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-    copying_ext = basename(backup_from_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
-    backup_to_path.filename.ext = file.path(backup_to_path, paste0(from_path.filename,"-",format(Sys.time(),timeFormat),copying_ext))
-    if(!dir.exists(backup_to_path)) dir.create(backup_to_path, recursive = TRUE)
-    file.copy(from=backup_from_path.filename.ext, to=backup_to_path.filename.ext, overwrite=TRUE); message(paste0("Backup file created: ",backup_to_path.filename.ext))
-}
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if (.Platform$OS.type == "windows") {
     if(basename(env.custom$path$CurrentSource.path.filename.ext) == env.custom$path$MyTemplate.filename.ext) {
         if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
