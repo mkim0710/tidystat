@@ -106,20 +106,24 @@ file.edit("[Working Files List].r"); file.edit(env.custom$path$CurrentSource.pat
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+##@ RStudio Setup -----
+file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+### \% file.edit(file.path(path4APPDATA_RStudio, filename)) ----
+if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
+#### $ rstudio-prefs.json ----
+file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ RStudio Server Setup.r -----
 file.edit("RStudio Server Setup.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-
-# file.edit(file.path(path4APPDATA_RStudio, filename))
-if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
-file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+### id_ed25519 -----
+file.edit("/home/rstudio/.ssh/id_ed25519.pub"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# file.edit("/home/rstudio/.ssh/id_ed25519"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ###@ Rocker set up.r -----
 file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 file.edit("Rocker set up.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 # file.edit("Rocker set up -private.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-file.edit("/home/rstudio/.ssh/id_ed25519.pub"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# file.edit("/home/rstudio/.ssh/id_ed25519"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ##@ git -----
@@ -158,9 +162,9 @@ subpath="git"; filename = "f_git.03_final.pull_rebase_push" |> paste0(c(".source
 # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(env.custom$path$sourceTemplate.path.filename.ext)) )}
 # if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',env.custom$path$sourceTemplate.path.filename.ext, '""')  )}
 #### \% default.R -----
-if (.Platform$OS.type == "windows") {shell.exec(shQuote("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R"))} else {file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R")); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+path.file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {shell.exec(shQuote(path.file2edit))} else {file.edit(path.file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 #### \% templates-00env.custom.minimum.Rmd -----
-if (.Platform$OS.type == "windows") {shell.exec(shQuote("D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"))} else {file.edit(paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd")); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+path.file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {shell.exec(shQuote(path.file2edit))} else {file.edit(path.file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env.custom$env.internal -----
