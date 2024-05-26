@@ -5,6 +5,14 @@
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
+#| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
+#| Ctrl+Alt+Shift+Left/Right: First/Last tab
+#| Ctrl+Alt+D: Show diff
+#| Ctrl+Shift+O: Show/Hide Document Outline
+#| Alt+Shift+Drag: Multiline Cursor
+#| Ctrl+Shift+F10: Restart R Session 
+#| Ctrl+Alt+B: Run from start to current line 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # rm(list=ls())
@@ -116,9 +124,11 @@ file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json")); file.edit(env.
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ RStudio Server Setup.r -----
 file.edit("RStudio Server Setup.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-### id_ed25519 -----
-file.edit("/home/rstudio/.ssh/id_ed25519.pub"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# file.edit("/home/rstudio/.ssh/id_ed25519"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+### id_rsa, id_ed25519 -----
+file2edit = "~/.ssh/id_rsa.pub"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+file2edit = "~/.ssh/id_rsa"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+file2edit = "~/.ssh/id_ed25519.pub"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+file2edit = "~/.ssh/id_ed25519"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ###@ Rocker set up.r -----
 file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
