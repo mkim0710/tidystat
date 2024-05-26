@@ -126,6 +126,20 @@ file.edit("[Working Files List].r"); file.edit(env.custom$path$CurrentSource.pat
 #### $ rstudio-prefs.json ----
 # file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 filename.ext = "rstudio-prefs.json"; if (.Platform$OS.type == "windows") { file.path(Sys.getenv("APPDATA"), "RStudio", filename.ext) |> env.custom$env.internal$f_file.edit_vscode() } else { file2edit = paste0("~/.config/rstudio/",filename.ext); if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)} }
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+### @ sumatraPDF settings ----
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#### \% f_file_PDF.sumatra ====
+# https://github.com/rstudio/rstudio/issues/14370
+# https://stackoverflow.com/questions/77447391/how-to-set-sumatra-as-default-pdf-viewer-in-rstudio
+# https://github.com/brry/berryFunctions/blob/master/R/sumatraInitialize.R
+# https://github.com/brry/berryFunctions/blob/master/R/openPDF.R
+# https://github.com/brry/berryFunctions/blob/master/R/pdfpng.R
+# https://github.com/brry/berryFunctions/blob/master/inst/extdata/sumatrapdfrestrict.ini
+# https://github.com/brry/berryFunctions/blob/master/inst/extdata/SumatraPDF-settings.txt
+file.edit(paste0(env.custom$path$source_base,"/","f_file_PDF.sumatra.dev.r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# file.edit(paste0(env.custom$path$source_base,"/","f_file_PDF.sumatra.source.r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+file.edit("D:/OneDrive/[][Rproject]/github_tidystat/env.custom$env.internal.source.r")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ RStudio Server Setup.r -----
 file.edit("RStudio Server Setup.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
@@ -180,13 +194,17 @@ subpath="git"; filename.r = "f_git.03_final.pull_rebase_push" |> paste0(c(".sour
 # env.custom$path$sourceTemplate.path.filename.ext = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); env.custom$path$sourceTemplate.path.filename.ext |> source(local=FALSE, echo=TRUE, print.eval=TRUE, spaced=FALSE, verbose=FALSE, max.deparse.length=150, width.cutoff=500L, chdir=TRUE, prompt.echo="> ", continue.echo="+ ", skip.echo=Inf)
 # # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(env.custom$path$sourceTemplate.path.filename.ext)) )}
 # if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',env.custom$path$sourceTemplate.path.filename.ext, '""')  )}
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% default.R -----
 # file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> shQuote() |> shell.exec()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 subpath="rstudio-prefs/templates"; filename.r = "default.R"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% templates-00env.custom.minimum.Rmd -----
-file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-subpath="rstudio-prefs/templates"; filename.r = "templates-00env.custom.minimum.Rmd"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+# subpath="rstudio-prefs/templates"; filename.r = "templates-00env.custom.minimum.Rmd"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+file2edit = "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env.custom.minimum.Rmd"; if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+"templates-00env.custom.minimum.Rmd" |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env.custom$env.internal -----

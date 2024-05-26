@@ -110,6 +110,50 @@ env.custom$env.internal$ f_file.edit_vscode <- function(file2edit) {
   if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',file2edit, '""')  )}
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+### \% f_file.systemStart ====
+# Function to open files with the system's default application (fallback)
+env.custom$env.internal$f_file.systemStart <- function(file) {
+    system(paste("start", shQuote(file)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
+}
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#### \% f_file_PDF.sumatra ====
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
+# Function to open PDF with Sumatra PDF
+env.custom$env.internal$f_file_PDF.sumatra <- function(
+        file,
+        path.SumatraPDF.exe = NULL,
+        ...
+) {
+    potentialPaths <- c(
+        file.path(Sys.getenv("LOCALAPPDATA"), "SumatraPDF", "SumatraPDF.exe"),
+        file.path(Sys.getenv("APPDATA"), "SumatraPDF", "SumatraPDF.exe"),
+        file.path(sub("rstudio.exe$", "", Sys.getenv("RSTUDIO_DESKTOP_EXE")), "resources/app/bin/sumatra/SumatraPDF.exe")
+    )
+    # If path.SumatraPDF.exe is not provided, find the first existing path from the list
+    if (is.null(path.SumatraPDF.exe)) { path.SumatraPDF.exe <- potentialPaths[which(file.exists(potentialPaths))[1]] }
+    # If no valid Sumatra executable found, use the system default application
+    if (is.null(path.SumatraPDF.exe) || !file.exists(path.SumatraPDF.exe)) {
+        warning("SumatraPDF.exe not found. Opening file with the system default viewer instead.", call. = FALSE)
+        return(invisible(env.custom$env.internal$f_file.systemStart(file)))
+    }
+    file <- normalizePath(file, winslash = "/", mustWork = FALSE)
+    path.SumatraPDF.exe <- normalizePath(path.SumatraPDF.exe, winslash = "/", mustWork = FALSE)
+    if (!file.exists(file)) {
+        stop(paste("The following file doesn't exist:", file))
+    }
+    # Ignore non-PDF files
+    pdf <- grepl(".pdf$", file)
+    if (any(!pdf)) {
+        warning("Ignoring non-PDF file", paste(file[!pdf], collapse = ", "))
+        file <- file[pdf]
+    }
+    if (length(file) < 1) return("No files were left to open with SumatraPDF.exe")
+    # Construct the command to open SumatraPDF
+    sumafile <- paste(shQuote(c(path.SumatraPDF.exe, file)), collapse = " ")
+    out <- try(system(sumafile, wait = FALSE, ...), silent = TRUE)
+    return(invisible(out))
+}
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \% f_filename.ext.createBackup ====
 env.custom$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, backup_to_path = file.path(env.custom$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
     if(is.na(backup_from_ext)) {
