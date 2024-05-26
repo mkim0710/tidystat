@@ -19,7 +19,8 @@ file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh")
 #| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
 #| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
 #| Ctrl+Alt+Shift+Left/Right: First/Last tab
-#| Ctrl+Alt+D: Show diff
+#| Ctrl+Alt+D: Show diff between current and last commit
+#| Ctrl+Alt+M: Commit changes to Git
 #| Ctrl+Shift+O: Show/Hide Document Outline
 #| Alt+Shift+Drag: Multiline Cursor
 #| Ctrl+Shift+F10: Restart R Session 
