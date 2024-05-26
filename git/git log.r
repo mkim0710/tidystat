@@ -68,7 +68,7 @@
 # |\  
 # | *   a091ed7 Merge branch 'master' of github.com:mkim0710/tidystat
 # | |\  
-# | * | 8119876 filename = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext
+# | * | 8119876 filename = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext
 # * | | f74220b Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
@@ -445,7 +445,7 @@
 # |\  
 # | *   a091ed7 mhkim@rocker@MAGB760M13700KF Fri May 17 02:58:31 2024 Merge branch 'master' of github.com:mkim0710/tidystat
 # | |\  
-# | * | 8119876 mhkim@rocker@MAGB760M13700KF Fri May 17 02:58:25 2024 filename = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename); file.edit( file.path(env.custom$path$source_base,subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext
+# | * | 8119876 mhkim@rocker@MAGB760M13700KF Fri May 17 02:58:25 2024 filename = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext
 # * | | f74220b mkim0710 Fri May 17 03:02:31 2024 Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
