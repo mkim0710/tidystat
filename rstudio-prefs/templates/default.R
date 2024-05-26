@@ -198,6 +198,7 @@ if (.Platform$OS.type == "windows") {
         destination_path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination_path)) dir.create(destination_path, recursive=TRUE) ; cat('browseURL("',destination_path,'")',"\n", sep="") ; 
         destination_path.filename.ext = file.path(destination_path, env.custom$path$RTemplate.filename.ext); 
         backup_to_path = file.path(env.custom$path$path0, "-backup") ; env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path) ; cat('browseURL("',backup_to_path,'")',"\n", sep="") ;
+        browseURL(backup_to_path)
         
         if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext)); 
         if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)};
