@@ -8,7 +8,7 @@
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.dev.r")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.dev.Rmd")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.source.r")
-#|________________________________________________________________________________|#  
+#|________________________________________________________________________________|#  ----
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
