@@ -314,7 +314,8 @@ quit(save="no")
 
 # Caution) do not forget to add .gitignore to .gitignore
 # file.edit("~/.gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
 
 
 #|________________________________________________________________________________|#  
