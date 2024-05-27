@@ -530,7 +530,7 @@ options(width=120)
 #     # mutate(time.CensorEND = pmin(time, value_for_Censor_at_END)) %>%
 #     mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) %>%
 #     mutate(time = pmin(time, value_for_Censor_at_END)) %>%
-#     as_tibble
+#     as_tibble()
 # df_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # > df_time2event.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 # # .$StudyPopulation: FALSE
