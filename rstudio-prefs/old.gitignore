@@ -1,0 +1,45 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+*.zip
+*.7z
+*.r.gz
+*.r.xz
+*.rmd.gz
+*.rmd.xz
+
+*.Rproj
+.gitignore
+.git
+.github
+
+MH)*.r
+*.lnk
+*alias
+
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+*.doc
+*.docx
+
+*- void*
+*-void*
+*- info*
+*-info*
+*-dev*
+*debug*
+-tmp
+*- tmp*
+*-tmp*
+*- old*
+*-old*
+*-personal*
+
+*-log*.*
+
+*.rtf
+
