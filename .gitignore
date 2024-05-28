@@ -135,6 +135,6 @@ MH)*.r
 *- info*
 *-info*
 
-# Databases
+# Databases or uncompressed data files
 *.sqlite
-
+# *.csv  ->use pre-commit hook to ignore csv files larger than 10 MB
