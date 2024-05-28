@@ -49,9 +49,10 @@ paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> sy
 # "git push origin --force --tags" |> system(intern=TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #@ Add PDF Files to .gitignore ====
-'echo "*.pdf" >> .gitignore' |> system(intern=TRUE)
-'echo "*.pdf.xz" >> .gitignore' |> system(intern=TRUE)
-'echo "*.pdf.gz" >> .gitignore' |> system(intern=TRUE)
+# 'echo "*.pdf" >> .gitignore' |> system(intern=TRUE)
+# 'echo "*.pdf.xz" >> .gitignore' |> system(intern=TRUE)
+# 'echo "*.pdf.gz" >> .gitignore' |> system(intern=TRUE)
+".gitignore" |> file.edit()
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #@ Remove Existing PDF Files from the Repository ====
 # 'git rm --recursive *.pdf'  # This will actually delete the files from the local file system.
