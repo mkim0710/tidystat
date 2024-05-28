@@ -30,6 +30,7 @@ file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh")
 #| Alt+Shift+Drag: Multiline Cursor
 #| Ctrl+Shift+F10: Restart R Session 
 #| Ctrl+Alt+B: Run from start to current line 
+#| Shift+F9: Toggle Breakpoint 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # rm(list=ls())
