@@ -164,13 +164,6 @@ subpath="git"; filename.r = "git config --global core.autocrlf input.r"; subpath
 # file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 # ".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
 file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env.custom$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)} }
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-### @ install-git-hooks.sh ----
-# To ignore csv files > 10 MB
-# "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
-# "chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
-"chmod +x git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
-"./git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 #### \% f_path_path.backup.overwrite -----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
@@ -190,6 +183,13 @@ if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
         env.custom$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, destination_path.filename.ext=destination_path.filename.ext, backup_to_path = paste0(env.custom$path$path0,"/-backup"), timeFormat = "%y%m%d")
     }
 }
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+### @ install-git-hooks.sh ----
+# To ignore csv files > 10 MB
+# "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
+# "chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
+"chmod +x git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
+"./git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 subpath="git"; filename.r = "git automatic commit.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 subpath="git"; filename.r = "git stash.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
