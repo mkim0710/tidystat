@@ -1,3 +1,25 @@
+#@ https://git-scm.com/docs/gitignore
+# Literal Matches: Simple file or directory names can be ignored directly.
+# file.txt
+# directory/
+# Wildcard Matches: The * wildcard matches zero or more characters.
+# *.log          -> Matches any file ending with .log
+# temp*          -> Matches any file starting with temp
+# Directory Matches: Adding a trailing slash / indicates a directory.
+# logs/          -> Ignores the logs directory
+# Negation: Patterns can be negated by starting with an exclamation mark !.
+# !important.log -> Do not ignore important.log even if *.log is ignored
+# Glob Patterns: ** matches directories recursively.
+# **/temp        -> Matches temp files in any directory
+# Comments: Lines starting with # are comments. 
+# # This is a comment
+# Caution: Comments must start with # at the beginning of the line or after optional whitespace.
+# # in the middle of a line does not create a comment.
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # History files
 *.Rhistory
 *.Rapp.history
@@ -20,9 +42,7 @@
 
 # RStudio files
 *.Rproj
-
-# .Rproj.user/
-.Rproj.user
+.Rproj.user/
 
 # produced vignettes
 vignettes/*.html
@@ -55,12 +75,13 @@ rsconnect/
 # Ignore MacOS system files
 .DS_Store
 
-################
+# Quarto files
 .quarto
 
-*KEY*
+# Editor-specific files
 .vscode
 
+# Compressed files
 *.zip
 *.7z
 *.r.gz
@@ -68,38 +89,17 @@ rsconnect/
 *.rmd.gz
 *.rmd.xz
 
-MH)*.r
+# Link or alias files
 *.lnk
 *alias
 
+# Document files
 *.ppt
 *.pptx
 *.xls
 *.xlsx
 *.doc
 *.docx
-
-*- void*
-*-void*
-*- info*
-*-info*
-*-dev*
-*debug*
--tmp
-*- tmp*
-*-tmp*
-*- old*
-*-old*
-*-personal*
-*-private*
-*-backup*
-*-annotate*
-*- annotate*
-*-edit*
-*- edit*
-
-*-log*.*
-
 *.rtf
 *.pdf
 *.pdf.*
@@ -108,4 +108,33 @@ MH)*.r
 *.html
 *.html.*
 
+# Temporary and debug files
+*- void*
+*-void*
+*-dev*
+*debug*
+-tmp
+*- tmp*
+*-tmp*
+*- old*
+*-old*
+*-backup*
+
+# Log files
+*-log*.*
+
+# Private files
+*KEY*
+MH)*.r
+*-personal*
+*-private*
+*-annotate*
+*- annotate*
+*-edit*
+*- edit*
+*- info*
+*-info*
+
+# Databases
 *.sqlite
+
