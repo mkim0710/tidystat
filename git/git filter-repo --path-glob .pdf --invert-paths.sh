@@ -4,13 +4,13 @@
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 
-# 1-1. Remove PDF Files from the Index and the Local File System Using git rm.
-git rm --recursive '*.pdf'
-git rm --recursive '*.html'
+# 1-1. Recursively Remove PDF Files from the Index and the Local File System Using git rm.
+git rm -r "*.pdf"
+git rm -r "*.html"
 
-# 1-2. Remove PDF Files from the Index Using git rm --cached (wihout deleting the files in the local file system)
-git rm --recursive --cached '*.pdf'
-git rm --recursive --cached '*.html'
+# 1-2. Recursively Remove PDF Files from the Index Using git rm --cached (wihout deleting the files in the local file system)
+git rm -r --cached "*.pdf"
+git rm -r --cached "*.html"
 
 #2. Commit and Push the Changes: Ensures the changes are reflected in the repository.
 git commit -m "Untrack PDF/HTML files from the index"
@@ -31,10 +31,11 @@ git clone --mirror https://github.com/mkim0710/Rproject_KoGES_AA10030.git .
 #4. Use git filter-repo: Removes PDF files from the entire Git history.
 cmd.exe "/K" C:\Users\mkim0\anaconda3\Scripts\activate.bat C:\Users\mkim0\anaconda3
 # pip install git-filter-repo
-git filter-repo --path-glob '*.pdf' --invert-paths
-git filter-repo --path-glob '*.html' --invert-paths
+git filter-repo --path-glob "*.pdf" --invert-paths
+git filter-repo --path-glob "*.html" --invert-paths
 
 #5. Force Push Changes: Updates the remote repository with the cleaned history.
+# git remote set-url origin git@github.com:mkim0710/Rproject_KoGES_AA10030.git
 git push origin --force --mirror
 
 #6. Re-clone the Repository (including the PC where the filter-repo was run): Ensures that everyone works with the updated history.
