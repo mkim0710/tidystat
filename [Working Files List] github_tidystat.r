@@ -186,10 +186,10 @@ if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### @ install-git-hooks.sh ----
 # To ignore csv files > 10 MB
-# "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
-# "chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
-"chmod +x git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
-"./git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
+# "chmod +x git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
+# "./git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
+"cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
+"chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 subpath="git"; filename.r = "git automatic commit.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 subpath="git"; filename.r = "git stash.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
