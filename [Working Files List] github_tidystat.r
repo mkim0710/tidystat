@@ -180,7 +180,7 @@ if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
         , "../Rproject_KoGES_AA10030"
     ))) {
         destination_path.filename.ext = paste0(destination_path,"/.gitignore") ; 
-        env.custom$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, destination_path.filename.ext=destination_path.filename.ext, backup_to_path = dirname(destination_path.filename.ext), timeFormat = "%y%m%d")
+        env.custom$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, destination_path.filename.ext=destination_path.filename.ext, backup_to_path = paste0(env.custom$path$path0,"/-backup"), timeFormat = "%y%m%d")
     }
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
