@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Maximum file size in bytes (10MB)
+MAX_SIZE=10485760
+
+# File extensions to check
+EXTENSIONS="csv"
+
+# Convert extensions to a pattern for grep
+EXT_PATTERN=$(echo "$EXTENSIONS" | sed 's/ /\\|/g')
+
+# Find files larger than the maximum size with specific extensions
+LARGE_FILES=$(git diff --cached --name-only | grep -E "\.($EXT_PATTERN)$" | while read file; do
+  if [ -f "$file" ]; then
+    size=$(wc -c <"$file")
+    if [ "$size" -ge "$MAX_SIZE" ]; then
+      echo "$file"
+    fi
+  fi
+done)
+
+if [ -n "$LARGE_FILES" ]; then
+  echo "The following files are larger than $(($MAX_SIZE / 1024 / 1024))MB:"
+  echo "$LARGE_FILES"
+  echo "Commit aborted."
+  exit 1
+fi
+
+# Allow the commit if no large files are found
+exit 0

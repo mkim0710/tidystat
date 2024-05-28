@@ -1,6 +1,13 @@
 # tidystat (under development)
 Stratified Sampling, Incidence Density Sampling, Nearest Neighbor Matching, Propensity Score Matching, Permutation Test, Bootstrap resampling, Network Analysis, Elastic Net, Cox Elastic Net, Hierarchical Interaction Lasso
 
+## Setting Up Git Hooks
+
+To install the pre-commit hook, run the following command:
+
+```sh
+./git/hooks/install-git-hooks.sh
+```
 
 ## Incidence Density Sampling
 https://github.com/mkim0710/tidystat/blob/master/R/data.stratifed.ccwc.source.r

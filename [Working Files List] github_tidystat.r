@@ -164,6 +164,13 @@ subpath="git"; filename.r = "git config --global core.autocrlf input.r"; subpath
 # file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 # ".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
 file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env.custom$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)} }
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+### @ install-git-hooks.sh ----
+# To ignore csv files > 10 MB
+# "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
+# "chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
+"chmod +x git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
+"./git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 #### \% f_path_path.backup.overwrite -----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"

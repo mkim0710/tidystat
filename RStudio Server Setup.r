@@ -417,6 +417,15 @@ system("git remote -v")
 # origin	git@github.com:mkim0710/tidystat.git (push)
 
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+### @ install-git-hooks.sh ----
+#|  @ install-git-hooks.sh  
+# To ignore csv files > 10 MB
+# "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
+# "chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
+"chmod +x git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
+"./git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
