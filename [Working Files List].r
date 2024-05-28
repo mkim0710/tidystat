@@ -195,12 +195,12 @@ subpath="git"; filename.r = "f_git.03_final.pull_rebase_push" |> paste0(c(".sour
 # # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(env.custom$path$sourceTemplate.path.filename.ext)) )}
 # if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',env.custom$path$sourceTemplate.path.filename.ext, '""')  )}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### \% default.R -----
+#### @ default.R -----
 # file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> shQuote() |> shell.exec()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 subpath="rstudio-prefs/templates"; filename.r = "default.R"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### \% templates-00env.custom.minimum.Rmd -----
+#### @ templates-00env.custom.minimum.Rmd -----
 # file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
 # subpath="rstudio-prefs/templates"; filename.r = "templates-00env.custom.minimum.Rmd"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 file2edit = "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env.custom.minimum.Rmd"; if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
