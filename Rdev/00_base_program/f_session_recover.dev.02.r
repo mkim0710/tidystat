@@ -576,7 +576,7 @@ print(recovered_files)
 # [1] "~/github_tidystat/[Working Files List].r"
 # 
 # $project_path
-# [1] "[Working Files List].r"
+# [1] paste0("[Working Files List] ",basename(getwd()),".r")
 # 
 # $type
 # [1] "r_source"

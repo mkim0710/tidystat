@@ -53,7 +53,7 @@
 # *   3857e39 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * 930eb55 RStudio.Cloud set up.r
-# * | 58c6c76 # file.edit("[Working Files List].r")
+# * | 58c6c76 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r"))
 # |/  
 # * 8158062 Revert "Add files via upload"
 # * 236fc87 Add files via upload
@@ -87,7 +87,7 @@
 # * 265fd73 browseURL(normalizePath("."),winslash="/")
 # * 246c842 ,"-",basename(getwd())
 # * 2c05397 '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
-# * 9a865ad file.edit("[Working Files List].r")
+# * 9a865ad file.edit(paste0("[Working Files List] ",basename(getwd()),".r"))
 # * e9ef464 # rm(list=ls())
 # * a7dfd8f if(!exists("env.custom", envir=.GlobalEnv))
 # *   8d282c7 Merge branch 'master' of https://github.com/mkim0710/tidystat
@@ -430,7 +430,7 @@
 # *   3857e39 mkim0710 Sun May 19 05:08:31 2024 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * 930eb55 mhkim@rocker@MAGB760M13700KF Sun May 19 05:06:52 2024 RStudio.Cloud set up.r
-# * | 58c6c76 mkim0710 Sun May 19 05:08:23 2024 # file.edit("[Working Files List].r")
+# * | 58c6c76 mkim0710 Sun May 19 05:08:23 2024 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r"))
 # |/  
 # * 8158062 mkim0710 Sat May 18 07:00:11 2024 Revert "Add files via upload"
 # * 236fc87 mkim0710 Sat May 18 06:46:18 2024 Add files via upload
@@ -464,7 +464,7 @@
 # * 265fd73 mhkim@rocker@MAGB760M13700KF Fri May 17 01:41:01 2024 browseURL(normalizePath("."),winslash="/")
 # * 246c842 mkim0710 Fri May 17 01:35:03 2024 ,"-",basename(getwd())
 # * 2c05397 mkim0710 Fri May 17 01:22:50 2024 '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
-# * 9a865ad mhkim@rocker@MAGB760M13700KF Fri May 17 01:06:41 2024 file.edit("[Working Files List].r")
+# * 9a865ad mhkim@rocker@MAGB760M13700KF Fri May 17 01:06:41 2024 file.edit(paste0("[Working Files List] ",basename(getwd()),".r"))
 # * e9ef464 mkim0710 Fri May 17 01:00:45 2024 # rm(list=ls())
 # * a7dfd8f mkim0710 Fri May 17 00:42:10 2024 if(!exists("env.custom", envir=.GlobalEnv))
 # *   8d282c7 mkim0710 Fri May 17 00:18:58 2024 Merge branch 'master' of https://github.com/mkim0710/tidystat
