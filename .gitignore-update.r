@@ -1,5 +1,3 @@
-# file.edit(paste0("[Working Files List] ",basename(getwd()),".r"))
-# browseURL(normalizePath("."),winslash="/")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -56,22 +54,38 @@ sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-### \% .gitignore -----
+### $ .gitignore -----
 # ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
+# ".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
+file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env.custom$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)} }
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
+#### \% f_path_path.backup.overwrite -----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 overwrite_from_path.filename.ext = paste0(overwrite_from_path, "/.gitignore")
 if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
-    for (destination_path in c(
+    for (destination_path in unique(c(
         env.custom$path$path0
+        , "~" |> normalizePath(winslash="/")
         , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/")
         , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/")
         , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/")
         , "../Rproject_MH"
         , "../Rproject_Rmd"
         , "../Rproject_KoGES_AA10030"
-    )) {
+    ))) {
         destination_path.filename.ext = paste0(destination_path,"/.gitignore") ; 
-        env.custom$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, destination_path.filename.ext=destination_path.filename.ext, backup_to_path = dirname(destination_path.filename.ext), timeFormat = "%y%m%d")
+        env.custom$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, destination_path.filename.ext=destination_path.filename.ext, backup_to_path = paste0(env.custom$path$path0,"/-backup"), timeFormat = "%y%m%d")
     }
 }
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ END -----
+cat("* To revert to the last commited file, run the following terminal command:\n", 
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n", sep="")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
