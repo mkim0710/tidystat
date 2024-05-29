@@ -8,7 +8,7 @@
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.Rmd")
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.source.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/env.custom$env.internal.source.r")
+# "D:/OneDrive/[][Rproject]/github_tidystat/env.custom$env.internal.source.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 # https://github.com/rstudio/rstudio/issues/14370
 # https://stackoverflow.com/questions/77447391/how-to-set-sumatra-as-default-pdf-viewer-in-rstudio
@@ -66,7 +66,7 @@ objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$pat
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+paste0("[Working Files List] ",basename(getwd()),".r") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### env.custom\$env.internal ====
 sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
@@ -171,7 +171,7 @@ env.custom$env.internal$f_file.systemStart <- function(file) {
 
 
 
-filename.r = "env.custom$env.internal" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "env.custom$env.internal" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 
 
 

@@ -58,7 +58,7 @@ objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$pat
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+paste0("[Working Files List] ",basename(getwd()),".r") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----

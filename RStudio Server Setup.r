@@ -66,7 +66,7 @@ objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$pat
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+paste0("[Working Files List] ",basename(getwd()),".r") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### env.custom\$env.internal ====
 # sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
@@ -249,7 +249,7 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 # file.edit(file.path(path4APPDATA_RStudio, filename))
 if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
 
-file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+file.path(path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 
 # Global Options > General > Save workspace to .RData on exit: Never
 # Global Options > Code > Insert spaces for tab: 4
@@ -314,8 +314,8 @@ quit(save="no")
 #|  @ .gitignore  
 
 # Caution) do not forget to add .gitignore to .gitignore
-# file.edit("~/.gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# "~/.gitignore" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 ".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
 
 
@@ -330,10 +330,10 @@ quit(save="no")
 # > "~" |> normalizePath(winslash="/")
 # [1] "/home/rstudio"
 path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
-file2edit = "~/.ssh/id_rsa.pub"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-file2edit = "~/.ssh/id_rsa"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-file2edit = "~/.ssh/id_ed25519.pub"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-file2edit = "~/.ssh/id_ed25519"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+"~/.ssh/id_rsa.pub" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"~/.ssh/id_rsa" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"~/.ssh/id_ed25519.pub" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"~/.ssh/id_ed25519" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 
 system("sudo chmod 400 ~/.ssh/id_ed25519")
 path.file = file.path(env.custom$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path.file)) file.edit(path.file)
