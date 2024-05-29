@@ -20,60 +20,47 @@
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# History files
+# R/RStudio files
 *.Rhistory
 *.Rapp.history
-
-# Session Data files
 .RData
 .RDataTmp
-
-# User-specific files
+# .Renviron
+*.Renviron*
 .Ruserdata
-
-# Example code in package build process
-*-Ex.R
-
-# Output files from R CMD build
-/*.tar.gz
-
-# Output files from R CMD check
-/*.Rcheck/
-
-# RStudio files
 *.Rproj
 .Rproj.user/
+rsconnect/
 
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# knitr and R markdown default cache directories
+# knitr and R markdown default cache directories/temporary files
 *_cache/
 /cache/
-
-# Temporary files created by R markdown
 *.utf8.md
 *.knit.md
 
-# R Environment Variables
-# .Renviron
-*.Renviron*
-
-# pkgdown site
-docs/
+# Output files from R CMD build/check
+/*.tar.gz
+/*.Rcheck/
 
 # translation temp files
 po/*~
 
-# RStudio Connect folder
-rsconnect/
-
 # Ignore MacOS system files
 .DS_Store
+
+# Private files
+*KEY*
+MH)*.r
+*-personal*
+*-private*
+*-annotate*
+*- annotate*
+*-edit*
+*- edit*
+*- info*
+*-info*
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
 
 # Quarto files
 .quarto
@@ -96,8 +83,8 @@ rsconnect/
 # Document files
 *.ppt
 *.pptx
-*.xls
-*.xlsx
+# *.xls
+# *.xlsx
 *.doc
 *.docx
 *.rtf
@@ -122,18 +109,6 @@ rsconnect/
 
 # Log files
 *-log*.*
-
-# Private files
-*KEY*
-MH)*.r
-*-personal*
-*-private*
-*-annotate*
-*- annotate*
-*-edit*
-*- edit*
-*- info*
-*-info*
 
 # Databases or uncompressed data files
 *.sqlite
