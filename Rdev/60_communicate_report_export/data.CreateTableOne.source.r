@@ -129,11 +129,11 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
     
     # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -clean.xlsx"))
-    # # openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -clean.xlsx"))
     # DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-    # # openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
     # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
-    # # openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -IQR -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -IQR -clean.xlsx"))
     
     
     function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
@@ -211,7 +211,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
         # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
         # ) %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, "(list).xlsx"))
     ) %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, ".xlsx"))
-    openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, ".xlsx"))
+    if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, ".xlsx"))
     
     return.list = list(
         DataSet.select = DataSet.select

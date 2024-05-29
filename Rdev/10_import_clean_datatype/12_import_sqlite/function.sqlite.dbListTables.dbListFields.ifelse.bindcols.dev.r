@@ -320,10 +320,10 @@ openxlsx::write.xlsx(
     , "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
     , asTable=TRUE
 )
-openxlsx::openXL(
+if (.Platform$OS.type == "windows") openxlsx::openXL(
     "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
 )
-# > openxlsx::openXL(
+# > if (.Platform$OS.type == "windows") openxlsx::openXL(
 # +     "mydb.dbListTables.dbListFields.ifelse.bindcols.xlsx"
 # + )
 # Error in chooseExcelApp() : No applications (detected) available.
