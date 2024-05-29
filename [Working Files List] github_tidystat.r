@@ -151,7 +151,7 @@ paste0(env.custom$path$source_base,"/","f_file_PDF.sumatra.dev.r") %>% {.[file.e
 "~/.ssh/id_ed25519" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ###@ Rocker set up.r -----
-"-private/docker run -d -p --restart=always --name -e -v -private.sh") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"-private/docker run -d -p --restart=always --name -e -v -private.sh" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 "Rocker set up.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 # "Rocker set up -private.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
