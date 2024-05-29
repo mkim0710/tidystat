@@ -111,7 +111,7 @@ sourcename = "env.custom$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
 env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+paste0("[Working Files List] ",basename(getwd()),".r") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -125,8 +125,8 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env
 # if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### $ rstudio-prefs.json ----
-# file.edit(file.path(path4APPDATA_RStudio, "rstudio-prefs.json")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-filename.ext = "rstudio-prefs.json"; if (.Platform$OS.type == "windows") { file.path(Sys.getenv("APPDATA"), "RStudio", filename.ext) |> env.custom$env.internal$f_file.edit_vscode() } else { file2edit = paste0("~/.config/rstudio/",filename.ext); if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)} }
+# file.path(path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.ext = "rstudio-prefs.json"; if (.Platform$OS.type == "windows") { file.path(Sys.getenv("APPDATA"), "RStudio", filename.ext) |> env.custom$env.internal$f_file.edit_vscode() } else { paste0("~/.config/rstudio/",filename.ext) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext) }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### @ sumatraPDF settings ----
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -138,32 +138,32 @@ filename.ext = "rstudio-prefs.json"; if (.Platform$OS.type == "windows") { file.
 # https://github.com/brry/berryFunctions/blob/master/R/pdfpng.R
 # https://github.com/brry/berryFunctions/blob/master/inst/extdata/sumatrapdfrestrict.ini
 # https://github.com/brry/berryFunctions/blob/master/inst/extdata/SumatraPDF-settings.txt
-file.edit(paste0(env.custom$path$source_base,"/","f_file_PDF.sumatra.dev.r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# file.edit(paste0(env.custom$path$source_base,"/","f_file_PDF.sumatra.source.r")); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-file.edit("D:/OneDrive/[][Rproject]/github_tidystat/env.custom$env.internal.source.r")
+paste0(env.custom$path$source_base,"/","f_file_PDF.sumatra.dev.r") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# paste0(env.custom$path$source_base,"/","f_file_PDF.sumatra.source.r") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"D:/OneDrive/[][Rproject]/github_tidystat/env.custom$env.internal.source.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ RStudio Server Setup.r -----
-file.edit("RStudio Server Setup.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"RStudio Server Setup.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 ### id_rsa, id_ed25519 -----
-file2edit = "~/.ssh/id_rsa.pub"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-file2edit = "~/.ssh/id_rsa"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-file2edit = "~/.ssh/id_ed25519.pub"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-file2edit = "~/.ssh/id_ed25519"; if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+"~/.ssh/id_rsa.pub" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"~/.ssh/id_rsa" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"~/.ssh/id_ed25519.pub" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"~/.ssh/id_ed25519" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ###@ Rocker set up.r -----
-file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-file.edit("Rocker set up.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# file.edit("Rocker set up -private.r"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"-private/docker run -d -p --restart=always --name -e -v -private.sh") %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+"Rocker set up.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# "Rocker set up -private.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ##@ git -----
-subpath="git"; filename.r = "ssh-add@Rocker.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-subpath="git"; filename.r = "git config --global core.autocrlf input.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)c
+subpath="git"; filename.r = "ssh-add@Rocker.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath="git"; filename.r = "git config --global core.autocrlf input.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### $ .gitignore -----
-# file.edit(".gitignore"); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 # ".gitignore" |> env.custom$env.internal$f_file.edit_vscode()
-file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env.custom$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)} }
+file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env.custom$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)} }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 #### \% f_path_path.backup.overwrite -----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
@@ -191,15 +191,15 @@ if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
 "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
 "chmod +x .git/hooks/pre-commit" |> system(intern = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-subpath="git"; filename.r = "git automatic commit.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-subpath="git"; filename.r = "git stash.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-subpath="git"; filename.r = "git merge conflicts.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath="git"; filename.r = "git automatic commit.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath="git"; filename.r = "git stash.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath="git"; filename.r = "git merge conflicts.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-subpath="git"; filename.r = "f_git.03_final.pull_rebase_push" |> paste0(c(".source.r",".dev.r")); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath="git"; filename.r = "f_git.03_final.pull_rebase_push" |> paste0(c(".source.r",".dev.r")); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### @ git filter-repo --path-glob .pdf --invert-paths.sh ----
-subpath="git"; filename.r = "git filter-repo --path-glob .pdf --invert-paths.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-subpath="git"; filename.r = "git filter-repo --path-glob .pdf --invert-paths.sh"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath="git"; filename.r = "git filter-repo --path-glob .pdf --invert-paths.r"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath="git"; filename.r = "git filter-repo --path-glob .pdf --invert-paths.sh"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) Default Templates -----
@@ -209,62 +209,62 @@ subpath="git"; filename.r = "git filter-repo --path-glob .pdf --invert-paths.sh"
 # if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',env.custom$path$sourceTemplate.path.filename.ext, '""')  )}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### @ default.R -----
-# file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> shQuote(type="cmd") |> shell.exec()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-subpath="rstudio-prefs/templates"; filename.r = "default.R"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> shQuote(type="cmd") |> shell.exec()} else {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/default.R"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+subpath="rstudio-prefs/templates"; filename.r = "default.R"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### @ templates-00env.custom.minimum.Rmd -----
-# file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-# subpath="rstudio-prefs/templates"; filename.r = "templates-00env.custom.minimum.Rmd"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-file2edit = "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env.custom.minimum.Rmd"; if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file.edit(file2edit); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
-"templates-00env.custom.minimum.Rmd" |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# file2edit = paste0(env.custom$path$source_base,"/","rstudio-prefs/templates/templates-00env.custom.minimum.Rmd"); if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+# subpath="rstudio-prefs/templates"; filename.r = "templates-00env.custom.minimum.Rmd"; subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+file2edit = "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env.custom.minimum.Rmd"; if (.Platform$OS.type == "windows") {file2edit |> env.custom$env.internal$f_file.edit_vscode()} else {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)}
+"templates-00env.custom.minimum.Rmd" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env.custom$env.internal -----
-filename.r = "env.custom$env.internal" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "env.custom$env.internal" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# filename.r = "function.detachAllPackages" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-filename.r = "function.detachAllPackages.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# filename.r = "function.detachAllPackages" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "function.detachAllPackages.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-filename.r = "Encoding.txt"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-filename.r = "options.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-filename.r = "function.update.Rprofile.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-filename.r = "function.Sys.setenv.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "Encoding.txt"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "options.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "function.update.Rprofile.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "function.Sys.setenv.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-filename.r = "f_clipboard_path_BackSlash.to_URL.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "f_clipboard_path_BackSlash.to_URL.dev.r"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### \% f_path -----
 #### \% internal.f_path0.list_path_hierarchy -----
-filename.r = "internal.f_path0.list_path_hierarchy" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "internal.f_path0.list_path_hierarchy" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #### \% f_path.list_subpath -----
-filename.r = "f_path.list_subpath" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "f_path.list_subpath" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #### \% f_path.df_dirs_recursive.df_files -----
-filename.r = "f_path.df_dirs_recursive.df_files" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "f_path.df_dirs_recursive.df_files" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### \% f_file -----
 #### \% f_filename.ext.find_subpath -----
-filename.r = "f_filename.ext.find_subpath" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "f_filename.ext.find_subpath" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #### \% f_path.size_files -----
-filename.r = "f_path.size_files" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "f_path.size_files" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### \% f_df -----
 #### \% f_df.t.tribble_construct -----
-filename.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #### \% f_objectname.read.checkEntity -----
-filename.r = "f_objectname.read.checkEntity" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+filename.r = "f_objectname.read.checkEntity" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ##@ subpath = r"(Rdev/10_import_clean_datatype/13_missing_value)" |> str_replace_all("\\\\","/") -----
 #### \% data.NotNA_p_df -----
-subpath = r"(Rdev/60_communicate_report_export)"; filename.r = "data.NotNA_p_df" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath = r"(Rdev/10_import_clean_datatype/13_missing_value)"; filename.r = "data.NotNA_p_df" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ##@ subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/") -----
 #### \% data.CreateTableOne -----
-subpath = r"(Rdev/60_communicate_report_export)"; filename.r = "data.CreateTableOne" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+subpath = r"(Rdev/60_communicate_report_export)"; filename.r = "data.CreateTableOne" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); file.path(env.custom$path$source_base, subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
@@ -288,9 +288,9 @@ subpath = r"(Rdev/60_communicate_report_export)"; filename.r = "data.CreateTable
 #@@ START) basename(getwd()) ----
 list.files(pattern = "Rmd$") |> shQuote(type="cmd") |> paste0(collapse=",\n  ") %>% {paste0("c(", ., ")")} |> cat()
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-# filename.r = paste0("00env.custom","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" |> file.edit()") |> cat(); file.edit( file.path(subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# filename.r = paste0("01df_dirs_recursive.df_files","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" |> file.edit()") |> cat(); file.edit( file.path(subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# filename.r = paste0("10CodeBook","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" |> file.edit()") |> cat(); file.edit( file.path(subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# filename.r = paste0("00env.custom","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" %>% {.[file.exists(.)]} |> file.edit()") |> cat(); subpath.filename.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# filename.r = paste0("01df_dirs_recursive.df_files","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" %>% {.[file.exists(.)]} |> file.edit()") |> cat(); subpath.filename.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
+# filename.r = paste0("10CodeBook","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" %>% {.[file.exists(.)]} |> file.edit()") |> cat(); subpath.filename.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----
