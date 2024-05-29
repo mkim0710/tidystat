@@ -49,7 +49,7 @@ path4write = getwd()
 objectname = "tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list"
 # write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
-openxlsx::openXL(paste0(objectname,".xlsx"))
+if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
 ?read_excel
 

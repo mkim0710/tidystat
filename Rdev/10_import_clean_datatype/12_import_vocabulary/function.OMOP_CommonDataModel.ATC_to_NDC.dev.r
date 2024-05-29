@@ -192,7 +192,7 @@ path4write = getwd()
 objectname = "ATC_C02_to_NDC"
 write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
-openxlsx::openXL(paste0(objectname,".xlsx"))
+if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
 ATC_C02_to_NDC |> str() #-----
 # > ATC_C02_to_NDC |> str() #-----

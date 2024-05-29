@@ -175,7 +175,7 @@ path4write = getwd()
 objectname = "AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI"
 # write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
-openxlsx::openXL(paste0(objectname,".xlsx"))
+if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
 
 
