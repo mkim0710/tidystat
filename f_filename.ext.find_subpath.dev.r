@@ -11,7 +11,7 @@
 # "." |> normalizePath(winslash="/") |> browseURL()
 # paste0("[Working Files List] ",basename(getwd()),".r") |> file.edit()
 # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> shQuote(type="cmd") |> shell.exec()
-# "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env.custom.minimum.Rmd" |> shQuote(type="cmd") |> (\(.) shell( paste0('cmd /c ""', file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe")|>normalizePath(winslash="/"), '" "', ., '""') ) )()
+# "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd" |> shQuote(type="cmd") |> (\(.) shell( paste0('cmd /c ""', file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe")|>normalizePath(winslash="/"), '" "', ., '""') ) )()
 #|________________________________________________________________________________|#  ----
 #| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
 #| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
@@ -28,9 +28,9 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-if(!exists("env.custom", envir=.GlobalEnv))
-    assign("env.custom", new.env(), envir=.GlobalEnv)
+# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+if(!exists("env1", envir=.GlobalEnv))
+    assign("env1", new.env(), envir=.GlobalEnv)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -38,17 +38,17 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-## env.custom\$path ====
+## env1\$path ====
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
 # path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
 # path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
 # path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-if(!"path" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$path <- list()
-objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env.custom$path[[objectname]] = object;
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env.custom$path[[objectname]] = object;
-env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)
-objectname = "getwd"; object = getwd(); env.custom$path[[objectname]] = object;
-objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); env.custom$path[[objectname]] = object;
+if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env1$path[[objectname]] = object;
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env1$path[[objectname]] = object;
+env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)
+objectname = "getwd"; object = getwd(); env1$path[[objectname]] = object;
+objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); env1$path[[objectname]] = object;
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
@@ -56,32 +56,32 @@ subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 a
 if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "f_filename.ext.find_subpath"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-env.custom$path$subpath = subpath
-env.custom$path$sourcename = sourcename
-env.custom$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
-env.custom$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.Rmd")
-env.custom$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+env1$path$subpath = subpath
+env1$path$sourcename = sourcename
+env1$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
+env1$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.Rmd")
+env1$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
 cat("# ",'sourcename = "',sourcename,'"', "\n",
     "# ",sourcename,".dev.r", "\n",
     "# ",sourcename,".source.r", "\n",
-    '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
-    '# utils::browseURL("',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
-    '# source(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.source.r,'"))', "\n",
-    '# # source("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
-    '# # source("',env.custom$path$source_base_github,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
-    '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.dev.r,'"))', "\n",
-    '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.dev.Rmd,'"))', "\n",
-    '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.source.r,'"))', "\n",
+    '# utils::browseURL("',env1$path$source_base_local,"/",env1$path$subpath,'")', "\n",
+    '# utils::browseURL("',env1$path$source_base_github_blob,"/",env1$path$subpath.filename.dev.r,'")', "\n",
+    '# source(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.source.r,'"))', "\n",
+    '# # source("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "\n",
+    '# # source("',env1$path$source_base_github,"/",env1$path$subpath.filename.source.r,'")', "\n",
+    '# file.edit(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.dev.r,'"))', "\n",
+    '# file.edit(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.dev.Rmd,'"))', "\n",
+    '# file.edit(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.source.r,'"))', "\n",
     sep="")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+env1$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if(sourcename == "default.template") { warning('sourcename == "default.template"') } else {
-    # # if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.dev.r); env.custom$path$subpath.filename.dev.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-    # if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); env.custom$path$subpath.filename.dev.Rmd %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-    # if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.source.r); env.custom$path$subpath.filename.source.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-    file2create = env.custom$path$subpath.filename.dev.Rmd; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-    file2create = env.custom$path$subpath.filename.source.r; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env.custom$path$CurrentSource.path.filename.ext);
+    # # if(!file.exists(env1$path$subpath.filename.dev.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.dev.r); env1$path$subpath.filename.dev.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext);
+    # if(!file.exists(env1$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","templates-00env1.minimum.Rmd"),to=env1$path$subpath.filename.dev.Rmd); env1$path$subpath.filename.dev.Rmd %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext);
+    # if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.source.r); env1$path$subpath.filename.source.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext);
+    file2create = env1$path$subpath.filename.dev.Rmd; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env1$path$CurrentSource.path.filename.ext);
+    file2create = env1$path$subpath.filename.source.r; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env1$path$CurrentSource.path.filename.ext);
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -91,17 +91,17 @@ if(sourcename == "default.template") { warning('sourcename == "default.template"
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs"
-env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# Error in env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T) : 
+env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# Error in env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T) : 
 #   Error: filename.ext must have an extension.
 
 
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs.index100le10"
-env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # Searching: .                                                 	 at depth 0
 # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -174,8 +174,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs.index100le10.rds"
-env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # Searching: .                                                 	 at depth 0
 # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -184,8 +184,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # [1] "./data/fhs.index100le10.rds"
 
 filename.ext = "help.array.r"
-env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # Searching: .                                                 	 at depth 0
 # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -243,8 +243,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "does not exist.r"
-env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # Searching: .                                                 	 at depth 0
 # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -317,8 +317,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "tblID_gj3_jk.rds"
-env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = T)
+env1$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env1$path$source_base), print.intermediate = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env1$path$source_base), print.intermediate = T)
 # Searching: D:/OneDrive/[][Rproject]                          	 at depth 0
 # Searching: D:/OneDrive/[][Rproject]/github_tidystat          	 at depth 1; Queue length: 1
 # Searching: D:/OneDrive/[][Rproject]/Microsoft R Open 4.0.2   	 at depth 1; Queue length: 2
@@ -332,8 +332,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.cu
 # [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/tblID_gj3_jk.rds"
 
 filename.ext = "metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
-env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
+env1$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env1$path$source_base), print.intermediate = F, findMultiple = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env1$path$source_base), print.intermediate = F, findMultiple = T)
 # [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"   
 # [2] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
 # [3] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_10/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"
@@ -341,8 +341,8 @@ env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.cu
 # [5] "D:/OneDrive/[][Rproject]/Rproject_NSC0219_01/metadata_id_age() flowchart_inclusion_exclusions_v3.4()@ASROCKX300RYZEN -dev.Rmd"  
 
 filename.ext = "tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
-env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
-# > env.custom$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env.custom$path$source_base), print.intermediate = F, findMultiple = T)
+env1$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env1$path$source_base), print.intermediate = F, findMultiple = T)
+# > env1$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env1$path$source_base), print.intermediate = F, findMultiple = T)
 # [1] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"   
 # [2] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_01/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"
 # [3] "D:/OneDrive/[][Rproject]/Rproject_HEALS0215_10/tidy_metadata_id_age()@ASROCKX300RYZEN -dev.Rmd"

@@ -5,39 +5,39 @@
 library(tidyverse)
 getwd() |> dput() #----
 
-if(!exists("env.custom", envir=.GlobalEnv))
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-env.custom$getwd = getwd()
-# env.custom$path0 = "../../[][Rproject]"
-env.custom$path0db = "D:/OneDrive - SNU/[][SASproject]"
-env.custom$data_base = "KNHIS_HEALS0215"
-env.custom$data_suffix = "_01"
-env.custom$path1db = paste0(env.custom$path0db, "/", env.custom$data_base, env.custom$data_suffix)
+if(!exists("env1", envir=.GlobalEnv))
+    assign("env1", new.env(), envir=.GlobalEnv)
+env1$getwd = getwd()
+# env1$path0 = "../../[][Rproject]"
+env1$path0db = "D:/OneDrive - SNU/[][SASproject]"
+env1$data_base = "KNHIS_HEALS0215"
+env1$data_suffix = "_01"
+env1$path1db = paste0(env1$path0db, "/", env1$data_base, env1$data_suffix)
 
-env.custom$path0 = "D:/OneDrive - SNU/[][Rproject]"
-env.custom$project_base = "Rproject_HEALS0215"
-# env.custom$project_suffix = "GJ3"
-env.custom$path1 = paste0(env.custom$path0, "/", env.custom$project_base, env.custom$data_suffix)
-# env.custom$path2 = paste0(env.custom$path1, "/", env.custom$project_base, env.custom$data_suffix, env.custom$project_suffix)
+env1$path0 = "D:/OneDrive - SNU/[][Rproject]"
+env1$project_base = "Rproject_HEALS0215"
+# env1$project_suffix = "GJ3"
+env1$path1 = paste0(env1$path0, "/", env1$project_base, env1$data_suffix)
+# env1$path2 = paste0(env1$path1, "/", env1$project_base, env1$data_suffix, env1$project_suffix)
 
-path4read = env.custom$path1db
-path4write = env.custom$path1
+path4read = env1$path1db
+path4write = env1$path1
 path4read |> dput() #----
 path4write |> dput() #----
 
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
-# attach(env.custom)
+# attach(env1)
 
 # regex4filename = "\\.sas7bdat(\\.xz)?$"
 regex4filename = "\\.sas7bdat\\.xz$"
 list.files(path4read) %>% grep(regex4filename, ., value = T) |> dput() #----
-env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
+env1$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 
 regex4filename = "\\.sas7bdat$"
 list.files(path4read) %>% grep(regex4filename, ., value = T) |> dput() #----
-env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
+env1$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 
 
 
@@ -59,13 +59,13 @@ path4write = getwd()
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
-# attach(env.custom)
+# attach(env1)
 
 # regex4filename = "\\.(rdata|rda|rds)$"
 # regex4filename = "\\.rds$"
 # regex4filename = "\\.sas7bdat(\\.xz)?$"
 regex4filename = "\\.sas7bdat$"
-env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
+env1$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 filenames |> dput() #----
 

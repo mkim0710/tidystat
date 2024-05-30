@@ -15,7 +15,7 @@
 # "." |> normalizePath(winslash="/") |> browseURL()
 # paste0("[Working Files List] ",basename(getwd()),".r") |> file.edit()
 # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> shQuote(type="cmd") |> shell.exec()
-# "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env.custom.minimum.Rmd" |> shQuote(type="cmd") |> (\(.) shell( paste0('cmd /c ""', file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe")|>normalizePath(winslash="/"), '" "', ., '""') ) )()
+# "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd" |> shQuote(type="cmd") |> (\(.) shell( paste0('cmd /c ""', file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe")|>normalizePath(winslash="/"), '" "', ., '""') ) )()
 #|________________________________________________________________________________|#  ----
 #| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
 #| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
@@ -32,9 +32,9 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-if(!exists("env.custom", envir=.GlobalEnv))
-    assign("env.custom", new.env(), envir=.GlobalEnv)
+# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+if(!exists("env1", envir=.GlobalEnv))
+    assign("env1", new.env(), envir=.GlobalEnv)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -42,17 +42,17 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-## env.custom\$path ====
+## env1\$path ====
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
 # path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
 # path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
 # path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-if(!"path" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$path <- list()
-objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env.custom$path[[objectname]] = object;
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env.custom$path[[objectname]] = object;
-env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)
-objectname = "getwd"; object = getwd(); env.custom$path[[objectname]] = object;
-objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); env.custom$path[[objectname]] = object;
+if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env1$path[[objectname]] = object;
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env1$path[[objectname]] = object;
+env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)
+objectname = "getwd"; object = getwd(); env1$path[[objectname]] = object;
+objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); env1$path[[objectname]] = object;
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
@@ -60,32 +60,32 @@ subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 a
 if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "f_df.t.tribble_construct"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# env.custom$path$subpath = subpath
-# env.custom$path$sourcename = sourcename
-# env.custom$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
-# env.custom$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.Rmd")
-# env.custom$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
+# env1$path$subpath = subpath
+# env1$path$sourcename = sourcename
+# env1$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
+# env1$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.Rmd")
+# env1$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
 # cat("# ",'sourcename = "',sourcename,'"', "\n",
 #     "# ",sourcename,".dev.r", "\n",
 #     "# ",sourcename,".source.r", "\n",
-#     '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
-#     '# utils::browseURL("',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
-#     '# source(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.source.r,'"))', "\n",
-#     '# # source("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
-#     '# # source("',env.custom$path$source_base_github,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
-#     '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
-#     '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.dev.Rmd,'")', "\n",
-#     '# file.edit("',env.custom$path$source_base_local,"/",env.custom$path$subpath.filename.source.r,'")', "\n",
+#     '# utils::browseURL("',env1$path$source_base_local,"/",env1$path$subpath,'")', "\n",
+#     '# utils::browseURL("',env1$path$source_base_github_blob,"/",env1$path$subpath.filename.dev.r,'")', "\n",
+#     '# source(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.source.r,'"))', "\n",
+#     '# # source("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "\n",
+#     '# # source("',env1$path$source_base_github,"/",env1$path$subpath.filename.source.r,'")', "\n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.dev.r,'")', "\n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.dev.Rmd,'")', "\n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "\n",
 #     sep="")
 # #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+# env1$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
 # #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # if(sourcename == "default.template") { warning('sourcename == "default.template"') } else {
-#     # # if(!file.exists(env.custom$path$subpath.filename.dev.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.dev.r); env.custom$path$subpath.filename.dev.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-#     # if(!file.exists(env.custom$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","templates-00env.custom.minimum.Rmd"),to=env.custom$path$subpath.filename.dev.Rmd); env.custom$path$subpath.filename.dev.Rmd %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-#     # if(!file.exists(env.custom$path$subpath.filename.source.r)) file.copy(from=file.path(env.custom$path$source_base,"rstudio-prefs","templates","default.R"),to=env.custom$path$subpath.filename.source.r); env.custom$path$subpath.filename.source.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-#     file2create = env.custom$path$subpath.filename.dev.Rmd; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env.custom$path$CurrentSource.path.filename.ext);
-#     file2create = env.custom$path$subpath.filename.source.r; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env.custom$path$CurrentSource.path.filename.ext);
+#     # # if(!file.exists(env1$path$subpath.filename.dev.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.dev.r); env1$path$subpath.filename.dev.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     # if(!file.exists(env1$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","templates-00env1.minimum.Rmd"),to=env1$path$subpath.filename.dev.Rmd); env1$path$subpath.filename.dev.Rmd %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     # if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.source.r); env1$path$subpath.filename.source.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     file2create = env1$path$subpath.filename.dev.Rmd; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     file2create = env1$path$subpath.filename.source.r; if(!file.exists(file2create)) file.create(file2create); file.edit(file2create); file.edit(env1$path$CurrentSource.path.filename.ext);
 # }
 # #|________________________________________________________________________________|#  
 # #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -96,28 +96,28 @@ library(tidyverse)
 
 
 
-if(!exists("env.custom", envir=.GlobalEnv))
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-# env.custom = env.custom %>% as.environment
-# if(!exists("env.internal", envir = env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
-# if(!"env.internal" %in% names(env.custom)) eval(parse(text = "env.custom$env.internal = new.env()"), envir=.GlobalEnv)
-if(!"env.internal" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$env.internal <- new.env()
-if(!"path" %in% names(env.custom)) {
-    env.custom$path = list()
-    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env.custom$path[[objectname]] = object;
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env.custom$path[[objectname]] = object;
-    env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
+if(!exists("env1", envir=.GlobalEnv))
+    assign("env1", new.env(), envir=.GlobalEnv)
+# env1 = env1 %>% as.environment
+# if(!exists("env.internal", envir = env1)) eval(parse(text = "env1$env.internal = new.env()"), envir=.GlobalEnv)
+# if(!"env.internal" %in% names(env1)) eval(parse(text = "env1$env.internal = new.env()"), envir=.GlobalEnv)
+if(!"env.internal" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$env.internal <- new.env()
+if(!"path" %in% names(env1)) {
+    env1$path = list()
+    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env1$path[[objectname]] = object;
+    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env1$path[[objectname]] = object;
+    env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
 } 
 
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
-# globalVariables(c(".rs.readUiPref","env.custom$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
+# globalVariables(c(".rs.readUiPref","env1$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
 # env.internal.objectname = ".global_datapasta_env"
-# packageStartupMessage(paste0("Loading: ", "env.custom$env.internal$", env.internal.objectname)); 
-env.custom$env.internal$.global_datapasta_env <- new.env()
-env.custom$env.internal$.global_datapasta_env$decimal_mark <- "."
-env.custom$env.internal$.global_datapasta_env$max_rows <- 200
-env.custom$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname)); 
+env1$env.internal$.global_datapasta_env <- new.env()
+env1$env.internal$.global_datapasta_env$decimal_mark <- "."
+env1$env.internal$.global_datapasta_env$max_rows <- 200
+env1$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"
 #' tribble_paste
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and paste in at the cursor location in tribble format.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
@@ -127,16 +127,16 @@ env.custom$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not a
 #' @export
 #'
 # env.internal.objectname = "tribble_paste"
-# packageStartupMessage(paste0("Loading: ", "env.custom$env.internal$", env.internal.objectname)); 
-env.custom$env.internal$tribble_paste <- function(input_table, output_context = env.custom$env.internal$guess_output_context()){
-  output <- env.custom$env.internal$tribble_construct(input_table, oc = output_context)
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname)); 
+env1$env.internal$tribble_paste <- function(input_table, output_context = env1$env.internal$guess_output_context()){
+  output <- env1$env.internal$tribble_construct(input_table, oc = output_context)
 
   switch(output_context$output_mode,
          rstudioapi = rstudioapi::insertText(output),
          console = cat(output))
 }
 
-#' env.custom$env.internal$tribble_format
+#' env1$env.internal$tribble_format
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and paste to the clipboard in tribble format.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
 #' @param output_context an optional output context that defines the target and indentation. Default is console.
@@ -145,14 +145,14 @@ env.custom$env.internal$tribble_paste <- function(input_table, output_context = 
 #' @export
 #'
 # env.internal.objectname = "tribble_format"
-# packageStartupMessage(paste0("Loading: ", "env.custom$env.internal$", env.internal.objectname)); 
-env.custom$env.internal$tribble_format <- function(input_table, output_context = env.custom$env.internal$console_context()){
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname)); 
+env1$env.internal$tribble_format <- function(input_table, output_context = env1$env.internal$console_context()){
   if(!interactive()) stop("Cannot write to clipboard in non-interactive sessions.")
-  output <- env.custom$env.internal$tribble_construct(input_table, oc = output_context)
+  output <- env1$env.internal$tribble_construct(input_table, oc = output_context)
   clipr::write_clip(output)
 }
 
-#' env.custom$env.internal$tribble_construct
+#' env1$env.internal$tribble_construct
 #' @description Parse the current clipboard as a table, or use the table argument supplied, and return as a character string.
 #' @param input_table an optional input `data.frame`. If `input_table` is supplied, then nothing is read from the clipboard.
 #' @param oc an optional output context that defines the target and indentation. Default is console.
@@ -160,10 +160,10 @@ env.custom$env.internal$tribble_format <- function(input_table, output_context =
 #' @return The parsed table text.
 #' @export
 #'
-env.custom$env.internal$tribble_construct <- function(input_table, oc = env.custom$env.internal$console_context()){
+env1$env.internal$tribble_construct <- function(input_table, oc = env1$env.internal$console_context()){
   # Determine input. Either clipboard or supplied table.
   if(missing(input_table)){
-    input_table <- env.custom$env.internal$read_clip_tbl_guess()
+    input_table <- env1$env.internal$read_clip_tbl_guess()
 
     if(is.null(input_table)){
       cat("Could not paste clipboard as tibble. Text could not be parsed as table.")
@@ -176,8 +176,8 @@ env.custom$env.internal$tribble_construct <- function(input_table, oc = env.cust
       cat("Could not format input_table as table. Unexpected class.")
       return(NULL)
     }
-    if(nrow(input_table) >= env.custom$env.internal$.global_datapasta_env$max_rows){
-      cat(paste0("Supplied large input_table (>= ",env.custom$env.internal$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env.custom$env.internal$dp_set_max_rows(n) to increase the limit."))
+    if(nrow(input_table) >= env1$env.internal$.global_datapasta_env$max_rows){
+      cat(paste0("Supplied large input_table (>= ",env1$env.internal$.global_datapasta_env$max_rows," rows). Was this a mistake? Use env1$env.internal$dp_set_max_rows(n) to increase the limit."))
       return(NULL)
     }
     input_table_types <- lapply(input_table, class)
@@ -192,7 +192,7 @@ env.custom$env.internal$tribble_construct <- function(input_table, oc = env.cust
 
   # Find the max length of data as string in each column
   col_widths <- mapply(input_table,
-                       FUN = env.custom$env.internal$column_width,
+                       FUN = env1$env.internal$column_width,
                        column_type = input_table_types
                        )
 
@@ -226,7 +226,7 @@ env.custom$env.internal$tribble_construct <- function(input_table, oc = env.cust
              paste0(
                paste0(
                  mapply(
-                   env.custom$env.internal$pad_to,
+                   env1$env.internal$pad_to,
                    paste0("~",input_names_valid),
                    col_widths
                  ),
@@ -244,7 +244,7 @@ env.custom$env.internal$tribble_construct <- function(input_table, oc = env.cust
                                    paste0(
                                      paste0(
                                        mapply(
-                                         env.custom$env.internal$render_type_pad_to,
+                                         env1$env.internal$render_type_pad_to,
                                          col,
                                          input_table_types,
                                          col_widths
@@ -273,7 +273,7 @@ env.custom$env.internal$tribble_construct <- function(input_table, oc = env.cust
         strrep(" ",oc$indent_context+oc$nspc),
         input_names_valid,
         " = ",
-        mapply(env.custom$env.internal$deparse_as,
+        mapply(env1$env.internal$deparse_as,
                input_table,
                input_table_types),
         collapse = ",\n"
@@ -289,11 +289,11 @@ env.custom$env.internal$tribble_construct <- function(input_table, oc = env.cust
   return(output)
 }
 
-env.custom$env.internal$deparse_as <- function(column, column_type) {
+env1$env.internal$deparse_as <- function(column, column_type) {
   deparse(methods::as(column, column_type))
 }
 
-env.custom$env.internal$column_width <- function(column, column_type) {
+env1$env.internal$column_width <- function(column, column_type) {
 
   if (length(column) == 0)
     return(nchar(deparse(column)))
@@ -301,7 +301,7 @@ env.custom$env.internal$column_width <- function(column, column_type) {
     return(
       suppressWarnings(
         max(vapply(X = column,
-                   FUN = env.custom$env.internal$nchar_type,
+                   FUN = env1$env.internal$nchar_type,
                    FUN.VALUE = numeric(1),
                    df_col_type = column_type
                    ),
@@ -313,24 +313,24 @@ env.custom$env.internal$column_width <- function(column, column_type) {
 
 
 
-#' env.custom$env.internal$nchar_type
+#' env1$env.internal$nchar_type
 #'
 #' @param df_col_row a character string
 #' @param df_col_type the type the string will be converted to.
 #'
 #' @return The number of characters wide this data would be in when rendered in text
-env.custom$env.internal$nchar_type <- function(df_col_row, df_col_type){
+env1$env.internal$nchar_type <- function(df_col_row, df_col_type){
   n_chars <- nchar(df_col_row)
 
   if(length(df_col_type) > 1) df_col_type <- "complex" # We can't really handle it.
 
   add_chars <- switch(df_col_type,
                       "integer" = 1, #for the "L",
-                      "character" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "date" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "datetime" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
-                      "factor" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row),
-                      "complex" = 2 + env.custom$env.internal$nquote_str(df_col_row) + env.custom$env.internal$nslash_str(df_col_row), #Assume we print as a quoted char
+                      "character" = 2 + env1$env.internal$nquote_str(df_col_row) + env1$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "date" = 2 + env1$env.internal$nquote_str(df_col_row) + env1$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "datetime" = 2 + env1$env.internal$nquote_str(df_col_row) + env1$env.internal$nslash_str(df_col_row), #2 for outer quotes +1 "\" for each quote and slash in string
+                      "factor" = 2 + env1$env.internal$nquote_str(df_col_row) + env1$env.internal$nslash_str(df_col_row),
+                      "complex" = 2 + env1$env.internal$nquote_str(df_col_row) + env1$env.internal$nslash_str(df_col_row), #Assume we print as a quoted char
                       0) #0 for other types
   return(n_chars + add_chars)
 
@@ -341,25 +341,25 @@ env.custom$env.internal$nchar_type <- function(df_col_row, df_col_type){
 #' @param char_vec the string to count quotes in
 #'
 #' @return a number, possibly 0.
-env.custom$env.internal$nquote_str <- function(char_vec){
+env1$env.internal$nquote_str <- function(char_vec){
   sum(gregexpr(pattern = "(\"|\')", text = char_vec)[[1]] > 0)
 }
 
-env.custom$env.internal$nslash_str <- function(char_vec){
+env1$env.internal$nslash_str <- function(char_vec){
   sum(gregexpr(pattern = "\\\\", text = char_vec)[[1]] > 0)
 }
-#' env.custom$env.internal$pad_to
+#' env1$env.internal$pad_to
 #' @description Left pad string to a certain size. A helper function for getting spacing in table correct.
 #' @param char_vec character vector.
 #' @param char_length length to pad to.
 #'
 #' @return char_vec left-padded with spaces to char_length.
 #'
-env.custom$env.internal$pad_to <-function(char_vec, char_length){
+env1$env.internal$pad_to <-function(char_vec, char_length){
   paste0(strrep(" ",char_length - nchar(char_vec)),char_vec)
 }
 
-#' env.custom$env.internal$render_type
+#' env1$env.internal$render_type
 #'
 #' @description Renders a character vector as R types for pasting into Rstudio.
 #' Strings are quoted. Numbers, NA, logicals etc are not.
@@ -371,7 +371,7 @@ env.custom$env.internal$pad_to <-function(char_vec, char_length){
 #' character vector. The type attribute contains the type guessed by `readr`.
 #'
 #'
-env.custom$env.internal$render_type <- function(char_vec, char_type){
+env1$env.internal$render_type <- function(char_vec, char_type){
 
   if(length(char_type) > 1) char_type <- "complex"
   # We can't handle special classes. Just fall through defaults.
@@ -389,7 +389,7 @@ env.custom$env.internal$render_type <- function(char_vec, char_type){
     output <- switch(char_type,
                      "integer" = paste0(as.integer(char_vec),"L"),
                      "double" = as.double(char_vec),
-                     "number" = readr::parse_number(char_vec, locale = readr::locale(decimal_mark = env.custom$env.internal$.global_datapasta_env$decimal_mark)),
+                     "number" = readr::parse_number(char_vec, locale = readr::locale(decimal_mark = env1$env.internal$.global_datapasta_env$decimal_mark)),
                      "numeric" = as.double(char_vec),
                      "logical" = as.logical(char_vec),
                      "factor" = ifelse(nchar(char_vec)!=0, deparse(char_vec), "NA"),
@@ -402,7 +402,7 @@ env.custom$env.internal$render_type <- function(char_vec, char_type){
 }
 
 
-#' env.custom$env.internal$render_type_pad_to
+#' env1$env.internal$render_type_pad_to
 #' @description Based on a type and length, render a character string as the type in text.
 #' Pad to the desired length.
 #'
@@ -413,11 +413,11 @@ env.custom$env.internal$render_type <- function(char_vec, char_type){
 #' @return a string containing the representation of char_vec as char_type in the RStudio source editor,
 #' left-padded with spaces to char_length.
 #'
-env.custom$env.internal$render_type_pad_to <- function(char_vec, char_type, char_length){
-    env.custom$env.internal$pad_to(env.custom$env.internal$render_type(char_vec, char_type), char_length)
+env1$env.internal$render_type_pad_to <- function(char_vec, char_type, char_length){
+    env1$env.internal$pad_to(env1$env.internal$render_type(char_vec, char_type), char_length)
 }
 
-#' env.custom$env.internal$guess_sep
+#' env1$env.internal$guess_sep
 #'
 #' @param char_vec a table from the clipboard in character vector form.
 #'
@@ -429,7 +429,7 @@ env.custom$env.internal$render_type_pad_to <- function(char_vec, char_type, char
 #'
 #' @return the separator selected to parse char_vec as a table
 #'
-env.custom$env.internal$guess_sep <- function(char_vec){
+env1$env.internal$guess_sep <- function(char_vec){
   candidate_seps <- c(",","\t","\\|",";")
   candidate_seps_pattern <- paste0("([", paste0(candidate_seps, collapse = ""),"])$", collapse = "")
   table_sample <- char_vec[1:min(length(char_vec),10)]
@@ -465,7 +465,7 @@ env.custom$env.internal$guess_sep <- function(char_vec){
 #' and it tries to guess the separator.
 #'
 #' @return a parsed table from the clipboard. Separator is guessed.
-env.custom$env.internal$read_clip_tbl_guess <- function (x = NULL, ...)
+env1$env.internal$read_clip_tbl_guess <- function (x = NULL, ...)
 {
   if (is.null(x)) {
     # if no text is provided, look in clipboard or RStudio editor
@@ -480,7 +480,7 @@ env.custom$env.internal$read_clip_tbl_guess <- function (x = NULL, ...)
   if (is.null(.dots$header))
     .dots$header <- FALSE
   if (is.null(.dots$sep)){
-    .dots$sep <- env.custom$env.internal$guess_sep(x)
+    .dots$sep <- env1$env.internal$guess_sep(x)
   }
   if (is.null(.dots$colClasses))
     .dots$colClasses <- "character"
@@ -515,7 +515,7 @@ env.custom$env.internal$read_clip_tbl_guess <- function (x = NULL, ...)
 
 
 
-#' env.custom$env.internal$dp_set_decimal_mark
+#' env1$env.internal$dp_set_decimal_mark
 #'
 #' @param mark The decimal mark to use when parsing "number" type data, as guessed by readr::guess_parser.
 #' @description A function to optionally set the decimal mark if in a locale where it is not `.`. Will allow "3,14" to be parsed as 3.14, normally would be parsed as 314.
@@ -523,49 +523,49 @@ env.custom$env.internal$read_clip_tbl_guess <- function (x = NULL, ...)
 #'
 #' @return NULL.
 #' @export
-env.custom$env.internal$dp_set_decimal_mark <- function(mark){
-  env.custom$env.internal$.global_datapasta_env$decimal_mark <- mark
+env1$env.internal$dp_set_decimal_mark <- function(mark){
+  env1$env.internal$.global_datapasta_env$decimal_mark <- mark
   invisible(NULL)
 }
 
-#' env.custom$env.internal$dp_set_max_rows
+#' env1$env.internal$dp_set_max_rows
 #'
-#' @param num_rows The number of rows of an input at which any of env.custom$env.internal$tribble_construct() or df_construct() will abort parsing. Datapasta is untested on large tables. Use at own risk.
+#' @param num_rows The number of rows of an input at which any of env1$env.internal$tribble_construct() or df_construct() will abort parsing. Datapasta is untested on large tables. Use at own risk.
 #'
 #' @return NULL
 #' @export
-env.custom$env.internal$dp_set_max_rows <- function(num_rows){
-  env.custom$env.internal$.global_datapasta_env$max_rows <- num_rows
+env1$env.internal$dp_set_max_rows <- function(num_rows){
+  env1$env.internal$.global_datapasta_env$max_rows <- num_rows
   invisible(NULL)
 }
 
-#' env.custom$env.internal$guess_output_context
+#' env1$env.internal$guess_output_context
 #'
 #' @description Return the a list containing the guessed output target context, either rstudio or the console.
 #'
 #' @return a list containing the output target, space size of indent, and number of indents at context.
-env.custom$env.internal$guess_output_context <- function(){
+env1$env.internal$guess_output_context <- function(){
   if(requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()){
-    output_context <- env.custom$env.internal$rstudio_context()
+    output_context <- env1$env.internal$rstudio_context()
   }else{
     # rstudioapi unavailable. fallback to console
-    output_context <- env.custom$env.internal$console_context()
+    output_context <- env1$env.internal$console_context()
   }
   output_context
 }
 
-#' @rdname env.custom$env.internal$custom_context
+#' @rdname env1$env.internal$custom_context
 #' @export
 #'
-env.custom$env.internal$clipboard_context <- function(){
+env1$env.internal$clipboard_context <- function(){
   output_context <- list(output_mode = "clipboard", nspc = 2, indent_context = 0, indent_head = FALSE)
   output_context
 }
 
-#' @rdname env.custom$env.internal$custom_context
+#' @rdname env1$env.internal$custom_context
 #' @export
 #'
-env.custom$env.internal$rstudio_context <- function(){
+env1$env.internal$rstudio_context <- function(){
   output_context <- list()
   output_context$indent_head <- FALSE #head already at cursor
   output_context$output_mode <- "rstudioapi"
@@ -580,26 +580,26 @@ env.custom$env.internal$rstudio_context <- function(){
   output_context
 }
 
-#' @rdname env.custom$env.internal$custom_context
+#' @rdname env1$env.internal$custom_context
 #' @export
 #'
-env.custom$env.internal$console_context <- function(){
+env1$env.internal$console_context <- function(){
   output_context <- list(output_mode = "console", nspc = 2, indent_context = 0, indent_head = FALSE)
   output_context
 }
 
-#' @rdname env.custom$env.internal$custom_context
+#' @rdname env1$env.internal$custom_context
 #' @export
 #'
-env.custom$env.internal$markdown_context <- function(){
+env1$env.internal$markdown_context <- function(){
   output_context <- list(output_mode = "console", nspc = 2, indent_context = 4, indent_head = TRUE)
   output_context
 }
 
-#' env.custom$env.internal$custom_context
+#' env1$env.internal$custom_context
 #'
 #' @description the _context functions define lists of parameters for text formatting.
-#' The specific contexts return hard-coded values appropriate to the context they describe, while env.custom$env.internal$custom_context allows definition of new contexts for custom formatting.
+#' The specific contexts return hard-coded values appropriate to the context they describe, while env1$env.internal$custom_context allows definition of new contexts for custom formatting.
 #' @param output_mode A named output mode, controls the target of the _paste functions options are "rstudioapi" or "console"
 #' @param nspc The number of spaces for each indent level in the output context
 #' @param indent_context The number of spaces applied initially to all lines in the output context
@@ -607,7 +607,7 @@ env.custom$env.internal$markdown_context <- function(){
 #' @return an output context. An input to _paste, _format, _construct functions used to format whitespace.
 #' @export
 #'
-env.custom$env.internal$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
+env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
   output_context <- list(output_mode = output_mode, nspc = nspc, indent_context = indent_context, indent_head = indent_head)
   output_context
 }
@@ -616,40 +616,40 @@ env.custom$env.internal$custom_context <- function(output_mode = "console", nspc
 
 
 #@ global functions ----
-# fun.tribble_paste = env.custom$env.internal$tribble_paste
+# fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
 objectname = "f_df.tribble_construct"
-packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
-env.custom$f_df.tribble_construct = function(df) {
-    out = env.custom$env.internal$tribble_construct(df)
+packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
+env1$f_df.tribble_construct = function(df) {
+    out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
 objectname = "f_df.transpose"
-packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
-env.custom$f_df.transpose = function(df, varname4rowname = "varname") {
+packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
+env1$f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }
 
 objectname = "f_df.t.tribble_construct"
-packageStartupMessage(paste0("Loading: ", "env.custom$", objectname)); 
-env.custom$f_df.t.tribble_construct = function(df) {
-    out = env.custom$f_df.transpose(df)
-    out = env.custom$env.internal$tribble_construct(out)
+packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
+env1$f_df.t.tribble_construct = function(df) {
+    out = env1$f_df.transpose(df)
+    out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
 
 
 
-#@ for (env.custom.dependancy in c("")) { -----
-for (env.custom.dependancy in c("f_path.size_files")) {
-    if(!env.custom.dependancy %in% names(env.custom)) {
+#@ for (env1.dependancy in c("")) { -----
+for (env1.dependancy in c("f_path.size_files")) {
+    if(!env1.dependancy %in% names(env1)) {
         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
-        sourcename = env.custom.dependancy
-        source(file.path(env.custom$path$source_base,"",paste0(sourcename,".source.r")))
+        sourcename = env1.dependancy
+        source(file.path(env1$path$source_base,"",paste0(sourcename,".source.r")))
     }
 }
 
@@ -657,15 +657,15 @@ for (env.custom.dependancy in c("f_path.size_files")) {
 
 #@ end -----
 
-# ls.str(env.custom) #-----
-# ls.str(env.custom$env.internal) #-----
-# # > ls.str(env.custom) #-----
+# ls.str(env1) #-----
+# ls.str(env1$env.internal) #-----
+# # > ls.str(env1) #-----
 # # env.internal : <environment: 0x000001d6104168f8> 
 # # f_df.transpose : function (df, varname4rowname = "varname")  
 # # f_path.size_files : function (path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
 # # f_df.t.tribble_construct : function (df)  
 # # f_df.tribble_construct : function (df)  
-# # > ls.str(env.custom$env.internal) #-----
+# # > ls.str(env1$env.internal) #-----
 # # clipboard_context : function ()  
 # # column_width : function (column, column_type)  
 # # console_context : function ()  
@@ -684,9 +684,9 @@ for (env.custom.dependancy in c("f_path.size_files")) {
 # # render_type : function (char_vec, char_type)  
 # # render_type_pad_to : function (char_vec, char_type, char_length)  
 # # rstudio_context : function ()  
-# # tribble_construct : function (input_table, oc = env.custom$env.internal$console_context())  
-# # tribble_format : function (input_table, output_context = env.custom$env.internal$console_context())  
-# # tribble_paste : function (input_table, output_context = env.custom$env.internal$guess_output_context())  
+# # tribble_construct : function (input_table, oc = env1$env.internal$console_context())  
+# # tribble_format : function (input_table, output_context = env1$env.internal$console_context())  
+# # tribble_paste : function (input_table, output_context = env1$env.internal$guess_output_context())  
 
 
 

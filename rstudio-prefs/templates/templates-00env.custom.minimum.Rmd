@@ -140,124 +140,124 @@ knitr::opts_knit$set(global.par = TRUE)
 
 
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
-if(!exists("env.custom", envir=.GlobalEnv)) 
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-if(!"info" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$info <- list()
-env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep="")
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
+env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
 
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
-if(!exists("env.custom", envir=.GlobalEnv)) 
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-## env.custom\$path ====
-if(!"path" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$path <- list()
-objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
-## env.custom\$env.internal ====
-sourcename = "env.custom$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-#### env.custom\$f_df.t.tribble_construct() ====
-sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+## env1\$path ====
+if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
+env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
+## env1\$env.internal ====
+sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+#### env1\$f_df.t.tribble_construct() ====
+sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
 
-<font size="3">\% env.custom</font>\
+<font size="3">\% env1</font>\
 
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
-if(!exists("env.custom", envir=.GlobalEnv)) 
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-if(!"info" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$info <- list()
-#### env.custom\$info\$get_system_info() ====
-sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-env.custom$info$info_system_info = env.custom$info$get_system_info()
-# str(env.custom$info$info_system_info)
-CodeText = "env.custom$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-CodeText = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-# CodeText = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-env.custom$info$info_software_versions = env.custom$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
-# str(env.custom$info$info_software_versions)
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
+#### env1\$info\$get_system_info() ====
+sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+env1$info$info_system_info = env1$info$get_system_info()
+# str(env1$info$info_system_info)
+CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
+# str(env1$info$info_software_versions)
 ```
 
 
-###### env.custom\$info\$DocumentTitle1 ====
+###### env1\$info\$DocumentTitle1 ====
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
-env.custom$info$DocumentTitle0 = paste0("00env.custom.minimum","-",basename(getwd()))
-env.custom$info$DocumentTitle1 = paste0(env.custom$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
-cat(env.custom$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
-    env.custom$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
-    env.custom$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
-    env.custom$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     sep="")
 ```
 
 
-###### env.custom\$path ====
+###### env1\$path ====
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 # cat(" getwd() == "); dput(getwd()) #----
-objectname = "getwd"; object = getwd(); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
+objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
+objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-paste0(env.custom$path$path1,"/",paste0("[Working Files List] ",basename(getwd()),".r")) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env.custom$path$CurrentSource.path.filename.ext)
-# env.custom$path$project_base = "Rproject_HEALS0215"
-# env.custom$path$data_suffix = "_01"
-# # env.custom$path$data_suffix = ""
-# env.custom$path$project_suffix = "GJ3"
+env1$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+paste0(env1$path$path1,"/",paste0("[Working Files List] ",basename(getwd()),".r")) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)
+# env1$path$project_base = "Rproject_HEALS0215"
+# env1$path$data_suffix = "_01"
+# # env1$path$data_suffix = ""
+# env1$path$project_suffix = "GJ3"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# env.custom$path$path4read = file.path(env.custom$path$path0, paste0(env.custom$path$project_base, env.custom$path$data_suffix))
-# env.custom$path$path4write = file.path(env.custom$path$path4read, paste0(env.custom$path$project_base, env.custom$path$data_suffix, env.custom$path$project_suffix))
-env.custom$path$path4read = ifelse(is.na(env.custom$path$path1), getwd(), env.custom$path$path1)
-env.custom$path$path4write = getwd()
-cat(" > str(env.custom$path)\n"); str(env.custom$path, max.level = 1, give.attr = F)  
-path4read  = env.custom$path$path4read
-path4write = env.custom$path$path4write
+# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$path4write = getwd()
+cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
+path4read  = env1$path$path4read
+path4write = env1$path$path4write
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----
 ```
 
 
-#### env.custom\$env.internal\$f_path.df_dirs_recursive.df_files() ----
+#### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----
 ```{r dfDIRsRecursive-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
-# #### env.custom\$env.internal\$f_path.df_dirs_recursive.df_files() ----
-# sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-# env.custom$path$df_dirs_recursive.df_files = env.custom$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
-# env.custom$path$print_tree_path = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
+# #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----
+# sourcename = "f_path.df_dirs_recursive.df_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
+# env1$path$print_tree_path = env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
-# # env.custom$path$print_tree_path |> cat()
-# env.custom$path$print_tree_path_files.codes = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
+# # env1$path$print_tree_path |> cat()
+# env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
-# # env.custom$path$print_tree_path_files.codes |> cat()
-# env.custom$path$print_tree_path_files.data = env.custom$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
+# # env1$path$print_tree_path_files.codes |> cat()
+# env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
-# env.custom$path$print_tree_path_files.data |> cat()
+# env1$path$print_tree_path_files.data |> cat()
 ```
 
 
-#### env.custom\$f_path.size_files() ----
+#### env1\$f_path.size_files() ----
 ```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-# #### env.custom\$f_path.size_files() ----
-# sourcename = "f_path.size_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-# #### env.custom\$f_objectname.read.checkEntity() ----
-# sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-# env.custom$f_path.size_files(path4read = path4read)
+# #### env1\$f_path.size_files() ----
+# sourcename = "f_path.size_files"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# #### env1\$f_objectname.read.checkEntity() ----
+# sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# env1$f_path.size_files(path4read = path4read)
 ```
 
 
 #### @ Open R Notebooks ------------
 ```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
-# if(!exists("env.custom", envir=.GlobalEnv)) 
-#     assign("env.custom", new.env(), envir=.GlobalEnv)
-# env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
-# if(!"tmp" %in% names(env.custom)) env.custom$tmp = list()
-# for (SourceFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
-#     env.custom$tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env.custom$path$path1),".Rmd");
-#     if(env.custom$tmp$SourceFileName.ext != basename(env.custom$path$CurrentSource.path.filename.ext)) {
-#         if(!file.exists(env.custom$tmp$SourceFileName.ext)) file.create(env.custom$tmp$SourceFileName.ext)
-#         file.edit(env.custom$tmp$SourceFileName.ext);
-#         file.edit(env.custom$path$CurrentSource.path.filename.ext);
+# if(!exists("env1", envir=.GlobalEnv)) 
+#     assign("env1", new.env(), envir=.GlobalEnv)
+# env1$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path 
+# if(!"tmp" %in% names(env1)) env1$tmp = list()
+# for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+#     env1$tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd");
+#     if(env1$tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext)) {
+#         if(!file.exists(env1$tmp$SourceFileName.ext)) file.create(env1$tmp$SourceFileName.ext)
+#         file.edit(env1$tmp$SourceFileName.ext);
+#         file.edit(env1$path$CurrentSource.path.filename.ext);
 #     }
 # }
 ```
@@ -275,8 +275,8 @@ options(width=120)
 # # if(subpath!="") utils::browseURL(normalizePath(subpath))
 # sourcename = "default.template"
 # subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
-# # % (source( file.path(env.custom$path$source_base,subpath.filename.source.r) )) ----
-# (source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+# # % (source( file.path(env1$path$source_base,subpath.filename.source.r) )) ----
+# (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
 
 
@@ -289,14 +289,14 @@ options(width=120)
 # suppressPackageStartupMessages(library(tidyverse))
 # #@@ START) data -----
 # #$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ====
-# # path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # subpath = "data"
 # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # path.filename.ext = ifelse(
 #     file.exists(paste0(subpath,"/",DataSetName,".rds"))
 #     , paste0(subpath,"/",DataSetName,".rds")
-#     , paste0(env.custom$path$source_base_github,"/",subpath,"/",DataSetName,".rds")
+#     , paste0(env1$path$source_base_github,"/",subpath,"/",DataSetName,".rds")
 # )
 # cat(" path.filename.ext = ", path.filename.ext, "\n", sep = "")
 # assign( DataSetName, read_rds(path.filename.ext) )
@@ -359,13 +359,13 @@ options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
 subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 sourcename = "data.NotNA_p_df"
-subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 
 varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str()
 get(DataSetName) |> dim()
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> n_distinct()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env.custom$data.NotNA_p_df()
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$data.NotNA_p_df()
 
 varname4CompositKey = c("age", "sex")
 vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] |> apply(MARGIN = 1, paste0, collapse = "-")
@@ -405,14 +405,14 @@ options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
 subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 sourcename = "data.NotNA_p_df"
-subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 
 assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
 assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
 cat(" dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"\n", sep="") 
 cat(" dim(",DataSetName,".Date",".NA",".rmAllNA",") = ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"\n", sep="") 
 cat(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%","\n",sep=""); 
-cat(" > ",DataSetName,".Date",".NA"," |> env.custom$data.NotNA_p_df()","\n", sep=""); env.custom$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
+cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","\n", sep=""); env1$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
 ```
 
 
@@ -501,31 +501,31 @@ options(width=120)
 
 ```{r updateTemplateNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ update tempate (notebook.Rmd) -----
-env.custom$path$RTemplate.filename.ext = "notebook.Rmd"
-env.custom$path$MyTemplate.filename.ext = "templates-00env.custom.minimum.Rmd"
-env.custom$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
+env1$path$RTemplate.filename.ext = "notebook.Rmd"
+env1$path$MyTemplate.filename.ext = "templates-00env1.minimum.Rmd"
+env1$path$CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if (.Platform$OS.type == "windows") {
-    if(basename(env.custom$path$CurrentSource.path.filename.ext) == env.custom$path$MyTemplate.filename.ext) {
+    if(basename(env1$path$CurrentSource.path.filename.ext) == env1$path$MyTemplate.filename.ext) {
         if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
         destination_path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination_path)) dir.create(destination_path, recursive=TRUE) ; cat('browseURL("',destination_path,'")',"\n", sep="") ;
-        destination_path.filename.ext = file.path(destination_path, env.custom$path$RTemplate.filename.ext);
-        backup_to_path = file.path(env.custom$path$path0, "-backup") ; env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path) ; cat('browseURL("',backup_to_path,'")',"\n", sep="") ;
+        destination_path.filename.ext = file.path(destination_path, env1$path$RTemplate.filename.ext);
+        backup_to_path = file.path(env1$path$path0, "-backup") ; env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path) ; cat('browseURL("',backup_to_path,'")',"\n", sep="") ;
         browseURL(backup_to_path);
         
-        if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));  
+        if(file.copy(from=env1$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));  
         if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)};
         
         for ( destination_path.filename.ext in c(
-            file.path(env.custom$path$source_base_local, "rstudio-prefs", "templates", env.custom$path$MyTemplate.filename.ext)
-            , file.path(env.custom$path$path0, "Rproject_Rmd", env.custom$path$MyTemplate.filename.ext)
-        )) {if(dir.exists(dirname(destination_path.filename.ext)) & env.custom$path$CurrentSource.path.filename.ext != destination_path.filename.ext) {
-            if(file.copy(from=env.custom$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
+            file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.filename.ext)
+            , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.filename.ext)
+        )) {if(dir.exists(dirname(destination_path.filename.ext)) & env1$path$CurrentSource.path.filename.ext != destination_path.filename.ext) {
+            if(file.copy(from=env1$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
             # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)};
         }}
-        file.edit(env.custom$path$CurrentSource.path.filename.ext);
+        file.edit(env1$path$CurrentSource.path.filename.ext);
     }
-    # if(!file.exists(file.path(path4APPDATA_RStudio, "templates", env.custom$path$RTemplate.filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", env.custom$path$MyTemplate.filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", env.custom$path$RTemplate.filename.ext))
+    # if(!file.exists(file.path(path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", env1$path$MyTemplate.filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename.ext))
 } 
 ```
 
@@ -546,8 +546,8 @@ if (.Platform$OS.type == "windows") {
 
 
 ```{r createBackup, eval=TRUE, include=FALSE}
-env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-# env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+# env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
 
 
@@ -555,12 +555,12 @@ env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ex
 # if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #     cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
 #     Sys.setenv(PARENT_RENDERING = "YES"); rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
-#     env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-#     env.custom$env.internal$f_file_PDF.sumatra(rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"))
+#     env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#     env1$env.internal$f_file_PDF.sumatra(rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"))
 # }
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
-    ' env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", 
-    ' env.custom$env.internal$f_file_PDF.sumatra("',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'")',"\n", sep="")
+    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", 
+    ' env1$env.internal$f_file_PDF.sumatra("',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'")',"\n", sep="")
 ```
 
 
