@@ -23,10 +23,10 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
-if(!exists("env.custom", envir=.GlobalEnv))
-    assign("env.custom", new.env(), envir=.GlobalEnv)
+if(!exists("env1", envir=.GlobalEnv))
+    assign("env1", new.env(), envir=.GlobalEnv)
 
-env.custom$data.NotNA_p_df = function(data) {
+env1$data.NotNA_p_df = function(data) {
     out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> setNames("IsNA") |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
     out = out |> mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out |> add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
@@ -35,7 +35,7 @@ env.custom$data.NotNA_p_df = function(data) {
     out
 }
 
-packageStartupMessage("Loading: env.custom$data.NotNA_p_df = function(data)")
+packageStartupMessage("Loading: env1$data.NotNA_p_df = function(data)")
 
 # test) data.NotNA_p_df()) nhanes_mice -----
 # library(mice)

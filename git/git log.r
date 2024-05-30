@@ -61,45 +61,45 @@
 # * 807e36b data.NotNA_p_df
 # * 60037c4 data.NotNA_p_df = function(data) {
 # * ac85fff data.CreateTableOne
-# * e347769 # for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+# * e347769 # for (CodeFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
 # * 1f93687 update
 # * 44e2562 Rocker
 # *   487c5ea Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | *   a091ed7 Merge branch 'master' of github.com:mkim0710/tidystat
 # | |\  
-# | * | 8119876 filename.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext
+# | * | 8119876 filename.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env1$path$source_base, subpath.filename.r) ); file.edit(env1$path$CurrentSource.path.filename.ext
 # * | | f74220b Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
-# * | b8e5acc env.custom$path[[objectname]] = object;
+# * | b8e5acc env1$path[[objectname]] = object;
 # |/  
-# * b7d5f4d if(!exists("env.custom", envir=.GlobalEnv))     assign("env.custom", new.env(), envir=.GlobalEnv)
-# * caa3dd2 #     assign("env.custom", new.env(), envir=.GlobalEnv)
+# * b7d5f4d if(!exists("env1", envir=.GlobalEnv))     assign("env1", new.env(), envir=.GlobalEnv)
+# * caa3dd2 #     assign("env1", new.env(), envir=.GlobalEnv)
 # *   932dc06 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * ec68f01 file.edit( file.path(subpath.filename.r) )
 # | * 4cf4219 01df_dirs_recursive.df_files
-# * | c9f5591 #     '# utils::browseURL("',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
+# * | c9f5591 #     '# utils::browseURL("',env1$path$source_base_github_blob,"/",env1$path$subpath.filename.dev.r,'")', "\n",
 # |/  
-# * 81554d2 xenv.custom
+# * 81554d2 xenv1
 # * 918eb6d #@@ END -----
 # * 265fd73 browseURL(normalizePath("."),winslash="/")
 # * 246c842 ,"-",basename(getwd())
-# * 2c05397 '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
+# * 2c05397 '# utils::browseURL("',env1$path$source_base_local,"/",env1$path$subpath,'")', "\n",
 # * 9a865ad file.edit(paste0("[Working Files List] ",basename(getwd()),".r"))
 # * e9ef464 # rm(list=ls())
-# * a7dfd8f if(!exists("env.custom", envir=.GlobalEnv))
+# * a7dfd8f if(!exists("env1", envir=.GlobalEnv))
 # *   8d282c7 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * b3313bd default.R
-# * | 208f12d if(!exists("env.custom", envir=.GlobalEnv))      assign("env.custom", new.env(), envir=.GlobalEnv)
+# * | 208f12d if(!exists("env1", envir=.GlobalEnv))      assign("env1", new.env(), envir=.GlobalEnv)
 # |/  
 # * f7bfe63 default.R
 # *   3fd0b82 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * cf508e1 default
-# * | 40da427 '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.dev.r,'"))'
+# * | 40da427 '# file.edit(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.dev.r,'"))'
 # |/  
 # * 239b748 -MAGB760M13700KF
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -295,8 +295,8 @@
 # 
 #     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
 # 
-# M	rstudio-prefs/templates/templates-00env.custom.minimum.Rmd
-# M	rstudio-prefs/templates/templates-00env.custom.minimum.nb.html
+# M	rstudio-prefs/templates/templates-00env1.minimum.Rmd
+# M	rstudio-prefs/templates/templates-00env1.minimum.nb.html
 # 
 # commit 814b442e31c6639123858e11ca94e1fba5781c44
 # Author:     mkim0710 <mkim0710@gmail.com>
@@ -341,8 +341,8 @@
 #  .../rstudio-prefs.json                             |  0
 #  13 files changed, 62 insertions(+), 9 deletions(-)
 # 7cc98ee # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
-#  .../templates/templates-00env.custom.minimum.Rmd   |  2 +-
-#  .../templates-00env.custom.minimum.nb.html         | 40 +++++++++++-----------
+#  .../templates/templates-00env1.minimum.Rmd   |  2 +-
+#  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
 #  2 files changed, 21 insertions(+), 21 deletions(-)
 # 814b442 Update default.R
 #  rstudio-prefs/templates/default.R | 2 +-
@@ -386,8 +386,8 @@
 #  13 files changed, 62 insertions(+), 9 deletions(-)
 # 
 # 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
-#  .../templates/templates-00env.custom.minimum.Rmd   |  2 +-
-#  .../templates-00env.custom.minimum.nb.html         | 40 +++++++++++-----------
+#  .../templates/templates-00env1.minimum.Rmd   |  2 +-
+#  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
 #  2 files changed, 21 insertions(+), 21 deletions(-)
 # 
 # 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
@@ -438,45 +438,45 @@
 # * 807e36b mhkim@rocker@MAGB760M13700KF Fri May 17 03:32:11 2024 data.NotNA_p_df
 # * 60037c4 mkim0710 Fri May 17 03:29:52 2024 data.NotNA_p_df = function(data) {
 # * ac85fff mkim0710 Fri May 17 03:18:12 2024 data.CreateTableOne
-# * e347769 mkim0710 Fri May 17 03:17:35 2024 # for (CodeFileBaseName in rev(c("00env.custom", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+# * e347769 mkim0710 Fri May 17 03:17:35 2024 # for (CodeFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
 # * 1f93687 mhkim@rocker@MAGB760M13700KF Fri May 17 03:05:50 2024 update
 # * 44e2562 mhkim@rocker@MAGB760M13700KF Fri May 17 03:04:18 2024 Rocker
 # *   487c5ea mkim0710 Fri May 17 03:02:39 2024 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | *   a091ed7 mhkim@rocker@MAGB760M13700KF Fri May 17 02:58:31 2024 Merge branch 'master' of github.com:mkim0710/tidystat
 # | |\  
-# | * | 8119876 mhkim@rocker@MAGB760M13700KF Fri May 17 02:58:25 2024 filename.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env.custom$path$source_base, subpath.filename.r) ); file.edit(env.custom$path$CurrentSource.path.filename.ext
+# | * | 8119876 mhkim@rocker@MAGB760M13700KF Fri May 17 02:58:25 2024 filename.r = "f_df.t.tribble_construct" |> paste0(c(".source.r",".dev.r")); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r = subpath.filename.r[file.exists(subpath.filename.r)]; file.edit( file.path(env1$path$source_base, subpath.filename.r) ); file.edit(env1$path$CurrentSource.path.filename.ext
 # * | | f74220b mkim0710 Fri May 17 03:02:31 2024 Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
-# * | b8e5acc mkim0710 Fri May 17 02:56:58 2024 env.custom$path[[objectname]] = object;
+# * | b8e5acc mkim0710 Fri May 17 02:56:58 2024 env1$path[[objectname]] = object;
 # |/  
-# * b7d5f4d mkim0710 Fri May 17 02:25:16 2024 if(!exists("env.custom", envir=.GlobalEnv))     assign("env.custom", new.env(), envir=.GlobalEnv)
-# * caa3dd2 mkim0710 Fri May 17 02:22:12 2024 #     assign("env.custom", new.env(), envir=.GlobalEnv)
+# * b7d5f4d mkim0710 Fri May 17 02:25:16 2024 if(!exists("env1", envir=.GlobalEnv))     assign("env1", new.env(), envir=.GlobalEnv)
+# * caa3dd2 mkim0710 Fri May 17 02:22:12 2024 #     assign("env1", new.env(), envir=.GlobalEnv)
 # *   932dc06 mkim0710 Fri May 17 02:19:31 2024 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * ec68f01 mhkim@rocker@MAGB760M13700KF Fri May 17 02:11:22 2024 file.edit( file.path(subpath.filename.r) )
 # | * 4cf4219 mhkim@rocker@MAGB760M13700KF Fri May 17 01:46:53 2024 01df_dirs_recursive.df_files
-# * | c9f5591 mkim0710 Fri May 17 02:19:29 2024 #     '# utils::browseURL("',env.custom$path$source_base_github_blob,"/",env.custom$path$subpath.filename.dev.r,'")', "\n",
+# * | c9f5591 mkim0710 Fri May 17 02:19:29 2024 #     '# utils::browseURL("',env1$path$source_base_github_blob,"/",env1$path$subpath.filename.dev.r,'")', "\n",
 # |/  
-# * 81554d2 mkim0710 Fri May 17 01:45:08 2024 xenv.custom
+# * 81554d2 mkim0710 Fri May 17 01:45:08 2024 xenv1
 # * 918eb6d mhkim@rocker@MAGB760M13700KF Fri May 17 01:42:37 2024 #@@ END -----
 # * 265fd73 mhkim@rocker@MAGB760M13700KF Fri May 17 01:41:01 2024 browseURL(normalizePath("."),winslash="/")
 # * 246c842 mkim0710 Fri May 17 01:35:03 2024 ,"-",basename(getwd())
-# * 2c05397 mkim0710 Fri May 17 01:22:50 2024 '# utils::browseURL("',env.custom$path$source_base_local,"/",env.custom$path$subpath,'")', "\n",
+# * 2c05397 mkim0710 Fri May 17 01:22:50 2024 '# utils::browseURL("',env1$path$source_base_local,"/",env1$path$subpath,'")', "\n",
 # * 9a865ad mhkim@rocker@MAGB760M13700KF Fri May 17 01:06:41 2024 file.edit(paste0("[Working Files List] ",basename(getwd()),".r"))
 # * e9ef464 mkim0710 Fri May 17 01:00:45 2024 # rm(list=ls())
-# * a7dfd8f mkim0710 Fri May 17 00:42:10 2024 if(!exists("env.custom", envir=.GlobalEnv))
+# * a7dfd8f mkim0710 Fri May 17 00:42:10 2024 if(!exists("env1", envir=.GlobalEnv))
 # *   8d282c7 mkim0710 Fri May 17 00:18:58 2024 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * b3313bd mhkim@rocker@MAGB760M13700KF Thu May 16 23:52:29 2024 default.R
-# * | 208f12d mkim0710 Fri May 17 00:18:48 2024 if(!exists("env.custom", envir=.GlobalEnv))      assign("env.custom", new.env(), envir=.GlobalEnv)
+# * | 208f12d mkim0710 Fri May 17 00:18:48 2024 if(!exists("env1", envir=.GlobalEnv))      assign("env1", new.env(), envir=.GlobalEnv)
 # |/  
 # * f7bfe63 mhkim@rocker@MAGB760M13700KF Thu May 16 23:48:34 2024 default.R
 # *   3fd0b82 mkim0710 Thu May 16 23:46:44 2024 Merge branch 'master' of https://github.com/mkim0710/tidystat
 # |\  
 # | * cf508e1 mhkim@rocker@MAGB760M13700KF Thu May 16 23:34:50 2024 default
-# * | 40da427 mkim0710 Thu May 16 23:46:31 2024 '# file.edit(paste0(env.custom$path$source_base,"/","',env.custom$path$subpath.filename.dev.r,'"))'
+# * | 40da427 mkim0710 Thu May 16 23:46:31 2024 '# file.edit(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.dev.r,'"))'
 # |/  
 # * 239b748 mkim0710 Thu May 16 23:29:27 2024 -MAGB760M13700KF
 
@@ -505,8 +505,8 @@
 # R100	recovered_files/rstudio-prefs.json	recovered_files01/rstudio-prefs.json
 # 
 # 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
-# M	rstudio-prefs/templates/templates-00env.custom.minimum.Rmd
-# M	rstudio-prefs/templates/templates-00env.custom.minimum.nb.html
+# M	rstudio-prefs/templates/templates-00env1.minimum.Rmd
+# M	rstudio-prefs/templates/templates-00env1.minimum.nb.html
 # 
 # 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
 # M	rstudio-prefs/templates/default.R

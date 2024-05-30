@@ -6,7 +6,7 @@
 # "." |> normalizePath(winslash="/") |> browseURL()
 # paste0("[Working Files List] ",basename(getwd()),".r") |> file.edit()
 # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> shQuote(type="cmd") |> shell.exec()
-# "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env.custom.minimum.Rmd" |> shQuote(type="cmd") |> (\(.) shell( paste0('cmd /c ""', file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe")|>normalizePath(winslash="/"), '" "', ., '""') ) )()
+# "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd" |> shQuote(type="cmd") |> (\(.) shell( paste0('cmd /c ""', file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe")|>normalizePath(winslash="/"), '" "', ., '""') ) )()
 #|________________________________________________________________________________|#  ----
 #| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
 #| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
@@ -28,7 +28,7 @@
 # pdf_files <- getwd() |> list.files(pattern = "\\.pdf$", recursive = TRUE, full.names = TRUE)
 # pdf_files |> dput()
 # # > pdf_files |> dput()
-# # c("/home/rstudio/Rproject_KoGES_AA10030/00env.custom-Rproject_KoGES_AA10030.pdf", 
+# # c("/home/rstudio/Rproject_KoGES_AA10030/00env1-Rproject_KoGES_AA10030.pdf", 
 # # "/home/rstudio/Rproject_KoGES_AA10030/01df_dirs_recursive.df_files-Rproject_KoGES_AA10030.pdf", 
 # # "/home/rstudio/Rproject_KoGES_AA10030/10CodeBook-Rproject_KoGES_AA10030.pdf", 
 # # "/home/rstudio/Rproject_KoGES_AA10030/220DataSet.na.Date.fct-as1_7.na.Date.fct.select971.pdf", 

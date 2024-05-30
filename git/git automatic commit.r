@@ -4,8 +4,8 @@
 
 # if (Sys.getenv("USE_GIT") == "TRUE") {
 #     message("Checking Git status and pulling latest changes...")
-#     env.custom$info$git_status <- list()
-#     env.custom$info$git_status[[Sys.Date()]] <- system("git status", intern = TRUE)
+#     env1$info$git_status <- list()
+#     env1$info$git_status[[Sys.Date()]] <- system("git status", intern = TRUE)
 #     result <- system("git pull", intern = TRUE)
 #     if (length(grep("Already up to date.", result)) == 0) {
 #         message("New changes pulled from Git.")

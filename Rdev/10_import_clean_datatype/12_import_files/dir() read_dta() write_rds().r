@@ -17,10 +17,10 @@ path4write |> dput()
 # tribble_paste = datapasta::tribble_paste
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
-# attach(env.custom)
+# attach(env1)
 
 regex4filename = "\\.dta$"
-env.custom$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
+env1$f_path.size_files(path4read = path4read, regex4filename = regex4filename)
 filenames = list.files(path4read) %>% grep(regex4filename, ., value = T) 
 
 

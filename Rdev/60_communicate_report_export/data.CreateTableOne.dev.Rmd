@@ -140,44 +140,44 @@ knitr::opts_knit$set(global.par = TRUE)
 
 
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
-if(!exists("env.custom", envir=.GlobalEnv)) 
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-if(!"info" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$info <- list()
-env.custom$info$options.width = options()$width; cat(options()$width, "\n", sep="")
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
+env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
 
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
-if(!exists("env.custom", envir=.GlobalEnv)) 
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-## env.custom\$path ====
-if(!"path" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$path <- list()
-objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env.custom$path)) {env.custom$path[[objectname]] = object};
-env.custom$path$source_base = ifelse(dir.exists(env.custom$path$source_base_local), env.custom$path$source_base_local, env.custom$path$source_base_github)  
-## env.custom\$env.internal ====
-sourcename = "env.custom$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-#### env.custom\$f_df.t.tribble_construct() ====
-sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+## env1\$path ====
+if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
+env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
+## env1\$env.internal ====
+sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+#### env1\$f_df.t.tribble_construct() ====
+sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
 
-<font size="3">\% env.custom</font>\
+<font size="3">\% env1</font>\
 
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
-if(!exists("env.custom", envir=.GlobalEnv)) 
-    assign("env.custom", new.env(), envir=.GlobalEnv)
-if(!"info" %in% names(.GlobalEnv$env.custom)) .GlobalEnv$env.custom$info <- list()
-#### env.custom\$info\$get_system_info() ====
-sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env.custom$path$source_base,subpath.filename.source.r) ))
-env.custom$info$info_system_info = env.custom$info$get_system_info()
-# str(env.custom$info$info_system_info)
-CodeText = "env.custom$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-CodeText = "env.custom$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-# CodeText = "env.custom$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-env.custom$info$info_software_versions = env.custom$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
-# str(env.custom$info$info_software_versions)
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
+#### env1\$info\$get_system_info() ====
+sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+env1$info$info_system_info = env1$info$get_system_info()
+# str(env1$info$info_system_info)
+CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
+# str(env1$info$info_software_versions)
 ```
 
 
@@ -191,14 +191,14 @@ env.custom$info$info_software_versions = env.custom$info$get_software_versions(l
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 #$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
-# path4read = file.path(env.custom$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 subpath = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 path.filename.ext = ifelse(
     file.exists(paste0(subpath,"/",objectname,".rds"))
     , paste0(subpath,"/",objectname,".rds")
-    , paste0(env.custom$path$source_base_github,"/",subpath,"/",objectname,".rds")
+    , paste0(env1$path$source_base_github,"/",subpath,"/",objectname,".rds")
 )
 cat(" path.filename.ext = ", path.filename.ext, "\n", sep = "")
 assign( objectname, read_rds(path.filename.ext) )
@@ -221,8 +221,8 @@ options(width=120)
 subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "data.CreateTableOne"
-# % source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) ) ----
-source( file.path(env.custom$path$source_base,subpath,paste0(sourcename,".source.r")) )
+# % source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) ) ----
+source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) )
 ```
 
 
@@ -318,8 +318,8 @@ options(width=120)
 
 
 ```{r createBackup, eval=TRUE, include=FALSE}
-env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-# env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+# env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
 
 
@@ -327,12 +327,12 @@ env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ex
 # if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #     cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
 #     Sys.setenv(PARENT_RENDERING = "YES"); rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
-#     env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-#     env.custom$env.internal$f_file_PDF.sumatra(rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"))
+#     env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#     env1$env.internal$f_file_PDF.sumatra(rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"))
 # }
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
-    ' env.custom$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", 
-    ' env.custom$env.internal$f_file_PDF.sumatra("',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'")',"\n", sep="")
+    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", 
+    ' env1$env.internal$f_file_PDF.sumatra("',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'")',"\n", sep="")
 ```
 
 
