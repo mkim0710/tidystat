@@ -48,23 +48,23 @@
 #@@ Remove the Local Repository & Clone the Repository Cleanly ====
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ Remove the Local Repository (and completely remove/rename the base folder) ====
-# 'cd /path/to/your/repo' |> system(intern=TRUE)
+# 'cd /path/to/your/repo' |> system(intern=TRUE) |> cat(sep="\n")
 if (.Platform$OS.type == "windows") {'rmdir /s /q .git' |> system(intern=TRUE)} else {'rm -rf .git' |> system(intern=TRUE)}  # You may just delete from the windows file explorer
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| Remove PDF Files from Git History |#
 #@ Remove PDF Files from Git History: ======
-# "pip install git-filter-repo" |> system(intern=TRUE)
-# "git filter-repo --path-glob '*.pdf' --invert-paths" |> system(intern=TRUE)
-# "git push origin --force --all" |> system(intern=TRUE)
-# "git push origin --force --tags" |> system(intern=TRUE)
+# "pip install git-filter-repo" |> system(intern=TRUE) |> cat(sep="\n")
+# "git filter-repo --path-glob '*.pdf' --invert-paths" |> system(intern=TRUE) |> cat(sep="\n")
+# "git push origin --force --all" |> system(intern=TRUE) |> cat(sep="\n")
+# "git push origin --force --tags" |> system(intern=TRUE) |> cat(sep="\n")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #@ Remove Existing PDF Files from the Repository ====
 # 'git rm --recursive *.pdf'  # This will actually delete the files from the local file system.
 'git rm --recursive --cached *.pdf' |> system(intern=TRUE)  # This will untrack the files (remove files from the repository), but not from the local file system  
-'git commit -m "Remove PDF files from repository and add to .gitignore"' |> system(intern=TRUE)
-'git push origin main' |> system(intern=TRUE)
+'git commit -m "Remove PDF files from repository and add to .gitignore"' |> system(intern=TRUE) |> cat(sep="\n")
+'git push origin main' |> system(intern=TRUE) |> cat(sep="\n")
 
 
 
