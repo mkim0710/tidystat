@@ -97,8 +97,6 @@ sourcename = "get_system_info"
 
 if(!exists("env1", envir=.GlobalEnv))
     assign("env1", new.env(), envir=.GlobalEnv)
-if(!exists("env1", envir=.GlobalEnv))
-    assign("env1", new.env(), envir=.GlobalEnv)
 # env1 = env1 %>% as.environment
 # if(!exists("env.internal", envir = env1)) eval(parse(text = "env1$env.internal = new.env()"), envir=.GlobalEnv)
 # if(!"env.internal" %in% names(env1)) eval(parse(text = "env1$env.internal = new.env()"), envir=.GlobalEnv)
