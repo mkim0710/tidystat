@@ -17,15 +17,15 @@
 #@ Compare with the remote branch ----
 'git log origin/master..HEAD' |> system(intern=TRUE) |> cat(sep='\n')
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph origin/master..HEAD" |> system(intern=TRUE)
+"git log --oneline --graph origin/master..HEAD" |> system(intern=TRUE) |> cat(sep="\n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph --decorate origin/master..HEAD" |> system(intern=TRUE)
+"git log --oneline --graph --decorate origin/master..HEAD" |> system(intern=TRUE) |> cat(sep="\n")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-"git log --oneline" |> system(intern=TRUE)
+"git log --oneline" |> system(intern=TRUE) |> cat(sep="\n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph" |> system(intern=TRUE)
+"git log --oneline --graph" |> system(intern=TRUE) |> cat(sep="\n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph --decorate" |> system(intern=TRUE)
+"git log --oneline --graph --decorate" |> system(intern=TRUE) |> cat(sep="\n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # 'git log --oneline --graph --decorate --since="9am" --until="9pm" --all' |> system(intern=TRUE) |> cat(sep='\n')
 # 'git log --oneline --graph --decorate --since="24 hours ago" --all' |> system(intern=TRUE) |> cat(sep='\n')

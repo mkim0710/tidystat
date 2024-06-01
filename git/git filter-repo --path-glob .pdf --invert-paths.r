@@ -28,48 +28,48 @@
 #@@ Remove the Local Repository & Clone the Repository Cleanly ====
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ Remove the Local Repository (and completely remove/rename the base folder) ====
-# 'cd /path/to/your/repo' |> system(intern=TRUE)
+# 'cd /path/to/your/repo' |> system(intern=TRUE) |> cat(sep="\n")
 if (.Platform$OS.type == "windows") {'rmdir /s /q .git' |> system(intern=TRUE)} else {'rm -rf .git' |> system(intern=TRUE)}  # You may just delete from the windows file explorer
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # Clone the repository into the current directory (note the dot at the end~!! Without the dot, a new folder will be created with the repository name under the current directory~!!)
-'cd /path/to/your/workspace' |> system(intern=TRUE)
-# 'git clone <repository_url> .' |> system(intern=TRUE)
-# "git clone https://github.com/mkim0710/tidystat.git ." |> system(intern=TRUE)
-# "git clone git@github.com:mkim0710/tidystat.git ." |> system(intern=TRUE)
-paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> system(intern=TRUE)
+'cd /path/to/your/workspace' |> system(intern=TRUE) |> cat(sep="\n")
+# 'git clone <repository_url> .' |> system(intern=TRUE) |> cat(sep="\n")
+# "git clone https://github.com/mkim0710/tidystat.git ." |> system(intern=TRUE) |> cat(sep="\n")
+# "git clone git@github.com:mkim0710/tidystat.git ." |> system(intern=TRUE) |> cat(sep="\n")
+paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> system(intern=TRUE) |> cat(sep="\n")
 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| Remove PDF Files from Git History |#
 #@ Remove PDF Files from Git History: ======
-# "pip install git-filter-repo" |> system(intern=TRUE)
-# "git filter-repo --path-glob '*.pdf' --invert-paths" |> system(intern=TRUE)
-# "git push origin --force --all" |> system(intern=TRUE)
-# "git push origin --force --tags" |> system(intern=TRUE)
+# "pip install git-filter-repo" |> system(intern=TRUE) |> cat(sep="\n")
+# "git filter-repo --path-glob '*.pdf' --invert-paths" |> system(intern=TRUE) |> cat(sep="\n")
+# "git push origin --force --all" |> system(intern=TRUE) |> cat(sep="\n")
+# "git push origin --force --tags" |> system(intern=TRUE) |> cat(sep="\n")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #@ Add PDF Files to .gitignore ====
-# 'echo "*.pdf" >> .gitignore' |> system(intern=TRUE)
-# 'echo "*.pdf.xz" >> .gitignore' |> system(intern=TRUE)
-# 'echo "*.pdf.gz" >> .gitignore' |> system(intern=TRUE)
+# 'echo "*.pdf" >> .gitignore' |> system(intern=TRUE) |> cat(sep="\n")
+# 'echo "*.pdf.xz" >> .gitignore' |> system(intern=TRUE) |> cat(sep="\n")
+# 'echo "*.pdf.gz" >> .gitignore' |> system(intern=TRUE) |> cat(sep="\n")
 ".gitignore" |> file.edit()
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #@ Remove Existing PDF Files from the Repository ====
 # 'git rm --recursive *.pdf'  # This will actually delete the files from the local file system.
 'git rm --recursive --cached *.pdf' |> system(intern=TRUE)  # This will untrack the files (remove files from the repository), but not from the local file system  
-'git commit -m "Remove PDF files from repository and add to .gitignore"' |> system(intern=TRUE)
-'git push origin main' |> system(intern=TRUE)
+'git commit -m "Remove PDF files from repository and add to .gitignore"' |> system(intern=TRUE) |> cat(sep="\n")
+'git push origin main' |> system(intern=TRUE) |> cat(sep="\n")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| using Git Large File Storage (Git LFS) for handling large files. |#
 #@ using Git Large File Storage (Git LFS) for handling large files. ======
 # Git LFS stores large files outside your repository and keeps pointers in your Git history
-# 'git lfs install' |> system(intern=TRUE)
-# 'git lfs track "*.pdf"' |> system(intern=TRUE)
-# 'git add .gitattributes' |> system(intern=TRUE)
-# 'git commit -m "Track PDF files with Git LFS"' |> system(intern=TRUE)
-# 'git lfs migrate import --include="*.pdf"' |> system(intern=TRUE)
-# 'git push origin --all' |> system(intern=TRUE)
+# 'git lfs install' |> system(intern=TRUE) |> cat(sep="\n")
+# 'git lfs track "*.pdf"' |> system(intern=TRUE) |> cat(sep="\n")
+# 'git add .gitattributes' |> system(intern=TRUE) |> cat(sep="\n")
+# 'git commit -m "Track PDF files with Git LFS"' |> system(intern=TRUE) |> cat(sep="\n")
+# 'git lfs migrate import --include="*.pdf"' |> system(intern=TRUE) |> cat(sep="\n")
+# 'git push origin --all' |> system(intern=TRUE) |> cat(sep="\n")
 
 
 
