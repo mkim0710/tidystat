@@ -119,20 +119,16 @@ if(sourcename == "default.template") { warning('sourcename == "default.template"
 
 if(!exists("env1", envir=.GlobalEnv))
     assign("env1", new.env(), envir=.GlobalEnv)
-if(!exists("env1", envir=.GlobalEnv))
-    assign("env1", new.env(), envir=.GlobalEnv)
 # env1 = env1 %>% as.environment
 # if(!exists("env.internal", envir = env1)) eval(parse(text = "env1$env.internal = new.env()"), envir=.GlobalEnv)
 # if(!"env.internal" %in% names(env1)) eval(parse(text = "env1$env.internal = new.env()"), envir=.GlobalEnv)
 if(!"env.internal" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$env.internal <- new.env()
-
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-
-env1$DocumentTitle0 = "get_system_info()"
-env1$DocumentTitle1 = paste0(env1$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
-cat(env1$DocumentTitle1);cat("\n");
-cat(env1$DocumentTitle1, ".r", sep="");cat("\n");
-cat(env1$DocumentTitle1, ".Rmd", sep="");cat("\n");
+env1$info$DocumentTitle0 = "get_system_info()"
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle1);cat("\n");
+cat(env1$info$DocumentTitle1, ".r", sep="");cat("\n");
+cat(env1$info$DocumentTitle1, ".Rmd", sep="");cat("\n");
 
 
 #% get_system_info() ====
