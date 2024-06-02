@@ -47,11 +47,14 @@ geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/
 mainfont: Arial
 monofont: Consolas
 header-includes: 
-  - \usepackage[utf]{kotex}
   - \usepackage{fontspec}
-  - \setmainhangulfont{HCR Batang}
-  - \setsanshangulfont{HCR Dotum}
-  - \setmonohangulfont{HCR Dotum}
+  - \setmainfont{Roboto}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={Noto Serif}]
+  - \setsansfont{Arial}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={Helvetica}]
+  - \setmonofont{Cascadia Code SemiBold}[FallbackFamilies={Cascadia Code}]
+  - \usepackage[hangul]{kotex}
+  - \setmainhangulfont{NanumMyeongjo}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={HCR Batang}]
+  - \setsanshangulfont{NanumGothic}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={HCR Dotum}]
+  - \setmonohangulfont{D2Coding}[FallbackFamilies={Cascadia Code}]
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
@@ -62,13 +65,13 @@ params:
 .main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
 html { font-size: 12px; }
 body { font-size: 12px; font-family: 'Arial', 'Helvetica', sans-serif; }
-h1.title { font-size: 28px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
-h1 { font-size: 24px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
-h2 { font-size: 21px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
-h3 { font-size: 18px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
-h4 { font-size: 16px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
-h5 { font-size: 14px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
-h6 { font-size: 12px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+h1.title { font-size: 28px; font-family: 'Roboto', 'Noto Serif', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto', 'Noto Serif', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto', 'Noto Serif', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto', 'Noto Serif', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto', 'Noto Serif', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto', 'Noto Serif', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto', 'Noto Serif', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
 table, td, th, figure, figcaption { font-size: 10px; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
 code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
