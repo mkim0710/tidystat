@@ -44,8 +44,6 @@ output:
 # classoption: fontsize=9pt 
 geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
 # fontsize: 12pt
-mainfont: Arial
-monofont: Consolas
 header-includes: 
   - \usepackage{fontspec}
   - \setmainfont{Roboto Serif}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={Noto Serif}]
