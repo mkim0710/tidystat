@@ -47,7 +47,7 @@ geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/
 mainfont: Arial
 monofont: Consolas
 header-includes: 
-  - \usepackage[hangul]{kotex}
+  - \usepackage[utf]{kotex}
   - \usepackage{fontspec}
   - \setmainhangulfont{HCR Batang}
   - \setsanshangulfont{HCR Dotum}
