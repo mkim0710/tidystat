@@ -262,9 +262,6 @@ as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
 ```
 
 
-
-
-
 # \$ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 -----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
