@@ -261,6 +261,15 @@ file.path(path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |>
 # Global Options > Appearance > Editor theme: Twilight (better for RMD, red for titles)
 
 
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+### @ install.packages ----
+#|  @ install.packages  
+# https://gopensource.com/going-through-docker-hell-once-243199d6f7a1
+for(packagename in c("rmarkdown", "xfun")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
+
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### @ templates ----
@@ -475,6 +484,53 @@ system("git remote -v")
 
 
 
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ START) Install Fonts -----
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ START) Install Fonts for RStudio Server Editor pane -----
+# https://github.com/rstudio/rstudio/issues/2534
+# Just for future searchers: you can now add fonts to /etc/rstudio/fonts and then change the ‘Editor font’ using the UI.
+# So I’m just pasting the contents of /etc/rstudio/fonts/README.md here, I’m on RStudio Server 2022.07.0 on Ubuntu Server 22.04 LTS:
+
+# This directory structure would make two fonts available, *Coding-Font* and
+# *Coding Font Two*.
+
+# Some fonts come in many different weights and styles. If you want these weights
+# and styles to be treated as single font, you can place them underneath a single
+# folder. This is useful when a theme uses bold or italic variants of a font to
+# decorate code (e.g., to set comments in italics).
+
+# To do this, create subfolders with the font's weight or style. For example,
+# this creates a single font, "Coding Font 3", which has two weights (400 and 700
+# for regular and bold, respectively) and an italic style for each weight.
+
+#     + fonts/
+#     |
+#     +-- Coding Font Three/
+#         |
+#         +-- 400/
+#         |   |
+#         |   +-- CodingFont3-Regular.woff
+#         |   |
+#         |   +-- italic/
+#         |       |
+#         |       +-- CodingFont3-Italic.woff
+#         |
+#         +-- 700/
+#             |
+#             +-- CodingFont3-Bold.woff
+#             |
+#             +-- italic/
+#                 |
+#                 +-- CodingFont3-BoldItalic.woff
+
+
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) install.packages -----
@@ -507,4 +563,3 @@ for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#|
