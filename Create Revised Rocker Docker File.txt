@@ -1,0 +1,314 @@
+#!/usr/bin/env docker
+# -*- coding: utf-8 -*-
+# -*- mode: docker -*-
+# Create Revised Rocker Docker File.txt
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# https://gopensource.com/going-through-docker-hell-once-243199d6f7a1
+## @ Create a Docker File ----
+FROM rocker/verse:latest
+ARG RSTUDIO_PATH=/home/rstudio
+COPY . ${RSTUDIO_PATH}
+WORKDIR ${RSTUDIO_PATH}
+RUN Rscript ./docker-baseimage/init.R
+RUN chmod a+rwx -R ${RSTUDIO_PATH}
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#!/usr/bin/env sh
+# -*- coding: utf-8 -*-
+# -*- mode: sh -*-
+
+docker build -t test-rmarkdown -f docker-baseimage/Dockerfile .
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+$ docker run --rm -p 8787:8787 -e DISABLE_AUTH=true test-rmarkdown
+--rm :=: remove container when closed
+-p 8787:8787 :=: the Rocker images exposes port 8787, mapping to the same port on the host machine
+-e DISABLE_AUTH=true :=: Don’t want to authenticate in Rstudio every time running this
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+So, one step down, let’s do the one that does not have LaTeX in there: rocker/tidyverse
+
+# FROM rocker/verse:4.0.4
+FROM rocker/tidyverse:4.0.4
+ARG RSTUDIO_PATH=/home/rstudio
+COPY . ${RSTUDIO_PATH}
+WORKDIR ${RSTUDIO_PATH}
+## install debian packages
+RUN apt-get update -qq && apt-get -y install \
+    texlive-xetex 
+RUN Rscript ./docker-baseimage/init.R
+RUN chmod a+rwx -R ${RSTUDIO_PATH}
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+apt-get install ttf-mscorefonts-installer
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+Step 5: Get to snapshot that works and commit
+Removing the font-download from Dockerfile again.
+Also, getting close, so let’s check the Rocker-project best practices for extending images
+AND, don’t want to copy in all the files using the COPY-command anymore
+
+# FROM rocker/verse:4.0.4
+FROM rocker/tidyverse:4.0.4
+ARG RSTUDIO_PATH=/home/rstudio
+# COPY docker-baseimage/init.R ${RSTUDIO_PATH}
+# Moved to follow best practices from docker-project.org
+RUN  echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site
+RUN install2.r \ 
+    stargazer gplots plm rmarkdown \
+    xfun tinytex bookdown
+WORKDIR ${RSTUDIO_PATH}
+# Moved up to hopefully get some caching...
+# RUN Rscript ./init.R
+# RUN rm ./init.R
+
+## install debian packages
+RUN apt-get update -qq && apt-get -y install \
+    texlive-xetex 
+# NEED TO DO MANUALLY BEFORE PUSHING... But whatevs... 
+#apt-get install ttf-mscorefonts-installer
+
+RUN chmod a+rwx -R ${RSTUDIO_PATH}
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+$ docker run -it --rm --name snapshot-to-be-commited test-rmarkdown bash
+---> IN THERE ---->
+$ apt-get install ttf-mscorefonts-installer
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+$ docker login --username=jonastillman
+$ docker tag snapshot-to-be-commited jonastillman/tillman-thesis:0.1.0
+$ docker push jonastillman/tillman-thesis:0.1.0
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+Remove all things locally
+also to remove all kinds of caching that is there, why not also do
+$ docker system prune -a
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+Create a new Dockerfile (this time it will be the main Dockerfile, so it is in the root of the project)
+
+Checking the rocker setup how the Rstudio is started at init shows that CMD [“/init”] is at the bottom of their Dockerfiles.
+
+Now this is much cleaner. Only copying in what is needed to the container.
+
+FROM jonastillman/tillman-thesis:0.1.0
+
+ARG RSTUDIO_PATH=/home/rstudio
+
+# WORKDIR ${RSTUDIO_PATH}}
+COPY thesis-writeup/ ${RSTUDIO_PATH}/thesis-writeup
+COPY data_read_in.R /${RSTUDIO_PATH}/
+COPY data/2021-02-06-11-45-27.RData /${RSTUDIO_PATH}/data/
+# For mounting
+COPY pdf-output/  ${RSTUDIO_PATH}/pdf-output/
+RUN chmod a+rwx -R ${RSTUDIO_PATH}
+CMD ["/init"]
+
+$ docker build -t thesis-local .
+
+Can fulfill the usecases?
+Interactively generate PDF in Rstudio container (above) = YES
+Generate PDF in one-liner (-v mounts a folder on local machine where PDF is written to)
+$ docker run -it — rm -v $PWD/pdf-output:/home/rstudio/pdf-output thesis-local Rscript -e “rmarkdown::render(‘./thesis-writeup/thesis-writeup.Rmd’, output_file = ‘tillman_thesis.pdf’, output_dir = ‘./pdf-output’)”
+
+
+Can load in the raw data yourself from Rstudio interactive session = YES
+
+Can do the same thing from the command line = YES
+#Opening R in a command line window
+$ docker run -it --rm  thesis-local R
+R version 4.0.4 (2021-02-15) -- "Lost Library Book"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+> source("./thesis-writeup/load_data_for_interactive.R")
+> ls()
+[1] "acceptancessdf"      "acceptancessdf_long" "clean_df"
+[4] "hover_df"            "progressiondf"       "respondentdf"
+[7] "responsesdf"         "slider_df"
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# https://chatgpt.com/c/2926bf45-de5a-44e6-9a5c-3515412462ef
+
+# Use the rocker/verse base image
+FROM rocker/verse:latest
+
+# Update package lists
+RUN apt-get update
+
+# Install font dependencies
+RUN apt-get install -y \
+    fontconfig \
+    wget \
+    unzip
+
+# Install Roboto Condensed and Roboto Serif
+RUN wget https://github.com/google/fonts/archive/main.zip -O /tmp/google-fonts.zip && \
+    unzip /tmp/google-fonts.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/google-fonts && \
+    cp /tmp/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/google-fonts/ && \
+    cp /tmp/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/google-fonts/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/fonts-main /tmp/google-fonts.zip
+
+# Install Cascadia Code Semibold
+RUN wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /tmp/cascadia-code.zip && \
+    unzip /tmp/cascadia-code.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/cascadia-code && \
+    cp /tmp/ttf/*.ttf /usr/share/fonts/truetype/cascadia-code/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/ttf /tmp/cascadia-code.zip
+
+# Install NanumMyeongjo and NanumGothic
+RUN wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /tmp/nanum-fonts.zip && \
+    unzip /tmp/nanum-fonts.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/nanum && \
+    cp /tmp/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/nanum/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/NanumFont_TTF_ALL /tmp/nanum-fonts.zip
+
+# Install D2Coding
+RUN wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /tmp/d2coding.zip && \
+    unzip /tmp/d2coding.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/d2coding && \
+    cp /tmp/D2Coding/*.ttf /usr/share/fonts/truetype/d2coding/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/D2Coding /tmp/d2coding.zip
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set the work directory
+WORKDIR /home/rstudio
+
+# Expose port for RStudio
+EXPOSE 8787
+
+# CMD to start RStudio Server
+CMD ["/init"]
+
+docker build -t my-rstudio-with-fonts .
+docker run --rm -p 8787:8787 -e DISABLE_AUTH=true my-rstudio-with-fonts
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Update package lists
+sudo apt-get update
+
+# Install font dependencies
+sudo apt-get install -y fontconfig wget unzip
+
+# Install Roboto Condensed and Roboto Serif
+wget https://github.com/google/fonts/archive/main.zip -O /tmp/google-fonts.zip
+unzip /tmp/google-fonts.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/google-fonts
+sudo cp /tmp/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/google-fonts/
+sudo cp /tmp/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/google-fonts/
+sudo fc-cache -f -v
+rm -rf /tmp/fonts-main /tmp/google-fonts.zip
+
+# Install Cascadia Code Semibold
+wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /tmp/cascadia-code.zip
+unzip /tmp/cascadia-code.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/cascadia-code
+sudo cp /tmp/ttf/*.ttf /usr/share/fonts/truetype/cascadia-code/
+sudo fc-cache -f -v
+rm -rf /tmp/ttf /tmp/cascadia-code.zip
+
+# Install NanumMyeongjo and NanumGothic
+wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /tmp/nanum-fonts.zip
+unzip /tmp/nanum-fonts.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/nanum
+sudo cp /tmp/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/nanum/
+sudo fc-cache -f -v
+rm -rf /tmp/NanumFont_TTF_ALL /tmp/nanum-fonts.zip
+
+# Install D2Coding
+wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /tmp/d2coding.zip
+unzip /tmp/d2coding.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/d2coding
+sudo cp /tmp/D2Coding/*.ttf /usr/share/fonts/truetype/d2coding/
+sudo fc-cache -f -v
+rm -rf /tmp/D2Coding /tmp/d2coding.zip
+
+# Clean up APT
+sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+
+# Verify Font Installation:
+ls /usr/share/fonts/truetype/google-fonts
+ls /usr/share/fonts/truetype/cascadia-code
+ls /usr/share/fonts/truetype/nanum
+ls /usr/share/fonts/truetype/d2coding
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Update package lists
+sudo apt-get update
+
+# Install font dependencies
+sudo apt-get install -y fontconfig wget unzip
+
+# Install Roboto Condensed and Roboto Serif
+sudo wget https://github.com/google/fonts/archive/main.zip -O /usr/share/fonts/truetype/google-fonts.zip
+sudo unzip /usr/share/fonts/truetype/google-fonts.zip -d /usr/share/fonts/truetype/google-fonts
+sudo cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/
+sudo cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/google-fonts /usr/share/fonts/truetype/google-fonts.zip
+
+# Install Cascadia Code Semibold
+sudo wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /usr/share/fonts/truetype/cascadia-code.zip
+sudo unzip /usr/share/fonts/truetype/cascadia-code.zip -d /usr/share/fonts/truetype/cascadia-code
+sudo cp /usr/share/fonts/truetype/cascadia-code/ttf/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/cascadia-code /usr/share/fonts/truetype/cascadia-code.zip
+
+# Install NanumMyeongjo and NanumGothic
+sudo wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /usr/share/fonts/truetype/nanum-fonts.zip
+sudo unzip /usr/share/fonts/truetype/nanum-fonts.zip -d /usr/share/fonts/truetype/nanum
+sudo cp /usr/share/fonts/truetype/nanum/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/nanum /usr/share/fonts/truetype/nanum-fonts.zip
+
+# Install D2Coding
+sudo wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /usr/share/fonts/truetype/d2coding.zip
+sudo unzip /usr/share/fonts/truetype/d2coding.zip -d /usr/share/fonts/truetype/d2coding
+sudo cp /usr/share/fonts/truetype/d2coding/D2Coding/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/d2coding /usr/share/fonts/truetype/d2coding.zip
+
+# Clean up APT
+sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+
+
+
+
+
+
+
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ END -----
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
