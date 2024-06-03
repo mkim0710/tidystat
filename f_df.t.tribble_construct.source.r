@@ -614,36 +614,50 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 
 
 
-
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #@ global functions ----
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
 objectname = "f_df.tribble_construct"
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-env1$f_df.tribble_construct = function(df) {
+object = function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
-
+packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
+env1[[objectname]] = object
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
 objectname = "f_df.transpose"
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-env1$f_df.transpose = function(df, varname4rowname = "varname") {
+object = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
-}
-
-objectname = "f_df.t.tribble_construct"
+}                                    
 packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-env1$f_df.t.tribble_construct = function(df) {
+env1[[objectname]] = object
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+objectname = "f_df.t.tribble_construct"
+object = function(df) {
     out = env1$f_df.transpose(df)
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
-
-
-
+packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
+env1[[objectname]] = object
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
+objectname = "f_vec.dput_line_by_line"
+object = function(vec) {
+    vec |> paste0(collapse = '",\n  "') %>% paste0('c("',.,'")') |> cat()
+}
+packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
+env1[[objectname]] = object
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ for (env1.dependancy in c("")) { -----
 for (env1.dependancy in c("f_path.size_files")) {
     if(!env1.dependancy %in% names(env1)) {
@@ -654,9 +668,18 @@ for (env1.dependancy in c("f_path.size_files")) {
 }
 
 
-
-#@ end -----
-
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ END -----
+# cat("* To revert to the last commited file, run the following terminal command:\n", 
+#     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n", sep="")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # ls.str(env1) #-----
 # ls.str(env1$env.internal) #-----
 # # > ls.str(env1) #-----
