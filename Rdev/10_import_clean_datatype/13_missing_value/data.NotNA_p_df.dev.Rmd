@@ -46,13 +46,13 @@ geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/
 # fontsize: 12pt
 header-includes: 
   - \usepackage{fontspec}
-  - \setmainfont{Roboto Serif}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={Noto Serif}]
-  - \setsansfont{Roboto Condensed}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={Noto Sans Condensed}]
-  - \setmonofont{Cascadia Code SemiBold}[FallbackFamilies={Cascadia Code}]
+  - \setmainfont{Roboto Serif}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={Noto Serif}]
+  - \setsansfont{Roboto Condensed}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={Noto Sans Condensed}]
+  - \setmonofont{Cascadia Code SemiBold}[FallbackFamily={Cascadia Code}]
   - \usepackage[hangul]{kotex}
-  - \setmainhangulfont{NanumMyeongjo}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={HCR Batang}]
-  - \setsanshangulfont{NanumGothic}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamilies={HCR Dotum}]
-  - \setmonohangulfont{D2Coding}[FallbackFamilies={Cascadia Code}]
+  - \setmainhangulfont{NanumMyeongjo}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={HCR Batang}]
+  - \setsanshangulfont{NanumGothic}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={HCR Dotum}]
+  - \setmonohangulfont{D2Coding}[FallbackFamily={Cascadia Code}]
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
