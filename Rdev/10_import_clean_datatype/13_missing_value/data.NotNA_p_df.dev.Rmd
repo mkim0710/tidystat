@@ -45,14 +45,14 @@ output:
 geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
 # fontsize: 12pt
 header-includes: 
-  - \usepackage{fontspec}
-  - \setmainfont{Roboto Serif}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={Noto Serif}]
-  - \setsansfont{Roboto Condensed}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={Noto Sans Condensed}]
-  - \setmonofont{Cascadia Code SemiBold}[FallbackFamily={Cascadia Code}]
-  - \usepackage[hangul]{kotex}
-  - \setmainhangulfont{NanumMyeongjo}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={HCR Batang}]
-  - \setsanshangulfont{NanumGothic}[Ligatures={Common, TeX, NoRequired, NoContextual, NoHistorical}, FallbackFamily={HCR Dotum}]
-  - \setmonohangulfont{D2Coding}[FallbackFamily={Cascadia Code}]
+- \usepackage{fontspec}
+- \setmainfont{Roboto}
+- \setsansfont{Roboto}
+- \setmonofont{Cascadia Code SemiBold}
+- \usepackage[hangul]{kotex}
+- \setmainhangulfont{NanumMyeongjo}
+- \setsanshangulfont{NanumGothic}
+- \setmonohangulfont{D2Coding}
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
