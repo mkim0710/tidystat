@@ -476,10 +476,122 @@ docker exec -it rstudio_server bash
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
+# Define a function to check if a font is installed
+check_font_installed <- function(font_name) {
+  result <- system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE)
+  return(length(result) > 0)
+}
 
 
+fonts_to_check <- c("Roboto Condensed", "Roboto Serif", "Cascadia Code Semibold", 
+                    "NanumMyeongjo", "NanumGothic", "D2Coding")
+for (font in fonts_to_check) {
+  if (check_font_installed(font)) {
+    message(font, " is successfully installed.")
+  } else {
+    message(font, " is still not installed. Please check manually.")
+  }
+}
+# Roboto Condensed is successfully installed.
+# Roboto Serif is still not installed. Please check manually.
+# Cascadia Code Semibold is still not installed. Please check manually.
+# NanumMyeongjo is still not installed. Please check manually.
+# NanumGothic is still not installed. Please check manually.
+# D2Coding is successfully installed.
+# Warning messages:
+# 1: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'Roboto Serif'' had status 1
+# 2: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'Cascadia Code Semibold'' had status 1
+# 3: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'NanumMyeongjo'' had status 1
+# 4: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'NanumGothic'' had status 1
 
 
+# Define a function to install fonts if they are not installed
+install_missing_fonts <- function(fonts_to_check) {
+  for (font in fonts_to_check) {
+    if (!check_font_installed(font)) {
+      message(font, " is not installed. Installing...")
+      if (font %in% c("Roboto Condensed", "Roboto Serif")) {
+        system("apt-get update && apt-get install -y fonts-roboto")
+      } else if (font == "Cascadia Code Semibold") {
+        system("apt-get update && apt-get install -y fonts-cascadia-code")
+      } else if (font %in% c("NanumMyeongjo", "NanumGothic")) {
+        system("apt-get update && apt-get install -y fonts-nanum")
+      } else if (font == "D2Coding") {
+        system("wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip")
+        system("unzip D2Coding-Ver1.3.2-20180524.zip -d /usr/share/fonts/truetype/d2coding")
+        system("fc-cache -f -v")
+        system("rm D2Coding-Ver1.3.2-20180524.zip")
+      }
+    } else {
+      message(font, " is already installed.")
+    }
+  }
+}
+
+# Execute the font installation check
+install_missing_fonts(c("Roboto Condensed", "Roboto Serif", "Cascadia Code Semibold", 
+                      "NanumMyeongjo", "NanumGothic", "D2Coding"))
+# > # Execute the font installation check
+# > install_missing_fonts(c("Roboto Condensed", "Roboto Serif", "Cascadia Code Semibold", 
+# +                       "NanumMyeongjo", "NanumGothic", "D2Coding"))
+# Roboto Condensed is already installed.
+# Roboto Serif is not installed. Installing...
+# Reading package lists...
+# E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+# E: Unable to lock directory /var/lib/apt/lists/
+# Cascadia Code Semibold is not installed. Installing...
+# Reading package lists...
+# E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+# E: Unable to lock directory /var/lib/apt/lists/
+# NanumMyeongjo is not installed. Installing...
+# Reading package lists...
+# E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+# E: Unable to lock directory /var/lib/apt/lists/
+# NanumGothic is not installed. Installing...
+# Reading package lists...
+# E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+# E: Unable to lock directory /var/lib/apt/lists/
+# D2Coding is already installed.
+# Warning messages:
+# 1: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'Roboto Serif'' had status 1
+# 2: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'Cascadia Code Semibold'' had status 1
+# 3: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'NanumMyeongjo'' had status 1
+# 4: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'NanumGothic'' had status 1
+# Recheck the fonts to confirm installation
+
+
+fonts_to_check <- c("Roboto Condensed", "Roboto Serif", "Cascadia Code Semibold", 
+                    "NanumMyeongjo", "NanumGothic", "D2Coding")
+for (font in fonts_to_check) {
+  if (check_font_installed(font)) {
+    message(font, " is successfully installed.")
+  } else {
+    message(font, " is still not installed. Please check manually.")
+  }
+}
+# Roboto Condensed is successfully installed.
+# Roboto Serif is still not installed. Please check manually.
+# Cascadia Code Semibold is still not installed. Please check manually.
+# NanumMyeongjo is still not installed. Please check manually.
+# NanumGothic is still not installed. Please check manually.
+# D2Coding is successfully installed.
+# Warning messages:
+# 1: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'Roboto Serif'' had status 1
+# 2: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'Cascadia Code Semibold'' had status 1
+# 3: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'NanumMyeongjo'' had status 1
+# 4: In system(paste("fc-list | grep -i", shQuote(font_name)), intern = TRUE) :
+#   running command 'fc-list | grep -i 'NanumGothic'' had status 1
 
 
 
