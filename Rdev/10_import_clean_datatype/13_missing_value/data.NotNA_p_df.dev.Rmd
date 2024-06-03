@@ -52,7 +52,7 @@ header-includes:
 - \usepackage[hangul]{kotex}
 - \setmainhangulfont{NanumMyeongjo}
 - \setsanshangulfont{NanumGothic}
-- \setmonohangulfont{D2Coding}
+- \setmonohangulfont{Cascadia Code}
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
