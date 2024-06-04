@@ -82,7 +82,7 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 #% |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE) -----
 "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE)
 "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> dput()
-"(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
+"(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("\n")
 # > "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE)
 # tlmgr search --file '(?i)inconsolata.*regular'
 # inconsolata:
@@ -95,7 +95,7 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 # "\ttexmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf", 
 # "\ttexmf-dist/fonts/type1/public/inconsolata/InconsolataN-Regular.pfb"
 # )
-# > "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
+# > "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("\n")
 # tlmgr search --file '(?i)inconsolata.*regular'
 # inconsolata:
 # 	texmf-dist/fonts/type1/public/inconsolata/InconsolataN-Regular.pfb
@@ -190,9 +190,9 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
     }
 }
 
-"inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+"inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("\n")
 "inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f_vec.dput_line_by_line()
-# > "inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+# > "inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("\n")
 # tlmgr search --all 'inconsolata'
 # 	texmf-dist/fonts/enc/dvips/inconsolata
 # 	texmf-dist/fonts/map/dvips/inconsolata
@@ -210,22 +210,22 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 #   "	texmf-dist/tex/context/fonts/mkiv",
 #   "	texmf-dist/tex/latex/inconsolata")
 
-"(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
-"(?i)inconsolata.*regular" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
-# > "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
+"(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("\n")
+"(?i)inconsolata.*regular" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("\n")
+# > "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("\n")
 # tlmgr search --file '(?i)inconsolata.*regular'
 # inconsolata:
 # 	texmf-dist/fonts/type1/public/inconsolata/InconsolataN-Regular.pfb
 # 	texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf
 # 	texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf
-# > "(?i)inconsolata.*regular" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+# > "(?i)inconsolata.*regular" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("\n")
 # tlmgr search --all '(?i)inconsolata.*regular'
 # 	texmf-dist/fonts/opentype/public/inconsolata
 # 	texmf-dist/fonts/type1/public/inconsolata
 
 
-"(?i)roboto.*condensed" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
-"(?i)roboto.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+"(?i)roboto.*condensed" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("\n")
+"(?i)roboto.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("\n")
 
 
 #|________________________________________________________________________________|#  
