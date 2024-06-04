@@ -62,8 +62,8 @@ sourcename = "env1$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); su
 #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----
 # sourcename = "f_path.df_dirs_recursive.df_files"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
-# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat()
-# env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat()
+# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("\n")
+# env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("\n")
 # # Rdev
 # # Rdev/-dev
 # # Rdev/00_base_program
@@ -286,7 +286,7 @@ subpath = r"(Rdev/60_communicate_report_export)"; filename.r = "data.CreateTable
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) basename(getwd()) ----
-list.files(pattern = "Rmd$") |> shQuote(type="cmd") |> paste0(collapse=",\n  ") %>% {paste0("c(", ., ")")} |> cat()
+list.files(pattern = "Rmd$") |> shQuote(type="cmd") |> paste0(collapse=",\n  ") %>% {paste0("c(", ., ")")} |> cat("\n")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # filename.r = paste0("00env1","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" %>% {.[file.exists(.)]} |> file.edit()") |> cat(); subpath.filename.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)
 # filename.r = paste0("01df_dirs_recursive.df_files","-", basename(getwd()),".Rmd"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.r = paste0(subpath,ifelse(subpath=="","","/"),filename.r); subpath.filename.r |> shQuote(type="cmd") |> paste0(" %>% {.[file.exists(.)]} |> file.edit()") |> cat(); subpath.filename.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)

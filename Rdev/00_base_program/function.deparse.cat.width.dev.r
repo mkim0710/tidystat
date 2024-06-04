@@ -49,9 +49,9 @@ letters %>% function.deparse.cat.width
 # [1] "c(\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\", \"l\", "     
 # [2] "\"m\", \"n\", \"o\", \"p\", \"q\", \"r\", \"s\", \"t\", \"u\", \"v\", \"w\", \"x\", \"y\", "
 # [3] "\"z\")"                                                                                     
-# > letters |> cat()
+# > letters |> cat("\n")
 # a b c d e f g h i j k l m n o p q r s t u v w x y z
-# > letters %>% deparse |> cat()
+# > letters %>% deparse |> cat("\n")
 # c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",  "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y",  "z")
 # > letters %>% function.deparse.cat.width
 # c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
@@ -60,7 +60,7 @@ installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Pack
 installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep="");cat("\n")
 installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse(width.cutoff = 500) |> cat(sep = "\n");cat("\n")
 installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep = "\n");cat("\n")
-# > installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat()
+# > installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat("\n")
 # c("base", "boot", "class", "cluster", "codetools", "compiler",  "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth",  "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet",  "parallel", "rpart", "spatial", "splines", "stats", "stats4",  "survival", "tcltk", "tools", "utils")
 # > installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep="")
 # c("base", "boot", "class", "cluster", "codetools", "compiler", "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth", "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet", "parallel", "rpart", "spatial", "splines", "stats", "stats4", "survival", "tcltk", "tools", "utils")

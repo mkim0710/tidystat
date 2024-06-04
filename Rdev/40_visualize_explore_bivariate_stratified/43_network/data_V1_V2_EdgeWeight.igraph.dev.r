@@ -110,7 +110,7 @@ data_V1_V2_EdgeWeight.igraph = function(
     ?gsub
     # out.png.pdf.path = "Rplot"
     # out.png.pdf.path = "\\Rplot\\"
-    # out.png.pdf.path |> cat()
+    # out.png.pdf.path |> cat("\n")
     out.png.pdf.path = gsub("\\", "/", out.png.pdf.path, fixed = T)
     if (grepl("/$", out.png.pdf.path) != T) out.png.pdf.path = paste0(out.png.pdf.path, "/")
     if (!dir.exists(out.png.pdf.path)){

@@ -75,12 +75,12 @@ f_vec.paste_collapse <- function(vec, space_between_vec_elements="\n") {
 }
 NULL |> f_vec.paste_collapse()
 vec |> f_vec.paste_collapse()
-vec |> f_vec.paste_collapse() |> cat()
+vec |> f_vec.paste_collapse() |> cat("\n")
 # > NULL |> f_vec.paste_collapse()
 # [1] "\"\""
 # > vec |> f_vec.paste_collapse()
 # [1] "\"C059\",\n\"D050000L\",\n\"NimbusMonoPS\",\n\"NimbusRoman\",\n\"NimbusSans\",\n\"NimbusSansNarrow\",\n\"P052\",\n\"Roboto\",\n\"RobotoCondensed\""
-# > vec |> f_vec.paste_collapse() |> cat()
+# > vec |> f_vec.paste_collapse() |> cat("\n")
 # "C059",
 # "D050000L",
 # "NimbusMonoPS",
@@ -93,7 +93,7 @@ vec |> f_vec.paste_collapse() |> cat()
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 f_vec.dput_line_by_line <- function(vec) {
-    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")\n') |> cat()
+    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")\n') |> cat("\n")
 }
 NULL |> f_vec.dput_line_by_line()
 vec |> f_vec.dput_line_by_line()
@@ -112,7 +112,7 @@ vec |> f_vec.dput_line_by_line()
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 f_vec.dput_line_by_line <- function(vec) {
-    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat()
+    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat("\n")
 }
 NULL |> f_vec.dput_line_by_line()
 vec |> f_vec.dput_line_by_line()
@@ -132,8 +132,8 @@ vec |> f_vec.dput_line_by_line()
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # \% f_vec.dput_line_by_line <- function(vec, indent_spaces=2L) { -----
 # f_vec.dput_line_by_line <- function(vec, indent_spaces=2L) {
-#     # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat()
-#     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse=paste0('",\n',strrep(" ",indent_spaces),'"')),'")\n')} |> cat()
+#     # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat("\n")
+#     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse=paste0('",\n',strrep(" ",indent_spaces),'"')),'")\n')} |> cat("\n")
 # }#
 # vec |> f_vec.dput_line_by_line()
 # vec |> f_vec.dput_line_by_line(indent_spaces=4)
@@ -161,7 +161,7 @@ vec |> f_vec.dput_line_by_line()
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # \% f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ") { -----
 f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
-    # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat()
+    # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat("\n")
     if (is.null(vec)) {
         return("NULL")
     } else {
@@ -169,27 +169,27 @@ f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", se
     }
 }
 f_vec.dput_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
-    f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat()
+    f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("\n")
 }
 
 vec |> f_vec.dput_line_by_line("") 
 vec |> f_vec.format_line_by_line("") 
-vec |> f_vec.format_line_by_line("") |> cat()
+vec |> f_vec.format_line_by_line("") |> cat("\n")
 vec |> f_vec.format_line_by_line() 
-vec |> f_vec.format_line_by_line() |> cat()
+vec |> f_vec.format_line_by_line() |> cat("\n")
 vec |> f_vec.format_line_by_line("\n\t")
-vec |> f_vec.format_line_by_line("\n\t") |> cat()
+vec |> f_vec.format_line_by_line("\n\t") |> cat("\n")
 vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE)
-vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE) |> cat()
+vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE) |> cat("\n")
 # > vec |> f_vec.dput_line_by_line("") 
 # c("C059","D050000L","NimbusMonoPS","NimbusRoman","NimbusSans","NimbusSansNarrow","P052","Roboto","RobotoCondensed")
 # > vec |> f_vec.format_line_by_line("") 
 # [1] "c(\"C059\",\"D050000L\",\"NimbusMonoPS\",\"NimbusRoman\",\"NimbusSans\",\"NimbusSansNarrow\",\"P052\",\"Roboto\",\"RobotoCondensed\")\n"
-# > vec |> f_vec.format_line_by_line("") |> cat()
+# > vec |> f_vec.format_line_by_line("") |> cat("\n")
 # c("C059","D050000L","NimbusMonoPS","NimbusRoman","NimbusSans","NimbusSansNarrow","P052","Roboto","RobotoCondensed")
 # > vec |> f_vec.format_line_by_line() 
 # [1] "c(\"C059\",\n  \"D050000L\",\n  \"NimbusMonoPS\",\n  \"NimbusRoman\",\n  \"NimbusSans\",\n  \"NimbusSansNarrow\",\n  \"P052\",\n  \"Roboto\",\n  \"RobotoCondensed\")\n"
-# > vec |> f_vec.format_line_by_line() |> cat()
+# > vec |> f_vec.format_line_by_line() |> cat("\n")
 # c("C059",
 #   "D050000L",
 #   "NimbusMonoPS",
@@ -201,7 +201,7 @@ vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE) |> cat()
 #   "RobotoCondensed")
 # > vec |> f_vec.format_line_by_line("\n\t")
 # [1] "c(\"C059\",\n\t\"D050000L\",\n\t\"NimbusMonoPS\",\n\t\"NimbusRoman\",\n\t\"NimbusSans\",\n\t\"NimbusSansNarrow\",\n\t\"P052\",\n\t\"Roboto\",\n\t\"RobotoCondensed\")\n"
-# > vec |> f_vec.format_line_by_line("\n\t") |> cat()
+# > vec |> f_vec.format_line_by_line("\n\t") |> cat("\n")
 # c("C059",
 # 	"D050000L",
 # 	"NimbusMonoPS",
@@ -213,7 +213,7 @@ vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE) |> cat()
 # 	"RobotoCondensed")
 # > vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE)
 # [1] "c(\n\t\"C059\",\n\t\"D050000L\",\n\t\"NimbusMonoPS\",\n\t\"NimbusRoman\",\n\t\"NimbusSans\",\n\t\"NimbusSansNarrow\",\n\t\"P052\",\n\t\"Roboto\",\n\t\"RobotoCondensed\"\n)\n"
-# > vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE) |> cat()
+# > vec |> f_vec.format_line_by_line("\n\t", sep_parentheses=TRUE) |> cat("\n")
 # c(
 # 	"C059",
 # 	"D050000L",
