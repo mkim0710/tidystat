@@ -110,23 +110,36 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 f_font_filename.search_path_local <- function(font_filename) {
     vec_path.file <- tinytex::tlmgr_search(what = font_filename, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
     vec_path = vec_path.file %>% dirname() %>% unique() %>% sort()
+    vec_path = vec_path[vec_path != "."]
     if (length(vec_path) > 0) {
         return(vec_path)
     } else {
         return(NULL)
     }
 }
+"noname" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+"inconsolata" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+# > "noname" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+# tlmgr search --all 'noname'
+# NULL
+# > "inconsolata" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+# tlmgr search --all 'inconsolata'
+# c("	texmf-dist/fonts/enc/dvips/inconsolata",
+#   "	texmf-dist/fonts/map/dvips/inconsolata",
+#   "	texmf-dist/fonts/opentype/public/inconsolata",
+#   "	texmf-dist/fonts/tfm/public/inconsolata",
+#   "	texmf-dist/fonts/type1/public/inconsolata",
+#   "	texmf-dist/tex/context/fonts/mkiv",
+#   "	texmf-dist/tex/latex/inconsolata",
+#   ".")
 
-"noname" |> f_font_filename.search_path_local() |> ()
-"inconsolata" |> f_font_filename.search_path_local() |> dput()
 
-
-### % f_vec_font_filename.search_path ====
-f_vec_font_filename.search_path <- function(vec_font_filename) {
+### % f_vec_font_filename.search_path_local ====
+f_vec_font_filename.search_path_local <- function(vec_font_filename) {
     if(is.null(names(vec_font_filename))) vec_font_filename = vec_font_filename %>% set_names()
     names(vec_font_filename)[names(vec_font_filename)==""] = vec_font_filename[names(vec_font_filename)==""]
     for (font_name in names(vec_font_filename)) {
-        vec_font_path <- f_font_filename.search_path(vec_font_filename[font_name])
+        vec_font_path <- f_font_filename.search_path_local(vec_font_filename[font_name])
         if (!is.null(vec_font_path)) {
             message(font_name, " is already installed at the following path(s):\n", paste(vec_font_path, collapse = "\n"))
         } else {
@@ -135,13 +148,10 @@ f_vec_font_filename.search_path <- function(vec_font_filename) {
     }
 }
 
-"noname" |> f_vec_font_filename.search_path() |> dput()
-"inconsolata" |> f_vec_font_filename.search_path() |> dput()
-# > "noname" |> f_vec_font_filename.search_path() |> dput()
+c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local() 
+# > c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local() 
 # tlmgr search --all 'noname'
 # noname is not installed.
-# NULL
-# > "inconsolata" |> f_vec_font_filename.search_path() |> dput()
 # tlmgr search --all 'inconsolata'
 # inconsolata is already installed at the following path(s):
 # 	texmf-dist/fonts/enc/dvips/inconsolata
@@ -152,7 +162,8 @@ f_vec_font_filename.search_path <- function(vec_font_filename) {
 # 	texmf-dist/tex/context/fonts/mkiv
 # 	texmf-dist/tex/latex/inconsolata
 # .
-# NULL
+# tlmgr search --all 'cascadia'
+# cascadia is not installed.
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
