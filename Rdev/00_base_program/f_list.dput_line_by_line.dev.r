@@ -1,0 +1,252 @@
+# f_list.dput_line_by_line.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
+# https://chatgpt.com/c/8f4ff95d-9466-453e-8f07-5bba159d0c86
+# https://github.com/MilesMcBain/datapasta/blob/master/R/vector_paste.R
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#$ list_vec ====
+list_vec = list(`Roboto Condensed` = c("\ttexmf-dist/fonts/opentype/google/roboto", 
+"\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto", 
+"\ttexmf-dist/fonts/vf/google/roboto", "."), `Roboto Serif` = c("\ttexmf-dist/fonts/opentype/google/roboto", 
+"\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto", 
+"\ttexmf-dist/fonts/vf/google/roboto", "\ttexmf-dist/tex/latex/roboto", 
+"."), `Cascadia Code Semibold` = c("\ttexmf-dist/fonts/opentype/public/cascadia-code", 
+"\ttexmf-dist/fonts/tfm/public/cascadia-code", "\ttexmf-dist/fonts/type1/public/cascadia-code", 
+"\ttexmf-dist/fonts/vf/public/cascadia-code", "."), NanumMyeongjo = NULL, 
+    NanumGothic = NULL, D2Coding = NULL) 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# %>% deparse() %>% cat() -----
+library(tidyverse)
+list_vec %>% deparse() %>% cat()
+list("Roboto Condensed" = c("\ttexmf-dist/fonts/opentype/google/roboto",  "\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto",  "\ttexmf-dist/fonts/vf/google/roboto", "."), "Roboto Serif" = c("\ttexmf-dist/fonts/opentype/google/roboto",  "\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto",  "\ttexmf-dist/fonts/vf/google/roboto", "\ttexmf-dist/tex/latex/roboto",  "."), "Cascadia Code Semibold" = c("\ttexmf-dist/fonts/opentype/public/cascadia-code",  "\ttexmf-dist/fonts/tfm/public/cascadia-code", "\ttexmf-dist/fonts/type1/public/cascadia-code",  "\ttexmf-dist/fonts/vf/public/cascadia-code", "."), NanumMyeongjo = NULL,      NanumGothic = NULL, D2Coding = NULL)
+
+list_vec2 = list("Roboto Condensed" = c("\ttexmf-dist/fonts/opentype/google/roboto",  "\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto",  "\ttexmf-dist/fonts/vf/google/roboto", "."), "Roboto Serif" = c("\ttexmf-dist/fonts/opentype/google/roboto",  "\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto",  "\ttexmf-dist/fonts/vf/google/roboto", "\ttexmf-dist/tex/latex/roboto",  "."), "Cascadia Code Semibold" = c("\ttexmf-dist/fonts/opentype/public/cascadia-code",  "\ttexmf-dist/fonts/tfm/public/cascadia-code", "\ttexmf-dist/fonts/type1/public/cascadia-code",  "\ttexmf-dist/fonts/vf/public/cascadia-code", "."), NanumMyeongjo = NULL,      NanumGothic = NULL, D2Coding = NULL)
+all.equal(list_vec, list_vec)
+# > all.equal(list_vec, list_vec)
+# [1] TRUE
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \% list_vec %>% f_vec.dput_line_by_line() ------
+# # > list_vec %>% f_vec.dput_line_by_line()
+# # c("c(\"\\ttexmf-dist/fonts/opentype/google/roboto\", \"\\ttexmf-dist/fonts/tfm/google/roboto\", \"\\ttexmf-dist/fonts/type1/google/roboto\", \"\\ttexmf-dist/fonts/vf/google/roboto\", \".\")",
+# #   "c(\"\\ttexmf-dist/fonts/opentype/google/roboto\", \"\\ttexmf-dist/fonts/tfm/google/roboto\", \"\\ttexmf-dist/fonts/type1/google/roboto\", \"\\ttexmf-dist/fonts/vf/google/roboto\", \"\\ttexmf-dist/tex/latex/roboto\", \".\")",
+# #   "c(\"\\ttexmf-dist/fonts/opentype/public/cascadia-code\", \"\\ttexmf-dist/fonts/tfm/public/cascadia-code\", \"\\ttexmf-dist/fonts/type1/public/cascadia-code\", \"\\ttexmf-dist/fonts/vf/public/cascadia-code\", \".\")",
+# #   "NULL",
+# #   "NULL",
+# #   "NULL")
+# # Warning message:
+# # In stri_replace_all_regex(string, pattern, fix_replacement(replacement),  :
+# #   argument is not an atomic vector; coercing
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \% f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ") { -----
+f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
+    # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat()
+    if (is.null(vec)) {
+        return("NULL")
+    } else {
+        vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c(',ifelse(sep_parentheses,space_between_vec_elements,""),'"',paste0(., collapse=paste0('",',space_between_vec_elements,'"')),'"',ifelse(sep_parentheses,str_extract(space_between_vec_elements,"\n"),""),')',end_of_text)}
+    }
+}
+f_vec.dput_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
+    f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat()
+}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#$ list_vec.formatted ====
+space_between_vec_elements="\n  "
+list_vec.formatted <- map(names(list_vec), function(name) {
+        paste0('"', name, '" = ', f_vec.format_line_by_line(list_vec[[name]], space_between_vec_elements))
+    })
+list_vec.formatted %>% str
+# > list_vec.formatted %>% str
+# List of 6
+#  $ : chr "\"Roboto Condensed\" = c(\"\ttexmf-dist/fonts/opentype/google/roboto\",\n  \"\ttexmf-dist/fonts/tfm/google/robo"| __truncated__
+#  $ : chr "\"Roboto Serif\" = c(\"\ttexmf-dist/fonts/opentype/google/roboto\",\n  \"\ttexmf-dist/fonts/tfm/google/roboto\""| __truncated__
+#  $ : chr "\"Cascadia Code Semibold\" = c(\"\ttexmf-dist/fonts/opentype/public/cascadia-code\",\n  \"\ttexmf-dist/fonts/tf"| __truncated__
+#  $ : chr "\"NanumMyeongjo\" = NULL"
+#  $ : chr "\"NanumGothic\" = NULL"
+#  $ : chr "\"D2Coding\" = NULL"
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \% list_vec.formatted %>% f_vec.dput_line_by_line() ----
+# list_vec.formatted.dput_line_by_line = c("\"Roboto Condensed\" = c(\"	texmf-dist/fonts/opentype/google/roboto\",
+# 	\"	texmf-dist/fonts/tfm/google/roboto\",
+# 	\"	texmf-dist/fonts/type1/google/roboto\",
+# 	\"	texmf-dist/fonts/vf/google/roboto\",
+# 	\".\")
+# ",
+#   "\"Roboto Serif\" = c(\"	texmf-dist/fonts/opentype/google/roboto\",
+# 	\"	texmf-dist/fonts/tfm/google/roboto\",
+# 	\"	texmf-dist/fonts/type1/google/roboto\",
+# 	\"	texmf-dist/fonts/vf/google/roboto\",
+# 	\"	texmf-dist/tex/latex/roboto\",
+# 	\".\")
+# ",
+#   "\"Cascadia Code Semibold\" = c(\"	texmf-dist/fonts/opentype/public/cascadia-code\",
+# 	\"	texmf-dist/fonts/tfm/public/cascadia-code\",
+# 	\"	texmf-dist/fonts/type1/public/cascadia-code\",
+# 	\"	texmf-dist/fonts/vf/public/cascadia-code\",
+# 	\".\")
+# ",
+#   "\"NanumMyeongjo\" = NULL",
+#   "\"NanumGothic\" = NULL",
+#   "\"D2Coding\" = NULL")
+# list_vec.formatted.dput_line_by_line %>% cat
+# # > list_vec.formatted.dput_line_by_line %>% cat
+# # "Roboto Condensed" = c("	texmf-dist/fonts/opentype/google/roboto",
+# # 	"	texmf-dist/fonts/tfm/google/roboto",
+# # 	"	texmf-dist/fonts/type1/google/roboto",
+# # 	"	texmf-dist/fonts/vf/google/roboto",
+# # 	".")
+# #  "Roboto Serif" = c("	texmf-dist/fonts/opentype/google/roboto",
+# # 	"	texmf-dist/fonts/tfm/google/roboto",
+# # 	"	texmf-dist/fonts/type1/google/roboto",
+# # 	"	texmf-dist/fonts/vf/google/roboto",
+# # 	"	texmf-dist/tex/latex/roboto",
+# # 	".")
+# #  "Cascadia Code Semibold" = c("	texmf-dist/fonts/opentype/public/cascadia-code",
+# # 	"	texmf-dist/fonts/tfm/public/cascadia-code",
+# # 	"	texmf-dist/fonts/type1/public/cascadia-code",
+# # 	"	texmf-dist/fonts/vf/public/cascadia-code",
+# # 	".")
+# #  "NanumMyeongjo" = NULL "NanumGothic" = NULL "D2Coding" = NULL
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \% f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n\t") { -----
+f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
+    f_vec.paste_collapse <- function(vec, space_between_vec_elements="\n") {
+        if (is.null(vec)) {
+            return("NULL")
+        } else {
+            vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% paste0('"',.,'"') |> paste0(collapse=paste0(",",space_between_vec_elements))
+        }
+    }
+    
+    list_vec.formatted <- map(names(list_vec), function(name) {
+        paste0('"', name, '" = c(', space_between_vec_elements, f_vec.paste_collapse(list_vec[[name]], space_between_vec_elements), ")")
+    })
+    paste0("list(", ifelse(sep_parentheses,space_between_list_elements,""), paste0(list_vec.formatted, collapse = paste0(",",space_between_list_elements)), ifelse(sep_parentheses,str_extract(space_between_list_elements,"\n"),""), ")", end_of_text)
+    
+}
+f_list.dput_line_by_line = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
+    f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat()
+}
+
+list_vec |> f_list.format_line_by_line()
+list_vec |> f_list.dput_line_by_line()
+# > list_vec |> f_list.dput_line_by_line()
+# list("Roboto Condensed" = c(
+#          "	texmf-dist/fonts/opentype/google/roboto",
+#          "	texmf-dist/fonts/tfm/google/roboto",
+#          "	texmf-dist/fonts/type1/google/roboto",
+#          "	texmf-dist/fonts/vf/google/roboto",
+#          "."),
+#      "Roboto Serif" = c(
+#          "	texmf-dist/fonts/opentype/google/roboto",
+#          "	texmf-dist/fonts/tfm/google/roboto",
+#          "	texmf-dist/fonts/type1/google/roboto",
+#          "	texmf-dist/fonts/vf/google/roboto",
+#          "	texmf-dist/tex/latex/roboto",
+#          "."),
+#      "Cascadia Code Semibold" = c(
+#          "	texmf-dist/fonts/opentype/public/cascadia-code",
+#          "	texmf-dist/fonts/tfm/public/cascadia-code",
+#          "	texmf-dist/fonts/type1/public/cascadia-code",
+#          "	texmf-dist/fonts/vf/public/cascadia-code",
+#          "."),
+#      "NanumMyeongjo" = c(
+#          NULL),
+#      "NanumGothic" = c(
+#          NULL),
+#      "D2Coding" = c(
+#          NULL))
+list_vec2 = list("Roboto Condensed" = c(
+         "	texmf-dist/fonts/opentype/google/roboto",
+         "	texmf-dist/fonts/tfm/google/roboto",
+         "	texmf-dist/fonts/type1/google/roboto",
+         "	texmf-dist/fonts/vf/google/roboto",
+         "."),
+     "Roboto Serif" = c(
+         "	texmf-dist/fonts/opentype/google/roboto",
+         "	texmf-dist/fonts/tfm/google/roboto",
+         "	texmf-dist/fonts/type1/google/roboto",
+         "	texmf-dist/fonts/vf/google/roboto",
+         "	texmf-dist/tex/latex/roboto",
+         "."),
+     "Cascadia Code Semibold" = c(
+         "	texmf-dist/fonts/opentype/public/cascadia-code",
+         "	texmf-dist/fonts/tfm/public/cascadia-code",
+         "	texmf-dist/fonts/type1/public/cascadia-code",
+         "	texmf-dist/fonts/vf/public/cascadia-code",
+         "."),
+     "NanumMyeongjo" = c(
+         NULL),
+     "NanumGothic" = c(
+         NULL),
+     "D2Coding" = c(
+         NULL))
+all.equal(list_vec, list_vec2)
+# > all.equal(list_vec, list_vec2)
+# [1] TRUE
+list_vec |> f_list.format_line_by_line(sep_parentheses = TRUE)
+list_vec |> f_list.dput_line_by_line(sep_parentheses = TRUE)
+# > list_vec |> f_list.format_line_by_line(sep_parentheses = TRUE)
+# [1] "list(\n     \"Roboto Condensed\" = c(\n         \"\ttexmf-dist/fonts/opentype/google/roboto\",\n         \"\ttexmf-dist/fonts/tfm/google/roboto\",\n         \"\ttexmf-dist/fonts/type1/google/roboto\",\n         \"\ttexmf-dist/fonts/vf/google/roboto\",\n         \".\"),\n     \"Roboto Serif\" = c(\n         \"\ttexmf-dist/fonts/opentype/google/roboto\",\n         \"\ttexmf-dist/fonts/tfm/google/roboto\",\n         \"\ttexmf-dist/fonts/type1/google/roboto\",\n         \"\ttexmf-dist/fonts/vf/google/roboto\",\n         \"\ttexmf-dist/tex/latex/roboto\",\n         \".\"),\n     \"Cascadia Code Semibold\" = c(\n         \"\ttexmf-dist/fonts/opentype/public/cascadia-code\",\n         \"\ttexmf-dist/fonts/tfm/public/cascadia-code\",\n         \"\ttexmf-dist/fonts/type1/public/cascadia-code\",\n         \"\ttexmf-dist/fonts/vf/public/cascadia-code\",\n         \".\"),\n     \"NanumMyeongjo\" = c(\n         NULL),\n     \"NanumGothic\" = c(\n         NULL),\n     \"D2Coding\" = c(\n         NULL)\n)\n"
+# > list_vec |> f_list.dput_line_by_line(sep_parentheses = TRUE)
+# list(
+#      "Roboto Condensed" = c(
+#          "	texmf-dist/fonts/opentype/google/roboto",
+#          "	texmf-dist/fonts/tfm/google/roboto",
+#          "	texmf-dist/fonts/type1/google/roboto",
+#          "	texmf-dist/fonts/vf/google/roboto",
+#          "."),
+#      "Roboto Serif" = c(
+#          "	texmf-dist/fonts/opentype/google/roboto",
+#          "	texmf-dist/fonts/tfm/google/roboto",
+#          "	texmf-dist/fonts/type1/google/roboto",
+#          "	texmf-dist/fonts/vf/google/roboto",
+#          "	texmf-dist/tex/latex/roboto",
+#          "."),
+#      "Cascadia Code Semibold" = c(
+#          "	texmf-dist/fonts/opentype/public/cascadia-code",
+#          "	texmf-dist/fonts/tfm/public/cascadia-code",
+#          "	texmf-dist/fonts/type1/public/cascadia-code",
+#          "	texmf-dist/fonts/vf/public/cascadia-code",
+#          "."),
+#      "NanumMyeongjo" = c(
+#          NULL),
+#      "NanumGothic" = c(
+#          NULL),
+#      "D2Coding" = c(
+#          NULL)
+# )
+list_vec |> f_list.format_line_by_line(space_between_vec_elements = "")
+list_vec |> f_list.dput_line_by_line(space_between_vec_elements = "")
+# > list_vec |> f_list.format_line_by_line(space_between_vec_elements = "")
+# [1] "list(\"Roboto Condensed\" = c(\"\ttexmf-dist/fonts/opentype/google/roboto\",\"\ttexmf-dist/fonts/tfm/google/roboto\",\"\ttexmf-dist/fonts/type1/google/roboto\",\"\ttexmf-dist/fonts/vf/google/roboto\",\".\"),\n     \"Roboto Serif\" = c(\"\ttexmf-dist/fonts/opentype/google/roboto\",\"\ttexmf-dist/fonts/tfm/google/roboto\",\"\ttexmf-dist/fonts/type1/google/roboto\",\"\ttexmf-dist/fonts/vf/google/roboto\",\"\ttexmf-dist/tex/latex/roboto\",\".\"),\n     \"Cascadia Code Semibold\" = c(\"\ttexmf-dist/fonts/opentype/public/cascadia-code\",\"\ttexmf-dist/fonts/tfm/public/cascadia-code\",\"\ttexmf-dist/fonts/type1/public/cascadia-code\",\"\ttexmf-dist/fonts/vf/public/cascadia-code\",\".\"),\n     \"NanumMyeongjo\" = c(NULL),\n     \"NanumGothic\" = c(NULL),\n     \"D2Coding\" = c(NULL))\n"
+# > list_vec |> f_list.dput_line_by_line(space_between_vec_elements = "")
+# list("Roboto Condensed" = c("	texmf-dist/fonts/opentype/google/roboto","	texmf-dist/fonts/tfm/google/roboto","	texmf-dist/fonts/type1/google/roboto","	texmf-dist/fonts/vf/google/roboto","."),
+#      "Roboto Serif" = c("	texmf-dist/fonts/opentype/google/roboto","	texmf-dist/fonts/tfm/google/roboto","	texmf-dist/fonts/type1/google/roboto","	texmf-dist/fonts/vf/google/roboto","	texmf-dist/tex/latex/roboto","."),
+#      "Cascadia Code Semibold" = c("	texmf-dist/fonts/opentype/public/cascadia-code","	texmf-dist/fonts/tfm/public/cascadia-code","	texmf-dist/fonts/type1/public/cascadia-code","	texmf-dist/fonts/vf/public/cascadia-code","."),
+#      "NanumMyeongjo" = c(NULL),
+#      "NanumGothic" = c(NULL),
+#      "D2Coding" = c(NULL))
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ END -----
+cat("* To revert to the last commited file, run the following terminal command:\n", 
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n", sep="")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+
