@@ -656,6 +656,22 @@ object = function(vec) {
 }
 packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
 env1[[objectname]] = object
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
+objectname = "f_vec1_vec2.setdiff"
+object = function(vec1, vec2) {
+    out = list()
+    out$vec1.character = vec1 = as.character(vec1)
+    out$vec2.character = vec2 = as.character(vec2)
+    out$union = union(vec1, vec2)
+    out$intersect = intersect(vec1, vec2)
+    out$setdiff_1_2 = setdiff(vec1, vec2)
+    out$setdiff_2_1 = setdiff(vec2, vec1)
+    out$identical = all.equal(vec1, vec2)
+    out
+}
+packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
+env1[[objectname]] = object
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ for (env1.dependancy in c("")) { -----
@@ -666,8 +682,6 @@ for (env1.dependancy in c("f_path.size_files")) {
         source(file.path(env1$path$source_base,"",paste0(sourcename,".source.r")))
     }
 }
-
-
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----
