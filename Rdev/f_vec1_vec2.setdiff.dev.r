@@ -4,13 +4,13 @@
 
 f_vec1_vec2.setdiff = function(vec1, vec2) {
     out = list()
-    out$vec1 = vec1 = as.character(vec1)
-    out$vec2 = vec2 = as.character(vec2)
+    out$vec1 = as.character(vec1)
+    out$vec2 = as.character(vec2)
     out$union = union(vec1, vec2)
     out$intersect = intersect(vec1, vec2)
     out$setdiff_1_2 = setdiff(vec1, vec2)
     out$setdiff_2_1 = setdiff(vec2, vec1)
-    out$identical = identical(vec1, vec2)
+    out$identical = all.equal(vec1, vec2)
     out
 }
 f_vec1_vec2.setdiff(
