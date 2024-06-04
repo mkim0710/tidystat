@@ -1,6 +1,6 @@
 
 f_vec.dput_line_by_line <- function(vec) {
-    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
+    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")\n') |> cat()
 }
 c("C059", "D050000L", "NimbusMonoPS", "NimbusRoman", "NimbusSans", 
 "NimbusSansNarrow", "P052", "Roboto", "RobotoCondensed", "StandardSymbolsPS", 
