@@ -50,7 +50,7 @@ header-includes:
 - \setsansfont{Roboto}
 - \setmonofont{Cascadia Code SemiBold}
 - \usepackage[hangul]{kotex}
-- \setmainhangulfont{NanumMyeongjo}
+- \setmainhangulfont{NanumGothic}
 - \setsanshangulfont{NanumGothic}
 - \setmonohangulfont{Cascadia Code}
 params:
