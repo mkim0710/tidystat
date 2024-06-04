@@ -30,7 +30,7 @@ font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(font_name
 tlmgr_installed_packages <- tinytex::tlmgr(c('info', '--list', '--only-installed'), stdout = TRUE)
 # tlmgr info --list --only-installed
 tlmgr_installed_packages |> str()
-tlmgr_installed_packages |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
+tlmgr_installed_packages |> env1$f_vec.dput_line_by_line()
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## $ tlmgr_installed_packages.ASRockX300Ryzen5600G ====
@@ -321,7 +321,7 @@ tlmgr_installed_packages.MAGB760M13700KF |> env1$f_vec1_vec2.setdiff(tlmgr_insta
 #  $ setdiff_2_1   : chr [1:2] "i epstopdf: Convert EPS to PDF using Ghostscript" "i epstopdf.windows: windows files of epstopdf"
 #  $ identical     : chr [1:2] "Lengths (138, 126) differ (string compare on first 126)" "123 string mismatches"
 
-tlmgr_installed_packages.MAGB760M13700KF |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
+tlmgr_installed_packages.MAGB760M13700KF |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f_vec.dput_line_by_line()
 c("i arphic: Arphic (Chinese) font packages",
   "i cascadia-code: The Cascadia Code font with support for LaTeX and pdfLaTeX",
   "i cjk: CJK language support",
@@ -470,9 +470,9 @@ tlmgr_installed_packages.RockerVerse |> env1$f_vec1_vec2.setdiff(tlmgr_installed
 #  $ identical     : chr [1:2] "Lengths (115, 126) differ (string compare on first 115)" "104 string mismatches"
 
 
-tlmgr_installed_packages.RockerVerse |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
-tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(tlmgr_installed_packages.RockerVerse) |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
-# > tlmgr_installed_packages.RockerVerse |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
+tlmgr_installed_packages.RockerVerse |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f_vec.dput_line_by_line()
+tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(tlmgr_installed_packages.RockerVerse) |> env1$f_vec.dput_line_by_line()
+# > tlmgr_installed_packages.RockerVerse |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f_vec.dput_line_by_line()
 c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i bibtex.x86_64-linux: x86_64-linux files of bibtex",
   "i context: The ConTeXt macro package",
@@ -507,7 +507,7 @@ c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i tikzfill: TikZ libraries for filling with images and patterns",
   "i xetex.x86_64-linux: x86_64-linux files of xetex",
   "i xpatch: Extending etoolbox patching commands")
-# > tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(tlmgr_installed_packages.RockerVerse) |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
+# > tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(tlmgr_installed_packages.RockerVerse) |> env1$f_vec.dput_line_by_line()
 c("i amscls: AMS document classes for LaTeX",
   "i bibtex.windows: windows files of bibtex",
   "i booktabs: Publication quality tables in LaTeX",
