@@ -5,9 +5,9 @@ paste0("package:",packagename_to_unload)
 for (packagename_to_unload in packagename_to_unload) {
     if(paste0("package:",packagename_to_unload) %in% search()) {
         detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
-        paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat();cat("\n")
+        paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat("\n")
     } else {
-        # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat();cat("\n")
+        # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("\n")
     }
 }
 library(intergraph)
@@ -379,9 +379,9 @@ object_statnet.summary_df = function(object_statnet) {
     for (packagename_to_unload in packagename_to_unload) {
         if(paste0("package:",packagename_to_unload) %in% search()) {
             detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
-            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat();cat("\n")
+            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat("\n")
         } else {
-            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat();cat("\n")
+            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("\n")
         }
     }
     library(intergraph)

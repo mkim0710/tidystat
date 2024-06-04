@@ -227,13 +227,13 @@ path4write = env1$path$path4write
 # env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
 # env1$path$print_tree_path = env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
-# # env1$path$print_tree_path |> cat()
+# # env1$path$print_tree_path |> cat("\n")
 # env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
-# # env1$path$print_tree_path_files.codes |> cat()
+# # env1$path$print_tree_path_files.codes |> cat("\n")
 # env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> filter(path.level <= 2) |> 
 #     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
-# env1$path$print_tree_path_files.data |> cat()
+# env1$path$print_tree_path_files.data |> cat("\n")
 ```
 
 
