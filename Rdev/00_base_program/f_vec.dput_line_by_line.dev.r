@@ -1,3 +1,5 @@
+# https://chatgpt.com/c/8f4ff95d-9466-453e-8f07-5bba159d0c86
+# https://github.com/MilesMcBain/datapasta/blob/master/R/vector_paste.R
 
 f_vec.dput_line_by_line <- function(vec) {
     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")\n') |> cat()
@@ -32,3 +34,6 @@ c("C059", "D050000L", "NimbusMonoPS", "NimbusRoman", "NimbusSans",
 #   "URWBookman",
 #   "URWGothic",
 #   "Z003")
+
+
+
