@@ -652,7 +652,7 @@ env1[[objectname]] = object
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
 objectname = "f_vec.dput_line_by_line"
 object = function(vec) {
-    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")') |> cat()
+    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")\n') |> cat()
 }
 packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
 env1[[objectname]] = object
