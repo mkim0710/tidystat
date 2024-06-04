@@ -73,14 +73,14 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     ObjectName.select = paste0(objectname,".select")
     ObjectName.TableOne_byExposure = paste0(objectname,".TableOne_by", VarNames4Exposure)
     ObjectName.is.na.TableOne_byExposure = paste0(objectname,".is.na.TableOne_by", VarNames4Exposure)
-    ObjectName.select |> cat();cat("\n") ###### |> cat() ----
-    ObjectName.TableOne_byExposure |> cat();cat("\n") ###### |> cat() ----
-    ObjectName.is.na.TableOne_byExposure |> cat();cat("\n") ###### |> cat() ----
-    # > ObjectName.select |> cat();cat("\n") ###### |> cat() ----
+    ObjectName.select |> cat("\n") ###### |> cat() ----
+    ObjectName.TableOne_byExposure |> cat("\n") ###### |> cat() ----
+    ObjectName.is.na.TableOne_byExposure |> cat("\n") ###### |> cat() ----
+    # > ObjectName.select |> cat("\n") ###### |> cat() ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select
-    # > ObjectName.TableOne_byExposure |> cat();cat("\n") ###### |> cat() ----
+    # > ObjectName.TableOne_byExposure |> cat("\n") ###### |> cat() ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.TableOne_bySEX
-    # > ObjectName.is.na.TableOne_byExposure |> cat();cat("\n") ###### |> cat() ----
+    # > ObjectName.is.na.TableOne_byExposure |> cat("\n") ###### |> cat() ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.is.na.TableOne_bySEX
     
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.TableOne_by_SEX = CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
