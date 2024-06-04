@@ -105,7 +105,6 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) font_filename ====
-
 ### % f_font_filename.search_path_local ====
 f_font_filename.search_path_local <- function(font_filename) {
     vec_path.file <- tinytex::tlmgr_search(what = font_filename, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
@@ -130,8 +129,7 @@ f_font_filename.search_path_local <- function(font_filename) {
 #   "	texmf-dist/fonts/tfm/public/inconsolata",
 #   "	texmf-dist/fonts/type1/public/inconsolata",
 #   "	texmf-dist/tex/context/fonts/mkiv",
-#   "	texmf-dist/tex/latex/inconsolata",
-#   ".")
+#   "	texmf-dist/tex/latex/inconsolata")
 
 
 ### % f_vec_font_filename.search_path_local ====
@@ -161,7 +159,6 @@ c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local(
 # 	texmf-dist/fonts/type1/public/inconsolata
 # 	texmf-dist/tex/context/fonts/mkiv
 # 	texmf-dist/tex/latex/inconsolata
-# .
 # tlmgr search --all 'cascadia'
 # cascadia is not installed.
 
@@ -194,6 +191,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 }
 
 "inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+"inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f_vec.dput_line_by_line()
 # > "inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
 # tlmgr search --all 'inconsolata'
 # 	texmf-dist/fonts/enc/dvips/inconsolata
@@ -202,33 +200,41 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 # 	texmf-dist/fonts/tfm/public/inconsolata
 # 	texmf-dist/fonts/type1/public/inconsolata
 # 	texmf-dist/tex/context/fonts/mkiv
-# 	texmf-dist/tex/latex/inconsolata
-"inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f_vec.dput_line_by_line()
-c("	texmf-dist/fonts/enc/dvips/inconsolata",
-  "	texmf-dist/fonts/map/dvips/inconsolata",
-  "	texmf-dist/fonts/opentype/public/inconsolata",
-  "	texmf-dist/fonts/tfm/public/inconsolata",
-  "	texmf-dist/fonts/type1/public/inconsolata",
-  "	texmf-dist/tex/context/fonts/mkiv",
-  "	texmf-dist/tex/latex/inconsolata",
-  ".")
+# 	texmf-dist/tex/latex/inconsolata> "inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f_vec.dput_line_by_line()
+# tlmgr search --all 'inconsolata'
+# c("	texmf-dist/fonts/enc/dvips/inconsolata",
+#   "	texmf-dist/fonts/map/dvips/inconsolata",
+#   "	texmf-dist/fonts/opentype/public/inconsolata",
+#   "	texmf-dist/fonts/tfm/public/inconsolata",
+#   "	texmf-dist/fonts/type1/public/inconsolata",
+#   "	texmf-dist/tex/context/fonts/mkiv",
+#   "	texmf-dist/tex/latex/inconsolata")
 
-c("\ttexmf-dist/fonts/enc/dvips/inconsolata", "\ttexmf-dist/fonts/map/dvips/inconsolata",
-"\ttexmf-dist/fonts/opentype/public/inconsolata", "\ttexmf-dist/fonts/tfm/public/inconsolata",
-"\ttexmf-dist/fonts/type1/public/inconsolata", "\ttexmf-dist/tex/latex/inconsolata",
-".") %>% env1$f_vec.dput_line_by_line()
-
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
+### if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts")) -----
 if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts"))
-
-
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
 vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
   "Roboto Serif" = "(?i)roboto.*serif",
   "Cascadia Code Semibold" = "(?i)cascadia.*code.*semibold",
   "NanumMyeongjo" = "(?i)nanum.*myeongjo",
   "NanumGothic" = "(?i)nanum.*gothic",
   "D2Coding" = "(?i)d2coding")
-vec_font_regex_perl |> map(f_font_regex_perl.search_path_local) |> dput()
-
+vec_font_regex_perl |> map(f_font_regex_perl.search_path_local) |> env1$f_list.dput_line_by_line()
+# list("Roboto Condensed" = c(
+#          NULL),
+#      "Roboto Serif" = c(
+#          NULL),
+#      "Cascadia Code Semibold" = c(
+#          NULL),
+#      "NanumMyeongjo" = c(
+#          NULL),
+#      "NanumGothic" = c(
+#          NULL),
+#      "D2Coding" = c(
+#          NULL))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
 ### % f_font_regex_perl.search_TeXLiveDB ====
@@ -258,22 +264,6 @@ vec_font_regex_perl.TexLiveDB_list %>% str
 
 
 
-
-
-
-c(
-  "fontspec",
-  "xunicode",
-  "xltxtra",
-  "cm-unicode",
-  "unicode-math",
-  "roboto",
-  "cascadia-code",
-  "nanum-type1",
-  "nanum-myeongjo",
-  "nanum-gothic",
-  "d2coding"
-)
 
 
 
