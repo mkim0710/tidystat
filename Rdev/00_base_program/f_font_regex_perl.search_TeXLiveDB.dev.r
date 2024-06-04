@@ -210,6 +210,24 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 #   "	texmf-dist/tex/context/fonts/mkiv",
 #   "	texmf-dist/tex/latex/inconsolata")
 
+"(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
+"(?i)inconsolata.*regular" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+# > "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
+# tlmgr search --file '(?i)inconsolata.*regular'
+# inconsolata:
+# 	texmf-dist/fonts/type1/public/inconsolata/InconsolataN-Regular.pfb
+# 	texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf
+# 	texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf
+# > "(?i)inconsolata.*regular" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+# tlmgr search --all '(?i)inconsolata.*regular'
+# 	texmf-dist/fonts/opentype/public/inconsolata
+# 	texmf-dist/fonts/type1/public/inconsolata
+
+
+"(?i)roboto.*condensed" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat()
+"(?i)roboto.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat()
+
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
 ### if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts")) -----
