@@ -185,6 +185,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
     if(length(font_regex_perl) > 1) error("font_regex_perl must be a single string.")
     vec_path.file <- tinytex::tlmgr_search(what = font_regex_perl, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
     vec_path = vec_path.file %>% dirname() %>% unique() %>% sort()
+    vec_path = vec_path[vec_path != "."]
     if (length(vec_path) > 0) {
         return(vec_path)
     } else {
