@@ -4,8 +4,8 @@
 
 f_vec1_vec2.setdiff = function(vec1, vec2) {
     out = list()
-    out$vec1 = as.character(vec1)
-    out$vec2 = as.character(vec2)
+    out$vec1.character = vec1 = as.character(vec1)
+    out$vec2.character = vec2 = as.character(vec2)
     out$union = union(vec1, vec2)
     out$intersect = intersect(vec1, vec2)
     out$setdiff_1_2 = setdiff(vec1, vec2)
