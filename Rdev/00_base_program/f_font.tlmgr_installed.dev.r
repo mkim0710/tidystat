@@ -80,6 +80,20 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) tlmgr_installed_packages ----
+c(
+  "fontspec",
+  "xunicode",
+  "xltxtra",
+  "cm-unicode",
+  "unicode-math",
+  "roboto",
+  "cascadia-code",
+  "nanum-type1",
+  "nanum-myeongjo",
+  "nanum-gothic",
+  "d2coding"
+)
+
 tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
 font_name = "roboto"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
 font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
