@@ -348,20 +348,21 @@ env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rs
 
 
 ```{r Render, eval=TRUE, include=FALSE}
+env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf")
 # if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #     if (.Platform$OS.type == "windows") {
 #         tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
 #         font_name = "roboto"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
 #         font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
 #         cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
-#         Sys.setenv(PARENT_RENDERING = "YES"); rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
-#         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-#         env1$env.internal$f_file_PDF.sumatra(rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"))
+#         Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path.filename.ext |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
+#         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = env1$path$CurrentSource.path.filename.pdf, backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#         env1$env.internal$f_file_PDF.sumatra(env1$path$CurrentSource.path.filename.pdf)
 #     }
 # }
-cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',rstudioapi::getSourceEditorContext()$path,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
-    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", 
-    ' env1$env.internal$f_file_PDF.sumatra("',rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".pdf"),'")',"\n", sep="")
+cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
+    ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
+    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
 
 
