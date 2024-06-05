@@ -714,10 +714,145 @@ if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/Tiny
 if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts/truetype"))  # .ttf
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#
 ### if(.Platform$OS.type == "unix")  -----
+'whoami' |> system(intern = TRUE)
+'echo $PATH' |> system(intern = TRUE) 
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+'sudo find / -type d -name texlive' |> system(intern = TRUE) 
 'sudo find / -type d -name texmf-dist' |> system(intern = TRUE) 
+'sudo find /usr/local/texlive -type d -name fonts' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+c("/usr/local/texlive/texmf-dist/tex/context/fonts",
+  "/usr/local/texlive/texmf-dist/metapost/context/fonts",
+  "/usr/local/texlive/texmf-dist/fonts")
+dir("/usr/local/texlive")
+dir("/usr/local/texlive/bin")
+dir("/usr/local/texlive/tlpkg/tlpobj")
 dir("/usr/local/texlive/texmf-dist")
 dir("/usr/local/texlive/texmf-dist/fonts")
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+'sudo find /usr/local/texlive -type f -iname "*.otf"' |> system(intern = TRUE) 
+'sudo find /usr/local/texlive -type f -iname "*.ttf"' |> system(intern = TRUE) 
 'sudo find /usr/local/texlive/texmf-dist/fonts -type f -iname "*.otf"' |> system(intern = TRUE) 
+'sudo find /usr/local/texlive/texmf-dist/fonts -type f -iname "*.ttf"' |> system(intern = TRUE) 
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#
+### if docker -----
+'sudo find / -iname "*consolas*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'sudo find / -type f -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'sudo find / -type f -iname "*courier*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+# > 'sudo find / -type f -iname "*courier*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+# find: ‘/proc/262/task/262/fdinfo’: Permission denied
+# find: ‘/proc/262/task/324/fdinfo’: Permission denied
+# find: ‘/proc/262/task/325/fdinfo’: Permission denied
+# find: ‘/proc/262/task/326/fdinfo’: Permission denied
+# find: ‘/proc/262/task/15544/fdinfo’: Permission denied
+# find: ‘/proc/262/map_files’: Permission denied
+# find: ‘/proc/262/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21322/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21346/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21347/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21348/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21349/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21354/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21355/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21370/fdinfo’: Permission denied
+# find: ‘/proc/21322/task/21483/fdinfo’: Permission denied
+# find: ‘/proc/21322/map_files’: Permission denied
+# find: ‘/proc/21322/fdinfo’: Permission denied
+# find: ‘/proc/22389/task/22389/fdinfo’: Permission denied
+# find: ‘/proc/22389/map_files’: Permission denied
+# find: ‘/proc/22389/fdinfo’: Permission denied
+# find: ‘/proc/22390/task/22390/fdinfo’: Permission denied
+# find: ‘/proc/22390/map_files’: Permission denied
+# find: ‘/proc/22390/fdinfo’: Permission denied
+# c("/usr/local/lib/R/library/grDevices/afm/Courier-BoldOblique.afm.gz",
+#   "/usr/local/lib/R/library/grDevices/afm/Courier-Oblique.afm.gz",
+#   "/usr/local/lib/R/library/grDevices/afm/Courier-Bold.afm.gz",
+#   "/usr/local/lib/R/library/grDevices/afm/Courier.afm.gz")
+#  
+# Warning message:
+# In system("sudo find / -type f -iname \"*courier*\"", intern = TRUE) :
+#   running command 'sudo find / -type f -iname "*courier*"' had status 1
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+Sys.getenv("PATH")
+"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback"
+Sys.getenv("PATH") |> strsplit(":") |> unlist() |> env1$f_vec.dput_line_by_line()
+c("/usr/local/sbin",
+  "/usr/local/bin",
+  "/usr/sbin",
+  "/usr/bin",
+  "/sbin",
+  "/bin",
+  "/usr/local/texlive/bin/linux",
+  "/usr/lib/rstudio-server/bin/quarto/bin",
+  "/usr/lib/rstudio-server/bin/postback")
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#
+### adding "/usr/local/texlive" to $PATH -----
+# Sys.setenv(PATH = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback")
+Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/usr/local/texlive", "/usr/local/texlive/texmf-dist", "/usr/share/fonts", sep = ":"))
+'echo $PATH' |> system(intern = TRUE) 
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+
+### % f_linux_find_filename.search_path_local ====
+f_linux_find_filename.search_path_local <- function(filename) {
+    vec_path.file <- paste0('sudo find / -type f -iname "*',filename,'*"') |> system(intern = TRUE)
+    vec_path = vec_path.file %>% dirname() %>% unique() %>% sort()
+    vec_path = vec_path[vec_path != "."]
+    if (length(vec_path) > 0) {
+        return(vec_path)
+    } else {
+        return(NULL)
+    }
+}
+"roboto" |> f_linux_find_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
+  "/usr/local/lib/R/site-library/rmarkdown/rmd/h/bootstrap/css/fonts",
+  "/usr/share/fonts/truetype/roboto/unhinted",
+  "/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF",
+  "/usr/share/lintian/overrides",
+  "/var/lib/dpkg/info")
+c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
+  "/usr/local/lib/R/site-library/rmarkdown/rmd/h/bootstrap/css/fonts",
+  "/usr/local/texlive/texmf-dist/fonts/map/dvips/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/type1/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/vf/google/roboto",
+  "/usr/local/texlive/texmf-dist/tex/latex/roboto",
+  "/usr/local/texlive/tlpkg/tlpobj",
+  "/usr/share/fonts/truetype/roboto/unhinted",
+  "/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF",
+  "/usr/share/lintian/overrides",
+  "/var/lib/dpkg/info")
+"lmodern" |> f_linux_find_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+c("/etc/fonts/conf.avail",
+  "/etc/X11/fonts/Type1",
+  "/usr/local/texlive/texmf-dist/tex/latex/lm",
+  "/var/lib/dpkg/info")
+"serif" |> f_linux_find_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+c("/etc/fonts/conf.avail",
+  "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/reveal/css/theme/source",
+  "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/themes",
+  "/usr/lib/rstudio-server/resources/mathjax-27/extensions/a11y/mathmaps/en/symbols",
+  "/usr/lib/rstudio-server/resources/mathjax-27/extensions/a11y/mathmaps/es/symbols",
+  "/usr/lib/rstudio-server/resources/mathjax-27/fonts/HTML-CSS/TeX/otf",
+  "/usr/lib/rstudio-server/resources/mathjax-27/jax/output/CommonHTML/fonts/TeX",
+  "/usr/local/lib/R/doc/html/katex/fonts")
+c("/etc/fonts/conf.avail",
+  "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/reveal/css/theme/source",
+  "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/themes",
+  "/usr/lib/rstudio-server/resources/mathjax-27/extensions/a11y/mathmaps/en/symbols",
+  "/usr/lib/rstudio-server/resources/mathjax-27/extensions/a11y/mathmaps/es/symbols",
+  "/usr/lib/rstudio-server/resources/mathjax-27/fonts/HTML-CSS/TeX/otf",
+  "/usr/lib/rstudio-server/resources/mathjax-27/jax/output/CommonHTML/fonts/TeX",
+  "/usr/local/lib/R/doc/html/katex/fonts",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/type1/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/vf/google/roboto",
+  "/usr/local/texlive/texmf-dist/tex/latex/roboto")
+
+dir("/etc/fonts")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
 vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
