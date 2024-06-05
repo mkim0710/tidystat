@@ -54,7 +54,7 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(paste0("^",getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
 file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env1$path$CurrentSource.path.filename.ext)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### env1\$env.internal ====
@@ -191,7 +191,7 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 # %% update template (default.R) -----
 env1$path$RTemplate.filename.ext = "default.R"
 env1$path$MyTemplate.filename.ext = "default.R"
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(paste0("^",getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", ""); 
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", ""); 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 if (.Platform$OS.type == "windows") {
     if(env1$path$MyTemplate.filename.ext == basename(env1$path$CurrentSource.path.filename.ext)) {
