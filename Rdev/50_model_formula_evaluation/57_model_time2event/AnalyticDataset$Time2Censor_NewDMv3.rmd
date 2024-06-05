@@ -128,7 +128,7 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |>
         NewDMv3_atWave7 == TRUE ~ 7,
         TRUE ~ NA_real_
     )) %>% 
-    table(useNA="always") |> addmargins
+    table(useNA="always") |> addmargins()
 # Time2Event_NewDMv3
 #     1     2     3     4     5     6     7  <NA>   Sum 
 #  1185   138   154   136   186   146   139  7946 10030 
@@ -148,7 +148,7 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |>
         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
         , Time2Censor_NewDMv3 = replace_na(Time2Event_NewDMv3, 7)
     ) %>% 
-    table(useNA="always") |> addmargins
+    table(useNA="always") |> addmargins()
 #              Time2Censor_NewDMv3
 # Event_NewDMv3     1     2     3     4     5     6     7  <NA>   Sum
 #         FALSE     0     0     0     0     0     0  7946     0  7946
@@ -179,7 +179,7 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 =
     )
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> summary()
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins()
 # > as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # tibble [10,030 × 2] (S3: tbl_df/tbl/data.frame)
 #  $ Event_NewDMv3      : logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
@@ -192,7 +192,7 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always"
 #                  Mean   :6.069      
 #                  3rd Qu.:7.000      
 #                  Max.   :7.000      
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins()
 #              Time2Censor_NewDMv3
 # Event_NewDMv3     1     2     3     4     5     6     7  <NA>   Sum
 #         FALSE     0     0     0     0     0     0  7946     0  7946
