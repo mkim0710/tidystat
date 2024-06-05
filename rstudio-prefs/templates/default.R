@@ -207,7 +207,7 @@ if (.Platform$OS.type == "windows") {
         for ( destination_path.filename.ext in c(
             file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.filename.ext)
             , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.filename.ext)
-        )) {if(dir.exists(dirname(destination_path.filename.ext)) && env1$path$CurrentSource.path.filename.ext != destination_path.filename.ext) {
+        )) {if(dir.exists(dirname(destination_path.filename.ext)) && env1$path$CurrentSource.path.filename.ext|>normalizePath(winslash="/") != destination_path.filename.ext) {
             if(file.copy(from=env1$path$CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
             # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)};
         }}
