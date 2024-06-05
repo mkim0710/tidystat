@@ -45,7 +45,6 @@ output:
 geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
 # fontsize: 12pt
 header-includes: 
-header-includes: 
   - \usepackage{fontspec}
   - \newcommand{\setfallbackfont}[4]{
       \IfFontExistsTF{#2}
