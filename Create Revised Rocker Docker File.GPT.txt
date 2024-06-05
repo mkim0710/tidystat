@@ -1,0 +1,382 @@
+#!/usr/bin/env docker
+# -*- coding: utf-8 -*-
+# -*- mode: docker -*-
+# Create Revised Rocker Docker File.txt
+# Create Revised Rocker Docker File.GPT.txt
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# https://gopensource.com/going-through-docker-hell-once-243199d6f7a1
+# https://chatgpt.com/c/2926bf45-de5a-44e6-9a5c-3515412462ef
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ install fonts: Roboto Condensed, Roboto Serif, Cascadia Code Semibold, NanumMyeongjo, NanumGothic, D2Coding ====
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+# Use the rocker/verse base image
+FROM rocker/verse:latest
+
+# Update package lists
+RUN apt-get update
+
+# Install font dependencies
+RUN apt-get install -y \
+    fontconfig \
+    wget \
+    unzip
+
+# Install Roboto Condensed and Roboto Serif
+RUN wget https://github.com/google/fonts/archive/main.zip -O /tmp/google-fonts.zip && \
+    unzip /tmp/google-fonts.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/google-fonts && \
+    cp /tmp/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/google-fonts/ && \
+    cp /tmp/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/google-fonts/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/fonts-main /tmp/google-fonts.zip
+
+# Install Cascadia Code Semibold
+RUN wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /tmp/cascadia-code.zip && \
+    unzip /tmp/cascadia-code.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/cascadia-code && \
+    cp /tmp/ttf/*.ttf /usr/share/fonts/truetype/cascadia-code/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/ttf /tmp/cascadia-code.zip
+
+# Install NanumMyeongjo and NanumGothic
+RUN wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /tmp/nanum-fonts.zip && \
+    unzip /tmp/nanum-fonts.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/nanum && \
+    cp /tmp/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/nanum/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/NanumFont_TTF_ALL /tmp/nanum-fonts.zip
+
+# Install D2Coding
+RUN wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /tmp/d2coding.zip && \
+    unzip /tmp/d2coding.zip -d /tmp && \
+    mkdir -p /usr/share/fonts/truetype/d2coding && \
+    cp /tmp/D2Coding/*.ttf /usr/share/fonts/truetype/d2coding/ && \
+    fc-cache -f -v && \
+    rm -rf /tmp/D2Coding /tmp/d2coding.zip
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set the work directory
+WORKDIR /home/rstudio
+
+# Expose port for RStudio
+EXPOSE 8787
+
+# CMD to start RStudio Server
+CMD ["/init"]
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+docker build -t my-rstudio-with-fonts .
+docker run --rm -p 8787:8787 -e DISABLE_AUTH=true my-rstudio-with-fonts
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+# Use the rocker/verse base image
+FROM rocker/verse:latest
+
+# Update package lists
+RUN apt-get update
+
+# Install font dependencies
+RUN apt-get install -y \
+    fontconfig \
+    wget \
+    unzip
+
+# Install Roboto Condensed and Roboto Serif
+RUN wget https://github.com/google/fonts/archive/main.zip -O /usr/share/fonts/truetype/google-fonts.zip && \
+    unzip /usr/share/fonts/truetype/google-fonts.zip -d /usr/share/fonts/truetype/google-fonts && \
+    cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/ && \
+    cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/ && \
+    fc-cache -f -v && \
+    rm -rf /usr/share/fonts/truetype/google-fonts /usr/share/fonts/truetype/google-fonts.zip
+
+# Install Cascadia Code Semibold
+RUN wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /usr/share/fonts/truetype/cascadia-code.zip && \
+    unzip /usr/share/fonts/truetype/cascadia-code.zip -d /usr/share/fonts/truetype/cascadia-code && \
+    cp /usr/share/fonts/truetype/cascadia-code/ttf/*.ttf /usr/share/fonts/truetype/ && \
+    fc-cache -f -v && \
+    rm -rf /usr/share/fonts/truetype/cascadia-code /usr/share/fonts/truetype/cascadia-code.zip
+
+# Install NanumMyeongjo and NanumGothic
+RUN wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /usr/share/fonts/truetype/nanum-fonts.zip && \
+    unzip /usr/share/fonts/truetype/nanum-fonts.zip -d /usr/share/fonts/truetype/nanum && \
+    cp /usr/share/fonts/truetype/nanum/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/ && \
+    fc-cache -f -v && \
+    rm -rf /usr/share/fonts/truetype/nanum /usr/share/fonts/truetype/nanum-fonts.zip
+
+# Install D2Coding
+RUN wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /usr/share/fonts/truetype/d2coding.zip && \
+    unzip /usr/share/fonts/truetype/d2coding.zip -d /usr/share/fonts/truetype/d2coding && \
+    cp /usr/share/fonts/truetype/d2coding/D2Coding/*.ttf /usr/share/fonts/truetype/ && \
+    fc-cache -f -v && \
+    rm -rf /usr/share/fonts/truetype/d2coding /usr/share/fonts/truetype/d2coding.zip
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set the work directory
+WORKDIR /home/rstudio
+
+# Expose port for RStudio
+EXPOSE 8787
+
+# CMD to start RStudio Server
+CMD ["/init"]
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+docker build -t my-rstudio-with-fonts .
+docker run --rm -p 8787:8787 -e DISABLE_AUTH=true my-rstudio-with-fonts
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##@ Updated Dockerfile with tinytex ====
+# Use the rocker/verse base image
+FROM rocker/verse:latest
+
+# Install system dependencies for font and tinytex installation
+RUN apt-get update && apt-get install -y \
+    fontconfig \
+    wget \
+    unzip \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install R packages tinytex and configure tinytex
+RUN R -e "install.packages('tinytex'); tinytex::install_tinytex()"
+
+# Install necessary LaTeX packages via tinytex
+RUN R -e "tinytex::tlmgr_install(c( \
+    'fontspec', \
+    'xunicode', \
+    'xltxtra', \
+    'cm-unicode', \
+    'unicode-math', \
+    'roboto', \
+    'cascadia-code', \
+    'nanum-type1', \
+    'nanum-myeongjo', \
+    'nanum-gothic', \
+    'd2coding' \
+  )); tinytex::tlmgr_update()"
+
+# Set the work directory
+WORKDIR /home/rstudio
+
+# Expose port for RStudio
+EXPOSE 8787
+
+# CMD to start RStudio Server
+CMD ["/init"]
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+docker build -t my-rstudio-with-tinytex-fonts .
+docker run --rm -p 8787:8787 -e DISABLE_AUTH=true my-rstudio-with-tinytex-fonts
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ use the existing Docker image rocker/verse and install the necessary fonts inside the RStudio Server ====
+docker run --rm -p 8787:8787 -e DISABLE_AUTH=true --name rstudio-server rocker/verse
+# navigate to http://localhost:8787 to access the RStudio Server.
+# Open a Terminal in RStudio Server 
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##@ in the RStudio Server Terminal (using /tmp directory) ---- 
+# Update package lists
+sudo apt-get update
+
+# Install font dependencies
+sudo apt-get install -y fontconfig wget unzip
+
+# Install Roboto Condensed and Roboto Serif
+wget https://github.com/google/fonts/archive/main.zip -O /tmp/google-fonts.zip
+unzip /tmp/google-fonts.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/google-fonts
+sudo cp /tmp/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/google-fonts/
+sudo cp /tmp/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/google-fonts/
+sudo fc-cache -f -v
+rm -rf /tmp/fonts-main /tmp/google-fonts.zip
+
+# Install Cascadia Code Semibold
+wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /tmp/cascadia-code.zip
+unzip /tmp/cascadia-code.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/cascadia-code
+sudo cp /tmp/ttf/*.ttf /usr/share/fonts/truetype/cascadia-code/
+sudo fc-cache -f -v
+rm -rf /tmp/ttf /tmp/cascadia-code.zip
+
+# Install NanumMyeongjo and NanumGothic
+wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /tmp/nanum-fonts.zip
+unzip /tmp/nanum-fonts.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/nanum
+sudo cp /tmp/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/nanum/
+sudo fc-cache -f -v
+rm -rf /tmp/NanumFont_TTF_ALL /tmp/nanum-fonts.zip
+
+# Install D2Coding
+wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /tmp/d2coding.zip
+unzip /tmp/d2coding.zip -d /tmp
+sudo mkdir -p /usr/share/fonts/truetype/d2coding
+sudo cp /tmp/D2Coding/*.ttf /usr/share/fonts/truetype/d2coding/
+sudo fc-cache -f -v
+rm -rf /tmp/D2Coding /tmp/d2coding.zip
+
+# Clean up APT
+sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##@ in the RStudio Server Terminal (without using /tmp directory) ---- 
+# Update package lists
+sudo apt-get update
+
+# Install font dependencies
+sudo apt-get install -y fontconfig wget unzip
+
+# Install Roboto Condensed and Roboto Serif
+sudo wget https://github.com/google/fonts/archive/main.zip -O /usr/share/fonts/truetype/google-fonts.zip
+sudo unzip /usr/share/fonts/truetype/google-fonts.zip -d /usr/share/fonts/truetype/google-fonts
+sudo cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/
+sudo cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/google-fonts /usr/share/fonts/truetype/google-fonts.zip
+
+# Install Cascadia Code Semibold
+sudo wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /usr/share/fonts/truetype/cascadia-code.zip
+sudo unzip /usr/share/fonts/truetype/cascadia-code.zip -d /usr/share/fonts/truetype/cascadia-code
+sudo cp /usr/share/fonts/truetype/cascadia-code/ttf/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/cascadia-code /usr/share/fonts/truetype/cascadia-code.zip
+
+# Install NanumMyeongjo and NanumGothic
+sudo wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /usr/share/fonts/truetype/nanum-fonts.zip
+sudo unzip /usr/share/fonts/truetype/nanum-fonts.zip -d /usr/share/fonts/truetype/nanum
+sudo cp /usr/share/fonts/truetype/nanum/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/nanum /usr/share/fonts/truetype/nanum-fonts.zip
+
+# Install D2Coding
+sudo wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /usr/share/fonts/truetype/d2coding.zip
+sudo unzip /usr/share/fonts/truetype/d2coding.zip -d /usr/share/fonts/truetype/d2coding
+sudo cp /usr/share/fonts/truetype/d2coding/D2Coding/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -f -v
+sudo rm -rf /usr/share/fonts/truetype/d2coding /usr/share/fonts/truetype/d2coding.zip
+
+# Clean up APT
+sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+##@ Verify Font Installation ----
+ls /usr/share/fonts/truetype/google-fonts
+ls /usr/share/fonts/truetype/cascadia-code
+ls /usr/share/fonts/truetype/nanum
+ls /usr/share/fonts/truetype/d2coding
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##@ in the RStudio Server Console, run system command ---- 
+# Define a helper function to run system commands
+run_system_command <- function(command) {
+  cat(paste0("Running: ", command, "\n"))
+  system(command, intern = TRUE)
+}
+
+# Update package lists
+run_system_command("sudo apt-get update")
+
+# Install font dependencies
+run_system_command("sudo apt-get install -y fontconfig wget unzip")
+
+# Install Roboto Condensed and Roboto Serif
+run_system_command("sudo wget https://github.com/google/fonts/archive/main.zip -O /usr/share/fonts/truetype/google-fonts.zip")
+run_system_command("sudo unzip /usr/share/fonts/truetype/google-fonts.zip -d /usr/share/fonts/truetype/google-fonts")
+run_system_command("sudo cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/robotocondensed/*.ttf /usr/share/fonts/truetype/")
+run_system_command("sudo cp /usr/share/fonts/truetype/google-fonts/fonts-main/apache/roboto/*.ttf /usr/share/fonts/truetype/")
+run_system_command("sudo fc-cache -f -v")
+run_system_command("sudo rm -rf /usr/share/fonts/truetype/google-fonts /usr/share/fonts/truetype/google-fonts.zip")
+
+# Install Cascadia Code Semibold
+run_system_command("sudo wget https://github.com/microsoft/cascadia-code/releases/download/v2108.26/CascadiaCode-2108.26.zip -O /usr/share/fonts/truetype/cascadia-code.zip")
+run_system_command("sudo unzip /usr/share/fonts/truetype/cascadia-code.zip -d /usr/share/fonts/truetype/cascadia-code")
+run_system_command("sudo cp /usr/share/fonts/truetype/cascadia-code/ttf/*.ttf /usr/share/fonts/truetype/")
+run_system_command("sudo fc-cache -f -v")
+run_system_command("sudo rm -rf /usr/share/fonts/truetype/cascadia-code /usr/share/fonts/truetype/cascadia-code.zip")
+
+# Install NanumMyeongjo and NanumGothic
+run_system_command("sudo wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumFont_TTF_ALL.zip -O /usr/share/fonts/truetype/nanum-fonts.zip")
+run_system_command("sudo unzip /usr/share/fonts/truetype/nanum-fonts.zip -d /usr/share/fonts/truetype/nanum")
+run_system_command("sudo cp /usr/share/fonts/truetype/nanum/NanumFont_TTF_ALL/*.ttf /usr/share/fonts/truetype/")
+run_system_command("sudo fc-cache -f -v")
+run_system_command("sudo rm -rf /usr/share/fonts/truetype/nanum /usr/share/fonts/truetype/nanum-fonts.zip")
+
+# Install D2Coding
+run_system_command("sudo wget https://github.com/naver/d2codingfont/releases/download/VER1.3.2/D2Coding-Ver1.3.2-20180524.zip -O /usr/share/fonts/truetype/d2coding.zip")
+run_system_command("sudo unzip /usr/share/fonts/truetype/d2coding.zip -d /usr/share/fonts/truetype/d2coding")
+run_system_command("sudo cp /usr/share/fonts/truetype/d2coding/D2Coding/*.ttf /usr/share/fonts/truetype/")
+run_system_command("sudo fc-cache -f -v")
+run_system_command("sudo rm -rf /usr/share/fonts/truetype/d2coding /usr/share/fonts/truetype/d2coding.zip")
+
+# Clean up APT
+run_system_command("sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*")
+
+cat("Font installation complete.\n")
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##@ in the RStudio Server Console, using tinytex ---- 
+# Install tinytex package if not already installed
+if (!requireNamespace("tinytex", quietly = TRUE)) {
+  install.packages("tinytex")
+}
+
+# Load tinytex package
+library(tinytex)
+
+# Install TinyTeX
+tinytex::install_tinytex()
+
+# Install additional LaTeX packages
+tinytex::tlmgr_install(c(
+  "fontspec",
+  "xunicode",
+  "xltxtra",
+  "cm-unicode",
+  "unicode-math",
+  "roboto",
+  "cascadia-code",
+  "nanum-type1",
+  "nanum-myeongjo",
+  "nanum-gothic",
+  "d2coding"
+))
+
+# Use the fonts in your document
+tinytex::tlmgr_update()
+
+cat("TinyTeX and fonts installation complete.\n")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ Using the Fonts in Your RMarkdown Document ====
+---
+title: "My Document"
+output: pdf_document
+header-includes:
+  - \usepackage{fontspec}
+  - \setmainfont{Roboto Condensed}
+  - \setsansfont{Roboto Serif}
+  - \setmonofont{Cascadia Code}
+  - \newfontfamily\NanumMyeongjo{NanumMyeongjo}
+  - \newfontfamily\NanumGothic{NanumGothic}
+  - \newfontfamily\D2Coding{D2Coding}
+---
+
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ END -----
+# cat("* To revert to the last commited file, run the following terminal command:\n", 
+#     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n", sep="")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  

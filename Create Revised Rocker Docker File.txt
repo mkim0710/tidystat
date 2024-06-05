@@ -2,9 +2,13 @@
 # -*- coding: utf-8 -*-
 # -*- mode: docker -*-
 # Create Revised Rocker Docker File.txt
+# Create Revised Rocker Docker File.GPT.txt
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://gopensource.com/going-through-docker-hell-once-243199d6f7a1
+# https://chatgpt.com/c/2926bf45-de5a-44e6-9a5c-3515412462ef
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## @ Create a Docker File ----
 FROM rocker/verse:latest
 ARG RSTUDIO_PATH=/home/rstudio
