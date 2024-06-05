@@ -124,6 +124,7 @@ archive/
 
 # Log files
 *-log*.*
+*.log
 
 # Databases or uncompressed data files
 *.sqlite
