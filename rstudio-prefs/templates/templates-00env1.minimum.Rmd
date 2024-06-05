@@ -208,7 +208,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(paste0("^",getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
 paste0(env1$path$path1,"/",paste0("[Working Files List] ",basename(getwd()),".r")) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
@@ -259,7 +259,7 @@ path4write = env1$path$path4write
 ```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
 # if(!exists("env1", envir=.GlobalEnv)) 
 #     assign("env1", new.env(), envir=.GlobalEnv)
-# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(paste0("^",getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
 # if(!"tmp" %in% names(env1)) env1$tmp = list()
 # for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
 #     env1$tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd");
@@ -512,7 +512,7 @@ options(width=120)
 # @@ update tempate (notebook.Rmd) -----
 env1$path$RTemplate.filename.ext = "notebook.Rmd"
 env1$path$MyTemplate.filename.ext = "templates-00env1.minimum.Rmd"
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(paste0("^",getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", ""); 
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", ""); 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if (.Platform$OS.type == "windows") {
     if(basename(env1$path$CurrentSource.path.filename.ext) == env1$path$MyTemplate.filename.ext) {
