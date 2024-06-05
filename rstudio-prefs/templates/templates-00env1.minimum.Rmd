@@ -45,14 +45,22 @@ output:
 geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
 # fontsize: 12pt
 header-includes: 
-- \usepackage{fontspec}
-- \setmainfont{Roboto}
-- \setsansfont{Roboto}
-- \setmonofont{Cascadia Code}
-- \usepackage[hangul]{kotex}
-- \setmainhangulfont{NanumGothic}
-- \setsanshangulfont{NanumGothic}
-- \setmonohangulfont{Cascadia Code}
+  - \usepackage{fontspec}
+  - \newcommand{\setfallbackfont}[4]{
+      \IfFontExistsTF{#2}
+        {#1{#2}}
+        {\IfFontExistsTF{#3}
+          {#1{#3}}
+          {#1{#4}}}}
+  # - \setfallbackfont{\setmainfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  # - \setfallbackfont{\setsansfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+  - \usepackage[hangul]{kotex}
+  - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setmonohangulfont}{D2Coding}{Cascadia Code SemiBold}{Fira Code}
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
