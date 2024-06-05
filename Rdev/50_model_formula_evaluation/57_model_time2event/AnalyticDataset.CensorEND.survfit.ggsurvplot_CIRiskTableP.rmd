@@ -282,7 +282,7 @@ options(width=120)
 #     )
 as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> summary()
-as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always") |> addmargins
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always") |> addmargins()
 # > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # tibble [10,030 × 2] (S3: tbl_df/tbl/data.frame)
 #  $ Time2Event_NewDMv3: num [1:10030] NA NA NA 1 NA NA NA NA 1 NA ...
@@ -296,7 +296,7 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always")
 #  3rd Qu.:4.000                     
 #  Max.   :7.000                     
 #  NA's   :7946                      
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always") |> addmargins
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always") |> addmargins()
 #                   Event_NewDMv3
 # Time2Event_NewDMv3 FALSE  TRUE  <NA>   Sum
 #               1        0  1185     0  1185
@@ -333,7 +333,7 @@ options(width=120)
 #     )
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> summary()
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins()
 ```
 
 
@@ -480,12 +480,12 @@ options(width=120)
 # ?survival::lung
 # df_time2event = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=99)","\n", sep=""); print(as_tibble(.),n=99)}
 # # df_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
-# # df_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
+# # df_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins()
 # # # > df_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # # # 'data.frame':	228 obs. of  2 variables:
 # # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# # # > df_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
+# # # > df_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins()
 # # #    Group
 # # # sex Female Male
 # # #   1      0  138

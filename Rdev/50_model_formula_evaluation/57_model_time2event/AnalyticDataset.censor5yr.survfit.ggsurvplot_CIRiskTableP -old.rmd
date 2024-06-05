@@ -400,12 +400,12 @@ suppressPackageStartupMessages(library(tidyverse))
 ?survival::lung 
 AnalyticDataset = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor())
 # AnalyticDataset |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
-# AnalyticDataset |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
+# AnalyticDataset |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins()
 # # > AnalyticDataset |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# # > AnalyticDataset |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins
+# # > AnalyticDataset |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins()
 # #    Group
 # # sex Female Male
 # #   1      0  138
