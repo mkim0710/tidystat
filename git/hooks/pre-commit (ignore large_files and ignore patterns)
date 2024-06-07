@@ -18,9 +18,14 @@ ignored_files=$(git diff --cached --name-only | while read -r filename; do
             echo "$filename (size)"
         else
             for pattern in $patterns; do
-                if [[ "$filename" == $pattern ]]; then
-                    echo "$filename (pattern)"
-                fi
+                # if [[ "$filename" == $pattern ]]; then
+                #     echo "$filename (pattern)"
+                # fi
+                case "$filename" in
+                    $pattern)
+                        echo "$filename (pattern)"
+                        ;;
+                esac
             done
         fi
     fi
