@@ -172,9 +172,11 @@ env1$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filen
 ## \% f_path_path.backup.overwrite ====
 env1$env.internal$ f_path_path.backup.overwrite <- function(overwrite_from_path.filename.ext, destination_path.filename.ext, backup_to_path = dirname(destination_path.filename.ext), timeFormat = "%y%m%d") {
     if(file.exists(destination_path.filename.ext)) {
-        if(!is.null(backup_to_path)) { env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path, timeFormat=timeFormat) }
+        if(!is.null(backup_to_path)) {
+            env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path, timeFormat=timeFormat)
+            # cat('%windir%\\explorer.exe "',backup_to_path|>normalizePath(winslash="\\"),'"',"\n", sep="") ; 
+        }
         if(file.copy(from=overwrite_from_path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
-        cat('%windir%\\explorer.exe "',backup_to_path|>normalizePath(winslash="\\"),'"',"\n", sep="") ; 
     } else {warning(paste0("File does not exist: ", destination_path.filename.ext))}
 }
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
