@@ -61,15 +61,16 @@ file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> en
 file2edit = ".git/hooks/pre-commit" ; if (.Platform$OS.type == "windows") { file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)} }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #### \% f_path_file.backup_copy_overwrite -----
-f_path_file.backup_copy_overwrite = function(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths) {
+f_path_file.backup_copy_overwrite = function(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = FALSE) {
     overwrite_from_path.filename.ext = paste0(overwrite_from_path, "/", overwrite_from_filename.ext)
     # if (basename(getwd()) == "github_tidystat") {
     if (getwd() |> normalizePath(winslash="/") == "D:/OneDrive/[][Rproject]/github_tidystat") {
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0(vec_destination_paths[1], "/", overwrite_from_filename.ext), backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
         for (destination_path in unique(vec_destination_paths)) {
+            if(print.intermediate) cat("destination_path: ", destination_path, "\n")
             destination_path.filename.ext = paste0(destination_path, "/", overwrite_from_filename.ext) ; 
             env1$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, destination_path.filename.ext=destination_path.filename.ext, backup_to_path=NULL, timeFormat = "%y%m%d")
         }
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
     } else {
         stop("The run from github_tidystat as the working directory")
     }
@@ -89,7 +90,7 @@ vec_destination_paths = c(
     , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/")
     , paste0("../",vec_Rproject_paths.gitignore_update)
 )
-f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths)
+f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ##### overwrite_from_filename.ext = "git/hooks/pre-commit" ----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat/git/hooks"
@@ -99,7 +100,7 @@ vec_destination_paths = c(
     , paste0("../",vec_Rproject_paths.gitignore_update,"/git/hooks")
     , paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")
 )
-f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths)
+f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 backup_to_path = paste0(env1$path$path0,"/-backup")
