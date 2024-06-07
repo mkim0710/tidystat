@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# https://chatgpt.com/c/18230911-9003-42ad-9e3f-071c3310a148
+
+# Maximum file size in bytes (10MB)
+MAX_SIZE=$((10 * 1024 * 1024))
+
+
+# Find files larger than the maximum size
+large_files=$(git diff --cached --name-only | while read filename; do
+    if [ -f "$filename" ]; then
+        # filesize=$(wc -c <"$filename")  # stat is faster than wc, but may not be available on all systems
+        filesize=$(stat -c%s "$filename")  # stat is faster than wc, but may not be available on all systems
+        if [ $filesize -ge $MAX_SIZE ]; then
+            echo "$filename"
+        fi
+    fi
+done)
+
+
+# File extensions to check & convert to a pattern for grep
+EXTENSIONS="csv"
+EXT_PATTERN=$(echo "$EXTENSIONS" | sed 's/ /\\|/g')
+
+# Find files larger than the maximum size with specific extensions
+large_files=$(git diff --cached --name-only | grep -E "\.($EXT_PATTERN)$" | while read filename; do
+    if [ -f "$filename" ]; then
+        # filesize=$(wc -c <"$filename")  # stat is faster than wc, but may not be available on all systems
+        filesize=$(stat -c%s "$filename")  # stat is faster than wc, but may not be available on all systems
+        if [ "$filesize" -ge "$MAX_SIZE" ]; then
+            echo "$filename"
+        fi
+    fi
+done)
+
+
+if [ -n "$large_files" ]; then
+    echo "The following files are larger than $(($MAX_SIZE / (1024 * 1024))) MB and are not allowed to be committed:"
+    echo "$large_files"
+    echo "If you need to commit these files, use 'git commit --no-verify'."
+    exit 1
+fi
+
+# Allow the commit if no large files are found
+exit 0
+
+# Make the hook executable: Ensure the script is executable by running:
+# chmod +x .git/hooks/pre-commit
+
+# Force add and commit large files: If you need to commit a file larger than 10 MB, you can bypass (override) the hook by using the --no-verify option:
+# git add path/to/largefile
+# git commit -m "Add large file" --no-verify

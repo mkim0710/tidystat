@@ -25,10 +25,8 @@
 # R/RStudio files
 *.Rhistory
 *.Rapp.history
-.RData
-.RDataTmp
 # .Renviron
-*.Renviron*
+# *.Renviron*
 .Ruserdata
 *.Rproj
 .Rproj.user/
@@ -89,8 +87,8 @@ MH)*.r
 # Document files
 *.ppt
 *.pptx
-# *.xls
-# *.xlsx
+# *.xls  -> use pre-commit hook to ignore, but show a warning
+# *.xlsx  # -> use pre-commit hook to ignore, but show a warning
 *.doc
 *.docx
 *.rtf
@@ -128,7 +126,15 @@ archive/
 
 # Databases or uncompressed data files
 *.sqlite
-# *.csv  ->use pre-commit hook to ignore csv files larger than 10 MB
+*.sas7bdat
+*.RDataTmp
+# *.rdata -> use pre-commit hook to ignore, but show a warning
+# *.rdata.* -> use pre-commit hook to ignore, but show a warning
+# *.rda -> use pre-commit hook to ignore, but show a warning
+# *.rda.* -> use pre-commit hook to ignore, but show a warning
+# *.rds -> use pre-commit hook to ignore, but show a warning
+# *.rds.* -> use pre-commit hook to ignore, but show a warning
+# *.csv  # -> use pre-commit hook to ignore, but show a warning
 
 # Executable files & Binary files
 *.exe
@@ -145,5 +151,13 @@ archive/
 *.jpg
 *.jpeg
 *.gif
+*.tif
 *.bmp
+
+# Machine-specific backup files
+*-LIVAi7-8700*
+*-ASRockX300Ryzen5600G*
+*-MAGB760M13700KF*
+*-MAGB760M13700KF*
+*-Min-Hyung’s MacBook Pro*
 
