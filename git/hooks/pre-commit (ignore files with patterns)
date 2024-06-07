@@ -8,9 +8,14 @@ patterns="*.zip *.exe *.dll specificfile.txt path/to/directory/*"
 # Find files matching the patterns
 ignored_files=$(git diff --cached --name-only | while read filename; do
     for pattern in $patterns; do
-        if [[ $filename == $pattern ]]; then
-            echo "$filename"
-        fi
+        # if [[ "$filename" == $pattern ]]; then
+        #     echo "$filename (pattern)"
+        # fi
+        case "$filename" in
+            $pattern)
+                echo "$filename (pattern)"
+                ;;
+        esac
     done
 done)
 
