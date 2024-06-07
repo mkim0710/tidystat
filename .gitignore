@@ -15,6 +15,8 @@
 # # This is a comment
 # Caution: Comments must start with # at the beginning of the line or after optional whitespace.
 # # in the middle of a line does not create a comment.
+# *** Important) even if a file type is ignored, it can be forced to be tracked by:
+# git add -f specific_filename.ext
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -71,6 +73,10 @@ MH)*.r
 # Compressed files
 *.zip
 *.7z
+*.tar
+*.gz
+*.bz
+*.xz
 *.r.gz
 *.r.xz
 *.rmd.gz
@@ -96,6 +102,14 @@ MH)*.r
 *.html.*
 
 # Temporary and debug files
+void/
+tmp/
+temp/
+old/
+dev/
+debug/
+backup/
+archive/
 *- void*
 *-void*
 *-dev*
@@ -106,10 +120,30 @@ MH)*.r
 *- old*
 *-old*
 *-backup*
+*-archive*
 
 # Log files
 *-log*.*
+*.log
 
 # Databases or uncompressed data files
 *.sqlite
 # *.csv  ->use pre-commit hook to ignore csv files larger than 10 MB
+
+# Executable files & Binary files
+*.exe
+*.dll
+*.so
+*.bin
+
+# Object files
+*.o
+*.obj
+
+# Image files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+
