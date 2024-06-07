@@ -155,9 +155,9 @@ archive/
 *.bmp
 
 # Machine-specific backup files
+*-ID92i5-4570T*
+*-MKIM-15ZD980-HX70K*
 *-LIVAi7-8700*
 *-ASRockX300Ryzen5600G*
-*-MAGB760M13700KF*
-*-MAGB760M13700KF*
 *-Min-Hyung’s MacBook Pro*
-
+*-MAGB760M13700KF*
