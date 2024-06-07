@@ -101,6 +101,10 @@ vec_destination_paths = c(
     , paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")
 )
 f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
+for (destination_path in paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")) {
+    destination_path.filename.ext = paste0(destination_path, "/", overwrite_from_filename.ext) ; 
+    if (file.exists(destination_path.filename.ext)) { paste0("chmode +x ",destination_path.filename.ext) |> system(intern=TRUE) |> try() }
+}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 backup_to_path = paste0(env1$path$path0,"/-backup")
