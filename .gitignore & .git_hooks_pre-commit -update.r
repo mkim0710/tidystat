@@ -101,10 +101,13 @@ vec_destination_paths = c(
     , paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")
 )
 f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
-for (destination_path in paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")) {
-    destination_path.filename.ext = paste0(destination_path, "/", overwrite_from_filename.ext) ; 
-    if (file.exists(destination_path.filename.ext)) { paste0("chmode +x ",destination_path.filename.ext) |> system(intern=TRUE) |> try() }
+if(.Platform$OS.type == "unix") {
+    for (destination_path in paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")) {
+        destination_path.filename.ext = paste0(destination_path, "/", overwrite_from_filename.ext) ; 
+        if (file.exists(destination_path.filename.ext)) { paste0("chmode +x ",destination_path.filename.ext) |> system(intern=TRUE) |> try() }
+    }
 }
+# In Windows, you don't need to explicitly set executable permissions on the hook script because Git for Windows will execute the script as long as it has the correct shebang (#!/bin/sh) and is located in the correct directory (.git/hooks).
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 backup_to_path = paste0(env1$path$path0,"/-backup")
