@@ -77,7 +77,7 @@ f_path_file.backup_copy_overwrite = function(overwrite_from_path, overwrite_from
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #### $ vec_Rproject_paths.gitignore_update -----
-vec_Rproject_paths.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject_KoGES_AA10030")
+vec_Rproject_paths.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject_KoGES_AA10030", "Rproject_WHO")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ##### overwrite_from_filename.ext = ".gitignore" ----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
