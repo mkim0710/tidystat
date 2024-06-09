@@ -8,33 +8,62 @@ MAX_SIZE=$((10 * 1024 * 1024))
 # List of file patterns to ignore (add your patterns here)
 patterns="*.rda *.rda.* *.rds *.rds.* *.RData *.RData.* *.csv *.csv.* *.xls *.xls.* *.xlsx *.xlsx.*"
 
+# Function to get file size
+get_file_size() {
+    filename="$1"
+    if command -v stat > /dev/null 2>&1; then
+        stat -c%s "$filename"  # stat is faster than wc, but may not be available on all systems
+    else
+        wc -c <"$filename"
+    fi
+}
+
+# Initialize variables to store ignored files
+ignored_files_due_to_size=""
+ignored_files_due_to_pattern=""
+
 # Find files matching the patterns or exceeding the size limit
-ignored_files=$(git diff --cached --name-only | while read -r filename; do
+git diff --cached --name-only | while read -r filename; do
     # read -r: The read command treats backslashes as literal characters, preventing them from being interpreted as escape sequences. This is generally the desired behavior when reading filenames.
     if [ -f "$filename" ]; then
         # filesize=$(wc -c <"$filename")  # stat is faster than wc, but may not be available on all systems
-        filesize=$(stat -c%s "$filename")  # stat is faster than wc, but may not be available on all systems
+        # filesize=$(stat -c%s "$filename")  # stat is faster than wc, but may not be available on all systems
+        filesize=$(get_file_size "$filename")
         if [ "$filesize" -ge "$MAX_SIZE" ]; then
-            echo "$filename (size)"
+            ignored_files_due_to_size="$ignored_files_due_to_size $filename"
         else
             for pattern in $patterns; do
                 # if [[ "$filename" == $pattern ]]; then
-                #     echo "$filename (pattern)"
+                #     ignored_files_due_to_size="$ignored_files_due_to_size $filename" 
                 # fi
                 case "$filename" in
-                    $pattern)
-                        echo "$filename (pattern)"
-                        ;;
+                    $pattern) ignored_files_due_to_pattern="$ignored_files_due_to_pattern $filename" ;;
                 esac
             done
         fi
     fi
-done)
+done
 
-if [ -n "$ignored_files" ]; then
-    echo "The following files are ignored due to their size or pattern and are not allowed to be committed:"
-    echo "$ignored_files"
-    echo "If you need to commit these files, use 'git commit --no-verify'."
+
+if [ -n "$ignored_files_due_to_size" ] || [ -n "$ignored_files_due_to_pattern" ]; then
+    echo "Some files are ignored due to their size or pattern specified in pre-commit hooks. If you need, use the following commands:"
+
+    if [ -n "$ignored_files_due_to_size" ]; then
+        echo "Files ignored due to size:"
+        for file in $ignored_files_due_to_size; do
+            echo "git add \"$file\""
+            echo "git commit -m \"Add and commit $file --no-verify\" --no-verify"
+        done
+    fi
+
+    if [ -n "$ignored_files_due_to_pattern" ]; then
+        echo "Files ignored due to pattern:"
+        for file in $ignored_files_due_to_pattern; do
+            echo "git add \"$file\""
+            echo "git commit -m \"Add and commit $file --no-verify\" --no-verify"
+        done
+    fi
+
     exit 1
 fi
 
