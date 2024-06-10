@@ -12,11 +12,23 @@
 # Glob Patterns: ** matches directories recursively.
 # **/temp        -> Matches temp files in any directory
 # Comments: Lines starting with # are comments. 
-# # This is a comment
+# This is a comment
 # Caution: Comments must start with # at the beginning of the line or after optional whitespace.
-# # in the middle of a line does not create a comment.
+# in the middle of a line does not create a comment.
 # *** Important) even if a file type is ignored, it can be forced to be tracked by:
 # git add -f specific_filename.ext
+# *** Important) even if a commit ignored, it can be forced to be tracked by:
+# git add -f specific_filename.ext
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# *** use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
+# *** Let's just use pre-commit hook for file sizes only.
+# *** For binary data files, let's just ignore, and search for files intermittently (maybe make a custom git status --ignored?)
+# https://stackoverflow.com/questions/466764/git-command-to-show-which-specific-files-are-ignored-by-gitignore
+# git status --ignored
+# git check-ignore -v *  # along with the .gitignore rule that led to its exclusion
+# git check-ignore -v **/*  # For a recursive list including subdirectories, assuming your shell supports the ** glob pattern.
+# find . -type f | git check-ignore --stdin -v  # For a recursive list including subdirectories, including files in subdirectories not picked up by standard glob patterns.
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -87,8 +99,9 @@ MH)*.r
 # Document files
 *.ppt
 *.pptx
-# *.xls  -> use pre-commit hook to ignore, but show a warning
-# *.xlsx  # -> use pre-commit hook to ignore, but show a warning
+# *.xls *.xlsx # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
+*.xls
+*.xlsx
 *.doc
 *.docx
 *.rtf
@@ -98,6 +111,14 @@ MH)*.r
 *.nb.html.*
 *.html
 *.html.*
+
+*.rdata
+*.rdata
+*.rda
+*.rda
+*.rds
+*.rds
+*.csv
 
 # Temporary and debug files
 void/
@@ -124,17 +145,16 @@ archive/
 *-log*.*
 *.log
 
-# Databases or uncompressed data files
+# data files
 *.sqlite
 *.sas7bdat
 *.RDataTmp
-# *.rdata -> use pre-commit hook to ignore, but show a warning
-# *.rdata.* -> use pre-commit hook to ignore, but show a warning
-# *.rda -> use pre-commit hook to ignore, but show a warning
-# *.rda.* -> use pre-commit hook to ignore, but show a warning
-# *.rds -> use pre-commit hook to ignore, but show a warning
-# *.rds.* -> use pre-commit hook to ignore, but show a warning
-# *.csv  # -> use pre-commit hook to ignore, but show a warning
+# *.rdata *.rda *.rds # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
+*.rdata
+*.rda
+*.rds
+# *.csv # -> use pre-commit hook to block commit based on the size limit
+
 
 # Executable files & Binary files
 *.exe
