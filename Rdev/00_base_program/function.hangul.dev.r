@@ -221,7 +221,7 @@ function.char_cho_joong_jong2hangul = function(txt) {
             # data$value %>% function.cho_joong_jong2hangul |> print()
             data$value %>% paste(collapse="") %>% function.cho_joong_jong2hangul
         })
-    ) %>% {.$out} %>% paste0(collapse = "")
+    ) %>% {.$out} |> paste0(collapse = "")
 }
 "ㅇㅠㅇㅣㄱㅎㅏㄴ ㅅㅣㄱㅏㄴㅇㅣㅇㅓㅆㄷㅏ." %>% function.char_cho_joong_jong2hangul
 # > "ㅇㅠㅇㅣㄱㅎㅏㄴ ㅅㅣㄱㅏㄴㅇㅣㅇㅓㅆㄷㅏ." %>% function.char_cho_joong_jong2hangul

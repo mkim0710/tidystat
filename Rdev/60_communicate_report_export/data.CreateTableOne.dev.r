@@ -89,8 +89,8 @@ path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat("\n") ###### |> cat() ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names %>% paste0(collapse = ", ") |> cat("\n") ###### |> cat() ----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names |> paste0(collapse = ", ") |> cat("\n") ###### |> cat() ----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% names |> paste0(collapse = ", ") |> cat("\n") ###### |> cat() ----
 # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
 # HEIGHT, WEIGHT, 
 # BP_HIGH, BP_LWST, BLDS, 
