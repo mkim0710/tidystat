@@ -336,8 +336,10 @@ quit(save="no")
 # Connecting rstudio.cloud and GitHub
 # Tools > Global Options > Git/SVN > SSH key
 
-# > "~" |> normalizePath(winslash="/")
-# [1] "/home/rstudio"
+##@ > "~" |> normalizePath(winslash="/") ----
+#### [1] "D:/OneDrive/Documents"  #@ MAGB760M13700KF ----
+#### [1] "/home/rstudio"  #@ Rocker ----
+#### [1] "/home/rstudio"  #@ Rocker ----
 path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
 "~/.ssh/id_rsa.pub" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)
 "~/.ssh/id_rsa" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)
@@ -391,7 +393,6 @@ base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |
 
 
 
-
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### @ git remote set-url origin git@github.com:mkim0710/Rproject_.git ----
@@ -412,13 +413,22 @@ base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |
 # git config remote.origin.url git@github.com:USERNAME/REPOSITORY.git
 # git remote -v
 
-system("git remote -v")
+git.remote.v = "git remote -v" |> system(intern=TRUE)
+git.remote.v %>% dput
+c("origin\thttps://github.com/mkim0710/RprojectAgePeriodCohort.git (fetch)", 
+  "origin\thttps://github.com/mkim0710/RprojectAgePeriodCohort.git (push)")
 # > system("git remote -v")
 # origin	https://github.com/mkim0710/tidystat (fetch)
 # origin	https://github.com/mkim0710/tidystat (push)
 
+git.remote.v2 = git.remote.v %>% str_replace("^origin\\t", "") %>% str_replace(" \\((fetch|push)\\)$", "") %>% 
+  str_replace("https://github.com/", "git@github.com:") %>% unique()
+git.remote.v2
+# [1] "git@github.com:mkim0710/RprojectAgePeriodCohort.git"
+
 # system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git")
-system("git config remote.origin.url git@github.com:mkim0710/tidystat.git")
+# system("git config remote.origin.url git@github.com:mkim0710/tidystat.git")
+paste0("git config remote.origin.url ", git.remote.v2) %>% system()
 
 system("git remote -v")
 # > system("git remote -v")
