@@ -198,6 +198,22 @@ txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>
 
 
 #@@@ LETTERS |> list() |> paste() |> cat("\n") ----
+LETTERS |> dput()
+LETTERS |> deparse() |> cat()
+# > LETTERS |> dput()
+# c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
+# "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", 
+# "Z")
+# > LETTERS |> deparse() |> cat()
+# c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",  "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",  "Z")
+
+LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}
+LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')} |> cat("\n")
+# > LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}
+# [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\")"
+# > LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')} |> cat("\n")
+# c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 
+
 LETTERS |> list()
 LETTERS |> list() |> paste0(collapse='", \n"') 
 LETTERS |> list() |> paste0(collapse='", \n"') |> cat("\n")
