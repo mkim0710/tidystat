@@ -131,8 +131,8 @@ c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdif
 # > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event))
 # [1] "Cigar_ge50"        "CigarettePackYear" "Age"               "Male"             
 
-c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ")
-# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ")
+c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ")
+# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ")
 # [1] "Cigar_ge50 + CigarettePackYear + Age + Male"
 
 
@@ -143,26 +143,26 @@ paste0("Surv(",varname4time, ", ", varname4event, ") ~ ")
 # [1] "Surv(timeihd, ihd) ~ "
 
 
-c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)}
-# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)}
+c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)}
+# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)}
 # [1] "Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male"
 
 
-c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
-# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
+c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
+# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
 # Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male
 # <environment: 0x000000001d2718e8
 
 
-c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula |> dput()
-# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula |> dput()
+c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula |> dput()
+# > c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula |> dput()
 # Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male
 
 
 #@ formulas4coxph_model_list.Cigar_ge50 ====
 formulas4coxph_model_list.Cigar_ge50 =
     varnames4coxph_model_list.Cigar_ge50 %>% map(function(vec) {
-        vec %>% setdiff(c(varname4time, varname4event)) %>% paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
+        vec %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
     })
 formulas4coxph_model_list.Cigar_ge50 |> str()
 # > formulas4coxph_model_list.Cigar_ge50 |> str()

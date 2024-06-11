@@ -15,7 +15,7 @@ InputMatrix.tbl =
 InputMatrix.tbl %>% gather(key = "Predicted", value = "value", -Actual) %>%
     mutate(
         Actual.old = Actual
-        , Actual = Actual |> str_extract(paste0("[", Predicted |> unique %>% paste0(collapse = "|"), "]"))
+        , Actual = Actual |> str_extract(paste0("[", Predicted |> unique |> paste0(collapse = "|"), "]"))
     ) %>% 
     select(Actual, Predicted, value) %>% 
     group_by(Actual, Predicted) %>% summarise(value = sum(value)) %>% 
@@ -23,7 +23,7 @@ InputMatrix.tbl %>% gather(key = "Predicted", value = "value", -Actual) %>%
 # > InputMatrix.tbl %>% gather(key = "Predicted", value = "value", -Actual) %>%
 # +     mutate(
 # +         Actual.old = Actual
-# +         , Actual = Actual |> str_extract(paste0("[", Predicted |> unique %>% paste0(collapse = "|"), "]"))
+# +         , Actual = Actual |> str_extract(paste0("[", Predicted |> unique |> paste0(collapse = "|"), "]"))
 # +     ) %>% 
 # +     select(Actual, Predicted, value) %>% 
 # +     group_by(Actual, Predicted) %>% summarise(value = sum(value)) %>% 
