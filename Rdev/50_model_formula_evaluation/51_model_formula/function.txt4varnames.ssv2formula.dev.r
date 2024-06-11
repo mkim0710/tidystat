@@ -513,9 +513,9 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 
 txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
-txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} |> cat("\n")
+txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("', ., '")')} |> cat("\n")
 txt |> str_extract_all("[A-z0-9_]+") %>% paste0(collapse = ', ') |> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("', ., '")')} |> cat("\n")
 # > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')}  %>% {paste0('c(', ., ')')} |> cat("\n")
