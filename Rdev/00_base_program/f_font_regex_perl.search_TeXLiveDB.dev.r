@@ -793,8 +793,8 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/usr/local/texlive", "/usr/local/te
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
-### % f_linux_find_filename.search_path_local ====
-f_linux_find_filename.search_path_local <- function(filename) {
+### % f_filename.unix_find_path_local ====
+f_filename.unix_find_path_local <- function(filename) {
     vec_path.file <- paste0('sudo find / -type f -iname "*',filename,'*"') |> system(intern = TRUE)
     vec_path = vec_path.file %>% dirname() %>% unique() %>% sort()
     vec_path = vec_path[vec_path != "."]
@@ -804,7 +804,7 @@ f_linux_find_filename.search_path_local <- function(filename) {
         return(NULL)
     }
 }
-"roboto" |> f_linux_find_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+"roboto" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
 c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/local/lib/R/site-library/rmarkdown/rmd/h/bootstrap/css/fonts",
   "/usr/share/fonts/truetype/roboto/unhinted",
@@ -824,12 +824,12 @@ c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF",
   "/usr/share/lintian/overrides",
   "/var/lib/dpkg/info")
-"lmodern" |> f_linux_find_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+"lmodern" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/etc/X11/fonts/Type1",
   "/usr/local/texlive/texmf-dist/tex/latex/lm",
   "/var/lib/dpkg/info")
-"serif" |> f_linux_find_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+"serif" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/reveal/css/theme/source",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/themes",
