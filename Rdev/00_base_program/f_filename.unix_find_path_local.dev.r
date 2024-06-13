@@ -8,6 +8,7 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #!/bin/bash
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_filename.unix_find_path_local.dev.r
+## Ctrl+Alt+Enter @ Rstudio
 whoami
 echo $PATH 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
