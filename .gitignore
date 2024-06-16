@@ -79,6 +79,7 @@ MH)*.r
 
 # Editor-specific files
 .vscode
+.history/
 
 # Compressed files
 *.zip
