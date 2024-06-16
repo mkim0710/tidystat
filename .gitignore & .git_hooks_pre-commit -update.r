@@ -61,10 +61,10 @@ file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> en
 file2edit = ".git/hooks/pre-commit" ; if (.Platform$OS.type == "windows") { file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)} }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #### \% f_path_file.backup_copy_overwrite -----
-f_path_file.backup_copy_overwrite = function(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = FALSE) {
+f_path_file.backup_copy_overwrite = function(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = FALSE, restrict_execution_path = "D:/OneDrive/[][Rproject]/github_tidystat") {
     overwrite_from_path.filename.ext = paste0(overwrite_from_path, "/", overwrite_from_filename.ext)
     # if (basename(getwd()) == "github_tidystat") {
-    if (getwd() |> normalizePath(winslash="/") == "D:/OneDrive/[][Rproject]/github_tidystat") {
+    if (getwd() |> normalizePath(winslash="/") %in% restrict_execution_path) {
         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0(vec_destination_paths[1], "/", overwrite_from_filename.ext), backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
         for (destination_path in unique(vec_destination_paths)) {
             if(print.intermediate) cat("destination_path: ", destination_path, "\n")
@@ -76,8 +76,8 @@ f_path_file.backup_copy_overwrite = function(overwrite_from_path, overwrite_from
     }
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-#### $ vec_Rproject_paths.gitignore_update -----
-vec_Rproject_paths.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject_KoGES_AA10030", "Rproject_WHO")
+#### $ vec_Rproject_names.gitignore_update -----
+vec_Rproject_names.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject_KoGES_AA10030")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ##### overwrite_from_filename.ext = ".gitignore" ----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
@@ -88,7 +88,7 @@ vec_destination_paths = c(
     , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/")
     , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/")
     , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/")
-    , paste0("../",vec_Rproject_paths.gitignore_update)
+    , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
 f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -97,12 +97,12 @@ overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat/git/hooks"
 overwrite_from_filename.ext = "pre-commit"
 vec_destination_paths = c(
     "D:/OneDrive/[][Rproject]/github_tidystat/.git/hooks"
-    , paste0("../",vec_Rproject_paths.gitignore_update,"/git/hooks")
-    , paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")
+    , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update,"/git/hooks")
+    , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update,"/.git/hooks")
 )
 f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
 if(.Platform$OS.type == "unix") {
-    for (destination_path in paste0("../",vec_Rproject_paths.gitignore_update,"/.git/hooks")) {
+    for (destination_path in paste0("../",vec_Rproject_names.gitignore_update,"/.git/hooks")) {
         destination_path.filename.ext = paste0(destination_path, "/", overwrite_from_filename.ext) ; 
         if (file.exists(destination_path.filename.ext)) { paste0("chmode +x ",destination_path.filename.ext) |> system(intern=TRUE) |> try() }
     }
