@@ -57,7 +57,7 @@ sourcename = "env1$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); su
 ### $ .gitignore -----
 # ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)
 # ".gitignore" |> env1$env.internal$f_file.edit_vscode()
-file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)} }
+file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% { .[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)} }
 file2edit = ".git/hooks/pre-commit" ; if (.Platform$OS.type == "windows") { file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext)} }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #### \% f_path_file.backup_copy_overwrite -----
