@@ -1,0 +1,1720 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[portrait, a3paper, margin=20mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fontspec}
+\usepackage{roboto}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={system.find\_filename.texlive@Posit.Cloud.Rmd},
+  pdfauthor={MHKim},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\href{mailto:system.find_filename.texlive@Posit.Cloud.Rmd}{\nolinkurl{system.find\_filename.texlive@Posit.Cloud.Rmd}}}
+\author{MHKim}
+\date{June 17, 2024}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{6}
+\tableofcontents
+}
+\hypertarget{section}{%
+\section{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}\label{section}}
+
+\% env1\\
+
+env1\$info\$info\_system\_info\$machine\_nodename = ``15687d125320''
+env1\$info\$info\_system\_info\$Sys.getlocale\$LC\_COLLATE =
+``en\_US.utf8''
+
+\#@@ START ------------\\
+\#\# @ whoami ------------\\
+Cf) Ctrl+Alt+Enter @ Rstudio
+
+\hypertarget{whoami}{%
+\subsection{whoami}\label{whoami}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"whoami"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{r149319 }
+\end{Highlighting}
+\end{Shaded}
+
+rstudio
+
+\hypertarget{echo-path}{%
+\subsection{echo \$PATH}\label{echo-path}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"echo $PATH"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{games}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{games}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{snap}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\DecValTok{4}\NormalTok{.}\FloatTok{3.3}\SpecialCharTok{/}\NormalTok{lib}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{r149319}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{cloud}\SpecialCharTok{/}\NormalTok{python}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{quarto}\SpecialCharTok{/}\DecValTok{1}\NormalTok{.}\FloatTok{4.550}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{lib}\SpecialCharTok{/}\NormalTok{rstudio}\SpecialCharTok{{-}}\NormalTok{server}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{postback }
+\end{Highlighting}
+\end{Shaded}
+
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback
+
+\#\#@ find -type d texlive ------------\\
+\#\# find / -type d -iname texlive
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find / {-}type d {-}iname texlive"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find / {-}type d {-}iname texlive"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find / {-}type d {-}iname texlive\textquotesingle{}}\NormalTok{ had}
+\NormalTok{status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/doc/texlive{-}doc/texlive"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/tlpkg/TeXLive"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/scripts/texlive"}\NormalTok{,}
+  \StringTok{"/var/lib/tex{-}common/hyphen{-}cnf/texlive"}\NormalTok{,}
+  \StringTok{"/var/lib/tex{-}common/fmtutil{-}cnf/texlive"}\NormalTok{,}
+  \StringTok{"/var/lib/tex{-}common/fontmap{-}cfg/texlive"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive'', ``/usr/local/texlive/tlpkg/TeXLive'',
+``/usr/local/texlive/texmf-dist/tex/context/texlive'',
+``/usr/local/texlive/texmf-dist/scripts/texlive'', ``/opt/texlive'')
+
+\hypertarget{find--type-d--iname-texmf-dist}{%
+\subsection{find / -type d -iname
+texmf-dist}\label{find--type-d--iname-texmf-dist}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find / {-}type d {-}iname texmf{-}dist"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find / {-}type d {-}iname texmf{-}dist"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find / {-}type d {-}iname}
+\StringTok{texmf{-}dist\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist'')
+
+\#\#@ find -type d packages ------------\\
+\#\#\# find /usr/share/texlive -type d -iname ``fontspec''\\
+\#\#\# find /usr/local/texlive -type d -iname ``fontspec''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{fontspec}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/tex/latex/fontspec"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{fontspec}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{fontspec}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/local/texlive}
+\StringTok{{-}type d {-}iname "fontspec"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/share/texlive/texmf-dist/tex/latex/fontspec'')
+c(``/usr/local/texlive/texmf-dist/tex/latex/fontspec'')
+
+\hypertarget{find-usrsharetexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}{%
+\subsection{find /usr/share/texlive/texmf-dist/tex/latex -maxdepth 1
+-type d
+-printf}\label{find-usrsharetexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}}
+
+\hypertarget{find-usrlocaltexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}{%
+\subsection{find /usr/local/texlive/texmf-dist/tex/latex -maxdepth 1
+-type d
+-printf}\label{find-usrlocaltexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf }\SpecialCharTok{\textbackslash{}"}\StringTok{\%f}\SpecialCharTok{\textbackslash{}n\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sort}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{dput}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"12many"}\NormalTok{, }\StringTok{"a0poster"}\NormalTok{, }\StringTok{"a4wide"}\NormalTok{, }\StringTok{"a5comb"}\NormalTok{, }\StringTok{"aastex"}\NormalTok{, }\StringTok{"abc"}\NormalTok{, }
+\StringTok{"abnt"}\NormalTok{, }\StringTok{"abntex2"}\NormalTok{, }\StringTok{"abraces"}\NormalTok{, }\StringTok{"abstract"}\NormalTok{, }\StringTok{"academicons"}\NormalTok{, }\StringTok{"accanthis"}\NormalTok{, }
+\StringTok{"accents"}\NormalTok{, }\StringTok{"accessibility"}\NormalTok{, }\StringTok{"accfonts"}\NormalTok{, }\StringTok{"accsupp"}\NormalTok{, }\StringTok{"achemso"}\NormalTok{, }
+\StringTok{"acmart"}\NormalTok{, }\StringTok{"acmconf"}\NormalTok{, }\StringTok{"acro"}\NormalTok{, }\StringTok{"acronym"}\NormalTok{, }\StringTok{"acroterm"}\NormalTok{, }\StringTok{"active{-}conf"}\NormalTok{, }
+\StringTok{"actuarialangle"}\NormalTok{, }\StringTok{"actuarialsymbol"}\NormalTok{, }\StringTok{"addfont"}\NormalTok{, }\StringTok{"addlines"}\NormalTok{, }\StringTok{"adfathesis"}\NormalTok{, }
+\StringTok{"adforn"}\NormalTok{, }\StringTok{"adfsymbols"}\NormalTok{, }\StringTok{"adigraph"}\NormalTok{, }\StringTok{"adjmulticol"}\NormalTok{, }\StringTok{"adjustbox"}\NormalTok{, }
+\StringTok{"adrconv"}\NormalTok{, }\StringTok{"adtrees"}\NormalTok{, }\StringTok{"advdate"}\NormalTok{, }\StringTok{"ae"}\NormalTok{, }\StringTok{"aecc"}\NormalTok{, }\StringTok{"aeguill"}\NormalTok{, }\StringTok{"afparticle"}\NormalTok{, }
+\StringTok{"afthesis"}\NormalTok{, }\StringTok{"aguplus"}\NormalTok{, }\StringTok{"aiaa"}\NormalTok{, }\StringTok{"akktex"}\NormalTok{, }\StringTok{"akletter"}\NormalTok{, }\StringTok{"alegreya"}\NormalTok{, }
+\StringTok{"alertmessage"}\NormalTok{, }\StringTok{"alg"}\NormalTok{, }\StringTok{"algobox"}\NormalTok{, }\StringTok{"algolrevived"}\NormalTok{, }\StringTok{"algorithm2e"}\NormalTok{, }
+\StringTok{"algorithmicx"}\NormalTok{, }\StringTok{"algorithms"}\NormalTok{, }\StringTok{"algxpar"}\NormalTok{, }\StringTok{"aligned{-}overset"}\NormalTok{, }\StringTok{"allrunes"}\NormalTok{, }
+\StringTok{"almendra"}\NormalTok{, }\StringTok{"alnumsec"}\NormalTok{, }\StringTok{"alterqcm"}\NormalTok{, }\StringTok{"altfont"}\NormalTok{, }\StringTok{"ametsoc"}\NormalTok{, }\StringTok{"amiri"}\NormalTok{, }
+\StringTok{"amsaddr"}\NormalTok{, }\StringTok{"amscdx"}\NormalTok{, }\StringTok{"amscls"}\NormalTok{, }\StringTok{"amsfonts"}\NormalTok{, }\StringTok{"amsmath"}\NormalTok{, }\StringTok{"amsrefs"}\NormalTok{, }
+\StringTok{"animate"}\NormalTok{, }\StringTok{"anonchap"}\NormalTok{, }\StringTok{"anonymouspro"}\NormalTok{, }\StringTok{"answers"}\NormalTok{, }\StringTok{"antiqua"}\NormalTok{, }
+\StringTok{"antt"}\NormalTok{, }\StringTok{"anyfontsize"}\NormalTok{, }\StringTok{"anysize"}\NormalTok{, }\StringTok{"aobs{-}tikz"}\NormalTok{, }\StringTok{"aomart"}\NormalTok{, }\StringTok{"apa"}\NormalTok{, }
+\StringTok{"apa6"}\NormalTok{, }\StringTok{"apa6e"}\NormalTok{, }\StringTok{"apa7"}\NormalTok{, }\StringTok{"apacite"}\NormalTok{, }\StringTok{"appendix"}\NormalTok{, }\StringTok{"appendixnumberbeamer"}\NormalTok{, }
+\StringTok{"apptools"}\NormalTok{, }\StringTok{"apxproof"}\NormalTok{, }\StringTok{"arabi"}\NormalTok{, }\StringTok{"arabi{-}add"}\NormalTok{, }\StringTok{"arabicfront"}\NormalTok{, }
+\StringTok{"arabtex"}\NormalTok{, }\StringTok{"aramaic{-}serto"}\NormalTok{, }\StringTok{"archaeologie"}\NormalTok{, }\StringTok{"archaic"}\NormalTok{, }\StringTok{"arcs"}\NormalTok{, }
+\StringTok{"arev"}\NormalTok{, }\StringTok{"arimo"}\NormalTok{, }\StringTok{"armenian"}\NormalTok{, }\StringTok{"arraycols"}\NormalTok{, }\StringTok{"arraysort"}\NormalTok{, }\StringTok{"arsclassica"}\NormalTok{, }
+\StringTok{"articleingud"}\NormalTok{, }\StringTok{"arydshln"}\NormalTok{, }\StringTok{"asaetr"}\NormalTok{, }\StringTok{"asapsym"}\NormalTok{, }\StringTok{"ascelike"}\NormalTok{, }
+\StringTok{"ascii{-}font"}\NormalTok{, }\StringTok{"asciilist"}\NormalTok{, }\StringTok{"ascmac"}\NormalTok{, }\StringTok{"askinclude"}\NormalTok{, }\StringTok{"askmaps"}\NormalTok{, }
+\StringTok{"asmeconf"}\NormalTok{, }\StringTok{"asmejour"}\NormalTok{, }\StringTok{"aspectratio"}\NormalTok{, }\StringTok{"assignment"}\NormalTok{, }\StringTok{"assoccnt"}\NormalTok{, }
+\StringTok{"asyfig"}\NormalTok{, }\StringTok{"asypictureb"}\NormalTok{, }\StringTok{"atenddvi"}\NormalTok{, }\StringTok{"attachfile"}\NormalTok{, }\StringTok{"attachfile2"}\NormalTok{, }
+\StringTok{"atveryend"}\NormalTok{, }\StringTok{"aucklandthesis"}\NormalTok{, }\StringTok{"augie"}\NormalTok{, }\StringTok{"auncial{-}new"}\NormalTok{, }\StringTok{"aurical"}\NormalTok{, }
+\StringTok{"aurl"}\NormalTok{, }\StringTok{"authoraftertitle"}\NormalTok{, }\StringTok{"authorarchive"}\NormalTok{, }\StringTok{"authordate"}\NormalTok{, }\StringTok{"authorindex"}\NormalTok{, }
+\StringTok{"auto{-}pst{-}pdf"}\NormalTok{, }\StringTok{"auto{-}pst{-}pdf{-}lua"}\NormalTok{, }\StringTok{"autoarea"}\NormalTok{, }\StringTok{"autobreak"}\NormalTok{, }
+\StringTok{"autonum"}\NormalTok{, }\StringTok{"autopdf"}\NormalTok{, }\StringTok{"auxhook"}\NormalTok{, }\StringTok{"avantgar"}\NormalTok{, }\StringTok{"avremu"}\NormalTok{, }\StringTok{"awesomebox"}\NormalTok{, }
+\StringTok{"axessibility"}\NormalTok{, }\StringTok{"axodraw2"}\NormalTok{, }\StringTok{"b1encoding"}\NormalTok{, }\StringTok{"babelbib"}\NormalTok{, }\StringTok{"background"}\NormalTok{, }
+\StringTok{"backnaur"}\NormalTok{, }\StringTok{"bangorcsthesis"}\NormalTok{, }\StringTok{"bangorexam"}\NormalTok{, }\StringTok{"bangtex"}\NormalTok{, }\StringTok{"bankstatement"}\NormalTok{, }
+\StringTok{"barcodes"}\NormalTok{, }\StringTok{"bardiag"}\NormalTok{, }\StringTok{"base"}\NormalTok{, }\StringTok{"bashful"}\NormalTok{, }\StringTok{"basicarith"}\NormalTok{, }\StringTok{"baskervald"}\NormalTok{, }
+\StringTok{"baskervaldx"}\NormalTok{, }\StringTok{"baskervillef"}\NormalTok{, }\StringTok{"basque{-}book"}\NormalTok{, }\StringTok{"basque{-}date"}\NormalTok{, }
+\StringTok{"bbding"}\NormalTok{, }\StringTok{"bbm{-}macros"}\NormalTok{, }\StringTok{"bbold"}\NormalTok{, }\StringTok{"bchart"}\NormalTok{, }\StringTok{"bclogo"}\NormalTok{, }\StringTok{"beamer"}\NormalTok{, }
+\StringTok{"beamer{-}verona"}\NormalTok{, }\StringTok{"beamer2thesis"}\NormalTok{, }\StringTok{"beameraudience"}\NormalTok{, }\StringTok{"beamerauxtheme"}\NormalTok{, }
+\StringTok{"beamercolorthemeowl"}\NormalTok{, }\StringTok{"beamerdarkthemes"}\NormalTok{, }\StringTok{"beamerposter"}\NormalTok{, }\StringTok{"beamersubframe"}\NormalTok{, }
+\StringTok{"beamerswitch"}\NormalTok{, }\StringTok{"beamertheme{-}cuerna"}\NormalTok{, }\StringTok{"beamertheme{-}detlevcm"}\NormalTok{, }
+\StringTok{"beamertheme{-}epyt"}\NormalTok{, }\StringTok{"beamertheme{-}focus"}\NormalTok{, }\StringTok{"beamertheme{-}light"}\NormalTok{, }
+\StringTok{"beamertheme{-}metropolis"}\NormalTok{, }\StringTok{"beamertheme{-}npbt"}\NormalTok{, }\StringTok{"beamertheme{-}phnompenh"}\NormalTok{, }
+\StringTok{"beamertheme{-}saintpetersburg"}\NormalTok{, }\StringTok{"beamertheme{-}upenn{-}bc"}\NormalTok{, }\StringTok{"beamerthemejltree"}\NormalTok{, }
+\StringTok{"beamerthemenirma"}\NormalTok{, }\StringTok{"bearwear"}\NormalTok{, }\StringTok{"begingreek"}\NormalTok{, }\StringTok{"begriff"}\NormalTok{, }\StringTok{"beilstein"}\NormalTok{, }
+\StringTok{"bengali"}\NormalTok{, }\StringTok{"bera"}\NormalTok{, }\StringTok{"berenisadf"}\NormalTok{, }\StringTok{"betababel"}\NormalTok{, }\StringTok{"beton"}\NormalTok{, }\StringTok{"beuron"}\NormalTok{, }
+\StringTok{"bewerbung"}\NormalTok{, }\StringTok{"bez123"}\NormalTok{, }\StringTok{"bgreek"}\NormalTok{, }\StringTok{"bgteubner"}\NormalTok{, }\StringTok{"bguq"}\NormalTok{, }\StringTok{"bhcexam"}\NormalTok{, }
+\StringTok{"bibarts"}\NormalTok{, }\StringTok{"biblatex"}\NormalTok{, }\StringTok{"biblatex{-}abnt"}\NormalTok{, }\StringTok{"biblatex{-}anonymous"}\NormalTok{, }
+\StringTok{"biblatex{-}apa"}\NormalTok{, }\StringTok{"biblatex{-}apa6"}\NormalTok{, }\StringTok{"biblatex{-}archaeology"}\NormalTok{, }\StringTok{"biblatex{-}arthistory{-}bonn"}\NormalTok{, }
+\StringTok{"biblatex{-}bath"}\NormalTok{, }\StringTok{"biblatex{-}bookinarticle"}\NormalTok{, }\StringTok{"biblatex{-}bookinother"}\NormalTok{, }
+\StringTok{"biblatex{-}bwl"}\NormalTok{, }\StringTok{"biblatex{-}caspervector"}\NormalTok{, }\StringTok{"biblatex{-}chem"}\NormalTok{, }\StringTok{"biblatex{-}chicago"}\NormalTok{, }
+\StringTok{"biblatex{-}claves"}\NormalTok{, }\StringTok{"biblatex{-}dw"}\NormalTok{, }\StringTok{"biblatex{-}enc"}\NormalTok{, }\StringTok{"biblatex{-}ext"}\NormalTok{, }
+\StringTok{"biblatex{-}fiwi"}\NormalTok{, }\StringTok{"biblatex{-}gb7714{-}2015"}\NormalTok{, }\StringTok{"biblatex{-}gost"}\NormalTok{, }\StringTok{"biblatex{-}historian"}\NormalTok{, }
+\StringTok{"biblatex{-}ieee"}\NormalTok{, }\StringTok{"biblatex{-}ijsra"}\NormalTok{, }\StringTok{"biblatex{-}iso690"}\NormalTok{, }\StringTok{"biblatex{-}jura2"}\NormalTok{, }
+\StringTok{"biblatex{-}juradiss"}\NormalTok{, }\StringTok{"biblatex{-}lni"}\NormalTok{, }\StringTok{"biblatex{-}luh{-}ipw"}\NormalTok{, }\StringTok{"biblatex{-}manuscripts{-}philology"}\NormalTok{, }
+\StringTok{"biblatex{-}mla"}\NormalTok{, }\StringTok{"biblatex{-}morenames"}\NormalTok{, }\StringTok{"biblatex{-}multiple{-}dm"}\NormalTok{, }
+\StringTok{"biblatex{-}musuos"}\NormalTok{, }\StringTok{"biblatex{-}nature"}\NormalTok{, }\StringTok{"biblatex{-}nejm"}\NormalTok{, }\StringTok{"biblatex{-}nottsclassic"}\NormalTok{, }
+\StringTok{"biblatex{-}opcit{-}booktitle"}\NormalTok{, }\StringTok{"biblatex{-}oxref"}\NormalTok{, }\StringTok{"biblatex{-}philosophy"}\NormalTok{, }
+\StringTok{"biblatex{-}phys"}\NormalTok{, }\StringTok{"biblatex{-}publist"}\NormalTok{, }\StringTok{"biblatex{-}realauthor"}\NormalTok{, }\StringTok{"biblatex{-}sbl"}\NormalTok{, }
+\StringTok{"biblatex{-}science"}\NormalTok{, }\StringTok{"biblatex{-}shortfields"}\NormalTok{, }\StringTok{"biblatex{-}socialscienceshuberlin"}\NormalTok{, }
+\StringTok{"biblatex{-}source{-}division"}\NormalTok{, }\StringTok{"biblatex{-}subseries"}\NormalTok{, }\StringTok{"biblatex{-}swiss{-}legal"}\NormalTok{, }
+\StringTok{"biblatex{-}trad"}\NormalTok{, }\StringTok{"biblatex{-}true{-}citepages{-}omit"}\NormalTok{, }\StringTok{"bibleref"}\NormalTok{, }
+\StringTok{"bibleref{-}french"}\NormalTok{, }\StringTok{"bibleref{-}german"}\NormalTok{, }\StringTok{"bibleref{-}lds"}\NormalTok{, }\StringTok{"bibleref{-}mouth"}\NormalTok{, }
+\StringTok{"bibleref{-}parse"}\NormalTok{, }\StringTok{"bibletext"}\NormalTok{, }\StringTok{"biblist"}\NormalTok{, }\StringTok{"bibtopic"}\NormalTok{, }\StringTok{"bibtopicprefix"}\NormalTok{, }
+\StringTok{"bibunits"}\NormalTok{, }\StringTok{"bigfoot"}\NormalTok{, }\StringTok{"bigints"}\NormalTok{, }\StringTok{"binarytree"}\NormalTok{, }\StringTok{"binomexp"}\NormalTok{, }\StringTok{"biochemistry{-}colors"}\NormalTok{, }
+\StringTok{"biocon"}\NormalTok{, }\StringTok{"bitpattern"}\NormalTok{, }\StringTok{"bitter"}\NormalTok{, }\StringTok{"bizcard"}\NormalTok{, }\StringTok{"blacklettert1"}\NormalTok{, }
+\StringTok{"blindtext"}\NormalTok{, }\StringTok{"blkarray"}\NormalTok{, }\StringTok{"blochsphere"}\NormalTok{, }\StringTok{"block"}\NormalTok{, }\StringTok{"bloques"}\NormalTok{, }\StringTok{"blowup"}\NormalTok{, }
+\StringTok{"blox"}\NormalTok{, }\StringTok{"bnumexpr"}\NormalTok{, }\StringTok{"bodegraph"}\NormalTok{, }\StringTok{"bohr"}\NormalTok{, }\StringTok{"boisik"}\NormalTok{, }\StringTok{"boites"}\NormalTok{, }
+\StringTok{"bold{-}extra"}\NormalTok{, }\StringTok{"boldtensors"}\NormalTok{, }\StringTok{"bondgraph"}\NormalTok{, }\StringTok{"bondgraphs"}\NormalTok{, }\StringTok{"bookcover"}\NormalTok{, }
+\StringTok{"bookest"}\NormalTok{, }\StringTok{"bookhands"}\NormalTok{, }\StringTok{"booklet"}\NormalTok{, }\StringTok{"bookman"}\NormalTok{, }\StringTok{"bookmark"}\NormalTok{, }\StringTok{"booktabs"}\NormalTok{, }
+\StringTok{"boolexpr"}\NormalTok{, }\StringTok{"boondox"}\NormalTok{, }\StringTok{"bophook"}\NormalTok{, }\StringTok{"bosisio"}\NormalTok{, }\StringTok{"boxedminipage"}\NormalTok{, }
+\StringTok{"boxedminipage2e"}\NormalTok{, }\StringTok{"boxhandler"}\NormalTok{, }\StringTok{"bpchem"}\NormalTok{, }\StringTok{"br{-}lex"}\NormalTok{, }\StringTok{"bracketkey"}\NormalTok{, }
+\StringTok{"braids"}\NormalTok{, }\StringTok{"braille"}\NormalTok{, }\StringTok{"braket"}\NormalTok{, }\StringTok{"brandeis{-}dissertation"}\NormalTok{, }\StringTok{"brandeis{-}problemset"}\NormalTok{, }
+\StringTok{"brandeis{-}thesis"}\NormalTok{, }\StringTok{"breakcites"}\NormalTok{, }\StringTok{"breakurl"}\NormalTok{, }\StringTok{"bredzenie"}\NormalTok{, }\StringTok{"breqn"}\NormalTok{, }
+\StringTok{"bropd"}\NormalTok{, }\StringTok{"brushscr"}\NormalTok{, }\StringTok{"bullcntr"}\NormalTok{, }\StringTok{"bundledoc"}\NormalTok{, }\StringTok{"burmese"}\NormalTok{, }\StringTok{"bussproofs"}\NormalTok{, }
+\StringTok{"bussproofs{-}extra"}\NormalTok{, }\StringTok{"bxbase"}\NormalTok{, }\StringTok{"bxcalc"}\NormalTok{, }\StringTok{"bxcjkjatype"}\NormalTok{, }\StringTok{"bxdpx{-}beamer"}\NormalTok{, }
+\StringTok{"bxdvidriver"}\NormalTok{, }\StringTok{"bxeepic"}\NormalTok{, }\StringTok{"bxenclose"}\NormalTok{, }\StringTok{"bxghost"}\NormalTok{, }\StringTok{"bxjaholiday"}\NormalTok{, }
+\StringTok{"bxjalipsum"}\NormalTok{, }\StringTok{"bxjaprnind"}\NormalTok{, }\StringTok{"bxjatoucs"}\NormalTok{, }\StringTok{"bxjscls"}\NormalTok{, }\StringTok{"bxnewfont"}\NormalTok{, }
+\StringTok{"bxorigcapt"}\NormalTok{, }\StringTok{"bxpapersize"}\NormalTok{, }\StringTok{"bxpdfver"}\NormalTok{, }\StringTok{"bxtexlogo"}\NormalTok{, }\StringTok{"bxwareki"}\NormalTok{, }
+\StringTok{"bytefield"}\NormalTok{, }\StringTok{"cabin"}\NormalTok{, }\StringTok{"cachepic"}\NormalTok{, }\StringTok{"caladea"}\NormalTok{, }\StringTok{"calcage"}\NormalTok{, }\StringTok{"calctab"}\NormalTok{, }
+\StringTok{"calculation"}\NormalTok{, }\StringTok{"calculator"}\NormalTok{, }\StringTok{"callouts"}\NormalTok{, }\StringTok{"calrsfs"}\NormalTok{, }\StringTok{"cals"}\NormalTok{, }\StringTok{"calxxxx{-}yyyy"}\NormalTok{, }
+\StringTok{"cancel"}\NormalTok{, }\StringTok{"canoniclayout"}\NormalTok{, }\StringTok{"cantarell"}\NormalTok{, }\StringTok{"capt{-}of"}\NormalTok{, }\StringTok{"captcont"}\NormalTok{, }
+\StringTok{"captdef"}\NormalTok{, }\StringTok{"caption"}\NormalTok{, }\StringTok{"carbohydrates"}\NormalTok{, }\StringTok{"carlisle"}\NormalTok{, }\StringTok{"carlito"}\NormalTok{, }
+\StringTok{"cascade"}\NormalTok{, }\StringTok{"cascadilla"}\NormalTok{, }\StringTok{"cases"}\NormalTok{, }\StringTok{"casyl"}\NormalTok{, }\StringTok{"catchfilebetweentags"}\NormalTok{, }
+\StringTok{"catechis"}\NormalTok{, }\StringTok{"catoptions"}\NormalTok{, }\StringTok{"cbcoptic"}\NormalTok{, }\StringTok{"cbfonts{-}fd"}\NormalTok{, }\StringTok{"ccaption"}\NormalTok{, }
+\StringTok{"ccfonts"}\NormalTok{, }\StringTok{"ccicons"}\NormalTok{, }\StringTok{"cclicenses"}\NormalTok{, }\StringTok{"cd"}\NormalTok{, }\StringTok{"cd{-}cover"}\NormalTok{, }\StringTok{"cdpbundl"}\NormalTok{, }
+\StringTok{"cell"}\NormalTok{, }\StringTok{"cellprops"}\NormalTok{, }\StringTok{"cellspace"}\NormalTok{, }\StringTok{"celtic"}\NormalTok{, }\StringTok{"censor"}\NormalTok{, }\StringTok{"centeredline"}\NormalTok{, }
+\StringTok{"cesenaexam"}\NormalTok{, }\StringTok{"cfr{-}initials"}\NormalTok{, }\StringTok{"cfr{-}lm"}\NormalTok{, }\StringTok{"changebar"}\NormalTok{, }\StringTok{"changelayout"}\NormalTok{, }
+\StringTok{"changelog"}\NormalTok{, }\StringTok{"changepage"}\NormalTok{, }\StringTok{"changes"}\NormalTok{, }\StringTok{"chappg"}\NormalTok{, }\StringTok{"chapterfolder"}\NormalTok{, }
+\StringTok{"chbibref"}\NormalTok{, }\StringTok{"cheatsheet"}\NormalTok{, }\StringTok{"checkend"}\NormalTok{, }\StringTok{"checklistings"}\NormalTok{, }\StringTok{"chemarrow"}\NormalTok{, }
+\StringTok{"chemcompounds"}\NormalTok{, }\StringTok{"chemcono"}\NormalTok{, }\StringTok{"chemexec"}\NormalTok{, }\StringTok{"chemformula"}\NormalTok{, }\StringTok{"chemgreek"}\NormalTok{, }
+\StringTok{"chemmacros"}\NormalTok{, }\StringTok{"chemnum"}\NormalTok{, }\StringTok{"chemplants"}\NormalTok{, }\StringTok{"chemschemex"}\NormalTok{, }\StringTok{"chemsec"}\NormalTok{, }
+\StringTok{"chemstyle"}\NormalTok{, }\StringTok{"cherokee"}\NormalTok{, }\StringTok{"chess"}\NormalTok{, }\StringTok{"chess{-}problem{-}diagrams"}\NormalTok{, }\StringTok{"chessboard"}\NormalTok{, }
+\StringTok{"chessfss"}\NormalTok{, }\StringTok{"chet"}\NormalTok{, }\StringTok{"chextras"}\NormalTok{, }\StringTok{"chicago"}\NormalTok{, }\StringTok{"childdoc"}\NormalTok{, }\StringTok{"chivo"}\NormalTok{, }
+\StringTok{"chkfloat"}\NormalTok{, }\StringTok{"chklref"}\NormalTok{, }\StringTok{"chletter"}\NormalTok{, }\StringTok{"chngcntr"}\NormalTok{, }\StringTok{"chordbars"}\NormalTok{, }\StringTok{"chordbox"}\NormalTok{, }
+\StringTok{"chronology"}\NormalTok{, }\StringTok{"chs{-}physics{-}report"}\NormalTok{, }\StringTok{"chscite"}\NormalTok{, }\StringTok{"churchslavonic"}\NormalTok{, }
+\StringTok{"cinzel"}\NormalTok{, }\StringTok{"circ"}\NormalTok{, }\StringTok{"circledsteps"}\NormalTok{, }\StringTok{"circuit{-}macros"}\NormalTok{, }\StringTok{"circuitikz"}\NormalTok{, }
+\StringTok{"cite"}\NormalTok{, }\StringTok{"citeall"}\NormalTok{, }\StringTok{"citeref"}\NormalTok{, }\StringTok{"cje"}\NormalTok{, }\StringTok{"cjhebrew"}\NormalTok{, }\StringTok{"cjk{-}ko"}\NormalTok{, }\StringTok{"cjkpunct"}\NormalTok{, }
+\StringTok{"clara"}\NormalTok{, }\StringTok{"classics"}\NormalTok{, }\StringTok{"classicthesis"}\NormalTok{, }\StringTok{"classpack"}\NormalTok{, }\StringTok{"cleanthesis"}\NormalTok{, }
+\StringTok{"clearsans"}\NormalTok{, }\StringTok{"clefval"}\NormalTok{, }\StringTok{"cleveref"}\NormalTok{, }\StringTok{"clipboard"}\NormalTok{, }\StringTok{"clock"}\NormalTok{, }\StringTok{"clojure{-}pamphlet"}\NormalTok{, }
+\StringTok{"clrdblpg"}\NormalTok{, }\StringTok{"clrscode"}\NormalTok{, }\StringTok{"clrscode3e"}\NormalTok{, }\StringTok{"clrstrip"}\NormalTok{, }\StringTok{"cm{-}lgc"}\NormalTok{, }\StringTok{"cmap"}\NormalTok{, }
+\StringTok{"cmbright"}\NormalTok{, }\StringTok{"cmdstring"}\NormalTok{, }\StringTok{"cmdtrack"}\NormalTok{, }\StringTok{"cmll"}\NormalTok{, }\StringTok{"cmpj"}\NormalTok{, }\StringTok{"cmsd"}\NormalTok{, }
+\StringTok{"cmsrb"}\NormalTok{, }\StringTok{"cmtiup"}\NormalTok{, }\StringTok{"cmupint"}\NormalTok{, }\StringTok{"cnbwp"}\NormalTok{, }\StringTok{"cnltx"}\NormalTok{, }\StringTok{"cntformats"}\NormalTok{, }
+\StringTok{"cntperchap"}\NormalTok{, }\StringTok{"cochineal"}\NormalTok{, }\StringTok{"codeanatomy"}\NormalTok{, }\StringTok{"codedoc"}\NormalTok{, }\StringTok{"codepage"}\NormalTok{, }
+\StringTok{"codesection"}\NormalTok{, }\StringTok{"codicefiscaleitaliano"}\NormalTok{, }\StringTok{"coelacanth"}\NormalTok{, }\StringTok{"collcell"}\NormalTok{, }
+\StringTok{"collectbox"}\NormalTok{, }\StringTok{"collref"}\NormalTok{, }\StringTok{"colophon"}\NormalTok{, }\StringTok{"colordoc"}\NormalTok{, }\StringTok{"colorinfo"}\NormalTok{, }
+\StringTok{"coloring"}\NormalTok{, }\StringTok{"colorspace"}\NormalTok{, }\StringTok{"colortbl"}\NormalTok{, }\StringTok{"colorwav"}\NormalTok{, }\StringTok{"colorweb"}\NormalTok{, }
+\StringTok{"colourchange"}\NormalTok{, }\StringTok{"combelow"}\NormalTok{, }\StringTok{"combine"}\NormalTok{, }\StringTok{"combinedgraphics"}\NormalTok{, }\StringTok{"comfortaa"}\NormalTok{, }
+\StringTok{"comicneue"}\NormalTok{, }\StringTok{"comma"}\NormalTok{, }\StringTok{"commath"}\NormalTok{, }\StringTok{"commedit"}\NormalTok{, }\StringTok{"comment"}\NormalTok{, }\StringTok{"compactbib"}\NormalTok{, }
+\StringTok{"competences"}\NormalTok{, }\StringTok{"complexity"}\NormalTok{, }\StringTok{"computational{-}complexity"}\NormalTok{, }\StringTok{"concepts"}\NormalTok{, }
+\StringTok{"concmath"}\NormalTok{, }\StringTok{"concprog"}\NormalTok{, }\StringTok{"confproc"}\NormalTok{, }\StringTok{"constants"}\NormalTok{, }\StringTok{"conteq"}\NormalTok{, }\StringTok{"continue"}\NormalTok{, }
+\StringTok{"contour"}\NormalTok{, }\StringTok{"contracard"}\NormalTok{, }\StringTok{"conv{-}xkv"}\NormalTok{, }\StringTok{"cooking"}\NormalTok{, }\StringTok{"cooking{-}units"}\NormalTok{, }
+\StringTok{"cookingsymbols"}\NormalTok{, }\StringTok{"cool"}\NormalTok{, }\StringTok{"coollist"}\NormalTok{, }\StringTok{"coolstr"}\NormalTok{, }\StringTok{"coolthms"}\NormalTok{, }
+\StringTok{"cooltooltips"}\NormalTok{, }\StringTok{"coordsys"}\NormalTok{, }\StringTok{"copyedit"}\NormalTok{, }\StringTok{"copyrightbox"}\NormalTok{, }\StringTok{"cormorantgaramond"}\NormalTok{, }
+\StringTok{"correctmathalign"}\NormalTok{, }\StringTok{"coseoul"}\NormalTok{, }\StringTok{"countriesofeurope"}\NormalTok{, }\StringTok{"counttexruns"}\NormalTok{, }
+\StringTok{"courier"}\NormalTok{, }\StringTok{"courier{-}scaled"}\NormalTok{, }\StringTok{"courseoutline"}\NormalTok{, }\StringTok{"coursepaper"}\NormalTok{, }
+\StringTok{"coverpage"}\NormalTok{, }\StringTok{"covington"}\NormalTok{, }\StringTok{"cprotect"}\NormalTok{, }\StringTok{"cquthesis"}\NormalTok{, }\StringTok{"crbox"}\NormalTok{, }\StringTok{"crimson"}\NormalTok{, }
+\StringTok{"crimsonpro"}\NormalTok{, }\StringTok{"crop"}\NormalTok{, }\StringTok{"crossreference"}\NormalTok{, }\StringTok{"crossreftools"}\NormalTok{, }\StringTok{"crossrefware"}\NormalTok{, }
+\StringTok{"crossword"}\NormalTok{, }\StringTok{"crosswrd"}\NormalTok{, }\StringTok{"cryptocode"}\NormalTok{, }\StringTok{"csbulletin"}\NormalTok{, }\StringTok{"csquotes"}\NormalTok{, }
+\StringTok{"css{-}colors"}\NormalTok{, }\StringTok{"csvmerge"}\NormalTok{, }\StringTok{"csvsimple"}\NormalTok{, }\StringTok{"ctable"}\NormalTok{, }\StringTok{"ctex"}\NormalTok{, }\StringTok{"ctib"}\NormalTok{, }
+\StringTok{"cuisine"}\NormalTok{, }\StringTok{"cuprum"}\NormalTok{, }\StringTok{"currency"}\NormalTok{, }\StringTok{"currfile"}\NormalTok{, }\StringTok{"currvita"}\NormalTok{, }\StringTok{"curve"}\NormalTok{, }
+\StringTok{"curve2e"}\NormalTok{, }\StringTok{"curves"}\NormalTok{, }\StringTok{"custom{-}bib"}\NormalTok{, }\StringTok{"cutwin"}\NormalTok{, }\StringTok{"cv"}\NormalTok{, }\StringTok{"cv4tw"}\NormalTok{, }\StringTok{"cweb{-}latex"}\NormalTok{, }
+\StringTok{"cyber"}\NormalTok{, }\StringTok{"cybercic"}\NormalTok{, }\StringTok{"cyklop"}\NormalTok{, }\StringTok{"cyrillic"}\NormalTok{, }\StringTok{"dantelogo"}\NormalTok{, }\StringTok{"dashbox"}\NormalTok{, }
+\StringTok{"dashrule"}\NormalTok{, }\StringTok{"dashundergaps"}\NormalTok{, }\StringTok{"dataref"}\NormalTok{, }\StringTok{"datatool"}\NormalTok{, }\StringTok{"dateiliste"}\NormalTok{, }
+\StringTok{"datenumber"}\NormalTok{, }\StringTok{"datetime"}\NormalTok{, }\StringTok{"datetime2"}\NormalTok{, }\StringTok{"datetime2{-}bahasai"}\NormalTok{, }\StringTok{"datetime2{-}basque"}\NormalTok{, }
+\StringTok{"datetime2{-}breton"}\NormalTok{, }\StringTok{"datetime2{-}bulgarian"}\NormalTok{, }\StringTok{"datetime2{-}catalan"}\NormalTok{, }
+\StringTok{"datetime2{-}croatian"}\NormalTok{, }\StringTok{"datetime2{-}czech"}\NormalTok{, }\StringTok{"datetime2{-}danish"}\NormalTok{, }
+\StringTok{"datetime2{-}dutch"}\NormalTok{, }\StringTok{"datetime2{-}en{-}fulltext"}\NormalTok{, }\StringTok{"datetime2{-}english"}\NormalTok{, }
+\StringTok{"datetime2{-}esperanto"}\NormalTok{, }\StringTok{"datetime2{-}estonian"}\NormalTok{, }\StringTok{"datetime2{-}finnish"}\NormalTok{, }
+\StringTok{"datetime2{-}french"}\NormalTok{, }\StringTok{"datetime2{-}galician"}\NormalTok{, }\StringTok{"datetime2{-}german"}\NormalTok{, }
+\StringTok{"datetime2{-}greek"}\NormalTok{, }\StringTok{"datetime2{-}hebrew"}\NormalTok{, }\StringTok{"datetime2{-}icelandic"}\NormalTok{, }
+\StringTok{"datetime2{-}irish"}\NormalTok{, }\StringTok{"datetime2{-}it{-}fulltext"}\NormalTok{, }\StringTok{"datetime2{-}italian"}\NormalTok{, }
+\StringTok{"datetime2{-}latin"}\NormalTok{, }\StringTok{"datetime2{-}lsorbian"}\NormalTok{, }\StringTok{"datetime2{-}magyar"}\NormalTok{, }
+\StringTok{"datetime2{-}norsk"}\NormalTok{, }\StringTok{"datetime2{-}polish"}\NormalTok{, }\StringTok{"datetime2{-}portuges"}\NormalTok{, }
+\StringTok{"datetime2{-}romanian"}\NormalTok{, }\StringTok{"datetime2{-}russian"}\NormalTok{, }\StringTok{"datetime2{-}samin"}\NormalTok{, }
+\StringTok{"datetime2{-}scottish"}\NormalTok{, }\StringTok{"datetime2{-}serbian"}\NormalTok{, }\StringTok{"datetime2{-}slovak"}\NormalTok{, }
+\StringTok{"datetime2{-}slovene"}\NormalTok{, }\StringTok{"datetime2{-}spanish"}\NormalTok{, }\StringTok{"datetime2{-}swedish"}\NormalTok{, }
+\StringTok{"datetime2{-}turkish"}\NormalTok{, }\StringTok{"datetime2{-}ukrainian"}\NormalTok{, }\StringTok{"datetime2{-}usorbian"}\NormalTok{, }
+\StringTok{"datetime2{-}welsh"}\NormalTok{, }\StringTok{"dblfloatfix"}\NormalTok{, }\StringTok{"dccpaper"}\NormalTok{, }\StringTok{"ddphonism"}\NormalTok{, }\StringTok{"decimal"}\NormalTok{, }
+\StringTok{"decorule"}\NormalTok{, }\StringTok{"dejavu"}\NormalTok{, }\StringTok{"dejavu{-}otf"}\NormalTok{, }\StringTok{"delim"}\NormalTok{, }\StringTok{"delimseasy"}\NormalTok{, }\StringTok{"delimset"}\NormalTok{, }
+\StringTok{"delimtxt"}\NormalTok{, }\StringTok{"denisbdoc"}\NormalTok{, }\StringTok{"derivative"}\NormalTok{, }\StringTok{"dhua"}\NormalTok{, }\StringTok{"diadia"}\NormalTok{, }\StringTok{"diagbox"}\NormalTok{, }
+\StringTok{"diagmac2"}\NormalTok{, }\StringTok{"diagnose"}\NormalTok{, }\StringTok{"dialogl"}\NormalTok{, }\StringTok{"dichokey"}\NormalTok{, }\StringTok{"dictsym"}\NormalTok{, }\StringTok{"diffcoeff"}\NormalTok{, }
+\StringTok{"digiconfigs"}\NormalTok{, }\StringTok{"dijkstra"}\NormalTok{, }\StringTok{"dinbrief"}\NormalTok{, }\StringTok{"dingbat"}\NormalTok{, }\StringTok{"directory"}\NormalTok{, }
+\StringTok{"dirtytalk"}\NormalTok{, }\StringTok{"disser"}\NormalTok{, }\StringTok{"ditaa"}\NormalTok{, }\StringTok{"dithesis"}\NormalTok{, }\StringTok{"dk{-}bib"}\NormalTok{, }\StringTok{"dlfltxb"}\NormalTok{, }
+\StringTok{"dnaseq"}\NormalTok{, }\StringTok{"doclicense"}\NormalTok{, }\StringTok{"docmfp"}\NormalTok{, }\StringTok{"docmute"}\NormalTok{, }\StringTok{"doctools"}\NormalTok{, }\StringTok{"documentation"}\NormalTok{, }
+\StringTok{"doi"}\NormalTok{, }\StringTok{"doipubmed"}\NormalTok{, }\StringTok{"domitian"}\NormalTok{, }\StringTok{"dot2texi"}\NormalTok{, }\StringTok{"dotarrow"}\NormalTok{, }\StringTok{"dotlessi"}\NormalTok{, }
+\StringTok{"dotseqn"}\NormalTok{, }\StringTok{"dottex"}\NormalTok{, }\StringTok{"doublestroke"}\NormalTok{, }\StringTok{"download"}\NormalTok{, }\StringTok{"dox"}\NormalTok{, }\StringTok{"dozenal"}\NormalTok{, }
+\StringTok{"dpfloat"}\NormalTok{, }\StringTok{"dprogress"}\NormalTok{, }\StringTok{"drac"}\NormalTok{, }\StringTok{"draftcopy"}\NormalTok{, }\StringTok{"draftfigure"}\NormalTok{, }\StringTok{"draftwatermark"}\NormalTok{, }
+\StringTok{"dramatist"}\NormalTok{, }\StringTok{"drawmatrix"}\NormalTok{, }\StringTok{"drawstack"}\NormalTok{, }\StringTok{"drm"}\NormalTok{, }\StringTok{"droid"}\NormalTok{, }\StringTok{"droit{-}fr"}\NormalTok{, }
+\StringTok{"drs"}\NormalTok{, }\StringTok{"dsptricks"}\NormalTok{, }\StringTok{"dsserif"}\NormalTok{, }\StringTok{"dtk"}\NormalTok{, }\StringTok{"dtxdescribe"}\NormalTok{, }\StringTok{"ducksay"}\NormalTok{, }
+\StringTok{"duckuments"}\NormalTok{, }\StringTok{"duerer{-}latex"}\NormalTok{, }\StringTok{"duotenzor"}\NormalTok{, }\StringTok{"dutchcal"}\NormalTok{, }\StringTok{"dvdcoll"}\NormalTok{, }
+\StringTok{"dvgloss"}\NormalTok{, }\StringTok{"dynamicnumber"}\NormalTok{, }\StringTok{"dynblocks"}\NormalTok{, }\StringTok{"dynkin{-}diagrams"}\NormalTok{, }\StringTok{"dyntree"}\NormalTok{, }
+\StringTok{"ean13isbn"}\NormalTok{, }\StringTok{"easy"}\NormalTok{, }\StringTok{"easy{-}todo"}\NormalTok{, }\StringTok{"easyfig"}\NormalTok{, }\StringTok{"easyformat"}\NormalTok{, }\StringTok{"easylist"}\NormalTok{, }
+\StringTok{"easyreview"}\NormalTok{, }\StringTok{"ebezier"}\NormalTok{, }\StringTok{"ebgaramond"}\NormalTok{, }\StringTok{"ebgaramond{-}maths"}\NormalTok{, }\StringTok{"ebook"}\NormalTok{, }
+\StringTok{"ebproof"}\NormalTok{, }\StringTok{"ebsthesis"}\NormalTok{, }\StringTok{"ecclesiastic"}\NormalTok{, }\StringTok{"ecgdraw"}\NormalTok{, }\StringTok{"ecltree"}\NormalTok{, }
+\StringTok{"eco"}\NormalTok{, }\StringTok{"ecobiblatex"}\NormalTok{, }\StringTok{"econometrics"}\NormalTok{, }\StringTok{"economic"}\NormalTok{, }\StringTok{"ecv"}\NormalTok{, }\StringTok{"ed"}\NormalTok{, }
+\StringTok{"edfnotes"}\NormalTok{, }\StringTok{"edmargin"}\NormalTok{, }\StringTok{"ednotes"}\NormalTok{, }\StringTok{"eemeir"}\NormalTok{, }\StringTok{"eepic"}\NormalTok{, }\StringTok{"efbox"}\NormalTok{, }
+\StringTok{"egameps"}\NormalTok{, }\StringTok{"egplot"}\NormalTok{, }\StringTok{"ehhline"}\NormalTok{, }\StringTok{"eiad"}\NormalTok{, }\StringTok{"eiad{-}ltx"}\NormalTok{, }\StringTok{"ejpecp"}\NormalTok{, }
+\StringTok{"ekaia"}\NormalTok{, }\StringTok{"elbioimp"}\NormalTok{, }\StringTok{"electrum"}\NormalTok{, }\StringTok{"eledform"}\NormalTok{, }\StringTok{"eledmac"}\NormalTok{, }\StringTok{"elegantbook"}\NormalTok{, }
+\StringTok{"elegantnote"}\NormalTok{, }\StringTok{"elegantpaper"}\NormalTok{, }\StringTok{"elements"}\NormalTok{, }\StringTok{"ellipse"}\NormalTok{, }\StringTok{"ellipsis"}\NormalTok{, }
+\StringTok{"elmath"}\NormalTok{, }\StringTok{"elocalloc"}\NormalTok{, }\StringTok{"elpres"}\NormalTok{, }\StringTok{"els{-}cas{-}templates"}\NormalTok{, }\StringTok{"elsarticle"}\NormalTok{, }
+\StringTok{"elteikthesis"}\NormalTok{, }\StringTok{"eltex"}\NormalTok{, }\StringTok{"elzcards"}\NormalTok{, }\StringTok{"emarks"}\NormalTok{, }\StringTok{"embedall"}\NormalTok{, }\StringTok{"embedfile"}\NormalTok{, }
+\StringTok{"embrac"}\NormalTok{, }\StringTok{"emf"}\NormalTok{, }\StringTok{"emisa"}\NormalTok{, }\StringTok{"emp"}\NormalTok{, }\StringTok{"emptypage"}\NormalTok{, }\StringTok{"emulateapj"}\NormalTok{, }\StringTok{"encxvlna"}\NormalTok{, }
+\StringTok{"endfloat"}\NormalTok{, }\StringTok{"endheads"}\NormalTok{, }\StringTok{"endiagram"}\NormalTok{, }\StringTok{"endnotes"}\NormalTok{, }\StringTok{"endnotesj"}\NormalTok{, }
+\StringTok{"endofproofwd"}\NormalTok{, }\StringTok{"engpron"}\NormalTok{, }\StringTok{"engrec"}\NormalTok{, }\StringTok{"engtlc"}\NormalTok{, }\StringTok{"enigma"}\NormalTok{, }\StringTok{"enotez"}\NormalTok{, }
+\StringTok{"enumitem"}\NormalTok{, }\StringTok{"enumitem{-}zref"}\NormalTok{, }\StringTok{"envbig"}\NormalTok{, }\StringTok{"environ"}\NormalTok{, }\StringTok{"envlab"}\NormalTok{, }\StringTok{"epigrafica"}\NormalTok{, }
+\StringTok{"epigraph"}\NormalTok{, }\StringTok{"epiolmec"}\NormalTok{, }\StringTok{"epsdice"}\NormalTok{, }\StringTok{"epspdfconversion"}\NormalTok{, }\StringTok{"epstopdf{-}pkg"}\NormalTok{, }
+\StringTok{"eqell"}\NormalTok{, }\StringTok{"eqexpl"}\NormalTok{, }\StringTok{"eqlist"}\NormalTok{, }\StringTok{"eqnalign"}\NormalTok{, }\StringTok{"eqname"}\NormalTok{, }\StringTok{"eqnarray"}\NormalTok{, }
+\StringTok{"eqnnumwarn"}\NormalTok{, }\StringTok{"eqparbox"}\NormalTok{, }\StringTok{"erdc"}\NormalTok{, }\StringTok{"erewhon"}\NormalTok{, }\StringTok{"erewhon{-}math"}\NormalTok{, }
+\StringTok{"errata"}\NormalTok{, }\StringTok{"erw{-}l3"}\NormalTok{, }\StringTok{"esami"}\NormalTok{, }\StringTok{"esdiff"}\NormalTok{, }\StringTok{"ESIEEcv"}\NormalTok{, }\StringTok{"esindex"}\NormalTok{, }
+\StringTok{"esint"}\NormalTok{, }\StringTok{"esk"}\NormalTok{, }\StringTok{"eskd"}\NormalTok{, }\StringTok{"eskdx"}\NormalTok{, }\StringTok{"eso{-}pic"}\NormalTok{, }\StringTok{"esrelation"}\NormalTok{, }\StringTok{"esstix"}\NormalTok{, }
+\StringTok{"estcpmm"}\NormalTok{, }\StringTok{"esvect"}\NormalTok{, }\StringTok{"etaremune"}\NormalTok{, }\StringTok{"etex{-}pkg"}\NormalTok{, }\StringTok{"etextools"}\NormalTok{, }\StringTok{"ethiop"}\NormalTok{, }
+\StringTok{"etoc"}\NormalTok{, }\StringTok{"etoolbox"}\NormalTok{, }\StringTok{"etsvthor"}\NormalTok{, }\StringTok{"euclideangeometry"}\NormalTok{, }\StringTok{"euenc"}\NormalTok{, }
+\StringTok{"euflag"}\NormalTok{, }\StringTok{"eukdate"}\NormalTok{, }\StringTok{"euler"}\NormalTok{, }\StringTok{"eulerpx"}\NormalTok{, }\StringTok{"eulervm"}\NormalTok{, }\StringTok{"euro"}\NormalTok{, }\StringTok{"europasscv"}\NormalTok{, }
+\StringTok{"europecv"}\NormalTok{, }\StringTok{"eurosym"}\NormalTok{, }\StringTok{"everyhook"}\NormalTok{, }\StringTok{"everypage"}\NormalTok{, }\StringTok{"exam"}\NormalTok{, }\StringTok{"exam{-}n"}\NormalTok{, }
+\StringTok{"exam{-}randomizechoices"}\NormalTok{, }\StringTok{"examdesign"}\NormalTok{, }\StringTok{"example"}\NormalTok{, }\StringTok{"examplep"}\NormalTok{, }
+\StringTok{"exceltex"}\NormalTok{, }\StringTok{"excludeonly"}\NormalTok{, }\StringTok{"exercise"}\NormalTok{, }\StringTok{"exercisebank"}\NormalTok{, }\StringTok{"exercisepoints"}\NormalTok{, }
+\StringTok{"exercises"}\NormalTok{, }\StringTok{"exframe"}\NormalTok{, }\StringTok{"exp{-}testopt"}\NormalTok{, }\StringTok{"expdlist"}\NormalTok{, }\StringTok{"expkv"}\NormalTok{, }\StringTok{"export"}\NormalTok{, }
+\StringTok{"exsheets"}\NormalTok{, }\StringTok{"exsol"}\NormalTok{, }\StringTok{"extarrows"}\NormalTok{, }\StringTok{"extpfeil"}\NormalTok{, }\StringTok{"extract"}\NormalTok{, }\StringTok{"extsizes"}\NormalTok{, }
+\StringTok{"facsimile"}\NormalTok{, }\StringTok{"factura"}\NormalTok{, }\StringTok{"faktor"}\NormalTok{, }\StringTok{"fancybox"}\NormalTok{, }\StringTok{"fancyhandout"}\NormalTok{, }
+\StringTok{"fancyhdr"}\NormalTok{, }\StringTok{"fancylabel"}\NormalTok{, }\StringTok{"fancynum"}\NormalTok{, }\StringTok{"fancypar"}\NormalTok{, }\StringTok{"fancyref"}\NormalTok{, }
+\StringTok{"fancyslides"}\NormalTok{, }\StringTok{"fancytabs"}\NormalTok{, }\StringTok{"fancytooltips"}\NormalTok{, }\StringTok{"fancyvrb"}\NormalTok{, }\StringTok{"fascicules"}\NormalTok{, }
+\StringTok{"fast{-}diagram"}\NormalTok{, }\StringTok{"fbb"}\NormalTok{, }\StringTok{"fbithesis"}\NormalTok{, }\StringTok{"fbox"}\NormalTok{, }\StringTok{"fc"}\NormalTok{, }\StringTok{"fcavtex"}\NormalTok{, }
+\StringTok{"fcltxdoc"}\NormalTok{, }\StringTok{"fcolumn"}\NormalTok{, }\StringTok{"fdsymbol"}\NormalTok{, }\StringTok{"fduthesis"}\NormalTok{, }\StringTok{"fei"}\NormalTok{, }\StringTok{"fetamont"}\NormalTok{, }
+\StringTok{"fetchcls"}\NormalTok{, }\StringTok{"feupphdteses"}\NormalTok{, }\StringTok{"fewerfloatpages"}\NormalTok{, }\StringTok{"feyn"}\NormalTok{, }\StringTok{"feynmp{-}auto"}\NormalTok{, }
+\StringTok{"ffslides"}\NormalTok{, }\StringTok{"fge"}\NormalTok{, }\StringTok{"fgruler"}\NormalTok{, }\StringTok{"fibeamer"}\NormalTok{, }\StringTok{"fifo{-}stack"}\NormalTok{, }\StringTok{"figbib"}\NormalTok{, }
+\StringTok{"figsize"}\NormalTok{, }\StringTok{"filecontents"}\NormalTok{, }\StringTok{"filecontentsdef"}\NormalTok{, }\StringTok{"filedate"}\NormalTok{, }\StringTok{"filehook"}\NormalTok{, }
+\StringTok{"fileinfo"}\NormalTok{, }\StringTok{"filemod"}\NormalTok{, }\StringTok{"fink"}\NormalTok{, }\StringTok{"finstrut"}\NormalTok{, }\StringTok{"fira"}\NormalTok{, }\StringTok{"firamath{-}otf"}\NormalTok{, }
+\StringTok{"fitbox"}\NormalTok{, }\StringTok{"fithesis"}\NormalTok{, }\StringTok{"fix2col"}\NormalTok{, }\StringTok{"fixcmex"}\NormalTok{, }\StringTok{"fixfoot"}\NormalTok{, }\StringTok{"fixltxhyph"}\NormalTok{, }
+\StringTok{"fixme"}\NormalTok{, }\StringTok{"fixmetodonotes"}\NormalTok{, }\StringTok{"fjodor"}\NormalTok{, }\StringTok{"flabels"}\NormalTok{, }\StringTok{"flacards"}\NormalTok{, }\StringTok{"flagderiv"}\NormalTok{, }
+\StringTok{"flashcards"}\NormalTok{, }\StringTok{"flashmovie"}\NormalTok{, }\StringTok{"flipbook"}\NormalTok{, }\StringTok{"flippdf"}\NormalTok{, }\StringTok{"float"}\NormalTok{, }\StringTok{"floatflt"}\NormalTok{, }
+\StringTok{"floatrow"}\NormalTok{, }\StringTok{"flowchart"}\NormalTok{, }\StringTok{"flowfram"}\NormalTok{, }\StringTok{"fmp"}\NormalTok{, }\StringTok{"fmtcount"}\NormalTok{, }\StringTok{"fn2end"}\NormalTok{, }
+\StringTok{"fnbreak"}\NormalTok{, }\StringTok{"fncychap"}\NormalTok{, }\StringTok{"fncylab"}\NormalTok{, }\StringTok{"fnpara"}\NormalTok{, }\StringTok{"fnpct"}\NormalTok{, }\StringTok{"fnspe"}\NormalTok{, }
+\StringTok{"fnumprint"}\NormalTok{, }\StringTok{"foekfont"}\NormalTok{, }\StringTok{"foilhtml"}\NormalTok{, }\StringTok{"fonetika"}\NormalTok{, }\StringTok{"fontawesome"}\NormalTok{, }
+\StringTok{"fontawesome5"}\NormalTok{, }\StringTok{"fontaxes"}\NormalTok{, }\StringTok{"fontinst"}\NormalTok{, }\StringTok{"fontmfizz"}\NormalTok{, }\StringTok{"fonts{-}tlwg"}\NormalTok{, }
+\StringTok{"fontsetup"}\NormalTok{, }\StringTok{"fontspec"}\NormalTok{, }\StringTok{"fonttable"}\NormalTok{, }\StringTok{"footbib"}\NormalTok{, }\StringTok{"footmisc"}\NormalTok{, }
+\StringTok{"footmisx"}\NormalTok{, }\StringTok{"footnotebackref"}\NormalTok{, }\StringTok{"footnotehyper"}\NormalTok{, }\StringTok{"footnoterange"}\NormalTok{, }
+\StringTok{"footnpag"}\NormalTok{, }\StringTok{"forarray"}\NormalTok{, }\StringTok{"foreign"}\NormalTok{, }\StringTok{"forest"}\NormalTok{, }\StringTok{"forloop"}\NormalTok{, }\StringTok{"forms16be"}\NormalTok{, }
+\StringTok{"formular"}\NormalTok{, }\StringTok{"forum"}\NormalTok{, }\StringTok{"fouridx"}\NormalTok{, }\StringTok{"fourier"}\NormalTok{, }\StringTok{"fouriernc"}\NormalTok{, }\StringTok{"fp"}\NormalTok{, }
+\StringTok{"fragments"}\NormalTok{, }\StringTok{"framed"}\NormalTok{, }\StringTok{"francais{-}bst"}\NormalTok{, }\StringTok{"frankenstein"}\NormalTok{, }\StringTok{"frcursive"}\NormalTok{, }
+\StringTok{"frege"}\NormalTok{, }\StringTok{"frenchmath"}\NormalTok{, }\StringTok{"frletter"}\NormalTok{, }\StringTok{"frontespizio"}\NormalTok{, }\StringTok{"ftc{-}notebook"}\NormalTok{, }
+\StringTok{"ftcap"}\NormalTok{, }\StringTok{"ftnxtra"}\NormalTok{, }\StringTok{"fullblck"}\NormalTok{, }\StringTok{"fullminipage"}\NormalTok{, }\StringTok{"fullwidth"}\NormalTok{, }
+\StringTok{"functan"}\NormalTok{, }\StringTok{"fundus{-}calligra"}\NormalTok{, }\StringTok{"fundus{-}cyr"}\NormalTok{, }\StringTok{"fundus{-}sueterlin"}\NormalTok{, }
+\StringTok{"fvextra"}\NormalTok{, }\StringTok{"fwlw"}\NormalTok{, }\StringTok{"g{-}brief"}\NormalTok{, }\StringTok{"gaceta"}\NormalTok{, }\StringTok{"galois"}\NormalTok{, }\StringTok{"gamebook"}\NormalTok{, }
+\StringTok{"gammas"}\NormalTok{, }\StringTok{"gastex"}\NormalTok{, }\StringTok{"gatech{-}thesis"}\NormalTok{, }\StringTok{"gatherenum"}\NormalTok{, }\StringTok{"gauss"}\NormalTok{, }\StringTok{"gb4e"}\NormalTok{, }
+\StringTok{"gbt7714"}\NormalTok{, }\StringTok{"gcard"}\NormalTok{, }\StringTok{"gchords"}\NormalTok{, }\StringTok{"gcite"}\NormalTok{, }\StringTok{"gender"}\NormalTok{, }\StringTok{"gene{-}logic"}\NormalTok{, }
+\StringTok{"genealogytree"}\NormalTok{, }\StringTok{"genmpage"}\NormalTok{, }\StringTok{"gentium{-}tug"}\NormalTok{, }\StringTok{"gentombow"}\NormalTok{, }\StringTok{"geometry"}\NormalTok{, }
+\StringTok{"germbib"}\NormalTok{, }\StringTok{"germkorr"}\NormalTok{, }\StringTok{"geschichtsfrkl"}\NormalTok{, }\StringTok{"getfiledate"}\NormalTok{, }\StringTok{"getitems"}\NormalTok{, }
+\StringTok{"getmap"}\NormalTok{, }\StringTok{"gfsartemisia"}\NormalTok{, }\StringTok{"gfsbaskerville"}\NormalTok{, }\StringTok{"gfsbodoni"}\NormalTok{, }\StringTok{"gfscomplutum"}\NormalTok{, }
+\StringTok{"gfsdidot"}\NormalTok{, }\StringTok{"gfsneohellenic"}\NormalTok{, }\StringTok{"gfsneohellenicmath"}\NormalTok{, }\StringTok{"gfsporson"}\NormalTok{, }
+\StringTok{"gfssolomos"}\NormalTok{, }\StringTok{"ghab"}\NormalTok{, }\StringTok{"ghsystem"}\NormalTok{, }\StringTok{"gillcm"}\NormalTok{, }\StringTok{"gillius"}\NormalTok{, }\StringTok{"gincltex"}\NormalTok{, }
+\StringTok{"gindex"}\NormalTok{, }\StringTok{"ginpenc"}\NormalTok{, }\StringTok{"gitfile{-}info"}\NormalTok{, }\StringTok{"gitinfo"}\NormalTok{, }\StringTok{"gitinfo2"}\NormalTok{, }\StringTok{"gitlog"}\NormalTok{, }
+\StringTok{"gitver"}\NormalTok{, }\StringTok{"globalvals"}\NormalTok{, }\StringTok{"glosmathtools"}\NormalTok{, }\StringTok{"gloss"}\NormalTok{, }\StringTok{"glossaries"}\NormalTok{, }
+\StringTok{"glossaries{-}danish"}\NormalTok{, }\StringTok{"glossaries{-}dutch"}\NormalTok{, }\StringTok{"glossaries{-}english"}\NormalTok{, }
+\StringTok{"glossaries{-}estonian"}\NormalTok{, }\StringTok{"glossaries{-}extra"}\NormalTok{, }\StringTok{"glossaries{-}finnish"}\NormalTok{, }
+\StringTok{"glossaries{-}french"}\NormalTok{, }\StringTok{"glossaries{-}german"}\NormalTok{, }\StringTok{"glossaries{-}irish"}\NormalTok{, }
+\StringTok{"glossaries{-}italian"}\NormalTok{, }\StringTok{"glossaries{-}magyar"}\NormalTok{, }\StringTok{"glossaries{-}polish"}\NormalTok{, }
+\StringTok{"glossaries{-}portuges"}\NormalTok{, }\StringTok{"glossaries{-}serbian"}\NormalTok{, }\StringTok{"glossaries{-}slovene"}\NormalTok{, }
+\StringTok{"glossaries{-}spanish"}\NormalTok{, }\StringTok{"gmdoc"}\NormalTok{, }\StringTok{"gmdoc{-}enhance"}\NormalTok{, }\StringTok{"gmiflink"}\NormalTok{, }\StringTok{"gmp"}\NormalTok{, }
+\StringTok{"gmutils"}\NormalTok{, }\StringTok{"gmverb"}\NormalTok{, }\StringTok{"gmverse"}\NormalTok{, }\StringTok{"gnuplottex"}\NormalTok{, }\StringTok{"go"}\NormalTok{, }\StringTok{"gofonts"}\NormalTok{, }
+\StringTok{"gotoh"}\NormalTok{, }\StringTok{"grabbox"}\NormalTok{, }\StringTok{"gradientframe"}\NormalTok{, }\StringTok{"gradstudentresume"}\NormalTok{, }\StringTok{"grafcet"}\NormalTok{, }
+\StringTok{"grant"}\NormalTok{, }\StringTok{"graph35"}\NormalTok{, }\StringTok{"graphbox"}\NormalTok{, }\StringTok{"graphics"}\NormalTok{, }\StringTok{"graphics{-}cfg"}\NormalTok{, }\StringTok{"graphics{-}def"}\NormalTok{, }
+\StringTok{"graphicx{-}psmin"}\NormalTok{, }\StringTok{"graphicxbox"}\NormalTok{, }\StringTok{"graphicxpsd"}\NormalTok{, }\StringTok{"graphviz"}\NormalTok{, }\StringTok{"grayhints"}\NormalTok{, }
+\StringTok{"greek{-}fontenc"}\NormalTok{, }\StringTok{"greek{-}inputenc"}\NormalTok{, }\StringTok{"greekdates"}\NormalTok{, }\StringTok{"greektex"}\NormalTok{, }
+\StringTok{"greektonoi"}\NormalTok{, }\StringTok{"grfext"}\NormalTok{, }\StringTok{"grffile"}\NormalTok{, }\StringTok{"grfpaste"}\NormalTok{, }\StringTok{"grid"}\NormalTok{, }\StringTok{"grid{-}system"}\NormalTok{, }
+\StringTok{"gridset"}\NormalTok{, }\StringTok{"gridslides"}\NormalTok{, }\StringTok{"grotesq"}\NormalTok{, }\StringTok{"grundgesetze"}\NormalTok{, }\StringTok{"GS1"}\NormalTok{, }\StringTok{"gsemthesis"}\NormalTok{, }
+\StringTok{"gtrcrd"}\NormalTok{, }\StringTok{"gtrlib{-}largetrees"}\NormalTok{, }\StringTok{"gu"}\NormalTok{, }\StringTok{"guitar"}\NormalTok{, }\StringTok{"guitarchordschemes"}\NormalTok{, }
+\StringTok{"guitartabs"}\NormalTok{, }\StringTok{"guitlogo"}\NormalTok{, }\StringTok{"gzt"}\NormalTok{, }\StringTok{"h2020proposal"}\NormalTok{, }\StringTok{"HA{-}prosper"}\NormalTok{, }
+\StringTok{"hackthefootline"}\NormalTok{, }\StringTok{"hacm"}\NormalTok{, }\StringTok{"hagenberg{-}thesis"}\NormalTok{, }\StringTok{"halloweenmath"}\NormalTok{, }
+\StringTok{"handin"}\NormalTok{, }\StringTok{"handout"}\NormalTok{, }\StringTok{"hang"}\NormalTok{, }\StringTok{"hanging"}\NormalTok{, }\StringTok{"har2nat"}\NormalTok{, }\StringTok{"hardwrap"}\NormalTok{, }
+\StringTok{"harmony"}\NormalTok{, }\StringTok{"harnon{-}cv"}\NormalTok{, }\StringTok{"harpoon"}\NormalTok{, }\StringTok{"harvard"}\NormalTok{, }\StringTok{"harveyballs"}\NormalTok{, }
+\StringTok{"hausarbeit{-}jura"}\NormalTok{, }\StringTok{"havannah"}\NormalTok{, }\StringTok{"hc"}\NormalTok{, }\StringTok{"he{-}she"}\NormalTok{, }\StringTok{"hecthese"}\NormalTok{, }\StringTok{"helvetic"}\NormalTok{, }
+\StringTok{"hep"}\NormalTok{, }\StringTok{"hep{-}paper"}\NormalTok{, }\StringTok{"hepnames"}\NormalTok{, }\StringTok{"hepparticles"}\NormalTok{, }\StringTok{"hepthesis"}\NormalTok{, }
+\StringTok{"hepunits"}\NormalTok{, }\StringTok{"here"}\NormalTok{, }\StringTok{"heuristica"}\NormalTok{, }\StringTok{"hexgame"}\NormalTok{, }\StringTok{"hf{-}tikz"}\NormalTok{, }\StringTok{"hfoldsty"}\NormalTok{, }
+\StringTok{"hhtensor"}\NormalTok{, }\StringTok{"histogr"}\NormalTok{, }\StringTok{"historische{-}zeitschrift"}\NormalTok{, }\StringTok{"hitec"}\NormalTok{, }\StringTok{"hithesis"}\NormalTok{, }
+\StringTok{"hletter"}\NormalTok{, }\StringTok{"hobby"}\NormalTok{, }\StringTok{"hobete"}\NormalTok{, }\StringTok{"hobsub"}\NormalTok{, }\StringTok{"horoscop"}\NormalTok{, }\StringTok{"hpsdiss"}\NormalTok{, }
+\StringTok{"hrefhide"}\NormalTok{, }\StringTok{"hrlatex"}\NormalTok{, }\StringTok{"hu{-}berlin{-}bundle"}\NormalTok{, }\StringTok{"hulipsum"}\NormalTok{, }\StringTok{"hustthesis"}\NormalTok{, }
+\StringTok{"hvfloat"}\NormalTok{, }\StringTok{"hvindex"}\NormalTok{, }\StringTok{"hvqrurl"}\NormalTok{, }\StringTok{"hycolor"}\NormalTok{, }\StringTok{"hypdvips"}\NormalTok{, }\StringTok{"hyper"}\NormalTok{, }
+\StringTok{"hyperbar"}\NormalTok{, }\StringTok{"hypernat"}\NormalTok{, }\StringTok{"hyperref"}\NormalTok{, }\StringTok{"hyperxmp"}\NormalTok{, }\StringTok{"hyphenat"}\NormalTok{, }\StringTok{"ibycus{-}babel"}\NormalTok{, }
+\StringTok{"icite"}\NormalTok{, }\StringTok{"icsv"}\NormalTok{, }\StringTok{"identkey"}\NormalTok{, }\StringTok{"idxcmds"}\NormalTok{, }\StringTok{"idxlayout"}\NormalTok{, }\StringTok{"IEEEconf"}\NormalTok{, }
+\StringTok{"ieeepes"}\NormalTok{, }\StringTok{"IEEEtran"}\NormalTok{, }\StringTok{"iffont"}\NormalTok{, }\StringTok{"ifmslide"}\NormalTok{, }\StringTok{"ifmtarg"}\NormalTok{, }\StringTok{"ifnextok"}\NormalTok{, }
+\StringTok{"ifoddpage"}\NormalTok{, }\StringTok{"ifplatform"}\NormalTok{, }\StringTok{"ifsym"}\NormalTok{, }\StringTok{"ifthenx"}\NormalTok{, }\StringTok{"iitem"}\NormalTok{, }\StringTok{"ijmart"}\NormalTok{, }
+\StringTok{"ijsra"}\NormalTok{, }\StringTok{"imac"}\NormalTok{, }\StringTok{"image{-}gallery"}\NormalTok{, }\StringTok{"imakeidx"}\NormalTok{, }\StringTok{"imfellenglish"}\NormalTok{, }
+\StringTok{"impnattypo"}\NormalTok{, }\StringTok{"import"}\NormalTok{, }\StringTok{"imtekda"}\NormalTok{, }\StringTok{"incgraph"}\NormalTok{, }\StringTok{"includernw"}\NormalTok{, }
+\StringTok{"inconsolata"}\NormalTok{, }\StringTok{"index"}\NormalTok{, }\StringTok{"indextools"}\NormalTok{, }\StringTok{"initials"}\NormalTok{, }\StringTok{"inkpaper"}\NormalTok{, }
+\StringTok{"inline{-}images"}\NormalTok{, }\StringTok{"inlinebib"}\NormalTok{, }\StringTok{"inlinedef"}\NormalTok{, }\StringTok{"inputenx"}\NormalTok{, }\StringTok{"inputtrc"}\NormalTok{, }
+\StringTok{"inriafonts"}\NormalTok{, }\StringTok{"interactiveworkbook"}\NormalTok{, }\StringTok{"interfaces"}\NormalTok{, }\StringTok{"interval"}\NormalTok{, }
+\StringTok{"intopdf"}\NormalTok{, }\StringTok{"inversepath"}\NormalTok{, }\StringTok{"invoice"}\NormalTok{, }\StringTok{"invoice{-}class"}\NormalTok{, }\StringTok{"invoice2"}\NormalTok{, }
+\StringTok{"iodhbwm"}\NormalTok{, }\StringTok{"ionumbers"}\NormalTok{, }\StringTok{"ipaex{-}type1"}\NormalTok{, }\StringTok{"iscram"}\NormalTok{, }\StringTok{"iso"}\NormalTok{, }\StringTok{"iso10303"}\NormalTok{, }
+\StringTok{"isodate"}\NormalTok{, }\StringTok{"isodoc"}\NormalTok{, }\StringTok{"isomath"}\NormalTok{, }\StringTok{"isonums"}\NormalTok{, }\StringTok{"isopt"}\NormalTok{, }\StringTok{"isorot"}\NormalTok{, }
+\StringTok{"isotope"}\NormalTok{, }\StringTok{"issuulinks"}\NormalTok{, }\StringTok{"istgame"}\NormalTok{, }\StringTok{"itnumpar"}\NormalTok{, }\StringTok{"iwhdp"}\NormalTok{, }\StringTok{"iwona"}\NormalTok{, }
+\StringTok{"jacow"}\NormalTok{, }\StringTok{"jamtimes"}\NormalTok{, }\StringTok{"jigsaw"}\NormalTok{, }\StringTok{"jkmath"}\NormalTok{, }\StringTok{"jknapltx"}\NormalTok{, }\StringTok{"jlabels"}\NormalTok{, }
+\StringTok{"jlreq"}\NormalTok{, }\StringTok{"jmb"}\NormalTok{, }\StringTok{"jmlr"}\NormalTok{, }\StringTok{"jneurosci"}\NormalTok{, }\StringTok{"jnuexam"}\NormalTok{, }\StringTok{"jpsj"}\NormalTok{, }\StringTok{"jslectureplanner"}\NormalTok{, }
+\StringTok{"jumplines"}\NormalTok{, }\StringTok{"junicode"}\NormalTok{, }\StringTok{"jura"}\NormalTok{, }\StringTok{"juraabbrev"}\NormalTok{, }\StringTok{"jurabib"}\NormalTok{, }\StringTok{"juramisc"}\NormalTok{, }
+\StringTok{"jurarsp"}\NormalTok{, }\StringTok{"jvlisting"}\NormalTok{, }\StringTok{"kalendarium"}\NormalTok{, }\StringTok{"kantlipsum"}\NormalTok{, }\StringTok{"karnaugh"}\NormalTok{, }
+\StringTok{"karnaugh{-}map"}\NormalTok{, }\StringTok{"karnaughmap"}\NormalTok{, }\StringTok{"kblocks"}\NormalTok{, }\StringTok{"kdgdocs"}\NormalTok{, }\StringTok{"kerkis"}\NormalTok{, }
+\StringTok{"kerntest"}\NormalTok{, }\StringTok{"ketcindy"}\NormalTok{, }\StringTok{"keycommand"}\NormalTok{, }\StringTok{"keyfloat"}\NormalTok{, }\StringTok{"keyindex"}\NormalTok{, }
+\StringTok{"keyreader"}\NormalTok{, }\StringTok{"keystroke"}\NormalTok{, }\StringTok{"keyval2e"}\NormalTok{, }\StringTok{"keyvaltable"}\NormalTok{, }\StringTok{"kix"}\NormalTok{, }\StringTok{"kluwer"}\NormalTok{, }
+\StringTok{"knitting"}\NormalTok{, }\StringTok{"knittingpattern"}\NormalTok{, }\StringTok{"knowledge"}\NormalTok{, }\StringTok{"koma{-}moderncvclassic"}\NormalTok{, }
+\StringTok{"koma{-}script"}\NormalTok{, }\StringTok{"koma{-}script{-}sfs"}\NormalTok{, }\StringTok{"komacv"}\NormalTok{, }\StringTok{"komacv{-}rg"}\NormalTok{, }\StringTok{"kotex{-}oblivoir"}\NormalTok{, }
+\StringTok{"kotex{-}utf"}\NormalTok{, }\StringTok{"kpfonts"}\NormalTok{, }\StringTok{"ksp{-}thesis"}\NormalTok{, }\StringTok{"ktv{-}texdata"}\NormalTok{, }\StringTok{"ku{-}template"}\NormalTok{, }
+\StringTok{"kurier"}\NormalTok{, }\StringTok{"kvmap"}\NormalTok{, }\StringTok{"kvoptions"}\NormalTok{, }\StringTok{"l3backend"}\NormalTok{, }\StringTok{"l3build"}\NormalTok{, }\StringTok{"l3experimental"}\NormalTok{, }
+\StringTok{"l3kernel"}\NormalTok{, }\StringTok{"l3packages"}\NormalTok{, }\StringTok{"labbook"}\NormalTok{, }\StringTok{"labels"}\NormalTok{, }\StringTok{"labels4easylist"}\NormalTok{, }
+\StringTok{"labelschanged"}\NormalTok{, }\StringTok{"labyrinth"}\NormalTok{, }\StringTok{"ladder"}\NormalTok{, }\StringTok{"lapdf"}\NormalTok{, }\StringTok{"lastpackage"}\NormalTok{, }
+\StringTok{"lastpage"}\NormalTok{, }\StringTok{"latex"}\NormalTok{, }\StringTok{"latex{-}make"}\NormalTok{, }\StringTok{"latex{-}uni8"}\NormalTok{, }\StringTok{"latex2man"}\NormalTok{, }
+\StringTok{"latexbangla"}\NormalTok{, }\StringTok{"latexbug"}\NormalTok{, }\StringTok{"latexcolors"}\NormalTok{, }\StringTok{"latexconfig"}\NormalTok{, }\StringTok{"latexdemo"}\NormalTok{, }
+\StringTok{"latexfileinfo{-}pkgs"}\NormalTok{, }\StringTok{"latexgit"}\NormalTok{, }\StringTok{"latino{-}sine{-}flexione"}\NormalTok{, }\StringTok{"lato"}\NormalTok{, }
+\StringTok{"layaureo"}\NormalTok{, }\StringTok{"layouts"}\NormalTok{, }\StringTok{"lazylist"}\NormalTok{, }\StringTok{"lccaps"}\NormalTok{, }\StringTok{"lcd"}\NormalTok{, }\StringTok{"lcg"}\NormalTok{, }\StringTok{"lcyw"}\NormalTok{, }
+\StringTok{"leading"}\NormalTok{, }\StringTok{"leadsheets"}\NormalTok{, }\StringTok{"leaflet"}\NormalTok{, }\StringTok{"lectures"}\NormalTok{, }\StringTok{"ledmac"}\NormalTok{, }\StringTok{"leftidx"}\NormalTok{, }
+\StringTok{"leipzig"}\NormalTok{, }\StringTok{"lengthconvert"}\NormalTok{, }\StringTok{"letltxmacro"}\NormalTok{, }\StringTok{"letterswitharrows"}\NormalTok{, }
+\StringTok{"lettre"}\NormalTok{, }\StringTok{"lettrine"}\NormalTok{, }\StringTok{"lewis"}\NormalTok{, }\StringTok{"lexend"}\NormalTok{, }\StringTok{"lexikon"}\NormalTok{, }\StringTok{"lexref"}\NormalTok{, }
+\StringTok{"lgreek"}\NormalTok{, }\StringTok{"lh"}\NormalTok{, }\StringTok{"lhcyr"}\NormalTok{, }\StringTok{"lhelp"}\NormalTok{, }\StringTok{"libertine"}\NormalTok{, }\StringTok{"libertinegc"}\NormalTok{, }
+\StringTok{"libertinus"}\NormalTok{, }\StringTok{"libertinus{-}otf"}\NormalTok{, }\StringTok{"libertinus{-}type1"}\NormalTok{, }\StringTok{"libertinust1math"}\NormalTok{, }
+\StringTok{"libgreek"}\NormalTok{, }\StringTok{"librebaskerville"}\NormalTok{, }\StringTok{"librebodoni"}\NormalTok{, }\StringTok{"librecaslon"}\NormalTok{, }
+\StringTok{"librefranklin"}\NormalTok{, }\StringTok{"libris"}\NormalTok{, }\StringTok{"lie{-}hasse"}\NormalTok{, }\StringTok{"limap"}\NormalTok{, }\StringTok{"limecv"}\NormalTok{, }\StringTok{"linearA"}\NormalTok{, }
+\StringTok{"linegoal"}\NormalTok{, }\StringTok{"lineno"}\NormalTok{, }\StringTok{"ling{-}macros"}\NormalTok{, }\StringTok{"linguex"}\NormalTok{, }\StringTok{"linguisticspro"}\NormalTok{, }
+\StringTok{"linop"}\NormalTok{, }\StringTok{"lion{-}msc"}\NormalTok{, }\StringTok{"lipsum"}\NormalTok{, }\StringTok{"lisp{-}on{-}tex"}\NormalTok{, }\StringTok{"listbib"}\NormalTok{, }\StringTok{"listing"}\NormalTok{, }
+\StringTok{"listings"}\NormalTok{, }\StringTok{"listings{-}ext"}\NormalTok{, }\StringTok{"listingsutf8"}\NormalTok{, }\StringTok{"listlbls"}\NormalTok{, }\StringTok{"listliketab"}\NormalTok{, }
+\StringTok{"listofsymbols"}\NormalTok{, }\StringTok{"lithuanian"}\NormalTok{, }\StringTok{"liturg"}\NormalTok{, }\StringTok{"lkproof"}\NormalTok{, }\StringTok{"llncsconf"}\NormalTok{, }
+\StringTok{"lmake"}\NormalTok{, }\StringTok{"lni"}\NormalTok{, }\StringTok{"lobster2"}\NormalTok{, }\StringTok{"locality"}\NormalTok{, }\StringTok{"localloc"}\NormalTok{, }\StringTok{"logbox"}\NormalTok{, }
+\StringTok{"logical{-}markup{-}utils"}\NormalTok{, }\StringTok{"logicproof"}\NormalTok{, }\StringTok{"logicpuzzle"}\NormalTok{, }\StringTok{"logix"}\NormalTok{, }
+\StringTok{"logpap"}\NormalTok{, }\StringTok{"logreq"}\NormalTok{, }\StringTok{"longdivision"}\NormalTok{, }\StringTok{"longfbox"}\NormalTok{, }\StringTok{"longfigure"}\NormalTok{, }
+\StringTok{"longnamefilelist"}\NormalTok{, }\StringTok{"loops"}\NormalTok{, }\StringTok{"lpic"}\NormalTok{, }\StringTok{"lplfitch"}\NormalTok{, }\StringTok{"lps"}\NormalTok{, }\StringTok{"lroundrect"}\NormalTok{, }
+\StringTok{"lsc"}\NormalTok{, }\StringTok{"lstaddons"}\NormalTok{, }\StringTok{"lstbayes"}\NormalTok{, }\StringTok{"lstfiracode"}\NormalTok{, }\StringTok{"lt3graph"}\NormalTok{, }\StringTok{"ltablex"}\NormalTok{, }
+\StringTok{"ltabptch"}\NormalTok{, }\StringTok{"ltb2bib"}\NormalTok{, }\StringTok{"ltxdockit"}\NormalTok{, }\StringTok{"ltxguidex"}\NormalTok{, }\StringTok{"ltxindex"}\NormalTok{, }
+\StringTok{"ltxkeys"}\NormalTok{, }\StringTok{"ltxmisc"}\NormalTok{, }\StringTok{"ltxnew"}\NormalTok{, }\StringTok{"ltxtools"}\NormalTok{, }\StringTok{"luacolor"}\NormalTok{, }\StringTok{"lwarp"}\NormalTok{, }
+\StringTok{"lxfonts"}\NormalTok{, }\StringTok{"ly1"}\NormalTok{, }\StringTok{"m{-}tx"}\NormalTok{, }\StringTok{"macros2e"}\NormalTok{, }\StringTok{"macroswap"}\NormalTok{, }\StringTok{"mafr"}\NormalTok{, }\StringTok{"magaz"}\NormalTok{, }
+\StringTok{"mailing"}\NormalTok{, }\StringTok{"mailmerge"}\NormalTok{, }\StringTok{"makebarcode"}\NormalTok{, }\StringTok{"makebase"}\NormalTok{, }\StringTok{"makebox"}\NormalTok{, }
+\StringTok{"makecell"}\NormalTok{, }\StringTok{"makecmds"}\NormalTok{, }\StringTok{"makedtx"}\NormalTok{, }\StringTok{"makeglos"}\NormalTok{, }\StringTok{"makeplot"}\NormalTok{, }\StringTok{"maker"}\NormalTok{, }
+\StringTok{"makerobust"}\NormalTok{, }\StringTok{"makeshape"}\NormalTok{, }\StringTok{"mandi"}\NormalTok{, }\StringTok{"manfnt"}\NormalTok{, }\StringTok{"manuscript"}\NormalTok{, }\StringTok{"manyind"}\NormalTok{, }
+\StringTok{"marcellus"}\NormalTok{, }\StringTok{"margbib"}\NormalTok{, }\StringTok{"marginfit"}\NormalTok{, }\StringTok{"marginfix"}\NormalTok{, }\StringTok{"marginnote"}\NormalTok{, }
+\StringTok{"markdown"}\NormalTok{, }\StringTok{"marvosym"}\NormalTok{, }\StringTok{"matc3"}\NormalTok{, }\StringTok{"matc3mem"}\NormalTok{, }\StringTok{"mathalpha"}\NormalTok{, }\StringTok{"mathastext"}\NormalTok{, }
+\StringTok{"mathcommand"}\NormalTok{, }\StringTok{"mathcomp"}\NormalTok{, }\StringTok{"mathdesign"}\NormalTok{, }\StringTok{"mathexam"}\NormalTok{, }\StringTok{"mathfam256"}\NormalTok{, }
+\StringTok{"mathfixs"}\NormalTok{, }\StringTok{"mathfont"}\NormalTok{, }\StringTok{"mathpartir"}\NormalTok{, }\StringTok{"mathpunctspace"}\NormalTok{, }\StringTok{"mathspic"}\NormalTok{, }
+\StringTok{"mathtools"}\NormalTok{, }\StringTok{"matlab{-}prettifier"}\NormalTok{, }\StringTok{"matrix{-}skeleton"}\NormalTok{, }\StringTok{"mattens"}\NormalTok{, }
+\StringTok{"maybemath"}\NormalTok{, }\StringTok{"mcaption"}\NormalTok{, }\StringTok{"mceinleger"}\NormalTok{, }\StringTok{"mcexam"}\NormalTok{, }\StringTok{"mcite"}\NormalTok{, }\StringTok{"mciteplus"}\NormalTok{, }
+\StringTok{"mcmthesis"}\NormalTok{, }\StringTok{"mdframed"}\NormalTok{, }\StringTok{"mdputu"}\NormalTok{, }\StringTok{"mdsymbol"}\NormalTok{, }\StringTok{"mdwtools"}\NormalTok{, }\StringTok{"media9"}\NormalTok{, }
+\StringTok{"medstarbeamer"}\NormalTok{, }\StringTok{"meetingmins"}\NormalTok{, }\StringTok{"memexsupp"}\NormalTok{, }\StringTok{"memoir"}\NormalTok{, }\StringTok{"memory"}\NormalTok{, }
+\StringTok{"memorygraphs"}\NormalTok{, }\StringTok{"mensa{-}tex"}\NormalTok{, }\StringTok{"mentis"}\NormalTok{, }\StringTok{"menu"}\NormalTok{, }\StringTok{"menukeys"}\NormalTok{, }\StringTok{"merriweather"}\NormalTok{, }
+\StringTok{"metalogo"}\NormalTok{, }\StringTok{"metalogox"}\NormalTok{, }\StringTok{"metastr"}\NormalTok{, }\StringTok{"method"}\NormalTok{, }\StringTok{"metre"}\NormalTok{, }\StringTok{"metrix"}\NormalTok{, }
+\StringTok{"mfirstuc"}\NormalTok{, }\StringTok{"mflogo"}\NormalTok{, }\StringTok{"mfnfss"}\NormalTok{, }\StringTok{"mfpic4ode"}\NormalTok{, }\StringTok{"mftinc"}\NormalTok{, }\StringTok{"mgltex"}\NormalTok{, }
+\StringTok{"mhchem"}\NormalTok{, }\StringTok{"mhequ"}\NormalTok{, }\StringTok{"mi{-}solns"}\NormalTok{, }\StringTok{"miama"}\NormalTok{, }\StringTok{"microtype"}\NormalTok{, }\StringTok{"midpage"}\NormalTok{, }
+\StringTok{"miller"}\NormalTok{, }\StringTok{"milog"}\NormalTok{, }\StringTok{"milsymb"}\NormalTok{, }\StringTok{"minibox"}\NormalTok{, }\StringTok{"minidocument"}\NormalTok{, }\StringTok{"minipage{-}marginpar"}\NormalTok{, }
+\StringTok{"miniplot"}\NormalTok{, }\StringTok{"minitoc"}\NormalTok{, }\StringTok{"minorrevision"}\NormalTok{, }\StringTok{"minted"}\NormalTok{, }\StringTok{"mintspirit"}\NormalTok{, }
+\StringTok{"minutes"}\NormalTok{, }\StringTok{"mismath"}\NormalTok{, }\StringTok{"missaali"}\NormalTok{, }\StringTok{"mla{-}paper"}\NormalTok{, }\StringTok{"mlacls"}\NormalTok{, }\StringTok{"mlist"}\NormalTok{, }
+\StringTok{"mltex"}\NormalTok{, }\StringTok{"mmap"}\NormalTok{, }\StringTok{"mnotes"}\NormalTok{, }\StringTok{"mnras"}\NormalTok{, }\StringTok{"mnsymbol"}\NormalTok{, }\StringTok{"modeles{-}factures{-}belges{-}assocs"}\NormalTok{, }
+\StringTok{"moderncv"}\NormalTok{, }\StringTok{"modernposter"}\NormalTok{, }\StringTok{"moderntimeline"}\NormalTok{, }\StringTok{"modiagram"}\NormalTok{, }\StringTok{"modref"}\NormalTok{, }
+\StringTok{"modroman"}\NormalTok{, }\StringTok{"modular"}\NormalTok{, }\StringTok{"mongolian{-}babel"}\NormalTok{, }\StringTok{"monofill"}\NormalTok{, }\StringTok{"montex"}\NormalTok{, }
+\StringTok{"montserrat"}\NormalTok{, }\StringTok{"moodle"}\NormalTok{, }\StringTok{"moreenum"}\NormalTok{, }\StringTok{"morefloats"}\NormalTok{, }\StringTok{"morehype"}\NormalTok{, }
+\StringTok{"moresize"}\NormalTok{, }\StringTok{"moreverb"}\NormalTok{, }\StringTok{"morewrites"}\NormalTok{, }\StringTok{"morisawa"}\NormalTok{, }\StringTok{"movie15"}\NormalTok{, }
+\StringTok{"mparhack"}\NormalTok{, }\StringTok{"mpgraphics"}\NormalTok{, }\StringTok{"mpostinl"}\NormalTok{, }\StringTok{"ms"}\NormalTok{, }\StringTok{"msc"}\NormalTok{, }\StringTok{"msg"}\NormalTok{, }\StringTok{"mslapa"}\NormalTok{, }
+\StringTok{"msu{-}thesis"}\NormalTok{, }\StringTok{"mtgreek"}\NormalTok{, }\StringTok{"mucproc"}\NormalTok{, }\StringTok{"mugsthesis"}\NormalTok{, }\StringTok{"multenum"}\NormalTok{, }
+\StringTok{"multiaudience"}\NormalTok{, }\StringTok{"multibbl"}\NormalTok{, }\StringTok{"multibib"}\NormalTok{, }\StringTok{"multibibliography"}\NormalTok{, }
+\StringTok{"multicap"}\NormalTok{, }\StringTok{"multicolrule"}\NormalTok{, }\StringTok{"multidef"}\NormalTok{, }\StringTok{"multido"}\NormalTok{, }\StringTok{"multienv"}\NormalTok{, }
+\StringTok{"multilang"}\NormalTok{, }\StringTok{"multiobjective"}\NormalTok{, }\StringTok{"multirow"}\NormalTok{, }\StringTok{"musicography"}\NormalTok{, }\StringTok{"musikui"}\NormalTok{, }
+\StringTok{"musixguit"}\NormalTok{, }\StringTok{"musixtex"}\NormalTok{, }\StringTok{"musuos"}\NormalTok{, }\StringTok{"muthesis"}\NormalTok{, }\StringTok{"mversion"}\NormalTok{, }\StringTok{"mwcls"}\NormalTok{, }
+\StringTok{"mwe"}\NormalTok{, }\StringTok{"mweights"}\NormalTok{, }\StringTok{"mxedruli"}\NormalTok{, }\StringTok{"mychemistry"}\NormalTok{, }\StringTok{"mycv"}\NormalTok{, }\StringTok{"mylatexformat"}\NormalTok{, }
+\StringTok{"nag"}\NormalTok{, }\StringTok{"nameauth"}\NormalTok{, }\StringTok{"namespc"}\NormalTok{, }\StringTok{"nanumtype1"}\NormalTok{, }\StringTok{"natbib"}\NormalTok{, }\StringTok{"natded"}\NormalTok{, }
+\StringTok{"nath"}\NormalTok{, }\StringTok{"nature"}\NormalTok{, }\StringTok{"navydocs"}\NormalTok{, }\StringTok{"ncclatex"}\NormalTok{, }\StringTok{"ncctools"}\NormalTok{, }\StringTok{"ncntrsbk"}\NormalTok{, }
+\StringTok{"nddiss"}\NormalTok{, }\StringTok{"ndsu{-}thesis"}\NormalTok{, }\StringTok{"needspace"}\NormalTok{, }\StringTok{"nestquot"}\NormalTok{, }\StringTok{"neuralnetwork"}\NormalTok{, }
+\StringTok{"nevelok"}\NormalTok{, }\StringTok{"newenviron"}\NormalTok{, }\StringTok{"newfile"}\NormalTok{, }\StringTok{"newfloat"}\NormalTok{, }\StringTok{"newlfm"}\NormalTok{, }\StringTok{"newpx"}\NormalTok{, }
+\StringTok{"newspaper"}\NormalTok{, }\StringTok{"newtx"}\NormalTok{, }\StringTok{"newtxsf"}\NormalTok{, }\StringTok{"newtxtt"}\NormalTok{, }\StringTok{"newunicodechar"}\NormalTok{, }
+\StringTok{"newvbtm"}\NormalTok{, }\StringTok{"newverbs"}\NormalTok{, }\StringTok{"nextpage"}\NormalTok{, }\StringTok{"nfssext{-}cfr"}\NormalTok{, }\StringTok{"nicefilelist"}\NormalTok{, }
+\StringTok{"niceframe"}\NormalTok{, }\StringTok{"nicematrix"}\NormalTok{, }\StringTok{"nicetext"}\NormalTok{, }\StringTok{"nidanfloat"}\NormalTok{, }\StringTok{"nih"}\NormalTok{, }\StringTok{"nihbiosketch"}\NormalTok{, }
+\StringTok{"nimbus15"}\NormalTok{, }\StringTok{"njurepo"}\NormalTok{, }\StringTok{"nlctdoc"}\NormalTok{, }\StringTok{"nmbib"}\NormalTok{, }\StringTok{"noconflict"}\NormalTok{, }\StringTok{"noindentafter"}\NormalTok{, }
+\StringTok{"noitcrul"}\NormalTok{, }\StringTok{"nolbreaks"}\NormalTok{, }\StringTok{"nomencl"}\NormalTok{, }\StringTok{"nomentbl"}\NormalTok{, }\StringTok{"nonfloat"}\NormalTok{, }\StringTok{"nonumonpart"}\NormalTok{, }
+\StringTok{"nopageno"}\NormalTok{, }\StringTok{"normalcolor"}\NormalTok{, }\StringTok{"nostarch"}\NormalTok{, }\StringTok{"notes"}\NormalTok{, }\StringTok{"notes2bib"}\NormalTok{, }
+\StringTok{"notespages"}\NormalTok{, }\StringTok{"notestex"}\NormalTok{, }\StringTok{"noto"}\NormalTok{, }\StringTok{"notoccite"}\NormalTok{, }\StringTok{"nowidow"}\NormalTok{, }\StringTok{"nox"}\NormalTok{, }
+\StringTok{"nrc"}\NormalTok{, }\StringTok{"ntgclass"}\NormalTok{, }\StringTok{"ntheorem"}\NormalTok{, }\StringTok{"nuc"}\NormalTok{, }\StringTok{"nucleardata"}\NormalTok{, }\StringTok{"numberedblock"}\NormalTok{, }
+\StringTok{"numberpt"}\NormalTok{, }\StringTok{"numericplots"}\NormalTok{, }\StringTok{"numname"}\NormalTok{, }\StringTok{"numnameru"}\NormalTok{, }\StringTok{"numprint"}\NormalTok{, }
+\StringTok{"numspell"}\NormalTok{, }\StringTok{"nwejm"}\NormalTok{, }\StringTok{"oberdiek"}\NormalTok{, }\StringTok{"objectz"}\NormalTok{, }\StringTok{"obnov"}\NormalTok{, }\StringTok{"ocg{-}p"}\NormalTok{, }
+\StringTok{"ocgx"}\NormalTok{, }\StringTok{"ocgx2"}\NormalTok{, }\StringTok{"ocr{-}latex"}\NormalTok{, }\StringTok{"octave"}\NormalTok{, }\StringTok{"octavo"}\NormalTok{, }\StringTok{"old{-}arrows"}\NormalTok{, }
+\StringTok{"oldstandard"}\NormalTok{, }\StringTok{"oldstyle"}\NormalTok{, }\StringTok{"onedown"}\NormalTok{, }\StringTok{"onlyamsmath"}\NormalTok{, }\StringTok{"onrannual"}\NormalTok{, }
+\StringTok{"opcit"}\NormalTok{, }\StringTok{"opensans"}\NormalTok{, }\StringTok{"oplotsymbl"}\NormalTok{, }\StringTok{"opteng"}\NormalTok{, }\StringTok{"optidef"}\NormalTok{, }\StringTok{"optional"}\NormalTok{, }
+\StringTok{"options"}\NormalTok{, }\StringTok{"ordinalpt"}\NormalTok{, }\StringTok{"oscola"}\NormalTok{, }\StringTok{"ot{-}tableau"}\NormalTok{, }\StringTok{"othello"}\NormalTok{, }\StringTok{"othelloboard"}\NormalTok{, }
+\StringTok{"otibet"}\NormalTok{, }\StringTok{"oubraces"}\NormalTok{, }\StringTok{"outline"}\NormalTok{, }\StringTok{"outliner"}\NormalTok{, }\StringTok{"outlines"}\NormalTok{, }\StringTok{"outlining"}\NormalTok{, }
+\StringTok{"overlays"}\NormalTok{, }\StringTok{"overlock"}\NormalTok{, }\StringTok{"overpic"}\NormalTok{, }\StringTok{"pacioli"}\NormalTok{, }\StringTok{"padcount"}\NormalTok{, }\StringTok{"pagecolor"}\NormalTok{, }
+\StringTok{"pagecont"}\NormalTok{, }\StringTok{"pagenote"}\NormalTok{, }\StringTok{"pagerange"}\NormalTok{, }\StringTok{"pageslts"}\NormalTok{, }\StringTok{"palatino"}\NormalTok{, }
+\StringTok{"paper"}\NormalTok{, }\StringTok{"papercdcase"}\NormalTok{, }\StringTok{"papermas"}\NormalTok{, }\StringTok{"papertex"}\NormalTok{, }\StringTok{"paracol"}\NormalTok{, }\StringTok{"parades"}\NormalTok{, }
+\StringTok{"paralist"}\NormalTok{, }\StringTok{"parallel"}\NormalTok{, }\StringTok{"paratype"}\NormalTok{, }\StringTok{"paresse"}\NormalTok{, }\StringTok{"parnotes"}\NormalTok{, }\StringTok{"parrun"}\NormalTok{, }
+\StringTok{"parselines"}\NormalTok{, }\StringTok{"parskip"}\NormalTok{, }\StringTok{"pas{-}cours"}\NormalTok{, }\StringTok{"pas{-}crosswords"}\NormalTok{, }\StringTok{"pas{-}cv"}\NormalTok{, }
+\StringTok{"pas{-}tableur"}\NormalTok{, }\StringTok{"patchcmd"}\NormalTok{, }\StringTok{"pauldoc"}\NormalTok{, }\StringTok{"pawpict"}\NormalTok{, }\StringTok{"pax"}\NormalTok{, }\StringTok{"pb{-}diagram"}\NormalTok{, }
+\StringTok{"pbox"}\NormalTok{, }\StringTok{"pbsheet"}\NormalTok{, }\StringTok{"pdf14"}\NormalTok{, }\StringTok{"pdfcolmk"}\NormalTok{, }\StringTok{"pdfcomment"}\NormalTok{, }\StringTok{"pdfcprot"}\NormalTok{, }
+\StringTok{"pdflscape"}\NormalTok{, }\StringTok{"pdfmarginpar"}\NormalTok{, }\StringTok{"pdfoverlay"}\NormalTok{, }\StringTok{"pdfpagediff"}\NormalTok{, }\StringTok{"pdfpages"}\NormalTok{, }
+\StringTok{"pdfpc{-}movie"}\NormalTok{, }\StringTok{"pdfprivacy"}\NormalTok{, }\StringTok{"pdfreview"}\NormalTok{, }\StringTok{"pdfscreen"}\NormalTok{, }\StringTok{"pdfslide"}\NormalTok{, }
+\StringTok{"pdfsync"}\NormalTok{, }\StringTok{"pdftexcmds"}\NormalTok{, }\StringTok{"pdftricks"}\NormalTok{, }\StringTok{"pdftricks2"}\NormalTok{, }\StringTok{"pdfwin"}\NormalTok{, }
+\StringTok{"pdfx"}\NormalTok{, }\StringTok{"pecha"}\NormalTok{, }\StringTok{"penrose"}\NormalTok{, }\StringTok{"perfectcut"}\NormalTok{, }\StringTok{"perltex"}\NormalTok{, }\StringTok{"permute"}\NormalTok{, }
+\StringTok{"petiteannonce"}\NormalTok{, }\StringTok{"pfarrei"}\NormalTok{, }\StringTok{"pgf"}\NormalTok{, }\StringTok{"pgf{-}blur"}\NormalTok{, }\StringTok{"pgf{-}cmykshadings"}\NormalTok{, }
+\StringTok{"pgf{-}soroban"}\NormalTok{, }\StringTok{"pgf{-}spectra"}\NormalTok{, }\StringTok{"pgf{-}umlcd"}\NormalTok{, }\StringTok{"pgf{-}umlsd"}\NormalTok{, }\StringTok{"pgfgantt"}\NormalTok{, }
+\StringTok{"pgfkeyx"}\NormalTok{, }\StringTok{"pgfmorepages"}\NormalTok{, }\StringTok{"pgfopts"}\NormalTok{, }\StringTok{"pgfornament"}\NormalTok{, }\StringTok{"pgfornament{-}han"}\NormalTok{, }
+\StringTok{"pgfplots"}\NormalTok{, }\StringTok{"phaistos"}\NormalTok{, }\StringTok{"phffullpagefigure"}\NormalTok{, }\StringTok{"phfnote"}\NormalTok{, }\StringTok{"phfparen"}\NormalTok{, }
+\StringTok{"phfqit"}\NormalTok{, }\StringTok{"phfquotetext"}\NormalTok{, }\StringTok{"phfsvnwatermark"}\NormalTok{, }\StringTok{"phfthm"}\NormalTok{, }\StringTok{"philex"}\NormalTok{, }
+\StringTok{"philosophersimprint"}\NormalTok{, }\StringTok{"phonenumbers"}\NormalTok{, }\StringTok{"phonetic"}\NormalTok{, }\StringTok{"phonrule"}\NormalTok{, }
+\StringTok{"photo"}\NormalTok{, }\StringTok{"physconst"}\NormalTok{, }\StringTok{"physics"}\NormalTok{, }\StringTok{"physunits"}\NormalTok{, }\StringTok{"piano"}\NormalTok{, }\StringTok{"picinpar"}\NormalTok{, }
+\StringTok{"pict2e"}\NormalTok{, }\StringTok{"pictex2"}\NormalTok{, }\StringTok{"picture"}\NormalTok{, }\StringTok{"piff"}\NormalTok{, }\StringTok{"pigpen"}\NormalTok{, }\StringTok{"pinlabel"}\NormalTok{, }
+\StringTok{"pinoutikz"}\NormalTok{, }\StringTok{"pittetd"}\NormalTok{, }\StringTok{"pixelart"}\NormalTok{, }\StringTok{"pkgloader"}\NormalTok{, }\StringTok{"pkuthss"}\NormalTok{, }\StringTok{"placeins"}\NormalTok{, }
+\StringTok{"plantslabels"}\NormalTok{, }\StringTok{"plari"}\NormalTok{, }\StringTok{"plates"}\NormalTok{, }\StringTok{"platex{-}tools"}\NormalTok{, }\StringTok{"plautopatch"}\NormalTok{, }
+\StringTok{"play"}\NormalTok{, }\StringTok{"playfair"}\NormalTok{, }\StringTok{"plex"}\NormalTok{, }\StringTok{"plex{-}otf"}\NormalTok{, }\StringTok{"plweb"}\NormalTok{, }\StringTok{"pm{-}isomath"}\NormalTok{, }
+\StringTok{"pmboxdraw"}\NormalTok{, }\StringTok{"pmgraph"}\NormalTok{, }\StringTok{"pmhanguljamo"}\NormalTok{, }\StringTok{"poemscol"}\NormalTok{, }\StringTok{"poetry"}\NormalTok{, }
+\StringTok{"poetrytex"}\NormalTok{, }\StringTok{"poiretone"}\NormalTok{, }\StringTok{"polexpr"}\NormalTok{, }\StringTok{"polski"}\NormalTok{, }\StringTok{"poltawski"}\NormalTok{, }\StringTok{"polyglossia"}\NormalTok{, }
+\StringTok{"polynom"}\NormalTok{, }\StringTok{"polynomial"}\NormalTok{, }\StringTok{"polytable"}\NormalTok{, }\StringTok{"postage"}\NormalTok{, }\StringTok{"postcards"}\NormalTok{, }
+\StringTok{"powerdot"}\NormalTok{, }\StringTok{"powerdot{-}fuberlin"}\NormalTok{, }\StringTok{"powerdot{-}tuliplab"}\NormalTok{, }\StringTok{"ppr{-}prv"}\NormalTok{, }
+\StringTok{"pracjourn"}\NormalTok{, }\StringTok{"practicalreports"}\NormalTok{, }\StringTok{"preprint"}\NormalTok{, }\StringTok{"prerex"}\NormalTok{, }\StringTok{"pressrelease"}\NormalTok{, }
+\StringTok{"prettyref"}\NormalTok{, }\StringTok{"prftree"}\NormalTok{, }\StringTok{"printlen"}\NormalTok{, }\StringTok{"proba"}\NormalTok{, }\StringTok{"probsoln"}\NormalTok{, }\StringTok{"procIAGssymp"}\NormalTok{, }
+\StringTok{"prodint"}\NormalTok{, }\StringTok{"productbox"}\NormalTok{, }\StringTok{"program"}\NormalTok{, }\StringTok{"progress"}\NormalTok{, }\StringTok{"progressbar"}\NormalTok{, }
+\StringTok{"proof{-}at{-}the{-}end"}\NormalTok{, }\StringTok{"proofread"}\NormalTok{, }\StringTok{"prooftrees"}\NormalTok{, }\StringTok{"properties"}\NormalTok{, }
+\StringTok{"proposal"}\NormalTok{, }\StringTok{"prosper"}\NormalTok{, }\StringTok{"protex"}\NormalTok{, }\StringTok{"protocol"}\NormalTok{, }\StringTok{"prtec"}\NormalTok{, }\StringTok{"przechlewski{-}book"}\NormalTok{, }
+\StringTok{"psbao"}\NormalTok{, }\StringTok{"pseudo"}\NormalTok{, }\StringTok{"pseudocode"}\NormalTok{, }\StringTok{"psfrag"}\NormalTok{, }\StringTok{"psfragx"}\NormalTok{, }\StringTok{"psgo"}\NormalTok{, }
+\StringTok{"pslatex"}\NormalTok{, }\StringTok{"psnfss"}\NormalTok{, }\StringTok{"pspicture"}\NormalTok{, }\StringTok{"pst{-}2dplot"}\NormalTok{, }\StringTok{"pst{-}3d"}\NormalTok{, }\StringTok{"pst{-}3dplot"}\NormalTok{, }
+\StringTok{"pst{-}abspos"}\NormalTok{, }\StringTok{"pst{-}am"}\NormalTok{, }\StringTok{"pst{-}antiprism"}\NormalTok{, }\StringTok{"pst{-}arrow"}\NormalTok{, }\StringTok{"pst{-}asr"}\NormalTok{, }
+\StringTok{"pst{-}bar"}\NormalTok{, }\StringTok{"pst{-}barcode"}\NormalTok{, }\StringTok{"pst{-}bezier"}\NormalTok{, }\StringTok{"pst{-}blur"}\NormalTok{, }\StringTok{"pst{-}bspline"}\NormalTok{, }
+\StringTok{"pst{-}calculate"}\NormalTok{, }\StringTok{"pst{-}calendar"}\NormalTok{, }\StringTok{"pst{-}cie"}\NormalTok{, }\StringTok{"pst{-}circ"}\NormalTok{, }\StringTok{"pst{-}coil"}\NormalTok{, }
+\StringTok{"pst{-}contourplot"}\NormalTok{, }\StringTok{"pst{-}cox"}\NormalTok{, }\StringTok{"pst{-}dart"}\NormalTok{, }\StringTok{"pst{-}dbicons"}\NormalTok{, }\StringTok{"pst{-}diffraction"}\NormalTok{, }
+\StringTok{"pst{-}electricfield"}\NormalTok{, }\StringTok{"pst{-}eps"}\NormalTok{, }\StringTok{"pst{-}eucl"}\NormalTok{, }\StringTok{"pst{-}exa"}\NormalTok{, }\StringTok{"pst{-}feyn"}\NormalTok{, }
+\StringTok{"pst{-}fill"}\NormalTok{, }\StringTok{"pst{-}fit"}\NormalTok{, }\StringTok{"pst{-}fr3d"}\NormalTok{, }\StringTok{"pst{-}fractal"}\NormalTok{, }\StringTok{"pst{-}fun"}\NormalTok{, }
+\StringTok{"pst{-}func"}\NormalTok{, }\StringTok{"pst{-}gantt"}\NormalTok{, }\StringTok{"pst{-}geo"}\NormalTok{, }\StringTok{"pst{-}geometrictools"}\NormalTok{, }\StringTok{"pst{-}ghsb"}\NormalTok{, }
+\StringTok{"pst{-}gr3d"}\NormalTok{, }\StringTok{"pst{-}grad"}\NormalTok{, }\StringTok{"pst{-}infixplot"}\NormalTok{, }\StringTok{"pst{-}intersect"}\NormalTok{, }\StringTok{"pst{-}jtree"}\NormalTok{, }
+\StringTok{"pst{-}knot"}\NormalTok{, }\StringTok{"pst{-}labo"}\NormalTok{, }\StringTok{"pst{-}layout"}\NormalTok{, }\StringTok{"pst{-}lens"}\NormalTok{, }\StringTok{"pst{-}light3d"}\NormalTok{, }
+\StringTok{"pst{-}lsystem"}\NormalTok{, }\StringTok{"pst{-}magneticfield"}\NormalTok{, }\StringTok{"pst{-}marble"}\NormalTok{, }\StringTok{"pst{-}math"}\NormalTok{, }
+\StringTok{"pst{-}mirror"}\NormalTok{, }\StringTok{"pst{-}moire"}\NormalTok{, }\StringTok{"pst{-}node"}\NormalTok{, }\StringTok{"pst{-}ob3d"}\NormalTok{, }\StringTok{"pst{-}ode"}\NormalTok{, }
+\StringTok{"pst{-}optexp"}\NormalTok{, }\StringTok{"pst{-}optic"}\NormalTok{, }\StringTok{"pst{-}osci"}\NormalTok{, }\StringTok{"pst{-}ovl"}\NormalTok{, }\StringTok{"pst{-}pad"}\NormalTok{, }
+\StringTok{"pst{-}pdf"}\NormalTok{, }\StringTok{"pst{-}pdgr"}\NormalTok{, }\StringTok{"pst{-}perspective"}\NormalTok{, }\StringTok{"pst{-}platon"}\NormalTok{, }\StringTok{"pst{-}plot"}\NormalTok{, }
+\StringTok{"pst{-}poker"}\NormalTok{, }\StringTok{"pst{-}poly"}\NormalTok{, }\StringTok{"pst{-}pulley"}\NormalTok{, }\StringTok{"pst{-}qtree"}\NormalTok{, }\StringTok{"pst{-}rputover"}\NormalTok{, }
+\StringTok{"pst{-}rubans"}\NormalTok{, }\StringTok{"pst{-}shell"}\NormalTok{, }\StringTok{"pst{-}sigsys"}\NormalTok{, }\StringTok{"pst{-}slpe"}\NormalTok{, }\StringTok{"pst{-}solarsystem"}\NormalTok{, }
+\StringTok{"pst{-}solides3d"}\NormalTok{, }\StringTok{"pst{-}soroban"}\NormalTok{, }\StringTok{"pst{-}spectra"}\NormalTok{, }\StringTok{"pst{-}spinner"}\NormalTok{, }
+\StringTok{"pst{-}spirograph"}\NormalTok{, }\StringTok{"pst{-}stru"}\NormalTok{, }\StringTok{"pst{-}text"}\NormalTok{, }\StringTok{"pst{-}thick"}\NormalTok{, }\StringTok{"pst{-}tools"}\NormalTok{, }
+\StringTok{"pst{-}tree"}\NormalTok{, }\StringTok{"pst{-}turtle"}\NormalTok{, }\StringTok{"pst{-}tvz"}\NormalTok{, }\StringTok{"pst{-}uml"}\NormalTok{, }\StringTok{"pst{-}vectorian"}\NormalTok{, }
+\StringTok{"pst{-}vehicle"}\NormalTok{, }\StringTok{"pst{-}venn"}\NormalTok{, }\StringTok{"pst{-}vowel"}\NormalTok{, }\StringTok{"pst{-}vue3d"}\NormalTok{, }\StringTok{"pstool"}\NormalTok{, }
+\StringTok{"pstricks"}\NormalTok{, }\StringTok{"pstricks{-}add"}\NormalTok{, }\StringTok{"pstring"}\NormalTok{, }\StringTok{"ptolemaicastronomy"}\NormalTok{, }
+\StringTok{"ptptex"}\NormalTok{, }\StringTok{"punk{-}latex"}\NormalTok{, }\StringTok{"pxcjkcat"}\NormalTok{, }\StringTok{"pxfonts"}\NormalTok{, }\StringTok{"pxgreeks"}\NormalTok{, }\StringTok{"pxjodel"}\NormalTok{, }
+\StringTok{"pxpgfmark"}\NormalTok{, }\StringTok{"pxtatescale"}\NormalTok{, }\StringTok{"pxtxalfa"}\NormalTok{, }\StringTok{"pxufont"}\NormalTok{, }\StringTok{"python"}\NormalTok{, }
+\StringTok{"pythonhighlight"}\NormalTok{, }\StringTok{"pythontex"}\NormalTok{, }\StringTok{"qcircuit"}\NormalTok{, }\StringTok{"qcm"}\NormalTok{, }\StringTok{"qobitree"}\NormalTok{, }
+\StringTok{"qrcode"}\NormalTok{, }\StringTok{"qsharp"}\NormalTok{, }\StringTok{"qstest"}\NormalTok{, }\StringTok{"qsymbols"}\NormalTok{, }\StringTok{"qtree"}\NormalTok{, }\StringTok{"quantikz"}\NormalTok{, }
+\StringTok{"quantumarticle"}\NormalTok{, }\StringTok{"quattrocento"}\NormalTok{, }\StringTok{"quicktype"}\NormalTok{, }\StringTok{"quiz2socrative"}\NormalTok{, }
+\StringTok{"quotchap"}\NormalTok{, }\StringTok{"quoting"}\NormalTok{, }\StringTok{"quotmark"}\NormalTok{, }\StringTok{"r\_und\_s"}\NormalTok{, }\StringTok{"ragged2e"}\NormalTok{, }\StringTok{"raleway"}\NormalTok{, }
+\StringTok{"ran\_toks"}\NormalTok{, }\StringTok{"randbild"}\NormalTok{, }\StringTok{"randomwalk"}\NormalTok{, }\StringTok{"randtext"}\NormalTok{, }\StringTok{"rank{-}2{-}roots"}\NormalTok{, }
+\StringTok{"rccol"}\NormalTok{, }\StringTok{"rcs"}\NormalTok{, }\StringTok{"rcs{-}multi"}\NormalTok{, }\StringTok{"rcsinfo"}\NormalTok{, }\StringTok{"readarray"}\NormalTok{, }\StringTok{"realboxes"}\NormalTok{, }
+\StringTok{"realhats"}\NormalTok{, }\StringTok{"realscripts"}\NormalTok{, }\StringTok{"rec{-}thy"}\NormalTok{, }\StringTok{"recipe"}\NormalTok{, }\StringTok{"recipebook"}\NormalTok{, }
+\StringTok{"recipecard"}\NormalTok{, }\StringTok{"rectopma"}\NormalTok{, }\StringTok{"recycle"}\NormalTok{, }\StringTok{"refcheck"}\NormalTok{, }\StringTok{"refcount"}\NormalTok{, }
+\StringTok{"refenums"}\NormalTok{, }\StringTok{"reflectgraphics"}\NormalTok{, }\StringTok{"refman"}\NormalTok{, }\StringTok{"refstyle"}\NormalTok{, }\StringTok{"regcount"}\NormalTok{, }
+\StringTok{"regexpatch"}\NormalTok{, }\StringTok{"register"}\NormalTok{, }\StringTok{"regstats"}\NormalTok{, }\StringTok{"reledmac"}\NormalTok{, }\StringTok{"relenc"}\NormalTok{, }\StringTok{"relsize"}\NormalTok{, }
+\StringTok{"reotex"}\NormalTok{, }\StringTok{"repeatindex"}\NormalTok{, }\StringTok{"repltext"}\NormalTok{, }\StringTok{"rerunfilecheck"}\NormalTok{, }\StringTok{"resphilosophica"}\NormalTok{, }
+\StringTok{"returntogrid"}\NormalTok{, }\StringTok{"revquantum"}\NormalTok{, }\StringTok{"revtex"}\NormalTok{, }\StringTok{"revtex4"}\NormalTok{, }\StringTok{"rgltxdoc"}\NormalTok{, }
+\StringTok{"ribbonproofs"}\NormalTok{, }\StringTok{"rjlparshap"}\NormalTok{, }\StringTok{"rmathbr"}\NormalTok{, }\StringTok{"rmpage"}\NormalTok{, }\StringTok{"roboto"}\NormalTok{, }
+\StringTok{"robustcommand"}\NormalTok{, }\StringTok{"robustindex"}\NormalTok{, }\StringTok{"romanbar"}\NormalTok{, }\StringTok{"romanbarpagenumber"}\NormalTok{, }
+\StringTok{"romande"}\NormalTok{, }\StringTok{"romanneg"}\NormalTok{, }\StringTok{"romannum"}\NormalTok{, }\StringTok{"rosario"}\NormalTok{, }\StringTok{"rotfloat"}\NormalTok{, }\StringTok{"rotpages"}\NormalTok{, }
+\StringTok{"roundbox"}\NormalTok{, }\StringTok{"rrgtrees"}\NormalTok{, }\StringTok{"rsc"}\NormalTok{, }\StringTok{"rsfso"}\NormalTok{, }\StringTok{"rterface"}\NormalTok{, }\StringTok{"rtkinenc"}\NormalTok{, }
+\StringTok{"rtklage"}\NormalTok{, }\StringTok{"rubik"}\NormalTok{, }\StringTok{"rulerbox"}\NormalTok{, }\StringTok{"rulercompass"}\NormalTok{, }\StringTok{"russ"}\NormalTok{, }\StringTok{"rutitlepage"}\NormalTok{, }
+\StringTok{"rviewport"}\NormalTok{, }\StringTok{"rvwrite"}\NormalTok{, }\StringTok{"ryersonsgsthesis"}\NormalTok{, }\StringTok{"ryethesis"}\NormalTok{, }\StringTok{"sa{-}tikz"}\NormalTok{, }
+\StringTok{"sageep"}\NormalTok{, }\StringTok{"sanitize{-}umlaut"}\NormalTok{, }\StringTok{"sanskrit"}\NormalTok{, }\StringTok{"sansmath"}\NormalTok{, }\StringTok{"sansmathaccent"}\NormalTok{, }
+\StringTok{"sansmathfonts"}\NormalTok{, }\StringTok{"sapthesis"}\NormalTok{, }\StringTok{"sasnrdisplay"}\NormalTok{, }\StringTok{"sauerj"}\NormalTok{, }\StringTok{"sauterfonts"}\NormalTok{, }
+\StringTok{"savefnmark"}\NormalTok{, }\StringTok{"savesym"}\NormalTok{, }\StringTok{"savetrees"}\NormalTok{, }\StringTok{"scale"}\NormalTok{, }\StringTok{"scalebar"}\NormalTok{, }\StringTok{"scalerel"}\NormalTok{, }
+\StringTok{"scanpages"}\NormalTok{, }\StringTok{"schedule"}\NormalTok{, }\StringTok{"schemabloc"}\NormalTok{, }\StringTok{"scholax"}\NormalTok{, }\StringTok{"schule"}\NormalTok{, }\StringTok{"schulmathematik"}\NormalTok{, }
+\StringTok{"schulschriften"}\NormalTok{, }\StringTok{"schwalbe{-}chess"}\NormalTok{, }\StringTok{"scientific{-}thesis{-}cover"}\NormalTok{, }
+\StringTok{"sciposter"}\NormalTok{, }\StringTok{"sclang{-}prettifier"}\NormalTok{, }\StringTok{"scontents"}\NormalTok{, }\StringTok{"scratch"}\NormalTok{, }\StringTok{"scratch3"}\NormalTok{, }
+\StringTok{"scratchx"}\NormalTok{, }\StringTok{"screenplay"}\NormalTok{, }\StringTok{"screenplay{-}pkg"}\NormalTok{, }\StringTok{"scrjrnl"}\NormalTok{, }\StringTok{"scrlttr2copy"}\NormalTok{, }
+\StringTok{"scsnowman"}\NormalTok{, }\StringTok{"sdaps"}\NormalTok{, }\StringTok{"sdrt"}\NormalTok{, }\StringTok{"sduthesis"}\NormalTok{, }\StringTok{"secdot"}\NormalTok{, }\StringTok{"secnum"}\NormalTok{, }
+\StringTok{"section"}\NormalTok{, }\StringTok{"sectionbox"}\NormalTok{, }\StringTok{"sectionbreak"}\NormalTok{, }\StringTok{"sectsty"}\NormalTok{, }\StringTok{"seealso"}\NormalTok{, }
+\StringTok{"selectp"}\NormalTok{, }\StringTok{"selinput"}\NormalTok{, }\StringTok{"semantic"}\NormalTok{, }\StringTok{"semantic{-}markup"}\NormalTok{, }\StringTok{"semaphor"}\NormalTok{, }
+\StringTok{"seminar"}\NormalTok{, }\StringTok{"semioneside"}\NormalTok{, }\StringTok{"semproc"}\NormalTok{, }\StringTok{"sepfootnotes"}\NormalTok{, }\StringTok{"sepnum"}\NormalTok{, }
+\StringTok{"seqsplit"}\NormalTok{, }\StringTok{"serbian{-}apostrophe"}\NormalTok{, }\StringTok{"serbian{-}date{-}lat"}\NormalTok{, }\StringTok{"serbian{-}def{-}cyr"}\NormalTok{, }
+\StringTok{"serbian{-}lig"}\NormalTok{, }\StringTok{"sesamanuel"}\NormalTok{, }\StringTok{"sesstime"}\NormalTok{, }\StringTok{"setdeck"}\NormalTok{, }\StringTok{"setspace"}\NormalTok{, }
+\StringTok{"seuthesix"}\NormalTok{, }\StringTok{"sf298"}\NormalTok{, }\StringTok{"sffms"}\NormalTok{, }\StringTok{"sfg"}\NormalTok{, }\StringTok{"sfmath"}\NormalTok{, }\StringTok{"sgame"}\NormalTok{, }\StringTok{"shadethm"}\NormalTok{, }
+\StringTok{"shadow"}\NormalTok{, }\StringTok{"shadowtext"}\NormalTok{, }\StringTok{"shdoc"}\NormalTok{, }\StringTok{"shipunov"}\NormalTok{, }\StringTok{"shorttoc"}\NormalTok{, }\StringTok{"show2e"}\NormalTok{, }
+\StringTok{"showcharinbox"}\NormalTok{, }\StringTok{"showdim"}\NormalTok{, }\StringTok{"showexpl"}\NormalTok{, }\StringTok{"showlabels"}\NormalTok{, }\StringTok{"showtags"}\NormalTok{, }
+\StringTok{"shuffle"}\NormalTok{, }\StringTok{"sidecap"}\NormalTok{, }\StringTok{"sidenotes"}\NormalTok{, }\StringTok{"sides"}\NormalTok{, }\StringTok{"signchart"}\NormalTok{, }\StringTok{"silence"}\NormalTok{, }
+\StringTok{"simplebnf"}\NormalTok{, }\StringTok{"simplecd"}\NormalTok{, }\StringTok{"simplecv"}\NormalTok{, }\StringTok{"simpleinvoice"}\NormalTok{, }\StringTok{"simpleoptics"}\NormalTok{, }
+\StringTok{"simpler{-}wick"}\NormalTok{, }\StringTok{"simplewick"}\NormalTok{, }\StringTok{"SIstyle"}\NormalTok{, }\StringTok{"sitem"}\NormalTok{, }\StringTok{"SIunits"}\NormalTok{, }
+\StringTok{"siunitx"}\NormalTok{, }\StringTok{"skak"}\NormalTok{, }\StringTok{"skb"}\NormalTok{, }\StringTok{"skdoc"}\NormalTok{, }\StringTok{"skeycommand"}\NormalTok{, }\StringTok{"skeyval"}\NormalTok{, }
+\StringTok{"skmath"}\NormalTok{, }\StringTok{"skrapport"}\NormalTok{, }\StringTok{"skull"}\NormalTok{, }\StringTok{"slantsc"}\NormalTok{, }\StringTok{"smalltableof"}\NormalTok{, }\StringTok{"smartdiagram"}\NormalTok{, }
+\StringTok{"smartref"}\NormalTok{, }\StringTok{"smartunits"}\NormalTok{, }\StringTok{"snapshot"}\NormalTok{, }\StringTok{"snotez"}\NormalTok{, }\StringTok{"songbook"}\NormalTok{, }\StringTok{"songs"}\NormalTok{, }
+\StringTok{"soton"}\NormalTok{, }\StringTok{"soul"}\NormalTok{, }\StringTok{"soulpos"}\NormalTok{, }\StringTok{"soup"}\NormalTok{, }\StringTok{"sourcecodepro"}\NormalTok{, }\StringTok{"sourcesanspro"}\NormalTok{, }
+\StringTok{"sourceserifpro"}\NormalTok{, }\StringTok{"spacingtricks"}\NormalTok{, }\StringTok{"spalign"}\NormalTok{, }\StringTok{"spanish{-}mx"}\NormalTok{, }\StringTok{"spark{-}otf"}\NormalTok{, }
+\StringTok{"sparklines"}\NormalTok{, }\StringTok{"spath3"}\NormalTok{, }\StringTok{"spectralsequences"}\NormalTok{, }\StringTok{"sphack"}\NormalTok{, }\StringTok{"sphdthesis"}\NormalTok{, }
+\StringTok{"spie"}\NormalTok{, }\StringTok{"splitbib"}\NormalTok{, }\StringTok{"splitindex"}\NormalTok{, }\StringTok{"spot"}\NormalTok{, }\StringTok{"spotcolor"}\NormalTok{, }\StringTok{"spreadtab"}\NormalTok{, }
+\StringTok{"spverbatim"}\NormalTok{, }\StringTok{"sr{-}vorl"}\NormalTok{, }\StringTok{"srbook{-}mem"}\NormalTok{, }\StringTok{"srcltx"}\NormalTok{, }\StringTok{"srdp{-}mathematik"}\NormalTok{, }
+\StringTok{"sseq"}\NormalTok{, }\StringTok{"sslides"}\NormalTok{, }\StringTok{"stack"}\NormalTok{, }\StringTok{"stackengine"}\NormalTok{, }\StringTok{"stage"}\NormalTok{, }\StringTok{"standalone"}\NormalTok{, }
+\StringTok{"stanli"}\NormalTok{, }\StringTok{"starfont"}\NormalTok{, }\StringTok{"statex"}\NormalTok{, }\StringTok{"statex2"}\NormalTok{, }\StringTok{"statistics"}\NormalTok{, }\StringTok{"statistik"}\NormalTok{, }
+\StringTok{"statmath"}\NormalTok{, }\StringTok{"staves"}\NormalTok{, }\StringTok{"stdclsdv"}\NormalTok{, }\StringTok{"stdpage"}\NormalTok{, }\StringTok{"stealcaps"}\NormalTok{, }\StringTok{"steinmetz"}\NormalTok{, }
+\StringTok{"stellenbosch"}\NormalTok{, }\StringTok{"step"}\NormalTok{, }\StringTok{"stex"}\NormalTok{, }\StringTok{"stickstoo"}\NormalTok{, }\StringTok{"stix"}\NormalTok{, }\StringTok{"stix2"}\NormalTok{, }
+\StringTok{"stmaryrd"}\NormalTok{, }\StringTok{"storebox"}\NormalTok{, }\StringTok{"storecmd"}\NormalTok{, }\StringTok{"stringstrings"}\NormalTok{, }\StringTok{"struktex"}\NormalTok{, }
+\StringTok{"sttools"}\NormalTok{, }\StringTok{"stubs"}\NormalTok{, }\StringTok{"studenthandouts"}\NormalTok{, }\StringTok{"subdepth"}\NormalTok{, }\StringTok{"subdocs"}\NormalTok{, }
+\StringTok{"subeqn"}\NormalTok{, }\StringTok{"subeqnarray"}\NormalTok{, }\StringTok{"subfig"}\NormalTok{, }\StringTok{"subfigmat"}\NormalTok{, }\StringTok{"subfigure"}\NormalTok{, }
+\StringTok{"subfiles"}\NormalTok{, }\StringTok{"subfloat"}\NormalTok{, }\StringTok{"substances"}\NormalTok{, }\StringTok{"substitutefont"}\NormalTok{, }\StringTok{"substr"}\NormalTok{, }
+\StringTok{"subsupscripts"}\NormalTok{, }\StringTok{"subtext"}\NormalTok{, }\StringTok{"sudoku"}\NormalTok{, }\StringTok{"sudokubundle"}\NormalTok{, }\StringTok{"suftesi"}\NormalTok{, }
+\StringTok{"sugconf"}\NormalTok{, }\StringTok{"superiors"}\NormalTok{, }\StringTok{"supertabular"}\NormalTok{, }\StringTok{"susy"}\NormalTok{, }\StringTok{"svg"}\NormalTok{, }\StringTok{"svgcolor"}\NormalTok{, }
+\StringTok{"svn"}\NormalTok{, }\StringTok{"svn{-}multi"}\NormalTok{, }\StringTok{"svn{-}prov"}\NormalTok{, }\StringTok{"svninfo"}\NormalTok{, }\StringTok{"svrsymbols"}\NormalTok{, }\StringTok{"swimgraf"}\NormalTok{, }
+\StringTok{"syllogism"}\NormalTok{, }\StringTok{"symbol"}\NormalTok{, }\StringTok{"synproof"}\NormalTok{, }\StringTok{"syntax"}\NormalTok{, }\StringTok{"syntrace"}\NormalTok{, }\StringTok{"synttree"}\NormalTok{, }
+\StringTok{"t{-}angles"}\NormalTok{, }\StringTok{"t2"}\NormalTok{, }\StringTok{"Tabbing"}\NormalTok{, }\StringTok{"tabfigures"}\NormalTok{, }\StringTok{"table{-}fct"}\NormalTok{, }\StringTok{"tableaux"}\NormalTok{, }
+\StringTok{"tablefootnote"}\NormalTok{, }\StringTok{"tableof"}\NormalTok{, }\StringTok{"tablestyles"}\NormalTok{, }\StringTok{"tablists"}\NormalTok{, }\StringTok{"tablor"}\NormalTok{, }
+\StringTok{"tabls"}\NormalTok{, }\StringTok{"tablvar"}\NormalTok{, }\StringTok{"tabriz{-}thesis"}\NormalTok{, }\StringTok{"tabstackengine"}\NormalTok{, }\StringTok{"tabto{-}ltx"}\NormalTok{, }
+\StringTok{"tabu"}\NormalTok{, }\StringTok{"tabularborder"}\NormalTok{, }\StringTok{"tabularcalc"}\NormalTok{, }\StringTok{"tabularew"}\NormalTok{, }\StringTok{"tabulary"}\NormalTok{, }
+\StringTok{"tabvar"}\NormalTok{, }\StringTok{"tagging"}\NormalTok{, }\StringTok{"tagpair"}\NormalTok{, }\StringTok{"tagpdf"}\NormalTok{, }\StringTok{"talk"}\NormalTok{, }\StringTok{"tamefloats"}\NormalTok{, }
+\StringTok{"tasks"}\NormalTok{, }\StringTok{"tcldoc"}\NormalTok{, }\StringTok{"tcolorbox"}\NormalTok{, }\StringTok{"tdclock"}\NormalTok{, }\StringTok{"tdsfrmath"}\NormalTok{, }\StringTok{"technics"}\NormalTok{, }
+\StringTok{"ted"}\NormalTok{, }\StringTok{"templatetools"}\NormalTok{, }\StringTok{"tempora"}\NormalTok{, }\StringTok{"tengwarscript"}\NormalTok{, }\StringTok{"tensind"}\NormalTok{, }
+\StringTok{"tensor"}\NormalTok{, }\StringTok{"termcal"}\NormalTok{, }\StringTok{"termcal{-}de"}\NormalTok{, }\StringTok{"termlist"}\NormalTok{, }\StringTok{"testhyphens"}\NormalTok{, }
+\StringTok{"testidx"}\NormalTok{, }\StringTok{"teubner"}\NormalTok{, }\StringTok{"tex{-}label"}\NormalTok{, }\StringTok{"tex{-}locale"}\NormalTok{, }\StringTok{"tex4ebook"}\NormalTok{, }
+\StringTok{"texilikechaps"}\NormalTok{, }\StringTok{"texilikecover"}\NormalTok{, }\StringTok{"texlogos"}\NormalTok{, }\StringTok{"texmate"}\NormalTok{, }\StringTok{"texments"}\NormalTok{, }
+\StringTok{"texosquery"}\NormalTok{, }\StringTok{"texpower"}\NormalTok{, }\StringTok{"texshade"}\NormalTok{, }\StringTok{"textcase"}\NormalTok{, }\StringTok{"textfit"}\NormalTok{, }
+\StringTok{"textglos"}\NormalTok{, }\StringTok{"textgreek"}\NormalTok{, }\StringTok{"textopo"}\NormalTok{, }\StringTok{"textpath"}\NormalTok{, }\StringTok{"textpos"}\NormalTok{, }\StringTok{"textualicomma"}\NormalTok{, }
+\StringTok{"texvc"}\NormalTok{, }\StringTok{"tfrupee"}\NormalTok{, }\StringTok{"thaienum"}\NormalTok{, }\StringTok{"thaispec"}\NormalTok{, }\StringTok{"thalie"}\NormalTok{, }\StringTok{"theanodidot"}\NormalTok{, }
+\StringTok{"theanomodern"}\NormalTok{, }\StringTok{"theanooldstyle"}\NormalTok{, }\StringTok{"theoremref"}\NormalTok{, }\StringTok{"thesis{-}ekf"}\NormalTok{, }
+\StringTok{"thesis{-}gwu"}\NormalTok{, }\StringTok{"thesis{-}titlepage{-}fhac"}\NormalTok{, }\StringTok{"thinsp"}\NormalTok{, }\StringTok{"thmbox"}\NormalTok{, }\StringTok{"thmtools"}\NormalTok{, }
+\StringTok{"threadcol"}\NormalTok{, }\StringTok{"threeparttable"}\NormalTok{, }\StringTok{"threeparttablex"}\NormalTok{, }\StringTok{"thuaslogos"}\NormalTok{, }
+\StringTok{"thucoursework"}\NormalTok{, }\StringTok{"thumb"}\NormalTok{, }\StringTok{"thumbs"}\NormalTok{, }\StringTok{"thumby"}\NormalTok{, }\StringTok{"thuthesis"}\NormalTok{, }\StringTok{"ticket"}\NormalTok{, }
+\StringTok{"ticollege"}\NormalTok{, }\StringTok{"tikz{-}3dplot"}\NormalTok{, }\StringTok{"tikz{-}bayesnet"}\NormalTok{, }\StringTok{"tikz{-}cd"}\NormalTok{, }\StringTok{"tikz{-}dependency"}\NormalTok{, }
+\StringTok{"tikz{-}dimline"}\NormalTok{, }\StringTok{"tikz{-}feynhand"}\NormalTok{, }\StringTok{"tikz{-}feynman"}\NormalTok{, }\StringTok{"tikz{-}imagelabels"}\NormalTok{, }
+\StringTok{"tikz{-}inet"}\NormalTok{, }\StringTok{"tikz{-}kalender"}\NormalTok{, }\StringTok{"tikz{-}karnaugh"}\NormalTok{, }\StringTok{"tikz{-}ladder"}\NormalTok{, }
+\StringTok{"tikz{-}layers"}\NormalTok{, }\StringTok{"tikz{-}nef"}\NormalTok{, }\StringTok{"tikz{-}network"}\NormalTok{, }\StringTok{"tikz{-}opm"}\NormalTok{, }\StringTok{"tikz{-}optics"}\NormalTok{, }
+\StringTok{"tikz{-}page"}\NormalTok{, }\StringTok{"tikz{-}palattice"}\NormalTok{, }\StringTok{"tikz{-}qtree"}\NormalTok{, }\StringTok{"tikz{-}relay"}\NormalTok{, }\StringTok{"tikz{-}sfc"}\NormalTok{, }
+\StringTok{"tikz{-}timing"}\NormalTok{, }\StringTok{"tikz{-}trackschematic"}\NormalTok{, }\StringTok{"tikz{-}truchet"}\NormalTok{, }\StringTok{"tikzcodeblocks"}\NormalTok{, }
+\StringTok{"tikzducks"}\NormalTok{, }\StringTok{"tikzinclude"}\NormalTok{, }\StringTok{"tikzlings"}\NormalTok{, }\StringTok{"tikzmark"}\NormalTok{, }\StringTok{"tikzmarmots"}\NormalTok{, }
+\StringTok{"tikzorbital"}\NormalTok{, }\StringTok{"tikzpagenodes"}\NormalTok{, }\StringTok{"tikzpeople"}\NormalTok{, }\StringTok{"tikzpfeile"}\NormalTok{, }\StringTok{"tikzposter"}\NormalTok{, }
+\StringTok{"tikzscale"}\NormalTok{, }\StringTok{"tikzsymbols"}\NormalTok{, }\StringTok{"timbreicmc"}\NormalTok{, }\StringTok{"times"}\NormalTok{, }\StringTok{"timing{-}diagrams"}\NormalTok{, }
+\StringTok{"tinos"}\NormalTok{, }\StringTok{"tipfr"}\NormalTok{, }\StringTok{"titlecaps"}\NormalTok{, }\StringTok{"titlefoot"}\NormalTok{, }\StringTok{"titlepic"}\NormalTok{, }\StringTok{"titleref"}\NormalTok{, }
+\StringTok{"titlesec"}\NormalTok{, }\StringTok{"titling"}\NormalTok{, }\StringTok{"tkz{-}base"}\NormalTok{, }\StringTok{"tkz{-}berge"}\NormalTok{, }\StringTok{"tkz{-}doc"}\NormalTok{, }\StringTok{"tkz{-}euclide"}\NormalTok{, }
+\StringTok{"tkz{-}fct"}\NormalTok{, }\StringTok{"tkz{-}graph"}\NormalTok{, }\StringTok{"tkz{-}kiviat"}\NormalTok{, }\StringTok{"tkz{-}linknodes"}\NormalTok{, }\StringTok{"tkz{-}orm"}\NormalTok{, }
+\StringTok{"tkz{-}tab"}\NormalTok{, }\StringTok{"tlc{-}article"}\NormalTok{, }\StringTok{"tocbibind"}\NormalTok{, }\StringTok{"tocdata"}\NormalTok{, }\StringTok{"tocloft"}\NormalTok{, }
+\StringTok{"tocvsec2"}\NormalTok{, }\StringTok{"todo"}\NormalTok{, }\StringTok{"todonotes"}\NormalTok{, }\StringTok{"tokenizer"}\NormalTok{, }\StringTok{"toolbox"}\NormalTok{, }\StringTok{"tools"}\NormalTok{, }
+\StringTok{"topfloat"}\NormalTok{, }\StringTok{"topiclongtable"}\NormalTok{, }\StringTok{"topletter"}\NormalTok{, }\StringTok{"toptesi"}\NormalTok{, }\StringTok{"totcount"}\NormalTok{, }
+\StringTok{"totpages"}\NormalTok{, }\StringTok{"tpslifonts"}\NormalTok{, }\StringTok{"tqft"}\NormalTok{, }\StringTok{"tracklang"}\NormalTok{, }\StringTok{"trajan"}\NormalTok{, }\StringTok{"tram"}\NormalTok{, }
+\StringTok{"translations"}\NormalTok{, }\StringTok{"translator"}\NormalTok{, }\StringTok{"transparent"}\NormalTok{, }\StringTok{"tree{-}dvips"}\NormalTok{, }\StringTok{"trfsigns"}\NormalTok{, }
+\StringTok{"trimspaces"}\NormalTok{, }\StringTok{"trivfloat"}\NormalTok{, }\StringTok{"trsym"}\NormalTok{, }\StringTok{"truncate"}\NormalTok{, }\StringTok{"tsemlines"}\NormalTok{, }
+\StringTok{"tucv"}\NormalTok{, }\StringTok{"tuda{-}ci"}\NormalTok{, }\StringTok{"tudscr"}\NormalTok{, }\StringTok{"tufte{-}latex"}\NormalTok{, }\StringTok{"tugboat"}\NormalTok{, }\StringTok{"tui"}\NormalTok{, }
+\StringTok{"turabian"}\NormalTok{, }\StringTok{"turabian{-}formatting"}\NormalTok{, }\StringTok{"turkmen"}\NormalTok{, }\StringTok{"turnstile"}\NormalTok{, }\StringTok{"turnthepage"}\NormalTok{, }
+\StringTok{"twoinone"}\NormalTok{, }\StringTok{"twoup"}\NormalTok{, }\StringTok{"txfonts"}\NormalTok{, }\StringTok{"txfontsb"}\NormalTok{, }\StringTok{"txgreeks"}\NormalTok{, }\StringTok{"txuprcal"}\NormalTok{, }
+\StringTok{"type1cm"}\NormalTok{, }\StringTok{"typed{-}checklist"}\NormalTok{, }\StringTok{"typeface"}\NormalTok{, }\StringTok{"typehtml"}\NormalTok{, }\StringTok{"typicons"}\NormalTok{, }
+\StringTok{"typoaid"}\NormalTok{, }\StringTok{"typogrid"}\NormalTok{, }\StringTok{"uaclasses"}\NormalTok{, }\StringTok{"uafthesis"}\NormalTok{, }\StringTok{"uantwerpendocs"}\NormalTok{, }
+\StringTok{"uassign"}\NormalTok{, }\StringTok{"ucalgmthesis"}\NormalTok{, }\StringTok{"ucbthesis"}\NormalTok{, }\StringTok{"ucdavisthesis"}\NormalTok{, }\StringTok{"ucharcat"}\NormalTok{, }
+\StringTok{"ucs"}\NormalTok{, }\StringTok{"ucsmonograph"}\NormalTok{, }\StringTok{"ucthesis"}\NormalTok{, }\StringTok{"udesoftec"}\NormalTok{, }\StringTok{"uebungsblatt"}\NormalTok{, }
+\StringTok{"uestcthesis"}\NormalTok{, }\StringTok{"uhhassignment"}\NormalTok{, }\StringTok{"uhrzeit"}\NormalTok{, }\StringTok{"uiucredborder"}\NormalTok{, }\StringTok{"uiucthesis"}\NormalTok{, }
+\StringTok{"ulqda"}\NormalTok{, }\StringTok{"ulthese"}\NormalTok{, }\StringTok{"umbclegislation"}\NormalTok{, }\StringTok{"umich{-}thesis"}\NormalTok{, }\StringTok{"uml"}\NormalTok{, }
+\StringTok{"umlaute"}\NormalTok{, }\StringTok{"umoline"}\NormalTok{, }\StringTok{"umthesis"}\NormalTok{, }\StringTok{"unam{-}thesis"}\NormalTok{, }\StringTok{"unamthesis"}\NormalTok{, }
+\StringTok{"underlin"}\NormalTok{, }\StringTok{"underoverlap"}\NormalTok{, }\StringTok{"underscore"}\NormalTok{, }\StringTok{"undolabl"}\NormalTok{, }\StringTok{"uni{-}wtal{-}ger"}\NormalTok{, }
+\StringTok{"uni{-}wtal{-}lin"}\NormalTok{, }\StringTok{"unicode{-}alphabets"}\NormalTok{, }\StringTok{"unicode{-}math"}\NormalTok{, }\StringTok{"unifith"}\NormalTok{, }
+\StringTok{"unitn{-}bimrep"}\NormalTok{, }\StringTok{"units"}\NormalTok{, }\StringTok{"unitsdef"}\NormalTok{, }\StringTok{"universa"}\NormalTok{, }\StringTok{"universalis"}\NormalTok{, }
+\StringTok{"univie{-}ling"}\NormalTok{, }\StringTok{"unizgklasa"}\NormalTok{, }\StringTok{"unravel"}\NormalTok{, }\StringTok{"unswcover"}\NormalTok{, }\StringTok{"uothesis"}\NormalTok{, }
+\StringTok{"uowthesis"}\NormalTok{, }\StringTok{"uowthesistitlepage"}\NormalTok{, }\StringTok{"upmethodology"}\NormalTok{, }\StringTok{"uppunctlm"}\NormalTok{, }
+\StringTok{"upquote"}\NormalTok{, }\StringTok{"urcls"}\NormalTok{, }\StringTok{"uri"}\NormalTok{, }\StringTok{"url"}\NormalTok{, }\StringTok{"urwchancal"}\NormalTok{, }\StringTok{"usebib"}\NormalTok{, }\StringTok{"ushort"}\NormalTok{, }
+\StringTok{"uspace"}\NormalTok{, }\StringTok{"uspatent"}\NormalTok{, }\StringTok{"ut{-}thesis"}\NormalTok{, }\StringTok{"utexasthesis"}\NormalTok{, }\StringTok{"uwmslide"}\NormalTok{, }
+\StringTok{"uwthesis"}\NormalTok{, }\StringTok{"variablelm"}\NormalTok{, }\StringTok{"varindex"}\NormalTok{, }\StringTok{"varsfromjobname"}\NormalTok{, }\StringTok{"varwidth"}\NormalTok{, }
+\StringTok{"vdmlisting"}\NormalTok{, }\StringTok{"velthuis"}\NormalTok{, }\StringTok{"venndiagram"}\NormalTok{, }\StringTok{"venturis"}\NormalTok{, }\StringTok{"venturis2"}\NormalTok{, }
+\StringTok{"venturisadf"}\NormalTok{, }\StringTok{"venturisold"}\NormalTok{, }\StringTok{"venturissans"}\NormalTok{, }\StringTok{"venturissans2"}\NormalTok{, }
+\StringTok{"verbasef"}\NormalTok{, }\StringTok{"verbatimbox"}\NormalTok{, }\StringTok{"verbatimcopy"}\NormalTok{, }\StringTok{"verbdef"}\NormalTok{, }\StringTok{"verbments"}\NormalTok{, }
+\StringTok{"verifica"}\NormalTok{, }\StringTok{"verse"}\NormalTok{, }\StringTok{"version"}\NormalTok{, }\StringTok{"versions"}\NormalTok{, }\StringTok{"versonotes"}\NormalTok{, }\StringTok{"vertbars"}\NormalTok{, }
+\StringTok{"vgrid"}\NormalTok{, }\StringTok{"vhistory"}\NormalTok{, }\StringTok{"vmargin"}\NormalTok{, }\StringTok{"vntex"}\NormalTok{, }\StringTok{"vocaltract"}\NormalTok{, }\StringTok{"volumes"}\NormalTok{, }
+\StringTok{"vpe"}\NormalTok{, }\StringTok{"vruler"}\NormalTok{, }\StringTok{"vtable"}\NormalTok{, }\StringTok{"vwcol"}\NormalTok{, }\StringTok{"wallpaper"}\NormalTok{, }\StringTok{"warning"}\NormalTok{, }\StringTok{"warpcol"}\NormalTok{, }
+\StringTok{"was"}\NormalTok{, }\StringTok{"wasysym"}\NormalTok{, }\StringTok{"webquiz"}\NormalTok{, }\StringTok{"widetable"}\NormalTok{, }\StringTok{"widows{-}and{-}orphans"}\NormalTok{, }
+\StringTok{"williams"}\NormalTok{, }\StringTok{"windycity"}\NormalTok{, }\StringTok{"withargs"}\NormalTok{, }\StringTok{"wnri{-}latex"}\NormalTok{, }\StringTok{"wordcount"}\NormalTok{, }
+\StringTok{"wordlike"}\NormalTok{, }\StringTok{"worksheet"}\NormalTok{, }\StringTok{"wrapfig"}\NormalTok{, }\StringTok{"wsemclassic"}\NormalTok{, }\StringTok{"wsuipa"}\NormalTok{, }
+\StringTok{"wtref"}\NormalTok{, }\StringTok{"xargs"}\NormalTok{, }\StringTok{"xassoccnt"}\NormalTok{, }\StringTok{"xbmks"}\NormalTok{, }\StringTok{"xcharter"}\NormalTok{, }\StringTok{"xcite"}\NormalTok{, }
+\StringTok{"xcjk2uni"}\NormalTok{, }\StringTok{"xcntperchap"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{, }\StringTok{"xcolor{-}material"}\NormalTok{, }\StringTok{"xcolor{-}solarized"}\NormalTok{, }
+\StringTok{"xcookybooky"}\NormalTok{, }\StringTok{"xcpdftips"}\NormalTok{, }\StringTok{"xdoc"}\NormalTok{, }\StringTok{"xduthesis"}\NormalTok{, }\StringTok{"xebaposter"}\NormalTok{, }
+\StringTok{"xecyrmongolian"}\NormalTok{, }\StringTok{"xellipsis"}\NormalTok{, }\StringTok{"xfakebold"}\NormalTok{, }\StringTok{"xfor"}\NormalTok{, }\StringTok{"xhfill"}\NormalTok{, }
+\StringTok{"xifthen"}\NormalTok{, }\StringTok{"xindex"}\NormalTok{, }\StringTok{"xkcdcolors"}\NormalTok{, }\StringTok{"xkeyval"}\NormalTok{, }\StringTok{"xltabular"}\NormalTok{, }\StringTok{"xmpincl"}\NormalTok{, }
+\StringTok{"xnewcommand"}\NormalTok{, }\StringTok{"xoptarg"}\NormalTok{, }\StringTok{"xpatch"}\NormalTok{, }\StringTok{"xpeek"}\NormalTok{, }\StringTok{"xpiano"}\NormalTok{, }\StringTok{"xpicture"}\NormalTok{, }
+\StringTok{"xpinyin"}\NormalTok{, }\StringTok{"xprintlen"}\NormalTok{, }\StringTok{"xpunctuate"}\NormalTok{, }\StringTok{"xq"}\NormalTok{, }\StringTok{"xsavebox"}\NormalTok{, }\StringTok{"xsim"}\NormalTok{, }
+\StringTok{"xskak"}\NormalTok{, }\StringTok{"xtab"}\NormalTok{, }\StringTok{"xtuthesis"}\NormalTok{, }\StringTok{"xurl"}\NormalTok{, }\StringTok{"xwatermark"}\NormalTok{, }\StringTok{"xyling"}\NormalTok{, }
+\StringTok{"xymtex"}\NormalTok{, }\StringTok{"xytree"}\NormalTok{, }\StringTok{"yafoot"}\NormalTok{, }\StringTok{"yagusylo"}\NormalTok{, }\StringTok{"yaletter"}\NormalTok{, }\StringTok{"yathesis"}\NormalTok{, }
+\StringTok{"ycbook"}\NormalTok{, }\StringTok{"ydoc"}\NormalTok{, }\StringTok{"yfonts"}\NormalTok{, }\StringTok{"yhmath"}\NormalTok{, }\StringTok{"york{-}thesis"}\NormalTok{, }\StringTok{"youngtab"}\NormalTok{, }
+\StringTok{"yplan"}\NormalTok{, }\StringTok{"ytableau"}\NormalTok{, }\StringTok{"zapfchan"}\NormalTok{, }\StringTok{"zapfding"}\NormalTok{, }\StringTok{"zebra{-}goodies"}\NormalTok{, }
+\StringTok{"zed{-}csp"}\NormalTok{, }\StringTok{"zhlineskip"}\NormalTok{, }\StringTok{"zhlipsum"}\NormalTok{, }\StringTok{"zhmetrics"}\NormalTok{, }\StringTok{"zhnumber"}\NormalTok{, }
+\StringTok{"ziffer"}\NormalTok{, }\StringTok{"zlmtt"}\NormalTok{, }\StringTok{"zref"}\NormalTok{, }\StringTok{"zwgetfdate"}\NormalTok{, }\StringTok{"zwpagelayout"}\NormalTok{, }\StringTok{"zxjafbfont"}\NormalTok{, }
+\StringTok{"zxjafont"}\NormalTok{, }\StringTok{"zxjatype"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf }\SpecialCharTok{\textbackslash{}"}\StringTok{\%f}\SpecialCharTok{\textbackslash{}n\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sort}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{dput}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf }\SpecialCharTok{\textbackslash{}"}\StringTok{\%f}\SpecialCharTok{\textbackslash{}n\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/local/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf "\%f}
+\StringTok{"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{character}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+c(``ae'', ``amsfonts'', ``amsmath'', ``atveryend'', ``auxhook'',
+``base'', ``bookmark'', ``cascadia-code'', ``cjk'', ``cjk-ko'',
+``epstopdf-pkg'', ``etoolbox'', ``euenc'', ``fancyvrb'', ``fira'',
+``firstaid'', ``fonts-tlwg'', ``fontspec'', ``framed'', ``geometry'',
+``graphics'', ``graphics-cfg'', ``graphics-def'', ``hycolor'',
+``hyperref'', ``inconsolata'', ``koma-script'', ``kvoptions'',
+``kvsetkeys'', ``l3backend'', ``l3kernel'', ``l3packages'', ``latex'',
+``latexconfig'', ``letltxmacro'', ``listings'', ``lm'', ``mdwtools'',
+``parskip'', ``refcount'', ``rerunfilecheck'', ``roboto'', ``stmaryrd'',
+``tex-ini-files'', ``tikzfill'', ``tipa'', ``tools'', ``unicode-math'',
+``url'', ``xcolor'', ``xkeyval'', ``xpatch'', ``zapfding'')
+
+\hypertarget{find-usrsharetexlive--type-d--iname-roboto}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``roboto''}\label{find-usrsharetexlive--type-d--iname-roboto}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-roboto}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``roboto''}\label{find-usrlocaltexlive--type-d--iname-roboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{roboto}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/truetype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{roboto}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{roboto}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/local/texlive {-}type d {-}iname "roboto"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-d--iname-cascadiacode}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``cascadia*code''}\label{find-usrsharetexlive--type-d--iname-cascadiacode}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-cascadiacode}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``cascadia*code''}\label{find-usrlocaltexlive--type-d--iname-cascadiacode}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/local/texlive {-}type d {-}iname "cascadia*code"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\#\#@ find -type d fonts ------------\\
+\#\# find /usr/share/texlive -type d -iname ``font{[}s {]}''\\
+\#\# find /usr/local/texlive -type d -iname ``font{[}s {]}''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{font[s ]}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/fonts"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/tex/csplain/fonts"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{font[s ]}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{font[s ]}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/local/texlive}
+\StringTok{{-}type d {-}iname "font[s ]"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/tex/context/fonts'',
+``/usr/local/texlive/texmf-dist/metapost/context/fonts'',
+``/usr/local/texlive/texmf-dist/fonts'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfonts}{%
+\subsection{ls -F
+/usr/share/texlive/texmf-dist/fonts}\label{ls--f-usrsharetexlivetexmf-distfonts}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfonts}{%
+\subsection{ls -F
+/usr/local/texlive/texmf-dist/fonts}\label{ls--f-usrlocaltexlivetexmf-distfonts}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"afm/"}\NormalTok{,}
+  \StringTok{"cmap/"}\NormalTok{,}
+  \StringTok{"enc/"}\NormalTok{,}
+  \StringTok{"lig/"}\NormalTok{,}
+  \StringTok{"map/"}\NormalTok{,}
+  \StringTok{"misc/"}\NormalTok{,}
+  \StringTok{"ofm/"}\NormalTok{,}
+  \StringTok{"opentype/"}\NormalTok{,}
+  \StringTok{"ovf/"}\NormalTok{,}
+  \StringTok{"ovp/"}\NormalTok{,}
+  \StringTok{"pk/"}\NormalTok{,}
+  \StringTok{"sfd/"}\NormalTok{,}
+  \StringTok{"source/"}\NormalTok{,}
+  \StringTok{"tfm/"}\NormalTok{,}
+  \StringTok{"truetype/"}\NormalTok{,}
+  \StringTok{"type1/"}\NormalTok{,}
+  \StringTok{"type3/"}\NormalTok{,}
+  \StringTok{"vf/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``afm/'', ``cid/'', ``cmap/'', ``enc/'', ``map/'', ``misc/'',
+``opentype/'', ``pk/'', ``source/'', ``tfm/'', ``type1/'', ``vf/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentype}{%
+\subsubsection{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype}\label{ls--f-usrsharetexlivetexmf-distfontsopentype}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentype}{%
+\subsubsection{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype}\label{ls--f-usrlocaltexlivetexmf-distfontsopentype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"adobe/"}\NormalTok{,}
+  \StringTok{"arkandis/"}\NormalTok{,}
+  \StringTok{"gnome/"}\NormalTok{,}
+  \StringTok{"google/"}\NormalTok{,}
+  \StringTok{"gust/"}\NormalTok{,}
+  \StringTok{"huerta/"}\NormalTok{,}
+  \StringTok{"ibm/"}\NormalTok{,}
+  \StringTok{"iginomarini/"}\NormalTok{,}
+  \StringTok{"impallari/"}\NormalTok{,}
+  \StringTok{"kosch/"}\NormalTok{,}
+  \StringTok{"novel/"}\NormalTok{,}
+  \StringTok{"nowacki/"}\NormalTok{,}
+  \StringTok{"omnibus{-}type/"}\NormalTok{,}
+  \StringTok{"public/"}\NormalTok{,}
+  \StringTok{"rozynski/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/opentype\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``google/'', ``public/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentypepublic}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype/public}\label{ls--f-usrsharetexlivetexmf-distfontsopentypepublic}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentypepublic}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype/public}\label{ls--f-usrlocaltexlivetexmf-distfontsopentypepublic}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"Asana{-}Math/"}\NormalTok{,}
+  \StringTok{"algolrevived/"}\NormalTok{,}
+  \StringTok{"almfixed/"}\NormalTok{,}
+  \StringTok{"antt/"}\NormalTok{,}
+  \StringTok{"baskervaldx/"}\NormalTok{,}
+  \StringTok{"baskervillef/"}\NormalTok{,}
+  \StringTok{"beuron/"}\NormalTok{,}
+  \StringTok{"ccicons/"}\NormalTok{,}
+  \StringTok{"chivo/"}\NormalTok{,}
+  \StringTok{"clara/"}\NormalTok{,}
+  \StringTok{"cm{-}unicode/"}\NormalTok{,}
+  \StringTok{"cochineal/"}\NormalTok{,}
+  \StringTok{"coelacanth/"}\NormalTok{,}
+  \StringTok{"countriesofeurope/"}\NormalTok{,}
+  \StringTok{"cyklop/"}\NormalTok{,}
+  \StringTok{"dantelogo/"}\NormalTok{,}
+  \StringTok{"domitian/"}\NormalTok{,}
+  \StringTok{"drm/"}\NormalTok{,}
+  \StringTok{"ebgaramond/"}\NormalTok{,}
+  \StringTok{"erewhon/"}\NormalTok{,}
+  \StringTok{"erewhon{-}math/"}\NormalTok{,}
+  \StringTok{"fandol/"}\NormalTok{,}
+  \StringTok{"fbb/"}\NormalTok{,}
+  \StringTok{"fdsymbol/"}\NormalTok{,}
+  \StringTok{"fetamont/"}\NormalTok{,}
+  \StringTok{"fira/"}\NormalTok{,}
+  \StringTok{"firamath/"}\NormalTok{,}
+  \StringTok{"fontawesome/"}\NormalTok{,}
+  \StringTok{"fontawesome5/"}\NormalTok{,}
+  \StringTok{"fonts{-}churchslavonic/"}\NormalTok{,}
+  \StringTok{"fonts{-}tlwg/"}\NormalTok{,}
+  \StringTok{"fourier/"}\NormalTok{,}
+  \StringTok{"frederika2016/"}\NormalTok{,}
+  \StringTok{"garamond{-}libre/"}\NormalTok{,}
+  \StringTok{"garamond{-}math/"}\NormalTok{,}
+  \StringTok{"gfsartemisia/"}\NormalTok{,}
+  \StringTok{"gfsbaskerville/"}\NormalTok{,}
+  \StringTok{"gfsbodoni/"}\NormalTok{,}
+  \StringTok{"gfscomplutum/"}\NormalTok{,}
+  \StringTok{"gfsdidot/"}\NormalTok{,}
+  \StringTok{"gfsdidotclassic/"}\NormalTok{,}
+  \StringTok{"gfsneohellenic/"}\NormalTok{,}
+  \StringTok{"gfsneohellenicmath/"}\NormalTok{,}
+  \StringTok{"gfsporson/"}\NormalTok{,}
+  \StringTok{"gfssolomos/"}\NormalTok{,}
+  \StringTok{"gnu{-}freefont/"}\NormalTok{,}
+  \StringTok{"haranoaji/"}\NormalTok{,}
+  \StringTok{"haranoaji{-}extra/"}\NormalTok{,}
+  \StringTok{"heuristica/"}\NormalTok{,}
+  \StringTok{"inconsolata/"}\NormalTok{,}
+  \StringTok{"inriafonts/"}\NormalTok{,}
+  \StringTok{"kerkis/"}\NormalTok{,}
+  \StringTok{"libertine/"}\NormalTok{,}
+  \StringTok{"libertinus{-}fonts/"}\NormalTok{,}
+  \StringTok{"linguisticspro/"}\NormalTok{,}
+  \StringTok{"logix/"}\NormalTok{,}
+  \StringTok{"mdsymbol/"}\NormalTok{,}
+  \StringTok{"miama/"}\NormalTok{,}
+  \StringTok{"missaali/"}\NormalTok{,}
+  \StringTok{"mnsymbol/"}\NormalTok{,}
+  \StringTok{"montserrat/"}\NormalTok{,}
+  \StringTok{"newcomputermodern/"}\NormalTok{,}
+  \StringTok{"newpx/"}\NormalTok{,}
+  \StringTok{"newtx/"}\NormalTok{,}
+  \StringTok{"nimbus15/"}\NormalTok{,}
+  \StringTok{"ocr{-}b{-}outline/"}\NormalTok{,}
+  \StringTok{"oldstandard/"}\NormalTok{,}
+  \StringTok{"phaistos/"}\NormalTok{,}
+  \StringTok{"philokalia/"}\NormalTok{,}
+  \StringTok{"playfair/"}\NormalTok{,}
+  \StringTok{"punknova/"}\NormalTok{,}
+  \StringTok{"qualitype/"}\NormalTok{,}
+  \StringTok{"rosario/"}\NormalTok{,}
+  \StringTok{"scholax/"}\NormalTok{,}
+  \StringTok{"semaphor/"}\NormalTok{,}
+  \StringTok{"shobhika/"}\NormalTok{,}
+  \StringTok{"skaknew/"}\NormalTok{,}
+  \StringTok{"step/"}\NormalTok{,}
+  \StringTok{"stix/"}\NormalTok{,}
+  \StringTok{"stix2{-}otf/"}\NormalTok{,}
+  \StringTok{"svrsymbols/"}\NormalTok{,}
+  \StringTok{"tempora/"}\NormalTok{,}
+  \StringTok{"txfontsb/"}\NormalTok{,}
+  \StringTok{"umtypewriter/"}\NormalTok{,}
+  \StringTok{"xcharter/"}\NormalTok{,}
+  \StringTok{"xits/"}\NormalTok{,}
+  \StringTok{"yinit{-}otf/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/public"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/opentype/public\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``cascadia-code/'', ``context-companion-fonts/'', ``fira/'',
+``fonts-tlwg/'', ``inconsolata/'', ``lm/'', ``lm-math/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentypegoogle}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype/google}\label{ls--f-usrsharetexlivetexmf-distfontsopentypegoogle}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogle}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype/google}\label{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogle}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"roboto/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/opentype/google\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``roboto/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype/google/roboto}\label{ls--f-usrsharetexlivetexmf-distfontsopentypegoogleroboto}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto}\label{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogleroboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"Roboto{-}Black.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}BlackItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Light.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}MediumItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}MediumItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Thin.otf"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``Roboto-BlackItalic.otf'', ``Roboto-Black.otf'',
+``Roboto-BoldItalic.otf'', ``Roboto-Bold.otf'',
+``RobotoCondensed-BoldItalic.otf'', ``RobotoCondensed-Bold.otf'',
+``RobotoCondensed-Italic.otf'', ``RobotoCondensed-LightItalic.otf'',
+``RobotoCondensed-Light.otf'', ``RobotoCondensed-Regular.otf'',
+``Roboto-Italic.otf'', ``Roboto-LightItalic.otf'', ``Roboto-Light.otf'',
+``Roboto-MediumItalic.otf'', ``Roboto-Medium.otf'',
+``RobotoMono-BoldItalic.otf'', ``RobotoMono-Bold.otf'',
+``RobotoMono-Italic.otf'', ``RobotoMono-LightItalic.otf'',
+``RobotoMono-Light.otf'', ``RobotoMono-MediumItalic.otf'',
+``RobotoMono-Medium.otf'', ``RobotoMono-Regular.otf'',
+``RobotoMono-ThinItalic.otf'', ``RobotoMono-Thin.otf'',
+``Roboto-Regular.otf'', ``RobotoSerif-BlackItalic.otf'',
+``RobotoSerif-Black.otf'', ``RobotoSerif-BoldItalic.otf'',
+``RobotoSerif-Bold.otf'', ``RobotoSerif\_Condensed-BlackItalic.otf'',
+``RobotoSerif\_Condensed-Black.otf'',
+``RobotoSerif\_Condensed-BoldItalic.otf'',
+``RobotoSerif\_Condensed-Bold.otf'',
+``RobotoSerif\_Condensed-ExtraBoldItalic.otf'',
+``RobotoSerif\_Condensed-ExtraBold.otf'',
+``RobotoSerif\_Condensed-ExtraLightItalic.otf'',
+``RobotoSerif\_Condensed-ExtraLight.otf'',
+``RobotoSerif\_Condensed-Italic.otf'',
+``RobotoSerif\_Condensed-LightItalic.otf'',
+``RobotoSerif\_Condensed-Light.otf'',
+``RobotoSerif\_Condensed-MediumItalic.otf'',
+``RobotoSerif\_Condensed-Medium.otf'',
+``RobotoSerif\_Condensed-Regular.otf'',
+``RobotoSerif\_Condensed-SemiBoldItalic.otf'',
+``RobotoSerif\_Condensed-SemiBold.otf'',
+``RobotoSerif\_Condensed-ThinItalic.otf'',
+``RobotoSerif\_Condensed-Thin.otf'',
+``RobotoSerif-ExtraBoldItalic.otf'', ``RobotoSerif-ExtraBold.otf'',
+``RobotoSerif-ExtraLightItalic.otf'', ``RobotoSerif-ExtraLight.otf'',
+``RobotoSerif-Italic.otf'', ``RobotoSerif-LightItalic.otf'',
+``RobotoSerif-Light.otf'', ``RobotoSerif-MediumItalic.otf'',
+``RobotoSerif-Medium.otf'', ``RobotoSerif-Regular.otf'',
+``RobotoSerif-SemiBoldItalic.otf'', ``RobotoSerif-SemiBold.otf'',
+``RobotoSerif-ThinItalic.otf'', ``RobotoSerif-Thin.otf'',
+``RobotoSlab-Bold.otf'', ``RobotoSlab-Light.otf'',
+``RobotoSlab-Regular.otf'', ``RobotoSlab-Thin.otf'',
+``Roboto-ThinItalic.otf'', ``Roboto-Thin.otf'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetype}{%
+\subsubsection{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype}\label{ls--f-usrsharetexlivetexmf-distfontstruetype}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetype}{%
+\subsubsection{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype}\label{ls--f-usrlocaltexlivetexmf-distfontstruetype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"aajohan/"}\NormalTok{,}
+  \StringTok{"ascender/"}\NormalTok{,}
+  \StringTok{"bh/"}\NormalTok{,}
+  \StringTok{"catharsis/"}\NormalTok{,}
+  \StringTok{"google/"}\NormalTok{,}
+  \StringTok{"huerta/"}\NormalTok{,}
+  \StringTok{"impallari/"}\NormalTok{,}
+  \StringTok{"intel/"}\NormalTok{,}
+  \StringTok{"muhafara/"}\NormalTok{,}
+  \StringTok{"ndiscovered/"}\NormalTok{,}
+  \StringTok{"paratype/"}\NormalTok{,}
+  \StringTok{"public/"}\NormalTok{,}
+  \StringTok{"sorkin/"}\NormalTok{,}
+  \StringTok{"typoland/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``\,``)
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetypepublic}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype/public}\label{ls--f-usrsharetexlivetexmf-distfontstruetypepublic}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetypepublic}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype/public}\label{ls--f-usrlocaltexlivetexmf-distfontstruetypepublic}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"Asana{-}Math/"}\NormalTok{,}
+  \StringTok{"academicons/"}\NormalTok{,}
+  \StringTok{"alkalami/"}\NormalTok{,}
+  \StringTok{"almendra/"}\NormalTok{,}
+  \StringTok{"almfixed/"}\NormalTok{,}
+  \StringTok{"amiri/"}\NormalTok{,}
+  \StringTok{"anonymouspro/"}\NormalTok{,}
+  \StringTok{"arphic{-}ttf/"}\NormalTok{,}
+  \StringTok{"baekmuk/"}\NormalTok{,}
+  \StringTok{"belleek/"}\NormalTok{,}
+  \StringTok{"crimsonpro/"}\NormalTok{,}
+  \StringTok{"cuprum/"}\NormalTok{,}
+  \StringTok{"dejavu/"}\NormalTok{,}
+  \StringTok{"fonetika/"}\NormalTok{,}
+  \StringTok{"fontmfizz/"}\NormalTok{,}
+  \StringTok{"fonts{-}churchslavonic/"}\NormalTok{,}
+  \StringTok{"forum/"}\NormalTok{,}
+  \StringTok{"gentium{-}tug/"}\NormalTok{,}
+  \StringTok{"gnu{-}freefont/"}\NormalTok{,}
+  \StringTok{"gregoriotex/"}\NormalTok{,}
+  \StringTok{"hmtrump/"}\NormalTok{,}
+  \StringTok{"inriafonts/"}\NormalTok{,}
+  \StringTok{"ipaex/"}\NormalTok{,}
+  \StringTok{"junicode/"}\NormalTok{,}
+  \StringTok{"lato/"}\NormalTok{,}
+  \StringTok{"lexend/"}\NormalTok{,}
+  \StringTok{"logix/"}\NormalTok{,}
+  \StringTok{"marcellus/"}\NormalTok{,}
+  \StringTok{"padauk/"}\NormalTok{,}
+  \StringTok{"poiretone/"}\NormalTok{,}
+  \StringTok{"theanodidot/"}\NormalTok{,}
+  \StringTok{"theanomodern/"}\NormalTok{,}
+  \StringTok{"theanooldstyle/"}\NormalTok{,}
+  \StringTok{"typicons/"}\NormalTok{,}
+  \StringTok{"unfonts{-}core/"}\NormalTok{,}
+  \StringTok{"unfonts{-}extra/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/public"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype/public\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetypegoogle}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype/google}\label{ls--f-usrsharetexlivetexmf-distfontstruetypegoogle}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogle}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype/google}\label{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogle}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"arimo/"}\NormalTok{,}
+  \StringTok{"noto/"}\NormalTok{,}
+  \StringTok{"roboto/"}\NormalTok{,}
+  \StringTok{"tinos/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype/google\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype/google/roboto}\label{ls--f-usrsharetexlivetexmf-distfontstruetypegoogleroboto}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype/google/roboto}\label{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogleroboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"Roboto{-}Black.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}BlackItalic.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}Bold.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}BoldItalic.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}Italic.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}Light.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}LightItalic.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}Medium.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}MediumItalic.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}Regular.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}Thin.ttf@"}\NormalTok{,}
+  \StringTok{"Roboto{-}ThinItalic.ttf@"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Bold.ttf@"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}BoldItalic.ttf@"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Italic.ttf@"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Light.ttf@"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}LightItalic.ttf@"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Regular.ttf@"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google/roboto"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype/google/roboto\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\#\#@ find -type d/f fontname ------------\\
+\#\#\# find /usr/share/texlive -type d -iname ``\emph{roboto}''\\
+\#\#\# find /usr/local/texlive -type d -iname ``\emph{roboto}''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/truetype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/local/texlive}
+\StringTok{{-}type d {-}iname "*roboto*"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/tex/latex/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/map/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/type1/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/vf/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto'')
+
+\hypertarget{find-usrsharetexlive--type-f--iname-roboto}{%
+\paragraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{roboto}''}{find /usr/share/texlive -type f -iname ``roboto''}}\label{find-usrsharetexlive--type-f--iname-roboto}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-roboto}{%
+\paragraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{roboto}''}{find /usr/local/texlive -type f -iname ``roboto''}}\label{find-usrlocaltexlive--type-f--iname-roboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/truetype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/local/texlive}
+\StringTok{{-}type d {-}iname "*roboto*"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/tex/latex/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/map/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/type1/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/vf/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto'')
+
+\hypertarget{find-usrsharetexlive--type-f--iname-robotomono.tf}{%
+\subparagraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{roboto}mono*.?tf''}{find /usr/share/texlive -type f -iname ``robotomono*.?tf''}}\label{find-usrsharetexlive--type-f--iname-robotomono.tf}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-robotomono.tf}{%
+\subparagraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{roboto}mono*.?tf''}{find /usr/local/texlive -type f -iname ``robotomono*.?tf''}}\label{find-usrlocaltexlive--type-f--iname-robotomono.tf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*mono*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Light.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}MediumItalic.otf"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*mono*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*mono*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/local/texlive {-}type f {-}iname "*roboto*mono*.?tf"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Light.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Medium.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-MediumItalic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Bold.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-ThinItalic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Regular.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-BoldItalic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Thin.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Italic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-LightItalic.otf'')
+
+\hypertarget{find-usrsharetexlive--type-d--iname-inconsolata}{%
+\subsubsection{\texorpdfstring{find /usr/share/texlive -type d -iname
+``\emph{inconsolata}''}{find /usr/share/texlive -type d -iname ``inconsolata''}}\label{find-usrsharetexlive--type-d--iname-inconsolata}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-inconsolata}{%
+\subsubsection{\texorpdfstring{find /usr/local/texlive -type d -iname
+``\emph{inconsolata}''}{find /usr/local/texlive -type d -iname ``inconsolata''}}\label{find-usrlocaltexlive--type-d--iname-inconsolata}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/fonts/type1/public/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/enc/dvips/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/map/dvips/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/public/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/tfm/public/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/tex/latex/inconsolata"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/local/texlive {-}type d {-}iname "*inconsolata*"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-f--iname-inconsolata.tf}{%
+\paragraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{inconsolata}.?tf''}{find /usr/share/texlive -type f -iname ``inconsolata.?tf''}}\label{find-usrsharetexlive--type-f--iname-inconsolata.tf}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-inconsolata.tf}{%
+\paragraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{inconsolata}.?tf''}{find /usr/local/texlive -type f -iname ``inconsolata.?tf''}}\label{find-usrlocaltexlive--type-f--iname-inconsolata.tf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/Inconsolatazi4{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/InconsolataN{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/InconsolataN{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"/usr/share/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/Inconsolatazi4{-}Bold.otf"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/local/texlive {-}type f {-}iname "*inconsolata*.?tf"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Bold.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Bold.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf'')
+
+\hypertarget{find-usrsharetexlive--type-d--iname-cascadiacode-1}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``cascadia*code''}\label{find-usrsharetexlive--type-d--iname-cascadiacode-1}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-cascadiacode-1}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``cascadia*code''}\label{find-usrlocaltexlive--type-d--iname-cascadiacode-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/local/texlive {-}type d {-}iname "cascadia*code"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-f--iname-cascadia.tf}{%
+\paragraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{cascadia}.?tf''}{find /usr/share/texlive -type f -iname ``cascadia.?tf''}}\label{find-usrsharetexlive--type-f--iname-cascadia.tf}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-cascadia.tf}{%
+\paragraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{cascadia}.?tf''}{find /usr/local/texlive -type f -iname ``cascadia.?tf''}}\label{find-usrlocaltexlive--type-f--iname-cascadia.tf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/local/texlive {-}type f {-}iname "*cascadia*.?tf"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\#@@ END ------------
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\#}
+\CommentTok{\# |\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%|\# @@ }\RegionMarkerTok{END}\CommentTok{ {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\#}
+\CommentTok{\# |\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%|\#}
+\CommentTok{\# |\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}|\#}
+\CommentTok{\# |++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|\#}
+\CommentTok{\# |\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}|\#}
+\CommentTok{\# |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\#}
+\CommentTok{\# |\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%|\#}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
