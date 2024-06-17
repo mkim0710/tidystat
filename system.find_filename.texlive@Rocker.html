@@ -1622,7 +1622,7 @@ c(&quot;ae&quot;, &quot;amsfonts&quot;, &quot;amsmath&quot;, &quot;atveryend&quo
 &quot;latex&quot;, &quot;latexconfig&quot;, &quot;letltxmacro&quot;, &quot;listings&quot;, &quot;lm&quot;, &quot;mdwtools&quot;, 
 &quot;parskip&quot;, &quot;refcount&quot;, &quot;rerunfilecheck&quot;, &quot;roboto&quot;, &quot;stmaryrd&quot;, 
 &quot;tex-ini-files&quot;, &quot;tikzfill&quot;, &quot;tipa&quot;, &quot;tools&quot;, &quot;unicode-math&quot;, 
-&quot;url&quot;, &quot;xcolor&quot;, &quot;xkeyval&quot;, &quot;xpatch&quot;, &quot;zapfding&quot;)</code></pre>
+&quot;upquote&quot;, &quot;url&quot;, &quot;xcolor&quot;, &quot;xkeyval&quot;, &quot;xpatch&quot;, &quot;zapfding&quot;)</code></pre>
 <p>c(“ae”, “amsfonts”, “amsmath”, “atveryend”, “auxhook”, “base”,
 “bookmark”, “cascadia-code”, “cjk”, “cjk-ko”, “epstopdf-pkg”,
 “etoolbox”, “euenc”, “fancyvrb”, “fira”, “firstaid”, “fonts-tlwg”,
@@ -1655,6 +1655,30 @@ c(&quot;/usr/local/texlive/texmf-dist/tex/latex/roboto&quot;,
   &quot;/usr/local/texlive/texmf-dist/fonts/vf/google/roboto&quot;,
   &quot;/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto&quot;,
   &quot;/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto&quot;)
+ </code></pre>
+</div>
+<div id="find-usrsharetexlive--type-d--iname-cascadiacode" class="section level3">
+<h3>find /usr/share/texlive -type d -iname “cascadia*code”</h3>
+</div>
+<div id="find-usrlocaltexlive--type-d--iname-cascadiacode" class="section level3">
+<h3>find /usr/local/texlive -type d -iname “cascadia*code”</h3>
+<pre class="r"><code>&quot;find /usr/share/texlive -type d -iname \&quot;cascadia*code\&quot;&quot; |&gt;
+    system(intern = TRUE) |&gt;
+    env1$f_vec.dput_line_by_line()
+Warning in system(&quot;find /usr/share/texlive -type d -iname \&quot;cascadia*code\&quot;&quot;, : running command &#39;find
+/usr/share/texlive -type d -iname &quot;cascadia*code&quot;&#39; had status 1
+c(&quot;&quot;)
+ 
+&quot;find /usr/local/texlive -type d -iname \&quot;cascadia*code\&quot;&quot; |&gt;
+    system(intern = TRUE) |&gt;
+    env1$f_vec.dput_line_by_line()
+c(&quot;/usr/local/texlive/texmf-dist/tex/latex/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/enc/dvips/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/map/dvips/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/type1/public/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/vf/public/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/tfm/public/cascadia-code&quot;)
  </code></pre>
 <p>##@ find -type d fonts ————<br />
 ## find /usr/share/texlive -type d -iname “font[s ]”<br />
@@ -2129,6 +2153,59 @@ c(&quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsol
 “/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Bold.otf”,
 “/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf”,
 “/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf”)</p>
+</div>
+</div>
+<div id="find-usrsharetexlive--type-d--iname-cascadiacode-1" class="section level3">
+<h3>find /usr/share/texlive -type d -iname “cascadia*code”</h3>
+</div>
+<div id="find-usrlocaltexlive--type-d--iname-cascadiacode-1" class="section level3">
+<h3>find /usr/local/texlive -type d -iname “cascadia*code”</h3>
+<pre class="r"><code>&quot;find /usr/share/texlive -type d -iname \&quot;cascadia*code\&quot;&quot; |&gt;
+    system(intern = TRUE) |&gt;
+    env1$f_vec.dput_line_by_line()
+Warning in system(&quot;find /usr/share/texlive -type d -iname \&quot;cascadia*code\&quot;&quot;, : running command &#39;find
+/usr/share/texlive -type d -iname &quot;cascadia*code&quot;&#39; had status 1
+c(&quot;&quot;)
+ 
+&quot;find /usr/local/texlive -type d -iname \&quot;cascadia*code\&quot;&quot; |&gt;
+    system(intern = TRUE) |&gt;
+    env1$f_vec.dput_line_by_line()
+c(&quot;/usr/local/texlive/texmf-dist/tex/latex/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/enc/dvips/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/map/dvips/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/type1/public/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/vf/public/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/tfm/public/cascadia-code&quot;)
+ </code></pre>
+<div id="find-usrsharetexlive--type-f--iname-cascadia.tf" class="section level4">
+<h4>find /usr/share/texlive -type f -iname “<em>cascadia</em>.?tf”</h4>
+</div>
+<div id="find-usrlocaltexlive--type-f--iname-cascadia.tf" class="section level4">
+<h4>find /usr/local/texlive -type f -iname “<em>cascadia</em>.?tf”</h4>
+<pre class="r"><code>&quot;find /usr/share/texlive -type f -iname \&quot;*cascadia*.?tf\&quot;&quot; |&gt;
+    system(intern = TRUE) |&gt;
+    env1$f_vec.dput_line_by_line()
+Warning in system(&quot;find /usr/share/texlive -type f -iname \&quot;*cascadia*.?tf\&quot;&quot;, : running command &#39;find
+/usr/share/texlive -type f -iname &quot;*cascadia*.?tf&quot;&#39; had status 1
+c(&quot;&quot;)
+ 
+&quot;find /usr/local/texlive -type f -iname \&quot;*cascadia*.?tf\&quot;&quot; |&gt;
+    system(intern = TRUE) |&gt;
+    env1$f_vec.dput_line_by_line()
+c(&quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-Bold.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-ExtraLight.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-LightItalic.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-SemiBold.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-Light.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-Regular.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-SemiLight.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-SemiBoldItalic.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-Italic.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-SemiLightItalic.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-BoldItalic.otf&quot;,
+  &quot;/usr/local/texlive/texmf-dist/fonts/opentype/public/cascadia-code/CascadiaCode-ExtraLightItalic.otf&quot;)
+ </code></pre>
 <p>#@@ END ————</p>
 <pre class="r"><code># |________________________________________________________________________________|#
 # |%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# @@ END ------------
