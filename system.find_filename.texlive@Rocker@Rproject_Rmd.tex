@@ -223,7 +223,7 @@ c(``/usr/local/texlive/texmf-dist'')
 \StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{fontspec}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/fontspec"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -255,15 +255,13 @@ c(``/usr/local/texlive/texmf-dist/tex/latex/fontspec'')
     \FunctionTok{sort}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{dput}\NormalTok{()}
 \FunctionTok{c}\NormalTok{(}\StringTok{"ae"}\NormalTok{, }\StringTok{"amsfonts"}\NormalTok{, }\StringTok{"amsmath"}\NormalTok{, }\StringTok{"atveryend"}\NormalTok{, }\StringTok{"auxhook"}\NormalTok{, }\StringTok{"base"}\NormalTok{, }
-\StringTok{"bookmark"}\NormalTok{, }\StringTok{"cascadia{-}code"}\NormalTok{, }\StringTok{"cjk"}\NormalTok{, }\StringTok{"cjk{-}ko"}\NormalTok{, }\StringTok{"epstopdf{-}pkg"}\NormalTok{, }
-\StringTok{"etoolbox"}\NormalTok{, }\StringTok{"euenc"}\NormalTok{, }\StringTok{"fancyvrb"}\NormalTok{, }\StringTok{"fira"}\NormalTok{, }\StringTok{"firstaid"}\NormalTok{, }\StringTok{"fonts{-}tlwg"}\NormalTok{, }
-\StringTok{"fontspec"}\NormalTok{, }\StringTok{"framed"}\NormalTok{, }\StringTok{"geometry"}\NormalTok{, }\StringTok{"graphics"}\NormalTok{, }\StringTok{"graphics{-}cfg"}\NormalTok{, }
-\StringTok{"graphics{-}def"}\NormalTok{, }\StringTok{"hycolor"}\NormalTok{, }\StringTok{"hyperref"}\NormalTok{, }\StringTok{"inconsolata"}\NormalTok{, }\StringTok{"koma{-}script"}\NormalTok{, }
-\StringTok{"kvoptions"}\NormalTok{, }\StringTok{"kvsetkeys"}\NormalTok{, }\StringTok{"l3backend"}\NormalTok{, }\StringTok{"l3kernel"}\NormalTok{, }\StringTok{"l3packages"}\NormalTok{, }
-\StringTok{"latex"}\NormalTok{, }\StringTok{"latexconfig"}\NormalTok{, }\StringTok{"letltxmacro"}\NormalTok{, }\StringTok{"listings"}\NormalTok{, }\StringTok{"lm"}\NormalTok{, }\StringTok{"mdwtools"}\NormalTok{, }
-\StringTok{"parskip"}\NormalTok{, }\StringTok{"refcount"}\NormalTok{, }\StringTok{"rerunfilecheck"}\NormalTok{, }\StringTok{"roboto"}\NormalTok{, }\StringTok{"stmaryrd"}\NormalTok{, }
-\StringTok{"tex{-}ini{-}files"}\NormalTok{, }\StringTok{"tikzfill"}\NormalTok{, }\StringTok{"tipa"}\NormalTok{, }\StringTok{"tools"}\NormalTok{, }\StringTok{"unicode{-}math"}\NormalTok{, }
-\StringTok{"upquote"}\NormalTok{, }\StringTok{"url"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{, }\StringTok{"xkeyval"}\NormalTok{, }\StringTok{"xpatch"}\NormalTok{, }\StringTok{"zapfding"}\NormalTok{)}
+\StringTok{"bookmark"}\NormalTok{, }\StringTok{"epstopdf{-}pkg"}\NormalTok{, }\StringTok{"etoolbox"}\NormalTok{, }\StringTok{"fancyvrb"}\NormalTok{, }\StringTok{"firstaid"}\NormalTok{, }
+\StringTok{"framed"}\NormalTok{, }\StringTok{"geometry"}\NormalTok{, }\StringTok{"graphics"}\NormalTok{, }\StringTok{"graphics{-}cfg"}\NormalTok{, }\StringTok{"graphics{-}def"}\NormalTok{, }
+\StringTok{"hycolor"}\NormalTok{, }\StringTok{"hyperref"}\NormalTok{, }\StringTok{"inconsolata"}\NormalTok{, }\StringTok{"koma{-}script"}\NormalTok{, }\StringTok{"kvoptions"}\NormalTok{, }
+\StringTok{"kvsetkeys"}\NormalTok{, }\StringTok{"l3backend"}\NormalTok{, }\StringTok{"l3kernel"}\NormalTok{, }\StringTok{"latex"}\NormalTok{, }\StringTok{"latexconfig"}\NormalTok{, }
+\StringTok{"letltxmacro"}\NormalTok{, }\StringTok{"listings"}\NormalTok{, }\StringTok{"lm"}\NormalTok{, }\StringTok{"mdwtools"}\NormalTok{, }\StringTok{"parskip"}\NormalTok{, }\StringTok{"refcount"}\NormalTok{, }
+\StringTok{"rerunfilecheck"}\NormalTok{, }\StringTok{"stmaryrd"}\NormalTok{, }\StringTok{"tex{-}ini{-}files"}\NormalTok{, }\StringTok{"tikzfill"}\NormalTok{, }\StringTok{"tools"}\NormalTok{, }
+\StringTok{"url"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{, }\StringTok{"xkeyval"}\NormalTok{, }\StringTok{"xpatch"}\NormalTok{, }\StringTok{"zapfding"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -299,13 +297,7 @@ c(``ae'', ``amsfonts'', ``amsmath'', ``atveryend'', ``auxhook'',
 \StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{roboto}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -330,13 +322,7 @@ c(``ae'', ``amsfonts'', ``amsmath'', ``atveryend'', ``auxhook'',
 \StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/public/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/public/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/public/cascadia{-}code"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -427,8 +413,7 @@ c(``afm/'', ``cid/'', ``cmap/'', ``enc/'', ``map/'', ``misc/'',
 \StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"google/"}\NormalTok{,}
-  \StringTok{"public/"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{"public/"}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -455,10 +440,7 @@ c(``google/'', ``public/'')
 \StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/public"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"cascadia{-}code/"}\NormalTok{,}
-  \StringTok{"context{-}companion{-}fonts/"}\NormalTok{,}
-  \StringTok{"fira/"}\NormalTok{,}
-  \StringTok{"fonts{-}tlwg/"}\NormalTok{,}
+\FunctionTok{c}\NormalTok{(}\StringTok{"context{-}companion{-}fonts/"}\NormalTok{,}
   \StringTok{"inconsolata/"}\NormalTok{,}
   \StringTok{"lm/"}\NormalTok{,}
   \StringTok{"lm{-}math/"}\NormalTok{)}
@@ -489,7 +471,9 @@ c(``cascadia-code/'', ``context-companion-fonts/'', ``fira/'',
 \StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"roboto/"}\NormalTok{)}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/opentype/google\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -516,74 +500,9 @@ c(``roboto/'')
 \StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"Roboto{-}BlackItalic.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}Black.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}BoldItalic.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"RobotoCondensed{-}BoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoCondensed{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"RobotoCondensed{-}Italic.otf"}\NormalTok{,}
-  \StringTok{"RobotoCondensed{-}LightItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoCondensed{-}Light.otf"}\NormalTok{,}
-  \StringTok{"RobotoCondensed{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}Italic.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}LightItalic.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}Light.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}MediumItalic.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}Medium.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}BoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}Italic.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}LightItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}Light.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}MediumItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}Medium.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}ThinItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoMono{-}Thin.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}BlackItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}Black.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}BoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}BlackItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}Black.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}BoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}ExtraBoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}ExtraBold.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}ExtraLightItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}ExtraLight.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}Italic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}LightItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}Light.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}MediumItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}Medium.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}SemiBoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}SemiBold.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}ThinItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif\_Condensed{-}Thin.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}ExtraBoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}ExtraBold.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}ExtraLightItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}ExtraLight.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}Italic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}LightItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}Light.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}MediumItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}Medium.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}SemiBoldItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}SemiBold.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}ThinItalic.otf"}\NormalTok{,}
-  \StringTok{"RobotoSerif{-}Thin.otf"}\NormalTok{,}
-  \StringTok{"RobotoSlab{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"RobotoSlab{-}Light.otf"}\NormalTok{,}
-  \StringTok{"RobotoSlab{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"RobotoSlab{-}Thin.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}ThinItalic.otf"}\NormalTok{,}
-  \StringTok{"Roboto{-}Thin.otf"}\NormalTok{)}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -757,13 +676,7 @@ c(``\,``)
 \StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -796,13 +709,7 @@ c(``/usr/local/texlive/texmf-dist/tex/latex/roboto'',
 \StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -835,16 +742,7 @@ c(``/usr/local/texlive/texmf-dist/tex/latex/roboto'',
 \StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*mono*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Light.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Medium.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}MediumItalic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}ThinItalic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}BoldItalic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Thin.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Italic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}LightItalic.otf"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -943,13 +841,7 @@ c(``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolataz
 \StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/public/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/public/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/public/cascadia{-}code"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -974,18 +866,7 @@ c(``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolataz
 \StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
 \NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
-\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Bold.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}ExtraLight.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}LightItalic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiBold.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Light.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Regular.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiLight.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiBoldItalic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Italic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiLightItalic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}BoldItalic.otf"}\NormalTok{,}
-  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}ExtraLightItalic.otf"}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
