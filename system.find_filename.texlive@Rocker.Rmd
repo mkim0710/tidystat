@@ -4,18 +4,13 @@ title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_notebook:  
+  pdf_document: 
     toc: yes
     toc_depth: 6
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-    number_sections: false
-    code_folding: none
-    df_print: tibble
-    highlight: textmate
     fig_width: 10
     fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
   html_document:
     toc: yes
     toc_depth: 6
@@ -28,13 +23,18 @@ output:
     highlight: textmate
     fig_width: 10
     fig_height: 6
-  pdf_document: 
+  html_notebook:  
     toc: yes
     toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
     fig_width: 10
     fig_height: 6
-    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
-    keep_tex: true
   word_document:
     toc: yes
     toc_depth: 6
@@ -51,6 +51,8 @@ params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
 # ?rmarkdown::html_document
+# https://ctan.org/pkg/cascadia-code
+#   - \usepackage{cascadia-code}  # not working @ Rocker -_-
 ---
 <!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
 <style type="text/css">
@@ -241,6 +243,15 @@ c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base",
 'find /usr/share/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
 ```
+
+
+### find /usr/share/texlive -type d -iname "cascadia*code"  
+### find /usr/local/texlive -type d -iname "cascadia*code"  
+```{r}
+'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+
 
 ##@ find -type d fonts  ------------  
 ## find /usr/share/texlive -type d -iname "font[s ]"  
@@ -486,11 +497,20 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
   "/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf")
 
 
+### find /usr/share/texlive -type d -iname "cascadia*code"  
+### find /usr/local/texlive -type d -iname "cascadia*code"  
+```{r}
+'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
 
 
-
-
-
+#### find /usr/share/texlive -type f -iname "*cascadia*.?tf"  
+#### find /usr/local/texlive -type f -iname "*cascadia*.?tf"  
+```{r}
+'find /usr/share/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
 
 
 

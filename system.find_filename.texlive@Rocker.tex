@@ -257,7 +257,7 @@ c(``/usr/local/texlive/texmf-dist/tex/latex/fontspec'')
 \StringTok{"latex"}\NormalTok{, }\StringTok{"latexconfig"}\NormalTok{, }\StringTok{"letltxmacro"}\NormalTok{, }\StringTok{"listings"}\NormalTok{, }\StringTok{"lm"}\NormalTok{, }\StringTok{"mdwtools"}\NormalTok{, }
 \StringTok{"parskip"}\NormalTok{, }\StringTok{"refcount"}\NormalTok{, }\StringTok{"rerunfilecheck"}\NormalTok{, }\StringTok{"roboto"}\NormalTok{, }\StringTok{"stmaryrd"}\NormalTok{, }
 \StringTok{"tex{-}ini{-}files"}\NormalTok{, }\StringTok{"tikzfill"}\NormalTok{, }\StringTok{"tipa"}\NormalTok{, }\StringTok{"tools"}\NormalTok{, }\StringTok{"unicode{-}math"}\NormalTok{, }
-\StringTok{"url"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{, }\StringTok{"xkeyval"}\NormalTok{, }\StringTok{"xpatch"}\NormalTok{, }\StringTok{"zapfding"}\NormalTok{)}
+\StringTok{"upquote"}\NormalTok{, }\StringTok{"url"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{, }\StringTok{"xkeyval"}\NormalTok{, }\StringTok{"xpatch"}\NormalTok{, }\StringTok{"zapfding"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -300,6 +300,37 @@ c(``ae'', ``amsfonts'', ``amsmath'', ``atveryend'', ``auxhook'',
   \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
   \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
   \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-d--iname-cascadiacode}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``cascadia*code''}\label{find-usrsharetexlive--type-d--iname-cascadiacode}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-cascadiacode}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``cascadia*code''}\label{find-usrlocaltexlive--type-d--iname-cascadiacode}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type d {-}iname "cascadia*code"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/public/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/public/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/public/cascadia{-}code"}\NormalTok{)}
  
 \end{Highlighting}
 \end{Shaded}
@@ -885,6 +916,73 @@ c(``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolataz
 ``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Bold.otf'',
 ``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf'',
 ``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf'')
+
+\hypertarget{find-usrsharetexlive--type-d--iname-cascadiacode-1}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``cascadia*code''}\label{find-usrsharetexlive--type-d--iname-cascadiacode-1}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-cascadiacode-1}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``cascadia*code''}\label{find-usrlocaltexlive--type-d--iname-cascadiacode-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type d {-}iname "cascadia*code"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/public/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/public/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/public/cascadia{-}code"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-f--iname-cascadia.tf}{%
+\paragraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{cascadia}.?tf''}{find /usr/share/texlive -type f -iname ``cascadia.?tf''}}\label{find-usrsharetexlive--type-f--iname-cascadia.tf}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-cascadia.tf}{%
+\paragraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{cascadia}.?tf''}{find /usr/local/texlive -type f -iname ``cascadia.?tf''}}\label{find-usrlocaltexlive--type-f--iname-cascadia.tf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type f {-}iname "*cascadia*.?tf"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}ExtraLight.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiBold.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Light.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiLight.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiBoldItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}SemiLightItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/cascadia{-}code/CascadiaCode{-}ExtraLightItalic.otf"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
 
 \#@@ END ------------
 
