@@ -4,18 +4,13 @@ title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_document:
+  pdf_document: 
     toc: yes
     toc_depth: 6
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-    number_sections: false
-    df_print: tibble
-    code_folding: none
-    highlight: textmate
     fig_width: 10
     fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
   html_notebook:  
     toc: yes
     toc_depth: 6
@@ -28,13 +23,18 @@ output:
     highlight: textmate
     fig_width: 10
     fig_height: 6
-  pdf_document: 
+  html_document:
     toc: yes
     toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
     fig_width: 10
     fig_height: 6
-    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
-    keep_tex: true
   word_document:
     toc: yes
     toc_depth: 6
@@ -530,6 +530,34 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# /usr/lib/rstudio-server/bin/quarto/bin/tools/pandoc +RTS -K512m -RTS system.find_filename.texlive@Rocker.knit.md --to latex --from markdown+autolink_bare_uris+tex_math_single_backslash --output system.find_filename.texlive@Rocker.tex --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /usr/local/lib/R/site-library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --table-of-contents --toc-depth 6 --highlight-style tango --pdf-engine xelatex --variable graphics --include-in-header /tmp/RtmpzAV6ir/rmarkdown-str51c28523670.html 
+# find: ‘/usr/share/texlive’: No such file or directory
+# find: ‘/usr/share/texlive’: No such file or directory
+# output file: system.find_filename.texlive@Rocker.knit.md
+# 
+# tlmgr: package repository https://www.texlive.info/tlnet-archive/2024/04/23/tlnet (not verified: gpg unavailable)
+# [1/6, ??:??/??:??] install: euenc [4k]
+# [2/6, 00:01/15:15] install: fontspec [27k]
+# [3/6, 00:02/03:17] install: l3packages [20k]
+# [4/6, 00:04/03:56] install: tipa [2809k]
+# [5/6, 00:11/00:11] install: unicode-math [42k]
+# [6/6, 00:12/00:12] install: xunicode [26k]
+# running mktexlsr ...
+# done running mktexlsr.
+# running updmap-sys ...
+# done running updmap-sys.
+# tlmgr: package log updated: /opt/texlive/texmf-var/web2c/tlmgr.log
+# tlmgr: command log updated: /opt/texlive/texmf-var/web2c/tlmgr-commands.log
+# tlmgr: package repository https://www.texlive.info/tlnet-archive/2024/04/23/tlnet (not verified: gpg unavailable)
+# [1/1, ??:??/??:??] install: roboto [24761k]
+# running mktexlsr ...
+# done running mktexlsr.
+# running updmap-sys ...
+# done running updmap-sys.
+# tlmgr: package log updated: /opt/texlive/texmf-var/web2c/tlmgr.log
+# tlmgr: command log updated: /opt/texlive/texmf-var/web2c/tlmgr-commands.log
+# 
+# Output created: system.find_filename.texlive@Rocker.pdf
 ```
   
   
