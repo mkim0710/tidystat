@@ -218,7 +218,7 @@ assign( objectname, read_rds(path.filename.ext) )
 # > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
 # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
 
-CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat();cat(" \n") ###### |> cat() ----
+CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat();cat(" \n") ###### |> cat() ------------  
 ```
 
 
@@ -230,7 +230,7 @@ options(width=120)
 subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "data.CreateTableOne"
-# % source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) ) ----
+# % source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) ) ------------  
 source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) )
 ```
 
