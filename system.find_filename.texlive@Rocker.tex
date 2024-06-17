@@ -1,0 +1,1001 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[portrait, a3paper, margin=20mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fontspec}
+\usepackage{roboto}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={system.find\_filename.texlive@Rocker.Rmd},
+  pdfauthor={MHKim},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\href{mailto:system.find_filename.texlive@Rocker.Rmd}{\nolinkurl{system.find\_filename.texlive@Rocker.Rmd}}}
+\author{MHKim}
+\date{June 17, 2024}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{6}
+\tableofcontents
+}
+\hypertarget{section}{%
+\section{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}\label{section}}
+
+\% env1~
+
+env1\$info\$info\_system\_info\$machine\_nodename = ``15687d125320''
+@Rocker\\
+env1\$info\$info\_system\_info\$machine\_nodename =
+``application-12164735-deployment-22732286-l5pm'' @Posit.Cloud\\
+env1\$info\$info\_system\_info\$Sys.getlocale\$LC\_COLLATE =
+``en\_US.utf8''
+
+\#@@ START ------------\\
+\#\# @ whoami ------------\\
+Cf) Ctrl+Alt+Enter @ Rstudio
+
+\hypertarget{whoami}{%
+\subsection{whoami}\label{whoami}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"whoami"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{rstudio }
+\end{Highlighting}
+\end{Shaded}
+
+\href{mailto:rstudio@Rocker}{\nolinkurl{rstudio@Rocker}}\\
+\href{mailto:r149319@SharedWorkspace}{\nolinkurl{r149319@SharedWorkspace}}@MKim0710@Posit.Cloud\\
+\href{mailto:r2179046@SharedWorkspace}{\nolinkurl{r2179046@SharedWorkspace}}@V@Posit.Cloud\\
+\href{mailto:r2179052@SharedWorkspace}{\nolinkurl{r2179052@SharedWorkspace}}@MHKim710@Posit.Cloud
+
+\hypertarget{echo-path}{%
+\subsection{echo \$PATH}\label{echo-path}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"echo $PATH"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{texlive}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{linux }
+\end{Highlighting}
+\end{Shaded}
+
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback
+
+\#\#@ find -type d texlive ------------\\
+\#\# find / -type d -iname texlive
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find / {-}type d {-}iname texlive"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find / {-}type d {-}iname texlive"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find / {-}type d {-}iname texlive\textquotesingle{}}\NormalTok{ had}
+\NormalTok{status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/tlpkg/TeXLive"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/tex/context/texlive"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/scripts/texlive"}\NormalTok{,}
+  \StringTok{"/opt/texlive"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive'', ``/usr/local/texlive/tlpkg/TeXLive'',
+``/usr/local/texlive/texmf-dist/tex/context/texlive'',
+``/usr/local/texlive/texmf-dist/scripts/texlive'', ``/opt/texlive'')
+
+\hypertarget{find--type-d--iname-texmf-dist}{%
+\subsection{find / -type d -iname
+texmf-dist}\label{find--type-d--iname-texmf-dist}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find / {-}type d {-}iname texmf{-}dist"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find / {-}type d {-}iname texmf{-}dist"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find / {-}type d {-}iname}
+\StringTok{texmf{-}dist\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist'')
+
+\#\#@ find -type d packages ------------\\
+\#\#\# find /usr/share/texlive -type d -iname ``fontspec''\\
+\#\#\# find /usr/local/texlive -type d -iname ``fontspec''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{fontspec}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{fontspec}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/share/texlive}
+\StringTok{{-}type d {-}iname "fontspec"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{fontspec}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/fontspec"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/share/texlive/texmf-dist/tex/latex/fontspec'')
+c(``/usr/local/texlive/texmf-dist/tex/latex/fontspec'')
+
+\hypertarget{find-usrsharetexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}{%
+\subsection{find /usr/share/texlive/texmf-dist/tex/latex -maxdepth 1
+-type d
+-printf}\label{find-usrsharetexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}}
+
+\hypertarget{find-usrlocaltexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}{%
+\subsection{find /usr/local/texlive/texmf-dist/tex/latex -maxdepth 1
+-type d
+-printf}\label{find-usrlocaltexlivetexmf-disttexlatex--maxdepth-1--type-d--printf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf }\SpecialCharTok{\textbackslash{}"}\StringTok{\%f}\SpecialCharTok{\textbackslash{}n\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sort}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{dput}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf }\SpecialCharTok{\textbackslash{}"}\StringTok{\%f}\SpecialCharTok{\textbackslash{}n\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/share/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf "\%f}
+\StringTok{"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{character}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\StringTok{"find /usr/local/texlive/texmf{-}dist/tex/latex {-}maxdepth 1 {-}type d {-}printf }\SpecialCharTok{\textbackslash{}"}\StringTok{\%f}\SpecialCharTok{\textbackslash{}n\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sort}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{dput}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"ae"}\NormalTok{, }\StringTok{"amsfonts"}\NormalTok{, }\StringTok{"amsmath"}\NormalTok{, }\StringTok{"atveryend"}\NormalTok{, }\StringTok{"auxhook"}\NormalTok{, }\StringTok{"base"}\NormalTok{, }
+\StringTok{"bookmark"}\NormalTok{, }\StringTok{"epstopdf{-}pkg"}\NormalTok{, }\StringTok{"etoolbox"}\NormalTok{, }\StringTok{"euenc"}\NormalTok{, }\StringTok{"fancyvrb"}\NormalTok{, }
+\StringTok{"firstaid"}\NormalTok{, }\StringTok{"fontspec"}\NormalTok{, }\StringTok{"framed"}\NormalTok{, }\StringTok{"geometry"}\NormalTok{, }\StringTok{"graphics"}\NormalTok{, }\StringTok{"graphics{-}cfg"}\NormalTok{, }
+\StringTok{"graphics{-}def"}\NormalTok{, }\StringTok{"hycolor"}\NormalTok{, }\StringTok{"hyperref"}\NormalTok{, }\StringTok{"inconsolata"}\NormalTok{, }\StringTok{"koma{-}script"}\NormalTok{, }
+\StringTok{"kvoptions"}\NormalTok{, }\StringTok{"kvsetkeys"}\NormalTok{, }\StringTok{"l3backend"}\NormalTok{, }\StringTok{"l3kernel"}\NormalTok{, }\StringTok{"l3packages"}\NormalTok{, }
+\StringTok{"latex"}\NormalTok{, }\StringTok{"latexconfig"}\NormalTok{, }\StringTok{"letltxmacro"}\NormalTok{, }\StringTok{"listings"}\NormalTok{, }\StringTok{"lm"}\NormalTok{, }\StringTok{"mdwtools"}\NormalTok{, }
+\StringTok{"parskip"}\NormalTok{, }\StringTok{"refcount"}\NormalTok{, }\StringTok{"rerunfilecheck"}\NormalTok{, }\StringTok{"roboto"}\NormalTok{, }\StringTok{"stmaryrd"}\NormalTok{, }
+\StringTok{"tex{-}ini{-}files"}\NormalTok{, }\StringTok{"tikzfill"}\NormalTok{, }\StringTok{"tipa"}\NormalTok{, }\StringTok{"tools"}\NormalTok{, }\StringTok{"unicode{-}math"}\NormalTok{, }
+\StringTok{"url"}\NormalTok{, }\StringTok{"xcolor"}\NormalTok{, }\StringTok{"xkeyval"}\NormalTok{, }\StringTok{"xpatch"}\NormalTok{, }\StringTok{"zapfding"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+c(``ae'', ``amsfonts'', ``amsmath'', ``atveryend'', ``auxhook'',
+``base'', ``bookmark'', ``cascadia-code'', ``cjk'', ``cjk-ko'',
+``epstopdf-pkg'', ``etoolbox'', ``euenc'', ``fancyvrb'', ``fira'',
+``firstaid'', ``fonts-tlwg'', ``fontspec'', ``framed'', ``geometry'',
+``graphics'', ``graphics-cfg'', ``graphics-def'', ``hycolor'',
+``hyperref'', ``inconsolata'', ``koma-script'', ``kvoptions'',
+``kvsetkeys'', ``l3backend'', ``l3kernel'', ``l3packages'', ``latex'',
+``latexconfig'', ``letltxmacro'', ``listings'', ``lm'', ``mdwtools'',
+``parskip'', ``refcount'', ``rerunfilecheck'', ``roboto'', ``stmaryrd'',
+``tex-ini-files'', ``tikzfill'', ``tipa'', ``tools'', ``unicode-math'',
+``url'', ``xcolor'', ``xkeyval'', ``xpatch'', ``zapfding'')
+
+\hypertarget{find-usrsharetexlive--type-d--iname-roboto}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``roboto''}\label{find-usrsharetexlive--type-d--iname-roboto}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-roboto}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``roboto''}\label{find-usrlocaltexlive--type-d--iname-roboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{roboto}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{roboto}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type d {-}iname "roboto"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{roboto}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-d--iname-cascadiacode}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``cascadia*code''}\label{find-usrsharetexlive--type-d--iname-cascadiacode}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-cascadiacode}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``cascadia*code''}\label{find-usrlocaltexlive--type-d--iname-cascadiacode}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type d {-}iname "cascadia*code"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\#\#@ find -type d fonts ------------\\
+\#\# find /usr/share/texlive -type d -iname ``font{[}s {]}''\\
+\#\# find /usr/local/texlive -type d -iname ``font{[}s {]}''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{font[s ]}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{font[s ]}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/share/texlive}
+\StringTok{{-}type d {-}iname "font[s ]"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{font[s ]}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/context/fonts"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/metapost/context/fonts"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/tex/context/fonts'',
+``/usr/local/texlive/texmf-dist/metapost/context/fonts'',
+``/usr/local/texlive/texmf-dist/fonts'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfonts}{%
+\subsection{ls -F
+/usr/share/texlive/texmf-dist/fonts}\label{ls--f-usrsharetexlivetexmf-distfonts}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfonts}{%
+\subsection{ls -F
+/usr/local/texlive/texmf-dist/fonts}\label{ls--f-usrlocaltexlivetexmf-distfonts}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts"}\NormalTok{, }\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"afm/"}\NormalTok{,}
+  \StringTok{"cid/"}\NormalTok{,}
+  \StringTok{"cmap/"}\NormalTok{,}
+  \StringTok{"enc/"}\NormalTok{,}
+  \StringTok{"map/"}\NormalTok{,}
+  \StringTok{"misc/"}\NormalTok{,}
+  \StringTok{"opentype/"}\NormalTok{,}
+  \StringTok{"pk/"}\NormalTok{,}
+  \StringTok{"source/"}\NormalTok{,}
+  \StringTok{"tfm/"}\NormalTok{,}
+  \StringTok{"type1/"}\NormalTok{,}
+  \StringTok{"vf/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``afm/'', ``cid/'', ``cmap/'', ``enc/'', ``map/'', ``misc/'',
+``opentype/'', ``pk/'', ``source/'', ``tfm/'', ``type1/'', ``vf/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentype}{%
+\subsubsection{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype}\label{ls--f-usrsharetexlivetexmf-distfontsopentype}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentype}{%
+\subsubsection{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype}\label{ls--f-usrlocaltexlivetexmf-distfontsopentype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/opentype\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"google/"}\NormalTok{,}
+  \StringTok{"public/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``google/'', ``public/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentypepublic}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype/public}\label{ls--f-usrsharetexlivetexmf-distfontsopentypepublic}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentypepublic}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype/public}\label{ls--f-usrlocaltexlivetexmf-distfontsopentypepublic}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/public"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/opentype/public\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"context{-}companion{-}fonts/"}\NormalTok{,}
+  \StringTok{"inconsolata/"}\NormalTok{,}
+  \StringTok{"lm/"}\NormalTok{,}
+  \StringTok{"lm{-}math/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``cascadia-code/'', ``context-companion-fonts/'', ``fira/'',
+``fonts-tlwg/'', ``inconsolata/'', ``lm/'', ``lm-math/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentypegoogle}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype/google}\label{ls--f-usrsharetexlivetexmf-distfontsopentypegoogle}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogle}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype/google}\label{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogle}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/google"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/opentype/google\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"roboto/"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``roboto/'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontsopentypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/opentype/google/roboto}\label{ls--f-usrsharetexlivetexmf-distfontsopentypegoogleroboto}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto}\label{ls--f-usrlocaltexlivetexmf-distfontsopentypegoogleroboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/opentype/google/roboto\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"Roboto{-}BlackItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Black.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoCondensed{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Light.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}MediumItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}MediumItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoMono{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}BlackItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}Black.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}BlackItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}Black.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}ExtraBoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}ExtraBold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}ExtraLightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}ExtraLight.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}MediumItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}SemiBoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}SemiBold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif\_Condensed{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}ExtraBoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}ExtraBold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}ExtraLightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}ExtraLight.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}LightItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}MediumItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}SemiBoldItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}SemiBold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"RobotoSerif{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Light.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"RobotoSlab{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"Roboto{-}Thin.otf"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``Roboto-BlackItalic.otf'', ``Roboto-Black.otf'',
+``Roboto-BoldItalic.otf'', ``Roboto-Bold.otf'',
+``RobotoCondensed-BoldItalic.otf'', ``RobotoCondensed-Bold.otf'',
+``RobotoCondensed-Italic.otf'', ``RobotoCondensed-LightItalic.otf'',
+``RobotoCondensed-Light.otf'', ``RobotoCondensed-Regular.otf'',
+``Roboto-Italic.otf'', ``Roboto-LightItalic.otf'', ``Roboto-Light.otf'',
+``Roboto-MediumItalic.otf'', ``Roboto-Medium.otf'',
+``RobotoMono-BoldItalic.otf'', ``RobotoMono-Bold.otf'',
+``RobotoMono-Italic.otf'', ``RobotoMono-LightItalic.otf'',
+``RobotoMono-Light.otf'', ``RobotoMono-MediumItalic.otf'',
+``RobotoMono-Medium.otf'', ``RobotoMono-Regular.otf'',
+``RobotoMono-ThinItalic.otf'', ``RobotoMono-Thin.otf'',
+``Roboto-Regular.otf'', ``RobotoSerif-BlackItalic.otf'',
+``RobotoSerif-Black.otf'', ``RobotoSerif-BoldItalic.otf'',
+``RobotoSerif-Bold.otf'', ``RobotoSerif\_Condensed-BlackItalic.otf'',
+``RobotoSerif\_Condensed-Black.otf'',
+``RobotoSerif\_Condensed-BoldItalic.otf'',
+``RobotoSerif\_Condensed-Bold.otf'',
+``RobotoSerif\_Condensed-ExtraBoldItalic.otf'',
+``RobotoSerif\_Condensed-ExtraBold.otf'',
+``RobotoSerif\_Condensed-ExtraLightItalic.otf'',
+``RobotoSerif\_Condensed-ExtraLight.otf'',
+``RobotoSerif\_Condensed-Italic.otf'',
+``RobotoSerif\_Condensed-LightItalic.otf'',
+``RobotoSerif\_Condensed-Light.otf'',
+``RobotoSerif\_Condensed-MediumItalic.otf'',
+``RobotoSerif\_Condensed-Medium.otf'',
+``RobotoSerif\_Condensed-Regular.otf'',
+``RobotoSerif\_Condensed-SemiBoldItalic.otf'',
+``RobotoSerif\_Condensed-SemiBold.otf'',
+``RobotoSerif\_Condensed-ThinItalic.otf'',
+``RobotoSerif\_Condensed-Thin.otf'',
+``RobotoSerif-ExtraBoldItalic.otf'', ``RobotoSerif-ExtraBold.otf'',
+``RobotoSerif-ExtraLightItalic.otf'', ``RobotoSerif-ExtraLight.otf'',
+``RobotoSerif-Italic.otf'', ``RobotoSerif-LightItalic.otf'',
+``RobotoSerif-Light.otf'', ``RobotoSerif-MediumItalic.otf'',
+``RobotoSerif-Medium.otf'', ``RobotoSerif-Regular.otf'',
+``RobotoSerif-SemiBoldItalic.otf'', ``RobotoSerif-SemiBold.otf'',
+``RobotoSerif-ThinItalic.otf'', ``RobotoSerif-Thin.otf'',
+``RobotoSlab-Bold.otf'', ``RobotoSlab-Light.otf'',
+``RobotoSlab-Regular.otf'', ``RobotoSlab-Thin.otf'',
+``Roboto-ThinItalic.otf'', ``Roboto-Thin.otf'')
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetype}{%
+\subsubsection{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype}\label{ls--f-usrsharetexlivetexmf-distfontstruetype}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetype}{%
+\subsubsection{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype}\label{ls--f-usrlocaltexlivetexmf-distfontstruetype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/truetype\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``\,``)
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetypepublic}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype/public}\label{ls--f-usrsharetexlivetexmf-distfontstruetypepublic}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetypepublic}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype/public}\label{ls--f-usrlocaltexlivetexmf-distfontstruetypepublic}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/public"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/truetype/public\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/public"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/public"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype/public\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetypegoogle}{%
+\paragraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype/google}\label{ls--f-usrsharetexlivetexmf-distfontstruetypegoogle}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogle}{%
+\paragraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype/google}\label{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogle}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/google"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/truetype/google\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype/google\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ls--f-usrsharetexlivetexmf-distfontstruetypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/share/texlive/texmf-dist/fonts/truetype/google/roboto}\label{ls--f-usrsharetexlivetexmf-distfontstruetypegoogleroboto}}
+
+\hypertarget{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogleroboto}{%
+\subparagraph{ls -F
+/usr/local/texlive/texmf-dist/fonts/truetype/google/roboto}\label{ls--f-usrlocaltexlivetexmf-distfontstruetypegoogleroboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/share/texlive/texmf{-}dist/fonts/truetype/google/roboto"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/share/texlive/texmf{-}dist/fonts/truetype/google/roboto\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google/roboto"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"ls {-}F /usr/local/texlive/texmf{-}dist/fonts/truetype/google/roboto"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}ls {-}F}
+\StringTok{/usr/local/texlive/texmf{-}dist/fonts/truetype/google/roboto\textquotesingle{}}\NormalTok{ had status }\DecValTok{2}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\#\#@ find -type d/f fontname ------------\\
+\#\#\# find /usr/share/texlive -type d -iname ``\emph{roboto}''\\
+\#\#\# find /usr/local/texlive -type d -iname ``\emph{roboto}''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/share/texlive}
+\StringTok{{-}type d {-}iname "*roboto*"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/tex/latex/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/map/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/type1/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/vf/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto'')
+
+\hypertarget{find-usrsharetexlive--type-f--iname-roboto}{%
+\paragraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{roboto}''}{find /usr/share/texlive -type f -iname ``roboto''}}\label{find-usrsharetexlive--type-f--iname-roboto}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-roboto}{%
+\paragraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{roboto}''}{find /usr/local/texlive -type f -iname ``roboto''}}\label{find-usrlocaltexlive--type-f--iname-roboto}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find /usr/share/texlive}
+\StringTok{{-}type d {-}iname "*roboto*"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/vf/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/google/roboto"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/tex/latex/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/map/dvips/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/type1/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/vf/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto'',
+``/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto'')
+
+\hypertarget{find-usrsharetexlive--type-f--iname-robotomono.tf}{%
+\subparagraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{roboto}mono*.?tf''}{find /usr/share/texlive -type f -iname ``robotomono*.?tf''}}\label{find-usrsharetexlive--type-f--iname-robotomono.tf}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-robotomono.tf}{%
+\subparagraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{roboto}mono*.?tf''}{find /usr/local/texlive -type f -iname ``robotomono*.?tf''}}\label{find-usrlocaltexlive--type-f--iname-robotomono.tf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*mono*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*mono*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type f {-}iname "*roboto*mono*.?tf"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*roboto*mono*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Light.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Medium.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}MediumItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}ThinItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}BoldItalic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Thin.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}Italic.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/google/roboto/RobotoMono{-}LightItalic.otf"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Light.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Medium.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-MediumItalic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Bold.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-ThinItalic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Regular.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-BoldItalic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Thin.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Italic.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-LightItalic.otf'')
+
+\hypertarget{find-usrsharetexlive--type-d--iname-inconsolata}{%
+\subsubsection{\texorpdfstring{find /usr/share/texlive -type d -iname
+``\emph{inconsolata}''}{find /usr/share/texlive -type d -iname ``inconsolata''}}\label{find-usrsharetexlive--type-d--iname-inconsolata}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-inconsolata}{%
+\subsubsection{\texorpdfstring{find /usr/local/texlive -type d -iname
+``\emph{inconsolata}''}{find /usr/local/texlive -type d -iname ``inconsolata''}}\label{find-usrlocaltexlive--type-d--iname-inconsolata}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type d {-}iname "*inconsolata*"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/tex/latex/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/enc/dvips/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/map/dvips/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/type1/public/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/inconsolata"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/tfm/public/inconsolata"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-f--iname-inconsolata.tf}{%
+\paragraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{inconsolata}.?tf''}{find /usr/share/texlive -type f -iname ``inconsolata.?tf''}}\label{find-usrsharetexlive--type-f--iname-inconsolata.tf}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-inconsolata.tf}{%
+\paragraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{inconsolata}.?tf''}{find /usr/local/texlive -type f -iname ``inconsolata.?tf''}}\label{find-usrlocaltexlive--type-f--iname-inconsolata.tf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type f {-}iname "*inconsolata*.?tf"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*inconsolata*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/Inconsolatazi4{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/InconsolataN{-}Bold.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/InconsolataN{-}Regular.otf"}\NormalTok{,}
+  \StringTok{"/usr/local/texlive/texmf{-}dist/fonts/opentype/public/inconsolata/Inconsolatazi4{-}Regular.otf"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+c(``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Bold.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Bold.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf'',
+``/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf'')
+
+\hypertarget{find-usrsharetexlive--type-d--iname-cascadiacode-1}{%
+\subsubsection{find /usr/share/texlive -type d -iname
+``cascadia*code''}\label{find-usrsharetexlive--type-d--iname-cascadiacode-1}}
+
+\hypertarget{find-usrlocaltexlive--type-d--iname-cascadiacode-1}{%
+\subsubsection{find /usr/local/texlive -type d -iname
+``cascadia*code''}\label{find-usrlocaltexlive--type-d--iname-cascadiacode-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type d {-}iname "cascadia*code"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type d {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{cascadia*code}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{find-usrsharetexlive--type-f--iname-cascadia.tf}{%
+\paragraph{\texorpdfstring{find /usr/share/texlive -type f -iname
+``\emph{cascadia}.?tf''}{find /usr/share/texlive -type f -iname ``cascadia.?tf''}}\label{find-usrsharetexlive--type-f--iname-cascadia.tf}}
+
+\hypertarget{find-usrlocaltexlive--type-f--iname-cascadia.tf}{%
+\paragraph{\texorpdfstring{find /usr/local/texlive -type f -iname
+``\emph{cascadia}.?tf''}{find /usr/local/texlive -type f -iname ``cascadia.?tf''}}\label{find-usrlocaltexlive--type-f--iname-cascadia.tf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\NormalTok{Warning }\ControlFlowTok{in} \FunctionTok{system}\NormalTok{(}\StringTok{"find /usr/share/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, }\SpecialCharTok{:}\NormalTok{ running command }\StringTok{\textquotesingle{}find}
+\StringTok{/usr/share/texlive {-}type f {-}iname "*cascadia*.?tf"\textquotesingle{}}\NormalTok{ had status }\DecValTok{1}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\StringTok{"find /usr/local/texlive {-}type f {-}iname }\SpecialCharTok{\textbackslash{}"}\StringTok{*cascadia*.?tf}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{""}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\#@@ END ------------
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\#}
+\CommentTok{\# |\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%|\# @@ }\RegionMarkerTok{END}\CommentTok{ {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\#}
+\CommentTok{\# |\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%|\#}
+\CommentTok{\# |\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}|\#}
+\CommentTok{\# |++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|\#}
+\CommentTok{\# |\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}|\#}
+\CommentTok{\# |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_|\#}
+\CommentTok{\# |\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%|\#}
+\CommentTok{\# /usr/lib/rstudio{-}server/bin/quarto/bin/tools/pandoc +RTS {-}K512m {-}RTS system.find\_filename.texlive@Rocker.knit.md {-}{-}to}
+\CommentTok{\# latex {-}{-}from markdown+autolink\_bare\_uris+tex\_math\_single\_backslash {-}{-}output system.find\_filename.texlive@Rocker.tex}
+\CommentTok{\# {-}{-}lua{-}filter /usr/local/lib/R/site{-}library/rmarkdown/rmarkdown/lua/pagebreak.lua {-}{-}lua{-}filter}
+\CommentTok{\# /usr/local/lib/R/site{-}library/rmarkdown/rmarkdown/lua/latex{-}div.lua {-}{-}embed{-}resources {-}{-}standalone}
+\CommentTok{\# {-}{-}table{-}of{-}contents {-}{-}toc{-}depth 6 {-}{-}highlight{-}style tango {-}{-}pdf{-}engine xelatex {-}{-}variable graphics}
+\CommentTok{\# {-}{-}include{-}in{-}header /tmp/RtmpzAV6ir/rmarkdown{-}str51c28523670.html find: ‘/usr/share/texlive’: No such file or}
+\CommentTok{\# directory find: ‘/usr/share/texlive’: No such file or directory output file:}
+\CommentTok{\# system.find\_filename.texlive@Rocker.knit.md tlmgr: package repository}
+\CommentTok{\# https://www.texlive.info/tlnet{-}archive/2024/04/23/tlnet (not verified: gpg unavailable) [1/6, ??:??/??:??] install:}
+\CommentTok{\# euenc [4k] [2/6, 00:01/15:15] install: fontspec [27k] [3/6, 00:02/03:17] install: l3packages [20k] [4/6, 00:04/03:56]}
+\CommentTok{\# install: tipa [2809k] [5/6, 00:11/00:11] install: unicode{-}math [42k] [6/6, 00:12/00:12] install: xunicode [26k]}
+\CommentTok{\# running mktexlsr ...  done running mktexlsr.  running updmap{-}sys ...  done running updmap{-}sys.  tlmgr: package log}
+\CommentTok{\# updated: /opt/texlive/texmf{-}var/web2c/tlmgr.log tlmgr: command log updated:}
+\CommentTok{\# /opt/texlive/texmf{-}var/web2c/tlmgr{-}commands.log tlmgr: package repository}
+\CommentTok{\# https://www.texlive.info/tlnet{-}archive/2024/04/23/tlnet (not verified: gpg unavailable) [1/1, ??:??/??:??] install:}
+\CommentTok{\# roboto [24761k] running mktexlsr ...  done running mktexlsr.  running updmap{-}sys ...  done running updmap{-}sys.}
+\CommentTok{\# tlmgr: package log updated: /opt/texlive/texmf{-}var/web2c/tlmgr.log tlmgr: command log updated:}
+\CommentTok{\# /opt/texlive/texmf{-}var/web2c/tlmgr{-}commands.log Output created: system.find\_filename.texlive@Rocker.pdf}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
