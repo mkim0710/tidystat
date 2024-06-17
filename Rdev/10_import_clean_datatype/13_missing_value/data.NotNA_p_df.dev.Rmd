@@ -82,9 +82,9 @@ table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Conden
 code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 </style>
-
+  
 <!-- font-size: 0.9em; /* 90% of inherited font size */ -->
-
+  
 <!-- Body text (body): The default font size is typically 16 pixels. -->
 <!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
 <!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
@@ -124,7 +124,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 # \
 # *** Caution: \% \$ \# \* \
 ```
-
+  
 
 ```{r setup, eval=TRUE, include=FALSE}
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
@@ -146,7 +146,7 @@ knitr::opts_chunk$set(
 # *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
 knitr::opts_knit$set(global.par = TRUE)
 ```
-
+  
 
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -154,7 +154,7 @@ if(!exists("env1", envir=.GlobalEnv))
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
-
+  
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
@@ -167,9 +167,9 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
-
+  
 <font size="3">\% env1</font>\
-
+  
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -185,7 +185,7 @@ CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, 
 env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 ```
-
+  
 
 ###### env1\$path ====
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
@@ -214,7 +214,7 @@ if(!file.exists(env1$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(en
 if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(env1$path$source_base, "rstudio-prefs", "templates", "default.R"),to=env1$path$subpath.filename.dev.r); env1$path$subpath.filename.source.r %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext);
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ```
-
+  
 
 # @@ START) data.NotNA_p_df.source.r ------------
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -224,7 +224,7 @@ subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\
 sourcename = "data.NotNA_p_df"
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -237,7 +237,7 @@ nhanes_mice |> str() #-----
 #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...
 #  $ hyp: num  NA 1 1 NA 1 NA 1 1 1 NA ...
 #  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
-
+  
 nhanes_mice %>% {data.NotNA_p_df = function(data) {
     out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> setNames("IsNA") |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
     out = out |> mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data))
@@ -248,43 +248,43 @@ nhanes_mice %>% {data.NotNA_p_df = function(data) {
 }; env1$data.NotNA_p_df(.)}
 nhanes_mice |> env1$data.NotNA_p_df()
 ```
-
-
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
+  
 
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+  
+```
+  
 
 # @@ END ------------  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
@@ -297,7 +297,7 @@ options(width=120)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ END ------------  
 ```
-
+  
 
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
@@ -312,13 +312,13 @@ options(width=120)
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
-
+  
 
 ```{r createBackup, eval=TRUE, include=FALSE}
 env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
-
+  
 
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -338,7 +338,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
-
+  
 
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -352,5 +352,5 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext,'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
 ```
-
+  
 

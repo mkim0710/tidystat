@@ -82,9 +82,9 @@ table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Conden
 code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 </style>
-
+  
 <!-- font-size: 0.9em; /* 90% of inherited font size */ -->
-
+  
 <!-- Body text (body): The default font size is typically 16 pixels. -->
 <!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
 <!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
@@ -124,7 +124,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 # \
 # *** Caution: \% \$ \# \* \
 ```
-
+  
 
 ```{r setup, eval=TRUE, include=FALSE}
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
@@ -146,7 +146,7 @@ knitr::opts_chunk$set(
 # *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
 knitr::opts_knit$set(global.par = TRUE)
 ```
-
+  
 
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -154,7 +154,7 @@ if(!exists("env1", envir=.GlobalEnv))
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
-
+  
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
@@ -170,9 +170,9 @@ sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0
 #### env1\$f_df.t.tribble_construct() ====
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
-
+  
 <font size="3">\% env1</font>\
-
+  
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -188,7 +188,7 @@ CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, 
 env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 ```
-
+  
 
 ###### env1\$info\$DocumentTitle1 ====
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
@@ -200,7 +200,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     sep="")
 ```
-
+  
 
 ###### env1\$path ====
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
@@ -226,9 +226,9 @@ path4write = env1$path$path4write
 # sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----
 ```
+  
 
-
-
+  
 #@@ START) source -----
 ### \$ subpath, sourcename = "default.template" ======
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -241,14 +241,14 @@ options(width=120)
 # # % (source( file.path(env1$path$source_base,subpath.filename.source.r) )) ------------  
 # (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
-
+  
 
 # @@ START) log_file_availability ------------
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 library(tidyverse)
-
+  
 # Function to log file availability
 log_file_availability <- function(path) {
   if (file.exists(path)) {
@@ -257,9 +257,9 @@ log_file_availability <- function(path) {
     cat(format.POSIXct(Sys.time(), usetz = TRUE), " - File does not exist\n")
   }
 }
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -274,11 +274,11 @@ path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( "DataSet", read_rds(path.filename.ext) ))
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 library(tidyverse)
 path4read = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
@@ -290,13 +290,13 @@ path.filename.ext = paste0(path4read,"/",objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( "DataSet", read_rds(path.filename.ext) ))
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 library(tidyverse)
 path4read = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
@@ -308,13 +308,13 @@ path.filename.ext = paste0(path4read,"/",objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( objectname, read_rds(path.filename.ext) ))
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 # # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # rm("path4read")
@@ -332,14 +332,14 @@ options(width=120)
 # # > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
 # # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
 # 
-
+  
 ```
-
+  
 
 # @@ START) read_rds_safely_with_logging ------------
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 # Function to safely read an RDS file with logging
 read_rds_safely_with_logging <- function(path, max_attempts = 9) {
   attempt <- 1
@@ -356,26 +356,26 @@ read_rds_safely_with_logging <- function(path, max_attempts = 9) {
   }
 }
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 path4read = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 paste0(path4read,"/",objectname,".rds")
 file.exists(paste0(path4read,"/",objectname,".rds"))
 assign( objectname, read_rds_safely_with_logging(paste0(path4read,"/",objectname,".rds")) )
-
+  
 
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 # @@ END ------------  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
@@ -388,7 +388,7 @@ options(width=120)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ END ------------  
 ```
-
+  
 
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
@@ -403,13 +403,13 @@ options(width=120)
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
-
+  
 
 ```{r createBackup, eval=TRUE, include=FALSE}
 env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
-
+  
 
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -429,7 +429,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
-
+  
 
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -443,6 +443,6 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext,'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
 ```
+  
 
-
-
+  

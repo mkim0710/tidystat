@@ -2,25 +2,25 @@
 title: "MK Lecture) OMOP_SYNTHETIC library(RODBC) library(ggplot2) library(jsonlite) 180403"
 output: html_notebook
 ---
-
+  
 Please find the most updated version of this file in the following URL:
 https://github.com/mkim0710/tidystat/blob/master/Rmd/MK%20Lecture)%20OMOP_SYNTHETIC%20library(RODBC)%20library(ggplot2)%20library(jsonlite)%20180403.Rmd
-
+  
 Please "Fork" and send a "Pull request" if you have any suggestion on how to improve the codes.
-
+  
 Please find the acknowledgements section at the end of this document.
-
+  
 Thanks.
-
+  
 Min-hyung Kim
-
+  
 April 3, 2018
+  
 
-
-
+  
 ```{r}
 # An appropriate ODBC driver should be installed in your computer first!
-
+  
 # # install.packages("tidyverse")
 # packagename = "tidyverse"
 # if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
@@ -32,7 +32,7 @@ April 3, 2018
 for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
     if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
 }
-
+  
 # 
 # # https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them
 # packagenames = c("tidyverse", "RODBC", "maps", "jsonlite")
@@ -40,44 +40,44 @@ for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
 # if(length(packagenames2install)) install.packages(packagenames2install)
 c("tidyverse", "RODBC", "maps", "jsonlite") %>% 
 {.[!. %in% installed.packages()[,"Package"]]} %>% {ifelse(length(.) > 0, install.packages(.), .)}
-
+  
 
 detach("package:maps", unload=TRUE) # package:maps conflicts with some other packages, so load only when you need it, detach when you are done with it.
-
+  
 library(tidyverse)
 library(RODBC)
-
+  
 # You should be within WCMC network to connect to VITS-ARCHSQLP04 server.
 # If you are not not in WCMC network, you may have to set-up the MS SQL server, using the 1000 person data set in CDMv5 format provided by LTS Computing LLC. (If you set up some other database software, you may have to change the SQL codes because the syntax may be slightly different.) 
 # Or, you may just skip the library(RODBC) part and go to the library(jsonlite) part.
-
+  
 channel = odbcDriverConnect("Driver= {SQL Server}; server=VITS-ARCHSQLP04; database=OMOP_SYNTHETIC")
-
+  
 ```
-
+  
 ```{r}
 sqlQuery(channel, "
 select distinct TABLE_NAME
 from information_schema.columns
 ;")
 ```
-
+  
 ```{r}
 sqlQuery(channel, "
 SELECT TABLE_NAME, COLUMN_NAME, IS_NULLABLE, DATA_TYPE
 FROM information_schema.columns
 WHERE TABLE_NAME in ('PERSON', 'VISIT_OCCURRENCE', 'CONDITION_OCCURRENCE', 'LOCATION')
 ;")
-
+  
 ```
-
+  
 ```{r}
 sqlQuery(channel, "
 SELECT *
 FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
 ;")
 ```
-
+  
 ```{r}
 sqlQuery(channel, "
 select count(*) as nrow
@@ -86,16 +86,16 @@ select count(*) as nrow
 	, count(distinct CONDITION_OCCURRENCE.PERSON_ID) as n_distinct_PERSON_ID
 from CONDITION_OCCURRENCE
 ;")
-
+  
 ```
-
+  
 ```{r}
 varnames = sqlQuery(channel, "
 SELECT COLUMN_NAME
 FROM information_schema.columns
 WHERE TABLE_NAME = 'VISIT_OCCURRENCE'
 ;")[[1]]
-
+  
 qryText = paste0(
     "select count(*) as nrow"
     , paste0(
@@ -108,23 +108,23 @@ qryText = paste0(
     , " from VISIT_OCCURRENCE;"
 )
 qryText
-
+  
 ```
-
+  
 ```{r}
 sqlQuery(channel, qryText) %>% t
-
+  
 ```
-
+  
 ```{r}
 VISIT_OCCURRENCE = sqlQuery(channel, "
 select *
 from VISIT_OCCURRENCE
 ;")
 VISIT_OCCURRENCE |> summarise_all(n_distinct) %>% t
-
+  
 ```
-
+  
 ```{r}
 sqlQuery(channel, paste("
 select CONDITION_CONCEPT_ID, CONDITION_SOURCE_VALUE, count(*) as nrow, count(distinct CONDITION_OCCURRENCE_ID) as CONDITION_OCCURRENCE_ID_n_distinct, count(distinct PERSON_ID) as PERSON_ID_n_distinct
@@ -135,9 +135,9 @@ where (CONDITION_SOURCE_VALUE like '2962%'
 group by CONDITION_CONCEPT_ID, CONDITION_SOURCE_VALUE
 order by CONDITION_SOURCE_VALUE
 ;"))
-
+  
 ```
-
+  
 ```{r}
 sqlQuery(channel, paste("
 select PERSON_ID, count(*) as nrow, count(distinct CONDITION_OCCURRENCE_ID) as n_distinct_CONDITION_OCCURRENCE_ID, count(distinct PERSON_ID) as n_distinct_PERSON_ID, count(distinct CONDITION_SOURCE_VALUE) as n_distinct_CONDITION_SOURCE_VALUE
@@ -149,7 +149,7 @@ group by PERSON_ID
 order by count(distinct CONDITION_SOURCE_VALUE) desc
 ;")) 
 ```
-
+  
 ```{r}
 sqlQuery(channel, paste("
 select CONDITION_OCCURRENCE_ID, VISIT_OCCURRENCE_ID, PERSON_ID, CONDITION_SOURCE_VALUE, CONDITION_START_DATE, CONDITION_END_DATE
@@ -160,9 +160,9 @@ where (CONDITION_SOURCE_VALUE like '2962%'
 order by CONDITION_START_DATE
 ;"))
 ```
-
+  
 ```{r}
-
+  
 # @ total & MDD & pMDD (PERSON_ID_n_distinct, 1-year period prevalence/proportion) ------
 tblTotal = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
@@ -182,10 +182,10 @@ group by year(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
 order by year(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
 ;"))
 tblTotal
-
+  
 
 ```
-
+  
 ```{r}
 tblMDD = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
@@ -209,42 +209,42 @@ order by year(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
 ;"))
 tblMDD = full_join(select(tblTotal, -nrow, -n_distinct_CONDITION_OCCURRENCE_ID, -n_distinct_VISIT_OCCURRENCE_ID, -n_distinct_PERSON_ID), tblMDD)
 tblMDD
-
+  
 
 ```
-
+  
 ```{r}
 tblMDDp = tblMDD; tblMDDp[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")] = tblMDD[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]/tblTotal[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]
 tblMDDp 
 ```
-
+  
 ```{r}
 g = tblMDDp |> ggplot(aes(x = as.factor(CONDITION_START_year), y = n_distinct_PERSON_ID, group = GENDER_SOURCE_VALUE, color = GENDER_SOURCE_VALUE, fill = GENDER_SOURCE_VALUE))
-
+  
 ```
-
+  
 ```{r}
 g+geom_area(position = "stack")
 ```
-
+  
 ```{r}
 g+geom_area(position = "fill")
 ```
-
+  
 ```{r}
 g+geom_col(position = "stack")
 ```
-
+  
 ```{r}
 g+geom_col(position = "dodge")
 ```
-
+  
 ```{r}
 g+geom_col(position = "fill")
 ```
-
+  
 ```{r}
-
+  
 # @ total & MDD & pMDD (n_distinct_PERSON_ID, 1-month period prevalence/proportion) ------
 tblTotal = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
@@ -265,9 +265,9 @@ group by year(convert(datetime, CONDITION_START_DATE, 112)), month(convert(datet
 order by year(convert(datetime, CONDITION_START_DATE, 112)), month(convert(datetime, CONDITION_START_DATE, 112)), GENDER_SOURCE_VALUE
 ;"))
 tblTotal
-
+  
 ```
-
+  
 ```{r}
 tblMDD = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
@@ -292,15 +292,15 @@ order by year(convert(datetime, CONDITION_START_DATE, 112)), month(convert(datet
 ;"))
 tblMDD = full_join(select(tblTotal, -nrow, -n_distinct_CONDITION_OCCURRENCE_ID, -n_distinct_VISIT_OCCURRENCE_ID, -n_distinct_PERSON_ID), tblMDD)
 tblMDD
-
+  
 ```
-
+  
 ```{r}
 tblMDDp = tblMDD; tblMDDp[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")] = tblMDD[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]/tblTotal[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]
 tblMDDp 
-
+  
 ```
-
+  
 ```{r}
 g = tblMDDp |> 
     ggplot(aes(
@@ -310,46 +310,46 @@ g = tblMDDp |>
         , color = GENDER_SOURCE_VALUE
         , fill = GENDER_SOURCE_VALUE)) + 
     facet_grid(CONDITION_START_year~.)
-
+  
 ```
-
+  
 ```{r}
 g+geom_step()
-
+  
 ```
-
+  
 ```{r}
 g+geom_step()+geom_smooth(method = "loess")
-
+  
 ```
-
+  
 ```{r}
 g+geom_step()+geom_smooth(method = "lm")
-
+  
 ```
-
+  
 ```{r}
 g+geom_line()
-
+  
 ```
-
+  
 ```{r}
 g+geom_line()+geom_smooth(method = "loess")
-
+  
 ```
-
+  
 ```{r}
 g+geom_line()+geom_smooth(method = "lm")
-
+  
 ```
-
+  
 ```{r}
 g+geom_area()
-
+  
 ```
-
+  
 ```{r}
-
+  
 # @ total & MDD & pMDD (n_distinct_PERSON_ID, 1-year period prevalence/proportion, by state) ------
 tblTotal = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
@@ -372,7 +372,7 @@ order by year(convert(datetime, CONDITION_START_DATE, 112)), STATE
 ;"))
 tblTotal
 ```
-
+  
 ```{r}
 tblMDD = sqlQuery(channel, paste("
 select year(convert(datetime, CONDITION_START_DATE, 112)) as CONDITION_START_year
@@ -398,18 +398,18 @@ order by year(convert(datetime, CONDITION_START_DATE, 112)), STATE
 ;")) 
 tblMDD = full_join(select(tblTotal, -nrow, -n_distinct_CONDITION_OCCURRENCE_ID, -n_distinct_VISIT_OCCURRENCE_ID, -n_distinct_PERSON_ID), tblMDD)
 tblMDD
-
+  
 ```
-
+  
 ```{r}
 tblMDDp = tblMDD; tblMDDp[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")] = tblMDD[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]/tblTotal[,c("nrow", "n_distinct_CONDITION_OCCURRENCE_ID", "n_distinct_VISIT_OCCURRENCE_ID", "n_distinct_PERSON_ID")]
 tblMDDp 
-
+  
 
 tblMDDp %>% full_join(., tibble(state.abb, state.name, state.name.tolower = tolower(state.name)), by = c("STATE" = "state.abb"))
-
+  
 ```
-
+  
 ```{r}
 library(maps)
 map = map_data("state")
@@ -417,26 +417,26 @@ g = tblMDDp %>% full_join(., tibble(state.abb, state.name, state.name.tolower = 
     ggplot(aes(fill = n_distinct_PERSON_ID)) + 
     facet_grid(CONDITION_START_year~.)
 g+geom_map(aes(map_id = state.name.tolower), map = map)+expand_limits(x=map$long, y=map$lat)
-
+  
 detach("package:maps", unload=TRUE)
 ```
-
+  
 ```{r}
-
+  
 # @ CMS_SynPUF_CDMv5_YZ.json ------------  
-
+  
 library(jsonlite)
 CMS_SynPUF_CDMv5_YZ.json = fromJSON(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/CMS_SynPUF_CDMv5_YZ.json"))
 CMS_SynPUF_CDMv5_YZ.json |> length()
-
+  
 ```
-
+  
 ```{r}
 CMS_SynPUF_CDMv5_YZ.json[1000] %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
 ```
-
+  
 ```{r}
-
+  
 # @ CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(function(ls) { ------------  
 CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(function(ls) {
     ls %>% purrr::map(function(x) {
@@ -448,52 +448,52 @@ CMS_SynPUF_CDMv5_YZ.json.map_df = CMS_SynPUF_CDMv5_YZ.json %>% purrr::map_df(fun
     })
 })
 CMS_SynPUF_CDMv5_YZ.json.map_df
-
+  
 ```
-
+  
 ```{r}
 g = CMS_SynPUF_CDMv5_YZ.json.map_df |> 
     ggplot(aes(x = sex, y = appt, color = sex))
 ```
-
+  
 ```{r}
 g+geom_boxplot()
 ```
-
+  
 ```{r}
 g+geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 1/5)
 ```
-
+  
 ```{r}
 g+geom_count()
 ```
-
+  
 ```{r}
 g+geom_jitter()
 ```
-
+  
 ```{r}
 g+geom_violin()
 ```
-
+  
 
 # Acknowledgements
-
+  
 The CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) is provided by U.S. Centers for Medicare & Medicaid Services.
-
+  
 https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html
-
+  
 
 The Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM) Version 5 is provided by Observational Health Data Sciences and Informatics (OHDSI) community.
-
+  
 https://github.com/OHDSI/CommonDataModel
-
+  
 
 The 1000 person data set from the CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) converted it to the OMOP Common Data Model Version 5 format was provided by LTS Computing LLC.
-
+  
 http://www.ltscomputingllc.com/downloads/
-
+  
 The 1000 person CMS_SynPUF_CDMv5 was loaded into MS SQL server in the Weill Cornell Architecture for Research Computing in Health (ARCH) by Evan Scholle, in the Information Technologies & Services, Weill Cornell Medicine.
-
+  
 The 1000 person CMS_SynPUF_CDMv5 transformed into JSON format was provided by Dr. Yiye Zhang in the Division of Health Informatics, Department of Healthcare Policy and Research, Weill Medical College of Cornell University.
-
+  

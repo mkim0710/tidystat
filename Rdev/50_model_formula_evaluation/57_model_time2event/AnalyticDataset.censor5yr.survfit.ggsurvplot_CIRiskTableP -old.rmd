@@ -3,7 +3,7 @@ title: "MHKim's R Notebook"
 output: html_notebook
     df_print: tibble
 ---
-
+  
 # _______________
 ```{r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE}
 # ##### Rstudio RMarkDown Shortcuts
@@ -24,7 +24,7 @@ output: html_notebook
 # \
 # *** Caution: \% \$ \# \* \
 ```
-
+  
 ```{r setup, eval=TRUE, include=FALSE}
 # str(knitr::opts_chunk$get())
 # cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "\n", sep="")
@@ -39,7 +39,7 @@ knitr::opts_chunk$set(
 ) 
 knitr::opts_knit$set(global.par = TRUE)
 ```
-
+  
 
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -47,7 +47,7 @@ if(!exists("env1", envir=.GlobalEnv))
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
-
+  
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
@@ -63,11 +63,11 @@ sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0
 #### env1\$f_df.t.tribble_construct() ====
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
+  
 
-
-
+  
 <font size="3">\% env1</font>\
-
+  
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -83,7 +83,7 @@ CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, 
 env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 ```
-
+  
 
 ###### env1\$info\$DocumentTitle1 ====
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
@@ -95,7 +95,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     sep="")
 ```
-
+  
 
 @ASROCKX300RYZEN
 List of 9
@@ -139,7 +139,7 @@ List of 9
   ..$ localization_codeset        : NULL
   ..$ localization_codepage       : int 65001
   ..$ localization_system.codepage: int 65001
-
+  
 
 @Posit Cloud
 List of 9
@@ -162,9 +162,9 @@ List of 9
   ..$ localization_codepage       : NULL
   ..$ localization_system.codepage: NULL
   
+  
 
-
-
+  
 ###### env1\$path ====
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 library(tidyverse);cat(" \n"); 
@@ -189,7 +189,7 @@ path4write = getwd()
 sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----
 ```
-
+  
 
 ##% env1$f_path.size_files() ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -198,22 +198,22 @@ options(width=120)
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env1)
-
+  
 # regex4filename = "\\.rds(\\.xz)?$"
 regex4filename = "\\.rds\\.xz$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
-
+  
 cat(strrep("~",80),"\n",sep=""); #----
 regex4filename = "\\.rds$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```
+  
 
-
-
+  
 # @@ START ------
-
+  
 ## \$ objectname = "tblID_gj3_jk" ====
 @ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -224,7 +224,7 @@ options(width=120)
 # env1$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 # system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
 # cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
-
+  
 # get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 # get(objectname) %>% {.$RN_INDI} |> n_distinct()
 # get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
@@ -233,9 +233,9 @@ options(width=120)
 # # get(objectname) |> select_if(is.numeric) |> summary() #-----
 # # get(objectname) |> select_if(is.logical) |> summary() #-----
 ```
+  
 
-
-
+  
 # \$ lung <- as_tibble(survival::lung) ======
 ## Step 1: Load the Required Libraries and Data
 ## Step 2: Exploratory Data Analysis
@@ -244,7 +244,7 @@ options(width=120)
 library(tidyverse)
 library(survival)
 library(survminer)
-
+  
 # # Load the lung dataset
 # # data("lung")
 # lung <- as_tibble(survival::lung)
@@ -252,9 +252,9 @@ library(survminer)
 as_tibble(survival::lung)
 summary(survival::lung)
 ```
+  
 
-
-
+  
 ## Step 3: Kaplan-Meier Survival Curve
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
 library(tidyverse)
@@ -265,9 +265,9 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = stat
            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
            , title = "Kaplan-Meier Survival Curve"
            , xlab = "Time in days", ylab = "Survival Probability")
-
+  
 ```
-
+  
 ## Step 4: Stratified Kaplan-Meier Survival Curve
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
 library(tidyverse)
@@ -278,52 +278,52 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = stat
            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
            , title = "Survival Curves Stratified by Sex"
            , xlab = "Time in days", ylab = "Survival Probability")
-
+  
 ```
-
+  
 ## Step 5: Cox Proportional Hazards Model
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Fit a Cox proportional hazards model
 cox_model <- coxph(surv_obj ~ sex + age + ph.ecog, data = survival::lung)
-
+  
 # Summary of the Cox model
 summary(cox_model)
-
+  
 ```
-
+  
 ## Step 6: Check Proportional Hazards Assumption
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Test for proportional hazards
 cox.zph(cox_model)
 ```
-
+  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.dev.r
-
+  
 ## \$ AnalyticDataset ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset = lung |> rename(event = status, Group = sex)
 AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
-
+  
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
-
+  
 # AnalyticDataset.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.survfit |> ggsurvplot(fun = "event")
 # AnalyticDataset.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
-
+  
 AnalyticDataset.survfit |> ggsurvplot  # default fun = "pct"?
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T)
 ```
+  
 
-
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
@@ -331,13 +331,13 @@ AnalyticDataset.coxph |> summary() #----
 AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ------------  
 AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
 ```
+  
 
-
-
+  
 ## \$ AnalyticDataset.censor1yr ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 value_for_censor_at_1yr = 365 * 1
 value_for_break.time.by = 30
 AnalyticDataset.censor1yr = AnalyticDataset |> mutate(
@@ -345,50 +345,50 @@ AnalyticDataset.censor1yr = AnalyticDataset |> mutate(
     , event.censor1yr = ifelse(time < value_for_censor_at_1yr, event, 0)
 )
 AnalyticDataset.censor1yr.survfit = survfit(Surv(time = time.censor1yr, event = event.censor1yr) ~ Group, data = AnalyticDataset.censor1yr)
-
+  
 # AnalyticDataset.censor1yr.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.censor1yr.survfit |> ggsurvplot(fun = "event")
 # AnalyticDataset.censor1yr.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
-
+  
 AnalyticDataset.censor1yr.survfit |> ggsurvplot  # default fun = "pct"?
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 # @@ START) Analysis ------
-
+  
 ## \$ DataSetName = "analyticDF_time2event" ====
 #### [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
@@ -411,7 +411,7 @@ AnalyticDataset = survival::lung |> mutate(event = as.logical(status-1), Group =
 # #   1      0  138
 # #   2     90    0
 AnalyticDataset |> dplyr::select(time, event, Group) |> summary()
-
+  
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # AnalyticDataset.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.survfit |> ggsurvplot(fun = "event")
@@ -431,9 +431,9 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
            , title = paste0("Survival Curves Stratified by ", varname4Group)
            , xlab = paste0("Time in ", time_scale), ylab = "Survival Probability")
-
+  
 ```
-
+  
 # @@ END ------------  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
@@ -445,7 +445,7 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ END ------------  
 ```
-
+  
 
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
@@ -460,13 +460,13 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
-
+  
 
 ```{r createBackup, eval=TRUE, include=FALSE}
 env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
-
+  
 
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -486,7 +486,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
-
+  
 
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -500,5 +500,5 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext,'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
 ```
-
+  
 
