@@ -46,12 +46,18 @@ geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/
 # fontsize: 12pt
 header-includes: 
   - \usepackage{fontspec}
-  - \usepackage{roboto}
+  # - \setmainfont{Roboto}
+  # - \setsansfont{Roboto}
+  # - \setmonofont{Inconsolata}
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
 # ?rmarkdown::html_document
 # https://ctan.org/pkg/cascadia-code  # caution: usepackage cascadia-code does not work in Rocker
+# setmainfont Roboto Serif does not work in Rocker
+# setsansfont Roboto works in Rocker
+# setmonofont Roboto Mono does not work in Rocker
+# setmonofont Inconsolata does not work in Rocker
 ---
 <!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
 <style type="text/css">
