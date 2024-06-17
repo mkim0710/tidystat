@@ -183,8 +183,12 @@ archive/
 *-MAGB760M13700KF*
 
 # Negation (Do Not Ignore, Always Track)
+!*@Rocker.html
+!*@Rocker.pdf
 !*@Rocker*[^.][^n][^b].html
 !*@Rocker*[^a][^n][^n][^o][^t][^a][^t][^e].pdf
+!*@Posit.Cloud.html
+!*@Posit.Cloud.pdf
 !*@Posit.Cloud*[^.][^n][^b].html
 !*@Posit.Cloud*[^a][^n][^n][^o][^t][^a][^t][^e].pdf
 
