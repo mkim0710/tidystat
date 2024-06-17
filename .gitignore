@@ -156,7 +156,6 @@ archive/
 *.rds
 # *.csv # -> use pre-commit hook to block commit based on the size limit
 
-
 # Executable files & Binary files
 *.exe
 *.dll
@@ -183,9 +182,9 @@ archive/
 *-Min-Hyung’s MacBook Pro*
 *-MAGB760M13700KF*
 
-# Negation
+# Negation (Do Not Ignore, Always Track)
 !*@Rocker*.html
-!*@Rocker*.pdf
+!*@Rocker*[^a][^n][^n][^o][^t][^a][^t][^e].pdf
 !*@Posit.Cloud*.html
-!*@Posit.Cloud*.pdf
+!*@Posit.Cloud*[^a][^n][^n][^o][^t][^a][^t][^e].pdf
 
