@@ -184,8 +184,8 @@ archive/
 *-MAGB760M13700KF*
 
 # Negation
-!*@Rocker.html
-!*@Rocker.pdf
-!*@Posit.Cloud.html
-!*@Posit.Cloud.pdf
+!*@Rocker*.html
+!*@Rocker*.pdf
+!*@Posit.Cloud*.html
+!*@Posit.Cloud*.pdf
 
