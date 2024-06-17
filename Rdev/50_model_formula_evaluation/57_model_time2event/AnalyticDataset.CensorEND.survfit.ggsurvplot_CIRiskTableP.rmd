@@ -3,7 +3,7 @@ title: "MHKim's R Notebook"
 output: html_notebook
     df_print: tibble
 ---
-
+  
 # _______________
 ```{r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE}
 # ##### Rstudio RMarkDown Shortcuts
@@ -24,7 +24,7 @@ output: html_notebook
 # \
 # *** Caution: \% \$ \# \* \
 ```
-
+  
 ```{r setup, eval=TRUE, include=FALSE}
 # str(knitr::opts_chunk$get())
 # cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "\n", sep="")
@@ -39,7 +39,7 @@ knitr::opts_chunk$set(
 ) 
 knitr::opts_knit$set(global.par = TRUE)
 ```
-
+  
 
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -47,7 +47,7 @@ if(!exists("env1", envir=.GlobalEnv))
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
-
+  
 
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
@@ -63,11 +63,11 @@ sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0
 #### env1\$f_df.t.tribble_construct() ====
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
+  
 
-
-
+  
 <font size="3">\% env1</font>\
-
+  
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
@@ -83,7 +83,7 @@ CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, 
 env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 ```
-
+  
 
 ###### env1\$info\$DocumentTitle1 ====
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
@@ -95,7 +95,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     sep="")
 ```
-
+  
 
 @ASROCKX300RYZEN
 List of 9
@@ -139,7 +139,7 @@ List of 9
   ..$ localization_codeset        : NULL
   ..$ localization_codepage       : int 65001
   ..$ localization_system.codepage: int 65001
-
+  
 
 @Posit Cloud
 List of 9
@@ -162,9 +162,9 @@ List of 9
   ..$ localization_codepage       : NULL
   ..$ localization_system.codepage: NULL
   
+  
 
-
-
+  
 ###### env1\$path ====
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 library(tidyverse);cat(" \n"); 
@@ -189,7 +189,7 @@ path4write = getwd()
 sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----
 ```
-
+  
 
 ##% env1$f_path.size_files() ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -198,18 +198,18 @@ options(width=120)
 # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
 # attach(env1)
-
+  
 # regex4filename = "\\.rds(\\.xz)?$"
 regex4filename = "\\.rds\\.xz$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
-
+  
 cat(strrep("~",80),"\n",sep=""); #----
 regex4filename = "\\.rds$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```
-
+  
 
 # @@ START) Baseline ------
 ## \$ objectname = "as1.na.Date.fct.select89" ====
@@ -222,7 +222,7 @@ filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds"))))
 env1$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
 cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
-
+  
 get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
@@ -231,7 +231,7 @@ cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep
 # get(objectname) |> select_if(is.numeric) |> summary() #-----
 # get(objectname) |> select_if(is.logical) |> summary() #-----
 ```
-
+  
 
 # @@ START) Outcome ------
 ## \$ objectname = "as1_7.na.Date.fct.cumulative_DM.list" ====
@@ -244,7 +244,7 @@ filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds"))))
 env1$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
 cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
-
+  
 get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
@@ -253,14 +253,14 @@ cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep
 # get(objectname) |> select_if(is.numeric) |> summary() #-----
 # get(objectname) |> select_if(is.logical) |> summary() #-----
 ```
+  
 
-
-
+  
 ##% as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
 as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
 ```
-
+  
 
 # \$ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 -----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -309,9 +309,9 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always")
 #               <NA>  7946     0     0  7946
 #               Sum   7946  2084     0 10030
 ```
+  
 
-
-
+  
 # \$ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -335,9 +335,9 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat(" > ",deparse(
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> summary()
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins()
 ```
+  
 
-
-
+  
 # \$ df_NewDMv3.NAtime =====
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
 df_NewDMv3.NAtime = as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> 
@@ -383,11 +383,11 @@ df_NewDMv3.NAtime |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.
 #  Max.   :7.000                   Max.   :1                  
 #  NA's   :7946                                                                              
 ```
+  
 
-
-
+  
 # \$ df_NewDMv3.CensorEND # @@ START) Analysis ------
-
+  
 ## \$ DataSetName = "analyticDF_time2event" ====
 #### [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
@@ -396,7 +396,7 @@ options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
 # suppressPackageStartupMessages(library(survminer))
-
+  
 ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
 # df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "event")
@@ -421,12 +421,12 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
            , xlim = c(1, value_for_Censor_at_END), ylim = c(0, 1)
            , title = paste0("Survival Curves Stratified by ", varname4Group)
            , xlab = paste0("Time scale: ", time_scale), ylab = "Survival Probability")
-
+  
 ```
-
+  
 
 #! Double-Check the event & time
-
+  
 # \$ df_NewDMv3.Time2Censor_NewDMv3 ====
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -443,33 +443,33 @@ df_NewDMv3.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% b
 all.equal(df_NewDMv3.Time2Censor_NewDMv3 |> dplyr::select(time, event), df_NewDMv3.CensorEND |> dplyr::select(time, event))
 table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = "always") %>% addmargins
 ```
-
-
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+  
 ```
+  
 
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+  
+```
+  
 # @@ START) Analysis ------
-
+  
 ## \$ DataSetName = "analyticDF_time2event" ====
 #### [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
@@ -553,9 +553,9 @@ options(width=120)
 #            , xlim = c(0, value_for_Censor_at_END), ylim = c(0, 1)
 #            , title = paste0("Survival Curves Stratified by ", varname4Group)
 #            , xlab = paste0("Time in ", time_scale), ylab = "Survival Probability")
-
+  
 ```
-
+  
 
 # @@ END ------------  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
@@ -568,13 +568,13 @@ options(width=120)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ END ------------  
 ```
-
+  
 
 ```{r createBackup, eval=TRUE, include=FALSE}
 env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
-
+  
 
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -594,7 +594,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
-
+  
 
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -608,7 +608,7 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext,'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
 ```
-
+  
 
 ## \$ objectname = "df_NewDMv3.NAtime200621" ====
 ###### @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
@@ -623,5 +623,5 @@ cat(" * To revert to the last commited file, run the following terminal command:
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
-
+  
 

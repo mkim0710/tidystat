@@ -3,7 +3,7 @@ title: "MHKim's R Notebook"
 output: html_notebook
     df_print: tibble
 ---
-
+  
 # _______________
 Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE
@@ -20,7 +20,7 @@ Go to previous chunk/title	Ctrl+PgUp	Command+PgUp
 Show/hide document outline	Ctrl+Shift+O	Command+Shift+O
 F7 spell-check your document. 
 Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS). 
-
+  
 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -97,7 +97,7 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> str(max.level = 2)
 #  $ NewDMv3_atWave6: logi [1:10030] FALSE FALSE FALSE FALSE FALSE FALSE ...
 #  $ NewDMv3_atWave7: logi [1:10030] FALSE FALSE FALSE FALSE FALSE FALSE ...
 ```
-
+  
 
 # \$ -dev as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -132,7 +132,7 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |>
 # Time2Event_NewDMv3
 #     1     2     3     4     5     6     7  <NA>   Sum 
 #  1185   138   154   136   186   146   139  7946 10030 
-
+  
 as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |> 
     transmute(Time2Event_NewDMv3 = case_when(
         NewDMv3_atWave1 == TRUE ~ 1,
@@ -156,7 +156,7 @@ as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei |>
 #         <NA>      0     0     0     0     0     0     0     0     0
 #         Sum    1185   138   154   136   186   146  8085     0 10030
 ```
-
+  
 
 # \$ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 -----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -200,5 +200,5 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always"
 #         <NA>      0     0     0     0     0     0     0     0     0
 #         Sum    1185   138   154   136   186   146  8085     0 10030
 ```
-
+  
 
