@@ -1,0 +1,514 @@
+---
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:  
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document: 
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+header-includes: 
+  - \usepackage{fontspec}
+  - \usepackage{roboto}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; }
+h1.title { font-size: 28px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells -F (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels -F (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# _______________
+```{r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE}
+# ##### Rstudio RMarkDown Shortcuts
+# https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE  
+# https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html  
+# Insert R chunk	Ctrl+Alt+I	Command+Option+I\
+# Preview HTML	Ctrl+Shift+K	Command+Shift+K\
+# Run all chunks above	Ctrl+Alt+P	Command+Option+P\
+# Run current chunk	Ctrl+Alt+C	Command+Option+C\
+# Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter\
+# Run next chunk	Ctrl+Alt+N	Command+Option+N\
+# Run all chunks	Ctrl+Alt+R	Command+Option+R\
+# Go to next chunk/title	Ctrl+PgDown	Command+PgDown\
+# Go to previous chunk/title	Ctrl+PgUp	Command+PgUp\
+# Show/hide document outline	Ctrl+Shift+O	Command+Shift+O\
+# F7 spell-check your document.\
+# Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).\
+# \
+# *** Caution: \% \$ \# \* \
+```
+
+
+```{r setup, eval=TRUE, include=FALSE}
+Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "\n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
+    tidy.opts=list(width.cutoff=120), tidy=TRUE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+```
+
+
+```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+## env1\$path ====
+if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
+env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
+## env1\$env.internal ====
+sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+#### env1\$f_df.t.tribble_construct() ====
+sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+```
+
+<font size="3">\% env1</font>\
+
+```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+if(!exists("env1", envir=.GlobalEnv)) 
+    assign("env1", new.env(), envir=.GlobalEnv)
+if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
+#### env1\$info\$get_system_info() ====
+sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+env1$info$info_system_info = env1$info$get_system_info()
+# str(env1$info$info_system_info)
+CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
+# str(env1$info$info_software_versions)
+```
+env1\$info\$info_system_info\$machine_nodename = "15687d125320"
+env1\$info\$info_system_info\$Sys.getlocale\$LC_COLLATE = "en_US.utf8"
+
+
+#@@ START ------------  
+## @ whoami ------------  
+Cf) Ctrl+Alt+Enter @ Rstudio
+
+## whoami  
+```{r}
+'whoami' |> system(intern = TRUE) |> cat("\n")
+```
+rstudio 
+
+
+## echo $PATH  
+```{r}
+'echo $PATH' |> system(intern = TRUE) |> cat("\n")
+```
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback 
+
+
+##@ find -type d texlive  ------------  
+## find / -type d -iname texlive  
+```{r}
+'find / -type d -iname texlive' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/local/texlive",
+  "/usr/local/texlive/tlpkg/TeXLive",
+  "/usr/local/texlive/texmf-dist/tex/context/texlive",
+  "/usr/local/texlive/texmf-dist/scripts/texlive",
+  "/opt/texlive")
+
+
+## find / -type d -iname texmf-dist 
+```{r}
+'find / -type d -iname texmf-dist' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/local/texlive/texmf-dist")
+
+
+##@ find -type d packages  ------------  
+### find /usr/share/texlive -type d -iname "fontspec"  
+### find /usr/local/texlive -type d -iname "fontspec"  
+```{r}
+'find /usr/share/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/share/texlive/texmf-dist/tex/latex/fontspec")
+c("/usr/local/texlive/texmf-dist/tex/latex/fontspec")
+
+
+## find /usr/share/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf  
+## find /usr/local/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf  
+```{r}
+'find /usr/share/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf "%f\n"' |> system(intern = TRUE) |> sort() |> dput()
+'find /usr/local/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf "%f\n"' |> system(intern = TRUE) |> sort() |> dput()
+```
+c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base", 
+"bookmark", "cascadia-code", "cjk", "cjk-ko", "epstopdf-pkg", 
+"etoolbox", "euenc", "fancyvrb", "fira", "firstaid", "fonts-tlwg", 
+"fontspec", "framed", "geometry", "graphics", "graphics-cfg", 
+"graphics-def", "hycolor", "hyperref", "inconsolata", "koma-script", 
+"kvoptions", "kvsetkeys", "l3backend", "l3kernel", "l3packages", 
+"latex", "latexconfig", "letltxmacro", "listings", "lm", "mdwtools", 
+"parskip", "refcount", "rerunfilecheck", "roboto", "stmaryrd", 
+"tex-ini-files", "tikzfill", "tipa", "tools", "unicode-math", 
+"url", "xcolor", "xkeyval", "xpatch", "zapfding")
+
+### find /usr/share/texlive -type d -iname "roboto"  
+### find /usr/local/texlive -type d -iname "roboto"  
+```{r}
+'find /usr/share/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+
+##@ find -type d fonts  ------------  
+## find /usr/share/texlive -type d -iname "font[s ]"  
+## find /usr/local/texlive -type d -iname "font[s ]"  
+```{r}
+'find /usr/share/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/local/texlive/texmf-dist/tex/context/fonts",
+  "/usr/local/texlive/texmf-dist/metapost/context/fonts",
+  "/usr/local/texlive/texmf-dist/fonts")
+
+
+## ls -F /usr/share/texlive/texmf-dist/fonts  
+## ls -F /usr/local/texlive/texmf-dist/fonts  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("afm/",
+  "cid/",
+  "cmap/",
+  "enc/",
+  "map/",
+  "misc/",
+  "opentype/",
+  "pk/",
+  "source/",
+  "tfm/",
+  "type1/",
+  "vf/")
+
+
+### ls -F /usr/share/texlive/texmf-dist/fonts/opentype  
+### ls -F /usr/local/texlive/texmf-dist/fonts/opentype  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("google/",
+  "public/")
+
+
+#### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public  
+#### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("cascadia-code/",
+  "context-companion-fonts/",
+  "fira/",
+  "fonts-tlwg/",
+  "inconsolata/",
+  "lm/",
+  "lm-math/")
+
+
+#### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google  
+#### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("roboto/")
+
+##### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google/roboto  
+##### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google/roboto  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("Roboto-BlackItalic.otf",
+  "Roboto-Black.otf",
+  "Roboto-BoldItalic.otf",
+  "Roboto-Bold.otf",
+  "RobotoCondensed-BoldItalic.otf",
+  "RobotoCondensed-Bold.otf",
+  "RobotoCondensed-Italic.otf",
+  "RobotoCondensed-LightItalic.otf",
+  "RobotoCondensed-Light.otf",
+  "RobotoCondensed-Regular.otf",
+  "Roboto-Italic.otf",
+  "Roboto-LightItalic.otf",
+  "Roboto-Light.otf",
+  "Roboto-MediumItalic.otf",
+  "Roboto-Medium.otf",
+  "RobotoMono-BoldItalic.otf",
+  "RobotoMono-Bold.otf",
+  "RobotoMono-Italic.otf",
+  "RobotoMono-LightItalic.otf",
+  "RobotoMono-Light.otf",
+  "RobotoMono-MediumItalic.otf",
+  "RobotoMono-Medium.otf",
+  "RobotoMono-Regular.otf",
+  "RobotoMono-ThinItalic.otf",
+  "RobotoMono-Thin.otf",
+  "Roboto-Regular.otf",
+  "RobotoSerif-BlackItalic.otf",
+  "RobotoSerif-Black.otf",
+  "RobotoSerif-BoldItalic.otf",
+  "RobotoSerif-Bold.otf",
+  "RobotoSerif_Condensed-BlackItalic.otf",
+  "RobotoSerif_Condensed-Black.otf",
+  "RobotoSerif_Condensed-BoldItalic.otf",
+  "RobotoSerif_Condensed-Bold.otf",
+  "RobotoSerif_Condensed-ExtraBoldItalic.otf",
+  "RobotoSerif_Condensed-ExtraBold.otf",
+  "RobotoSerif_Condensed-ExtraLightItalic.otf",
+  "RobotoSerif_Condensed-ExtraLight.otf",
+  "RobotoSerif_Condensed-Italic.otf",
+  "RobotoSerif_Condensed-LightItalic.otf",
+  "RobotoSerif_Condensed-Light.otf",
+  "RobotoSerif_Condensed-MediumItalic.otf",
+  "RobotoSerif_Condensed-Medium.otf",
+  "RobotoSerif_Condensed-Regular.otf",
+  "RobotoSerif_Condensed-SemiBoldItalic.otf",
+  "RobotoSerif_Condensed-SemiBold.otf",
+  "RobotoSerif_Condensed-ThinItalic.otf",
+  "RobotoSerif_Condensed-Thin.otf",
+  "RobotoSerif-ExtraBoldItalic.otf",
+  "RobotoSerif-ExtraBold.otf",
+  "RobotoSerif-ExtraLightItalic.otf",
+  "RobotoSerif-ExtraLight.otf",
+  "RobotoSerif-Italic.otf",
+  "RobotoSerif-LightItalic.otf",
+  "RobotoSerif-Light.otf",
+  "RobotoSerif-MediumItalic.otf",
+  "RobotoSerif-Medium.otf",
+  "RobotoSerif-Regular.otf",
+  "RobotoSerif-SemiBoldItalic.otf",
+  "RobotoSerif-SemiBold.otf",
+  "RobotoSerif-ThinItalic.otf",
+  "RobotoSerif-Thin.otf",
+  "RobotoSlab-Bold.otf",
+  "RobotoSlab-Light.otf",
+  "RobotoSlab-Regular.otf",
+  "RobotoSlab-Thin.otf",
+  "Roboto-ThinItalic.otf",
+  "Roboto-Thin.otf")
+
+
+### ls -F /usr/share/texlive/texmf-dist/fonts/truetype  
+### ls -F /usr/local/texlive/texmf-dist/fonts/truetype  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("")
+
+
+#### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public  
+#### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+
+
+
+#### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google  
+#### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+
+
+##### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google/roboto  
+##### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google/roboto  
+```{r}
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+
+
+##@ find -type d/f fontname  ------------  
+### find /usr/share/texlive -type d -iname "*roboto*"  
+### find /usr/local/texlive -type d -iname "*roboto*"  
+```{r}
+'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/map/dvips/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/type1/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/vf/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto")
+
+
+#### find /usr/share/texlive -type f -iname "*roboto*"  
+#### find /usr/local/texlive -type f -iname "*roboto*"  
+```{r}
+'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/map/dvips/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/type1/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/vf/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto",
+  "/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto")
+
+
+##### find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"  
+##### find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"  
+```{r}
+'find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Light.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Medium.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-MediumItalic.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Bold.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-ThinItalic.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Regular.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-BoldItalic.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Thin.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Italic.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-LightItalic.otf")
+
+
+### find /usr/share/texlive -type d -iname "*inconsolata*"  
+### find /usr/local/texlive -type d -iname "*inconsolata*"  
+```{r}
+'find /usr/share/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+
+
+#### find /usr/share/texlive -type f -iname "*inconsolata*.?tf"  
+#### find /usr/local/texlive -type f -iname "*inconsolata*.?tf"  
+```{r}
+'find /usr/share/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+```
+c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Bold.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Bold.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf",
+  "/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf")
+
+
+
+
+
+
+
+
+
+
+
+
+#@@ END ------------  
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ END ------------  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+```
+
+
+
