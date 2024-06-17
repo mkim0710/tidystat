@@ -290,7 +290,7 @@ options(width=120)
 
 
 ```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
-# @@ update default notebook.Rmd -----
+# @@ update default notebook.Rmd ------------  
 template.filename.ext = "templates-00env1.minimum.Rmd"
 CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename(CurrentSource.path.filename.ext) == template.filename.ext) {
     if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
@@ -317,7 +317,7 @@ CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(ba
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ------------  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))

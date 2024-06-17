@@ -423,7 +423,7 @@ detach("package:maps", unload=TRUE)
 
 ```{r}
 
-# @ CMS_SynPUF_CDMv5_YZ.json -----
+# @ CMS_SynPUF_CDMv5_YZ.json ------------  
 
 library(jsonlite)
 CMS_SynPUF_CDMv5_YZ.json = fromJSON(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/CMS_SynPUF_CDMv5_YZ.json"))

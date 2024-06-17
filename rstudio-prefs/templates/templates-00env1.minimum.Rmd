@@ -275,7 +275,7 @@ path4write = env1$path$path4write
 # @@ CODEBOOK ------------
 
 
-#@@ START) source -----
+#@@ START) source ------------  
 ### \$ subpath, sourcename = "default.template" ======
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -296,7 +296,7 @@ options(width=120)
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # suppressPackageStartupMessages(library(tidyverse))
-# #@@ START) data -----
+# #@@ START) data ------------  
 # #$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ====
 # # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
@@ -362,7 +362,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
 ```
 
 ## ------ < Key Variables Check > ------
-### \$ varname4ID  -----
+### \$ varname4ID  ------------  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
@@ -383,8 +383,8 @@ vecCompositeKey |> n_distinct()
 
 
 
-#### \$ varname4outcome -----
-#### \$ varname4time -----
+#### \$ varname4outcome ------------  
+#### \$ varname4time ------------  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 varname4outcome = "event"
@@ -398,9 +398,9 @@ get(DataSetName)[c(varname4outcome, varname4time)] |>
 ```
 
 
-##### \$ varname4measures -----
-##### \$ varname4labs -----
-##### \$ varname4lifestyle -----
+##### \$ varname4measures ------------  
+##### \$ varname4labs ------------  
+##### \$ varname4lifestyle ------------  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -509,7 +509,7 @@ options(width=120)
 
 
 ```{r updateTemplateNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
-# @@ update tempate (notebook.Rmd) -----
+# @@ update tempate (notebook.Rmd) ------------  
 env1$path$RTemplate.filename.ext = "notebook.Rmd"
 env1$path$MyTemplate.filename.ext = "templates-00env1.minimum.Rmd"
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", ""); 
@@ -542,7 +542,7 @@ if (.Platform$OS.type == "windows") {
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ------------  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
