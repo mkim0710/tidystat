@@ -181,7 +181,7 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-# @ end ----
+# @ end ------------  
 
 
 ```
@@ -191,7 +191,7 @@ options(width=120)
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-# @ end ----
+# @ end ------------  
 
 
 ```

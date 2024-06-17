@@ -238,7 +238,7 @@ options(width=120)
 # # if(subpath!="") utils::browseURL(normalizePath(subpath))
 # sourcename = "default.template"
 # subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
-# # % (source( file.path(env1$path$source_base,subpath.filename.source.r) )) ----
+# # % (source( file.path(env1$path$source_base,subpath.filename.source.r) )) ------------  
 # (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
 
