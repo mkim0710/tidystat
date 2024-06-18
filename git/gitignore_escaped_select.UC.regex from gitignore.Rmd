@@ -23,7 +23,7 @@ output: html_notebook
 # *** Caution: \% \$ \# \* \
 ```
   
-
+  
 ```{r setup, eval=TRUE, include=FALSE}
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -73,12 +73,12 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 # list(`Hello, World!` = c(",", " ", "!"), `R4 & Python?` = c(" ", "&", " ", "?"), `123% Ready!` = c("%", " ", "!"), `12345` = character(0))
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore = read_lines(".gitignore") =====
+# @ gitignore = read_lines(".gitignore") ============  
 # file.edit(".gitignore")
 gitignore = read_lines(".gitignore", skip_empty_rows = T)
 # gitignore = gitignore %>% c(".*")
@@ -92,7 +92,7 @@ c(".Rproj.user", ".Rhistory", ".RData", ".Ruserdata", "*.zip",
 "*.rtf")
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -100,12 +100,12 @@ gitignore %>% f_vec.extract_non_alphanumeric_list |> unlist() |> unique() |> dpu
 c(".", "*", ")", "-", " ")
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped =====
+# @ gitignore_escaped ============  
 gitignore_escaped = gitignore[gitignore != ""] unique(_replace_all("\\.", "\\\\.") %>% # Caution: dot should be handled before asterisk~!
     str_replace_all("\\*", "\\.\\*") unique(_replace_all("\\)", "\\\\)") unique(_replace_all("\\-", "\\\\-") %>% 
     # str_replace_all("\\ ", "\\\\ ") %>% # spaces  are generally treated as literal spaces in regular expressions 
@@ -123,15 +123,15 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 )
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped_select =====
+# @ gitignore_escaped_select ============  
 gitignore_escaped |> str_which("doc|xls|ppt")
 gitignore_escaped_select = gitignore_escaped %>% {.[-str_which(., "doc|xls|ppt")]}
-gitignore_escaped_select |> dput() #----
+gitignore_escaped_select |> dput() #------------  
 c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata", 
 ".*\\.zip", ".*\\.7z", ".*\\.r\\.gz", ".*\\.r\\.xz", ".*\\.rmd\\.gz", 
 ".*\\.rmd\\.xz", ".*\\.Rproj", "\\.gitignore", "\\.git", "\\.github", 
@@ -141,7 +141,7 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ".*\\-old\\..*", ".*\\-log.*\\..*", ".*\\.rtf")
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # for (i_regex in unique(gitignore_escaped_select)) {
@@ -149,14 +149,14 @@ options(width=120)
 # }
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped_select.UC =====
+# @ gitignore_escaped_select.UC ============  
 gitignore_escaped_select.UC = gitignore_escaped_select %>% toupper |> unique()
-gitignore_escaped_select.UC |> dput() #----
+gitignore_escaped_select.UC |> dput() #------------  
 c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA", 
 ".*\\.ZIP", ".*\\.7Z", ".*\\.R\\.GZ", ".*\\.R\\.XZ", ".*\\.RMD\\.GZ", 
 ".*\\.RMD\\.XZ", ".*\\.RPROJ", "\\.GITIGNORE", "\\.GIT", "\\.GITHUB", 
@@ -166,34 +166,34 @@ c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA",
 ".*\\-OLD\\..*", ".*\\-LOG.*\\..*", ".*\\.RTF")
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>% 
     {paste0("(", ., ")")} %>% 
-    paste(collapse = "|") %>% {paste0("^", ., "$")} |> dput() #----
+    paste(collapse = "|") %>% {paste0("^", ., "$")} |> dput() #------------  
 "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|(.*\\.7Z)|(.*\\.R\\.GZ)|(.*\\.R\\.XZ)|(.*\\.RMD\\.GZ)|(.*\\.RMD\\.XZ)|(.*\\.RPROJ)|(\\.GITIGNORE)|(\\.GIT)|(\\.GITHUB)|(MH\\).*\\.R)|(.*\\.LNK)|(.*ALIAS)|(.*\\- VOID.*\\..*)|(.*\\-VOID.*\\..*)|(.*\\- INFO\\..*)|(.*\\-INFO\\..*)|(.*\\-DEV.*\\..*)|(.*DEBUG.*\\..*)|(\\-TMP)|(.*\\- TMP.*\\..*)|(.*\\-TMP.*\\..*)|(.*\\- OLD\\..*)|(.*\\-OLD\\..*)|(.*\\-LOG.*\\..*)|(.*\\.RTF)$"
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ end ------------  
   
-
+  
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ end ------------  
   
-
+  
 ```
   
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.

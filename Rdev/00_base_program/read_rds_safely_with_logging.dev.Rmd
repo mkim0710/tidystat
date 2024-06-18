@@ -125,7 +125,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 # *** Caution: \% \$ \# \* \
 ```
   
-
+  
 ```{r setup, eval=TRUE, include=FALSE}
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -147,7 +147,7 @@ knitr::opts_chunk$set(
 knitr::opts_knit$set(global.par = TRUE)
 ```
   
-
+  
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
@@ -155,19 +155,19 @@ if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
   
-
+  
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
-## env1\$path ====
+## env1\$path ============  
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
-## env1\$env.internal ====
+## env1\$env.internal ============  
 sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-#### env1\$f_df.t.tribble_construct() ====
+#### env1\$f_df.t.tribble_construct() ============  
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
   
@@ -178,7 +178,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-#### env1\$info\$get_system_info() ====
+#### env1\$info\$get_system_info() ============  
 sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
 # str(env1$info$info_system_info)
@@ -189,8 +189,8 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 # str(env1$info$info_software_versions)
 ```
   
-
-###### env1\$info\$DocumentTitle1 ====
+  
+###### env1\$info\$DocumentTitle1 ============  
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
 env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
@@ -201,10 +201,10 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     sep="")
 ```
   
-
-###### env1\$path ====
+  
+###### env1\$path ============  
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
-# cat(" getwd() == "); dput(getwd()) #----
+# cat(" getwd() == "); dput(getwd()) #------------  
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -224,13 +224,13 @@ path4read  = env1$path$path4read
 path4write = env1$path$path4write
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-# if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----
+# if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #------------  
 ```
   
-
   
-#@@ START) source -----
-### \$ subpath, sourcename = "default.template" ======
+  
+#@@ START) source ------------  
+### \$ subpath, sourcename = "default.template" ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -242,8 +242,8 @@ options(width=120)
 # (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
   
-
-# @@ START) log_file_availability ------------
+  
+# @@ START) log_file_availability ------------  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -260,7 +260,7 @@ log_file_availability <- function(path) {
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 path4read = "data"
@@ -275,7 +275,7 @@ log_file_availability(path.filename.ext)
 try(assign( "DataSet", read_rds(path.filename.ext) ))
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -293,7 +293,7 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -311,7 +311,7 @@ try(assign( objectname, read_rds(path.filename.ext) ))
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -335,8 +335,8 @@ options(width=120)
   
 ```
   
-
-# @@ START) read_rds_safely_with_logging ------------
+  
+# @@ START) read_rds_safely_with_logging ------------  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -357,7 +357,7 @@ read_rds_safely_with_logging <- function(path, max_attempts = 9) {
 }
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -367,16 +367,16 @@ paste0(path4read,"/",objectname,".rds")
 file.exists(paste0(path4read,"/",objectname,".rds"))
 assign( objectname, read_rds_safely_with_logging(paste0(path4read,"/",objectname,".rds")) )
   
-
+  
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 # @@ END ------------  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
@@ -389,11 +389,11 @@ options(width=120)
 # @@ END ------------  
 ```
   
-
+  
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ------------  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
@@ -404,13 +404,13 @@ options(width=120)
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
   
-
+  
 ```{r createBackup, eval=TRUE, include=FALSE}
 env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
   
-
+  
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf")
@@ -430,7 +430,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
   
-
+  
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
@@ -444,5 +444,5 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
 ```
   
-
+  
   
