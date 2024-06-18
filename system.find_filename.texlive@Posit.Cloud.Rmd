@@ -4,25 +4,6 @@ title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
-  pdf_document: 
-    toc: yes
-    toc_depth: 6
-    fig_width: 10
-    fig_height: 6
-    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
-    keep_tex: true
-  html_notebook:  
-    toc: yes
-    toc_depth: 6
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-    number_sections: false
-    code_folding: none
-    df_print: tibble
-    highlight: textmate
-    fig_width: 10
-    fig_height: 6
   html_document:
     toc: yes
     toc_depth: 6
@@ -35,6 +16,25 @@ output:
     highlight: textmate
     fig_width: 10
     fig_height: 6
+  html_notebook:  
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document: 
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
   word_document:
     toc: yes
     toc_depth: 6
@@ -46,18 +46,11 @@ geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/
 # fontsize: 12pt
 header-includes: 
   - \usepackage{fontspec}
-  # - \setmainfont{Roboto}
-  # - \setsansfont{Roboto}
-  # - \setmonofont{Inconsolata}
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
 # ?rmarkdown::html_document
 # https://ctan.org/pkg/cascadia-code  # caution: usepackage cascadia-code does not work in Rocker
-# setmainfont Roboto Serif does not work in Rocker
-# setsansfont Roboto works in Rocker
-# setmonofont Roboto Mono does not work in Rocker
-# setmonofont Inconsolata does not work in Rocker
 ---
 <!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
 <style type="text/css">
@@ -196,6 +189,13 @@ r2179052@SharedWorkspace@MHKim710@Posit.Cloud
 'echo $PATH' |> system(intern = TRUE) |> cat("\n")
 ```
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback 
+  
+  
+## @ fc-list ------------  
+```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# On Unix-based systems, you can use the fc-list command to list available fonts. This command shows both system fonts and those managed by fontconfig (including some TeX Live-installed fonts).
+'fc-list : family' |> system(intern = TRUE) |> sort() |> env1$f_vec.dput_line_by_line()
+```
   
   
 ##@ find -type d texlive  ------------  
