@@ -95,7 +95,6 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{fontspec}
-\usepackage{roboto}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -110,7 +109,7 @@
 
 \title{\href{mailto:system.find_filename.texlive@Posit.Cloud.Rmd}{\nolinkurl{system.find\_filename.texlive@Posit.Cloud.Rmd}}}
 \author{MHKim}
-\date{June 17, 2024}
+\date{June 18, 2024}
 
 \begin{document}
 \maketitle
@@ -160,11 +159,427 @@ Cf) Ctrl+Alt+Enter @ Rstudio
 \StringTok{"echo $PATH"} \SpecialCharTok{|\textgreater{}}
     \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{games}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{games}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{snap}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\DecValTok{4}\NormalTok{.}\FloatTok{3.3}\SpecialCharTok{/}\NormalTok{lib}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{r149319}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{cloud}\SpecialCharTok{/}\NormalTok{python}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{quarto}\SpecialCharTok{/}\DecValTok{1}\NormalTok{.}\FloatTok{4.550}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{lib}\SpecialCharTok{/}\NormalTok{rstudio}\SpecialCharTok{{-}}\NormalTok{server}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{postback}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{lib}\SpecialCharTok{/}\NormalTok{rstudio}\SpecialCharTok{{-}}\NormalTok{server}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{postback }
+\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{sbin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{games}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{local}\SpecialCharTok{/}\NormalTok{games}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{snap}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\DecValTok{4}\NormalTok{.}\FloatTok{4.0}\SpecialCharTok{/}\NormalTok{lib}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{r149319}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{cloud}\SpecialCharTok{/}\NormalTok{python}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{quarto}\SpecialCharTok{/}\DecValTok{1}\NormalTok{.}\FloatTok{4.550}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{lib}\SpecialCharTok{/}\NormalTok{rstudio}\SpecialCharTok{{-}}\NormalTok{server}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{postback }
 \end{Highlighting}
 \end{Shaded}
 
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback
+
+\hypertarget{fc-list}{%
+\subsection{@ fc-list ------------}\label{fc-list}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# On Unix{-}based systems, you can use the fc{-}list command to list available fonts. This command shows both system fonts}
+\CommentTok{\# and those managed by fontconfig (including some TeX Live{-}installed fonts).}
+\StringTok{"fc{-}list : family"} \SpecialCharTok{|\textgreater{}}
+    \FunctionTok{system}\NormalTok{(}\AttributeTok{intern =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sort}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    env1}\SpecialCharTok{$}\FunctionTok{f\_vec.dput\_line\_by\_line}\NormalTok{()}
+\FunctionTok{c}\NormalTok{(}\StringTok{"Accanthis ADF Std"}\NormalTok{,}
+  \StringTok{"Accanthis ADF Std No2"}\NormalTok{,}
+  \StringTok{"Accanthis ADF Std No3"}\NormalTok{,}
+  \StringTok{"Amiri"}\NormalTok{,}
+  \StringTok{"Amiri Quran"}\NormalTok{,}
+  \StringTok{"Amiri Quran Colored"}\NormalTok{,}
+  \StringTok{"AR PL KaitiM Big5,文鼎ＰＬ中楷"}\NormalTok{,}
+  \StringTok{"AR PL KaitiM GB,文鼎ＰＬ简中楷"}\NormalTok{,}
+  \StringTok{"AR PL Mingti2L Big5,文鼎ＰＬ細上海宋"}\NormalTok{,}
+  \StringTok{"AR PL SungtiL GB,文鼎ＰＬ简报宋"}\NormalTok{,}
+  \StringTok{"Arimo"}\NormalTok{,}
+  \StringTok{"Asana Math"}\NormalTok{,}
+  \StringTok{"Baekmuk Batang,백묵 바탕"}\NormalTok{,}
+  \StringTok{"Baekmuk Dotum,백묵 돋움"}\NormalTok{,}
+  \StringTok{"Baekmuk Gulim,백묵 굴림"}\NormalTok{,}
+  \StringTok{"Baekmuk Headline,백묵 헤드라인"}\NormalTok{,}
+  \StringTok{"Berenis ADF Pro"}\NormalTok{,}
+  \StringTok{"Berenis ADF Pro Math"}\NormalTok{,}
+  \StringTok{"Bitstream Charter"}\NormalTok{,}
+  \StringTok{"C059"}\NormalTok{,}
+  \StringTok{"Cabin"}\NormalTok{,}
+  \StringTok{"Caladea"}\NormalTok{,}
+  \StringTok{"Cantarell"}\NormalTok{,}
+  \StringTok{"Cantarell,Cantarell Extra Bold"}\NormalTok{,}
+  \StringTok{"Cantarell,Cantarell Light"}\NormalTok{,}
+  \StringTok{"Cantarell,Cantarell Thin"}\NormalTok{,}
+  \StringTok{"Carlito"}\NormalTok{,}
+  \StringTok{"Century Schoolbook L"}\NormalTok{,}
+  \StringTok{"Comfortaa"}\NormalTok{,}
+  \StringTok{"Comfortaa,Comfortaa Light"}\NormalTok{,}
+  \StringTok{"Courier"}\NormalTok{,}
+  \StringTok{"Cousine"}\NormalTok{,}
+  \StringTok{"D050000L"}\NormalTok{,}
+  \StringTok{"DejaVu Math TeX Gyre"}\NormalTok{,}
+  \StringTok{"DejaVu Sans"}\NormalTok{,}
+  \StringTok{"DejaVu Sans Mono"}\NormalTok{,}
+  \StringTok{"DejaVu Sans,DejaVu Sans Condensed"}\NormalTok{,}
+  \StringTok{"DejaVu Sans,DejaVu Sans Light"}\NormalTok{,}
+  \StringTok{"DejaVu Serif"}\NormalTok{,}
+  \StringTok{"DejaVu Serif,DejaVu Serif Condensed"}\NormalTok{,}
+  \StringTok{"Dingbats"}\NormalTok{,}
+  \StringTok{"Droid Sans Fallback"}\NormalTok{,}
+  \StringTok{"EB Garamond 12 All SC"}\NormalTok{,}
+  \StringTok{"EB Garamond Initials"}\NormalTok{,}
+  \StringTok{"EB Garamond Initials Fill1"}\NormalTok{,}
+  \StringTok{"EB Garamond Initials Fill2"}\NormalTok{,}
+  \StringTok{"EB Garamond SC,EB Garamond SC 08"}\NormalTok{,}
+  \StringTok{"EB Garamond SC,EB Garamond SC 12"}\NormalTok{,}
+  \StringTok{"EB Garamond,EB Garamond 08"}\NormalTok{,}
+  \StringTok{"EB Garamond,EB Garamond 12"}\NormalTok{,}
+  \StringTok{"FontAwesome"}\NormalTok{,}
+  \StringTok{"FoulisGreek"}\NormalTok{,}
+  \StringTok{"FreeMono"}\NormalTok{,}
+  \StringTok{"FreeSans"}\NormalTok{,}
+  \StringTok{"FreeSerif"}\NormalTok{,}
+  \StringTok{"Garuda"}\NormalTok{,}
+  \StringTok{"Gentium"}\NormalTok{,}
+  \StringTok{"Gentium Basic"}\NormalTok{,}
+  \StringTok{"Gentium Book Basic"}\NormalTok{,}
+  \StringTok{"Gentium Plus"}\NormalTok{,}
+  \StringTok{"Gentium Plus Compact"}\NormalTok{,}
+  \StringTok{"GentiumAlt"}\NormalTok{,}
+  \StringTok{"GFS Artemisia"}\NormalTok{,}
+  \StringTok{"GFS Artemisia,GFS Didot"}\NormalTok{,}
+  \StringTok{"GFS Baskerville"}\NormalTok{,}
+  \StringTok{"GFS Complutum"}\NormalTok{,}
+  \StringTok{"GFS Didot"}\NormalTok{,}
+  \StringTok{"GFS Didot,GFS Didot Rg"}\NormalTok{,}
+  \StringTok{"GFS Neohellenic,GFS Neohellenic Rg"}\NormalTok{,}
+  \StringTok{"GFS Olga"}\NormalTok{,}
+  \StringTok{"GFS Porson"}\NormalTok{,}
+  \StringTok{"GFS Solomos"}\NormalTok{,}
+  \StringTok{"Gillius ADF"}\NormalTok{,}
+  \StringTok{"Gillius ADF No2"}\NormalTok{,}
+  \StringTok{"Gillius ADF No2,Gillius ADF No2 Cond"}\NormalTok{,}
+  \StringTok{"Gillius ADF,Gillius ADF Cond"}\NormalTok{,}
+  \StringTok{"Go"}\NormalTok{,}
+  \StringTok{"Go Medium"}\NormalTok{,}
+  \StringTok{"Go Mono"}\NormalTok{,}
+  \StringTok{"Go Smallcaps"}\NormalTok{,}
+  \StringTok{"IPAexGothic,IPAexゴシック"}\NormalTok{,}
+  \StringTok{"IPAexMincho,IPAex明朝"}\NormalTok{,}
+  \StringTok{"IPAGothic,IPAゴシック"}\NormalTok{,}
+  \StringTok{"IPAMincho,IPA明朝"}\NormalTok{,}
+  \StringTok{"IPAPGothic,IPA Pゴシック"}\NormalTok{,}
+  \StringTok{"IPAPMincho,IPA P明朝"}\NormalTok{,}
+  \StringTok{"Junicode"}\NormalTok{,}
+  \StringTok{"Kinnari"}\NormalTok{,}
+  \StringTok{"Laksaman"}\NormalTok{,}
+  \StringTok{"Latin Modern Math"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono Caps,LM Mono Caps 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono Light Cond,LM Mono Light Cond 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono Light,LM Mono Light 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono Prop Light,LM Mono Prop Light 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono Prop,LM Mono Prop 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono Slanted,LM Mono Slanted 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono,LM Mono 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono,LM Mono 12"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono,LM Mono 8"}\NormalTok{,}
+  \StringTok{"Latin Modern Mono,LM Mono 9"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Caps,LM Roman Caps 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Demi,LM Roman Demi 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Dunhill,LM Roman Dunhill 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Slanted,LM Roman Slanted 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Slanted,LM Roman Slanted 12"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Slanted,LM Roman Slanted 17"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Slanted,LM Roman Slanted 8"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Slanted,LM Roman Slanted 9"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman Unslanted,LM Roman Unslanted 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 12"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 17"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 5"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 6"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 7"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 8"}\NormalTok{,}
+  \StringTok{"Latin Modern Roman,LM Roman 9"}\NormalTok{,}
+  \StringTok{"Latin Modern Sans Demi Cond,LM Sans Demi Cond 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Sans Quotation,LM Sans Quot 8"}\NormalTok{,}
+  \StringTok{"Latin Modern Sans,LM Sans 10"}\NormalTok{,}
+  \StringTok{"Latin Modern Sans,LM Sans 12"}\NormalTok{,}
+  \StringTok{"Latin Modern Sans,LM Sans 17"}\NormalTok{,}
+  \StringTok{"Latin Modern Sans,LM Sans 8"}\NormalTok{,}
+  \StringTok{"Latin Modern Sans,LM Sans 9"}\NormalTok{,}
+  \StringTok{"Lato"}\NormalTok{,}
+  \StringTok{"Lato,Lato Black"}\NormalTok{,}
+  \StringTok{"Lato,Lato Hairline"}\NormalTok{,}
+  \StringTok{"Lato,Lato Heavy"}\NormalTok{,}
+  \StringTok{"Lato,Lato Light"}\NormalTok{,}
+  \StringTok{"Lato,Lato Medium"}\NormalTok{,}
+  \StringTok{"Lato,Lato Semibold"}\NormalTok{,}
+  \StringTok{"Lato,Lato Thin"}\NormalTok{,}
+  \StringTok{"Liberation Mono"}\NormalTok{,}
+  \StringTok{"Liberation Sans"}\NormalTok{,}
+  \StringTok{"Liberation Sans Narrow"}\NormalTok{,}
+  \StringTok{"Liberation Serif"}\NormalTok{,}
+  \StringTok{"Linux Biolinum Keyboard O"}\NormalTok{,}
+  \StringTok{"Linux Biolinum O"}\NormalTok{,}
+  \StringTok{"Linux Libertine Display O"}\NormalTok{,}
+  \StringTok{"Linux Libertine Initials O"}\NormalTok{,}
+  \StringTok{"Linux Libertine Mono O"}\NormalTok{,}
+  \StringTok{"Linux Libertine O"}\NormalTok{,}
+  \StringTok{"Lobster Two"}\NormalTok{,}
+  \StringTok{"Loma"}\NormalTok{,}
+  \StringTok{"NanumBarunGothic,나눔바른고딕"}\NormalTok{,}
+  \StringTok{"NanumGothic,나눔고딕"}\NormalTok{,}
+  \StringTok{"NanumMyeongjo,나눔명조"}\NormalTok{,}
+  \StringTok{"NanumSquare,나눔스퀘어"}\NormalTok{,}
+  \StringTok{"NanumSquare,나눔스퀘어,NanumSquare Bold,나눔스퀘어 Bold"}\NormalTok{,}
+  \StringTok{"NanumSquareRound,나눔스퀘어라운드,NanumSquareRound Bold,나눔스퀘어라운드 Bold"}\NormalTok{,}
+  \StringTok{"NanumSquareRound,나눔스퀘어라운드,NanumSquareRound Regular,나눔스퀘어라운드 Regular"}\NormalTok{,}
+  \StringTok{"Nimbus Mono L"}\NormalTok{,}
+  \StringTok{"Nimbus Mono PS"}\NormalTok{,}
+  \StringTok{"Nimbus Roman"}\NormalTok{,}
+  \StringTok{"Nimbus Roman No9 L"}\NormalTok{,}
+  \StringTok{"Nimbus Sans"}\NormalTok{,}
+  \StringTok{"Nimbus Sans L"}\NormalTok{,}
+  \StringTok{"Nimbus Sans Narrow"}\NormalTok{,}
+  \StringTok{"Norasi"}\NormalTok{,}
+  \StringTok{"Noto Kufi Arabic"}\NormalTok{,}
+  \StringTok{"Noto Mono"}\NormalTok{,}
+  \StringTok{"Noto Music"}\NormalTok{,}
+  \StringTok{"Noto Naskh Arabic"}\NormalTok{,}
+  \StringTok{"Noto Nastaliq Urdu"}\NormalTok{,}
+  \StringTok{"Noto Sans"}\NormalTok{,}
+  \StringTok{"Noto Sans Adlam"}\NormalTok{,}
+  \StringTok{"Noto Sans Adlam Unjoined"}\NormalTok{,}
+  \StringTok{"Noto Sans Anatolian Hieroglyphs,Noto Sans AnatoHiero"}\NormalTok{,}
+  \StringTok{"Noto Sans Arabic"}\NormalTok{,}
+  \StringTok{"Noto Sans Armenian"}\NormalTok{,}
+  \StringTok{"Noto Sans Avestan"}\NormalTok{,}
+  \StringTok{"Noto Sans Bamum"}\NormalTok{,}
+  \StringTok{"Noto Sans Bassa Vah"}\NormalTok{,}
+  \StringTok{"Noto Sans Batak"}\NormalTok{,}
+  \StringTok{"Noto Sans Bengali"}\NormalTok{,}
+  \StringTok{"Noto Sans Bhaiksuki"}\NormalTok{,}
+  \StringTok{"Noto Sans Brahmi"}\NormalTok{,}
+  \StringTok{"Noto Sans Buginese"}\NormalTok{,}
+  \StringTok{"Noto Sans Buhid"}\NormalTok{,}
+  \StringTok{"Noto Sans Canadian Aboriginal,Noto Sans CanAborig"}\NormalTok{,}
+  \StringTok{"Noto Sans Carian"}\NormalTok{,}
+  \StringTok{"Noto Sans Caucasian Albanian,Noto Sans CaucAlban"}\NormalTok{,}
+  \StringTok{"Noto Sans Chakma"}\NormalTok{,}
+  \StringTok{"Noto Sans Cham"}\NormalTok{,}
+  \StringTok{"Noto Sans Cherokee"}\NormalTok{,}
+  \StringTok{"Noto Sans Coptic"}\NormalTok{,}
+  \StringTok{"Noto Sans Cuneiform"}\NormalTok{,}
+  \StringTok{"Noto Sans Cypriot"}\NormalTok{,}
+  \StringTok{"Noto Sans Deseret"}\NormalTok{,}
+  \StringTok{"Noto Sans Devanagari"}\NormalTok{,}
+  \StringTok{"Noto Sans Display"}\NormalTok{,}
+  \StringTok{"Noto Sans Duployan"}\NormalTok{,}
+  \StringTok{"Noto Sans Egyptian Hieroglyphs,Noto Sans EgyptHiero"}\NormalTok{,}
+  \StringTok{"Noto Sans Elbasan"}\NormalTok{,}
+  \StringTok{"Noto Sans Ethiopic"}\NormalTok{,}
+  \StringTok{"Noto Sans Georgian"}\NormalTok{,}
+  \StringTok{"Noto Sans Glagolitic"}\NormalTok{,}
+  \StringTok{"Noto Sans Gothic"}\NormalTok{,}
+  \StringTok{"Noto Sans Grantha"}\NormalTok{,}
+  \StringTok{"Noto Sans Gujarati"}\NormalTok{,}
+  \StringTok{"Noto Sans Gurmukhi"}\NormalTok{,}
+  \StringTok{"Noto Sans Hanifi Rohingya,Noto Sans HanifiRohg"}\NormalTok{,}
+  \StringTok{"Noto Sans Hanunoo"}\NormalTok{,}
+  \StringTok{"Noto Sans Hatran"}\NormalTok{,}
+  \StringTok{"Noto Sans Hebrew"}\NormalTok{,}
+  \StringTok{"Noto Sans Imperial Aramaic,Noto Sans ImpAramaic"}\NormalTok{,}
+  \StringTok{"Noto Sans Indic Siyaq Numbers"}\NormalTok{,}
+  \StringTok{"Noto Sans Inscriptional Pahlavi,Noto Sans InsPahlavi"}\NormalTok{,}
+  \StringTok{"Noto Sans Inscriptional Parthian,Noto Sans InsParthi"}\NormalTok{,}
+  \StringTok{"Noto Sans Javanese"}\NormalTok{,}
+  \StringTok{"Noto Sans Kaithi"}\NormalTok{,}
+  \StringTok{"Noto Sans Kannada"}\NormalTok{,}
+  \StringTok{"Noto Sans Kayah Li"}\NormalTok{,}
+  \StringTok{"Noto Sans Kharoshthi"}\NormalTok{,}
+  \StringTok{"Noto Sans Khmer"}\NormalTok{,}
+  \StringTok{"Noto Sans Khojki"}\NormalTok{,}
+  \StringTok{"Noto Sans Khudawadi"}\NormalTok{,}
+  \StringTok{"Noto Sans Lao"}\NormalTok{,}
+  \StringTok{"Noto Sans Lepcha"}\NormalTok{,}
+  \StringTok{"Noto Sans Limbu"}\NormalTok{,}
+  \StringTok{"Noto Sans Linear A"}\NormalTok{,}
+  \StringTok{"Noto Sans Linear B"}\NormalTok{,}
+  \StringTok{"Noto Sans Lisu"}\NormalTok{,}
+  \StringTok{"Noto Sans Lycian"}\NormalTok{,}
+  \StringTok{"Noto Sans Lydian"}\NormalTok{,}
+  \StringTok{"Noto Sans Mahajani"}\NormalTok{,}
+  \StringTok{"Noto Sans Malayalam"}\NormalTok{,}
+  \StringTok{"Noto Sans Mandaic"}\NormalTok{,}
+  \StringTok{"Noto Sans Manichaean"}\NormalTok{,}
+  \StringTok{"Noto Sans Marchen"}\NormalTok{,}
+  \StringTok{"Noto Sans Math"}\NormalTok{,}
+  \StringTok{"Noto Sans Mayan Numerals"}\NormalTok{,}
+  \StringTok{"Noto Sans Meetei Mayek"}\NormalTok{,}
+  \StringTok{"Noto Sans Mende Kikakui"}\NormalTok{,}
+  \StringTok{"Noto Sans Meroitic"}\NormalTok{,}
+  \StringTok{"Noto Sans Miao"}\NormalTok{,}
+  \StringTok{"Noto Sans Modi"}\NormalTok{,}
+  \StringTok{"Noto Sans Mongolian"}\NormalTok{,}
+  \StringTok{"Noto Sans Mono"}\NormalTok{,}
+  \StringTok{"Noto Sans Mro"}\NormalTok{,}
+  \StringTok{"Noto Sans Multani"}\NormalTok{,}
+  \StringTok{"Noto Sans Myanmar"}\NormalTok{,}
+  \StringTok{"Noto Sans Nabataean"}\NormalTok{,}
+  \StringTok{"Noto Sans New Tai Lue"}\NormalTok{,}
+  \StringTok{"Noto Sans Newa"}\NormalTok{,}
+  \StringTok{"Noto Sans NKo,Noto Sans N\textquotesingle{}Ko"}\NormalTok{,}
+  \StringTok{"Noto Sans Ogham"}\NormalTok{,}
+  \StringTok{"Noto Sans Ol Chiki"}\NormalTok{,}
+  \StringTok{"Noto Sans Old Hungarian,Noto Sans OldHung"}\NormalTok{,}
+  \StringTok{"Noto Sans Old Italic"}\NormalTok{,}
+  \StringTok{"Noto Sans Old North Arabian,Noto Sans OldNorArab"}\NormalTok{,}
+  \StringTok{"Noto Sans Old Permic"}\NormalTok{,}
+  \StringTok{"Noto Sans Old Persian"}\NormalTok{,}
+  \StringTok{"Noto Sans Old Sogdian"}\NormalTok{,}
+  \StringTok{"Noto Sans Old South Arabian,Noto Sans OldSouArab"}\NormalTok{,}
+  \StringTok{"Noto Sans Old Turkic"}\NormalTok{,}
+  \StringTok{"Noto Sans Oriya"}\NormalTok{,}
+  \StringTok{"Noto Sans Osage"}\NormalTok{,}
+  \StringTok{"Noto Sans Osmanya"}\NormalTok{,}
+  \StringTok{"Noto Sans Pahawh Hmong"}\NormalTok{,}
+  \StringTok{"Noto Sans Palmyrene"}\NormalTok{,}
+  \StringTok{"Noto Sans Pau Cin Hau"}\NormalTok{,}
+  \StringTok{"Noto Sans PhagsPa"}\NormalTok{,}
+  \StringTok{"Noto Sans Phoenician"}\NormalTok{,}
+  \StringTok{"Noto Sans Psalter Pahlavi,Noto Sans PsaPahlavi"}\NormalTok{,}
+  \StringTok{"Noto Sans Rejang"}\NormalTok{,}
+  \StringTok{"Noto Sans Runic"}\NormalTok{,}
+  \StringTok{"Noto Sans Samaritan"}\NormalTok{,}
+  \StringTok{"Noto Sans Saurashtra"}\NormalTok{,}
+  \StringTok{"Noto Sans Sharada"}\NormalTok{,}
+  \StringTok{"Noto Sans Shavian"}\NormalTok{,}
+  \StringTok{"Noto Sans Siddham"}\NormalTok{,}
+  \StringTok{"Noto Sans Sinhala"}\NormalTok{,}
+  \StringTok{"Noto Sans Sora Sompeng,Noto Sans SoraSomp"}\NormalTok{,}
+  \StringTok{"Noto Sans Sundanese"}\NormalTok{,}
+  \StringTok{"Noto Sans Syloti Nagri"}\NormalTok{,}
+  \StringTok{"Noto Sans Symbols"}\NormalTok{,}
+  \StringTok{"Noto Sans Symbols2"}\NormalTok{,}
+  \StringTok{"Noto Sans Syriac"}\NormalTok{,}
+  \StringTok{"Noto Sans Tagalog"}\NormalTok{,}
+  \StringTok{"Noto Sans Tagbanwa"}\NormalTok{,}
+  \StringTok{"Noto Sans Tai Le"}\NormalTok{,}
+  \StringTok{"Noto Sans Tai Tham"}\NormalTok{,}
+  \StringTok{"Noto Sans Tai Viet"}\NormalTok{,}
+  \StringTok{"Noto Sans Takri"}\NormalTok{,}
+  \StringTok{"Noto Sans Tamil"}\NormalTok{,}
+  \StringTok{"Noto Sans Tamil Supplement"}\NormalTok{,}
+  \StringTok{"Noto Sans Telugu"}\NormalTok{,}
+  \StringTok{"Noto Sans Thaana"}\NormalTok{,}
+  \StringTok{"Noto Sans Thai"}\NormalTok{,}
+  \StringTok{"Noto Sans Tibetan"}\NormalTok{,}
+  \StringTok{"Noto Sans Tifinagh"}\NormalTok{,}
+  \StringTok{"Noto Sans Tirhuta"}\NormalTok{,}
+  \StringTok{"Noto Sans Ugaritic"}\NormalTok{,}
+  \StringTok{"Noto Sans Vai"}\NormalTok{,}
+  \StringTok{"Noto Sans Warang Citi"}\NormalTok{,}
+  \StringTok{"Noto Sans Yi"}\NormalTok{,}
+  \StringTok{"Noto Serif"}\NormalTok{,}
+  \StringTok{"Noto Serif Ahom"}\NormalTok{,}
+  \StringTok{"Noto Serif Armenian"}\NormalTok{,}
+  \StringTok{"Noto Serif Balinese"}\NormalTok{,}
+  \StringTok{"Noto Serif Bengali"}\NormalTok{,}
+  \StringTok{"Noto Serif Devanagari"}\NormalTok{,}
+  \StringTok{"Noto Serif Display"}\NormalTok{,}
+  \StringTok{"Noto Serif Dogra"}\NormalTok{,}
+  \StringTok{"Noto Serif Ethiopic"}\NormalTok{,}
+  \StringTok{"Noto Serif Georgian"}\NormalTok{,}
+  \StringTok{"Noto Serif Gujarati"}\NormalTok{,}
+  \StringTok{"Noto Serif Gurmukhi"}\NormalTok{,}
+  \StringTok{"Noto Serif Hebrew"}\NormalTok{,}
+  \StringTok{"Noto Serif Kannada"}\NormalTok{,}
+  \StringTok{"Noto Serif Khmer"}\NormalTok{,}
+  \StringTok{"Noto Serif Lao"}\NormalTok{,}
+  \StringTok{"Noto Serif Malayalam"}\NormalTok{,}
+  \StringTok{"Noto Serif Myanmar"}\NormalTok{,}
+  \StringTok{"Noto Serif Sinhala"}\NormalTok{,}
+  \StringTok{"Noto Serif Tamil"}\NormalTok{,}
+  \StringTok{"Noto Serif Tamil Slanted"}\NormalTok{,}
+  \StringTok{"Noto Serif Tangut"}\NormalTok{,}
+  \StringTok{"Noto Serif Telugu"}\NormalTok{,}
+  \StringTok{"Noto Serif Thai"}\NormalTok{,}
+  \StringTok{"Noto Serif Tibetan"}\NormalTok{,}
+  \StringTok{"Open Sans"}\NormalTok{,}
+  \StringTok{"Open Sans Condensed"}\NormalTok{,}
+  \StringTok{"Open Sans,Open Sans Condensed Light"}\NormalTok{,}
+  \StringTok{"Open Sans,Open Sans Extrabold"}\NormalTok{,}
+  \StringTok{"Open Sans,Open Sans Light"}\NormalTok{,}
+  \StringTok{"Open Sans,Open Sans Semibold"}\NormalTok{,}
+  \StringTok{"P052"}\NormalTok{,}
+  \StringTok{"Padauk"}\NormalTok{,}
+  \StringTok{"Padauk Book"}\NormalTok{,}
+  \StringTok{"Purisa"}\NormalTok{,}
+  \StringTok{"Roboto"}\NormalTok{,}
+  \StringTok{"Roboto Condensed"}\NormalTok{,}
+  \StringTok{"Roboto Condensed,Roboto Condensed Light"}\NormalTok{,}
+  \StringTok{"Roboto Condensed,Roboto Condensed Medium"}\NormalTok{,}
+  \StringTok{"Roboto,Roboto Black"}\NormalTok{,}
+  \StringTok{"Roboto,Roboto Light"}\NormalTok{,}
+  \StringTok{"Roboto,Roboto Medium"}\NormalTok{,}
+  \StringTok{"Roboto,Roboto Thin"}\NormalTok{,}
+  \StringTok{"Sawasdee"}\NormalTok{,}
+  \StringTok{"Standard Symbols L"}\NormalTok{,}
+  \StringTok{"Standard Symbols PS"}\NormalTok{,}
+  \StringTok{"STIX"}\NormalTok{,}
+  \StringTok{"STIX Math"}\NormalTok{,}
+  \StringTok{"STIXGeneral"}\NormalTok{,}
+  \StringTok{"STIXIntegralsD"}\NormalTok{,}
+  \StringTok{"STIXIntegralsSm"}\NormalTok{,}
+  \StringTok{"STIXIntegralsUp"}\NormalTok{,}
+  \StringTok{"STIXIntegralsUpD"}\NormalTok{,}
+  \StringTok{"STIXIntegralsUpSm"}\NormalTok{,}
+  \StringTok{"STIXNonUnicode"}\NormalTok{,}
+  \StringTok{"STIXSizeFiveSym"}\NormalTok{,}
+  \StringTok{"STIXSizeFourSym"}\NormalTok{,}
+  \StringTok{"STIXSizeOneSym"}\NormalTok{,}
+  \StringTok{"STIXSizeThreeSym"}\NormalTok{,}
+  \StringTok{"STIXSizeTwoSym"}\NormalTok{,}
+  \StringTok{"STIXVariants"}\NormalTok{,}
+  \StringTok{"TeXGyreAdventor"}\NormalTok{,}
+  \StringTok{"TeXGyreBonum"}\NormalTok{,}
+  \StringTok{"TeXGyreChorus"}\NormalTok{,}
+  \StringTok{"TeXGyreCursor"}\NormalTok{,}
+  \StringTok{"TeXGyreHeros"}\NormalTok{,}
+  \StringTok{"TeXGyreHerosCondensed"}\NormalTok{,}
+  \StringTok{"TeXGyrePagella"}\NormalTok{,}
+  \StringTok{"TeXGyreSchola"}\NormalTok{,}
+  \StringTok{"TeXGyreTermes"}\NormalTok{,}
+  \StringTok{"Tinos"}\NormalTok{,}
+  \StringTok{"Tlwg Mono"}\NormalTok{,}
+  \StringTok{"Tlwg Typewriter"}\NormalTok{,}
+  \StringTok{"Tlwg Typist"}\NormalTok{,}
+  \StringTok{"Tlwg Typo"}\NormalTok{,}
+  \StringTok{"Umpush"}\NormalTok{,}
+  \StringTok{"UnBatang,은 바탕"}\NormalTok{,}
+  \StringTok{"UnDinaru,은 디나루"}\NormalTok{,}
+  \StringTok{"UnDotum,은 돋움"}\NormalTok{,}
+  \StringTok{"UnGraphic,은 그래픽"}\NormalTok{,}
+  \StringTok{"UnGungseo,은 궁서"}\NormalTok{,}
+  \StringTok{"Universalis ADF Std"}\NormalTok{,}
+  \StringTok{"Universalis ADF Std,Universalis ADF Std cond"}\NormalTok{,}
+  \StringTok{"UnJamoBatang,은 자모 바탕"}\NormalTok{,}
+  \StringTok{"UnJamoDotum,은 자모 돋움"}\NormalTok{,}
+  \StringTok{"UnJamoNovel,은 자모 노벨"}\NormalTok{,}
+  \StringTok{"UnJamoSora,은 자모 소라"}\NormalTok{,}
+  \StringTok{"UnPen,은 펜"}\NormalTok{,}
+  \StringTok{"UnPenheulim,은 펜흘림"}\NormalTok{,}
+  \StringTok{"UnPilgi,은 필기"}\NormalTok{,}
+  \StringTok{"UnPilgia,은 필기a"}\NormalTok{,}
+  \StringTok{"UnShinmun,은 신문"}\NormalTok{,}
+  \StringTok{"UnTaza,은 타자"}\NormalTok{,}
+  \StringTok{"UnVada,은 바다"}\NormalTok{,}
+  \StringTok{"UnYetgul,은 옛글"}\NormalTok{,}
+  \StringTok{"URW Bookman"}\NormalTok{,}
+  \StringTok{"URW Bookman L"}\NormalTok{,}
+  \StringTok{"URW Chancery L"}\NormalTok{,}
+  \StringTok{"URW Gothic"}\NormalTok{,}
+  \StringTok{"URW Gothic L"}\NormalTok{,}
+  \StringTok{"URW Palladio L"}\NormalTok{,}
+  \StringTok{"Utopia"}\NormalTok{,}
+  \StringTok{"Waree"}\NormalTok{,}
+  \StringTok{"Z003"}\NormalTok{)}
+ 
+\end{Highlighting}
+\end{Shaded}
 
 \#\#@ find -type d texlive ------------\\
 \#\# find / -type d -iname texlive
