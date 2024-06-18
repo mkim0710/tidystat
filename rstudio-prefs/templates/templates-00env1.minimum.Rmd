@@ -125,7 +125,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 # *** Caution: \% \$ \# \* \
 ```
   
-
+  
 ```{r setup, eval=TRUE, include=FALSE}
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
@@ -147,7 +147,7 @@ knitr::opts_chunk$set(
 knitr::opts_knit$set(global.par = TRUE)
 ```
   
-
+  
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
@@ -155,19 +155,19 @@ if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
   
-
+  
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
-## env1\$path ====
+## env1\$path ============  
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
-## env1\$env.internal ====
+## env1\$env.internal ============  
 sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-#### env1\$f_df.t.tribble_construct() ====
+#### env1\$f_df.t.tribble_construct() ============  
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
   
@@ -178,7 +178,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-#### env1\$info\$get_system_info() ====
+#### env1\$info\$get_system_info() ============  
 sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
 # str(env1$info$info_system_info)
@@ -189,8 +189,8 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 # str(env1$info$info_software_versions)
 ```
   
-
-###### env1\$info\$DocumentTitle1 ====
+  
+###### env1\$info\$DocumentTitle1 ============  
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
 env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
@@ -201,10 +201,10 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     sep="")
 ```
   
-
-###### env1\$path ====
+  
+###### env1\$path ============  
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
-# cat(" getwd() == "); dput(getwd()) #----
+# cat(" getwd() == "); dput(getwd()) #------------  
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -224,10 +224,10 @@ path4read  = env1$path$path4read
 path4write = env1$path$path4write
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-# if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----
+# if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #------------  
 ```
   
-
+  
 #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ------------  
 ```{r dfDIRsRecursive-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 # #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ------------  
@@ -244,7 +244,7 @@ path4write = env1$path$path4write
 # env1$path$print_tree_path_files.data |> cat("\n")
 ```
   
-
+  
 #### env1\$f_path.size_files() ------------  
 ```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # #### env1\$f_path.size_files() ------------  
@@ -254,8 +254,8 @@ path4write = env1$path$path4write
 # env1$f_path.size_files(path4read = path4read)
 ```
   
-
-#### @ Open R Notebooks ------------
+  
+#### @ Open R Notebooks ------------  
 ```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
 # if(!exists("env1", envir=.GlobalEnv)) 
 #     assign("env1", new.env(), envir=.GlobalEnv)
@@ -271,12 +271,12 @@ path4write = env1$path$path4write
 # }
 ```
   
-
-# @@ CODEBOOK ------------
   
-
+# @@ CODEBOOK ------------  
+  
+  
 #@@ START) source ------------  
-### \$ subpath, sourcename = "default.template" ======
+### \$ subpath, sourcename = "default.template" ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -288,16 +288,16 @@ options(width=120)
 # (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
   
-
-# @@ START) Data ------------
   
-## \$ DataSetName = "analyticDF_time2event" ====
+# @@ START) Data ------------  
+  
+## \$ DataSetName = "analyticDF_time2event" ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # suppressPackageStartupMessages(library(tidyverse))
 # #@@ START) data ------------  
-# #$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ====
+# #$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ============  
 # # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # subpath = "data"
@@ -311,8 +311,8 @@ options(width=120)
 # assign( DataSetName, read_rds(path.filename.ext) )
 ```
   
-
-## \$ DataSetName = "analyticDF_time2event" ====
+  
+## \$ DataSetName = "analyticDF_time2event" ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
@@ -361,7 +361,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
   
 ```
   
-## ------ < Key Variables Check > ------
+## ------ < Key Variables Check > ------------  
 ### \$ varname4ID  ------------  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -381,7 +381,7 @@ vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(D
 vecCompositeKey |> n_distinct()
 ```
   
-
+  
   
 #### \$ varname4outcome ------------  
 #### \$ varname4time ------------  
@@ -397,7 +397,7 @@ get(DataSetName)[c(varname4outcome, varname4time)] |>
   
 ```
   
-
+  
 ##### \$ varname4measures ------------  
 ##### \$ varname4labs ------------  
 ##### \$ varname4lifestyle ------------  
@@ -406,9 +406,9 @@ options(width=120)
   
 ```
   
-
-## ------ < Data Availability Check > ------
-### \$ paste0(DataSetName,".Date",".NA",".rmAllNA")  ====
+  
+## ------ < Data Availability Check > ------------  
+### \$ paste0(DataSetName,".Date",".NA",".rmAllNA")  ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
@@ -424,20 +424,20 @@ cat(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","\n", sep=""); env1$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
 ```
   
-
-## ------ < DataSet Summary > ------
-### \$ paste0(DataSetName,".Date",".NA",".rmAllNA",".fct") ====
+  
+## ------ < DataSet Summary > ------------  
+### \$ paste0(DataSetName,".Date",".NA",".rmAllNA",".fct") ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))) cat(" n_distinct(",paste0(DataSetName,".Date",".NA",".rmAllNA"),"$",varname,") = ",n_distinct(get(paste0(DataSetName,".Date",".NA",".rmAllNA"))[[varname]]),"\n", sep="")}
   
-
+  
 t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.numeric))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.numeric) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.numeric))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.numeric) |> summary() #------------  
 Sys.time()-t0
 t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.logical))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.logical) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.logical))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.logical) |> summary() #------------  
 Sys.time()-t0
   
 t0=Sys.time()
@@ -445,56 +445,56 @@ cat(" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Sys.time()-t0
   
 t0=Sys.time()
-cat(strrep("+",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")) |> select_if(is.factor) |> summary() #-----
+cat(strrep("+",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")) |> select_if(is.factor) |> summary() #------------  
 Sys.time()-t0
-# cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.character) |> map_df(as.factor) |> summary() #-----
+# cat(strrep("~",80),"\n",sep=""); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.factor))"," |> summary()","\n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.character) |> map_df(as.factor) |> summary() #------------  
 # Sys.time()-t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 # @@ END ------------  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
@@ -507,7 +507,7 @@ options(width=120)
 # @@ END ------------  
 ```
   
-
+  
 ```{r updateTemplateNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
 # @@ update tempate (notebook.Rmd) ------------  
 env1$path$RTemplate.filename.ext = "notebook.Rmd"
@@ -538,7 +538,7 @@ if (.Platform$OS.type == "windows") {
 } 
 ```
   
-
+  
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -553,13 +553,13 @@ if (.Platform$OS.type == "windows") {
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
   
-
+  
 ```{r createBackup, eval=TRUE, include=FALSE}
 env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
   
-
+  
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf")
@@ -579,7 +579,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
   
-
+  
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
@@ -593,4 +593,4 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
 ```
   
-
+  

@@ -40,7 +40,7 @@ knitr::opts_chunk$set(
 knitr::opts_knit$set(global.par = TRUE)
 ```
   
-
+  
 ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
@@ -48,23 +48,23 @@ if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
 ```
   
-
+  
 ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
-## env1\$path ====
+## env1\$path ============  
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
-## env1\$env.internal ====
+## env1\$env.internal ============  
 sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-#### env1\$f_df.t.tribble_construct() ====
+#### env1\$f_df.t.tribble_construct() ============  
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
   
-
+  
   
 <font size="3">\% env1</font>\
   
@@ -73,7 +73,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-#### env1\$info\$get_system_info() ====
+#### env1\$info\$get_system_info() ============  
 sourcename = "get_system_info"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
 # str(env1$info$info_system_info)
@@ -84,8 +84,8 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 # str(env1$info$info_software_versions)
 ```
   
-
-###### env1\$info\$DocumentTitle1 ====
+  
+###### env1\$info\$DocumentTitle1 ============  
 ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
 env1$info$DocumentTitle0 = paste0("00env1","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
@@ -96,7 +96,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     sep="")
 ```
   
-
+  
 @ASROCKX300RYZEN
 List of 9
  $ GUI             : chr "RStudio"
@@ -140,7 +140,7 @@ List of 9
   ..$ localization_codepage       : int 65001
   ..$ localization_system.codepage: int 65001
   
-
+  
 @Posit Cloud
 List of 9
  $ GUI             : chr "RStudio"
@@ -163,12 +163,12 @@ List of 9
   ..$ localization_system.codepage: NULL
   
   
-
   
-###### env1\$path ====
+  
+###### env1\$path ============  
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 library(tidyverse);cat(" \n"); 
-cat(" \n"); cat(" getwd() == "); dput(getwd()) #----
+cat(" \n"); cat(" getwd() == "); dput(getwd()) #------------  
 env1$path$getwd = getwd()
 # env1$path$path0 = file.path("D:", "OneDrive - SNU", "[][Rproject]")
 # env1$path$project_base = "Rproject_HEALS0215"
@@ -187,11 +187,11 @@ cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)
 path4read = getwd()
 path4write = getwd()
 sourcename = "f_objectname.read.checkEntity"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----
+if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #------------  
 ```
   
-
-##% env1$f_path.size_files() ====
+  
+##% env1$f_path.size_files() ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # tribble_paste = datapasta::tribble_paste
@@ -204,17 +204,17 @@ regex4filename = "\\.rds\\.xz$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
   
-cat(strrep("~",80),"\n",sep=""); #----
+cat(strrep("~",80),"\n",sep=""); #------------  
 regex4filename = "\\.rds$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```
   
-
   
-# @@ START ------
   
-## \$ objectname = "tblID_gj3_jk" ====
+# @@ START ------------  
+  
+## \$ objectname = "tblID_gj3_jk" ============  
 @ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -230,13 +230,13 @@ options(width=120)
 # get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 # get(objectname) |> names() %>% paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ------------  
 # cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
-# # get(objectname) |> select_if(is.numeric) |> summary() #-----
-# # get(objectname) |> select_if(is.logical) |> summary() #-----
+# # get(objectname) |> select_if(is.numeric) |> summary() #------------  
+# # get(objectname) |> select_if(is.logical) |> summary() #------------  
 ```
   
-
   
-# \$ lung <- as_tibble(survival::lung) ======
+  
+# \$ lung <- as_tibble(survival::lung) ============  
 ## Step 1: Load the Required Libraries and Data
 ## Step 2: Exploratory Data Analysis
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -253,7 +253,7 @@ as_tibble(survival::lung)
 summary(survival::lung)
 ```
   
-
+  
   
 ## Step 3: Kaplan-Meier Survival Curve
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
@@ -301,7 +301,7 @@ cox.zph(cox_model)
   
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.dev.r
   
-## \$ AnalyticDataset ====
+## \$ AnalyticDataset ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset = lung |> rename(event = status, Group = sex)
@@ -316,25 +316,25 @@ AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, dat
 AnalyticDataset.survfit |> ggsurvplot  # default fun = "pct"?
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T)
 ```
   
-
+  
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
-AnalyticDataset.coxph |> summary() #----
+AnalyticDataset.coxph |> summary() #------------  
 AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ------------  
-AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
+AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #------------  
 ```
   
-
   
-## \$ AnalyticDataset.censor1yr ====
+  
+## \$ AnalyticDataset.censor1yr ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -354,42 +354,42 @@ AnalyticDataset.censor1yr.survfit |> ggsurvplot  # default fun = "pct"?
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
+  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 ```
   
-
-# @@ START) Analysis ------
   
-## \$ DataSetName = "analyticDF_time2event" ====
+# @@ START) Analysis ------------  
+  
+## \$ DataSetName = "analyticDF_time2event" ============  
 #### [Plot] Stratified Kaplan-Meier Survival Curve
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
@@ -446,11 +446,11 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 # @@ END ------------  
 ```
   
-
+  
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) -----
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ------------  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
@@ -461,13 +461,13 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
   
-
+  
 ```{r createBackup, eval=TRUE, include=FALSE}
 env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
 ```
   
-
+  
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf")
@@ -487,7 +487,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
   
-
+  
 ```{r gitCheckout, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
@@ -501,4 +501,4 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
 ```
   
-
+  
