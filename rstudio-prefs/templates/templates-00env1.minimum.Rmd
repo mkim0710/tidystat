@@ -255,7 +255,7 @@ path4write = env1$path$path4write
 ```
   
   
-#### @ Open R Notebooks ------------  
+  
 ```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
 # if(!exists("env1", envir=.GlobalEnv)) 
 #     assign("env1", new.env(), envir=.GlobalEnv)
