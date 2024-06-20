@@ -127,25 +127,25 @@ MH)*.r
 
 # Temporary and debug files
 void/
-tmp/
-temp/
-old/
-dev/
-debug/
-backup/
-*-backup/
-archive/
 *- void*
 *-void*
-*-dev*
-*debug*
+temp/
+tmp/
 -tmp
 *- tmp*
 *-tmp*
+# dev/
+# *-dev*
+# debug/
+# *debug*
+backup/
+*-backup/
+*-backup*
+archive/
+*-archive*
+old/
 *- old*
 *-old*
-*-backup*
-*-archive*
 
 # Log files
 *-log*.*
