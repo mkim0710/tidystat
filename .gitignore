@@ -100,11 +100,14 @@ MH)*.r
 # Document files
 *.ppt
 *.pptx
+*.pptm
 # *.xls *.xlsx # -> use pre-commit hook to block commit, but show a warning? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.? the file is kept shown messily in the git status, and makes error messages when trying to add & commit.
 *.xls
 *.xlsx
+*.xlsm
 *.doc
 *.docx
+*.docm
 *.rtf
 *.pdf
 *.pdf.*
