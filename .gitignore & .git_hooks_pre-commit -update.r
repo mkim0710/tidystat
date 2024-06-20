@@ -88,6 +88,7 @@ vec_destination_paths = c(
     , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/")
     , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/")
     , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/")
+    , "D:/OneDrive/MHShell/"
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
 )
 f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
@@ -97,6 +98,7 @@ overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat/git/hooks"
 overwrite_from_filename.ext = "pre-commit"
 vec_destination_paths = c(
     "D:/OneDrive/[][Rproject]/github_tidystat/.git/hooks"
+    , "D:/OneDrive/MHShell/.git/hooks"
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update,"/git/hooks")
     , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update,"/.git/hooks")
 )
