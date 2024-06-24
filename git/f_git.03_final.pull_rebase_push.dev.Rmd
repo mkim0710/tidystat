@@ -338,6 +338,7 @@ env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rs
 ```{r Render, eval=TRUE, include=FALSE}
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf")
+env1$path$CurrentSource.path.filename.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".html")
 # if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #     if (.Platform$OS.type == "windows") {
 #         tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
@@ -352,6 +353,10 @@ env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filenam
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
+cat('________________________________________________________________________________')
+cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext,'" |> rmarkdown::render(output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
+    ' if (.Platform$OS.type == "windows") { system("\\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\\" --app=\\"',env1$path$CurrentSource.path.filename.html |> normalizePath(winslash="/"),'\\"") } else { browseURL("',env1$path$CurrentSource.path.filename.html,'") }',"\n",
+    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.html,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
 ```
   
   
