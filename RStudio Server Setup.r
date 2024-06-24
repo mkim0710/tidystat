@@ -74,10 +74,10 @@ paste0("[Working Files List] ",basename(getwd()),".r") %>% {.[file.exists(.)]} |
 ##### env1\$info\$get_system_info() ====
 sourcename = "get_system_info"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
-env1$info$info_system_info |> str()
+env1$info$info_system_info |> utils::str()
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @MAGB760M13700KF |#
-# > env1$info$info_system_info |> str()
+# > env1$info$info_system_info |> utils::str()
 # List of 9
 #  $ GUI             : chr "RStudio"
 #  $ os_type         : chr "windows"

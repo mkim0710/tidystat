@@ -66,7 +66,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=r"()"|>str_replace_all("\\\\","
 ##### env1\$info\$get_system_info() ====
 # sourcename = "get_system_info"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # env1$info$info_system_info = env1$info$get_system_info()
-# env1$info$info_system_info |> str()
+# env1$info$info_system_info |> utils::str()
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----
 # sourcename = "f_path.df_dirs_recursive.df_files"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
