@@ -10,13 +10,28 @@ library(dplyr)
 library(purrr)
 
 # Define functions for each approach
-switch_approach <- function() {
-  .Rprofile.path <- switch(
-    TRUE,
-    file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/", mustWork = FALSE),
-    file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE),
+# switch_approach <- function() {
+#   .Rprofile.path <- switch(
+#     TRUE,
+#     file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/", mustWork = FALSE),
+#     file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE),
+#     NA_character_
+#   )
+# }
+# # > str(switch_approach())
+# # Class 'formula'  language file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/", mustWork = FALSE)
+# #   ..- attr(*, ".Environment")=<environment: 0x55b804e12348> 
+
+
+# Define functions for each approach
+if_approach <- function() {
+  if (file.exists(".Rprofile")) {
+    normalizePath(".Rprofile", winslash = "/", mustWork = FALSE)
+  } else if (file.exists(file.path("~", ".Rprofile"))) {
+    normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE)
+  } else {
     NA_character_
-  )
+  }
 }
 
 case_when_approach <- function() {
@@ -25,6 +40,7 @@ case_when_approach <- function() {
     file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE),
     TRUE ~ NA_character_
   )
+  return(.Rprofile.path)
 }
 
 keep_map_chr_first_approach <- function() {
@@ -35,11 +51,12 @@ keep_map_chr_first_approach <- function() {
     keep(file.exists) %>%
     map_chr(normalizePath, winslash = "/", mustWork = FALSE) %>%
     first(default = NA_character_)
+  return(.Rprofile.path)
 }
 
 # Run benchmark
 benchmark_results <- microbenchmark(
-  switch = switch_approach(),
+  if_approach = if_approach(),
   case_when = case_when_approach(),
   keep_map_chr_first = keep_map_chr_first_approach(),
   times = 1000
@@ -47,10 +64,10 @@ benchmark_results <- microbenchmark(
 
 print(benchmark_results)
 # > print(benchmark_results)
-# Unit: nanoseconds
-#                expr   min       lq       mean   median       uq     max neval
-#              switch   273    382.0   1507.877    563.5    740.0  895672  1000
-#           case_when 91734 105045.5 128654.178 113978.5 127795.0 3404231  1000
-#  keep_map_chr_first 44844  52557.5  69698.162  60868.5  70547.5 2817187  1000
+# Unit: microseconds
+#                expr    min       lq       mean   median       uq      max neval
+#         if_approach  1.412   1.6645   3.762657   2.0940   2.4260 1596.850  1000
+#           case_when 91.788 103.4440 126.704369 110.2985 120.2560 2978.550  1000
+#  keep_map_chr_first 43.639  51.1745  65.673518  58.9155  65.9645 3047.238  1000
 
 
