@@ -74,7 +74,7 @@ sourcename = "env1$env.internal"; subpath=r"()"|>str_replace_all("\\\\","/"); su
 ##### env1\$info\$get_system_info() ====
 # sourcename = "get_system_info"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # env1$info$info_system_info = env1$info$get_system_info()
-# env1$info$info_system_info |> str()
+# env1$info$info_system_info |> utils::str()
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##### env1\$f_df.t.tribble_construct() ====
 # sourcename = "f_df.t.tribble_construct"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
