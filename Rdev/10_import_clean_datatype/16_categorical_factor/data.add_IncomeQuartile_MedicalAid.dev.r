@@ -1,21 +1,18 @@
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_IncomeQuartile_MedicalAid.dev.r
 #%% data.add_IncomeQuartile_MedicalAid() ====
 data.add_IncomeQuartile_MedicalAid <- function(DF) {
-  
   # Check if the column CTRB_PT_TYPE_CD exists
   if (is.null(DF$CTRB_PT_TYPE_CD)) {
     print(paste0('Error: no column - ', 'CTRB_PT_TYPE_CD'))
     return(DF) # Return the original DF if the column doesn't exist
   } else {
     DF$IncomeDecile <- as.numeric(DF$CTRB_PT_TYPE_CD) # Convert to numeric
-    DF$MedicalAid <- (DF$IncomeDecile == 0)
-    
+    DF$MedicalAid <- (DF$IncomeDecile == 0)    
     # Add IncomeQuartile based on the distribution of Income
     DF$IncomeQuartile <- as.factor(cut(DF$IncomeDecile, 
                                   breaks = quantile(DF$IncomeDecile, probs = 0:4/4, na.rm = TRUE), 
                                   labels = c("Q1", "Q2", "Q3", "Q4"),
                                   include.lowest = TRUE))
-
     return(DF) # Return the modified DF
   }
 }
