@@ -477,23 +477,23 @@ g+geom_violin()
 ```
   
   
-# Acknowledgements
+# Acknowledgements  
   
-The CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) is provided by U.S. Centers for Medicare & Medicaid Services.
+The CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) is provided by U.S. Centers for Medicare & Medicaid Services.  
   
-https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html
-  
-  
-The Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM) Version 5 is provided by Observational Health Data Sciences and Informatics (OHDSI) community.
-  
-https://github.com/OHDSI/CommonDataModel
+https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html  
   
   
-The 1000 person data set from the CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) converted it to the OMOP Common Data Model Version 5 format was provided by LTS Computing LLC.
+The Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM) Version 5 is provided by Observational Health Data Sciences and Informatics (OHDSI) community.  
   
-http://www.ltscomputingllc.com/downloads/
+https://github.com/OHDSI/CommonDataModel  
   
-The 1000 person CMS_SynPUF_CDMv5 was loaded into MS SQL server in the Weill Cornell Architecture for Research Computing in Health (ARCH) by Evan Scholle, in the Information Technologies & Services, Weill Cornell Medicine.
+  
+The 1000 person data set from the CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) converted it to the OMOP Common Data Model Version 5 format was provided by LTS Computing LLC.  
+  
+http://www.ltscomputingllc.com/downloads/  
+  
+The 1000 person CMS_SynPUF_CDMv5 was loaded into MS SQL server in the Weill Cornell Architecture for Research Computing in Health (ARCH) by Evan Scholle, in the Information Technologies & Services, Weill Cornell Medicine.  
   
 The 1000 person CMS_SynPUF_CDMv5 transformed into JSON format was provided by Dr. Yiye Zhang in the Division of Health Informatics, Department of Healthcare Policy and Research, Weill Medical College of Cornell University.
   
