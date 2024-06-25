@@ -372,7 +372,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>%
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-    arrange(R) |> as_tibble() %>% filter(R < C)
+    arrange(R) |> as_tibble() %>% dplyr::filter(R < C)
 termDocMatrix.t.df.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(termDocMatrix.t.df.lgl.comat) * {nrow(termDocMatrix.t.df.lgl.comat) - 1} / 2)
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
@@ -380,7 +380,7 @@ identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
-# +     arrange(R) |> as_tibble() %>% filter(R < C)
+# +     arrange(R) |> as_tibble() %>% dplyr::filter(R < C)
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri
 # # A tibble: 210 x 6
 #    rowname       V1           V2 cooccurence     R     C
@@ -542,12 +542,12 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "
 #@ test) data_V1_V2_EdgeWeight.igraph() trainsetCC69agg4i07_829.Ctrl.lgl.comat ----
 library(tidyverse)
 load("data/trainsetCC69agg4i07_829.rda")
-trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% filter(is.Case != T) %>% select(-is.Case)
+trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% dplyr::filter(is.Case != T) %>% select(-is.Case)
 trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()
 trainsetCC69agg4i07_829.Ctrl.lgl %>% colSums
 # trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.logical) %>% colSums
 trainsetCC69agg4i07_829.Ctrl.lgl |> str()
-# > trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% filter(is.Case != T) %>% select(-is.Case)
+# > trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% dplyr::filter(is.Case != T) %>% select(-is.Case)
 # > trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()
 #  AcquiredHypothyroidism AdjustmentDisorder   Anemia     Anxiety    Arthritis   AtrialFibrillation BenignProstatic BrainInjury  Cataract   ChronicKidney  Diabetes   Dysthymia    Epilepsy  
 #  FALSE:800              FALSE:828          FALSE:809   FALSE:723   FALSE:230   FALSE:829          FALSE:828       FALSE:823   FALSE:599   FALSE:800     FALSE:696   FALSE:827   FALSE:825  
@@ -687,8 +687,8 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 # trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather
 # save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple).rda")
 load("data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple).rda")
-# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather %>% filter(R < C)
-trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% filter(R < C)
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather %>% dplyr::filter(R < C)
+trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% dplyr::filter(R < C)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
@@ -696,7 +696,7 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
-# +     arrange(R) |> as_tibble() %>% filter(R < C)
+# +     arrange(R) |> as_tibble() %>% dplyr::filter(R < C)
 # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 # # A tibble: 465 x 6
 #    rowname                     V1                 V2 cooccurence     R     C

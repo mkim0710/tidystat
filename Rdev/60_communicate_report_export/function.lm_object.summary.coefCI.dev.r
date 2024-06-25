@@ -566,14 +566,14 @@ function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, pri
     out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
     
     if (nonzero == T) {
-        out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical * logical == 0 : TRUE when any of the logicals is FALSE : ?? operator
-        # out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical + logical == 0 : TRUE when both of the logicals is FALSE : ?? operator
-        # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical * !logical == 0 : TRUE when any of the logicals is TRUE : OR operator
-        # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical + !logical == 0 : TRUE when both of the logicals is TRUE : AND operator
+        out.NA = out.NA %>% dplyr::filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical * logical == 0 : TRUE when any of the logicals is FALSE : ?? operator
+        # out.NA = out.NA %>% dplyr::filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical + logical == 0 : TRUE when both of the logicals is FALSE : ?? operator
+        # out.NA = out.NA %>% dplyr::filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical * !logical == 0 : TRUE when any of the logicals is TRUE : OR operator
+        # out.NA = out.NA %>% dplyr::filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical + !logical == 0 : TRUE when both of the logicals is TRUE : AND operator
     }
     if (print_any_expB_gt.2 == T) {
         suppressWarnings((
-            out.NA = out.NA %>% filter(abs(as.numeric(expB.min)-1) > 0.2 | abs(as.numeric(expB.1se)-1) > 0.2)
+            out.NA = out.NA %>% dplyr::filter(abs(as.numeric(expB.min)-1) > 0.2 | abs(as.numeric(expB.1se)-1) > 0.2)
         ))
         rownames(out.NA) = NULL
     }
@@ -664,14 +664,14 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
         out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
         
         if (nonzero == T) {
-            out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical * logical == 0 : TRUE when any of the logicals is FALSE : ?? operator
-            # out.NA = out.NA %>% filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical + logical == 0 : TRUE when both of the logicals is FALSE : ?? operator
-            # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical * !logical == 0 : TRUE when any of the logicals is TRUE : OR operator
-            # out.NA = out.NA %>% filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical + !logical == 0 : TRUE when both of the logicals is TRUE : AND operator
+            out.NA = out.NA %>% dplyr::filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical * logical == 0 : TRUE when any of the logicals is FALSE : ?? operator
+            # out.NA = out.NA %>% dplyr::filter(is.na(coef.min) * is.na(coef.1se) == 0)  # logical + logical == 0 : TRUE when both of the logicals is FALSE : ?? operator
+            # out.NA = out.NA %>% dplyr::filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical * !logical == 0 : TRUE when any of the logicals is TRUE : OR operator
+            # out.NA = out.NA %>% dplyr::filter(!is.na(coef.min) * !is.na(coef.1se) == 0)  # !logical + !logical == 0 : TRUE when both of the logicals is TRUE : AND operator
         }
         if (print_any_expB_gt.2 == T) {
             suppressWarnings((
-                out.NA = out.NA %>% filter(abs(as.numeric(expB.min)-1) > 0.2 | abs(as.numeric(expB.1se)-1) > 0.2)
+                out.NA = out.NA %>% dplyr::filter(abs(as.numeric(expB.min)-1) > 0.2 | abs(as.numeric(expB.1se)-1) > 0.2)
             ))
             rownames(out.NA) = NULL
         }
@@ -706,7 +706,7 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
     
     if (print_any_expB.min_gt.2 == T) {
         # suppressWarnings((
-        #     out4 = out4 %>% filter(abs(as.numeric(a1expB.min)-1) > 0.2 | abs(as.numeric(a.5expB.min)-1) > 0.2)
+        #     out4 = out4 %>% dplyr::filter(abs(as.numeric(a1expB.min)-1) > 0.2 | abs(as.numeric(a.5expB.min)-1) > 0.2)
         # ))
         suppressWarnings((
             out4 = out4[which( ( ( abs( (out4[paste0(i_names, "expB.min")] %>% map_df(as.numeric)) - 1 ) > 0.2 ) %>% rowSums(na.rm = T) ) > 0 ), ]

@@ -65,19 +65,19 @@ df_RACE_isCollege_MS_PhD
 
 
 for (i in 1:nrow(df_RACE_isCollege_MS_PhD)) {
-    public_v2_112917.levels123 %>% filter(
+    public_v2_112917.levels123 %>% dplyr::filter(
         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
 }
 1:nrow(df_RACE_isCollege_MS_PhD) %>% map(function(i) {
-    public_v2_112917.levels123 %>% filter(
+    public_v2_112917.levels123 %>% dplyr::filter(
         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
 }) %>% bind_rows
 1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
-    public_v2_112917.levels123 %>% filter(
+    public_v2_112917.levels123 %>% dplyr::filter(
         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
@@ -85,20 +85,20 @@ for (i in 1:nrow(df_RACE_isCollege_MS_PhD)) {
 bind_cols(
     df_RACE_isCollege_MS_PhD
     , 1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
-        public_v2_112917.levels123 %>% filter(
+        public_v2_112917.levels123 %>% dplyr::filter(
             RACE == df_RACE_isCollege_MS_PhD$RACE[i]
             , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
         ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
     })
 )
 # > for (i in 1:nrow(df_RACE_isCollege_MS_PhD)) {
-# +     public_v2_112917.levels123 %>% filter(
+# +     public_v2_112917.levels123 %>% dplyr::filter(
 # +         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
 # +         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
 # +     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
 # + }
 # > 1:nrow(df_RACE_isCollege_MS_PhD) %>% map(function(i) {
-# +     public_v2_112917.levels123 %>% filter(
+# +     public_v2_112917.levels123 %>% dplyr::filter(
 # +         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
 # +         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
 # +     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
@@ -115,7 +115,7 @@ bind_cols(
 # 9  106   391562.36
 # 10  36    61819.94
 # > 1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
-# +     public_v2_112917.levels123 %>% filter(
+# +     public_v2_112917.levels123 %>% dplyr::filter(
 # +         RACE == df_RACE_isCollege_MS_PhD$RACE[i]
 # +         , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
 # +     ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
@@ -134,7 +134,7 @@ bind_cols(
 # > bind_cols(
 # +     df_RACE_isCollege_MS_PhD
 # +     , 1:nrow(df_RACE_isCollege_MS_PhD) %>% map_df(function(i) {
-# +         public_v2_112917.levels123 %>% filter(
+# +         public_v2_112917.levels123 %>% dplyr::filter(
 # +             RACE == df_RACE_isCollege_MS_PhD$RACE[i]
 # +             , isCollege_MS_PhD == df_RACE_isCollege_MS_PhD$isCollege_MS_PhD[i]
 # +         ) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))

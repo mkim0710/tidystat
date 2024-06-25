@@ -248,10 +248,10 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # "AGE_group"), level = c("40-", "50-", "60-", "70-"), varnamelevel = c("AGE_group40-", 
     # "AGE_group50-", "AGE_group60-", "AGE_group70-")), class = c("tbl_df", 
     # "tbl", "data.frame"), row.names = c(NA, -4L))
-    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% filter(varname == "varname")
+    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% dplyr::filter(varname == "varname")
     # # A tibble: 0 x 3
     # # ... with 3 variables: varname <chr>, level <chr>, varnamelevel <chr>
-    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% filter(varname == "varname") |> dput()
+    # Browse[2]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% dplyr::filter(varname == "varname") |> dput()
     # structure(list(varname = character(0), level = character(0), 
     #     varnamelevel = character(0)), class = c("tbl_df", "tbl", 
     # "data.frame"), row.names = c(NA, 0L))

@@ -7,10 +7,10 @@
 #@ EndTime.of.Case
 # 
 # dataset %>% 
-#     filter(MatchingCtrlNum == 0) %>% 
+#     dplyr::filter(MatchingCtrlNum == 0) %>% 
 #     select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
 # # > dataset %>% 
-# # +     filter(MatchingCtrlNum == 0) %>% 
+# # +     dplyr::filter(MatchingCtrlNum == 0) %>% 
 # # +     select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
 # # # A tibble: 10,299 x 2
 # #    MatchingPairID1_1                    .exit_age_of_Case
@@ -30,7 +30,7 @@
 # dataset = dataset %>% 
 #     left_join(
 #         dataset %>%
-#             filter(MatchingCtrlNum == 0) %>% 
+#             dplyr::filter(MatchingCtrlNum == 0) %>% 
 #             select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
 #     )
 
@@ -197,7 +197,7 @@ data.ccwc = function(
             , is.Ctrl.Candidate = T
             , is.assigned = F
         )
-        .event.exit_age.unique.sort = .mydata %>% filter(.event == T) %>% select(.exit_age) |> unlist() %>% unname |> unique %>% sort
+        .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == T) %>% select(.exit_age) |> unlist() %>% unname |> unique %>% sort
         # Browse[2]> .event.exit_age.unique.sort |> str()
         # num 14790
         # print(paste0(".event.exit_age.unique.sort: ", deparse(.event.exit_age.unique.sort) ))
@@ -285,20 +285,20 @@ data.ccwc = function(
         # if (add_tableone_pre_post == T) {
         #     out$tableone_post_total = CreateTableOne(
         #         vars = c(varname4entry, varname4exit), strata = "is.Case"
-        #         , data = filter(.mydata.ccwc, is.assigned == T)
+        #         , data = dplyr::filter(.mydata.ccwc, is.assigned == T)
         #         , test=T
         #         , includeNA = T)
         #     # # debug 180516
         #     # out$tableone_post_total = CreateTableOne(
         #     #     vars = c(varname4entry, varname4exit), strata = "is.Case"
-        #     #     , data = map_df(filter(.mydata.ccwc, is.assigned == T), function(x) ifelse(is.factor(x), as.character(x), x))
+        #     #     , data = map_df(dplyr::filter(.mydata.ccwc, is.assigned == T), function(x) ifelse(is.factor(x), as.character(x), x))
         #     #     , test=T
         #     #     , includeNA = T)
         #     
         #     # out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
         #     #     CreateTableOne(
         #     #         vars = c(varname4entry, varname4exit), strata = varname4event
-        #     #         , data = .mydata.ccwc %>% filter(MatchingCtrlNum %in% c(0,i))
+        #     #         , data = .mydata.ccwc %>% dplyr::filter(MatchingCtrlNum %in% c(0,i))
         #     #         , test=T
         #     #         , includeNA = T)
         #     # })
@@ -609,7 +609,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #         }
 #         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
 #             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
-#         .event.exit_age.unique.sort = .mydata %>% filter(.event == 
+#         .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == 
 #             T) %>% select(.exit_age) |> unlist() %>% unname %>% 
 #             unique %>% sort
 #         incomplete = 0
@@ -691,7 +691,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
 #         if (add_tableone_pre_post == T) {
 #             out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
-#                 varname4exit), strata = "is.Case", data = filter(.mydata.ccwc, 
+#                 varname4exit), strata = "is.Case", data = dplyr::filter(.mydata.ccwc, 
 #                 is.assigned == T), test = T, includeNA = T)
 #         }
 #     }
@@ -888,7 +888,7 @@ data.strata_list = function(
     out = map(
         levels(.mydata$strata)
         , function(chr) {
-            out2 = .mydata %>% filter(strata == !!chr) |> as_tibble()
+            out2 = .mydata %>% dplyr::filter(strata == !!chr) |> as_tibble()
             # attr(out2, ".vars4strata") = .vars4strata
             out2
         }
@@ -1084,13 +1084,13 @@ data.stratified.ccwc = function(
     
     # # out$tableone_post_total = CreateTableOne(
     # #     vars = c(varname4entry, varname4exit), strata = "is.Case"
-    # #     , data = filter(out$data, is.assigned == T)
+    # #     , data = dplyr::filter(out$data, is.assigned == T)
     # #     , test=T
     # #     , includeNA = T)
     # # debug 180516
     # out$tableone_post_total = CreateTableOne(
     #     vars = c(varname4entry, varname4exit), strata = "is.Case"
-    #     , data = map_df(filter(out$data, is.assigned == T), function(x) ifelse(is.factor(x), as.character(x), x))
+    #     , data = map_df(dplyr::filter(out$data, is.assigned == T), function(x) ifelse(is.factor(x), as.character(x), x))
     #     , test=T
     #     , includeNA = T)
 
@@ -1217,7 +1217,7 @@ diet.stratified.ccwc$data %>% group_by(!!!rlang::syms(c(.vars4strata, varname4ev
 
 diet.stratified.ccwc$data %>% select(RowNum_original, !!rlang::sym(varname4entry), !!rlang::sym(varname4exit), .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
 diet.stratified.ccwc$data %>% select(RowNum_original, !!rlang::sym(varname4entry), !!rlang::sym(varname4exit), .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% 
-    filter(is.assigned) #----
+    dplyr::filter(is.assigned) #----
 diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) %>% as.data.frame() #----
 # > diet.stratified.ccwc$data %>% select(RowNum_original, entry_age, exit_age, .event, strata, MatchingPairID, MatchingCtrlNum, is.Case, is.Ctrl.Candidate, is.assigned) #----
 # # A tibble: 337 x 10
@@ -1461,7 +1461,7 @@ diet.stratified.ccwc #----
 #             ": \n", deparse(names(.mydata.strata_list.ccwc)[warning_lgl])))
 #     }
 #     out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
-#         varname4exit), strata = "is.Case", data = filter(out$data, 
+#         varname4exit), strata = "is.Case", data = dplyr::filter(out$data, 
 #         is.assigned == T), test = T, includeNA = T)
 #     attr(out$data, ".vars4strata") = .vars4strata
 #     attr(out$data, ".event") = varname4event
@@ -1490,7 +1490,7 @@ diet.stratified.ccwc #----
 #         FUN = paste, collapse = paste.collapse)
 #     .mydata$strata = .mydata$strata %>% as.factor
 #     out = map(levels(.mydata$strata), function(chr) {
-#         out2 = .mydata %>% filter(strata == (!(!chr))) |> as_tibble()
+#         out2 = .mydata %>% dplyr::filter(strata == (!(!chr))) |> as_tibble()
 #         out2
 #     })
 #     names(out) = levels(.mydata$strata)
@@ -1592,7 +1592,7 @@ diet.stratified.ccwc #----
 #         }
 #         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
 #             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
-#         .event.exit_age.unique.sort = .mydata %>% filter(.event == 
+#         .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == 
 #             T) %>% select(.exit_age) |> unlist() %>% unname %>% 
 #             unique %>% sort
 #         incomplete = 0
@@ -1674,7 +1674,7 @@ diet.stratified.ccwc #----
 #         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
 #         if (add_tableone_pre_post == T) {
 #             out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
-#                 varname4exit), strata = "is.Case", data = filter(.mydata.ccwc, 
+#                 varname4exit), strata = "is.Case", data = dplyr::filter(.mydata.ccwc, 
 #                 is.assigned == T), test = T, includeNA = T)
 #         }
 #     }

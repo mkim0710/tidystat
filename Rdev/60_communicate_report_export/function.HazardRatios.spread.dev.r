@@ -148,7 +148,7 @@ HazardRatios.list_df |> str() #----
 
 
 #@ HazardRatios.bind_rows =====
-HazardRatios.bind_rows = HazardRatios.list_df %>% map(function(df) {df %>% filter(grepl("Exposure", rowname))}) %>% bind_rows(.id = "Model")
+HazardRatios.bind_rows = HazardRatios.list_df %>% map(function(df) {df %>% dplyr::filter(grepl("Exposure", rowname))}) %>% bind_rows(.id = "Model")
 HazardRatios.bind_rows #----
 # > HazardRatios.bind_rows #----
 # # A tibble: 4 x 9

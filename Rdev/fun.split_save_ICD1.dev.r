@@ -42,8 +42,8 @@ fun.split_save_ICD1 <- function(dataset_name = "nsc2_m20.sas7bdat",
   
   map_chr(LETTERS, function(i) {
     t0_filter <- Sys.time()
-    tmp.df <- get(dataset_name) %>% filter(!!sym(varname_icd1) == i)
-    cat("Time elapsed for filter(!!sym(varname_icd1) == ", i, "): ", format_time_diff(difftime(Sys.time(), t0_filter, units = "secs")), "\n")
+    tmp.df <- get(dataset_name) %>% dplyr::filter(!!sym(varname_icd1) == i)
+    cat("Time elapsed for dplyr::filter(!!sym(varname_icd1) == ", i, "): ", format_time_diff(difftime(Sys.time(), t0_filter, units = "secs")), "\n")
 
     # If no data for the character, skip
     if(nrow(tmp.df) == 0) {
@@ -87,7 +87,7 @@ fun.split_save_ICD1_v2 <- function(dataset_name = "nsc2_m20.sas7bdat",
   # Iterate over each letter and filter the dataset, then save the filtered data
   result <- map_chr(LETTERS, function(i) {
     t0_filter <- Sys.time()
-    filtered_data <- data %>% filter(!!sym(varname_icd1) == i)
+    filtered_data <- data %>% dplyr::filter(!!sym(varname_icd1) == i)
     cat("Time elapsed for filtering data with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_filter, units = "secs")), "\n")
     
     # If no data for the character, skip
@@ -126,7 +126,7 @@ fun.split_save_ICD1_v3 <- function(dataset_name = "nsc2_m20.sas7bdat",
   result <- map_chr(LETTERS, function(i) {
     t0_filter <- Sys.time()
     
-    filtered_data <- data %>% filter(substr(!!sym(varname_icd), 1, 1) == i)
+    filtered_data <- data %>% dplyr::filter(substr(!!sym(varname_icd), 1, 1) == i)
     
     cat("Time elapsed for filtering data with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_filter, units = "secs")), "\n")
     

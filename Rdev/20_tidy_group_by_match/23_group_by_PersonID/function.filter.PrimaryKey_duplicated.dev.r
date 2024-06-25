@@ -10,38 +10,38 @@
 # d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin2000 from .r ----
 tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
     mutate(PrimaryKey = concept_name.toupper) %>% 
-    {{. %>% group_by(PrimaryKey) %>% summarize(n()) %>% filter(`n()` > 1)} %>% left_join(.)}
+    {{. %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 1)} %>% left_join(.)}
 tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
     mutate(PrimaryKey = concept_name.toupper) %>% 
-    {~function(df) {df %>% group_by(PrimaryKey) %>% summarize(n()) %>% filter(`n()` > 1)} %>% left_join(df)}
+    {~function(df) {df %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 1)} %>% left_join(df)}
 tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
     mutate(PrimaryKey = concept_name.toupper) %>% 
     left_join(
-        filter(
+        dplyr::filter(
             summarize( 
                 group_by(., PrimaryKey), n()
             ), `n()` > 1)
         , .)
 tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
     mutate(PrimaryKey = concept_name.toupper) %>% 
-    left_join(filter(summarize(group_by(., PrimaryKey), n()), `n()` > 1), .)
+    left_join(dplyr::filter(summarize(group_by(., PrimaryKey), n()), `n()` > 1), .)
 # > tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
 # +     mutate(PrimaryKey = concept_name.toupper) %>% 
-# +     {{. %>% group_by(PrimaryKey) %>% summarize(n()) %>% filter(`n()` > 1)} %>% left_join(.)}
+# +     {{. %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 1)} %>% left_join(.)}
 # Error in UseMethod("left_join") : 
 #   no applicable method for 'left_join' applied to an object of class "c('fseq', 'function')"
 # > tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
 # +     mutate(PrimaryKey = concept_name.toupper) %>% 
-# +     {~function(df) {df %>% group_by(PrimaryKey) %>% summarize(n()) %>% filter(`n()` > 1)} %>% left_join(df)}
+# +     {~function(df) {df %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 1)} %>% left_join(df)}
 # ~function(df) {
-#     df %>% group_by(PrimaryKey) %>% summarize(n()) %>% filter(`n()` > 
+#     df %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 
 #         1)
 # } %>% left_join(df)
 # <environment: 0x0000012d08dbc528>
 # > tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
 # +     mutate(PrimaryKey = concept_name.toupper) %>% 
 # +     left_join(
-# +         filter(
+# +         dplyr::filter(
 # +             summarize( 
 # +                 group_by(., PrimaryKey), n()
 # +             ), `n()` > 1)
@@ -100,12 +100,12 @@ enrolid_mom_duplicated |> str()
 
 t0 = Sys.time()
 mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
-    filter(enrolid_mom %in% enrolid_mom_duplicated) %>% 
+    dplyr::filter(enrolid_mom %in% enrolid_mom_duplicated) %>% 
     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
 Sys.time() - t0
 # > t0 = Sys.time()
 # > mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
-# +     filter(enrolid_mom %in% enrolid_mom_duplicated) %>% 
+# +     dplyr::filter(enrolid_mom %in% enrolid_mom_duplicated) %>% 
 # +     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
 # # A tibble: 184 x 4
 # # Groups:   enrolid_mom [92]
@@ -132,12 +132,12 @@ Sys.time() - t0
 
 t0 = Sys.time()
 mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
-    filter(duplicated(enrolid_mom) | duplicated(enrolid_mom, fromLast = T)) %>% 
+    dplyr::filter(duplicated(enrolid_mom) | duplicated(enrolid_mom, fromLast = T)) %>% 
     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
 Sys.time() - t0
 # > t0 = Sys.time()
 # > mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
-# +     filter(duplicated(enrolid_mom) | duplicated(enrolid_mom, fromLast = T)) %>% 
+# +     dplyr::filter(duplicated(enrolid_mom) | duplicated(enrolid_mom, fromLast = T)) %>% 
 # +     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
 # # A tibble: 184 x 4
 # # Groups:   enrolid_mom [92]
@@ -165,7 +165,7 @@ t0 = Sys.time()
 mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
     group_by(enrolid_mom) %>% 
     summarize(n()) %>% 
-    filter(`n()` > 1) %>% 
+    dplyr::filter(`n()` > 1) %>% 
     left_join(mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp) %>% 
     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
 Sys.time() - t0
@@ -173,7 +173,7 @@ Sys.time() - t0
 # > mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
 # +     group_by(enrolid_mom) %>% 
 # +     summarize(n()) %>% 
-# +     filter(`n()` > 1) %>% 
+# +     dplyr::filter(`n()` > 1) %>% 
 # +     left_join(mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp) %>% 
 # +     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
 # Joining, by = "enrolid_mom"

@@ -108,9 +108,9 @@ library(tidyverse)
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/data.SSQ_5_6.rda"))
 library(survey)
 data.svydesign = data.SSQ_5_6 %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
-data.US_BORN_T.svydesign = data.SSQ_5_6 %>% filter(US_BORN == "1: US-Born, 50 States, DC, PR and Territories") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
-data.US_BORN_F.svydesign = data.SSQ_5_6 %>% filter(US_BORN == "2: Other") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
-data.Depressed.svydesign = data.SSQ_5_6 %>% filter(DXDEPRESSION %in% c("1: Depressed and previously diagnosed", "2: Depressed and no diagnosis")) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+data.US_BORN_T.svydesign = data.SSQ_5_6 %>% dplyr::filter(US_BORN == "1: US-Born, 50 States, DC, PR and Territories") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+data.US_BORN_F.svydesign = data.SSQ_5_6 %>% dplyr::filter(US_BORN == "2: Other") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+data.Depressed.svydesign = data.SSQ_5_6 %>% dplyr::filter(DXDEPRESSION %in% c("1: Depressed and previously diagnosed", "2: Depressed and no diagnosis")) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 
 
 #@ tables for manuscript - main effects model () ====
@@ -600,7 +600,7 @@ function.svyglm.MainModel.byEffectModifier = function(
     # # svyglm(formula4MainModel.exc_EffectModifier, design = data.svydesign, 
     # #     family = stats::quasibinomial()) 
     for (i in levels(data[[varname4EffectModifier]])) {
-        data.subset = data %>% filter(!!rlang::sym(varname4EffectModifier) == i)
+        data.subset = data %>% dplyr::filter(!!rlang::sym(varname4EffectModifier) == i)
         data.subset.svydesign = data.subset %>% svydesign(id = svydesign.id, strata = svydesign.strata, weights = svydesign.weights, nest = svydesign.nest, data = . , pps = svydesign.pps)
         formula4MainModel.exc_EffectModifier = formula4MainModel %>% as.character %>% {paste(.[2], .[1], .[3])} %>% gsub("\\ ", "", .) %>% gsub(varname4EffectModifier, "", .) %>% gsub("\\~\\+", "~", .) %>% gsub("\\+{2}", "+", .) %>% gsub("\\~", " ~ ", .) %>% gsub("\\+", " + ", .) %>% gsub("\\*", " * ", .) %>% as.formula
         out.list[[i]] = svyglm(formula4MainModel.exc_EffectModifier, design = data.subset.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp(allow_multple_spaces = function.glm_object.summary.exp.allow_multple_spaces)

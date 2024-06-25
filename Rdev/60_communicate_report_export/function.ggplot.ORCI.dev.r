@@ -149,7 +149,7 @@ for (
 ) {
     
     g = AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI[[i]] %>% 
-        filter(grepl("PM25.tn1m_tn12m.mean.quartile", rowname)) %>% 
+        dplyr::filter(grepl("PM25.tn1m_tn12m.mean.quartile", rowname)) %>% 
         add_row(rowname = " Reference", `exp(Estimate)` = 1, .before = 1) %>% 
         mutate(rowname = paste(c("1st", "2nd", "3rd", "4th"), "quartile")) %>% 
         ggplot(aes(x = rowname, y = `exp(Estimate)`)) + 

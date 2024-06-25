@@ -310,7 +310,7 @@ txt %>% gsub(" ", ", ", .) |> dput()
 # > txt %>% gsub(" ", ", ", .) |> dput()
 # "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar"
 
-n1_2016_withlabels_EPI522_merge_n2_recode %>% filter(N1GM0390 == 1 & Cigar_ge50 < 1) %>% 
+n1_2016_withlabels_EPI522_merge_n2_recode %>% dplyr::filter(N1GM0390 == 1 & Cigar_ge50 < 1) %>% 
     select(N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar)
 
 
