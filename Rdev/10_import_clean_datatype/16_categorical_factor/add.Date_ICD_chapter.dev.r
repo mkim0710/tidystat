@@ -2,14 +2,14 @@
 # https://github.com/mkim0710/Rproject_MH/blob/master/Rpr.bind_rows/NHID_JK0213.bind_rows.Date.DTH_I2025I3052I6069I7079%20from%20.r
 
 
-gj_jk.Date.DTH %>% filter(DTH_CODE1_1char == "R") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
-# > NHID_JK0213.bind_rows.Date.DTH %>% filter(DTH_CODE1_1char == "R") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
+gj_jk.Date.DTH %>% dplyr::filter(DTH_CODE1_1char == "R") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
+# > NHID_JK0213.bind_rows.Date.DTH %>% dplyr::filter(DTH_CODE1_1char == "R") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
 # .
 #  R02  R04  R06  R07  R09  R10  R17  R18  R40  R50  R53  R54  R56  R57  R58  R63  R64  R68  R95  R96  R98  R99 
 #    2   16    8    2  171    4    3    1    1    1   16 4575    2   20    1    1   36   71    5  192  123  727 
 
-gj_jk.Date.DTH %>% filter(DTH_CODE1_1char == "I") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
-# > NHID_JK0213.bind_rows.Date.DTH %>% filter(DTH_CODE1_1char == "I") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
+gj_jk.Date.DTH %>% dplyr::filter(DTH_CODE1_1char == "I") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
+# > NHID_JK0213.bind_rows.Date.DTH %>% dplyr::filter(DTH_CODE1_1char == "I") %>% {.$DTH_CODE1} %>% as.character %>% table #-----
 # .
 #  I05  I06  I07  I08  I10  I11  I12  I13  I20  I21  I22  I24  I25  I26  I27  I28  I31  I33  I34  I35  I36  I38  I40  I42  I44  I46  I47  I48  I49  I50  I51  I60  I61  I62  I63  I64  I67  I69  I70  I71  I72  I73  I74  I77  I80  I82  I85  I95  I99 
 #   36    3    2   25  437  503  115   49  231 2094    5   18  555   39   12    4   17   20   22   40    2   36   11  110    8  495   14  112   78  657  138  455 1200   86 2170  729  103 1665   36  144    5   19   19    6    9    3    3    4    2 

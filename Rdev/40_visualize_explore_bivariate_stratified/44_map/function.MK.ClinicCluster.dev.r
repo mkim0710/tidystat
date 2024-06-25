@@ -228,7 +228,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     
     # browser()
     #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
-    #@ iteration) Code4MergeFrom = PopulationDF.last %>% filter(Pop < Min.Pop) %>% arrange(Pop) %>% {.$Code} ======
+    #@ iteration) Code4MergeFrom = PopulationDF.last %>% dplyr::filter(Pop < Min.Pop) %>% arrange(Pop) %>% {.$Code} ======
     # warning("Starting iteration for Min.Pop")
     # print(Sys.time() - t0)
     # cat("..for Min.Pop")
@@ -254,7 +254,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self; 
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance[DistanceMatrix.last > Max.Distance ] = NA
         
-        Code4MergeFrom = PopulationDF.last %>% filter(Pop.Cluster < Min.Pop) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster} # %>% {.$Code}
+        Code4MergeFrom = PopulationDF.last %>% dplyr::filter(Pop.Cluster < Min.Pop) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster} # %>% {.$Code}
         if(length(Code4MergeFrom) == 0) {
             # warning("length(Code4MergeFrom) == 0)")
             # warning("No more Code4MergeFrom")
@@ -291,7 +291,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     
     
     #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
-    #@ iteration) Code4MergeFrom = Cluster.tbl %>% filter(OD.diag_rowP < Min.SC) %>% arrange(OD.diag_rowP) %>% {.$Code.Cluster} ======
+    #@ iteration) Code4MergeFrom = Cluster.tbl %>% dplyr::filter(OD.diag_rowP < Min.SC) %>% arrange(OD.diag_rowP) %>% {.$Code.Cluster} ======
     # warning("Starting iteration for Min.SC")
     # print(Sys.time() - t0)
     # cat("..for Min.SC")
@@ -319,7 +319,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self; 
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance[DistanceMatrix.last > Max.Distance ] = NA
         
-        Code4MergeFrom = Cluster.tbl %>% filter(OD.diag_rowP < Min.SC) %>% arrange(OD.diag_rowP) %>% {.$Code.Cluster}
+        Code4MergeFrom = Cluster.tbl %>% dplyr::filter(OD.diag_rowP < Min.SC) %>% arrange(OD.diag_rowP) %>% {.$Code.Cluster}
         if(length(Code4MergeFrom) == 0) {
             # warning("length(Code4MergeFrom) == 0)")
             # warning("No more Code4MergeFrom")

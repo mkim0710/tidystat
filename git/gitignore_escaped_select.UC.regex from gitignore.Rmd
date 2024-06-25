@@ -145,7 +145,7 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # for (i_regex in unique(gitignore_escaped_select)) {
-#     df <- df_dir1 |> filter(!str_detect(path.basename, i_regex))
+#     df <- df_dir1 |> dplyr::filter(!str_detect(path.basename, i_regex))
 # }
 ```
   

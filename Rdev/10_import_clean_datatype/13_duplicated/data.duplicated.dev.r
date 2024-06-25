@@ -19,7 +19,7 @@ nhis_heals_gj0215.0213[
       "CUR_DSQTY_RSPS_CD", "MOV20_WEK_FREQ_ID", "MOV30_WEK_FREQ_ID",
       "WLK30_WEK_FREQ_ID", "KDSQ_C_1", "KDSQ_C_2", "KDSQ_C_3", "KDSQ_C_4",
       "KDSQ_C_5", "KDSQ_C", "HCHK_PHSS_PMH_YN")] %>% 
-    group_by_at(vars(-PERSON_ID)) %>% filter(n()>1) 
+    group_by_at(vars(-PERSON_ID)) %>% dplyr::filter(n()>1) 
 # # A tibble: 2 × 57
 # # Groups:   HCHK_YEAR, YKIHO_GUBUN_CD, HME_DT, BMI, BP_HIGH, BP_LWST, BLDS, TOT_CHOLE, HMG, GLY_CD, OLIG_OCCU_CD, OLIG_PH, OLIG_PROTE_CD,
 # #   SGOT_AST, SGPT_ALT, GAMMA_GTP, HCHK_PMH_CD1, HCHK_PMH_CD2, HCHK_PMH_CD3, FMLY_LIVER_DISE_PATIEN_YN, FMLY_HPRTS_PATIEN_YN,
@@ -185,7 +185,7 @@ tibble::tribble(
 
 
 df.example[!duplicated(df.example[,c("x", "y")]),]
-df.example %>% group_by(x, y) %>% filter(row_number(rowname) == 1)
+df.example %>% group_by(x, y) %>% dplyr::filter(row_number(rowname) == 1)
 df.example %>% group_by(x, y) %>% slice(1)
 df.example %>% group_by(x, y) %>% do(head(.,1))
 df.example %>% distinct(x, y)
@@ -197,7 +197,7 @@ df.example %>% group_by(x) %>% filter (! duplicated(y))
 # 2       2 1 1
 # 3       3 1 0
 # 7       7 0 0
-# > df.example %>% group_by(x, y) %>% filter(row_number(rowname) == 1)
+# > df.example %>% group_by(x, y) %>% dplyr::filter(row_number(rowname) == 1)
 # # A tibble: 4 x 3
 # # Groups:   x, y [4]
 #   rowname     x     y

@@ -73,12 +73,12 @@ for (Min.SC in vector_of_Min.SC) {
             for (
                 i.SGG_CD in 
                 Population.df0 %>% 
-                filter(SIDO_CD %in% SIDO_CD4filter) %>% 
+                dplyr::filter(SIDO_CD %in% SIDO_CD4filter) %>% 
                 {.$SGG_CD} %>% as.character |> unique
             ) {
                 cat(paste0("\n#", i.SGG_CD))
                 # cat(paste0("..#", i.SGG_CD))
-                i.Population.df = Population.df0 %>% filter(SGG_CD == i.SGG_CD)
+                i.Population.df = Population.df0 %>% dplyr::filter(SGG_CD == i.SGG_CD)
                 i.DistanceMatrix = 
                     DistanceMatrix0[
                         DistanceMatrix0 %>% rownames %>% substr(1, 5) == as.character(i.SGG_CD)
@@ -91,7 +91,7 @@ for (Min.SC in vector_of_Min.SC) {
                         ,
                         ODMatrix0 %>% colnames %>% substr(1, 5) == as.character(i.SGG_CD) 
                         ]
-                i.ODMatrix.marginDF = ODMatrix.marginDF0 %>% filter(SGG_CD == i.SGG_CD)
+                i.ODMatrix.marginDF = ODMatrix.marginDF0 %>% dplyr::filter(SGG_CD == i.SGG_CD)
                 
                 function.MK.output.nest_sigungu.SouthKorea[[paste0("Min.SC", Min.SC)]][[paste0("Max.Distance", Max.Distance)]][[paste0("Min.Pop", Min.Pop)]][[
                     as.character(i.SGG_CD)

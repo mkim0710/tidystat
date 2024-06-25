@@ -361,7 +361,7 @@ df_NewDMv3.CensorEND = df_NewDMv3.NAtime |>
     mutate(event = ifelse(time <= value_for_Censor_at_END, event, F)) |> 
     mutate(time = pmin(time, value_for_Censor_at_END)) |> 
     as_tibble()
-survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_NewDMv3.CensorEND |> filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
+survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_NewDMv3.CensorEND |> dplyr::filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
            , break.time.by = value_for_break.time.by
            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
            , xlim = c(1, value_for_Censor_at_END), ylim = c(0, 1)
@@ -493,7 +493,7 @@ options(width=120)
 # #  Mean   :253.6                                               
 # #  3rd Qu.:365.0                                               
 # #  Max.   :365.0                                               
-# survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_time2event.CensorEND |> filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
+# survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = df_time2event.CensorEND |> dplyr::filter(StudyPopulation)), palette = c("#00AFBB", "#FC4E07")
 #            , break.time.by = value_for_break.time.by
 #            , conf.int = TRUE, risk.table = TRUE, pval = TRUE
 #            , xlim = c(0, value_for_Censor_at_END), ylim = c(0, 1)

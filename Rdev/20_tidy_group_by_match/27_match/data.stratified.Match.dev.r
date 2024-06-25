@@ -41,8 +41,8 @@
 # }
 # 
 # load(url("https://github.com/mkim0710/tidystat/raw/master/data/framingham_baseline_2018.rda"))
-# framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
-# # > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% filter(age == "55")
+# framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% dplyr::filter(age == "55")
+# # > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% dplyr::filter(age == "55")
 # # # A tibble: 10 x 7
 # #    RowNum_original age   sex   diabetes   runif MatchingGroupID MatchingPairID
 # #              <int> <fct> <fct>    <dbl>   <dbl> <fct>           <chr>         
@@ -216,7 +216,7 @@ data.strata_list = function(
     out = map(
         levels(.mydata$strata)
         , function(chr) {
-            out2 = .mydata %>% filter(strata == !!chr) |> as_tibble()
+            out2 = .mydata %>% dplyr::filter(strata == !!chr) |> as_tibble()
             # attr(out2, ".vars4strata") = .vars4strata
             out2
         }
@@ -562,7 +562,7 @@ data.Match = function(
                     out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
                         CreateTableOne(
                             vars = .vars4Matching, strata = .exposure
-                            , data = .mydataMatching %>% filter(MatchingCtrlNum %in% c(0,i))
+                            , data = .mydataMatching %>% dplyr::filter(MatchingCtrlNum %in% c(0,i))
                             , test=T
                             , includeNA = T)
                     })
@@ -1411,7 +1411,7 @@ data.stratified.Match = function(
         out = map(
             levels(.mydata$strata)
             , function(chr) {
-                out2 = .mydata %>% filter(strata == !!chr) |> as_tibble()
+                out2 = .mydata %>% dplyr::filter(strata == !!chr) |> as_tibble()
                 # attr(out2, ".vars4strata") = .vars4strata
                 out2
             }
@@ -1657,7 +1657,7 @@ data.stratified.Match = function(
                         out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
                             CreateTableOne(
                                 vars = .vars4Matching, strata = .exposure
-                                , data = .mydataMatching %>% filter(MatchingCtrlNum %in% c(0,i))
+                                , data = .mydataMatching %>% dplyr::filter(MatchingCtrlNum %in% c(0,i))
                                 , test=T
                                 , includeNA = T)
                         })
@@ -1760,7 +1760,7 @@ data.stratified.Match = function(
     out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
         CreateTableOne(
             vars = c(.vars4strata, .vars4Matching), strata = .exposure
-            , data = out$data %>% filter(MatchingCtrlNum %in% c(0,i))
+            , data = out$data %>% dplyr::filter(MatchingCtrlNum %in% c(0,i))
             , test=T
             , includeNA = T)
     })

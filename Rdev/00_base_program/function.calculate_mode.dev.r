@@ -92,7 +92,7 @@ tibble::tribble(
 set.seed(1); sample(1:9, 30, replace = T) %>% {tibble(ID = ., Freq = 1)}
 set.seed(1); sample(1:9, 30, replace = T) %>% {tibble(ID = ., Freq = 1)} %>% group_by(ID) %>% summarise(Freq = sum(Freq, na.rm = T))
 set.seed(1); sample(1:9, 30, replace = T) %>% {tibble(ID = ., Freq = 1)} %>% group_by(ID) %>% summarise(Freq = sum(Freq, na.rm = T)) %>% 
-    filter(Freq == max(Freq))
+    dplyr::filter(Freq == max(Freq))
 # > set.seed(1); sample(1:9, 30, replace = T) %>% {tibble(ID = ., Freq = 1)}
 # # A tibble: 30 x 2
 #       ID  Freq
@@ -122,7 +122,7 @@ set.seed(1); sample(1:9, 30, replace = T) %>% {tibble(ID = ., Freq = 1)} %>% gro
 # 8     8     1
 # 9     9     5
 # > set.seed(1); sample(1:9, 30, replace = T) %>% {tibble(ID = ., Freq = 1)} %>% group_by(ID) %>% summarise(Freq = sum(Freq, na.rm = T)) %>% 
-# +     filter(Freq == max(Freq))
+# +     dplyr::filter(Freq == max(Freq))
 # # A tibble: 1 x 2
 #      ID  Freq
 #   <int> <dbl>
@@ -141,7 +141,7 @@ set.seed(1); sample(1:9, 30, replace = T) %>% getmode
 function.calculate_mode = function(vec, out_as_vector = F) {
     library(tidyverse)
     out = vec %>% {tibble(ID = ., Freq = 1)} %>% group_by(ID) %>% summarise(Freq = sum(Freq, na.rm = T)) %>% 
-        filter(Freq == max(Freq))
+        dplyr::filter(Freq == max(Freq))
     if (out_as_vector) out = out$ID
     out
 }

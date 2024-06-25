@@ -200,14 +200,14 @@ function.char_cho_joong_jong2hangul = function(txt) {
         , vowel = txt.utf8ToInt %in% 12623:12643
     )
     df = df %>% mutate(
-        consonant_twice = consonant * (lag(consonant)+lead(consonant)) >= 1
-        # , syllable_new = (1-consonant_twice) * lag(vowel) + consonant_twice * lag(lag(vowel)) + (1-hangul)
-        # , syllable_new = ifelse(hangul, (1-consonant_twice) * lag(vowel) + consonant_twice * lag(lag(vowel)), T)
+        consonant_twice = consonant * (dplyr::lag(consonant)+lead(consonant)) >= 1
+        # , syllable_new = (1-consonant_twice) * dplyr::lag(vowel) + consonant_twice * dplyr::lag(dplyr::lag(vowel)) + (1-hangul)
+        # , syllable_new = ifelse(hangul, (1-consonant_twice) * dplyr::lag(vowel) + consonant_twice * dplyr::lag(dplyr::lag(vowel)), T)
         , syllable_new = ifelse(
             hangul
             , ifelse(
-                lag(hangul)
-                , (1-consonant_twice) * lag(vowel) + consonant_twice * lag(lag(vowel))
+                dplyr::lag(hangul)
+                , (1-consonant_twice) * dplyr::lag(vowel) + consonant_twice * dplyr::lag(dplyr::lag(vowel))
                 , T
             )
             , T

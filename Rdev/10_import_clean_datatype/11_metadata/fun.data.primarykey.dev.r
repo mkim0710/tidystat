@@ -19,7 +19,7 @@ nhis_heals_jk.sas7bdat %>% {n_distinct(.$PERSON_ID)} #----
 nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct |> dim() #----
 nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct |> dim() #----
 t0=Sys.time()
-nhis_heals_jk.sas7bdat.duplicated = nhis_heals_jk.sas7bdat %>% group_by_at(vars(STND_Y, PERSON_ID)) %>% filter(n()>1)
+nhis_heals_jk.sas7bdat.duplicated = nhis_heals_jk.sas7bdat %>% group_by_at(vars(STND_Y, PERSON_ID)) %>% dplyr::filter(n()>1)
 Sys.time()-t0
 nhis_heals_jk.sas7bdat.duplicated |> print()
 # > nhis_heals_jk.sas7bdat |> dim() #----
@@ -127,7 +127,7 @@ fun.data.primarykey = function(inputdata, primarykey = c("PERSON_ID")) {
     out$data.primarykey.n_distinct = inputdata[primarykey] %>% distinct %>% nrow %>% fun.numeric.addFormated
     out$data.primarykey.n_distinct.diff = (as.numeric(out$data.primarykey.n_distinct) - as.numeric(out$data.nrow)) %>% fun.numeric.addFormated
     out$data.primarykey.n_distinct.prop = (as.numeric(out$data.primarykey.n_distinct) / as.numeric(out$data.nrow)) %>% fun.numeric.addFormated
-    out$data.primarykey.duplicated = inputdata %>% group_by_at(primarykey) %>% filter(n()>1)
+    out$data.primarykey.duplicated = inputdata %>% group_by_at(primarykey) %>% dplyr::filter(n()>1)
     out
 }
 
@@ -242,7 +242,7 @@ library(tidyverse)
 check_primary_key <- function(df, varname_ID, varname_Time) {
   
   # Filter out rows with missing values in varname_ID or varname_Time
-  df_filtered <- df %>% filter(!is.na(df[[varname_ID]]) & !is.na(df[[varname_Time]]))
+  df_filtered <- df %>% dplyr::filter(!is.na(df[[varname_ID]]) & !is.na(df[[varname_Time]]))
   
   # Calculating statistics
   total_rows <- nrow(df_filtered)

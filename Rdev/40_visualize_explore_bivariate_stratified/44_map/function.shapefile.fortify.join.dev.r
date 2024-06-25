@@ -253,7 +253,7 @@ korpopmap3.CP949.fortify.join |> str() #----
 
 korpopmap3.CP949.fortify.join.Seoul11 = korpopmap3.CP949.fortify.join %>% 
     mutate(code2 = code %>% substr(1, 2), code5 = code %>% substr(1, 5)) %>% 
-    filter(code2 == "11")
+    dplyr::filter(code2 == "11")
 
 korpopmap3.CP949.fortify.join.Seoul11 |> str() #----
 # > korpopmap3.CP949.fortify.join.Seoul11 |> str() #----
@@ -312,7 +312,7 @@ korpopmap2.CP949.fortify.join %>% mutate(code2 = code %>% substr(1, 2)) %>%
     ggplot(aes(x=long, y=lat, group=group)) + geom_polygon(aes(fill = code2), color='black')
 
 korpopmap3.CP949.fortify.join %>% mutate(code2 = code %>% substr(1, 2), code5 = code %>% substr(1, 5)) %>% 
-    filter(code2 == "11") %>% 
+    dplyr::filter(code2 == "11") %>% 
     ggplot(aes(x=long, y=lat, group=group)) + geom_polygon(aes(fill = code5), color='black')
 
 

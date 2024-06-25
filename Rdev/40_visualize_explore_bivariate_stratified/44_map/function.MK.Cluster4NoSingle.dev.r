@@ -224,7 +224,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     
     # browser()
     #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
-    #@ iteration) Singles = Cluster.tbl.last %>% filter(n_Code == 1) %>% {.$Code.Cluster} ======
+    #@ iteration) Singles = Cluster.tbl.last %>% dplyr::filter(n_Code == 1) %>% {.$Code.Cluster} ======
     # print(Sys.time() - t0)
     # cat("..for Min.Pop")
     iteration = 0
@@ -254,21 +254,21 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
         DistanceMatrix.last.rm_self.rm_gt_Max.Distance = DistanceMatrix.last.rm_self
         DistanceMatrix.last.rm_self.rm_gt_Max.Distance[DistanceMatrix.last > Max.Distance ] = NA
         # DistanceMatrix.last.rm_self.rm_gt_Max.Distance %>% {which(. == min(., na.rm = T), arr.ind = TRUE)} #----
-        # Singles = Cluster.tbl.last %>% filter(n_Code == 1) %>% {.$Code.Cluster}
-        NotSingle = Cluster.tbl.last %>% filter(n_Code > 1) %>% {.$Code.Cluster}
+        # Singles = Cluster.tbl.last %>% dplyr::filter(n_Code == 1) %>% {.$Code.Cluster}
+        NotSingle = Cluster.tbl.last %>% dplyr::filter(n_Code > 1) %>% {.$Code.Cluster}
         DistanceMatrix.last.rm_self.rm_gt_Max.Distance.rm_NotSingle = DistanceMatrix.last.rm_self.rm_gt_Max.Distance
         DistanceMatrix.last.rm_self.rm_gt_Max.Distance.rm_NotSingle[NotSingle, ] = NA
         DistanceMatrix.last.rm_self.rm_gt_Max.Distance.rm_NotSingle[, NotSingle] = NA
         
         tmpvec = DistanceMatrix.last.rm_self.rm_gt_Max.Distance.rm_NotSingle %>% {colnames(.)[unique(as.vector(which(. == min(., na.rm = T), arr.ind = TRUE)))]}
-        # Code4MergeFrom = PopulationDF.last %>% filter(Code.Cluster %in% tmpvec) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster}
-        # Code4MergeFrom = Cluster.tbl.last %>% filter(n_Code == 1) %>% filter(Code.Cluster %in% tmpvec) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster}
-        Code4MergeFrom = Cluster.tbl.last %>% filter(Code.Cluster %in% tmpvec) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster}
+        # Code4MergeFrom = PopulationDF.last %>% dplyr::filter(Code.Cluster %in% tmpvec) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster}
+        # Code4MergeFrom = Cluster.tbl.last %>% dplyr::filter(n_Code == 1) %>% dplyr::filter(Code.Cluster %in% tmpvec) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster}
+        Code4MergeFrom = Cluster.tbl.last %>% dplyr::filter(Code.Cluster %in% tmpvec) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster}
         if(length(Code4MergeFrom) == 0) {
             # warning("length(Code4MergeFrom) == 0)")
             # warning("No more Code4MergeFrom")
             
-            Singles = Cluster.tbl.last %>% filter(n_Code == 1) %>% {.$Code.Cluster}
+            Singles = Cluster.tbl.last %>% dplyr::filter(n_Code == 1) %>% {.$Code.Cluster}
             if(length(Singles) == 1) {
                 Code4MergeFrom = Singles
             } else {

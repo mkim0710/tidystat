@@ -42,7 +42,7 @@ function.boot.statistic_RiskDifference = function(data, index, glm.formula = Dk_
         ) %>%
         mutate(pNoEvent_k = 1 - predict(data.resampled.PersonTime.glmOutcome_Exposure_k_Covariates, newdata = ., type = "response")) %>%
         group_by(Exposure) %>% mutate(pNoEvent_k.cumprod = pNoEvent_k %>% cumprod) %>%
-        filter(k == max(k)) %>%
+        dplyr::filter(k == max(k)) %>%
         # select(k, Exposure, pNoEvent_k.cumprod, everything(), -pNoEvent_k) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) %>%
         select(k, Exposure, pNoEvent_k.cumprod) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) %>%
         rename(`max(k)` = k, pNoEvent_k.cumprod0 = `0`, pNoEvent_k.cumprod1 = `1`) %>% mutate(RiskDifference = pNoEvent_k.cumprod1-pNoEvent_k.cumprod0) %>%
