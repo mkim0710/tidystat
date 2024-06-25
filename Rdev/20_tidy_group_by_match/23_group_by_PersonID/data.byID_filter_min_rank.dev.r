@@ -20,10 +20,10 @@ top_n
 #         abort("`n` must be a scalar integer")
 #     }
 #     if (n > 0) {
-#         quo <- quo(filter(x, min_rank(desc(!!wt)) <= !!n))
+#         quo <- quo(dplyr::filter(x, min_rank(desc(!!wt)) <= !!n))
 #     }
 #     else {
-#         quo <- quo(filter(x, min_rank(!!wt) <= !!abs(n)))
+#         quo <- quo(dplyr::filter(x, min_rank(!!wt) <= !!abs(n)))
 #     }
 #     eval_tidy(quo)
 # }
@@ -34,25 +34,25 @@ top_n
 ?min_rank
 ?rank
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-    {f = function(df) df %>% group_by(ENROLID) %>% summarize(lmp = min(lmp)) %>% left_join(df); f(.)} ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+    {f = function(df) df %>% group_by(ENROLID) %>% summarize(lmp = min(lmp)) %>% left_join(df); f(.)} ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-    group_by(ENROLID) %>% filter(lmp == min(lmp)) ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+    group_by(ENROLID) %>% dplyr::filter(lmp == min(lmp)) ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-    group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+    group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
     group_by(ENROLID) %>% top_n(1, lmp) #----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-    group_by(ENROLID) %>% top_n(-1, lmp) ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+    group_by(ENROLID) %>% top_n(-1, lmp) ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
     group_by(ENROLID) %>% top_n(-2, lmp) #----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-    group_by(ENROLID) %>% filter(min_rank(lmp) <= 2) #----
+    group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) <= 2) #----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-    group_by(ENROLID) %>% filter(min_rank(lmp) == 2) #----
+    group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 2) #----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-    group_by(ENROLID) %>% filter(min_rank(lmp) > 2) #----
+    group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) > 2) #----
 # > mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +     {f = function(df) df %>% group_by(ENROLID) %>% summarize(lmp = min(lmp)) %>% left_join(df); f(.)} ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+# +     {f = function(df) df %>% group_by(ENROLID) %>% summarize(lmp = min(lmp)) %>% left_join(df); f(.)} ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 # Joining, by = c("ENROLID", "lmp")
 # # A tibble: 23,539 x 4
 #     ENROLID lmp           pregid enddate   
@@ -69,7 +69,7 @@ mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, endda
 # 10 32504704 2012-02-12 900001261 2012-11-11
 # # ... with 23,529 more rows
 # > mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +     group_by(ENROLID) %>% filter(lmp == min(lmp)) ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+# +     group_by(ENROLID) %>% dplyr::filter(lmp == min(lmp)) ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 # # A tibble: 23,539 x 4
 # # Groups:   ENROLID [23,538]
 #       pregid  ENROLID lmp        enddate   
@@ -86,7 +86,7 @@ mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, endda
 # 10 900001261 32504704 2012-02-12 2012-11-11
 # # ... with 23,529 more rows
 # > mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +     group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+# +     group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 # # A tibble: 23,539 x 4
 # # Groups:   ENROLID [23,538]
 #       pregid  ENROLID lmp        enddate   
@@ -120,7 +120,7 @@ mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, endda
 # 10 900001261 32504704 2012-02-12 2012-11-11
 # # ... with 23,528 more rows
 # > mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +     group_by(ENROLID) %>% top_n(-1, lmp) ## group_by(ENROLID) %>% filter(min_rank(lmp) == 1) ----
+# +     group_by(ENROLID) %>% top_n(-1, lmp) ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 # # A tibble: 23,539 x 4
 # # Groups:   ENROLID [23,538]
 #       pregid  ENROLID lmp        enddate   
@@ -154,7 +154,7 @@ mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, endda
 # 10 900000874 30316505 2013-11-15 2014-08-15
 # # ... with 26,910 more rows
 # > mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +     group_by(ENROLID) %>% filter(min_rank(lmp) <= 2) #----
+# +     group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) <= 2) #----
 # # A tibble: 26,920 x 4
 # # Groups:   ENROLID [23,538]
 #       pregid  ENROLID lmp        enddate   
@@ -171,7 +171,7 @@ mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, endda
 # 10 900000874 30316505 2013-11-15 2014-08-15
 # # ... with 26,910 more rows
 # > mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +     group_by(ENROLID) %>% filter(min_rank(lmp) == 2) #----
+# +     group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 2) #----
 # # A tibble: 3,381 x 4
 # # Groups:   ENROLID [3,381]
 #       pregid   ENROLID lmp        enddate   
@@ -188,7 +188,7 @@ mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, endda
 # 10 900004483 133326201 2014-08-28 2015-05-28
 # # ... with 3,371 more rows
 # > mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +     group_by(ENROLID) %>% filter(min_rank(lmp) > 2) #----
+# +     group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) > 2) #----
 # # A tibble: 515 x 4
 # # Groups:   ENROLID [441]
 #       pregid   ENROLID lmp        enddate   
@@ -210,26 +210,26 @@ mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, endda
 
 all.equal(
     mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-        group_by(ENROLID) %>% filter(min_rank(lmp) == 1)  #----
+        group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1)  #----
     , mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
         group_by(ENROLID) %>% top_n(-1, lmp)  #----
 )
 setdiff(
     mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-        group_by(ENROLID) %>% filter(min_rank(lmp) == 1) %>% {.$pregid} #----
+        group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) %>% {.$pregid} #----
     , mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
         group_by(ENROLID) %>% top_n(-1, lmp) %>% {.$pregid} #----
 )
 # > all.equal(
 # +     mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +         group_by(ENROLID) %>% filter(min_rank(lmp) == 1)  #----
+# +         group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1)  #----
 # +     , mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
 # +         group_by(ENROLID) %>% top_n(-1, lmp)  #----
 # + )
 # [1] TRUE
 # > setdiff(
 # +     mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
-# +         group_by(ENROLID) %>% filter(min_rank(lmp) == 1) %>% {.$pregid} #----
+# +         group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) %>% {.$pregid} #----
 # +     , mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) %>% rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
 # +         group_by(ENROLID) %>% top_n(-1, lmp) %>% {.$pregid} #----
 # + )

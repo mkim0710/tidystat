@@ -163,15 +163,15 @@ df.example %>% group_by(x, y) %>% nest %>% arrange(x, y) %>%
 
 #@ ------
 d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin.2797 %>% 
-    filter(CONCEPT_NDC_metformin) %>% 
-    filter(lmp + 7*6 <= SVCDATE & SVCDATE < lmp + 7*23) %>% 
+    dplyr::filter(CONCEPT_NDC_metformin) %>% 
+    dplyr::filter(lmp + 7*6 <= SVCDATE & SVCDATE < lmp + 7*23) %>% 
     (function (df) df %>%     
          select(ENROLID, SVCDATE, Exposure, METQTY, DAYSUPP, concept_name.toupper.METFORMIN.dose) %>% 
          mutate(`METQTY/D` = METQTY/abs(DAYSUPP), `dose*METQTY/D` = concept_name.toupper.METFORMIN.dose*METQTY/abs(DAYSUPP)) %>% 
-         filter(`dose*METQTY/D` == 2000) %>% 
+         dplyr::filter(`dose*METQTY/D` == 2000) %>% 
          group_by(ENROLID) %>% summarise(n(), sum(DAYSUPP), mean(DAYSUPP), mean(`dose*METQTY/D`)) %>% 
          
-         filter(`sum(DAYSUPP)` >= 180) %>% 
+         dplyr::filter(`sum(DAYSUPP)` >= 180) %>% 
          
          left_join(df) %>%
          as_tibble
@@ -180,15 +180,15 @@ d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC
     select(ENROLID, lmp, `enddate - lmp`, `n()`, `SVCDATE - lmp`, DAYSUPP, everything()) %>% 
     arrange(lmp, ENROLID, SVCDATE) |> print(n=99) #----
 # > d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin.2797 %>% 
-# +     filter(CONCEPT_NDC_metformin) %>% 
-# +     filter(lmp + 7*6 <= SVCDATE & SVCDATE < lmp + 7*23) %>% 
+# +     dplyr::filter(CONCEPT_NDC_metformin) %>% 
+# +     dplyr::filter(lmp + 7*6 <= SVCDATE & SVCDATE < lmp + 7*23) %>% 
 # +     (function (df) df %>%     
 # +          select(ENROLID, SVCDATE, Exposure, METQTY, DAYSUPP, concept_name.toupper.METFORMIN.dose) %>% 
 # +          mutate(`METQTY/D` = METQTY/abs(DAYSUPP), `dose*METQTY/D` = concept_name.toupper.METFORMIN.dose*METQTY/abs(DAYSUPP)) %>% 
-# +          filter(`dose*METQTY/D` == 2000) %>% 
+# +          dplyr::filter(`dose*METQTY/D` == 2000) %>% 
 # +          group_by(ENROLID) %>% summarise(n(), sum(DAYSUPP), mean(DAYSUPP), mean(`dose*METQTY/D`)) %>% 
 # +          
-# +          filter(`sum(DAYSUPP)` >= 180) %>% 
+# +          dplyr::filter(`sum(DAYSUPP)` >= 180) %>% 
 # +          
 # +          left_join(df) %>%
 # +          as_tibble

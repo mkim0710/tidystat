@@ -820,23 +820,23 @@ AnalyticDataset %>% table %>% addmargins #----
 #   Sum     386  168 554
 
 
-AnalyticDataset %>% filter(Case == T, Exposure == T) %>% nrow #----
-AnalyticDataset %>% filter(Case == T, Exposure == F) %>% nrow #----
-AnalyticDataset %>% filter(Case == F, Exposure == T) %>% nrow #----
-AnalyticDataset %>% filter(Case == F, Exposure == F) %>% nrow #----
-# > AnalyticDataset %>% filter(Case == T, Exposure == T) %>% nrow #----
+AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----
+AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----
+AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----
+AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----
 # [1] 60
-# > AnalyticDataset %>% filter(Case == T, Exposure == F) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----
 # [1] 45
-# > AnalyticDataset %>% filter(Case == F, Exposure == T) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----
 # [1] 108
-# > AnalyticDataset %>% filter(Case == F, Exposure == F) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----
 # [1] 341
 
-nCasesExposed       = AnalyticDataset %>% filter(Case == T, Exposure == T) %>% nrow
-nCasesUnexposed     = AnalyticDataset %>% filter(Case == T, Exposure == F) %>% nrow 
-nNoncasesExposed    = AnalyticDataset %>% filter(Case == F, Exposure == T) %>% nrow
-nNoncasesUnexposed  = AnalyticDataset %>% filter(Case == F, Exposure == F) %>% nrow
+nCasesExposed       = AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow
+nCasesUnexposed     = AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow 
+nNoncasesExposed    = AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow
+nNoncasesUnexposed  = AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow
 
 stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
 stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----

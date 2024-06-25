@@ -553,7 +553,7 @@ DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #-----
 
 
 
-# DataSet = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% filter(!is.na(Cigar)) %>% filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
+# DataSet = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% dplyr::filter(!is.na(Cigar)) %>% dplyr::filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
 DataSet = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% select(-seqnum:-`_merge`, -matches("^count"))
 DataSet = DataSet %>% mutate(
     Male.lgl = Male %>% as.logical
@@ -740,7 +740,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne
 
 #@ ------
 df = JK02.2079.CCW.MIN_Date.ge365_EndTime.is.Case.confirm.365.Match.TimeFrame1$LookBackWindow.gt.1y %>% 
-  filter(MatchingCtrlNum %in% c(0, 1)) %>%
+  dplyr::filter(MatchingCtrlNum %in% c(0, 1)) %>%
   select(AcquiredHypothyroidism: VisualImpairment, EndTime.is.Case.confirm.365)
 df
 df %>% 
@@ -766,7 +766,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is |> str()
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is %>% filter(level == "DTH_MDY")
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level == "DTH_MDY")
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is
 #       n miss p.miss          level  freq   percent cum.percent
 # 1 53377    0      0     2013-12-31  1163  2.178841    2.178841
@@ -786,7 +786,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 #   ..- attr(*, "dimnames")=List of 1
 #   .. ..$ x: chr  "2013-12-31" "DTH_MDY" "RECU_FR_DT_C" "RECU_FR_DT_C16"
 #  $ cum.percent: num  2.18 11.4 87.97 100
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is %>% filter(level == "DTH_MDY")
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne$`_5yr`$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level == "DTH_MDY")
 #       n miss p.miss   level freq  percent cum.percent
 # 1 53377    0      0 DTH_MDY 4920 9.217453    11.39629
 
@@ -811,10 +811,10 @@ attr(Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_3456
 
 
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne %>% map(function(ob) {
-    ob$CatTable$`TRUE`$enddate.is %>% filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
+    ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
 })
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne %>% map(function(ob) {
-# +     ob$CatTable$`TRUE`$enddate.is %>% filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
+# +     ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
 # + })
 # $`_3yr`
 #       n miss p.miss          level freq   percent cum.percent
@@ -852,7 +852,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
-    out = ob$CatTable$`TRUE`$enddate.is %>% filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
+    out = ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
     out = out %>% rownames_to_column
     names(out)[1] = "parent"
     out$parent = names(parent.x)[i]
@@ -868,7 +868,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # +     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
 # +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 # + 
-# +     out = ob$CatTable$`TRUE`$enddate.is %>% filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
+# +     out = ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
 # +     out = out %>% rownames_to_column
 # +     names(out)[1] = "parent"
 # +     out$parent = names(parent.x)[i]
@@ -902,7 +902,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
-    # out = ob$CatTable$`TRUE`$enddate.is %>% filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
+    # out = ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
     out = ob$CatTable$`TRUE`$enddate.is
     out = out %>% rownames_to_column
     names(out)[1] = "parent"
@@ -934,8 +934,8 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # 20   _7yr 74397    0      0 RECU_FR_DT_C16  8312 11.172494  100.000000
 
 
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% filter(level == "DTH_MDY") %>% mutate(n.increased = n - lag(n), freq.increased = freq - lag(freq), cancer.increased = n.increased - freq.increased)
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% filter(level == "DTH_MDY") %>% mutate(n.increased = n - lag(n), freq.increased = freq - lag(freq), cancer.increased = n.increased - freq.increased)
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% dplyr::filter(level == "DTH_MDY") %>% mutate(n.increased = n - dplyr::lag(n), freq.increased = freq - dplyr::lag(freq), cancer.increased = n.increased - freq.increased)
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% dplyr::filter(level == "DTH_MDY") %>% mutate(n.increased = n - dplyr::lag(n), freq.increased = freq - dplyr::lag(freq), cancer.increased = n.increased - freq.increased)
 #   parent     n miss p.miss   level freq   percent cum.percent n.increased freq.increased cancer.increased
 # 1   _3yr 33330    0      0 DTH_MDY 2090  6.270627    9.177918          NA             NA               NA
 # 2   _4yr 43643    0      0 DTH_MDY 3471  7.953165   10.418624       10313           1381             8932
@@ -943,8 +943,8 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # 4   _6yr 63438    0      0 DTH_MDY 6552 10.328194   12.363252       10061           1632             8429
 # 5   _7yr 74397    0      0 DTH_MDY 8120 10.914419   12.761267       10959           1568             9391
 
-Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% filter(level == "RECU_FR_DT_C16") %>% mutate(n.increased = n - lag(n), freq.increased = freq - lag(freq))
-# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% filter(level == "RECU_FR_DT_C16") %>% mutate(n.increased = n - lag(n), freq.increased = freq - lag(freq))
+Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% dplyr::filter(level == "RECU_FR_DT_C16") %>% mutate(n.increased = n - dplyr::lag(n), freq.increased = freq - dplyr::lag(freq))
+# > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne.TRUE_enddate.is %>% dplyr::filter(level == "RECU_FR_DT_C16") %>% mutate(n.increased = n - dplyr::lag(n), freq.increased = freq - dplyr::lag(freq))
 #   parent     n miss p.miss          level freq  percent cum.percent n.increased freq.increased
 # 1   _3yr 33330    0      0 RECU_FR_DT_C16 4317 12.95230         100          NA             NA
 # 2   _4yr 43643    0      0 RECU_FR_DT_C16 5430 12.44186         100       10313           1113

@@ -15,8 +15,8 @@ function.t0_value_ge20.dup_max.lag.n_d0 = function(dataset, varname4ID = "ID", v
     dataset$ID = dataset[[varname4ID]] %>% as.factor
     library(lubridate)
     dataset$time = dataset[[varname4time]] %>% floor_date("day")
-    dataset.t0_value_ge20 = dataset %>% filter(!!rlang::sym(varname4value) >= 20) %>% group_by(ID) %>% summarise(t0 = min(time)) %>% left_join(dataset) %>% mutate(days_from_t0 = as.Date(time) - as.Date(t0)) %>% 
-        filter(days_from_t0 >= 0)
+    dataset.t0_value_ge20 = dataset %>% dplyr::filter(!!rlang::sym(varname4value) >= 20) %>% group_by(ID) %>% summarise(t0 = min(time)) %>% left_join(dataset) %>% mutate(days_from_t0 = as.Date(time) - as.Date(t0)) %>% 
+        dplyr::filter(days_from_t0 >= 0)
     
     dataset.t0_value_ge20.dup_max = dataset.t0_value_ge20 %>% 
         group_by(ID, time, days_from_t0) %>% 
@@ -40,13 +40,13 @@ function.t0_value_ge20.dup_max.lag.n_d0 = function(dataset, varname4ID = "ID", v
     dataset.t0_value_ge20.dup_max.lag =
         dataset.t0_value_ge20.dup_max %>% arrange(ID, time) %>%
         group_by(ID) %>% mutate(
-            PHQ_category.increased = as.numeric(PHQ_category) - lag(as.numeric(PHQ_category))
-            , PHQ_category.45.increased = PHQ_category.45 - lag(PHQ_category.45)
+            PHQ_category.increased = as.numeric(PHQ_category) - dplyr::lag(as.numeric(PHQ_category))
+            , PHQ_category.45.increased = PHQ_category.45 - dplyr::lag(PHQ_category.45)
         )
 
     out = dataset.t0_value_ge20.dup_max.lag %>%
         left_join(
-            dataset.t0_value_ge20.dup_max.lag %>% filter(PHQ_category.45.increased %in% c(-1, 1)) %>%
+            dataset.t0_value_ge20.dup_max.lag %>% dplyr::filter(PHQ_category.45.increased %in% c(-1, 1)) %>%
                 group_by(ID) %>% summarise(n_d0 = n())
         )
     out
@@ -75,7 +75,7 @@ dataset
 function.dataset.transform = function(dataset, varname4value = "value", varname4time = "days_from_t0", nsequence = 5) {
     library(tidyverse)
     out = list()
-    dataset = dataset %>% filter(sequence %in% 1:nsequence)
+    dataset = dataset %>% dplyr::filter(sequence %in% 1:nsequence)
     out$data =
         dataset %>% 
         select(ID, sequence, !!rlang::sym(varname4value)) %>%

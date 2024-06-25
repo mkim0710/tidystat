@@ -52,11 +52,11 @@ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function(
     out = tblPersonID_FilterName.ndDate %>% 
         left_join(
             tblClaim_Date_Code %>% 
-                filter( eval(parse(text=varname4t)) >= eval(parse(text=varname4t0)) + eval(parse(text=t_begin.int.i)) ) %>% 
-                filter( eval(parse(text=varname4t)) <= eval(parse(text=varname4t0)) + eval(parse(text=t_end.int.i)) ) %>% 
+                dplyr::filter( eval(parse(text=varname4t)) >= eval(parse(text=varname4t0)) + eval(parse(text=t_begin.int.i)) ) %>% 
+                dplyr::filter( eval(parse(text=varname4t)) <= eval(parse(text=varname4t0)) + eval(parse(text=t_end.int.i)) ) %>% 
                 mutate(
                     FilterRegexMet = grepl( FilterRegex.i, eval(parse(text=varname4Code)) )
-                ) %>% filter(FilterRegexMet) %>% 
+                ) %>% dplyr::filter(FilterRegexMet) %>% 
                 group_by(ENROLID) %>% summarise(
                     !!rlang::sym( paste0(FilterName.i, ".ndDate") ) := n_distinct(as.numeric( eval(parse(text=varname4t)) ), na.rm = T)
                     # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min( eval(parse(text=varname4t)) , na.rm = T)
@@ -168,9 +168,9 @@ tblPersonID_FilterName.ndDate.append_FilterMet <- function(
     out = tblPersonID_FilterName.ndDate %>% 
         left_join(
             tblClaim_Date_Code %>% 
-                filter( eval(parse(text=varname4t)) >= eval(parse(text=varname4t0)) + eval(parse(text=t_begin.int.i)) ) %>% 
-                filter( eval(parse(text=varname4t)) <= eval(parse(text=varname4t0)) + eval(parse(text=t_end.int.i)) ) %>% 
-                filter( eval(parse(text=varname4FilterMet.i)) ) %>% 
+                dplyr::filter( eval(parse(text=varname4t)) >= eval(parse(text=varname4t0)) + eval(parse(text=t_begin.int.i)) ) %>% 
+                dplyr::filter( eval(parse(text=varname4t)) <= eval(parse(text=varname4t0)) + eval(parse(text=t_end.int.i)) ) %>% 
+                dplyr::filter( eval(parse(text=varname4FilterMet.i)) ) %>% 
                 group_by(ENROLID) %>% summarise(
                     !!rlang::sym( paste0(FilterName.i, ".ndDate") ) := n_distinct(as.numeric( eval(parse(text=varname4t)) ), na.rm = T)
                     # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min( eval(parse(text=varname4t)) , na.rm = T)

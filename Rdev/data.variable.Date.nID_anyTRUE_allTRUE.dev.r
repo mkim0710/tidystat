@@ -98,7 +98,7 @@ data.variable.Date.nID_anyTRUE.v2(sample_data)
 
 
 
-#@ Direct Filter Method using filter() & n_distinct -----
+#@ Direct Filter Method using dplyr::filter() & n_distinct -----
 ##%% data.variable.Date.nID_anyTRUE.v1() =====
 data.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
@@ -114,11 +114,11 @@ data.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID",
         )
     
     nID_anyTRUE <- dataset %>% 
-        filter(!is.na(!!sym(varname.Date))) %>% 
+        dplyr::filter(!is.na(!!sym(varname.Date))) %>% 
         select(!!sym(varname.ID)) |> n_distinct()
     
     nID_anyNA <-  dataset %>% 
-        filter(is.na(!!sym(varname.Date))) %>% 
+        dplyr::filter(is.na(!!sym(varname.Date))) %>% 
         select(!!sym(varname.ID)) |> n_distinct()
     
     result <- summary_table.nTRUE %>%
@@ -209,7 +209,7 @@ data.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
 
 
 
-#@ Direct Filter Method using filter() & n_distinct -----
+#@ Direct Filter Method using dplyr::filter() & n_distinct -----
 ##%% data.variable.Date.nID_anyTRUE_allTRUE.v1() =====
 data.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
@@ -225,33 +225,33 @@ data.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PER
         )
     
     nID_anyTRUE <- dataset %>% 
-        filter(!is.na(!!sym(varname.Date))) %>% 
+        dplyr::filter(!is.na(!!sym(varname.Date))) %>% 
         select(!!sym(varname.ID)) |> n_distinct()
     
     nID_anyNA <-  dataset %>% 
-        filter(is.na(!!sym(varname.Date))) %>% 
+        dplyr::filter(is.na(!!sym(varname.Date))) %>% 
         select(!!sym(varname.ID)) |> n_distinct()
     
     # Calculating nID_allTRUE
     # nID_allTRUE <- dataset %>%
     #     group_by(!!sym(varname.ID)) %>%
-    #     filter(all(!is.na(!!sym(varname.Date)))) %>%
+    #     dplyr::filter(all(!is.na(!!sym(varname.Date)))) %>%
     #     n_distinct(!!sym(varname.ID))
     nID_allTRUE <- dataset %>%
         group_by(!!sym(varname.ID)) %>%
         summarise(allTRUE = all(!is.na(!!sym(varname.Date)))) %>%
-        filter(allTRUE) %>%
+        dplyr::filter(allTRUE) %>%
         nrow()
     
     # Calculating nID_allNA
     # nID_allNA <- dataset %>%
     #     group_by(!!sym(varname.ID)) %>%
-    #     filter(all(is.na(!!sym(varname.Date)))) %>%
+    #     dplyr::filter(all(is.na(!!sym(varname.Date)))) %>%
     #     n_distinct(!!sym(varname.ID))
     nID_allNA <- dataset %>%
         group_by(!!sym(varname.ID)) %>%
         summarise(allNA = all(is.na(!!sym(varname.Date)))) %>%
-        filter(allNA) %>%
+        dplyr::filter(allNA) %>%
         nrow()
     
     result <- summary_table.nTRUE %>%
