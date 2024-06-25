@@ -11,7 +11,6 @@ factor_vec <- factor(c("a", "b", "c"))
 recode(factor_vec, a = "Apple", .default = levels(factor_vec))
 recode(factor_vec, c = "Apple", .default = levels(factor_vec))
 
-
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX |> str() #-----
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% as.character %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
@@ -28,7 +27,6 @@ str((CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` 
 #  logi [1:283798] TRUE FALSE FALSE TRUE TRUE TRUE ...
 # > str((CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` = "Female")) == "Female") #----
 #  logi [1:283798] TRUE FALSE FALSE TRUE TRUE TRUE ...
-
 
 library(dplyr)
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.recode_Sex.dev.r
