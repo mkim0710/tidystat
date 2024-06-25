@@ -208,7 +208,70 @@ str(get_system_info())
 
 
 
-
+#' @ASROCKX300RYZEN  
+#' List of 9
+#'  $ GUI             : chr "RStudio"  
+#'  $ os_type         : chr "windows"  
+#'  $ os_sysname      : chr "Windows"  
+#'  $ os_version      : chr "build 22621"  
+#'  $ machine_type    : chr "x86-64"  
+#'  $ machine_nodename: chr "ASROCKX300RYZEN"  
+#'  $ machine_cpu     : chr "AMD Ryzen 5 5600G with Radeon Graphics"  
+#'  $ Sys.getlocale   :List of 4
+#'   ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
+#'   ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
+#'   ..$ LC_locale_NUMERIC: chr "C"
+#'   ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
+#'  $ l10n_info       :List of 5
+#'   ..$ localization_UTF8           : logi TRUE
+#'   ..$ localization_Latin1         : logi FALSE
+#'   ..$ localization_codeset        : NULL
+#'   ..$ localization_codepage       : int 65001
+#'   ..$ localization_system.codepage: int 65001
+#'   
+#'   
+#' @LIVAI7-8700
+#' List of 9
+#'  $ GUI             : chr "RStudio"
+#'  $ os_type         : chr "windows"
+#'  $ os_sysname      : chr "Windows"
+#'  $ os_version      : chr "build 19045"
+#'  $ machine_type    : chr "x86-64"
+#'  $ machine_nodename: chr "LIVAI7-8700"
+#'  $ machine_cpu     : chr "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz"
+#'  $ Sys.getlocale   :List of 4
+#'   ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
+#'   ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
+#'   ..$ LC_locale_NUMERIC: chr "C"
+#'   ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
+#'  $ l10n_info       :List of 5
+#'   ..$ localization_UTF8           : logi TRUE
+#'   ..$ localization_Latin1         : logi FALSE
+#'   ..$ localization_codeset        : NULL
+#'   ..$ localization_codepage       : int 65001
+#'   ..$ localization_system.codepage: int 65001
+#'   
+#'   
+#' @Posit Cloud
+#' List of 9
+#'  $ GUI             : chr "RStudio"
+#'  $ os_type         : chr "unix"
+#'  $ os_sysname      : chr "Linux"
+#'  $ os_version      : chr "#96~18.04.1-Ubuntu SMP Mon Oct 17 02:57:48 UTC 2022"
+#'  $ machine_type    : chr "x86_64"
+#'  $ machine_nodename: chr "application-9677950-deployment-19172365-82455"
+#'  $ machine_cpu     : chr "AMD EPYC 7R13 Processor"
+#'  $ Sys.getlocale   :List of 4
+#'   ..$ LC_COLLATE       : chr "C.UTF-8"
+#'   ..$ LC_CTYPE         : chr "C.UTF-8"
+#'   ..$ LC_locale_NUMERIC: chr "C"
+#'   ..$ LC_locale_TIME   : chr "C.UTF-8"
+#'  $ l10n_info       :List of 5
+#'   ..$ localization_UTF8           : logi TRUE
+#'   ..$ localization_Latin1         : logi FALSE
+#'   ..$ localization_codeset        : chr "UTF-8"
+#'   ..$ localization_codepage       : NULL
+#'   ..$ localization_system.codepage: NULL
 
 
 
