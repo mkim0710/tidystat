@@ -315,6 +315,28 @@ if(!objectname %in% names(env1)) {
 
 
 
+# @ run @ Rocker 240625 ----
+# > env1$env.internal$f_path.df_dirs_recursive.df_files()
+# .Platform$file.sep: /; input_path0: .
+# Finished iterating through paths.
+# # A tibble: 61 × 13
+#    path.level path    path.basename path.parent full_path normalized_path print_tree_path files files.codes files.data print_tree_path_files print_tree_path_file…¹ print_tree_path_file…²
+#         <dbl> <chr>   <chr>         <chr>       <chr>     <chr>           <chr>           <lis> <list>      <list>     <chr>                 <chr>                  <chr>                 
+#  1          0 ""      .             .           .         /home/rstudio/… "."             <chr> <chr [45]>  <chr [2]>  "@./\n[Working Files… "@./\n[Working Files … "@./\nCohortGJ0910.Ba…
+#  2          1 "Rdev"  Rdev          .           ./Rdev    /home/rstudio/… "Rdev"          <chr> <chr [12]>  <chr [0]>  "@Rdev/\n\t-dev\n\t0… "@Rdev/\n\tdata.varia… "@Rdev/\n"            
+#  3          2 "Rdev/… -dev          ./Rdev      ./Rdev/-… /home/rstudio/… "\t-dev"        <chr> <chr [1]>   <chr [0]>  "@\t-dev/\n"          "@\t-dev/\n\t\tobject… "@\t-dev/\n"          
+#  4          2 "Rdev/… 00_base_prog… ./Rdev      ./Rdev/0… /home/rstudio/… "\t00_base_pro… <chr> <chr [57]>  <chr [0]>  "@\t00_base_program/… "@\t00_base_program/\… "@\t00_base_program/\…
+#  5          2 "Rdev/… 00_protocol   ./Rdev      ./Rdev/0… /home/rstudio/… "\t00_protocol" <chr> <chr [0]>   <chr [0]>  "@\t00_protocol/\n\t… "@\t00_protocol/\n"    "@\t00_protocol/\n"   
+#  6          3 "Rdev/… 01_sample_si… ./Rdev/00_… ./Rdev/0… /home/rstudio/… "\t\t01_sample… <chr> <chr [5]>   <chr [0]>  "@\t\t01_sample_size… "@\t\t01_sample_size/… "@\t\t01_sample_size/…
+#  7          2 "Rdev/… 10_import_cl… ./Rdev      ./Rdev/1… /home/rstudio/… "\t10_import_c… <chr> <chr [0]>   <chr [0]>  "@\t10_import_clean_… "@\t10_import_clean_d… "@\t10_import_clean_d…
+#  8          3 "Rdev/… 11_metadata   ./Rdev/10_… ./Rdev/1… /home/rstudio/… "\t\t11_metada… <chr> <chr [3]>   <chr [0]>  "@\t\t11_metadata/\n… "@\t\t11_metadata/\n\… "@\t\t11_metadata/\n" 
+#  9          3 "Rdev/… 12_import_fi… ./Rdev/10_… ./Rdev/1… /home/rstudio/… "\t\t12_import… <chr> <chr [10]>  <chr [0]>  "@\t\t12_import_file… "@\t\t12_import_files… "@\t\t12_import_files…
+# 10          3 "Rdev/… 12_import_sq… ./Rdev/10_… ./Rdev/1… /home/rstudio/… "\t\t12_import… <chr> <chr [3]>   <chr [0]>  "@\t\t12_import_sqli… "@\t\t12_import_sqlit… "@\t\t12_import_sqlit…
+# # ℹ 51 more rows
+# # ℹ abbreviated names: ¹​print_tree_path_files.codes, ²​print_tree_path_files.data
+# # ℹ Use `print(n = ...)` to see more rows
+
+
 #@ end -----
 # ls.str(env1) #-----
 # ls.str(env1$env.internal) #-----
