@@ -735,7 +735,9 @@ if(subpath!="") utils::browseURL(normalizePath(subpath))
 
 
 #@ source(file.path(env1$source[[paste0("source.", env1$source$tmp_objectname)]]$path, env1$source[[paste0("source.", env1$source$tmp_objectname)]]$filename)) ----
-source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env1$env.internal.source.r"))
+sourcename = "env1$env.internal"
+source_base_local = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat")
+source(file.path(ifelse(dir.exists(source_base_local), source_base_local, "https://github.com/mkim0710/tidystat/raw/master"), paste0(sourcename,".source.r")))
 # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env1$env.internal.source.r"))
 
 sourcename = "f_df.t.tribble_construct"
