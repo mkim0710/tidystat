@@ -235,7 +235,7 @@ source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) 
 ```
   
   
-### %>% function.DataSet.TableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))
+### \%>\% function.DataSet.TableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
