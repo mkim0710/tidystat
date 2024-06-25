@@ -1,16 +1,10 @@
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_BP_HTN_140_90.dev.r
 
-data.add_BP_HTN_140_90 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {
-    dataset %>%
+data.add_BP_HTN_140_90 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {dataset |>
       mutate(
         BP_HTN_140_90 = if_else((get(varname4SBP) >= 140) | (get(varname4DBP) >= 90), TRUE, FALSE)
-      )
-}
-
-
-data.add_BP_KSH2018 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {
-  
-  dataset <- dataset %>%
+      )}
+data.add_BP_KSH2018 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {dataset |>
     mutate(
       SBP = get(varname4SBP),
       DBP = get(varname4DBP),
@@ -22,15 +16,8 @@ data.add_BP_KSH2018 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = 
         (SBP >= 160 & SBP < 180) | (DBP >= 100 & DBP < 110)        ~ "(5) Hypertension Stage 2",
         SBP >= 180 | DBP >= 110                                    ~ "(6) Hypertension Stage 3",
         TRUE                                                       ~ "(99) Not elsewhere classified"
-      ) %>% as.factor()
-    )
-  
-  return(dataset)
-}
-
-data.add_BP_ESCESH2018 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {
-  
-  dataset <- dataset %>%
+      ) |> as.factor()}
+data.add_BP_ESCESH2018 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {dataset |>
     mutate(
       SBP = get(varname4SBP),
       DBP = get(varname4DBP),
@@ -47,15 +34,8 @@ data.add_BP_ESCESH2018 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP
         SBP >= 180                            ~ "(6) HTN Grade 3",
         DBP >= 110                            ~ "(6) HTN Grade 3",
         TRUE                                  ~ "(99) Not elsewhere classified"
-      ) %>% as.factor()
-    )
-  
-  return(dataset)
-}
-
-data.add_BP_ACC2017 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {
-  
-  dataset <- dataset %>%
+      ) %>% as.factor()}
+data.add_BP_ACC2017 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {dataset %>%
     mutate(
       SBP = get(varname4SBP),
       DBP = get(varname4DBP),
@@ -66,10 +46,7 @@ data.add_BP_ACC2017 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = 
         SBP >= 140 | DBP >= 90                                    ~ "(4) Hypertension Stage 2",
         TRUE                                                     ~ "(99) Not elsewhere classified"
       ) %>% as.factor()
-    )
-  
-  return(dataset)
-}
+    )}
 
 gj_jk.Date.DTH.recode = 
     gj_jk.Date.DTH.recode %>% 
