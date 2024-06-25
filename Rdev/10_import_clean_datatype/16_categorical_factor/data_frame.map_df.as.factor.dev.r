@@ -9,11 +9,9 @@
 convert_character_to_numeric_or_factor <- function(column) {
   if (is.character(column)) {
     # Convert "NA" strings to actual NA values
-    column <- na_if(column, "NA")
-    
+    column <- na_if(column, "NA")    
     # Check the number of distinct values
-    distinct_count <- length(unique(column))
-    
+    distinct_count <- length(unique(column))    
     if (distinct_count < 20) {
       # Convert to factor if distinct values are less than 20
       factor_column <- as.factor(column)
@@ -41,17 +39,12 @@ as1_7.na.Date.fct = as1_7.na.Date %>%
     mutate_if(is.character, as.factor)
 as1_7.na.Date.fct |> str()
 
-
-
-
 convert_character_to_numeric <- function(column) {
   if (is.character(column)) {
     # Convert "NA" strings to actual NA values
-    column <- na_if(column, "NA")
-    
+    column <- na_if(column, "NA")    
     # Convert to numeric
     numeric_column <- as.numeric(column)
-
     if (sum(is.na(column)) == sum(is.na(numeric_column))) {
       return(numeric_column)
     }
@@ -61,11 +54,9 @@ convert_character_to_numeric <- function(column) {
 convert_character_to_factor <- function(column) {
   if (is.character(column)) {
     # Convert "NA" strings to actual NA values
-    column <- na_if(column, "NA")
-    
+    column <- na_if(column, "NA")    
     # Check the number of distinct values
-    distinct_count <- length(unique(column))
-    
+    distinct_count <- length(unique(column))    
     if (distinct_count < 20) {
       # Convert to factor if distinct values are less than 20
       factor_column <- as.factor(column)
@@ -89,18 +80,13 @@ df |> str()
 
 
 
-
-
-
-
 data_frame.map_df.as.factor = function (
     df
     , colnames_character.as.numeric.as.factor = c("rowname")
     , colnames.as.factor = c("PersonID", "PERSON_ID")
     , colnames.not.as.factor = NULL
     , column.is.character.as.factor = T
-) 
-{
+) {
     # source("https://github.com/mkim0710/tidystat/raw/master/data_frame.map_df.as.factor.dev.r")
     # df[, colnames(df) %in% colnames_character.as.numeric.as.factor] = 
     #     df[, colnames(df) %in% colnames_character.as.numeric.as.factor] %>%
