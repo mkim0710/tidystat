@@ -91,11 +91,11 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     #@ output.list$Step01.CONCEPT.filter_ATC ====
     output.list$Step01.CONCEPT.filter_ATC =
         OMOP_CommonDataModel$CONCEPT %>% 
-        filter(grepl(
+        dplyr::filter(grepl(
             text4grepl.ATC_code
             , toupper(concept_code)
         )) %>% 
-        filter(vocabulary_id == "ATC") %>% 
+        dplyr::filter(vocabulary_id == "ATC") %>% 
         arrange(concept_code) #----
     
     #@ output.list$Step09.CONCEPT_RELATIONSHIP.filter_ATC_concept_id ======
@@ -103,7 +103,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
         output.list$Step01.CONCEPT.filter_ATC$concept_id |> unique %>% sort
     output.list$Step09.CONCEPT_RELATIONSHIP.filter_ATC_concept_id =
         OMOP_CommonDataModel$CONCEPT_RELATIONSHIP %>%
-        filter(concept_id_1 %in% concept_id.selected | concept_id_2 %in% concept_id.selected) %>% 
+        dplyr::filter(concept_id_1 %in% concept_id.selected | concept_id_2 %in% concept_id.selected) %>% 
         left_join(OMOP_CommonDataModel$CONCEPT %>% transmute(concept_id_1 = concept_id, concept_name_1 = concept_name, vocabulary_id_1 = vocabulary_id)) %>% 
         left_join(OMOP_CommonDataModel$CONCEPT %>% transmute(concept_id_2 = concept_id, concept_name_2 = concept_name, vocabulary_id_2 = vocabulary_id)) %>% 
         select(ends_with("_1"), ends_with("_2"), everything()) %>%
@@ -114,15 +114,15 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     concept_id.selected = 
         c(
             output.list$Step09.CONCEPT_RELATIONSHIP.filter_ATC_concept_id %>% 
-                filter(vocabulary_id_1 == "RxNorm") %>% {.$concept_id_1}
+                dplyr::filter(vocabulary_id_1 == "RxNorm") %>% {.$concept_id_1}
             , 
             output.list$Step09.CONCEPT_RELATIONSHIP.filter_ATC_concept_id %>% 
-                filter(vocabulary_id_2 == "RxNorm") %>% {.$concept_id_2}
+                dplyr::filter(vocabulary_id_2 == "RxNorm") %>% {.$concept_id_2}
         ) |> unique %>% sort
     output.list$Step11.CONCEPT.filter_RxNorm =
         OMOP_CommonDataModel$CONCEPT %>% 
-        filter(concept_id %in% concept_id.selected) %>% 
-        # filter(vocabulary_id == "RxNorm") %>% 
+        dplyr::filter(concept_id %in% concept_id.selected) %>% 
+        # dplyr::filter(vocabulary_id == "RxNorm") %>% 
         arrange(concept_id) %>% 
         {attributes(.)$concept_id.selected = concept_id.selected; .} #----
     
@@ -131,7 +131,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     concept_id.selected = output.list$Step11.CONCEPT.filter_RxNorm$concept_id |> unique %>% sort
     output.list$Step15.DRUG_STRENGTH.filter_RxNorm_concept_id =
         OMOP_CommonDataModel$DRUG_STRENGTH %>% 
-        filter(drug_concept_id %in% concept_id.selected | ingredient_concept_id %in% concept_id.selected) %>% 
+        dplyr::filter(drug_concept_id %in% concept_id.selected | ingredient_concept_id %in% concept_id.selected) %>% 
         left_join(OMOP_CommonDataModel$CONCEPT %>% transmute(drug_concept_id = concept_id, drug_concept_name = concept_name, drug_vocabulary_id = vocabulary_id)) %>% 
         left_join(OMOP_CommonDataModel$CONCEPT %>% transmute(ingredient_concept_id = concept_id, ingredient_concept_name = concept_name, ingredient_vocabulary_id = vocabulary_id)) %>% 
         select(matches("drug"), matches("ingredient"), everything()) %>% 
@@ -144,7 +144,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     
     output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id =
         OMOP_CommonDataModel$CONCEPT_RELATIONSHIP %>%
-        filter(concept_id_1 %in% concept_id.selected | concept_id_2 %in% concept_id.selected) %>% 
+        dplyr::filter(concept_id_1 %in% concept_id.selected | concept_id_2 %in% concept_id.selected) %>% 
         left_join(OMOP_CommonDataModel$CONCEPT %>% transmute(concept_id_1 = concept_id, concept_name_1 = concept_name, vocabulary_id_1 = vocabulary_id)) %>% 
         left_join(OMOP_CommonDataModel$CONCEPT %>% transmute(concept_id_2 = concept_id, concept_name_2 = concept_name, vocabulary_id_2 = vocabulary_id)) %>% 
         select(ends_with("_1"), ends_with("_2"), everything()) %>% 
@@ -157,15 +157,15 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     concept_id.selected = 
         c(
             output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id %>% 
-                filter(vocabulary_id_1 == "NDC") %>% {.$concept_id_1}
+                dplyr::filter(vocabulary_id_1 == "NDC") %>% {.$concept_id_1}
             , 
             output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id %>% 
-                filter(vocabulary_id_2 == "NDC") %>% {.$concept_id_2}
+                dplyr::filter(vocabulary_id_2 == "NDC") %>% {.$concept_id_2}
         ) |> unique %>% sort
     output.list$Step21.CONCEPT.filter_NDC =
         OMOP_CommonDataModel$CONCEPT %>% 
-        filter(concept_id %in% concept_id.selected) %>% 
-        # filter(vocabulary_id == "NDC") %>% 
+        dplyr::filter(concept_id %in% concept_id.selected) %>% 
+        # dplyr::filter(vocabulary_id == "NDC") %>% 
         arrange(concept_id) %>% 
         {attributes(.)$concept_id.selected = concept_id.selected; .} #----
     

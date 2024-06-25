@@ -583,16 +583,16 @@ Holdings_URTH %>%
 Holdings_VT_URTH_VWO =
     Holdings_VT %>% 
     transmute(TICKER = TICKER, COUNTRY_VT = COUNTRY, Name_VT = HOLDINGS, Prop_VT = `% OF FUNDS*` |> str_replace_all("%", "") %>% as.numeric, MarketValue_VT = `MARKET VALUE*` |> str_replace_all("\\$", "") |> str_replace_all(",", "") %>% as.numeric) %>% 
-    filter(Prop_VT > 0.01) %>% 
+    dplyr::filter(Prop_VT > 0.01) %>% 
     full_join(
         Holdings_URTH %>% 
             transmute(TICKER = Ticker, COUNTRY_URTH = Location, Name_URTH = Name, Prop_URTH = `Weight (%)`, MarketValue_URTH = `Market Value`) %>% 
-            filter(Prop_URTH > 0.01)
+            dplyr::filter(Prop_URTH > 0.01)
     ) %>% 
     full_join(
         Holdings_VWO %>% 
             transmute(TICKER = TICKER, COUNTRY_VWO = COUNTRY, Name_VWO = HOLDINGS, Prop_VWO = `% OF FUNDS*` |> str_replace_all("%", "") %>% as.numeric, MarketValue_VWO = `MARKET VALUE*` |> str_replace_all("\\$", "") |> str_replace_all(",", "") %>% as.numeric) %>% 
-            filter(Prop_VWO > 0.03)
+            dplyr::filter(Prop_VWO > 0.03)
     ) %>% 
     mutate(Prop = rowMeans(cbind(Prop_VT, Prop_URTH * (3.2+2.69+2.28)/(4.32+3.37+2.97)), na.rm = T)) %>% 
     arrange(desc(Prop)) %>% 

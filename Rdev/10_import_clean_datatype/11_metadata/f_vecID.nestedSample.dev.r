@@ -258,7 +258,7 @@ vecID.nestedSample %>% str()
 
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01 =
     CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% 
-    filter(PERSON_ID %in% vecID.nestedSample$vecID.01sample)
+    dplyr::filter(PERSON_ID %in% vecID.nestedSample$vecID.01sample)
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01.dropNAcols =
     CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.01 %>% 
     select_if(function(vec) all(!is.na(vec)))

@@ -56,17 +56,17 @@ letters %>% function.deparse.cat.width
 # > letters %>% function.deparse.cat.width
 # c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
 
-installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat("\n")
-installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep="");cat("\n")
-installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse(width.cutoff = 500) |> cat(sep = "\n");cat("\n")
-installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep = "\n");cat("\n")
-# > installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat("\n")
+installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat("\n")
+installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep="");cat("\n")
+installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse(width.cutoff = 500) |> cat(sep = "\n");cat("\n")
+installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep = "\n");cat("\n")
+# > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat("\n")
 # c("base", "boot", "class", "cluster", "codetools", "compiler",  "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth",  "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet",  "parallel", "rpart", "spatial", "splines", "stats", "stats4",  "survival", "tcltk", "tools", "utils")
-# > installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep="")
+# > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep="")
 # c("base", "boot", "class", "cluster", "codetools", "compiler", "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth", "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet", "parallel", "rpart", "spatial", "splines", "stats", "stats4", "survival", "tcltk", "tools", "utils")
-# > installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse(width.cutoff = 500) |> cat(sep = "\n")
+# > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse(width.cutoff = 500) |> cat(sep = "\n")
 # c("base", "boot", "class", "cluster", "codetools", "compiler", "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth", "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet", "parallel", "rpart", "spatial", "splines", "stats", "stats4", "survival", "tcltk", "tools", "utils")
-# > installed.packages() |> as_tibble() %>% filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep = "\n")
+# > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() %>% unname %>% deparse |> cat(sep = "\n")
 # c("base", "boot", "class", "cluster", "codetools", "compiler",
 # "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth",
 # "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet",

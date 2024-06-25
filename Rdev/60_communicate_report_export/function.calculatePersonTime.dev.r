@@ -98,10 +98,10 @@ analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigne
 
 analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode %>% 
     mutate(time = fuduration_yr/365) %>% 
-    filter(is.Case) %>% {.$time} %>% sum #----
+    dplyr::filter(is.Case) %>% {.$time} %>% sum #----
 # > analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode %>% 
 # +     mutate(time = fuduration_yr/365) %>% 
-# +     filter(is.Case) %>% {.$time} %>% sum #----
+# +     dplyr::filter(is.Case) %>% {.$time} %>% sum #----
 # [1] 3305.099
 
 3305.099 / 922
