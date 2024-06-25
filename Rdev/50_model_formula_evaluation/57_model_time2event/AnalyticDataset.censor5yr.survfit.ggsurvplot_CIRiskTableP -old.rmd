@@ -66,7 +66,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
   
   
   
-<font size="3">\% env1</font>\
+<font size="3">\% env1</font>\  
   
 ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
@@ -94,75 +94,10 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     sep="")
-```
+```  
   
-  
-@ASROCKX300RYZEN
-List of 9
- $ GUI             : chr "RStudio"
- $ os_type         : chr "windows"
- $ os_sysname      : chr "Windows"
- $ os_version      : chr "build 22621"
- $ machine_type    : chr "x86-64"
- $ machine_nodename: chr "ASROCKX300RYZEN"
- $ machine_cpu     : chr "AMD Ryzen 5 5600G with Radeon Graphics"
- $ Sys.getlocale   :List of 4
-  ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
-  ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
-  ..$ LC_locale_NUMERIC: chr "C"
-  ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
- $ l10n_info       :List of 5
-  ..$ localization_UTF8           : logi TRUE
-  ..$ localization_Latin1         : logi FALSE
-  ..$ localization_codeset        : NULL
-  ..$ localization_codepage       : int 65001
-  ..$ localization_system.codepage: int 65001
-  
-  
-@LIVAI7-8700
-List of 9
- $ GUI             : chr "RStudio"
- $ os_type         : chr "windows"
- $ os_sysname      : chr "Windows"
- $ os_version      : chr "build 19045"
- $ machine_type    : chr "x86-64"
- $ machine_nodename: chr "LIVAI7-8700"
- $ machine_cpu     : chr "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz"
- $ Sys.getlocale   :List of 4
-  ..$ LC_COLLATE       : chr "Korean_Korea.utf8"
-  ..$ LC_CTYPE         : chr "Korean_Korea.utf8"
-  ..$ LC_locale_NUMERIC: chr "C"
-  ..$ LC_locale_TIME   : chr "Korean_Korea.utf8"
- $ l10n_info       :List of 5
-  ..$ localization_UTF8           : logi TRUE
-  ..$ localization_Latin1         : logi FALSE
-  ..$ localization_codeset        : NULL
-  ..$ localization_codepage       : int 65001
-  ..$ localization_system.codepage: int 65001
-  
-  
-@Posit Cloud
-List of 9
- $ GUI             : chr "RStudio"
- $ os_type         : chr "unix"
- $ os_sysname      : chr "Linux"
- $ os_version      : chr "#96~18.04.1-Ubuntu SMP Mon Oct 17 02:57:48 UTC 2022"
- $ machine_type    : chr "x86_64"
- $ machine_nodename: chr "application-9677950-deployment-19172365-82455"
- $ machine_cpu     : chr "AMD EPYC 7R13 Processor"
- $ Sys.getlocale   :List of 4
-  ..$ LC_COLLATE       : chr "C.UTF-8"
-  ..$ LC_CTYPE         : chr "C.UTF-8"
-  ..$ LC_locale_NUMERIC: chr "C"
-  ..$ LC_locale_TIME   : chr "C.UTF-8"
- $ l10n_info       :List of 5
-  ..$ localization_UTF8           : logi TRUE
-  ..$ localization_Latin1         : logi FALSE
-  ..$ localization_codeset        : chr "UTF-8"
-  ..$ localization_codepage       : NULL
-  ..$ localization_system.codepage: NULL
-  
-  
+
+
   
   
 ###### env1\$path ============  
@@ -191,7 +126,7 @@ if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getw
 ```
   
   
-##\% env1$f_path.size_files() ============  
+##\% env1\$f_path.size_files() ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # tribble_paste = datapasta::tribble_paste
@@ -248,8 +183,8 @@ options(width=120)
   
   
 # \$ lung <- as_tibble(survival::lung) ============  
-## Step 1: Load the Required Libraries and Data
-## Step 2: Exploratory Data Analysis
+## Step 1: Load the Required Libraries and Data  
+## Step 2: Exploratory Data Analysis  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
@@ -266,7 +201,7 @@ summary(survival::lung)
   
   
   
-## Step 3: Kaplan-Meier Survival Curve
+## Step 3: Kaplan-Meier Survival Curve  
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
 library(tidyverse)
 # library(survival)
@@ -279,7 +214,7 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = stat
   
 ```
   
-## Step 4: Stratified Kaplan-Meier Survival Curve
+## Step 4: Stratified Kaplan-Meier Survival Curve  
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
 library(tidyverse)
 # library(survival)
@@ -292,7 +227,7 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = stat
   
 ```
   
-## Step 5: Cox Proportional Hazards Model
+## Step 5: Cox Proportional Hazards Model  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Fit a Cox proportional hazards model
@@ -303,14 +238,14 @@ summary(cox_model)
   
 ```
   
-## Step 6: Check Proportional Hazards Assumption
+## Step 6: Check Proportional Hazards Assumption  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Test for proportional hazards
 cox.zph(cox_model)
 ```
   
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.dev.r  
   
 ## \$ AnalyticDataset ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -401,7 +336,7 @@ options(width=120)
 # @@ START) Analysis ------------  
   
 ## \$ DataSetName = "analyticDF_time2event" ============  
-#### [Plot] Stratified Kaplan-Meier Survival Curve
+#### [Plot] Stratified Kaplan-Meier Survival Curve  
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
