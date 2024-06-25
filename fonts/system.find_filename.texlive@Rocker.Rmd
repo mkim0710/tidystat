@@ -196,7 +196,7 @@ r2179052@SharedWorkspace@MHKim710@Posit.Cloud
 # On Unix-based systems, you can use the fc-list command to list available fonts. This command shows both system fonts and those managed by fontconfig (including some TeX Live-installed fonts).
 'fc-list : family' |> system(intern = TRUE) |> sort() |> env1$f_vec.dput_line_by_line()
 ```
-
+  
   
 ##@ find -type d texlive  ------------  
 ## find / -type d -iname texlive  
