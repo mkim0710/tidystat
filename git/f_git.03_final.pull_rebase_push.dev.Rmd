@@ -138,7 +138,7 @@ knitr::opts_chunk$set(
     comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
-    tidy.opts=list(width.cutoff=120), tidy=TRUE, 
+    tidy.opts=list(width.cutoff=120), tidy=FALSE, 
     R.options = list(width=120), paged.print=FALSE
 ) 
 # knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
