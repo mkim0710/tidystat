@@ -71,7 +71,7 @@ vec = c("C059", "D050000L", "NimbusMonoPS", "NimbusRoman", "NimbusSans", "Nimbus
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 f_vec.paste_collapse <- function(vec, space_between_vec_elements="\n") {
-    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0('"',.,'"') |> paste0(collapse=paste0(",",space_between_vec_elements))
+    vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% paste0('"',.,'"') |> paste0(collapse=paste0(",",space_between_vec_elements))
 }
 NULL |> f_vec.paste_collapse()
 vec |> f_vec.paste_collapse()
