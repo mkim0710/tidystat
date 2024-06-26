@@ -264,11 +264,11 @@ if(!require(packagename,character.only=TRUE)) {devtools::install_github("cardiom
 
 
 
-kormaps2014_kormap1 = kormap1 %>% rename(SIDO_NM.UTF8 = name, SIDO_NM.CP949 = name1)
-kormaps2014_kormap21 = kormap2 %>% rename(sigungu_nm.UTF8 = name, sigungu_nm.CP949 = name1) %>% 
+kormaps2014_kormap1 = kormap1 |> rename(SIDO_NM.UTF8 = name, SIDO_NM.CP949 = name1)
+kormaps2014_kormap21 = kormap2 |> rename(sigungu_nm.UTF8 = name, sigungu_nm.CP949 = name1) %>% 
     mutate(SIDO_CD = code %>% substr(1, 2) %>% as.factor) %>% 
     left_join(kormap1 %>% mutate(SIDO_NM.UTF8 = name) %>% select(SIDO_CD, SIDO_NM, SIDO_NM.UTF8) %>% distinct)
-kormaps2014_kormap321 = kormap3 %>% rename(adm_dr_nm.UTF8 = name, adm_dr_nm.CP949 = name1) %>% 
+kormaps2014_kormap321 = kormap3 |> rename(adm_dr_nm.UTF8 = name, adm_dr_nm.CP949 = name1) %>% 
     mutate(sigungu_cd = code %>% substr(1, 5) %>% as.factor) %>% 
     left_join(kormap2 %>% mutate(sigungu_nm.UTF8 = name) %>% select(sigungu_cd, sigungu_nm, sigungu_nm.UTF8) %>% distinct) %>% 
     mutate(SIDO_CD = code %>% substr(1, 2) %>% as.factor) %>% 

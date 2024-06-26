@@ -118,7 +118,7 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>%
 
 #@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
-    analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+    analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
         f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
             mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%

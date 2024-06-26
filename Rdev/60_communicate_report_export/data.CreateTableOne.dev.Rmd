@@ -218,7 +218,7 @@ assign( objectname, read_rds(path.filename.ext) )
 # > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
 # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
   
-CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat();cat(" \n") ###### |> cat() ------------  
+CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat(" \n") ###### |> cat() ------------  
 ```
   
   

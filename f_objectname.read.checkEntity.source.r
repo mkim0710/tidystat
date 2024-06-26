@@ -182,13 +182,13 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     cat(strrep("~",80),"\n",sep=""); 
     cat("> ",objectname," %>% rownames_to_column %>% tail |> as_tibble()","\n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
     # t0=Sys.time()
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.numeric))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.numeric) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.logical))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.logical) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.factor) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time()-t0
 }
 if(!objectname %in% names(env1)) {

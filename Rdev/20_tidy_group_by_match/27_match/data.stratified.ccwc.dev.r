@@ -8,10 +8,10 @@
 # 
 # dataset %>% 
 #     dplyr::filter(MatchingCtrlNum == 0) %>% 
-#     select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
+#     select(MatchingPairID1_1, .exit_age) |> rename(.exit_age_of_Case = .exit_age)
 # # > dataset %>% 
 # # +     dplyr::filter(MatchingCtrlNum == 0) %>% 
-# # +     select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
+# # +     select(MatchingPairID1_1, .exit_age) |> rename(.exit_age_of_Case = .exit_age)
 # # # A tibble: 10,299 x 2
 # #    MatchingPairID1_1                    .exit_age_of_Case
 # #    <fct>                                            <dbl>
@@ -31,7 +31,7 @@
 #     left_join(
 #         dataset %>%
 #             dplyr::filter(MatchingCtrlNum == 0) %>% 
-#             select(MatchingPairID1_1, .exit_age) %>% rename(.exit_age_of_Case = .exit_age)
+#             select(MatchingPairID1_1, .exit_age) |> rename(.exit_age_of_Case = .exit_age)
 #     )
 
 

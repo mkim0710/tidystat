@@ -73,7 +73,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
     )
     res2
     
-    res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
+    res = res2 %>% full_join(res1, by = "rowname") |> rename(varnamelevel = rowname)
     
     tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
     tbl_varname_level_coefficients_res$Estimate[is.na(tbl_varname_level_coefficients_res$Estimate) & !is.na(tbl_varname_level_coefficients_res$level)] = 1

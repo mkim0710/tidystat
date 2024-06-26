@@ -161,7 +161,7 @@ HazardRatios.bind_rows #----
 
 
 #@ HazardRatios.spread ====
-HazardRatios.spread = HazardRatios.bind_rows %>% rename(`estimate (95% CI)` = `estimate (95% CI) %.2f`) %>% 
+HazardRatios.spread = HazardRatios.bind_rows |> rename(`estimate (95% CI)` = `estimate (95% CI) %.2f`) %>% 
     select(Model, rowname, `estimate (95% CI)`) %>% 
     spread(key = Model, value = `estimate (95% CI)`)
 HazardRatios.spread |> print(n=99) #----
@@ -175,11 +175,11 @@ HazardRatios.spread |> print(n=99) #----
 
 
 # #@ spread.join ====
-# HazardRatios.spread = bind_rows.HazardRatios %>% rename(`estimate (95% CI)` = `estimate (95% CI) %.2f`) %>% 
+# HazardRatios.spread = bind_rows.HazardRatios |> rename(`estimate (95% CI)` = `estimate (95% CI) %.2f`) %>% 
 #     select(Table, .id, rowname, `estimate (95% CI)`) %>% 
 #     spread(key = rowname, value = `estimate (95% CI)`)
-# # RiskDifference.spread = bind_rows.RiskDifference %>% rename(`estimate (95% CI)` = `estimate (95% CI) %.3f`) %>% 
-# RiskDifference.spread = bind_rows.RiskDifference %>% rename(`estimate (95% CI)` = `percent (95% CI)`) %>% 
+# # RiskDifference.spread = bind_rows.RiskDifference |> rename(`estimate (95% CI)` = `estimate (95% CI) %.3f`) %>% 
+# RiskDifference.spread = bind_rows.RiskDifference |> rename(`estimate (95% CI)` = `percent (95% CI)`) %>% 
 #     select(Table, .id, rowname, `estimate (95% CI)`) %>% 
 #     spread(key = rowname, value = `estimate (95% CI)`)
 # spread.join = RiskDifference.spread %>% mutate(Table = Table |> str_extract("^[A-z]+")) %>% 

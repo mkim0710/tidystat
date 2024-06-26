@@ -163,11 +163,11 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 
 
 
-# ID_lmp_Window4Exposure %>% rename_if(
+# ID_lmp_Window4Exposure |> rename_if(
 #     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
 #     , function(chr) paste0("prefix.", chr) ) |> str() #----
-ID_lmp_Window4Exposure %>% rename_at(vars(-rowname), funs(paste0("prefix.", c.)) ) |> str() #----
-# > ID_lmp_Window4Exposure %>% rename_if(
+ID_lmp_Window4Exposure |> rename_at(vars(-rowname), funs(paste0("prefix.", c.)) ) |> str() #----
+# > ID_lmp_Window4Exposure |> rename_if(
 # +     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
 # +     , function(chr) paste0("prefix.", chr) ) |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
@@ -198,11 +198,11 @@ ID_lmp_Window4Exposure %>% rename_at(vars(-rowname), funs(paste0("prefix.", c.))
 
 
 #@@@ debug 191017 -----
-# ID_lmp_Window4Exposure %>% rename_if(
+# ID_lmp_Window4Exposure |> rename_if(
 #     function(x) {get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"}
 #     , function(chr) paste0("prefix.", chr)
 # )
-# # > ID_lmp_Window4Exposure %>% rename_if(
+# # > ID_lmp_Window4Exposure |> rename_if(
 # # +     function(x) {get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"}
 # # +     , function(chr) paste0("prefix.", chr)
 # # + )
@@ -211,7 +211,7 @@ ID_lmp_Window4Exposure %>% rename_at(vars(-rowname), funs(paste0("prefix.", c.))
 # # Called from: get("tibble_vars", envir = parent.frame())
 
 
-ID_lmp_Window4Exposure %>% rename_if(
+ID_lmp_Window4Exposure |> rename_if(
     function(x) {browser()}
     , function(chr) paste0("prefix.", chr)
 )
@@ -310,11 +310,11 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 # [1] FALSE
 
 
-ID_lmp_Window4Exposure %>% rename_if(
+ID_lmp_Window4Exposure |> rename_if(
     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
     , function(chr) paste0("prefix.", chr)
 )
-# > ID_lmp_Window4Exposure %>% rename_if(
+# > ID_lmp_Window4Exposure |> rename_if(
 # +     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
 # +     , function(chr) paste0("prefix.", chr)
 # + )
@@ -332,7 +332,7 @@ ID_lmp_Window4Exposure %>% rename_if(
 
 
 
-ID_lmp_Window4Exposure %>% rename_if(
+ID_lmp_Window4Exposure |> rename_if(
     function(x) {get("tibble_vars", inherits = TRUE)[get("i", envir = parent.frame(n=2))] != "rowname"}
     , function(chr) paste0("prefix.", chr)
 )
@@ -354,8 +354,8 @@ rename_if
 
 
 #@@@ debug -----
-ID_lmp_Window4Exposure %>% rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
-# > ID_lmp_Window4Exposure %>% rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
+ID_lmp_Window4Exposure |> rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
+# > ID_lmp_Window4Exposure |> rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
 # Error in selected[[i]] <- .p(.tbl[[tibble_vars[[i]]]], ...) : 
 #   more elements supplied than there are to replace
 
