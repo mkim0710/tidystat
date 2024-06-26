@@ -146,7 +146,7 @@ icd10_sub_chapters.expand_range.ICD10_3char |> str()
 #@ icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----
 icd10_chapters.expand_range.ICD10_3char |> str()
 icd10_chapters.expand_range.ICD10_3char %>% reduce(c) |> str()
-icd10_chapters.expand_range.ICD10_3char %>% names |> str()
+icd10_chapters.expand_range.ICD10_3char |> names() |> str()
 icd10_chapters.expand_range.ICD10_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
 icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str()
 icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe
@@ -175,7 +175,7 @@ icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.
 #  $ Factors influencing health status and contact with health services                                 : chr [1:86] "Z00" "Z01" "Z02" "Z03" ...
 # > icd10_chapters.expand_range.ICD10_3char %>% reduce(c) |> str()
 #  chr [1:1903] "A00" "A01" "A02" "A03" "A04" "A05" "A06" "A07" "A08" "A09" "A15" "A17" "A18" "A19" "A20" "A21" "A22" "A23" ...
-# > icd10_chapters.expand_range.ICD10_3char %>% names |> str()
+# > icd10_chapters.expand_range.ICD10_3char |> names() |> str()
 #  chr [1:21] "Certain infectious and parasitic diseases" "Neoplasms" ...
 # > icd10_chapters.expand_range.ICD10_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
 #  chr [1:1903] "Certain infectious and parasitic diseases" "Certain infectious and parasitic diseases" ...

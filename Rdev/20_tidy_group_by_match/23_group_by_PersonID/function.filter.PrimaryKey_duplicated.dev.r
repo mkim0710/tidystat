@@ -86,10 +86,10 @@ tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_Br
 #### https://stackoverflow.com/questions/16905425/find-duplicate-values-in-r ====
 
 t0 = Sys.time()
-enrolid_mom_duplicated = mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp$enrolid_mom %>% table %>% {which(. > 1)} %>% names
+enrolid_mom_duplicated = mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp$enrolid_mom %>% table %>% {which(. > 1)} |> names()
 Sys.time() - t0
 # > t0 = Sys.time()
-# > enrolid_mom_duplicated = mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp$enrolid_mom %>% table %>% {which(. > 1)} %>% names
+# > enrolid_mom_duplicated = mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp$enrolid_mom %>% table %>% {which(. > 1)} |> names()
 # > Sys.time() - t0
 # Time difference of 10.28465 secs
 

@@ -10,7 +10,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     library(tidyverse)
     
     list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
-    list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
+    list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
                                                             
     #@ tbl_varname_level_coefficients ====
     if (length(list_levels) == 0) { # debug 181115 ----
@@ -116,9 +116,9 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #   Loglik converged before variable  4,6,10 ; beta may be infinite. 
     # 
     # 
-    # #@ object.coxph$coefficients %>% names |> dput() ----
-    # object.coxph$coefficients %>% names |> dput()
-    # # > object.coxph$coefficients %>% names |> dput()
+    # #@ object.coxph$coefficients |> names() |> dput() ----
+    # object.coxph$coefficients |> names() |> dput()
+    # # > object.coxph$coefficients |> names() |> dput()
     # # c("AGE", "SEXFemale", "CigaretteCurrentSmokerTRUE", "BMI_Q_yr18.5-", 
     # # "BMI_Q_yr23-", "BMI_Q_yr25-", "BMI_Q_yr30-", "CCI_yr", "pmhx_DM_OR_glucose_ge126TRUE", 
     # # "total_ddd_yr_METFORMIN.ge30[30,Inf]")
@@ -140,9 +140,9 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 
     # #@ object.coxph$terms |> str() ----
     # object.coxph$terms |> str()
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
     # # > object.coxph$terms |> str()
     # # Classes 'terms', 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
     # #   ..- attr(*, "variables")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
@@ -162,13 +162,13 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #   ..- attr(*, "predvars")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
     # #   ..- attr(*, "dataClasses")= Named chr [1:8] "nmatrix.2" "numeric" "factor" "logical" ...
     # #   .. ..- attr(*, "names")= chr [1:8] "Surv(time = fuduration_yr, event = evnttrth_C24_r)" "AGE" "SEX" "CigaretteCurrentSmoker" ...
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
     # # List of 2
     # #  $ CigaretteCurrentSmoker  : chr [1:2] "FALSE" "TRUE"
     # #  $ pmhx_DM_OR_glucose_ge126: chr [1:2] "FALSE" "TRUE"
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
     # # named list()
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
     # # structure(list(), .Names = character(0))
     # 
     # 
@@ -183,16 +183,16 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 
     # 
     # 
-    # # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
-    # # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
+    # # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
+    # # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} |> str()
     # # # List of 5
     # # #  $ SEcoQ4                : logi [1:2] FALSE TRUE
     # # #  $ Disability_Any        : logi [1:2] FALSE TRUE
     # # #  $ CigaretteCurrentSmoker: logi [1:2] FALSE TRUE
     # # #  $ Drink_ge3pwk          : logi [1:2] FALSE TRUE
     # # #  $ Excercise_ge3pwk      : logi [1:2] FALSE TRUE
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> str()
     # # List of 5
     # #  $ SEcoQ4                : chr [1:2] "FALSE" "TRUE"
     # #  $ Disability_Any        : chr [1:2] "FALSE" "TRUE"
@@ -200,11 +200,11 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # #  $ Drink_ge3pwk          : chr [1:2] "FALSE" "TRUE"
     # #  $ Excercise_ge3pwk      : chr [1:2] "FALSE" "TRUE"
     # 
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
-    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
+    # which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
     # # named list()
-    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
+    # # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
     # # structure(list(), .Names = character(0))
     
     # degub 200222 for strata(MatchingPairID) -----
@@ -213,7 +213,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
 #  $ MatchingPairID        : chr [1:683] "Female|40-|SEcoQ1|Level 1-2_NA" "Female|40-|SEcoQ1|Level 3-6_NA" "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" ...
 #  $ strata(MatchingPairID): chr [1:587] "Female|40-|SEcoQ1|None_1" "Female|40-|SEcoQ1|None_2" "Female|40-|SEcoQ1|None_3" "Female|40-|SEcoQ1|None_4" ...
     list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
-    list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
+    list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
     
     
     #@ tbl_varname_level_coefficients ====
@@ -483,7 +483,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
     tbl_varname_level_coefficients_res$HRCI[is.na(tbl_varname_level_coefficients_res$HRCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
     # tbl_varname_level_coefficients_res |> print(n=99)
-    # tbl_varname_level_coefficients_res %>% names |> dput()
+    # tbl_varname_level_coefficients_res |> names() |> dput()
     # # > tbl_varname_level_coefficients_res |> print(n=99)
     # # # A tibble: 15 x 11
     # # varname                     level    varnamelevel                        coefficients HRCI                           p_value star  `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
@@ -503,7 +503,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # 13 pmhx_DM_OR_glucose_ge126    TRUE     pmhx_DM_OR_glucose_ge126TRUE               0.832 "        2.299 (0.232, 22.81)" p=0.477 "   "     2.30e+0      0.232        22.8     0.477  
     # # 14 AGE                         NA       AGE                                        0.227 "        1.255 (1.085,  1.45)" p=0.002 ***       1.26e+0      1.08          1.45    0.00225
     # # 15 CCI_yr                      NA       CCI_yr                                     0.138 "        1.148 (0.667,  1.97)" p=0.619 "   "     1.15e+0      0.667         1.97    0.619  
-    # # > tbl_varname_level_coefficients_res %>% names |> dput()
+    # # > tbl_varname_level_coefficients_res |> names() |> dput()
     # # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
     # # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
     # # txt |> str_extract_all("[A-z0-9_]+") |> str()

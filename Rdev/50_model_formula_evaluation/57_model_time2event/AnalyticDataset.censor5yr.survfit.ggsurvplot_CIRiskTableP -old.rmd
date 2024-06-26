@@ -174,7 +174,7 @@ options(width=120)
 # get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 # get(objectname) %>% {.$RN_INDI} |> n_distinct()
 # get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
-# get(objectname) |> names() %>% paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ------------  
+# get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ------------  
 # cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # # get(objectname) |> select_if(is.numeric) |> summary() #------------  
 # # get(objectname) |> select_if(is.logical) |> summary() #------------  
@@ -443,10 +443,10 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
 if (.Platform$OS.type == "windows") { paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',env1$path$CurrentSource.path.filename.nb.html|>normalizePath(winslash="/"),'"') |> system(intern=TRUE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
 cat(" * To revert to the last commited file, run the following terminal command:\n", 
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext,'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")

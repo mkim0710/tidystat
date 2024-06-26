@@ -126,16 +126,16 @@ saveRDS(korpopmap1.UTF8, "korpopmap1.UTF8.rds")
 
 # http://blog.naver.com/PostView.nhn?blogId=n2ll_&logNo=221427614530&categoryNo=7&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
 library(tidyverse)
-korpopmap1@data %>% names %>% iconv(from = "EUC-KR", to = "UTF-8") |> dput()
-korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "CP949") |> dput()
-korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
-# > korpopmap1@data %>% names %>% iconv(from = "EUC-KR", to = "UTF-8") |> dput()
+korpopmap1@data |> names() %>% iconv(from = "EUC-KR", to = "UTF-8") |> dput()
+korpopmap1@data |> names() %>% iconv(from = "UTF-8", to = "CP949") |> dput()
+korpopmap1@data |> names() %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
+# > korpopmap1@data |> names() %>% iconv(from = "EUC-KR", to = "UTF-8") |> dput()
 # c("SP_ID", "FID", "code", "code1", "long", "lat", "order", "hole", 
 # "piece", "group", "id", "FID.data", "code.data", "code.1", "name", 
 # "name_eng", "base_year", NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 # NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "region", 
 # "code1.data")
-# > korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "CP949") |> dput()
+# > korpopmap1@data |> names() %>% iconv(from = "UTF-8", to = "CP949") |> dput()
 # c("SP_ID", "FID", "code", "code1", "long", "lat", "order", "hole", 
 # "piece", "group", "id", "FID.data", "code.data", "code.1", "name", 
 # "name_eng", "base_year", "C행정구역별_읍면동", "행정구역별_읍면동", 
@@ -145,7 +145,7 @@ korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
 # "주택_계_호", "단독주택_호", "아파트_호", "연립주택_호", "다세대주택_호", 
 # "비거주용_건물내_주택_호", "주택이외의_거처_호", "region", "code1.data"
 # )
-# > korpopmap1@data %>% names %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
+# > korpopmap1@data |> names() %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
 # c("SP_ID", "FID", "code", "code1", "long", "lat", "order", "hole", 
 # "piece", "group", "id", "FID.data", "code.data", "code.1", "name", 
 # "name_eng", "base_year", "C행정구역별_읍면동", "행정구역별_읍면동", 
