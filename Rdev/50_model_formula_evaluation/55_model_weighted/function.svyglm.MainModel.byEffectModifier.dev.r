@@ -488,7 +488,7 @@ function.svyglm.MainModel.interaction = function(
     , varname4EffectModifier = "US_BORN"
     , varname4PrimaryKey = "rowname"
 ) {
-    formula4EffectModifier = formula4MainModel %>%  as.character %>% {paste(.[2], .[1], .[3])} %>% paste0(" + ", varname4ExposureOfInterest, ":", varname4EffectModifier) %>% as.formula
+    formula4EffectModifier = formula4MainModel %>%  as.character %>% {paste(.[2], .[1], .[3])} |> paste0(" + ", varname4ExposureOfInterest, ":", varname4EffectModifier) %>% as.formula
     (
         svyglm(formula4MainModel, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
             set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".", subscript4MainModel)))
@@ -549,7 +549,7 @@ function.svyglm.MainModel.byEffectModifier = function(
         , pYbin.wt = data.svydesign %>% update(tmp = as.numeric(!!rlang::sym(varname4Ybin) == T)) %>% svymean(~tmp, .)
     )
 
-    formula4EffectModifier = formula4MainModel %>% as.character %>% {paste(.[2], .[1], .[3])} %>% paste0(" + ", varname4ExposureOfInterest, ":", varname4EffectModifier) %>% as.formula
+    formula4EffectModifier = formula4MainModel %>% as.character %>% {paste(.[2], .[1], .[3])} |> paste0(" + ", varname4ExposureOfInterest, ":", varname4EffectModifier) %>% as.formula
     out.list$MainModel_and_interaction = svyglm(formula4EffectModifier, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp(allow_multple_spaces = function.glm_object.summary.exp.allow_multple_spaces)
     out.list$MainModel_and_interaction = out.list$MainModel_and_interaction %>% add_column(
         .before = 1
@@ -616,7 +616,7 @@ function.svyglm.MainModel.byEffectModifier = function(
         )
     }
 
-    # formula4EffectModifier = formula4MainModel %>%  as.character %>% {paste(.[2], .[1], .[3])} %>% paste0(" + ", varname4ExposureOfInterest, ":", varname4EffectModifier) %>% as.formula
+    # formula4EffectModifier = formula4MainModel %>%  as.character %>% {paste(.[2], .[1], .[3])} |> paste0(" + ", varname4ExposureOfInterest, ":", varname4EffectModifier) %>% as.formula
     # (
     #     svyglm(formula4MainModel, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
     #         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".", subscript4MainModel)))

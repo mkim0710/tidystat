@@ -49,8 +49,8 @@ list.sas7bdat$temp1$dth_dt %>% attributes |> str() #-----
 #  $ class     : chr "Date"
 #  $ format.sas: chr "YYMMDDN"
 
-list.sas7bdat$temp1 %>% attributes %>% names |> dput() #----
-# > list.sas7bdat$temp1 %>% attributes %>% names |> dput() #----
+list.sas7bdat$temp1 %>% attributes |> names() |> dput() #----
+# > list.sas7bdat$temp1 %>% attributes |> names() |> dput() #----
 # c("names", "row.names", "class")
 
 list.sas7bdat %>% attributes %>% {.[c("names", "row.names", "class")]} |> str() #----

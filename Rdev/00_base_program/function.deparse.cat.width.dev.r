@@ -2,21 +2,21 @@
 
 
 objectname = "KoGES201806vars_waves"
-get(objectname) %>% names %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
-get(objectname) %>% names %>% paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ----
+get(objectname) |> names() %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
+get(objectname) |> names() |> paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ----
 
 
 objectname = "KoGES201806vars_waves"
-get(objectname) %>% names %>% {cat(deparse(., width.cutoff=120),"\n\n",sep="")} #=====
+get(objectname) |> names() %>% {cat(deparse(., width.cutoff=120),"\n\n",sep="")} #=====
 
 
 objectname = "KoGES201806vars_waves"
-cat(strrep("~",80),"\n",sep=""); get(objectname) %>% names %>% deparse |> cat() # dput() cat(deparse()) ----
-cat(strrep("~",80),"\n",sep=""); get(objectname) %>% names %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
-cat(strrep("~",80),"\n",sep=""); get(objectname) %>% names %>% paste(collapse=", ") |> cat("\n"); # tidyselect: paste(collapse=", ") |> cat() ----
-# > data %>% names %>% deparse |> cat(); cat("\n") #----
+cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() %>% deparse |> cat() # dput() cat(deparse()) ----
+cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
+cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> paste(collapse=", ") |> cat("\n"); # tidyselect: paste(collapse=", ") |> cat() ----
+# > data |> names() %>% deparse |> cat(); cat("\n") #----
 # c("Time2Event", "Event", "Exposure")
-# > data %>% names %>% paste(collapse=", ") #----
+# > data |> names() |> paste(collapse=", ") #----
 # [1] "Time2Event, Event, Exposure"
 
 

@@ -142,7 +142,7 @@ icd9_sub_chapters.expand_range.ICD9_3char |> str() #----
 #@ icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----
 icd9_chapters.expand_range.ICD9_3char |> str()
 icd9_chapters.expand_range.ICD9_3char %>% reduce(c) |> str()
-icd9_chapters.expand_range.ICD9_3char %>% names |> str()
+icd9_chapters.expand_range.ICD9_3char |> names() |> str()
 icd9_chapters.expand_range.ICD9_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
 icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} |> str()
 icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe
@@ -169,7 +169,7 @@ icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.),
 #  $ Supplementary Classification Of External Causes Of Injury And Poisoning                           : chr [1:24] "E00" "E01" "E02" "E03" ...
 # > icd9_chapters.expand_range.ICD9_3char %>% reduce(c) |> str()
 #  chr [1:1042] "001" "002" "003" "004" "005" "006" "007" "008" "009" "010" "011" "012" "013" "014" "015" "016" "017" ...
-# > icd9_chapters.expand_range.ICD9_3char %>% names |> str()
+# > icd9_chapters.expand_range.ICD9_3char |> names() |> str()
 #  chr [1:19] "Infectious And Parasitic Diseases" "Neoplasms" ...
 # > icd9_chapters.expand_range.ICD9_3char %>% {rep(names(.), times = map_dbl(., length))} |> str()
 #  chr [1:1042] "Infectious And Parasitic Diseases" "Infectious And Parasitic Diseases" ...

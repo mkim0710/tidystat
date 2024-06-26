@@ -658,7 +658,7 @@ env1[[objectname]] = object
 ## $ objectname = "f_vec.dput_line_by_line" ----
 objectname = "f_vec.dput_line_by_line"
 # object = function(vec) {
-#     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') %>% paste0('c("',.,'")\n') |> cat("\n")
+#     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') |> paste0('c("',.,'")\n') |> cat("\n")
 # }
 object = function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("\n")
@@ -689,7 +689,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
         if (is.null(vec)) {
             return("NULL")
         } else {
-            vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% paste0('"',.,'"') |> paste0(collapse=paste0(",",space_between_vec_elements))
+            vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0('"',.,'"') |> paste0(collapse=paste0(",",space_between_vec_elements))
         }
     }
     

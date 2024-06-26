@@ -485,8 +485,8 @@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI =
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
 InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI =
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics
-InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names |> dput()
-# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI %>% names |> dput()
+InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI |> names() |> dput()
+# > InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI |> names() |> dput()
 # c("rowname", "equation", "V1", "V2", "V3", "V4", "MacroAverage")
 for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI[[i]] =

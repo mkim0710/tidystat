@@ -12,7 +12,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
     
 
     list_levels = object.glm$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
-    list_levels = c(list_levels, which(object.glm$terms %>% attr(., "dataClasses") == "logical") %>% names %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
+    list_levels = c(list_levels, which(object.glm$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
           
     # debug 200222) as_tibble() removes the rownames -_- -----                                                                            
     # debug 200222) right_join() instead of full_join() to remove something like strata(MatchingPairID) -_- -----                                                                            
@@ -45,7 +45,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
         object.glm.summary.coef.df$Estimate = exp(object.glm.summary.coef.df$Estimate)
     }
     
-    # object.glm.summary.coef.df %>% full_join(object.glm.confint.df) %>% names |> dput()
+    # object.glm.summary.coef.df %>% full_join(object.glm.confint.df) |> names() |> dput()
     # # Joining, by = "rowname"
     # # c("rowname", "Estimate", "Std. Error", "z value", "Pr(>|z|)", "2.5 %", "97.5 %")
     res1 = object.glm.summary.coef.df %>% full_join(object.glm.confint.df) %>% 
@@ -79,7 +79,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
     tbl_varname_level_coefficients_res$Estimate[is.na(tbl_varname_level_coefficients_res$Estimate) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
     tbl_varname_level_coefficients_res$ORCI[is.na(tbl_varname_level_coefficients_res$ORCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
     
-    # tbl_varname_level_coefficients_res %>% names |> dput() 
+    # tbl_varname_level_coefficients_res |> names() |> dput() 
     # c("varname", "level", "varnamelevel", "coefficients", "ORCI", "p_value", "star", "Estimate", "2.5 %", "97.5 %", "Pr(>|z|)")
     out = tbl_varname_level_coefficients_res %>% select(varname, level, ORCI, p_value, star, everything())
 }

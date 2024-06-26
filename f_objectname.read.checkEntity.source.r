@@ -170,9 +170,9 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
 
     cat(strrep("%",80),"\n",sep=""); 
-    cat("> names(",objectname,') %>% deparse(width.cutoff=120-15) |> cat(sep="\\n")',"\n", sep=""); get(objectname) %>% names %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
+    cat("> names(",objectname,') %>% deparse(width.cutoff=120-15) |> cat(sep="\\n")',"\n", sep=""); get(objectname) |> names() %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
     cat(strrep("~",80),"\n",sep=""); 
-    cat("> names(",objectname,') %>% paste(collapse=", ") |> cat(sep="\\n")',"\n", sep=""); get(objectname) %>% names %>% paste(collapse=", ") |> cat(sep="\n");cat("\n"); # tidydplyr::select: paste(collapse=", ") |> cat() ----
+    cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"\n", sep=""); get(objectname) |> names() |> paste(collapse=", ") |> cat(sep="\n");cat("\n"); # tidydplyr::select: paste(collapse=", ") |> cat() ----
     
     cat(strrep("%",80),"\n",sep=""); 
     cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","\n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)

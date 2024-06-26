@@ -167,7 +167,7 @@ object = function(
                 # # # <environment: namespace:tools>
                 # path.basename |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
             ) %>% 
-            mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", max(.x - 1, 0)), collapse = "")) %>% paste0(path.basename) ) %>%
+            mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", max(.x - 1, 0)), collapse = "")) |> paste0(path.basename) ) %>%
             # arrange(path.parent, path.basename) %>% 
             arrange(full_path) %>% 
             as_tibble
@@ -200,8 +200,8 @@ object = function(
                         map2_chr(
                             path.level, 
                             files, 
-                            # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                            # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) |> paste(collapse = "\n") 
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) |> paste(collapse="") |> paste0(.y) %>% c("") |> paste(collapse = "\n")}, "")
                         ) 
                     )
                 , print_tree_path_files.codes = 
@@ -212,8 +212,8 @@ object = function(
                         map2_chr(
                             path.level, 
                             files.codes, 
-                            # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                            # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) |> paste(collapse = "\n") 
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) |> paste(collapse="") |> paste0(.y) %>% c("") |> paste(collapse = "\n")}, "")
                         ) 
                     )
                 # , print_tree_path_files.codes = 
@@ -224,8 +224,8 @@ object = function(
                 #         map2_chr(
                 #             path.level, 
                 #             files.rmd, 
-                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) |> paste(collapse = "\n") 
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) |> paste(collapse="") |> paste0(.y) %>% c("") |> paste(collapse = "\n")}, "")
                 #         ) 
                 #     )
                 # , print_tree_path_files.ppt = 
@@ -236,8 +236,8 @@ object = function(
                 #         map2_chr(
                 #             path.level, 
                 #             files.ppt, 
-                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) |> paste(collapse = "\n") 
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) |> paste(collapse="") |> paste0(.y) %>% c("") |> paste(collapse = "\n")}, "")
                 #         ) 
                 #     )
                 # , print_tree_path_files.rds = 
@@ -248,8 +248,8 @@ object = function(
                 #         map2_chr(
                 #             path.level, 
                 #             files.rds, 
-                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) |> paste(collapse = "\n") 
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) |> paste(collapse="") |> paste0(.y) %>% c("") |> paste(collapse = "\n")}, "")
                 #         ) 
                 #     )
                 # , print_tree_path_files.rda = 
@@ -260,8 +260,8 @@ object = function(
                 #         map2_chr(
                 #             path.level, 
                 #             files.rda, 
-                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n") 
-                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                #             # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) |> paste(collapse = "\n") 
+                #             ~ifelse(length(.y)>0, {rep("\t", .x-0) |> paste(collapse="") |> paste0(.y) %>% c("") |> paste(collapse = "\n")}, "")
                 #         ) 
                 #     )
                 , print_tree_path_files.data =
@@ -272,8 +272,8 @@ object = function(
                         map2_chr(
                             path.level,
                             files.data,
-                            # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) %>% paste(collapse = "\n")
-                            ~ifelse(length(.y)>0, {rep("\t", .x-0) %>% paste(collapse="") %>% paste0(.y) %>% c("") %>% paste(collapse = "\n")}, "")
+                            # ~paste0(paste(c("|->", rep("\t", .x-0)), collapse = ""), .y) |> paste(collapse = "\n")
+                            ~ifelse(length(.y)>0, {rep("\t", .x-0) |> paste(collapse="") |> paste0(.y) %>% c("") |> paste(collapse = "\n")}, "")
                         )
                     )
             ) %>%

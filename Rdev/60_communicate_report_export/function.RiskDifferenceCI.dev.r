@@ -930,12 +930,12 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # 
 # AnalyticDataset.table[2:1, 2:1] %>% as.vector #----
 # AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector #----
-# AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector %>% paste(collapse = " ") #----
+# AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector |> paste(collapse = " ") #----
 # # > AnalyticDataset.table[2:1, 2:1] %>% as.vector #----
 # # [1]  60 108  45 341
 # # > AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector #----
 # # [1]  60  45 108 341
-# # > AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector %>% paste(collapse = " ") #----
+# # > AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector |> paste(collapse = " ") #----
 # # [1] "60 45 108 341"
 # 
 # 
