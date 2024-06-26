@@ -183,7 +183,7 @@ f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n 
         if (is.null(vec)) {
             return("NULL")
         } else {
-            vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0('"',.,'"') |> paste0(collapse=paste0(",",space_between_vec_elements))
+            vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% paste0('"',.,'"') |> paste0(collapse=paste0(",",space_between_vec_elements))
         }
     }
     
