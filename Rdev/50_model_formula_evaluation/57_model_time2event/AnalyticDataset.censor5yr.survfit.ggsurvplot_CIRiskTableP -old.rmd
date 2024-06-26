@@ -150,7 +150,7 @@ regex4filename = "\\.rds\\.xz$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
   
-cat(strrep("~",80),"\n",sep=""); #------------  
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #------------  
 regex4filename = "\\.rds$"
 list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
 env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
