@@ -13,7 +13,7 @@
 
 #@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
-    analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+    analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
         f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
             mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
@@ -72,13 +72,13 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 
 
 #@ -----
-analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
-analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
-# > analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+# > analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
 # +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
 # +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
 #                           Exposure0 Exposure1 Sum
@@ -103,7 +103,7 @@ analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>%
 # SecondaryOutcome20                5         0   5
 # SecondaryOutcome21                5         0   5
 # Sum                             474       256 730
-# > analyticDF.TargetTrial2v38.2.113vs200 %>% rename(Exposure = Intervention) %>% 
+# > analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
 # +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
 # +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
 #                           Exposure0  Exposure1        Sum

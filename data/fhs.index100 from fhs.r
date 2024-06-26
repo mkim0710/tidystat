@@ -1175,8 +1175,8 @@ fhs.index100$index100 %>% table #----
 #  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44
 
 
-fhs.index100le10 = fhs.index100 %>% dplyr::filter(index100 <= 10) #----
-fhs.index100ge11le20 = fhs.index100 %>% dplyr::filter(index100 %in% 11:20) #----
+fhs.index100le10 = fhs.index100 |> dplyr::filter(index100 <= 10) #----
+fhs.index100ge11le20 = fhs.index100 |> dplyr::filter(index100 %in% 11:20) #----
 
 fhs.index100le10 |> str(give.attr = F) #----
 fhs.index100ge11le20 |> str(give.attr = F) #----

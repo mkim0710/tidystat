@@ -44,7 +44,7 @@ function.boot.statistic_RiskDifference = function(data, index, glm.formula = Dk_
         group_by(Exposure) %>% mutate(pNoEvent_k.cumprod = pNoEvent_k %>% cumprod) %>%
         dplyr::filter(k == max(k)) %>%
         # select(k, Exposure, pNoEvent_k.cumprod, everything(), -pNoEvent_k) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) %>%
-        select(k, Exposure, pNoEvent_k.cumprod) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) %>%
+        select(k, Exposure, pNoEvent_k.cumprod) %>% spread(key = Exposure, value = pNoEvent_k.cumprod) |>
         rename(`max(k)` = k, pNoEvent_k.cumprod0 = `0`, pNoEvent_k.cumprod1 = `1`) %>% mutate(RiskDifference = pNoEvent_k.cumprod1-pNoEvent_k.cumprod0) %>%
         unlist
 

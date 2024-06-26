@@ -17,7 +17,7 @@ for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_
 # get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
 data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
+    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
     colnames(out)[which(colnames(out) == ".")] = "IsNA"
     out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
@@ -35,13 +35,13 @@ cat(strrep("%",80),"\n",sep="");
 assign(paste0(objectname,".dropNAcols"), get(objectname) %>% select_if(function(vec) all(!is.na(vec))))
 objectname = paste0(objectname,".dropNAcols")
 t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.numeric))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.numeric) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
 Sys.time()-t0
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.logical))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.logical) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
 Sys.time()-t0
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% dplyr::select_if(is.factor) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
 Sys.time()-t0
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," %>% dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
 Sys.time()-t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 

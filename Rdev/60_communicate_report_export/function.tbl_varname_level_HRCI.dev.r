@@ -50,7 +50,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
             )
     )
     res2    
-    res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
+    res = res2 %>% full_join(res1, by = "rowname") |> rename(varnamelevel = rowname)
     
     tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
     tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
@@ -259,7 +259,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # A tibble: 0 x 3
     # # ... with 3 variables: varname <chr>, level <chr>, varnamelevel <chr>
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-    # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
     # +         ) #----
     # # A tibble: 6 x 4
     #   varname   level varnamelevel             coefficients
@@ -298,7 +298,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # Browse[1]> list_levels %>% length
     # [1] 0
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-    # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+    # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
     # +         ) #----
     # Error in mutate_impl(.data, dots) : 
     #   Evaluation error: object 'level' not found.
@@ -477,7 +477,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 10 total_ddd_yr_NSAID.cut[0.001,30)           1.03 (0.07, 15.76) p=0.986 "   "
     # # ... with 18 more rows
     
-    res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
+    res = res2 %>% full_join(res1, by = "rowname") |> rename(varnamelevel = rowname)
     
     tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
     tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1

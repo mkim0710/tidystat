@@ -108,7 +108,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
             , ODMatrix.new = ODMatrix.new
             , ODMatrix0.marginDF.new = ODMatrix0.marginDF.new
             , Cluster.tbl = 
-                PopulationDF.new %>% 
+                PopulationDF.new |> 
                 # rename(
                 #     Code.Cluster = Code
                 #     , Pop.Cluster = Pop
@@ -139,7 +139,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
                                cbind(
                                    .$data %>% map(t) %>% map(as_tibble) %>% bind_rows
                                ) %>%
-                               select(-data) %>%
+                               select(-data) |>
                                rename(Code.Cluster = Code.new) %>%
                                as_tibble
                            , by = "Code.Cluster"
@@ -172,10 +172,10 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     Results.iteration.list = list()
     # Results.iteration.list[[1]] = list(PopulationDF0 = PopulationDF0, DistanceMatrix0 = DistanceMatrix0, ODMatrix0 = ODMatrix0, ODMatrix0.marginDF = ODMatrix0.marginDF)
     Results.iteration.list[[1]] = list(
-        PopulationDF.new = PopulationDF0 %>% rename(Code.Cluster = Code, Pop.Cluster = Pop)
+        PopulationDF.new = PopulationDF0 |> rename(Code.Cluster = Code, Pop.Cluster = Pop)
         , DistanceMatrix.new = DistanceMatrix0
         , ODMatrix.new = ODMatrix0
-        , ODMatrix0.marginDF.new = ODMatrix0.marginDF %>% rename(Code.Cluster = Code)
+        , ODMatrix0.marginDF.new = ODMatrix0.marginDF |> rename(Code.Cluster = Code)
     )
     
     # Results.iteration.list[[1]]$CodeDF0 = CodeDF0
@@ -184,7 +184,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     Results.iteration.list[[1]]$CodeDF.new = CodeDF.new
 
     Results.iteration.list[[1]]$Cluster.tbl = 
-        Results.iteration.list[[length(Results.iteration.list)]]$PopulationDF.new %>% 
+        Results.iteration.list[[length(Results.iteration.list)]]$PopulationDF.new |> 
         # rename(
         #     Code.Cluster = Code
         #     , Pop.Cluster = Pop
@@ -210,7 +210,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
                 cbind(
                     .$data %>% map(t) %>% map(as_tibble) %>% bind_rows
                 ) %>% 
-                select(-data) %>% 
+                select(-data) |> 
                 rename(Code.Cluster = Code.new) %>% 
                 as_tibble
             , by = "Code.Cluster"

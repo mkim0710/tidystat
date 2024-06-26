@@ -169,7 +169,7 @@ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean =
                     SIDO_CD = Code.Cluster %>% substr(1, 2)
                     , SGG_CD = Code.Cluster %>% substr(1, 5)
                 ) %>% left_join(
-                    Population.df0 %>% select(SIDO_CD, SIDO_NM, SGG_CD, SGG_NM, EMD_CD, EMD_NM) %>% 
+                    Population.df0 %>% select(SIDO_CD, SIDO_NM, SGG_CD, SGG_NM, EMD_CD, EMD_NM) |> 
                         rename(Code.Cluster = EMD_CD)
                     , by = c("Code.Cluster", "SIDO_CD", "SGG_CD")
                 ) %>% 

@@ -230,7 +230,7 @@ object.coxph$xlevels %>% str(max.level = 1)
 #@ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) { =====
 tbl_varname_level_coefficients = 
     object.coxph$xlevels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-        object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+        object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
     ) #----
 
 tbl_varname_level_coefficients$coefficients[is.na(tbl_varname_level_coefficients$coefficients) & !is.na(tbl_varname_level_coefficients$level)] = 0
@@ -275,7 +275,7 @@ list_levels %>% str
 #@ tbl_varname_level_coefficients ====
 tbl_varname_level_coefficients = 
     list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
-        object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") %>% rename(coefficients = value), by = "varnamelevel"
+        object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
     ) #----
 
 tbl_varname_level_coefficients$coefficients[is.na(tbl_varname_level_coefficients$coefficients) & !is.na(tbl_varname_level_coefficients$level)] = 0
@@ -499,7 +499,7 @@ digits = 3
     # 9 pmhx_DM_OR_glucose_ge126TRUE        "        2.299 (0.232, 22.81)" p=0.477 "   "
     # 10 total_ddd_yr_METFORMIN.ge30[30,Inf] "        0.000 (0.000,   Inf)" p=0.999 "   "
     
-    res = res2 %>% full_join(res1, by = "rowname") %>% rename(varnamelevel = rowname)
+    res = res2 %>% full_join(res1, by = "rowname") |> rename(varnamelevel = rowname)
     
     tbl_varname_level_coefficients_res = tbl_varname_level_coefficients %>% full_join(res, by = "varnamelevel")
     tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1

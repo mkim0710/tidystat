@@ -40,7 +40,7 @@ env1$info$info_system_info = env1$info$get_system_info()
 sourcename = "f_path.df_dirs_recursive.df_files"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
 env1$path$df_dirs_recursive.df_files$path |> unique |> paste0(collapse = "\n") |> cat("\n")
-env1$path$df_dirs_recursive.df_files %>% dplyr::filter(path.level <= 2) %>% dplyr::select(print_tree_path_files.codes) |> unlist() %>% paste(collapse="") |> cat("\n")
+env1$path$df_dirs_recursive.df_files %>% dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() %>% paste(collapse="") |> cat("\n")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ subpath, sourcename ======
@@ -144,7 +144,7 @@ nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
 #@ ------
 
 data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
+    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
     colnames(out)[which(colnames(out) == ".")] = "IsNA"
     out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
@@ -170,7 +170,7 @@ nhanes_mice |> str() #-----
 #  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
 
 nhanes_mice %>% {data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column %>% rename(varname = rowname) %>% rownames_to_column %>% rename(RowNum = rowname)
+    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
     colnames(out)[which(colnames(out) == ".")] = "IsNA"
     out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
