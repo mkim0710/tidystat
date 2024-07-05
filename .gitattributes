@@ -1,0 +1,32 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Ensure consistent line endings for text files
+*.css     text eol=lf
+*.html    text eol=lf
+*.json    text eol=lf
+
+# Ensure CRLF line endings for Windows script files
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+*.ps1     text eol=crlf
+
+# Treat binary files correctly
+*.png     binary
+*.jpg     binary
+*.gif     binary
+*.dll     binary
+*.exe     binary
+*.pdf     binary
+*.doc     binary
+*.docx    binary
+*.ppt     binary
+*.pptx    binary
+*.xls     binary
+*.xlsx    binary
+*.zip     binary
+*.tar     binary
+*.gz      binary
+*.bz2     binary
+*.7z      binary
+*.rar     binary
