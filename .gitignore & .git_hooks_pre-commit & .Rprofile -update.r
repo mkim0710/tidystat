@@ -94,6 +94,20 @@ vec_destination_paths = c(
 )
 f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+##### overwrite_from_filename.ext = ".gitattributes" ----
+overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
+overwrite_from_filename.ext = ".gitattributes"
+vec_destination_paths = c(
+    env1$path$path0
+    , "~" 
+    , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/")
+    , paste0(Sys.getenv("USERPROFILE"),"/Documents") |> normalizePath(winslash="/")
+    , paste0(Sys.getenv("OneDriveConsumer"),"/Documents") |> normalizePath(winslash="/")
+    , "D:/OneDrive/MHShell"
+    , paste0("D:/OneDrive/[][Rproject]/",vec_Rproject_names.gitignore_update)
+)
+f_path_file.backup_copy_overwrite(overwrite_from_path, overwrite_from_filename.ext, vec_destination_paths, print.intermediate = TRUE)
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ##### overwrite_from_filename.ext = ".Rprofile" ----
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 overwrite_from_filename.ext = ".Rprofile"
