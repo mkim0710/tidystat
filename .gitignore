@@ -203,4 +203,10 @@ old/
 !*@Posit.Cloud.pdf
 !*@Posit.Cloud*[^.][^n][^b].html
 !*@Posit.Cloud*[^a][^n][^n][^o][^t][^a][^t][^e].pdf
-
+!github-temp/
+!github-tmp/
+!github-dev/
+!github-debug/
+!github-backup/
+!github-archive/
+!github-old/
