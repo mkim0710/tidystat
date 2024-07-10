@@ -96,8 +96,8 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 
   
   
-###### env1\$path ============  
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+###### env1\$path ============  
 library(tidyverse);cat(" \n"); 
 cat(" \n"); cat(" getwd() == "); dput(getwd()) #------------  
 env1$path$getwd = getwd()

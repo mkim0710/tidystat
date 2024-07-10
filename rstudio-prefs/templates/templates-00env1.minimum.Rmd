@@ -166,11 +166,11 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 sourcename = "env1$env.internal"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 #### env1\$f_df.t.tribble_construct() ============  
 sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-```
-  
-<font size="3">\% env1</font>\  
-  
-```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# ```
+#   
+# <font size="3">\% env1</font>\  
+#   
+# ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
@@ -198,8 +198,8 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ```
   
   
-###### env1\$path ============  
 ```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+###### env1\$path ============  
 # cat(" getwd() == "); dput(getwd()) #------------  
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
