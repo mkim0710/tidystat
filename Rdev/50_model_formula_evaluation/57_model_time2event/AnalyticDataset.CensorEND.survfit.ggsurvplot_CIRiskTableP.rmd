@@ -81,11 +81,10 @@ CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, 
 # CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
 env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
-```
-  
-  
+
+
 ###### env1\$info\$DocumentTitle1 ============  
-```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+# ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
 env1$info$DocumentTitle0 = paste0("00env1","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
