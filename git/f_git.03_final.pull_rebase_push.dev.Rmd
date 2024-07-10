@@ -170,7 +170,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
 #   
 # <font size="3">\% env1</font>\  
 #   
-# ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
@@ -187,7 +187,7 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 
 
 ###### env1\$info\$DocumentTitle1 ============  
-# ```{r envCustom-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+# ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
 env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
 cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
@@ -198,7 +198,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ```
   
   
-```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+```{r env1-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 ###### env1\$path ============  
 # cat(" getwd() == "); dput(getwd()) #------------  
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
