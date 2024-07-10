@@ -38,10 +38,9 @@ knitr::opts_chunk$set(
   R.options = list(width=120), paged.print=FALSE
 ) 
 knitr::opts_knit$set(global.par = TRUE)
-```
-  
-  
-```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
+
+
+# ```{r options-width-NoEchoHideResults, echo=FALSE, results="hide"}
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
