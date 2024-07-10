@@ -167,7 +167,7 @@ sourcename = "f_df.t.tribble_construct"; subpath=""; subpath.filename.source.r =
 #   
 # <font size="3">\% env1</font>\  
 #   
-# ```{r envCustom-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
@@ -184,7 +184,7 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 ```
   
   
-```{r envCustom-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+```{r env1-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 ###### env1\$path ============  
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @ subpath, sourcename ============  
