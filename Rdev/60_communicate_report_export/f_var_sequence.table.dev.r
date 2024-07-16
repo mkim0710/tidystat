@@ -59,7 +59,7 @@ data <- data.frame(
 var_sequence <- c("A01_VISIT", "A02_VISIT", "A03_VISIT", "A04_VISIT", "A05_VISIT")
 
 # Generate and combine tables
-combined_table <- var_sequence.table(data, var_sequence)
+combined_table <- f_var_sequence.table(data, var_sequence)
 
 # Print combined table
 print(combined_table)
