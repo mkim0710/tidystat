@@ -86,8 +86,8 @@ subpath=r"(Rdev/00_base_program)"|>str_replace_all("\\\\","/")  # Using Raw Stri
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "f_file_PDF.sumatra" |> paste0(".source.r")
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
-# % (source( file.path(env1$path$source_base,subpath.filename.source.r) )) ----
-# (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# % source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
+# source( file.path(env1$path$source_base,subpath.filename.source.r) )
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$path$subpath = subpath
 sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
