@@ -1,4 +1,4 @@
-# sourcename = "data.CreateTableOne"
+# sourcename = "data.CreateTableOne" |> paste0(".source.r")
 # data.CreateTableOne.dev.r
 # data.CreateTableOne.source.r
 # utils::browseURL("/Rdev/60_communicate_report_export/data.CreateTableOne.dev.r")
@@ -33,7 +33,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# sourcename = "function.detachAllPackages" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 if(!exists("env1", envir=.GlobalEnv))
     assign("env1", new.env(), envir=.GlobalEnv)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -60,7 +60,7 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 # \$ subpath, sourcename ======
 subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
-sourcename = "data.CreateTableOne"
+sourcename = "data.CreateTableOne" |> paste0(".source.r")
 # % source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) ) ----
 # source( file.path(env1$path$source_base,subpath,paste0(sourcename,".source.r")) )
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  

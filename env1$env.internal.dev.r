@@ -1,4 +1,4 @@
-# sourcename = "env1$env.internal"
+# sourcename = "env1$env.internal" |> paste0(".source.r")
 # env1$env.internal.dev.r
 # env1$env.internal.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.dev.r
@@ -31,7 +31,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages"; subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r"); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# sourcename = "function.detachAllPackages" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 if(!exists("env1", envir=.GlobalEnv))
     assign("env1", new.env(), envir=.GlobalEnv)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -57,16 +57,17 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 # @ subpath, sourcename ======
 subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(subpath!="") utils::browseURL(normalizePath(subpath))
-sourcename = "env1$env.internal"
+sourcename = "env1$env.internal" |> paste0(".source.r")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$path$subpath = subpath
-env1$path$sourcename = sourcename
-env1$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.r")
-env1$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".dev.Rmd")
-env1$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename,".source.r")
-cat("# ",'sourcename = "',sourcename,'"', "\n",
-    "# ",sourcename,".dev.r", "\n",
-    "# ",sourcename,".source.r", "\n",
+sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
+env1$path$sourcename_root = sourcename_root  
+env1$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.r")
+env1$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.Rmd")
+env1$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
+cat("# ",'sourcename_root = "',sourcename_root,'"', "\n",
+    "# ",sourcename_root,".dev.r", "\n",
+    "# ",sourcename_root,".source.r", "\n",
     '# utils::browseURL("',env1$path$source_base_local,"/",env1$path$subpath,'")', "\n",
     '# utils::browseURL("',env1$path$source_base_github_blob,"/",env1$path$subpath.filename.dev.r,'")', "\n",
     '# source(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.source.r,'"))', "\n",
