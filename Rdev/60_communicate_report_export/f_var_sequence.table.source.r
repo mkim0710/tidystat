@@ -2,7 +2,7 @@
 
 library(dplyr)
 # Create a function to generate and combine contingency tables with margins and separators
-var_sequence.table <- function(data, var_sequence) {
+f_var_sequence.table <- function(data, var_sequence) {
   # Determine the complete list of levels for all variables
   all_levels <- sort(unique(as.vector(unlist(data[var_sequence]))))
   
@@ -59,7 +59,7 @@ var_sequence.table <- function(data, var_sequence) {
 # var_sequence <- c("A01_VISIT", "A02_VISIT", "A03_VISIT", "A04_VISIT", "A05_VISIT")
 
 # # Generate and combine tables
-# combined_table <- var_sequence.table(data, var_sequence)
+# combined_table <- f_var_sequence.table(data, var_sequence)
 
 # # Print combined table
 # print(combined_table)
