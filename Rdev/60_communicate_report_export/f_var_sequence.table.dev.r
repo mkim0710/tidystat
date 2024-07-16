@@ -1,49 +1,13 @@
 # https://chatgpt.com/c/9f7c2674-9b08-4b3c-8d72-6b7f1b009d09
 
-library(dplyr)
-# Create a function to generate and combine contingency tables with margins and separators
-f_var_sequence.table <- function(data, var_sequence) {
-  # Determine the complete list of levels for all variables
-  all_levels <- sort(unique(as.vector(unlist(data[var_sequence]))))
-  
-  tables_list <- list()
-  
-  # Loop over the sequence of variables to generate pairs
-  for (i in 1:(length(var_sequence) - 1)) {
-    var1 <- var_sequence[i]
-    var2 <- var_sequence[i + 1]
-    
-    # Ensure all combinations are present
-    data[[var1]] <- factor(data[[var1]], levels = all_levels)
-    data[[var2]] <- factor(data[[var2]], levels = all_levels)
-    
-    tbl <- table(data[[var1]], data[[var2]])
-    tbl <- addmargins(tbl)
-    colnames(tbl) <- paste0(var2, "_", colnames(tbl))
-    rownames(tbl) <- paste0("prev_", rownames(tbl))
-    
-    # Ensure there is a row for each level even if it does not exist in the data
-    for (level in all_levels) {
-      level_name <- paste0("prev_", level)
-      if (!(level_name %in% rownames(tbl))) {
-        tbl <- rbind(tbl, setNames(rep(0, ncol(tbl)), colnames(tbl)))
-        rownames(tbl)[nrow(tbl)] <- level_name
-      }
-    }
-    tbl <- tbl[order(rownames(tbl)), ]  # Ensure rows are ordered
-    
-    # Convert to data frame and add separator column
-    tbl_df <- as.data.frame.matrix(tbl)
-    tbl_df <- cbind(tbl_df, "|")
-    
-    tables_list[[i]] <- tbl_df
-  }
-  
-  # Combine tables horizontally
-  combined_table <- do.call(cbind, tables_list)
-  
-  return(combined_table)
-}
+### \$ subpath, sourcename = "f_var_sequence.table" |> paste0(".source.r") ============  
+subpath=r"(Rdev/60_communicate_report_export)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# if(subpath!="") utils::browseURL(normalizePath(subpath))
+sourcename = "f_var_sequence.table" |> paste0(".source.r")
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
+# % (source( file.path(env1$path$source_base,subpath.filename.source.r) )) ------------
+(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+
 
 # Modified sample data
 set.seed(123)
