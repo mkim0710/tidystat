@@ -182,8 +182,8 @@ subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw S
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "default.template" |> paste0(".source.r")
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
-# % (source( file.path(env1$path$source_base,subpath.filename.source.r) )) ----
-# (source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# % source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
+# source( file.path(env1$path$source_base,subpath.filename.source.r) )
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$path$subpath = subpath
 sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
