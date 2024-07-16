@@ -429,7 +429,7 @@ env1$path$CurrentSource.path.filename.html = env1$path$CurrentSource.path.filena
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
-cat('________________________________________________________________________________')
+cat("    ________________________________________________________________________    \n")
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext,'" |> rmarkdown::render(output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
     ' if (.Platform$OS.type == "windows") { system("\\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\\" --app=\\"',env1$path$CurrentSource.path.filename.html |> normalizePath(winslash="/", mustWork = FALSE),'\\"") } else { browseURL("',env1$path$CurrentSource.path.filename.html,'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.html,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
