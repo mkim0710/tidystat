@@ -257,19 +257,19 @@ if (file.exists(".git")) dput(f_git.03_final.pull_rebase_push(intern = TRUE))
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   

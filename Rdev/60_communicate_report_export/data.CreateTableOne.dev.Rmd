@@ -261,19 +261,19 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 %>%
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   
@@ -286,13 +286,13 @@ system(paste0("git checkout -- ",rstudioapi::getSourceEditorContext()$path))
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
+
 ```
   
   
