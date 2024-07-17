@@ -264,6 +264,7 @@ sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); subp
 max_hierarchy = 5
 env1$path$list_path_hierarchy = env1$path$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), max_hierarchy = max_hierarchy, print.intermediate = FALSE)
 for (i in 1:(max_hierarchy)) {
+    # if(!is.na(env1$path$list_path_hierarchy[[i+1]]))
     env1$path[[paste0("path", i)]] = env1$path$list_path_hierarchy[[i+1]]
 }
 
