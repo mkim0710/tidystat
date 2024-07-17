@@ -4,18 +4,6 @@ title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_document:
-    toc: yes
-    toc_depth: 6
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-    number_sections: false
-    df_print: tibble
-    code_folding: none
-    highlight: textmate
-    fig_width: 10
-    fig_height: 6
   html_notebook:  
     toc: yes
     toc_depth: 6
@@ -25,6 +13,18 @@ output:
     number_sections: false
     code_folding: none
     df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
     highlight: textmate
     fig_width: 10
     fig_height: 6
@@ -52,13 +52,6 @@ header-includes:
         {\IfFontExistsTF{#3}
           {#1{#3}}
           {#1{#4}}}}
-  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
-  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
-  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
-  - \usepackage[hangul]{kotex}
-  - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
-  - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
-  - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
 params:
   doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
 # https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
