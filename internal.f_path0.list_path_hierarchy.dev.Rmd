@@ -276,11 +276,14 @@ env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()
 # @@ CODEBOOK ------------  
   
   
-#@@ START) source ------------  
+#@@ START) problem ------------  
 ### \$ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
+# https://chatgpt.com/c/828c4e1f-d439-4c50-8a35-4cbea4f713fe
+# https://chatgpt.com/c/bd748750-df70-466d-ad49-39414d6041fc
+
 rstudioapi::getSourceEditorContext()$path
 rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/")
 rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "")
@@ -301,19 +304,9 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_
 ```
   
 
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
   
-  
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-## \$ v2_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+#@@ START) dev) f_path0.list_path_hierarchy ------------  
+## \$ original_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)
@@ -348,17 +341,25 @@ print(original_function(path0, path_last, max_hierarchy))
 library(stringr)
 library(purrr)
 
-# Version 2 function with corrected escaping
+# Version 2 function with debugging prints
 v2_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
   # Escape special characters in path0 for regex
-  path0_escaped <- str_replace_all(path0, "([][{}()+*^$|])", "\\\\$1")
+  path0_escaped <- path0 |> str_replace_all("([]\\[{}()+*?^$|.-])", "\\\\\\1")
+  
+  cat("Original path0: ", path0, "\n")
+  cat("Escaped path0: ", path0_escaped, "\n\n")
   
   list_paths <- vector("list", max_hierarchy + 1)
   list_paths[[1]] <- path0
   
   for (i in 1:max_hierarchy) {
     pattern <- paste0("^", path0_escaped, strrep("/[^/]+", i))
-    list_paths[[i + 1]] <- str_extract(path_last, pattern)
+    extracted_path <- str_extract(path_last, pattern)
+    
+    cat("Pattern: ", pattern, "\n")
+    cat("Extracted path: ", extracted_path, "\n\n")
+    
+    list_paths[[i + 1]] <- extracted_path
   }
   
   list_paths <- lapply(list_paths, function(x) if (is.null(x)) NA else x)
@@ -370,7 +371,7 @@ path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
 max_hierarchy <- 5
 
-# Test version 2 function
+# Test version 2 function with debugging prints
 print(v2_function(path0, path_last, max_hierarchy))
 
 ```
