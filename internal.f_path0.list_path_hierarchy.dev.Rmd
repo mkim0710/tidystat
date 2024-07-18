@@ -345,9 +345,14 @@ print(original_function(path0, path_last, max_hierarchy))
 
 ## \$ v2_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# Version 2 function
+library(stringr)
+library(purrr)
+
+# Version 2 function with corrected escaping
 v2_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
-  path0_escaped <- str_replace_all(path0, "([][{}()+*^$|])", "\\\\\\1")
+  # Escape special characters in path0 for regex
+  path0_escaped <- str_replace_all(path0, "([][{}()+*^$|])", "\\\\$1")
+  
   list_paths <- vector("list", max_hierarchy + 1)
   list_paths[[1]] <- path0
   
@@ -367,6 +372,7 @@ max_hierarchy <- 5
 
 # Test version 2 function
 print(v2_function(path0, path_last, max_hierarchy))
+
 ```
 
 
