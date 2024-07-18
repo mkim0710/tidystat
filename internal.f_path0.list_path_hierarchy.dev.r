@@ -212,6 +212,142 @@ print(list_paths)
 
 
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+
+library(stringr)
+library(purrr)
+
+f_path0.list_path_hierarchy.v3 <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+  # Escape special characters in path0 for regex
+  special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
+  path0_escaped <- path0
+  for (char in special_chars) {
+    path0_escaped <- str_replace_all(path0_escaped, char, paste0("\\", char))
+  }
+  
+  if (print.intermediate) {
+    cat("Original path0: ", path0, "\n")
+    cat("Escaped path0: ", path0_escaped, "\n\n")
+  }
+  
+  # Define a function to extract the paths based on the hierarchy level
+  extract_path <- function(i) {
+    pattern <- paste0("^", path0_escaped, strrep("/[^/]+", i))
+    extracted_path <- str_extract(path_last, pattern)
+    
+    if (print.intermediate) {
+      cat("Pattern: ", pattern, "\n")
+      cat("Extracted path: ", extracted_path, "\n\n")
+    }
+    
+    return(extracted_path)
+  }
+  
+  # Initialize a list to store the paths
+  list_paths <- vector("list", max_hierarchy + 1)
+  
+  # The base path0 is the first path
+  list_paths[[1]] <- path0
+  
+  # Use map to build the hierarchy
+  list_paths[2:(max_hierarchy + 1)] <- map(1:max_hierarchy, extract_path)
+  
+  # Replace any NULL values with NA
+  list_paths <- lapply(list_paths, function(x) if (is.null(x)) NA else x)
+  
+  return(list_paths)
+}
+
+# Example usage
+path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
+path0 <- "D:/OneDrive/[][Rproject]"
+max_hierarchy <- 5
+print_intermediate <- TRUE
+
+list_paths <- f_path0.list_path_hierarchy.v3(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = print_intermediate)
+
+# Print the final list of paths
+print(list_paths)
+
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+library(stringr)
+
+# Example path
+path0 <- "D:/OneDrive/[][Rproject]"
+
+# Using str_replace_all for each special character
+special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
+path0_escaped_str_replace_all <- path0
+for (char in special_chars) {
+  path0_escaped_str_replace_all <- str_replace_all(path0_escaped_str_replace_all, char, paste0("\\", char))
+}
+cat("Escaped with str_replace_all:", path0_escaped_str_replace_all, "\n")
+
+# Using gsub for all special characters at once
+path0_escaped_gsub <- gsub("([][{}()+*^$|])", "\\\\\\1", path0)
+cat("Escaped with gsub:", path0_escaped_gsub, "\n")
+
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Load necessary libraries
+library(stringr)
+library(purrr)
+
+# Define the function
+f_path0.list_path_hierarchy.v4 <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+  # Escape special characters in path0 for regex
+  path0_escaped <- gsub("([][{}()+*^$|])", "\\\\\\1", path0)
+  
+  if (print.intermediate) {
+    cat("Original path0: ", path0, "\n")
+    cat("Escaped path0: ", path0_escaped, "\n\n")
+  }
+  
+  # Define a function to extract the paths based on the hierarchy level
+  extract_path <- function(i) {
+    pattern <- paste0("^", path0_escaped, strrep("/[^/]+", i))
+    extracted_path <- str_extract(path_last, pattern)
+    
+    if (print.intermediate) {
+      cat("Pattern: ", pattern, "\n")
+      cat("Extracted path: ", extracted_path, "\n\n")
+    }
+    
+    return(extracted_path)
+  }
+  
+  # Initialize a list to store the paths
+  list_paths <- vector("list", max_hierarchy + 1)
+  
+  # The base path0 is the first path
+  list_paths[[1]] <- path0
+  
+  # Use map to build the hierarchy
+  list_paths[2:(max_hierarchy + 1)] <- map(1:max_hierarchy, extract_path)
+  
+  # Replace any NULL values with NA
+  list_paths <- lapply(list_paths, function(x) if (is.null(x)) NA else x)
+  
+  return(list_paths)
+}
+
+# Example usage
+path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
+path0 <- "D:/OneDrive/[][Rproject]"
+max_hierarchy <- 5
+print_intermediate <- TRUE
+
+# Execute the function with debugging prints
+list_paths <- f_path0.list_path_hierarchy.v4(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = print_intermediate)
+
+# Print the final result
+print(list_paths)
 
 
 #|________________________________________________________________________________|#  
