@@ -189,9 +189,43 @@ f_global()
 # Current environment path:
 #  emptyenv() -> base -> Autoloads -> package:methods -> package:datasets -> package:utils -> package:grDevices -> package:graphics -> package:stats -> tools:rstudio -> package:tidyverse -> package:ggplot2 -> package:tibble -> package:tidyr -> package:readr -> package:purrr -> package:dplyr -> package:stringr -> package:forcats -> package:lubridate -> R_GlobalEnv -> <environment> -> environment() 
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Function to print the environment hierarchy
+print_environment_hierarchy <- function(env) {
+  env_names <- c()
+  while (!identical(env, emptyenv())) {
+    if (exists(".__name__", envir = env, inherits = FALSE)) {
+      env_name <- get(".__name__", envir = env)
+    } else {
+      env_name <- capture.output(env)
+    }
+    env_names <- c(env_names, env_name)
+    env <- parent.env(env)
+  }
+  env_names <- c(env_names, "emptyenv()")
+  env_names <- rev(env_names)
+  cat("Current environment path:\n", paste(env_names, collapse = " -> "), "\n")
+}
 
-
-
+# Example of nested functions with manually named environments
+f_global <- function() {
+  assign(".__name__", "f_global_env", envir = environment())
+  
+  f_internal <- function() {
+    assign(".__name__", "f_internal_env", envir = environment())
+    print("Debug: Current Environment Path")
+    print_environment_hierarchy(environment())
+  }
+  
+  f_internal()
+}
+# Calling the global function
+f_global()
+# > f_global()
+# [1] "Debug: Current Environment Path"
+# Current environment path:
+#  emptyenv() -> <environment: base> -> [1] "Autoloads" -> attr(,"name") -> <environment: 0x55e96efc8b58> -> [1] "/usr/local/lib/R/library/methods" -> attr(,"path") -> [1] "package:methods" -> attr(,"name") -> <environment: package:methods> -> [1] "/usr/local/lib/R/library/datasets" -> attr(,"path") -> [1] "package:datasets" -> attr(,"name") -> <environment: package:datasets> -> [1] "/usr/local/lib/R/library/utils" -> attr(,"path") -> [1] "package:utils" -> attr(,"name") -> <environment: package:utils> -> [1] "/usr/local/lib/R/library/grDevices" -> attr(,"path") -> [1] "package:grDevices" -> attr(,"name") -> <environment: package:grDevices> -> [1] "/usr/local/lib/R/library/graphics" -> attr(,"path") -> [1] "package:graphics" -> attr(,"name") -> <environment: package:graphics> -> [1] "/usr/local/lib/R/library/stats" -> attr(,"path") -> [1] "package:stats" -> attr(,"name") -> <environment: package:stats> -> [1] "tools:rstudio" -> attr(,"name") -> <environment: 0x55e970e13a70> -> [1] "/usr/local/lib/R/site-library/tidyverse" -> attr(,"path") -> [1] "package:tidyverse" -> attr(,"name") -> <environment: package:tidyverse> -> [1] "/usr/local/lib/R/site-library/ggplot2" -> attr(,"path") -> [1] "package:ggplot2" -> attr(,"name") -> <environment: package:ggplot2> -> [1] "/usr/local/lib/R/site-library/tibble" -> attr(,"path") -> [1] "package:tibble" -> attr(,"name") -> <environment: package:tibble> -> [1] "/usr/local/lib/R/site-library/tidyr" -> attr(,"path") -> [1] "package:tidyr" -> attr(,"name") -> <environment: package:tidyr> -> [1] "/usr/local/lib/R/site-library/readr" -> attr(,"path") -> [1] "package:readr" -> attr(,"name") -> <environment: package:readr> -> [1] "/usr/local/lib/R/site-library/purrr" -> attr(,"path") -> [1] "package:purrr" -> attr(,"name") -> <environment: package:purrr> -> [1] "/usr/local/lib/R/site-library/dplyr" -> attr(,"path") -> [1] "package:dplyr" -> attr(,"name") -> <environment: package:dplyr> -> [1] "/usr/local/lib/R/site-library/stringr" -> attr(,"path") -> [1] "package:stringr" -> attr(,"name") -> <environment: package:stringr> -> [1] "/usr/local/lib/R/site-library/forcats" -> attr(,"path") -> [1] "package:forcats" -> attr(,"name") -> <environment: package:forcats> -> [1] "/usr/local/lib/R/site-library/lubridate" -> attr(,"path") -> [1] "package:lubridate" -> attr(,"name") -> <environment: package:lubridate> -> <environment: R_GlobalEnv> -> f_global_env -> f_internal_env
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
