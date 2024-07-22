@@ -121,40 +121,14 @@ sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>s
 # # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----
-# ### $ subpath, sourcename ======
-# subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# # if(subpath!="") utils::browseURL(normalizePath(subpath))
-# sourcename = "default.template" |> paste0(".source.r")
-# subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
-# # % source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
-# # source( file.path(env1$path$source_base,subpath.filename.source.r) )
-# #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# env1$path$subpath = subpath
-# sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
-# env1$path$sourcename_root = sourcename_root  
-# env1$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.r")
-# env1$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.Rmd")
-# env1$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
-# cat("# ",'sourcename_root = "',sourcename_root,'"', "\n",
-#     "# ",sourcename_root,".dev.r", "\n",
-#     "# ",sourcename_root,".source.r", "\n",
-#     '# utils::browseURL("',env1$path$source_base_github_blob,"/",env1$path$subpath.filename.dev.r,'")', "\n",
-#     '# source(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.source.r,'"))', "\n",
-#     '# # source("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "\n",
-#     '# # source("',env1$path$source_base_github,"/",env1$path$subpath.filename.source.r,'")', "\n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.dev.r,'")', "\n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.dev.Rmd,'")', "\n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "\n",
-#     sep="")
-# #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> str_detect("^default")') } else {
-#     # # if(!file.exists(env1$path$subpath.filename.dev.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.dev.r); file.edit(env1$path$subpath.filename.dev.r); file.edit(env1$path$CurrentSource.path.filename.ext);
-#     # if(!file.exists(env1$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","templates-00env1.minimum.Rmd"),to=env1$path$subpath.filename.dev.Rmd); file.edit(env1$path$subpath.filename.dev.Rmd); file.edit(env1$path$CurrentSource.path.filename.ext);
-#     # if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.source.r); file.edit(env1$path$subpath.filename.source.r); file.edit(env1$path$CurrentSource.path.filename.ext);
-#     file2open = env1$path$subpath.filename.dev.Rmd; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env1$path$CurrentSource.path.filename.ext);
-#     file2open = env1$path$subpath.filename.source.r; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env1$path$CurrentSource.path.filename.ext);
-# }
+#@@ START) dev -----
+# https://chatgpt.com/c/9faf244b-181e-47ec-ae76-841d14f50e0f
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## % search()  -----
+search() %>% deparse() %>% cat()
+# > search() %>% deparse() %>% cat()
+# c(".GlobalEnv", "package:lubridate", "package:forcats", "package:stringr",  "package:dplyr", "package:purrr", "package:readr", "package:tidyr",  "package:tibble", "package:ggplot2", "package:tidyverse", "tools:rstudio",  "package:stats", "package:graphics", "package:grDevices", "package:utils",  "package:datasets", "package:methods", "Autoloads", "package:base" )
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -409,7 +383,98 @@ f_global()
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Function to print the environment hierarchy with memory addresses
+print_environment_hierarchy <- function(env) {
+  env_names <- c()
+  while (!identical(env, emptyenv())) {
+    if (exists(".__name__", envir = env, inherits = FALSE)) {
+      env_name <- paste(get(".__name__", envir = env), "(", format(env), ")", sep = "")
+    } else if (identical(env, globalenv())) {
+      env_name <- paste("R_GlobalEnv (", format(env), ")", sep = "")
+    } else if (identical(env, baseenv())) {
+      env_name <- paste("base (", format(env), ")", sep = "")
+    } else if (!is.null(attr(env, "name")) && grepl("^package:", attr(env, "name"))) {
+      env_name <- paste(attr(env, "name"), "(", format(env), ")", sep = "")
+    } else {
+      env_name <- paste("unknown (", format(env), ")", sep = "")
+    }
+    env_names <- c(env_names, env_name)
+    env <- parent.env(env)
+  }
+  env_names <- c(env_names, "emptyenv()")
+  env_names <- rev(env_names)
+  cat("Current environment path:\n", paste(env_names, collapse = " -> "), "\n")
+}
 
+# Example of nested functions with manually named environments
+f_global <- function() {
+  assign(".__name__", "f_global_env", envir = environment())
+  
+  f_internal <- function() {
+    assign(".__name__", "f_internal_env", envir = environment())
+    print("Debug: Current Environment Path")
+    print_environment_hierarchy(environment())
+  }
+  
+  f_internal()
+}
+
+# Calling the global function
+f_global()
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Function to print the environment hierarchy with memory addresses and specific checks for known environments
+print_environment_hierarchy <- function(env) {
+  # Print the memory address of R_GlobalEnv first
+  cat("R_GlobalEnv address:", format(globalenv()), "\n")
+  
+  env_names <- c()
+  while (!identical(env, emptyenv())) {
+    if (exists(".__name__", envir = env, inherits = FALSE)) {
+      env_name <- paste(get(".__name__", envir = env), "(", format(env), ")", sep = "")
+    } else if (identical(env, globalenv())) {
+      env_name <- paste("R_GlobalEnv", "(", format(env), ")", sep = "")
+    } else if (identical(env, baseenv())) {
+      env_name <- paste("base", "(", format(env), ")", sep = "")
+    } else if (!is.null(attr(env, "name")) && grepl("^package:", attr(env, "name"))) {
+      env_name <- paste(attr(env, "name"), "(", format(env), ")", sep = "")
+    } else if (identical(env, as.environment("tools:rstudio"))) {
+      env_name <- paste("tools:rstudio", "(", format(env), ")", sep = "")
+    } else if (identical(env, as.environment("Autoloads"))) {
+      env_name <- paste("Autoloads", "(", format(env), ")", sep = "")
+    } else {
+      env_name <- paste("unknown", "(", format(env), ")", sep = "")
+    }
+    env_names <- c(env_names, env_name)
+    env <- parent.env(env)
+  }
+  env_names <- c(env_names, "emptyenv()")
+  env_names <- rev(env_names)
+  cat("Current environment path:\n", paste(env_names, collapse = " -> "), "\n")
+}
+
+# Example of nested functions with manually named environments
+f_global <- function() {
+  assign(".__name__", "f_global_env", envir = environment())
+  
+  f_internal <- function() {
+    assign(".__name__", "f_internal_env", envir = environment())
+    print("Debug: Current Environment Path")
+    print_environment_hierarchy(environment())
+  }
+  
+  f_internal()
+}
+
+# Calling the global function
+f_global()
+# > f_global()
+# [1] "Debug: Current Environment Path"
+# R_GlobalEnv address: <environment: R_GlobalEnv> 
+# Current environment path:
+#  emptyenv() -> base(<environment: base>) -> Autoloads(<environment: 0x55e96efc8b58>) -> package:methods(<environment: package:methods>) -> package:datasets(<environment: package:datasets>) -> package:utils(<environment: package:utils>) -> package:grDevices(<environment: package:grDevices>) -> package:graphics(<environment: package:graphics>) -> package:stats(<environment: package:stats>) -> tools:rstudio(<environment: 0x55e970e13a70>) -> package:tidyverse(<environment: package:tidyverse>) -> package:ggplot2(<environment: package:ggplot2>) -> package:tibble(<environment: package:tibble>) -> package:tidyr(<environment: package:tidyr>) -> package:readr(<environment: package:readr>) -> package:purrr(<environment: package:purrr>) -> package:dplyr(<environment: package:dplyr>) -> package:stringr(<environment: package:stringr>) -> package:forcats(<environment: package:forcats>) -> package:lubridate(<environment: package:lubridate>) -> R_GlobalEnv(<environment: R_GlobalEnv>) -> f_global_env(<environment: 0x55e9842b9da0>) -> f_internal_env(<environment: 0x55e9842b96a0>) 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -427,10 +492,45 @@ f_global()
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
+
+
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-
-
+#@@ START) source -----
+# ### $ subpath, sourcename ======
+# subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# # if(subpath!="") utils::browseURL(normalizePath(subpath))
+# sourcename = "default.template" |> paste0(".source.r")
+# subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
+# # % source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
+# # source( file.path(env1$path$source_base,subpath.filename.source.r) )
+# #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# env1$path$subpath = subpath
+# sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
+# env1$path$sourcename_root = sourcename_root  
+# env1$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.r")
+# env1$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.Rmd")
+# env1$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
+# cat("# ",'sourcename_root = "',sourcename_root,'"', "\n",
+#     "# ",sourcename_root,".dev.r", "\n",
+#     "# ",sourcename_root,".source.r", "\n",
+#     '# utils::browseURL("',env1$path$source_base_github_blob,"/",env1$path$subpath.filename.dev.r,'")', "\n",
+#     '# source(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.source.r,'"))', "\n",
+#     '# # source("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "\n",
+#     '# # source("',env1$path$source_base_github,"/",env1$path$subpath.filename.source.r,'")', "\n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.dev.r,'")', "\n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.dev.Rmd,'")', "\n",
+#     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "\n",
+#     sep="")
+# #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> str_detect("^default")') } else {
+#     # # if(!file.exists(env1$path$subpath.filename.dev.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.dev.r); file.edit(env1$path$subpath.filename.dev.r); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     # if(!file.exists(env1$path$subpath.filename.dev.Rmd)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","templates-00env1.minimum.Rmd"),to=env1$path$subpath.filename.dev.Rmd); file.edit(env1$path$subpath.filename.dev.Rmd); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     # if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(env1$path$source_base,"rstudio-prefs","templates","default.R"),to=env1$path$subpath.filename.source.r); file.edit(env1$path$subpath.filename.source.r); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     file2open = env1$path$subpath.filename.dev.Rmd; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env1$path$CurrentSource.path.filename.ext);
+#     file2open = env1$path$subpath.filename.source.r; if(!file.exists(file2open)) file.create(file2open); file.edit(file2open); file.edit(env1$path$CurrentSource.path.filename.ext);
+# }
 
 
 #|________________________________________________________________________________|#  
