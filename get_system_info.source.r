@@ -1,4 +1,6 @@
-# # objectname = "get_system_info"
+sourcename = "get_system_info" |> paste0(".source.r")
+if(env1$print.intermediate) print(paste0('Sourcing: "',sourcename,'"'))
+if(env1$print.intermediate) {CodeText2Print = "env1$print.intermediate"; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}
 # # cat("# ", 'objectname = "', objectname, '"', "\n",
 # #     "# ", objectname, ".dev.r", "\n",
 # #     "# ", objectname, ".source.r", "\n",
