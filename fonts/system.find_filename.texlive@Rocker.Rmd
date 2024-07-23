@@ -108,7 +108,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 <!-- F7 spell-check your document.   -->
 <!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
 <!--    -->
-<!-- *** Caution: \% \$ \# \*   -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
 
   
 ```{r setup, echo=FALSE, results="hide"}
@@ -117,7 +117,7 @@ Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" set
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
 # str(knitr::opts_chunk$get())
-# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "\n", sep="")
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
@@ -134,7 +134,7 @@ knitr::opts_knit$set(global.par = TRUE)
 
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
-suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("  \n", sep="");
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 ## env1\$path ============  
@@ -148,7 +148,7 @@ sourcename = "env1$env.internal" |> paste0(".source.r"); subpath=r"()"; subpath.
 sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # ```
 #   
-# <font size="3">\% env1</font>\  
+# <font size="3">\% env1</font>  
 #   
 # ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
@@ -159,9 +159,9 @@ if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
 # str(env1$info$info_system_info)
-CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
+CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
+# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
 env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 ```
@@ -176,7 +176,7 @@ Cf) Ctrl+Alt+Enter @ Rstudio
   
 ## whoami  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'whoami' |> system(intern = TRUE) |> cat("\n")
+'whoami' |> system(intern = TRUE) |> cat("  \n", sep="")
 ```
 rstudio@Rocker  
 r149319@SharedWorkspace@MKim0710@Posit.Cloud  
@@ -185,7 +185,7 @@ r2179052@SharedWorkspace@MHKim710@Posit.Cloud
   
 ## echo \$PATH  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'echo $PATH' |> system(intern = TRUE) |> cat("\n")
+'echo $PATH' |> system(intern = TRUE) |> cat("  \n", sep="")
 ```
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback 
   

@@ -43,10 +43,10 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ## env1\$path ====
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
-# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env1$path[[objectname]] = object;
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env1$path[[objectname]] = object;
@@ -141,13 +141,13 @@ source(file.path(env1$path$source_base,"",paste0(sourcename,".source.r")))
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
-# df_dirs_recursive %>% {.$full_path} %>% sort |> paste(collapse="") |> cat(); cat("\n") #----
-# df_dirs_recursive %>% {.$path.basename} %>% sort |> paste(collapse="") |> cat(); cat("\n")  #----
+# df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----
+# df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----
 df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
 # df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
-df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat(); cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat(); cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat("  \n", sep="")  #----
+df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
+df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
 # > df_dirs_recursive = f_path.df_dirs_recursive.df_files()
 # .Platform$file.sep:  / 
 # input_path0:  . 
@@ -171,8 +171,8 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #'  $ print_tree_path_files.codes: chr [1:61] "@./\nf_df.t.tribble_construct -old.Rmd\nf_df.t.tribble_construct.Rmd\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rds: chr [1:61] "@./\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rda: chr [1:61] "@./\nf_df.t.tribble_construct.RData.xz\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
-#' > # df_dirs_recursive %>% {.$full_path} %>% sort |> paste(collapse="") |> cat(); cat("\n") #----
-#' > # df_dirs_recursive %>% {.$path.basename} %>% sort |> paste(collapse="") |> cat(); cat("\n")  #----
+#' > # df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----
+#' > # df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----
 #' > df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
 #' # A tibble: 61 × 5
 #'    path.level path.parent                                      path.basename                             path                                            full_path
@@ -239,7 +239,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 60          1 .                                                tests                                     "tests"                                         ./tests  
 #' 61          1 .                                                vignettes                                 "vignettes"                                     ./vignet…
 #' > # df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
-#' > df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat(); cat("\n")  #----
+#' > df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat("  \n", sep="")  #----
 #' .
 #' -info
 #' Rdev
@@ -301,7 +301,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 	VBA
 #' tests
 #' vignettes
-#' > df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat(); cat("\n")  #----
+#' > df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
 #' @./
 #' -info
 #' bfg-1.13.0.jar
@@ -808,7 +808,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' @tests/
 #' @vignettes/
 #' 
-#' > df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat(); cat("\n")  #----
+#' > df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
 #' @./
 #' f_df.t.tribble_construct -old.Rmd
 #' f_df.t.tribble_construct.Rmd
@@ -887,13 +887,13 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
-# df_dirs_recursive %>% {.$full_path} %>% sort |> paste(collapse="") |> cat(); cat("\n") #----
-# df_dirs_recursive %>% {.$path.basename} %>% sort |> paste(collapse="") |> cat(); cat("\n")  #----
+# df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----
+# df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----
 df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
 # df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
-df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat(); cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat(); cat("\n")  #----
-df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat(); cat("\n")  #----
+df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat("  \n", sep="")  #----
+df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
+df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
 
 
 

@@ -42,7 +42,7 @@ data = analyticDF.TargetTrial2v40.2.206vs373 %>% mutate(Metformin = Intervention
     )
 # data %>% summarise_all(list(~sum(is.na(.)))) %>% t # Caution) always check for missing values~!!! -----
 data %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----
-data |> names() %>% deparse |> cat(); cat("\n") #----
+data |> names() |> deparse() |> cat("  \n", sep="") #----
 data |> names() |> paste(collapse=", ") #----
 analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates = 
     coxph(formula = Surv(time=Time2Event,event=Event) ~ . , data = data, method = "breslow")

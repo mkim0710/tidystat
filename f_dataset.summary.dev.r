@@ -2,9 +2,9 @@
 # # source("https://github.com/mkim0710/tidystat/raw/master/f_objectname.read.checkEntity.source.r")
 
 
-cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="") 
+cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="") 
 vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_distinct(",objectname,"$",varname,") = ",n_distinct(get(objectname)[[varname]]),"\n", sep="")}
+for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_distinct(",objectname,"$",varname,") = ",n_distinct(get(objectname)[[varname]]),"  \n", sep="")}
 
 
 
@@ -35,13 +35,13 @@ cat(strrep("%",80),"\n",sep="");
 assign(paste0(objectname,".dropNAcols"), get(objectname) %>% select_if(function(vec) all(!is.na(vec))))
 objectname = paste0(objectname,".dropNAcols")
 t0=Sys.time()
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
 Sys.time()-t0
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
 Sys.time()-t0
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
 Sys.time()-t0
-cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
+cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
 Sys.time()-t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 

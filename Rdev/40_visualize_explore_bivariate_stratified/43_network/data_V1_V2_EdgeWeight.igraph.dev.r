@@ -46,9 +46,9 @@ data_V1_V2_EdgeWeight.igraph = function(
     for (packagename_to_unload in packagename_to_unload) {
         if(paste0("package:",packagename_to_unload) %in% search()) {
             detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
-            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat("\n")
+            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat("  \n", sep="")
         } else {
-            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("\n")
+            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
         }
     }
     library(tidyverse)
@@ -110,7 +110,7 @@ data_V1_V2_EdgeWeight.igraph = function(
     ?gsub
     # out.png.pdf.path = "Rplot"
     # out.png.pdf.path = "\\Rplot\\"
-    # out.png.pdf.path |> cat("\n")
+    # out.png.pdf.path |> cat("  \n", sep="")
     out.png.pdf.path = gsub("\\", "/", out.png.pdf.path, fixed = T)
     if (grepl("/$", out.png.pdf.path) != T) out.png.pdf.path = paste0(out.png.pdf.path, "/")
     if (!dir.exists(out.png.pdf.path)){

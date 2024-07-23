@@ -19,7 +19,7 @@ trainset.cv.glmnet_alphas_cox = function(
     
     trainset_dim = dim(trainset)
     trainset_dimnames = dimnames(trainset)
-    # # Browse[2]> trainset[1:2,] %>% deparse |> cat("\n")
+    # # Browse[2]> trainset[1:2,] |> deparse() |> cat("  \n", sep="")
     # # structure(list(is.Case = c(FALSE, FALSE), EndTime = c(7, 7),      Sex = structure(c(1L, 1L), .Label = c("Female", "Male"), class = "factor"),      AgeDecade = c(4, 4), AcquiredHypothyroidism = c(FALSE, FALSE     ), AdjustmentDisorder = c(FALSE, FALSE), Anemia = c(FALSE,      FALSE), Anxiety = c(FALSE, TRUE), Arthritis = c(TRUE, FALSE     ), AtrialFibrillation = c(FALSE, FALSE), BenignProstatic = c(FALSE,      FALSE), BrainInjury = c(FALSE, FALSE), Cataract = c(FALSE,      FALSE), ChronicKidney = c(FALSE, FALSE), Diabetes = c(FALSE,      FALSE), Dysthymia = c(FALSE, FALSE), Epilepsy = c(FALSE,      FALSE), Fibromyalgia_Pain_Fatigue = c(TRUE, TRUE), Glaucoma = c(FALSE,      FALSE), HearingImpairment = c(FALSE, FALSE), HeartFailure = c(FALSE,      FALSE), Hyperlipidemia = c(TRUE, FALSE), Hypertension = c(FALSE,      FALSE), IschemicHeart = c(FALSE, FALSE), Migraine_ChronicHeadache = c(FALSE,      FALSE), MobilityImpairments = c(FALSE, FALSE), Osteoporosis = c(FALSE,      FALSE), PelvicFx = c(FALSE, FALSE), PersonalityDisorders = c(FALSE,      FALSE), SpinalCordInjury = c(FALSE, FALSE), StrokeTIA = c(FALSE,      FALSE), AlzheimerDementia = c(FALSE, FALSE), LiverDisease = c(TRUE,      FALSE), ObstructiveLungDisease = c(FALSE, FALSE), CancerSurvivors = c(FALSE,      FALSE)), .Names = c("is.Case", "EndTime", "Sex", "AgeDecade",  "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia", "Anxiety",  "Arthritis", "AtrialFibrillation", "BenignProstatic", "BrainInjury",  "Cataract", "ChronicKidney", "Diabetes", "Dysthymia", "Epilepsy",  "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors"), row.names = 1:2, class = "data.frame")
     # trainset = structure(list(is.Case = c(FALSE, FALSE), EndTime = c(7, 7),      Sex = structure(c(1L, 1L), .Label = c("Female", "Male"), class = "factor"),      AgeDecade = c(4, 4), AcquiredHypothyroidism = c(FALSE, FALSE     ), AdjustmentDisorder = c(FALSE, FALSE), Anemia = c(FALSE,      FALSE), Anxiety = c(FALSE, TRUE), Arthritis = c(TRUE, FALSE     ), AtrialFibrillation = c(FALSE, FALSE), BenignProstatic = c(FALSE,      FALSE), BrainInjury = c(FALSE, FALSE), Cataract = c(FALSE,      FALSE), ChronicKidney = c(FALSE, FALSE), Diabetes = c(FALSE,      FALSE), Dysthymia = c(FALSE, FALSE), Epilepsy = c(FALSE,      FALSE), Fibromyalgia_Pain_Fatigue = c(TRUE, TRUE), Glaucoma = c(FALSE,      FALSE), HearingImpairment = c(FALSE, FALSE), HeartFailure = c(FALSE,      FALSE), Hyperlipidemia = c(TRUE, FALSE), Hypertension = c(FALSE,      FALSE), IschemicHeart = c(FALSE, FALSE), Migraine_ChronicHeadache = c(FALSE,      FALSE), MobilityImpairments = c(FALSE, FALSE), Osteoporosis = c(FALSE,      FALSE), PelvicFx = c(FALSE, FALSE), PersonalityDisorders = c(FALSE,      FALSE), SpinalCordInjury = c(FALSE, FALSE), StrokeTIA = c(FALSE,      FALSE), AlzheimerDementia = c(FALSE, FALSE), LiverDisease = c(TRUE,      FALSE), ObstructiveLungDisease = c(FALSE, FALSE), CancerSurvivors = c(FALSE,      FALSE)), .Names = c("is.Case", "EndTime", "Sex", "AgeDecade",  "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia", "Anxiety",  "Arthritis", "AtrialFibrillation", "BenignProstatic", "BrainInjury",  "Cataract", "ChronicKidney", "Diabetes", "Dysthymia", "Epilepsy",  "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors"), row.names = 1:2, class = "data.frame")
     trainset_colnames_levels = data_frame(
@@ -764,7 +764,7 @@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambd
 
     # ?coef.cv.glmnet
     colnames_levels.select = object_cvglmnet %>% coef.cv.glmnet(s = coef.cv.glmnet.s) %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-        mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+        mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
     colnames_levels.select
     
     trainset_colnames_levels.df = object_cvglmnet %>% attr(., "function.input") %>% {.$trainset_colnames_levels} %>% as.data.frame
@@ -809,14 +809,14 @@ object_list_cvglmnet.newFormula = function(object_list_cvglmnet, coef.cv.glmnet.
     
 #@ test) object_cvglmnet.newFormula() CoxExample_tibble.cv.glmnet_alphas_cox -----
 library(tidyverse)
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} %>% deparse |> cat("\n")
+CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
 CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
 CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") %>% deparse |> cat("\n")
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} %>% deparse |> cat("\n")
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} %>% deparse |> cat("\n")
+CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
+CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
+CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
 CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} %>% deparse |> cat("\n")
+# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
 # c("time", "status", "V1", "V2", "V3", "V4", "V5", "V6", "V7", 
 # "V8", "V9", "V10", "V11", "V12", "V13", "V14", "V15", "V16", 
 # "V17", "V18", "V19", "V20", "V21", "V22", "V23", "V24", "V25", 
@@ -825,14 +825,14 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 #  language list(Surv(time = time, event = status), V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V13, V14, V15, V16, V1| __truncated__
 # > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
 #  language list(Surv(time = time, event = status), V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V13, V14, V15, V16, V1| __truncated__
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") %>% deparse |> cat("\n")
+# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
 # c("V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9", "V10", 
 # "V11", "V12", "V13", "V14", "V15", "V16", "V17", "V18", "V19", 
 # "V20", "V21", "V22", "V23", "V24", "V25", "V26", "V27", "V28", 
 # "V29", "V30")
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} %>% deparse |> cat("\n")
+# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
 # structure(c("time", "status"), .Names = c("time", "event"))
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} %>% deparse |> cat("\n")
+# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
 # "."
 # > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
 # # A tibble: 32 x 9
@@ -851,14 +851,14 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 # # ... with 22 more rows
 
 CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 # > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "V6"  "V1"  "V9"  "V7"  "V3"  "V5"  "V4"  "V2"  "V10" "V8"  "V25" "V17" "V13" "V30"
 # > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "V6"  "V1"  "V9"  "V7"  "V3"  "V5"  "V4"  "V2"  "V8"  "V10"
 
 CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.min")
@@ -877,25 +877,25 @@ CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coe
 #@ test) object_cvglmnet.newFormula() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox -----
 load("trainsetCC69agg4i07_829.cv.glmnet_alphas_cox.rda")
 library(tidyverse)
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} %>% deparse |> cat("\n")
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") %>% deparse |> cat("\n")
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "factors") %>% rownames %>% deparse |> cat("\n")
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "dataClasses") %>% deparse |> cat("\n")
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} %>% deparse |> cat("\n")
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} %>% deparse |> cat("\n")
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "factors") %>% rownames |> deparse() |> cat("  \n", sep="")
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "dataClasses") |> deparse() |> cat("  \n", sep="")
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
-# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} %>% deparse |> cat("\n")
+# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
 # c("is.Case", "EndTime", "Sex", "AgeDecade", "AcquiredHypothyroidism",  "AdjustmentDisorder", "Anemia", "Anxiety", "Arthritis", "AtrialFibrillation",  "BenignProstatic", "BrainInjury", "Cataract", "ChronicKidney",  "Diabetes", "Dysthymia", "Epilepsy", "Fibromyalgia_Pain_Fatigue",  "Glaucoma", "HearingImpairment", "HeartFailure", "Hyperlipidemia",  "Hypertension", "IschemicHeart", "Migraine_ChronicHeadache",  "MobilityImpairments", "Osteoporosis", "PelvicFx", "PersonalityDisorders",  "SpinalCordInjury", "StrokeTIA", "AlzheimerDementia", "LiverDisease",  "ObstructiveLungDisease", "CancerSurvivors")> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
 #  language list(Surv(time = EndTime, event = is.Case), Sex, AgeDecade, AcquiredHypothyroidism, AdjustmentDisorder, Anemia, A| __truncated__ ...
 # > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
 #  language list(Surv(time = EndTime, event = is.Case), Sex, AgeDecade, AcquiredHypothyroidism, AdjustmentDisorder, Anemia, A| __truncated__ ...
-# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") %>% deparse |> cat("\n")
-# c("Sex", "AgeDecade", "AcquiredHypothyroidism", "AdjustmentDisorder",  "Anemia", "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors")> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "factors") %>% rownames %>% deparse |> cat("\n")
-# c("Surv(time = EndTime, event = is.Case)", "Sex", "AgeDecade",  "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia", "Anxiety",  "Arthritis", "AtrialFibrillation", "BenignProstatic", "BrainInjury",  "Cataract", "ChronicKidney", "Diabetes", "Dysthymia", "Epilepsy",  "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors")> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "dataClasses") %>% deparse |> cat("\n")
-# structure(c("nmatrix.2", "factor", "numeric", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical"), .Names = c("Surv(time = EndTime, event = is.Case)",  "Sex", "AgeDecade", "AcquiredHypothyroidism", "AdjustmentDisorder",  "Anemia", "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors"))> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} %>% deparse |> cat("\n")
-# structure(c("EndTime", "is.Case"), .Names = c("time", "event" ))> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} %>% deparse |> cat("\n")
+# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
+# c("Sex", "AgeDecade", "AcquiredHypothyroidism", "AdjustmentDisorder",  "Anemia", "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors")> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "factors") %>% rownames |> deparse() |> cat("  \n", sep="")
+# c("Surv(time = EndTime, event = is.Case)", "Sex", "AgeDecade",  "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia", "Anxiety",  "Arthritis", "AtrialFibrillation", "BenignProstatic", "BrainInjury",  "Cataract", "ChronicKidney", "Diabetes", "Dysthymia", "Epilepsy",  "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors")> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "dataClasses") |> deparse() |> cat("  \n", sep="")
+# structure(c("nmatrix.2", "factor", "numeric", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical", "logical",  "logical", "logical", "logical", "logical", "logical"), .Names = c("Surv(time = EndTime, event = is.Case)",  "Sex", "AgeDecade", "AcquiredHypothyroidism", "AdjustmentDisorder",  "Anemia", "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",  "CancerSurvivors"))> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
+# structure(c("EndTime", "is.Case"), .Names = c("time", "event" ))> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
 # "."> trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
 # # A tibble: 36 x 9
 #    colNum_original               colnames            colnames_levels col_class col_Nlevels build.x.colnames_levels colnames_levels.colSums0 Terms.term.labels terms.inner
@@ -914,17 +914,17 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {
 
 
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+    mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 # > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "DysthymiaTRUE"                 "AnxietyTRUE"                   "AdjustmentDisorderTRUE"        "StrokeTIATRUE"                 "HyperlipidemiaTRUE"           
 #  [6] "AnemiaTRUE"                    "OsteoporosisTRUE"              "ChronicKidneyTRUE"             "AcquiredHypothyroidismTRUE"    "EpilepsyTRUE"                 
 # [11] "ArthritisTRUE"                 "GlaucomaTRUE"                  "Migraine_ChronicHeadacheTRUE"  "CataractTRUE"                  "CancerSurvivorsTRUE"          
 # [16] "HypertensionTRUE"              "LiverDiseaseTRUE"              "ObstructiveLungDiseaseTRUE"    "Fibromyalgia_Pain_FatigueTRUE"
 # > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix %>% as.data.frame %>% rownames_to_column %>% 
-# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() %>% unname
+# +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 # [1] "AnxietyTRUE"
 
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.min")

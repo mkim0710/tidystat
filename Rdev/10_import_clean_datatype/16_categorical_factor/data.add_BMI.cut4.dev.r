@@ -6,7 +6,7 @@ data.add_BMI_calculated <- function(dataset, varname_Height = "HEIGHT", varname_
 
   # Check if BMI column exists
   if ("BMI" %in% names(dataset)) {
-    warning('"BMI" %in% names(dataset)'); cat("\n"); 
+    warning('"BMI" %in% names(dataset)'); cat("  \n", sep=""); 
     dataset <- dataset %>%
       mutate(
         BMI_calculated = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2

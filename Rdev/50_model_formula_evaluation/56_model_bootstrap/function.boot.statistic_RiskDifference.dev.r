@@ -94,7 +94,7 @@ Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 
 warnings()
 #@ bootstrap confidence interval (manual) ----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
@@ -117,7 +117,7 @@ boot.output |> str(max.level = 1) #----
 # > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
 #       2.5%      97.5% 
 # 0.06483304 0.12071529 
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
 #            [,1]      [,2]
 # [1,] 0.05131718 0.1148298
 # [2,] 0.07977163 0.1260402
@@ -244,7 +244,7 @@ Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 
 warnings()
 #@ bootstrap confidence interval (manual) ----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% sort %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----

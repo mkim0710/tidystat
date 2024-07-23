@@ -56,7 +56,7 @@ function.vec_actual_prediction.threshold_roc = function(vec_actual, vec_predicti
         out = NA
         attr(out, "ErrorMessage") = "length(vec_actual) != length(vec_prediction)"
     } else {
-        out = tibble(threshold = vec_prediction |> unique %>% sort(decreasing = F) %>% {(. + dplyr::lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+        out = tibble(threshold = vec_prediction |> unique() |> sort(decreasing = F) %>% {(. + dplyr::lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
             mutate(
                 TP = threshold %>% map_dbl(function(i) {sum(vec_actual == T & vec_prediction >= i)})
                 , FP = threshold %>% map_dbl(function(i) {sum(vec_actual != T & vec_prediction >= i)})
@@ -133,7 +133,7 @@ vec_actual_prediction.treshold_roc |> str() #----
 
 #@ -----
 function.df_actual_prediction.threshold_roc = function(df_actual_prediction, varname4actual = "actual", varname4prediction = "prediction") {
-    out = tibble(threshold = df_actual_prediction[[varname4prediction]] |> unique %>% sort(decreasing = F) %>% {(. + dplyr::lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+    out = tibble(threshold = df_actual_prediction[[varname4prediction]] |> unique() |> sort(decreasing = F) %>% {(. + dplyr::lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
         mutate(
             TP = threshold %>% map_dbl(function(i) {sum(df_actual_prediction[[varname4actual]] == T & df_actual_prediction[[varname4prediction]] >= i)})
             , FP = threshold %>% map_dbl(function(i) {sum(df_actual_prediction[[varname4actual]] != T & df_actual_prediction[[varname4prediction]] >= i)})
@@ -270,7 +270,7 @@ function.vec_actual_prediction.auc = function(vec_actual, vec_prediction) {
         out = NA
         attr(out, "ErrorMessage") = "length(vec_actual) != length(vec_prediction)"
     } else {
-        out = tibble(threshold = vec_prediction |> unique %>% sort(decreasing = F) %>% {(. + dplyr::lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
+        out = tibble(threshold = vec_prediction |> unique() |> sort(decreasing = F) %>% {(. + dplyr::lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
             mutate(
                 TP = threshold %>% map_dbl(function(i) {sum(vec_actual == T & vec_prediction >= i)})
                 , FP = threshold %>% map_dbl(function(i) {sum(vec_actual != T & vec_prediction >= i)})

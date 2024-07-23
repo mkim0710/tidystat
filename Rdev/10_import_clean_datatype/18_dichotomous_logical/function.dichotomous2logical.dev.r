@@ -57,8 +57,8 @@ as.Date("2024-01-01") %>% {data.frame(value = .)} %>% mutate(class = class(value
 #        value class typeof is.logical is.numeric is.character is.factor is.Date is.integer is.double
 # 1 2024-01-01  Date double      FALSE      FALSE        FALSE     FALSE    TRUE      FALSE      TRUE
 
-factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep=""); str(.)}
-# > factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "\n", sep=""); str(.)}
+factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "  \n", sep=""); str(.)}
+# > factor(c("no", "yes", "no")) %>% {cat("class:",class(.), "|typeof:",typeof(.), "|is.logical:",is.logical(.), "|is.numeric:",is.numeric(.), "|is.character:",is.character(.), "|is.factor:",is.factor(.), "|is.Date:",is.Date(.), "  \n", sep=""); str(.)}
 # class:factor|typeof:integer|is.logical:FALSE|is.numeric:FALSE|is.character:FALSE|is.factor:TRUE|is.Date:FALSE
 #  Factor w/ 2 levels "no","yes": 1 2 1
 
@@ -110,7 +110,7 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
         } else if (n_unique > 2) {
             # stop("length(levels(vec.as_character.as_factor)) > 2")
             text4warning = "n_unique > 2"
-            if(print.warning) {warning(text4warning); cat("\n")}
+            if(print.warning) {warning(text4warning); cat("  \n", sep="")}
             attributes(vec)$n_unique = n_unique
             # attributes(vec)$is.dichotomous = F
             # attributes(vec)$function.dichotomous2logical = text4warning
@@ -135,7 +135,7 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
     attributes(vec.out) = vec.attributes
     attributes(vec.out)$n_unique = n_unique
     # attributes(vec.out)$is.dichotomous = is.dichotomous
-    if(text4warning != "") {if(print.warning) {warning(text4warning); cat("\n")}; attributes(vec.out)$function.dichotomous2logical = text4warning}
+    if(text4warning != "") {if(print.warning) {warning(text4warning); cat("  \n", sep="")}; attributes(vec.out)$function.dichotomous2logical = text4warning}
     vec.out
 }
 
@@ -246,8 +246,8 @@ library(tidyverse)
 c(T, F, T) %>% is.numeric
 c(T, F, T) %>% is.character
 c(T, F, T) |> levels()
-c(T, F, T) |> levels() %>% length
-c(T, F, T) |> unique %>% length
+c(T, F, T) |> levels() |> length()
+c(T, F, T) |> unique() |> length()
 function.dichotomous2logical(c(T, T, T)) |> str() %>% try
 function.dichotomous2logical(c(F, F, F)) |> str() %>% try
 function.dichotomous2logical(c(T, F, T)) |> str() %>% try
@@ -264,9 +264,9 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 # [1] FALSE
 # > c(T, F, T) |> levels()
 # NULL
-# > c(T, F, T) |> levels() %>% length
+# > c(T, F, T) |> levels() |> length()
 # [1] 0
-# > c(T, F, T) |> unique %>% length
+# > c(T, F, T) |> unique() |> length()
 # [1] 2
 # > function.dichotomous2logical(c(T, T, T)) |> str() %>% try
 # 경고: length(unique(x)) == 1 logi [1:3] TRUE TRUE TRUE
@@ -363,20 +363,20 @@ df$FamilyIncome_ge7000 %>% head(10) |> dput()
 # > df$FamilyIncome_ge7000 %>% head(10) |> dput()
 # c(0, 1, 0, 1, 1, 0, NA, 1, 0, 0)
 df$FamilyIncome_ge7000 |> str()
-df$FamilyIncome_ge7000 |> unique
-df$FamilyIncome_ge7000 |> unique %>% length
-df$FamilyIncome_ge7000 %>% na.omit |> unique
-df$FamilyIncome_ge7000 %>% na.omit |> unique %>% length
+df$FamilyIncome_ge7000 |> unique()
+df$FamilyIncome_ge7000 |> unique() |> length()
+df$FamilyIncome_ge7000 %>% na.omit |> unique()
+df$FamilyIncome_ge7000 %>% na.omit |> unique() |> length()
 # > df$FamilyIncome_ge7000 |> str()
 #  num [1:14407] 0 1 0 1 1 0 NA 1 0 0 ...
 #  - attr(*, "format.stata")= chr "%9.0g"
-# > df$FamilyIncome_ge7000 |> unique
+# > df$FamilyIncome_ge7000 |> unique()
 # [1]  0  1 NA
-# > df$FamilyIncome_ge7000 |> unique %>% length
+# > df$FamilyIncome_ge7000 |> unique() |> length()
 # [1] 3
-# > df$FamilyIncome_ge7000 %>% na.omit |> unique
+# > df$FamilyIncome_ge7000 %>% na.omit |> unique()
 # [1] 0 1
-# > df$FamilyIncome_ge7000 %>% na.omit |> unique %>% length
+# > df$FamilyIncome_ge7000 %>% na.omit |> unique() |> length()
 # [1] 2
 
 

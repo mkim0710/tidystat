@@ -12,13 +12,13 @@ function.character.clean = function(vec, pattern_to_clean = "[^A-z0-9[:punct:][:
     # cat(
     #     paste0("Cleaning Characters: ", "\"", paste0(vec[index_to_clean], collapse = "\", \""), "\"" )
     # )
-    # cat("\n")
+    # cat("  \n", sep="")
     
     out = gsub(pattern_to_clean, "", vec)
     # cat(
     #     paste0("Cleaned Characters: ", "\"", paste0(out[index_to_clean], collapse = "\", \""), "\"" )
     # )
-    # cat("\n")
+    # cat("  \n", sep="")
     tmp_df = data.frame(Before = vec[index_to_clean], After = out[index_to_clean])
     rownames(tmp_df) = index_to_clean
     print(t(tmp_df))

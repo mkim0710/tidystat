@@ -44,10 +44,10 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ## env1\$path ====
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
-# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env1$path[[objectname]] = object;
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env1$path[[objectname]] = object;
@@ -90,8 +90,8 @@ path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
 
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds |> names() |> paste0(collapse = ", ") |> cat("\n") ###### |> cat() ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds |> names() |> paste0(collapse = ", ") |> cat("\n") ###### |> cat() ----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
 # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
 # HEIGHT, WEIGHT, 
 # BP_HIGH, BP_LWST, BLDS, 
@@ -201,9 +201,9 @@ ObjectName = "DataSet"
 ObjectName.select = paste0(objectname,".select")
 ObjectName.TableOne_byExposure = paste0(objectname,".TableOne_by", VarNames4Exposure)
 ObjectName.is.na.TableOne_byExposure = paste0(objectname,".is.na.TableOne_by", VarNames4Exposure)
-ObjectName.select |> cat("\n") ###### |> cat() ----
-ObjectName.TableOne_byExposure |> cat("\n") ###### |> cat() ----
-ObjectName.is.na.TableOne_byExposure |> cat("\n") ###### |> cat() ----
+ObjectName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+ObjectName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+ObjectName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
                               
 assign(ObjectName.TableOne_byExposure, 
        eval(parse(text = ObjectName.select)) %>% 

@@ -20,7 +20,7 @@ output: html_notebook
 <!-- F7 spell-check your document.   -->
 <!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
 <!--    -->
-<!-- *** Caution: \% \$ \# \*   -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
 
   
 ```{r setup, echo=FALSE, results="hide"}
@@ -29,7 +29,7 @@ if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
 # str(knitr::opts_chunk$get())
-# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "\n", sep="")
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
@@ -155,7 +155,7 @@ options(width=120)
 options(width=120)
   
 # @ gitignore_escaped_select.UC ============  
-gitignore_escaped_select.UC = gitignore_escaped_select %>% toupper |> unique()
+gitignore_escaped_select.UC = gitignore_escaped_select |> toupper() |> unique()
 gitignore_escaped_select.UC |> dput() #------------  
 c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA", 
 ".*\\.ZIP", ".*\\.7Z", ".*\\.R\\.GZ", ".*\\.R\\.XZ", ".*\\.RMD\\.GZ", 

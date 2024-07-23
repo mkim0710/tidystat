@@ -39,10 +39,10 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ## env1\$path ====
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
-# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); env1$path[[objectname]] = object;
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env1$path[[objectname]] = object;
@@ -124,7 +124,7 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     MessageText2 = paste0('path4read == "',path4read,'"')
     if (getwd() != path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
 
-    cat('objectname = "', objectname, '"\n', sep="");
+    cat('objectname = "', objectname, '"  \n', sep="");
     filename.ext = paste0(objectname,".", ext)
     if(file.exists(file.path(path4read, filename.ext))) {
     } else if(file.exists(file.path(path4read, paste0(filename.ext, ".xz")))) {
@@ -136,12 +136,12 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
             if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) ;
         }
         path4read = dirname(path.filename.ext)
-        cat('Found subpath: ', 'path4read = "', path4read, '"\n', sep="");
+        cat('Found subpath: ', 'path4read = "', path4read, '"  \n', sep="");
         filename.ext = basename(path.filename.ext)
     } else {
         warning(paste0(filename.ext, " does not exist!")) ;
     }
-    cat('filename.ext = "', filename.ext, '"\n', sep="");
+    cat('filename.ext = "', filename.ext, '"  \n', sep="");
 
     # filename.ext.regex = filename.ext %>%  
     #     str_replace_all("\\.", "\\\\.") %>%
@@ -156,7 +156,7 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir=.GlobalEnv))
 
     # cat(strrep("~",80),"\n",sep="")
-    cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
+    cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
     # Error: attributes(get(objectname))$n_distinct = list()
     if( !"n_distinct" %in% names(attributes(.GlobalEnv[[objectname]])) ) attributes(.GlobalEnv[[objectname]])$n_distinct = list()
     for (varname in vec_varname4ID) {
@@ -173,25 +173,25 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
 
     cat(strrep("%",80),"\n",sep=""); 
-    cat("> names(",objectname,') %>% deparse(width.cutoff=120-15) |> cat(sep="\\n")',"\n", sep=""); get(objectname) |> names() %>% deparse(width.cutoff=120-15) |> cat(sep="\n");cat("\n"); # dput(); %>% deparse(width.cutoff=120-15) |> cat(sep="\n"); # width.cutoff=500 is the max ----
+    cat("> names(",objectname,') |> deparse(width.cutoff=120-15) |> cat(sep="\\n")',"  \n", sep=""); get(objectname) |> names() |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # dput(); |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # width.cutoff=500 is the max ----
     cat(strrep("~",80),"\n",sep=""); 
-    cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"\n", sep=""); get(objectname) |> names() |> paste(collapse=", ") |> cat(sep="\n");cat("\n"); # tidydplyr::select: paste(collapse=", ") |> cat() ----
+    cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); get(objectname) |> names() |> paste(collapse=", ") |> cat("  \n", sep=""); # tidydplyr::select: paste(collapse=", ") |> cat("  \n", sep="") ----
     
     cat(strrep("%",80),"\n",sep=""); 
-    cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","\n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
+    cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
     
     cat(strrep("%",80),"\n",sep=""); 
-    cat("> ",objectname," |> as_tibble() |> print(n=9)","\n", sep=""); print( as_tibble(get(objectname)), n=9);
+    cat("> ",objectname," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(objectname)), n=9);
     cat(strrep("~",80),"\n",sep=""); 
-    cat("> ",objectname," %>% rownames_to_column %>% tail |> as_tibble()","\n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
+    cat("> ",objectname," %>% rownames_to_column %>% tail |> as_tibble()","  \n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
     # t0=Sys.time()
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
     # Sys.time()-t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","\n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
+    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time()-t0
 }
 if(!objectname %in% names(env1)) {

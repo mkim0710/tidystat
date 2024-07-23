@@ -28,17 +28,17 @@
 #@@ #1. Remove the Local Repository ====
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #1-1a. (Preferred) Recursively Remove PDF Files from the Index Using git rm --cached (wihout deleting the files in the local file system) ----
-'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat(sep="\n")
+'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 git rm -r --cached "*.pdf"
 git rm -r --cached "*.html"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ##@ #1-1b. (Alternative) Recursively Remove PDF Files from the Index and the Local File System Using git rm. ----
-'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat(sep="\n")
+'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 git rm -r "*.pdf"
 git rm -r "*.html"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ##@ #1-1c. (Alternative) Completely Delete the Local Repository (and completely remove/rename the base folder) ----
-'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat(sep="\n")
+'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 if (.Platform$OS.type == "windows") {'rmdir /s /q .git' |> system(intern=TRUE)} else {'rm -rf .git' |> system(intern=TRUE)}  # You may just delete from the windows file explorer
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #1-2. Commit and Push the Changes: Ensures the changes are reflected in the repository. ====
@@ -54,10 +54,10 @@ git push origin main
 cd ..
 mkdir Rproject_Rmd.mirror
 cd Rproject_Rmd.mirror
-# 'git clone --mirror <repository_url> .' |> system(intern=TRUE) |> cat(sep="\n")
-# "git clone --mirror https://github.com/mkim0710/tidystat.git ." |> system(intern=TRUE) |> cat(sep="\n")
-# "git clone --mirror git@github.com:mkim0710/tidystat.git ." |> system(intern=TRUE) |> cat(sep="\n")
-paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> system(intern=TRUE) |> cat(sep="\n")
+# 'git clone --mirror <repository_url> .' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# "git clone --mirror https://github.com/mkim0710/tidystat.git ." |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# "git clone --mirror git@github.com:mkim0710/tidystat.git ." |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ##@ #2-1b. (alternative) Clone a fresh repository "--mirror" into a sub-directory ----
 # git clone --mirror <repository_url> subdir-name
@@ -67,12 +67,12 @@ paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> sy
 #@@ #3. Use git filter-repo: Removes PDF files from the entire Git history. ====
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #3-0. pip install git-filter-repo ====
-# "pip install git-filter-repo" |> system(intern=TRUE) |> cat(sep="\n")
+# "pip install git-filter-repo" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #3-1. git filter-repo --path-glob "*.pdf" --invert-paths ====
-# "git filter-repo --path-glob '*.pdf' --invert-paths" |> system(intern=TRUE) |> cat(sep="\n")
-# "git push origin --force --all" |> system(intern=TRUE) |> cat(sep="\n")
-# "git push origin --force --tags" |> system(intern=TRUE) |> cat(sep="\n")
+# "git filter-repo --path-glob '*.pdf' --invert-paths" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# "git push origin --force --all" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# "git push origin --force --tags" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #3-2. Force Push Changes: Updates the remote repository with the cleaned history. ====
 # git remote set-url origin git@github.com:mkim0710/Rproject_KoGES_AA10030.git
@@ -95,15 +95,15 @@ git push origin --force --mirror
 # Here, you may use the github desktop to clone the repository.
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #4-2. Add PDF Files to .gitignore: Prevents future PDF files from being tracked. ====
-# 'echo "*.pdf" >> .gitignore' |> system(intern=TRUE) |> cat(sep="\n")
-# 'echo "*.pdf.xz" >> .gitignore' |> system(intern=TRUE) |> cat(sep="\n")
-# 'echo "*.pdf.gz" >> .gitignore' |> system(intern=TRUE) |> cat(sep="\n")
+# 'echo "*.pdf" >> .gitignore' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# 'echo "*.pdf.xz" >> .gitignore' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# 'echo "*.pdf.gz" >> .gitignore' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 ".gitignore" |> file.edit()
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #4-3. git add .gitignore ====
 git add .gitignore
-'git commit -m "Add .gitignore to exclude PDF files in all remote"' |> system(intern=TRUE) |> cat(sep="\n")
-'git push origin main' |> system(intern=TRUE) |> cat(sep="\n")
+'git commit -m "Add .gitignore to exclude PDF files in all remote"' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+'git push origin main' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 
 
 
@@ -117,12 +117,12 @@ git add .gitignore
 #| (pending) using Git Large File Storage (Git LFS) for handling large files. |#
 #@ (pending) using Git Large File Storage (Git LFS) for handling large files. ======
 # Git LFS stores large files outside your repository and keeps pointers in your Git history
-# 'git lfs install' |> system(intern=TRUE) |> cat(sep="\n")
-# 'git lfs track "*.pdf"' |> system(intern=TRUE) |> cat(sep="\n")
-# 'git add .gitattributes' |> system(intern=TRUE) |> cat(sep="\n")
-# 'git commit -m "Track PDF files with Git LFS"' |> system(intern=TRUE) |> cat(sep="\n")
-# 'git lfs migrate import --include="*.pdf"' |> system(intern=TRUE) |> cat(sep="\n")
-# 'git push origin --all' |> system(intern=TRUE) |> cat(sep="\n")
+# 'git lfs install' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# 'git lfs track "*.pdf"' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# 'git add .gitattributes' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# 'git commit -m "Track PDF files with Git LFS"' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# 'git lfs migrate import --include="*.pdf"' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
+# 'git push origin --all' |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 
 
 
@@ -134,11 +134,11 @@ git add .gitignore
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:\n", 
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n", sep="")
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  

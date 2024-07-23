@@ -39,10 +39,10 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## env1\$path ====
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
-# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if(!exists("env1", envir=.GlobalEnv)) assign("env1", new.env(), envir=.GlobalEnv)
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
@@ -74,8 +74,8 @@ sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>s
 ##### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----
 # sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); source( file.path(env1$path$source_base,subpath.filename.source.r) )
 # env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
-# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat()
-# env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat()
+# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
+# env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")
 # # Rdev
 # # Rdev/-dev
 # # Rdev/00_base_program
@@ -128,18 +128,18 @@ sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>s
 ## % search()  -----
 
 ### % search() @ default Rocker 4.3.3
-search() |> deparse() |> cat("\n", sep="") 
+search() |> deparse() |> cat("  \n", sep="") 
 c(".GlobalEnv", "tools:rstudio", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")
 
 ### % search() @ default Rocker 4.3.3 + library(tidyverse)
 library(tidyverse)
-search() |> deparse() |> cat("\n", sep="") 
+search() |> deparse() |> cat("  \n", sep="") 
 c(".GlobalEnv", "package:lubridate", "package:forcats", "package:stringr", "package:dplyr", "package:purrr", "package:readr", "package:tidyr", "package:tibble", "package:ggplot2", "package:tidyverse", "tools:rstudio", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")
 
 
 ### % search() @ problem with .Rprofile on 2024-07-20
 library(tidyverse)
-search() |> deparse() |> cat("\n", sep="") 
+search() |> deparse() |> cat("  \n", sep="") 
 c(".GlobalEnv", "tools:rstudio", "package:lubridate", "package:forcats", "package:stringr", "package:dplyr", "package:purrr", "package:readr", "package:tidyr", "package:tibble", "package:ggplot2", "package:tidyverse", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")  # "tools:rstudio" is loaded after library(tidyverse)
 
 
@@ -170,15 +170,15 @@ env1$f_vec1_vec2.setdiff(ls(envir = asNamespace("base")), getNamespaceExports("b
 #  $ identical     : chr [1:2] "Lengths (1270, 1391) differ (string compare on first 1270)" "1269 string mismatches"
 
 
-setdiff(getNamespaceExports("base"), ls(envir = asNamespace("base"))) |> deparse |> cat("\n")
-# > setdiff(getNamespaceExports("base"), ls(envir = asNamespace("base"))) |> deparse |> cat("\n")
+setdiff(getNamespaceExports("base"), ls(envir = asNamespace("base"))) |> deparse() |> cat("  \n", sep="")
+# > setdiff(getNamespaceExports("base"), ls(envir = asNamespace("base"))) |> deparse() |> cat("  \n", sep="")
 c(".GlobalEnv", ".handleSimpleError", ".C", ".set_row_names",  ".NotYetImplemented", ".LC.categories", ".noGenerics", ".cache_class",  ".getRequiredPackages2", ".OptRequireMethods", ".makeMessage",  ".packages", ".amatch_costs", ".External.graphics", ".decode_numeric_version",  ".rowNamesDF<-", ".maskedMsg", ".colSums", ".Primitive", ".S3PrimitiveGenerics",  ".AutoloadEnv", ".Devices", ".userHooksEnv", ".subset", ".gt",  ".Library", ".ArgsEnv", ".popath", ".format.zeros", ".C_R_getTaskCallbackNames",  ".detach", ".kappa_tri", ".getRequiredPackages", ".doWrap", ".col",  ".POSIXct", ".POSIXlt", ".F_dchdc", ".isMethodsDispatchOn", ".gtn",  ".mergeExportMethods", ".primTrace", ".Machine", ".rowMeans",  ".Call", ".expand_R_libs_env_var", ".mergeImportMethods", ".subset2",  ".knownS3Generics", ".deparseOpts", ".row", ".standard_regexps",  ".__H__.rbind", ".signalSimpleWarning", ".External2", ".pretty",  ".Date", ".rowSums", ".formula2varlist", ".difftime", ".NotYetUsed",  ".First.sys", ".F_dqrqy", ".F_dqrxb", ".F_dqrcf", ".Last.value",  ".encode_numeric_version", "..getNamespace", ".F_dqrqty", ".getNamespace",  ".isOpen", ".F_dqrrsd", ".Traceback", ".Library.site", ".packageStartupMessage",  ".Call.graphics", ".C_R_addTaskCallback", ".amatch_bounds", ".S3_methods_table",  ".row_names_info", ".F_dqrdc2", ".leap.seconds", ".mapply", ".C_R_removeTaskCallback",  ".libPaths", ".getNamespaceInfo", ".S3method", ".primUntrace",  ".Options", ".colMeans", ".dynLibs", "...length", ".__H__.cbind",  ".External", ".BaseNamespaceEnv", ".Internal", ".Fortran", ".sys.timezone",  "..deparseOpts", ".TAOCP1997init", ".GenericArgsEnv", ".make_numeric_version",  ".F_dtrco", ".kronecker", ".traceback", ".bincode", ".class2",  ".Deprecated", ".check_tzones", ".doSortWrap", ".rmpkg", ".Platform",  ".__S3MethodsTable__.", "...elt", "...names", ".Script", ".doTrace",  ".Device", ".tryResumeInterrupt", ".valid.factor", ".Defunct" )
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ##% loadedNamespaces() ----
-loadedNamespaces() |> deparse |> cat("\n")
-# > loadedNamespaces() |> deparse |> cat("\n")
+loadedNamespaces() |> deparse() |> cat("  \n", sep="")
+# > loadedNamespaces() |> deparse() |> cat("  \n", sep="")
 # c("gtable", "dplyr", "compiler", "stats", "tidyselect", "Rcpp",  "tinytex", "zip", "tidyverse", "stringr", "parallel", "tidyr",  "scales", "yaml", "fastmap", "base", "readr", "ggplot2", "R6",  "generics", "openxlsx", "knitr", "forcats", "datasets", "methods",  "tibble", "munsell", "lubridate", "tzdb", "pillar", "rlang",  "utf8", "stringi", "xfun", "utils", "pkgload", "timechange",  "cli", "withr", "magrittr", "digest", "grid", "rstudioapi", "hms",  "graphics", "lifecycle", "vctrs", "writexl", "evaluate", "glue",  "fansi", "colorspace", "rmarkdown", "purrr", "grDevices", "tools",  "pkgconfig", "htmltools")
 
 
@@ -195,8 +195,8 @@ all_namespaces <- unique(c(loaded_namespaces, package_names))
 # Print total number of namespaces and the names
 cat("Total possible namespaces (loaded + installed):", length(all_namespaces), "\n")
 # print(all_namespaces)
-all_namespaces |> deparse |> cat("\n")
-# > all_namespaces |> deparse |> cat("\n")
+all_namespaces |> deparse() |> cat("  \n", sep="")
+# > all_namespaces |> deparse() |> cat("  \n", sep="")
 # c("gtable", "dplyr", "compiler", "stats", "tidyselect", "Rcpp",  "tinytex", "zip", "tidyverse", "stringr", "parallel", "tidyr",  "scales", "yaml", "fastmap", "base", "readr", "ggplot2", "R6",  "generics", "openxlsx", "knitr", "forcats", "datasets", "methods",  "tibble", "munsell", "lubridate", "tzdb", "pillar", "rlang",  "utf8", "stringi", "xfun", "utils", "pkgload", "timechange",  "cli", "withr", "magrittr", "digest", "grid", "rstudioapi", "hms",  "graphics", "lifecycle", "vctrs", "writexl", "evaluate", "glue",  "fansi", "colorspace", "rmarkdown", "purrr", "grDevices", "tools",  "pkgconfig", "htmltools", "arrow", "askpass", "assertthat", "backports",  "base64enc", "BiocManager", "bit", "bit64", "blob", "blogdown",  "bookdown", "brew", "brio", "broom", "bslib", "cachem", "callr",  "cellranger", "clipr", "commonmark", "conflicted", "covr", "cpp11",  "crayon", "credentials", "curl", "data.table", "datapasta", "DBI",  "dbplyr", "desc", "devtools", "DiagrammeR", "diffobj", "distill",  "docopt", "downlit", "dtplyr", "duckdb", "e1071", "ellipsis",  "farver", "fontawesome", "formatR", "fs", "fst", "fstcore", "gargle",  "gdata", "gert", "gh", "gitcreds", "gmodels", "googledrive",  "googlesheets4", "gridExtra", "gtools", "haven", "highr", "htmlwidgets",  "httpuv", "httr", "httr2", "ids", "igraph", "ini", "isoband",  "jquerylib", "jsonlite", "labeling", "labelled", "Lahman", "later",  "lazyeval", "littler", "memoise", "microbenchmark", "mime", "miniUI",  "minqa", "mitools", "modelr", "numDeriv", "nycflights13", "openssl",  "packrat", "patchwork", "pkgbuild", "pkgdown", "PKI", "plogr",  "png", "praise", "prettyunits", "processx", "profvis", "progress",  "promises", "proxy", "ps", "r2d3", "ragg", "rappdirs", "rcmdcheck",  "RColorBrewer", "RcppArmadillo", "readxl", "redland", "rematch",  "rematch2", "remotes", "renv", "reprex", "rex", "rJava", "RMariaDB",  "roxygen2", "RPostgres", "rprojroot", "rsconnect", "RSQLite",  "rticles", "rversions", "rvest", "sass", "selectr", "servr",  "sessioninfo", "shiny", "sourcetools", "survey", "sys", "systemfonts",  "tableone", "testit", "testthat", "textshaping", "tufte", "urlchecker",  "usethis", "uuid", "viridisLite", "visNetwork", "vroom", "waldo",  "webshot", "whisker", "whoami", "xaringan", "xml2", "xopen",  "xtable", "zoo", "boot", "class", "cluster", "codetools", "foreign",  "KernSmooth", "lattice", "MASS", "Matrix", "mgcv", "nlme", "nnet",  "rpart", "spatial", "splines", "stats4", "survival", "tcltk")
 
 # Check if specific special namespaces exist
@@ -205,8 +205,8 @@ existing_special_namespaces <- special_namespaces[sapply(special_namespaces, isN
 
 # Print special namespaces if they exist
 # cat("Special namespaces that exist:", existing_special_namespaces, "\n")
-existing_special_namespaces |> deparse |> cat("\n")
-# > existing_special_namespaces |> deparse |> cat("\n")
+existing_special_namespaces |> deparse() |> cat("  \n", sep="")
+# > existing_special_namespaces |> deparse() |> cat("  \n", sep="")
 # c("base", "tools")
 
 
@@ -296,11 +296,11 @@ existing_special_namespaces |> deparse |> cat("\n")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:\n", 
-    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"\n", sep="")
+    '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  

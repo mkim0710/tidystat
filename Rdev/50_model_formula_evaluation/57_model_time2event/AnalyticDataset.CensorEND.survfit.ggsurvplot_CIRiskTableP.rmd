@@ -22,12 +22,12 @@ output: html_notebook
 <!-- F7 spell-check your document.   -->
 <!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
 <!--    -->
-<!-- *** Caution: \% \$ \# \*   -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
 
 ```{r setup, echo=FALSE, results="hide"}
 # ```{r setup, eval=TRUE, include=FALSE}
 # str(knitr::opts_chunk$get())
-# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "\n", sep="")
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
   eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
@@ -44,11 +44,11 @@ knitr::opts_knit$set(global.par = TRUE)
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-env1$info$options.width = options()$width; cat(options()$width, "\n", sep="")
+env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
 
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
-suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat(" \n");
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("  \n", sep="");
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 ## env1\$path ============  
@@ -75,9 +75,9 @@ if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
 # str(env1$info$info_system_info)
-CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
-# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "\n", sep="")
+CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
+CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
+# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
 env1$info$info_software_versions = env1$info$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 
@@ -99,8 +99,8 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
   
 ```{r env1-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 ###### env1\$path ============  
-library(tidyverse);cat(" \n"); 
-cat(" \n"); cat(" getwd() == "); dput(getwd()) #------------  
+library(tidyverse);cat("  \n", sep="");
+cat(" getwd() == "); dput(getwd()) #------------  
 env1$path$getwd = getwd()
 # env1$path$path0 = file.path("D:", "OneDrive - SNU", "[][Rproject]")
 # env1$path$project_base = "Rproject_HEALS0215"
@@ -160,17 +160,17 @@ env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-objectname = "as1.na.Date.fct.select89"; cat(" ----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
+objectname = "as1.na.Date.fct.select89"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep=""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 env1$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
-cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
+cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
   
 get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
-get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ------------  
-cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
+get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ------------  
+cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # get(objectname) |> select_if(is.numeric) |> summary() #------------  
 # get(objectname) |> select_if(is.logical) |> summary() #------------  
 ```
@@ -182,17 +182,17 @@ cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat(" ----\n> ", 'objectname = "', objectname, '"\n', sep=""); 
+objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep=""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 env1$f_path.size_files(path4read = path4read, regex4filename = filename2read)
 system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
-cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"\n", sep="")
+cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
   
 get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ------------  
-get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat() ------------  
-cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "\n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
+get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}; # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ------------  
+cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", sep=""); str(get(objectname), max.level = 2, give.attr = F); 
 # get(objectname) |> select_if(is.numeric) |> summary() #------------  
 # get(objectname) |> select_if(is.logical) |> summary() #------------  
 ```
@@ -223,10 +223,10 @@ options(width=120)
 #     mutate(
 #         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
 #     )
-as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> summary()
 as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always") |> addmargins()
-# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+# > as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 # tibble [10,030 × 2] (S3: tbl_df/tbl/data.frame)
 #  $ Time2Event_NewDMv3: num [1:10030] NA NA NA 1 NA NA NA NA 1 NA ...
 #  $ Event_NewDMv3     : logi [1:10030] FALSE FALSE FALSE TRUE FALSE FALSE ...
@@ -274,7 +274,7 @@ options(width=120)
 #         Event_NewDMv3 = !is.na(Time2Event_NewDMv3)
 #         , Time2Censor_NewDMv3 = replace_na(Time2Event_NewDMv3, 7)
 #     )
-as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> summary()
 as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> table(useNA="always") |> addmargins()
 ```
@@ -379,9 +379,9 @@ df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censo
     mutate(Group = StudyPopulation |> as.integer()) |> 
     as_tibble()
 df_NewDMv3.Time2Censor_NewDMv3
-df_NewDMv3.Time2Censor_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+df_NewDMv3.Time2Censor_NewDMv3 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 df_NewDMv3.Time2Censor_NewDMv3 |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
-df_NewDMv3.CensorEND %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+df_NewDMv3.CensorEND %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 df_NewDMv3.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 all.equal(df_NewDMv3.Time2Censor_NewDMv3 |> dplyr::select(time, event), df_NewDMv3.CensorEND |> dplyr::select(time, event))
 table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = "always") %>% addmargins
@@ -421,10 +421,10 @@ options(width=120)
 # # library(survival)
 # # library(survminer)
 # ?survival::lung
-# df_time2event = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=99)","\n", sep=""); print(as_tibble(.),n=99)}
-# # df_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+# df_time2event = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print(n=99)","  \n", sep=""); print(as_tibble(.),n=99)}
+# # df_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 # # df_time2event |> dplyr::select(sex, Group) |> table(useNA="always") |> addmargins()
-# # # > df_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","\n", sep=""); str(.)}
+# # # > df_time2event |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 # # # 'data.frame':	228 obs. of  2 variables:
 # # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
@@ -542,11 +542,11 @@ env1$path$CurrentSource.path.filename.html = env1$path$CurrentSource.path.filena
 # }
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext,'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf,'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf,'") }',"\n",
-    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
+    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"  \n", sep="")
 cat("    ________________________________________________________________________    \n")
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext,'" |> rmarkdown::render(output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
     ' if (.Platform$OS.type == "windows") { system("\\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\\" --app=\\"',env1$path$CurrentSource.path.filename.html |> normalizePath(winslash="/", mustWork = FALSE),'\\"") } else { browseURL("',env1$path$CurrentSource.path.filename.html,'") }',"\n",
-    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.html,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"\n", sep="")
+    ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.html,'", backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"  \n", sep="")
 ```
   
   
@@ -557,12 +557,12 @@ env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()
 env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
 if (.Platform$OS.type == "windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',env1$path$CurrentSource.path.filename.nb.html|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html) }
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("\n")
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat(" * To revert to the last commited file, run the following terminal command:\n", 
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext,'" |> system(intern=TRUE)',"\n",
-    '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"\n", sep="")
+    '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html,'" |> system(intern=TRUE)',"  \n", sep="")
 ```
   
   

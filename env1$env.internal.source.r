@@ -40,10 +40,10 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 for(packagename in c("tidyverse")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## env1\$path ====
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
-# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
-# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+# path2look = "/"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "~"; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# path2look = "."; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if(!exists("env1", envir=.GlobalEnv)) assign("env1", new.env(), envir=.GlobalEnv)
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
@@ -177,7 +177,7 @@ env1$env.internal$ f_path_path.backup.overwrite <- function(overwrite_from_path.
     if(createFile || file.exists(destination_path.filename.ext)) {
         if(!is.null(backup_to_path)) {
             env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path, timeFormat=timeFormat)
-            # cat('%windir%\\explorer.exe "',backup_to_path|>normalizePath(winslash="\\"),'"',"\n", sep="") ; 
+            # cat('%windir%\\explorer.exe "',backup_to_path|>normalizePath(winslash="\\"),'"',"  \n", sep="") ; 
         }
         if(file.copy(from=overwrite_from_path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
     } else {warning(paste0("File does not exist: ", destination_path.filename.ext))}
@@ -193,10 +193,10 @@ objectname = "source_base_github"; object = "https://github.com/mkim0710/tidysta
 objectname = "source_base_github_blob"; object = "https://github.com/mkim0710/tidystat/blob/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-# objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; cat("env1$path$", objectname, ": ", env1$path[[objectname]], "\n", sep="")};
-# objectname = "path4read"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; cat("env1$path$", objectname, ": ", env1$path[[objectname]], "\n", sep="")};
-# objectname = "path4write"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; at("env1$path$", objectname, ": ", env1$path[[objectname]], "\n", sep="")};
-# objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; cat("env1$path$", objectname, ": ", env1$path[[objectname]], "\n", sep="")};
+# objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; cat("env1$path$", objectname, ": ", env1$path[[objectname]], "  \n", sep="")};
+# objectname = "path4read"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; cat("env1$path$", objectname, ": ", env1$path[[objectname]], "  \n", sep="")};
+# objectname = "path4write"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; at("env1$path$", objectname, ": ", env1$path[[objectname]], "  \n", sep="")};
+# objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object; cat("env1$path$", objectname, ": ", env1$path[[objectname]], "  \n", sep="")};
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "path4read"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "path4write"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};

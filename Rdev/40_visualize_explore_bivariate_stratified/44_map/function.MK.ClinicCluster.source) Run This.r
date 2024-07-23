@@ -74,7 +74,7 @@ for (Min.SC in vector_of_Min.SC) {
                 i.SGG_CD in 
                 Population.df0 %>% 
                 dplyr::filter(SIDO_CD %in% SIDO_CD4filter) %>% 
-                {.$SGG_CD} %>% as.character |> unique
+                {.$SGG_CD} %>% as.character |> unique()
             ) {
                 cat(paste0("\n#", i.SGG_CD))
                 # cat(paste0("..#", i.SGG_CD))
