@@ -88,7 +88,7 @@ if (requireNamespace("rstudioapi")) {
     if (rstudioapi::isAvailable()) {
         env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "");
     } else { if(env1$print.intermediate) print('rstudioapi::isAvailable() == FALSE') }
-    if(env1$print.intermediate) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}; 
+    if(env1$print.intermediate) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}; 
 } else { if(env1$print.intermediate) print('requireNamespace("rstudioapi") == FALSE') }
 # #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # if(sourcename == "default.template") { warning('sourcename == "default.template"') } else {
