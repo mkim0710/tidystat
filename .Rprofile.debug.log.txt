@@ -1,0 +1,82 @@
+R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+Loading required package: tidyverse
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+> source("~/github_tidystat/env1$env.internal.source.r")  
+[1] "Sourcing: \"env1$env.internal.source.r\""
+[1] "env1$print.intermediate == TRUE"
+[1] "requireNamespace(\"rstudioapi\") == TRUE"
+[1] "rstudioapi::isAvailable() == FALSE"
+[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+> source("~/github_tidystat/internal.f_path0.list_path_hierarchy.source.r")  
+[1] "Sourcing: \"internal.f_path0.list_path_hierarchy.source.r\""
+[1] "env1$print.intermediate == TRUE"
+[1] "requireNamespace(\"rstudioapi\") == TRUE"
+[1] "rstudioapi::isAvailable() == FALSE"
+[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+> source("~/github_tidystat/f_df.t.tribble_construct.source.r")  
+[1] "requireNamespace(\"rstudioapi\") == TRUE"
+[1] "rstudioapi::isAvailable() == FALSE"
+[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+Loading: env1$f_df.tribble_construct
+Loading: env1$f_df.transpose
+Loading: env1$f_df.t.tribble_construct
+Loading: env1$f_vec.dput_line_by_line
+Loading: env1$f_list.dput_line_by_line
+Loading: env1$f_vec1_vec2.setdiff
+[1] "requireNamespace(\"rstudioapi\") == TRUE"
+[1] "rstudioapi::isAvailable() == FALSE"
+[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+Loading: env1$f_path.size_files
+> source("~/github_tidystat/get_system_info.source.r")  
+[1] "requireNamespace(\"rstudioapi\") == TRUE"
+[1] "rstudioapi::isAvailable() == FALSE"
+[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+Loading: env1$info$get_system_info
+List of 9
+ $ GUI             : chr "X11"
+ $ os_type         : chr "unix"
+ $ os_sysname      : chr "Linux"
+ $ os_version      : chr "#1 SMP Thu Jan 11 04:09:03 UTC 2024"
+ $ machine_type    : chr "x86_64"
+ $ machine_nodename: chr "059a785fbdc6"
+ $ machine_cpu     : chr "13th Gen Intel(R) Core(TM) i7-13700KF"
+ $ Sys.getlocale   :List of 4
+  ..$ LC_COLLATE       : chr "en_US.UTF-8"
+  ..$ LC_CTYPE         : chr "en_US.UTF-8"
+  ..$ LC_locale_NUMERIC: chr "C"
+  ..$ LC_locale_TIME   : chr "en_US.UTF-8"
+ $ l10n_info       :List of 5
+  ..$ localization_UTF8           : logi TRUE
+  ..$ localization_Latin1         : logi FALSE
+  ..$ localization_codeset        : chr "UTF-8"
+  ..$ localization_codepage       : NULL
+  ..$ localization_system.codepage: NULL
+
+Loaded without error: /home/rstudio/github_tidystat/.Rprofile
+Today is Tue Jul 23 16:20:12 2024  
