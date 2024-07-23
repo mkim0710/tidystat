@@ -143,7 +143,7 @@ objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows"
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)  
 ## env1\$env.internal ============  
-sourcename = "env1$env.internal" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+sourcename = "env1$env.internal" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 #### env1\$f_df.t.tribble_construct() ============  
 sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # ```
