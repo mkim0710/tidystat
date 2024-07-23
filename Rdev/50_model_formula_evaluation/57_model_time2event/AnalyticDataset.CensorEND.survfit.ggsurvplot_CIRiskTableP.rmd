@@ -59,7 +59,7 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 ## env1\$env.internal ============  
 sourcename = "env1$env.internal" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 #### env1\$f_df.t.tribble_construct() ============  
-sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 ```
   
   
@@ -72,7 +72,7 @@ if(!exists("env1", envir=.GlobalEnv))
     assign("env1", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 #### env1\$info\$get_system_info() ============  
-sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
 # str(env1$info$info_system_info)
 CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
@@ -118,7 +118,7 @@ cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)
 # # path4write = env1$path$path4write
 path4read = getwd()
 path4write = getwd()
-sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #------------  
 ```
   
@@ -138,7 +138,7 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 ## env1\$env.internal ============  
 sourcename = "env1$env.internal" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 #### env1\$f_df.t.tribble_construct() ============  
-sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 #|________________________________________________________________________________|#  
 # attach(env1)
   
@@ -159,7 +159,7 @@ env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 @ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 objectname = "as1.na.Date.fct.select89"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep=""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 env1$f_path.size_files(path4read = path4read, regex4filename = filename2read)
@@ -181,7 +181,7 @@ cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", s
 @ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"; subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 objectname = "as1_7.na.Date.fct.cumulative_DM.list"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep=""); 
 filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 env1$f_path.size_files(path4read = path4read, regex4filename = filename2read)
