@@ -1,10 +1,9 @@
+sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")
+if(env1$print.intermediate) print(paste0('Sourcing: "',sourcename,'"'))
+if(env1$print.intermediate) {CodeText2Print = "env1$print.intermediate"; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}
 # # f_df.t.tribble_construct.source.r
 # # f_df.tribble_construct.source.r
 # # f_df.transpose.source.r
-# 
-# # objectname = "f_df.t.tribble_construct"
-# # f_df.t.tribble_construct.dev.r
-# # f_df.t.tribble_construct.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 # # source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
 #|________________________________________________________________________________|#  
