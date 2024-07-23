@@ -8,7 +8,7 @@ library(purrr)
 # function to make a dataframe with columns for each wave
 function.df2df_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
     if(!is.numeric(vector_wave)) {
-        warning("vector_wave is not numeric"); cat("\n")
+        warning("vector_wave is not numeric"); cat("  \n", sep="")
         vector_wave = vector_wave %>% as.numeric
     }
     if(is.null(vector_colname_at_wave)) {
@@ -32,7 +32,7 @@ function.df2df_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, 
 
         # Check if the column name exists in the dataframe
         if(!(vector_colname_at_wave[i] %in% names(df))) {
-            warning("Column ", vector_colname_at_wave[i], " does not exist in the dataframe"); cat("\n")
+            warning("Column ", vector_colname_at_wave[i], " does not exist in the dataframe"); cat("  \n", sep="")
             next
         }
         

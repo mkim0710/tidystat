@@ -1,7 +1,7 @@
 # f_path.zip.dev.r
 
 
-list.files(recursive = TRUE) |> paste0(collapse = '",\n  "') %>% {paste0('c("',.,'")')} |> cat("\n")
+list.files(recursive = TRUE) |> paste0(collapse = '",\n  "') %>% {cat('c("',.,'")', "  \n", sep="")}
 
 
 rstudioapi::getSourceEditorContext()$path |> dirname() |> normalizePath(winslash="/")

@@ -505,9 +505,9 @@ data.Match = function(
                 # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
                 
                 if (print.process == T) {
-                    print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
-                    # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
-                    print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
+                    print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) |> deparse()))
+                    # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) |> deparse()))
+                    print(paste0("data.Match() - dim(.X) : ", dim(.X) |> deparse()))
                 }
                 .mydata.Match = Match(
                     Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical
@@ -1045,13 +1045,13 @@ rhc_mydata.na.Match$data
 # 10     1     0     0      0     0       0     0      0 47.93399      1      58         0     0 [40,50)            3887              2               3
 # # ... with 4,124 more rows
 
-rhc_mydata.na.Match$data$RowNum_original |> unique %>% length
-rhc_mydata.na.Match$data$RowNum_after_na.omit |> unique %>% length
-# > rhc_mydata.na.Match$data$RowNum_original |> unique %>% length
+rhc_mydata.na.Match$data$RowNum_original |> unique() |> length()
+rhc_mydata.na.Match$data$RowNum_after_na.omit |> unique() |> length()
+# > rhc_mydata.na.Match$data$RowNum_original |> unique() |> length()
 # [1] 4134
-# # > rhc_mydata.na.Match$data$RowNum_after_na.omit |> unique %>% length
+# # > rhc_mydata.na.Match$data$RowNum_after_na.omit |> unique() |> length()
 # # [1] 4134
-# > rhc_mydata.na.Match$data$RowNum_after_na.omit |> unique %>% length
+# > rhc_mydata.na.Match$data$RowNum_after_na.omit |> unique() |> length()
 # [1] 0
 # Warning message:
 # Unknown or uninitialised column: 'RowNum_after_na.omit'. 
@@ -1599,9 +1599,9 @@ data.stratified.Match = function(
                     # .X = build.x(~., .mydata.exposure.vars4Matching.na.omit)
                     
                     if (print.process == T) {
-                        print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) %>% deparse))
-                        # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) %>% deparse))
-                        print(paste0("data.Match() - dim(.X) : ", dim(.X) %>% deparse))
+                        print(paste0("data.Match() - dim(.mydata) : ", dim(.mydata) |> deparse()))
+                        # print(paste0("data.Match() - dim(.mydata.exposure.vars4Matching.na.omit) : ", dim(.mydata.exposure.vars4Matching.na.omit) |> deparse()))
+                        print(paste0("data.Match() - dim(.X) : ", dim(.X) |> deparse()))
                     }
                     .mydata.Match = Match(
                         Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical
@@ -2662,17 +2662,17 @@ rhc_mydata.na.stratified.Match$data
 
 
 rhc_mydata.na.stratified.Match$data |> summary()
-# rhc_mydata.na.stratified.Match$data$RowNum_original_before_strata |> unique %>% length
-# rhc_mydata.na.stratified.Match$data$RowNum_original |> unique %>% length
-# rhc_mydata.na.stratified.Match$data$RowNum_after_na.omit |> unique %>% length
-# # > rhc_mydata.na.stratified.Match$data$RowNum_original_before_strata |> unique %>% length
+# rhc_mydata.na.stratified.Match$data$RowNum_original_before_strata |> unique() |> length()
+# rhc_mydata.na.stratified.Match$data$RowNum_original |> unique() |> length()
+# rhc_mydata.na.stratified.Match$data$RowNum_after_na.omit |> unique() |> length()
+# # > rhc_mydata.na.stratified.Match$data$RowNum_original_before_strata |> unique() |> length()
 # # [1] 4086
-# # > rhc_mydata.na.stratified.Match$data$RowNum_original |> unique %>% length
+# # > rhc_mydata.na.stratified.Match$data$RowNum_original |> unique() |> length()
 # # [1] 741
-# # > rhc_mydata.na.stratified.Match$data$RowNum_after_na.omit |> unique %>% length
+# # > rhc_mydata.na.stratified.Match$data$RowNum_after_na.omit |> unique() |> length()
 # # [1] 719
-rhc_mydata.na.stratified.Match$data$RowNum_original |> unique %>% length
-# > rhc_mydata.na.stratified.Match$data$RowNum_original |> unique %>% length
+rhc_mydata.na.stratified.Match$data$RowNum_original |> unique() |> length()
+# > rhc_mydata.na.stratified.Match$data$RowNum_original |> unique() |> length()
 # [1] 4086
 
 

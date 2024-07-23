@@ -11,7 +11,7 @@ f_clipboard_path_BackSlash.to_ForwardSlash <- function(clipboard_path_BackSlash 
     }
     input_path.ForwardSlash <- chartr("\\", "/", input_path_BackSlash.escaped)
     writeClipboard(input_path.ForwardSlash)
-    cat(input_path.ForwardSlash); cat("\n")
+    cat(input_path.ForwardSlash); cat("  \n", sep="")
     return(input_path.ForwardSlash)
 }
 # D:\OneDrive\[Note]\[Note] Stat\[[Stat]] CRAN R\[[[[R]]]] Cheatsheets\[[[[Cheat Sheets]]]] RStudio
@@ -45,7 +45,7 @@ f_clipboard_path_BackSlash.to_URL = function(clipboard_path_BackSlash = TRUE) {
     
     # Return the modified URL
     writeClipboard(input_path.URL2)
-    cat(input_path.URL2); cat("\n")
+    cat(input_path.URL2); cat("  \n", sep="")
     return(input_path.URL2)
 }
 # D:\OneDrive\[Note]\[Note] Stat\[[Stat]] CRAN R\[[[[R]]]] Cheatsheets\[[[[Cheat Sheets]]]] RStudio

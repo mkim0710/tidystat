@@ -34,8 +34,8 @@ formula4MainModel %>% as.character
 
 ?as.formula
 
-formula4MainModel %>% deparse
-# > formula4MainModel %>% deparse
+formula4MainModel |> deparse()
+# > formula4MainModel |> deparse()
 # [1] "Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + "
 # [2] "    AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + "   
 # [3] "    HIQ_6 + HUQ_3_lt_1year"                
@@ -73,7 +73,7 @@ function.formula2text = function(formula) {
 }
 
 formula4MainModel %>% function.formula2text
-formula4MainModel %>% deparse
+formula4MainModel |> deparse()
 
 
 

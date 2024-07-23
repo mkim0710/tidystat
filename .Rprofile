@@ -45,12 +45,12 @@
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # ### % search() @ default Rocker 4.3.3
-# search() |> deparse() |> cat("\n", sep="") 
+# search() |> deparse() |> cat("  \n", sep="") 
 # c(".GlobalEnv", "tools:rstudio", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")
 # 
 # ### % search() @ default Rocker 4.3.3 + library(tidyverse)
 # library(tidyverse)
-# search() |> deparse() |> cat("\n", sep="") 
+# search() |> deparse() |> cat("  \n", sep="") 
 # c(".GlobalEnv", "package:lubridate", "package:forcats", "package:stringr", "package:dplyr", "package:purrr", "package:readr", "package:tidyr", "package:tibble", "package:ggplot2", "package:tidyverse", "tools:rstudio", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -101,7 +101,7 @@
         NA_character_
     };
     cat("\nLoaded without error: ", env1$info$.Rprofile, "\n"
-        , "Today is ", date(), "\n", sep="");
+        , "Today is ", date(), "  \n", sep="");
 };
 
 #|________________________________________________________________________________|#  

@@ -55,34 +55,34 @@ jong2
 # > jong2
 #  [1] "ᆨ" "ᆩ" "ᆪ" "ᆫ" "ᆬ" "ᆭ" "ᆮ" "ᆯ" "ᆰ" "ᆱ" "ᆲ" "ᆳ" "ᆴ" "ᆵ" "ᆶ" "ᆷ" "ᆸ" "ᆹ" "ᆺ" "ᆻ" "ᆼ" "ᆽ" "ᆾ" "ᆿ" "ᇀ" "ᇁ" "ᇂ"
 
-cho %>% deparse |> cat(); cat("\n") #----
-jung %>% deparse |> cat(); cat("\n") #----
-jong %>% deparse |> cat(); cat("\n") #----
-jong2 %>% deparse |> cat(); cat("\n") #----
-# > cho %>% deparse |> cat(); cat("\n") #----
+cho |> deparse() |> cat("  \n", sep="") #----
+jung |> deparse() |> cat("  \n", sep="") #----
+jong |> deparse() |> cat("  \n", sep="") #----
+jong2 |> deparse() |> cat("  \n", sep="") #----
+# > cho |> deparse() |> cat("  \n", sep="") #----
 # c("<U+3131>", "<U+3132>", "<U+3134>", "<U+3137>", "<U+3138>",  "<U+3139>", "<U+3141>", "<U+3142>", "<U+3143>", "<U+3145>", "<U+3146>",  "<U+3147>", "<U+3148>", "<U+3149>", "<U+314A>", "<U+314B>", "<U+314C>",  "<U+314D>", "<U+314E>")
-# > jung %>% deparse |> cat(); cat("\n") #----
+# > jung |> deparse() |> cat("  \n", sep="") #----
 # c("<U+314F>", "<U+3150>", "<U+3151>", "<U+3152>", "<U+3153>",  "<U+3154>", "<U+3155>", "<U+3156>", "<U+3157>", "<U+3158>", "<U+3159>",  "<U+315A>", "<U+315B>", "<U+315C>", "<U+315D>", "<U+315E>", "<U+315F>",  "<U+3160>", "<U+3161>", "<U+3162>", "<U+3163>")
-# > jong %>% deparse |> cat(); cat("\n") #----
+# > jong |> deparse() |> cat("  \n", sep="") #----
 # c("<U+3131>", "<U+3132>", "<U+3131><U+3145>", "<U+3134>", "<U+3134><U+3148>",  "<U+3134><U+314E>", "<U+3137>", "<U+3139>", "<U+3139><U+3131>",  "<U+3139><U+3141>", "<U+3139><U+3142>", "<U+3139><U+3145>", "<U+3139><U+314C>",  "<U+3139><U+314D>", "<U+3139><U+314E>", "<U+3141>", "<U+3142>",  "<U+3142><U+3145>", "<U+3145>", "<U+3146>", "<U+3147>", "<U+3148>",  "<U+314A>", "<U+314B>", "<U+314C>", "<U+314D>", "<U+314E>")
-# > jong2 %>% deparse |> cat(); cat("\n") #----
+# > jong2 |> deparse() |> cat("  \n", sep="") #----
 # c("<U+11A8>", "<U+11A9>", "<U+11AA>", "<U+11AB>", "<U+11AC>",  "<U+11AD>", "<U+11AE>", "<U+11AF>", "<U+11B0>", "<U+11B1>", "<U+11B2>",  "<U+11B3>", "<U+11B4>", "<U+11B5>", "<U+11B6>", "<U+11B7>", "<U+11B8>",  "<U+11B9>", "<U+11BA>", "<U+11BB>", "<U+11BC>", "<U+11BD>", "<U+11BE>",  "<U+11BF>", "<U+11C0>", "<U+11C1>", "<U+11C2>")
 
 cho.int = cho %>% map_int(utf8ToInt)
 jung.int = jung %>% map_int(utf8ToInt)
 jong.int = jong %>% map_int(utf8ToInt)
 jong2.int = jong2 %>% map_int(utf8ToInt)
-cho.int %>% deparse |> cat(); cat("\n") #----
-jung.int %>% deparse |> cat(); cat("\n") #----
-jong.int %>% deparse |> cat(); cat("\n") #----
-jong2.int %>% deparse |> cat(); cat("\n") #----
-# > cho.int %>% deparse |> cat(); cat("\n") #----
+cho.int |> deparse() |> cat("  \n", sep="") #----
+jung.int |> deparse() |> cat("  \n", sep="") #----
+jong.int |> deparse() |> cat("  \n", sep="") #----
+jong2.int |> deparse() |> cat("  \n", sep="") #----
+# > cho.int |> deparse() |> cat("  \n", sep="") #----
 # c(12593L, 12594L, 12596L, 12599L, 12600L, 12601L, 12609L, 12610L,  12611L, 12613L, 12614L, 12615L, 12616L, 12617L, 12618L, 12619L,  12620L, 12621L, 12622L)
-# > jung.int %>% deparse |> cat(); cat("\n") #----
+# > jung.int |> deparse() |> cat("  \n", sep="") #----
 # 12623:12643
-# > jong.int %>% deparse |> cat(); cat("\n") #----
+# > jong.int |> deparse() |> cat("  \n", sep="") #----
 # 12593L
-# > jong2.int %>% deparse |> cat(); cat("\n") #----
+# > jong2.int |> deparse() |> cat("  \n", sep="") #----
 # 4520:4546
 
 12593:12622 %>% intToUtf8 #----

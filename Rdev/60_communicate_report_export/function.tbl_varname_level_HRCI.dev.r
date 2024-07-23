@@ -233,7 +233,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 2 AGE_group 50-  
     # 3 AGE_group 60-  
     # 4 AGE_group 70-  
-    # Browse[1]> list_levels %>% length
+    # Browse[1]> list_levels |> length()
     # [1] 0
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level))
     # # A tibble: 4 x 3
@@ -295,7 +295,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     #  list()
     # Browse[1]> list_levels |> dput()
     # list()
-    # Browse[1]> list_levels %>% length
+    # Browse[1]> list_levels |> length()
     # [1] 0
     # Browse[1]> list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
     # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
@@ -507,7 +507,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
     # # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
     # # txt |> str_extract_all("[A-z0-9_]+") |> str()
-    # # txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("\n")
+    # # txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
     # # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
     
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())

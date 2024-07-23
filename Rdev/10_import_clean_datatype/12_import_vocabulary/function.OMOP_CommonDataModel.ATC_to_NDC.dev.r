@@ -100,7 +100,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     
     #@ output.list$Step09.CONCEPT_RELATIONSHIP.filter_ATC_concept_id ======
     concept_id.selected = 
-        output.list$Step01.CONCEPT.filter_ATC$concept_id |> unique %>% sort
+        output.list$Step01.CONCEPT.filter_ATC$concept_id |> unique() |> sort()
     output.list$Step09.CONCEPT_RELATIONSHIP.filter_ATC_concept_id =
         OMOP_CommonDataModel$CONCEPT_RELATIONSHIP %>%
         dplyr::filter(concept_id_1 %in% concept_id.selected | concept_id_2 %in% concept_id.selected) %>% 
@@ -118,7 +118,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
             , 
             output.list$Step09.CONCEPT_RELATIONSHIP.filter_ATC_concept_id %>% 
                 dplyr::filter(vocabulary_id_2 == "RxNorm") %>% {.$concept_id_2}
-        ) |> unique %>% sort
+        ) |> unique() |> sort()
     output.list$Step11.CONCEPT.filter_RxNorm =
         OMOP_CommonDataModel$CONCEPT %>% 
         dplyr::filter(concept_id %in% concept_id.selected) %>% 
@@ -128,7 +128,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     
     
     #@ output.list$Step15.DRUG_STRENGTH.filter_RxNorm_concept_id ======
-    concept_id.selected = output.list$Step11.CONCEPT.filter_RxNorm$concept_id |> unique %>% sort
+    concept_id.selected = output.list$Step11.CONCEPT.filter_RxNorm$concept_id |> unique() |> sort()
     output.list$Step15.DRUG_STRENGTH.filter_RxNorm_concept_id =
         OMOP_CommonDataModel$DRUG_STRENGTH %>% 
         dplyr::filter(drug_concept_id %in% concept_id.selected | ingredient_concept_id %in% concept_id.selected) %>% 
@@ -140,7 +140,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
     
     #@ output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id ======
     concept_id.selected = 
-        output.list$Step11.CONCEPT.filter_RxNorm$concept_id |> unique %>% sort
+        output.list$Step11.CONCEPT.filter_RxNorm$concept_id |> unique() |> sort()
     
     output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id =
         OMOP_CommonDataModel$CONCEPT_RELATIONSHIP %>%
@@ -161,7 +161,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
             , 
             output.list$Step19.CONCEPT_RELATIONSHIP.filter_RxNorm_concept_id %>% 
                 dplyr::filter(vocabulary_id_2 == "NDC") %>% {.$concept_id_2}
-        ) |> unique %>% sort
+        ) |> unique() |> sort()
     output.list$Step21.CONCEPT.filter_NDC =
         OMOP_CommonDataModel$CONCEPT %>% 
         dplyr::filter(concept_id %in% concept_id.selected) %>% 

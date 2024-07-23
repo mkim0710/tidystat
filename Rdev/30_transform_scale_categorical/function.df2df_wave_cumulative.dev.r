@@ -9,7 +9,7 @@ library(purrr)
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave_cumulative.dev.r
 function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
     if(!is.numeric(vector_wave)) {
-        warning("vector_wave is not numeric"); cat("\n")
+        warning("vector_wave is not numeric"); cat("  \n", sep="")
         vector_wave = vector_wave %>% as.numeric
     }
     if(is.null(vector_colname_at_wave)) {
@@ -33,7 +33,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
 
         # Check if the column name exists in the dataframe
         if(!(vector_colname_at_wave[i] %in% names(df))) {
-            warning("Column ", vector_colname_at_wave[i], " does not exist in the dataframe"); cat("\n")
+            warning("Column ", vector_colname_at_wave[i], " does not exist in the dataframe"); cat("  \n", sep="")
             next
         }
         
@@ -45,7 +45,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
     df_wave_cumulative = as_tibble(array(dim = c(nrow(df), max(vector_wave))))
     names(df_wave_cumulative) = paste0(names(df_wave), "_cumulative")
     for (i in seq_along(df_wave_cumulative)) {
-        # df_wave_cumulative[,i] = df_wave[,1:i] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% unname
+        # df_wave_cumulative[,i] = df_wave[,1:i] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} |> unname()
         if (i == 1) {
             df_wave_cumulative[[i]] = df_wave[[1]] %>% as.integer
         } else {

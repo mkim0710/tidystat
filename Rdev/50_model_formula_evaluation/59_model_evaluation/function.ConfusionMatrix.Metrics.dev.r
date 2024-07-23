@@ -341,9 +341,9 @@ InputSquareMatrix.tbl.ConfusionMatrix1.Metrics
 
 
 InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
-InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Sensitivity") %>% select(MacroAverage) |> unlist() %>% unname #-----
-InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Specificity") %>% select(MacroAverage) |> unlist() %>% unname #-----
-InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "c") %>% select(MacroAverage) |> unlist() %>% unname #-----
+InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Sensitivity") %>% select(MacroAverage) |> unlist() |> unname() #-----
+InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Specificity") %>% select(MacroAverage) |> unlist() |> unname() #-----
+InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "c") %>% select(MacroAverage) |> unlist() |> unname() #-----
 # > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} #-----
 #              rowname                                                                  equation          V1          V2          V3          V4 MacroAverage
 # 1     varname4Actual                                                                      <NA>    Actual_1    Actual_2    Actual_3    Actual_4           NA
@@ -372,21 +372,21 @@ InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% 
 # 2: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 3: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 4: In .f(.x[[i]], ...) : NAs introduced by coercion
-# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Sensitivity") %>% select(MacroAverage) |> unlist() %>% unname #-----
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Sensitivity") %>% select(MacroAverage) |> unlist() |> unname() #-----
 # [1] 0.6367923
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 2: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 3: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 4: In .f(.x[[i]], ...) : NAs introduced by coercion
-# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Specificity") %>% select(MacroAverage) |> unlist() %>% unname #-----
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "Specificity") %>% select(MacroAverage) |> unlist() |> unname() #-----
 # [1] 0.914523
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 2: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 3: In .f(.x[[i]], ...) : NAs introduced by coercion
 # 4: In .f(.x[[i]], ...) : NAs introduced by coercion
-# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "c") %>% select(MacroAverage) |> unlist() %>% unname #-----
+# > InputSquareMatrix.tbl %>% function.ConfusionMatrix.Metrics %>% {.$Metrics} %>% dplyr::filter(rowname == "c") %>% select(MacroAverage) |> unlist() |> unname() #-----
 # [1] 0.7756576
 # Warning messages:
 # 1: In .f(.x[[i]], ...) : NAs introduced by coercion

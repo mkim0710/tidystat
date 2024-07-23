@@ -24,8 +24,8 @@ ID_Criteria.n_distinct.tbl |> names() |> dput()
 # "Inc2.ia.3.d.ndDate", "Inc2.ia.4.a.ndDate", "Inc2.ia.4.b.ndDate", 
 # "Inc2.ia.4.c.1.ndDate", "Inc2.ia.4.c.2.ndDate", "Inc2.ia.4.c.3.ndDate"
 # )
-ID_Criteria.n_distinct.tbl |> names() |> paste(collapse = "\n, ") |> cat() #----
-# > ID_Criteria.n_distinct.tbl |> names() |> paste(collapse = "\n, ") |> cat() #----
+ID_Criteria.n_distinct.tbl |> names() |> paste(collapse = "\n, ") |> cat("  \n", sep="") #----
+# > ID_Criteria.n_distinct.tbl |> names() |> paste(collapse = "\n, ") |> cat("  \n", sep="") #----
 # ENROLID
 # , Inc2.ia.1.a.ndDate
 # , Inc2.ia.1.b.1.ndDate
@@ -78,8 +78,8 @@ ID_Criteria.n_distinct_lgl.tbl = ID_Criteria.n_distinct.tbl %>%
 #@ ------------------------
 #@ txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)" ----
 txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)"
-txt |> str_extract_all("[A-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
-# > txt |> str_extract_all("[A-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+txt |> str_extract_all("[A-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+# > txt |> str_extract_all("[A-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # c("rowname", "HRCI", "p_value", "star", "p.fdr", "*fdr", "p.bon", "*bon", "exp(coef)", "exp(2.5", "%)", "exp(97.5", "%)", "se(coef)", "z", "Pr(>|z|)")
 
 
@@ -89,7 +89,7 @@ txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .
 txt |> str_extract_all("[A-z0-9_]+") |> str()
 txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> str()
 txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') |> str()
-txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("\n")
+txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
 # > txt |> str_extract_all("[A-z0-9_]+") |> str()
 # List of 1
 # $ : chr [1:13] "varname" "level" "varnamelevel" "coefficients" ...
@@ -97,7 +97,7 @@ txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% 
 # chr "c(\"varname\", \"level\", \"varnamelevel\", \"coefficients\", \"exp\", \"coef\", \"lower\", \"95\", \"upper\", "| __truncated__
 # > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') |> str()
 # chr "varname, level, varnamelevel, coefficients, exp, coef, lower, 95, upper, 95, Pr, z, HR"
-# > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("\n")
+# > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
 # select(varname, level, varnamelevel, coefficients, exp, coef, lower, 95, upper, 95, Pr, z, HR)
 
 
@@ -110,11 +110,11 @@ txt |> dput()
 # "\"N1GM0390\"        \"N1GM0392\"        \"N1GM0392_recode\" \"N1GM0394\"        \"N1GM0394_recode\" \"Cigar\""
 
 
-txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("\n")
-txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("\n")
-# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("\n")
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("  \n", sep="")
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("  \n", sep="")
 # "N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar"
-# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("\n")
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
@@ -131,14 +131,14 @@ txt %>% gsub('"', "", .) |> dput()
 # > txt %>% gsub('"', "", .) |> dput()
 # "N1GM0390        N1GM0392        N1GM0392_recode N1GM0394        N1GM0394_recode Cigar"
 
-txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) |> cat("\n")
-txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("\n")
-txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} |> cat("\n")
-# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) |> cat("\n")
+txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) |> cat("  \n", sep="")
+txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("  \n", sep="")
+txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
+# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", " ", .) |> cat("  \n", sep="")
 # N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar
-# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("\n")
+# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) |> cat("  \n", sep="")
 # N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar
-# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} |> cat("\n")
+# > txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
 # select(N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar)
 
 
@@ -148,17 +148,17 @@ txt %>% gsub('"', "", .) %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('select
 #@@@ gsub() vs. str_split(boundary("word")) vs. str_extract_all() -----
 txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
 
-txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("\n")
-txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
-# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("\n")
+txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
+txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("  \n", sep="")
+txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+# > txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-# > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
+# > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("\n")
+# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-# > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+# > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
@@ -172,10 +172,10 @@ txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>
 txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar"
 
 txt %>% gsub("[ \t\n\r\f\v]+", "", .) 
-txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # > txt %>% gsub("[ \t\n\r\f\v]+", "", .)
 # [1] "N1GM0390,N1GM0392,N1GM0392_recode,N1GM0394,N1GM0394_recode,Cigar"
-# > txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+# > txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
@@ -183,65 +183,65 @@ txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('
 #@@@ gsub() vs. str_split(boundary("word")) vs. str_extract_all() -----
 txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar"
 
-txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
-txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
-# > txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
+txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("  \n", sep="")
+txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+# > txt %>% gsub("[ \t\n\r\f\v]+", "", .) %>% gsub(",", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-# > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
+# > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("\n")
+# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
 
 
-#@@@ LETTERS |> list() |> paste() |> cat("\n") ----
+#@@@ LETTERS |> list() |> paste() |> cat("  \n", sep="") ----
 LETTERS |> dput()
-LETTERS |> deparse() |> cat()
+LETTERS |> deparse() |> cat("  \n", sep="")
 # > LETTERS |> dput()
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 # "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", 
 # "Z")
-# > LETTERS |> deparse() |> cat()
+# > LETTERS |> deparse() |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",  "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",  "Z")
 
 LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}
-LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')} |> cat("\n")
+LETTERS |> paste0(collapse = '", "') %>% {cat('c("',.,'")', "  \n", sep="")}
 # > LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\")"
-# > LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')} |> cat("\n")
+# > LETTERS |> paste0(collapse = '", "') %>% {cat('c("',.,'")', "  \n", sep="")}
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 
 
 LETTERS |> list()
-LETTERS |> list() |> paste0(collapse='", \n"') 
-LETTERS |> list() |> paste0(collapse='", \n"') |> cat("\n")
+LETTERS |> list() |> paste0() 
+LETTERS |> list() |> paste0() |> cat("  \n", sep="")
 # > LETTERS |> list()
 # [[1]]
 #  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 # 
-# > LETTERS |> list() |> paste0(collapse='", \n"') 
+# > LETTERS |> list() |> paste0() 
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\")"
-# > LETTERS |> list() |> paste0(collapse='", \n"') |> cat("\n")
+# > LETTERS |> list() |> paste0() |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 
 
 LETTERS |> list()
 LETTERS |> list() |> paste() 
-LETTERS |> list() |> paste() |> cat("\n")
+LETTERS |> list() |> paste() |> cat("  \n", sep="")
 # > LETTERS |> list()
 # [[1]]
 #  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 # 
 # > LETTERS |> list() |> paste() 
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\")"
-# > LETTERS |> list() |> paste() |> cat("\n")
+# > LETTERS |> list() |> paste() |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 
 
 list(LETTERS, letters)
 list(LETTERS, letters) |> paste("1")
 list(LETTERS, letters) |> paste("1", collapse = "|")
-list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("\n")
+list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("  \n", sep="")
 # > list(LETTERS, letters)
 # [[1]]
 #  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
@@ -254,7 +254,7 @@ list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("\n")
 # [2] "c(\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\", \"l\", \"m\", \"n\", \"o\", \"p\", \"q\", \"r\", \"s\", \"t\", \"u\", \"v\", \"w\", \"x\", \"y\", \"z\") 1"
 # > list(LETTERS, letters) |> paste("1", collapse = "|")
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\") 1|c(\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\", \"l\", \"m\", \"n\", \"o\", \"p\", \"q\", \"r\", \"s\", \"t\", \"u\", \"v\", \"w\", \"x\", \"y\", \"z\") 1"
-# > list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("\n")
+# > list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 1|c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z") 1 
 
 
@@ -340,15 +340,15 @@ txt %>% gsub(" ", '\\", \\"', .) |> dput()
 
 
 
-txt %>% gsub(" ", "\\', \\'", .) %>% {paste0("'", ., "'")} |> cat("\n")
-# > txt %>% gsub(" ", "\\', \\'", .) %>% {paste0("'", ., "'")} |> cat("\n")
+txt %>% gsub(" ", "\\', \\'", .) %>% {paste0("'", ., "'")} |> cat("  \n", sep="")
+# > txt %>% gsub(" ", "\\', \\'", .) %>% {paste0("'", ., "'")} |> cat("  \n", sep="")
 # 'N1GM0390', 'N1GM0392', 'N1GM0392_recode', 'N1GM0394', 'N1GM0394_recode', 'Cigar'
-txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} |> cat("\n")
-# > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} |> cat("\n")
+txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
+# > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # "N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar"
 
-txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
-# > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+# > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 # > c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 # [1] "N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"  
@@ -461,9 +461,9 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 # txt |> str_split(boundary("word"))[[1]]
 # txt |> str_split(boundary("word")) |> unlist()
 # txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')}
-# txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("\n")
+# txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')}
-# txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("\n")
+# txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # # > str_split(txt, boundary("word"))[[1]]
 # # [1] "N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"          
 # # > txt |> str_split(boundary("word"))[[1]]
@@ -472,14 +472,14 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 # # [1] "N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"          
 # # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')}
 # # [1] "\"N1GM0390\\\", \\\"N1GM0392\\\", \\\"N1GM0392_recode\\\", \\\"N1GM0394\\\", \\\"N1GM0394_recode\\\", \\\"Cigar\""
-# # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("\n")
+# # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # # "N1GM0390\", \"N1GM0392\", \"N1GM0392_recode\", \"N1GM0394\", \"N1GM0394_recode\", \"Cigar"> txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')}
 # # [1] "\"N1GM0390\", \"N1GM0392\", \"N1GM0392_recode\", \"N1GM0394\", \"N1GM0394_recode\", \"Cigar\""
-# # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("\n")
+# # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # # "N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar"
 # 
-# txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
-# # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
+# txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
+# # > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
 # # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 # 
 # 
@@ -501,23 +501,23 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 # 
 # 
 # txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')}
-# txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("\n")
+# txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') %>% {paste0('"', ., '"')}
-# txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("\n")
+# txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # # > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')}
 # # [1] "\"N1GM0390\\\", \\\"N1GM0392\\\", \\\"N1GM0392_recode\\\", \\\"N1GM0394\\\", \\\"N1GM0394_recode\\\", \\\"Cigar\""
-# # > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("\n")
+# # > txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '\\", \\"') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # # "N1GM0390\", \"N1GM0392\", \"N1GM0392_recode\", \"N1GM0394\", \"N1GM0394_recode\", \"Cigar"> txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') %>% {paste0('"', ., '"')}
 # # [1] "\"c(\"N1GM0390\", \"N1GM0392\", \"N1GM0392_recode\", \"N1GM0394\", \"N1GM0394_recode\", \"Cigar\")\""
-# # > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("\n")
+# # > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} |> cat("  \n", sep="")
 # # "c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")"
 # 
 # 
 # 
 # 
 # 
-# txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("\n")
-# # > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("\n")
+# txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("  \n", sep="")
+# # > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
@@ -528,15 +528,15 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 #@@@ gsub() vs. str_split(boundary("word")) vs. str_extract_all() -----
 txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 
-txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
-txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("', ., '")')} |> cat("\n")
-# > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("\n")
+txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
+txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
+txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = ', ') |> cat("  \n", sep="")
+txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("', ., '")')} |> cat("  \n", sep="")
+# > txt %>% gsub(" ", '\\", \\"', .) %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-# > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("\n")
+# > txt |> str_split(boundary("word")) |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}|> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
-# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("\n")
+# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("  \n", sep="")
 # c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cigar")
 
 
@@ -548,8 +548,8 @@ txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>
 
 
 
-ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) |> names() |> paste(collapse=", ") |> cat() #----
-# > ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) |> names() |> paste(collapse=", ") |> cat() #----
+ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) |> names() |> paste(collapse=", ") |> cat("  \n", sep="") #----
+# > ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) |> names() |> paste(collapse=", ") |> cat("  \n", sep="") #----
 # btw_n365_enddate.ICD250_6480_6488, btw_n90_enddate.ICD250_6480_6488, btw_141_enddate.ICD6480_ICD6488, btw_n90_140.NDC_anyDM, btw_n90_140.ICD6480_ICD6488, criterion1, criterion2
 
 ENROLID.2353768.join_criteria.na_rm.2plus %>% 

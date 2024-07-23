@@ -138,7 +138,7 @@ function.traj_clusters_by_sequence = function(input, seed = 1) {
     library(traj)
     measures = input %>% {step1measures(.$data, .$sequence, ID = T)}
     factors = measures %>% step2factors
-    ncluster = factors %>% step3clusters %>% {.$clust.distr} %>% length
+    ncluster = factors %>% step3clusters %>% {.$clust.distr} |> length()
 
     out = list()
     set.seed(seed)
@@ -255,7 +255,7 @@ function.traj_clusters_by_time = function(input, seed = 1) {
     library(traj)
     measures = input %>% {step1measures(.$data, .$time, ID = T)}
     factors = measures %>% step2factors
-    ncluster = factors %>% step3clusters %>% {.$clust.distr} %>% length
+    ncluster = factors %>% step3clusters %>% {.$clust.distr} |> length()
     
     out = list()
     set.seed(seed)

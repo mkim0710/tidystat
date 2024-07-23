@@ -197,7 +197,7 @@ data.ccwc = function(
             , is.Ctrl.Candidate = T
             , is.assigned = F
         )
-        .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == T) %>% select(.exit_age) |> unlist() %>% unname |> unique %>% sort
+        .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == T) %>% select(.exit_age) |> unlist() |> unname() |> unique() |> sort()
         # Browse[2]> .event.exit_age.unique.sort |> str()
         # num 14790
         # print(paste0(".event.exit_age.unique.sort: ", deparse(.event.exit_age.unique.sort) ))
@@ -610,8 +610,8 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
 #             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
 #         .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == 
-#             T) %>% select(.exit_age) |> unlist() %>% unname %>% 
-#             unique %>% sort
+#             T) %>% select(.exit_age) |> unlist() |> unname() %>% 
+#             unique |> sort()
 #         incomplete = 0
 #         ties <- FALSE
 #         .mydata.ccwc = .mydata
@@ -1593,8 +1593,8 @@ diet.stratified.ccwc #----
 #         .mydata = .mydata %>% mutate(MatchingPairID = 999L, MatchingCtrlNum = 999L, 
 #             is.Case = F, is.Ctrl.Candidate = T, is.assigned = F)
 #         .event.exit_age.unique.sort = .mydata %>% dplyr::filter(.event == 
-#             T) %>% select(.exit_age) |> unlist() %>% unname %>% 
-#             unique %>% sort
+#             T) %>% select(.exit_age) |> unlist() |> unname() %>% 
+#             unique |> sort()
 #         incomplete = 0
 #         ties <- FALSE
 #         .mydata.ccwc = .mydata

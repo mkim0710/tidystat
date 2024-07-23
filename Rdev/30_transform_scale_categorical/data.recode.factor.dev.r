@@ -281,59 +281,59 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dp
 # c("0-", "18.5-", "23-", "25-", "30-")
 
 txt = "BMI_lt23, BMI_ge23lt25, BMI_cut2325"
-txt |> str_extract_all("[A-z0-9_]+") |> paste() |> cat("\n")
-txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')} |> cat("\n")
+txt |> str_extract_all("[A-z0-9_]+") |> paste() |> cat("  \n", sep="")
+txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {cat('c("',.,'")', "  \n", sep="")}
 # > txt = "BMI_lt23, BMI_ge23lt25, BMI_cut2325"
-# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("\n")
+# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("  \n", sep="")
 # c("BMI_lt23", "BMI_ge23lt25", "BMI_cut2325")
 
 
 
-#@@@ LETTERS |> list() |> paste() |> cat("\n") ----
+#@@@ LETTERS |> list() |> paste() |> cat("  \n", sep="") ----
 LETTERS |> dput()
-LETTERS |> deparse() |> cat()
+LETTERS |> deparse() |> cat("  \n", sep="")
 # > LETTERS |> dput()
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 # "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", 
 # "Z")
-# > LETTERS |> deparse() |> cat()
+# > LETTERS |> deparse() |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",  "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",  "Z")
 
 LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}
-LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')} |> cat("\n")
+LETTERS |> paste0(collapse = '", "') %>% {cat('c("',.,'")', "  \n", sep="")}
 # > LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')}
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\")"
-# > LETTERS |> paste0(collapse = '", "') %>% {paste0('c("',.,'")')} |> cat("\n")
+# > LETTERS |> paste0(collapse = '", "') %>% {cat('c("',.,'")', "  \n", sep="")}
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 
 
 LETTERS |> list()
-LETTERS |> list() |> paste0(collapse='", \n"') 
-LETTERS |> list() |> paste0(collapse='", \n"') |> cat("\n")
+LETTERS |> list() |> paste0() 
+LETTERS |> list() |> paste0() |> cat("  \n", sep="")
 # > LETTERS |> list()
 # [[1]]
 #  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 # 
-# > LETTERS |> list() |> paste0(collapse='", \n"') 
+# > LETTERS |> list() |> paste0() 
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\")"
-# > LETTERS |> list() |> paste0(collapse='", \n"') |> cat("\n")
+# > LETTERS |> list() |> paste0() |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 
 
 LETTERS |> list()
 LETTERS |> list() |> paste() 
-LETTERS |> list() |> paste() |> cat("\n")
+LETTERS |> list() |> paste() |> cat("  \n", sep="")
 # > LETTERS |> list()
 # [[1]]
 #  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 # 
 # > LETTERS |> list() |> paste() 
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\")"
-# > LETTERS |> list() |> paste() |> cat("\n")
+# > LETTERS |> list() |> paste() |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 
 
 list(LETTERS, letters)
 list(LETTERS, letters) |> paste("1")
 list(LETTERS, letters) |> paste("1", collapse = "|")
-list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("\n")
+list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("  \n", sep="")
 # > list(LETTERS, letters)
 # [[1]]
 #  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
@@ -346,7 +346,7 @@ list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("\n")
 # [2] "c(\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\", \"l\", \"m\", \"n\", \"o\", \"p\", \"q\", \"r\", \"s\", \"t\", \"u\", \"v\", \"w\", \"x\", \"y\", \"z\") 1"
 # > list(LETTERS, letters) |> paste("1", collapse = "|")
 # [1] "c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\", \"J\", \"K\", \"L\", \"M\", \"N\", \"O\", \"P\", \"Q\", \"R\", \"S\", \"T\", \"U\", \"V\", \"W\", \"X\", \"Y\", \"Z\") 1|c(\"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\", \"l\", \"m\", \"n\", \"o\", \"p\", \"q\", \"r\", \"s\", \"t\", \"u\", \"v\", \"w\", \"x\", \"y\", \"z\") 1"
-# > list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("\n")
+# > list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("  \n", sep="")
 # c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z") 1|c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z") 1 
 
 

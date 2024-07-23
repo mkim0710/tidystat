@@ -17,15 +17,15 @@
 #@ Compare with the remote branch ----
 'git log origin/master..HEAD' |> system(intern=TRUE) |> cat(sep='\n')
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph origin/master..HEAD" |> system(intern=TRUE) |> cat(sep="\n")
+"git log --oneline --graph origin/master..HEAD" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph --decorate origin/master..HEAD" |> system(intern=TRUE) |> cat(sep="\n")
+"git log --oneline --graph --decorate origin/master..HEAD" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-"git log --oneline" |> system(intern=TRUE) |> cat(sep="\n")
+"git log --oneline" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph" |> system(intern=TRUE) |> cat(sep="\n")
+"git log --oneline --graph" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-"git log --oneline --graph --decorate" |> system(intern=TRUE) |> cat(sep="\n")
+"git log --oneline --graph --decorate" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # 'git log --oneline --graph --decorate --since="9am" --until="9pm" --all' |> system(intern=TRUE) |> cat(sep='\n')
 # 'git log --oneline --graph --decorate --since="24 hours ago" --all' |> system(intern=TRUE) |> cat(sep='\n')
@@ -38,14 +38,14 @@
 # * dc4c33a "auto_save_on_blur": true,
 # *   4584b7c Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
-# | * 9a03189 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
-# | * 3bbda0f ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# | * 9a03189 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+# | * 3bbda0f ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
 # * | 0f80ad0 f_session_recover.dev.01.r
 # |/  
-# * 27626a6 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"\n", sep="");
+# * 27626a6 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
 # *   23b0ff7 Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
-# | * e7b53be ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"\n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"\n", sep="");
+# | * e7b53be ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"  \n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
 # * | 81842c5 file.edit("~/.ssh/id_ed25519.pub")
 # |/  
 # * ac401c2 git config remote.origin.url
@@ -415,14 +415,14 @@
 # * dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 # *   4584b7c mhkim@rocker@MAGB760M13700KF Mon May 20 14:47:52 2024 Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
-# | * 9a03189 mkim0710 Mon May 20 07:16:04 2024 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat(sep="\n")
-# | * 3bbda0f mkim0710 Mon May 20 06:45:40 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"\n", sep="");
+# | * 9a03189 mkim0710 Mon May 20 07:16:04 2024 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+# | * 3bbda0f mkim0710 Mon May 20 06:45:40 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
 # * | 0f80ad0 mhkim@rocker@MAGB760M13700KF Mon May 20 14:47:45 2024 f_session_recover.dev.01.r
 # |/  
-# * 27626a6 mkim0710 Mon May 20 04:34:56 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"\n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"\n", sep="");
+# * 27626a6 mkim0710 Mon May 20 04:34:56 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
 # *   23b0ff7 mhkim@rocker@MAGB760M13700KF Mon May 20 00:44:23 2024 Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
-# | * e7b53be mkim0710 Mon May 20 00:43:22 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"\n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"\n", sep="");
+# | * e7b53be mkim0710 Mon May 20 00:43:22 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"  \n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
 # * | 81842c5 mhkim@rocker@MAGB760M13700KF Mon May 20 00:44:15 2024 file.edit("~/.ssh/id_ed25519.pub")
 # |/  
 # * ac401c2 mhkim@rocker@MAGB760M13700KF Sun May 19 05:41:38 2024 git config remote.origin.url
