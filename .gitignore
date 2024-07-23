@@ -148,8 +148,8 @@ old/
 *-old*
 
 # Log files
-*-log*.*
-*.log
+# *-log*.*
+# *.log
 
 # data files
 *.sqlite
