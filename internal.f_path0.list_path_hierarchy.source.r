@@ -1,4 +1,6 @@
-# # sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")
+sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")
+if(env1$print.intermediate) print(paste0('Sourcing: "',sourcename,'"'))
+if(env1$print.intermediate) {CodeText2Print = "env1$print.intermediate"; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}
 # # internal.f_path0.list_path_hierarchy.dev.r
 # # internal.f_path0.list_path_hierarchy.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/internal.f_path0.list_path_hierarchy.dev.r
