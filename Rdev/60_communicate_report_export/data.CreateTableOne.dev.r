@@ -395,7 +395,6 @@ DataSet.TableOne_byExposure.print.addCols |> print(n=999) #----
                
 #  26    26 ""    ""    numeric "HEIGHT"                               NA             ""    ""    "163.91 (9.09)"        "170.23 (6.40)"     "157.02 (6.09)"       "2.112"  "<0.001"  "***"   2.11    0     ""     G1       TRUE   FALSE  170.     6.4  157.    6.09     NA   NA       NA   NA  
 #  27    27 ""    ""    numeric "WEIGHT"                               NA             ""    ""    "63.58 (11.68)"        "70.00 (10.55)"     "56.59 (8.35)"        "1.410"  "<0.001"  "***"   1.41    0     ""     G1       TRUE   FALSE   70     10.6   56.6   8.35     NA   NA       NA   NA  
-
                
 
 function.df.edit_Label_Level = function(df) {
@@ -463,7 +462,6 @@ DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(
 # 146   146 ""    ""    level   "   (5) HTN Grade 2"                   NA             ""                                 "(5) HTN Grade 2"    "8548 (3.0)"           "5556 (3.8)"        "2992 (2.2)"         
 # 147   147 ""    ""    level   "   (6) HTN Grade 3"                   NA             ""                                 "(6) HTN Grade 3"    "2004 (0.7)"           "1330 (0.9)"        "674 (0.5)"                         
                
-
                
 
 
