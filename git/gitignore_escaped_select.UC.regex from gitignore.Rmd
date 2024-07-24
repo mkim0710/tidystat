@@ -74,7 +74,6 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 ```
   
   
-  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -93,13 +92,11 @@ c(".Rproj.user", ".Rhistory", ".RData", ".Ruserdata", "*.zip",
 ```
   
   
-  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 gitignore %>% f_vec.extract_non_alphanumeric_list |> unlist() |> unique() |> dput()
 c(".", "*", ")", "-", " ")
 ```
-  
   
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -122,7 +119,6 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ".*\\- old\\..*", ".*\\-old\\..*", ".*\\-log.*\\..*", ".*\\.rtf"
 )
 ```
-  
   
   
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -150,7 +146,6 @@ options(width=120)
 ```
   
   
-  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -167,7 +162,6 @@ c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA",
 ```
   
   
-  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>% 
@@ -177,22 +171,18 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 ```
   
   
-  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ end ------------  
-  
   
 ```
   
   
-  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ end ------------  
-  
   
 ```
   

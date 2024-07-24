@@ -169,7 +169,6 @@ env1\$info\$info_system_info\$machine_nodename = "15687d125320"  @Rocker
 env1\$info\$info_system_info\$machine_nodename = "application-12164735-deployment-22732286-l5pm"  @Posit.Cloud  
 env1\$info\$info_system_info\$Sys.getlocale\$LC_COLLATE = "en_US.utf8"  
   
-  
 #@@ START ------------  
 ## @ whoami ------------  
 Cf) Ctrl+Alt+Enter @ Rstudio  
@@ -208,13 +207,11 @@ c("/usr/local/texlive",
   "/usr/local/texlive/texmf-dist/scripts/texlive",  
   "/opt/texlive")  
   
-  
 ## find / -type d -iname texmf-dist  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 'find / -type d -iname texmf-dist' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist")  
-  
   
 ##@ find -type d packages  ------------  
 ### find /usr/share/texlive -type d -iname "fontspec"  
@@ -225,7 +222,6 @@ c("/usr/local/texlive/texmf-dist")
 ```
 c("/usr/share/texlive/texmf-dist/tex/latex/fontspec")  
 c("/usr/local/texlive/texmf-dist/tex/latex/fontspec")  
-  
   
 ## find /usr/share/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf  
 ## find /usr/local/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf  
@@ -271,7 +267,6 @@ c("/usr/local/texlive/texmf-dist/tex/context/fonts",
   "/usr/local/texlive/texmf-dist/metapost/context/fonts",  
   "/usr/local/texlive/texmf-dist/fonts")  
   
-  
 ## ls -F /usr/share/texlive/texmf-dist/fonts  
 ## ls -F /usr/local/texlive/texmf-dist/fonts  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -301,7 +296,6 @@ c("afm/",
 c("google/",  
   "public/")  
   
-  
 #### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -315,7 +309,6 @@ c("cascadia-code/",
   "inconsolata/",  
   "lm/",  
   "lm-math/")  
-  
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google  
@@ -409,14 +402,12 @@ c("Roboto-BlackItalic.otf",
 ```
 c("")  
   
-  
 #### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
 ```
-  
   
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google  
@@ -450,7 +441,6 @@ c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
   "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto",  
   "/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto")  
   
-  
 #### find /usr/share/texlive -type f -iname "*roboto*"  
 #### find /usr/local/texlive -type f -iname "*roboto*"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -464,7 +454,6 @@ c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
   "/usr/local/texlive/texmf-dist/fonts/vf/google/roboto",  
   "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto",  
   "/usr/local/texlive/texmf-dist/fonts/tfm/google/roboto")  
-  
   
 ##### find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"  
 ##### find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"  
@@ -503,7 +492,6 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
   "/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf",  
   "/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf")  
   
-  
 ### find /usr/share/texlive -type d -iname "cascadia*code"  
 ### find /usr/local/texlive -type d -iname "cascadia*code"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -518,7 +506,6 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 'find /usr/share/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
 ```
-  
   
   
 #@@ END ------------  
@@ -562,6 +549,5 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 # 
 # Output created: system.find_filename.texlive@Rocker.pdf
 ```
-  
   
   

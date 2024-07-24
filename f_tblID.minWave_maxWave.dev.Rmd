@@ -201,7 +201,6 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
   
 # @@ START) Data ------------  
   
-  
 ## \$ objectname = "example_data" ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
