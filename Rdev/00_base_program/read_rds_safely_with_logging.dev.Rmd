@@ -235,7 +235,6 @@ path4write = env1$path$path4write
 ```
   
   
-  
 #@@ START) source ------------  
 ### \$ subpath, sourcename = "default.template" |> paste0(".source.r") ============  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -463,6 +462,5 @@ cat(" * To revert to the last commited file, run the following terminal command:
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"  \n", sep="")
 ```
-  
   
   

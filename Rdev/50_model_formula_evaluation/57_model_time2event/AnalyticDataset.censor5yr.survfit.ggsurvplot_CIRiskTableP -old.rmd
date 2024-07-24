@@ -63,7 +63,6 @@ sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>s
 ```
   
   
-  
 <font size="3">\% env1</font>\  
   
 ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
@@ -84,13 +83,13 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 
 ###### env1\$info\$DocumentTitle1 ============  
 # ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
-env1$info$DocumentTitle0 = paste0("00env1","-",basename(getwd()))
-env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
-cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
-    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
-    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
-    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
-    sep="")
+# env1$info$DocumentTitle0 = paste0("00env1","-",basename(getwd()))
+# env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+# cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+#     env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+#     env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+#     env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+#     sep="")
 ```  
   
 
@@ -154,7 +153,6 @@ env1$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
 ```
   
   
-  
 # @@ START ------------  
   
 ## \$ objectname = "tblID_gj3_jk" ============  
@@ -178,7 +176,6 @@ options(width=120)
 ```
   
   
-  
 # \$ lung <- as_tibble(survival::lung) ============  
 ## Step 1: Load the Required Libraries and Data  
 ## Step 2: Exploratory Data Analysis  
@@ -195,7 +192,6 @@ library(survminer)
 as_tibble(survival::lung)
 summary(survival::lung)
 ```
-  
   
   
 ## Step 3: Kaplan-Meier Survival Curve  
@@ -266,7 +262,6 @@ AnalyticDataset.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T)
 ```
   
   
-  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
@@ -274,7 +269,6 @@ AnalyticDataset.coxph |> summary() #------------
 AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ------------  
 AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #------------  
 ```
-  
   
   
 ## \$ AnalyticDataset.censor1yr ============  

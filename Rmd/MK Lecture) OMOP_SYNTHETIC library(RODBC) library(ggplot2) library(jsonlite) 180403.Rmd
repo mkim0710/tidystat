@@ -17,7 +17,6 @@ Min-hyung Kim
 April 3, 2018
   
   
-  
 ```{r}
 # An appropriate ODBC driver should be installed in your computer first!
   
@@ -483,11 +482,9 @@ The CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) is p
   
 https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html  
   
-  
 The Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM) Version 5 is provided by Observational Health Data Sciences and Informatics (OHDSI) community.  
   
 https://github.com/OHDSI/CommonDataModel  
-  
   
 The 1000 person data set from the CMS 2008-2010 Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) converted it to the OMOP Common Data Model Version 5 format was provided by LTS Computing LLC.  
   

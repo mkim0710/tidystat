@@ -228,6 +228,7 @@ path4write = env1$path$path4write
   
 #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ------------  
 ```{r dfDIRsRecursive-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+#| *** Code chunk to be included in: 00env1, 10CodeBook *** |#  
 # #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ------------  
 # sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
@@ -245,6 +246,7 @@ path4write = env1$path$path4write
   
 #### env1\$f_path.size_files() ------------  
 ```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+#| *** Code chunk to be included in: 00env1, 10CodeBook *** |#  
 # #### env1\$f_path.size_files() ------------  
 # sourcename = "f_path.size_files" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # #### env1\$f_objectname.read.checkEntity() ------------  
@@ -253,33 +255,10 @@ path4write = env1$path$path4write
 ```
   
   
-  
-```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
-# if(!exists("env1", envir=.GlobalEnv)) 
-#     assign("env1", new.env(), envir=.GlobalEnv)
-# # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-if (requireNamespace("rstudioapi")) {
-    if(env1$print.intermediate) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}; 
-    if (rstudioapi::isAvailable()) {
-        env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "");
-    } else { if(env1$print.intermediate) print('rstudioapi::isAvailable() == FALSE') }
-    if(env1$print.intermediate) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}; 
-} else { if(env1$print.intermediate) print('requireNamespace("rstudioapi") == FALSE') }
-# if(!"tmp" %in% names(env1)) env1$tmp = list()
-# for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
-#     env1$tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd");
-#     if(env1$tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)})) {
-#         if(!file.exists(env1$tmp$SourceFileName.ext)) file.create(env1$tmp$SourceFileName.ext)
-#         file.edit(env1$tmp$SourceFileName.ext);
-#         file.edit(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)});
-#     }
-# }
-```
+
   
   
 # @@ CODEBOOK ------------  
-  
   
 #@@ START) source ------------  
 ### \$ subpath, sourcename = "default.template" |> paste0(".source.r") ============  
