@@ -96,7 +96,7 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 
   
   
-```{r env1-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ###### env1\$path ============  
 library(tidyverse);cat("  \n", sep="");
 cat(" getwd() == "); dput(getwd()) #------------  

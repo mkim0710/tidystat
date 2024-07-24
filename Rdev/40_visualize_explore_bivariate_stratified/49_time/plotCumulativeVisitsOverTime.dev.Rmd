@@ -190,7 +190,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ```
   
   
-```{r env1-Path-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
+```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ###### env1\$path ============  
 # cat(" getwd() == "); dput(getwd()) #------------  
 objectname = "getwd"; object = getwd(); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
