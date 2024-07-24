@@ -226,37 +226,6 @@ path4write = env1$path$path4write
 ```
   
   
-#### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ------------  
-```{r dfDIRsRecursive-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
-#| *** Code chunk to be included in: 00env1, 10CodeBook *** |#  
-# #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ------------  
-# sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
-# env1$path$print_tree_path = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> 
-#     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
-# # env1$path$print_tree_path |> cat("  \n", sep="")
-# env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> 
-#     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
-# # env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
-# env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> 
-#     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
-# env1$path$print_tree_path_files.data |> cat("  \n", sep="")
-```
-  
-  
-#### env1\$f_path.size_files() ------------  
-```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-#| *** Code chunk to be included in: 00env1, 10CodeBook *** |#  
-# #### env1\$f_path.size_files() ------------  
-# sourcename = "f_path.size_files" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-# #### env1\$f_objectname.read.checkEntity() ------------  
-# sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-# env1$f_path.size_files(path4read = path4read)
-```
-  
-  
-
-  
   
 # @@ CODEBOOK ------------  
   

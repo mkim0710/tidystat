@@ -10,7 +10,6 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
         function.confint = confint
     }
     
-
     list_levels = object.glm$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
     list_levels = c(list_levels, which(object.glm$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
           
