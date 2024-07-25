@@ -158,14 +158,14 @@ env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
 suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("  \n", sep="");
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
-## env1\$path ============  
+## env1\$path ----  
 if(!"path" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$path <- list()
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
 if(!"source_base" %in% names(env1$path)) {env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)}  
-## env1\$env.internal ============  
+## env1\$env.internal ----  
 sourcename = "env1$env.internal" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-#### env1\$f_df.t.tribble_construct() ============  
+#### env1\$f_df.t.tribble_construct() ----  
 sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # ```
 #   
@@ -176,7 +176,7 @@ sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>s
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-#### env1\$info\$get_system_info() ============  
+#### env1\$info\$get_system_info() ----  
 sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(env1$print.intermediate) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$info$get_system_info()
 # str(env1$info$info_system_info)
@@ -187,7 +187,7 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 # str(env1$info$info_software_versions)
 
 
-###### env1\$info\$DocumentTitle1 ============  
+###### env1\$info\$DocumentTitle1 ----  
 # ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
 env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
@@ -199,9 +199,9 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ```
   
   
-# @@ START) Data ------------  
+# @@ START) Data ----  
   
-## \$ objectname = "example_data" ============  
+## \$ objectname = "example_data" ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
@@ -218,7 +218,7 @@ example_data <- data.frame(
 ```
   
   
-# \% f_tblID.minWave_maxWave ============  
+# \% f_tblID.minWave_maxWave ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_tblID.minWave_maxWave <- function(data, pattern) {
@@ -295,7 +295,7 @@ options(width=120)
 ```
   
   
-# @@ END ------------  
+# @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -304,13 +304,13 @@ options(width=120)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @@ END ------------  
+# @@ END ----  
 ```
   
   
-# @@ update default notebook.Rmd ------------  
+# @@ update default notebook.Rmd ----  
 ```{r updateDefaultNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
-# @@ update default notebook.Rmd ------------  
+# @@ update default notebook.Rmd ----  
 # filename.ext = file.path(env1$path$source_base_local,"Rproject_Rmd","00env1.minimum.Rmd")
 filename.ext = "templates-00env1.minimum.Rmd"; if(file.exists(filename.ext)) {
     if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
@@ -325,7 +325,7 @@ filename.ext = "templates-00env1.minimum.Rmd"; if(file.exists(filename.ext)) {
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ------------  
+# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ----  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))

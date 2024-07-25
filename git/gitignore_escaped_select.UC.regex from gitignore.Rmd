@@ -77,7 +77,7 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore = read_lines(".gitignore") ============  
+# @ gitignore = read_lines(".gitignore") ----  
 # file.edit(".gitignore")
 gitignore = read_lines(".gitignore", skip_empty_rows = T)
 # gitignore = gitignore %>% c(".*")
@@ -102,7 +102,7 @@ c(".", "*", ")", "-", " ")
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped ============  
+# @ gitignore_escaped ----  
 gitignore_escaped = gitignore[gitignore != ""] unique(_replace_all("\\.", "\\\\.") %>% # Caution: dot should be handled before asterisk~!
     str_replace_all("\\*", "\\.\\*") unique(_replace_all("\\)", "\\\\)") unique(_replace_all("\\-", "\\\\-") %>% 
     # str_replace_all("\\ ", "\\\\ ") %>% # spaces  are generally treated as literal spaces in regular expressions 
@@ -124,10 +124,10 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped_select ============  
+# @ gitignore_escaped_select ----  
 gitignore_escaped |> str_which("doc|xls|ppt")
 gitignore_escaped_select = gitignore_escaped %>% {.[-str_which(., "doc|xls|ppt")]}
-gitignore_escaped_select |> dput() #------------  
+gitignore_escaped_select |> dput() #----  
 c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata", 
 ".*\\.zip", ".*\\.7z", ".*\\.r\\.gz", ".*\\.r\\.xz", ".*\\.rmd\\.gz", 
 ".*\\.rmd\\.xz", ".*\\.Rproj", "\\.gitignore", "\\.git", "\\.github", 
@@ -149,9 +149,9 @@ options(width=120)
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped_select.UC ============  
+# @ gitignore_escaped_select.UC ----  
 gitignore_escaped_select.UC = gitignore_escaped_select |> toupper() |> unique()
-gitignore_escaped_select.UC |> dput() #------------  
+gitignore_escaped_select.UC |> dput() #----  
 c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA", 
 ".*\\.ZIP", ".*\\.7Z", ".*\\.R\\.GZ", ".*\\.R\\.XZ", ".*\\.RMD\\.GZ", 
 ".*\\.RMD\\.XZ", ".*\\.RPROJ", "\\.GITIGNORE", "\\.GIT", "\\.GITHUB", 
@@ -166,7 +166,7 @@ c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA",
 options(width=120)
 gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>% 
     {paste0("(", ., ")")} |> 
-    paste(collapse = "|") %>% {paste0("^", ., "$")} |> dput() #------------  
+    paste(collapse = "|") %>% {paste0("^", ., "$")} |> dput() #----  
 "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|(.*\\.7Z)|(.*\\.R\\.GZ)|(.*\\.R\\.XZ)|(.*\\.RMD\\.GZ)|(.*\\.RMD\\.XZ)|(.*\\.RPROJ)|(\\.GITIGNORE)|(\\.GIT)|(\\.GITHUB)|(MH\\).*\\.R)|(.*\\.LNK)|(.*ALIAS)|(.*\\- VOID.*\\..*)|(.*\\-VOID.*\\..*)|(.*\\- INFO\\..*)|(.*\\-INFO\\..*)|(.*\\-DEV.*\\..*)|(.*DEBUG.*\\..*)|(\\-TMP)|(.*\\- TMP.*\\..*)|(.*\\-TMP.*\\..*)|(.*\\- OLD\\..*)|(.*\\-OLD\\..*)|(.*\\-LOG.*\\..*)|(.*\\.RTF)$"
 ```
   
@@ -174,7 +174,7 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ end ------------  
+# @ end ----  
   
 ```
   
@@ -182,7 +182,7 @@ options(width=120)
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ end ------------  
+# @ end ----  
   
 ```
   
