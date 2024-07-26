@@ -1260,7 +1260,7 @@ system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
 
 library(microbenchmark)
-?microbenchmark
+# ?microbenchmark
 # mbm = microbenchmark(
 #     fun = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
 #     , fun.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F))

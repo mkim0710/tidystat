@@ -2,7 +2,7 @@
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # Caution) character(0), numeric(0): vector of length 0
-?vector
+# ?vector
 vector(mode = "logical", length = 0)
 vector(mode = "numeric", length = 0)
 vector(mode = "character", length = 0)
@@ -13,7 +13,7 @@ vector(mode = "character", length = 0)
 # > vector(mode = "character", length = 0)
 # character(0)
 
-?logical
+# ?logical
 logical(NULL)
 logical(NA)
 logical(0)
@@ -29,7 +29,7 @@ logical(2)
 # [1] FALSE
 # > logical(2)
 # [1] FALSE FALSE
-?numeric
+# ?numeric
 numeric(NULL)
 numeric(NA)
 numeric(0)
@@ -45,7 +45,7 @@ numeric(2)
 # [1] 0
 # > numeric(2)
 # [1] 0 0
-?character
+# ?character
 character(NULL)
 character(NA)
 character(0)

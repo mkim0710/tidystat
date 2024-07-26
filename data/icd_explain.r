@@ -4,8 +4,8 @@ library(tidyverse)
 library(icd)
 icd_explain(c("43410", "43491"), short_code = TRUE)
 explain_code(c("43410", "43491"), short_code = TRUE)
-?icd::icd_explain
-?icd::explain_code
+# ?icd::icd_explain
+# ?icd::explain_code
 
 
 
@@ -18,7 +18,7 @@ c("43410", "43491") %>% explain_code |> str() #----
 
 
 library(icd)
-?icd::explain_code
+# ?icd::explain_code
 # tblClaims_in.t_lmp_end.byICD.ndID =
 #     tblClaims_in.t_lmp_end.byICD.ndID %>% 
 #     mutate(ICD.explain_code = explain_code(value))

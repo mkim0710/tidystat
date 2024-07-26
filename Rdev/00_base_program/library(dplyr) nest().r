@@ -3,7 +3,7 @@
 
 
 
-?nest
+# ?nest
 as_tibble(chickwts) %>% nest(weight) %>% {.[1:2,]} |> dput()
 # > as_tibble(chickwts) %>% nest(weight) %>% {.[1:2,]} |> dput()
 # structure(list(feed = structure(2:3, .Label = c("casein", "horsebean", 

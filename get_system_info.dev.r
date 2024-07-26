@@ -307,7 +307,7 @@ get_cpu_model()
 
 
 #% get_cpu_model() switch() ====
-?.Platform
+# ?.Platform
 get_cpu_model <- function() {
     os_type <- .Platform$OS.type
     sys_name <- Sys.info()["sysname"]
@@ -328,7 +328,7 @@ get_cpu_model()
 
 
 #% get_cpu_model() concise ====
-?.Platform
+# ?.Platform
 get_cpu_model <- function() {
     if (.Platform$OS.type == "unix") {
         if (Sys.info()["sysname"] == "Darwin") return(trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
@@ -354,7 +354,7 @@ get_cpu_model()
 
 
 # ?.Platform ----- 
-?.Platform
+# ?.Platform
 str(.Platform)
 # ##@MBP
 # List of 8
@@ -374,7 +374,7 @@ str(.Platform)
 
 
 # ?Sys.info() ----- 
-?Sys.info
+# ?Sys.info
 dput(Sys.info())
 ##@ MPB
 c(sysname = "Darwin", release = "22.6.0", version = "Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:05 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T6000", 
@@ -391,7 +391,7 @@ login = "root", user = "mkim0710", effective_user = "mkim0710"
 # ?Sys.getlocale() -----
 # ?Sys.timezone() -----
 # ?osVersion -----
-?sessionInfo
+# ?sessionInfo
 str(sessionInfo(), max.level = 1)
 # dput(sessionInfo())
 identical(R.Version(), sessionInfo()$R.version)
@@ -439,7 +439,7 @@ dput(osVersion)
 # #?l10n_info {base}
 # ‘A Latin-1 locale’ includes supersets (for printable characters) such as Windows codepage 1252 but not Latin-9 (ISO 8859-15).
 # On Windows (where the resulting list contains codepage and system.codepage components additionally), common codepages are 1252 (Western European), 1250 (Central European), 1251 (Cyrillic), 1253 (Greek), 1254 (Turkish), 1255 (Hebrew), 1256 (Arabic), 1257 (Baltic), 1258 (Vietnamese), 874 (Thai), 932 (Japanese), 936 (Simplified Chinese), 949 (Korean) and 950 (Traditional Chinese). Codepage 28605 is Latin-9 and 65001 is UTF-8 (where supported). R does not allow the C locale, and uses 1252 as the default codepage.
-?l10n_info
+# ?l10n_info
 str(list(
     localization_UTF8 = l10n_info()$`UTF-8`,
     localization_Latin1 = l10n_info()$`Latin-1`,  

@@ -5,7 +5,7 @@
 library(tidyverse)
 # library(survival)
 # library(survminer)
-?survival::lung 
+# ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
 # AnalyticDataset %>% select(sex, Group) |> str()
 # AnalyticDataset %>% select(sex, Group) %>% table
@@ -20,7 +20,7 @@ AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group 
 # #   2     90    0
 AnalyticDataset %>% select(time, event, Group) |> summary()
 
-?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)
@@ -73,8 +73,8 @@ plot_surv200401 <- read_excel("plot_surv200401.xlsx") %>% mutate(
 library(survival)
 library(survminer)
 
-?survival::Surv
-?survival::survfit
+# ?survival::Surv
+# ?survival::survfit
 # AnalyticDataset = plot_surv200401 %>% mutate(time = FU, event = SURV, Group = as.factor(stage))
 AnalyticDataset = plot_surv200401 %>% mutate(
     time = FU / 365
@@ -101,7 +101,7 @@ AnalyticDataset = plot_surv200401 %>% mutate(
 
 AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 
-?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
@@ -263,7 +263,7 @@ AnalyticDataset.censor10yr.coxph %>% cox.zph %>% ggcoxzph #----
 #@ AnalyticDataset.survfit_byPredictedStage ========
 AnalyticDataset.survfit_byPredictedStage <- survfit(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
 
-?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 
 # AnalyticDataset.survfit_byPredictedStage %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.survfit_byPredictedStage %>% ggsurvplot(fun = "event")

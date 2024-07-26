@@ -2,7 +2,7 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.Code_vec.list.dot_x.dev.r
 
 filename = "criteria.tbl - manual add 190901 Treatment Arm 191226 DDD 201005 preeclampsia.xlsx"
-?openxlsx::getSheetNames
+# ?openxlsx::getSheetNames
 openxlsx::getSheetNames(filename) |> dput()
 # > openxlsx::getSheetNames(filename) |> dput()
 c("Table 1. Baseline", "ManuscriptTable. Codes", "CovariateDefinition191128", 
@@ -217,7 +217,7 @@ CovariateDefinition191128$Code_vec.list |> str() #----
 #  chr [1:53] "581, 582, 583, 585, 587, 588" "Boolean_1st_level" "401, 402, 403, 404, 405" "6420, 6421, 6422, 6427" "493" "Boolean_1st_level" ...
 
 
-?strsplit
+# ?strsplit
 x <- c(as = "asfef", qu = "qwerty", "yuiop[", "b", "stuff.blah.yech")
 # split x on the letter e
 strsplit(x, "e") |> str() #----
@@ -230,7 +230,7 @@ strsplit(x, "e") |> str() #----
 #  $   : chr [1:2] "stuff.blah.y" "ch"
 
 
-?str_split
+# ?str_split
 fruits <- c(
   "apples and oranges and pears and bananas",
   "pineapples and mangos and guavas"

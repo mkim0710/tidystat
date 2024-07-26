@@ -335,7 +335,7 @@ suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
 # suppressPackageStartupMessages(library(survminer))
   
-?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
 # df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "event")
 # df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "cumhaz")  # Cumulative Hazard = -log S(t)

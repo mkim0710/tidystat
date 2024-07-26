@@ -638,7 +638,7 @@ DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnorma
 
 #@ library(survey) =====
 library(survey)
-?svydesign
+# ?svydesign
 #   data(api)
 # # stratified sample
 # dstrat<-svydesign(id=~1,strata=~stype, weights=~pw, data=apistrat, fpc=~fpc)

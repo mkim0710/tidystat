@@ -26,7 +26,7 @@ duplicate_ID92_190320 <- read_lines("G:/My Drive/duplicate_ID92_190320.txt")
 duplicate_ID92_190320 |> str() #----
 
 
-?read_lines
+# ?read_lines
 duplicate_ID92_190320 <- read_lines("d:/duplicate_ID92_190320.txt")
 duplicate_ID92_190320 |> str() #----
 # > duplicate_ID92_190320 |> str() #----

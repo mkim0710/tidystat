@@ -63,7 +63,7 @@ df2 %>% replace(., is.na(.), 0) %>% mutate(sum = col1 + col2 + col3)
 
 
 
-?addmargins
+# ?addmargins
 df2 %>% as.matrix %>% addmargins(margin = 2, FUN = function(x) sum(x, na.rm = T))
 # > df2 %>% as.matrix %>% addmargins(margin = 2, FUN = function(x) sum(x, na.rm = T))
 #      col1 col2 col3 function(x) sum(x, na.rm = T)

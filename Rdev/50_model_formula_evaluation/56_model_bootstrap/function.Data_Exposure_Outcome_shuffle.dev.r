@@ -417,7 +417,7 @@ sum(abs(EmpiricalDistributionOfStatisticValue) > abs(ObservedStatisticValue) ) /
 
 
 #@ t.test -----
-?t.test  # Open the help documentation for the t.test() function. ----
+# ?t.test  # Open the help documentation for the t.test() function. ----
 t.test(formula = fkcal ~ currsm, data = ffqtot)       # Print the default output. Formula is in "y ~ x" format.
 str(t.test(formula = fkcal ~ currsm, data = ffqtot))  # Print the "structure" of the default output.
 t.test(formula = fkcal ~ currsm, data = ffqtot)$p.value # Print the "structure" of the default output.

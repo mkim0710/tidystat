@@ -225,8 +225,8 @@ nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(
 #   34.27    0.13   44.19 
 
 
-?vars
-?group_by_at
+# ?vars
+# ?group_by_at
 #@ end -----
 
 

@@ -1,6 +1,6 @@
 # data_V1_V2_EdgeWeight.igraph.dev.r
 
-?scale
+# ?scale
 data_V1_V2_EdgeWeight.igraph = function(
     df.V1_V2_EdgeWeight
     , out.name.prefix = deparse(substitute(df.V1_V2_EdgeWeight))

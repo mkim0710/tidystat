@@ -32,7 +32,7 @@ formula4MainModel %>% as.character
 # [3] "SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year"
 
 
-?as.formula
+# ?as.formula
 
 formula4MainModel |> deparse()
 # > formula4MainModel |> deparse()

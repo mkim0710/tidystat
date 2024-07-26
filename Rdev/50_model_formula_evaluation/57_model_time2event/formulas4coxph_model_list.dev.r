@@ -137,7 +137,7 @@ c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdif
 
 
 library(survival)
-?survival::Surv
+# ?survival::Surv
 paste0("Surv(",varname4time, ", ", varname4event, ") ~ ")
 # > paste0("Surv(",varname4time, ", ", varname4event, ") ~ ")
 # [1] "Surv(timeihd, ihd) ~ "

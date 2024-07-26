@@ -51,7 +51,7 @@ objectname = "tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list"
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
-?read_excel
+# ?read_excel
 
 library(readxl)
 assign(objectname, read_excel(paste0(objectname, " -manual.xlsx"), sheet = "manual"))

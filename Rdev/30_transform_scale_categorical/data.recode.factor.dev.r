@@ -267,9 +267,9 @@ for (i in 3:7) {
     analyticDF_C24.drop_pmhx_negativetime.list.cut[[iname]]$total_ddd_yr_BIS <- NULL
 
 }
-?as.factor
+# ?as.factor
 
-?dplyr::recode
+# ?dplyr::recode
 analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> summary()
 #     0-  18.5-    23-    25-    30-   NA's 
@@ -380,7 +380,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut %>%
 #  30-  : 13155                                                   3rd Qu.:   2  
 #  NA's :   134                                                   Max.   :   2  
 
-?`%in%`
+# ?`%in%`
 # Usage
 # 
 # match(x, table, nomatch = NA_integer_, incomparables = NULL)

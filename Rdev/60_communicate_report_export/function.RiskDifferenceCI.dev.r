@@ -36,7 +36,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 
 
 
-?prop.test
+# ?prop.test
 
 # function.RiskDifferenceCI = function(nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1, ..., significance.level = 0.95) {
 #     nExposed0 = nDisease0_Exposed0 + nDisease1_Exposed0
@@ -536,7 +536,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
 
 #@@@@ library(epitools) =====
-?epitools::riskratio
+# ?epitools::riskratio
 # function.epitools.RelativeRiskCI = function(nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1, ...) {
 #     library(epitools)
 #     riskratio(matrix(c(nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1),nrow = 2, ncol = 2), ...)

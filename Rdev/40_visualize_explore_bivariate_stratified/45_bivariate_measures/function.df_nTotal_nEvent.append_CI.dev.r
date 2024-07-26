@@ -3,7 +3,7 @@
 
 
 #@ ?prop.test =====
-?prop.test
+# ?prop.test
 prop.test(10, 100)
 prop.test(10, 100) |> str() #-----
 # > prop.test(10, 100)
@@ -41,7 +41,7 @@ prop.test(10, 100) |> str() #-----
 
 
 #@ ?binom.test =====
-?binom.test
+# ?binom.test
 binom.test(10, 100)
 binom.test(10, 100) |> str() #-----
 # > binom.test(10, 100)
@@ -203,7 +203,7 @@ function.n_p.CI = function(n, p_hat, alpha = 0.05) {
 
 #@ library(binom) -----
 library(binom)
-?binom.confint
+# ?binom.confint
 binom.confint(10, 100)
 # > binom.confint(10, 100)
 #           method  x   n      mean      lower     upper
@@ -224,7 +224,7 @@ binom.confint(10, 100)
 
 #@ library(Hmisc) ====
 library(Hmisc)
-?binconf
+# ?binconf
 binconf(10, 100, method = "all")
 # > binconf(10, 100, method = "all")
 #            PointEst      Lower     Upper

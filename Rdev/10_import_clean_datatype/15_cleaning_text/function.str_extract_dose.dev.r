@@ -25,7 +25,7 @@ tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
 # # ... with 39 more rows
 
 
-?str_extract_all
+# ?str_extract_all
 
 "a" |> str_extract_all("[0-9]+")
 "a" |> str_extract_all("[0-9]+") |> str_extract_all("[0-9]+")

@@ -6,7 +6,7 @@
 
 tribble_paste = datapasta::tribble_paste
 
-?datapasta::tribble_paste
+# ?datapasta::tribble_paste
 datapasta::tribble_paste
 datapasta::tribble_construct
 # > datapasta::tribble_paste
