@@ -80,7 +80,7 @@ if(!"f_df.t.tribble_construct" %in% names(env1)) {
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|# 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#$ list_vec ====
+# \$ list_vec ====
 list_vec = list(`Roboto Condensed` = c("\ttexmf-dist/fonts/opentype/google/roboto", 
 "\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto", 
 "\ttexmf-dist/fonts/vf/google/roboto", "."), `Roboto Serif` = c("\ttexmf-dist/fonts/opentype/google/roboto", 
@@ -130,7 +130,7 @@ f_vec.dput_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#$ list_vec.formatted ====
+# \$ list_vec.formatted ====
 space_between_vec_elements="\n  "
 list_vec.formatted <- map(names(list_vec), function(name) {
         paste0('"', name, '" = ', f_vec.format_line_by_line(list_vec[[name]], space_between_vec_elements))

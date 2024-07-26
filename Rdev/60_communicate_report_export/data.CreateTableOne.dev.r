@@ -85,7 +85,7 @@ cat("# ",'sourcename_root = "',sourcename_root,'"', "\n",
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) data -----
-#$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
+# \$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
 path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
