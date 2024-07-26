@@ -15,7 +15,7 @@ if(env1$print.intermediate) {CodeText2Print = "env1$print.intermediate"; print(i
 # # #         https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.dev.r
 # # # source("https://github.com/mkim0710/tidystat/raw/master/env1$env.internal.source.r")
 # # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/env1$env.internal.dev.r")
-# # # "D:/OneDrive/[][Rproject]/github_tidystat/env1$env.internal.source.r" %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)})
+# # # "D:/OneDrive/[][Rproject]/github_tidystat/env1$env.internal.source.r" |> file.edit()
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
