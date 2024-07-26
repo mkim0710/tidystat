@@ -2,7 +2,7 @@
 
 
 #@ ?factor ====
-?factor
+# ?factor
 # Usage
 # 
 # factor(x = character(), levels, labels = levels,

@@ -28,8 +28,8 @@ plot_surv200401$stage2 %>% table #----
 library(survival)
 library(survminer)
 
-?survival::Surv
-?survival::survfit
+# ?survival::Surv
+# ?survival::survfit
 AnalyticDataset = plot_surv200401 %>% mutate(
     time = FU
     , event = SURV
@@ -57,7 +57,7 @@ AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, dat
 AnalyticDataset.survfit_byPredictedStage <- survfit(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
 
 
-?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
+# ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "event")
@@ -159,7 +159,7 @@ AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
 
 # http://www.sthda.com/english/wiki/survminer-0-3-0
 
-?pairwise_survdiff
+# ?pairwise_survdiff
 AnalyticDataset.pairwise_survdiff <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 AnalyticDataset.pairwise_survdiff
 AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
@@ -222,7 +222,7 @@ AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = 
 
 
 
-?pairwise_survdiff
+# ?pairwise_survdiff
 AnalyticDataset.pairwise_survdiff_bonferroni <- pairwise_survdiff(Surv(time = time, event = event) ~ Group, data = AnalyticDataset, p.adjust.method = "bonferroni")
 AnalyticDataset.pairwise_survdiff_bonferroni
 AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----

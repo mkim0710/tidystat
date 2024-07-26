@@ -3,8 +3,8 @@
 # mscan_pregcohort_r4.sas7bdat.01sample) first pregid for each ENROLID.r
 
 
-?top_n
-?min_rank
+# ?top_n
+# ?min_rank
 top_n
 # > top_n
 # function (x, n, wt) 
@@ -30,9 +30,9 @@ top_n
 # <bytecode: 0x00000000036b7e88>
 # <environment: namespace:dplyr>
 
-?top_n
-?min_rank
-?rank
+# ?top_n
+# ?min_rank
+# ?rank
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) |> rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID
     {f = function(df) df %>% group_by(ENROLID) %>% summarize(lmp = min(lmp)) %>% left_join(df); f(.)} ## group_by(ENROLID) %>% dplyr::filter(min_rank(lmp) == 1) ----
 mscan_pregcohort_r4.sas7bdat.01sample %>% select(pregid, enrolid_mom, lmp, enddate) |> rename(ENROLID = enrolid_mom) %>%  ## for each pregid: enrolid_mom, lmp, enddate -> join claims via ENROLID

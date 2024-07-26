@@ -11,13 +11,13 @@ packageVersion("icd")
 # [1] ‘4.0.9’
 
 
-?icd9_chapters
-?icd9_sub_chapters
+# ?icd9_chapters
+# ?icd9_sub_chapters
 
-?icd9_majors
+# ?icd9_majors
 
-?icd9_names_multi_ccs
-?icd9_names_single_ccs
+# ?icd9_names_multi_ccs
+# ?icd9_names_single_ccs
 
 
 icd9_chapters |> str() #-----

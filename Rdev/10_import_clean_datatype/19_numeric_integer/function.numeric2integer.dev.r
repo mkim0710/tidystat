@@ -47,7 +47,7 @@ sprintf_but_ceiling5 = function(fmt='%#.2f', x, ...) {
 
 
 #@ ?round
-?round
+# ?round
 # Description
 # ceiling takes a single numeric argument x and returns a numeric vector containing the smallest integers not less than the corresponding elements of x.
 # floor takes a single numeric argument x and returns a numeric vector containing the largest integers not greater than the corresponding elements of x.

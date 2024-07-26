@@ -68,7 +68,7 @@ dput(options("RStata.StataVersion"))
 
 
 
-?power.t.test
+# ?power.t.test
 # Usage
 # power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
 #              power = NULL,
@@ -101,7 +101,7 @@ dput(options("RStata.StataVersion"))
 # If strict = TRUE is used, the power will include the probability of rejection in the opposite direction of the true effect, in the two-sided case. Without this the power will be half the significance level if the true difference is zero.
 
 
-?pwr.t.test
+# ?pwr.t.test
 # Usage
 # pwr.t.test(n = NULL, d = NULL, sig.level = 0.05, power = NULL, 
 #     type = c("two.sample", "one.sample", "paired"),
@@ -291,7 +291,7 @@ stata.out
 # => n2?
 
 
-?pwr.t2n.test
+# ?pwr.t2n.test
 # Usage
 # pwr.t2n.test(n1 = NULL, n2= NULL, d = NULL, sig.level = 0.05, power = NULL,
 #  alternative = c("two.sided", 

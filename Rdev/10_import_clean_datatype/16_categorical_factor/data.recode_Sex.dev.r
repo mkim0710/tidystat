@@ -6,7 +6,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) |> summary() #-----
 #  1:148042  
 #  2:135756 
 
-?dplyr::recode
+# ?dplyr::recode
 factor_vec <- factor(c("a", "b", "c"))
 recode(factor_vec, a = "Apple", .default = levels(factor_vec))
 recode(factor_vec, c = "Apple", .default = levels(factor_vec))

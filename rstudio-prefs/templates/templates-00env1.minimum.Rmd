@@ -318,7 +318,7 @@ options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
 # suppressPackageStartupMessages(library(survminer))
-?survival::lung
+# ?survival::lung
 DataSetName = "analyticDF_time2event"
 assign(
     DataSetName, 

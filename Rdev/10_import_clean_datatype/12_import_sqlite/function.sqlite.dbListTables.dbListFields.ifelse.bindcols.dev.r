@@ -333,7 +333,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(
 
 
 #@ mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() ------
-?unique
+# ?unique
 mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()
 mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() |> str()
 # > mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()

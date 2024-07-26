@@ -523,7 +523,7 @@ function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
     out
 }
 
-?rep
+# ?rep
 #@ function.pairwise.data_frame = function(vars) { ======
 function.pairwise.data_frame = function(vars, only.lower.tri = T) {
     # source("https://github.com/mkim0710/tidystat/raw/master/function.pairwise.data_frame.dev.r")

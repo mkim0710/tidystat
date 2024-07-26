@@ -118,8 +118,8 @@ list.files.rda |> dput()
 # # "trainsetCC69agg4i07_829.cv.glmnet_alphas_cox", "trainsetCC69agg4i07_829"
 # # )
 
-?rm
-?parent.env
+# ?rm
+# ?parent.env
 list.files.rda.data.frame = list.files.rda %>% map_chr(function(i) {
     print(i)
     load(paste0("data/", i, ".rda"))

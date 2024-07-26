@@ -26,9 +26,9 @@ dput(Sys.info()) #----
 
 
 
-?as.hexmode
-?octmode
-?strtoi
+# ?as.hexmode
+# ?octmode
+# ?strtoi
 4520 %>% as.octmode
 4520 %>% as.hexmode
 4520 %>% as.hexmode |> dput()

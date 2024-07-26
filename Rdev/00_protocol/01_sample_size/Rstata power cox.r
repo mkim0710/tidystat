@@ -58,7 +58,7 @@ dput(options("RStata.StataVersion"))
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ two proportion ====
 
-?ES.h
+# ?ES.h
 # Compute effect size h for two proportions
 # Usage
 # ES.h(p1, p2)

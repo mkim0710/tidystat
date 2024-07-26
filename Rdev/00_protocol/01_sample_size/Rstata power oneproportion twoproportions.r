@@ -66,7 +66,7 @@ dput(options("RStata.StataVersion"))
 # => n? 
 
 
-?pwr.p.test
+# ?pwr.p.test
 # Usage
 # pwr.p.test(h = NULL, n = NULL, sig.level = 0.05, power = NULL,
 #     alternative = c("two.sided","less","greater"))
@@ -187,7 +187,7 @@ stata.out
 # => n1? n2?
 
 
-?power.prop.test  # Caution) this is for Two-Sample Test for Proportions~!!! -----
+# ?power.prop.test  # Caution) this is for Two-Sample Test for Proportions~!!! -----
 # Usage
 # power.prop.test(n = NULL, p1 = NULL, p2 = NULL, sig.level = 0.05,
 #                 power = NULL,
@@ -245,7 +245,7 @@ power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "
 # NOTE: n is number in *each* group
 
 
-?pwr.2p.test
+# ?pwr.2p.test
 # Usage
 # pwr.2p.test(h = NULL, n = NULL, sig.level = 0.05, power = NULL, 
 #     alternative = c("two.sided","less","greater"))
@@ -264,7 +264,7 @@ power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "
 # Details
 # Exactly one of the parameters 'h','n', 'power' and 'sig.level' must be passed as NULL, and that parameter is determined from the others. Notice that the last one has non-NULL default so NULL must be explicitly passed if you want to compute it.
 
-?ES.h
+# ?ES.h
 # ES.h {pwr}	R Documentation
 # Effect size calculation for proportions
 # Description
@@ -372,7 +372,7 @@ stata.out
 # => n2?
 
 
-?pwr.2p2n.test
+# ?pwr.2p2n.test
 # Usage
 # pwr.2p2n.test(h = NULL, n1 = NULL, n2 = NULL, sig.level = 0.05, power = NULL,
 #     alternative = c("two.sided", "less","greater"))
@@ -595,7 +595,7 @@ stata.out
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ Cox ====
 
-?ES.h
+# ?ES.h
 # Compute effect size h for two proportions
 # Usage
 # ES.h(p1, p2)

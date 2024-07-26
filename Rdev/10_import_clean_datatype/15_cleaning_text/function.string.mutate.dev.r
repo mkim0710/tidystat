@@ -5,7 +5,7 @@
 
 
 #@ ?nchar ====
-?nchar
+# ?nchar
 # Usage
 # nchar(x, type = "chars", allowNA = FALSE, keepNA = NA)
 # nzchar(x, keepNA = FALSE)
@@ -71,7 +71,7 @@ stopifnot(apply(ncT, 1, function(.) length(unique(.))) == 1,
 
 
 #@ ?substr ====
-?substr
+# ?substr
 # Usage
 # substr(x, start, stop)
 # substring(text, first, last = 1000000L)
@@ -116,7 +116,7 @@ x
 
 
 #@ ?regmatches =====
-?regmatches
+# ?regmatches
 # Usage
 # regmatches(x, m, invert = FALSE)
 # regmatches(x, m, invert = FALSE) <- value
@@ -1250,7 +1250,7 @@ sub(paste('.+(?=.{', n, '})', sep=""), "", string, perl=T)
 
 
 #@ ?boundary ====
-?boundary
+# ?boundary
 pattern <- "a.b"
 strings <- c("abb", "a.b")
 str_detect(strings, pattern)

@@ -4,31 +4,31 @@ library(tidyverse)
 library(icd)
 packageVersion("icd")
 
-?icd10_chapters
-?icd10_sub_chapters
-?icd10_comorbid
-?icd10_comorbid_ahrq
-?icd10_comorbid_ccs
-?icd10_comorbid_charlson
-?icd10_comorbid_elix
-?icd10_comorbid_hcc
-?icd10_comorbid_pccc_dx
-?icd10_comorbid_pccc_pcs
-?icd10_comorbid_quan_deyo
-?icd10_comorbid_quan_elix
-?icd10_comorbid_reduce
+# ?icd10_chapters
+# ?icd10_sub_chapters
+# ?icd10_comorbid
+# ?icd10_comorbid_ahrq
+# ?icd10_comorbid_ccs
+# ?icd10_comorbid_charlson
+# ?icd10_comorbid_elix
+# ?icd10_comorbid_hcc
+# ?icd10_comorbid_pccc_dx
+# ?icd10_comorbid_pccc_pcs
+# ?icd10_comorbid_quan_deyo
+# ?icd10_comorbid_quan_elix
+# ?icd10_comorbid_reduce
 
 
-?icd10_map_ahrq
-?icd10_map_ahrq_pcs
-?icd10_map_cc
-?icd10_map_ccs
-?icd10_map_charlson
-?icd10_map_elix
-?icd10_map_pccc_dx
-?icd10_map_pccc_pcs
-?icd10_map_quan_deyo
-?icd10_map_quan_elix
+# ?icd10_map_ahrq
+# ?icd10_map_ahrq_pcs
+# ?icd10_map_cc
+# ?icd10_map_ccs
+# ?icd10_map_charlson
+# ?icd10_map_elix
+# ?icd10_map_pccc_dx
+# ?icd10_map_pccc_pcs
+# ?icd10_map_quan_deyo
+# ?icd10_map_quan_elix
 
 
 icd10cm2019 |> str() #-----

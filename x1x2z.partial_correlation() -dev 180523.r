@@ -209,7 +209,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 #     z = stackloss$Acid.Conc., p.value = T) 
 
 
-?cor.test
+# ?cor.test
 #@ cor.test() -----
 cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
 cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
@@ -433,7 +433,7 @@ out |> unlist() |> str()
 #  Named num [1:22] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 #  - attr(*, "names")= chr [1:22] "pearson.unadjusted_cor" "pearson.unadjusted_corconf.int1" "pearson.unadjusted_corconf.int2" "pearson.unadjusted_corp.value" ...
 
-?flatten
+# ?flatten
 out %>% flatten |> str()
 # > out %>% flatten |> str()
 # List of 22

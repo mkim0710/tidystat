@@ -374,7 +374,7 @@ txt %>% gsub("\\b", '\\"', .)
 
 
 #@ ?boundary ====
-?boundary
+# ?boundary
 pattern <- "a.b"
 strings <- c("abb", "a.b")
 str_detect(strings, pattern)

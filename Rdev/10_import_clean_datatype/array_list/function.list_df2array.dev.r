@@ -508,7 +508,7 @@ for (i in 1:5) {
 
 
 # https://stackoverflow.com/questions/4310727/what-is-rs-multidimensional-equivalent-of-rbind-and-cbind =====
-?abind::abind()
+# ?abind::abind()
 
 library(abind)
 x = cbind(1:2,3:4)
@@ -600,8 +600,8 @@ abind(x, y, along = 3)
 # [2,]          1  3629      624
 
 
-?reduce
-?paste
+# ?reduce
+# ?paste
 #@ data.mice.group_by_exposure.summarize_n_event ====
 data.mice.group_by_exposure.summarize_n_event = list()
 data.mice.group_by_exposure.summarize_n_event$min = 
