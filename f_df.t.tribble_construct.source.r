@@ -630,7 +630,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ global functions ----
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## $ objectname = "f_df.tribble_construct" ----
+## \$ objectname = "f_df.tribble_construct" ----
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
 objectname = "f_df.tribble_construct"
@@ -642,7 +642,7 @@ packageStartupMessage(paste0("Loading: ", "env1$", objectname));
 env1[[objectname]] = object
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
-## $ objectname = "f_df.transpose" ----
+## \$ objectname = "f_df.transpose" ----
 objectname = "f_df.transpose"
 object = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
@@ -652,7 +652,7 @@ object = function(df, varname4rowname = "varname") {
 packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
 env1[[objectname]] = object
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## $ objectname = "f_df.t.tribble_construct" ----
+## \$ objectname = "f_df.t.tribble_construct" ----
 objectname = "f_df.t.tribble_construct"
 object = function(df) {
     out = env1$f_df.transpose(df)
@@ -663,7 +663,7 @@ packageStartupMessage(paste0("Loading: ", "env1$", objectname));
 env1[[objectname]] = object
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
-## $ objectname = "f_vec.dput_line_by_line" ----
+## \$ objectname = "f_vec.dput_line_by_line" ----
 objectname = "f_vec.dput_line_by_line"
 # object = function(vec) {
 #     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') |> paste0('c("',.,'")\n') |> cat("  \n", sep="")
@@ -684,7 +684,7 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
-## $ objectname = "f_list.dput_line_by_line" ----
+## \$ objectname = "f_list.dput_line_by_line" ----
 objectname = "f_list.dput_line_by_line"
 object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
@@ -709,7 +709,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## $ objectname = "f_vec1_vec2.setdiff" ----
+## \$ objectname = "f_vec1_vec2.setdiff" ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
 objectname = "f_vec1_vec2.setdiff"
 object = function(vec1, vec2) {

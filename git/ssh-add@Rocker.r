@@ -18,7 +18,7 @@ str_extract(system.output_vec, "[0-9]+$")
 
 
 
-## $ system('ps aux | grep ssh-agent') ------
+## \$ system('ps aux | grep ssh-agent') ------
 system('ps aux | grep ssh-agent')
 # > system('ps aux | grep ssh-agent')
 # rstudio   2732  0.0  0.0   7980  3496 ?        Ss   07:59   0:00 ssh-agent -s
@@ -31,7 +31,7 @@ system('ps aux | grep ssh-agent')
 # system("kill 3214")
 
 
-## $ cat ~/.ssh/ssh-agent.socket -------
+## \$ cat ~/.ssh/ssh-agent.socket -------
 system.output_vec = system('
 cat ~/.ssh/ssh-agent.socket
        ', intern = TRUE); dput(system.output_vec)
@@ -150,7 +150,7 @@ echo "export SSH_AGENT_PID=$SSH_AGENT_PID" >> ~/.ssh/ssh-agent.socket
 
 
 
-## $ system('ps aux | grep ssh-agent') ------
+## \$ system('ps aux | grep ssh-agent') ------
 system('ps aux | grep ssh-agent')
 # > system('ps aux | grep ssh-agent')
 # rstudio   2732  0.0  0.0   7980  3496 ?        Ss   07:59   0:00 ssh-agent -s
@@ -160,7 +160,7 @@ system('ps aux | grep ssh-agent')
 # system("kill 3214")
 
 
-## $ cat ~/.ssh/ssh-agent.socket -------
+## \$ cat ~/.ssh/ssh-agent.socket -------
 system.output_vec = system('
 cat ~/.ssh/ssh-agent.socket
        ', intern = TRUE); dput(system.output_vec)

@@ -28,17 +28,17 @@ head(filelist)
 md5s <- sapply(filelist, digest, file = TRUE, algo = "md5", length = 5000)        
 duplicate_files = split(filelist, md5s)    
 head(duplicate_files)    
- ## $`56fd210390058f97ccba512db9b23b89`
+ ## \$`56fd210390058f97ccba512db9b23b89`
  ## [1] "/Users/user/test_photo/folder_a/IMG_3480 copy.JPG"
  ## [2] "/Users/user/test_photo/folder_a/IMG_3480.JPG"     
  ## 
- ## $c142f7904e355be0c1f6d38211ed602f
+ ## \$c142f7904e355be0c1f6d38211ed602f
  ## [1] "/Users/user/test_photo/folder_a/IMG_3482 copy.JPG"
  ## [2] "/Users/user/test_photo/folder_a/IMG_3482.JPG"     
  ## [3] "/Users/user/test_photo/folder_b/IMG_3482 copy.JPG"
  ## [4] "/Users/user/test_photo/folder_b/IMG_3482.JPG"     
  ## 
- ## $e6ecbcc84eca1c044fcf8669db1882fa
+ ## \$e6ecbcc84eca1c044fcf8669db1882fa
  ## [1] "/Users/user/test_photo/folder_a/IMG_3481 copy.JPG"
  ## [2] "/Users/user/test_photo/folder_a/IMG_3481.JPG"     
  ## [3] "/Users/user/test_photo/folder_b/IMG_3481.JPG"
@@ -51,17 +51,17 @@ length(x) > 1
 })    
 z3 = split(z, z2)    
 head(z3$"TRUE")  
-## $`56fd210390058f97ccba512db9b23b89`
+## \$`56fd210390058f97ccba512db9b23b89`
 ## [1] "/Users/user/test_photo/folder_a/IMG_3480 copy.JPG"
 ## [2] "/Users/user/test_photo/folder_a/IMG_3480.JPG"     
 ## 
-## $c142f7904e355be0c1f6d38211ed602f
+## \$c142f7904e355be0c1f6d38211ed602f
 ## [1] "/Users/user/test_photo/folder_a/IMG_3482 copy.JPG"
 ## [2] "/Users/user/test_photo/folder_a/IMG_3482.JPG"     
 ## [3] "/Users/user/test_photo/folder_b/IMG_3482 copy.JPG"
 ## [4] "/Users/user/test_photo/folder_b/IMG_3482.JPG"     
 ## 
-## $e6ecbcc84eca1c044fcf8669db1882fa
+## \$e6ecbcc84eca1c044fcf8669db1882fa
 ## [1] "/Users/user/test_photo/folder_a/IMG_3481 copy.JPG"
 ## [2] "/Users/user/test_photo/folder_a/IMG_3481.JPG"     
 ## [3] "/Users/user/test_photo/folder_b/IMG_3481.JPG"
@@ -79,16 +79,16 @@ for (itm in filelist) {
 # … which also produces the desired output (albeit a little less elegantly):
 
 head(fl)             
-## $`5715b719723c5111b3a38a6ff8b7ca56`
+## \$`5715b719723c5111b3a38a6ff8b7ca56`
 ## [1] "/Users/user/test_photo/folder_a/IMG_3480 copy.JPG"
 ## [2] "/Users/user/test_photo/folder_a/IMG_3480.JPG"     
 ## 
-## $`24fd4d7d252ca66c8d7a88b539c55112`
+## \$`24fd4d7d252ca66c8d7a88b539c55112`
 ## [1] "/Users/user/test_photo/folder_a/IMG_3481 copy.JPG"
 ## [2] "/Users/user/test_photo/folder_a/IMG_3481.JPG"     
 ## [3] "/Users/user/test_photo/folder_b/IMG_3481.JPG"     
 ## 
-## $`2a1d668c874dc856b9df0fbf3f2e81ec`
+## \$`2a1d668c874dc856b9df0fbf3f2e81ec`
 ## [1] "/Users/user/test_photo/folder_a/IMG_3482 copy.JPG"
 ## [2] "/Users/user/test_photo/folder_a/IMG_3482.JPG"     
 ## [3] "/Users/user/test_photo/folder_b/IMG_3482 copy.JPG"

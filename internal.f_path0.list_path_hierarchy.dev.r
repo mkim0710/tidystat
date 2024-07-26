@@ -362,7 +362,7 @@ print(list_paths)
 # source("https://github.com/mkim0710/tidystat/raw/master/internal.f_path0.list_path_hierarchy.source.r")
 sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(!sourcename %in% names(env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(env1$source[[sourcename]])}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### $ list_path_hierarchy  =======
+### \$ list_path_hierarchy  =======
 max_hierarchy = 5
 env1$path$list_path_hierarchy = env1$path$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), max_hierarchy = max_hierarchy, print.intermediate = FALSE)
 for (i in 1:(max_hierarchy)) {
