@@ -229,7 +229,8 @@ str(env1$path)
 # source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env1$env.internal.source.r"))
 # # source(file.path("https://github.com/mkim0710/tidystat/raw/master", "env1$env.internal.source.r"))
 
-# # \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
 # objectname = "get_system_info"
 # source(file.path(env1$path$source_base,"",paste0(objectname,".source.r")))
 
