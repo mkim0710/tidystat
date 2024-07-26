@@ -361,7 +361,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
   
 ```
   
-## ------ < Key Variables Check > ----  
+## ---- < Key Variables Check > ----  
 ### \$ varname4ID  ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -406,7 +406,7 @@ options(width=120)
 ```
   
   
-## ------ < Data Availability Check > ----  
+## ---- < Data Availability Check > ----  
 ### \$ paste0(DataSetName,".Date",".NA",".rmAllNA")  ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -424,7 +424,7 @@ cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","  \n", sep="")
 ```
   
   
-## ------ < DataSet Summary > ----  
+## ---- < DataSet Summary > ----  
 ### \$ paste0(DataSetName,".Date",".NA",".rmAllNA",".fct") ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
