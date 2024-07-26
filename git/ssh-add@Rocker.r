@@ -39,7 +39,7 @@ cat ~/.ssh/ssh-agent.socket
 
 #@ Reusing Existing SSH Agents -dev ====
 
-## % parts  ----
+## \% parts  ----
 system.output_vec = system('
 # Source the existing agent details if available
 if [ -f ~/.ssh/ssh-agent.socket ]; then
@@ -57,7 +57,7 @@ echo "Stored SSH_AGENT_PID: $SSH_AGENT_PID"
 
 
 
-## % parts test ----
+## \% parts test ----
 system.output_vec = system('
 [ -z "$SSH_AGENT_PID" ]
 echo $?  # Outputs the exit status of the last command, 0 for true, non-0 for false

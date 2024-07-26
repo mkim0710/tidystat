@@ -44,11 +44,11 @@
 # options(graphics.record=TRUE)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# ### % search() @ default Rocker 4.3.3
+# ### \% search() @ default Rocker 4.3.3
 # search() |> deparse() |> cat("  \n", sep="") 
 # c(".GlobalEnv", "tools:rstudio", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")
 # 
-# ### % search() @ default Rocker 4.3.3 + library(tidyverse)
+# ### \% search() @ default Rocker 4.3.3 + library(tidyverse)
 # library(tidyverse)
 # search() |> deparse() |> cat("  \n", sep="") 
 # c(".GlobalEnv", "package:lubridate", "package:forcats", "package:stringr", "package:dplyr", "package:purrr", "package:readr", "package:tidyr", "package:tibble", "package:ggplot2", "package:tidyverse", "tools:rstudio", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")
