@@ -137,7 +137,7 @@ if(!"f_df.t.tribble_construct" %in% names(env1)) {
 # https://chatgpt.com/c/9faf244b-181e-47ec-ae76-841d14f50e0f
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## % search()  -----
+## \% search()  -----
 search() |> deparse() |> cat("  \n", sep="")
 # > search() |> deparse() |> cat("  \n", sep="")
 # c(".GlobalEnv", "package:lubridate", "package:forcats", "package:stringr",  "package:dplyr", "package:purrr", "package:readr", "package:tidyr",  "package:tibble", "package:ggplot2", "package:tidyverse", "tools:rstudio",  "package:stats", "package:graphics", "package:grDevices", "package:utils",  "package:datasets", "package:methods", "Autoloads", "package:base" )

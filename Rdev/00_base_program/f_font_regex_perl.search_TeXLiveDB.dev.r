@@ -118,7 +118,7 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) font_filename ====
-### % f_font_filename.search_path_local ====
+### \% f_font_filename.search_path_local ====
 f_font_filename.search_path_local <- function(font_filename) {
     vec_path.file <- tinytex::tlmgr_search(what = font_filename, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
     vec_path = vec_path.file |> dirname() |> unique() |> sort()
@@ -145,7 +145,7 @@ f_font_filename.search_path_local <- function(font_filename) {
 #   "	texmf-dist/tex/latex/inconsolata")
 
 
-### % f_vec_font_filename.search_path_local ====
+### \% f_vec_font_filename.search_path_local ====
 f_vec_font_filename.search_path_local <- function(vec_font_filename) {
     if(is.null(names(vec_font_filename))) vec_font_filename = vec_font_filename %>% set_names()
     names(vec_font_filename)[names(vec_font_filename)==""] = vec_font_filename[names(vec_font_filename)==""]
@@ -190,7 +190,7 @@ vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
-### % f_font_regex_perl.search_path_local ====
+### \% f_font_regex_perl.search_path_local ====
 f_font_regex_perl.search_path_local <- function(font_regex_perl) {
     if(length(font_regex_perl) > 1) error("font_regex_perl must be a single string.")
     vec_path.file <- tinytex::tlmgr_search(what = font_regex_perl, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
@@ -806,7 +806,7 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/usr/local/texlive", "/usr/local/te
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
-### % f_filename.unix_find_path_local ====
+### \% f_filename.unix_find_path_local ====
 f_filename.unix_find_path_local <- function(filename) {
     vec_path.file <- paste0('sudo find / -type f -iname "*',filename,'*"') |> system(intern = TRUE)
     vec_path = vec_path.file |> dirname() |> unique() |> sort()
@@ -889,7 +889,7 @@ vec_font_regex_perl |> map(f_font_regex_perl.search_path_local) |> env1$f_list.d
 #          NULL))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
-### % f_font_regex_perl.search_TeXLiveDB ====
+### \% f_font_regex_perl.search_TeXLiveDB ====
 f_font_regex_perl.search_TeXLiveDB <- function(font_regex_perl) {
     if(length(font_regex_perl) > 1) error("font_regex_perl must be a single string.")
     vec_path.file <- tinytex::tlmgr_search(what = font_regex_perl, file = TRUE, all = FALSE, global = TRUE, stdout = TRUE)
