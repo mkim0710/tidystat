@@ -119,7 +119,7 @@ tlmgr_installed_packages |> str()
 tlmgr_installed_packages |> env1$f_vec.dput_line_by_line()
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## $ tlmgr_installed_packages.ASRockX300Ryzen5600G ====
+## \$ tlmgr_installed_packages.ASRockX300Ryzen5600G ====
 tlmgr_installed_packages.ASRockX300Ryzen5600G = 
 c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
@@ -252,7 +252,7 @@ tlmgr_installed_packages.ASRockX300Ryzen5600G |> str()  ### ----
 ### > tlmgr_installed_packages.ASRockX300Ryzen5600G %>% str  ### ----
 #  chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## $ tlmgr_installed_packages.MAGB760M13700KF ====
+## \$ tlmgr_installed_packages.MAGB760M13700KF ====
 tlmgr_installed_packages.MAGB760M13700KF = 
 c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
@@ -424,7 +424,7 @@ c("i arphic: Arphic (Chinese) font packages",
   "i xpatch: Extending etoolbox patching commands")
 
 
-## $ tlmgr_installed_packages.RockerVerse ====
+## \$ tlmgr_installed_packages.RockerVerse ====
 tlmgr_installed_packages.RockerVerse = c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
