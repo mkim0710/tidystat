@@ -138,9 +138,9 @@ if(!"f_df.t.tribble_construct" %in% names(env1)) {
 subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "default.template" |> paste0(".source.r")
-subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
 # \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
-# source( file.path(env1$path$source_base,subpath.filename.source.r) )
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); 
+if(!sourcename %in% names(env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(env1$source[[sourcename]])}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$path$subpath = subpath
 sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
@@ -174,7 +174,7 @@ if(sourcename |> str_detect("^default")) { packageStartupMessage('sourcename |> 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) data -----
-# #$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ====
+# # \$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ====
 # # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # subpath = "data"

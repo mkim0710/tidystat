@@ -196,7 +196,7 @@ env1$info$info_software_versions = env1$info$get_software_versions(library_names
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
-#$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ----  
+# \$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ----  
 # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 subpath = "data"

@@ -98,7 +98,7 @@ if(sourcename == "default.template") { warning('sourcename == "default.template"
 source("f_objectname.read.checkEntity.source.r")
 
 
-#$ objectname = "fhs.index100le10" =======
+# \$ objectname = "fhs.index100le10" =======
 objectname = "fhs.index100le10"
 env1$f_objectname.read.checkEntity(objectname = objectname)
 env1$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")

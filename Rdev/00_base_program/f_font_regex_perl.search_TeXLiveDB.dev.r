@@ -178,7 +178,7 @@ c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local(
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) font_regex_perl  ====
-##$ vec_font_regex_perl =====
+## \$ vec_font_regex_perl =====
 # c("Roboto Condensed", "Roboto Serif", "Cascadia Code Semibold", "NanumMyeongjo", "NanumGothic", "D2Coding")
 vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
   "Roboto Serif" = "(?i)roboto.*serif",

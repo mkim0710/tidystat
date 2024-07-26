@@ -75,9 +75,9 @@ paste0("[Working Files List] ",basename(getwd()),".r") %>% {.[file.exists(.)]} |
 subpath=r"(Rdev/10_import_clean_datatype/11_metadata)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(subpath!="") utils::browseURL(normalizePath(subpath))
 sourcename = "f_vecID.nestedSample" |> paste0(".source.r")
-subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
 # \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
-# source( file.path(env1$path$source_base,subpath.filename.source.r) )
+subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); 
+if(!sourcename %in% names(env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(env1$source[[sourcename]])}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$path$subpath = subpath
 sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
@@ -138,7 +138,7 @@ PERSON_ID %>% f_vecID.nestedSample() %>% str()
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) data -----
-#$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
+# \$ assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ) ====
 path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 if(file.exists(paste0(path4read,"/",objectname,".rds"))) assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) )
