@@ -24,7 +24,7 @@ data.numeric.gather.group_by.summarise_all = function(data, round_digits = 3) {
     data.numeric.colnames = colnames(data)[map_lgl(data, is.numeric)]
     data = data[, which(map_lgl(data, is.numeric))]
     # data %>% gather %>% group_by(variable) %>% summarize_all(funs(mean,sd))
-    out = data %>% gather(key = "variable") %>% group_by(variable) %>% summarize_all(funs(mean, sd, min, Q1, median, Q2, max)) %>% map_df(function(x) {if(is.numeric(x)) {x = round(x, round_digits)}; x})
+    out = data %>% gather(key = "variable") %>% group_by(variable) %>% summarize_all(funs(mean, sd, min, Q1, median, Q2, max)) %>% map_df(function(x) {if(is.numeric(x)) {x = round(x, round_digits)}  ;   x})
     out = out %>% as.data.frame %>% column_to_rownames("variable") %>% t
     out = out[, data.numeric.colnames]
     out

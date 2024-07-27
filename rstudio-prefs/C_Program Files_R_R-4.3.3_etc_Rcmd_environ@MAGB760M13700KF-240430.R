@@ -6,9 +6,9 @@ R_ARCH=
 
 ## from Rcmd
 R_OSTYPE=windows
-TEXINPUTS=.;${TEXINPUTS};${R_SHARE_DIR}/texmf/tex/latex;
-BIBINPUTS=.;${BIBINPUTS};${R_SHARE_DIR}/texmf/bibtex/bib;
-BSTINPUTS=.;${BSTINPUTS};${R_SHARE_DIR}/texmf/bibtex/bst;
+TEXINPUTS=.;${TEXINPUTS}  ;  ${R_SHARE_DIR}/texmf/tex/latex;
+BIBINPUTS=.;${BIBINPUTS}  ;  ${R_SHARE_DIR}/texmf/bibtex/bib;
+BSTINPUTS=.;${BSTINPUTS}  ;  ${R_SHARE_DIR}/texmf/bibtex/bst;
 
 ## from etc/Renviron
 # R_PLATFORM='i386-pc-mingw32'
@@ -37,5 +37,5 @@ SED=${SED-sed}
 
 R_RTOOLS43_PATH="${RTOOLS43_HOME:-c:/rtools43}/x86_64-w64-mingw32.static.posix/bin;${RTOOLS43_HOME:-c:/rtools43}/usr/bin"
 #   trailing slash to protect against trailing backslash in PATH
-PATH="${R_CUSTOM_TOOLS_PATH:-${R_RTOOLS43_PATH}};${PATH}/"
+PATH="${R_CUSTOM_TOOLS_PATH:-${R_RTOOLS43_PATH}}  ;  ${PATH}/"
 
