@@ -106,7 +106,8 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env
 
 
 #% f_path0.list_path_hierarchy =======
-env1$path$f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+objectname = "f_path0.list_path_hierarchy"
+object <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path <- list()
     
@@ -140,5 +141,9 @@ env1$path$f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), ma
     
     return(list_path_hierarchy)
 }
-
+if(!objectname %in% names(env1$path)) {
+    packageStartupMessage(paste0("Loading: ", "env1$path$", objectname)); 
+    env1$path[[objectname]] = object
+    # cat("> env1$",objectname,"()\n",sep=""); get(objectname, envir=env1)() # Run the loaded function by default
+}
 
