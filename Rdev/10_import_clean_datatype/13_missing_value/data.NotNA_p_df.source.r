@@ -23,8 +23,7 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
-if(!exists("env1", envir=.GlobalEnv))
-    assign("env1", new.env(), envir=.GlobalEnv)
+if(!exists("env1", envir=.GlobalEnv)) assign("env1", new.env(), envir=.GlobalEnv)
 
 env1$data.NotNA_p_df = function(data) {
     out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> setNames("IsNA") |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)

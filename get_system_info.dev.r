@@ -116,8 +116,7 @@ cat("# ",'sourcename_root = "',sourcename_root,'"', "  \n",
 
 
 
-if(!exists("env1", envir=.GlobalEnv))
-    assign("env1", new.env(), envir=.GlobalEnv)
+if(!exists("env1", envir=.GlobalEnv)) assign("env1", new.env(), envir=.GlobalEnv)
 if(!"env.internal" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$env.internal <- new.env()
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 env1$info$DocumentTitle0 = "get_system_info()"
