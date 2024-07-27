@@ -128,8 +128,8 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env
 #     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.dev.Rmd,'")', "  \n",
 #     '# file.edit("',env1$path$source_base_local,"/",env1$path$subpath.filename.source.r,'")', "  \n",
 #     sep="")
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# # \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
 # subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); 
 # if(!sourcename %in% names(env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(env1$source[[sourcename]])}
 #|________________________________________________________________________________|#  
