@@ -92,8 +92,6 @@ sourcename = "f_path.size_files" |> paste0(".source.r")
 library(tidyverse)
 
 if(!exists("env1", envir=.GlobalEnv)) assign("env1", new.env(), envir=.GlobalEnv)
-# env1 = as.environment(env1)
-if(!"env.internal" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$env.internal <- new.env()
 
 if(!"path" %in% names(env1)) {
     env1$path = list()
@@ -101,6 +99,7 @@ if(!"path" %in% names(env1)) {
     objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; env1$path[[objectname]] = object;
     if(!"source_base" %in% names(env1$path)) {env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)}  
 } 
+
 #@ for (env1.dependancy in c("")) { -----
 for (env1.dependancy in c("f_df.tribble_construct")) {
     if(!env1.dependancy %in% names(env1)) {
