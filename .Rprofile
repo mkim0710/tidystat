@@ -84,9 +84,9 @@
     #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
     # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.case_when.benchmark.r
     env1$source$.Rprofile = if (file.exists(".Rprofile")) {
-        normalizePath(".Rprofile", winslash = "/", mustWork = FALSE)
+        normalizePath(".Rprofile", winslash = "/")
     } else if (file.exists(file.path("~", ".Rprofile"))) {
-        normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE)
+        normalizePath(file.path("~", ".Rprofile"), winslash = "/")
     } else {
         NA_character_
     };
