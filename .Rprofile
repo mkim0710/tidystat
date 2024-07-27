@@ -91,7 +91,8 @@
         NA_character_
     };
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-    .GlobalEnv$env1$print.intermediate = FALSE
+    Sys.setenv(print.intermediate = FALSE)
+    Sys.setenv("print.intermediate")==TRUE
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
     ### env1\$env.internal ----  
     # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/env1%24env.internal.source.r"  
