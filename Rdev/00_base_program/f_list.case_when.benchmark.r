@@ -13,22 +13,22 @@ library(purrr)
 # switch_approach <- function() {
 #   .Rprofile.path <- switch(
 #     TRUE,
-#     file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/", mustWork = FALSE),
-#     file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE),
+#     file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/"),
+#     file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/"),
 #     NA_character_
 #   )
 # }
 # # > str(switch_approach())
-# # Class 'formula'  language file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/", mustWork = FALSE)
+# # Class 'formula'  language file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/")
 # #   ..- attr(*, ".Environment")=<environment: 0x55b804e12348> 
 
 
 # Define functions for each approach
 if_approach <- function() {
   if (file.exists(".Rprofile")) {
-    normalizePath(".Rprofile", winslash = "/", mustWork = FALSE)
+    normalizePath(".Rprofile", winslash = "/")
   } else if (file.exists(file.path("~", ".Rprofile"))) {
-    normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE)
+    normalizePath(file.path("~", ".Rprofile"), winslash = "/")
   } else {
     NA_character_
   }
@@ -36,8 +36,8 @@ if_approach <- function() {
 
 case_when_approach <- function() {
   .Rprofile.path <- case_when(
-    file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/", mustWork = FALSE),
-    file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE),
+    file.exists(".Rprofile") ~ normalizePath(".Rprofile", winslash = "/"),
+    file.exists(file.path("~", ".Rprofile")) ~ normalizePath(file.path("~", ".Rprofile"), winslash = "/"),
     TRUE ~ NA_character_
   )
   return(.Rprofile.path)
@@ -49,7 +49,7 @@ keep_map_chr_first_approach <- function() {
     file.path("~", ".Rprofile")
   ) %>%
     keep(file.exists) %>%
-    map_chr(normalizePath, winslash = "/", mustWork = FALSE) %>%
+    map_chr(normalizePath, winslash = "/") %>%
     first(default = NA_character_)
   return(.Rprofile.path)
 }

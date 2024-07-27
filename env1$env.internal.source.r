@@ -144,8 +144,8 @@ env1$env.internal$f_file_PDF.sumatra <- function(
         warning("SumatraPDF.exe not found. Opening file with the system default viewer instead.", call. = FALSE)
         return(invisible(env1$env.internal$f_file.systemStart(file)))
     }
-    file <- normalizePath(file, winslash = "/", mustWork = FALSE)
-    path.SumatraPDF.exe <- normalizePath(path.SumatraPDF.exe, winslash = "/", mustWork = FALSE)
+    file <- normalizePath(file, winslash = "/")
+    path.SumatraPDF.exe <- normalizePath(path.SumatraPDF.exe, winslash = "/")
     if (!file.exists(file)) {
         stop(paste("The following file doesn't exist:", file))
     }

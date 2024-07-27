@@ -86,7 +86,7 @@ f_path.df_dirs_recursive <- function(
             mutate(print_tree_path = map_chr(path.level, ~paste(rep("\t", .x - 1), collapse = "")) |> paste0(path.basename) ) %>%
             mutate(
                 path = full_path %>% {gsub(input_path, "", ., fixed = T)} |> str_replace_all(paste0("^", .Platform$file.sep), "")
-                , normalized_path = normalizePath(full_path, winslash = "/", mustWork = FALSE)
+                , normalized_path = normalizePath(full_path, winslash = "/")
             ) %>% 
             # arrange(path.parent, path.basename) %>% 
             arrange(full_path) %>% 

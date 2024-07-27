@@ -184,7 +184,7 @@ object = function(
         df_dirs_recursive1 = df_dirs_recursive0 %>% 
             mutate(
                 path = full_path %>% {gsub(input_path, "", ., fixed = T)} |> str_replace_all(paste0("^", .Platform$file.sep), "")
-                , normalized_path = normalizePath(full_path, winslash = "/", mustWork = FALSE)
+                , normalized_path = normalizePath(full_path, winslash = "/")
                 , path.parent = dirname(full_path)
                 # , path.parent = if_else(full_path == ".", "..", dirname(full_path))
                 , path.basename = basename(full_path)
