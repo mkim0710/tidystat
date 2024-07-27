@@ -80,6 +80,17 @@
     objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
     objectname = "path1"; object = env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(env1$path$path0), "") |> str_extract("[^/]+")); if(!objectname %in% names(env1$path)) {env1$path[[objectname]] = object};
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+    if(!"source" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$source <- list();
+    #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+    # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.case_when.benchmark.r
+    env1$source$.Rprofile = if (file.exists(".Rprofile")) {
+        normalizePath(".Rprofile", winslash = "/", mustWork = FALSE)
+    } else if (file.exists(file.path("~", ".Rprofile"))) {
+        normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE)
+    } else {
+        NA_character_
+    };
+    #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
     env1$print.intermediate = FALSE
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
     ### env1\$env.internal ----  
@@ -99,14 +110,6 @@
     env1$info$info_system_info = env1$info$get_system_info();
     env1$info$info_system_info |> utils::str();
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-    # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.case_when.benchmark.r
-    env1$source$.Rprofile = if (file.exists(".Rprofile")) {
-        normalizePath(".Rprofile", winslash = "/", mustWork = FALSE)
-    } else if (file.exists(file.path("~", ".Rprofile"))) {
-        normalizePath(file.path("~", ".Rprofile"), winslash = "/", mustWork = FALSE)
-    } else {
-        NA_character_
-    };
     cat("\nLoaded without error: ", env1$info$.Rprofile, "\n"
         , "Today is ", date(), "  \n", sep="");
     cat("\nLoading time for .Rprofile: ", difftime(Sys.time(), t0, units = "secs"), " secs \n", sep="");
