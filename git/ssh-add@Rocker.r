@@ -172,7 +172,7 @@ if(file.exists("~/.ssh/id_ed25519")) {
     path.file_sshKey = "~/.ssh/id_ed25519"
 } else if (file.exists("~/.ssh/id_rsa")) {
     path.file_sshKey = "~/.ssh/id_rsa"
-}; cat("> path.file_sshKey = ",path.file_sshKey,"  \n", sep="")
+}  ;   cat("> path.file_sshKey = ",path.file_sshKey,"  \n", sep="")
 
 system.output_vec = system(paste0('ssh-add ', path.file_sshKey), intern = TRUE); dput(system.output_vec)
 

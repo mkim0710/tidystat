@@ -135,7 +135,7 @@ function.dichotomous2logical = function(vec, dichotomous2integer = F, print.warn
     attributes(vec.out) = vec.attributes
     attributes(vec.out)$n_unique = n_unique
     # attributes(vec.out)$is.dichotomous = is.dichotomous
-    if(text4warning != "") {if(print.warning) {warning(text4warning); cat("  \n", sep="")}; attributes(vec.out)$function.dichotomous2logical = text4warning}
+    if(text4warning != "") {if(print.warning) {warning(text4warning); cat("  \n", sep="")}  ;   attributes(vec.out)$function.dichotomous2logical = text4warning}
     vec.out
 }
 

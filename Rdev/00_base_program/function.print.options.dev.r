@@ -55,7 +55,7 @@ options() |> str(list.len=Inf) #-----
 #  $ error                               : language (function ()  { ...
 #  $ example.ask                         : chr "default"
 #  $ expressions                         : int 5000
-#  $ fansi.css                           : chr "PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em};"
+#  $ fansi.css                           : chr "PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em}  ;  "
 #  $ fansi.ctrl                          : chr "all"
 #  $ fansi.tab.stops                     : int 8
 #  $ fansi.tabs.as.spaces                : logi FALSE

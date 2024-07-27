@@ -267,7 +267,7 @@ trainset.cv.glmnet_alphas_cox = function(
         , png.size = png.size, seed = seed, nfolds = nfolds
     ) # list inside attr() is not shown with str(max.level = 1)
     # print( paste0( return_name , ".cv.glmnet_alphas" ) ); # assign( paste0( return_name, ".cv.glmnet_alphas" ) , return_list , envir=.GlobalEnv) ;
-    out}; # save.image() # update 170509
+    out}  ;   # save.image() # update 170509
 
 #@ test) trainset.cv.glmnet_alphas_cox() CoxExample_tibble ----
 # library(glmnet)

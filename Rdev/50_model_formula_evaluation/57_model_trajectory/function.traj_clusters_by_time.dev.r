@@ -3,7 +3,7 @@
 Sys.setenv(LANG = "en")
 library(tidyverse)
 library(RODBC)
-channel = odbcDriverConnect("Driver= {SQL Server}; server=VITS-ARCHSQLP04; database=DM_DEID")
+channel = odbcDriverConnect("Driver= {SQL Server}  ;   server=VITS-ARCHSQLP04; database=DM_DEID")
 dataset = sqlQuery(channel, paste("
 SELECT *
 FROM [DM_DEID].[jyp2001].[PAT_PHQ_IDEN]

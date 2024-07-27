@@ -50,7 +50,7 @@ library(RODBC)
 # If you are not not in WCMC network, you may have to set-up the MS SQL server, using the 1000 person data set in CDMv5 format provided by LTS Computing LLC. (If you set up some other database software, you may have to change the SQL codes because the syntax may be slightly different.) 
 # Or, you may just skip the library(RODBC) part and go to the library(jsonlite) part.
   
-channel = odbcDriverConnect("Driver= {SQL Server}; server=VITS-ARCHSQLP04; database=OMOP_SYNTHETIC")
+channel = odbcDriverConnect("Driver= {SQL Server}  ;   server=VITS-ARCHSQLP04; database=OMOP_SYNTHETIC")
   
 ```
   
