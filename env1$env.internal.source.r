@@ -8,6 +8,7 @@ if(env1$print.intermediate) {CodeText2Print = "env1$print.intermediate"; print(i
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/env1$env.internal.dev.r")
 # # "D:/OneDrive/[][Rproject]/github_tidystat/env1$env.internal.source.r" |> file.edit()
 # # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/internal.f_path0.list_path_hierarchy.dev.r")
+# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/env1%24env.internal.source.r"  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
