@@ -1,6 +1,5 @@
 sourcename = "env1$env.internal" |> paste0(".source.r")
 if(Sys.getenv("print.intermediate")==TRUE) print(paste0('Sourcing: "',sourcename,'"'))
-if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = "Sys.getenv("print.intermediate")==TRUE"; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}
 # # env1$env.internal.dev.r
 # # env1$env.internal.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.dev.r
