@@ -154,7 +154,7 @@
 \section{@@ START) Data ----}\label{start-data--}}
 
 \hypertarget{datasetname-analyticdf_time2event--}{%
-\subsection{\$ .DataSetName = ``analyticDF\_time2event''
+\subsection{\$ DataSetName = ``analyticDF\_time2event''
 ----}\label{datasetname-analyticdf_time2event--}}
 
 \begin{Shaded}
@@ -163,23 +163,23 @@
 \CommentTok{\#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |\#}
 \CommentTok{\# suppressPackageStartupMessages(library(tidyverse))}
 \CommentTok{\# \#@@ START) data {-}{-}{-}{-}  }
-\CommentTok{\# \# \textbackslash{}$ assign( .DataSetName, read\_rds(paste0(.path4read,"/",.DataSetName,".rds")) ) {-}{-}{-}{-}  }
+\CommentTok{\# \# \textbackslash{}$ assign( DataSetName, read\_rds(paste0(.path4read,"/",DataSetName,".rds")) ) {-}{-}{-}{-}  }
 \CommentTok{\# \# .path4read = file.path(env1$path$path0,"Rproject\_KNHIS.CohortGJ0910 NoHx")}
-\CommentTok{\# \# .DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop\_na.MetS\_NoMeds"}
+\CommentTok{\# \# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop\_na.MetS\_NoMeds"}
 \CommentTok{\# .subpath = "data"}
-\CommentTok{\# .DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"}
+\CommentTok{\# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"}
 \CommentTok{\# path.filename.ext = ifelse(}
-\CommentTok{\#     file.exists(paste0(subpath,"/",.DataSetName,".rds"))}
-\CommentTok{\#     , paste0(subpath,"/",.DataSetName,".rds")}
-\CommentTok{\#     , paste0(env1$path$source\_base\_github,"/",subpath,"/",.DataSetName,".rds")}
+\CommentTok{\#     file.exists(paste0(subpath,"/",DataSetName,".rds"))}
+\CommentTok{\#     , paste0(subpath,"/",DataSetName,".rds")}
+\CommentTok{\#     , paste0(env1$path$source\_base\_github,"/",subpath,"/",DataSetName,".rds")}
 \CommentTok{\# )}
 \CommentTok{\# cat(" path.filename.ext = ", path.filename.ext, "\textbackslash{}n", sep = "")}
-\CommentTok{\# assign( .DataSetName, read\_rds(path.filename.ext) )}
+\CommentTok{\# assign( DataSetName, read\_rds(path.filename.ext) )}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{datasetname-analyticdf_time2event---1}{%
-\subsection{\$ .DataSetName = ``analyticDF\_time2event''
+\subsection{\$ DataSetName = ``analyticDF\_time2event''
 ----}\label{datasetname-analyticdf_time2event---1}}
 
 \begin{Shaded}
@@ -189,9 +189,9 @@
 \CommentTok{\# suppressPackageStartupMessages(library(survival))}
 \CommentTok{\# suppressPackageStartupMessages(library(survminer))}
 \CommentTok{\# ?survival::lung}
-\NormalTok{.DataSetName }\OtherTok{=} \StringTok{"analyticDF\_time2event"}
+\NormalTok{DataSetName }\OtherTok{=} \StringTok{"analyticDF\_time2event"}
 \FunctionTok{assign}\NormalTok{(}
-\NormalTok{    .DataSetName, }
+\NormalTok{    DataSetName, }
 \NormalTok{    survival}\SpecialCharTok{::}\NormalTok{lung }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{event =} \FunctionTok{as.logical}\NormalTok{(status}\DecValTok{{-}1}\NormalTok{), }\AttributeTok{Group =} \FunctionTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{)[sex] }\SpecialCharTok{|\textgreater{}} \FunctionTok{as.factor}\NormalTok{(), }\AttributeTok{StudyPopulation =}\NormalTok{ time }\SpecialCharTok{\textgreater{}=} \DecValTok{30}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
         \CommentTok{\# dplyr::select({-}status, {-}sex)}
 \NormalTok{        dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{status)}
@@ -277,33 +277,33 @@
 \begin{Highlighting}[]
 \FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
 \CommentTok{\# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10\_import\_clean\_datatype/13\_missing\_value/data.NotNA\_p\_df.source.r")}
-\NormalTok{subpath}\OtherTok{=}\NormalTok{r}\StringTok{"(Rdev\textbackslash{}10\_import\_clean\_datatype\textbackslash{}13\_missing\_value)"}\SpecialCharTok{|\textgreater{}}\FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}}\StringTok{"}\NormalTok{,}\StringTok{"/"}\NormalTok{)  }\CommentTok{\# Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \textbackslash{} as an escape character.}
-\NormalTok{sourcename }\OtherTok{=} \StringTok{"data.NotNA\_p\_df"} \SpecialCharTok{|\textgreater{}} \FunctionTok{paste0}\NormalTok{(}\StringTok{".source.r"}\NormalTok{)}
-\NormalTok{subpath.filename.source.r }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(subpath,}\FunctionTok{ifelse}\NormalTok{(subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),sourcename); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,subpath.filename.source.r) ))}
+\NormalTok{.subpath}\OtherTok{=}\NormalTok{r}\StringTok{"(Rdev\textbackslash{}10\_import\_clean\_datatype\textbackslash{}13\_missing\_value)"}\SpecialCharTok{|\textgreater{}}\FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}}\StringTok{"}\NormalTok{,}\StringTok{"/"}\NormalTok{)  }\CommentTok{\# Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \textbackslash{} as an escape character.}
+\NormalTok{.sourcename }\OtherTok{=} \StringTok{"data.NotNA\_p\_df"} \SpecialCharTok{|\textgreater{}} \FunctionTok{paste0}\NormalTok{(}\StringTok{".source.r"}\NormalTok{)}
+\NormalTok{.subpath.filename.source.r }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.sourcename); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,.subpath.filename.source.r) ))}
   
 \NormalTok{varname4ID }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"CompositeKey"}\NormalTok{, }\StringTok{"PERSON\_ID"}\NormalTok{, }\StringTok{"RN\_INDI"}\NormalTok{, }\StringTok{"NIHID"}\NormalTok{)}
-\FunctionTok{get}\NormalTok{(.DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4ID, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(.DataSetName)))] }\SpecialCharTok{|\textgreater{}} \FunctionTok{str}\NormalTok{()}
+\FunctionTok{get}\NormalTok{(DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4ID, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(DataSetName)))] }\SpecialCharTok{|\textgreater{}} \FunctionTok{str}\NormalTok{()}
 \StringTok{\textquotesingle{}data.frame\textquotesingle{}}\SpecialCharTok{:}   \DecValTok{228}\NormalTok{ obs. of  }\DecValTok{0}\NormalTok{ variables}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{get}\NormalTok{(.DataSetName) }\SpecialCharTok{|\textgreater{}} \FunctionTok{dim}\NormalTok{()}
+\FunctionTok{get}\NormalTok{(DataSetName) }\SpecialCharTok{|\textgreater{}} \FunctionTok{dim}\NormalTok{()}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{228}  \DecValTok{12}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{get}\NormalTok{(.DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4ID, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(.DataSetName)))] }\SpecialCharTok{|\textgreater{}} \FunctionTok{n\_distinct}\NormalTok{()}
+\FunctionTok{get}\NormalTok{(DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4ID, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(DataSetName)))] }\SpecialCharTok{|\textgreater{}} \FunctionTok{n\_distinct}\NormalTok{()}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{get}\NormalTok{(.DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4ID, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(.DataSetName)))] }\SpecialCharTok{|\textgreater{}}\NormalTok{ env1}\SpecialCharTok{$}\FunctionTok{data.NotNA\_p\_df}\NormalTok{()}
+\FunctionTok{get}\NormalTok{(DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4ID, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(DataSetName)))] }\SpecialCharTok{|\textgreater{}}\NormalTok{ env1}\SpecialCharTok{$}\FunctionTok{data.NotNA\_p\_df}\NormalTok{()}
 \NormalTok{[}\DecValTok{1}\NormalTok{] RowNum     varname    IsNA       IsNA\_p\_df  NotNA      NotNA\_p\_df NRow      }
 \SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{ rows}\SpecialCharTok{\textgreater{}}\NormalTok{ (or }\DecValTok{0}\SpecialCharTok{{-}}\NormalTok{length row.names)}
 \end{Highlighting}
@@ -313,7 +313,7 @@
 \begin{Highlighting}[]
   
 \NormalTok{varname4CompositKey }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"age"}\NormalTok{, }\StringTok{"sex"}\NormalTok{)}
-\NormalTok{vecCompositeKey }\OtherTok{=} \FunctionTok{get}\NormalTok{(.DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4CompositKey, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(.DataSetName)))] }\SpecialCharTok{|\textgreater{}} \FunctionTok{apply}\NormalTok{(}\AttributeTok{MARGIN =} \DecValTok{1}\NormalTok{, paste0, }\AttributeTok{collapse =} \StringTok{"{-}"}\NormalTok{)}
+\NormalTok{vecCompositeKey }\OtherTok{=} \FunctionTok{get}\NormalTok{(DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4CompositKey, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(DataSetName)))] }\SpecialCharTok{|\textgreater{}} \FunctionTok{apply}\NormalTok{(}\AttributeTok{MARGIN =} \DecValTok{1}\NormalTok{, paste0, }\AttributeTok{collapse =} \StringTok{"{-}"}\NormalTok{)}
 \NormalTok{vecCompositeKey }\SpecialCharTok{|\textgreater{}} \FunctionTok{n\_distinct}\NormalTok{()}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{71}
 \end{Highlighting}
@@ -330,7 +330,7 @@
 \FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
 \NormalTok{varname4outcome }\OtherTok{=} \StringTok{"event"}
 \NormalTok{varname4time }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"time"}\NormalTok{, }\StringTok{"age"}\NormalTok{)}
-\FunctionTok{get}\NormalTok{(.DataSetName)[}\FunctionTok{c}\NormalTok{(varname4outcome, varname4time)] }\SpecialCharTok{|\textgreater{}} 
+\FunctionTok{get}\NormalTok{(DataSetName)[}\FunctionTok{c}\NormalTok{(varname4outcome, varname4time)] }\SpecialCharTok{|\textgreater{}} 
     \FunctionTok{mutate\_if}\NormalTok{(is.factor, as.character) }\SpecialCharTok{|\textgreater{}}  
     \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{""}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"N/A"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"NA"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
     \FunctionTok{mutate\_if}\NormalTok{(is.character, as.factor) }\SpecialCharTok{|\textgreater{}} 
@@ -364,28 +364,28 @@
 \subsection{---- \textless{} Data Availability Check \textgreater{}
 ----}\label{data-availability-check--}}
 
-\hypertarget{paste0.datasetname.date.na.rmallna--}{%
-\subsubsection{\$ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'')
-----}\label{paste0.datasetname.date.na.rmallna--}}
+\hypertarget{paste0datasetname.date.na.rmallna--}{%
+\subsubsection{\$ paste0(DataSetName,``.Date'',``.NA'',``.rmAllNA'')
+----}\label{paste0datasetname.date.na.rmallna--}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
 \CommentTok{\# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10\_import\_clean\_datatype/13\_missing\_value/data.NotNA\_p\_df.source.r")}
-\NormalTok{subpath}\OtherTok{=}\NormalTok{r}\StringTok{"(Rdev\textbackslash{}10\_import\_clean\_datatype\textbackslash{}13\_missing\_value)"}\SpecialCharTok{|\textgreater{}}\FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}}\StringTok{"}\NormalTok{,}\StringTok{"/"}\NormalTok{)  }\CommentTok{\# Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \textbackslash{} as an escape character.}
-\NormalTok{sourcename }\OtherTok{=} \StringTok{"data.NotNA\_p\_df"} \SpecialCharTok{|\textgreater{}} \FunctionTok{paste0}\NormalTok{(}\StringTok{".source.r"}\NormalTok{)}
-\NormalTok{subpath.filename.source.r }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(subpath,}\FunctionTok{ifelse}\NormalTok{(subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),sourcename); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,subpath.filename.source.r) ))}
+\NormalTok{.subpath}\OtherTok{=}\NormalTok{r}\StringTok{"(Rdev\textbackslash{}10\_import\_clean\_datatype\textbackslash{}13\_missing\_value)"}\SpecialCharTok{|\textgreater{}}\FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}}\StringTok{"}\NormalTok{,}\StringTok{"/"}\NormalTok{)  }\CommentTok{\# Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \textbackslash{} as an escape character.}
+\NormalTok{.sourcename }\OtherTok{=} \StringTok{"data.NotNA\_p\_df"} \SpecialCharTok{|\textgreater{}} \FunctionTok{paste0}\NormalTok{(}\StringTok{".source.r"}\NormalTok{)}
+\NormalTok{.subpath.filename.source.r }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.sourcename); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,.subpath.filename.source.r) ))}
   
-\FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{), }\FunctionTok{get}\NormalTok{(.DataSetName) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.factor, as.character) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{""}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"N/A"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"NA"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{as\_tibble}\NormalTok{() )}
-\FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{), }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(vec) }\SpecialCharTok{!}\FunctionTok{all}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vec))) )}
-\FunctionTok{cat}\NormalTok{(}\StringTok{" dim("}\NormalTok{,.DataSetName,}\StringTok{") = "}\NormalTok{,}\FunctionTok{deparse}\NormalTok{(}\FunctionTok{dim}\NormalTok{(}\FunctionTok{get}\NormalTok{(.DataSetName))),}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{) }
+\FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{), }\FunctionTok{get}\NormalTok{(DataSetName) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.factor, as.character) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{""}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"N/A"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"NA"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{as\_tibble}\NormalTok{() )}
+\FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{), }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(vec) }\SpecialCharTok{!}\FunctionTok{all}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vec))) )}
+\FunctionTok{cat}\NormalTok{(}\StringTok{" dim("}\NormalTok{,DataSetName,}\StringTok{") = "}\NormalTok{,}\FunctionTok{deparse}\NormalTok{(}\FunctionTok{dim}\NormalTok{(}\FunctionTok{get}\NormalTok{(DataSetName))),}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{) }
  \FunctionTok{dim}\NormalTok{(analyticDF\_time2event) }\OtherTok{=} \FunctionTok{c}\NormalTok{(228L, 12L)  }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cat}\NormalTok{(}\StringTok{" dim("}\NormalTok{,.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{") = "}\NormalTok{,}\FunctionTok{deparse}\NormalTok{(}\FunctionTok{dim}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)))),}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{) }
+\FunctionTok{cat}\NormalTok{(}\StringTok{" dim("}\NormalTok{,DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{") = "}\NormalTok{,}\FunctionTok{deparse}\NormalTok{(}\FunctionTok{dim}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)))),}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{) }
  \FunctionTok{dim}\NormalTok{(analyticDF\_time2event.Date.NA.rmAllNA) }\OtherTok{=} \FunctionTok{c}\NormalTok{(228L, 12L)  }
 \end{Highlighting}
 \end{Shaded}
@@ -399,7 +399,7 @@
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{" |\textgreater{} env1$data.NotNA\_p\_df()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); env1}\SpecialCharTok{$}\FunctionTok{data.NotNA\_p\_df}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{)))}
+\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{" |\textgreater{} env1$data.NotNA\_p\_df()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); env1}\SpecialCharTok{$}\FunctionTok{data.NotNA\_p\_df}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{)))}
  \SpecialCharTok{\textgreater{}}\NormalTok{ analyticDF\_time2event.Date.NA }\SpecialCharTok{|\textgreater{}}\NormalTok{ env1}\SpecialCharTok{$}\FunctionTok{data.NotNA\_p\_df}\NormalTok{()  }
 \NormalTok{   RowNum         varname IsNA IsNA\_p\_df NotNA NotNA\_p\_df NRow}
 \DecValTok{1}       \DecValTok{2}\NormalTok{            time    }\DecValTok{0}     \FloatTok{0.000}   \DecValTok{228}      \FloatTok{1.000}  \DecValTok{228}
@@ -421,20 +421,20 @@
 \subsection{---- \textless{} DataSet Summary \textgreater{}
 ----}\label{dataset-summary--}}
 
-\hypertarget{paste0.datasetname.date.na.rmallna.fct--}{%
+\hypertarget{paste0datasetname.date.na.rmallna.fct--}{%
 \subsubsection{\$
-paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
-----}\label{paste0.datasetname.date.na.rmallna.fct--}}
+paste0(DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
+----}\label{paste0datasetname.date.na.rmallna.fct--}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
 \NormalTok{vec\_varname4ID }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"CompositeKey"}\NormalTok{, }\StringTok{"PERSON\_ID"}\NormalTok{, }\StringTok{"RN\_INDI"}\NormalTok{, }\StringTok{"NIHID"}\NormalTok{)}
-\ControlFlowTok{for}\NormalTok{ (varname }\ControlFlowTok{in}\NormalTok{ vec\_varname4ID) \{}\ControlFlowTok{if}\NormalTok{(varname }\SpecialCharTok{\%in\%} \FunctionTok{names}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)))) }\FunctionTok{cat}\NormalTok{(}\StringTok{" n\_distinct("}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{"$"}\NormalTok{,varname,}\StringTok{") = "}\NormalTok{,}\FunctionTok{n\_distinct}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{))[[varname]]),}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{)\}}
+\ControlFlowTok{for}\NormalTok{ (varname }\ControlFlowTok{in}\NormalTok{ vec\_varname4ID) \{}\ControlFlowTok{if}\NormalTok{(varname }\SpecialCharTok{\%in\%} \FunctionTok{names}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)))) }\FunctionTok{cat}\NormalTok{(}\StringTok{" n\_distinct("}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{"$"}\NormalTok{,varname,}\StringTok{") = "}\NormalTok{,}\FunctionTok{n\_distinct}\NormalTok{(}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{))[[varname]]),}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{)\}}
   
   
 \NormalTok{..t0 }\OtherTok{=} \FunctionTok{Sys.time}\NormalTok{()}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{" |\textgreater{} select\_if(is.numeric))"}\NormalTok{,}\StringTok{" |\textgreater{} summary()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{() }\CommentTok{\#{-}{-}{-}{-}  }
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{" |\textgreater{} select\_if(is.numeric))"}\NormalTok{,}\StringTok{" |\textgreater{} summary()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{() }\CommentTok{\#{-}{-}{-}{-}  }
     \SpecialCharTok{\textasciitilde{}}\ErrorTok{\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}}    
  \ErrorTok{\textgreater{}}\NormalTok{ analyticDF\_time2event.Date.NA.rmAllNA }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.numeric)}\ErrorTok{)} \SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{()  }
 \NormalTok{      inst            time             age             sex           ph.ecog          ph.karno        pat.karno     }
@@ -459,14 +459,14 @@ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{12.98637}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{10.21599}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{..t0 }\OtherTok{=} \FunctionTok{Sys.time}\NormalTok{()}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{" |\textgreater{} select\_if(is.logical))"}\NormalTok{,}\StringTok{" |\textgreater{} summary()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.logical) }\SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{() }\CommentTok{\#{-}{-}{-}{-}  }
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{" |\textgreater{} select\_if(is.logical))"}\NormalTok{,}\StringTok{" |\textgreater{} summary()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.logical) }\SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{() }\CommentTok{\#{-}{-}{-}{-}  }
     \SpecialCharTok{\textasciitilde{}}\ErrorTok{\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}}    
  \ErrorTok{\textgreater{}}\NormalTok{ analyticDF\_time2event.Date.NA.rmAllNA }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.logical)}\ErrorTok{)} \SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{()  }
 \NormalTok{   event         StudyPopulation}
@@ -479,7 +479,7 @@ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{12.99144}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{10.22043}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
@@ -487,7 +487,7 @@ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Highlighting}[]
   
 \NormalTok{..t0 }\OtherTok{=} \FunctionTok{Sys.time}\NormalTok{()}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"    \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{),}\StringTok{" = "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{" |\textgreater{} mutate\_if(is.character, as.factor)"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{), }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, as.factor) )}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{),}\StringTok{" = "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{),}\StringTok{" |\textgreater{} mutate\_if(is.character, as.factor)"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{), }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, as.factor) )}
     \SpecialCharTok{\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%}    
  \ErrorTok{\textgreater{}}\NormalTok{ analyticDF\_time2event.Date.NA.rmAllNA.fct }\OtherTok{=}\NormalTok{ analyticDF\_time2event.Date.NA.rmAllNA }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, as.factor)  }
 \end{Highlighting}
@@ -496,7 +496,7 @@ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{12.99643}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{10.22466}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
@@ -504,7 +504,7 @@ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Highlighting}[]
 
 \NormalTok{..t0 }\OtherTok{=} \FunctionTok{Sys.time}\NormalTok{()}
-\FunctionTok{cat}\NormalTok{(}\StringTok{"   \#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{),}\StringTok{" |\textgreater{} select\_if(is.factor))"}\NormalTok{,}\StringTok{" |\textgreater{} summary()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(.DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.factor) }\SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{() }\CommentTok{\#{-}{-}{-}{-}  }
+\FunctionTok{cat}\NormalTok{(}\StringTok{"   \#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{); }\FunctionTok{cat}\NormalTok{(}\StringTok{" \textgreater{} "}\NormalTok{,}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{),}\StringTok{" |\textgreater{} select\_if(is.factor))"}\NormalTok{,}\StringTok{" |\textgreater{} summary()"}\NormalTok{,}\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{); }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{,}\StringTok{".fct"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.factor) }\SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{() }\CommentTok{\#{-}{-}{-}{-}  }
    \CommentTok{\#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    }
  \SpecialCharTok{\textgreater{}}\NormalTok{ analyticDF\_time2event.Date.NA.rmAllNA.fct }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.factor)}\ErrorTok{)} \SpecialCharTok{|\textgreater{}} \FunctionTok{summary}\NormalTok{()  }
 \NormalTok{    Group    }
@@ -516,13 +516,13 @@ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{13.00044}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{10.22849}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# cat("    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    \textbackslash{}n"); cat(" \textgreater{} ",paste0(.DataSetName,".Date",".NA",".rmAllNA")," |\textgreater{} select\_if(is.factor))"," |\textgreater{} summary()","  \textbackslash{}n", sep=""); get(paste0(.DataSetName,".Date",".NA",".rmAllNA")) |\textgreater{} select\_if(is.character) |\textgreater{} map\_df(as.factor) |\textgreater{} summary() \#{-}{-}{-}{-}  }
+\CommentTok{\# cat("    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    \textbackslash{}n"); cat(" \textgreater{} ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |\textgreater{} select\_if(is.factor))"," |\textgreater{} summary()","  \textbackslash{}n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |\textgreater{} select\_if(is.character) |\textgreater{} map\_df(as.factor) |\textgreater{} summary() \#{-}{-}{-}{-}  }
 \CommentTok{\# Sys.time() {-} .t0}
 \CommentTok{\# https://github.com/mkim0710/tidystat/blob/master/Rdev/10\_import\_clean\_datatype/18\_dichotomous\_logical/function.dichotomous2logical.dev.r}
 \end{Highlighting}
@@ -574,7 +574,7 @@ paste0(.DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \section{@@ END ----}\label{end--}}
 
 \begin{verbatim}
-Backup file created: D:/OneDrive/[][Rproject]/-backup/notebook-240729_0010.Rmd
+Backup file created: D:/OneDrive/[][Rproject]/-backup/notebook-240729_0233.Rmd
 Update successful: C:/Users/mkim0/AppData/Roaming/RStudio/templates/notebook.Rmd
 Update successful: D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd
 \end{verbatim}
