@@ -21,9 +21,7 @@ if(area.level == "SouthKorea") SIDO_CD4filter = c("11", "21", "22", "23", "24", 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 
 
-for (.tmp$packagename in c("tidyverse", "openxlsx")) {
-    if(!require(.tmp$packagename,character.only=TRUE))install.packages(.tmp$packagename) else library(.tmp$packagename,character.only=TRUE)
-}
+for(packagename in c("tidyverse", "openxlsx")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 dput(unlist(strsplit(Sys.getlocale(), ";"))) #----
 dput(l10n_info()) #----
 dput(.Platform) #----

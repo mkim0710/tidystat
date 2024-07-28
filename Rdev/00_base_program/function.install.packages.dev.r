@@ -12,16 +12,7 @@ library(multtest)
 
 
 
-for (.tmp$packagename in c("dplyr", "readr")) {
-    if(.tmp$packagename %in% installed.packages()[,"Package"]) {   
-        # If that package is already installed, then just load it. (You don't want to re-install if it is already installed.)
-        require(.tmp$packagename,character.only=TRUE)
-    } else {  
-        # If that package is not already installed, then install first.
-        install.packages(.tmp$packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
-        require(.tmp$packagename,character.only=TRUE)
-    }
-}
+for(packagename in c("dplyr", "readr")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}  
 
 
 
@@ -30,16 +21,8 @@ for (.tmp$packagename in c("dplyr", "readr")) {
 # if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
 # 
 # install.packages(c("tidyverse", "RODBC", "maps", "jsonlite"))
-# for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-#     if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
-# }
-for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-    if(!require(.tmp$packagename,character.only=TRUE))install.packages(.tmp$packagename) else library(.tmp$packagename,character.only=TRUE)
-}
+for(packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
 # 
-# for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-#     if(!require(.tmp$packagename,character.only=TRUE)) install.packages(.tmp$packagename)
-# }
 # 
 # # https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them
 # .tmp$packagenames = c("tidyverse", "RODBC", "maps", "jsonlite")
