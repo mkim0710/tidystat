@@ -154,7 +154,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
             , Code4MergeFrom.remaining = Code4MergeFrom
             , Code4MergeFrom.current = Code4MergeFrom[1]
             , Code4MergeInto.current = Code4MergeInto
-            , time_passed.cumulative = Sys.time() - t0
+            , time_passed.cumulative = Sys.time() - .t0
         ) # list inside attr() is not shown with str(max.level = 1)
         return(iteration.out)
     }
@@ -219,13 +219,13 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     Results.iteration.list[[1]]$warningmessage.vec = warningmessage.vec 
     attr(Results.iteration.list[[1]], "iteration_info") = list(
         type_of_iteration = "initial data before iteration"
-        , time_passed.cumulative = Sys.time() - t0
+        , time_passed.cumulative = Sys.time() - .t0
     ) # list inside attr() is not shown with str(max.level = 1)
     
     # browser()
     #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
     #@ iteration) Singles = Cluster.tbl.last %>% dplyr::filter(n_Code == 1) %>% {.$Code.Cluster} ======
-    # print(Sys.time() - t0)
+    # print(Sys.time() - .t0)
     # cat("..for Min.Pop")
     iteration = 0
     type_of_iteration = "NoSingle"
@@ -299,7 +299,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
         Results.iteration.list[[length(Results.iteration.list) + 1]] = 
             function.iteration.out(Code4MergeFrom[1], Code4MergeInto[1], Results.iteration.list)
         
-        # print(Sys.time() - t0)
+        # print(Sys.time() - .t0)
         
     }
     

@@ -201,7 +201,7 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
 
 
 #@@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes ====
-t0 = Sys.time()
+.t0 = Sys.time()
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes =
     c("PrimaryOutcome123456", "PrimaryOutcome1", "PrimaryOutcome2", "PrimaryOutcome3", "PrimaryOutcome4", "PrimaryOutcome5", "PrimaryOutcome6") %>% set_names(.) %>% 
     map(function(i) {
@@ -216,10 +216,10 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes =
         analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
         analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates
     })
-Sys.time() - t0
+Sys.time() - .t0
 warnings()
 # There were 13 warnings (use warnings() to see them)
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 13.99857 secs
 # > warnings()
 # Warning messages:
@@ -347,7 +347,7 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates %>% {cbind( `
 
 
 #@@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes ====
-t0 = Sys.time()
+.t0 = Sys.time()
 analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes =
     c("PrimaryOutcome123456", "SecondaryOutcomeP1456fhkl", "PrimaryOutcome1", 
       "PrimaryOutcome2", "PrimaryOutcome3", "PrimaryOutcome4", "PrimaryOutcome5", 
@@ -368,10 +368,10 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_Secondar
         analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates = glm(formula = Dk_plus1 ~ . , data = data, family = binomial)
         analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates
     })
-Sys.time() - t0
+Sys.time() - .t0
 warnings()
 # There were 37 warnings (use warnings() to see them)
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 38.23375 secs
 # > warnings()
 # Warning messages:

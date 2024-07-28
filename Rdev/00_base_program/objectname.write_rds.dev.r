@@ -17,9 +17,9 @@ system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,
 #@ end -----
 objectname = "NHID_GY20_0213.bind_rows"
 path4write = getwd()
-t0 = Sys.time()
+.t0 = Sys.time()
 save( list = objectname, file = file.path(path4write, paste0(objectname,".rda", "")), compress="xz", compression_level=9 )
-print(Sys.time() - t0)
+print(Sys.time() - .t0)
 
 
 #@ end -----
@@ -70,12 +70,12 @@ objectname = "d.NDCNUM_concept_name.join_redbook2019.STRNGTH_Manual"
 filename = paste0(objectname,".rds")
 objectname = filename %>% gsub("\\.rds", "", .)
 print(objectname)
-t0 = Sys.time()
+.t0 = Sys.time()
 assign(objectname
        , readRDS(file.path(path4read, filename)) %>% 
            as_tibble
 )
-Sys.time() - t0
+Sys.time() - .t0
 
 
 
@@ -84,16 +84,16 @@ library(tidyverse)
 getwd()
 path4write = getwd()
 objectname = "data_list.AgeSexAdjusted"
-t0 = Sys.time()
+.t0 = Sys.time()
 load(paste0(objectname,".rda"))
-Sys.time() - t0
+Sys.time() - .t0
 write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")) )
-Sys.time() - t0
+Sys.time() - .t0
 
 objectname = ""
-t0 = Sys.time()
+.t0 = Sys.time()
 load(paste0(objectname,".rda"))
-Sys.time() - t0
+Sys.time() - .t0
 write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")) )
-Sys.time() - t0
+Sys.time() - .t0
 

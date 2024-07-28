@@ -32,16 +32,16 @@ glm.formula = Dk_plus1 ~ Exposure * (k + I(k^2))
 glm.weights = data$StabilizedWeight
 nIteration = 1000  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
 set.seed(1)
-t0 = Sys.time()
+.t0 = Sys.time()
 boot.output = boot(
     data = data
     , statistic = function.boot.statistic_glm_coef, glm.formula = glm.formula,  glm.weights = glm.weights, coef.exp = T
     , R = nIteration
 )
-Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations? 
+Sys.time() - .t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations? 
 warnings()
 # There were 50 or more warnings (use warnings() to see the first 50)
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 7.798909 mins
 # > warnings()
 # Warning messages:

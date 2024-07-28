@@ -18,12 +18,12 @@ mydb <- dbConnect(RSQLite::SQLite(), paste0(path4write, "r4.sas7bdat.sqlite"))
 
 
 mydb %>% {DBI::dbListTables(.)} |> dput() #----
-t0 = Sys.time()
+.t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0('
     select count(*) from "', chr, '"'))} |> unlist()
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
-Sys.time() - t0
+Sys.time() - .t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% dbListFields(chr)
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
@@ -38,7 +38,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # "women_pregcohort_r_r4.sas7bdat", "women_pregcohort_s_r4.sas7bdat", 
 # "women_pregcohort_s_r4_mod.sas7bdat", "women_pregcohort_t_r4.sas7bdat"
 # )
-# > t0 = Sys.time()
+# > .t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
 # +     select count(*) from "', chr, '"'))} |> unlist()
@@ -56,7 +56,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # "women_pregcohort_o_r4_mod.sas7bdat", "women_pregcohort_r_r4.sas7bdat", 
 # "women_pregcohort_s_r4.sas7bdat", "women_pregcohort_s_r4_mod.sas7bdat", 
 # "women_pregcohort_t_r4.sas7bdat"), class = "data.frame")
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 23.4821 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% dbListFields(chr)
@@ -177,12 +177,12 @@ library(tidyverse)
 mydb <- DBI::dbConnect(RSQLite::SQLite(), "KNHIS.JK_GJ596284.SICK_SYM.INDEX.sqlite")
 
 mydb %>% {DBI::dbListTables(.)} |> dput()
-t0 = Sys.time()
+.t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0("
     select count(*) from '", chr, "'"))} |> unlist()
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput()
-Sys.time() - t0
+Sys.time() - .t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% DBI::dbListFields(chr)
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput()
@@ -190,7 +190,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 c("NHID_GJ_0213.bind_rows.integer", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor", 
 "NHID_GY40_0213.bind_rows.factor", "NHID_GY60_0213.bind_rows.GNL_NM_CD4", 
 "NHID_JK0213.bind_rows")
-# > t0 = Sys.time()
+# > .t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
 # +     select count(*) from "', chr, '"'))} |> unlist()
@@ -199,7 +199,7 @@ structure(list(`count(*)` = c(2210067, 74606011, 190462550, 246770921,
 6879688)), row.names = c("NHID_GJ_0213.bind_rows.integer", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor", 
 "NHID_GY40_0213.bind_rows.factor", "NHID_GY60_0213.bind_rows.GNL_NM_CD4", 
 "NHID_JK0213.bind_rows"), class = "data.frame")
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 41.92452 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% DBI::dbListFields(chr)
@@ -261,15 +261,15 @@ structure(list(`count(*)` = c(2210067, 74606011, 190462550, 246770921,
 
 
 #@ sqlite_master =====
-t0 = Sys.time()
+.t0 = Sys.time()
 mydb %>% {DBI::dbGetQuery(
     ., paste0("
 SELECT *
 FROM sqlite_master
               ")
 )}
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > mydb %>% {DBI::dbGetQuery(
 # +     ., paste0("
 # + SELECT *
@@ -288,20 +288,20 @@ Sys.time() - t0
 # 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   CREATE TABLE `NHID_GY60_0213.bind_rows.GNL_NM_CD4` (\n  `KEY_SEQ` TEXT,\n  `GNL_NM_CD4` TEXT,\n  `DD_MQTY_FREQ` REAL,\n  `DD_EXEC_FREQ` INTEGER,\n  `MDCN_EXEC_FREQ` INTEGER\n)
 # 4 CREATE TABLE `NHID_GJ_0213.bind_rows.integer` (\n  `HCHK_YEAR` INTEGER,\n  `PERSON_ID` INTEGER,\n  `YKIHO_GUBUN_CD` INTEGER,\n  `HEIGHT` INTEGER,\n  `WEIGHT` INTEGER,\n  `BP_HIGH` INTEGER,\n  `BP_LWST` INTEGER,\n  `BLDS` INTEGER,\n  `TOT_CHOLE` INTEGER,\n  `HMG` REAL,\n  `GLY_CD` INTEGER,\n  `OLIG_OCCU_CD` INTEGER,\n  `OLIG_PH` REAL,\n  `OLIG_PROTE_CD` INTEGER,\n  `SGOT_AST` INTEGER,\n  `SGPT_ALT` INTEGER,\n  `GAMMA_GTP` INTEGER,\n  `HCHK_PMH_CD1` INTEGER,\n  `HCHK_PMH_CD2` INTEGER,\n  `HCHK_PMH_CD3` INTEGER,\n  `FMLY_LIVER_DISE_PATIEN_YN` INTEGER,\n  `FMLY_HPRTS_PATIEN_YN` INTEGER,\n  `FMLY_APOP_PATIEN_YN` INTEGER,\n  `FMLY_HDISE_PATIEN_YN` INTEGER,\n  `FMLY_DIABML_PATIEN_YN` INTEGER,\n  `FMLY_CANCER_PATIEN_YN` INTEGER,\n  `SMK_STAT_TYPE_RSPS_CD` INTEGER,\n  `SMK_TERM_RSPS_CD` INTEGER,\n  `DSQTY_RSPS_CD` INTEGER,\n  `DRNK_HABIT_RSPS_CD` INTEGER,\n  `TM1_DRKQTY_RSPS_CD` REAL,\n  `EXERCI_FREQ_RSPS_CD` INTEGER,\n  `WAIST` INTEGER,\n  `TRIGLYCERIDE` INTEGER,\n  `HDL_CHOLE` REAL,\n  `LDL_CHOLE` REAL,\n  `CREATININE` REAL,\n  `HCHK_APOP_PMH_YN` INTEGER,\n  `HCHK_HDISE_PMH_YN` INTEGER,\n  `HCHK_HPRTS_PMH_YN` INTEGER,\n  `HCHK_DIABML_PMH_YN` INTEGER,\n  `HCHK_HPLPDM_PMH_YN` INTEGER,\n  `HCHK_ETCDSE_PMH_YN` INTEGER,\n  `PAST_SMK_TERM_RSPS_CD` INTEGER,\n  `PAST_DSQTY_RSPS_CD` INTEGER,\n  `CUR_SMK_TERM_RSPS_CD` INTEGER,\n  `CUR_DSQTY_RSPS_CD` REAL,\n  `MOV20_WEK_FREQ_ID` INTEGER,\n  `MOV30_WEK_FREQ_ID` INTEGER,\n  `WLK30_WEK_FREQ_ID` INTEGER,\n  `HCHK_PHSS_PMH_YN` INTEGER\n)
 # 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     CREATE TABLE `NHID_GY40_0213.bind_rows.factor` (\n  `KEY_SEQ` TEXT,\n  `DSBJT_CD` TEXT,\n  `SICK_SYM` TEXT\n)
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 0.07588816 secs
 
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 mydb %>% {DBI::dbGetQuery(
     ., paste0("
 SELECT type, name, tbl_name, rootpage
 FROM sqlite_master
               ")
 )}
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > mydb %>% {DBI::dbGetQuery(
 # +     ., paste0("
 # + SELECT type, name, tbl_name, rootpage
@@ -325,7 +325,7 @@ Sys.time() - t0
 # 14 index  NHID_GY20_0213.bind_rows.12478.ICDclean.factor_MAIN_SICK NHID_GY20_0213.bind_rows.12478.ICDclean.factor  8182327
 # 15 index            NHID_GY60_0213.bind_rows.GNL_NM_CD4_GNL_NM_CD4            NHID_GY60_0213.bind_rows.GNL_NM_CD4  8436440
 # 16 index   NHID_GY20_0213.bind_rows.12478.ICDclean.factor_SUB_SICK NHID_GY20_0213.bind_rows.12478.ICDclean.factor  9259210
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 0.05455995 secs
 
 
@@ -333,13 +333,13 @@ Sys.time() - t0
 
 
 #@ PRAGMA TABLE_INFO(TABLE_NAME) ====
-t0 = Sys.time()
+.t0 = Sys.time()
 mydb %>% {DBI::dbGetQuery(
     ., paste0("
 PRAGMA TABLE_INFO('NHID_JK0213.bind_rows')
               ")
 )}
-Sys.time() - t0
+Sys.time() - .t0
 # > mydb %>% {DBI::dbGetQuery(
 # +     ., paste0("
 # + PRAGMA TABLE_INFO('NHID_JK0213.bind_rows')
@@ -360,19 +360,19 @@ Sys.time() - t0
 # 12  11     DFAB_GRD_CD REAL       0         NA  0
 # 13  12     DFAB_PTN_CD REAL       0         NA  0
 # 14  13     DFAB_REG_YM TEXT       0         NA  0
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 0.08084798 secs
 
 
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0("
     PRAGMA TABLE_INFO('", chr, "')"))}
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)})
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0("
 # +     PRAGMA TABLE_INFO('", chr, "')"))}
@@ -470,7 +470,7 @@ Sys.time() - t0
 # 13  12     DFAB_PTN_CD REAL       0         NA  0
 # 14  13     DFAB_REG_YM TEXT       0         NA  0
 # 
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 0.2574241 secs
 
 
@@ -497,7 +497,7 @@ c("NHID_JK0213.bind_rows", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor",
 "NHID_GY40_0213.bind_rows.factor")
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 indexed_column_name = "PERSON_ID"
 for (tbl_name in c("NHID_JK0213.bind_rows", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor", "NHID_GJ_0213.bind_rows.integer")) {
     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -508,8 +508,8 @@ ON
                   ", "'", tbl_name, "'", "(", "'", indexed_column_name, "'", ");")
     )} 
 }
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > indexed_column_name = "PERSON_ID"
 # > for (tbl_name in c("NHID_JK0213.bind_rows", "NHID_GY20_0213.bind_rows.12478.ICDclean.factor", "NHID_GJ_0213.bind_rows.integer")) {
 # +     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -527,11 +527,11 @@ Sys.time() - t0
 #   Don't need to call dbFetch() for statements, only for queries
 # 3: In result_fetch(res@ptr, n = n) :
 #   Don't need to call dbFetch() for statements, only for queries
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 1.253474 mins
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 indexed_column_name = "KEY_SEQ"
 for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor", "NHID_GY40_0213.bind_rows.factor", "NHID_GY60_0213.bind_rows.GNL_NM_CD4")) {
     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -542,8 +542,8 @@ ON
                   ", "'", tbl_name, "'", "(", "'", indexed_column_name, "'", ");")
     )} 
 }
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > indexed_column_name = "KEY_SEQ"
 # > for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor", "NHID_GY40_0213.bind_rows.factor", "NHID_GY60_0213.bind_rows.GNL_NM_CD4")) {
 # +     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -561,12 +561,12 @@ Sys.time() - t0
 #   Don't need to call dbFetch() for statements, only for queries
 # 3: In result_fetch(res@ptr, n = n) :
 #   Don't need to call dbFetch() for statements, only for queries
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 7.184301 mins
 
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 indexed_column_name = "RECU_FR_DT"
 for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor")) {
     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -577,8 +577,8 @@ ON
                   ", "'", tbl_name, "'", "(", "'", indexed_column_name, "'", ");")
     )}
 }
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > indexed_column_name = "RECU_FR_DT"
 # > for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor")) {
 # +     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -592,10 +592,10 @@ Sys.time() - t0
 # Warning message:
 # In result_fetch(res@ptr, n = n) :
 #   Don't need to call dbFetch() for statements, only for queries
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 1.669177 mins
 
-t0 = Sys.time()
+.t0 = Sys.time()
 indexed_column_name = "SICK_SYM"
 for (tbl_name in c("NHID_GY40_0213.bind_rows.factor")) {
     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -606,8 +606,8 @@ ON
                   ", "'", tbl_name, "'", "(", "'", indexed_column_name, "'", ");")
     )}
 }
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > indexed_column_name = "SICK_SYM"
 # > for (tbl_name in c("NHID_GY40_0213.bind_rows.factor")) {
 # +     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -621,11 +621,11 @@ Sys.time() - t0
 # Warning message:
 # In result_fetch(res@ptr, n = n) :
 #   Don't need to call dbFetch() for statements, only for queries
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 5.964187 mins
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 indexed_column_name = "MAIN_SICK"
 for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor")) {
     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -636,8 +636,8 @@ ON
                   ", "'", tbl_name, "'", "(", "'", indexed_column_name, "'", ");")
     )}
 }
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > indexed_column_name = "MAIN_SICK"
 # > for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor")) {
 # +     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -651,10 +651,10 @@ Sys.time() - t0
 # Warning message:
 # In result_fetch(res@ptr, n = n) :
 #   Don't need to call dbFetch() for statements, only for queries
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 2.051633 mins
 
-t0 = Sys.time()
+.t0 = Sys.time()
 indexed_column_name = "SUB_SICK"
 for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor")) {
     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -665,8 +665,8 @@ ON
                   ", "'", tbl_name, "'", "(", "'", indexed_column_name, "'", ");")
     )}
 }
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > indexed_column_name = "SUB_SICK"
 # > for (tbl_name in c("NHID_GY20_0213.bind_rows.12478.ICDclean.factor")) {
 # +     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -680,11 +680,11 @@ Sys.time() - t0
 # Warning message:
 # In result_fetch(res@ptr, n = n) :
 #   Don't need to call dbFetch() for statements, only for queries
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 1.979978 mins
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 indexed_column_name = "GNL_NM_CD4"
 for (tbl_name in c("NHID_GY60_0213.bind_rows.GNL_NM_CD4")) {
     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -695,8 +695,8 @@ ON
                   ", "'", tbl_name, "'", "(", "'", indexed_column_name, "'", ");")
     )}
 }
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > indexed_column_name = "GNL_NM_CD4"
 # > for (tbl_name in c("NHID_GY60_0213.bind_rows.GNL_NM_CD4")) {
 # +     sql.txt = mydb %>% {DBI::dbGetQuery(
@@ -710,7 +710,7 @@ Sys.time() - t0
 # Warning message:
 # In result_fetch(res@ptr, n = n) :
 #   Don't need to call dbFetch() for statements, only for queries
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 7.207938 mins
 
 

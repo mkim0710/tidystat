@@ -262,7 +262,7 @@ tblClaim_Date_Code4ICD = os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_l
 tblClaim_Date_Code4Rx = d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm[1:10^6, ]
 
 #@@@ tblPersonID_FilterName.ndDate -----
-t0 = Sys.time()
+.t0 = Sys.time()
 tblPersonID_FilterName.ndDate =
     ENROLID2797_Age1845_Inc2.ia_Exc12356abcd.t_42_154.exposure.enrolid_inf %>% select(ENROLID) %>% mutate(ENROLID = ENROLID %>% as.numeric)
 for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation)) {
@@ -326,10 +326,10 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
         
     }
 }
-Sys.time() - t0
+Sys.time() - .t0
 # [1] "Appending: t_NInf_154.ICD250x1_250x3.ndDate"
 # [1] "Appending: t_NInf_0.RxCONCEPT_NDC_metformin.ndDate"
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 16.99357 secs
 tblPersonID_FilterName.ndDate %>% na.omit
 # > tblPersonID_FilterName.ndDate %>% na.omit

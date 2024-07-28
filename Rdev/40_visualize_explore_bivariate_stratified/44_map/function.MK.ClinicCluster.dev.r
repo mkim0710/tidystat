@@ -155,7 +155,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
             , Code4MergeFrom.remaining = Code4MergeFrom
             , Code4MergeFrom.current = Code4MergeFrom[1]
             , Code4MergeInto.current = Code4MergeInto
-            , time_passed.cumulative = Sys.time() - t0
+            , time_passed.cumulative = Sys.time() - .t0
         ) # list inside attr() is not shown with str(max.level = 1)
         return(iteration.out)
     }
@@ -220,7 +220,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     Results.iteration.list[[1]]$warningmessage.vec = warningmessage.vec 
     attr(Results.iteration.list[[1]], "iteration_info") = list(
         type_of_iteration = "initial data before iteration"
-        , time_passed.cumulative = Sys.time() - t0
+        , time_passed.cumulative = Sys.time() - .t0
     ) # list inside attr() is not shown with str(max.level = 1)
     
     
@@ -230,7 +230,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
     #@ iteration) Code4MergeFrom = PopulationDF.last %>% dplyr::filter(Pop < Min.Pop) %>% arrange(Pop) %>% {.$Code} ======
     # warning("Starting iteration for Min.Pop")
-    # print(Sys.time() - t0)
+    # print(Sys.time() - .t0)
     # cat("..for Min.Pop")
     iteration = 0
     type_of_iteration = "Min.Pop"
@@ -284,7 +284,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
         Results.iteration.list[[length(Results.iteration.list) + 1]] = 
             function.iteration.out(Code4MergeFrom[1], Code4MergeInto[1], Results.iteration.list)
         
-        # print(Sys.time() - t0)
+        # print(Sys.time() - .t0)
         
     }
     
@@ -293,7 +293,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
     #@ iteration) Code4MergeFrom = Cluster.tbl %>% dplyr::filter(OD.diag_rowP < Min.SC) %>% arrange(OD.diag_rowP) %>% {.$Code.Cluster} ======
     # warning("Starting iteration for Min.SC")
-    # print(Sys.time() - t0)
+    # print(Sys.time() - .t0)
     # cat("..for Min.SC")
     iteration = 0
     type_of_iteration = "Min.SC"
@@ -349,7 +349,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
         Results.iteration.list[[length(Results.iteration.list) + 1]] = 
             function.iteration.out(Code4MergeFrom[1], Code4MergeInto[1], Results.iteration.list)
         
-        # print(Sys.time() - t0))
+        # print(Sys.time() - .t0))
         
     }
     

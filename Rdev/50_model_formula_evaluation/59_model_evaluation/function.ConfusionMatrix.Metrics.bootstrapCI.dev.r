@@ -382,13 +382,13 @@ list_bootstrap.InputSquareMatrix1.tbl |> str() #----
 
 
 #@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics ====
-t0 = Sys.time()
+.t0 = Sys.time()
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics =
     list_bootstrap.InputSquareMatrix1.tbl %>% map(function.ConfusionMatrix.Metrics)
 attributes(list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl = InputSquareMatrix1.tbl
 attributes(list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics)$InputSquareMatrix.tbl.ConfusionMatrix.Metrics = InputSquareMatrix1.tbl %>% function.ConfusionMatrix.Metrics
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics =
 # +     list_bootstrap.InputSquareMatrix1.tbl %>% map(function.ConfusionMatrix.Metrics)
 # There were 50 or more warnings (use warnings() to see the first 50)
@@ -399,7 +399,7 @@ Sys.time() - t0
 # 2: In .Primitive("as.double")(x, ...) : NAs introduced by coercion
 # 3: In .Primitive("as.double")(x, ...) : NAs introduced by coercion
 # 4: In .Primitive("as.double")(x, ...) : NAs introduced by coercion
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 31.64239 secs
 
 
