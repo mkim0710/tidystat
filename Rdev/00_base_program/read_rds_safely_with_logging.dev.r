@@ -47,11 +47,11 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://gi
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 if (requireNamespace("rstudioapi")) {
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
     if (rstudioapi::isAvailable()) {
         env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|________________________________________________________________________________|#  
@@ -94,11 +94,11 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 if (requireNamespace("rstudioapi")) {
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
     if (rstudioapi::isAvailable()) {
         env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 paste0("[Working Files List] ",basename(getwd()),".r") %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|________________________________________________________________________________|#  
@@ -147,13 +147,13 @@ log_file_availability <- function(path) {
   }
 }
 
-path4read = "data"
+.path4read = "data"
 objectname = "fhs.index100"
-paste0(path4read,"/",objectname,".rds")
-log_file_availability(paste0(path4read,"/",objectname,".rds"))
-try(assign( "DataSet", read_rds(paste0(path4read,"/",objectname,".rds")) ))
+paste0(.path4read,"/",objectname,".rds")
+log_file_availability(paste0(.path4read,"/",objectname,".rds"))
+try(assign( "DataSet", read_rds(paste0(.path4read,"/",objectname,".rds")) ))
 # error?
-path.filename.ext = paste0(path4read,"/",objectname,".rds")
+path.filename.ext = paste0(.path4read,"/",objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( "DataSet", read_rds(path.filename.ext) ))
@@ -161,13 +161,13 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 
 
 library(tidyverse)
-path4read = "data"
+.path4read = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-paste0(path4read,"/",objectname,".rds")
-log_file_availability(paste0(path4read,"/",objectname,".rds"))
-try(assign( "DataSet", read_rds(paste0(path4read,"/",objectname,".rds")) ))
+paste0(.path4read,"/",objectname,".rds")
+log_file_availability(paste0(.path4read,"/",objectname,".rds"))
+try(assign( "DataSet", read_rds(paste0(.path4read,"/",objectname,".rds")) ))
 # error?
-path.filename.ext = paste0(path4read,"/",objectname,".rds")
+path.filename.ext = paste0(.path4read,"/",objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( "DataSet", read_rds(path.filename.ext) ))
@@ -175,34 +175,34 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 
 
 library(tidyverse)
-path4read = "data"
+.path4read = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-paste0(path4read,"/",objectname,".rds")
-log_file_availability(paste0(path4read,"/",objectname,".rds"))
-try(assign( objectname, read_rds(paste0(path4read,"/",objectname,".rds")) ))
+paste0(.path4read,"/",objectname,".rds")
+log_file_availability(paste0(.path4read,"/",objectname,".rds"))
+try(assign( objectname, read_rds(paste0(.path4read,"/",objectname,".rds")) ))
 # error?
-path.filename.ext = paste0(path4read,"/",objectname,".rds")
+path.filename.ext = paste0(.path4read,"/",objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( objectname, read_rds(path.filename.ext) ))
 
 
 
-# # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-# rm("path4read")
+# rm(".path4read")
 # rm("objectname")
 # library(tidyverse)
-# path4read = "./data"
+# .path4read = "./data"
 # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# paste0(path4read,"/",objectname,".rds")
-# file.exists(paste0(path4read,"/",objectname,".rds"))
-# assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
-# # > paste0(path4read,"/",objectname,".rds")
+# paste0(.path4read,"/",objectname,".rds")
+# file.exists(paste0(.path4read,"/",objectname,".rds"))
+# assign( objectname, read_rds(normalizePath(paste0(.path4read,"/",objectname,".rds"))) )
+# # > paste0(.path4read,"/",objectname,".rds")
 # # [1] "./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds"
-# # > file.exists(paste0(path4read,"/",objectname,".rds"))
+# # > file.exists(paste0(.path4read,"/",objectname,".rds"))
 # # [1] FALSE
-# # > assign( objectname, read_rds(normalizePath(paste0(path4read,"/",objectname,".rds"))) )
+# # > assign( objectname, read_rds(normalizePath(paste0(.path4read,"/",objectname,".rds"))) )
 # # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
 # 
 
@@ -223,11 +223,11 @@ read_rds_safely_with_logging <- function(path, max_attempts = 9) {
   }
 }
 
-path4read = "data"
+.path4read = "data"
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-paste0(path4read,"/",objectname,".rds")
-file.exists(paste0(path4read,"/",objectname,".rds"))
-assign( objectname, read_rds_safely_with_logging(paste0(path4read,"/",objectname,".rds")) )
+paste0(.path4read,"/",objectname,".rds")
+file.exists(paste0(.path4read,"/",objectname,".rds"))
+assign( objectname, read_rds_safely_with_logging(paste0(.path4read,"/",objectname,".rds")) )
 
 
 

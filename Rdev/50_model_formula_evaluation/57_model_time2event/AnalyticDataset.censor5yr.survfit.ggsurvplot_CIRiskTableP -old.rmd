@@ -75,9 +75,9 @@ if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(Sys.getenv("print.intermediate")==TRUE) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$env.internal$get_system_info()
 # str(env1$info$info_system_info)
-CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
-CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
-# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
+.CodeText = "env1$info$info_system_info$machine_nodename"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+.CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+# .CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
 env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 
@@ -109,17 +109,17 @@ env1$path$getwd = getwd()
 # env1$path$project_suffix = "GJ3"
 # 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# env1$path$path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
-# env1$path$path4write = file.path(env1$path$path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+# env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
 cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 # 
-# path4read  = env1$path$path4read
-# # path4write = env1$path$path4read
-# # path4write = env1$path$path4write
-path4read = getwd()
-path4write = getwd()
+# .path4read  = env1$path$.path4read
+# # .path4write = env1$path$.path4read
+# # .path4write = env1$path$.path4write
+.path4read = getwd()
+.path4write = getwd()
 sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(Sys.getenv("print.intermediate")==TRUE) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
-if (getwd() != path4write) warning("getwd() != path4write  == ") else cat(" getwd() == path4write == "); dput(path4write)  #----  
+if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
   
@@ -144,27 +144,27 @@ sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); subpath=r"()"|>s
   
 # regex4filename = "\\.rds(\\.xz)?$"
 regex4filename = "\\.rds\\.xz$"
-list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----  
-env1$f$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
+list.files(.path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----  
+env1$f$f_path.size_files(.path4read = .path4write, regex4filename = regex4filename)
   
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----  
 regex4filename = "\\.rds$"
-list.files(path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----  
-env1$f$f_path.size_files(path4read = path4write, regex4filename = regex4filename)
+list.files(.path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----  
+env1$f$f_path.size_files(.path4read = .path4write, regex4filename = regex4filename)
 ```
   
   
 # @@ START ----  
   
 ## \$ .tmp\$objectname = "tblID_gj3_jk" ----  
-@ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
+@ assign(objectname, read_rds(file.path(.path4read, paste0(objectname,".rds")))) 
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # .sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(Sys.getenv("print.intermediate")==TRUE) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # objectname = "tblID_gj3_jk"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep="")
-# filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
-# env1$f$f_path.size_files(path4read = path4read, regex4filename = filename2read)
-# system.time(assign(objectname, readRDS(file.path(path4read, filename2read)), envir=.GlobalEnv))
+# filename2read = if(file.exists(file.path(.path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
+# env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename2read)
+# system.time(assign(objectname, readRDS(file.path(.path4read, filename2read)), envir=.GlobalEnv))
 # cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
   
 # get(objectname) %>% {.$PERSON_ID} |> n_distinct()
@@ -327,7 +327,7 @@ options(width=120)
   
 # @@ START) Analysis ----  
   
-## \$ DataSetName = "analyticDF_time2event" ----  
+## \$ .DataSetName = "analyticDF_time2event" ----  
 #### [Plot] Stratified Kaplan-Meier Survival Curve  
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # {r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
@@ -388,13 +388,13 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ----  
+# # @ write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))) ----  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")), compress = "gz" ))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```

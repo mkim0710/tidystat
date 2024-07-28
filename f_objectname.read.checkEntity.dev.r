@@ -42,11 +42,11 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://gi
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 if (requireNamespace("rstudioapi")) {
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
     if (rstudioapi::isAvailable()) {
         env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|________________________________________________________________________________|#  
@@ -93,9 +93,9 @@ env1$f$f_objectname.read.checkEntity(objectname = objectname)
 env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
 # > objectname = "fhs.index100le10"
 # > env1$f$f_objectname.read.checkEntity(objectname = objectname)
-# Warning:  getwd() != path4read == "." 
+# Warning:  getwd() != .path4read == "." 
 # objectname = "fhs.index100le10"
-# Found subpath: path4read = "./data"
+# Found subpath: .path4read = "./data"
 # filename.ext = "fhs.index100le10.rds"
 # "fhs.index100le10.rds"
 # ----
@@ -221,7 +221,7 @@ env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "rand
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning messages:
 # 1: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
-#   getwd() != path4read == "."
+#   getwd() != .path4read == "."
 # 2: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
 # 3: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
@@ -229,9 +229,9 @@ env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "rand
 # 4: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
 # > env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
-# Warning:  getwd() != path4read == "." 
+# Warning:  getwd() != .path4read == "." 
 # objectname = "fhs.index100le10"
-# Found subpath: path4read = "./data"
+# Found subpath: .path4read = "./data"
 # filename.ext = "fhs.index100le10.rds"
 # "fhs.index100le10.rds"
 # ----
@@ -355,7 +355,7 @@ env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "rand
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning message:
 # In env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid") :
-#   getwd() != path4read == "."
+#   getwd() != .path4read == "."
 
 
 

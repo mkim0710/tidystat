@@ -5,16 +5,16 @@ library(tidyverse)
 getwd() |> dput()
 # > getwd() |> dput()
 # "X:/mkim/Rproject"
-# path4read = "//DON/marketscan_users/smacdonald/"
-# path4write = "//DON/marketscan_users/mkim/"
-# path4read = "/proj/marketscan_users/marketscan/mkim/"
-# path4write = "/proj/marketscan_users/marketscan/mkim/"
-path4read = "../data/"
-path4write = "../data/"
+# .path4read = "//DON/marketscan_users/smacdonald/"
+# .path4write = "//DON/marketscan_users/mkim/"
+# .path4read = "/proj/marketscan_users/marketscan/mkim/"
+# .path4write = "/proj/marketscan_users/marketscan/mkim/"
+.path4read = "../data/"
+.path4write = "../data/"
 
 
 library(DBI)
-mydb <- dbConnect(RSQLite::SQLite(), paste0(path4write, "r4.sas7bdat.sqlite"))
+mydb <- dbConnect(RSQLite::SQLite(), paste0(.path4write, "r4.sas7bdat.sqlite"))
 
 
 mydb %>% {DBI::dbListTables(.)} |> dput() #----

@@ -405,7 +405,7 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 # Browse[1]> ls(envir = parent.frame(n=2)) #----
 # [1] "df"                                                              "ID_Eligible_Exposure.TargetTrial2v2.159vs266"                   
 # [3] "ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates" "ID_lmp_Window4Exposure"                                         
-# [5] "path4read"                                                       "path4write"                                                     
+# [5] ".path4read"                                                       ".path4write"                                                     
 # [7] "tribble_paste"                                                  
 
 

@@ -181,9 +181,9 @@ if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(Sys.getenv("print.intermediate")==TRUE) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 env1$info$info_system_info = env1$env.internal$get_system_info()
 # str(env1$info$info_system_info)
-CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
-CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
-# CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
+.CodeText = "env1$info$info_system_info$machine_nodename"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+.CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+# .CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
 env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
 # str(env1$info$info_software_versions)
 
@@ -326,13 +326,13 @@ filename.ext = "templates-00env1.minimum.Rmd"; if(file.exists(filename.ext)) {
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ----  
+# # @ write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))) ----  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds")), compress = "gz" ))
-# # system.time(write_rds( get(objectname), file.path(path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")), compress = "gz" ))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
