@@ -89,10 +89,10 @@ source("f_objectname.read.checkEntity.source.r")
 
 # \$ objectname = "fhs.index100le10" =======
 objectname = "fhs.index100le10"
-env1$f_objectname.read.checkEntity(objectname = objectname)
-env1$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
+env1$f$f_objectname.read.checkEntity(objectname = objectname)
+env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
 # > objectname = "fhs.index100le10"
-# > env1$f_objectname.read.checkEntity(objectname = objectname)
+# > env1$f$f_objectname.read.checkEntity(objectname = objectname)
 # Warning:  getwd() != path4read == "." 
 # objectname = "fhs.index100le10"
 # Found subpath: path4read = "./data"
@@ -220,15 +220,15 @@ env1$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid
 # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning messages:
-# 1: In env1$f_objectname.read.checkEntity(objectname = objectname) :
+# 1: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
 #   getwd() != path4read == "."
-# 2: In env1$f_objectname.read.checkEntity(objectname = objectname) :
+# 2: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
-# 3: In env1$f_objectname.read.checkEntity(objectname = objectname) :
+# 3: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
-# 4: In env1$f_objectname.read.checkEntity(objectname = objectname) :
+# 4: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
 #   varname for ID not identified.
-# > env1$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
+# > env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
 # Warning:  getwd() != path4read == "." 
 # objectname = "fhs.index100le10"
 # Found subpath: path4read = "./data"
@@ -354,7 +354,7 @@ env1$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid
 # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning message:
-# In env1$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid") :
+# In env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid") :
 #   getwd() != path4read == "."
 
 

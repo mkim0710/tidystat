@@ -154,8 +154,8 @@ getNamespaceExports("base") %>% str
 # > getNamespaceExports("base") %>% str
 #  chr [1:1391] "!" "$" "&" "(" "*" "+" "-" "/" ":" "<" "=" ">" "as.matrix.data.frame" "@" "F" "I" "registerS3methods" "as.POSIXct.Date" "T" "[" "^" "c" "q" ...
 
-env1$f_vec1_vec2.setdiff(ls(envir = asNamespace("base")), getNamespaceExports("base")) %>% str
-# > env1$f_vec1_vec2.setdiff(ls(envir = asNamespace("base")), getNamespaceExports("base")) %>% str
+env1$f$f_vec1_vec2.setdiff(ls(envir = asNamespace("base")), getNamespaceExports("base")) %>% str
+# > env1$f$f_vec1_vec2.setdiff(ls(envir = asNamespace("base")), getNamespaceExports("base")) %>% str
 # List of 7
 #  $ vec1.character: chr [1:1270] "-" "-.Date" "-.POSIXt" ":" ...
 #  $ vec2.character: chr [1:1391] "!" "$" "&" "(" ...

@@ -132,7 +132,7 @@ object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, pr
     vec_files_subpath.excl_origin <- list.files(input_path, full.names = TRUE)
     for (i_files_subpath in vec_files_subpath.excl_origin) {
         if (file.info(i_files_subpath)$isdir) {
-            subvec_files_subpath.excl_origin <- env1$f_path.list_subpath.DepthFirstSearch_recursive(i_files_subpath, max_depth - 1, FALSE, print.intermediate, .initial_max_depth = .initial_max_depth)
+            subvec_files_subpath.excl_origin <- env1$f$f_path.list_subpath.DepthFirstSearch_recursive(i_files_subpath, max_depth - 1, FALSE, print.intermediate, .initial_max_depth = .initial_max_depth)
             
             if (print.intermediate && length(subvec_files_subpath.excl_origin) > 0) {
                 cat("Subdirectories of ", i_files_subpath, ": ", length(subvec_files_subpath.excl_origin), "\n")
@@ -234,9 +234,9 @@ if(!objectname %in% names(.GlobalEnv$env1$f)) {
 objectname = "f_path.list_subpath"
 object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, BreadthFirstSearch = FALSE) {
     if (BreadthFirstSearch) {
-        env1$f_path.list_subpath.BreathFirstSearch(input_path, max_depth, include_input_path, print.intermediate)
+        env1$f$f_path.list_subpath.BreathFirstSearch(input_path, max_depth, include_input_path, print.intermediate)
     } else {
-        env1$f_path.list_subpath.DepthFirstSearch_recursive(input_path, max_depth, include_input_path, print.intermediate)
+        env1$f$f_path.list_subpath.DepthFirstSearch_recursive(input_path, max_depth, include_input_path, print.intermediate)
     }
 }
 if(!objectname %in% names(.GlobalEnv$env1$f)) {

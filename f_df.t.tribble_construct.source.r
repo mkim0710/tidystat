@@ -645,7 +645,7 @@ if(!objectname %in% names(.GlobalEnv$env1$f)) {
 ## \$ objectname = "f_df.t.tribble_construct" ----
 objectname = "f_df.t.tribble_construct"
 object = function(df) {
-    out = env1$f_df.transpose(df)
+    out = env1$f$f_df.transpose(df)
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }

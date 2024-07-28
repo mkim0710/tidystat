@@ -121,9 +121,9 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     } else if(file.exists(file.path(path4read, paste0(filename.ext, ".xz")))) {
         filename.ext = paste0(filename.ext, ".xz")
     } else if(BreathFirstSearch) {
-        path.filename.ext = env1$f_filename.ext.find_subpath(filename.ext, input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
+        path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
         if (is.null(path.filename.ext)) {
-            path.filename.ext = env1$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
+            path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
             if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) 
         }
         path4read = dirname(path.filename.ext)
@@ -142,7 +142,7 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     #     str_replace_all("\\]", "\\\\]") %>% 
     #     str_replace_all("\\-", "\\\\-") 
     filename.ext.regex <- filename.ext |> str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
-    env1$f_path.size_files(path4read = path4read, regex4filename = filename.ext.regex)
+    env1$f$f_path.size_files(path4read = path4read, regex4filename = filename.ext.regex)
     
     system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir=.GlobalEnv))
 
@@ -193,8 +193,8 @@ if(!objectname %in% names(.GlobalEnv$env1$f)) {
 
 
 # objectname = "fhs.index100le10"
-# env1$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".")
-# env1$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".", vec_varname4ID = "randid")
+# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".")
+# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".", vec_varname4ID = "randid")
 # # > objectname = "fhs.index100le10"
 # # > f_objectname.read.checkEntity(objectname = objectname)
 # # Warning:  getwd() != path4read == "." 

@@ -192,14 +192,14 @@ r2179052@SharedWorkspace@MHKim710@Posit.Cloud
 ## @ fc-list ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # On Unix-based systems, you can use the fc-list command to list available fonts. This command shows both system fonts and those managed by fontconfig (including some TeX Live-installed fonts).
-'fc-list : family' |> system(intern = TRUE) |> sort() |> env1$f_vec.dput_line_by_line()
+'fc-list : family' |> system(intern = TRUE) |> sort() |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
 ##@ find -type d texlive  ----  
 ## find / -type d -iname texlive  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find / -type d -iname texlive' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find / -type d -iname texlive' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive",  
   "/usr/local/texlive/tlpkg/TeXLive",  
@@ -209,7 +209,7 @@ c("/usr/local/texlive",
   
 ## find / -type d -iname texmf-dist  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find / -type d -iname texmf-dist' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find / -type d -iname texmf-dist' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist")  
   
@@ -217,8 +217,8 @@ c("/usr/local/texlive/texmf-dist")
 ### find /usr/share/texlive -type d -iname "fontspec"  
 ### find /usr/local/texlive -type d -iname "fontspec"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/share/texlive/texmf-dist/tex/latex/fontspec")  
 c("/usr/local/texlive/texmf-dist/tex/latex/fontspec")  
@@ -243,16 +243,16 @@ c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base",
 ### find /usr/share/texlive -type d -iname "roboto"  
 ### find /usr/local/texlive -type d -iname "roboto"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
 ### find /usr/share/texlive -type d -iname "cascadia*code"  
 ### find /usr/local/texlive -type d -iname "cascadia*code"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
@@ -260,8 +260,8 @@ c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base",
 ## find /usr/share/texlive -type d -iname "font[s ]"  
 ## find /usr/local/texlive -type d -iname "font[s ]"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist/tex/context/fonts",  
   "/usr/local/texlive/texmf-dist/metapost/context/fonts",  
@@ -270,8 +270,8 @@ c("/usr/local/texlive/texmf-dist/tex/context/fonts",
 ## ls -F /usr/share/texlive/texmf-dist/fonts  
 ## ls -F /usr/local/texlive/texmf-dist/fonts  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("afm/",  
   "cid/",  
@@ -290,8 +290,8 @@ c("afm/",
 ### ls -F /usr/share/texlive/texmf-dist/fonts/opentype  
 ### ls -F /usr/local/texlive/texmf-dist/fonts/opentype  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("google/",  
   "public/")  
@@ -299,8 +299,8 @@ c("google/",
 #### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("cascadia-code/",  
   "context-companion-fonts/",  
@@ -313,16 +313,16 @@ c("cascadia-code/",
 #### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("roboto/")  
   
 ##### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google/roboto  
 ##### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google/roboto  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("Roboto-BlackItalic.otf",  
   "Roboto-Black.otf",  
@@ -397,32 +397,32 @@ c("Roboto-BlackItalic.otf",
 ### ls -F /usr/share/texlive/texmf-dist/fonts/truetype  
 ### ls -F /usr/local/texlive/texmf-dist/fonts/truetype  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("")  
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
 ##### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google/roboto  
 ##### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google/roboto  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
@@ -430,8 +430,8 @@ c("")
 ### find /usr/share/texlive -type d -iname "*roboto*"  
 ### find /usr/local/texlive -type d -iname "*roboto*"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist/tex/latex/roboto",  
   "/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto",  
@@ -444,8 +444,8 @@ c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
 #### find /usr/share/texlive -type f -iname "*roboto*"  
 #### find /usr/local/texlive -type f -iname "*roboto*"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist/tex/latex/roboto",  
   "/usr/local/texlive/texmf-dist/fonts/enc/dvips/roboto",  
@@ -458,8 +458,8 @@ c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
 ##### find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"  
 ##### find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Light.otf",  
   "/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Medium.otf",  
@@ -476,16 +476,16 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Light.o
 ### find /usr/share/texlive -type d -iname "*inconsolata*"  
 ### find /usr/local/texlive -type d -iname "*inconsolata*"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
 #### find /usr/share/texlive -type f -iname "*inconsolata*.?tf"  
 #### find /usr/local/texlive -type f -iname "*inconsolata*.?tf"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Bold.otf",  
   "/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Bold.otf",  
@@ -495,16 +495,16 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 ### find /usr/share/texlive -type d -iname "cascadia*code"  
 ### find /usr/local/texlive -type d -iname "cascadia*code"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
 #### find /usr/share/texlive -type f -iname "*cascadia*.?tf"  
 #### find /usr/local/texlive -type f -iname "*cascadia*.?tf"  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-'find /usr/share/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'find /usr/local/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'find /usr/share/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'find /usr/local/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
