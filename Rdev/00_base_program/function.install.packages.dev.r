@@ -12,7 +12,7 @@ library(multtest)
 
 
 
-for(packagename in c("dplyr", "readr")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}  
+for(.packagename in c("dplyr", "readr")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
 
 
@@ -21,7 +21,7 @@ for(packagename in c("dplyr", "readr")) {if(!require(packagename,character.only=
 # if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
 # 
 # install.packages(c("tidyverse", "RODBC", "maps", "jsonlite"))
-for(packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
+for(.packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 # 
 # 
 # # https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them
