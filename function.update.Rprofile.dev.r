@@ -16,21 +16,21 @@ function2rewrite = "Sys.setlocale('LC_ALL', 'en_US.UTF-8')"
 paths4Rprofile <- c("./.Rprofile", "~/.Rprofile")
 
 # Initialize variable
-path4Rprofile <- NULL
+.path4Rprofile <- NULL
 
 # Check if the .Rprofile file exists
 for (path in paths4Rprofile) {
   if (file.exists(path)) {
     cat(paste0("Found the file: ", path, "\n"))
-    path4Rprofile <- path
+    .path4Rprofile <- path
     break
   }
 }
 
 # Process the .Rprofile file if found
-if (!is.null(path4Rprofile)) {
+if (!is.null(.path4Rprofile)) {
   # Read the contents of the .Rprofile file
-  profile_content <- readLines(path4Rprofile)
+  profile_content <- readLines(.path4Rprofile)
   
   # Check if the language setting already exists in the file
   if (any(grepl(function2find, profile_content))) {
@@ -43,7 +43,7 @@ if (!is.null(path4Rprofile)) {
   profile_content <- c(profile_content, function2rewrite)
   
   # Write the updated contents back to the .Rprofile file
-  writeLines(profile_content, path4Rprofile)
+  writeLines(profile_content, .path4Rprofile)
 } else {
   # Prompt for creating a new .Rprofile if none exists
   createRprofile <- tolower(readline(prompt = "Do you want to create a new Rprofile file? (yes/no): "))

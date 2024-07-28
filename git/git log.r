@@ -33,7 +33,7 @@
 # > 'git log --oneline --graph --decorate --all --since="May 16 2024" --until=" May 20 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # * bc42adc (HEAD -> master, origin/master, origin/HEAD) f_session_recover.dev.04.r
 # * ddf0e79 recovered_files01
-# * 7cc98ee # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+# * 7cc98ee # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # * 814b442 Update default.R
 # * dc4c33a "auto_save_on_blur": true,
 # *   4584b7c Merge branch 'master' of github.com:mkim0710/tidystat
@@ -215,7 +215,7 @@
 # Author: mkim0710 <mkim0710@gmail.com>
 # Date:   Mon May 20 23:52:46 2024 +0900
 # 
-#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+#     # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 
 # commit 814b442e31c6639123858e11ca94e1fba5781c44
 # Author: mkim0710 <mkim0710@gmail.com>
@@ -245,7 +245,7 @@
 # Commit:     mkim0710 <mkim0710@gmail.com>
 # CommitDate: Mon May 20 23:52:46 2024 +0900
 # 
-#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+#     # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 
 # commit 814b442e31c6639123858e11ca94e1fba5781c44
 # Author:     mkim0710 <mkim0710@gmail.com>
@@ -293,7 +293,7 @@
 # Commit:     mkim0710 <mkim0710@gmail.com>
 # CommitDate: Mon May 20 23:52:46 2024 +0900
 # 
-#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+#     # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 
 # M	rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # M	rstudio-prefs/templates/templates-00env1.minimum.nb.html
@@ -340,7 +340,7 @@
 #  {recovered_files => recovered_files01}/git stash.r |  0
 #  .../rstudio-prefs.json                             |  0
 #  13 files changed, 62 insertions(+), 9 deletions(-)
-# 7cc98ee # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+# 7cc98ee # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 #  .../templates/templates-00env1.minimum.Rmd   |  2 +-
 #  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
 #  2 files changed, 21 insertions(+), 21 deletions(-)
@@ -363,7 +363,7 @@
 'git log --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git log --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # ddf0e79 mhkim@rocker@MAGB760M13700KF Mon May 20 15:06:22 2024 recovered_files01
-# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
 # dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -385,7 +385,7 @@
 #  .../rstudio-prefs.json                             |  0
 #  13 files changed, 62 insertions(+), 9 deletions(-)
 # 
-# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 #  .../templates/templates-00env1.minimum.Rmd   |  2 +-
 #  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
 #  2 files changed, 21 insertions(+), 21 deletions(-)
@@ -403,14 +403,14 @@
 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # * ddf0e79 mhkim@rocker@MAGB760M13700KF Mon May 20 15:06:22 2024 recovered_files01
-# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # * 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
 # * dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="May 16 2024" --until=" May 20 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="May 16 2024" --until=" May 20 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # * bc42adc mhkim@rocker@MAGB760M13700KF Mon May 20 15:59:48 2024 f_session_recover.dev.04.r
 # * ddf0e79 mhkim@rocker@MAGB760M13700KF Mon May 20 15:06:22 2024 recovered_files01
-# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # * 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
 # * dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 # *   4584b7c mhkim@rocker@MAGB760M13700KF Mon May 20 14:47:52 2024 Merge branch 'master' of github.com:mkim0710/tidystat
@@ -504,7 +504,7 @@
 # R100	recovered_files/git stash.r	recovered_files01/git stash.r
 # R100	recovered_files/rstudio-prefs.json	recovered_files01/rstudio-prefs.json
 # 
-# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
+# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 # M	rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # M	rstudio-prefs/templates/templates-00env1.minimum.nb.html
 # 

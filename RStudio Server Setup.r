@@ -183,10 +183,10 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 ### @ rstudio-prefs ----
 #|  @ rstudio-prefs  
 
-# file.edit(file.path(path4APPDATA_RStudio, filename))
-if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"}
+# file.edit(file.path(.path4APPDATA_RStudio, filename))
+if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 
-file.path(path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 
 # Global Options > General > Save workspace to .RData on exit: Never
 # Global Options > Code > Insert spaces for tab: 4
@@ -211,9 +211,9 @@ for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### @ templates ----
 #|  @ templates  
-# if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates"))
-# filename.ext = "default.R"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", filename.ext))
-# filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", filename.ext))
+# if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
+# filename.ext = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
+# filename.ext = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
 
 
 
