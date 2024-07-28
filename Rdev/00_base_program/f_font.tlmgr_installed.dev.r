@@ -92,8 +92,8 @@ c(
 )
 
 tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
-font_name = "roboto"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
-font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
+.font_name = "roboto"; if(tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+.font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  

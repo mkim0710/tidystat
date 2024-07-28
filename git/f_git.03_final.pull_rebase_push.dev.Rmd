@@ -304,17 +304,17 @@ CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(ba
     if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
     if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) 
     
-    destination_path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext)); if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)}  
-    for ( destination_path.filename.ext in c(
+    .destination_path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=CurrentSource.path.filename.ext, to=.destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path.filename.ext)) else warning(paste0("Update failed: ", .destination_path.filename.ext)); if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path.filename.ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path.filename.ext),wait=FALSE)}  
+    for ( .destination_path.filename.ext in c(
         file.path(env1$path$source_base_local, "rstudio-prefs", "templates", template.filename.ext)
         , file.path(env1$path$path0, "Rproject_Rmd", template.filename.ext)
-    )) {if(CurrentSource.path.filename.ext != destination_path.filename.ext) {
-        destination.filename = basename(destination_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-        destination.ext = basename(destination_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
+    )) {if(CurrentSource.path.filename.ext != .destination_path.filename.ext) {
+        destination.filename = basename(.destination_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
+        destination.ext = basename(.destination_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$")
         backup.path.filename = file.path(env1$path$path0, "Rproject_Rmd", "-backup", paste0(destination.filename,"-",format(Sys.time(),"%y%m%d_%H%M"),destination.ext))
-        file.copy(from=destination_path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
-        if(file.copy(from=CurrentSource.path.filename.ext, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext))
-        if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)}  
+        file.copy(from=.destination_path.filename.ext, to=backup.path.filename, overwrite=TRUE); message(paste0("Backup file created: ",backup.path.filename))
+        if(file.copy(from=CurrentSource.path.filename.ext, to=.destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path.filename.ext)) else warning(paste0("Update failed: ", .destination_path.filename.ext))
+        if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path.filename.ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path.filename.ext),wait=FALSE)}  
     }}
     file.edit(CurrentSource.path.filename.ext)
 }
@@ -356,8 +356,8 @@ env1$path$CurrentSource.path.filename.html = env1$path$CurrentSource.path.filena
 # if (Sys.getenv("PARENT_RENDERING") != "YES") {
 #     if (.Platform$OS.type == "windows") {
 #         tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
-#         font_name = "roboto"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
-#         font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(font_name) |> length() == 0) tinytex::tlmgr_install(font_name)
+#         .font_name = "roboto"; if(tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+#         .font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
 #         cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
 #         Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
 #         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}, backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)

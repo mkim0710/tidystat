@@ -133,12 +133,12 @@ f_font_filename.search_path_local <- function(font_filename) {
 f_vec_font_filename.search_path_local <- function(vec_font_filename) {
     if(is.null(names(vec_font_filename))) vec_font_filename = vec_font_filename %>% set_names()
     names(vec_font_filename)[names(vec_font_filename)==""] = vec_font_filename[names(vec_font_filename)==""]
-    for (font_name in names(vec_font_filename)) {
-        vec_font_path <- f_font_filename.search_path_local(vec_font_filename[font_name])
+    for (.font_name in names(vec_font_filename)) {
+        vec_font_path <- f_font_filename.search_path_local(vec_font_filename[.font_name])
         if (!is.null(vec_font_path)) {
-            message(font_name, " is already installed at the following path(s):\n", paste(vec_font_path, collapse = "\n"))
+            message(.font_name, " is already installed at the following path(s):\n", paste(vec_font_path, collapse = "\n"))
         } else {
-            message(font_name, " is not installed.")
+            message(.font_name, " is not installed.")
         }
     }
 }
