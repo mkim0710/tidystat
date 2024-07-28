@@ -68,16 +68,16 @@ system("git status")
 # Cf) Cloud Free: 25 hrs/month
 # Cf) Cloud Student ($5/month): 75 hrs/month
 
-for (packagename in c("tidyverse", "datapasta")) {
-  if(packagename %in% installed.packages()[,"Package"]) {   
-    warning(paste0(packagename, ' %in% installed.packages()[,"Package"])'))
+for (.tmp$packagename in c("tidyverse", "datapasta")) {
+  if(.tmp$packagename %in% installed.packages()[,"Package"]) {   
+    warning(paste0(.tmp$packagename, ' %in% installed.packages()[,"Package"])'))
     # If that package is already installed, then just load it. (You don't want to re-install if it is already installed.)
-    require(packagename,character.only=TRUE)
+    require(.tmp$packagename,character.only=TRUE)
   } else {  
     # If that package is not already installed, then install first.
-    install.packages(packagename)
-    # install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
-    require(packagename,character.only=TRUE)
+    install.packages(.tmp$packagename)
+    # install.packages(.tmp$packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
+    require(.tmp$packagename,character.only=TRUE)
   }
 }
 
@@ -87,16 +87,16 @@ for (packagename in c("tidyverse", "datapasta")) {
 # options(repos = c(CRAN= "https://packagemanager.rstudio.com/cran/302"))  # snapshot for 2020-07-16
 options(repos = c(CRAN= "https://packagemanager.rstudio.com/cran/__linux__/xenial/302"))  # snapshot for 2020-07-16, binary for Ubuntu 16.04 (Xenial)
 
-for (packagename in c("icd")) {
-    if(packagename %in% installed.packages()[,"Package"]) {   
+for (.tmp$packagename in c("icd")) {
+    if(.tmp$packagename %in% installed.packages()[,"Package"]) {   
         # If that package is already installed, then just load it. (You don't want to re-install if it is already installed.)
-        warning(paste0(packagename, ' %in% installed.packages()[,"Package"])'))
-        require(packagename,character.only=TRUE)
+        warning(paste0(.tmp$packagename, ' %in% installed.packages()[,"Package"])'))
+        require(.tmp$packagename,character.only=TRUE)
     } else {  
         # If that package is not already installed, then install first.
-        install.packages(packagename)
-        # install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
-        require(packagename,character.only=TRUE)
+        install.packages(.tmp$packagename)
+        # install.packages(.tmp$packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
+        require(.tmp$packagename,character.only=TRUE)
     }
 }
 # https://packagemanager.rstudio.com/client/#/repos/1/packages/icd

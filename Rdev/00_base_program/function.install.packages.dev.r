@@ -12,39 +12,39 @@ library(multtest)
 
 
 
-for (packagename in c("dplyr", "readr")) {
-    if(packagename %in% installed.packages()[,"Package"]) {   
+for (.tmp$packagename in c("dplyr", "readr")) {
+    if(.tmp$packagename %in% installed.packages()[,"Package"]) {   
         # If that package is already installed, then just load it. (You don't want to re-install if it is already installed.)
-        require(packagename,character.only=TRUE)
+        require(.tmp$packagename,character.only=TRUE)
     } else {  
         # If that package is not already installed, then install first.
-        install.packages(packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
-        require(packagename,character.only=TRUE)
+        install.packages(.tmp$packagename, type = "binary")  # I am installing via "binary" because the installed R version is too old.
+        require(.tmp$packagename,character.only=TRUE)
     }
 }
 
 
 
 # # install.packages("tidyverse")
-# packagename = "tidyverse"
-# if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
+# .tmp$packagename = "tidyverse"
+# if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
 # 
 # install.packages(c("tidyverse", "RODBC", "maps", "jsonlite"))
-# for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-#     if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
+# for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
+#     if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
 # }
-for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-    if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
+for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
+    if(!require(.tmp$packagename,character.only=TRUE))install.packages(.tmp$packagename) else library(.tmp$packagename,character.only=TRUE)
 }
 # 
-# for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-#     if(!require(packagename,character.only=TRUE)) install.packages(packagename)
+# for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
+#     if(!require(.tmp$packagename,character.only=TRUE)) install.packages(.tmp$packagename)
 # }
 # 
 # # https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them
-# packagenames = c("tidyverse", "RODBC", "maps", "jsonlite")
-# packagenames2install = packagenames[!packagenames %in% installed.packages()[,"Package"]]
-# if(length(packagenames2install)) install.packages(packagenames2install)
+# .tmp$packagenames = c("tidyverse", "RODBC", "maps", "jsonlite")
+# .tmp$packagenames2install = .tmp$packagenames[!.tmp$packagenames %in% installed.packages()[,"Package"]]
+# if(length(.tmp$packagenames2install)) install.packages(.tmp$packagenames2install)
 c("tidyverse", "RODBC", "maps", "jsonlite") %>% 
 {.[!. %in% installed.packages()[,"Package"]]} %>% {ifelse(length(.) > 0, install.packages(.), .)}
 detach("package:maps", unload=TRUE) # package:maps conflicts with some other packages, so load only when you need it, detach when you are done with it.
@@ -56,9 +56,9 @@ c("moonBook") %>%
     {.[!. %in% installed.packages()[,"Package"]]} %>% {ifelse(length(.) > 0, devtools::install_github("cardiomoon/moonBook"), .)}
 
 
-packagename = "devtools"
-if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
-packagename = "moonBook"
-if(!require(packagename,character.only=TRUE)) {devtools::install_github("cardiomoon/moonBook"); require(packagename,character.only=TRUE)}
+.tmp$packagename = "devtools"
+if(!require(.tmp$packagename,character.only=TRUE))install.packages(.tmp$packagename) else library(.tmp$packagename,character.only=TRUE)
+.tmp$packagename = "moonBook"
+if(!require(.tmp$packagename,character.only=TRUE)) {devtools::install_github("cardiomoon/moonBook"); require(.tmp$packagename,character.only=TRUE)}
 
 

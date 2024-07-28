@@ -256,10 +256,10 @@ Encoding(names(korpopmap1.CP949@data)) |> dput()
 # http://rpubs.com/cardiomoon/222145
 
 
-packagename = "devtools"
-if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
-packagename = "kormaps2014"
-if(!require(packagename,character.only=TRUE)) {devtools::install_github("cardiomoon/kormaps2014"); require(packagename,character.only=TRUE)}
+.tmp$packagename = "devtools"
+if(!require(.tmp$packagename,character.only=TRUE))install.packages(.tmp$packagename) else library(.tmp$packagename,character.only=TRUE)
+.tmp$packagename = "kormaps2014"
+if(!require(.tmp$packagename,character.only=TRUE)) {devtools::install_github("cardiomoon/kormaps2014"); require(.tmp$packagename,character.only=TRUE)}
 
 
 
