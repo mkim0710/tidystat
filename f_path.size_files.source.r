@@ -132,10 +132,10 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
     env1$f_df.tribble_construct(out)
     cat(strrep("~",80),"\n",sep=""); #----
 } 
-if(!objectname %in% names(.GlobalEnv$env1)) {
-    packageStartupMessage(paste0("Loading: ", "env1$", objectname))
-    .GlobalEnv$env1[[objectname]] = object
-    # cat("> env1$",objectname,"()\n",sep=""); get(objectname, envir=env1)() # Run the loaded function by default
+if(!objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
+    .GlobalEnv$env1$f[[objectname]] = object
+    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
 }
 
 # > for (env1.dependancy in c("f_df.tribble_construct")) {
