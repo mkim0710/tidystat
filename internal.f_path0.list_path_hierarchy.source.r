@@ -101,7 +101,7 @@ if (requireNamespace("rstudioapi")) {
 
 #% f_path0.list_path_hierarchy =======
 .tmp$objectname = "f_path0.list_path_hierarchy"
-.tmp$object <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+.tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path <- list()
     
@@ -127,10 +127,10 @@ if (requireNamespace("rstudioapi")) {
         path_last <- dirname(path_last)  # Update path_last to its parent directory
     }
     
-    # Ensure the list is of length max_hierarchy, filling excess with NA
-    list_path_hierarchy <- list_path[seq_len(min(max_hierarchy+1, length(list_path)))]
-    if (length(list_path_hierarchy) < max_hierarchy+1) {
-        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, max_hierarchy+1 - length(list_path_hierarchy)))
+    # Ensure the list is of length .max_hierarchy, filling excess with NA
+    list_path_hierarchy <- list_path[seq_len(min(.max_hierarchy+1, length(list_path)))]
+    if (length(list_path_hierarchy) < .max_hierarchy+1) {
+        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, .max_hierarchy+1 - length(list_path_hierarchy)))
     }
     
     return(list_path_hierarchy)

@@ -103,7 +103,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 
 
 #% f_path0.list_path_hierarchy =======
-f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path <- list()
     
@@ -129,10 +129,10 @@ f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), max_hierarch
         path_last <- dirname(path_last)  # Update path_last to its parent directory
     }
     
-    # Ensure the list is of length max_hierarchy, filling excess with NA
-    list_path_hierarchy <- list_path[seq_len(min(max_hierarchy+1, length(list_path)))]
-    if (length(list_path_hierarchy) < max_hierarchy+1) {
-        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, max_hierarchy+1 - length(list_path_hierarchy)))
+    # Ensure the list is of length .max_hierarchy, filling excess with NA
+    list_path_hierarchy <- list_path[seq_len(min(.max_hierarchy+1, length(list_path)))]
+    if (length(list_path_hierarchy) < .max_hierarchy+1) {
+        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, .max_hierarchy+1 - length(list_path_hierarchy)))
     }
     
     return(list_path_hierarchy)
@@ -141,10 +141,10 @@ f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), max_hierarch
 # Example usage
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 print_intermediate <- TRUE
 
-list_paths <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = print_intermediate)
+list_paths <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = print_intermediate)
 
 # Print the final list of paths
 print(list_paths)
@@ -156,7 +156,7 @@ print(list_paths)
 
 library(stringr)
 
-f_path0.list_path_hierarchy.v2 <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+f_path0.list_path_hierarchy.v2 <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
   # Escape special characters in path0 for regex
   special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
   path0_escaped <- path0
@@ -170,13 +170,13 @@ f_path0.list_path_hierarchy.v2 <- function(path0, path_last = getwd(), max_hiera
   }
   
   # Initialize a list to store the paths
-  list_paths <- vector("list", max_hierarchy + 1)
+  list_paths <- vector("list", .max_hierarchy + 1)
   
   # The base path0 is the first path
   list_paths[[1]] <- path0
   
   # Use str_extract to build the hierarchy
-  for (i in 1:max_hierarchy) {
+  for (i in 1:.max_hierarchy) {
     pattern <- paste0("^", path0_escaped, strrep("/[^/]+", i))
     list_paths[[i+1]] <- str_extract(path_last, pattern)
     
@@ -195,10 +195,10 @@ f_path0.list_path_hierarchy.v2 <- function(path0, path_last = getwd(), max_hiera
 # Example usage
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 print_intermediate <- TRUE
 
-list_paths <- f_path0.list_path_hierarchy.v2(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = print_intermediate)
+list_paths <- f_path0.list_path_hierarchy.v2(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = print_intermediate)
 
 # Print the final list of paths
 print(list_paths)
@@ -213,7 +213,7 @@ print(list_paths)
 library(stringr)
 library(purrr)
 
-f_path0.list_path_hierarchy.v3 <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+f_path0.list_path_hierarchy.v3 <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
   # Escape special characters in path0 for regex
   special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
   path0_escaped <- path0
@@ -240,13 +240,13 @@ f_path0.list_path_hierarchy.v3 <- function(path0, path_last = getwd(), max_hiera
   }
   
   # Initialize a list to store the paths
-  list_paths <- vector("list", max_hierarchy + 1)
+  list_paths <- vector("list", .max_hierarchy + 1)
   
   # The base path0 is the first path
   list_paths[[1]] <- path0
   
   # Use map to build the hierarchy
-  list_paths[2:(max_hierarchy + 1)] <- map(1:max_hierarchy, extract_path)
+  list_paths[2:(.max_hierarchy + 1)] <- map(1:.max_hierarchy, extract_path)
   
   # Replace any NULL values with NA
   list_paths <- lapply(list_paths, function(x) if (is.null(x)) NA else x)
@@ -257,10 +257,10 @@ f_path0.list_path_hierarchy.v3 <- function(path0, path_last = getwd(), max_hiera
 # Example usage
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 print_intermediate <- TRUE
 
-list_paths <- f_path0.list_path_hierarchy.v3(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = print_intermediate)
+list_paths <- f_path0.list_path_hierarchy.v3(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = print_intermediate)
 
 # Print the final list of paths
 print(list_paths)
@@ -295,7 +295,7 @@ library(stringr)
 library(purrr)
 
 # Define the function
-f_path0.list_path_hierarchy.v4 <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+f_path0.list_path_hierarchy.v4 <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
   # Escape special characters in path0 for regex
   path0_escaped <- gsub("([][{}()+*^$|])", "\\\\\\1", path0)
   
@@ -318,13 +318,13 @@ f_path0.list_path_hierarchy.v4 <- function(path0, path_last = getwd(), max_hiera
   }
   
   # Initialize a list to store the paths
-  list_paths <- vector("list", max_hierarchy + 1)
+  list_paths <- vector("list", .max_hierarchy + 1)
   
   # The base path0 is the first path
   list_paths[[1]] <- path0
   
   # Use map to build the hierarchy
-  list_paths[2:(max_hierarchy + 1)] <- map(1:max_hierarchy, extract_path)
+  list_paths[2:(.max_hierarchy + 1)] <- map(1:.max_hierarchy, extract_path)
   
   # Replace any NULL values with NA
   list_paths <- lapply(list_paths, function(x) if (is.null(x)) NA else x)
@@ -335,11 +335,11 @@ f_path0.list_path_hierarchy.v4 <- function(path0, path_last = getwd(), max_hiera
 # Example usage
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 print_intermediate <- TRUE
 
 # Execute the function with debugging prints
-list_paths <- f_path0.list_path_hierarchy.v4(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = print_intermediate)
+list_paths <- f_path0.list_path_hierarchy.v4(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = print_intermediate)
 
 # Print the final result
 print(list_paths)
@@ -352,9 +352,9 @@ print(list_paths)
 .sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### \$ list_path_hierarchy  =======
-max_hierarchy = 5
-env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), max_hierarchy = max_hierarchy, print.intermediate = FALSE)
-for (i in 1:(max_hierarchy)) {
+.max_hierarchy = 5
+env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), .max_hierarchy = .max_hierarchy, print.intermediate = FALSE)
+for (i in 1:(.max_hierarchy)) {
     # if(!is.na(env1$path$list_path_hierarchy[[i+1]]))
     env1$path[[paste0("path", i)]] = env1$path$list_path_hierarchy[[i+1]]
 }

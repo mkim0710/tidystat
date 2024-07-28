@@ -268,18 +268,18 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_
   
   
 #@@ START) dev) f_path0.list_path_hierarchy ----  
-## \$ original_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+## \$ original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)
 
 # Original function
-original_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
   path0_escaped <- gsub("([][{}()+*^$|])", "\\\\\\1", path0)
-  list_paths <- vector("list", max_hierarchy + 1)
+  list_paths <- vector("list", .max_hierarchy + 1)
   list_paths[[1]] <- path0
   
-  for (i in 1:max_hierarchy) {
+  for (i in 1:.max_hierarchy) {
     pattern <- paste0("^", path0_escaped, strrep("/[^/]+", i))
     list_paths[[i + 1]] <- str_extract(path_last, pattern)
   }
@@ -291,30 +291,30 @@ original_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
 # Example paths
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 
 # Test original function
-print(original_function(path0, path_last, max_hierarchy))
+print(original_function(path0, path_last, .max_hierarchy))
 ```
 
 
-## \$ v2_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+## \$ v2_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)
 
 # Version 2 function with debugging prints
-v2_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+v2_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
   # Escape special characters in path0 for regex
   path0_escaped <- path0 |> str_replace_all("([]\\[{}()+*?^$|.-])", "\\\\\\1")
   
   cat("Original path0: ", path0, "\n")
   cat("Escaped path0: ", path0_escaped, "\n\n")
   
-  list_paths <- vector("list", max_hierarchy + 1)
+  list_paths <- vector("list", .max_hierarchy + 1)
   list_paths[[1]] <- path0
   
-  for (i in 1:max_hierarchy) {
+  for (i in 1:.max_hierarchy) {
     pattern <- paste0("^", path0_escaped, strrep("/[^/]+", i))
     extracted_path <- str_extract(path_last, pattern)
     
@@ -331,28 +331,28 @@ v2_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
 # Example paths
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 
 # Test version 2 function with debugging prints
-print(v2_function(path0, path_last, max_hierarchy))
+print(v2_function(path0, path_last, .max_hierarchy))
 
 ```
 
 
-## \$ v3_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+## \$ v3_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Version 3 function
-v3_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+v3_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
   special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
   path0_escaped <- path0
   for (char in special_chars) {
     path0_escaped <- str_replace_all(path0_escaped, char, paste0("\\", char))
   }
   
-  list_paths <- vector("list", max_hierarchy + 1)
+  list_paths <- vector("list", .max_hierarchy + 1)
   list_paths[[1]] <- path0
   
-  for (i in 1:max_hierarchy) {
+  for (i in 1:.max_hierarchy) {
     pattern <- paste0("^", path0_escaped, strrep("/[^/]+", i))
     list_paths[[i + 1]] <- str_extract(path_last, pattern)
   }
@@ -364,17 +364,17 @@ v3_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
 # Example paths
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 
 # Test version 3 function
-print(v3_function(path0, path_last, max_hierarchy))
+print(v3_function(path0, path_last, .max_hierarchy))
 ```
 
 
-## \$ v4_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+## \$ v4_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Version 4 function
-v4_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+v4_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
   path0_escaped <- gsub("([][{}()+*^$|])", "\\\\\\1", path0)
   
   extract_path <- function(i) {
@@ -382,9 +382,9 @@ v4_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
     str_extract(path_last, pattern)
   }
   
-  list_paths <- vector("list", max_hierarchy + 1)
+  list_paths <- vector("list", .max_hierarchy + 1)
   list_paths[[1]] <- path0
-  list_paths[2:(max_hierarchy + 1)] <- map(1:max_hierarchy, extract_path)
+  list_paths[2:(.max_hierarchy + 1)] <- map(1:.max_hierarchy, extract_path)
   list_paths <- lapply(list_paths, function(x) if (is.null(x)) NA else x)
   return(list_paths)
 }
@@ -392,10 +392,10 @@ v4_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
 # Example paths
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
+.max_hierarchy <- 5
 
 # Test version 4 function
-print(v4_function(path0, path_last, max_hierarchy))
+print(v4_function(path0, path_last, .max_hierarchy))
 ```
   
   
@@ -406,10 +406,10 @@ library(microbenchmark)
 
 # Benchmark the functions
 benchmark_results <- microbenchmark(
-  original = original_function(path0, path_last, max_hierarchy),
-  v2 = v2_function(path0, path_last, max_hierarchy),
-  v3 = v3_function(path0, path_last, max_hierarchy),
-  v4 = v4_function(path0, path_last, max_hierarchy),
+  original = original_function(path0, path_last, .max_hierarchy),
+  v2 = v2_function(path0, path_last, .max_hierarchy),
+  v3 = v3_function(path0, path_last, .max_hierarchy),
+  v4 = v4_function(path0, path_last, .max_hierarchy),
   times = 100
 )
 

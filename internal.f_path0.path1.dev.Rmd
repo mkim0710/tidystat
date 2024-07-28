@@ -268,7 +268,7 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_
   
   
 #@@ START) dev) f_path0.1path ----  
-## \$ original_function <- function(path0, path_last = getwd(), max_hierarchy = 5) {
+## \$ original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)

@@ -139,7 +139,7 @@ objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!
 
 
 #% f_path0.list_path_hierarchy =======
-f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path <- list()
     
@@ -165,10 +165,10 @@ f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), max_hierarch
         path_last <- dirname(path_last)  # Update path_last to its parent directory
     }
     
-    # Ensure the list is of length max_hierarchy, filling excess with NA
-    list_path_hierarchy <- list_path[1:min(max_hierarchy, length(list_path))]
-    if (length(list_path_hierarchy) < max_hierarchy) {
-        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, max_hierarchy - length(list_path_hierarchy)))
+    # Ensure the list is of length .max_hierarchy, filling excess with NA
+    list_path_hierarchy <- list_path[1:min(.max_hierarchy, length(list_path))]
+    if (length(list_path_hierarchy) < .max_hierarchy) {
+        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, .max_hierarchy - length(list_path_hierarchy)))
     }
     
     return(list_path_hierarchy)
@@ -178,10 +178,10 @@ f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), max_hierarch
 # Example usage
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
-max_hierarchy <- 5
-list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = TRUE)
+.max_hierarchy <- 5
+list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = TRUE)
 str(list_path_hierarchy)
-# > list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, max_hierarchy = max_hierarchy, print.intermediate = TRUE)
+# > list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = TRUE)
 # > # Current path:  D:/OneDrive/[][Rproject]/github_tidystat/Rdev 
 # > str(list_path)
 # List of 1
