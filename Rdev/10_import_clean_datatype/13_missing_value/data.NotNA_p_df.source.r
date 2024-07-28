@@ -1,4 +1,4 @@
-# sourcename = "data.NotNA_p_df" |> paste0(".source.r")
+# .sourcename = "data.NotNA_p_df" |> paste0(".source.r")
 # data.NotNA_p_df.dev.r
 # data.NotNA_p_df.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
