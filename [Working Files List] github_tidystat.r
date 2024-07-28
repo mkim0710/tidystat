@@ -164,7 +164,7 @@ file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> en
 overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 overwrite_from_path.filename.ext = paste0(overwrite_from_path, "/.gitignore")
 if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
-    for (destination_path in unique(c(
+    for (.destination_path in unique(c(
         env1$path$path0
         , "~" |> normalizePath(winslash="/")
         , Sys.getenv("USERPROFILE") |> normalizePath(winslash="/")
@@ -174,8 +174,8 @@ if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
         , "../Rproject_Rmd"
         , "../Rproject_KoGES_AA10030"
     ))) {
-        destination_path.filename.ext = paste0(destination_path,"/.gitignore") 
-        env1$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, destination_path.filename.ext=destination_path.filename.ext, backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d")
+        .destination_path.filename.ext = paste0(.destination_path,"/.gitignore") 
+        env1$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, .destination_path.filename.ext=.destination_path.filename.ext, backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d")
     }
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
