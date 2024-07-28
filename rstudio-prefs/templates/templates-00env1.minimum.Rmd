@@ -293,37 +293,37 @@ options(width=120)
   
 # @@ START) Data ----  
   
-## \$ .DataSetName = "analyticDF_time2event" ----  
+## \$ DataSetName = "analyticDF_time2event" ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # suppressPackageStartupMessages(library(tidyverse))
 # #@@ START) data ----  
-# # \$ assign( .DataSetName, read_rds(paste0(.path4read,"/",.DataSetName,".rds")) ) ----  
+# # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ----  
 # # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # .DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # .subpath = "data"
-# .DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # path.filename.ext = ifelse(
-#     file.exists(paste0(subpath,"/",.DataSetName,".rds"))
-#     , paste0(subpath,"/",.DataSetName,".rds")
-#     , paste0(env1$path$source_base_github,"/",subpath,"/",.DataSetName,".rds")
+#     file.exists(paste0(subpath,"/",DataSetName,".rds"))
+#     , paste0(subpath,"/",DataSetName,".rds")
+#     , paste0(env1$path$source_base_github,"/",subpath,"/",DataSetName,".rds")
 # )
 # cat(" path.filename.ext = ", path.filename.ext, "\n", sep = "")
-# assign( .DataSetName, read_rds(path.filename.ext) )
+# assign( DataSetName, read_rds(path.filename.ext) )
 ```
   
   
-## \$ .DataSetName = "analyticDF_time2event" ----  
+## \$ DataSetName = "analyticDF_time2event" ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
 # suppressPackageStartupMessages(library(survminer))
 # ?survival::lung
-.DataSetName = "analyticDF_time2event"
+DataSetName = "analyticDF_time2event"
 assign(
-    .DataSetName, 
+    DataSetName, 
     survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
@@ -373,13 +373,13 @@ sourcename = "data.NotNA_p_df" |> paste0(".source.r")
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
   
 varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-get(.DataSetName)[intersect(varname4ID, colnames(get(.DataSetName)))] |> str()
-get(.DataSetName) |> dim()
-get(.DataSetName)[intersect(varname4ID, colnames(get(.DataSetName)))] |> n_distinct()
-get(.DataSetName)[intersect(varname4ID, colnames(get(.DataSetName)))] |> env1$data.NotNA_p_df()
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str()
+get(DataSetName) |> dim()
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> n_distinct()
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$data.NotNA_p_df()
   
 varname4CompositKey = c("age", "sex")
-vecCompositeKey = get(.DataSetName)[intersect(varname4CompositKey, colnames(get(.DataSetName)))] |> apply(MARGIN = 1, paste0, collapse = "-")
+vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] |> apply(MARGIN = 1, paste0, collapse = "-")
 vecCompositeKey |> n_distinct()
 ```
   
@@ -390,7 +390,7 @@ vecCompositeKey |> n_distinct()
 options(width=120)
 varname4outcome = "event"
 varname4time = c("time", "age")
-get(.DataSetName)[c(varname4outcome, varname4time)] |> 
+get(DataSetName)[c(varname4outcome, varname4time)] |> 
     mutate_if(is.factor, as.character) |>  
     mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> 
     mutate_if(is.character, as.factor) |> 
@@ -409,7 +409,7 @@ options(width=120)
   
   
 ## ---- < Data Availability Check > ----  
-### \$ paste0(.DataSetName,".Date",".NA",".rmAllNA")  ----  
+### \$ paste0(DataSetName,".Date",".NA",".rmAllNA")  ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
@@ -417,38 +417,38 @@ subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\
 sourcename = "data.NotNA_p_df" |> paste0(".source.r")
 subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
   
-assign( paste0(.DataSetName,".Date",".NA"), get(.DataSetName) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
-assign( paste0(.DataSetName,".Date",".NA",".rmAllNA"), get(paste0(.DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
-cat(" dim(",.DataSetName,") = ",deparse(dim(get(.DataSetName))),"  \n", sep="") 
-cat(" dim(",.DataSetName,".Date",".NA",".rmAllNA",") = ",deparse(dim(get(paste0(.DataSetName,".Date",".NA",".rmAllNA")))),"  \n", sep="") 
+assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
+assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
+cat(" dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="") 
+cat(" dim(",DataSetName,".Date",".NA",".rmAllNA",") = ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-cat(" > ",.DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","  \n", sep=""); env1$data.NotNA_p_df(get(paste0(.DataSetName,".Date",".NA")))
+cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","  \n", sep=""); env1$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
 ```
   
   
 ## ---- < DataSet Summary > ----  
-### \$ paste0(.DataSetName,".Date",".NA",".rmAllNA",".fct") ----  
+### \$ paste0(DataSetName,".Date",".NA",".rmAllNA",".fct") ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(.DataSetName,".Date",".NA",".rmAllNA")))) cat(" n_distinct(",paste0(.DataSetName,".Date",".NA",".rmAllNA"),"$",varname,") = ",n_distinct(get(paste0(.DataSetName,".Date",".NA",".rmAllNA"))[[varname]]),"  \n", sep="")}
+for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))) cat(" n_distinct(",paste0(DataSetName,".Date",".NA",".rmAllNA"),"$",varname,") = ",n_distinct(get(paste0(DataSetName,".Date",".NA",".rmAllNA"))[[varname]]),"  \n", sep="")}
   
   
 ..t0 = Sys.time()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",paste0(.DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.numeric))"," |> summary()","  \n", sep=""); get(paste0(.DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.numeric) |> summary() #----  
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.numeric))"," |> summary()","  \n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.numeric) |> summary() #----  
 Sys.time() - .t0
 ..t0 = Sys.time()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",paste0(.DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.logical))"," |> summary()","  \n", sep=""); get(paste0(.DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.logical) |> summary() #----  
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.logical))"," |> summary()","  \n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.logical) |> summary() #----  
 Sys.time() - .t0
   
 ..t0 = Sys.time()
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); cat(" > ",paste0(.DataSetName,".Date",".NA",".rmAllNA",".fct")," = ",paste0(.DataSetName,".Date",".NA",".rmAllNA")," |> mutate_if(is.character, as.factor)","  \n", sep=""); assign( paste0(.DataSetName,".Date",".NA",".rmAllNA",".fct"), get(paste0(.DataSetName,".Date",".NA",".rmAllNA")) |> mutate_if(is.character, as.factor) )
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," = ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> mutate_if(is.character, as.factor)","  \n", sep=""); assign( paste0(DataSetName,".Date",".NA",".rmAllNA",".fct"), get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> mutate_if(is.character, as.factor) )
 Sys.time() - .t0
 
 ..t0 = Sys.time()
-cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); cat(" > ",paste0(.DataSetName,".Date",".NA",".rmAllNA",".fct")," |> select_if(is.factor))"," |> summary()","  \n", sep=""); get(paste0(.DataSetName,".Date",".NA",".rmAllNA",".fct")) |> select_if(is.factor) |> summary() #----  
+cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")," |> select_if(is.factor))"," |> summary()","  \n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA",".fct")) |> select_if(is.factor) |> summary() #----  
 Sys.time() - .t0
-# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",paste0(.DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.factor))"," |> summary()","  \n", sep=""); get(paste0(.DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.character) |> map_df(as.factor) |> summary() #----  
+# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",paste0(DataSetName,".Date",".NA",".rmAllNA")," |> select_if(is.factor))"," |> summary()","  \n", sep=""); get(paste0(DataSetName,".Date",".NA",".rmAllNA")) |> select_if(is.character) |> map_df(as.factor) |> summary() #----  
 # Sys.time() - .t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```

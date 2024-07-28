@@ -154,12 +154,12 @@ for (.dependancy in c("f_filename.ext.find_.subpath", "f_path.size_files")) {
     for (varname in vec_varname4ID) {
         if(varname %in% names(get(objectname))) {
             attributes(.GlobalEnv[[objectname]])$n_distinct[[varname]] = n_distinct(get(objectname)[[varname]])
-            .DataSetName.nrow = nrow(get(objectname))
+            DataSetName.nrow = nrow(get(objectname))
             varname.n_distinct = attributes(.GlobalEnv[[objectname]])$n_distinct[[varname]]
 
             MessageText1 = paste0("nrow(",objectname,")")
             MessageText2 = paste0("n_distinct(",objectname,"$",varname,") = ",varname.n_distinct)
-            if (.DataSetName.nrow != varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+            if (DataSetName.nrow != varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
         }
     }
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
