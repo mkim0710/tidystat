@@ -219,9 +219,9 @@ if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(e
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
-subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-sourcename = "data.NotNA_p_df" |> paste0(".source.r")
-subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+.subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+.sourcename = "data.NotNA_p_df" |> paste0(".source.r")
+.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
 ```
   
   
