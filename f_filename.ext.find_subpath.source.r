@@ -88,6 +88,7 @@ library(tidyverse)
 if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalEnv) }
 # env1 = as.environment(env1)
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
+if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 
 if(!"path" %in% names(.GlobalEnv$env1)) {
     env1$path = list()
