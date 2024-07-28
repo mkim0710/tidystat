@@ -252,9 +252,9 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 .sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### \$ list_path_hierarchy  =======
-max_hierarchy = 5
-env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), max_hierarchy = max_hierarchy, print.intermediate = FALSE)
-# for (i in 1:(max_hierarchy)) {
+.max_hierarchy = 5
+env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), .max_hierarchy = .max_hierarchy, print.intermediate = FALSE)
+# for (i in 1:(.max_hierarchy)) {
 #     # if(!is.na(env1$path$list_path_hierarchy[[i+1]]))
 #     env1$path[[paste0("path", i)]] = env1$path$list_path_hierarchy[[i+1]]
 # }
