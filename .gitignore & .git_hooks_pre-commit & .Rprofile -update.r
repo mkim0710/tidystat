@@ -100,11 +100,11 @@ f_path_file.backup_copy_overwrite = function(overwrite_from_path, overwrite_from
     overwrite_from_path.filename.ext = paste0(overwrite_from_path, "/", overwrite_from_filename.ext)
     # if (basename(getwd()) == "github_tidystat") {
     if (getwd() |> normalizePath(winslash="/") %in% restrict_execution_path) {
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0(.vec_destination_paths, "/", overwrite_from_filename.ext) |> keep(file.exists) |> first(default = ""), backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0(.vec_destination_paths, "/", overwrite_from_filename.ext) |> keep(file.exists) |> first(default = ""), .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d") 
         for (.destination_path in unique(.vec_destination_paths)) {
             if(print.intermediate) cat(".destination_path: ", .destination_path, "\n")
             .destination_path.filename.ext = paste0(.destination_path, "/", overwrite_from_filename.ext) 
-            env1$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, .destination_path.filename.ext=.destination_path.filename.ext, backup_to_path=NULL, timeFormat = "%y%m%d", createFile = createFile)
+            env1$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, .destination_path.filename.ext=.destination_path.filename.ext, .backup_to_path=NULL, timeFormat = "%y%m%d", createFile = createFile)
         }
     } else {
         stop("The run from github_tidystat as the working directory")
@@ -171,9 +171,9 @@ if(.Platform$OS.type == "unix") {
 # In Windows, you don't need to explicitly set executable permissions on the hook script because Git for Windows will execute the script as long as it has the correct shebang (#!/bin/sh) and is located in the correct directory (.git/hooks).
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-backup_to_path = paste0(env1$path$path0,"/-backup")
-cat('%windir%\\explorer.exe "',backup_to_path|>normalizePath(winslash="\\"),'"',"  \n", sep="")
-if(.Platform$OS.type == "windows") {browseURL(backup_to_path)}
+.backup_to_path = paste0(env1$path$path0,"/-backup")
+cat('%windir%\\explorer.exe "',.backup_to_path|>normalizePath(winslash="\\"),'"',"  \n", sep="")
+if(.Platform$OS.type == "windows") {browseURL(.backup_to_path)}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----  
