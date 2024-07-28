@@ -137,9 +137,9 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     }
 }
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))
     .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
-    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
+    # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
 
 
@@ -196,9 +196,9 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 
 
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))
     .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
-    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
+    # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
 
 

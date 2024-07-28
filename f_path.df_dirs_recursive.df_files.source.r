@@ -264,10 +264,10 @@ if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
     }
     return(df_out)
 }
-if(!objectname %in% names(.GlobalEnv$env1)) {
-    packageStartupMessage(paste0("Loading: ", "env1$env.internal$", objectname))
-    env1$env.internal[[objectname]] = object
-    # cat("> env1$",objectname,"()\n",sep=""); get(objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
+    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$env.internal$", .tmp$objectname))
+    .GlobalEnv$env1$env.internal[[.tmp$objectname]] = .tmp$object
+    # cat("> .GlobalEnv$env1$",.tmp$objectname,"()\n",sep=""); get(.tmp$objectname, envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
 
 # > cat("> env1$", objectname, "()\n", sep=""); tmp.function = env1[[objectname]]; tmp.function()  # Run the loaded function by default
