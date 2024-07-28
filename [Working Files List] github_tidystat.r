@@ -161,9 +161,9 @@ subpath="git"; filename.r = "git config --global core.autocrlf input.r"; subpath
 file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(file2edit)) {file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))} }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 #### \% f_path_path.backup.overwrite -----
-overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
-overwrite_from_path.filename.ext = paste0(overwrite_from_path, "/.gitignore")
-if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
+.overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
+.overwrite_from_path.filename.ext = paste0(.overwrite_from_path, "/.gitignore")
+if (getwd() |> normalizePath(winslash="/") == .overwrite_from_path) {
     for (.destination_path in unique(c(
         env1$path$path0
         , "~" |> normalizePath(winslash="/")
@@ -175,7 +175,7 @@ if (getwd() |> normalizePath(winslash="/") == overwrite_from_path) {
         , "../Rproject_KoGES_AA10030"
     ))) {
         .destination_path.filename.ext = paste0(.destination_path,"/.gitignore") 
-        env1$env.internal$f_path_path.backup.overwrite(overwrite_from_path.filename.ext=overwrite_from_path.filename.ext, .destination_path.filename.ext=.destination_path.filename.ext, .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d")
+        env1$env.internal$f_path_path.backup.overwrite(.overwrite_from_path.filename.ext=.overwrite_from_path.filename.ext, .destination_path.filename.ext=.destination_path.filename.ext, .backup_to_path = paste0(env1$path$path0,"/-backup"), timeFormat = "%y%m%d")
     }
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
