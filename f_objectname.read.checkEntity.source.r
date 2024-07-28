@@ -185,10 +185,10 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time()-t0
 }
-if(!objectname %in% names(.GlobalEnv$env1)) {
-    packageStartupMessage(paste0("Loading: ", "env1$", objectname))
-    .GlobalEnv$env1[[objectname]] = object
-    # cat("> env1$",objectname,"()\n",sep=""); get(objectname, envir=env1)() # Run the loaded function by default
+if(!objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
+    .GlobalEnv$env1$f[[objectname]] = object
+    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
 }
 
 
