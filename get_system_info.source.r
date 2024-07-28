@@ -98,8 +98,8 @@ if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <
 if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 
 #% get_system_info() ====
-packageStartupMessage(paste0("Loading: ", "env1$", "info$get_system_info"))
-env1$info$get_system_info = function() {
+packageStartupMessage(paste0("Loading: ", "env1$", "env.internal$get_system_info"))
+env1$env.internal$get_system_info = function() {
     summary_list = list(
         GUI = .Platform$GUI,
         os_type = .Platform$OS.type,
@@ -130,7 +130,7 @@ env1$info$get_system_info = function() {
     )
 }
 
-env1$info$get_software_versions <- function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
+env1$env.internal$get_software_versions <- function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
   version_list <- list(OS.type = .Platform$OS.type, R.version = R.version$version.string)
   version_list$RStudio_version <- ifelse(!is.null(.Platform$GUI) && .Platform$GUI == "RStudio" && exists("RStudio.Version"), paste(unlist(RStudio.Version()$version), collapse = "."), NA)
   version_list$library_versions <- setNames(map(library_names, function(lib) {
@@ -148,7 +148,7 @@ env1$info$get_software_versions <- function(library_names = c("tidyverse", "dply
 # #  $ get_system_info:function ()  
 
 
-# env1$info$info_system_info = env1$info$get_system_info()
+# env1$info$info_system_info = env1$env.internal$get_system_info()
 # # str(env1$info$info_system_info)
 # CodeText = "env1$info$info_system_info$machine_nodename"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
 # CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(CodeText, ' = "', eval(parse(text=CodeText)), '"', "  \n", sep="")
