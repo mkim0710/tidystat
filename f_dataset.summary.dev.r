@@ -34,7 +34,7 @@ get(objectname) %>% data.NotNA_p_df
 cat(strrep("%",80),"\n",sep="")
 assign(paste0(objectname,".dropNAcols"), get(objectname) %>% select_if(function(vec) all(!is.na(vec))))
 objectname = paste0(objectname,".dropNAcols")
-..t0 = Sys.time()
+.t0 = Sys.time()
 cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
 Sys.time() - .t0
 cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----

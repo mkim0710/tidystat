@@ -18,7 +18,7 @@ nhis_heals_jk.sas7bdat |> dim() #----
 nhis_heals_jk.sas7bdat %>% {n_distinct(.$PERSON_ID)} #----
 nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct |> dim() #----
 nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct |> dim() #----
-..t0 = Sys.time()
+.t0 = Sys.time()
 nhis_heals_jk.sas7bdat.duplicated = nhis_heals_jk.sas7bdat %>% group_by_at(vars(STND_Y, PERSON_ID)) %>% dplyr::filter(n()>1)
 Sys.time() - .t0
 nhis_heals_jk.sas7bdat.duplicated |> print()
