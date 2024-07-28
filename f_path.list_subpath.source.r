@@ -110,8 +110,8 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 #@ objectname = "f_path.list_subpath.DepthFirstSearch_recursive" =========
-objectname = "f_path.list_subpath.DepthFirstSearch_recursive"
-object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
+.tmp$objectname = "f_path.list_subpath.DepthFirstSearch_recursive"
+.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
     # Initialize .initial_max_depth with max_depth on the first call
     if (is.na(.initial_max_depth)) {
         .initial_max_depth <- max_depth
@@ -157,10 +157,10 @@ object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, pr
     
     return(vec_subpath)
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 
 
@@ -168,8 +168,8 @@ if(!objectname %in% names(.GlobalEnv$env1$f)) {
 
 
 #@ objectname = "f_path.list_subpath.BreathFirstSearch" =========
-objectname = "f_path.list_subpath.BreathFirstSearch"
-object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE) {
+.tmp$objectname = "f_path.list_subpath.BreathFirstSearch"
+.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE) {
     if (!file.exists(input_path) || !file.info(input_path)$isdir) {
         stop("The specified input_path does not exist or is not a directory.")
     }
@@ -222,28 +222,28 @@ object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, pr
         
     return(vec_subpath)
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 
 
 
 
 #@ objectname = "f_path.list_subpath" =========
-objectname = "f_path.list_subpath"
-object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, BreadthFirstSearch = FALSE) {
+.tmp$objectname = "f_path.list_subpath"
+.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, BreadthFirstSearch = FALSE) {
     if (BreadthFirstSearch) {
         env1$f$f_path.list_subpath.BreathFirstSearch(input_path, max_depth, include_input_path, print.intermediate)
     } else {
         env1$f$f_path.list_subpath.DepthFirstSearch_recursive(input_path, max_depth, include_input_path, print.intermediate)
     }
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 
 

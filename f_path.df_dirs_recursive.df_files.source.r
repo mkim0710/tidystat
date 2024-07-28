@@ -139,8 +139,8 @@ if(!objectname %in% names(.GlobalEnv$env1)) {
 
 
 
-objectname = "f_path.df_dirs_recursive.df_files"
-object = function(
+.tmp$objectname = "f_path.df_dirs_recursive.df_files"
+.tmp$object = function(
     input_path = ".", 
     max_depth = 9, 
     current_depth = 0, 

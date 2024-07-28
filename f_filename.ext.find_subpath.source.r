@@ -110,8 +110,8 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 #@ objectname = "f_filename.ext.find_subpath" =========
-objectname = "f_filename.ext.find_subpath"
-object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
+.tmp$objectname = "f_filename.ext.find_subpath"
+.tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
     # # tools::file_ext(path.basename)
     # # # > tools::file_ext
     # # # function (x) 
@@ -136,17 +136,17 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
         return(NULL)
     }
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 
 
 
 #@ objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========
-objectname = "f_filename.ext.find_subpath.BreathFirstSearch"
-object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, findMultiple = FALSE) {
+.tmp$objectname = "f_filename.ext.find_subpath.BreathFirstSearch"
+.tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, findMultiple = FALSE) {
     # Breath-first search for the filename.ext in the subdirectories of the input_path
     # Initialize the queue with the input_path at depth 0
     list_list_path_depth <- list(list(path = input_path, depth = 0))
@@ -195,10 +195,10 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
 }
 
 
-if(!objectname %in% names(.GlobalEnv$env1)) {
-    # packageStartupMessage(paste0("Loading: ", "env1$", objectname))
-    .GlobalEnv$env1[[objectname]] = object
-    # cat("> env1$",objectname,"()\n",sep=""); get(objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 
 

@@ -110,8 +110,8 @@ for (env1.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
 
 
 #@ objectname = "f_objectname.read.checkEntity" =========
-objectname = "f_objectname.read.checkEntity"
-object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
+.tmp$objectname = "f_objectname.read.checkEntity"
+.tmp$object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('path4read == "',path4read,'"')
     if (getwd() != path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
@@ -186,10 +186,10 @@ object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("
     # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time()-t0
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 
 
