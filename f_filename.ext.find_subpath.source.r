@@ -130,7 +130,7 @@ object = function(filename.ext, input_path = ".", max_depth = 3, print.intermedi
     if (file.exists(file.path(input_path, filename.ext))) {
         return(file.path(input_path, filename.ext))
     } else if (BreathFirstSearch) {
-        return(env1$f_filename.ext.find_subpath.BreathFirstSearch(filename.ext=filename.ext, input_path=input_path, max_depth=max_depth, print.intermediate=print.intermediate, findMultiple=findMultiple))
+        return(env1$f$f_filename.ext.find_subpath.BreathFirstSearch(filename.ext=filename.ext, input_path=input_path, max_depth=max_depth, print.intermediate=print.intermediate, findMultiple=findMultiple))
     } else {
         return(NULL)
     }
@@ -203,8 +203,8 @@ if(!objectname %in% names(.GlobalEnv$env1)) {
 
 
 # filename.ext = "fhs.index100le10.rds"
-# env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# # > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# # > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # # Searching: .                                                 	 at depth 0
 # # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -213,8 +213,8 @@ if(!objectname %in% names(.GlobalEnv$env1)) {
 # # [1] "./data/fhs.index100le10.rds"
 # 
 # filename.ext = "help.array.r"
-# env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# # > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# # > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # # Searching: .                                                 	 at depth 0
 # # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -267,8 +267,8 @@ if(!objectname %in% names(.GlobalEnv$env1)) {
 # # [1] "./Rdev/10_import_clean_datatype/array_list/help.array.r"
 # 
 # filename.ext = "does not exist.r"
-# env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# # > env1$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# # > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 # # Searching: .                                                 	 at depth 0
 # # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2

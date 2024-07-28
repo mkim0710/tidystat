@@ -28,7 +28,7 @@ sudo find /usr/local/texlive -type d -name fonts
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 'sudo find / -type d -name texlive' |> system(intern = TRUE) 
 'sudo find / -type d -name texmf-dist' |> system(intern = TRUE) 
-'sudo find /usr/local/texlive -type d -name fonts' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'sudo find /usr/local/texlive -type d -name fonts' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 c("/usr/local/texlive/texmf-dist/tex/context/fonts",
   "/usr/local/texlive/texmf-dist/metapost/context/fonts",
   "/usr/local/texlive/texmf-dist/fonts")
@@ -49,7 +49,7 @@ f_filename.unix_find_path_local <- function(filename) {
         return(NULL)
     }
 }
-"roboto" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
+"roboto" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/local/lib/R/site-library/rmarkdown/rmd/h/bootstrap/css/fonts",
   "/usr/share/fonts/truetype/roboto/unhinted",
@@ -69,12 +69,12 @@ c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF",
   "/usr/share/lintian/overrides",
   "/var/lib/dpkg/info")
-"lmodern" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
+"lmodern" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/etc/X11/fonts/Type1",
   "/usr/local/texlive/texmf-dist/tex/latex/lm",
   "/var/lib/dpkg/info")
-"serif" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
+"serif" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/reveal/css/theme/source",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/themes",

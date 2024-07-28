@@ -129,7 +129,7 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
                MB = format(size/2^20, digits = 3, big.mark=","), 
                GB = format(size/2^30, digits = 3, big.mark=","))
     out = out %>% mutate(filename = sub(path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
-    env1$f_df.tribble_construct(out)
+    env1$f$f_df.tribble_construct(out)
     cat(strrep("~",80),"\n",sep=""); #----
 } 
 if(!objectname %in% names(.GlobalEnv$env1$f)) {
@@ -148,12 +148,12 @@ if(!objectname %in% names(.GlobalEnv$env1$f)) {
 # sys.nframe() = 0
 # sys.nframe() = 4
 # Loading:  env1$env.internal$.global_datapasta_env 
-# Loading:  env1$f_df.tribble_construct 
-# Loading:  env1$f_df.transpose 
-# Loading:  env1$f_df.t.tribble_construct 
+# Loading:  env1$f$f_df.tribble_construct 
+# Loading:  env1$f$f_df.transpose 
+# Loading:  env1$f$f_df.t.tribble_construct 
 # sys.nframe() = 8
-# Loading: env1$f_path.size_files
-# > env1$f_path.size_files()
+# Loading: env1$f$f_path.size_files
+# > env1$f$f_path.size_files()
 # "env1.fun.t.tribble_construct.RData.xz"
 # ----
 # tibble::tribble(
@@ -163,7 +163,7 @@ if(!objectname %in% names(.GlobalEnv$env1$f)) {
 # ----
 
 
-# > env1$f_path.size_files(path = "data", literal_filename = "rds")
+# > env1$f$f_path.size_files(path = "data", literal_filename = "rds")
 # c("ATC_RxNorm_NDC.rds", "fhs.index100.rds", "fhs.index100ge11le20.rds", "fhs.index100le10.rds", "Holdings_VT_URTH_VWO.list.rds", "icd10cm2019.rds", "ICD9_3char_sub_chapter.tibble.rds", "icd9_chapters.expand_range.ICD9_3char.rds", "icd9_chapters.expand_range.rds", "icd9_sub_chapters.expand_range.ICD9_3char.rds", "icd9_sub_chapters.expand_range.rds", "jinseob2kim_jinseob2kim.github.io_master_fstexample.rds", "jinseob2kim_lecture-snuhlab_master_data_example_bnc.rds", "jinseob2kim_lecture-snuhlab_master_data_example_g1e.rds", "RDataMining-Tweets-20160212.rds")
 # ----
 # tibble::tribble(

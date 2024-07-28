@@ -113,12 +113,12 @@ f_font_filename.search_path_local <- function(font_filename) {
         return(NULL)
     }
 }
-"noname" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
-"inconsolata" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
-# > "noname" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+"noname" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
+"inconsolata" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
+# > "noname" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
 # tlmgr search --all 'noname'
 # NULL
-# > "inconsolata" |> f_font_filename.search_path_local() |> env1$f_vec.dput_line_by_line()
+# > "inconsolata" |> f_font_filename.search_path_local() |> env1$f$f_vec.dput_line_by_line()
 # tlmgr search --all 'inconsolata'
 # c("	texmf-dist/fonts/enc/dvips/inconsolata",
 #   "	texmf-dist/fonts/map/dvips/inconsolata",
@@ -188,7 +188,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 }
 
 "inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
-"inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f_vec.dput_line_by_line()
+"inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f$f_vec.dput_line_by_line()
 # > "inconsolata" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 # tlmgr search --all 'inconsolata'
 # 	texmf-dist/fonts/enc/dvips/inconsolata
@@ -197,7 +197,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 # 	texmf-dist/fonts/tfm/public/inconsolata
 # 	texmf-dist/fonts/type1/public/inconsolata
 # 	texmf-dist/tex/context/fonts/mkiv
-# 	texmf-dist/tex/latex/inconsolata> "inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f_vec.dput_line_by_line()
+# 	texmf-dist/tex/latex/inconsolata> "inconsolata" |> f_font_regex_perl.search_path_local() |> env1$f$f_vec.dput_line_by_line()
 # tlmgr search --all 'inconsolata'
 # c("	texmf-dist/fonts/enc/dvips/inconsolata",
 #   "	texmf-dist/fonts/map/dvips/inconsolata",
@@ -716,7 +716,7 @@ if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/Tiny
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 'sudo find / -type d -name texlive' |> system(intern = TRUE) 
 'sudo find / -type d -name texmf-dist' |> system(intern = TRUE) 
-'sudo find /usr/local/texlive -type d -name fonts' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'sudo find /usr/local/texlive -type d -name fonts' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 c("/usr/local/texlive/texmf-dist/tex/context/fonts",
   "/usr/local/texlive/texmf-dist/metapost/context/fonts",
   "/usr/local/texlive/texmf-dist/fonts")
@@ -732,10 +732,10 @@ dir("/usr/local/texlive/texmf-dist/fonts")
 'sudo find /usr/local/texlive/texmf-dist/fonts -type f -iname "*.ttf"' |> system(intern = TRUE) 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#
 ### if docker -----
-'sudo find / -iname "*consolas*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'sudo find / -type f -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-'sudo find / -type f -iname "*courier*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
-# > 'sudo find / -type f -iname "*courier*"' |> system(intern = TRUE) |> env1$f_vec.dput_line_by_line()
+'sudo find / -iname "*consolas*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'sudo find / -type f -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+'sudo find / -type f -iname "*courier*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
+# > 'sudo find / -type f -iname "*courier*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 # find: ‘/proc/262/task/262/fdinfo’: Permission denied
 # find: ‘/proc/262/task/324/fdinfo’: Permission denied
 # find: ‘/proc/262/task/325/fdinfo’: Permission denied
@@ -771,7 +771,7 @@ dir("/usr/local/texlive/texmf-dist/fonts")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 Sys.getenv("PATH")
 "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback"
-Sys.getenv("PATH") |> strsplit(":") |> unlist() |> env1$f_vec.dput_line_by_line()
+Sys.getenv("PATH") |> strsplit(":") |> unlist() |> env1$f$f_vec.dput_line_by_line()
 c("/usr/local/sbin",
   "/usr/local/bin",
   "/usr/sbin",
@@ -801,7 +801,7 @@ f_filename.unix_find_path_local <- function(filename) {
         return(NULL)
     }
 }
-"roboto" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
+"roboto" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/local/lib/R/site-library/rmarkdown/rmd/h/bootstrap/css/fonts",
   "/usr/share/fonts/truetype/roboto/unhinted",
@@ -821,12 +821,12 @@ c("/usr/local/lib/R/library/grDevices/fonts/Roboto",
   "/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF",
   "/usr/share/lintian/overrides",
   "/var/lib/dpkg/info")
-"lmodern" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
+"lmodern" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/etc/X11/fonts/Type1",
   "/usr/local/texlive/texmf-dist/tex/latex/lm",
   "/var/lib/dpkg/info")
-"serif" |> f_filename.unix_find_path_local() |> env1$f_vec.dput_line_by_line()
+"serif" |> f_filename.unix_find_path_local() |> env1$f$f_vec.dput_line_by_line()
 c("/etc/fonts/conf.avail",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/reveal/css/theme/source",
   "/usr/lib/rstudio-server/bin/quarto/share/formats/revealjs/themes",
@@ -858,7 +858,7 @@ vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
   "NanumMyeongjo" = "(?i)nanum.*myeongjo",
   "NanumGothic" = "(?i)nanum.*gothic",
   "D2Coding" = "(?i)d2coding")
-vec_font_regex_perl |> map(f_font_regex_perl.search_path_local) |> env1$f_list.dput_line_by_line()
+vec_font_regex_perl |> map(f_font_regex_perl.search_path_local) |> env1$f$f_list.dput_line_by_line()
 # list("Roboto Condensed" = c(
 #          NULL),
 #      "Roboto Serif" = c(

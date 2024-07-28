@@ -617,25 +617,25 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 #@ global functions ----
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
-env1$f_df.tribble_construct = function(df) {
+env1$f$f_df.tribble_construct = function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
-env1$f_df.transpose = function(df, varname4rowname = "varname") {
+env1$f$f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }
 
-env1$f_df.t.tribble_construct = function(df) {
-    out = env1$f_df.transpose(df)
+env1$f$f_df.t.tribble_construct = function(df) {
+    out = env1$f$f_df.transpose(df)
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
 
-env1$f_path.size_files = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
+env1$f$f_path.size_files = function(path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$") {
     filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
     out = filenames %>% {file.info(file.path(path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
@@ -644,7 +644,7 @@ env1$f_path.size_files = function(path4read = getwd(), regex4filename = "\\.(rda
                MB = format(size/2^20, digits = 3, big.mark=","), 
                GB = format(size/2^30, digits = 3, big.mark=","))
     out = out %>% mutate(filename = sub(path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
-    env1$f_df.tribble_construct(out)
+    env1$f$f_df.tribble_construct(out)
 }
 
 
@@ -688,10 +688,10 @@ ls.str(env1$env.internal) #-----
 # save.image(file = "f_df.t.tribble_construct.RData")
 
 # saveRDS(env1$env.internal, paste0("env1$env.internal", ".rds"))
-# saveRDS(env1$f_df.tribble_construct, paste0("env1$f_df.tribble_construct", ".rds"))
-# saveRDS(env1$f_df.t.tribble_construct, paste0("env1$f_df.t.tribble_construct", ".rds"))
-# saveRDS(env1$f_path.size_files, paste0("env1$f_path.size_files", ".rds"))
-# saveRDS(env1$f_df.transpose, paste0("env1$f_df.transpose", ".rds"))
+# saveRDS(env1$f$f_df.tribble_construct, paste0("env1$f$f_df.tribble_construct", ".rds"))
+# saveRDS(env1$f$f_df.t.tribble_construct, paste0("env1$f$f_df.t.tribble_construct", ".rds"))
+# saveRDS(env1$f$f_path.size_files, paste0("env1$f$f_path.size_files", ".rds"))
+# saveRDS(env1$f$f_df.transpose, paste0("env1$f$f_df.transpose", ".rds"))
 
 
 # #@ source_path = "D:/OneDrive/[][Rproject]/github_tidystat" -------
@@ -701,10 +701,10 @@ ls.str(env1$env.internal) #-----
 # Sys.time() - t0 # Time difference of 0.002126932 secs
 # t0 = Sys.time()
 # env1$env.internal = read_rds(file.path(source_path, paste0("env1$env.internal", ".rds")))
-# env1$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f_df.tribble_construct", ".rds")))
-# env1$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f_df.t.tribble_construct", ".rds")))
-# env1$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f_path.size_files", ".rds")))
-# env1$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f_df.transpose", ".rds")))
+# env1$f$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
+# env1$f$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
+# env1$f$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f$f_path.size_files", ".rds")))
+# env1$f$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f$f_df.transpose", ".rds")))
 # Sys.time() - t0 # Time difference of 0.01374888 secs
 # t0 = Sys.time()
 # source(file.path(source_path, "f_df.t.tribble_construct.source.r"))
@@ -720,10 +720,10 @@ if(subpath!="") utils::browseURL(normalizePath(subpath))
 # Sys.time() - t0 # Time difference of 0.7511199  secs
 # t0 = Sys.time()
 # env1$env.internal = read_rds(file.path(source_path, paste0("env1$env.internal", ".rds")))
-# env1$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f_df.tribble_construct", ".rds")))
-# env1$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f_df.t.tribble_construct", ".rds")))
-# env1$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f_path.size_files", ".rds")))
-# env1$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f_df.transpose", ".rds")))
+# env1$f$f_df.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.tribble_construct", ".rds")))
+# env1$f$f_df.t.tribble_construct = read_rds(file.path(source_path, paste0("env1$f$f_df.t.tribble_construct", ".rds")))
+# env1$f$f_path.size_files = read_rds(file.path(source_path, paste0("env1$f$f_path.size_files", ".rds")))
+# env1$f$f_df.transpose = read_rds(file.path(source_path, paste0("env1$f$f_df.transpose", ".rds")))
 # Sys.time() - t0 # Time difference of 3.066839 secs
 
 
@@ -790,7 +790,7 @@ df %>% f_df.tribble_construct #----
 df %>% f_df.transpose #----
 df %>% f_df.t.tribble_construct #----
 path4read = "../github_tidystat/data"
-env1$f_path.size_files(path4read, "\\.(rds)$") #-----
+env1$f$f_path.size_files(path4read, "\\.(rds)$") #-----
 # > df %>% f_df.tribble_construct #----
 # tibble::tribble(
 #            ~varname,        ~V1,        ~V2,
