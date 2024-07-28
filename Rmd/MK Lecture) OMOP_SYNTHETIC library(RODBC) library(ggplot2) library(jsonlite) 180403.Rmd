@@ -25,12 +25,7 @@ April 3, 2018
 # if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
 # 
 # install.packages(c("tidyverse", "RODBC", "maps", "jsonlite"))
-# for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-#     if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
-# }
-for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-    if(!require(.tmp$packagename,character.only=TRUE))install.packages(.tmp$packagename) else library(.tmp$packagename,character.only=TRUE)
-}
+for(packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
   
 # 
 # # https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them

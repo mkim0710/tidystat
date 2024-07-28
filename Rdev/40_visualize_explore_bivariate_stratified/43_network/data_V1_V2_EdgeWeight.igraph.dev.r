@@ -43,12 +43,12 @@ data_V1_V2_EdgeWeight.igraph = function(
     # , edge.color = c(rgb(.5,0,0,.8), rgb(0,0,.5,.8))[(E(g)$weight > 0) + 1]
     
     .tmp$packagename_to_unload = "statnet"
-    for (.tmp$packagename_to_unload in .tmp$packagename_to_unload) {
-        if(paste0("package:",.tmp$packagename_to_unload) %in% search()) {
-            detach(name = paste0("package:",.tmp$packagename_to_unload), unload = T, character.only = T)
-            paste0("detach(name = \"",paste0("package:", .tmp$packagename_to_unload),"\", unload = T, character.only = T)") |> cat("  \n", sep="")
+    for (packagename_to_unload in packagename_to_unload) {
+        if(paste0("package:",packagename_to_unload) %in% search()) {
+            detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
+            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat("  \n", sep="")
         } else {
-            # paste0("!paste0(\"package:\",", .tmp$packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
+            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
         }
     }
     library(tidyverse)

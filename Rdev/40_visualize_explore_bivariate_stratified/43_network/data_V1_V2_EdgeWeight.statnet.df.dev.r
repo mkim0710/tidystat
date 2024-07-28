@@ -2,12 +2,12 @@
 
 .tmp$packagename_to_unload = "igraph"
 paste0("package:",.tmp$packagename_to_unload)
-for (.tmp$packagename_to_unload in .tmp$packagename_to_unload) {
-    if(paste0("package:",.tmp$packagename_to_unload) %in% search()) {
-        detach(name = paste0("package:",.tmp$packagename_to_unload), unload = T, character.only = T)
-        paste0("detach(name = \"",paste0("package:", .tmp$packagename_to_unload),"\", unload = T, character.only = T)") |> cat("  \n", sep="")
+for (packagename_to_unload in packagename_to_unload) {
+    if(paste0("package:",packagename_to_unload) %in% search()) {
+        detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
+        paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat("  \n", sep="")
     } else {
-        # paste0("!paste0(\"package:\",", .tmp$packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
+        # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
     }
 }
 library(intergraph)
@@ -376,12 +376,12 @@ object_statnet.summary_df = function(object_statnet) {
     # detach("package:igraph", unload=TRUE)
     .tmp$packagename_to_unload = "igraph"
     paste0("package:",.tmp$packagename_to_unload)
-    for (.tmp$packagename_to_unload in .tmp$packagename_to_unload) {
-        if(paste0("package:",.tmp$packagename_to_unload) %in% search()) {
-            detach(name = paste0("package:",.tmp$packagename_to_unload), unload = T, character.only = T)
-            paste0("detach(name = \"",paste0("package:", .tmp$packagename_to_unload),"\", unload = T, character.only = T)") |> cat("  \n", sep="")
+    for (packagename_to_unload in packagename_to_unload) {
+        if(paste0("package:",packagename_to_unload) %in% search()) {
+            detach(name = paste0("package:",packagename_to_unload), unload = T, character.only = T)
+            paste0("detach(name = \"",paste0("package:", packagename_to_unload),"\", unload = T, character.only = T)") |> cat("  \n", sep="")
         } else {
-            # paste0("!paste0(\"package:\",", .tmp$packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
+            # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
         }
     }
     library(intergraph)
