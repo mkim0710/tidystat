@@ -68,7 +68,7 @@ system("git status")
 # Cf) Cloud Free: 25 hrs/month
 # Cf) Cloud Student ($5/month): 75 hrs/month
 
-for(packagename in c("tidyverse", "datapasta")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
+for(.packagename in c("tidyverse", "datapasta")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 
 
 # https://community.rstudio.com/t/using-library-checkpoint-in-rstudio-cloud/
@@ -76,7 +76,7 @@ for(packagename in c("tidyverse", "datapasta")) {if(!require(packagename,charact
 # options(repos = c(CRAN= "https://packagemanager.rstudio.com/cran/302"))  # snapshot for 2020-07-16
 options(repos = c(CRAN= "https://packagemanager.rstudio.com/cran/__linux__/xenial/302"))  # snapshot for 2020-07-16, binary for Ubuntu 16.04 (Xenial)
 
-for(packagename in c("icd")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}
+for(.packagename in c("icd")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 # https://packagemanager.rstudio.com/client/#/repos/1/packages/icd
 
 # https://github.com/maurolepore/cloudgithub
