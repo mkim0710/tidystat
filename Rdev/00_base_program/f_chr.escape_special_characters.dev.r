@@ -155,14 +155,14 @@ env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
 
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
-suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("  \n", sep="");
+suppressPackageStartupMessages({for(packagename in c("tidyverse","formatR")) {if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)}});cat("  \n", sep="")
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 ## env1\$path ============  
-if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  ;  
-objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  ;  
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  ;  
-if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  ;    
+if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  
+objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  
+objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  
+if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 ## env1\$env.internal ============  
 sourcename = "env1$env.internal" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(Sys.getenv("print.intermediate")==TRUE) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 #### env1\$f_df.t.tribble_construct() ============  
@@ -202,18 +202,18 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ###### env1\$path ============  
 # cat(" getwd() == "); dput(getwd()) #------------  
-objectname = "getwd"; object = getwd(); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  ;  
-objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  ;  
-objectname = "path1"; object = env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(env1$path$path0), "") |> str_extract("[^/]+")); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  ;  
+objectname = "getwd"; object = getwd(); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  
+objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  
+objectname = "path1"; object = env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(env1$path$path0), "") |> str_extract("[^/]+")); if(!objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[objectname]] = object}  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 if (requireNamespace("rstudioapi")) {
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  ;   
+    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
     if (rstudioapi::isAvailable()) {
-        env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "");
+        env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  ;   
+    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 paste0(env1$path$path1,"/",paste0("[Working Files List] ",basename(getwd()),".r")) %>% {.[file.exists(.)]} |> file.edit(); file.edit(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)})
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -355,12 +355,12 @@ options(width=120)
 # @@ END ------------  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ END ------------  
 ```
   
@@ -371,27 +371,27 @@ env1$path$RTemplate.filename.ext = "notebook.Rmd"
 env1$path$MyTemplate.filename.ext = "templates-00env1.minimum.Rmd"  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", ""); 
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 if (.Platform$OS.type == "windows") {
     if(basename(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}) == env1$path$MyTemplate.filename.ext) {
-        if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} ;
-        destination_path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination_path)) dir.create(destination_path, recursive=TRUE) ; cat('browseURL("',destination_path,'")',"  \n", sep="") ;
-        destination_path.filename.ext = file.path(destination_path, env1$path$RTemplate.filename.ext);
-        backup_to_path = file.path(env1$path$path0, "-backup") ; env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path) ; 
+        if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = normalizePath(file.path(Sys.getenv("APPDATA"), "RStudio"),winslash="/") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = normalizePath("~/.config/rstudio")} 
+        destination_path = file.path(path4APPDATA_RStudio, "templates"); if(!dir.exists(destination_path)) dir.create(destination_path, recursive=TRUE) ; cat('browseURL("',destination_path,'")',"  \n", sep="") 
+        destination_path.filename.ext = file.path(destination_path, env1$path$RTemplate.filename.ext)
+        backup_to_path = file.path(env1$path$path0, "-backup") ; env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = destination_path.filename.ext, backup_to_path=backup_to_path) 
         if(.Platform$OS.type == "windows") {browseURL(backup_to_path)}
         
-        if(file.copy(from=env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));  
-        # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)}  ;  
+        if(file.copy(from=env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext))
+        # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)}  
         
         for ( destination_path.filename.ext in c(
             file.path(env1$path$source_base_local, "rstudio-prefs", "templates", env1$path$MyTemplate.filename.ext)
             , file.path(env1$path$path0, "Rproject_Rmd", env1$path$MyTemplate.filename.ext)
         )) {if(dir.exists(dirname(destination_path.filename.ext)) & env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/") != destination_path.filename.ext) {
-            if(file.copy(from=env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext));
-            # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)}  ;  
+            if(file.copy(from=env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}, to=destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", destination_path.filename.ext)) else warning(paste0("Update failed: ", destination_path.filename.ext))
+            # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",destination_path.filename.ext),wait=FALSE)}  
         }}
-        file.edit(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)});
+        file.edit(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)})
     }
     # if(!file.exists(file.path(path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", env1$path$MyTemplate.filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename.ext))
 } 
@@ -400,7 +400,7 @@ if (.Platform$OS.type == "windows") {
   
 ```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # # @ write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds"))) ------------  
 # objectname = "AnalyticDataset200621"
 # system.time(write_rds( get(objectname), paste0(objectname,".rds") ))

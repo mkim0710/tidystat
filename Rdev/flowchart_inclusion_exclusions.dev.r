@@ -63,8 +63,8 @@ flowchart_inclusion_exclusions_v3.4 <- function(
         exclusion_part <- glue("
     blank{i}[label = "", width=0.01, height = 0.01]
     excluded{i}[label = <{label} (n={n_exclusion_formatted})>]
-    {prev_node} -> blank{i}[dir = none];
-    blank{i} -> excluded{i}[minlen = 2];
+    {prev_node} -> blank{i}[dir = none]
+    blank{i} -> excluded{i}[minlen = 2]
     {{ rank = same; blank{i} excluded{i} }}
     ", .envir = list(i = i, label = label, n_exclusion_formatted = n_exclusion_formatted, prev_node = prev_node))
         
@@ -88,15 +88,15 @@ flowchart_inclusion_exclusions_v3.4 <- function(
     node1[label = <{names(list_n_inclusions)[1]}<br/>(n = {n_total_formatted})>]
     node2[label = <{names(list_n_inclusions)[2]}<br/>(n = {n_eligible_formatted})>]
     
-    node1 -> node2;
+    node1 -> node2
 
     {exclusion_nodes}
 
     node3[label = <{names(list_n_inclusions)[3]}<br/>(n={n_analysis_formatted})>]
-    {prev_node} -> node3;
+    {prev_node} -> node3
     
     node4[label = <{names(list_n_inclusions)[4]}>]
-    node3 -> node4;
+    node3 -> node4
   }}")
     
     g <- grViz(graph_code)
@@ -173,8 +173,8 @@ flowchart_inclusion_exclusions_v2 <- function(
         exclusion_part <- glue("
     blank{i}[label = "", width=0.01, height = 0.01]
     excluded{i}[label = <{label} (n={n_exclusion_formatted})>]
-    {prev_node} -> blank{i}[dir = none];
-    blank{i} -> excluded{i}[minlen = 2];
+    {prev_node} -> blank{i}[dir = none]
+    blank{i} -> excluded{i}[minlen = 2]
     {{ rank = same; blank{i} excluded{i} }}
     ", .envir = list(i = i, label = label, n_exclusion_formatted = n_exclusion_formatted, prev_node = prev_node))
         
@@ -199,15 +199,15 @@ flowchart_inclusion_exclusions_v2 <- function(
     node0[label = <Total population<br/>(n = {n_total_formatted})>]
     node1[label = <Eligible population<br/>(n = {n_eligible_formatted})>]
     
-    node0 -> node1;
+    node0 -> node1
 
     {exclusion_nodes}
 
     node2[label = <Included for analysis<br/>(n={n_analysis_formatted})>]
-    {prev_node} -> node2;
+    {prev_node} -> node2
     
     node3[label = <Data linked with<br/>external dataset>]
-    node2 -> node3;
+    node2 -> node3
   }}")
     
     g <- grViz(graph_code)

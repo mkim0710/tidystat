@@ -3,7 +3,7 @@
 
 list_of_element %>% 
     imap(function(element, element_name) {
-        # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+        # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
         print(Sys.time())
         cat(paste0("Beginning .f() map from list element named: ", element_name, "  #---- \n"))
         # Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); gc()
@@ -15,7 +15,7 @@ list_of_element %>%
             # parent.x = get(".x", envir = parent.frame())
             # i = which(map_lgl(parent.x, function(children_from_parent.x) { identical(children_from_parent.x, input_object_name_of_map_function_to_investigate) } ))
             # 
-            # # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+            # # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
             # print(Sys.time())
             # #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
             # cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))

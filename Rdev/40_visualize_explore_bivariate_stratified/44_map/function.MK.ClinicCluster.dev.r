@@ -251,7 +251,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
             )
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self = ODMatrix_rowP.ODMatrix_t_colP_t
         diag(ODMatrix_rowP.ODMatrix_t_colP_t.rm_self) = NA
-        ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self; 
+        ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance[DistanceMatrix.last > Max.Distance ] = NA
         
         Code4MergeFrom = PopulationDF.last %>% dplyr::filter(Pop.Cluster < Min.Pop) %>% arrange(Pop.Cluster) %>% {.$Code.Cluster} # %>% {.$Code}
@@ -316,7 +316,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
             )
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self = ODMatrix_rowP.ODMatrix_t_colP_t
         diag(ODMatrix_rowP.ODMatrix_t_colP_t.rm_self) = NA
-        ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self; 
+        ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self
         ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance[DistanceMatrix.last > Max.Distance ] = NA
         
         Code4MergeFrom = Cluster.tbl %>% dplyr::filter(OD.diag_rowP < Min.SC) %>% arrange(OD.diag_rowP) %>% {.$Code.Cluster}

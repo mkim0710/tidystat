@@ -1,11 +1,11 @@
-sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")  ;  
-if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',sourcename,'"')) }  ;  
+sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")  
+if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',sourcename,'"')) }  
 # # f_df.t.tribble_construct.source.r
 # # f_df.tribble_construct.source.r
 # # f_df.transpose.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 # # source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -20,40 +20,40 @@ if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',sourcena
 #| Ctrl+Shift+F10: Restart R Session 
 #| Ctrl+Alt+B: Run from start to current line 
 #| Shift+F9: Toggle Breakpoint 
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # paste0("[Working Files List] ",basename(getwd()),".r") |> file.edit()
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R"  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd"  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
 # sourcename = "function.detachAllPackages" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(!sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(.GlobalEnv$env1$source[[sourcename]])}
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # "https://github.com/mkim0710/tidystat/blob/master/.Rprofile" %>% paste0("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }") %>% {eval(parse(text=.))}  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/.Rprofile"    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
-if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  ;  
-if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  ;  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## env1\$path ====
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n") ; 
+# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 if (requireNamespace("rstudioapi")) {
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  ;   
+    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
     if (rstudioapi::isAvailable()) {
-        env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "");
+        env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  ;   
+    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)})
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
 ### \$ subpath, sourcename ======
 subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
@@ -80,13 +80,13 @@ sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # # \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
-# subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); 
+# subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
 # if(!sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(.GlobalEnv$env1$source[[sourcename]])}
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ RUN ALL ABOVE: CTRL+ALT+B -----
 #| RUN ALL ABOVE: CTRL+ALT+B |#
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
 
@@ -98,16 +98,16 @@ if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalE
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
 if(!"path" %in% names(.GlobalEnv$env1)) {
     env1$path = list()
-    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object;
-    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; .GlobalEnv$env1$path[[objectname]] = object;
-    if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  ;    
+    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object
+    objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; .GlobalEnv$env1$path[[objectname]] = object
+    if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
 
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
 # globalVariables(c(".rs.readUiPref","env1$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
 # env.internal.objectname = ".global_datapasta_env"
-# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname)); 
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname))
 env1$env.internal$.global_datapasta_env <- new.env()
 env1$env.internal$.global_datapasta_env$decimal_mark <- "."
 env1$env.internal$.global_datapasta_env$max_rows <- 200
@@ -121,7 +121,7 @@ env1$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not availab
 #' @export
 #'
 # env.internal.objectname = "tribble_paste"
-# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname)); 
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname))
 env1$env.internal$tribble_paste <- function(input_table, output_context = env1$env.internal$guess_output_context()){
   output <- env1$env.internal$tribble_construct(input_table, oc = output_context)
 
@@ -139,7 +139,7 @@ env1$env.internal$tribble_paste <- function(input_table, output_context = env1$e
 #' @export
 #'
 # env.internal.objectname = "tribble_format"
-# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname)); 
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname))
 env1$env.internal$tribble_format <- function(input_table, output_context = env1$env.internal$console_context()){
   if(!interactive()) stop("Cannot write to clipboard in non-interactive sessions.")
   output <- env1$env.internal$tribble_construct(input_table, oc = output_context)
@@ -609,11 +609,11 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 
 
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ global functions ----
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ objectname = "f_df.tribble_construct" ----
@@ -624,8 +624,8 @@ object = function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-.GlobalEnv$env1[[objectname]] = object;
+packageStartupMessage(paste0("Loading: ", "env1$", objectname))
+.GlobalEnv$env1[[objectname]] = object
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
 ## \$ objectname = "f_df.transpose" ----
@@ -635,8 +635,8 @@ object = function(df, varname4rowname = "varname") {
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }                                    
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-.GlobalEnv$env1[[objectname]] = object;
+packageStartupMessage(paste0("Loading: ", "env1$", objectname))
+.GlobalEnv$env1[[objectname]] = object
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ objectname = "f_df.t.tribble_construct" ----
 objectname = "f_df.t.tribble_construct"
@@ -645,8 +645,8 @@ object = function(df) {
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-.GlobalEnv$env1[[objectname]] = object;
+packageStartupMessage(paste0("Loading: ", "env1$", objectname))
+.GlobalEnv$env1[[objectname]] = object
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
 ## \$ objectname = "f_vec.dput_line_by_line" ----
@@ -657,8 +657,8 @@ objectname = "f_vec.dput_line_by_line"
 object = function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-.GlobalEnv$env1[[objectname]] = object;
+packageStartupMessage(paste0("Loading: ", "env1$", objectname))
+.GlobalEnv$env1[[objectname]] = object
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
     # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat("  \n", sep="")
@@ -675,8 +675,8 @@ objectname = "f_list.dput_line_by_line"
 object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-.GlobalEnv$env1[[objectname]] = object;
+packageStartupMessage(paste0("Loading: ", "env1$", objectname))
+.GlobalEnv$env1[[objectname]] = object
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     .f_vec.paste_collapse <- function(vec, space_between_vec_elements="\n") {
@@ -709,10 +709,10 @@ object = function(vec1, vec2) {
     out$identical = all.equal(vec1, vec2)
     out
 }
-packageStartupMessage(paste0("Loading: ", "env1$", objectname)); 
-.GlobalEnv$env1[[objectname]] = object;
+packageStartupMessage(paste0("Loading: ", "env1$", objectname))
+.GlobalEnv$env1[[objectname]] = object
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ for (env1.dependancy in c("")) { -----
 for (env1.dependancy in c("f_path.size_files")) {
     if(!env1.dependancy %in% names(.GlobalEnv$env1)) {
@@ -721,17 +721,17 @@ for (env1.dependancy in c("f_path.size_files")) {
     }
 }
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----  
 # cat("* To revert to the last commited file, run the following terminal command:\n", 
 #     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # ls.str(env1) #-----
 # ls.str(env1$env.internal) #-----
 # # > ls.str(env1) #-----

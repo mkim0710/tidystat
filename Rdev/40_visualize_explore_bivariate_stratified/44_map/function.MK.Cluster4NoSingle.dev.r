@@ -247,7 +247,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
         #     )
         # ODMatrix_rowP.ODMatrix_t_colP_t.rm_self = ODMatrix_rowP.ODMatrix_t_colP_t
         # diag(ODMatrix_rowP.ODMatrix_t_colP_t.rm_self) = NA
-        # ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self; 
+        # ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance = ODMatrix_rowP.ODMatrix_t_colP_t.rm_self
         # ODMatrix_rowP.ODMatrix_t_colP_t.rm_self.rm_gt_Max.Distance[DistanceMatrix.last > Max.Distance ] = NA
         DistanceMatrix.last.rm_self = DistanceMatrix.last
         diag(DistanceMatrix.last.rm_self) = NA

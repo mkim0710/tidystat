@@ -87,7 +87,7 @@ function.Data_Exposure_Outcome_shuffle = function(Data_Exposure_Outcome, varname
     # library(tidyverse)
 
     # if(!is.null(seed)) {
-    #     set.seed(seed); 
+    #     set.seed(seed)
     # }
 
     out = Data_Exposure_Outcome

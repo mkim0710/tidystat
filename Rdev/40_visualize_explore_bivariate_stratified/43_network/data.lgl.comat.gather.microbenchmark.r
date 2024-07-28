@@ -1323,7 +1323,7 @@ library(microbenchmark)
 # #      fun3.Fisher.exact.test 2338.05273 2451.62441  2624.90900  2565.19609  2768.3371  2971.4782     3   c    
 # #  fun3.n11.Fisher.exact.test 4023.10671 4305.79977  4652.53429  4588.49283  4967.2481  5346.0033     3    d   
 
-Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 10L
     , fun3 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
@@ -1337,7 +1337,7 @@ mbm = microbenchmark(
     , fun4.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
     , fun4.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
 )
-Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); 
+Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
 mbm
 # > mbm
@@ -1355,16 +1355,16 @@ mbm
 #  fun4.n11.Fisher.exact.test 2858.69821 3042.27032 3334.0748 3246.28998 3298.9042 4482.8259    10     ef
 
 
-Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 100L
     , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
     , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
 )
-Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); 
+Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
 mbm
-# > Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); 
+# > Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 # [1] "Sys.time_2 - Sys.time_1 : structure(15.0132476011912, units = \"mins\", class = \"difftime\")"
 # > mbm
 # Unit: seconds
@@ -1374,17 +1374,17 @@ mbm
 
 
 
-Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 10L
     , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
     , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
     , fun5.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather5(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
 )
-Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); 
+Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
 mbm
-# > Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); 
+# > Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 # [1] "Sys.time_2 - Sys.time_1 : structure(2.33128124872843, units = \"mins\", class = \"difftime\")"
 # > autoplot(mbm)
 # > mbm
@@ -1394,17 +1394,17 @@ mbm
 #  fun4.n11.cor.test.Fisher.exact.test 4.313771 4.530994 4.821379 4.779988 5.066972 5.326881    10   a
 #  fun5.n11.cor.test.Fisher.exact.test 4.092557 4.309335 4.524577 4.534411 4.776114 4.838178    10   a
 
-Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 100L
     , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
     , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
     , fun5.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather5(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
 )
-Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); 
+Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
 mbm
-# > Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) )); 
+# > Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 # [1] "Sys.time_2 - Sys.time_1 : structure(23.0755514979362, units = \"mins\", class = \"difftime\")"
 # > autoplot(mbm)
 # > mbm

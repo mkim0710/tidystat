@@ -319,7 +319,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =
     {
         f1 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
             mutate(Exposure = case_when(Exposure==0 ~ "nDisease1_Exposed0", Exposure==1 ~ "nDisease1_Exposed1")) %>%
-            gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+            gather(key, value, -Exposure) %>% spread(Exposure, value) 
         out = f1(.)
         
         out$nExposed0 = sum(.$Exposure==0, na.rm = T)
@@ -333,7 +333,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =
         
         f2 = function(df) df %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
             mutate(Exposure = case_when(Exposure==0 ~ "pDisease_Exposed0", Exposure==1 ~ "pDisease_Exposed1")) %>%
-            gather(key, value, -Exposure) %>% spread(Exposure, value) ;
+            gather(key, value, -Exposure) %>% spread(Exposure, value) 
         out = full_join(out, f2(.), by = "key")
 
         out = out %>% mutate(

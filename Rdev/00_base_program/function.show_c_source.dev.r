@@ -28,26 +28,26 @@ pryr::show_c_source(.Internal(tabulate(bin, nbins)))
 # This reveals the following C source code (slightly edited for clarity):
 SEXP attribute_hidden do_tabulate(SEXP call, SEXP op, SEXP args, 
                                   SEXP rho) {
-  checkArity(op, args);
-  SEXP in = CAR(args), nbin = CADR(args);
-  if (TYPEOF(in) != INTSXP)  error("invalid input");
+  checkArity(op, args)
+  SEXP in = CAR(args), nbin = CADR(args)
+  if (TYPEOF(in) != INTSXP)  error("invalid input")
 
-  R_xlen_t n = XLENGTH(in);
+  R_xlen_t n = XLENGTH(in)
   /* FIXME: could in principle be a long vector */
-  int nb = asInteger(nbin);
+  int nb = asInteger(nbin)
   if (nb == NA_INTEGER || nb < 0)
-    error(_("invalid '%s' argument"), "nbin");
+    error(_("invalid '%s' argument"), "nbin")
   
-  SEXP ans = allocVector(INTSXP, nb);
-  int *x = INTEGER(in), *y = INTEGER(ans);
-  memset(y, 0, nb * sizeof(int));
+  SEXP ans = allocVector(INTSXP, nb)
+  int *x = INTEGER(in), *y = INTEGER(ans)
+  memset(y, 0, nb * sizeof(int))
   for(R_xlen_t i = 0 ; i < n ; i++) {
     if (x[i] != NA_INTEGER && x[i] > 0 && x[i] <= nb) {
-      y[x[i] - 1]++;
+      y[x[i] - 1]++
     }
   }
      
-  return ans;
+  return ans
 }
 
 
@@ -66,24 +66,24 @@ SEXP attribute_hidden do_tabulate(SEXP call, SEXP op, SEXP args,
 # The following code shows do_tabulate() converted into standard a .Call() interface:
 
 tabulate2 <- cfunction(c(bin = "SEXP", nbins = "SEXP"), '
-  if (TYPEOF(bin) != INTSXP)  error("invalid input");
+  if (TYPEOF(bin) != INTSXP)  error("invalid input")
   
-  R_xlen_t n = XLENGTH(bin);
+  R_xlen_t n = XLENGTH(bin)
   /* FIXME: could in principle be a long vector */
-  int nb = asInteger(nbins);
+  int nb = asInteger(nbins)
   if (nb == NA_INTEGER || nb < 0)
-    error("invalid \'%s\' argument", "nbin");
+    error("invalid \'%s\' argument", "nbin")
 
-  SEXP ans = allocVector(INTSXP, nb);
-  int *x = INTEGER(bin), *y = INTEGER(ans);
-  memset(y, 0, nb * sizeof(int));
+  SEXP ans = allocVector(INTSXP, nb)
+  int *x = INTEGER(bin), *y = INTEGER(ans)
+  memset(y, 0, nb * sizeof(int))
   for(R_xlen_t i = 0 ; i < n ; i++) {
     if (x[i] != NA_INTEGER && x[i] > 0 && x[i] <= nb) {
-      y[x[i] - 1]++;
+      y[x[i] - 1]++
     }
   }
      
-  return ans;
+  return ans
 ')
 tabulate2(c(1L, 1L, 1L, 2L, 2L), 3)
 #> [1] 3 2 0
@@ -93,25 +93,25 @@ tabulate2(c(1L, 1L, 1L, 2L, 2L), 3)
 # The final version below moves more of the coercion logic into an accompanying R function, and does some minor restructuring to make the code a little easier to understand. I also added a PROTECT(); this is probably missing in the original because the author knew that it would be safe.
 
 tabulate_ <- cfunction(c(bin = "SEXP", nbins = "SEXP"), '  
-  int nb = asInteger(nbins);
+  int nb = asInteger(nbins)
 
   // Allocate vector for output - assumes that there are 
   // less than 2^32 bins, and that each bin has less than 
   // 2^32 elements in it.
-  SEXP out = PROTECT(allocVector(INTSXP, nb));
-  int *pbin = INTEGER(bin), *pout = INTEGER(out);
-  memset(pout, 0, nb * sizeof(int));
+  SEXP out = PROTECT(allocVector(INTSXP, nb))
+  int *pbin = INTEGER(bin), *pout = INTEGER(out)
+  memset(pout, 0, nb * sizeof(int))
 
-  R_xlen_t n = xlength(bin);
+  R_xlen_t n = xlength(bin)
   for(R_xlen_t i = 0; i < n; i++) {
-    int val = pbin[i];
+    int val = pbin[i]
     if (val != NA_INTEGER && val > 0 && val <= nb) {
       pout[val - 1]++; // C is zero-indexed
     }
   }
-  UNPROTECT(1);   
+  UNPROTECT(1)
   
-  return out;
+  return out
 ')
 
 tabulate3 <- function(bin, nbins) {

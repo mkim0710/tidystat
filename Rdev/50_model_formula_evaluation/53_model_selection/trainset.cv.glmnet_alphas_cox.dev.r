@@ -81,7 +81,7 @@ trainset.cv.glmnet_alphas_cox = function(
     }
     trainset = as.data.frame(trainset)
     # print(paste0("dim(trainset) : ", deparse(dim(trainset)) ))
-    x <- build.x(myFormula, data = trainset, contrast = FALSE)[,-1];
+    x <- build.x(myFormula, data = trainset, contrast = FALSE)[,-1]
     build.x.colnames_levels = dimnames(x)[[2]]
     
     trainset_colnames_levels$build.x.colnames_levels = as.logical(NA)
@@ -180,13 +180,13 @@ trainset.cv.glmnet_alphas_cox = function(
     # # For family="cox", y should be a two-column matrix with columns named 'time' and 'status'. The latter is a binary variable, with '1' indicating death, and '0' indicating right censored. The function Surv() in package survival produces such a matrix.
     y = mf.response
     
-    # train <- 1:nrow(x) ;  # set.seed( seed ) ; train <- sample( 1:nrow(x) , nrow(x)/2 ) ; test <- ( -train ) ; 
+    # train <- 1:nrow(x) ;  # set.seed( seed ) ; train <- sample( 1:nrow(x) , nrow(x)/2 ) ; test <- ( -train ) 
     return_list = alphas %>% seq_along %>% map(function(i_alpha) {
         print(paste0("Beginning .f() map from alphas [", i_alpha, "] valued : ", alphas[i_alpha] ))
-        Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) ;
+        Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
         
         return_name.i.tmp = paste0(return_name,paste_itrainset,".cv.glmnet",paste_imyFormula,"_a", alphas[i_alpha])
-        set.seed( seed ) ; 
+        set.seed( seed ) 
         # out = cv.glmnet(x[train,], y[train], alpha = alphas[i_alpha], family="binomial", type.measure = my.type.measure, nfolds = nfolds)
         out = cv.glmnet(x, y, alpha = alphas[i_alpha], family=glmnet.family, type.measure = my.type.measure, nfolds = nfolds)
         
@@ -195,9 +195,9 @@ trainset.cv.glmnet_alphas_cox = function(
             print(paste0("saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha == T : ", paste0(return_name.i.tmp, ".rds") ))
         }
         if(save.png == TRUE) {
-            png(paste0(return_name.i.tmp , "_plot.png"), width=png.size, height =  png.size, units = "px", bg = "transparent"); 
-            plot(out, main =  paste0(return_name.i.tmp, "_plot"), cex.main = 0.5); 
-            dev.off(); 
+            png(paste0(return_name.i.tmp , "_plot.png"), width=png.size, height =  png.size, units = "px", bg = "transparent")
+            plot(out, main =  paste0(return_name.i.tmp, "_plot"), cex.main = 0.5)
+            dev.off()
             print(paste0("plot(object_cvglmnet) : ", paste0(return_name.i.tmp , "_plot.png") ))
         }
         
@@ -266,7 +266,7 @@ trainset.cv.glmnet_alphas_cox = function(
         , save.png = save.png
         , png.size = png.size, seed = seed, nfolds = nfolds
     ) # list inside attr() is not shown with str(max.level = 1)
-    # print( paste0( return_name , ".cv.glmnet_alphas" ) ); # assign( paste0( return_name, ".cv.glmnet_alphas" ) , return_list , envir=.GlobalEnv) ;
+    # print( paste0( return_name , ".cv.glmnet_alphas" ) ); # assign( paste0( return_name, ".cv.glmnet_alphas" ) , return_list , envir=.GlobalEnv) 
     out}  ;   # save.image() # update 170509
 
 #@ test) trainset.cv.glmnet_alphas_cox() CoxExample_tibble ----
