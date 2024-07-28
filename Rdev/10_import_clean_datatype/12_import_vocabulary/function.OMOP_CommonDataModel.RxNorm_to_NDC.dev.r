@@ -168,9 +168,9 @@ Sys.time() - .t0
 # Time difference of 4.695696 secs
 
 getwd()
-path4write = getwd()
+.path4write = getwd()
 objectname = "RxNorm_clomiphene_to_NDC"
-write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
+write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
@@ -243,9 +243,9 @@ Sys.time() - .t0
 # Time difference of 4.695696 secs
 
 getwd()
-path4write = getwd()
+.path4write = getwd()
 objectname = "RxNorm_letrozole_to_NDC"
-write_rds( get(objectname), file.path(path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
+write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
 if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 

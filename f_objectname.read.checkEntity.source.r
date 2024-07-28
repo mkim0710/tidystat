@@ -41,11 +41,11 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://gi
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 if (requireNamespace("rstudioapi")) {
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
     if (rstudioapi::isAvailable()) {
         env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-    if(Sys.getenv("print.intermediate")==TRUE) {CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=CodeText2Print))), paste0("is.null(",CodeText2Print,") == TRUE"), paste0(CodeText2Print," == ",eval(parse(text=CodeText2Print)))))}  
+    if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -111,24 +111,24 @@ for (.dependancy in c("f_filename.ext.find_.subpath", "f_path.size_files")) {
 
 #@ objectname = "f_objectname.read.checkEntity" =========
 .tmp$objectname = "f_objectname.read.checkEntity"
-.tmp$object = function(objectname, ext = "rds", path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
+.tmp$object = function(objectname, ext = "rds", .path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
-    MessageText2 = paste0('path4read == "',path4read,'"')
-    if (getwd() != path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+    MessageText2 = paste0('.path4read == "',.path4read,'"')
+    if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
 
     cat('objectname = "', objectname, '"  \n', sep="")
     filename.ext = paste0(objectname,".", ext)
-    if(file.exists(file.path(path4read, filename.ext))) {
-    } else if(file.exists(file.path(path4read, paste0(filename.ext, ".xz")))) {
+    if(file.exists(file.path(.path4read, filename.ext))) {
+    } else if(file.exists(file.path(.path4read, paste0(filename.ext, ".xz")))) {
         filename.ext = paste0(filename.ext, ".xz")
     } else if(BreathFirstSearch) {
-        path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
+        path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = .path4read, max_depth = max_depth, print.intermediate = print.intermediate)
         if (is.null(path.filename.ext)) {
-            path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = path4read, max_depth = max_depth, print.intermediate = print.intermediate)
+            path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = .path4read, max_depth = max_depth, print.intermediate = print.intermediate)
             if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) 
         }
-        path4read = dirname(path.filename.ext)
-        cat('Found subpath: ', 'path4read = "', path4read, '"  \n', sep="")
+        .path4read = dirname(path.filename.ext)
+        cat('Found subpath: ', '.path4read = "', .path4read, '"  \n', sep="")
         filename.ext = basename(path.filename.ext)
     } else {
         warning(paste0(filename.ext, " does not exist!")) 
@@ -143,9 +143,9 @@ for (.dependancy in c("f_filename.ext.find_.subpath", "f_path.size_files")) {
     #     str_replace_all("\\]", "\\\\]") %>% 
     #     str_replace_all("\\-", "\\\\-") 
     filename.ext.regex <- filename.ext |> str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
-    env1$f$f_path.size_files(path4read = path4read, regex4filename = filename.ext.regex)
+    env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename.ext.regex)
     
-    system.time(assign(objectname, read_rds(file.path(path4read, filename.ext)), envir=.GlobalEnv))
+    system.time(assign(objectname, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
 
     # cat(strrep("~",80),"\n",sep="")
     cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
@@ -154,12 +154,12 @@ for (.dependancy in c("f_filename.ext.find_.subpath", "f_path.size_files")) {
     for (varname in vec_varname4ID) {
         if(varname %in% names(get(objectname))) {
             attributes(.GlobalEnv[[objectname]])$n_distinct[[varname]] = n_distinct(get(objectname)[[varname]])
-            DataSetName.nrow = nrow(get(objectname))
+            .DataSetName.nrow = nrow(get(objectname))
             varname.n_distinct = attributes(.GlobalEnv[[objectname]])$n_distinct[[varname]]
 
             MessageText1 = paste0("nrow(",objectname,")")
             MessageText2 = paste0("n_distinct(",objectname,"$",varname,") = ",varname.n_distinct)
-            if (DataSetName.nrow != varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+            if (.DataSetName.nrow != varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
         }
     }
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
@@ -194,13 +194,13 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 
 
 # objectname = "fhs.index100le10"
-# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".")
-# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", path4read = ".", vec_varname4ID = "randid")
+# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", .path4read = ".")
+# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", .path4read = ".", vec_varname4ID = "randid")
 # # > objectname = "fhs.index100le10"
 # # > f_objectname.read.checkEntity(objectname = objectname)
-# # Warning:  getwd() != path4read == "." 
+# # Warning:  getwd() != .path4read == "." 
 # # objectname = "fhs.index100le10"
-# # Found subpath: path4read = "./data"
+# # Found subpath: .path4read = "./data"
 # # filename.ext = "fhs.index100le10.rds"
 # # "fhs.index100le10.rds"
 # # ----
@@ -326,7 +326,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # # Warning messages:
 # # 1: In f_objectname.read.checkEntity(objectname = objectname) :
-# #   getwd() != path4read == "."
+# #   getwd() != .path4read == "."
 # # 2: In f_objectname.read.checkEntity(objectname = objectname) :
 # #   varname for ID not identified.
 # # 3: In f_objectname.read.checkEntity(objectname = objectname) :
@@ -334,9 +334,9 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # # 4: In f_objectname.read.checkEntity(objectname = objectname) :
 # #   varname for ID not identified.
 # # > f_objectname.read.checkEntity(objectname = objectname, vec_varname4ID = "randid")
-# # Warning:  getwd() != path4read == "." 
+# # Warning:  getwd() != .path4read == "." 
 # # objectname = "fhs.index100le10"
-# # Found subpath: path4read = "./data"
+# # Found subpath: .path4read = "./data"
 # # filename.ext = "fhs.index100le10.rds"
 # # "fhs.index100le10.rds"
 # # ----
@@ -460,6 +460,6 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # # Warning message:
 # # In f_objectname.read.checkEntity(objectname = objectname, vec_varname4ID = "randid") :
-# #   getwd() != path4read == "."
+# #   getwd() != .path4read == "."
 
 

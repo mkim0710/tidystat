@@ -4,18 +4,18 @@ library(tidyverse)
 # getwd() |> dput()
 # # > getwd() |> dput()
 # # "X:/mkim/Rproject"
-# # path4read = "//DON/marketscan_users/smacdonald/"
-# # path4write = "//DON/marketscan_users/mkim/"
-# # path4read = "/proj/marketscan_users/marketscan/mkim/"
-# # path4write = "/proj/marketscan_users/marketscan/mkim/"
-# path4read = "../data/"
-# path4write = "../data/"
-path4read = "ATC_RxNorm_NDC/"
-path4write = "ATC_RxNorm_NDC/"
+# # .path4read = "//DON/marketscan_users/smacdonald/"
+# # .path4write = "//DON/marketscan_users/mkim/"
+# # .path4read = "/proj/marketscan_users/marketscan/mkim/"
+# # .path4write = "/proj/marketscan_users/marketscan/mkim/"
+# .path4read = "../data/"
+# .path4write = "../data/"
+.path4read = "ATC_RxNorm_NDC/"
+.path4write = "ATC_RxNorm_NDC/"
 
 
-#@ filenames = list.files(path4read) %>% grep("csv$",. , value = T) ====
-filenames = list.files(path4read) %>% grep("csv$",. , value = T) 
+#@ filenames = list.files(.path4read) %>% grep("csv$",. , value = T) ====
+filenames = list.files(.path4read) %>% grep("csv$",. , value = T) 
 filenames |> dput()
 # > filenames |> dput()
 # c("CONCEPT.csv", "CONCEPT_ANCESTOR.csv", "CONCEPT_CLASS.csv", 
@@ -34,8 +34,8 @@ filenames %>% map(function(i) {
     # print(t0)
     
     zip(
-        paste0(path4read, i, ".zip")
-        , paste0(path4read, i)
+        paste0(.path4read, i, ".zip")
+        , paste0(.path4read, i)
     )
     
     # rm(i)
@@ -57,8 +57,8 @@ filenames %>% map(function(i) {
 # +     # print(t0)
 # +     
 # +     zip(
-# +         paste0(path4read, i, ".zip")
-# +         , paste0(path4read, i)
+# +         paste0(.path4read, i, ".zip")
+# +         , paste0(.path4read, i)
 # +     )
 # +     
 # +     # rm(i)
@@ -138,12 +138,12 @@ out.list = filenames %>% map(function(i) {
 
     # assign(
     #     filename
-    #     , read_tsv(paste0(path4read, filename, .extension))
+    #     , read_tsv(paste0(.path4read, filename, .extension))
     # )
-    # saveRDS(eval(parse(text = filename)), paste0(path4write, filename, ".rds"))
+    # saveRDS(eval(parse(text = filename)), paste0(.path4write, filename, ".rds"))
 
-    out = read_tsv(paste0(path4read, filename, .extension))
-    saveRDS(out, paste0(path4write, filename, ".rds"))
+    out = read_tsv(paste0(.path4read, filename, .extension))
+    saveRDS(out, paste0(.path4write, filename, ".rds"))
 
     
     # rm(filename)
@@ -167,12 +167,12 @@ out.list |> str(max.level = 1)
 # + 
 # +     # assign(
 # +     #     filename
-# +     #     , read_tsv(paste0(path4read, filename, .extension))
+# +     #     , read_tsv(paste0(.path4read, filename, .extension))
 # +     # )
-# +     # saveRDS(eval(parse(text = filename)), paste0(path4write, filename, ".rds"))
+# +     # saveRDS(eval(parse(text = filename)), paste0(.path4write, filename, ".rds"))
 # + 
-# +     out = read_tsv(paste0(path4read, filename, .extension))
-# +     saveRDS(out, paste0(path4write, filename, ".rds"))
+# +     out = read_tsv(paste0(.path4read, filename, .extension))
+# +     saveRDS(out, paste0(.path4write, filename, ".rds"))
 # + 
 # +     
 # +     # rm(filename)
