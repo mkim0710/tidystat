@@ -9,7 +9,7 @@
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#|________________________________________________________________________________|#  ----
+#|________________________________________________________________________________|#  ----  
 #| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
 #| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
 #| Ctrl+Alt+Shift+Left/Right: First/Last tab
@@ -21,7 +21,7 @@
 #| Ctrl+Alt+B: Run from start to current line 
 #| Shift+F9: Toggle Breakpoint 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# paste0("[Working Files List] ",basename(getwd()),".r") |> file.edit()
+# file.edit( paste0("[Working Files List] ",basename(getwd()),".r") )  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R"  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd"  
