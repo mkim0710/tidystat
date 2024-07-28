@@ -21,22 +21,22 @@ April 3, 2018
 # An appropriate ODBC driver should be installed in your computer first!
   
 # # install.packages("tidyverse")
-# packagename = "tidyverse"
-# if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
+# .tmp$packagename = "tidyverse"
+# if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
 # 
 # install.packages(c("tidyverse", "RODBC", "maps", "jsonlite"))
-# for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-#     if(!packagename %in% installed.packages()[,"Package"]) install.packages(packagename)
+# for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
+#     if(!.tmp$packagename %in% installed.packages()[,"Package"]) install.packages(.tmp$packagename)
 # }
-for (packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
-    if(!require(packagename,character.only=TRUE))install.packages(packagename) else library(packagename,character.only=TRUE)
+for (.tmp$packagename in c("tidyverse", "RODBC", "maps", "jsonlite")) {
+    if(!require(.tmp$packagename,character.only=TRUE))install.packages(.tmp$packagename) else library(.tmp$packagename,character.only=TRUE)
 }
   
 # 
 # # https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them
-# packagenames = c("tidyverse", "RODBC", "maps", "jsonlite")
-# packagenames2install = packagenames[!packagenames %in% installed.packages()[,"Package"]]
-# if(length(packagenames2install)) install.packages(packagenames2install)
+# .tmp$packagenames = c("tidyverse", "RODBC", "maps", "jsonlite")
+# .tmp$packagenames2install = .tmp$packagenames[!.tmp$packagenames %in% installed.packages()[,"Package"]]
+# if(length(.tmp$packagenames2install)) install.packages(.tmp$packagenames2install)
 c("tidyverse", "RODBC", "maps", "jsonlite") %>% 
 {.[!. %in% installed.packages()[,"Package"]]} %>% {ifelse(length(.) > 0, install.packages(.), .)}
   
