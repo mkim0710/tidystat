@@ -87,15 +87,7 @@ if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <
 if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 
 
-.tmp$objectname = "gitignore_escaped_select.UC.regex"
-.tmp$object = "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|(.*\\.7Z)|(.*\\.R\\.GZ)|(.*\\.R\\.XZ)|(.*\\.RMD\\.GZ)|(.*\\.RMD\\.XZ)|(.*\\.RPROJ)|(\\.GITIGNORE)|(\\.GIT)|(\\.GITHUB)|(MH\\).*\\.R)|(.*\\.LNK)|(.*ALIAS)|(.*\\- VOID.*\\..*)|(.*\\-VOID.*\\..*)|(.*\\- INFO\\..*)|(.*\\-INFO\\..*)|(.*\\-DEV.*\\..*)|(.*DEBUG.*\\..*)|(\\-TMP)|(.*\\- TMP.*\\..*)|(.*\\-TMP.*\\..*)|(.*\\- OLD\\..*)|(.*\\-OLD\\..*)|(.*\\-LOG.*\\..*)|(.*\\.RTF)$"    
-if(!.tmp$objectname %in% names(.GlobalEnv$env1)) {
-    packageStartupMessage(paste0("Loading: ", "env1$", .tmp$objectname))
-    .GlobalEnv$env1[[.tmp$objectname]] = .tmp$object
-    # cat("> env1$", .tmp$objectname, "()\n", sep=""); tmp.function = env1[[.tmp$objectname]]; tmp.function()  # Run the loaded function by default
-}
-
-
+.tmp$gitignore_escaped_select.UC.regex = "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|(.*\\.7Z)|(.*\\.R\\.GZ)|(.*\\.R\\.XZ)|(.*\\.RMD\\.GZ)|(.*\\.RMD\\.XZ)|(.*\\.RPROJ)|(\\.GITIGNORE)|(\\.GIT)|(\\.GITHUB)|(MH\\).*\\.R)|(.*\\.LNK)|(.*ALIAS)|(.*\\- VOID.*\\..*)|(.*\\-VOID.*\\..*)|(.*\\- INFO\\..*)|(.*\\-INFO\\..*)|(.*\\-DEV.*\\..*)|(.*DEBUG.*\\..*)|(\\-TMP)|(.*\\- TMP.*\\..*)|(.*\\-TMP.*\\..*)|(.*\\- OLD\\..*)|(.*\\-OLD\\..*)|(.*\\-LOG.*\\..*)|(.*\\.RTF)$"    
 
 
 .tmp$objectname = "f_path.df_dirs_recursive.df_files"
@@ -103,7 +95,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1)) {
     input_path = ".", 
     max_depth = 9, 
     current_depth = 0, 
-    gitignore_escaped_select.UC.regex = env1$gitignore_escaped_select.UC.regex, 
+    gitignore_escaped_select.UC.regex = .tmp$gitignore_escaped_select.UC.regex, 
     print.message = TRUE
 ) {
     if (!dir.exists(input_path)) {
@@ -330,7 +322,7 @@ if(!objectname %in% names(.GlobalEnv$env1)) {
 # ls.str(env1$env.internal) #-----
 # # > ls.str(env1) #-----
 # # env.internal : <environment: 0x000001f6d74c17b0> 
-# # f_path.df_dirs_recursive.df_files : function (input_path = ".", max_depth = 9, current_depth = 0, gitignore_escaped_select.UC.regex = env1$gitignore_escaped_select.UC.regex)  
+# # f_path.df_dirs_recursive.df_files : function (input_path = ".", max_depth = 9, current_depth = 0, gitignore_escaped_select.UC.regex = .tmp$gitignore_escaped_select.UC.regex)  
 # # gitignore_escaped_select.UC.regex :  chr [1:23] "\\.RPROJ\\.USER" "\\.RHISTORY" "\\.RDATA" "\\.RUSERDATA" ".*\\.ZIP" ".*\\.7Z" ".*\\.RPROJ" "\\.GITIGNORE" ...
 # # > ls.str(env1$env.internal) #-----
 
