@@ -87,12 +87,12 @@ if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <
 if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 
 
-objectname = "gitignore_escaped_select.UC.regex"
-object = "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|(.*\\.7Z)|(.*\\.R\\.GZ)|(.*\\.R\\.XZ)|(.*\\.RMD\\.GZ)|(.*\\.RMD\\.XZ)|(.*\\.RPROJ)|(\\.GITIGNORE)|(\\.GIT)|(\\.GITHUB)|(MH\\).*\\.R)|(.*\\.LNK)|(.*ALIAS)|(.*\\- VOID.*\\..*)|(.*\\-VOID.*\\..*)|(.*\\- INFO\\..*)|(.*\\-INFO\\..*)|(.*\\-DEV.*\\..*)|(.*DEBUG.*\\..*)|(\\-TMP)|(.*\\- TMP.*\\..*)|(.*\\-TMP.*\\..*)|(.*\\- OLD\\..*)|(.*\\-OLD\\..*)|(.*\\-LOG.*\\..*)|(.*\\.RTF)$"    
-if(!objectname %in% names(.GlobalEnv$env1)) {
-    packageStartupMessage(paste0("Loading: ", "env1$", objectname))
-    .GlobalEnv$env1[[objectname]] = object
-    # cat("> env1$", objectname, "()\n", sep=""); tmp.function = env1[[objectname]]; tmp.function()  # Run the loaded function by default
+.tmp$objectname = "gitignore_escaped_select.UC.regex"
+.tmp$object = "^(\\.RPROJ\\.USER)|(\\.RHISTORY)|(\\.RDATA)|(\\.RUSERDATA)|(.*\\.ZIP)|(.*\\.7Z)|(.*\\.R\\.GZ)|(.*\\.R\\.XZ)|(.*\\.RMD\\.GZ)|(.*\\.RMD\\.XZ)|(.*\\.RPROJ)|(\\.GITIGNORE)|(\\.GIT)|(\\.GITHUB)|(MH\\).*\\.R)|(.*\\.LNK)|(.*ALIAS)|(.*\\- VOID.*\\..*)|(.*\\-VOID.*\\..*)|(.*\\- INFO\\..*)|(.*\\-INFO\\..*)|(.*\\-DEV.*\\..*)|(.*DEBUG.*\\..*)|(\\-TMP)|(.*\\- TMP.*\\..*)|(.*\\-TMP.*\\..*)|(.*\\- OLD\\..*)|(.*\\-OLD\\..*)|(.*\\-LOG.*\\..*)|(.*\\.RTF)$"    
+if(!.tmp$objectname %in% names(.GlobalEnv$env1)) {
+    packageStartupMessage(paste0("Loading: ", "env1$", .tmp$objectname))
+    .GlobalEnv$env1[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$", .tmp$objectname, "()\n", sep=""); tmp.function = env1[[.tmp$objectname]]; tmp.function()  # Run the loaded function by default
 }
 
 
