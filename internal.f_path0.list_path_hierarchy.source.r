@@ -100,8 +100,8 @@ if (requireNamespace("rstudioapi")) {
 
 
 #% f_path0.list_path_hierarchy =======
-objectname = "f_path0.list_path_hierarchy"
-object <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
+.tmp$objectname = "f_path0.list_path_hierarchy"
+.tmp$object <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path <- list()
     
@@ -135,9 +135,9 @@ object <- function(path0, path_last = getwd(), max_hierarchy = 5, print.intermed
     
     return(list_path_hierarchy)
 }
-if(!objectname %in% names(.GlobalEnv$env1$env.internal)) {
-    packageStartupMessage(paste0("Loading: ", "env1$env.internal$", objectname))
-    .GlobalEnv$env1$env.internal[[objectname]] = object
-    # cat("> env1$",objectname,"()\n",sep=""); get(objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
+    packageStartupMessage(paste0("Loading: ", "env1$env.internal$", .tmp$objectname))
+    .GlobalEnv$env1$env.internal[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$",.tmp$objectname,"()\n",sep=""); get(.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 

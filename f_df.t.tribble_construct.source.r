@@ -94,8 +94,8 @@ if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
 # globalVariables(c(".rs.readUiPref","env1$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
-# env.internal.objectname = ".global_datapasta_env"
-# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname))
+# .tmp$env.internal.objectname = ".global_datapasta_env"
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", .tmp$env.internal.objectname))
 env1$env.internal$.global_datapasta_env <- new.env()
 env1$env.internal$.global_datapasta_env$decimal_mark <- "."
 env1$env.internal$.global_datapasta_env$max_rows <- 200
@@ -108,8 +108,8 @@ env1$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not availab
 #' @return Nothing.
 #' @export
 #'
-# env.internal.objectname = "tribble_paste"
-# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname))
+# .tmp$env.internal.objectname = "tribble_paste"
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", .tmp$env.internal.objectname))
 env1$env.internal$tribble_paste <- function(input_table, output_context = env1$env.internal$guess_output_context()){
   output <- env1$env.internal$tribble_construct(input_table, oc = output_context)
 
@@ -126,8 +126,8 @@ env1$env.internal$tribble_paste <- function(input_table, output_context = env1$e
 #' @return Nothing.
 #' @export
 #'
-# env.internal.objectname = "tribble_format"
-# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", env.internal.objectname))
+# .tmp$env.internal.objectname = "tribble_format"
+# packageStartupMessage(paste0("Loading: ", "env1$env.internal$", .tmp$env.internal.objectname))
 env1$env.internal$tribble_format <- function(input_table, output_context = env1$env.internal$console_context()){
   if(!interactive()) stop("Cannot write to clipboard in non-interactive sessions.")
   output <- env1$env.internal$tribble_construct(input_table, oc = output_context)
@@ -604,60 +604,60 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ global functions ----
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ objectname = "f_df.tribble_construct" ----
+## \$ .tmp\$objectname = "f_df.tribble_construct" ----
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
-objectname = "f_df.tribble_construct"
-object = function(df) {
+.tmp$objectname = "f_df.tribble_construct"
+.tmp$object = function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
-## \$ objectname = "f_df.transpose" ----
-objectname = "f_df.transpose"
-object = function(df, varname4rowname = "varname") {
+## \$ .tmp\$objectname = "f_df.transpose" ----
+.tmp$objectname = "f_df.transpose"
+.tmp$object = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
     out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }                                    
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ objectname = "f_df.t.tribble_construct" ----
-objectname = "f_df.t.tribble_construct"
-object = function(df) {
+## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----
+.tmp$objectname = "f_df.t.tribble_construct"
+.tmp$object = function(df) {
     out = env1$f$f_df.transpose(df)
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
-## \$ objectname = "f_vec.dput_line_by_line" ----
-objectname = "f_vec.dput_line_by_line"
-# object = function(vec) {
+## \$ .tmp\$objectname = "f_vec.dput_line_by_line" ----
+.tmp$objectname = "f_vec.dput_line_by_line"
+# .tmp$object = function(vec) {
 #     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') |> paste0('c("',.,'")\n') |> cat("  \n", sep="")
 # }
-object = function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
+.tmp$object = function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -670,15 +670,15 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
-## \$ objectname = "f_list.dput_line_by_line" ----
-objectname = "f_list.dput_line_by_line"
-object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
+## \$ .tmp\$objectname = "f_list.dput_line_by_line" ----
+.tmp$objectname = "f_list.dput_line_by_line"
+.tmp$object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -698,10 +698,10 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ objectname = "f_vec1_vec2.setdiff" ----
+## \$ .tmp\$objectname = "f_vec1_vec2.setdiff" ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
-objectname = "f_vec1_vec2.setdiff"
-object = function(vec1, vec2) {
+.tmp$objectname = "f_vec1_vec2.setdiff"
+.tmp$object = function(vec1, vec2) {
     out = list()
     out$vec1.character = vec1 = as.character(vec1)
     out$vec2.character = vec2 = as.character(vec2)
@@ -712,10 +712,10 @@ object = function(vec1, vec2) {
     out$identical = all.equal(vec1, vec2)
     out
 }
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  

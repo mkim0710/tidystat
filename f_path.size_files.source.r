@@ -93,8 +93,8 @@ for (env1.dependancy in c("f_df.tribble_construct")) {
 }
 
 
-objectname = "f_path.size_files"
-object = function(path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$") {
+.tmp$objectname = "f_path.size_files"
+.tmp$object = function(path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$") {
     if (is.na(literal_filename)) {
         # filenames = list.files(path = path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
         filenames = list.files(path = path4read, pattern = regex4filename, ignore.case = T)
@@ -121,10 +121,10 @@ object = function(path4read = getwd(), literal_filename = NA, regex4filename = "
     env1$f$f_df.tribble_construct(out)
     cat(strrep("~",80),"\n",sep=""); #----
 } 
-if(!objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", "env1$f$", objectname))
-    .GlobalEnv$env1$f[[objectname]] = object
-    # cat("> env1$f$",objectname,"()\n",sep=""); get(f$objectname, envir=env1)() # Run the loaded function by default
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> env1$f$",.tmp$objectname,"()\n",sep=""); get(f$.tmp$objectname, envir=env1)() # Run the loaded function by default
 }
 
 # > for (env1.dependancy in c("f_df.tribble_construct")) {

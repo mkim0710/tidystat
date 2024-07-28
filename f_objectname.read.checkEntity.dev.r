@@ -87,7 +87,7 @@ cat("# ",'sourcename_root = "',sourcename_root,'"', "  \n",
 source("f_objectname.read.checkEntity.source.r")
 
 
-# \$ objectname = "fhs.index100le10" =======
+# \$ .tmp\$objectname = "fhs.index100le10" =======
 objectname = "fhs.index100le10"
 env1$f$f_objectname.read.checkEntity(objectname = objectname)
 env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
