@@ -76,7 +76,7 @@ library(tinytex)
 rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstudioapi::executeCommand("activateSource")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) tlmgr_installed_packages ----
+#@@ START) .tlmgr_installed_packages ----
 c(
   "fontspec",
   "xunicode",
@@ -91,20 +91,20 @@ c(
   "d2coding"
 )
 
-tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
-.font_name = "roboto"; if(tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
-.font_name = "cascadia-code"; if(tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+.tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
+.font_name = "roboto"; if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+.font_name = "cascadia-code"; if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-tlmgr_installed_packages <- tinytex::tlmgr(c('info', '--list', '--only-installed'), stdout = TRUE)
+.tlmgr_installed_packages <- tinytex::tlmgr(c('info', '--list', '--only-installed'), stdout = TRUE)
 # tlmgr info --list --only-installed
-tlmgr_installed_packages |> str()
-tlmgr_installed_packages |> env1$f$f_vec.dput_line_by_line()
+.tlmgr_installed_packages |> str()
+.tlmgr_installed_packages |> env1$f$f_vec.dput_line_by_line()
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ tlmgr_installed_packages.ASRockX300Ryzen5600G ====
-tlmgr_installed_packages.ASRockX300Ryzen5600G = 
+## \$ .tlmgr_installed_packages.ASRockX300Ryzen5600G ====
+.tlmgr_installed_packages.ASRockX300Ryzen5600G = 
 c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
@@ -231,13 +231,13 @@ c("i amscls: AMS document classes for LaTeX",
   "i xkeyval: Extension of the keyval package",
   "i xunicode: Generate Unicode characters from accented glyphs",
   "i zapfding: URW 'Base 35' font pack for LaTeX")
-tlmgr_installed_packages.ASRockX300Ryzen5600G |> all.equal(tlmgr_installed_packages)
-tlmgr_installed_packages.ASRockX300Ryzen5600G |> str()  ### ----
-### > tlmgr_installed_packages.ASRockX300Ryzen5600G %>% str  ### ----
+.tlmgr_installed_packages.ASRockX300Ryzen5600G |> all.equal(.tlmgr_installed_packages)
+.tlmgr_installed_packages.ASRockX300Ryzen5600G |> str()  ### ----
+### > .tlmgr_installed_packages.ASRockX300Ryzen5600G %>% str  ### ----
 #  chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ tlmgr_installed_packages.MAGB760M13700KF ====
-tlmgr_installed_packages.MAGB760M13700KF = 
+## \$ .tlmgr_installed_packages.MAGB760M13700KF ====
+.tlmgr_installed_packages.MAGB760M13700KF = 
 c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
@@ -376,12 +376,12 @@ c("i amscls: AMS document classes for LaTeX",
   "i xpatch: Extending etoolbox patching commands",
   "i xunicode: Generate Unicode characters from accented glyphs",
   "i zapfding: URW 'Base 35' font pack for LaTeX")
-tlmgr_installed_packages.MAGB760M13700KF |> all.equal(tlmgr_installed_packages)
-tlmgr_installed_packages.MAGB760M13700KF |> str()  ###----
-tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
-### > tlmgr_installed_packages.MAGB760M13700KF %>% str  ###----
+.tlmgr_installed_packages.MAGB760M13700KF |> all.equal(.tlmgr_installed_packages)
+.tlmgr_installed_packages.MAGB760M13700KF |> str()  ###----
+.tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+### > .tlmgr_installed_packages.MAGB760M13700KF %>% str  ###----
 #  chr [1:138] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
-### > tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+### > .tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
 # List of 7
 #  $ vec1.character: chr [1:138] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i arphic: Arphic (Chinese) font packages" ...
 #  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
@@ -391,7 +391,7 @@ tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(tlmgr_ins
 #  $ setdiff_2_1   : chr [1:2] "i epstopdf: Convert EPS to PDF using Ghostscript" "i epstopdf.windows: windows files of epstopdf"
 #  $ identical     : chr [1:2] "Lengths (138, 126) differ (string compare on first 126)" "123 string mismatches"
 
-tlmgr_installed_packages.MAGB760M13700KF |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f$f_vec.dput_line_by_line()
+.tlmgr_installed_packages.MAGB760M13700KF |> setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f$f_vec.dput_line_by_line()
 c("i arphic: Arphic (Chinese) font packages",
   "i cascadia-code: The Cascadia Code font with support for LaTeX and pdfLaTeX",
   "i cjk: CJK language support",
@@ -408,8 +408,8 @@ c("i arphic: Arphic (Chinese) font packages",
   "i xpatch: Extending etoolbox patching commands")
 
 
-## \$ tlmgr_installed_packages.RockerVerse ====
-tlmgr_installed_packages.RockerVerse = c("i ae: Virtual fonts for T1 encoded CMR-fonts",
+## \$ .tlmgr_installed_packages.RockerVerse ====
+.tlmgr_installed_packages.RockerVerse = c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
   "i atbegshi: Execute stuff at \\shipout time",
@@ -524,12 +524,12 @@ tlmgr_installed_packages.RockerVerse = c("i ae: Virtual fonts for T1 encoded CMR
   "i xkeyval: Extension of the keyval package",
   "i xpatch: Extending etoolbox patching commands",
   "i zapfding: URW 'Base 35' font pack for LaTeX")
-tlmgr_installed_packages.RockerVerse |> all.equal(tlmgr_installed_packages)
-tlmgr_installed_packages.RockerVerse |> str()  ###----
-tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
-### > tlmgr_installed_packages.RockerVerse |> str()  ###----
+.tlmgr_installed_packages.RockerVerse |> all.equal(.tlmgr_installed_packages)
+.tlmgr_installed_packages.RockerVerse |> str()  ###----
+.tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+### > .tlmgr_installed_packages.RockerVerse |> str()  ###----
 #  chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
-### > tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+### > .tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
 # List of 7
 #  $ vec1.character: chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
 #  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
@@ -540,9 +540,9 @@ tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(tlmgr_install
 #  $ identical     : chr [1:2] "Lengths (115, 126) differ (string compare on first 115)" "104 string mismatches"
 
 
-tlmgr_installed_packages.RockerVerse |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f$f_vec.dput_line_by_line()
-tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(tlmgr_installed_packages.RockerVerse) |> env1$f$f_vec.dput_line_by_line()
-# > tlmgr_installed_packages.RockerVerse |> setdiff(tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f$f_vec.dput_line_by_line()
+.tlmgr_installed_packages.RockerVerse |> setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f$f_vec.dput_line_by_line()
+.tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(.tlmgr_installed_packages.RockerVerse) |> env1$f$f_vec.dput_line_by_line()
+# > .tlmgr_installed_packages.RockerVerse |> setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> env1$f$f_vec.dput_line_by_line()
 c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i bibtex.x86_64-linux: x86_64-linux files of bibtex",
   "i context: The ConTeXt macro package",
@@ -577,7 +577,7 @@ c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i tikzfill: TikZ libraries for filling with images and patterns",
   "i xetex.x86_64-linux: x86_64-linux files of xetex",
   "i xpatch: Extending etoolbox patching commands")
-# > tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(tlmgr_installed_packages.RockerVerse) |> env1$f$f_vec.dput_line_by_line()
+# > .tlmgr_installed_packages.ASRockX300Ryzen5600G |> setdiff(.tlmgr_installed_packages.RockerVerse) |> env1$f$f_vec.dput_line_by_line()
 c("i amscls: AMS document classes for LaTeX",
   "i bibtex.windows: windows files of bibtex",
   "i booktabs: Publication quality tables in LaTeX",
