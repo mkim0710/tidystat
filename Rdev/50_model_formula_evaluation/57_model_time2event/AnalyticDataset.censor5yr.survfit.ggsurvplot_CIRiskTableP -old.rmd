@@ -160,7 +160,7 @@ env1$f$f_path.size_files(path4read = path4write, regex4filename = regex4filename
 @ assign(objectname, read_rds(file.path(path4read, paste0(objectname,".rds")))) 
 ```{r objectname-read.checkEntity, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(Sys.getenv("print.intermediate")==TRUE) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
+# .sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(Sys.getenv("print.intermediate")==TRUE) cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); suppressPackageStartupMessages(source( file.path(env1$path$source_base,subpath.filename.source.r) ))
 # objectname = "tblID_gj3_jk"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep="")
 # filename2read = if(file.exists(file.path(path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 # env1$f$f_path.size_files(path4read = path4read, regex4filename = filename2read)

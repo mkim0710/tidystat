@@ -29,7 +29,7 @@
 # rm(list=ls())
 # rstudioapi::restartSession()  # ctrl+shift+f10
 # https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# sourcename = "function.detachAllPackages" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(!sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(.GlobalEnv$env1$source[[sourcename]])}
+# .sourcename = "function.detachAllPackages" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/.Rprofile"    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -54,68 +54,12 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(pas
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
-### \$ subpath, sourcename ======
+### @ .subpath, .sourcename ======
 
 
 
 
-#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-##### env1\$info\$get_system_info() ====
-# if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
-#     sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(!sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(.GlobalEnv$env1$source[[sourcename]])}
-# }
-# env1$info$info_system_info = env1$env.internal$get_system_info()
-# env1$info$info_system_info |> utils::str()
-#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-##### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----
-# sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(!sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(.GlobalEnv$env1$source[[sourcename]])}
-# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
-# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
-# env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")
-# # Rdev
-# # Rdev/-dev
-# # Rdev/00_base_program
-# # Rdev/00_protocol
-# # Rdev/00_protocol/01_sample_size
-# # Rdev/00_protocol/05_count_eligible
-# # Rdev/00_protocol/06_count_exposure
-# # Rdev/00_protocol/07_count_outcome
-# # Rdev/10_import_clean_datatype
-# # Rdev/10_import_clean_datatype/11_metadata
-# # Rdev/10_import_clean_datatype/12_import_files
-# # Rdev/10_import_clean_datatype/12_import_sqlite
-# # Rdev/10_import_clean_datatype/12_import_vocabulary
-# # Rdev/10_import_clean_datatype/13_duplicated
-# # Rdev/10_import_clean_datatype/13_missing_value
-# # Rdev/10_import_clean_datatype/13_split_fold
-# # Rdev/10_import_clean_datatype/15_cleaning_text
-# # Rdev/10_import_clean_datatype/15_cleaning_time
-# # Rdev/10_import_clean_datatype/16_categorical_factor
-# # Rdev/10_import_clean_datatype/17_categorical_indicators
-# # Rdev/10_import_clean_datatype/18_dichotomous_logical
-# # Rdev/10_import_clean_datatype/19_datetime
-# # Rdev/10_import_clean_datatype/19_numeric_integer
-# # Rdev/10_import_clean_datatype/array_list
-# # Rdev/20_tidy_group_by_match
-# # Rdev/20_tidy_group_by_match/23_group_by_PersonID
-# # Rdev/20_tidy_group_by_match/25_study_population
-# # Rdev/20_tidy_group_by_match/27_match
-# # Rdev/30_transform_scale_categorical
-# # Rdev/40_visualize_explore_bivariate_stratified
-# # Rdev/40_visualize_explore_bivariate_stratified/43_network
-# # Rdev/40_visualize_explore_bivariate_stratified/44_map
-# # Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
-# # Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
-# # Rdev/50_model_formula_evaluation
-# # Rdev/50_model_formula_evaluation/51_model_formula
-# # Rdev/50_model_formula_evaluation/53_model_selection
-# # Rdev/50_model_formula_evaluation/55_model_weighted
-# # Rdev/50_model_formula_evaluation/56_model_bootstrap
-# # Rdev/50_model_formula_evaluation/57_model_time2event
-# # Rdev/50_model_formula_evaluation/57_model_trajectory
-# # Rdev/50_model_formula_evaluation/59_model_evaluation
-# # Rdev/60_communicate_report_export
-#|________________________________________________________________________________|#  
+
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) dev -----
 # https://chatgpt.com/c/9faf244b-181e-47ec-ae76-841d14f50e0f
@@ -494,21 +438,21 @@ f_global()
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
-# ### \$ subpath, sourcename ======
-# subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# # if(subpath!="") utils::browseURL(normalizePath(subpath))
-# sourcename = "default.template" |> paste0(".source.r")
+# ### @ .subpath, .sourcename ======
+# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+# # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
+# .sourcename = "default.template" |> paste0(".source.r")
 # subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
 # # source( file.path(env1$path$source_base,subpath.filename.source.r) )
 # #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# env1$path$subpath = subpath
-# sourcename_root = sourcename |> str_replace("\\.source\\.r$", "")
-# env1$path$sourcename_root = sourcename_root  
-# env1$path$subpath.filename.dev.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.r")
-# env1$path$subpath.filename.dev.Rmd = paste0(subpath,ifelse(subpath=="","","/"),sourcename_root,".dev.Rmd")
-# env1$path$subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename)
+# env1$path$.subpath = .subpath
+# .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
+# env1$path$.sourcename_root = .sourcename_root  
+# env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
+# env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
+# env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # cat("# ",'sourcename_root = "',sourcename_root,'"', "\n",
 #     "# ",sourcename_root,".dev.r", "\n",
 #     "# ",sourcename_root,".source.r", "\n",
@@ -539,7 +483,7 @@ f_global()
 # # \$ assign( DataSetName, read_rds(paste0(path4read,"/",DataSetName,".rds")) ) ====
 # # path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-# subpath = "data"
+# .subpath = "data"
 # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # path.filename.ext = ifelse(
 #     file.exists(paste0(subpath,"/",DataSetName,".rds"))
