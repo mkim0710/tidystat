@@ -6,9 +6,9 @@ R_ARCH=
 
 ## from Rcmd
 R_OSTYPE=windows
-TEXINPUTS=.;${TEXINPUTS}  ;  ${R_SHARE_DIR}/texmf/tex/latex;
-BIBINPUTS=.;${BIBINPUTS}  ;  ${R_SHARE_DIR}/texmf/bibtex/bib;
-BSTINPUTS=.;${BSTINPUTS}  ;  ${R_SHARE_DIR}/texmf/bibtex/bst;
+TEXINPUTS=.;${TEXINPUTS}  ;  ${R_SHARE_DIR}/texmf/tex/latex
+BIBINPUTS=.;${BIBINPUTS}  ;  ${R_SHARE_DIR}/texmf/bibtex/bib
+BSTINPUTS=.;${BSTINPUTS}  ;  ${R_SHARE_DIR}/texmf/bibtex/bst
 
 ## from etc/Renviron
 # R_PLATFORM='i386-pc-mingw32'

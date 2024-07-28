@@ -31,7 +31,7 @@ get(objectname) %>% data.NotNA_p_df
 
 
 ## @ Data Summary ------
-cat(strrep("%",80),"\n",sep=""); 
+cat(strrep("%",80),"\n",sep="")
 assign(paste0(objectname,".dropNAcols"), get(objectname) %>% select_if(function(vec) all(!is.na(vec))))
 objectname = paste0(objectname,".dropNAcols")
 t0=Sys.time()

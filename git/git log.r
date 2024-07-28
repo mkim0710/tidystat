@@ -1,26 +1,26 @@
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # D:\OneDrive\[Note]\[Note] OS\[[OS]] Linux) git\[[OS]] Linux) git) log\Advanced Git Log _ Atlassian Git Tutorial.HTML.evoPDF.pdf
 
 
 
 
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://chatgpt.com/c/c63fa826-37dd-42e3-9ac0-f51ecd0176d4
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ Compare with the remote branch ----
 'git log origin/master..HEAD' |> system(intern=TRUE) |> cat(sep='\n')
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 "git log --oneline --graph origin/master..HEAD" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 "git log --oneline --graph --decorate origin/master..HEAD" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 "git log --oneline" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 "git log --oneline --graph" |> system(intern=TRUE) |> cat("  \n", sep="  \n")
@@ -33,19 +33,19 @@
 # > 'git log --oneline --graph --decorate --all --since="May 16 2024" --until=" May 20 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # * bc42adc (HEAD -> master, origin/master, origin/HEAD) f_session_recover.dev.04.r
 # * ddf0e79 recovered_files01
-# * 7cc98ee # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+# * 7cc98ee # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # * 814b442 Update default.R
 # * dc4c33a "auto_save_on_blur": true,
 # *   4584b7c Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
 # | * 9a03189 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
-# | * 3bbda0f ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# | * 3bbda0f ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="")
 # * | 0f80ad0 f_session_recover.dev.01.r
 # |/  
-# * 27626a6 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
+# * 27626a6 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="")
 # *   23b0ff7 Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
-# | * e7b53be ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"  \n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
+# | * e7b53be ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"  \n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="")
 # * | 81842c5 file.edit("~/.ssh/id_ed25519.pub")
 # |/  
 # * ac401c2 git config remote.origin.url
@@ -72,7 +72,7 @@
 # * | | f74220b Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
-# * | b8e5acc .GlobalEnv$env1$path[[objectname]] = object;
+# * | b8e5acc .GlobalEnv$env1$path[[objectname]] = object
 # |/  
 # * b7d5f4d if(!exists("env1", envir=.GlobalEnv))     assign("env1", new.env(), envir=.GlobalEnv)
 # * caa3dd2 #     assign("env1", new.env(), envir=.GlobalEnv)
@@ -102,7 +102,7 @@
 # * | 40da427 '# file.edit(paste0(env1$path$source_base,"/","',env1$path$subpath.filename.dev.r,'"))'
 # |/  
 # * 239b748 -MAGB760M13700KF
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 'git log -1 --oneline' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git log -1 --oneline' |> system(intern=TRUE) |> cat(sep='\n')
 # bc42adc f_session_recover.dev.04.r
@@ -194,10 +194,10 @@
 
 
 #|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://chatgpt.com/c/f6bf4953-7093-4682-b0e6-01f514d70b2e
 # D:\OneDrive\[Note]\[Note] Software\[[Web]] OpenAI ChatGPT\[[Web]] OpenAI ChatGPT -export\Git Stash Use Cases.md.pdf
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # Commit Hash: 16abe9643b10fd156d92916a0233dac09f37a0e5
 # Author: mkim0710 <mkim0710@gmail.com>
 # Date: Thu May 16 15:42:30 2024 +0900
@@ -215,7 +215,7 @@
 # Author: mkim0710 <mkim0710@gmail.com>
 # Date:   Mon May 20 23:52:46 2024 +0900
 # 
-#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 
 # commit 814b442e31c6639123858e11ca94e1fba5781c44
 # Author: mkim0710 <mkim0710@gmail.com>
@@ -245,7 +245,7 @@
 # Commit:     mkim0710 <mkim0710@gmail.com>
 # CommitDate: Mon May 20 23:52:46 2024 +0900
 # 
-#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 
 # commit 814b442e31c6639123858e11ca94e1fba5781c44
 # Author:     mkim0710 <mkim0710@gmail.com>
@@ -293,7 +293,7 @@
 # Commit:     mkim0710 <mkim0710@gmail.com>
 # CommitDate: Mon May 20 23:52:46 2024 +0900
 # 
-#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+#     # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 
 # M	rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # M	rstudio-prefs/templates/templates-00env1.minimum.nb.html
@@ -340,7 +340,7 @@
 #  {recovered_files => recovered_files01}/git stash.r |  0
 #  .../rstudio-prefs.json                             |  0
 #  13 files changed, 62 insertions(+), 9 deletions(-)
-# 7cc98ee # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+# 7cc98ee # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 #  .../templates/templates-00env1.minimum.Rmd   |  2 +-
 #  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
 #  2 files changed, 21 insertions(+), 21 deletions(-)
@@ -354,7 +354,7 @@
 #  3 files changed, 11 insertions(+), 4 deletions(-)
 
 
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # %h: Abbreviated commit hash
 # %an: Author name
 # %ad: Author date (format can be customized)
@@ -363,7 +363,7 @@
 'git log --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git log --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # ddf0e79 mhkim@rocker@MAGB760M13700KF Mon May 20 15:06:22 2024 recovered_files01
-# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
 # dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -385,7 +385,7 @@
 #  .../rstudio-prefs.json                             |  0
 #  13 files changed, 62 insertions(+), 9 deletions(-)
 # 
-# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 #  .../templates/templates-00env1.minimum.Rmd   |  2 +-
 #  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
 #  2 files changed, 21 insertions(+), 21 deletions(-)
@@ -403,26 +403,26 @@
 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # * ddf0e79 mhkim@rocker@MAGB760M13700KF Mon May 20 15:06:22 2024 recovered_files01
-# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # * 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
 # * dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="May 16 2024" --until=" May 20 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # > 'git log --oneline --graph --decorate --pretty=format:"%h %an %ad %s" --date=local --since="May 16 2024" --until=" May 20 2024"' |> system(intern=TRUE) |> cat(sep='\n')
 # * bc42adc mhkim@rocker@MAGB760M13700KF Mon May 20 15:59:48 2024 f_session_recover.dev.04.r
 # * ddf0e79 mhkim@rocker@MAGB760M13700KF Mon May 20 15:06:22 2024 recovered_files01
-# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+# * 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # * 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
 # * dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 # *   4584b7c mhkim@rocker@MAGB760M13700KF Mon May 20 14:47:52 2024 Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
 # | * 9a03189 mkim0710 Mon May 20 07:16:04 2024 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
-# | * 3bbda0f mkim0710 Mon May 20 06:45:40 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="");
+# | * 3bbda0f mkim0710 Mon May 20 06:45:40 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE)),"  \n", sep="")
 # * | 0f80ad0 mhkim@rocker@MAGB760M13700KF Mon May 20 14:47:45 2024 f_session_recover.dev.01.r
 # |/  
-# * 27626a6 mkim0710 Mon May 20 04:34:56 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
+# * 27626a6 mkim0710 Mon May 20 04:34:56 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = "',normalizePath(path2look,winslash="/"),'"  \n', sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="")
 # *   23b0ff7 mhkim@rocker@MAGB760M13700KF Mon May 20 00:44:23 2024 Merge branch 'master' of github.com:mkim0710/tidystat
 # |\  
-# | * e7b53be mkim0710 Mon May 20 00:43:22 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"  \n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="");
+# | * e7b53be mkim0710 Mon May 20 00:43:22 2024 ; cat('"',path2look,'" |> normalizePath(winslash="/") = ',normalizePath(path2look,winslash="/"),"  \n", sep=""); cat('"',path2look,'" |> dir(all.files=TRUE,include.dirs=TRUE) |> dput() = ',deparse(dir(path2look,all.files=TRUE,include.dirs=TRUE)),"  \n", sep="")
 # * | 81842c5 mhkim@rocker@MAGB760M13700KF Mon May 20 00:44:15 2024 file.edit("~/.ssh/id_ed25519.pub")
 # |/  
 # * ac401c2 mhkim@rocker@MAGB760M13700KF Sun May 19 05:41:38 2024 git config remote.origin.url
@@ -449,7 +449,7 @@
 # * | | f74220b mkim0710 Fri May 17 03:02:31 2024 Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
-# * | b8e5acc mkim0710 Fri May 17 02:56:58 2024 .GlobalEnv$env1$path[[objectname]] = object;
+# * | b8e5acc mkim0710 Fri May 17 02:56:58 2024 .GlobalEnv$env1$path[[objectname]] = object
 # |/  
 # * b7d5f4d mkim0710 Fri May 17 02:25:16 2024 if(!exists("env1", envir=.GlobalEnv))     assign("env1", new.env(), envir=.GlobalEnv)
 # * caa3dd2 mkim0710 Fri May 17 02:22:12 2024 #     assign("env1", new.env(), envir=.GlobalEnv)
@@ -483,7 +483,7 @@
 
 
 
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # --name-status: Shows the list of modified files along with their statuses
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # 'git log --name-status --pretty=format:"%h %an %ad %s" --date=local --since="24 hours ago"' |> system(intern=TRUE) |> cat(sep='\n')
@@ -504,7 +504,7 @@
 # R100	recovered_files/git stash.r	recovered_files01/git stash.r
 # R100	recovered_files/rstudio-prefs.json	recovered_files01/rstudio-prefs.json
 # 
-# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} ;
+# 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
 # M	rstudio-prefs/templates/templates-00env1.minimum.Rmd
 # M	rstudio-prefs/templates/templates-00env1.minimum.nb.html
 # 
@@ -519,7 +519,7 @@
 
 
 
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # --patch: Shows the difference introduced in each commit
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 'git log --patch --pretty=format:"%h %an %ad %s" --date=local --since="Mon May 20 14:50:00 2024" --until="Mon May 20 15:06:59 2024"' |> system(intern=TRUE) |> cat(sep='\n')
@@ -530,7 +530,7 @@
 #' --- a/Rdev/00_base_program/f_session_recover.dev.02.r
 #' +++ b/Rdev/00_base_program/f_session_recover.dev.02.r
 #' @@ -35,7 +35,7 @@
-#'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #'  ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput()
 #'  # > ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput() ----
 #' -c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
@@ -557,7 +557,7 @@
 #' +#  $ setdiff_x_y: chr(0) 
 #' +#  $ setdiff_y_x: chr "notebooks/6E4A1B4B-notebook/1/s/chunks.json"
 #'  #|________________________________________________________________________________|#  
-#'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #'  ".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE) |> dput()
 #'  # > ".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE) |> dput() ----
 #' -c("build_options", "copilot_options", "pcs/debug-breakpoints.pper", 
@@ -576,7 +576,7 @@
 #' +#  $ setdiff_x_y: chr [1:25] "sources/prop/5057B9B6" "sources/prop/C8C3257E" "sources/session-bc8d1df6/10460832" "sources/session-bc8d1df6/10460832-contents" ...
 #' +#  $ setdiff_y_x: chr [1:43] "sources/session-36531e49/0E61B345-contents" "sources/session-36531e49/10460832" "sources/session-36531e49/10460832-contents" "sources/session-36531e49/174795B9-contents" ...
 #'  #|________________________________________________________________________________|#  
-#'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  ;  
+#'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #'  library(jsonlite)
 #'  
 #' -# Define the path to the session directory

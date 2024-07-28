@@ -173,8 +173,8 @@ library(DiagrammeR)
 out.grViz = DiagrammeR::grViz(paste0('
 digraph G {
     // Global attributes
-    rankdir=TB;
-    node [shape=box, style="rounded"];
+    rankdir=TB
+    node [shape=box, style="rounded"]
 
     // Define the nodes with fixed width
     Total [label="Total population\nn = ', format(list.PERSON_ID.setdiff.diagram.n$n0, big.mark = ","), '", width=3, fixedsize=true]

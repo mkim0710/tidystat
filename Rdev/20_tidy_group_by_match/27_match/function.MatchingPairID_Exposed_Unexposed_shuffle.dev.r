@@ -11,7 +11,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Expo
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID$MatchingPairID), ]
     
     # if(!is.null(seed)) {
-    #     set.seed(seed); 
+    #     set.seed(seed)
     # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
@@ -91,7 +91,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle_vec = function(MatchingPairID_
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID$MatchingPairID), ]
     
     # if(!is.null(seed)) {
-    #     set.seed(seed); 
+    #     set.seed(seed)
     # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
@@ -126,7 +126,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
     # if(!is.null(seed)) {
-    #     set.seed(seed); 
+    #     set.seed(seed)
     # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
@@ -350,7 +350,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairI
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
     # if(!is.null(seed)) {
-    #     set.seed(seed); 
+    #     set.seed(seed)
     # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
@@ -420,7 +420,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue = function(
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
     # if(!is.null(seed)) {
-    #     set.seed(seed); 
+    #     set.seed(seed)
     # }
     sample.vec = sample(0:1, nrow(MatchingPairID_isExposed_PERSON_ID)/2, replace = T)
     index4Exposed = ( 1 : (nrow(MatchingPairID_isExposed_PERSON_ID)/2) ) * 2 - sample.vec
