@@ -62,11 +62,11 @@ t0 = Sys.time()
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+Sys.setenv(print.intermediate = FALSE)
+# Sys.setenv(print.intermediate = TRUE)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 .First <- function(){
-
-    #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
     library(base)
     library(methods)
     library(datasets)
@@ -98,8 +98,6 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
         NA_character_
     }  
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-    Sys.setenv(print.intermediate = TRUE)
-    #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
     ### env1\$env.internal ----  
     # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/env1%24env.internal.source.r"  
     if(!"env.internal" %in% names(.GlobalEnv$env1)) {
@@ -125,12 +123,15 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
     if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
         sourcename = "get_system_info" |> paste0(".source.r"); subpath=r"()"|>str_replace_all("\\\\","/"); subpath.filename.source.r = paste0(subpath,ifelse(subpath=="","","/"),sourcename); if(!sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[sourcename]] = file.path(env1$path$source_base,subpath.filename.source.r); source(.GlobalEnv$env1$source[[sourcename]]);}
     }  
-    .GlobalEnv$env1$info$info_system_info = env1$info$get_system_info()
-    .GlobalEnv$env1$info$info_system_info |> utils::str()
+    .GlobalEnv$env1$info = env1$env.internal$get_system_info()
+    cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
+    env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-    cat("\nLoaded without error: ", .GlobalEnv$env1$info$.Rprofile, "\n"
-        , "Today is ", date(), "  \n", sep="")
-    cat("\nLoading time for .Rprofile: ", difftime(Sys.time(), t0, units = "secs"), " secs \n", sep="")
+    cat("#|________________________________________________________________________________|#  ", "  \n", sep="")
+    cat("Loading time for .Rprofile: ", difftime(Sys.time(), t0, units = "secs"), " secs \n", sep="")
+    cat("Loaded without error: ", .GlobalEnv$env1$info$.Rprofile, "  \n",
+        '    Sys.getlocale() == "', Sys.getlocale(), '"', "  \n",
+        "    Today is: ", date(), "  \n", sep="")
 }  
 
 #|________________________________________________________________________________|#  
