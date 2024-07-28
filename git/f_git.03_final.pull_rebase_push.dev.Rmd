@@ -301,10 +301,10 @@ options(width=120)
 # @@ update default notebook.Rmd ----  
 template.filename.ext = "templates-00env1.minimum.Rmd"
 CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(basename(CurrentSource.path.filename.ext) == template.filename.ext) {
-    if (.Platform$OS.type == "windows") {path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {path4APPDATA_RStudio = "~/.config/rstudio"} 
-    if(!dir.exists(file.path(path4APPDATA_RStudio, "templates"))) dir.create(file.path(path4APPDATA_RStudio, "templates")) 
+    if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio") |> str_replace_all("\\\\","/")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
+    if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates")) 
     
-    .destination_path.filename.ext = file.path(path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=CurrentSource.path.filename.ext, to=.destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path.filename.ext)) else warning(paste0("Update failed: ", .destination_path.filename.ext)); if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path.filename.ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path.filename.ext),wait=FALSE)}  
+    .destination_path.filename.ext = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"); if(file.copy(from=CurrentSource.path.filename.ext, to=.destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path.filename.ext)) else warning(paste0("Update failed: ", .destination_path.filename.ext)); if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path.filename.ext)), wait=FALSE )} else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path.filename.ext),wait=FALSE)}  
     for ( .destination_path.filename.ext in c(
         file.path(env1$path$source_base_local, "rstudio-prefs", "templates", template.filename.ext)
         , file.path(env1$path$path0, "Rproject_Rmd", template.filename.ext)
@@ -318,7 +318,7 @@ CurrentSource.path.filename.ext=rstudioapi::getSourceEditorContext()$path; if(ba
     }}
     file.edit(CurrentSource.path.filename.ext)
 }
-# template.filename.ext = "notebook.Rmd"; if(!file.exists(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))) file.create(file.path(path4APPDATA_RStudio, "templates", template.filename.ext)); file.edit(file.path(path4APPDATA_RStudio, "templates", template.filename.ext))
+# template.filename.ext = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", template.filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", template.filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", template.filename.ext))
 ```
   
   
