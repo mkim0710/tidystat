@@ -82,7 +82,7 @@ glm.weights = NULL
 # nIteration = 10  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
 nIteration = 20  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
 set.seed(1)
-t0 = Sys.time()
+.t0 = Sys.time()
 globalenv.counter = -1
 boot.output = boot(
     data = data, Interval = 7
@@ -90,7 +90,7 @@ boot.output = boot(
     , R = nIteration
     # , parallel = "multicore", ncpus = 4
 )
-Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
+Sys.time() - .t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
 #@ bootstrap confidence interval (manual) ----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
@@ -100,7 +100,7 @@ boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
 boot.output #----
 boot.output |> str(max.level = 1) #----
-# 0..1..2..3..4..5..6..7..8..9..10..11..12..13..14..15..16..17..18..19..20..> Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
+# 0..1..2..3..4..5..6..7..8..9..10..11..12..13..14..15..16..17..18..19..20..> Sys.time() - .t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 # Time difference of 27.27654 secs
 # > warnings()
 # Warning messages:
@@ -232,7 +232,7 @@ glm.weights = NULL
 # nIteration = 10  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
 nIteration = 500  # 4Mb for 10 iterations -> 400Mb for 1000 iterations?
 set.seed(1)
-t0 = Sys.time()
+.t0 = Sys.time()
 globalenv.counter = -1
 boot.output = boot(
     data = data, Interval = 7
@@ -240,7 +240,7 @@ boot.output = boot(
     , R = nIteration
     , parallel = "multicore", ncpus = 4
 )
-Sys.time() - t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
+Sys.time() - .t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
 #@ bootstrap confidence interval (manual) ----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----

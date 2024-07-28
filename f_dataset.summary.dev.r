@@ -34,15 +34,15 @@ get(objectname) %>% data.NotNA_p_df
 cat(strrep("%",80),"\n",sep="")
 assign(paste0(objectname,".dropNAcols"), get(objectname) %>% select_if(function(vec) all(!is.na(vec))))
 objectname = paste0(objectname,".dropNAcols")
-t0=Sys.time()
+..t0 = Sys.time()
 cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
-Sys.time()-t0
+Sys.time() - .t0
 cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
-Sys.time()-t0
+Sys.time() - .t0
 cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
-Sys.time()-t0
+Sys.time() - .t0
 cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
-Sys.time()-t0
+Sys.time() - .t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 
 # PENDING

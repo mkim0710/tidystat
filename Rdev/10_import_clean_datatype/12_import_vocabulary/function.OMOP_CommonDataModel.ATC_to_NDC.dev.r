@@ -181,10 +181,10 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
 
 
 #@ ATC_C02_to_NDC =====
-t0 = Sys.time()
+.t0 = Sys.time()
 ATC_C02_to_NDC = function.OMOP_CommonDataModel.ATC_to_NDC(text4grepl.ATC_code = "^C02", OMOP_CommonDataModel = ATC_RxNorm_NDC)
-Sys.time() - t0
-# > Sys.time() - t0
+Sys.time() - .t0
+# > Sys.time() - .t0
 # Time difference of 3.515852 secs
 
 getwd()

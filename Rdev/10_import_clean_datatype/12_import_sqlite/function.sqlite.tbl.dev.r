@@ -18,12 +18,12 @@ mydb <- dbConnect(RSQLite::SQLite(), paste0(path4write, "r4.sas7bdat.sqlite"))
 
 
 mydb %>% {DBI::dbListTables(.)} |> dput() #----
-t0 = Sys.time()
+.t0 = Sys.time()
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0('
     select count(*) from "', chr, '"'))} |> unlist()
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
-Sys.time() - t0
+Sys.time() - .t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% dbListFields(chr)
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> dput() #----
@@ -38,7 +38,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # "women_pregcohort_r_r4.sas7bdat", "women_pregcohort_s_r4.sas7bdat", 
 # "women_pregcohort_s_r4_mod.sas7bdat", "women_pregcohort_t_r4.sas7bdat"
 # )
-# > t0 = Sys.time()
+# > .t0 = Sys.time()
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
 # +     select count(*) from "', chr, '"'))} |> unlist()
@@ -56,7 +56,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # "women_pregcohort_o_r4_mod.sas7bdat", "women_pregcohort_r_r4.sas7bdat", 
 # "women_pregcohort_s_r4.sas7bdat", "women_pregcohort_s_r4_mod.sas7bdat", 
 # "women_pregcohort_t_r4.sas7bdat"), class = "data.frame")
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 23.4821 secs
 # > mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # +     mydb %>% dbListFields(chr)

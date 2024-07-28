@@ -161,10 +161,10 @@ function.OMOP_CommonDataModel.RxNorm_to_NDC = function(text4grepl.RxNorm = "clom
 
 
 #@ RxNorm_clomiphene_to_NDC =====
-t0 = Sys.time()
+.t0 = Sys.time()
 RxNorm_clomiphene_to_NDC = function.OMOP_CommonDataModel.RxNorm_to_NDC(text4grepl.RxNorm = "clomiphene", OMOP_CommonDataModel = ATC_RxNorm_NDC)
-Sys.time() - t0
-# > Sys.time() - t0
+Sys.time() - .t0
+# > Sys.time() - .t0
 # Time difference of 4.695696 secs
 
 getwd()
@@ -236,10 +236,10 @@ RxNorm_clomiphene_to_NDC |> str() #----
 
 
 #@ RxNorm_letrozole_to_NDC =====
-t0 = Sys.time()
+.t0 = Sys.time()
 RxNorm_letrozole_to_NDC = function.OMOP_CommonDataModel.RxNorm_to_NDC(text4grepl.RxNorm = "letrozole", OMOP_CommonDataModel = ATC_RxNorm_NDC)
-Sys.time() - t0
-# > Sys.time() - t0
+Sys.time() - .t0
+# > Sys.time() - .t0
 # Time difference of 4.695696 secs
 
 getwd()

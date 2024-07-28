@@ -58,7 +58,7 @@
 # ?.First() ----
 # https://chatgpt.com/c/1ea6ef8b-322f-4c16-85e7-0b77c2b09a91
 
-t0 = Sys.time()
+.t0 = Sys.time()
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
@@ -130,7 +130,7 @@ Sys.setenv(print.intermediate = FALSE)
     env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
     #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
     cat("#|________________________________________________________________________________|#  ", "  \n", sep="")
-    cat("Loading time for .Rprofile: ", difftime(Sys.time(), t0, units = "secs"), " secs \n", sep="")
+    cat("Loading time for .Rprofile: ", difftime(Sys.time(), .t0, units = "secs"), " secs \n", sep="")
     cat("Loaded without error: ", .GlobalEnv$env1$info$.Rprofile, "  \n",
         '    Sys.getlocale() == "', Sys.getlocale(), '"', "  \n",
         "    Today is: ", date(), "  \n", sep="")

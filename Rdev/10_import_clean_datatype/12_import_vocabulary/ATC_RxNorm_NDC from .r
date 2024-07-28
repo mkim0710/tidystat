@@ -29,7 +29,7 @@ filenames %>% map(function(i) {
 
     print("i")
     print(i)
-    # t0 = Sys.time()
+    # .t0 = Sys.time()
     # print("t0")
     # print(t0)
     
@@ -40,9 +40,9 @@ filenames %>% map(function(i) {
     
     # rm(i)
     # gc()
-    # print("Sys.time() - t0")
-    # print(Sys.time() - t0)
-    # Sys.time() - t0
+    # print("Sys.time() - .t0")
+    # print(Sys.time() - .t0)
+    # Sys.time() - .t0
     # out
     i
 }) %>% set_names(filenames)
@@ -52,7 +52,7 @@ filenames %>% map(function(i) {
 # + 
 # +     print("i")
 # +     print(i)
-# +     # t0 = Sys.time()
+# +     # .t0 = Sys.time()
 # +     # print("t0")
 # +     # print(t0)
 # +     
@@ -63,9 +63,9 @@ filenames %>% map(function(i) {
 # +     
 # +     # rm(i)
 # +     # gc()
-# +     # print("Sys.time() - t0")
-# +     # print(Sys.time() - t0)
-# +     # Sys.time() - t0
+# +     # print("Sys.time() - .t0")
+# +     # print(Sys.time() - .t0)
+# +     # Sys.time() - .t0
 # +     # out
 # +     i
 # + }) %>% set_names(filenames)
@@ -132,7 +132,7 @@ out.list = filenames %>% map(function(i) {
     filename = gsub(paste0(.extension, "$"), "", i)
     print("filename")
     print(filename)
-    # t0 = Sys.time()
+    # .t0 = Sys.time()
     # print("t0")
     # print(t0)
 
@@ -148,9 +148,9 @@ out.list = filenames %>% map(function(i) {
     
     # rm(filename)
     # gc()
-    # print("Sys.time() - t0")
-    # print(Sys.time() - t0)
-    # Sys.time() - t0
+    # print("Sys.time() - .t0")
+    # print(Sys.time() - .t0)
+    # Sys.time() - .t0
     out
 }) %>% set_names(filenames)
 out.list |> str(max.level = 1)
@@ -161,7 +161,7 @@ out.list |> str(max.level = 1)
 # +     filename = gsub(paste0(.extension, "$"), "", i)
 # +     print("filename")
 # +     print(filename)
-# +     # t0 = Sys.time()
+# +     # .t0 = Sys.time()
 # +     # print("t0")
 # +     # print(t0)
 # + 
@@ -177,9 +177,9 @@ out.list |> str(max.level = 1)
 # +     
 # +     # rm(filename)
 # +     # gc()
-# +     # print("Sys.time() - t0")
-# +     # print(Sys.time() - t0)
-# +     # Sys.time() - t0
+# +     # print("Sys.time() - .t0")
+# +     # print(Sys.time() - .t0)
+# +     # Sys.time() - .t0
 # +     out
 # + }) %>% set_names(filenames)
 # [1] "filename"

@@ -56,7 +56,7 @@ ODMatrix.marginDF0 =
 source(filename.function.source)
 
 #@ function.MK.output.nest_sigungu.SouthKorea$Min.SC$Max.Distance$Min.Pop$SGG_CD from input ................................................................................
-t0 = Sys.time(); t0
+.t0 = Sys.time(); t0
 if(!exists("function.MK.output.nest_sigungu.SouthKorea")) function.MK.output.nest_sigungu.SouthKorea = list()
 for (Min.SC in vector_of_Min.SC) {
     if(!paste0("Min.SC", Min.SC) %in% names(function.MK.output.nest_sigungu.SouthKorea)) function.MK.output.nest_sigungu.SouthKorea[[paste0("Min.SC", Min.SC)]] = list()
@@ -108,7 +108,7 @@ for (Min.SC in vector_of_Min.SC) {
         }
     }
 }
-Sys.time() - t0
+Sys.time() - .t0
 warnings() #----
 dir.create(path.output, showWarnings = F)
 saveRDS(function.MK.output.nest_sigungu.SouthKorea, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.rds"))

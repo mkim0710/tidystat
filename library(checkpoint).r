@@ -60,9 +60,9 @@ sessionInfo() # RStudio.Cloud ----
 # 
 # 
 # library(checkpoint)
-# t0 = Sys.time()
+# .t0 = Sys.time()
 # checkpoint("2020-07-16") # Microsoft R Open 4.0.2 -----
-# Sys.time() - t0
+# Sys.time() - .t0
 # q()
 
 

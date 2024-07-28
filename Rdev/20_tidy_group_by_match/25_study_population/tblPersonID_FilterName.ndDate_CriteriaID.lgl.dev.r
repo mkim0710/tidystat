@@ -55,7 +55,7 @@ Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist
 
 
 #@@@ tblPersonID_CriteriaID.lgl from tblPersonID_FilterName.ndDate #-----
-t0 = Sys.time()
+.t0 = Sys.time()
 # tblPersonID_CriteriaID.lgl =
 #     os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014 %>%
 #     select(ENROLID) %>% distinct
@@ -97,8 +97,8 @@ for (i in 1:nrow(tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluati
         }
     }
 }
-Sys.time() - t0
-# > Sys.time() - t0
+Sys.time() - .t0
+# > Sys.time() - .t0
 # Time difference of 1.000324 secs
 
 

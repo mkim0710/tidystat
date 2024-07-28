@@ -30,20 +30,20 @@ fun.split_save_ICD1 <- function(dataset_name = "nsc2_m20.sas7bdat",
   # Be cautious: This function will overwrite the dataset_name variable in the calling environment, 
   # which can be a surprise if not expected. Make sure the calling code is aware of this side effect.
   if (is.null(varname_icd1)) {
-    t0_substr <- Sys.time()
+    .t0_substr <- Sys.time()
     assign(dataset_name
            , get(dataset_name) %>% mutate(icd1char = substr(!!sym(varname_icd), 1, 1))
            # , envir = parent.env()  # caution) debug
            , envir = parent.frame()
     )
-    cat("Time elapsed for substr(!!sym(varname_icd), 1, 1)): ", format_time_diff(difftime(Sys.time(), t0_substr, units = "secs")), "\n")
+    cat("Time elapsed for substr(!!sym(varname_icd), 1, 1)): ", format_time_diff(difftime(Sys.time(), .t0_substr, units = "secs")), "\n")
     varname_icd1 <- "icd1char"
   }
   
   map_chr(LETTERS, function(i) {
-    t0_filter <- Sys.time()
+    .t0_filter <- Sys.time()
     tmp.df <- get(dataset_name) %>% dplyr::filter(!!sym(varname_icd1) == i)
-    cat("Time elapsed for dplyr::filter(!!sym(varname_icd1) == ", i, "): ", format_time_diff(difftime(Sys.time(), t0_filter, units = "secs")), "\n")
+    cat("Time elapsed for dplyr::filter(!!sym(varname_icd1) == ", i, "): ", format_time_diff(difftime(Sys.time(), .t0_filter, units = "secs")), "\n")
 
     # If no data for the character, skip
     if(nrow(tmp.df) == 0) {
@@ -54,10 +54,10 @@ fun.split_save_ICD1 <- function(dataset_name = "nsc2_m20.sas7bdat",
     filename <- paste0(objectname,".rds")
     
     tmp.df[[varname_icd1]] = NULL
-    t0_write <- Sys.time()
+    .t0_write <- Sys.time()
     if (is.null(write_rds_compress)) write_rds(tmp.df, file.path(path4write, filename))
     else write_rds(tmp.df, file.path(path4write, filename), compress = write_rds_compress)
-    cat("Time elapsed for write_rds(", objectname, "): ", format_time_diff(difftime(Sys.time(), t0_write, units = "secs")), "\n")
+    cat("Time elapsed for write_rds(", objectname, "): ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     return(objectname)
   })
 }
@@ -76,9 +76,9 @@ fun.split_save_ICD1_v2 <- function(dataset_name = "nsc2_m20.sas7bdat",
   
   # Extract the first character from the ICD code if varname_icd1 is not provided
   if (is.null(varname_icd1)) {
-    t0_substr <- Sys.time()
+    .t0_substr <- Sys.time()
     data <- get(dataset_name) %>% mutate(icd1char = substr(!!sym(varname_icd), 1, 1))
-    cat("Time elapsed for substr: ", format_time_diff(difftime(Sys.time(), t0_substr, units = "secs")), "\n")
+    cat("Time elapsed for substr: ", format_time_diff(difftime(Sys.time(), .t0_substr, units = "secs")), "\n")
     varname_icd1 <- "icd1char"
   } else {
     data <- get(dataset_name)
@@ -86,9 +86,9 @@ fun.split_save_ICD1_v2 <- function(dataset_name = "nsc2_m20.sas7bdat",
   
   # Iterate over each letter and filter the dataset, then save the filtered data
   result <- map_chr(LETTERS, function(i) {
-    t0_filter <- Sys.time()
+    .t0_filter <- Sys.time()
     filtered_data <- data %>% dplyr::filter(!!sym(varname_icd1) == i)
-    cat("Time elapsed for filtering data with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_filter, units = "secs")), "\n")
+    cat("Time elapsed for filtering data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_filter, units = "secs")), "\n")
     
     # If no data for the character, skip
     if(nrow(filtered_data) == 0) {
@@ -100,9 +100,9 @@ fun.split_save_ICD1_v2 <- function(dataset_name = "nsc2_m20.sas7bdat",
     filename <- paste0(objectname,".rds")
     filtered_data[[varname_icd1]] <- NULL
 
-    t0_write <- Sys.time()
+    .t0_write <- Sys.time()
     write_rds(filtered_data, file.path(path4write, filename), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
-    cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_write, units = "secs")), "\n")
+    cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
     return(objectname)
   })
@@ -124,11 +124,11 @@ fun.split_save_ICD1_v3 <- function(dataset_name = "nsc2_m20.sas7bdat",
   
   # Iterate over each letter and filter the dataset, then save the filtered data
   result <- map_chr(LETTERS, function(i) {
-    t0_filter <- Sys.time()
+    .t0_filter <- Sys.time()
     
     filtered_data <- data %>% dplyr::filter(substr(!!sym(varname_icd), 1, 1) == i)
     
-    cat("Time elapsed for filtering data with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_filter, units = "secs")), "\n")
+    cat("Time elapsed for filtering data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_filter, units = "secs")), "\n")
     
     # If no data for the character, skip
     if(nrow(filtered_data) == 0) {
@@ -139,9 +139,9 @@ fun.split_save_ICD1_v3 <- function(dataset_name = "nsc2_m20.sas7bdat",
     objectname <- paste0(dataset_name, "_", i)
     filename <- paste0(objectname,".rds")
 
-    t0_write <- Sys.time()
+    .t0_write <- Sys.time()
     write_rds(filtered_data, file.path(path4write, filename), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
-    cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_write, units = "secs")), "\n")
+    cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
     return(objectname)
   })
@@ -179,7 +179,7 @@ fun.split_save_ICD1_db <- function(dataset_name = "nsc2_m20.sas7bdat",
     
     t0_query <- Sys.time()
     filtered_data <- sqldf(query)
-    cat("Time elapsed for query with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_query, units = "secs")), "\n")
+    cat("Time elapsed for query with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_query, units = "secs")), "\n")
     
     # If no data for the character, skip
     if(nrow(filtered_data) == 0) {
@@ -190,9 +190,9 @@ fun.split_save_ICD1_db <- function(dataset_name = "nsc2_m20.sas7bdat",
     objectname <- paste0(dataset_name, "_", i)
     filename <- paste0(objectname,".rds")
 
-    t0_write <- Sys.time()
+    .t0_write <- Sys.time()
     write_rds(filtered_data, file.path(path4write, filename), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
-    cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), t0_write, units = "secs")), "\n")
+    cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
     return(objectname)
   })

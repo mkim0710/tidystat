@@ -176,15 +176,15 @@ for (.dependancy in c("f_filename.ext.find_.subpath", "f_path.size_files")) {
     cat("> ",objectname," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(objectname)), n=9)
     cat(strrep("~",80),"\n",sep="")
     cat("> ",objectname," %>% rownames_to_column %>% tail |> as_tibble()","  \n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
-    # t0=Sys.time()
+    # ..t0 = Sys.time()
     # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
-    # Sys.time()-t0
+    # Sys.time() - .t0
     # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
-    # Sys.time()-t0
+    # Sys.time() - .t0
     # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
-    # Sys.time()-t0
+    # Sys.time() - .t0
     # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
-    # Sys.time()-t0
+    # Sys.time() - .t0
 }
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     packageStartupMessage(paste0("Loading: ", "env1$f$", .tmp$objectname))

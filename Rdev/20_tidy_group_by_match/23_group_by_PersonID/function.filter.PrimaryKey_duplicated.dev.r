@@ -85,12 +85,12 @@ tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_Br
 
 #### https://stackoverflow.com/questions/16905425/find-duplicate-values-in-r ====
 
-t0 = Sys.time()
+.t0 = Sys.time()
 enrolid_mom_duplicated = mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp$enrolid_mom %>% table %>% {which(. > 1)} |> names()
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > enrolid_mom_duplicated = mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp$enrolid_mom %>% table %>% {which(. > 1)} |> names()
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 10.28465 secs
 
 enrolid_mom_duplicated |> str()
@@ -98,12 +98,12 @@ enrolid_mom_duplicated |> str()
 #  chr [1:92] "239829107" "1093751903" "1106849502" "1127317301" "1178104602" "1235845901" "1250572403" "1334742802" ...
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
     dplyr::filter(enrolid_mom %in% enrolid_mom_duplicated) %>% 
     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
 # +     dplyr::filter(enrolid_mom %in% enrolid_mom_duplicated) %>% 
 # +     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
@@ -122,7 +122,7 @@ Sys.time() - t0
 #  9 900161803  1178104602 2011-01-26 2011-10-26
 # 10 900161802  1178104602 2011-01-26 2011-03-23
 # # ... with 174 more rows
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 1.426264 mins
 
 
@@ -130,12 +130,12 @@ Sys.time() - t0
 #### https://grokbase.com/t/r/r-help/129wg7ft4n/r-select-original-and-duplicates ====
 
 
-t0 = Sys.time()
+.t0 = Sys.time()
 mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
     dplyr::filter(duplicated(enrolid_mom) | duplicated(enrolid_mom, fromLast = T)) %>% 
     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
 # +     dplyr::filter(duplicated(enrolid_mom) | duplicated(enrolid_mom, fromLast = T)) %>% 
 # +     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
@@ -154,22 +154,22 @@ Sys.time() - t0
 #  9 900161803  1178104602 2011-01-26 2011-10-26
 # 10 900161802  1178104602 2011-01-26 2011-03-23
 # # ... with 174 more rows
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 1.757985 mins
 
 
 
 #### group_by() ====
 
-t0 = Sys.time()
+.t0 = Sys.time()
 mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
     group_by(enrolid_mom) %>% 
     summarize(n()) %>% 
     dplyr::filter(`n()` > 1) %>% 
     left_join(mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp) %>% 
     select(pregid, enrolid_mom, lmp, enddate) %>% arrange(enrolid_mom)
-Sys.time() - t0
-# > t0 = Sys.time()
+Sys.time() - .t0
+# > .t0 = Sys.time()
 # > mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 
 # +     group_by(enrolid_mom) %>% 
 # +     summarize(n()) %>% 
@@ -191,7 +191,7 @@ Sys.time() - t0
 #  9 900161803  1178104602 2011-01-26 2011-10-26
 # 10 900161802  1178104602 2011-01-26 2011-03-23
 # # ... with 174 more rows
-# > Sys.time() - t0
+# > Sys.time() - .t0
 # Time difference of 7.574048 secs
 
 
