@@ -102,23 +102,33 @@ if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### \% f_file.edit_windows ====
 env1$env.internal$ f_file.edit_windows <- function(file2edit) {
-  shell.exec(shQuote(file2edit))
+    shell.exec(shQuote(file2edit))
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% f_file.edit_notepad ====
 env1$env.internal$ f_file.edit_notepad <- function(file2edit) {
-  if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(file2edit)) )} else {warning("This function is only available in Windows.")}
+    if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(file2edit)) )} else {warning("This function is only available in Windows.")}
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% f_file.edit_vscode ====
 env1$env.internal$ f_file.edit_vscode <- function(file2edit) {
-  if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',file2edit, '""')  )}
+    if (.Platform$OS.type == "windows") {path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',path4editor, '" "',file2edit, '""')  )}
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 env1$env.internal$ f_URL.open_in_edge_app <- function(URL) {
-  if (.Platform$OS.type == "windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL)}
+    if (.Platform$OS.type == "windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
 }
-
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (.Platform$OS.type == "windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="") 
+env1$env.internal$ f_URL.open_in_edge_app.printRCode <- function(URL) {
+    # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="") 
+    URL %>% cat('if (.Platform$OS.type == "windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
+}
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd"
+env1$env.internal$ f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
+    URL %>% cat('cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"', sep="")
+}
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### \% f_file.systemStart ====
 # Function to open files with the system's default application (fallback)
