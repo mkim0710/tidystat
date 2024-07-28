@@ -92,11 +92,10 @@ sourcename = "get_system_info" |> paste0(".source.r")
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.checkpoint.dev.r
 
 
-
+library(tidyverse)
+if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }  
 if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalEnv) }
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
-if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
-if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
 
 #% get_system_info() ====
 packageStartupMessage(paste0("Loading: ", "env1$", "env.internal$get_system_info"))
