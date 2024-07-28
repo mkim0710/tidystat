@@ -206,18 +206,18 @@ existing_special_namespaces |> deparse() |> cat("  \n", sep="")
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) data -----
-# # \$ assign( .DataSetName, read_rds(paste0(.path4read,"/",.DataSetName,".rds")) ) ====
+# # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====
 # # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # .DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # .subpath = "data"
-# .DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # path.filename.ext = ifelse(
-#     file.exists(paste0(subpath,"/",.DataSetName,".rds"))
-#     , paste0(subpath,"/",.DataSetName,".rds")
-#     , paste0(env1$path$source_base_github,"/",subpath,"/",.DataSetName,".rds")
+#     file.exists(paste0(subpath,"/",DataSetName,".rds"))
+#     , paste0(subpath,"/",DataSetName,".rds")
+#     , paste0(env1$path$source_base_github,"/",subpath,"/",DataSetName,".rds")
 # )
 # cat("path.filename.ext = ", path.filename.ext, "\n", sep = "")
-# assign( .DataSetName, read_rds(path.filename.ext) )
+# assign( DataSetName, read_rds(path.filename.ext) )
 
 
 
