@@ -170,8 +170,8 @@ for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
         get(objectname) |> names() |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # dput(); |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # width.cutoff=500 is the max ----
     } else {cat("ncol(get(",objectname,")) > 100 && !print.name.dput \n", sep="")}
     cat(strrep("~",80),"\n",sep="")
+    cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
     if(print.name.tidyeval) {
-        cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
         get(objectname) |> names() |> paste(collapse=", ") |> cat("  \n", sep=""); # tidydplyr::select: paste(collapse=", ") |> cat("  \n", sep="") ----
     } else {cat("!print.name.tidyeval  \n")}
     
