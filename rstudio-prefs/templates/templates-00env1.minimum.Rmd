@@ -245,15 +245,14 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
-# if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }
-# for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
-#     .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
-#     if(.tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext)) {
-#         if(!file.exists(.tmp$SourceFileName.ext)) file.create(.tmp$SourceFileName.ext)
-#         file.edit(.tmp$SourceFileName.ext)
-#         file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
-#     }
-# }
+if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }
+for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+    .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
+    if(.tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext)) {
+        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+        .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+    }
+}
 ```
   
   
