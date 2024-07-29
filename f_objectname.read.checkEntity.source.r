@@ -111,7 +111,7 @@ for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
 
 #@ objectname = "f_objectname.read.checkEntity" =========
 .tmp$objectname = "f_objectname.read.checkEntity"
-.tmp$object = function(objectname, ext = "rds", .path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.intermediate = FALSE) {
+.tmp$object = function(objectname, ext = "rds", .path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.name.dput = FALSE, print.name.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('.path4read == "',.path4read,'"')
     if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
@@ -165,9 +165,15 @@ for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
 
     cat(strrep("%",80),"\n",sep="")
-    cat("> names(",objectname,') |> deparse(width.cutoff=120-15) |> cat(sep="\\n")',"  \n", sep=""); get(objectname) |> names() |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # dput(); |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # width.cutoff=500 is the max ----
+    cat("> names(",objectname,') |> deparse(width.cutoff=120-15) |> cat(sep="\\n")',"  \n", sep=""); 
+    if(print.name.dput) {
+        get(objectname) |> names() |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # dput(); |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # width.cutoff=500 is the max ----
+    } else {cat("!print.name.dput = TURE  \n")}
     cat(strrep("~",80),"\n",sep="")
-    cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); get(objectname) |> names() |> paste(collapse=", ") |> cat("  \n", sep=""); # tidydplyr::select: paste(collapse=", ") |> cat("  \n", sep="") ----
+    if(print.name.tidyeval) {
+        cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
+        get(objectname) |> names() |> paste(collapse=", ") |> cat("  \n", sep=""); # tidydplyr::select: paste(collapse=", ") |> cat("  \n", sep="") ----
+    } else {cat("!print.name.tidyeval = TURE  \n")}
     
     cat(strrep("%",80),"\n",sep="")
     cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
