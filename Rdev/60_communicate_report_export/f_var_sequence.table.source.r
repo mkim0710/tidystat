@@ -40,9 +40,10 @@ f_var_sequence.table <- function(data, var_sequence, var_sequence.short_name = N
     }
     tbl <- tbl[order(rownames(tbl)), ]  # Ensure rows are ordered
     
-    # Convert to data frame and add separator column
+    # Convert to data frame and add unique separator column
     tbl_df <- as.data.frame.matrix(tbl)
-    tbl_df <- cbind(tbl_df, "|")
+    sep_col_name <- paste0("T", i, "|")
+    tbl_df[[sep_col_name]] <- "  |"
     
     tables_list[[i]] <- tbl_df
   }
@@ -50,7 +51,7 @@ f_var_sequence.table <- function(data, var_sequence, var_sequence.short_name = N
   # Combine tables horizontally
   combined_table <- do.call(cbind, tables_list)
   
-  return(combined_table)
+  return(as.data.frame(combined_table))
 }
 
 
@@ -68,28 +69,28 @@ f_var_sequence.table <- function(data, var_sequence, var_sequence.short_name = N
 # var_sequence.short_name <- c("V1", "V2", "V3", "V4", "V5")
 # 
 # 
-# # Generate and combine tables with orinigal names
-# f_var_sequence.table(data, var_sequence)
-# # > f_var_sequence.table(data, var_sequence)
-# #          A02_VISIT_0 A02_VISIT_1 A02_VISIT_2 A02_VISIT_Sum "|" A03_VISIT_0 A03_VISIT_1 A03_VISIT_2 A03_VISIT_Sum "|"
-# # prev_0             0           0           0             0   |          14          21          22            57   |
-# # prev_1            57          43           0           100   |          12          18          13            43   |
-# # prev_2             0           0           0             0   |           0           0           0             0   |
-# # prev_Sum          57          43           0           100   |          26          39          35           100   |
-# #          A04_VISIT_0 A04_VISIT_1 A04_VISIT_2 A04_VISIT_Sum "|" A05_VISIT_0 A05_VISIT_1 A05_VISIT_2 A05_VISIT_Sum "|"
-# # prev_0            10          16           0            26   |          37          22           0            59   |
-# # prev_1            21          18           0            39   |          22          19           0            41   |
-# # prev_2            28           7           0            35   |           0           0           0             0   |
-# # prev_Sum          59          41           0           100   |          59          41           0           100   |
-# 
 # # Generate and combine tables with short names
-# f_var_sequence.table(data, var_sequence, var_sequence.short_name)
-# # > f_var_sequence.table(data, var_sequence, var_sequence.short_name)
-# #          V2_0 V2_1 V2_2 V2_Sum "|" V3_0 V3_1 V3_2 V3_Sum "|" V4_0 V4_1 V4_2 V4_Sum "|" V5_0 V5_1 V5_2 V5_Sum "|"
+# combined_table <- f_var_sequence.table(data, var_sequence, var_sequence.short_name)
+# 
+# # Print combined table
+# print(combined_table)
+# # > print(combined_table)
+# #          V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|
 # # prev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |
 # # prev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |
 # # prev_2      0    0    0      0   |    0    0    0      0   |   28    7    0     35   |    0    0    0      0   |
 # # prev_Sum   57   43    0    100   |   26   39   35    100   |   59   41    0    100   |   59   41    0    100   |
-
+# 
+# 
+# # Convert to tibble
+# print(as_tibble(combined_table))
+# # > print(as_tibble(combined_table))
+# # # A tibble: 4 × 20
+# #    V2_0  V2_1  V2_2 V2_Sum `T1|`  V3_0  V3_1  V3_2 V3_Sum `T2|`  V4_0  V4_1  V4_2 V4_Sum `T3|`  V5_0  V5_1  V5_2 V5_Sum `T4|`
+# #   <dbl> <dbl> <dbl>  <dbl> <chr> <dbl> <dbl> <dbl>  <dbl> <chr> <dbl> <dbl> <dbl>  <dbl> <chr> <dbl> <dbl> <dbl>  <dbl> <chr>
+# # 1     0     0     0      0 "  |"    14    21    22     57 "  |"    10    16     0     26 "  |"    37    22     0     59 "  |"
+# # 2    57    43     0    100 "  |"    12    18    13     43 "  |"    21    18     0     39 "  |"    22    19     0     41 "  |"
+# # 3     0     0     0      0 "  |"     0     0     0      0 "  |"    28     7     0     35 "  |"     0     0     0      0 "  |"
+# # 4    57    43     0    100 "  |"    26    39    35    100 "  |"    59    41     0    100 "  |"    59    41     0    100 "  |"
 
 
