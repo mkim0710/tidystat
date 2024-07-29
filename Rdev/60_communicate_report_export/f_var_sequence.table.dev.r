@@ -24,25 +24,98 @@ var_sequence <- c("A01_VISIT", "A02_VISIT", "A03_VISIT", "A04_VISIT", "A05_VISIT
 var_sequence.short_name <- c("V1", "V2", "V3", "V4", "V5")
 
 
-# Generate and combine tables with orinigal names
-f_var_sequence.table(data, var_sequence)
-# > f_var_sequence.table(data, var_sequence)
-#          A02_VISIT_0 A02_VISIT_1 A02_VISIT_2 A02_VISIT_Sum "|" A03_VISIT_0 A03_VISIT_1 A03_VISIT_2 A03_VISIT_Sum "|"
-# prev_0             0           0           0             0   |          14          21          22            57   |
-# prev_1            57          43           0           100   |          12          18          13            43   |
-# prev_2             0           0           0             0   |           0           0           0             0   |
-# prev_Sum          57          43           0           100   |          26          39          35           100   |
-#          A04_VISIT_0 A04_VISIT_1 A04_VISIT_2 A04_VISIT_Sum "|" A05_VISIT_0 A05_VISIT_1 A05_VISIT_2 A05_VISIT_Sum "|"
-# prev_0            10          16           0            26   |          37          22           0            59   |
-# prev_1            21          18           0            39   |          22          19           0            41   |
-# prev_2            28           7           0            35   |           0           0           0             0   |
-# prev_Sum          59          41           0           100   |          59          41           0           100   |
-
 # Generate and combine tables with short names
-f_var_sequence.table(data, var_sequence, var_sequence.short_name)
-# > f_var_sequence.table(data, var_sequence, var_sequence.short_name)
-#          V2_0 V2_1 V2_2 V2_Sum "|" V3_0 V3_1 V3_2 V3_Sum "|" V4_0 V4_1 V4_2 V4_Sum "|" V5_0 V5_1 V5_2 V5_Sum "|"
+combined_table <- f_var_sequence.table(data, var_sequence, var_sequence.short_name)
+
+# Print combined table
+combined_table |> print()
+# > combined_table |> print()
+#          V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|
 # prev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |
 # prev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |
 # prev_2      0    0    0      0   |    0    0    0      0   |   28    7    0     35   |    0    0    0      0   |
 # prev_Sum   57   43    0    100   |   26   39   35    100   |   59   41    0    100   |   59   41    0    100   |
+
+
+# Convert to tibble
+combined_table |> as_tibble() |> print()
+# > combined_table |> as_tibble() |> print()
+# # A tibble: 4 × 20
+#    V2_0  V2_1  V2_2 V2_Sum `T1|`  V3_0  V3_1  V3_2 V3_Sum `T2|`  V4_0  V4_1  V4_2 V4_Sum `T3|`  V5_0  V5_1  V5_2 V5_Sum `T4|`
+#   <dbl> <dbl> <dbl>  <dbl> <chr> <dbl> <dbl> <dbl>  <dbl> <chr> <dbl> <dbl> <dbl>  <dbl> <chr> <dbl> <dbl> <dbl>  <dbl> <chr>
+# 1     0     0     0      0 "  |"    14    21    22     57 "  |"    10    16     0     26 "  |"    37    22     0     59 "  |"
+# 2    57    43     0    100 "  |"    12    18    13     43 "  |"    21    18     0     39 "  |"    22    19     0     41 "  |"
+# 3     0     0     0      0 "  |"     0     0     0      0 "  |"    28     7     0     35 "  |"     0     0     0      0 "  |"
+# 4    57    43     0    100 "  |"    26    39    35    100 "  |"    59    41     0    100 "  |"    59    41     0    100 "  |"
+
+
+# Capture the output of the combined table as a text
+combined_table |> print() |> capture.output()
+combined_table |> capture.output()
+combined_table |> capture.output() |> str()
+# > combined_table |> capture.output()
+# [1] "         V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|"
+# [2] "prev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |"
+# [3] "prev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |"
+# [4] "prev_2      0    0    0      0   |    0    0    0      0   |   28    7    0     35   |    0    0    0      0   |"
+# [5] "prev_Sum   57   43    0    100   |   26   39   35    100   |   59   41    0    100   |   59   41    0    100   |"
+# > combined_table |> capture.output() |> str()
+#  chr [1:5] "         V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|" ...
+
+
+combined_table |> capture.output() |> paste0(collapse = "\n")
+combined_table |> capture.output() |> paste0(collapse = "\n") |> str()
+# > combined_table |> capture.output() |> paste0(collapse = "\n")
+# [1] "         V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|\nprev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |\nprev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |\nprev_2      0    0    0      0   |    0    0    0      0   |   28    7    0     35   |    0    0    0      0   |\nprev_Sum   57   43    0    100   |   26   39   35    100   |   59   41    0    100   |   59   41    0    100   |"
+# > combined_table |> capture.output() |> paste0(collapse = "\n") |> str()
+#  chr "         V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4"| __truncated__
+
+
+combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n")
+combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n") |> str()
+# > combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n")
+#          V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|
+# prev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |
+# prev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |
+# prev_2      0    0    0      0   |    0    0    0      0   |   28    7    0     35   |    0    0    0      0   |
+# prev_Sum   57   43    0    100   |   26   39   35    100   |   59   41    0    100   |   59   41    0    100   | 
+# > combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n") |> str()
+#          V2_0 V2_1 V2_2 V2_Sum T1| V3_0 V3_1 V3_2 V3_Sum T2| V4_0 V4_1 V4_2 V4_Sum T3| V5_0 V5_1 V5_2 V5_Sum T4|
+# prev_0      0    0    0      0   |   14   21   22     57   |   10   16    0     26   |   37   22    0     59   |
+# prev_1     57   43    0    100   |   12   18   13     43   |   21   18    0     39   |   22   19    0     41   |
+# prev_2      0    0    0      0   |    0    0    0      0   |   28    7    0     35   |    0    0    0      0   |
+# prev_Sum   57   43    0    100   |   26   39   35    100   |   59   41    0    100   |   59   41    0    100   | 
+#  NULL
+
+
+
+
+# Copy to clipboard based on OS
+if (.Platform$OS.type == "windows") {
+  combined_table |> capture.output() |> paste0(collapse = "\n") |> writeClipboard()
+} else if (Sys.info()["sysname"] == "Darwin") {
+  combined_table |> capture.output() |> paste0(collapse = "\n") |> cat(file = pipe("pbcopy"))
+} else if (Sys.info()["sysname"] == "Linux") {
+  # combined_table |> capture.output() |> paste0(collapse = "\n") |> cat(file = pipe("xclip -selection clipboard"))
+  # combined_table |> capture.output() |> paste0(collapse = "\n") |> cat(file = pipe("xsel --clipboard --input"))
+}
+
+# if (Sys.info()["sysname"] == "Linux") system('if ! command -v xclip &> /dev/null; then echo "xclip is not installed. Installing xclip..."; sudo apt-get update && sudo apt-get install -y xclip; else echo "xclip is already installed."; fi')
+# combined_table |> capture.output() |> paste0(collapse = "\n") |> cat(file = pipe("xclip -selection clipboard"))
+# The error Can't open display: :0 occurs because xclip requires access to an X server to interact with the clipboard, which is not available in a headless environment like Docker.
+
+# if (Sys.info()["sysname"] == "Linux") system('if ! command -v xsel &> /dev/null; then echo "xsel is not installed. Installing xsel..."; sudo apt-get update && sudo apt-get install -y xsel; else echo "xsel is already installed."; fi')
+# combined_table |> capture.output() |> paste0(collapse = "\n") |> cat(file = pipe("xsel --clipboard --input"))
+# xsel: Can't open display: (null)
+# : Connection refused
+
+
+combined_table_text = combined_table |> capture.output() |> paste0(collapse = "\n")
+
+# pipe <- pipe("xsel --clipboard --input", "w")
+# cat(combined_table_text, file = pipe)
+# close(pipe)
+# # > pipe <- pipe("xsel --clipboard --input", "w")
+# # xsel: Can't open display: (null)
+# # : Connection refused
+
