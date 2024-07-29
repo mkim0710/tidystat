@@ -166,14 +166,14 @@ for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
 
     cat(strrep("%",80),"\n",sep="")
     cat("> names(",objectname,') |> deparse(width.cutoff=120-15) |> cat(sep="\\n")',"  \n", sep=""); 
-    if(print.name.dput) {
+    if(ncol(get(objectname)) <= 100 || print.name.dput) {
         get(objectname) |> names() |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # dput(); |> deparse(width.cutoff=120-15) |> cat("  \n", sep="  \n"); # width.cutoff=500 is the max ----
-    } else {cat("!print.name.dput = TURE  \n")}
+    } else {cat("ncol(get(",objectname,")) > 100 && !print.name.dput \n", sep="")}
     cat(strrep("~",80),"\n",sep="")
     if(print.name.tidyeval) {
         cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
         get(objectname) |> names() |> paste(collapse=", ") |> cat("  \n", sep=""); # tidydplyr::select: paste(collapse=", ") |> cat("  \n", sep="") ----
-    } else {cat("!print.name.tidyeval = TURE  \n")}
+    } else {cat("!print.name.tidyeval  \n")}
     
     cat(strrep("%",80),"\n",sep="")
     cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
