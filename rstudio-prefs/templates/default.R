@@ -97,6 +97,11 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(pas
 # # Rdev/50_model_formula_evaluation/59_model_evaluation
 # # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
+cat("> .tmp |> str(max.level = 1)", "  \n", sep="") 
+.tmp |> str(max.level = 1)
+cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
+env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+#|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
 ### @ .subpath, .sourcename ======
@@ -111,9 +116,9 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(pas
 # env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
 # env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
-#     "# ",.sourcename_root,".dev.r", "  \n",
-#     "# ",.sourcename_root,".dev.Rmd", "  \n",
-#     "# ",.sourcename_root,".source.r", "  \n",
+#     "# ",env1$path$.subpath.filename.dev.r, "  \n",
+#     "# ",env1$path$.subpath.filename.dev.Rmd, "  \n",
+#     "# ",env1$path$.subpath.filename.source.r, "  \n",
 #     '# # source("',env1$path$source_base,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
 #     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
 #     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
