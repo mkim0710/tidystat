@@ -13,6 +13,7 @@
 # "default.R" %>% paste0(env1$path$source_base,"/rstudio-prefs/templates/",.) |> source()
 # options(expressions = 500)
 "default.R" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> source()
+"templates-00env1.minimum.Rmd" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> download.file("templates-00env1.minimum-test.Rmd") ; Sys.setenv(PARENT_RENDERING = "YES"); "templates-00env1.minimum-test.Rmd" |> rmarkdown::render(output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO"); "templates-00env1.minimum-test.nb.html" |> browseURL()
 #|----  Update the templates of RStudio  -----------------------------------------|#  
 # "default.R" %>% {download.file(url = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.), destfile = file.path(.path4APPDATA_RStudio, "templates", .))}
 # "templates-00env1.minimum.Rmd" %>% {download.file(url = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.), destfile = file.path(.path4APPDATA_RStudio, "templates", .))}
