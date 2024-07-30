@@ -113,6 +113,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(pas
 #| @Rocker |#
 # List of 9
 #  $ GUI             : chr "RStudio"
+#  $ GUI             : chr "X11"
 #  $ os_type         : chr "unix"
 #  $ os_sysname      : chr "Linux"
 #  $ os_version      : chr "#1 SMP Thu Jan 11 04:09:03 UTC 2024"
