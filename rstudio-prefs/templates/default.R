@@ -9,8 +9,9 @@
 # # if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
 # # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 # # "templates-00env1.minimum.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+#|----  Source the templates & check if there is no error  -----------------------|#  
+if (.Platform$OS.type == "windows") source(paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"))  # update default.R
 #|----  Update the templates of RStudio  -----------------------------------------|#  
-# if (.Platform$OS.type == "windows") source(paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"))  # update default.R
 if(.Platform$OS.type == "unix") "default.R" %>% {download.file(url = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.), destfile = file.path(.path4APPDATA_RStudio, "templates", .))}
 if(.Platform$OS.type == "unix") "templates-00env1.minimum.Rmd" %>% {download.file(url = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.), destfile = file.path(.path4APPDATA_RStudio, "templates", .))}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
