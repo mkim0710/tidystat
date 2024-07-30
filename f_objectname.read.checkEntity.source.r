@@ -118,7 +118,7 @@ for (.dependancy in c("f_path.size_files")) {
     # if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
     if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText)} else {MessageText = paste0(MessageText1," == ",MessageText2)} #----
 
-    # cat('objectname = "', objectname, '"  \n', sep="")
+    if(print.intermediate) cat('objectname = "', objectname, '"  \n', sep="")
     filename.ext = paste0(objectname,".", ext)
     if(file.exists(file.path(.path4read, filename.ext))) {
     } else if(file.exists(file.path(.path4read, paste0(filename.ext, ".xz")))) {
@@ -143,7 +143,7 @@ for (.dependancy in c("f_path.size_files")) {
     } else {
         warning(paste0(filename.ext, " does not exist!")) 
     }
-    cat('filename.ext = "', filename.ext, '"  \n', sep="")
+    if(print.intermediate) cat('filename.ext = "', filename.ext, '"  \n', sep="")
 
     # filename.ext.regex = filename.ext %>%  
     #     str_replace_all("\\.", "\\\\.") %>%
