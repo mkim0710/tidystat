@@ -182,7 +182,7 @@ for (.dependancy in c("f_path.size_files")) {
     cat(strrep("~",80),"\n",sep="")
     cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
     if(print.name.tidyeval) {
-        get(objectname) |> names() |> paste(collapse=", ") |> cat("  \n", sep=""); # tidydplyr::select: paste(collapse=", ") |> cat("  \n", sep="") ----
+        get(objectname) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
     } else {cat("!print.name.tidyeval  \n")}
     
     cat(strrep("%",80),"\n",sep="")

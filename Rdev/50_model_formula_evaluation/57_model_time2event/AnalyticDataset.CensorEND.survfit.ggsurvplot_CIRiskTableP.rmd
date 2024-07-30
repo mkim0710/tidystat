@@ -160,7 +160,7 @@ cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
 get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----    
-get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}  ;   # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ----  
+get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}  ;   # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----  
 cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", sep=""); str(get(objectname), max.level = 2, give.attr = F)
 # get(objectname) |> select_if(is.numeric) |> summary() #----  
 # get(objectname) |> select_if(is.logical) |> summary() #----  
@@ -182,7 +182,7 @@ cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
 get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 get(objectname) %>% {.$RN_INDI} |> n_distinct()
 get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----    
-get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}  ;   # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ----  
+get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}  ;   # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----  
 cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", sep=""); str(get(objectname), max.level = 2, give.attr = F)
 # get(objectname) |> select_if(is.numeric) |> summary() #----  
 # get(objectname) |> select_if(is.logical) |> summary() #----  
