@@ -2,8 +2,8 @@
 
 
 objectname = "KoGES201806vars_waves"
-get(objectname) |> names() |> deparse(width.cutoff=120-20) |> cat(sep="  \n"); # dput(); |> deparse(width.cutoff=120-20) |> cat(sep="  \n"); # width.cutoff=500 is the max ----
-get(objectname) |> names() |> paste(collapse=", ") %>% {cat("----\n", ., "\n\n", sep="")}  ;   # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ----
+get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
+get(objectname) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  ;   # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ----  
 
 
 objectname = "KoGES201806vars_waves"
@@ -12,7 +12,7 @@ get(objectname) |> names() %>% {cat(deparse(., width.cutoff=120),"\n\n",sep="")}
 
 objectname = "KoGES201806vars_waves"
 cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> deparse() |> cat("  \n", sep="") # dput() cat(deparse()) ----
-cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> deparse(width.cutoff=120-20) |> cat(sep="  \n"); # dput(); |> deparse(width.cutoff=120-20) |> cat(sep="  \n"); # width.cutoff=500 is the max ----
+cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
 cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> paste(collapse=", ") |> cat("  \n", sep=""); # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ----
 # > data |> names() |> deparse() |> cat("  \n", sep="") #----
 # c("Time2Event", "Event", "Exposure")
@@ -25,9 +25,9 @@ cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> paste(collapse=",
 
 
 
-function.deparse.cat.width=function(x, deparse.width.cutoff = 500, cat.sep="") {
+function.deparse.cat.width=function(x, deparse.width.cutoff=500, cat.sep="") {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.deparse.cat.width.dev.r")
-    cat(deparse(x, width.cutoff = deparse.width.cutoff), sep = cat.sep)
+    cat(deparse(x, width.cutoff=deparse.width.cutoff), sep = cat.sep)
     if (cat.sep != "\n") cat("  \n", sep="")
 }
 
@@ -58,13 +58,13 @@ letters %>% function.deparse.cat.width
 
 installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse() |> cat("  \n", sep="")
 installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse() |> cat("  \n", sep="")
-installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse(width.cutoff = 500) |> cat(sep = "\n");cat("  \n", sep="")
+installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse(width.cutoff=500) |> cat(sep = "\n");cat("  \n", sep="")
 installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse() |> cat(sep = "\n");cat("  \n", sep="")
 # > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse() |> cat("  \n", sep="")
 # c("base", "boot", "class", "cluster", "codetools", "compiler",  "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth",  "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet",  "parallel", "rpart", "spatial", "splines", "stats", "stats4",  "survival", "tcltk", "tools", "utils")
 # > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse() |> cat("  \n", sep="")
 # c("base", "boot", "class", "cluster", "codetools", "compiler", "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth", "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet", "parallel", "rpart", "spatial", "splines", "stats", "stats4", "survival", "tcltk", "tools", "utils")
-# > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse(width.cutoff = 500) |> cat(sep = "\n")
+# > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse(width.cutoff=500) |> cat(sep = "\n")
 # c("base", "boot", "class", "cluster", "codetools", "compiler", "datasets", "foreign", "graphics", "grDevices", "grid", "KernSmooth", "lattice", "MASS", "Matrix", "methods", "mgcv", "nlme", "nnet", "parallel", "rpart", "spatial", "splines", "stats", "stats4", "survival", "tcltk", "tools", "utils")
 # > installed.packages() |> as_tibble() %>% dplyr::filter(!is.na(Priority)) %>% select(Package) |> unlist() |> unname() |> deparse() |> cat(sep = "\n")
 # c("base", "boot", "class", "cluster", "codetools", "compiler",

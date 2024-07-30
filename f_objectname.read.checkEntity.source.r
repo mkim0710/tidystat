@@ -177,7 +177,7 @@ for (.dependancy in c("f_path.size_files")) {
     cat(strrep("%",80),"\n",sep="")
     cat("> names(",objectname,') |> deparse(width.cutoff=120-20) |> cat(sep="\\n")',"  \n", sep=""); 
     if(ncol(get(objectname)) <= 100 || print.name.dput) {
-        get(objectname) |> names() |> deparse(width.cutoff=120-20) |> cat(sep="  \n"); # dput(); |> deparse(width.cutoff=120-20) |> cat(sep="  \n"); # width.cutoff=500 is the max ----
+        get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
     } else {cat("ncol(get(",objectname,")) > 100 && !print.name.dput \n", sep="")}
     cat(strrep("~",80),"\n",sep="")
     cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
