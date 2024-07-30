@@ -165,9 +165,9 @@ for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
 
     cat(strrep("%",80),"\n",sep="")
-    cat("> names(",objectname,') |> deparse(width.cutoff=120-15) |> cat(sep="\\n")',"  \n", sep=""); 
+    cat("> names(",objectname,') |> deparse(width.cutoff=120-20) |> cat(sep="\\n")',"  \n", sep=""); 
     if(ncol(get(objectname)) <= 100 || print.name.dput) {
-        get(objectname) |> names() |> deparse(width.cutoff=120-15) |> cat("  ", sep="  \n"); # dput(); |> deparse(width.cutoff=120-15) |> cat("  ", sep="  \n"); # width.cutoff=500 is the max ----
+        get(objectname) |> names() |> deparse(width.cutoff=120-20) |> cat("  ", sep="  \n"); # dput(); |> deparse(width.cutoff=120-20) |> cat("  ", sep="  \n"); # width.cutoff=500 is the max ----
     } else {cat("ncol(get(",objectname,")) > 100 && !print.name.dput \n", sep="")}
     cat(strrep("~",80),"\n",sep="")
     cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
