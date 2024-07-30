@@ -36,6 +36,8 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 # 2 ~      /home/rstudio                
 # 3 .      /home/rstudio/github_tidystat
 # 4 ..     /home/rstudio                
+# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="http://localhost:58723/files/github_tidystat/rstudio-prefs/templates/default.R"
+# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="http://localhost:58723/files/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.nb.html"
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # Rocker Setup.r
