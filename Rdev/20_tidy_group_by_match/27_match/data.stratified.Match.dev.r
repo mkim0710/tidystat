@@ -366,8 +366,8 @@ data.Match = function(
     for (argname in c("Weight")) {
         if (!is.null(Call[[argname]])) {
             # warning(gettextf("attempt to set '%s' ignored", argname), domain = NA)
-            # print(paste0( "warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff = 500), "[1]" ))
-            cat(paste0( "* warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff = 500), "[1]", "\n" ))
+            # print(paste0( "warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff=500), "[1]" ))
+            cat(paste0( "* warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff=500), "[1]", "\n" ))
         }
     }
     
@@ -1460,8 +1460,8 @@ data.stratified.Match = function(
         for (argname in c("Weight")) {
             if (!is.null(Call[[argname]])) {
                 # warning(gettextf("attempt to set '%s' ignored", argname), domain = NA)
-                # print(paste0( "warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff = 500), "[1]" ))
-                cat(paste0( "* warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff = 500), "[1]", "\n" ))
+                # print(paste0( "warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff=500), "[1]" ))
+                cat(paste0( "* warning) Weight argument deprecated : use Weight_covariates = ", deparse(c("InverseVariance", "MahalanobisDistance", "WeightMatrix"), width.cutoff=500), "[1]", "\n" ))
             }
         }
         
