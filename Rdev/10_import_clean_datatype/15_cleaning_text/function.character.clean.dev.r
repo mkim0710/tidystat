@@ -3,7 +3,7 @@
 
 
 function.character.clean = function(vec, pattern_to_clean = "[^A-z0-9[:punct:][:space:]]") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.character.clean")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.character.clean")
     
     index_to_clean = grep(pattern_to_clean, vec, value = F)
     # warnings(

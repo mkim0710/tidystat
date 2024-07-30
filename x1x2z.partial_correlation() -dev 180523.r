@@ -5,7 +5,7 @@
 
 #@ x1x2z.partial_correlation() ==========
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -115,7 +115,7 @@ out
 #@@ new function 180523 =====
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -1450,7 +1450,7 @@ out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(metho
 
 #@ x1x2z.partial_correlation() revision 180523 v5 ==========
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {  # revision 180523 v5
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)

@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratified.ccwc.dev.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratified.ccwc.dev.r")
 
 #@ to do ----
 #@ MatchingPairID -> should be unique to each case~!!! (currently, one MatchingPairID may have 2 cases & 10 controls)
@@ -52,7 +52,7 @@ data.ccwc = function(
     , load.dependent.library = T
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratified.ccwc.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratified.ccwc.dev.r")
     if (load.dependent.library == T) {
         library(tidyverse)
         # library(tableone)
@@ -68,7 +68,7 @@ data.ccwc = function(
     }
 
     function.dichotomous2logical = function(x, dichotomous2integer = F) {
-        # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.dev.r")
+        # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.dichotomous2logical.dev.r")
         # caution) as.numeric(CategoricalVariable_3MoreLevels)
         if (is.numeric(x)) {
             x = as.character(x)
@@ -881,7 +881,7 @@ data.strata_list = function(
     , .vars4strata = c("female", "age.cut")
     , paste.collapse = "_"
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.ccwc")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.strata_list.ccwc")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
     .mydata$strata = .mydata$strata %>% as.factor
@@ -905,7 +905,7 @@ data.strata_list = function(
 
 #@ test) data.strata_list() diet.rda -----
 # data(diet, package = "Epi")
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_Epi_diet.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_Epi_diet.rda"))
 diet = diet %>% mutate(
     RowNum_original = 1:nrow(.)
     , entry_age = as.numeric(doe - dob)/365
@@ -1009,7 +1009,7 @@ data.stratified.ccwc = function(
     , load.dependent.library = T
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.strata_list.ccwc.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.strata_list.ccwc.dev.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
     if (load.dependent.library == T) {
         library(tidyverse)

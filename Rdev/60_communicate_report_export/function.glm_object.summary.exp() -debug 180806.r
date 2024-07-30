@@ -10,7 +10,7 @@
 
 
 function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if(!"glm" %in% class(glm_object)) {
         stop("!\"glm\" %in% class(glm_object)")
     }
@@ -283,7 +283,7 @@ p.adjust_method = c("fdr", "bonferroni")
 
 
 function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if(!"glm" %in% class(glm_object)) {
         stop("!\"glm\" %in% class(glm_object)")
     }

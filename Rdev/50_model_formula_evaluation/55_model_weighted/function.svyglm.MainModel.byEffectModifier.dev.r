@@ -2,7 +2,7 @@
 
 
 function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni"), allow_multple_spaces = T) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if(!"glm" %in% class(glm_object)) {
         stop("!\"glm\" %in% class(glm_object)")
     }
@@ -105,7 +105,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
 
 #@@@@ data.SSQ_5_6 =====
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/data.SSQ_5_6.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/data.SSQ_5_6.rda"))
 library(survey)
 data.svydesign = data.SSQ_5_6 %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 data.US_BORN_T.svydesign = data.SSQ_5_6 %>% dplyr::filter(US_BORN == "1: US-Born, 50 States, DC, PR and Territories") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
