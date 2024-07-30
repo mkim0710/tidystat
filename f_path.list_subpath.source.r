@@ -101,7 +101,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 # #@ for (.dependancy in c("")) { -----
 # for (.dependancy in c("f_df.tribble_construct")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
-#         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
+#         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
 #         objectname = .dependancy
 #         source(file.path(env1$path$source_base,"",paste0(objectname,".source.r")))
 #     }
