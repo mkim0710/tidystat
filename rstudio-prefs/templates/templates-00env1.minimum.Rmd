@@ -249,8 +249,8 @@ if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv)
 for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
     .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
     if(.tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext)) {
-        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
-        .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+        .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
     }
 }
 ```
@@ -517,7 +517,7 @@ if (.Platform$OS.type == "windows") {
             if(file.copy(from=env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path.filename.ext)) else warning(paste0("Update failed: ", .destination_path.filename.ext))
             # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path.filename.ext),wait=FALSE)}  
         }}
-        file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+        if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
     }
     # if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", env1$path$MyTemplate.filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", env1$path$RTemplate.filename.ext))
 } 
