@@ -100,7 +100,8 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
 #@ for (.dependancy in c("")) { -----
-for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
+# for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
+for (.dependancy in c("f_path.size_files")) {
     if(!.dependancy %in% names(.GlobalEnv$env1)) {
         if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
         .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
@@ -114,14 +115,23 @@ for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
 .tmp$object = function(objectname, ext = "rds", .path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, print.name.dput = FALSE, print.name.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('.path4read == "',.path4read,'"')
-    if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+    # if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+    if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText)} else {MessageText = paste0(MessageText1," == ",MessageText2)} #----
 
-    cat('objectname = "', objectname, '"  \n', sep="")
+    # cat('objectname = "', objectname, '"  \n', sep="")
     filename.ext = paste0(objectname,".", ext)
     if(file.exists(file.path(.path4read, filename.ext))) {
     } else if(file.exists(file.path(.path4read, paste0(filename.ext, ".xz")))) {
         filename.ext = paste0(filename.ext, ".xz")
     } else if(BreathFirstSearch) {
+        
+        for (.dependancy in c("f_filename.ext.find_subpath")) {
+            if(!.dependancy %in% names(.GlobalEnv$env1)) {
+                if(exists("print.intermediate")) {if(print.intermediate) cat(paste0("sys.nframe() = ", sys.nframe(), "\n"))}
+                .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+            }
+        }
+        
         path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = .path4read, max_depth = max_depth, print.intermediate = print.intermediate)
         if (is.null(path.filename.ext)) {
             path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = .path4read, max_depth = max_depth, print.intermediate = print.intermediate)
