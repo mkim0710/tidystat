@@ -90,6 +90,25 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(pas
 #| @Mac |#
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @Posit.Cloud |#
+# List of 9
+#  $ GUI             : chr "X11"
+#  $ os_type         : chr "unix"
+#  $ os_sysname      : chr "Linux"
+#  $ os_version      : chr "#22~22.04.1-Ubuntu SMP Fri Jun 14 16:31:00 UTC 2024"
+#  $ machine_type    : chr "x86_64"
+#  $ machine_nodename: chr "application-9677830-deployment-22791571-pss9h"
+#  $ machine_cpu     : chr "AMD EPYC 7R13 Processor"
+#  $ Sys.getlocale   :List of 4
+#   ..$ LC_COLLATE       : chr "C.UTF-8"
+#   ..$ LC_CTYPE         : chr "C.UTF-8"
+#   ..$ LC_locale_NUMERIC: chr "C"
+#   ..$ LC_locale_TIME   : chr "C.UTF-8"
+#  $ l10n_info       :List of 5
+#   ..$ localization_UTF8           : logi TRUE
+#   ..$ localization_Latin1         : logi FALSE
+#   ..$ localization_codeset        : chr "UTF-8"
+#   ..$ localization_codepage       : NULL
+#   ..$ localization_system.codepage: NULL
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @Rocker |#
 # List of 9
