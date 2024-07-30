@@ -4,6 +4,38 @@
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/edit/master/RStudio.Cloud-setup.r"  
 # https://posit.cloud/spaces/100015/content/6373416  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # https://posit.cloud/spaces/404673/content/6373521  # Shared Workspace@v - PositCloud@v
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ Check path -----
+##@ "~" |> normalizePath(winslash="/") ====
+tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @MAGB760M13700KF D:/OneDrive/Documents |#
+#   symbol normalizePath                           
+# 1 /      D:/                                     
+# 2 ~      D:/OneDrive/Documents                   
+# 3 .      D:/OneDrive/[][Rproject]/github_tidystat
+# 4 ..     D:/OneDrive/[][Rproject]                
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @Mac /Users/mkim0710 |#
+#   symbol normalizePath                                                                      
+# 1 /      /                                                                                  
+# 2 ~      /Users/mkim0710                                                                    
+# 3 .      /Users/mkim0710/Library/CloudStorage/OneDrive-Personal/[][Rproject]/github_tidystat
+# 4 ..     /Users/mkim0710/Library/CloudStorage/OneDrive-Personal/[][Rproject]                
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @Posit.Cloud |#
+#   symbol normalizePath      
+# 1 /      /                  
+# 2 ~      /cloud/home/r149319
+# 3 .      /cloud/project     
+# 4 ..     /cloud             
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @Rocker /home/rstudio |#
+#   symbol normalizePath                
+# 1 /      /                            
+# 2 ~      /home/rstudio                
+# 3 .      /home/rstudio/github_tidystat
+# 4 ..     /home/rstudio                
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # Rocker Setup.r
@@ -165,39 +197,6 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ RUN ALL ABOVE: CTRL+ALT+B -----
 #| RUN ALL ABOVE: CTRL+ALT+B |#
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) check -----
-##@ "~" |> normalizePath(winslash="/") ====
-tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n")
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#| @MAGB760M13700KF D:/OneDrive/Documents |#
-#   symbol normalizePath                           
-# 1 /      D:/                                     
-# 2 ~      D:/OneDrive/Documents                   
-# 3 .      D:/OneDrive/[][Rproject]/github_tidystat
-# 4 ..     D:/OneDrive/[][Rproject]                
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#| @Mac /Users/mkim0710 |#
-#   symbol normalizePath                                                                      
-# 1 /      /                                                                                  
-# 2 ~      /Users/mkim0710                                                                    
-# 3 .      /Users/mkim0710/Library/CloudStorage/OneDrive-Personal/[][Rproject]/github_tidystat
-# 4 ..     /Users/mkim0710/Library/CloudStorage/OneDrive-Personal/[][Rproject]                
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#| @Posit.Cloud |#
-#   symbol normalizePath      
-# 1 /      /                  
-# 2 ~      /cloud/home/r149319
-# 3 .      /cloud/project     
-# 4 ..     /cloud             
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#| @Rocker /home/rstudio |#
-#   symbol normalizePath                
-# 1 /      /                            
-# 2 ~      /home/rstudio                
-# 3 .      /home/rstudio/github_tidystat
-# 4 ..     /home/rstudio                
-#|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) rstudio-prefs -----
 #|________________________________________________________________________________|#  
