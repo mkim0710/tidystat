@@ -140,10 +140,10 @@ knitr::opts_knit$set(global.par = TRUE)
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
-# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
+# cmd /C C:\PROGRA~2\MICROS~1\Edge\APPLIC~1\msedge.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:\PROGRA~2\MICROS~1\Edge\APPLIC~1\msedge.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+# cmd /C C:\PROGRA~2\MICROS~1\Edge\APPLIC~1\msedge.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
