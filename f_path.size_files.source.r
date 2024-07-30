@@ -94,7 +94,7 @@ for (.dependancy in c("f_df.tribble_construct")) {
 
 
 .tmp$objectname = "f_path.size_files"
-.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$") {
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print.intermediate = FALSE) {
     if (is.na(literal_filename)) {
         # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
         filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = T)
@@ -109,7 +109,7 @@ for (.dependancy in c("f_df.tribble_construct")) {
             return()
         }
     }
-    filenames |> deparse(width.cutoff=120-20) |> cat("  ", sep="  \n"); # dput(); |> deparse(width.cutoff=120-20) |> cat("  ", sep="  \n"); # width.cutoff=500 is the max ----
+    if(print.intermediate) filenames |> deparse(width.cutoff=120-20) |> cat("  ", sep="  \n"); # dput(); |> deparse(width.cutoff=120-20) |> cat("  ", sep="  \n"); # width.cutoff=500 is the max ----
     cat(strrep("~",80),"\n",sep=""); #----
     out = filenames %>% {file.info(file.path(.path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
