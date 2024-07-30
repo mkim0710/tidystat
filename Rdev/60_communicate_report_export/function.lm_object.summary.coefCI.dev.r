@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
 
 
 # #@ analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates ====
@@ -44,7 +44,7 @@
 
 #@ ==============
 function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2, p.adjust_method = c("fdr", "bonferroni")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if(class(lm_object) != "lm") {
         stop("class(lm_object) != \"lm\"")
     }
@@ -149,7 +149,7 @@ function.lm_object.summary.coefCI(lm_object)
 
 
 function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni"), allow_multple_spaces = T) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if(!"glm" %in% class(glm_object)) {
         stop("!\"glm\" %in% class(glm_object)")
     }
@@ -262,7 +262,7 @@ glm_object %>% function.glm_object.summary.exp
 
 
 # function.clogit_object.summary.exp = function(clogit_object, sprintf_fmt_decimal = 2, coef.exp = T) {
-#     # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+#     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
 #     if(!"clogit" %in% class(clogit_object)) {
 #         stop("!\"clogit\" %in% class(clogit_object)")
 #     }
@@ -388,7 +388,7 @@ glm_object %>% function.glm_object.summary.exp
 
 
 function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if (!"coxph" %in% class(coxph_object)) {
         stop("!\"coxph\" %in% class(coxph_object)")
     }
@@ -545,7 +545,7 @@ clogit_object %>% function.coxph_object.summary.exp
 
 
 function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     library(glmnet)
     library(tidyverse)
     out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
@@ -640,10 +640,10 @@ cvob1 %>% function.cv.glmnet_object.coef.exp(print_any_expB_gt.2 = T)
 
 
 function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_object, i_names = NULL, print_any_expB.min_gt.2 = F) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     
     function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
-        # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+        # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
         library(glmnet)
         library(tidyverse)
         out = c("lambda.min", "lambda.1se") %>% map(function(chr) {

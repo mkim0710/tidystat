@@ -1,8 +1,8 @@
 #@ ICD9_3char_sub_chapter.tibble from icd9_chapters.expand_range.ICD9_3char & icd9_sub_chapters.expand_range.ICD9_3char .r
 
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/icd9_chapters.expand_range.ICD9_3char.rda"))
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/icd9_sub_chapters.expand_range.ICD9_3char.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd9_chapters.expand_range.ICD9_3char.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd9_sub_chapters.expand_range.ICD9_3char.rda"))
 
 icd9_chapters.expand_range.ICD9_3char |> str() #----
 icd9_sub_chapters.expand_range.ICD9_3char |> str() #----

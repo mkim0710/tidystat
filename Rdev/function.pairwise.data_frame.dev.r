@@ -510,7 +510,7 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 
 #@ function.pairwise.data_frame = function(vars) { ======
 function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.pairwise.data_frame.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.pairwise.data_frame.dev.r")
     # library(tidyverse)
     vars.outer = outer(vars, vars, function(x, y) paste(x, y, sep = "&"))
     if (only.lower.tri == T) {
@@ -526,7 +526,7 @@ function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
 # ?rep
 #@ function.pairwise.data_frame = function(vars) { ======
 function.pairwise.data_frame = function(vars, only.lower.tri = T) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.pairwise.data_frame.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.pairwise.data_frame.dev.r")
     # library(tidyverse)
     vars.factor.unique.sort = sort(unique(as.factor(vars)))
     out = data.frame(

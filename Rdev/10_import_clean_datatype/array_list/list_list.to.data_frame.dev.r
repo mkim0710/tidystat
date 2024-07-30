@@ -5,7 +5,7 @@
 
 
 list_list.to.matrix = function(list_list, type = "list_list[[Col.index]][[Row.index]]") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/list_list.to.data_frame.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/list_list.to.data_frame.dev.r")
     if (type == "list_list[[Col.index]][[Row.index]]") {
         out = simplify2array(list_list)
     } else if (type == "list_list[[Row.index]][[Col.index]]") {
@@ -71,7 +71,7 @@ list_list.to.matrix = function(list_list, type = "list_list[[Col.index]][[Row.in
 
 
 list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Row.index]]") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/list_list.to.data_frame.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/list_list.to.data_frame.dev.r")
     if (type == "list_list[[Col.index]][[Row.index]]") {
         out = simplify2array(list_list)
     } else if (type == "list_list[[Row.index]][[Col.index]]") {

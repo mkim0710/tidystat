@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.dev.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/map.parent_name.dev.r")
 
 
 list_of_element %>% 
@@ -24,7 +24,7 @@ list_of_element %>%
 
 
 map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-.data.frame`), .print.Sys.time = F, .add.attributes = T, ...) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/map.parent_name.dev.r")
     if(is.vector(vec) & !is.list(vec)) {
         out1 = vec %>% seq_along %>% map(function(i) {
             out2 = do.call(.f, args = list(vec[i], ...))
@@ -103,7 +103,7 @@ map.parent_name = function(vec, .f, .max.object.size.to.store = object.size(`[<-
 #     out1
 # }
 map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<-.data.frame`), .print.Sys.time = F, .add.attributes = T, ...) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/map.parent_name.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/map.parent_name.dev.r")
     if(is.vector(vec) & !is.list(vec)) {
         out1 = vec %>% seq_along %>% map(function(i) {
             out2 = do.call(.f, args = list(vec[i], ...))

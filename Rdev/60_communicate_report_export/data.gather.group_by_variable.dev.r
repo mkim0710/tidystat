@@ -14,7 +14,7 @@ iris[,1:4] %>% gather(key = "variable", value = "value") %>%
 
 #@ ------------
 data.numeric.gather.group_by.summarise_all = function(data, round_digits = 3) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.gather.group_by_variable.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.gather.group_by_variable.dev.r")
     Q1 = function(x) quantile(x, probs = 0.25)
     Q2 = function(x) quantile(x, probs = 0.75)
     

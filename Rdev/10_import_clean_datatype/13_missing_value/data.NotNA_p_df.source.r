@@ -2,7 +2,7 @@
 # data.NotNA_p_df.dev.r
 # data.NotNA_p_df.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
-# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.Rmd")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
@@ -43,7 +43,7 @@ packageStartupMessage("Loading: env1$data.NotNA_p_df = function(data)")
 # save(nhanes_mice, file = "data/library_mice_nhanes_mice.rda")
 
 # library(tidyverse)
-# load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
+# load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_mice_nhanes_mice.rda"))
 # nhanes_mice |> str() #-----
 # # > nhanes_mice |> str() #-----
 # # 'data.frame':	25 obs. of  4 variables:

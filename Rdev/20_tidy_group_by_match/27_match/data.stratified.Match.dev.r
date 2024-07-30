@@ -1,4 +1,4 @@
-# source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratfied.Match.dev.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
 
 
 
@@ -40,7 +40,7 @@
 #     data
 # }
 # 
-# load(url("https://github.com/mkim0710/tidystat/raw/master/data/framingham_baseline_2018.rda"))
+# load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/framingham_baseline_2018.rda"))
 # framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% dplyr::filter(age == "55")
 # # > framingham_baseline_2018 %>% function.11matching.by.factors %>% select(RowNum_original, age, sex, diabetes, runif, MatchingGroupID, MatchingPairID) %>% dplyr::filter(age == "55")
 # # # A tibble: 10 x 7
@@ -109,7 +109,7 @@ data.tab_strata_exposure = function(
     , round_digits = 2
     , paste.collapse = "_"
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratfied.Match.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
@@ -129,7 +129,7 @@ data.tab_strata_exposure = function(
 
 #@ test) data.tab_strata_exposure() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
 # > rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
@@ -209,7 +209,7 @@ data.strata_list = function(
     , .vars4strata = c("female", "age.cut")
     , paste.collapse = "_"
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratfied.Match.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
     .mydata$strata = .mydata$strata %>% as.factor
@@ -233,7 +233,7 @@ data.strata_list = function(
 
 #@ test) data.strata_list() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata |> as_tibble()
 # > rhc_mydata |> as_tibble()
@@ -349,7 +349,7 @@ data.Match = function(
     , propensity_score_matching_weight = F
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratfied.Match.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     if (load.dependent.library == T) {
         library(tidyverse)
         library(Matching)
@@ -382,7 +382,7 @@ data.Match = function(
     }
     
     function.dichotomous2logical = function(x, dichotomous2integer = F) {
-        # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.dev.r")
+        # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.dichotomous2logical.dev.r")
         # caution) as.numeric(CategoricalVariable_3MoreLevels)
         if (is.numeric(x)) {
             x = as.character(x)
@@ -599,7 +599,7 @@ data.Match = function(
 
 #@ test) data.Match() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.Match = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
@@ -889,7 +889,7 @@ rhc_mydata.Match_Mahal_caliper.2$tableone_post_total |> print(smd = T)
 
 #@ test) data.Match() rhc_mydata.na ----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.na = rhc_mydata
 rhc_mydata.na$age[0:99 * 7 + 1] = NA
@@ -1381,7 +1381,7 @@ data.stratified.Match = function(
     , propensity_score_matching = F
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratfied.Match.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
     if (load.dependent.library == T) {
         library(tidyverse)
@@ -1404,7 +1404,7 @@ data.stratified.Match = function(
         , .vars4strata = c("female", "age.cut")
         , paste.collapse = "_"
     ) {
-        # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratfied.Match.dev.r")
+        # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
         if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
         .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
         .mydata$strata = .mydata$strata %>% as.factor
@@ -1443,7 +1443,7 @@ data.stratified.Match = function(
         , propensity_score_matching_weight = F
         , apply.function.dichotomous2logical = F
     ) {
-        # source("https://github.com/mkim0710/tidystat/raw/master/R/data.stratfied.Match.dev.r")
+        # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
         if (load.dependent.library == T) {
             library(tidyverse)
             library(Matching)
@@ -1476,7 +1476,7 @@ data.stratified.Match = function(
         }
         
         function.dichotomous2logical = function(x, dichotomous2integer = F) {
-            # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.dev.r")
+            # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.dichotomous2logical.dev.r")
             # caution) as.numeric(CategoricalVariable_3MoreLevels)
             if (is.numeric(x)) {
                 x = as.character(x)
@@ -1789,7 +1789,7 @@ data.stratified.Match = function(
 
 #@ test) data.stratified.Match() rhc_mydata.rda -----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
     .vars4strata = c("female", "age.cut")
@@ -2341,7 +2341,7 @@ rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> pr
 
 #@ test) data.stratified.Match() rhc_mydata.na ----
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/rhc_mydata.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.na = rhc_mydata
 rhc_mydata.na$age[0:99 * 7 + 1] = NA

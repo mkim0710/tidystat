@@ -2,7 +2,7 @@
 
 data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_zero_vars = T) {
     # library(tidyverse)
-    # source("https://github.com/mkim0710/tidystat/raw/master/data.ExposedUnexposed.list.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.ExposedUnexposed.list.dev.r")
     if(!is.logical(data[[varname_Exposed]])) {
         stop("error - !is.logical(data[[varname_Exposed]])")
     }
@@ -32,7 +32,7 @@ data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_ze
 
 
 # #@ test --------
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_Matching_lalonde.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_Matching_lalonde.rda"))
 lalonde$isExposed = lalonde$treat == 1
 str(lalonde)
 # > str(lalonde)

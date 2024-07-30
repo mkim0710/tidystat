@@ -2,7 +2,7 @@
 # f_df.t.tribble_construct.dev.r
 # f_df.t.tribble_construct.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
-# source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.t.tribble_construct.source.r")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -31,8 +31,8 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/.Rprofile"    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
-if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  
-if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## env1\$path ====
@@ -87,7 +87,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 
 # # tribble_paste = datapasta::tribble_paste
 # # https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
-# load(url("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.RData"))
+# load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.t.tribble_construct.RData"))
 # attach(env1)
 # 
 # # t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
@@ -712,10 +712,10 @@ ls.str(env1$env.internal) #-----
 # Sys.time() - .t0 # Time difference of 0.003256798 secs
 
 
-# #@ source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath) ----
+# #@ source_path = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master", source_subpath) ----
 # source_subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(subpath!="") utils::browseURL(normalizePath(subpath))
-# source_path = paste0("https://github.com/mkim0710/tidystat/raw/master", source_subpath)
+# source_path = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master", source_subpath)
 # .t0 = Sys.time()
 # load(url(file.path(source_path, "f_df.t.tribble_construct.RData")))
 # Sys.time() - .t0 # Time difference of 0.7511199  secs
@@ -737,7 +737,7 @@ if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalE
 if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 .tmp$objectname = "source_base_local"; .tmp$object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
-.tmp$objectname = "source_base_github"; .tmp$object = "https://github.com/mkim0710/tidystat/raw/master"; if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
+.tmp$objectname = "source_base_github"; .tmp$object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 .tmp$objectname = "getwd"; .tmp$object = getwd(); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
@@ -764,7 +764,7 @@ if(!"f_df.t.tribble_construct" %in% names(.GlobalEnv$env1)) {
 
 
 # > system.time(
-# +     source("https://github.com/mkim0710/tidystat/raw/master/f_df.t.tribble_construct.source.r")
+# +     source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.t.tribble_construct.source.r")
 # + )
 #    user  system elapsed 
 #    0.00    0.01    1.02 

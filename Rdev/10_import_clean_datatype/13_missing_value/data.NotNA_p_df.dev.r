@@ -2,7 +2,7 @@
 # data.NotNA_p_df.dev.r
 # data.NotNA_p_df.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
-# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.Rmd")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
@@ -30,7 +30,7 @@ if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv)
 if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalEnv) }
 if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; .GlobalEnv$env1$path[[objectname]] = object
+objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[objectname]] = object
 if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) {
     .sourcename = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
@@ -91,7 +91,7 @@ if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(e
 # # > load(url("https://github.com/mkim0710/tidystat/tree/master/data/library_mice_nhanes_mice.rda"))
 # # Error in load(url("https://github.com/mkim0710/tidystat/tree/master/data/library_mice_nhanes_mice.rda")) : 
 # #   the input does not start with a magic number compatible with loading from a connection
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_mice_nhanes_mice.rda"))
 nhanes_mice |> str() #-----
 # > nhanes_mice |> str() #-----
 # 'data.frame':	25 obs. of  4 variables:
@@ -176,7 +176,7 @@ data.NotNA_p_df = function(data) {
 # save(nhanes_mice, file = "data/library_mice_nhanes_mice.rda")
 
 library(tidyverse)
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_mice_nhanes_mice.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_mice_nhanes_mice.rda"))
 nhanes_mice |> str() #-----
 # > nhanes_mice |> str() #-----
 # 'data.frame':	25 obs. of  4 variables:

@@ -26,7 +26,7 @@ cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> paste(collapse=",
 
 
 function.deparse.cat.width=function(x, deparse.width.cutoff = 500, cat.sep="") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.deparse.cat.width.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.deparse.cat.width.dev.r")
     cat(deparse(x, width.cutoff = deparse.width.cutoff), sep = cat.sep)
     if (cat.sep != "\n") cat("  \n", sep="")
 }
