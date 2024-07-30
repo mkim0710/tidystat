@@ -1,5 +1,6 @@
-# RStudio Server Setup.r 
-# RStudio.Cloud Setup.r 
+# RStudioServer-setup.r
+# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/RStudioServer-setup.r"  
+# RStudio.Cloud-setup.r 
 # https://posit.cloud/spaces/100015/content/6373416  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # https://posit.cloud/spaces/404673/content/6373521  # Shared Workspace@v - PositCloud@v
 #|________________________________________________________________________________|#  
