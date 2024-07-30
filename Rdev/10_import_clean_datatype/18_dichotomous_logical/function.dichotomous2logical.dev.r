@@ -302,7 +302,7 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 
 #@ ------
 # function.binary2numeric = function(x, binary2logical = F) {
-#     # source("https://github.com/mkim0710/tidystat/raw/master/function.binary2numeric.dev.r")
+#     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.binary2numeric.dev.r")
 #     # caution) as.numeric(CategoricalVariable_3MoreLevels)
 #     if (is.character(x)) {
 #         x = as.factor(x)
@@ -382,7 +382,7 @@ df$FamilyIncome_ge7000 %>% na.omit |> unique() |> length()
 
 
 function.if_dichotomous2logical = function(x, dichotomous2integer = F) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.dichotomous2logical.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.dichotomous2logical.dev.r")
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
 
     x.na.omit.unique.length = length(unique(na.omit(x)))

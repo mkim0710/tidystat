@@ -6,7 +6,7 @@
 
 
 function.binary2numeric = function(x) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.binary2numeric.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.binary2numeric.dev.r")
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     if (is.character(x)) {
         x = as.factor(x)
@@ -48,7 +48,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
 
 
 matrix2x2.OR_CI = function(matrix2x2) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/matrix2x2.OR_CI_phi.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/matrix2x2.OR_CI_phi.dev.r")
     # version 170630
     # library(tidyverse)
     out = list()
@@ -69,7 +69,7 @@ matrix2x2.OR_CI = function(matrix2x2) {
 
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -104,7 +104,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 
 
 function.sequence_with_leading_zeros = function(num) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.sequence_with_leading_zeros.dev.r")
     digits_with_leading_zeros = trunc(log10(num)) + 1
     sprintf(paste0("%0",digits_with_leading_zeros,"d"), 1:num)
 }
@@ -112,7 +112,7 @@ function.sequence_with_leading_zeros = function(num) {
 
 # array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = c("pearson", "spearman", "kendall")) {
 array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = "pearson") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/array3d_R_C_strata.OR_CI_partial_cor_strata.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/array3d_R_C_strata.OR_CI_partial_cor_strata.dev.r")
     # version 170717
     # library(tidyverse)
     # if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)

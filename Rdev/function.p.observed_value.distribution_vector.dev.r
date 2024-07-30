@@ -1,7 +1,7 @@
 
 
 function.n_ext.observed_value.distribution_vector = function(observed_value, distribution_vector, two.tailed = T) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.p.observed_value.distribution_vector.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.p.observed_value.distribution_vector.dev.r")
     if (two.tailed == T) {
         n_ext = sum( abs(distribution_vector) > abs(observed_value) )
     } else {
@@ -11,7 +11,7 @@ function.n_ext.observed_value.distribution_vector = function(observed_value, dis
 }
 
 function.p.observed_value.distribution_vector = function(observed_value, distribution_vector, two.tailed = T) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.p.observed_value.distribution_vector.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.p.observed_value.distribution_vector.dev.r")
     if (two.tailed == T) {
         n_ext = sum( abs(distribution_vector) > abs(observed_value) )
     } else {
@@ -21,7 +21,7 @@ function.p.observed_value.distribution_vector = function(observed_value, distrib
 }
 
 # function.p_n_ext.observed_value.distribution_vector = function(observed_value, distribution_vector, two.tailed = T) {
-#     source("https://github.com/mkim0710/tidystat/raw/master/function.p.observed_value.distribution_vector.dev.r")
+#     source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.p.observed_value.distribution_vector.dev.r")
 #     if (two.tailed == T) {
 #         n_ext = sum( abs(distribution_vector) > abs(observed_value) )
 #     } else {

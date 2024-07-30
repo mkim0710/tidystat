@@ -2,7 +2,7 @@
 
 #@ function.MatchingPairID_isExposed_PERSON_ID_shuffle() ---------
 function.MatchingPairID_isExposed_PERSON_ID_shuffle0 = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -18,7 +18,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle0 = function(MatchingPairID_i
     out
 }
 function.MatchingPairID_isExposed_PERSON_ID_shuffle1 = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -34,7 +34,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle1 = function(MatchingPairID_i
     out
 }
 function.MatchingPairID_isExposed_PERSON_ID_shuffle2 = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -50,7 +50,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle2 = function(MatchingPairID_i
     out
 }
 function.MatchingPairID_isExposed_PERSON_ID_shuffle3 = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     out = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -249,7 +249,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle3(MatchingPairID_isExposed_PE
 #@ function.MatchingPairID_Exposed_Unexposed_shuffle_vec() -------------
 
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec0 = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -263,7 +263,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec0 = function(MatchingPair
     out
 }
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec1 = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -277,7 +277,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec1 = function(MatchingPair
     out
 }
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec2 = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     

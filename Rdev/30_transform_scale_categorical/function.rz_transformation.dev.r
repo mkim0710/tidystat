@@ -1,12 +1,12 @@
 # function.rz_transformation.dev.r
 
 function.Fisher_rz_Transform = function(r) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.rz_transformation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.rz_transformation.dev.r")
     .5 * log ( (1+r)/(1-r) )
 }
 
 function.rz_diff = function(r1, r2, n1, n2 = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.rz_transformation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.rz_transformation.dev.r")
     if(is.null(n2)) {
         n2 = n1
     }
@@ -17,12 +17,12 @@ function.rz_diff = function(r1, r2, n1, n2 = NULL) {
 
 
 function.artanh = function(r) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.rz_transformation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.rz_transformation.dev.r")
     .5 * log ( (1+r)/(1-r) )
 }
 
 function.r1_r2.zstat = function(r1, r2, n1, n2 = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.rz_transformation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.rz_transformation.dev.r")
     if(is.null(n2)) {
         n2 = n1
     }

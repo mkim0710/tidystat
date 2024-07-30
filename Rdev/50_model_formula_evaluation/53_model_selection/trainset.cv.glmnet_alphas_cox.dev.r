@@ -546,7 +546,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {
 
 #@@@ object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) { ==========
 object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     library(glmnet)
     library(tidyverse)
     out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
@@ -572,7 +572,7 @@ object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) {
     out.NA
 }
 object_list_cvglmnet.coefexp = function(object_list_cvglmnet, i_names = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")    
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")    
     library(glmnet)
     library(tidyverse)
     out2 = object_list_cvglmnet %>% map(object_cvglmnet.coefexp)
@@ -975,7 +975,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.newFormula
 
 #@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) { =====
 function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.lm_object.summary.coefCI.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if (!"coxph" %in% class(coxph_object)) {
         stop("!\"coxph\" %in% class(coxph_object)")
     }
