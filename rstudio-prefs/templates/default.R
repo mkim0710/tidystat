@@ -1,4 +1,8 @@
 # default.R
+# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R"  
+# cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd"  
+# "default.R" %>% paste0(env1$path$source_base,"/rstudio-prefs/templates/",.) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+# "templates-00env1.minimum.Rmd" %>% paste0(env1$path$source_base,"/rstudio-prefs/templates/",.) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))     
 # source(paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"))  # if (.Platform$OS.type == "windows") update default.R
 # # source("https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/templates/default.R")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
