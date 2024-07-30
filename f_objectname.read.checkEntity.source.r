@@ -180,7 +180,7 @@ for (.dependancy in c("f_path.size_files")) {
         get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
     } else {cat("ncol(get(",objectname,")) > 100 && !print.name.dput \n", sep="")}
     cat(strrep("~",80),"\n",sep="")
-    cat("> names(",objectname,') |> paste(collapse=", ") |> cat(sep="\\n")',"  \n", sep=""); 
+    cat("> names(",objectname,') |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep="")',"  \n", sep=""); 
     if(print.name.tidyeval) {
         get(objectname) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
     } else {cat("!print.name.tidyeval  \n")}
