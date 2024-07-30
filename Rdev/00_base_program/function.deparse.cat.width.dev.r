@@ -11,9 +11,9 @@ get(objectname) |> names() %>% {cat(deparse(., width.cutoff=120),"\n\n",sep="")}
 
 
 objectname = "KoGES201806vars_waves"
-cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> deparse() |> cat("  \n", sep="") # dput() cat(deparse()) ----
-cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
-cat(strrep("~",80),"\n",sep=""); get(objectname) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); get(objectname) |> names() |> deparse() |> cat("  \n", sep="") # dput() cat(deparse()) ----
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); get(objectname) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
 # > data |> names() |> deparse() |> cat("  \n", sep="") #----
 # c("Time2Event", "Event", "Exposure")
 # > data |> names() |> paste(collapse=", ") #----

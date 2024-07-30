@@ -110,7 +110,7 @@ for (.dependancy in c("f_df.tribble_construct")) {
         }
     }
     if(print.intermediate) filenames |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
-    cat(strrep("~",80),"\n",sep=""); #----
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
     out = filenames %>% {file.info(file.path(.path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
@@ -119,7 +119,7 @@ for (.dependancy in c("f_df.tribble_construct")) {
                GB = format(size/2^30, digits = 3, big.mark=","))
     out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
     env1$f$f_df.tribble_construct(out)
-    cat(strrep("~",80),"\n",sep=""); #----
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
 } 
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))

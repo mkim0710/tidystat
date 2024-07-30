@@ -157,7 +157,7 @@ for (.dependancy in c("f_path.size_files")) {
     
     system.time(assign(objectname, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
 
-    # cat(strrep("~",80),"\n",sep="")
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
     # Error: attributes(get(objectname))$n_distinct = list()
     if( !"n_distinct" %in% names(attributes(.GlobalEnv[[objectname]])) ) attributes(.GlobalEnv[[objectname]])$n_distinct = list()
@@ -174,32 +174,32 @@ for (.dependancy in c("f_path.size_files")) {
     }
     if (all(!( vec_varname4ID %in% names(get(objectname)) ))) {MessageText = paste0('varname for ID not identified.');warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
 
-    cat(strrep("%",80),"\n",sep="")
+    cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     cat("> names(",objectname,') |> deparse(width.cutoff=120-20) |> cat(sep="\\n")',"  \n", sep=""); 
     if(ncol(get(objectname)) <= 100 || print.name.dput) {
         get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
     } else {cat("ncol(get(",objectname,")) > 100 && !print.name.dput \n", sep="")}
-    cat(strrep("~",80),"\n",sep="")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     cat("> names(",objectname,') |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep="")',"  \n", sep=""); 
     if(print.name.tidyeval) {
         get(objectname) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
     } else {cat("!print.name.tidyeval  \n")}
     
-    cat(strrep("%",80),"\n",sep="")
+    cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)
     
-    cat(strrep("%",80),"\n",sep="")
+    cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     cat("> ",objectname," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(objectname)), n=9)
-    cat(strrep("~",80),"\n",sep="")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     cat("> ",objectname," %>% rownames_to_column %>% tail |> as_tibble()","  \n", sep=""); print( as_tibble( tail(rownames_to_column(get(objectname))) ) )
     # .t0 = Sys.time()
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",objectname," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time() - .t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",objectname," |> dplyr::select_if(is.logical))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.logical) |> summary() #-----
     # Sys.time() - .t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) |> dplyr::select_if(is.factor) |> summary() #-----
     # Sys.time() - .t0
-    # cat(strrep("~",80),"\n",sep=""); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",objectname," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(objectname) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time() - .t0
 }
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
