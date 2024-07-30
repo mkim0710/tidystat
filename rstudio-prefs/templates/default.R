@@ -1,5 +1,5 @@
 # default.R
-# source(paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"))
+# source(paste0(env1$path$source_base,"/","rstudio-prefs/templates/default.R"))  # if (.Platform$OS.type == "windows") update default.R
 # # source("https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/templates/default.R")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
