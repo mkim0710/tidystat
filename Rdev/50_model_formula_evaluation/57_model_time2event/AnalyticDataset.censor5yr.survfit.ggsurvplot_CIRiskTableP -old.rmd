@@ -135,12 +135,12 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
   
 # regex4filename = "\\.rds(\\.xz)?$"
 regex4filename = "\\.rds\\.xz$"
-list.files(.path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----  
+list.files(.path4write) %>% grep(regex4filename, ., value = T) |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----    
 env1$f$f_path.size_files(.path4read = .path4write, regex4filename = regex4filename)
   
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----  
 regex4filename = "\\.rds$"
-list.files(.path4write) %>% grep(regex4filename, ., value = T) %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----  
+list.files(.path4write) %>% grep(regex4filename, ., value = T) |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----    
 env1$f$f_path.size_files(.path4read = .path4write, regex4filename = regex4filename)
 ```
   
@@ -160,7 +160,7 @@ options(width=120)
   
 # get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 # get(objectname) %>% {.$RN_INDI} |> n_distinct()
-# get(objectname) |> names() %>% {cat(" ----\n", deparse(., width.cutoff=120), "\n\n", sep="")} # dput() cat(deparse(., width.cutoff=120)), width.cutoff=500 is the max ----  
+# get(objectname) |> names() |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n  ") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----    
 # get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}  ;   # tidyselect: paste(collapse=", ") |> cat("  \n", sep="") ----  
 # cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", sep=""); str(get(objectname), max.level = 2, give.attr = F)
 # # get(objectname) |> select_if(is.numeric) |> summary() #----  
