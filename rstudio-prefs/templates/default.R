@@ -12,7 +12,7 @@
 #|----  Source the templates & check if there is no error  -----------------------|#  
 # "default.R" %>% paste0(env1$path$source_base,"/rstudio-prefs/templates/",.) |> source()
 # options(expressions = 500)
-"default.R" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) %>% source
+"default.R" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> source()
 #|----  Update the templates of RStudio  -----------------------------------------|#  
 # "default.R" %>% {download.file(url = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.), destfile = file.path(.path4APPDATA_RStudio, "templates", .))}
 # "templates-00env1.minimum.Rmd" %>% {download.file(url = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.), destfile = file.path(.path4APPDATA_RStudio, "templates", .))}
