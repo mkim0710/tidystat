@@ -41,9 +41,10 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # Rocker Setup.r
-file.edit("-private/docker run -d -p --restart=always --name -e -v -private.sh")
-# file.edit("Rocker set up.r")
-# file.edit("Rocker set up -private.r")
+
+# paste0(env1$path$source_base_local,"/","-private/docker run -d -p --restart=always --name -e -v -private.sh") |> file.edit()
+# # file.edit("Rocker set up.r")
+# # file.edit("Rocker set up -private.r")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| To paste text in the terminal use Shift + Insert. (Or Ctrl + Shift + v) |#
