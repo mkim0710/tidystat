@@ -42,10 +42,10 @@ knitr::opts_knit$set(global.par = TRUE)
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# cmd /C C:\PROGRA~2\MICROS~1\Edge\APPLIC~1\msedge.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
-# cmd /C C:\PROGRA~2\MICROS~1\Edge\APPLIC~1\msedge.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# cmd /C C:\PROGRA~2\MICROS~1\Edge\APPLIC~1\msedge.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
@@ -532,7 +532,7 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)},'", .backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"  \n", sep="")
 cat("    ________________________________________________________________________    \n")
 cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)},'" |> rmarkdown::render(output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
-    ' if (.Platform$OS.type == "windows") { system("\\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\\" --app=\\"',env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)} |> normalizePath(winslash="/"),'\\"") } else { browseURL("',env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)},'") }',"\n",
+    ' if (.Platform$OS.type == "windows") { system("\\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\\" --app=\\"',env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)} |> normalizePath(winslash="/"),'\\"") } else { browseURL("',env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)},'") }',"\n",
     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)},'", .backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"  \n", sep="")
 ```
   
@@ -542,11 +542,11 @@ cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.file
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
-if (.Platform$OS.type == "windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+if (.Platform$OS.type == "windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat(" * To revert to the last commited file, run the following terminal command:\n", 
     '"git checkout -- ',env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"\n",
     '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"  \n", sep="")
