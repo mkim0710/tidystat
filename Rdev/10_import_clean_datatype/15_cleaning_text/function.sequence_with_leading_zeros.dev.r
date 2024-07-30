@@ -1,5 +1,5 @@
 function.sequence_with_leading_zeros = function(num) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.sequence_with_leading_zeros.dev.r")
     digits_with_leading_zeros = trunc(log10(num)) + 1
     sprintf(paste0("%0",digits_with_leading_zeros,"d"), 1:num)
 }
@@ -18,7 +18,7 @@ function.sequence_with_leading_zeros = function(num) {
 
 
 function.integer2factor_with_leading_zeros = function(vec_int) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.sequence_with_leading_zeros.dev.r")
     if(min(vec_int) < 1) {
         out = NA
         attributes(out)$ErrorMessage = "min(vec_int) < 1"
@@ -54,7 +54,7 @@ tmp.vec3 %>% function.integer2factor_with_leading_zeros
 
 
 function.integer2factor_with_leading_zeros.v2 = function(vec_int) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.sequence_with_leading_zeros.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.sequence_with_leading_zeros.dev.r")
     if(min(vec_int) < 1) {
         out = NA
         attributes(out)$ErrorMessage = "min(vec_int) < 1"

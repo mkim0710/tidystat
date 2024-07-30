@@ -4,7 +4,7 @@
 # utils::browseURL("/Rdev/60_communicate_report_export/data.CreateTableOne.dev.r")
 # source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/data.CreateTableOne.source.r"))
 # # source("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.source.r")
-# # source("https://github.com/mkim0710/tidystat/raw/master/Rdev/60_communicate_report_export/data.CreateTableOne.source.r")
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/60_communicate_report_export/data.CreateTableOne.source.r")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.dev.r")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.dev.Rmd")
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/data.CreateTableOne.source.r")
@@ -36,8 +36,8 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # cmd /C "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="https://github.com/mkim0710/tidystat/blob/master/.Rprofile"    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
-if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  
-if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  \n')  ;  source("https://github.com/mkim0710/tidystat/raw/master/.Rprofile")  ;  .First()  }  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## env1\$path ====
@@ -82,7 +82,7 @@ for(.packagename in c("tidyverse")) {if(!require(.packagename,character.only=TRU
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }  
 if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  
 objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object
-objectname = "source_base_github"; object = "https://github.com/mkim0710/tidystat/raw/master"; .GlobalEnv$env1$path[[objectname]] = object
+objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[objectname]] = object
 if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 objectname = "getwd"; object = getwd(); .GlobalEnv$env1$path[[objectname]] = object
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); .GlobalEnv$env1$path[[objectname]] = object

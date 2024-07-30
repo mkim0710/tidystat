@@ -1,6 +1,6 @@
 
 function.binary2numeric = function(x) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.binary2numeric.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.binary2numeric.dev.r")
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     if (is.character(x)) {
         x = as.factor(x)
@@ -18,7 +18,7 @@ function.binary2numeric = function(x) {
 
 
 x1x2z.partial_correlation0 = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -43,7 +43,7 @@ x1x2z.partial_correlation0 = function(x1, x2, z, cor_method = c("pearson", "spea
     out
 }
 x1x2z.partial_correlation_dbl0 = function(x1, x2, z, cor_method = "pearson") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -61,7 +61,7 @@ x1x2z.partial_correlation_dbl0 = function(x1, x2, z, cor_method = "pearson") {
     out
 }
 x1x2z.partial_correlation_dbl1 = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -88,7 +88,7 @@ x1x2z.partial_correlation_dbl1 = function(x1, x2, z, cor_method = "pearson", con
     out
 }
 x1x2z.partial_correlation_scalar0 = function(x1, x2, z, cor_method = "pearson") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -107,7 +107,7 @@ x1x2z.partial_correlation_scalar0 = function(x1, x2, z, cor_method = "pearson") 
     partial_cor
 }
 x1x2z.partial_correlation_scalar1 = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/x1x2z.patial_correlation.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)

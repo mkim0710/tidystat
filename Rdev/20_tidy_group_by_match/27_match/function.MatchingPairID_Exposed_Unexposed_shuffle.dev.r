@@ -1,6 +1,6 @@
 function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Exposed_Unexposed, var_MatchingPairID = "MatchingPairID", var_Exposed = "Exposed", var_Unexposed = "Unexposed", seed = NULL) {
     # library(tidyverse)
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     if( !identical(colnames(MatchingPairID_Exposed_Unexposed), c(var_MatchingPairID, var_Exposed, var_Unexposed)) ) {
         stop("!identical(colnames(MatchingPairID_Exposed_Unexposed), c(var_MatchingPairID, var_Exposed, var_Unexposed))")
     }
@@ -23,7 +23,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Expo
 }
 
 #@ test) function.MatchingPairID_Exposed_Unexposed_shuffle() ---------
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_CrossScreening_nhanes.fish.match.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_CrossScreening_nhanes.fish.match.rda"))
 nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column |> as_tibble()
 names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
 nhanes.fish.match.rename
@@ -82,7 +82,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle(nhanes.fish.match.rename)
 
 
 function.MatchingPairID_Exposed_Unexposed_shuffle_vec = function(MatchingPairID_Exposed_Unexposed, var_MatchingPairID = "MatchingPairID", var_Exposed = "Exposed", var_Unexposed = "Unexposed", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = 
         MatchingPairID_Exposed_Unexposed[order(MatchingPairID_Exposed_Unexposed$MatchingPairID), c(var_MatchingPairID, var_Exposed, var_Unexposed)] %>% 
@@ -121,7 +121,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) 
 
 
 function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -268,7 +268,7 @@ sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  #
 # [1] 0.05828
 
 
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_CrossScreening_nhanes.fish.match.rda"))
+load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_CrossScreening_nhanes.fish.match.rda"))
 nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column |> as_tibble()
 names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
 nhanes.fish.match.rename
@@ -345,7 +345,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle(MatchingPairID_isExposed_PER
 
 
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairID_isExposed_PERSON_ID, var_MatchingPairID = "MatchingPairID", var_PERSON_ID = "PERSON_ID", seed = NULL) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     
@@ -391,7 +391,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed
 #@ shuffle & calculate Statistic ---------
 
 function.Outcome_mean_diff_byExposed = function(isExposed_Outcome, var_isExposed = "isExposed", var_Outcome = "Outcome") {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     # if (!var_isExposed %in% names(isExposed_Outcome)) {
     #     stop("!var_isExposed %in% names(isExposed_Outcome)")
@@ -415,7 +415,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_StatisticValue = function(
     , .function.calculate.StatisticValue = function.calculate.StatisticValue
     , ...
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")
     # library(tidyverse)
     MatchingPairID_isExposed_PERSON_ID = MatchingPairID_isExposed_PERSON_ID[order(MatchingPairID_isExposed_PERSON_ID[[var_MatchingPairID]]), ]
     

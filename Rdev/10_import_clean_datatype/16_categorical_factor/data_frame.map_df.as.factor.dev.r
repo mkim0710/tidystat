@@ -87,7 +87,7 @@ data_frame.map_df.as.factor = function (
     , colnames.not.as.factor = NULL
     , column.is.character.as.factor = T
 ) {
-    # source("https://github.com/mkim0710/tidystat/raw/master/data_frame.map_df.as.factor.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data_frame.map_df.as.factor.dev.r")
     # df[, colnames(df) %in% colnames_character.as.numeric.as.factor] = 
     #     df[, colnames(df) %in% colnames_character.as.numeric.as.factor] %>%
     #     map_df(function (x) as.factor(as.numeric(x)))
