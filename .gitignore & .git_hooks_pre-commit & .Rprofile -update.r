@@ -43,7 +43,7 @@ if (requireNamespace("rstudioapi")) {
     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
     if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
-file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----
@@ -56,10 +56,10 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); file.edit(pas
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### \$ .gitignore -----
-# # ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+# # ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 # # ".gitignore" |> env1$env.internal$f_file.edit_vscode()
-# .file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% { .[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))} }
-# .file2edit = ".git/hooks/pre-commit" ; if (.Platform$OS.type == "windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% {.[file.exists(.)]} |> file.edit(); file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))} }
+# .file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% { .[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))} }
+# .file2edit = ".git/hooks/pre-commit" ; if (.Platform$OS.type == "windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))} }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #### \% f_path_file.backup_copy_overwrite -----
 f_path_file.backup_copy_overwrite = function(.overwrite_from_path, .overwrite_from_filename.ext, .vec_destination_paths, print.intermediate = FALSE, restrict_execution_path = "D:/OneDrive/[][Rproject]/github_tidystat", createFile = FALSE) {
