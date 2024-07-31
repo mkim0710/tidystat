@@ -369,10 +369,10 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # https://chatgpt.com/c/0a303d17-ec74-41ca-8012-c9921709ad57
 # @@ Dev) f_df.print_byVar() ----  
 
-## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
+## \% f_df.print_byVar = function(df, byVar, n = NULL) { ----
 
 ### \% by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
-f_df.print_byVar = function(df, byVar, n = 10) {
+f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
