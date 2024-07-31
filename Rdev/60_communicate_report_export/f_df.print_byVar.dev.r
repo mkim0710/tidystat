@@ -174,7 +174,7 @@ survival::lung |> summary()
 
 ### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
 ?by
-survival::lung |> as_tibble() |> rownames_to_column() |> 
+survival::lung |> as_tibble() |> rownames_to_column() %>% 
     by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 138 × 10
@@ -217,7 +217,7 @@ data2 = data
 data2$sex[c(1,3,5,7,9)] = NA
 
 ### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
-data2 |> by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
+data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 131 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -255,7 +255,7 @@ data2 |> by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 
 data3 
 data2 |> 
-    mutate(sex = sex |> as.character |> replace_na("N/A")) |> 
+    mutate(sex = sex |> as.character |> replace_na("N/A")) %>% 
     by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 131 × 10
@@ -313,7 +313,7 @@ data3 = data2 |> mutate(sex = c("Male", "Female")[sex]) |>
 data3
 
 ### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
-data3 |> by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
+data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: Female
 # # A tibble: 88 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -415,7 +415,7 @@ f_df.print_byVar = function(df, byVar, n = 99) {
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
     df <- df |>
         mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
-    # df |> by(.,
+    # df %>% by(.,
     #     INDICES = .[[quo_name(byVar)]], 
     #     FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)}
     # )
