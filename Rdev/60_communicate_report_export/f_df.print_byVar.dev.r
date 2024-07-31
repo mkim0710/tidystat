@@ -370,11 +370,22 @@ data2 %>%
 
 
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# https://chatgpt.com/c/0a303d17-ec74-41ca-8012-c9921709ad57
+f_df.print_byVar = function(df, byVar) {
+    byVar <- enquo(byVar)
+    df %>% 
+        mutate(!!quo_name(byVar) := !!byVar %>% as.character() %>% replace_na("N/A")) %>% 
+        by(.$sex, function(df_subset) {
+            df_subset %>%
+                dplyr::select(-!!quo_name(byVar)) %>%
+                print(n = 99)
+        })
+}
 
 
-
-
-
+data2 %>% f_df.print_byVar(sex)
 
 
 #|________________________________________________________________________________|#  
