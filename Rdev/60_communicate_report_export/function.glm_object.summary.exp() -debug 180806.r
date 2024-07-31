@@ -193,9 +193,9 @@ data.svydesign.svyglm_binomial_Depressed |> str(max.level = 1)
 
 
 
-data.svydesign.svyglm_binomial_Depressed |> summary() %>% coef
+data.svydesign.svyglm_binomial_Depressed |> summary() |> coef()
 data.svydesign.svyglm_binomial_Depressed %>% confint
-# > data.svydesign.svyglm_binomial_Depressed |> summary() %>% coef
+# > data.svydesign.svyglm_binomial_Depressed |> summary() |> coef()
 #                                             Estimate Std. Error    t value     Pr(>|t|)
 # (Intercept)                              -0.33034196  0.4419749 -0.7474224 4.562707e-01
 # SSQ_5_6_adequateTRUE                     -1.39922615  0.2742975 -5.1011265 1.278615e-06
