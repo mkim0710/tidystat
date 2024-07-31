@@ -9,21 +9,21 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     if (!identical(rownames(input.ODMatrix), colnames(input.ODMatrix))) {stop("!identical(rownames(input.ODMatrix), colnames(input.ODMatrix))")}
     if (!identical(rownames(input.ODMatrix), sort(rownames(input.ODMatrix)))) {stop("!identical(rownames(input.ODMatrix), sort(rownames(input.ODMatrix)))")}
     
-    PopulationDF0 <- input.PopulationDF %>% mutate(Code = Code %>% as.character) %>% as.data.frame
-    DistanceMatrix0 = input.DistanceMatrix %>% as.matrix
-    ODMatrix0 = input.ODMatrix %>% as.matrix
+    PopulationDF0 <- input.PopulationDF %>% mutate(Code = Code %>% as.character) |> as.data.frame()
+    DistanceMatrix0 = input.DistanceMatrix |> as.matrix()
+    ODMatrix0 = input.ODMatrix |> as.matrix()
     if (!identical(rownames(DistanceMatrix0), PopulationDF0$Code)) {stop("!identical(rownames(DistanceMatrix0), PopulationDF0$Code)")}
     if (!identical(rownames(ODMatrix0), PopulationDF0$Code)) {stop("!identical(rownames(ODMatrix0), PopulationDF0$Code)")}
 
     
     ODMatrix0.marginDF = input.ODMatrix.marginDF %>% mutate(
-        Code = Code %>% as.character
+        Code = Code |> as.character()
         , rowSums = ifelse(rowSums == 0, 1/10^10, rowSums)
         , colSums = ifelse(colSums == 0, 1/10^10, colSums)
-    ) %>% as.data.frame
+    ) |> as.data.frame()
     if (!identical(ODMatrix0.marginDF$Code, PopulationDF0$Code)) {stop("!identical(ODMatrix0.marginDF$Code, PopulationDF0$Code)")}
     
-    CodeDF0 <- PopulationDF0["Code"] %>% mutate(Code = Code %>% as.character) %>% as.data.frame
+    CodeDF0 <- PopulationDF0["Code"] %>% mutate(Code = Code %>% as.character) |> as.data.frame()
     PopDF0 <- PopulationDF0["Pop"] %>% mutate(Pop = Pop %>% as.numeric) |> as.data.frame()  # not necessary?
     CodeDF0.num = CodeDF0 %>% mutate(Code = Code %>% as.integer)
     
@@ -83,7 +83,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
                 , key = key %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
             ) %>% 
             group_by(rowname, key) %>% summarise(value = max(value, na.rm = T)) %>% 
-            spread("key", "value") |> as.data.frame() %>% column_to_rownames %>% as.matrix
+            spread("key", "value") |> as.data.frame() %>% column_to_rownames |> as.matrix()
         
         ODMatrix.new = Results.iteration.list[[length(Results.iteration.list)]]$ODMatrix.new |> 
             as.data.frame() %>% rownames_to_column %>% gather("key", "value", -rowname) %>% 
@@ -92,7 +92,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
                 , key = key %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
             ) %>% 
             group_by(rowname, key) %>% summarise(value = sum(value, na.rm = T)) %>% 
-            spread("key", "value") |> as.data.frame() %>% column_to_rownames %>% as.matrix
+            spread("key", "value") |> as.data.frame() %>% column_to_rownames |> as.matrix()
         
         ODMatrix0.marginDF.new = Results.iteration.list[[length(Results.iteration.list)]]$ODMatrix0.marginDF.new %>% 
             mutate(Code.Cluster = Code.Cluster %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T))

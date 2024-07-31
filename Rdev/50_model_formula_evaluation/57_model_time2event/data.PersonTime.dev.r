@@ -122,7 +122,7 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
 analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%  
     mutate(
-        Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") %>% as.factor
+        Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") |> as.factor()
         , time = PeriodSeq * Interval
         , event = (PrimaryOutcome123456 == 1) & (PrimaryOutcome123456.time <= PeriodSeq * Interval)
         , timesq = time*time
@@ -164,7 +164,7 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
 # > analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
 # +     mutate(PeriodSeq = PrimaryOutcome123456.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%  
 # +     mutate(
-# +         Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") %>% as.factor
+# +         Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") |> as.factor()
 # +         , time = PeriodSeq * Interval
 # +         , event = (PrimaryOutcome123456 == 1) & (PrimaryOutcome123456.time <= PeriodSeq * Interval)
 # +         , timesq = time*time
@@ -302,7 +302,7 @@ analyticDF2797.Outcome2PersonTime7 =
     analyticDF2797 %>% 
     mutate(PeriodSeq = SecondaryOutcomeP1456fhkl.time %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%  
     mutate(
-        Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") %>% as.factor
+        Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") |> as.factor()
         , time = PeriodSeq * Interval
         , event = (SecondaryOutcomeP1456fhkl == 1) & (SecondaryOutcomeP1456fhkl.time <= PeriodSeq * Interval)
         , timesq = time*time

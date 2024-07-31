@@ -408,8 +408,8 @@ Sys.time() - .t0
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1) #----
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]] |> str(max.level = 1) #----
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics |> str(max.level = 1) #----
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix |> str() #-----
-list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix #-----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) |> as.matrix() |> str() #-----
+list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) |> as.matrix() #-----
 # > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics |> str(max.level = 1) #----
 # List of 1000
 #  $ :List of 6
@@ -448,12 +448,12 @@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% c
 #  $ V4          : Factor w/ 21 levels " 5"," 8.312500",..: 20 21 16 1 17 18 10 14 6 15 ...
 #   ..- attr(*, "names")= chr  "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #  $ MacroAverage: num  NA NA 103.8 11.8 11.8 ...
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix |> str() #-----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) |> as.matrix() |> str() #-----
 #  chr [1:21, 1:5] "Actual_1" "Predicted_1" " 74" "12" "12" "56" "0.8235294" "0.8604651" "0.8235294" "0.8604651" "0.8235294" ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:21] "varname4Actual" "varname4Predicted" "TN" "FN" ...
 #   ..$ : chr [1:5] "V1" "V2" "V3" "V4" ...
-# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) %>% as.matrix #-----
+# > list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% column_to_rownames %>% select(V1, V2, V3, V4, MacroAverage) |> as.matrix() #-----
 #                   V1            V2            V3            V4            MacroAverage  
 # varname4Actual    "Actual_1"    "Actual_2"    "Actual_3"    "Actual_4"    NA            
 # varname4Predicted "Predicted_1" "Predicted_2" "Predicted_3" "Predicted_4" NA            
@@ -491,7 +491,7 @@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI |> names() 
 for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI[[i]] =
         cbind(
-            InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics[[i]] |> as.character() %>% as.numeric
+            InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics[[i]] |> as.character() |> as.numeric()
             , list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% map(function(ls) {
                 ls$Metrics
             }) %>% transpose %>% {.[[i]]} %>% {set_names(., 1:length(.))} |> as_tibble() %>% map_df(as.character) %>% map_df(as.numeric) %>% 

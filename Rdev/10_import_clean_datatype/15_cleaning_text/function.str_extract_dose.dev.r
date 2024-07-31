@@ -115,29 +115,29 @@ tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>
 tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
-        str_extract_all("[0-9]+") %>% as.numeric
+        str_extract_all("[0-9]+") |> as.numeric()
 ) %>% {.$concept_name.toupper.METFORMIN.dose} |> as.factor() |> summary() #----
 tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
-        str_extract_all("[0-9]+") %>% as.numeric
+        str_extract_all("[0-9]+") |> as.numeric()
 ) %>% dplyr::filter(concept_name.toupper.METFORMIN.dose < 500) %>% unnest #----
 tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
-        str_extract_all("[0-9]+") %>% as.numeric
+        str_extract_all("[0-9]+") |> as.numeric()
 ) %>% dplyr::filter(is.na(concept_name.toupper.METFORMIN.dose)) #----
 # > tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
 # +     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
 # +         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
-# +         str_extract_all("[0-9]+") %>% as.numeric
+# +         str_extract_all("[0-9]+") |> as.numeric()
 # + ) %>% {.$concept_name.toupper.METFORMIN.dose} |> as.factor() |> summary() #----
 #  100  250  500  750  850 1000 NA's 
 #    1    1   20    3    5   18    1 
 # > tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
 # +     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
 # +         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
-# +         str_extract_all("[0-9]+") %>% as.numeric
+# +         str_extract_all("[0-9]+") |> as.numeric()
 # + ) %>% dplyr::filter(concept_name.toupper.METFORMIN.dose < 500) %>% unnest #----
 # # A tibble: 2 x 8
 #   concept_name.toupper                       n is.combination BrandName concept_name.toupper.rm_BrandName      concept_name.toupper.METFORM~ concept_name.toupper.r~ concept_name.toupper.ME~
@@ -147,7 +147,7 @@ tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
 # > tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
 # +     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
 # +         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
-# +         str_extract_all("[0-9]+") %>% as.numeric
+# +         str_extract_all("[0-9]+") |> as.numeric()
 # + ) %>% dplyr::filter(is.na(concept_name.toupper.METFORMIN.dose)) #----
 # # A tibble: 1 x 8
 #   concept_name.toupper     n is.combination BrandName concept_name.toupper.rm_BrandName concept_name.toupper.METFORMIN concept_name.toupper.rm_METFORMIN concept_name.toupper.METFORMIN.dose

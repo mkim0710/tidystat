@@ -86,7 +86,7 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2,
         , sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), lm_object.confint.df$`97.5 %`)
         , ")"
     ), stringsAsFactors = F)
-    # tmp.df$p_value = lm_object.summary.coef.df$`Pr(>|t|)` %>% round(3) %>% as.character
+    # tmp.df$p_value = lm_object.summary.coef.df$`Pr(>|t|)` %>% round(3) |> as.character()
     tmp.df$p_value = sprintf("%.3f", lm_object.summary.coef.df$`Pr(>|t|)`)
     tmp.df$p_value[lm_object.summary.coef.df$`Pr(>|t|)` <= 0.001] = "<0.001"
     
@@ -201,7 +201,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
         , ")"
     ), stringsAsFactors = F)
 
-    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     varname4Pr = colnames(glm_object.summary.coef.df) %>% grep("^Pr", ., value = T)  # debug 180806) in glm() `Pr(>|z|)`, in svyglm() `Pr(>|t|)`
     tmp.df$p_value = sprintf("%.3f", glm_object.summary.coef.df[[varname4Pr]])
     tmp.df$p_value[glm_object.summary.coef.df[[varname4Pr]] <= 0.001] = "<0.001"
@@ -310,7 +310,7 @@ glm_object %>% function.glm_object.summary.exp
 #         , sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), clogit_object.confint.df$`97.5 %`)
 #         , ")"
 #     ), stringsAsFactors = F)
-#     # tmp.df$p_value = clogit_object.summary.coef.df$`Pr(>|z|)` %>% round(3) %>% as.character
+#     # tmp.df$p_value = clogit_object.summary.coef.df$`Pr(>|z|)` %>% round(3) |> as.character()
 #     tmp.df$p_value = sprintf("%.3f", clogit_object.summary.coef.df$`Pr(>|z|)`)
 #     tmp.df$p_value[clogit_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
 # 
@@ -446,7 +446,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
         , sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), coxph_object.confint.df$`97.5 %`)
         , ")"
     ), stringsAsFactors = F)
-    # tmp.dfpvalue=coxphobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=coxphobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     tmp.df$p_value = sprintf("%.3f", coxph_object.summary.coef.df$`Pr(>|z|)`)
     tmp.df$p_value[coxph_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
 

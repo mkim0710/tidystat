@@ -90,12 +90,12 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
         mutate(rowname = RC, upper.tri = ifelse( R==C, 0, (C-R)/abs(C-R) ) ) %>% column_to_rownames %>% 
         arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
-        # out$varname1 = out$V1 %>% as.character
-        # out$varname2 = out$V2 %>% as.character
+        # out$varname1 = out$V1 |> as.character()
+        # out$varname2 = out$V2 |> as.character()
         # # out$varname1k = ""
         # # out$varname2k = ""
-        varname1vec = out$V1 %>% as.character
-        varname2vec = out$V2 %>% as.character
+        varname1vec = out$V1 |> as.character()
+        varname2vec = out$V2 |> as.character()
         
         if (.n11 == T) {
             # out$n00 = as.integer(NA)
@@ -144,10 +144,10 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
             if (.n11 == T) {
                 tmp.table = table(data.lgl[[varname1vec[k]]], data.lgl[[varname2vec[k]]])
                 # print(tmp.table)
-                # out$n00[k] = tmp.table[1] %>% as.integer
-                # out$n10[k] = tmp.table[2] %>% as.integer
-                # out$n01[k] = tmp.table[3] %>% as.integer
-                # out$n11[k] = tmp.table[4] %>% as.integer
+                # out$n00[k] = tmp.table[1] |> as.integer()
+                # out$n10[k] = tmp.table[2] |> as.integer()
+                # out$n01[k] = tmp.table[3] |> as.integer()
+                # out$n11[k] = tmp.table[4] |> as.integer()
                 out$n00[k] = tmp.table[1]
                 out$n10[k] = tmp.table[2]
                 out$n01[k] = tmp.table[3]
@@ -229,7 +229,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
         }
         
         # browser()
-        out = out %>% as.data.frame
+        out = out |> as.data.frame()
         rownames(out) = out$RC
         out[paste0("R", out$C[which.R.lt.C], "C", out$R[which.R.lt.C]), !names(out) %in% c("rowname", "V1", "V2", "cooccurence", "R", "C", "RC")] = 
             out[which.R.lt.C, !names(out) %in% c("rowname", "V1", "V2", "cooccurence", "R", "C", "RC")]

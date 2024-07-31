@@ -19,12 +19,12 @@ data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
         arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
-        # out$varname1 = out$V1 %>% as.character
-        # out$varname2 = out$V2 %>% as.character
+        # out$varname1 = out$V1 |> as.character()
+        # out$varname2 = out$V2 |> as.character()
         # # out$varname1k = ""
         # # out$varname2k = ""
-        varname1vec = out$V1 %>% as.character
-        varname2vec = out$V2 %>% as.character
+        varname1vec = out$V1 |> as.character()
+        varname2vec = out$V2 |> as.character()
         
         if (.n11 == T) {
             # out$n00 = as.integer(NA)
@@ -68,10 +68,10 @@ data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
             if (.n11 == T) {
                 tmp.table = table(data.lgl[[varname1vec[k]]], data.lgl[[varname2vec[k]]])
                 # print(tmp.table)
-                # out$n00[k] = tmp.table[1] %>% as.integer
-                # out$n10[k] = tmp.table[2] %>% as.integer
-                # out$n01[k] = tmp.table[3] %>% as.integer
-                # out$n11[k] = tmp.table[4] %>% as.integer
+                # out$n00[k] = tmp.table[1] |> as.integer()
+                # out$n10[k] = tmp.table[2] |> as.integer()
+                # out$n01[k] = tmp.table[3] |> as.integer()
+                # out$n11[k] = tmp.table[4] |> as.integer()
                 out$n00[k] = tmp.table[1]
                 out$n10[k] = tmp.table[2]
                 out$n01[k] = tmp.table[3]
@@ -212,12 +212,12 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%
         arrange(R) |> as_tibble()
     if (.Fisher.exact.test == T | .cor.test == T) {
-        # out$varname1 = out$V1 %>% as.character
-        # out$varname2 = out$V2 %>% as.character
+        # out$varname1 = out$V1 |> as.character()
+        # out$varname2 = out$V2 |> as.character()
         # # out$varname1k = ""
         # # out$varname2k = ""
-        varname1vec = out$V1 %>% as.character
-        varname2vec = out$V2 %>% as.character
+        varname1vec = out$V1 |> as.character()
+        varname2vec = out$V2 |> as.character()
 
         if (.cor.test == T) {
             out$cor_pearson = as.numeric(NA)
@@ -338,12 +338,12 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
 #         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
 #         arrange(R) |> as_tibble()
 #     if (.Fisher.exact.test == T | .cor.test == T) {
-#         # out$varname1 = out$V1 %>% as.character
-#         # out$varname2 = out$V2 %>% as.character
+#         # out$varname1 = out$V1 |> as.character()
+#         # out$varname2 = out$V2 |> as.character()
 #         # # out$varname1k = ""
 #         # # out$varname2k = ""
-#         varname1vec = out$V1 %>% as.character
-#         varname2vec = out$V2 %>% as.character
+#         varname1vec = out$V1 |> as.character()
+#         varname2vec = out$V2 |> as.character()
 #         
 #         if (.cor.test == T) {
 #             out$cor_pearson = as.numeric(NA)
@@ -465,12 +465,12 @@ data.lgl.comat.gather2 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(tmp = gsub("^R", "", RC)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
         arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
-        # out$varname1 = out$V1 %>% as.character
-        # out$varname2 = out$V2 %>% as.character
+        # out$varname1 = out$V1 |> as.character()
+        # out$varname2 = out$V2 |> as.character()
         # # out$varname1k = ""
         # # out$varname2k = ""
-        varname1vec = out$V1 %>% as.character
-        varname2vec = out$V2 %>% as.character
+        varname1vec = out$V1 |> as.character()
+        varname2vec = out$V2 |> as.character()
         
         if (.n11 == T) {
             # out$n00 = as.integer(NA)
@@ -514,10 +514,10 @@ data.lgl.comat.gather2 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
             if (.n11 == T) {
                 tmp.table = table(data.lgl[[varname1vec[k]]], data.lgl[[varname2vec[k]]])
                 # print(tmp.table)
-                # out$n00[k] = tmp.table[1] %>% as.integer
-                # out$n10[k] = tmp.table[2] %>% as.integer
-                # out$n01[k] = tmp.table[3] %>% as.integer
-                # out$n11[k] = tmp.table[4] %>% as.integer
+                # out$n00[k] = tmp.table[1] |> as.integer()
+                # out$n10[k] = tmp.table[2] |> as.integer()
+                # out$n01[k] = tmp.table[3] |> as.integer()
+                # out$n11[k] = tmp.table[4] |> as.integer()
                 out$n00[k] = tmp.table[1]
                 out$n10[k] = tmp.table[2]
                 out$n01[k] = tmp.table[3]
@@ -614,12 +614,12 @@ data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(rowname = RC) %>% column_to_rownames %>% 
         arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
-        # out$varname1 = out$V1 %>% as.character
-        # out$varname2 = out$V2 %>% as.character
+        # out$varname1 = out$V1 |> as.character()
+        # out$varname2 = out$V2 |> as.character()
         # # out$varname1k = ""
         # # out$varname2k = ""
-        varname1vec = out$V1 %>% as.character
-        varname2vec = out$V2 %>% as.character
+        varname1vec = out$V1 |> as.character()
+        varname2vec = out$V2 |> as.character()
         
         if (.n11 == T) {
             # out$n00 = as.integer(NA)
@@ -664,10 +664,10 @@ data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
             if (.n11 == T) {
                 tmp.table = table(data.lgl[[varname1vec[k]]], data.lgl[[varname2vec[k]]])
                 # print(tmp.table)
-                # out$n00[k] = tmp.table[1] %>% as.integer
-                # out$n10[k] = tmp.table[2] %>% as.integer
-                # out$n01[k] = tmp.table[3] %>% as.integer
-                # out$n11[k] = tmp.table[4] %>% as.integer
+                # out$n00[k] = tmp.table[1] |> as.integer()
+                # out$n10[k] = tmp.table[2] |> as.integer()
+                # out$n01[k] = tmp.table[3] |> as.integer()
+                # out$n11[k] = tmp.table[4] |> as.integer()
                 out$n00[k] = tmp.table[1]
                 out$n10[k] = tmp.table[2]
                 out$n01[k] = tmp.table[3]
@@ -741,7 +741,7 @@ data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
             # out = out %>% mutate(phi.artanh = .5 * log ( (1+phi)/(1-phi) ))
         }
         # browser()
-        out = out %>% as.data.frame
+        out = out |> as.data.frame()
         rownames(out) = out$RC
         out[paste0("R", out$C[which.R.lt.C], "C", out$R[which.R.lt.C]), !names(out) %in% c("rowname", "V1", "V2", "cooccurence", "R", "C", "RC")] = 
             out[which.R.lt.C, !names(out) %in% c("rowname", "V1", "V2", "cooccurence", "R", "C", "RC")]
@@ -768,12 +768,12 @@ data.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(rowname = RC) %>% column_to_rownames %>% 
         arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
-        # out$varname1 = out$V1 %>% as.character
-        # out$varname2 = out$V2 %>% as.character
+        # out$varname1 = out$V1 |> as.character()
+        # out$varname2 = out$V2 |> as.character()
         # # out$varname1k = ""
         # # out$varname2k = ""
-        varname1vec = out$V1 %>% as.character
-        varname2vec = out$V2 %>% as.character
+        varname1vec = out$V1 |> as.character()
+        varname2vec = out$V2 |> as.character()
         
         if (.n11 == T) {
             # out$n00 = as.integer(NA)
@@ -819,10 +819,10 @@ data.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
             if (.n11 == T) {
                 tmp.table = table(data.lgl[[varname1vec[k]]], data.lgl[[varname2vec[k]]])
                 # print(tmp.table)
-                # out$n00[k] = tmp.table[1] %>% as.integer
-                # out$n10[k] = tmp.table[2] %>% as.integer
-                # out$n01[k] = tmp.table[3] %>% as.integer
-                # out$n11[k] = tmp.table[4] %>% as.integer
+                # out$n00[k] = tmp.table[1] |> as.integer()
+                # out$n10[k] = tmp.table[2] |> as.integer()
+                # out$n01[k] = tmp.table[3] |> as.integer()
+                # out$n11[k] = tmp.table[4] |> as.integer()
                 out$n00[k] = tmp.table[1]
                 out$n10[k] = tmp.table[2]
                 out$n01[k] = tmp.table[3]
@@ -922,12 +922,12 @@ data.lgl.comat.gather5 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
         mutate(rowname = RC) %>% column_to_rownames %>% 
         arrange(R) |> as_tibble()
     if (.n11 == T | .cor.test == T | .Fisher.exact.test == T) {
-        # out$varname1 = out$V1 %>% as.character
-        # out$varname2 = out$V2 %>% as.character
+        # out$varname1 = out$V1 |> as.character()
+        # out$varname2 = out$V2 |> as.character()
         # # out$varname1k = ""
         # # out$varname2k = ""
-        varname1vec = out$V1 %>% as.character
-        varname2vec = out$V2 %>% as.character
+        varname1vec = out$V1 |> as.character()
+        varname2vec = out$V2 |> as.character()
         
         if (.n11 == T) {
             # out$n00 = as.integer(NA)
@@ -973,10 +973,10 @@ data.lgl.comat.gather5 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
             if (.n11 == T) {
                 tmp.table = table(data.lgl[[varname1vec[k]]], data.lgl[[varname2vec[k]]])
                 # print(tmp.table)
-                # out$n00[k] = tmp.table[1] %>% as.integer
-                # out$n10[k] = tmp.table[2] %>% as.integer
-                # out$n01[k] = tmp.table[3] %>% as.integer
-                # out$n11[k] = tmp.table[4] %>% as.integer
+                # out$n00[k] = tmp.table[1] |> as.integer()
+                # out$n10[k] = tmp.table[2] |> as.integer()
+                # out$n01[k] = tmp.table[3] |> as.integer()
+                # out$n11[k] = tmp.table[4] |> as.integer()
                 out$n00[k] = tmp.table[1]
                 out$n10[k] = tmp.table[2]
                 out$n01[k] = tmp.table[3]

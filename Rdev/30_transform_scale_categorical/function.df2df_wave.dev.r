@@ -9,7 +9,7 @@ library(purrr)
 function.df2df_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
     if(!is.numeric(vector_wave)) {
         warning("vector_wave is not numeric"); cat("  \n", sep="")
-        vector_wave = vector_wave %>% as.numeric
+        vector_wave = vector_wave |> as.numeric()
     }
     if(is.null(vector_colname_at_wave)) {
         vector_colname_at_wave = names(df)
@@ -45,7 +45,7 @@ function.df2df_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, 
 # Example usage with vectors
 tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
 tmp.df |> str()
-# tmp.df %>% as.matrix |> str()
+# tmp.df |> as.matrix() |> str()
 # tmp.df %>% head
 # > tmp.df |> str()
 # tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
@@ -55,7 +55,7 @@ tmp.df |> str()
 #   ..- attr(*, "names")= chr [1:10030] "92 >=200" "NA >=200" "148 >=200" "NA >=200" ...
 #  $ A07_GLU60_TR_ge200: Named logi [1:10030] NA NA FALSE NA FALSE NA ...
 #   ..- attr(*, "names")= chr [1:10030] "NA >=200" "NA >=200" "148 >=200" "NA >=200" ...
-# > tmp.df %>% as.matrix |> str()
+# > tmp.df |> as.matrix() |> str()
 #  logi [1:10030, 1:3] FALSE FALSE FALSE NA FALSE FALSE ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
@@ -73,7 +73,7 @@ tmp.df |> str()
 
 # tmp.vector_colname_at_wave <- names(tmp.df)
 # tmp.vector_colname_at_wave
-# tmp.vector_wave <- tmp.vector_colname_at_wave %>% {as.numeric(sub("A0(\\d+)_.*", "\\1", .))} %>% as.numeric
+# tmp.vector_wave <- tmp.vector_colname_at_wave %>% {as.numeric(sub("A0(\\d+)_.*", "\\1", .))} |> as.numeric()
 # tmp.vector_wave
 
 # Applying the function to a dataframe

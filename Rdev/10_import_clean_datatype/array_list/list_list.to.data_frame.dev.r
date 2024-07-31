@@ -82,7 +82,7 @@ list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Ro
     out2 = unlist(out)
     dim(out2) = dim(out)
     dimnames(out2) = dimnames(out)
-    out2 = out2 |> as.data.frame() %>% rownames_to_column %>% as_data_frame
+    out2 = out2 |> as.data.frame() %>% rownames_to_column |> as_data_frame()
     out2
 }
 
@@ -110,23 +110,23 @@ list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Ro
 #@ outer(i, j, function(i, j) {}) ============
 library(tidyverse)
 outer(c("A","B"), 1:3, paste0)
-outer(c("A","B"), 1:3, paste0) %>% as.vector
+outer(c("A","B"), 1:3, paste0) |> as.vector()
 # > outer(c("A","B"), 1:3, paste0)
 #      [,1] [,2] [,3]
 # [1,] "A1" "A2" "A3"
 # [2,] "B1" "B2" "B3"
-# > outer(c("A","B"), 1:3, paste0) %>% as.vector
+# > outer(c("A","B"), 1:3, paste0) |> as.vector()
 # [1] "A1" "B1" "A2" "B2" "A3" "B3"
 
 outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)})
-outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) %>% as.vector
+outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) |> as.vector()
 # > outer(1:2, 1:3, function(i, j) {
 # +     paste0("R", i, "C", j)
 # + })
 #      [,1]   [,2]   [,3]
 # [1,] "R1C1" "R1C2" "R1C3"
 # [2,] "R2C1" "R2C2" "R2C3"
-# > outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) %>% as.vector
+# > outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) |> as.vector()
 # [1] "R1C1" "R2C1" "R1C2" "R2C2" "R1C3" "R2C3"
 
 

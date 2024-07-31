@@ -587,15 +587,15 @@ DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #-----
 # DataSet = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% dplyr::filter(!is.na(Cigar)) %>% dplyr::filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
 DataSet = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% select(-seqnum:-`_merge`, -matches("^count"))
 DataSet = DataSet %>% mutate(
-    Male.lgl = Male %>% as.logical
-    , RaceWhite.lgl = RaceWhite %>% as.logical
-    , HighSchoolLastYear.lgl = HighSchoolLastYear %>% as.logical
-    , College1Year.lgl = College1Year %>% as.logical
-    , CollegeGraduate.lgl = CollegeGraduate %>% as.logical
-    , FamilyIncome_ge7000.lgl = FamilyIncome_ge7000 %>% as.logical
-    , FamilyIncome_ge8000.lgl = FamilyIncome_ge8000 %>% as.logical
-    , PMHx_diabetes.lgl = PMHx_diabetes %>% as.logical
-    , PMHx_highBP.lgl = PMHx_highBP %>% as.logical
+    Male.lgl = Male |> as.logical()
+    , RaceWhite.lgl = RaceWhite |> as.logical()
+    , HighSchoolLastYear.lgl = HighSchoolLastYear |> as.logical()
+    , College1Year.lgl = College1Year |> as.logical()
+    , CollegeGraduate.lgl = CollegeGraduate |> as.logical()
+    , FamilyIncome_ge7000.lgl = FamilyIncome_ge7000 |> as.logical()
+    , FamilyIncome_ge8000.lgl = FamilyIncome_ge8000 |> as.logical()
+    , PMHx_diabetes.lgl = PMHx_diabetes |> as.logical()
+    , PMHx_highBP.lgl = PMHx_highBP |> as.logical()
 )
 
 DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #----

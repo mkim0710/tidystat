@@ -7,7 +7,7 @@ formula4MainModel |> str()
 # Class 'formula'  language Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4| __truncated__
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
-formula4MainModel %>% as.list
+formula4MainModel |> as.list()
 formula4MainModel |> as.list() |> str()
 # > formula4MainModel |> as.list() |> str()
 # List of 3
@@ -25,8 +25,8 @@ formula4MainModel[[3]]
 
 
 
-formula4MainModel %>% as.character
-# > formula4MainModel %>% as.character
+formula4MainModel |> as.character()
+# > formula4MainModel |> as.character()
 # [1] "~"                                                                                                                                        
 # [2] "Depressed"                                                                                                                                
 # [3] "SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year"

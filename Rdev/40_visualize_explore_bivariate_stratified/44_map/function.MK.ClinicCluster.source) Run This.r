@@ -45,8 +45,8 @@ ODMatrix.marginDF0 =
             )
         )
     } %>% mutate(
-        SIDO_CD = Code %>% substr(1, 2) %>% as.factor
-        , SGG_CD = Code %>% substr(1, 5) %>% as.factor
+        SIDO_CD = Code %>% substr(1, 2) |> as.factor()
+        , SGG_CD = Code %>% substr(1, 5) |> as.factor()
     )
 
 
@@ -95,7 +95,7 @@ for (Min.SC in vector_of_Min.SC) {
                     as.character(i.SGG_CD)
                     ]] =
                     function.MK.ClinicCluster(
-                        input.PopulationDF = i.Population.df %>% mutate(Code = Code %>% as.character, Pop = Pop %>% as.integer) %>% as.data.frame
+                        input.PopulationDF = i.Population.df %>% mutate(Code = Code %>% as.character, Pop = Pop %>% as.integer) |> as.data.frame()
                         , input.DistanceMatrix = i.DistanceMatrix
                         , input.ODMatrix = i.ODMatrix
                         , input.ODMatrix.marginDF = i.ODMatrix.marginDF

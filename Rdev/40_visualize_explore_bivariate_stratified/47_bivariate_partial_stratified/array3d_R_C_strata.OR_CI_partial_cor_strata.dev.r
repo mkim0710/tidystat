@@ -22,7 +22,7 @@ function.binary2numeric = function(x) {
 
 array3d_R_C_strata2df = function(array3d_R_C_strata) {
     # library(tidyverse)
-    x1x2z.df = array3d_R_C_strata %>% as.table %>% as.data.frame
+    x1x2z.df = array3d_R_C_strata |> as.table() |> as.data.frame()
     
     index = map(1:nrow(x1x2z.df), function(i) rep(i, x1x2z.df[i,4])) |> unlist()
     out = x1x2z.df[index, ]
@@ -90,7 +90,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
     names(out) = cor_method
     out = out %>% map(unlist)
     out = out |> as.data.frame() 
-    out = out %>% t %>% as.data.frame
+    out = out %>% t |> as.data.frame()
     out
 }
 #@ test) x1x2z.partial_correlation() ------
@@ -170,12 +170,12 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
             , Strata = paste0("Strata", function.sequence_with_leading_zeros(dim(array3d_R_C_strata.rename)[3]))
         )
         N_spread = full_join(
-            apply(array3d_R_C_strata.rename, 1:2, sum) %>% as.table |> as_tibble() %>%
+            apply(array3d_R_C_strata.rename, 1:2, sum) |> as.table() |> as_tibble() %>%
                 unite(Row, Col, col = "Row_Col", sep = "_") %>%
                 spread(key = Row_Col, value = n) %>%
                 add_column(Strata = "", .before = 1)
             ,
-            array3d_R_C_strata.rename %>% as.table |> as_tibble() %>%
+            array3d_R_C_strata.rename |> as.table() |> as_tibble() %>%
                 unite(Row, Col, col = "Row_Col", sep = "_") %>%
                 spread(key = Row_Col, value = n)
             , by = c("Strata", "Row1_Col1", "Row1_Col2", "Row2_Col1", "Row2_Col2")

@@ -22,7 +22,7 @@ function.binary2numeric = function(x) {
 
 array3d_R_C_strata2df = function(array3d_R_C_strata) {
     # library(tidyverse)
-    x1x2z.df = array3d_R_C_strata %>% as.table %>% as.data.frame
+    x1x2z.df = array3d_R_C_strata |> as.table() |> as.data.frame()
     
     index = map(1:nrow(x1x2z.df), function(i) rep(i, x1x2z.df[i,4])) |> unlist()
     out = x1x2z.df[index, ]

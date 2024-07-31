@@ -11,8 +11,8 @@ function.convert_to_standard_name <- function(names_vector, prefix_before_number
         str_replace_all("=", "_eq") %>%
         str_replace_all("[[:punct:]&&[^\\.]]", "") %>%  # Remove all punctuation except dot
         str_replace_all("\\d+\\.\\d+", function(x) gsub("\\.", "_", x)) %>%  # Replace dot in decimal numbers to underbar("_")
-        str_replace_all(" ", "") %>%
-        as.vector
+        str_replace_all(" ", "") |>
+        as.vector()
     if (!is.null(prefix_before_number)) {out.vector = out.vector %>% {if_else(grepl("^[0-9]", .), paste0("a",.), .)} }
     return(out.vector)
 }
@@ -38,8 +38,8 @@ function.ExpressionText2StandardName <- function(vector_ExpressionText) {
         str_replace_all("=", "eq") %>% 
         str_replace_all("[[:punct:]&&[^\\.]]", "") %>%  # Remove all punctuation except dot
         str_replace_all("\\d+\\.\\d+", function(x) gsub("\\.", "_", x)) %>%  # Replace dot in decimal numbers to underbar("_")
-        str_replace_all(" ", "") %>% 
-        as.vector
+        str_replace_all(" ", "") |> 
+        as.vector()
 }
 
 tibble(ExpressionText = c('== 2', '== 1.1', " <= 2", "<2", "=1")) %>% mutate(StandardName = function.ExpressionText2StandardName(ExpressionText))

@@ -243,7 +243,7 @@ data_V1_V2_EdgeWeight.igraph = function(
 #@ test) data_V1_V2_EdgeWeight.igraph() termDocMatrix.t.df.lgl.comat ----
 library(tidyverse)
 load("data/termDocMatrix.rdata")
-termDocMatrix.t.df = termDocMatrix %>% t %>% as_data_frame
+termDocMatrix.t.df = termDocMatrix %>% t |> as_data_frame()
 termDocMatrix.t.df %>% map_df(as.factor) |> summary()
 termDocMatrix.t.df %>% colSums
 termDocMatrix.t.df %>% map_df(as.logical) %>% colSums

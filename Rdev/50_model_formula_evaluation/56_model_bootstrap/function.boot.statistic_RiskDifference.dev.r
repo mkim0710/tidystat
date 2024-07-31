@@ -20,7 +20,7 @@ function.boot.statistic_RiskDifference = function(data, index, glm.formula = Dk_
         data.resampled %>%
         mutate(PeriodSeq = Time2Censor %>% map(function(x) 1L:ceiling(x/Interval))) %>% unnest %>%
         mutate(
-            # Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") %>% as.factor
+            # Period = paste0("(", (PeriodSeq-1)*Interval, ",", PeriodSeq*Interval, "]") |> as.factor()
             # , time = PeriodSeq * Interval
             # , event = (PrimaryOutcome123456 == 1) & (PrimaryOutcome123456.time <= PeriodSeq * Interval)
             # ,

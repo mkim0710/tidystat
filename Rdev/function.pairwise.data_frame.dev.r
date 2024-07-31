@@ -55,12 +55,12 @@ x %>% mutate(tmp = 1) %>%
 #@ outer(i, j, function(i, j) {}) ============
 library(tidyverse)
 outer(c("A","B"), 1:3, paste0)
-outer(c("A","B"), 1:3, paste0) %>% as.vector
+outer(c("A","B"), 1:3, paste0) |> as.vector()
 # > outer(c("A","B"), 1:3, paste0)
 #      [,1] [,2] [,3]
 # [1,] "A1" "A2" "A3"
 # [2,] "B1" "B2" "B3"
-# > outer(c("A","B"), 1:3, paste0) %>% as.vector
+# > outer(c("A","B"), 1:3, paste0) |> as.vector()
 # [1] "A1" "B1" "A2" "B2" "A3" "B3"
 
 
@@ -98,14 +98,14 @@ expand.grid(rowname = c("A","B"), colname = 1:3) %>% mutate(value = paste0(rowna
 
 
 outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)})
-outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) %>% as.vector
+outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) |> as.vector()
 # > outer(1:2, 1:3, function(i, j) {
 # +     paste0("R", i, "C", j)
 # + })
 #      [,1]   [,2]   [,3]
 # [1,] "R1C1" "R1C2" "R1C3"
 # [2,] "R2C1" "R2C2" "R2C3"
-# > outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) %>% as.vector
+# > outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) |> as.vector()
 # [1] "R1C1" "R2C1" "R1C2" "R2C2" "R1C3" "R2C3"
 
 
@@ -121,7 +121,7 @@ c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
 
 
 # outer(letters[1:3], letters[1:3], paste)
-# outer(letters[1:3], letters[1:3], paste) %>% as.vector
+# outer(letters[1:3], letters[1:3], paste) |> as.vector()
 # outer(letters[1:3], letters[1:3], paste) |> as.vector() |> as_tibble()
 # outer(letters[1:3], letters[1:3], paste) |> as.vector() |> as_tibble() %>% separate(value, into = c("var_i", "var_j"))
 # outer(letters[1:3], letters[1:3], paste) |> as.vector() |> as_tibble() %>% separate(value, into = c("var_i", "var_j"), sep = " ")
@@ -130,7 +130,7 @@ c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
 # # [1,] "a a" "a b" "a c"
 # # [2,] "b a" "b b" "b c"
 # # [3,] "c a" "c b" "c c"
-# # > outer(letters[1:3], letters[1:3], paste) %>% as.vector
+# # > outer(letters[1:3], letters[1:3], paste) |> as.vector()
 # # [1] "a a" "b a" "c a" "a b" "b b" "c b" "a c" "b c" "c c"
 # # > outer(letters[1:3], letters[1:3], paste) |> as.vector() |> as_tibble()
 # # # A tibble: 9 x 1
@@ -161,7 +161,7 @@ c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
 
 
 outer(letters[1:3], letters[1:3], paste, sep = "|")
-outer(letters[1:3], letters[1:3], paste, sep = "|") %>% as.vector
+outer(letters[1:3], letters[1:3], paste, sep = "|") |> as.vector()
 outer(letters[1:3], letters[1:3], paste, sep = "|") |> as.vector() |> as_tibble()
 outer(letters[1:3], letters[1:3], paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("var_i", "var_j"), sep = "\\|")
 # > outer(letters[1:3], letters[1:3], paste, sep = "|")
@@ -169,7 +169,7 @@ outer(letters[1:3], letters[1:3], paste, sep = "|") |> as.vector() |> as_tibble(
 # [1,] "a|a" "a|b" "a|c"
 # [2,] "b|a" "b|b" "b|c"
 # [3,] "c|a" "c|b" "c|c"
-# > outer(letters[1:3], letters[1:3], paste, sep = "|") %>% as.vector
+# > outer(letters[1:3], letters[1:3], paste, sep = "|") |> as.vector()
 # [1] "a|a" "b|a" "c|a" "a|b" "b|b" "c|b" "a|c" "b|c" "c|c"
 # > outer(letters[1:3], letters[1:3], paste, sep = "|") |> as.vector() |> as_tibble()
 # # A tibble: 9 x 1
@@ -218,7 +218,7 @@ RACE = c("1: Non-Hispanic White", "2: Non-Hispanic Black", "3: Hispanic", "4: As
 isFemale = c(F, T)
 
 outer(RACE, c(F, T), paste, sep = "|")
-outer(RACE, c(F, T), paste, sep = "|") %>% as.vector
+outer(RACE, c(F, T), paste, sep = "|") |> as.vector()
 outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble()
 outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor)
 outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isFemale"), sep = "\\|") %>% map_df(as.factor) |> str()
@@ -230,7 +230,7 @@ outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separat
 # [3,] "3: Hispanic|FALSE"           "3: Hispanic|TRUE"          
 # [4,] "4: Asian|FALSE"              "4: Asian|TRUE"             
 # [5,] "5: Other|FALSE"              "5: Other|TRUE"             
-# > outer(RACE, c(F, T), paste, sep = "|") %>% as.vector
+# > outer(RACE, c(F, T), paste, sep = "|") |> as.vector()
 #  [1] "1: Non-Hispanic White|FALSE" "2: Non-Hispanic Black|FALSE" "3: Hispanic|FALSE"          
 #  [4] "4: Asian|FALSE"              "5: Other|FALSE"              "1: Non-Hispanic White|TRUE" 
 #  [7] "2: Non-Hispanic Black|TRUE"  "3: Hispanic|TRUE"            "4: Asian|TRUE"              
