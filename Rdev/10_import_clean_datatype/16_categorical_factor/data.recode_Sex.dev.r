@@ -13,12 +13,12 @@ recode(factor_vec, c = "Apple", .default = levels(factor_vec))
 
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX |> str() #-----
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
-CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% as.character %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
+CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX |> as.character() %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX |> str() #-----
 #  Factor w/ 2 levels "1","2": 2 1 1 2 2 2 1 1 1 2 ...
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
 #  Factor w/ 2 levels "Male","Female": 2 1 1 2 2 2 1 1 1 2 ...
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% as.character %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX |> as.character() %>% recode(`1` = "Male", `2` = "Female") |> str() #-----
 #  chr [1:283798] "Female" "Male" "Male" "Female" "Female" "Female" "Male" "Male" "Male" "Female" "Male" "Male" "Female" "Male" "Female" "Female" "Male" "Male" "Female" "Female" "Female" "Female" "Female" "Male" "Male" "Male" ...
 
 str(CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX == "2") #----

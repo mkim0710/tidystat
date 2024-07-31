@@ -329,7 +329,7 @@ termDocMatrix.t.df.lgl.comat |> str()
 #   ..$ : chr [1:21] "analysis" "applications" "code" "computing" ...
 #   ..$ : chr [1:21] "analysis" "applications" "code" "computing" ...
 
-termDocMatrix.t.df.lgl.comat.gather = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
+termDocMatrix.t.df.lgl.comat.gather = termDocMatrix.t.df.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -338,7 +338,7 @@ termDocMatrix.t.df.lgl.comat.gather = termDocMatrix.t.df.lgl.comat %>% as.data.f
 termDocMatrix.t.df.lgl.comat.gather
 identical(nrow(termDocMatrix.t.df.lgl.comat.gather), ncol(termDocMatrix.t.df.lgl.comat) * nrow(termDocMatrix.t.df.lgl.comat))
 # save(termDocMatrix.t.df.lgl.comat.gather, file = "data/termDocMatrix.t.df.lgl.comat.gather.rda")
-# > termDocMatrix.t.df.lgl.comat.gather = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
+# > termDocMatrix.t.df.lgl.comat.gather = termDocMatrix.t.df.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
 # +     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -367,7 +367,7 @@ termDocMatrix.t.df.lgl.comat.gather
 
 
 
-termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
+termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -375,7 +375,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>%
     arrange(R) |> as_tibble() %>% dplyr::filter(R < C)
 termDocMatrix.t.df.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(termDocMatrix.t.df.lgl.comat.gather.upper.tri)), ncol(termDocMatrix.t.df.lgl.comat) * {nrow(termDocMatrix.t.df.lgl.comat) - 1} / 2)
-# > termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
+# > termDocMatrix.t.df.lgl.comat.gather.upper.tri = termDocMatrix.t.df.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
 # +     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -691,7 +691,7 @@ load("data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple).rda")
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% dplyr::filter(R < C)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat %>% as.data.frame %>% rownames_to_column %>% 
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
 # +     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 

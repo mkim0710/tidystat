@@ -14,12 +14,12 @@ function.learn_wt.list = function(
 
     Dist_DM.list = list()
     Dist_DM.list[[1]] = (
-        data %>% group_by(DM) %>% summarise(WT.sum_by_DM = sum(WT)) %>% as.data.frame %>% column_to_rownames("DM") %>% t %>% {.[1,]}
+        data %>% group_by(DM) %>% summarise(WT.sum_by_DM = sum(WT)) |> as.data.frame() %>% column_to_rownames("DM") %>% t %>% {.[1,]}
     ) / sum(data$WT)
 
     Dist_SDH.list = list()
     Dist_SDH.list[[1]] = (
-        data %>% group_by(SDH) %>% summarise(WT.sum_by_SDH = sum(WT)) %>% as.data.frame %>% column_to_rownames("SDH") %>% t %>% {.[1,]}
+        data %>% group_by(SDH) %>% summarise(WT.sum_by_SDH = sum(WT)) |> as.data.frame() %>% column_to_rownames("SDH") %>% t %>% {.[1,]}
     ) / sum(data$WT)
 
     # sub-function for calculating cost ----
@@ -49,13 +49,13 @@ function.learn_wt.list = function(
         # for every iteration, updated distribution of DM given the updated weights will be stored ----
         Dist_DM.list[[i]]= (
             data %>% mutate(WT = wt.normalized.list[[i]]) %>% 
-                group_by(DM) %>% summarise(WT.sum_by_DM = sum(WT)) %>% as.data.frame %>% column_to_rownames("DM") %>% t %>% {.[1,]}
+                group_by(DM) %>% summarise(WT.sum_by_DM = sum(WT)) |> as.data.frame() %>% column_to_rownames("DM") %>% t %>% {.[1,]}
         )
         
         # for every iteration, updated distribution of SDH given the updated weights will be stored ----
         Dist_SDH.list[[i]] = (
             data %>% mutate(WT = wt.normalized.list[[i]]) %>% 
-                group_by(SDH) %>% summarise(WT.sum_by_SDH = sum(WT)) %>% as.data.frame %>% column_to_rownames("SDH") %>% t %>% {.[1,]}
+                group_by(SDH) %>% summarise(WT.sum_by_SDH = sum(WT)) |> as.data.frame() %>% column_to_rownames("SDH") %>% t %>% {.[1,]}
         )
         
         # for every iteration, updated cost given the updated weights will be stored ----

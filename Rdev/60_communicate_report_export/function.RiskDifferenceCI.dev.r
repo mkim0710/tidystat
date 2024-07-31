@@ -892,8 +892,8 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # # structure(c(341L, 45L, 108L, 60L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("FALSE", "TRUE"), Exposure = c("FALSE", "TRUE")), class = "table")
 # 
-# AnalyticDataset.table %>% as.vector |> dput() #----
-# # > AnalyticDataset.table %>% as.vector |> dput() #----
+# AnalyticDataset.table |> as.vector() |> dput() #----
+# # > AnalyticDataset.table |> as.vector() |> dput() #----
 # # c(341L, 45L, 108L, 60L)
 # 
 # AnalyticDataset.table["TRUE", "TRUE"]
@@ -928,14 +928,14 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # # structure(c(60L, 108L, 45L, 341L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("TRUE", "FALSE"), Exposure = c("TRUE", "FALSE")), class = "table")
 # 
-# AnalyticDataset.table[2:1, 2:1] %>% as.vector #----
-# AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector #----
-# AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector |> paste(collapse = " ") #----
-# # > AnalyticDataset.table[2:1, 2:1] %>% as.vector #----
+# AnalyticDataset.table[2:1, 2:1] |> as.vector() #----
+# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----
+# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----
+# # > AnalyticDataset.table[2:1, 2:1] |> as.vector() #----
 # # [1]  60 108  45 341
-# # > AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector #----
+# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----
 # # [1]  60  45 108 341
-# # > AnalyticDataset.table[2:1, 2:1] %>% t %>% as.vector |> paste(collapse = " ") #----
+# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----
 # # [1] "60 45 108 341"
 # 
 # 

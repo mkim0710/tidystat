@@ -80,9 +80,9 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>%
             cbind(
                 df %>% t %>% addmargins(margin = 2) #----
                 , 
-                df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+                df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
                 , 
-                df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+                df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
             )
         }
     )
@@ -311,7 +311,7 @@ df = tibble::tribble(
 
 df %>% t %>% addmargins(margin = 2) #----
 df %>% ungroup %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
-df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
 # > df %>% t %>% addmargins(margin = 2) #----
 #                                   Sum
 # Intervention                0   1   1
@@ -378,7 +378,7 @@ df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.n
 # SecondaryOutcome20        0.004 0.000
 # SecondaryOutcome21        0.026 0.000
 # SecondaryOutcomeP1456fhkl 0.654 0.591
-# > df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+# > df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
 #                            [,1]  [,2]  [,3]
 # Intervention              0.000 0.006 0.002
 # Control                   0.004 0.000 0.002
@@ -418,16 +418,16 @@ df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.n
 cbind(
     df %>% t %>% addmargins(margin = 2) #----
     , 
-    df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+    df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
     , 
-    df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+    df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
 )
 # > cbind(
 # +     df %>% t %>% addmargins(margin = 2) #----
 # +     , 
-# +     df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+# +     df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
 # +     , 
-# +     df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+# +     df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
 # + )
 #                                   Sum                                       
 # Intervention                0   1   1 0.000 0.006 0.002   0.00   0.63   0.24
@@ -503,9 +503,9 @@ data %>%
             cbind(
                 df %>% t %>% addmargins(margin = 2) #----
                 , 
-                df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+                df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
                 , 
-                df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+                df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
             )
         }
     )
@@ -518,9 +518,9 @@ data %>%
 # +             cbind(
 # +                 df %>% t %>% addmargins(margin = 2) #----
 # +                 , 
-# +                 df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+# +                 df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
 # +                 , 
-# +                 df %>% as.matrix %>% addmargins(margin = 1) %>% as.data.frame %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+# +                 df %>% as.matrix %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
 # +             )
 # +         }
 # +     )

@@ -88,11 +88,11 @@
 # ) {
 #     .mydata.strata_list = .mydata %>% data.strata_list(.vars4strata = .vars4strata)
 #     out = .mydata.strata_list %>% map(function(df) {
-#         out = df[[.exposure]] %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
+#         out = df[[.exposure]] %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
 #         parent.x = get(".x", envir = parent.frame())
 #         attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
 #         names(out)[1] = attr(out, "parent_name")
-#         out = out %>% t %>% as.data.frame %>% rownames_to_column
+#         out = out %>% t |> as.data.frame() %>% rownames_to_column
 #         out
 #     }) %>% reduce(bind_rows)
 #     out$total = rowSums(out[, 2:3], na.rm = T)
@@ -295,19 +295,19 @@ rhc_mydata.strata_list[[1]]
 # 10     1     0     0      0     0       0     0      0 18.16299      0      65         0     1 [10,20) 0_[10,20)
 # # ... with 12 more rows
 rhc_mydata.strata_list %>% map(function(df) {
-    out = df$treatment %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
+    out = df$treatment %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
     parent.x = get(".x", envir = parent.frame())
     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
     names(out)[1] = attr(out, "parent_name")
-    out = out %>% t %>% as.data.frame %>% rownames_to_column
+    out = out %>% t |> as.data.frame() %>% rownames_to_column
     out
 }) %>% reduce(bind_rows)
 # > rhc_mydata.strata_list %>% map(function(df) {
-# +     out = df$treatment %>% table %>% as.data.frame %>% column_to_rownames(var = ".")
+# +     out = df$treatment %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
 # +     parent.x = get(".x", envir = parent.frame())
 # +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
 # +     names(out)[1] = attr(out, "parent_name")
-# +     out = out %>% t %>% as.data.frame %>% rownames_to_column
+# +     out = out %>% t |> as.data.frame() %>% rownames_to_column
 # +     out
 # + }) %>% reduce(bind_rows)
 #        rowname   0   1

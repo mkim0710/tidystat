@@ -45,7 +45,7 @@ public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.om
 # 10              5: Other             TRUE    36    61819.94
 
 #@ -----
-df_RACE_isCollege_MS_PhD = outer(levels(public_v2_112917.levels123$RACE), c(F, T), paste, sep = "|") %>% as.vector |> as_tibble() %>% separate(value, into = c("RACE", "isCollege_MS_PhD"), sep = "\\|") %>% map_df(as.factor) %>% 
+df_RACE_isCollege_MS_PhD = outer(levels(public_v2_112917.levels123$RACE), c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isCollege_MS_PhD"), sep = "\\|") %>% map_df(as.factor) %>% 
     mutate(isCollege_MS_PhD = as.logical(isCollege_MS_PhD))
 df_RACE_isCollege_MS_PhD
 # > df_RACE_isCollege_MS_PhD

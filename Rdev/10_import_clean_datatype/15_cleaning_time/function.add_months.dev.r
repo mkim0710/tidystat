@@ -18,7 +18,7 @@ ceiling_date(as.Date("2014-02-28") %m+% months(6), unit = "month") - days(1)
 tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rmNA01_2018 %>% 
     select(no, SGG_CD_bar, `first visit.x`) %>% 
     mutate(
-        t0 = `first visit.x` %>% as.character %>% as.Date(format = "%Y%m%d")
+        t0 = `first visit.x` |> as.character() %>% as.Date(format = "%Y%m%d")
         , t0.floor_month = t0 %>% {lubridate::floor_date(., "month")}
         , tn1m.floor_month = t0.floor_month %m-% months(1) %>% {lubridate::floor_date(., "month")}
         , tn2m.floor_month = t0.floor_month %m-% months(2) %>% {lubridate::floor_date(., "month")}
@@ -37,7 +37,7 @@ tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rm
 # > tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rmNA01_2018 %>% 
 # +     select(no, SGG_CD_bar, `first visit.x`) %>% 
 # +     mutate(
-# +         t0 = `first visit.x` %>% as.character %>% as.Date(format = "%Y%m%d")
+# +         t0 = `first visit.x` |> as.character() %>% as.Date(format = "%Y%m%d")
 # +         , t0.floor_month = t0 %>% {lubridate::floor_date(., "month")}
 # +         , tn1m.floor_month = t0.floor_month %m-% months(1) %>% {lubridate::floor_date(., "month")}
 # +         , tn2m.floor_month = t0.floor_month %m-% months(2) %>% {lubridate::floor_date(., "month")}

@@ -238,20 +238,20 @@ binconf(10, 100, method = "all")
 
 
 #@@@ -----
-binom.test(10, 100)$conf.int %>% as.vector #-----
-# > binom.test(10, 100)$conf.int %>% as.vector #-----
+binom.test(10, 100)$conf.int |> as.vector() #-----
+# > binom.test(10, 100)$conf.int |> as.vector() #-----
 # [1] 0.04900469 0.17622260
 
-prop.test(10, 100, correct = T)$conf.int %>% as.vector #-----
+prop.test(10, 100, correct = T)$conf.int |> as.vector() #-----
 scoreint(100, 0.1) |> unlist() |> unname()
-# > prop.test(10, 100, correct = T)$conf.int %>% as.vector #-----
+# > prop.test(10, 100, correct = T)$conf.int |> as.vector() #-----
 # [1] 0.0516301 0.1803577
 # > scoreint(100, 0.1) |> unlist() |> unname()
 # [1] 0.0516301 0.1803577
 
-prop.test(10, 100, correct = F)$conf.int %>% as.vector #-----
+prop.test(10, 100, correct = F)$conf.int |> as.vector() #-----
 scoreint(100, 0.1, cc=F) |> unlist() |> unname()
-# > prop.test(10, 100, correct = F)$conf.int %>% as.vector #-----
+# > prop.test(10, 100, correct = F)$conf.int |> as.vector() #-----
 # [1] 0.05522914 0.17436566
 # > scoreint(100, 0.1, cc=F) |> unlist() |> unname()
 # [1] 0.05522914 0.17436566

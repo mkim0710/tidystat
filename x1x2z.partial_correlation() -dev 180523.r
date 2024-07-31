@@ -25,7 +25,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
     )
     names(out) = cor_method
     out = out %>% map(unlist)
-    out = out %>% as.data.frame 
+    out = out |> as.data.frame() 
     out = out %>% t %>% as.data.frame
     out
 }
@@ -101,7 +101,7 @@ out = map(
 )
 names(out) = cor_method
 out = out %>% map(unlist)
-out = out %>% as.data.frame 
+out = out |> as.data.frame() 
 out = out %>% t %>% as.data.frame
 out
 # > out
@@ -150,7 +150,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
     }
     names(out) = cor_method
     out = out %>% map(unlist)
-    out = out %>% as.data.frame 
+    out = out |> as.data.frame() 
     out = out %>% t %>% as.data.frame
     out
 }
@@ -203,7 +203,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 # 3.
 # withVisible(eval(quote(`_fseq`(`_lhs`)), env, env)) 
 # 2.
-# out %>% as.data.frame 
+# out |> as.data.frame() 
 # 1.
 # x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, 
 #     z = stackloss$Acid.Conc., p.value = T) 
@@ -380,7 +380,7 @@ out |> str()
 # #   ..- attr(*, "names")= chr [1:6] "unadjusted_cor" "unadjusted_corp.value" "unadjusted_corstatistic.S" "partial_cor" ...
 # #  $ kendall : Named num [1:6] 0.59555 0.000671 3.401353 0.445522 0.005307 ...
 # #   ..- attr(*, "names")= chr [1:6] "unadjusted_cor" "unadjusted_corp.value" "unadjusted_corstatistic.z" "partial_cor" ...
-# out = out %>% as.data.frame 
+# out = out |> as.data.frame() 
 # # > out = out %>% as.data.frame
 # # Error in (function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE,  : 
 # #   arguments imply differing number of rows: 10, 6
@@ -521,8 +521,8 @@ out %>% bind_rows %>% rownames_to_column
 # #   partial_corstatistic.S <dbl>, unadjusted_corstatistic.z <dbl>, partial_corstatistic.z <dbl>
 
 
-out %>% bind_rows %>% as.data.frame |> str()
-# > out %>% bind_rows %>% as.data.frame |> str()
+out %>% bind_rows |> as.data.frame() |> str()
+# > out %>% bind_rows |> as.data.frame() |> str()
 # 'data.frame':	3 obs. of  14 variables:
 #  $ unadjusted_cor           : num  0.782 0.733 0.596
 #  $ unadjusted_corconf.int1  : num  0.529 NA NA
@@ -541,8 +541,8 @@ out %>% bind_rows %>% as.data.frame |> str()
 
 
 
-out %>% bind_rows %>% as.data.frame %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
-# > out %>% bind_rows %>% as.data.frame %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
+out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
+# > out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
 # 'data.frame':	3 obs. of  14 variables:
 #  $ unadjusted_cor           : num  0.782 0.733 0.596
 #  $ unadjusted_corconf.int1  : num  0.529 NA NA
@@ -821,12 +821,12 @@ out$pearson$unadjusted_cor.conf.int %>% setNames(c("LL", "UL")) |> str()
 #  atomic [1:2] 0.529 0.907
 #  - attr(*, "conf.level")= num 0.95
 
-out$pearson$unadjusted_cor.conf.int %>% as.vector %>% setNames(c("LL", "UL"))
-out$pearson$unadjusted_cor.conf.int %>% as.vector %>% setNames(c("LL", "UL")) |> str()
-# > out$pearson$unadjusted_cor.conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL"))
+out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL")) |> str()
+# > out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL"))
 #        LL        UL 
 # 0.5285640 0.9073086 
-# > out$pearson$unadjusted_cor.conf.int %>% as.vector %>% setNames(c("LL", "UL")) |> str()
+# > out$pearson$unadjusted_cor.conf.int |> as.vector() %>% setNames(c("LL", "UL")) |> str()
 #  Named num [1:2] 0.529 0.907
 #  - attr(*, "names")= chr [1:2] "LL" "UL"
 out |> str()
@@ -995,7 +995,7 @@ out %>% map(function(ls) ls %>% map(unname)) |> str()
 
 
 
-# > out %>% bind_rows %>% as.data.frame |> str()
+# > out %>% bind_rows |> as.data.frame() |> str()
 # 'data.frame':	3 obs. of  14 variables:
 #  $ unadjusted_cor           : num  0.782 0.733 0.596
 #  $ unadjusted_corconf.int1  : num  0.529 NA NA
@@ -1078,7 +1078,7 @@ out |> str()
 
 
 
-out %>% bind_rows %>% as.data.frame %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
+out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
 
 
 
@@ -1128,11 +1128,11 @@ out = map(
         # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         #   Cannot compute exact p-value with ties
         unadjusted_cor = cor.test(x1.binary2numeric, x2.binary2numeric, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-        if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+        if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
         names(unadjusted_cor) = paste0("unadjusted_cor.", names(unadjusted_cor)) 
         names(unadjusted_cor)[1] = "unadjusted_cor"
         partial_cor = cor.test(resid1, resid2, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-        if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+        if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
         names(partial_cor) = paste0("partial_cor.", names(partial_cor))
         names(partial_cor)[1] = "partial_cor"
         c(unadjusted_cor, partial_cor)  # concategate two lists
@@ -1194,7 +1194,7 @@ out |> str()
 #   .. ..- attr(*, "names")= chr "z"
 
 out |> unlist() %>% as.data.frame
-# > out |> unlist() %>% as.data.frame ----
+# > out |> unlist() |> as.data.frame() ----
 #                                                .
 # pearson.unadjusted_cor.cor          7.818523e-01
 # pearson.unadjusted_cor.conf.int.LL  5.285640e-01
@@ -1345,12 +1345,12 @@ out = map(
         # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         #   Cannot compute exact p-value with ties
         unadjusted_cor = cor.test(x1.binary2numeric, x2.binary2numeric, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-        if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+        if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
         names(unadjusted_cor) = paste0("unadjusted_cor.", names(unadjusted_cor))
         unadjusted_cor = unadjusted_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
         names(unadjusted_cor)[1] = "unadjusted_cor"
         partial_cor = cor.test(resid1, resid2, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-        if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+        if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
         partial_cor = partial_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
         names(partial_cor) = paste0("partial_cor.", names(partial_cor))
         names(partial_cor)[1] = "partial_cor"
@@ -1514,12 +1514,12 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
                 # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
                 #   Cannot compute exact p-value with ties
                 unadjusted_cor = cor.test(x1.binary2numeric, x2.binary2numeric, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-                if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+                if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
                 names(unadjusted_cor) = paste0("unadjusted_cor.", names(unadjusted_cor))
                 unadjusted_cor = unadjusted_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
                 names(unadjusted_cor)[1] = "unadjusted_cor"
                 partial_cor = cor.test(resid1, resid2, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-                if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+                if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
                 partial_cor = partial_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
                 names(partial_cor) = paste0("partial_cor.", names(partial_cor))
                 names(partial_cor)[1] = "partial_cor"

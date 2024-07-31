@@ -8,8 +8,8 @@ formula4MainModel |> str()
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
 formula4MainModel %>% as.list
-formula4MainModel %>% as.list |> str()
-# > formula4MainModel %>% as.list |> str()
+formula4MainModel |> as.list() |> str()
+# > formula4MainModel |> as.list() |> str()
 # List of 3
 #  $ : symbol ~
 #  $ : symbol Depressed
@@ -62,14 +62,14 @@ formula4MainModel %>% {paste(.[[2]], .[[1]], .[[3]])}
 # [2] "Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6"
 # [3] "Depressed ~ HUQ_3_lt_1year"         
 
-formula4MainModel %>% as.character %>% {paste(.[2], .[1], .[3])}
-# > formula4MainModel %>% as.character %>% {paste(.[2], .[1], .[3])}
+formula4MainModel |> as.character() %>% {paste(.[2], .[1], .[3])}
+# > formula4MainModel |> as.character() %>% {paste(.[2], .[1], .[3])}
 # [1] "Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year"
 
 
 
 function.formula2text = function(formula) {
-    formula %>% as.character %>% {paste(.[2], .[1], .[3])}
+    formula |> as.character() %>% {paste(.[2], .[1], .[3])}
 }
 
 formula4MainModel %>% function.formula2text

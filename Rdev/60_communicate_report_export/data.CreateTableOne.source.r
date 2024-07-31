@@ -113,13 +113,13 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     # > ObjectName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.is.na.TableOne_bySEX
     
-    # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.TableOne_by_SEX = CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+    # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.TableOne_by_SEX = CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
     #     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     
     # browser()
     assign(ObjectName.TableOne_byExposure, 
            DataSet.select %>% 
-               {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+               {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
     assign(ObjectName.is.na.TableOne_byExposure, 
@@ -127,8 +127,8 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
                map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
                # mutate( !!rlang::sym(VarNames4Exposure) := CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[[VarNames4Exposure]]) %>%
-               cbind(DataSet.select[VarNames4Exposure]) %>%
-               as.data.frame %>%
+               cbind(DataSet.select[VarNames4Exposure]) |>
+               as.data.frame() %>%
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
     
@@ -167,8 +167,8 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     
     
     function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
-        DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) %>% 
-            as.data.frame %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+        DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
+            as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
             select(-p, -test, p, test) %>%
             {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
             add_column(VarType = as.character(NA), .before = "Variable") %>%
@@ -211,8 +211,8 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     }
     
     function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
-        DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) %>% 
-            as.data.frame %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+        DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
+            as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
             select(-p, -test, p, test) %>%
             {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
             add_column(VarType = as.character(NA), .before = "Variable") %>%

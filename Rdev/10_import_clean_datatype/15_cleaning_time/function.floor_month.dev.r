@@ -8,7 +8,7 @@
 tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rmNA01_2018 %>% 
     select(`first visit.x`) %>% 
     mutate(
-        t0 = `first visit.x` %>% as.character %>% as.Date(format = "%Y%m%d")
+        t0 = `first visit.x` |> as.character() %>% as.Date(format = "%Y%m%d")
         , t0.year = lubridate::year(t0)
         , t0.month = lubridate::month(t0)
         , t0.yday = lubridate::yday(t0)
@@ -20,7 +20,7 @@ tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rm
 # > tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rmNA01_2018 %>% 
 # +     select(`first visit.x`) %>% 
 # +     mutate(
-# +         t0 = `first visit.x` %>% as.character %>% as.Date(format = "%Y%m%d")
+# +         t0 = `first visit.x` |> as.character() %>% as.Date(format = "%Y%m%d")
 # +         , t0.year = lubridate::year(t0)
 # +         , t0.month = lubridate::month(t0)
 # +         , t0.yday = lubridate::yday(t0)

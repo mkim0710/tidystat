@@ -16,7 +16,7 @@ data.NA.recode = function(data, numeric_NA_recode_into_0 = T, character_NA_recod
             if (reorder_factor == T) {
                 x = x %>% as.character
                 x[is.na(x)] = character_NA_recode_into
-                x = x %>% as.factor  # In this way, "" will be the first level
+                x = x |> as.factor()  # In this way, "" will be the first level
             } else {
                 x = x %>% factor(exclude = NULL)
                 levels(x)[is.na(levels(x))] = character_NA_recode_into  # In this way, "character_NA_recode_into" will be the first level

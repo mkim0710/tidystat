@@ -606,7 +606,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ .tmp\$objectname = "f_df.tribble_construct" ----
 # fun.tribble_paste = env1$env.internal$tribble_paste
-# fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
+# fun.t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% fun.tribble_paste}
 .tmp$objectname = "f_df.tribble_construct"
 .tmp$object = function(df) {
     out = env1$env.internal$tribble_construct(df)
@@ -623,7 +623,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 .tmp$objectname = "f_df.transpose"
 .tmp$object = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
-    out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
+    out = df %>% t |> as.data.frame() %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }                                    
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {

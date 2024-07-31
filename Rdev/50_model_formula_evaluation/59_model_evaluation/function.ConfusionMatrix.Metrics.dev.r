@@ -204,8 +204,8 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
         label_value
     }) %>% bind_rows # %>% rownames_to_column
     
-    # out$Metrics = out$Metrics %>% column_to_rownames %>% t %>% as.data.frame %>% rownames_to_column %>% 
-    out$Metrics = out$Metrics %>% t %>% as.data.frame 
+    # out$Metrics = out$Metrics %>% column_to_rownames %>% t |> as.data.frame() %>% rownames_to_column %>% 
+    out$Metrics = out$Metrics %>% t |> as.data.frame() 
     
     # out$Metrics |> dput()
     # out$Metrics %>% map_df(as.numeric) |> dput()
@@ -823,7 +823,7 @@ mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * 
 
 
 #@ TO DO LIST =====
-# InputMatrix.tbl = InputMatrix %>% as.data.frame %>% rownames_to_column("Actual")
+# InputMatrix.tbl = InputMatrix |> as.data.frame() %>% rownames_to_column("Actual")
 # 
 # ConfusionMatriActual; ConfusionMatrix4
 # 

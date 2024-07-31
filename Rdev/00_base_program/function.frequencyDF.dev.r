@@ -12,7 +12,7 @@ c(3L, 4L, 6L, 9L, 2L, 9L, 9L, 6L, 6L, 1L, 2L, 2L, 7L, 4L, 7L,
 set.seed(1); sample(1:9, 30, replace = T) %>% table
 set.seed(1); sample(1:9, 30, replace = T) %>% table |> dput() #----
 set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.matrix |> dput() #----
-set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.data.frame |> dput() #----
+set.seed(1); sample(1:9, 30, replace = T) %>% table |> as.data.frame() |> dput() #----
 # > set.seed(1); sample(1:9, 30, replace = T) %>% table
 # .
 # 1 2 3 4 5 6 7 8 9 
@@ -25,14 +25,14 @@ set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.data.frame |> dput() 
 # structure(c(2L, 5L, 2L, 6L, 1L, 4L, 4L, 1L, 5L), .Dim = c(9L, 
 # 1L), .Dimnames = list(c("1", "2", "3", "4", "5", "6", "7", "8", 
 # "9"), NULL))
-# > set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.data.frame |> dput() #----
+# > set.seed(1); sample(1:9, 30, replace = T) %>% table |> as.data.frame() |> dput() #----
 # structure(list(. = structure(1:9, .Label = c("1", "2", "3", "4", 
 # "5", "6", "7", "8", "9"), class = "factor"), Freq = c(2L, 5L, 
 # 2L, 6L, 1L, 4L, 4L, 1L, 5L)), class = "data.frame", row.names = c(NA, 
 # -9L))
 
 
-set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.data.frame %>% tribble_paste #----
+set.seed(1); sample(1:9, 30, replace = T) %>% table |> as.data.frame() %>% tribble_paste #----
 tibble::tribble(
                      ~., ~Freq,
                     "1",    2L,
@@ -72,12 +72,12 @@ set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.matrix
 # 9    5
 
 set.seed(1); sample(1:9, 30, replace = T) %>% table %>% {.[9]}
-set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.vector %>% {.[9]}
+set.seed(1); sample(1:9, 30, replace = T) %>% table |> as.vector() %>% {.[9]}
 set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.matrix %>% {.[9,]}
 # > set.seed(1); sample(1:9, 30, replace = T) %>% table %>% {.[9]}
 # 9 
 # 5 
-# > set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.vector %>% {.[9]}
+# > set.seed(1); sample(1:9, 30, replace = T) %>% table |> as.vector() %>% {.[9]}
 # [1] 5
 # > set.seed(1); sample(1:9, 30, replace = T) %>% table %>% as.matrix %>% {.[9,]}
 # 9 

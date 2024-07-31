@@ -9,8 +9,8 @@
 #         , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset 
 #     )
 # analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates = glm(formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + . , data = data, family = binomial)
-# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column |> as_tibble() #----
-# # > analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) %>% as.data.frame %>% rownames_to_column |> as_tibble() #----
+# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----
+# # > analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----
 # # # A tibble: 18 x 5
 # #    rowname                                   `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 # #    <chr>                                              <dbl>   <dbl>    <dbl>      <dbl>

@@ -25,7 +25,7 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
     if (!identical(ODMatrix0.marginDF$Code, PopulationDF0$Code)) {stop("!identical(ODMatrix0.marginDF$Code, PopulationDF0$Code)")}
     
     CodeDF0 <- PopulationDF0["Code"] %>% mutate(Code = Code %>% as.character) %>% as.data.frame
-    PopDF0 <- PopulationDF0["Pop"] %>% mutate(Pop = Pop %>% as.numeric) %>% as.data.frame  # not necessary?
+    PopDF0 <- PopulationDF0["Pop"] %>% mutate(Pop = Pop %>% as.numeric) |> as.data.frame()  # not necessary?
     CodeDF0.num = CodeDF0 %>% mutate(Code = Code %>% as.integer)
     
     
@@ -77,23 +77,23 @@ function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, i
             PopulationDF.new %>% 
             group_by(Code.Cluster) %>% summarise(Pop.Cluster = sum(Pop.Cluster, na.rm = T))
         
-        DistanceMatrix.new = Results.iteration.list[[length(Results.iteration.list)]]$DistanceMatrix.new %>% 
-            as.data.frame %>% rownames_to_column %>% gather("key", "value", -rowname) %>% 
+        DistanceMatrix.new = Results.iteration.list[[length(Results.iteration.list)]]$DistanceMatrix.new |> 
+            as.data.frame() %>% rownames_to_column %>% gather("key", "value", -rowname) %>% 
             mutate(
                 rowname = rowname %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
                 , key = key %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
             ) %>% 
             group_by(rowname, key) %>% summarise(value = max(value, na.rm = T)) %>% 
-            spread("key", "value") %>% as.data.frame %>% column_to_rownames %>% as.matrix
+            spread("key", "value") |> as.data.frame() %>% column_to_rownames %>% as.matrix
         
-        ODMatrix.new = Results.iteration.list[[length(Results.iteration.list)]]$ODMatrix.new %>% 
-            as.data.frame %>% rownames_to_column %>% gather("key", "value", -rowname) %>% 
+        ODMatrix.new = Results.iteration.list[[length(Results.iteration.list)]]$ODMatrix.new |> 
+            as.data.frame() %>% rownames_to_column %>% gather("key", "value", -rowname) %>% 
             mutate(
                 rowname = rowname %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
                 , key = key %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
             ) %>% 
             group_by(rowname, key) %>% summarise(value = sum(value, na.rm = T)) %>% 
-            spread("key", "value") %>% as.data.frame %>% column_to_rownames %>% as.matrix
+            spread("key", "value") |> as.data.frame() %>% column_to_rownames %>% as.matrix
         
         ODMatrix0.marginDF.new = Results.iteration.list[[length(Results.iteration.list)]]$ODMatrix0.marginDF.new %>% 
             mutate(Code.Cluster = Code.Cluster %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T))

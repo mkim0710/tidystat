@@ -116,7 +116,7 @@ tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
         str_extract_all("[0-9]+") %>% as.numeric
-) %>% {.$concept_name.toupper.METFORMIN.dose} %>% as.factor |> summary() #----
+) %>% {.$concept_name.toupper.METFORMIN.dose} |> as.factor() |> summary() #----
 tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
@@ -131,7 +131,7 @@ tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
 # +     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN %>% 
 # +         str_extract_all("[0-9]+ ?MG") %>% map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
 # +         str_extract_all("[0-9]+") %>% as.numeric
-# + ) %>% {.$concept_name.toupper.METFORMIN.dose} %>% as.factor |> summary() #----
+# + ) %>% {.$concept_name.toupper.METFORMIN.dose} |> as.factor() |> summary() #----
 #  100  250  500  750  850 1000 NA's 
 #    1    1   20    3    5   18    1 
 # > tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
