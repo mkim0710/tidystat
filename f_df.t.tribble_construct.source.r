@@ -726,14 +726,16 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 ## \$ .tmp\$objectname = "f_df.print_byVar" ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.print_byVar.dev.r  
 .tmp$objectname = "f_df.print_byVar"
-.tmp$object = function(df, byVar) {
+.tmp$object = function(df, byVar, n = 99) {
     byVar <- enquo(byVar)
+    df = df %>% as_tibble()
+    if(!"Num" %in% names(df)) df = df %>% rownames_to_column("Num") %>% mutate(Num = Num %>% as.integer())
     df %>% 
         mutate(!!quo_name(byVar) := !!byVar %>% as.character() %>% replace_na("N/A")) %>% 
         by(.$sex, function(df_subset) {
             df_subset %>%
                 dplyr::select(-!!quo_name(byVar)) %>%
-                print(n = 99)
+                print(n = n)
         })
 }
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
