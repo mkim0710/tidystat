@@ -367,7 +367,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://chatgpt.com/c/0a303d17-ec74-41ca-8012-c9921709ad57
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -382,7 +382,7 @@ f_df.print_byVar = function(df, byVar, n = 99) {
 data3 |> f_df.print_byVar(sex)
 
 
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -395,7 +395,7 @@ f_df.print_byVar = function(df, byVar, n = 99) {
 }
 data3 |> f_df.print_byVar(sex)
 
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -409,7 +409,7 @@ f_df.print_byVar = function(df, byVar, n = 99) {
 data3 |> f_df.print_byVar(sex)
 
 
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -423,7 +423,7 @@ f_df.print_byVar = function(df, byVar, n = 99) {
 data3 |> f_df.print_byVar(sex)
 
 
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -438,7 +438,7 @@ f_df.print_byVar = function(df, byVar, n = 99) {
 data3 |> f_df.print_byVar(sex)
 
 
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
