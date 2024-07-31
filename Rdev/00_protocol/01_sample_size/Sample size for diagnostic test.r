@@ -75,13 +75,13 @@ p0 = p + 0.07
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====
-# > ({  n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2  })#----
+# > ({  n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2  })#----  
 # [1] 256.29
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----  
 # [1] 125.4354
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====  
 # [1] 1254.354
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====  
 # [1] 139.3727
 
 
@@ -98,13 +98,13 @@ p0 = p + 0.1
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====
-# > ({  n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2  })#----
+# > ({  n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2  })#----  
 # [1] 125.5821
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----  
 # [1] 61.46334
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====  
 # [1] 614.6334
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====  
 # [1] 68.2926
 
 
@@ -120,13 +120,13 @@ p0 = p + 0.1
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====
 ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====
-# > ({  n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2  })#----
+# > ({  n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2  })#----  
 # [1] 164.8265
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2  })#----  
 # [1] 80.67064
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / Prevalence })# Sample size for adequate sensitivity =====  
 # [1] 806.7064
-# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====
+# > ({  n = p * (1-p) * ( qnorm(1-alpha/2) / (p-p0) )^2 / (1-Prevalence) })# Sample size for adequate specificity =====  
 # [1] 89.63404
 
 
@@ -141,7 +141,7 @@ p0 = p + 0.1
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# http://powerandsamplesize.com/Calculators/Test-1-Proportion/1-Sample-Equality ----
+# http://powerandsamplesize.com/Calculators/Test-1-Proportion/1-Sample-Equality ----  
 # Chow S, Shao J, Wang H. 2008. Sample Size Calculations in Clinical Research. 2nd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
 # Chow S, Shao J, Wang H, Lokhnygina Y. 2017. Sample Size Calculations in Clinical Research. 3rd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
 # Chapter 4 Large Sample Tests for Proportions
@@ -153,7 +153,7 @@ p0=0.3
 alpha=0.05
 beta=0.20
 ({  n = p * (1-p) * ( ( qnorm(1-alpha/2) + qnorm(1-beta) ) / (p-p0) )^2  })#----
-# > (n=p*(1-p)*((qnorm(1-alpha/2)+qnorm(1-beta))/(p-p0))^2)#----
+# > (n=p*(1-p)*((qnorm(1-alpha/2)+qnorm(1-beta))/(p-p0))^2)#----  
 # [1] 49.0555
 # > ceiling(n) # 50
 # [1] 50
@@ -171,7 +171,7 @@ p2 = 0.5
 # sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -181,7 +181,7 @@ pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternati
 #           power = 0.8
 #     alternative = two.sided
 # 
-# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -198,7 +198,7 @@ stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in
 stata.out
 stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power oneproportion 0.3 0.5, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -222,7 +222,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.3 0.5, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...

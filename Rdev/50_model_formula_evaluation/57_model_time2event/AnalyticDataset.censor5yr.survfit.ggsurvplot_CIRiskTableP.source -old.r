@@ -1,6 +1,6 @@
 # plot_surv200401.censor5yr.survfit.ggsurvplot_CIRiskTableP from .r
 
-# [Plot] Stratified Kaplan-Meier Survival Curve ---------
+# [Plot] Stratified Kaplan-Meier Survival Curve ---------  
 # ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
 library(tidyverse)
 # library(survival)
@@ -56,7 +56,7 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = even
 
 
 
-#--------------
+#--------------  
 library(tidyverse)
 
 library(readxl)
@@ -115,7 +115,7 @@ AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = 
 AnalyticDataset.coxph |> summary() #----
 AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.coxph |> summary() #----
+# > AnalyticDataset.coxph |> summary() #----  
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 # 
@@ -143,7 +143,7 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
 # Wald test            = 73.57  on 5 df,   p=2e-14
 # Score (logrank) test = 109.2  on 5 df,   p=<2e-16
 # 
-# > AnalyticDataset.coxph %>% cox.zph #----
+# > AnalyticDataset.coxph %>% cox.zph #----  
 #           rho chisq       p
 # Group4  0.184  2.61 0.10588
 # Group5  0.188  2.67 0.10231
@@ -215,7 +215,7 @@ AnalyticDataset.censor10yr.coxph <- coxph(Surv(time = time, event = event) ~ Gro
 AnalyticDataset.censor10yr.coxph |> summary() #----
 AnalyticDataset.censor10yr.coxph %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.censor10yr.coxph %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.censor10yr.coxph |> summary() #----
+# > AnalyticDataset.censor10yr.coxph |> summary() #----  
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ Group, data = AnalyticDataset.censor10yr)
 # 
@@ -243,7 +243,7 @@ AnalyticDataset.censor10yr.coxph %>% cox.zph %>% ggcoxzph #----
 # Wald test            = 73.57  on 5 df,   p=2e-14
 # Score (logrank) test = 109.2  on 5 df,   p=<2e-16
 # 
-# > AnalyticDataset.censor10yr.coxph %>% cox.zph #----
+# > AnalyticDataset.censor10yr.coxph %>% cox.zph #----  
 #           rho chisq       p
 # Group4  0.184  2.61 0.10588
 # Group5  0.188  2.67 0.10231
@@ -278,7 +278,7 @@ AnalyticDataset.coxph_byPredictedStage <- coxph(Surv(time = time, event = event)
 AnalyticDataset.coxph_byPredictedStage |> summary() #----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.coxph_byPredictedStage |> summary() #----
+# > AnalyticDataset.coxph_byPredictedStage |> summary() #----  
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ PredictedStage, 
 #     data = AnalyticDataset)
@@ -303,7 +303,7 @@ AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
 # Wald test            = 21063  on 3 df,   p=<2e-16
 # Score (logrank) test = 28354  on 3 df,   p=<2e-16
 # 
-# > AnalyticDataset.coxph_byPredictedStage %>% cox.zph #----
+# > AnalyticDataset.coxph_byPredictedStage %>% cox.zph #----  
 #                      rho chisq         p
 # PredictedStageII  0.1349   820 2.82e-180
 # PredictedStageIII 0.1341   817 8.84e-180
@@ -371,7 +371,7 @@ AnalyticDataset.censor10yr.coxph_byPredictedStage <- coxph(Surv(time = time, eve
 AnalyticDataset.censor10yr.coxph_byPredictedStage |> summary() #----
 AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
-# > AnalyticDataset.censor10yr.coxph_byPredictedStage |> summary() #----
+# > AnalyticDataset.censor10yr.coxph_byPredictedStage |> summary() #----  
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ PredictedStage, 
 #     data = AnalyticDataset.censor10yr)
@@ -396,7 +396,7 @@ AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
 # Wald test            = 21063  on 3 df,   p=<2e-16
 # Score (logrank) test = 28354  on 3 df,   p=<2e-16
 # 
-# > AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph #----
+# > AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph #----  
 #                      rho chisq         p
 # PredictedStageII  0.1349   820 2.82e-180
 # PredictedStageIII 0.1341   817 8.84e-180

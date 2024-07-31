@@ -34,7 +34,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -50,7 +50,7 @@ if (requireNamespace("rstudioapi")) {
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r")
@@ -74,7 +74,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 #     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -219,25 +219,25 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # # Found subpath: .path4read = "./data"
 # # filename.ext = "fhs.index100le10.rds"
 # # "fhs.index100le10.rds"
-# # ----
+# # ----  
 # # tibble::tribble(
 # #                ~filename, ~size,   ~bytes,    ~KB,      ~MB,        ~GB,
 # #   "fhs.index100le10.rds", 35747, "35,747", "34.9", "0.0341", "3.33e-05"
 # #   )
-# # ----
+# # ----  
 # # dim(get(objectname)) = c(450L, 81L)
 # # Warning:  varname for ID not identified. 
 # # Warning:  varname for ID not identified. 
 # # Warning:  varname for ID not identified. 
-# # ----
+# # ----  
 # # > names(get(objectname))
 # # c("randid", "death", "angina", "hospmi", "mi_fchd", "anychd", "stroke", "cvd", "hyperten", "timeap", "timemi", "timemifc", "timechd", "timestrk", "timecvd", "timedth", "timehyp", "sex1", "time1", "age1", "sysbp1", "diabp1", "bpmeds1", "cursmoke1", "cigpday1", "educ1", "totchol1", "hdlc1", "ldlc1", "bmi1", "glucose1", "diabetes1", "heartrte1", "prevap1", "prevchd1", "prevmi1", "prevstrk1", "prevhyp1", "sex2", "time2", "age2", "sysbp2", "diabp2", "bpmeds2", "cursmoke2", "cigpday2", "educ2", "totchol2", "hdlc2", "ldlc2", "bmi2", "glucose2", "diabetes2", "heartrte2", "prevap2", "prevchd2", "prevmi2", "prevstrk2", "prevhyp2", "sex3", "time3", "age3", "sysbp3", "diabp3", "bpmeds3", "cursmoke3", "cigpday3", "educ3", "totchol3", "hdlc3", "ldlc3", "bmi3", "glucose3", "diabetes3", "heartrte3", "prevap3", "prevchd3", "prevmi3", "prevstrk3", "prevhyp3", "index100")
 # # 
-# # ----
+# # ----  
 # # > names(get(objectname))
 # # randid, death, angina, hospmi, mi_fchd, anychd, stroke, cvd, hyperten, timeap, timemi, timemifc, timechd, timestrk, timecvd, timedth, timehyp, sex1, time1, age1, sysbp1, diabp1, bpmeds1, cursmoke1, cigpday1, educ1, totchol1, hdlc1, ldlc1, bmi1, glucose1, diabetes1, heartrte1, prevap1, prevchd1, prevmi1, prevstrk1, prevhyp1, sex2, time2, age2, sysbp2, diabp2, bpmeds2, cursmoke2, cigpday2, educ2, totchol2, hdlc2, ldlc2, bmi2, glucose2, diabetes2, heartrte2, prevap2, prevchd2, prevmi2, prevstrk2, prevhyp2, sex3, time3, age3, sysbp3, diabp3, bpmeds3, cursmoke3, cigpday3, educ3, totchol3, hdlc3, ldlc3, bmi3, glucose3, diabetes3, heartrte3, prevap3, prevchd3, prevmi3, prevstrk3, prevhyp3, index100
 # # 
-# # ----
+# # ----  
 # # > str(get(objectname), max.level = 2, give.attr = F)
 # # tibble [450 × 81] (S3: tbl_df/tbl/data.frame)
 # #  $ randid   : num [1:450] 24721 54224 83398 84815 95541 ...
@@ -321,9 +321,9 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # #  $ prevstrk3: num [1:450] 0 NA 0 0 NA 0 0 0 0 0 ...
 # #  $ prevhyp3 : num [1:450] 1 NA 1 1 NA 0 0 1 1 0 ...
 # #  $ index100 : int [1:450] 3 3 8 8 3 10 8 2 4 3 ...
-# # ----
+# # ----  
 # # > as_tibble(get(objectname))
-# # ----
+# # ----  
 # # > tail(rownames_to_column(get(objectname)))
 # # # A tibble: 6 × 82
 # #   rowname  randid death angina hospmi mi_fchd anychd stroke   cvd hyperten timeap timemi timemifc timechd timestrk timecvd timedth timehyp  sex1 time1  age1 sysbp1 diabp1
@@ -355,23 +355,23 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # # Found subpath: .path4read = "./data"
 # # filename.ext = "fhs.index100le10.rds"
 # # "fhs.index100le10.rds"
-# # ----
+# # ----  
 # # tibble::tribble(
 # #                ~filename, ~size,   ~bytes,    ~KB,      ~MB,        ~GB,
 # #   "fhs.index100le10.rds", 35747, "35,747", "34.9", "0.0341", "3.33e-05"
 # #   )
-# # ----
+# # ----  
 # # dim(get(objectname)) = c(450L, 81L)
 # # n_distinct(get(objectname)$randid) = 450L
-# # ----
+# # ----  
 # # > names(get(objectname))
 # # c("randid", "death", "angina", "hospmi", "mi_fchd", "anychd", "stroke", "cvd", "hyperten", "timeap", "timemi", "timemifc", "timechd", "timestrk", "timecvd", "timedth", "timehyp", "sex1", "time1", "age1", "sysbp1", "diabp1", "bpmeds1", "cursmoke1", "cigpday1", "educ1", "totchol1", "hdlc1", "ldlc1", "bmi1", "glucose1", "diabetes1", "heartrte1", "prevap1", "prevchd1", "prevmi1", "prevstrk1", "prevhyp1", "sex2", "time2", "age2", "sysbp2", "diabp2", "bpmeds2", "cursmoke2", "cigpday2", "educ2", "totchol2", "hdlc2", "ldlc2", "bmi2", "glucose2", "diabetes2", "heartrte2", "prevap2", "prevchd2", "prevmi2", "prevstrk2", "prevhyp2", "sex3", "time3", "age3", "sysbp3", "diabp3", "bpmeds3", "cursmoke3", "cigpday3", "educ3", "totchol3", "hdlc3", "ldlc3", "bmi3", "glucose3", "diabetes3", "heartrte3", "prevap3", "prevchd3", "prevmi3", "prevstrk3", "prevhyp3", "index100")
 # # 
-# # ----
+# # ----  
 # # > names(get(objectname))
 # # randid, death, angina, hospmi, mi_fchd, anychd, stroke, cvd, hyperten, timeap, timemi, timemifc, timechd, timestrk, timecvd, timedth, timehyp, sex1, time1, age1, sysbp1, diabp1, bpmeds1, cursmoke1, cigpday1, educ1, totchol1, hdlc1, ldlc1, bmi1, glucose1, diabetes1, heartrte1, prevap1, prevchd1, prevmi1, prevstrk1, prevhyp1, sex2, time2, age2, sysbp2, diabp2, bpmeds2, cursmoke2, cigpday2, educ2, totchol2, hdlc2, ldlc2, bmi2, glucose2, diabetes2, heartrte2, prevap2, prevchd2, prevmi2, prevstrk2, prevhyp2, sex3, time3, age3, sysbp3, diabp3, bpmeds3, cursmoke3, cigpday3, educ3, totchol3, hdlc3, ldlc3, bmi3, glucose3, diabetes3, heartrte3, prevap3, prevchd3, prevmi3, prevstrk3, prevhyp3, index100
 # # 
-# # ----
+# # ----  
 # # > str(get(objectname), max.level = 2, give.attr = F)
 # # tibble [450 × 81] (S3: tbl_df/tbl/data.frame)
 # #  $ randid   : num [1:450] 24721 54224 83398 84815 95541 ...
@@ -455,9 +455,9 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # #  $ prevstrk3: num [1:450] 0 NA 0 0 NA 0 0 0 0 0 ...
 # #  $ prevhyp3 : num [1:450] 1 NA 1 1 NA 0 0 1 1 0 ...
 # #  $ index100 : int [1:450] 3 3 8 8 3 10 8 2 4 3 ...
-# # ----
+# # ----  
 # # > as_tibble(get(objectname))
-# # ----
+# # ----  
 # # > tail(rownames_to_column(get(objectname)))
 # # # A tibble: 6 × 82
 # #   rowname  randid death angina hospmi mi_fchd anychd stroke   cvd hyperten timeap timemi timemifc timechd timestrk timecvd timedth timehyp  sex1 time1  age1 sysbp1 diabp1

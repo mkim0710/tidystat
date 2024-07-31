@@ -30,7 +30,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -47,7 +47,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 
 
 
@@ -55,13 +55,13 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-### \$ .gitignore -----
+### \$ .gitignore -----  
 # # ".gitignore" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 # # ".gitignore" |> env1$env.internal$f_file.edit_vscode()
 # .file2edit = ".gitignore" ; if (.Platform$OS.type == "windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% { .[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))} }
 # .file2edit = ".git/hooks/pre-commit" ; if (.Platform$OS.type == "windows") { .file2edit |> env1$env.internal$f_file.edit_vscode() } else { if(file.exists(.file2edit)) {.file2edit %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))} }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-#### \% f_path_file.backup_copy_overwrite -----
+#### \% f_path_file.backup_copy_overwrite -----  
 f_path_file.backup_copy_overwrite = function(.overwrite_from_path, .overwrite_from_filename.ext, .vec_destination_paths, print.intermediate = FALSE, restrict_execution_path = "D:/OneDrive/[][Rproject]/github_tidystat", createFile = FALSE) {
     .vec_destination_paths = .vec_destination_paths |> unique()
     .overwrite_from_path.filename.ext = paste0(.overwrite_from_path, "/", .overwrite_from_filename.ext)
@@ -78,10 +78,10 @@ f_path_file.backup_copy_overwrite = function(.overwrite_from_path, .overwrite_fr
     }
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-#### \$ vec_Rproject_names.gitignore_update -----
+#### \$ vec_Rproject_names.gitignore_update -----  
 vec_Rproject_names.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject_KoGES_AA10030")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-##### .overwrite_from_filename.ext = ".gitignore" ----
+##### .overwrite_from_filename.ext = ".gitignore" ----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 .overwrite_from_filename.ext = ".gitignore"
 .vec_destination_paths = c(
@@ -95,7 +95,7 @@ vec_Rproject_names.gitignore_update = c("Rproject_MH", "Rproject_Rmd", "Rproject
 )
 f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename.ext, .vec_destination_paths, print.intermediate = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-##### .overwrite_from_filename.ext = ".gitattributes" ----
+##### .overwrite_from_filename.ext = ".gitattributes" ----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 .overwrite_from_filename.ext = ".gitattributes"
 .vec_destination_paths = c(
@@ -109,7 +109,7 @@ f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename
 )
 f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename.ext, .vec_destination_paths, print.intermediate = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-##### .overwrite_from_filename.ext = ".Rprofile" ----
+##### .overwrite_from_filename.ext = ".Rprofile" ----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 .overwrite_from_filename.ext = ".Rprofile"
 .vec_destination_paths = c(
@@ -119,7 +119,7 @@ f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename
 )
 f_path_file.backup_copy_overwrite(.overwrite_from_path, .overwrite_from_filename.ext, .vec_destination_paths, print.intermediate = TRUE, createFile = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-##### .overwrite_from_filename.ext = "git/hooks/pre-commit" ----
+##### .overwrite_from_filename.ext = "git/hooks/pre-commit" ----  
 .overwrite_from_path = "D:/OneDrive/[][Rproject]/github_tidystat/git/hooks"
 .overwrite_from_filename.ext = "pre-commit"
 .vec_destination_paths = c(

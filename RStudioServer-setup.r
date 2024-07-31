@@ -6,7 +6,7 @@
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://posit.cloud/spaces/100015/content/6373521"  # Shared Workspace@v - PositCloud@v
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ Check path -----  
-##@ "~" |> normalizePath(winslash="/") ====
+##@ "~" |> normalizePath(winslash="/") ====  
 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @MAGB760M13700KF D:/OneDrive/Documents |#
@@ -81,7 +81,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # To check default paths in the Server.
 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n")
 # "/" |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="")
@@ -169,7 +169,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"', sep="")} }
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
@@ -195,7 +195,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -206,7 +206,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #@@ START) rstudio-prefs -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ rstudio-prefs ----
+### @ rstudio-prefs ----  
 #|  @ rstudio-prefs  
 
 # file.edit(file.path(.path4APPDATA_RStudio, filename))
@@ -227,7 +227,7 @@ file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ install.packages ----
+### @ install.packages ----  
 #|  @ install.packages  
 # https://gopensource.com/going-through-docker-hell-once-243199d6f7a1
 for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
@@ -235,7 +235,7 @@ for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ templates ----
+### @ templates ----  
 #|  @ templates  
 # if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
 # filename.ext = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
@@ -249,16 +249,16 @@ for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.
 #@@ START) copilot @ RStudio Server -----  
 
 
-###@ ROOT=TRUE ----
+###@ ROOT=TRUE ----  
 # https://stackoverflow.com/questions/64562427/how-to-add-rocker-verse-configuration-root-true-to-docker-compose-file
 
-###@ PASSWORD= ----
+###@ PASSWORD= ----  
 # https://github.com/rocker-org/rocker-versioned2/issues/237
 # https://github.com/rocker-org/rocker/issues/255
 # https://github.com/rocker-org/rocker-versioned2/issues/294
 # https://github.com/rocker-org/rocker-versioned2/pull/298
 
-###@ copilot-enabled=1 ------
+###@ copilot-enabled=1 ------  
 # https://github.com/rstudio/rstudio/issues/13612
 # https://github.com/rstudio/rstudio/issues/13718
 # https://chatgpt.com/c/4b8f922c-327a-4b0b-871e-18c07575a4d9
@@ -282,7 +282,7 @@ quit(save="no")
 #@@ START) git setup -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ .gitignore ----
+### @ .gitignore ----  
 #|  @ .gitignore  
 
 # Caution) do not forget to add .gitignore to .gitignore
@@ -293,16 +293,16 @@ quit(save="no")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ Git/SVN > SSH Key ----
+### @ Git/SVN > SSH Key ----  
 #|  @ Git/SVN > SSH Key  
 # https://github.com/maurolepore/cloudgithub
 # Connecting rstudio.cloud and GitHub
 # Tools > Global Options > Git/SVN > SSH key
 
-##@ > "~" |> normalizePath(winslash="/") ----
-#### [1] "D:/OneDrive/Documents"  #@ MAGB760M13700KF ----
-#### [1] "/home/rstudio"  #@ Rocker ----
-#### [1] "/home/rstudio"  #@ Rocker ----
+##@ > "~" |> normalizePath(winslash="/") ----  
+#### [1] "D:/OneDrive/Documents"  #@ MAGB760M13700KF ----  
+#### [1] "/home/rstudio"  #@ Rocker ----  
+#### [1] "/home/rstudio"  #@ Rocker ----  
 path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
 "~/.ssh/id_rsa.pub" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 "~/.ssh/id_rsa" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
@@ -331,8 +331,8 @@ base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ git config --global user.email "mkim0710@gmail.com" ----
-### @ git config --global user.name "mhkim@rocker@MAGB760M13700KF" ----
+### @ git config --global user.email "mkim0710@gmail.com" ----  
+### @ git config --global user.name "mhkim@rocker@MAGB760M13700KF" ----  
 #|  @ git config --global user.email "mkim0710@gmail.com"  
 #|  @ git config --global user.name "mhkim@rocker@MAGB760M13700KF"  
 # >>> /usr/bin/git commit -F /tmp/Rtmpw9zfpP/git-commit-message-8a2e196d1d.txt --amend
@@ -358,7 +358,7 @@ base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ git remote set-url origin git@github.com:mkim0710/Rproject_.git ----
+### @ git remote set-url origin git@github.com:mkim0710/Rproject_.git ----  
 #|  @ git remote set-url origin git@github.com:mkim0710/Rproject_.git  
 # https://happygitwithr.com/ssh-keys.html#ssh-keys
 # How to see the remote URL(s) associated with the current repo in the shell:
@@ -401,7 +401,7 @@ system("git remote -v")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ install-git-hooks.sh ----
+### @ install-git-hooks.sh ----  
 #|  @ install-git-hooks.sh  
 # To ignore csv files > 10 MB
 # "cp git/hooks/pre-commit .git/hooks/pre-commit" |> system(intern = TRUE)
@@ -411,7 +411,7 @@ system("git remote -v")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ git config --global pull.rebase false ----
+### @ git config --global pull.rebase false ----  
 #|  @ git config --global pull.rebase false  
 #|  
 # hint: You have divergent branches and need to specify how to reconcile them.
@@ -439,7 +439,7 @@ system("git remote -v")
 #@@ START) Posit.Cloud -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ file upload ----
+### @ file upload ----  
 #|  @ file upload  
 # https://community.rstudio.com/t/how-can-i-upload-csv-or-excel-files-existing-in-computer-to-rstudio-cloud/23621
 
@@ -447,7 +447,7 @@ system("git remote -v")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ Posit.Cloud: Resources> RAM 0.5, CPU 0.5, Background 1 hr -----
+### @ Posit.Cloud: Resources> RAM 0.5, CPU 0.5, Background 1 hr -----  
 #|  @ Posit.Cloud: Resources> RAM 0.5, CPU 0.5, Background 1 hr |#
 # https://support.posit.co/hc/en-us/articles/4422648539031-Compute-Hours-and-the-Background-Execution-Limit-in-Posit-Cloud#:~:text=Compute%20hours%20are%20calculated%20based,based%20on%20the%20current%20plan.
 # Resources> RAM 0.5, CPU 0.5, Background 1 hr
@@ -511,7 +511,7 @@ system("git remote -v")
 # install.packages(.tmp$packagename, type = "source")  # If the installed R version is too new?
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### @ checkpoint ----
+### @ checkpoint ----  
 # # https://community.rstudio.com/t/using-library-checkpoint-in-rstudio-cloud/
 # # https://packagemanager.rstudio.com/client/#/repos/2/overview
 # # options(repos = c(CRAN= "https://packagemanager.rstudio.com/cran/302"))  # snapshot for 2020-07-16

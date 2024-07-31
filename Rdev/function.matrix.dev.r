@@ -27,10 +27,10 @@ mat
 
 
 
-# > mat %>% {cbind(which.min(.) %% nrow(.), which.min(.) %/% nrow(.) + 1)} #----
+# > mat %>% {cbind(which.min(.) %% nrow(.), which.min(.) %/% nrow(.) + 1)} #----  
 #      [,1] [,2]
 # [1,]    1    1
-# > mat %>% {cbind(which(. == min(.)) %% nrow(.), which(. == min(.)) %/% nrow(.) + 1)} #----
+# > mat %>% {cbind(which(. == min(.)) %% nrow(.), which(. == min(.)) %/% nrow(.) + 1)} #----  
 #      [,1] [,2]
 # [1,]    1    1
 # [2,]    0    3
@@ -40,15 +40,15 @@ mat
 mat %>% {data.frame(row = (which.min(.)-1) %% nrow(.) + 1, col = which.min(.) %/% nrow(.) + 1)} #----
 mat %>% {data.frame(row = (which(. == min(., na.rm = T))-1) %% nrow(.) + 1, col = which(. == min(., na.rm = T)) %/% nrow(.) + 1)} #----
 mat %>% {which(. == min(., na.rm = T), arr.ind = TRUE)} #----
-# > mat %>% {data.frame(row = (which.min(.)-1) %% nrow(.) + 1, col = which.min(.) %/% nrow(.) + 1)} #----
+# > mat %>% {data.frame(row = (which.min(.)-1) %% nrow(.) + 1, col = which.min(.) %/% nrow(.) + 1)} #----  
 #   row col
 # 1   1   1
-# > mat %>% {data.frame(row = (which(. == min(.))-1) %% nrow(.) + 1, col = which(. == min(.)) %/% nrow(.) + 1)} #----
+# > mat %>% {data.frame(row = (which(. == min(.))-1) %% nrow(.) + 1, col = which(. == min(.)) %/% nrow(.) + 1)} #----  
 #   row col
 # 1   1   1
 # 2   3   3
 # 3   2   4
-# > mat %>% {which(. == min(.), arr.ind = TRUE)} #----
+# > mat %>% {which(. == min(.), arr.ind = TRUE)} #----  
 #      row col
 # [1,]   1   1
 # [2,]   3   2
@@ -62,14 +62,14 @@ mat %>% {which(. == min(., na.rm = T), arr.ind = TRUE)} #----
 mat %>% {data.frame(row = (which.max(.)-1) %% nrow(.) + 1, col = which.max(.) %/% nrow(.) + 1)} #----
 mat %>% {data.frame(row = (which(. == max(., na.rm = T))-1) %% nrow(.) + 1, col = which(. == max(., na.rm = T)) %/% nrow(.) + 1)} #----
 mat %>% {which(. == max(., na.rm = T), arr.ind = TRUE)} #----
-# > mat %>% {data.frame(row = (which.max(.)-1) %% nrow(.) + 1, col = which.max(.) %/% nrow(.) + 1)} #----
+# > mat %>% {data.frame(row = (which.max(.)-1) %% nrow(.) + 1, col = which.max(.) %/% nrow(.) + 1)} #----  
 #   row col
 # 1   2   2
-# > mat %>% {data.frame(row = (which(. == max(.))-1) %% nrow(.) + 1, col = which(. == max(.)) %/% nrow(.) + 1)} #----
+# > mat %>% {data.frame(row = (which(. == max(.))-1) %% nrow(.) + 1, col = which(. == max(.)) %/% nrow(.) + 1)} #----  
 #   row col
 # 1   2   2
 # 2   1   4
-# > mat %>% {which(. == max(.), arr.ind = TRUE)} #----
+# > mat %>% {which(. == max(.), arr.ind = TRUE)} #----  
 #      row col
 # [1,]   2   2
 # [2,]   1   4

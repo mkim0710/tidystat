@@ -1,5 +1,5 @@
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_IncomeQuartile_MedicalAid.dev.r
-#%% data.add_IncomeQuartile_MedicalAid() ====
+#%% data.add_IncomeQuartile_MedicalAid() ====  
 data.add_IncomeQuartile_MedicalAid <- function(DF) {
   # Check if the column CTRB_PT_TYPE_CD exists
   if (is.null(DF$CTRB_PT_TYPE_CD)) {

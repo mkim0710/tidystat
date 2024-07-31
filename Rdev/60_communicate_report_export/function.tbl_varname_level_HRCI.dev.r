@@ -644,7 +644,7 @@ data_main.cut.coxph_list.HRCI =
                                      
                                      
                                      
-# data_main.cut.coxph_list.HRCI %>% map() select(varname, level, HRCI, p_value, star) |> as.data.frame() |> print() #----
+# data_main.cut.coxph_list.HRCI %>% map() select(varname, level, HRCI, p_value, star) |> as.data.frame() |> print() #----  
 data_main.cut.coxph_list.HRCI %>% map(function(ob) {
     # Codes to insert inside in the beginning annonymous function for map
     parent.x = get(".x", envir = parent.frame())
@@ -669,7 +669,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # +     ob %>% select(varname, level, HRCI, p_value, star) |> as.data.frame() |> print()
 # +     "ok"
 # + })
-# Beginning .f() map from list element [[1]] named: cut_model2_ASPIRIN_AGE_group  #---- 
+# Beginning .f() map from list element [[1]] named: cut_model2_ASPIRIN_AGE_group  #----  
 #                     varname              level                 HRCI p_value star
 # 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
 # 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.91 (0.63, 1.32) p=0.618     
@@ -682,7 +682,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # 9                 AGE_group                50-    3.47 (2.66, 4.52) p<0.001  ***
 # 10                AGE_group                60-   7.83 (6.07, 10.11) p<0.001  ***
 # 11                AGE_group                70- 16.75 (12.61, 22.25) p<0.001  ***
-# Beginning .f() map from list element [[2]] named: cut_model3_ASPIRIN_AGE_group_NSAID  #---- 
+# Beginning .f() map from list element [[2]] named: cut_model3_ASPIRIN_AGE_group_NSAID  #----  
 #                     varname              level                 HRCI p_value star
 # 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
 # 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.91 (0.63, 1.32) p=0.621     
@@ -702,7 +702,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # 16   total_ddd_yr_NSAID.cut      [730,1.1e+03)    0.96 (0.30, 3.04) p=0.947     
 # 17   total_ddd_yr_NSAID.cut [1.1e+03,1.46e+03)     0.00 (0.00, Inf) p=0.985     
 # 18   total_ddd_yr_NSAID.cut     [1.46e+03,Inf]   3.19 (0.78, 12.95) p=0.105     
-# Beginning .f() map from list element [[3]] named: cut_model4_ASPIRIN_AGE_group_NSAID_SEX  #---- 
+# Beginning .f() map from list element [[3]] named: cut_model4_ASPIRIN_AGE_group_NSAID_SEX  #----  
 #                     varname              level                 HRCI p_value star
 # 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
 # 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.92 (0.64, 1.34) p=0.671     
@@ -724,7 +724,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # 18   total_ddd_yr_NSAID.cut     [1.46e+03,Inf]   3.86 (0.95, 15.68) p=0.059  .  
 # 19                      SEX               Male          (reference)    <NA> <NA>
 # 20                      SEX             Female    0.60 (0.51, 0.71) p<0.001  ***
-# Beginning .f() map from list element [[4]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM  #---- 
+# Beginning .f() map from list element [[4]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM  #----  
 #                     varname              level                 HRCI p_value star
 # 1  total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
 # 2  total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.84 (0.57, 1.23) p=0.374     
@@ -764,7 +764,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # 36 pmhx_DM_OR_glucose_ge126              FALSE          (reference)    <NA> <NA>
 # 37 pmhx_DM_OR_glucose_ge126               TRUE    1.23 (0.98, 1.54) p=0.068  .  
 # 38                   CCI_yr               <NA>    1.06 (1.01, 1.12) p=0.031  *  
-# Beginning .f() map from list element [[5]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med  #---- 
+# Beginning .f() map from list element [[5]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med  #----  
 #                        varname              level                 HRCI p_value star
 # 1     total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
 # 2     total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.84 (0.57, 1.23) p=0.373     
@@ -806,7 +806,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # 38            Excercise_ge3pwk              FALSE          (reference)    <NA> <NA>
 # 39            Excercise_ge3pwk               TRUE    0.94 (0.77, 1.15) p=0.547     
 # 40                      CCI_yr               <NA>    1.07 (1.01, 1.14) p=0.014  *  
-# Beginning .f() map from list element [[6]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med  #---- 
+# Beginning .f() map from list element [[6]] named: cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med  #----  
 #                        varname              level                 HRCI p_value star
 # 1     total_ddd_yr_ASPIRIN.cut          [0,0.001)          (reference)    <NA> <NA>
 # 2     total_ddd_yr_ASPIRIN.cut         [0.001,30)    0.84 (0.57, 1.23) p=0.374     

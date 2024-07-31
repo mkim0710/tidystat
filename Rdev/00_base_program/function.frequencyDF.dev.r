@@ -5,7 +5,7 @@
 library(tidyverse)
 set.seed(1); sample(1:9, 30, replace = T) |> dput() #----
 # > library(tidyverse)
-# > set.seed(1); sample(1:9, 30, replace = T) |> dput() #----
+# > set.seed(1); sample(1:9, 30, replace = T) |> dput() #----  
 c(3L, 4L, 6L, 9L, 2L, 9L, 9L, 6L, 6L, 1L, 2L, 2L, 7L, 4L, 7L,
 5L, 7L, 9L, 4L, 7L, 9L, 2L, 6L, 2L, 3L, 4L, 1L, 4L, 8L, 4L)
 
@@ -17,15 +17,15 @@ set.seed(1); sample(1:9, 30, replace = T) |> table() |> as.data.frame() |> dput(
 # .
 # 1 2 3 4 5 6 7 8 9 
 # 2 5 2 6 1 4 4 1 5 
-# > set.seed(1); sample(1:9, 30, replace = T) |> table() |> dput() #----
+# > set.seed(1); sample(1:9, 30, replace = T) |> table() |> dput() #----  
 # structure(c(`1` = 2L, `2` = 5L, `3` = 2L, `4` = 6L, `5` = 1L, 
 # `6` = 4L, `7` = 4L, `8` = 1L, `9` = 5L), .Dim = 9L, .Dimnames = list(
 #     . = c("1", "2", "3", "4", "5", "6", "7", "8", "9")), class = "table")
-# > set.seed(1); sample(1:9, 30, replace = T) |> table() |> as.matrix() |> dput() #----
+# > set.seed(1); sample(1:9, 30, replace = T) |> table() |> as.matrix() |> dput() #----  
 # structure(c(2L, 5L, 2L, 6L, 1L, 4L, 4L, 1L, 5L), .Dim = c(9L, 
 # 1L), .Dimnames = list(c("1", "2", "3", "4", "5", "6", "7", "8", 
 # "9"), NULL))
-# > set.seed(1); sample(1:9, 30, replace = T) |> table() |> as.data.frame() |> dput() #----
+# > set.seed(1); sample(1:9, 30, replace = T) |> table() |> as.data.frame() |> dput() #----  
 # structure(list(. = structure(1:9, .Label = c("1", "2", "3", "4", 
 # "5", "6", "7", "8", "9"), class = "factor"), Freq = c(2L, 5L, 
 # 2L, 6L, 1L, 4L, 4L, 1L, 5L)), class = "data.frame", row.names = c(NA, 

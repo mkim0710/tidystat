@@ -1149,7 +1149,7 @@ out$pearson$unadjusted_cor.conf.int |> str()
 #  - attr(*, "names")= chr [1:2] "LL" "UL"
 
 out |> str()
-# > out |> str() -----
+# > out |> str() -----  
 # List of 3
 #  $ pearson :List of 8
 #   ..$ unadjusted_cor          : Named num 0.782
@@ -1194,7 +1194,7 @@ out |> str()
 #   .. ..- attr(*, "names")= chr "z"
 
 out |> unlist() |> as.data.frame()
-# > out |> unlist() |> as.data.frame() ----
+# > out |> unlist() |> as.data.frame() ----  
 #                                                .
 # pearson.unadjusted_cor.cor          7.818523e-01
 # pearson.unadjusted_cor.conf.int.LL  5.285640e-01
@@ -1221,7 +1221,7 @@ out |> unlist() |> as.data.frame()
 
 
 out %>% map(unlist) %>% map(as.data.frame)
-# > out %>% map(unlist) %>% map(as.data.frame) ----
+# > out %>% map(unlist) %>% map(as.data.frame) ----  
 # $pearson
 #                                 .x[[i]]
 # unadjusted_cor.cor         7.818523e-01
@@ -1255,7 +1255,7 @@ out %>% map(unlist) %>% map(as.data.frame)
 
 
 out %>% map(unlist) %>% map(as_tibble) %>% map(rownames_to_column) %>% bind_rows(.id = "method")
-# > out %>% map(unlist) %>% map(as_tibble) %>% map(rownames_to_column) %>% bind_rows(.id = "method") -----
+# > out %>% map(unlist) %>% map(as_tibble) %>% map(rownames_to_column) %>% bind_rows(.id = "method") -----  
 # # A tibble: 22 x 3
 #    method  rowname                        value
 #    <chr>   <chr>                          <dbl>

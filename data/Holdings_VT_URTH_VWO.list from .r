@@ -6,33 +6,33 @@ library(tidyverse)
 # ?read_file
 
 
-# #@ Holdings_VT_raw =====
+# #@ Holdings_VT_raw =====  
 # txt4url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/data/Holdings_details_Total_World_Stock_ETF%20200930.csv"
 # Holdings_VT_raw = read_file(txt4url)
-# Holdings_VT_raw |> str() #----
-# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----
-# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# # > Holdings_VT_raw |> str() #----
+# Holdings_VT_raw |> str() #----  
+# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----  
+# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# # > Holdings_VT_raw |> str() #----  
 # #  chr "Holdings details\n\nTotal World Stock ETF (VT)\n\n\nEquity,as of 09/30/2020\n\n,SEDOL,HOLDINGS,TICKER,% OF FUND"| __truncated__
-# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----
+# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----  
 # #  chr "Holdings details\nTotal World Stock ETF (VT)\nEquity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTO"| __truncated__
-# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Total World Stock ETF (VT)\nEquity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY"| __truncated__
-# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Equity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MAR"| __truncated__
-# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES\n,20462"| __truncated__
 # 
 # 
 # 
-# #@ Holdings_VT =====
+# #@ Holdings_VT =====  
 # Holdings_VT = 
 #     Holdings_VT_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") %>% 
 #     read_csv %>% select(-X1)
-# Holdings_VT |> str() #----
-# # > Holdings_VT |> str() #----
+# Holdings_VT |> str() #----  
+# # > Holdings_VT |> str() #----  
 # # tibble [8,800 x 9] (S3: tbl_df/tbl/data.frame)
 # #  $ SEDOL                           : chr [1:8800] "2046251" "2588173" "2000019" "B7TL820" ...
 # #  $ HOLDINGS                        : chr [1:8800] "Apple Inc." "Microsoft Corp." "Amazon.com Inc." "Facebook Inc." ...
@@ -66,13 +66,13 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail |> as_tibble() #----
 Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail |> as_tibble() #----
 Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail |> as_tibble() #----
 Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----
-# > Holdings_VT_raw[7:length(Holdings_VT_raw)] |> str() #----
+# > Holdings_VT_raw[7:length(Holdings_VT_raw)] |> str() #----  
 #  chr [1:8817] "" ...
-# > Holdings_VT_raw[8:length(Holdings_VT_raw)] |> str() #----
+# > Holdings_VT_raw[8:length(Holdings_VT_raw)] |> str() #----  
 #  chr [1:8816] ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES" ...
-# > Holdings_VT_raw %>% tail |> str() #----
+# > Holdings_VT_raw %>% tail |> str() #----  
 #  chr [1:6] "" ...
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-5)] %>% tail |> as_tibble() #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-5)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                              
 #   <chr>                                                                              
@@ -82,7 +82,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----
 # 4 ""                                                                                 
 # 5 ""                                                                                 
 # 6 ""                                                                                 
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-10)] %>% tail |> as_tibble() #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-10)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                   
 #   <chr>                                                   
@@ -92,7 +92,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----
 # 4 ",---,SLCMT1142,---,0.06%,\"$12,023,830.01\""           
 # 5 ""                                                      
 # 6 ""                                                      
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail |> as_tibble() #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-15)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                                     
 #   <chr>                                                                                                     
@@ -102,7 +102,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----
 # 4 "Short-term reserves,as of 09/30/2020"                                                                    
 # 5 ""                                                                                                        
 # 6 ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,FACE AMOUNT"                                                          
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail |> as_tibble() #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-20)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                                        
 #   <chr>                                                                                                        
@@ -112,7 +112,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----
 # 4 ",BMVZ900,United States Cash Management Bill,CMB,0.03%,\"$5,198,960.00\",\"$5,200,000.00\",<0.01%,12/15/2020"
 # 5 ",BKMH666,United States Treasury Bill,B,<0.01%,\"$1,723,431.08\",\"$1,724,000.00\",<0.01%,01/28/2021"        
 # 6 ",BMX6M13,United States Cash Management Bill,---,<0.01%,\"$576,780.74\",\"$577,000.00\",<0.01%,02/16/2021"   
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail |> as_tibble() #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-25)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                                         
 #   <chr>                                                                                                         
@@ -122,7 +122,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----
 # 4 ""                                                                                                            
 # 5 ""                                                                                                            
 # 6 "Fixed income,as of 09/30/2020"                                                                               
-# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----
+# > Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                                          
 #   <chr>                                                                                                          
@@ -141,7 +141,7 @@ Holdings_VT =
     Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% 
     read_csv %>% select(-X1)
 Holdings_VT |> str() #----
-# > Holdings_VT |> str() #----
+# > Holdings_VT |> str() #----  
 # tibble [8,787 x 9] (S3: tbl_df/tbl/data.frame)
 #  $ SEDOL                           : chr [1:8787] "2046251" "2588173" "2000019" "B7TL820" ...
 #  $ HOLDINGS                        : chr [1:8787] "Apple Inc." "Microsoft Corp." "Amazon.com Inc." "Facebook Inc." ...
@@ -169,32 +169,32 @@ Holdings_VT |> str() #----
 
 
 
-# #@ Holdings_VWO_raw =====
+# #@ Holdings_VWO_raw =====  
 # txt4url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/data/Holdings_details_FTSE_Emerging_Markets_ETF%20200930.csv"
 # Holdings_VWO_raw = read_file(txt4url)
-# Holdings_VWO_raw |> str() #----
-# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----
-# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# # > Holdings_VWO_raw |> str() #----
+# Holdings_VWO_raw |> str() #----  
+# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----  
+# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# # > Holdings_VWO_raw |> str() #----  
 # #  chr "Holdings details\n\nFTSE Emerging Markets ETF (VWO)\n\n\nEquity,as of 09/30/2020\n\n,SEDOL,HOLDINGS,TICKER,% OF"| __truncated__
-# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----
+# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----  
 # #  chr "Holdings details\nFTSE Emerging Markets ETF (VWO)\nEquity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,"| __truncated__
-# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "FTSE Emerging Markets ETF (VWO)\nEquity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SEC"| __truncated__
-# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Equity,as of 09/30/2020\n,SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MAR"| __truncated__
-# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES\n,BP41Z"| __truncated__
 # 
 # 
-# #@ Holdings_VWO =====
+# #@ Holdings_VWO =====  
 # Holdings_VWO = 
 #     Holdings_VWO_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") %>% 
 #     read_csv %>% select(-X1)
-# Holdings_VWO |> str() #----
-# # > Holdings_VWO |> str() #----
+# Holdings_VWO |> str() #----  
+# # > Holdings_VWO |> str() #----  
 # # tibble [5,025 x 9] (S3: tbl_df/tbl/data.frame)
 # #  $ SEDOL                           : chr [1:5025] "BP41ZD1" "BMMV2K8" "6889106" "2113382" ...
 # #  $ HOLDINGS                        : chr [1:5025] "Alibaba Group Holding Ltd." "Tencent Holdings Ltd." "Taiwan Semiconductor Manufacturing Co. Ltd." "Taiwan Semiconductor Manufacturing Co. Ltd." ...
@@ -228,15 +228,15 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-15)] %>% tail |> as_tibble() #----
 Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-20)] %>% tail |> as_tibble() #----
 Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-25)] %>% tail |> as_tibble() #----
 Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----
-# > Holdings_VWO_raw |> str() #----
+# > Holdings_VWO_raw |> str() #----  
 #  chr [1:5048] "Holdings details" "" "FTSE Emerging Markets ETF (VWO)" "" "" "Equity,as of 09/30/2020" "" ...
-# > Holdings_VWO_raw[7:length(Holdings_VWO_raw)] |> str() #----
+# > Holdings_VWO_raw[7:length(Holdings_VWO_raw)] |> str() #----  
 #  chr [1:5042] "" ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES" ...
-# > Holdings_VWO_raw[8:length(Holdings_VWO_raw)] |> str() #----
+# > Holdings_VWO_raw[8:length(Holdings_VWO_raw)] |> str() #----  
 #  chr [1:5041] ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,SECTOR,COUNTRY,SECURITY DEPOSITORY RECEIPT TYPE,MARKET VALUE*,SHARES" ...
-# > Holdings_VWO_raw %>% tail |> str() #----
+# > Holdings_VWO_raw %>% tail |> str() #----  
 #  chr [1:6] "" ...
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-5)] %>% tail |> as_tibble() #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-5)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                              
 #   <chr>                                                                              
@@ -246,7 +246,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----
 # 4 ""                                                                                 
 # 5 ""                                                                                 
 # 6 ""                                                                                 
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-10)] %>% tail |> as_tibble() #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-10)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                      
 #   <chr>                                                      
@@ -256,7 +256,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----
 # 4 ",---,SLCMT1142,---,0.18%,\"$160,779,901.44\""             
 # 5 ""                                                         
 # 6 ""                                                         
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-15)] %>% tail |> as_tibble() #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-15)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                  
 #   <chr>                                                                                  
@@ -266,7 +266,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----
 # 4 "Short-term reserves,as of 09/30/2020"                                                 
 # 5 ""                                                                                     
 # 6 ",SEDOL,HOLDINGS,TICKER,% OF FUNDS*,FACE AMOUNT"                                       
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-20)] %>% tail |> as_tibble() #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-20)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                                          
 #   <chr>                                                                                                          
@@ -276,7 +276,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----
 # 4 ",BMC5BZ8,TREASURY BILL,TBILL,0.05%,\"$39,996,884.00\",\"$40,000,000.00\",<0.01%,11/03/2020"                   
 # 5 ",BKMH666,United States Treasury Bill,B,0.04%,\"$31,788,487.25\",\"$31,799,000.00\",<0.01%,01/28/2021"         
 # 6 ",BK7K295,TREASURY BILL,TBILL,<0.01%,\"$729,824.73\",\"$730,000.00\",<0.01%,12/31/2020"                        
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-25)] %>% tail |> as_tibble() #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-25)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                                 
 #   <chr>                                                                                                 
@@ -286,7 +286,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----
 # 4 ""                                                                                                    
 # 5 "Fixed income,as of 09/30/2020"                                                                       
 # 6 ""                                                                                                    
-# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----
+# > Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] %>% tail |> as_tibble() #----  
 # # A tibble: 6 x 1
 #   value                                                                                                            
 #   <chr>                                                                                                            
@@ -302,7 +302,7 @@ Holdings_VWO =
     Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-28)] %>% 
     read_csv %>% select(-X1)
 Holdings_VWO |> str() #----
-# > Holdings_VWO |> str() #----
+# > Holdings_VWO |> str() #----  
 # tibble [5,011 x 9] (S3: tbl_df/tbl/data.frame)
 #  $ SEDOL                           : chr [1:5011] "BP41ZD1" "BMMV2K8" "6889106" "2113382" ...
 #  $ HOLDINGS                        : chr [1:5011] "Alibaba Group Holding Ltd." "Tencent Holdings Ltd." "Taiwan Semiconductor Manufacturing Co. Ltd." "Taiwan Semiconductor Manufacturing Co. Ltd." ...
@@ -321,51 +321,51 @@ Holdings_VWO |> str() #----
 
 
 
-# #@ Holdings_URTH_raw =====
+# #@ Holdings_URTH_raw =====  
 # txt4url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/data/URTH_holdings%20201106.csv"
 # Holdings_URTH_raw = read_file(txt4url)
-# Holdings_URTH_raw |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
-# # > Holdings_URTH_raw |> str() #----
+# Holdings_URTH_raw |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
+# # > Holdings_URTH_raw |> str() #----  
 # #  chr "iShares MSCI World ETF\nFund Holdings as of,\"Nov 04, 2020\"\nInception Date,\"Jan 10, 2012\"\nShares Outstandi"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str() #----  
 # #  chr "iShares MSCI World ETF\nFund Holdings as of,\"Nov 04, 2020\"\nInception Date,\"Jan 10, 2012\"\nShares Outstandi"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Fund Holdings as of,\"Nov 04, 2020\"\nInception Date,\"Jan 10, 2012\"\nShares Outstanding,\"10,200,000.00\"\nSt"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Inception Date,\"Jan 10, 2012\"\nShares Outstanding,\"10,200,000.00\"\nStock,\"-\"\nBond,\"-\"\nCash,\"-\"\nOth"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Shares Outstanding,\"10,200,000.00\"\nStock,\"-\"\nBond,\"-\"\nCash,\"-\"\nOther,\"-\"\n<U+00A0>\nTicker,Name,S"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Stock,\"-\"\nBond,\"-\"\nCash,\"-\"\nOther,\"-\"\n<U+00A0>\nTicker,Name,Sector,Asset Class,Market Value,Weight "| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Bond,\"-\"\nCash,\"-\"\nOther,\"-\"\n<U+00A0>\nTicker,Name,Sector,Asset Class,Market Value,Weight (%),Notional "| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Cash,\"-\"\nOther,\"-\"\n<U+00A0>\nTicker,Name,Sector,Asset Class,Market Value,Weight (%),Notional Value,Shares"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Other,\"-\"\n<U+00A0>\nTicker,Name,Sector,Asset Class,Market Value,Weight (%),Notional Value,Shares,CUSIP,ISIN,"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "<U+00A0>\nTicker,Name,Sector,Asset Class,Market Value,Weight (%),Notional Value,Shares,CUSIP,ISIN,SEDOL,Price,L"| __truncated__
-# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----
+# # > Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str() #----  
 # #  chr "Ticker,Name,Sector,Asset Class,Market Value,Weight (%),Notional Value,Shares,CUSIP,ISIN,SEDOL,Price,Location,Ex"| __truncated__
 # 
 # 
 # 
 # 
-# #@ Holdings_URTH =====
+# #@ Holdings_URTH =====  
 # Holdings_URTH = 
 #     Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") %>%    
 #     read_csv
-# Holdings_URTH |> str() #----
+# Holdings_URTH |> str() #----  
 # # > Holdings_URTH = 
 # # +     Holdings_URTH_raw |> str_replace_all("(\\n){2,}", "\n") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") |> str_replace(".*\\n", "") %>%    
 # # +     read_csv
@@ -373,7 +373,7 @@ Holdings_VWO |> str() #----
 # #  row col   expected    actual         file
 # # 1261  -- 18 columns 1 columns literal data
 # # 
-# # > Holdings_URTH |> str() #----
+# # > Holdings_URTH |> str() #----  
 # # tibble [1,261 x 18] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 # #  $ Ticker         : chr [1:1261] "AAPL" "MSFT" "AMZN" "FB" ...
 # #  $ Name           : chr [1:1261] "APPLE INC" "MICROSOFT CORP" "AMAZON COM INC" "FACEBOOK CLASS A INC" ...
@@ -422,7 +422,7 @@ Holdings_VWO |> str() #----
 # #   .. )
 
 
-# #@ Holdings_URTH_raw =====
+# #@ Holdings_URTH_raw =====  
 # txt4url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/data/URTH_holdings%20201106.csv"
 # Holdings_URTH_raw = read_file(txt4url)
 
@@ -445,7 +445,7 @@ Holdings_URTH =
     Holdings_URTH_raw[10:(length(Holdings_URTH_raw)-1)] %>% 
     read_csv 
 Holdings_URTH |> str() #----
-# > Holdings_URTH |> str() #----
+# > Holdings_URTH |> str() #----  
 # tibble [1,260 x 18] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 #  $ Ticker         : chr [1:1260] "AAPL" "MSFT" "AMZN" "FB" ...
 #  $ Name           : chr [1:1260] "APPLE INC" "MICROSOFT CORP" "AMAZON COM INC" "FACEBOOK CLASS A INC" ...
@@ -498,7 +498,7 @@ function.setdiff = function(vec_x, vec_y) {
     out
 }
 function.setdiff(Holdings_VT$TICKER, Holdings_VWO$TICKER) |> str() #-----
-# > function.setdiff(Holdings_VT$TICKER, Holdings_VWO$TICKER) |> str() #-----
+# > function.setdiff(Holdings_VT$TICKER, Holdings_VWO$TICKER) |> str() #-----  
 # List of 4
 #  $ union      : chr [1:9405] "AAPL" "MSFT" "AMZN" "FB" ...
 #  $ intersect  : chr [1:2958] "FB" "BABA" "700" "2330" ...
@@ -508,13 +508,13 @@ function.setdiff(Holdings_VT$TICKER, Holdings_VWO$TICKER) |> str() #-----
 
 function.setdiff(Holdings_VT$TICKER, Holdings_URTH$Ticker) |> str() #-----
 function.setdiff(Holdings_VWO$TICKER, Holdings_URTH$Ticker) |> str() #-----
-# > function.setdiff(Holdings_VT$TICKER, Holdings_URTH$Ticker) |> str() #-----
+# > function.setdiff(Holdings_VT$TICKER, Holdings_URTH$Ticker) |> str() #-----  
 # List of 4
 #  $ union      : chr [1:8352] "AAPL" "MSFT" "AMZN" "FB" ...
 #  $ intersect  : chr [1:1203] "AAPL" "MSFT" "AMZN" "FB" ...
 #  $ setdiff_x_y: chr [1:7119] "BABA" "700" "BRK.B" "2330" ...
 #  $ setdiff_y_x: chr [1:30] "BRKB" "XTSLA" "BX" "JPY" ...
-# > function.setdiff(Holdings_VWO$TICKER, Holdings_URTH$Ticker) |> str() #-----
+# > function.setdiff(Holdings_VWO$TICKER, Holdings_URTH$Ticker) |> str() #-----  
 # List of 4
 #  $ union      : chr [1:5241] "BABA" "700" "2330" "TSM" ...
 #  $ intersect  : chr [1:33] "2269" "6098" "AC" "VOD" ...

@@ -11,10 +11,10 @@ for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_
 
 
 
-## @ Data Availability Check ------
+## @ Data Availability Check ------  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.nproptable.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.summarize_all_sum_is.na.dev.r
-# get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----
+# get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
 data.NotNA_p_df = function(data) {
     out = data %>% map_df(is.na) %>% colSums |> as.data.frame() %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
@@ -30,7 +30,7 @@ get(objectname) %>% data.NotNA_p_df
 
 
 
-## @ Data Summary ------
+## @ Data Summary ------  
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 assign(paste0(objectname,".dropNAcols"), get(objectname) %>% select_if(function(vec) all(!is.na(vec))))
 objectname = paste0(objectname,".dropNAcols")

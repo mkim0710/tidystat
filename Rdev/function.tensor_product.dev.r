@@ -1,7 +1,7 @@
 # function.tensor_product.dev.r
 
-# https://www.r-bloggers.com/tensor-algebra-efficient-operations-on-multidimensional-arrays-with-r/ ====
-# https://cran.r-project.org/web/packages/tensorA/tensorA.pdf =====
+# https://www.r-bloggers.com/tensor-algebra-efficient-operations-on-multidimensional-arrays-with-r/ ====  
+# https://cran.r-project.org/web/packages/tensorA/tensorA.pdf =====  
 
 set.seed(42)
 A <- matrix(rnorm(4), 2, 2)
@@ -64,7 +64,7 @@ At %e% Bt
 
 
 
-# https://cran.r-project.org/web/packages/tensor/tensor.pdf =====
+# https://cran.r-project.org/web/packages/tensor/tensor.pdf =====  
 
 "tensor" <- function(A, B, alongA = integer(0), alongB = integer(0))
     {

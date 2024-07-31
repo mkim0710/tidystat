@@ -379,7 +379,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
 
 
 data.svydesign.svyglm_binomial_Depressed %>% function.glm_object.summary.exp()
-# > data.svydesign.svyglm_binomial_Depressed %>% function.glm_object.summary.exp() ----
+# > data.svydesign.svyglm_binomial_Depressed %>% function.glm_object.summary.exp() ----  
 #                                     rowname               ORCI p_value star  p.fdr *fdr  p.bon *bon exp(Estimate) exp(2.5 %) exp(97.5 %) Std. Error    t value     Pr(>|t|)
 # 1                               (Intercept) 0.72 (0.30 ~ 1.71)   0.456       0.652       1.000          0.7186779 0.30222096   1.7090078  0.4419749 -0.7474224 4.562707e-01
 # 2                      SSQ_5_6_adequateTRUE 0.25 (0.14 ~ 0.42)  <0.001  *** <0.001  *** <0.001  ***     0.2467879 0.14415887   0.4224801  0.2742975 -5.1011265 1.278615e-06

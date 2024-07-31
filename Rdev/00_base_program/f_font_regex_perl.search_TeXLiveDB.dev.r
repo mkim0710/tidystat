@@ -37,7 +37,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -54,7 +54,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 
 
 
@@ -76,7 +76,7 @@ library(tinytex)
 rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstudioapi::executeCommand("activateSource")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#% |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE) -----
+#% |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE) -----  
 "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE)
 "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> dput()
 "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
@@ -101,8 +101,8 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @@ START) font_filename ====
-### \% f_font_filename.search_path_local ====
+# @@ START) font_filename ====  
+### \% f_font_filename.search_path_local ====  
 f_font_filename.search_path_local <- function(font_filename) {
     vec_path.file <- tinytex::tlmgr_search(what = font_filename, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
     vec_path = vec_path.file |> dirname() |> unique() |> sort()
@@ -129,7 +129,7 @@ f_font_filename.search_path_local <- function(font_filename) {
 #   "	texmf-dist/tex/latex/inconsolata")
 
 
-### \% f_vec_font_filename.search_path_local ====
+### \% f_vec_font_filename.search_path_local ====  
 f_vec_font_filename.search_path_local <- function(vec_font_filename) {
     if(is.null(names(vec_font_filename))) vec_font_filename = vec_font_filename %>% set_names()
     names(vec_font_filename)[names(vec_font_filename)==""] = vec_font_filename[names(vec_font_filename)==""]
@@ -161,8 +161,8 @@ c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local(
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @@ START) font_regex_perl  ====
-## \$ vec_font_regex_perl =====
+# @@ START) font_regex_perl  ====  
+## \$ vec_font_regex_perl =====  
 # c("Roboto Condensed", "Roboto Serif", "Cascadia Code Semibold", "NanumMyeongjo", "NanumGothic", "D2Coding")
 vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
   "Roboto Serif" = "(?i)roboto.*serif",
@@ -174,7 +174,7 @@ vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
-### \% f_font_regex_perl.search_path_local ====
+### \% f_font_regex_perl.search_path_local ====  
 f_font_regex_perl.search_path_local <- function(font_regex_perl) {
     if(length(font_regex_perl) > 1) error("font_regex_perl must be a single string.")
     vec_path.file <- tinytex::tlmgr_search(what = font_regex_perl, file = FALSE, all = TRUE, global = FALSE, stdout = TRUE)
@@ -222,7 +222,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)robotocondensed.*bold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)robotocondensed.*bold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)robotocondensed.*bold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)robotocondensed.*bold" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 # > "(?i)robotocondensed.*bold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
@@ -441,7 +441,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)roboto.*condensed.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)roboto.*condensed.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)roboto.*condensed.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)roboto.*condensed.*semibold" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 # > "(?i)roboto.*condensed.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
@@ -592,7 +592,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)cascadia.*code.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)cascadia.*code.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)cascadia.*code.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)cascadia.*code.*semibold" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 # > "(?i)cascadia.*code.*semibold" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
@@ -657,18 +657,18 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)noto.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)noto.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)noto.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)noto.*condensed" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)open.?sans.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)open.?sans.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)open.?sans.*condensed" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)open.?sans.*condensed" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)fira.*code" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)fira.*code" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)fira.*code" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)fira.*code" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 # "(?i)fira.*code" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
@@ -681,7 +681,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 # 	texmf-dist/tex/context/fonts/mkiv/type-imp-firacode.mkiv 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)nanum" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)nanum" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)nanum" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)nanum" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 # > "(?i)nanum" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
@@ -692,7 +692,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 # cjk-ko:
 # 	texmf-dist/tex/latex/cjk-ko/cjkutf8-nanummjhanja.sty 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)d2c" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)d2c" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)d2c" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
 "(?i)d2c" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE, stdout = TRUE) |> paste0(collapse="\n") |> cat("  \n", sep="")
 # > "(?i)d2c" |> f_font_regex_perl.search_path_local() |> paste0(collapse="\n") |> cat("  \n", sep="")
@@ -705,12 +705,12 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
-### if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts")) -----
+### if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts")) -----  
 if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts"))
 if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts/opentype"))  # .otf
 if(.Platform$OS.type == "windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts/truetype"))  # .ttf
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#
-### if(.Platform$OS.type == "unix")  -----
+### if(.Platform$OS.type == "unix")  -----  
 'whoami' |> system(intern = TRUE)
 'echo $PATH' |> system(intern = TRUE) 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -731,7 +731,7 @@ dir("/usr/local/texlive/texmf-dist/fonts")
 'sudo find /usr/local/texlive/texmf-dist/fonts -type f -iname "*.otf"' |> system(intern = TRUE) 
 'sudo find /usr/local/texlive/texmf-dist/fonts -type f -iname "*.ttf"' |> system(intern = TRUE) 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#
-### if docker -----
+### if docker -----  
 'sudo find / -iname "*consolas*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'sudo find / -type f -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'sudo find / -type f -iname "*courier*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
@@ -782,7 +782,7 @@ c("/usr/local/sbin",
   "/usr/lib/rstudio-server/bin/quarto/bin",
   "/usr/lib/rstudio-server/bin/postback")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#
-### adding "/usr/local/texlive" to $PATH -----
+### adding "/usr/local/texlive" to $PATH -----  
 # Sys.setenv(PATH = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback")
 Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/usr/local/texlive", "/usr/local/texlive/texmf-dist", "/usr/share/fonts", sep = ":"))
 'echo $PATH' |> system(intern = TRUE) 
@@ -790,7 +790,7 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/usr/local/texlive", "/usr/local/te
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
-### \% f_filename.unix_find_path_local ====
+### \% f_filename.unix_find_path_local ====  
 f_filename.unix_find_path_local <- function(filename) {
     vec_path.file <- paste0('sudo find / -type f -iname "*',filename,'*"') |> system(intern = TRUE)
     vec_path = vec_path.file |> dirname() |> unique() |> sort()
@@ -873,7 +873,7 @@ vec_font_regex_perl |> map(f_font_regex_perl.search_path_local) |> env1$f$f_list
 #          NULL))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|# 
-### \% f_font_regex_perl.search_TeXLiveDB ====
+### \% f_font_regex_perl.search_TeXLiveDB ====  
 f_font_regex_perl.search_TeXLiveDB <- function(font_regex_perl) {
     if(length(font_regex_perl) > 1) error("font_regex_perl must be a single string.")
     vec_path.file <- tinytex::tlmgr_search(what = font_regex_perl, file = TRUE, all = FALSE, global = TRUE, stdout = TRUE)
@@ -897,7 +897,7 @@ vec_font_regex_perl.TexLiveDB_list %>% str
 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### > "(?i)fira.*code" |> f_font_regex_perl.search_TeXLiveDB() |> paste0(collapse="\n") |> cat("  \n", sep="") -----
+#### > "(?i)fira.*code" |> f_font_regex_perl.search_TeXLiveDB() |> paste0(collapse="\n") |> cat("  \n", sep="") -----  
 "(?i)fira.*code" |> f_font_regex_perl.search_TeXLiveDB() |> paste0(collapse="\n") |> cat("  \n", sep="")
 # tlmgr search --file --global '(?i)fira.*code'
 # tlmgr: package repository https://www.texlive.info/tlnet-archive/2024/04/23/tlnet (not verified: gpg unavailable)

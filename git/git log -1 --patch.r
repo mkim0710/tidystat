@@ -22,7 +22,7 @@
 #' --- a/rstudio-prefs/templates/default.R
 #' +++ b/rstudio-prefs/templates/default.R
 #' @@ -24,7 +24,9 @@ if(!exists("env1", envir=.GlobalEnv)) assign("env1", new.env(), envi
-#'  ## env1\$path ====
+#'  ## env1\$path ====  
 #'  # path2look = "/"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE)
 #'  # path2look = "~"; normalizePath(path2look,winslash="/"); dir(path2look,all.files=TRUE,include.dirs=TRUE)
 #' +# # "/cloud/home/r149319" @ Posit.Cloud

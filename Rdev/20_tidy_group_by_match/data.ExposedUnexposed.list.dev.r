@@ -31,7 +31,7 @@ data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_ze
 }
 
 
-# #@ test --------
+# #@ test --------  
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_Matching_lalonde.rda"))
 lalonde$isExposed = lalonde$treat == 1
 str(lalonde)

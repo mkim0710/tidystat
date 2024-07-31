@@ -3,7 +3,7 @@
 
 
 # https://stats.idre.ucla.edu/r/faq/how-do-i-analyze-survey-data-with-stratification-after-sampling-poststratification/
-# Example 2 =====
+# Example 2 =====  
 # This example is taken from Lehtonen and Pahkinen’s Practical Methods for Design and Analysis of Complex Surveys.
 # 
 # Page 97 Table 3.10 A simple random sample drawn without replacement from the Province’91 population with poststratum weights.

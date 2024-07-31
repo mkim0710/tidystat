@@ -4,7 +4,7 @@
 
 
 
-# #@ function.11matching.by.factors() -----
+# #@ function.11matching.by.factors() -----  
 # function.11matching.by.factors = function(data, varname4MatchingUpon = "diabetes", varnames4MatchingBy = c("age", "sex"), seed = 1) {
 #     library(tidyverse)
 #     if ("RowNum_original" %in% names(data)) {
@@ -166,7 +166,7 @@ rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group"), .exposure = "evnttrth_C24_r") |> summary() #----
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic"), .exposure = "evnttrth_C24_r") |> summary() #----
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") |> summary() #----
-# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group"), .exposure = "evnttrth_C24_r") |> summary() #----
+# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group"), .exposure = "evnttrth_C24_r") |> summary() #----  
 # [1] "min(ratio, na.rm = T): 159.39"
 # [1] "min(ratio_inv, na.rm = T): 0"
 #    rowname               0                  1                 Sum                ratio          ratio_inv       
@@ -176,7 +176,7 @@ analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.
 #                                                                              Mean   :1082.2   Mean   :0.001111  
 #                                                                              3rd Qu.:1032.9   3rd Qu.:0.000000  
 #                                                                              Max.   :3914.7   Max.   :0.010000  
-# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic"), .exposure = "evnttrth_C24_r") |> summary() #----
+# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic"), .exposure = "evnttrth_C24_r") |> summary() #----  
 # [1] "min(ratio, na.rm = T): 127.16"
 # [1] "min(ratio_inv, na.rm = T): 0"
 #    rowname               0                  1                 Sum                ratio          ratio_inv       
@@ -186,7 +186,7 @@ analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.
 #                                                                              Mean   :1252.4   Mean   :0.001212  
 #                                                                              3rd Qu.:1343.0   3rd Qu.:0.000000  
 #                                                                              Max.   :8298.7   Max.   :0.010000  
-# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") |> summary() #----
+# > analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") |> summary() #----  
 # [1] "min(ratio, na.rm = T): 9"
 # [1] "min(ratio_inv, na.rm = T): 0"
 #    rowname               0                  1                 Sum                ratio         ratio_inv       
@@ -637,7 +637,7 @@ rhc_mydata.Match %>% attr("function.input") |> str()  #----
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ tableone_post_i    :List of 5
 #  - attr(*, "function.input")=List of 11
-# > rhc_mydata.Match %>% attr("function.input") |> str()  #----
+# > rhc_mydata.Match %>% attr("function.input") |> str()  #----  
 # List of 11
 #  $ Call                              : language data.Match(.mydata = ., .vars4Matching = c("female", "age", "meanbp1"), .exposure = "treatment", .MatchingRatio = 5)
 #  $ data.Match                        :function (.mydata, ..., .vars4Matching = c("female", "income"), .exposure = "treatment", .MatchingRatio = 5, 
@@ -667,7 +667,7 @@ rhc_mydata.Match$data
 #   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
 #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 #   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
-# > rhc_mydata.Match$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.Match$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3550           710                           
@@ -733,7 +733,7 @@ rhc_mydata.Match_propensity_score$data
 #  $ .exposure     : chr "treatment"
 #  $ .MatchingRatio: num 5
 #  $ apply.na.omit : logi FALSE
-# > rhc_mydata.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3550           710                           
@@ -800,7 +800,7 @@ rhc_mydata.Match_propensity_score_matching_weight$data
 #  $ .exposure     : chr "treatment"
 #  $ .MatchingRatio: num 5
 #  $ apply.na.omit : logi FALSE
-# > rhc_mydata.Match_propensity_score_matching_weight$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.Match_propensity_score_matching_weight$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0               1               p      test SMD   
 #   n                   2142.75         2149.92                           
@@ -844,7 +844,7 @@ rhc_mydata.Match_propensity_score_caliper.2 |> str(max.level = 1)
 rhc_mydata.Match_propensity_score_caliper.2$tableone_post_total |> print(smd = T)  # ----
 # rhc_mydata.Match_propensity_score_caliper.2$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
 # rhc_mydata.Match_propensity_score_caliper.2$data
-# > rhc_mydata.Match_propensity_score_caliper.2$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.Match_propensity_score_caliper.2$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3525           705                           
@@ -1015,7 +1015,7 @@ rhc_mydata.na.Match$data
 #   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
 #   age (mean (sd))     61.68 (17.28) 60.71 (15.62)  0.034       0.059
 #   meanbp1 (mean (sd)) 84.83 (38.87) 68.14 (34.22) <0.001       0.456
-# > rhc_mydata.na.Match$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.na.Match$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3445           689                           
@@ -1110,7 +1110,7 @@ rhc_mydata.na.Match_propensity_score$data
 # #   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
 # #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 # #   meanbp1 (mean (sd)) 84.83 (38.87) 68.14 (34.22) <0.001       0.456
-# # > rhc_mydata.na.Match_propensity_score$tableone_post_total |> print(smd = T) # ----
+# # > rhc_mydata.na.Match_propensity_score$tableone_post_total |> print(smd = T) # ----  
 # #                      Stratified by treatment
 # #                       0             1             p      test SMD   
 # #   n                    3490           698                           
@@ -1168,7 +1168,7 @@ rhc_mydata.na.Match_propensity_score$data
 #   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
 #   age (mean (sd))     61.68 (17.28) 60.71 (15.62)  0.034       0.059
 #   meanbp1 (mean (sd)) 84.83 (38.87) 68.14 (34.22) <0.001       0.456
-# > rhc_mydata.na.Match_propensity_score$tableone_post_total |> print(smd = T) # ----
+# > rhc_mydata.na.Match_propensity_score$tableone_post_total |> print(smd = T) # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3445           689                           
@@ -1245,7 +1245,7 @@ rhc_mydata.na.Match_propensity_score_matching_weight$data
 #   female (mean (sd))   0.46 (0.50)   0.41 (0.49)   0.001       0.093
 #   age (mean (sd))     61.68 (17.28) 60.71 (15.62)  0.034       0.059
 #   meanbp1 (mean (sd)) 84.83 (38.87) 68.14 (34.22) <0.001       0.456
-# > rhc_mydata.na.Match_propensity_score_matching_weight$tableone_post_total |> print(smd = T) # ----
+# > rhc_mydata.na.Match_propensity_score_matching_weight$tableone_post_total |> print(smd = T) # ----  
 #                      Stratified by treatment
 #                       0               1               p      test SMD   
 #   n                   2066.44         2072.77                           
@@ -1262,7 +1262,7 @@ rhc_mydata.na.Match_propensity_score_matching_weight$data
 
 
 
-# #@ test) data.Match() rhc_mydata.strata_list -----
+# #@ test) data.Match() rhc_mydata.strata_list -----  
 # rhc_mydata.strata_list.Match.old = rhc_mydata.strata_list %>% 
 #     map(data.Match
 #         , .vars4Matching = c("age","meanbp1")
@@ -2016,7 +2016,7 @@ rhc_mydata.stratified.Match$data
 #      [100,Inf]            2 ( 0.1)      1 ( 0.0)                    
 #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 #   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
-# > rhc_mydata.stratified.Match$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.stratified.Match$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3510           702                           
@@ -2135,7 +2135,7 @@ rhc_mydata.stratified.Match_propensity_score$data
 #      [100,Inf]            2 ( 0.1)      1 ( 0.0)                    
 #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 #   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
-# > rhc_mydata.stratified.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.stratified.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3510           702                           
@@ -2246,7 +2246,7 @@ rhc_mydata.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # -
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[10,20)", "0_[100,Inf]", "0_[90,100)", "1_[10,20)", "1_[100,Inf]", length(unique(.mydata[[.exposure]]) < 2: 
 # "1_[20,30)")
-# > rhc_mydata.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    1745           349                           
@@ -2318,7 +2318,7 @@ rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> pr
 # 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[10,20)", "0_[100,Inf]", "1_[10,20)", "1_[100,Inf]")
-# > rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> print(smd = T)  # ----
+# > rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3115           623                           

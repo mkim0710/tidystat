@@ -131,7 +131,7 @@ mu1 = 80
 mu2 = 70
 sd = 20
 power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      One-sample t test power calculation 
 # 
@@ -147,7 +147,7 @@ mu1 = 80
 mu2 = 70
 sd = 20
 pwr.t.test(d = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.t.test(d = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.t.test(d = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      One-sample t test power calculation 
 # 
@@ -159,7 +159,7 @@ pwr.t.test(d = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.
 
 stata.out = stata("power onemean 80 70, sd(20) alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power onemean 80 70, sd(20) alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power onemean 80 70, sd(20) alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power onemean 80 70, sd(20) alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -212,7 +212,7 @@ sd1 = 20
 sd2 = 20
 sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Two-sample t test power calculation 
 # 
@@ -232,7 +232,7 @@ sd1 = 20
 sd2 = 20
 sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Two-sample t test power calculation 
 # 
@@ -246,7 +246,7 @@ pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, pow
 
 stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)
 # 
 # Performing iteration ...
@@ -321,7 +321,7 @@ sd1 = 20
 sd2 = 20
 sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.t2n.test(n1 = n1, n2 = NULL, d = (mu1 - mu2) / sd_pooled, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.t2n.test(n1 = n1, n2 = NULL, d = (mu1 - mu2) / sd_pooled, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.t2n.test(n1 = n1, n2 = NULL, d = (mu1 - mu2) / sd_pooled, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      t test power calculation 
 # 
@@ -338,7 +338,7 @@ stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)
 stata.out
 stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) n2(40) compute(n1)", data.in = NULL, data.out = T, stata.version = 15.1) # n1 is the control group, and n2 is the experimental group #----
 stata.out
-# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) n1(40) compute(n2)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) n1(40) compute(n2)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) n1(40) compute(
 # > n2)
 # 
@@ -367,7 +367,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) n2(40) compute(n1)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) n2(40) compute(n1)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) n2(40) compute(
 # > n1)
 # 
@@ -416,7 +416,7 @@ stata.out
 
 stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) nratio(0.2)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) nratio(0.2)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) nratio(0.2)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80) nratio(0.2)
 # 
 # Performing iteration ...
@@ -472,7 +472,7 @@ sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 power.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 power.t.test(d = (mu1 - mu2) / sd_pooled, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 power.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > power.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Two-sample t test power calculation 
 # 
@@ -485,7 +485,7 @@ power.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power
 # 
 # NOTE: n is number in *each* group
 # 
-# > power.t.test(d = (mu1 - mu2) / sd_pooled, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.t.test(d = (mu1 - mu2) / sd_pooled, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      One-sample t test power calculation 
 # 
@@ -496,7 +496,7 @@ power.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power
 #           power = 0.8
 #     alternative = two.sided
 # 
-# > power.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Paired t test power calculation 
 # 
@@ -519,7 +519,7 @@ sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Two-sample t test power calculation 
 # 
@@ -531,7 +531,7 @@ pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power =
 # 
 # NOTE: n is number in *each* group
 # 
-# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      One-sample t test power calculation 
 # 
@@ -540,7 +540,7 @@ pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power =
 #       sig.level = 0.05
 #           power = 0.8
 #     alternative = two.sided
-# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.t.test(d = (mu1 - mu2) / sd_pooled, type="paired", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Paired t test power calculation 
 # 
@@ -561,7 +561,7 @@ stata.out = stata("power onemean 0 10, sd(20) alpha(0.05) power(0.80)", data.in 
 stata.out
 stata.out = stata("sampsi 0 10, sd(20) alpha(0.05) power(0.80) onesamp", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twomeans 80 70, sd1(20) sd2(20) alpha(0.05) power(0.80)
 # 
 # Performing iteration ...
@@ -588,7 +588,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power onemean 0 10, sd(20) alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power onemean 0 10, sd(20) alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power onemean 0 10, sd(20) alpha(0.05) power(0.80)
 # 
 # Performing iteration ...
@@ -611,7 +611,7 @@ stata.out
 #             N =        34
 # Error in foreign::read.dta(dtaOutFile, ...) : 
 #   unable to open file: 'No such file or directory'
-# > stata.out = stata("sampsi 0 10, sd(20) alpha(0.05) power(0.80) onesamp", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("sampsi 0 10, sd(20) alpha(0.05) power(0.80) onesamp", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . sampsi 0 10, sd(20) alpha(0.05) power(0.80) onesamp
 # 
 # Estimated sample size for one-sample comparison of mean
@@ -649,7 +649,7 @@ stata.out
 
 stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)
 # 
 # Performing iteration ...
@@ -714,7 +714,7 @@ qnorm(1-beta)
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# http://powerandsamplesize.com/Calculators/Test-1-Mean/1-Sample-Equality ----
+# http://powerandsamplesize.com/Calculators/Test-1-Mean/1-Sample-Equality ----  
 mu=2
 mu0=1.5
 sd=1
@@ -737,7 +737,7 @@ mu2 = 2
 sd = 1
 power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided", strict = T) #----
-# > power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      One-sample t test power calculation 
 # 
@@ -747,7 +747,7 @@ power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, powe
 #       sig.level = 0.05
 #           power = 0.8
 #     alternative = two.sided
-# > power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided", strict = T) #----
+# > power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided", strict = T) #----  
 # 
 #      One-sample t test power calculation 
 # 
@@ -763,7 +763,7 @@ power.t.test(delta = (mu1 - mu2) / sd, type="one.sample", sig.level = 0.05, powe
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# http://powerandsamplesize.com/Calculators/Compare-2-Means/2-Sample-Equality ----
+# http://powerandsamplesize.com/Calculators/Compare-2-Means/2-Sample-Equality ----  
 muA=5
 muB=10
 kappa=1
@@ -789,7 +789,7 @@ sd1 = 10
 sd2 = 10
 sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Two-sample t test power calculation 
 # 

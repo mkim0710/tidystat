@@ -94,7 +94,7 @@ p2 = 0.7
 # sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -104,7 +104,7 @@ pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternati
 #           power = 0.8
 #     alternative = two.sided
 # 
-# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -122,7 +122,7 @@ stata.out = stata("power oneproportion 0.5 0.7, alpha(0.05) power(0.8)", data.in
 stata.out
 stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power oneproportion 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power oneproportion 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power oneproportion 0.5 0.7, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -146,7 +146,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.5 0.7, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -187,7 +187,7 @@ stata.out
 # => n1? n2?
 
 
-# ?power.prop.test  # Caution) this is for Two-Sample Test for Proportions~!!! -----
+# ?power.prop.test  # Caution) this is for Two-Sample Test for Proportions~!!! -----  
 # Usage
 # power.prop.test(n = NULL, p1 = NULL, p2 = NULL, sig.level = 0.05,
 #                 power = NULL,
@@ -231,7 +231,7 @@ p2 = 0.7
 # sd2 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  # under null?!
 # sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Two-sample comparison of proportions power calculation 
 # 
@@ -291,8 +291,8 @@ power.prop.test(p1 = p1, p2 = p2, sig.level = 0.05, power = 0.8, alternative = "
 # sd1 = (1/n*p1*(1-p1))^0.5
 # sd2 = (1/n*p2*(1-p2))^0.5
 # sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
-# power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# # > power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
+# # > power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # # 
 # #      Two-sample t test power calculation 
 # # 
@@ -313,7 +313,7 @@ p2 = 0.7
 # sd2 = (1/n*p1*(1-p1))^0.5  -> also a function of n~!!  # under null?!
 # sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -327,7 +327,7 @@ pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternati
 
 stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.5 0.7, alpha(0.05) power(0.80)
 # 
 # Performing iteration ...
@@ -404,7 +404,7 @@ p2 = 0.7
 pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n1 = 50, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n2 = 50, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -416,7 +416,7 @@ pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n2 = 50, sig.level = 0.05, power = 0.8
 # 
 # NOTE: same sample sizes
 # 
-# > pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n1 = 50, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n1 = 50, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -428,7 +428,7 @@ pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n2 = 50, sig.level = 0.05, power = 0.8
 #     alternative = two.sided
 # 
 # NOTE: different sample sizes
-# > pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n2 = 50, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p2n.test(h = ES.h(p1 = p1, p2 = p2), n2 = 50, sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -448,7 +448,7 @@ stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n1(50) 
 stata.out
 stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n2(50) compute(n1)", data.in = NULL, data.out = T, stata.version = 15.1)  # n1 is the control group, and n2 is the experimental group #----
 stata.out
-# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.5 0.7, alpha(0.05) power(0.80)
 # 
 # Performing iteration ...
@@ -473,7 +473,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n1(50) compute(n2)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n1(50) compute(n2)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n1(50) compute(n2)
 # 
 # Performing iteration ...
@@ -499,7 +499,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n2(50) compute(n1)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n2(50) compute(n1)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.5 0.7, alpha(0.05) power(0.80) n2(50) compute(n1)
 # 
 # Performing iteration ...
@@ -548,7 +548,7 @@ stata.out
 
 stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) nratio(0.2)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) nratio(0.2)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.5 0.7, alpha(0.05) power(0.80) nratio(0.2)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.5 0.7, alpha(0.05) power(0.80) nratio(0.2)
 # 
 # Performing iteration ...
@@ -603,7 +603,7 @@ stata.out
 pwr.2p.test(h = ES.h(p1 = 0.025, p2 = 0.0125), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 stata.out = stata("power twoproportions 0.025 0.0125, power (0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > pwr.2p.test(h = ES.h(p1 = 0.025, p2 = 0.0125), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = 0.025, p2 = 0.0125), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -615,7 +615,7 @@ stata.out
 # 
 # NOTE: same sample sizes
 # 
-# > stata.out = stata("power twoproportions 0.025 0.0125, power (0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.025 0.0125, power (0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.025 0.0125, power (0.8)
 # 
 # Performing iteration ...
@@ -647,7 +647,7 @@ stata("power cox, hratio(2) eventprob(.0125)", data.in = NULL, data.out = F, sta
 stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----
 # > log(2)
 # [1] 0.6931472
-# > stata("power cox, hratio(2) eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----
+# > stata("power cox, hratio(2) eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----  
 # . power cox, hratio(2) eventprob(.0125)
 # 
 # Estimated sample size for Cox PH regression
@@ -670,7 +670,7 @@ stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, sta
 # 
 #             E =        66
 #             N =     5,228
-# > stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----
+# > stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----  
 # . power cox 0.6931472, eventprob(.0125)
 # 
 # Estimated sample size for Cox PH regression
@@ -708,7 +708,7 @@ stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, sta
 
 stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)
 # 
 # Performing iteration ...
@@ -773,7 +773,7 @@ qnorm(1-beta)
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# http://powerandsamplesize.com/Calculators/Test-1-Proportion/1-Sample-Equality ----
+# http://powerandsamplesize.com/Calculators/Test-1-Proportion/1-Sample-Equality ----  
 # Chow S, Shao J, Wang H. 2008. Sample Size Calculations in Clinical Research. 2nd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
 # Chow S, Shao J, Wang H, Lokhnygina Y. 2017. Sample Size Calculations in Clinical Research. 3rd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
 # Chapter 4 Large Sample Tests for Proportions
@@ -788,12 +788,12 @@ beta=0.20
 ceiling(n) # 50
 z = (p-p0) / sqrt( p*(1-p) / n )
 (   Power = pnorm( z - qnorm(1-alpha/2) ) + pnorm( -z - qnorm(1-alpha/2) )   )#----
-# > (n=p*(1-p)*((qnorm(1-alpha/2)+qnorm(1-beta))/(p-p0))^2)#----
+# > (n=p*(1-p)*((qnorm(1-alpha/2)+qnorm(1-beta))/(p-p0))^2)#----  
 # [1] 49.0555
 # > ceiling(n) # 50
 # [1] 50
 # > z=(p-p0)/sqrt(p*(1-p)/n)
-# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
+# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----  
 # [1] 0.800001
 
 
@@ -806,7 +806,7 @@ p2 = 0.5
 # sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -816,7 +816,7 @@ pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternati
 #           power = 0.8
 #     alternative = two.sided
 # 
-# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -833,7 +833,7 @@ stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in
 stata.out
 stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power oneproportion 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power oneproportion 0.3 0.5, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -857,7 +857,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.3 0.5, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.3 0.5, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -889,7 +889,7 @@ stata.out
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# http://powerandsamplesize.com/Calculators/Compare-2-Proportions/2-Sample-Equality ----
+# http://powerandsamplesize.com/Calculators/Compare-2-Proportions/2-Sample-Equality ----  
 # Chow S, Shao J, Wang H. 2008. Sample Size Calculations in Clinical Research. 2nd Ed. Chapman & Hall/CRC Biostatistics Series. page 89.
 # Chow S, Shao J, Wang H, Lokhnygina Y. 2017. Sample Size Calculations in Clinical Research. 3rd Ed. Chapman & Hall/CRC Biostatistics Series. page 85.
 # Chapter 4 Large Sample Tests for Proportions
@@ -905,12 +905,12 @@ beta=0.20
 ceiling(nB) # 70
 z=(pA-pB)/sqrt(pA*(1-pA)/nB/kappa+pB*(1-pB)/nB)
 (    Power = pnorm( z - qnorm(1-alpha/2) ) + pnorm( -z - qnorm(1-alpha/2) )    )#----
-# > (nB=(pA*(1-pA)/kappa+pB*(1-pB))*((qnorm(1-alpha/2)+qnorm(1-beta))/(pA-pB))^2)#----
+# > (nB=(pA*(1-pA)/kappa+pB*(1-pB))*((qnorm(1-alpha/2)+qnorm(1-beta))/(pA-pB))^2)#----  
 # [1] 69.65881
 # > ceiling(nB) # 70
 # [1] 70
 # > z=(pA-pB)/sqrt(pA*(1-pA)/nB/kappa+pB*(1-pB)/nB)
-# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
+# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----  
 # [1] 0.800001
 
 
@@ -922,7 +922,7 @@ p2 = 0.85
 # sd_pooled = ( (sd1^2 + sd2^2)/2 )^0.5
 pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
-# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -932,7 +932,7 @@ pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternati
 #           power = 0.8
 #     alternative = two.sided
 # 
-# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = p1, p2 = p2), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -949,7 +949,7 @@ stata.out = stata("power oneproportion 0.65 0.85, alpha(0.05) power(0.8)", data.
 stata.out
 stata.out = stata("power twoproportions 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power oneproportion 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power oneproportion 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power oneproportion 0.65 0.85, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -973,7 +973,7 @@ stata.out
 #   unable to open file: 'No such file or directory'
 # > stata.out
 # NULL
-# > stata.out = stata("power twoproportions 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.65 0.85, alpha(0.05) power(0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.65 0.85, alpha(0.05) power(0.8)
 # 
 # Performing iteration ...
@@ -1009,7 +1009,7 @@ stata.out
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# http://powerandsamplesize.com/Calculators/Test-Odds-Ratio/Equality ----
+# http://powerandsamplesize.com/Calculators/Test-Odds-Ratio/Equality ----  
 pA=0.40
 pB=0.25
 kappa=1
@@ -1020,14 +1020,14 @@ beta=0.20
 ceiling(nB) # 156
 z=log(OR)*sqrt(nB)/sqrt(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))
 (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
-# > (OR=pA*(1-pB)/pB/(1-pA))#----
+# > (OR=pA*(1-pB)/pB/(1-pA))#----  
 # [1] 2
-# > (nB=(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))*((qnorm(1-alpha/2)+qnorm(1-beta))/log(OR))^2)#----
+# > (nB=(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))*((qnorm(1-alpha/2)+qnorm(1-beta))/log(OR))^2)#----  
 # [1] 155.1959
 # > ceiling(nB) # 156
 # [1] 156
 # > z=log(OR)*sqrt(nB)/sqrt(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))
-# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----
+# > (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))#----  
 # [1] 0.800001
 
 

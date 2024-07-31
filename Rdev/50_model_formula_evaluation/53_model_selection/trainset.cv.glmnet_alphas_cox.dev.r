@@ -611,7 +611,7 @@ object_list_cvglmnet.coefexp = function(object_list_cvglmnet, i_names = NULL) {
 #@ test) object_list_cvglmnet.coefexp() CoxExample_tibble.cv.glmnet_alphas_cox -----  
 object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----
 object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
-# > object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----
+# > object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----  
 #    rownum rowname expB.min expB.1se    coef.min     coef.1se
 # 1       1      V1     1.62     1.39  0.47972069  0.332155771
 # 2       2      V2     0.85     0.94 -0.16674492 -0.063825745
@@ -643,7 +643,7 @@ object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
 # 28     28     V28       NA       NA          NA           NA
 # 29     29     V29       NA       NA          NA           NA
 # 30     30     V30     1.00       NA -0.00301953           NA
-# > object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
+# > object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----  
 #    rownum rowname a1expB.min a1expB.1se a.5expB.min a.5expB.1se  a1coef.min   a1coef.1se   a.5coef.min a.5coef.1se
 # 1       1      V1       1.62       1.39        1.60        1.38  0.47972069  0.332155771  0.4702664543  0.32244534
 # 2       2      V2       0.85       0.94        0.85        0.93 -0.16674492 -0.063825745 -0.1662272351 -0.07327914
@@ -680,7 +680,7 @@ object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
 #@ test) object_list_cvglmnet.coefexp() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox -----  
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.coefexp #----
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.coefexp #----
-# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.coefexp #----
+# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.coefexp #----  
 #    rownum                       rowname expB.min expB.1se    coef.min  coef.1se
 # 1       1                     SexFemale       NA       NA          NA        NA
 # 2       2                       SexMale       NA       NA          NA        NA
@@ -715,7 +715,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.coefexp #-
 # 31     31              LiverDiseaseTRUE     1.02       NA  0.02254691        NA
 # 32     32    ObstructiveLungDiseaseTRUE     1.02       NA  0.02083958        NA
 # 33     33           CancerSurvivorsTRUE     1.03       NA  0.02732249        NA
-# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.coefexp #----
+# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.coefexp #----  
 #    rownum                       rowname a1expB.min a1expB.1se a.5expB.min a.5expB.1se  a1coef.min a1coef.1se a.5coef.min a.5coef.1se
 # 1       1                     SexFemale         NA         NA          NA          NA          NA         NA          NA          NA
 # 2       2                       SexMale         NA         NA          NA          NA          NA         NA          NA          NA
@@ -1205,7 +1205,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.newFormula
 # 17              LiverDiseaseTRUE  1.10 ( 0.91 ~  1.33)   0.311       0.311       1.000      1.1013413  0.9136702    1.327561 0.09531521  1.012732 3.111881e-01
 # 18    ObstructiveLungDiseaseTRUE  1.11 ( 0.94 ~  1.32)   0.206       0.259       1.000      1.1143988  0.9422821    1.317954 0.08559630  1.265417 2.057217e-01
 # 19 Fibromyalgia_Pain_FatigueTRUE  1.08 ( 0.94 ~  1.24)   0.269       0.284       1.000      1.0817927  0.9410720    1.243556 0.07110089  1.105747 2.688360e-01
-# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.newFormula_coxph(testset = trainsetCC69agg4i07_829) %>% map(function(ls) {map(ls, function(x) function.coxph_object.summary.exp(x))}) #-----
+# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.newFormula_coxph(testset = trainsetCC69agg4i07_829) %>% map(function(ls) {map(ls, function(x) function.coxph_object.summary.exp(x))}) #-----  
 # $alpha1
 # $alpha1$lambda.1se
 #       rowname               HRCI p_value star  p.fdr *fdr  p.bon *bon exp(coef) exp(2.5 %) exp(97.5 %)   se(coef)        z Pr(>|z|)

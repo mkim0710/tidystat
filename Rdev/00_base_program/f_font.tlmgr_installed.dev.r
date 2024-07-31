@@ -37,7 +37,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -54,7 +54,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 
 
 
@@ -103,7 +103,7 @@ c(
 .tlmgr_installed_packages |> env1$f$f_vec.dput_line_by_line()
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tlmgr_installed_packages.ASRockX300Ryzen5600G ====
+## \$ .tlmgr_installed_packages.ASRockX300Ryzen5600G ====  
 .tlmgr_installed_packages.ASRockX300Ryzen5600G = 
 c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
@@ -233,10 +233,10 @@ c("i amscls: AMS document classes for LaTeX",
   "i zapfding: URW 'Base 35' font pack for LaTeX")
 .tlmgr_installed_packages.ASRockX300Ryzen5600G |> all.equal(.tlmgr_installed_packages)
 .tlmgr_installed_packages.ASRockX300Ryzen5600G |> str()  ### ----
-### > .tlmgr_installed_packages.ASRockX300Ryzen5600G %>% str  ### ----
+### > .tlmgr_installed_packages.ASRockX300Ryzen5600G %>% str  ### ----  
 #  chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tlmgr_installed_packages.MAGB760M13700KF ====
+## \$ .tlmgr_installed_packages.MAGB760M13700KF ====  
 .tlmgr_installed_packages.MAGB760M13700KF = 
 c("i amscls: AMS document classes for LaTeX",
   "i amsfonts: TeX fonts from the American Mathematical Society",
@@ -379,9 +379,9 @@ c("i amscls: AMS document classes for LaTeX",
 .tlmgr_installed_packages.MAGB760M13700KF |> all.equal(.tlmgr_installed_packages)
 .tlmgr_installed_packages.MAGB760M13700KF |> str()  ###----
 .tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
-### > .tlmgr_installed_packages.MAGB760M13700KF %>% str  ###----
+### > .tlmgr_installed_packages.MAGB760M13700KF %>% str  ###----  
 #  chr [1:138] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
-### > .tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+### > .tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
 # List of 7
 #  $ vec1.character: chr [1:138] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i arphic: Arphic (Chinese) font packages" ...
 #  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
@@ -408,7 +408,7 @@ c("i arphic: Arphic (Chinese) font packages",
   "i xpatch: Extending etoolbox patching commands")
 
 
-## \$ .tlmgr_installed_packages.RockerVerse ====
+## \$ .tlmgr_installed_packages.RockerVerse ====  
 .tlmgr_installed_packages.RockerVerse = c("i ae: Virtual fonts for T1 encoded CMR-fonts",
   "i amsfonts: TeX fonts from the American Mathematical Society",
   "i amsmath: AMS mathematical facilities for LaTeX",
@@ -527,9 +527,9 @@ c("i arphic: Arphic (Chinese) font packages",
 .tlmgr_installed_packages.RockerVerse |> all.equal(.tlmgr_installed_packages)
 .tlmgr_installed_packages.RockerVerse |> str()  ###----
 .tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
-### > .tlmgr_installed_packages.RockerVerse |> str()  ###----
+### > .tlmgr_installed_packages.RockerVerse |> str()  ###----  
 #  chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
-### > .tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+### > .tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
 # List of 7
 #  $ vec1.character: chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
 #  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...

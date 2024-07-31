@@ -7,9 +7,9 @@
 korpopmap1.CP949 |> str(max.level = 1) #----
 korpopmap1.CP949 |> str(max.level = 2) #----
 korpopmap1.CP949@data |> str() #----
-# > korpopmap1 |> str(max.level = 1) #----
+# > korpopmap1 |> str(max.level = 1) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
-# > korpopmap1 |> str(max.level = 2) #----
+# > korpopmap1 |> str(max.level = 2) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16
@@ -17,7 +17,7 @@ korpopmap1.CP949@data |> str() #----
 #   ..@ bbox       : num [1:2, 1:2] 124.6 33.2 130.9 38.6
 #   .. ..- attr(*, "dimnames")=List of 2
 #   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-# > korpopmap1.CP949@data |> str() #----
+# > korpopmap1.CP949@data |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	16 obs. of  42 variables:
 #  $ SP_ID                  : chr  "15" "14" "13" "12" ...
 #  $ FID                    : chr  "15" "14" "13" "12" ...
@@ -65,7 +65,7 @@ korpopmap1.CP949@data |> str() #----
 
 korpopmap2.CP949 |> str(max.level = 2) #----
 korpopmap3.CP949 |> str(max.level = 2) #----
-# > korpopmap2.CP949 |> str(max.level = 2) #----
+# > korpopmap2.CP949 |> str(max.level = 2) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	251 obs. of  42 variables:
 #   ..@ polygons   :List of 251
@@ -73,7 +73,7 @@ korpopmap3.CP949 |> str(max.level = 2) #----
 #   ..@ bbox       : num [1:2, 1:2] 124.6 33.2 130.9 38.6
 #   .. ..- attr(*, "dimnames")=List of 2
 #   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-# > korpopmap3.CP949 |> str(max.level = 2) #----
+# > korpopmap3.CP949 |> str(max.level = 2) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	3472 obs. of  42 variables:
 #   ..@ polygons   :List of 3472
@@ -115,7 +115,7 @@ korpopmap3.CP949.fortify.join = korpopmap3.CP949 %>% function.shapefile.fortify.
 korpopmap1.CP949.fortify.join |> str() #----
 korpopmap2.CP949.fortify.join |> str() #----
 korpopmap3.CP949.fortify.join |> str() #----
-# > korpopmap1.CP949.fortify.join |> str() #----
+# > korpopmap1.CP949.fortify.join |> str() #----  
 # 'data.frame':	6928 obs. of  42 variables:
 #  $ long                   : num  127 127 127 127 127 ...
 #  $ lat                    : num  37.7 37.7 37.7 37.7 37.7 ...
@@ -159,7 +159,7 @@ korpopmap3.CP949.fortify.join |> str() #----
 #  $ 주택이외의_거처_호     : chr  "97389" "97389" "97389" "97389" ...
 #  $ region                 : chr  "11" "11" "11" "11" ...
 #  $ code1.data             : chr  "11" "11" "11" "11" ...
-# > korpopmap2.CP949.fortify.join |> str() #----
+# > korpopmap2.CP949.fortify.join |> str() #----  
 # 'data.frame':	16926 obs. of  42 variables:
 #  $ long                   : num  127 127 127 127 127 ...
 #  $ lat                    : num  37.6 37.6 37.6 37.6 37.6 ...
@@ -203,7 +203,7 @@ korpopmap3.CP949.fortify.join |> str() #----
 #  $ 주택이외의_거처_호     : chr  "2998" "2998" "2998" "2998" ...
 #  $ region                 : chr  "11010" "11010" "11010" "11010" ...
 #  $ code1.data             : chr  "11010" "11010" "11010" "11010" ...
-# > korpopmap3.CP949.fortify.join |> str() #----
+# > korpopmap3.CP949.fortify.join |> str() #----  
 # 'data.frame':	70711 obs. of  42 variables:
 #  $ long                   : num  127 127 127 127 127 ...
 #  $ lat                    : num  37.6 37.6 37.6 37.6 37.6 ...
@@ -256,7 +256,7 @@ korpopmap3.CP949.fortify.join.Seoul11 = korpopmap3.CP949.fortify.join %>%
     dplyr::filter(code2 == "11")
 
 korpopmap3.CP949.fortify.join.Seoul11 |> str() #----
-# > korpopmap3.CP949.fortify.join.Seoul11 |> str() #----
+# > korpopmap3.CP949.fortify.join.Seoul11 |> str() #----  
 # 'data.frame':	3327 obs. of  44 variables:
 #  $ long                   : num  127 127 127 127 127 ...
 #  $ lat                    : num  37.6 37.6 37.6 37.6 37.6 ...

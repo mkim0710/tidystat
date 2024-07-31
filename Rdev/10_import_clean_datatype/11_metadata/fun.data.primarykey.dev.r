@@ -22,13 +22,13 @@ nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct |> dim() #----
 nhis_heals_jk.sas7bdat.duplicated = nhis_heals_jk.sas7bdat %>% group_by_at(vars(STND_Y, PERSON_ID)) %>% dplyr::filter(n()>1)
 Sys.time() - .t0
 nhis_heals_jk.sas7bdat.duplicated |> print()
-# > nhis_heals_jk.sas7bdat |> dim() #----
+# > nhis_heals_jk.sas7bdat |> dim() #----  
 # [1] 6933650      13
-# > nhis_heals_jk.sas7bdat %>% {n_distinct(.$PERSON_ID)} #----
+# > nhis_heals_jk.sas7bdat %>% {n_distinct(.$PERSON_ID)} #----  
 # [1] 514866
-# > nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct |> dim() #----
+# > nhis_heals_jk.sas7bdat %>% select(PERSON_ID) %>% distinct |> dim() #----  
 # [1] 514866      1
-# > nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct |> dim() #----
+# > nhis_heals_jk.sas7bdat %>% select(STND_Y, PERSON_ID) %>% distinct |> dim() #----  
 # [1] 6933649       2
 # > nhis_heals_jk.sas7bdat.duplicated |> print()
 # # A tibble: 2 × 13
@@ -81,7 +81,7 @@ df_example <- tibble(
 )
 fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) |> str() #----
 fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
-# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) |> str() #----
+# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID")) |> str() #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -103,7 +103,7 @@ fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str()
 #   .. .. ..$ : int [1:2] 2 4
 #   .. .. ..@ ptype: int(0) 
 #   .. ..- attr(*, ".drop")= logi TRUE
-# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
+# > fun.data.primarykey_v2(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -137,7 +137,7 @@ df_example <- tibble(
 )
 fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) |> str() #----
 fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
-# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) |> str() #----
+# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID")) |> str() #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -160,7 +160,7 @@ fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #-
 #   .. .. ..$ : int [1:2] 2 4
 #   .. .. ..@ ptype: int(0) 
 #   .. ..- attr(*, ".drop")= logi TRUE
-# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----
+# > fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 7 2
 #   ..- attr(*, "Formated")= chr [1:2] "7" "2"
@@ -187,7 +187,7 @@ fun.data.primarykey(df_example, primarykey = c("PERSON_ID", "YEAR")) |> str() #-
 
 nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1) %>% system.time #----
 nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1) %>% system.time #----
-# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1) %>% system.time #----
+# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey |> str(max.level = 1) %>% system.time #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 6933650 13
 #   ..- attr(*, "Formated")= chr [1:2] "6,933,650" "       13"
@@ -205,7 +205,7 @@ nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(
 #   .. ..- attr(*, ".drop")= logi TRUE
 #  사용자  시스템 elapsed 
 #    3.31    0.11    5.50 
-# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1) %>% system.time #----
+# > nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(max.level = 1) %>% system.time #----  
 # List of 7
 #  $ data.dim                       : int [1:2] 6933650 13
 #   ..- attr(*, "Formated")= chr [1:2] "6,933,650" "       13"

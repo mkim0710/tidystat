@@ -22,7 +22,7 @@ packageVersion("icd")
 
 icd9_chapters |> str() #-----
 icd9_sub_chapters |> str() #-----
-# > icd9_chapters |> str() #-----
+# > icd9_chapters |> str() #-----  
 # List of 19
 #  $ Infectious And Parasitic Diseases                                                                 : Named chr [1:2] "001" "139"
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
@@ -62,7 +62,7 @@ icd9_sub_chapters |> str() #-----
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
 #  $ Supplementary Classification Of External Causes Of Injury And Poisoning                           : Named chr [1:2] "E000" "E999"
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
-# > icd9_sub_chapters |> str() #-----
+# > icd9_sub_chapters |> str() #-----  
 # List of 162
 #  $ Intestinal Infectious Diseases                                                                                                                             : Named chr [1:2] "001" "009"
 #   ..- attr(*, "names")= chr [1:2] "start" "end"
@@ -267,7 +267,7 @@ icd9_sub_chapters |> str() #-----
 
 
 icd9_majors |> str() #----
-# > icd9_majors |> str() #----
+# > icd9_majors |> str() #----  
 #  Named chr [1:1234] "001" "002" "003" "004" "005" "006" "007" "008" "009" "010" "011" "012" "013" "014" "015" "016" "017" "018" "020" "021" "022" "023" "024" ...
 #  - attr(*, "names")= chr [1:1234] "Cholera" "Typhoid and paratyphoid fevers" "Other salmonella infections" "Shigellosis" ...
 
@@ -287,11 +287,11 @@ icd9_map_quan_deyo |> str() #----
 
 
 
-# #@ icd9_chapters.expand_range = icd9_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], x[2])}) ------
+# #@ icd9_chapters.expand_range = icd9_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], x[2])}) ------  
 # icd9_chapters.expand_range = icd9_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], x[2])})
-# icd9_chapters.expand_range |> str() #----
+# icd9_chapters.expand_range |> str() #----  
 # # icd9_chapters.expand_range.ICD9_3char = icd9_chapters.expand_range %>% map(function(x) unique(substr(x, 1, 3)))
-# # icd9_chapters.expand_range.ICD9_3char |> str() #----
+# # icd9_chapters.expand_range.ICD9_3char |> str() #----  
 # 
 # # > icd9_chapters.expand_range = icd9_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], x[2])})
 # # Error in icd9_expand_range_short(start, end, defined, ex_ambig_start,  : 
@@ -339,7 +339,7 @@ icd9_map_quan_deyo |> str() #----
 # icd9_chapters.expand_range = icd9_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], x[2])})
 icd9_chapters.expand_range = icd9_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], ifelse(x[2] != "V99", x[2], "V91"))})
 icd9_chapters.expand_range |> str() #----
-# > icd9_chapters.expand_range |> str() #----
+# > icd9_chapters.expand_range |> str() #----  
 # List of 19
 #  $ Infectious And Parasitic Diseases                                                                 : 'icd9' chr [1:1510] "001" "0010" "0011" "0019" ...
 #   ..- attr(*, "icd_short_diag")= logi TRUE
@@ -383,7 +383,7 @@ icd9_chapters.expand_range |> str() #----
 
 icd9_chapters.expand_range.ICD9_3char = icd9_chapters.expand_range %>% map(function(x) unique(substr(x, 1, 3)))
 icd9_chapters.expand_range.ICD9_3char |> str() #----
-# > icd9_chapters.expand_range.ICD9_3char |> str() #----
+# > icd9_chapters.expand_range.ICD9_3char |> str() #----  
 # List of 19
 #  $ Infectious And Parasitic Diseases                                                                 : chr [1:123] "001" "002" "003" "004" ...
 #  $ Neoplasms                                                                                         : chr [1:94] "140" "141" "142" "143" ...
@@ -414,7 +414,7 @@ icd9_chapters.expand_range.ICD9_3char |> str() #----
 #@ icd9_sub_chapters.expand_range = icd9_sub_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], x[2])}) ----  
 icd9_sub_chapters.expand_range = icd9_sub_chapters %>% map(function(x) {icd:::expand_range.icd9(x[1], x[2])})
 icd9_sub_chapters.expand_range |> str() #----
-# > icd9_sub_chapters.expand_range |> str() #----
+# > icd9_sub_chapters.expand_range |> str() #----  
 # List of 162
 #  $ Intestinal Infectious Diseases                                                                                                                             : 'icd9' chr [1:94] "001" "0010" "0011" "0019" ...
 #   ..- attr(*, "icd_short_diag")= logi TRUE
@@ -619,7 +619,7 @@ icd9_sub_chapters.expand_range |> str() #----
 
 icd9_sub_chapters.expand_range.ICD9_3char = icd9_sub_chapters.expand_range %>% map(function(x) unique(substr(x, 1, 3)))
 icd9_sub_chapters.expand_range.ICD9_3char |> str() #----
-# > icd9_sub_chapters.expand_range.ICD9_3char |> str() #----
+# > icd9_sub_chapters.expand_range.ICD9_3char |> str() #----  
 # List of 162
 #  $ Intestinal Infectious Diseases                                                                                                                             : chr [1:9] "001" "002" "003" "004" ...
 #  $ Tuberculosis                                                                                                                                               : chr [1:9] "010" "011" "012" "013" ...

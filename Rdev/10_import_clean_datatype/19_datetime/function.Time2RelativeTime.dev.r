@@ -8,7 +8,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH =
     CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% 
     mutate(time2DTH = as.numeric(replace_na(DTH_YM, as.Date("2014-01-01")) - as.Date("2008-12-31"))) #-----
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DTH_Y, DTH_YM, time2DTH) |> summary() #-----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DTH_Y, DTH_YM, time2DTH) |> summary() #-----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DTH_Y, DTH_YM, time2DTH) |> summary() #-----  
 #      DTH_Y            DTH_YM              time2DTH   
 #  Min.   :2009     Min.   :2009-03-31   Min.   :  90  
 #  1st Qu.:2011     1st Qu.:2011-04-30   1st Qu.:1827  
@@ -19,7 +19,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(DT
 #  NA's   :280829   NA's   :280829                     
 
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) |> summary() #-----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) |> summary() #-----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>% select(matches("DTH_I")) |> summary() #-----  
 #  DTH_I2025       DTH_I3052       DTH_I6069       DTH_I7079         DTH_I         DTH_I2079      
 #  Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical  
 #  FALSE:2856      FALSE:2884      FALSE:2781      FALSE:2960      FALSE:2524      FALSE:2574     
@@ -31,7 +31,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>%
     select(matches("DTH_I")) |> summary() #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.Outcomes_DTH %>%
 # +     mutate(  across(matches("DTH")&where(is.logical), replace_na, F)  )%>%
-# +     select(matches("DTH_I")) |> summary() #-----
+# +     select(matches("DTH_I")) |> summary() #-----  
 #  DTH_I2025       DTH_I3052       DTH_I6069       DTH_I7079         DTH_I         DTH_I2079      
 #  Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical   Mode :logical  
 #  FALSE:283685    FALSE:283713    FALSE:283610    FALSE:283789    FALSE:283367    FALSE:283403   
@@ -64,7 +64,7 @@ sessionInfo() #----
 # user = "mkim0", effective_user = "mkim0")
 # > packageVersion("tidyverse")
 # [1] ‘1.2.1’
-# > sessionInfo() #----
+# > sessionInfo() #----  
 # R version 3.5.3 (2019-03-11)
 # Platform: x86_64-w64-mingw32/x64 (64-bit)
 # Running under: Windows 10 x64 (build 18362)
@@ -129,7 +129,7 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.ndDate : int  NA NA NA NA NA
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.minDate: Date, format: NA NA NA NA ...
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.maxDate: Date, format: NA NA NA NA ...
-# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) ) |> str() #----
+# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) ) |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
 #  $ rowname                                         : chr  "1" "2" "3" "4" ...
 #  $ rownum                                          : int  1 2 3 4 5
@@ -144,7 +144,7 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.ndDate : int  NA NA NA NA NA
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.minDate: num  NA NA NA NA NA
 #  $ Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.maxDate: num  NA NA NA NA NA
-# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31"))) |> str() #----
+# > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31"))) |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
 #  $ rowname                                         : chr  "1" "2" "3" "4" ...
 #  $ rownum                                          : int  1 2 3 4 5
@@ -165,11 +165,11 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) replace_n
 
 # ID_lmp_Window4Exposure |> rename_if(
 #     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
-#     , function(chr) paste0("prefix.", chr) ) |> str() #----
+#     , function(chr) paste0("prefix.", chr) ) |> str() #----  
 ID_lmp_Window4Exposure |> rename_at(vars(-rowname), funs(paste0("prefix.", c.)) ) |> str() #----
 # > ID_lmp_Window4Exposure |> rename_if(
 # +     function(x) {get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname"}
-# +     , function(chr) paste0("prefix.", chr) ) |> str() #----
+# +     , function(chr) paste0("prefix.", chr) ) |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5 obs. of  13 variables:
 #  $ rowname                                                : chr  "1" "2" "3" "4" ...
 #  $ prefix.rownum                                          : int  1 2 3 4 5
@@ -226,26 +226,26 @@ get( ls(envir = parent.frame()) [1], envir = parent.frame(n=2)) #----
 ls(envir = parent.frame(n=2)) #----
 get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 
-# Browse[1]> ls() #----
+# Browse[1]> ls() #----  
 # [1] "x"
-# Browse[1]> get(ls()[1]) #----
+# Browse[1]> get(ls()[1]) #----  
 # [1] "1" "2" "3" "4" "5"
 
-# Browse[1]> ls(envir = parent.frame()) #----
+# Browse[1]> ls(envir = parent.frame()) #----  
 # character(0)
-# Browse[1]> get( ls(envir = parent.frame()) [1], envir = parent.frame(n=2)) #----
+# Browse[1]> get( ls(envir = parent.frame()) [1], envir = parent.frame(n=2)) #----  
 # Error in get(ls(envir = parent.frame())[1], envir = parent.frame(n = 2)) : 
 #   object 'NA' not found
 
-# Browse[1]> ls(envir = parent.frame(n=2)) #----
+# Browse[1]> ls(envir = parent.frame(n=2)) #----  
 # [1] "i"           "n"           "selected"    "tibble_vars"
-# Browse[1]> get("i", envir = parent.frame(n=2)) #----
+# Browse[1]> get("i", envir = parent.frame(n=2)) #----  
 # [1] 1
-# Browse[1]> get("n", envir = parent.frame(n=2)) #----
+# Browse[1]> get("n", envir = parent.frame(n=2)) #----  
 # [1] 13
-# Browse[1]> get("selected", envir = parent.frame(n=2)) #----
+# Browse[1]> get("selected", envir = parent.frame(n=2)) #----  
 #  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA
-# Browse[1]> get("tibble_vars", envir = parent.frame(n=2)) #----
+# Browse[1]> get("tibble_vars", envir = parent.frame(n=2)) #----  
 #  [1] "rowname"                                          "rownum"                                          
 #  [3] "Dummy"                                            "lmp"                                             
 #  [5] "Window4Exposure.RxCONCEPT_NDC_insulin.ndDate"     "Window4Exposure.RxCONCEPT_NDC_insulin.minDate"   
@@ -254,31 +254,31 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 # [11] "Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.ndDate"  "Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.minDate"
 # [13] "Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.maxDate"
 
-# Browse[1]> ls(envir = parent.frame(n=3)) #----
+# Browse[1]> ls(envir = parent.frame(n=3)) #----  
 # [1] "funs"
-# Browse[1]> get("funs", envir = parent.frame(n=3)) #----
+# Browse[1]> get("funs", envir = parent.frame(n=3)) #----  
 # <fun_calls>
 # $ <fn>: (function (chr) ...
-# Browse[1]> get("funs", envir = parent.frame(n=3))[[1]] #----
+# Browse[1]> get("funs", envir = parent.frame(n=3))[[1]] #----  
 # <quosure>
 # expr: ^<function(chr) paste0("prefix.", chr)>(.)
 # env:  000002765A06FA00
 
-# Browse[1]> ls(envir = parent.frame(n=4)) #----
+# Browse[1]> ls(envir = parent.frame(n=4)) #----  
 # character(0)
 
-# Browse[1]> ls(envir = parent.frame(n=5)) #----
+# Browse[1]> ls(envir = parent.frame(n=5)) #----  
 # [1] "function_list" "k"             "value"  
-# Browse[1]> get("function_list", envir = parent.frame(n=5)) #----
+# Browse[1]> get("function_list", envir = parent.frame(n=5)) #----  
 # [[1]]
 # function (.) 
 # rename_if(., function(x) {
 #     browser()
 # }, function(chr) paste0("prefix.", chr))
 # 
-# Browse[1]> get("k", envir = parent.frame(n=5)) #----
+# Browse[1]> get("k", envir = parent.frame(n=5)) #----  
 # [1] 1
-# Browse[1]> get("value", envir = parent.frame(n=5)) #----
+# Browse[1]> get("value", envir = parent.frame(n=5)) #----  
 # # A tibble: 5 x 13
 #   rowname rownum Dummy lmp        Window4Exposure~ Window4Exposure~ Window4Exposure~ Window4Exposure~ Window4Exposure~ Window4Exposure~
 #   <chr>    <int> <lgl> <date>                <int> <date>           <date>                      <int> <date>           <date>          
@@ -291,7 +291,7 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 # #   Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.minDate <date>, Window4Exposure.RxCONCEPT_NDC_SU_TZD_etc.maxDate <date>
 
 
-# Browse[1]> eval(parse(text = "value"), envir = parent.frame(n=5)) #----
+# Browse[1]> eval(parse(text = "value"), envir = parent.frame(n=5)) #----  
 # # A tibble: 5 x 13
 #   rowname rownum Dummy lmp        Window4Exposure~ Window4Exposure~ Window4Exposure~ Window4Exposure~ Window4Exposure~ Window4Exposure~
 #   <chr>    <int> <lgl> <date>                <int> <date>           <date>                      <int> <date>           <date>          
@@ -306,7 +306,7 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 
 
 #@ -----  
-# Browse[1]> get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname" #----
+# Browse[1]> get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname" #----  
 # [1] FALSE
 
 
@@ -359,7 +359,7 @@ ID_lmp_Window4Exposure |> rename_if(.predicate = function(v) {(v == "rowname")},
 # Error in selected[[i]] <- .p(.tbl[[tibble_vars[[i]]]], ...) : 
 #   more elements supplied than there are to replace
 
-# https://github.com/tidyverse/dplyr/issues/1977 =====
+# https://github.com/tidyverse/dplyr/issues/1977 =====  
 
 
 
@@ -392,17 +392,17 @@ get( ls(envir = parent.frame()) [1], envir = parent.frame(n=2)) #----
 ls(envir = parent.frame(n=2)) #----
 get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 
-# Browse[1]> ls() #----
+# Browse[1]> ls() #----  
 # [1] "vec"
-# Browse[1]> get(ls()[1]) #----
+# Browse[1]> get(ls()[1]) #----  
 # [1] "2013-02-05" "2011-01-27" "2011-02-13" "2011-01-25" "2014-11-15"
 
-# Browse[1]> ls(envir = parent.frame()) #----
+# Browse[1]> ls(envir = parent.frame()) #----  
 # [1] "~"
-# Browse[1]> get( ls(envir = parent.frame()) [1], envir = parent.frame(n=2)) #----
+# Browse[1]> get( ls(envir = parent.frame()) [1], envir = parent.frame(n=2)) #----  
 # .Primitive("~")
 
-# Browse[1]> ls(envir = parent.frame(n=2)) #----
+# Browse[1]> ls(envir = parent.frame(n=2)) #----  
 # [1] "df"                                                              "ID_Eligible_Exposure.TargetTrial2v2.159vs266"                   
 # [3] "ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates" "ID_lmp_Window4Exposure"                                         
 # [5] ".path4read"                                                       ".path4write"                                                     

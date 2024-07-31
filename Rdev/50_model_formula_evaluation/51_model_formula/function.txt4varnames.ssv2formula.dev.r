@@ -25,7 +25,7 @@ ID_Criteria.n_distinct.tbl |> names() |> dput()
 # "Inc2.ia.4.c.1.ndDate", "Inc2.ia.4.c.2.ndDate", "Inc2.ia.4.c.3.ndDate"
 # )
 ID_Criteria.n_distinct.tbl |> names() |> paste(collapse = "\n, ") |> cat("  \n", sep="") #----
-# > ID_Criteria.n_distinct.tbl |> names() |> paste(collapse = "\n, ") |> cat("  \n", sep="") #----
+# > ID_Criteria.n_distinct.tbl |> names() |> paste(collapse = "\n, ") |> cat("  \n", sep="") #----  
 # ENROLID
 # , Inc2.ia.1.a.ndDate
 # , Inc2.ia.1.b.1.ndDate
@@ -454,7 +454,7 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 
 
 
-# #@ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----
+# #@ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
 # txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 # 
 # str_split(txt, boundary("word"))[[1]]
@@ -486,7 +486,7 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 # 
 # 
 # 
-# #@ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----
+# #@ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
 # txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 # 
 # txt |> str_extract_all("[A-z_]+")
@@ -549,7 +549,7 @@ txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>
 
 
 ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) |> names() |> paste(collapse=", ") |> cat("  \n", sep="") #----
-# > ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) |> names() |> paste(collapse=", ") |> cat("  \n", sep="") #----
+# > ENROLID.2353768.join_criteria.na_rm.2plus %>% select(-ENROLID) |> names() |> paste(collapse=", ") |> cat("  \n", sep="") #----  
 # btw_n365_enddate.ICD250_6480_6488, btw_n90_enddate.ICD250_6480_6488, btw_141_enddate.ICD6480_ICD6488, btw_n90_140.NDC_anyDM, btw_n90_140.ICD6480_ICD6488, criterion1, criterion2
 
 ENROLID.2353768.join_criteria.na_rm.2plus %>% 

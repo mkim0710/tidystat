@@ -110,7 +110,7 @@ outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) |> as.vector()
 
 
 c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
-# > c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----
+# > c("A", "B", "C") %>% {set_names(., .)} %>% {outer(., ., paste, sep = ":")} #----  
 #   A     B     C    
 # A "A:A" "A:B" "A:C"
 # B "B:A" "B:B" "B:C"
@@ -604,10 +604,10 @@ expand.grid(var_i = letters, var_j = letters) |> as_tibble()
                        
 system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame.old(only.lower.tri = F)) #----
 system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame(only.lower.tri = F)) #----
-# > system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame.old(only.lower.tri = F)) #----
+# > system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame.old(only.lower.tri = F)) #----  
 #    user  system elapsed 
 #   35.35    0.22   35.68 
-# > system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame(only.lower.tri = F)) #----
+# > system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame(only.lower.tri = F)) #----  
 #    user  system elapsed 
 #    0.36    0.01    0.41 
 

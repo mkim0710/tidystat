@@ -4,7 +4,7 @@
 #@ fhs <- readRDS(url("https://github.com/mkim0710/PH207x/blob/master/fhs.rds?raw=true")) =====  
 fhs <- readRDS(url("https://github.com/mkim0710/PH207x/blob/master/fhs.rds?raw=true"))
 fhs |> str(give.attr = F) #----
-# > fhs |> str(give.attr = F) #----
+# > fhs |> str(give.attr = F) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4434 obs. of  80 variables:
 #  $ randid   : num  2448 6238 9428 10552 11252 ...
 #  $ death    : num  0 0 0 1 0 0 0 0 0 0 ...
@@ -91,7 +91,7 @@ fhs |> str(give.attr = F) #----
 #@ K-fold "random" split of the training dataset -----  
 k = 100
 fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} |> dput() #----
-# > fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} |> dput() #----
+# > fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} |> dput() #----  
 c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L,
 15L, 16L, 17L, 18L, 19L, 20L, 21L, 22L, 23L, 24L, 25L, 26L, 27L,
 28L, 29L, 30L, 31L, 32L, 33L, 34L, 35L, 36L, 37L, 38L, 39L, 40L,
@@ -435,7 +435,7 @@ c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L,
 
 
 set.seed(1); fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample |> dput() #----
-# > set.seed(1); fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample |> dput() #----
+# > set.seed(1); fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample |> dput() #----  
 c(78L, 50L, 39L, 25L, 94L, 79L, 84L, 26L, 85L, 74L, 12L, 81L, 
 39L, 99L, 3L, 100L, 71L, 82L, 79L, 33L, 26L, 37L, 76L, 54L, 79L, 
 3L, 60L, 86L, 32L, 100L, 24L, 40L, 73L, 20L, 41L, 41L, 94L, 75L, 
@@ -797,7 +797,7 @@ function.integer2factor_with_leading_zeros = function(vec_int) {
 }
 
 set.seed(1); fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample %>% function.integer2factor_with_leading_zeros |> dput() #----
-# > set.seed(1); fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample %>% function.integer2factor_with_leading_zeros |> dput() #----
+# > set.seed(1); fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample %>% function.integer2factor_with_leading_zeros |> dput() #----  
 structure(c(78L, 50L, 39L, 25L, 94L, 79L, 84L, 26L, 85L, 74L, 
 12L, 81L, 39L, 99L, 3L, 100L, 71L, 82L, 79L, 33L, 26L, 37L, 76L, 
 54L, 79L, 3L, 60L, 86L, 32L, 100L, 24L, 40L, 73L, 20L, 41L, 41L, 
@@ -1160,10 +1160,10 @@ fhs.index100 = fhs %>% map_df(function(x) {attr(x, "format.stata") = NULL; x})
 set.seed(1); fhs.index100$index100 = fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample
 fhs.index100$index100 |> summary() #----
 fhs.index100$index100 |> table() #----
-# > fhs$index100 |> summary() #----
+# > fhs$index100 |> summary() #----  
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #    1.00   25.00   50.00   50.25   75.00  100.00 
-# > fhs.index100$index100 |> table() #----
+# > fhs.index100$index100 |> table() #----  
 # .
 #   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25 
 #  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45 
@@ -1180,7 +1180,7 @@ fhs.index100ge11le20 = fhs.index100 |> dplyr::filter(index100 %in% 11:20) #----
 
 fhs.index100le10 |> str(give.attr = F) #----
 fhs.index100ge11le20 |> str(give.attr = F) #----
-# > fhs.index100le10 |> str(give.attr = F) #----
+# > fhs.index100le10 |> str(give.attr = F) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	450 obs. of  81 variables:
 #  $ randid   : num  24721 54224 83398 84815 95541 ...
 #  $ death    : num  1 1 1 0 1 0 0 0 0 0 ...
@@ -1263,7 +1263,7 @@ fhs.index100ge11le20 |> str(give.attr = F) #----
 #  $ prevstrk3: num  0 NA 0 0 NA 0 0 0 0 0 ...
 #  $ prevhyp3 : num  1 NA 1 1 NA 0 0 1 1 0 ...
 #  $ index100 : int  3 3 8 8 3 10 8 2 4 3 ...
-# > fhs.index100ge11le20 |> str(give.attr = F) #----
+# > fhs.index100ge11le20 |> str(give.attr = F) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	450 obs. of  81 variables:
 #  $ randid   : num  16799 69134 97895 110542 170881 ...
 #  $ death    : num  0 1 1 1 1 1 1 0 0 0 ...
@@ -1348,7 +1348,7 @@ fhs.index100ge11le20 |> str(give.attr = F) #----
 #  $ index100 : int  12 20 12 20 13 16 16 11 18 14 ...
 
 fhs |> str(give.attr = F) #----
-# > fhs |> str(give.attr = F) #----
+# > fhs |> str(give.attr = F) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4434 obs. of  81 variables:
 #  $ randid   : num  2448 6238 9428 10552 11252 ...
 #  $ death    : num  0 0 0 1 0 0 0 0 0 0 ...

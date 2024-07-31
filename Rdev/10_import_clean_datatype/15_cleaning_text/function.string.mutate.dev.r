@@ -132,7 +132,7 @@ grep(pattern, x, value = T)
 # [1] "A and B"       "A, B and C"    "A, B, C and D"
 
 
-## Match data from regexpr() ----
+## Match data from regexpr() ----  
 m <- regexpr(pattern, x)
 m |> str()
 m |> dput()
@@ -182,7 +182,7 @@ regmatches(x, m, invert = TRUE)
 # [1] "foobar"
 
 
-## Match data from gregexpr() ----
+## Match data from gregexpr() ----  
 m <- gregexpr(pattern, x)
 m |> str()
 m |> dput()
@@ -360,7 +360,7 @@ m
 # [1] TRUE
 
 
-## Write a little utility for creating blank strings with given numbers of characters. ----
+## Write a little utility for creating blank strings with given numbers of characters. ----  
 blanks <- function(n) strrep(" ", n)
 ## Create a copy of x with the parenthesized parts blanked out.
 x <- "John (fishing, hunting), Paul (hiking, biking)"
@@ -373,7 +373,7 @@ s
 # > s
 # [1] "John                   , Paul                 "
 
-## Compute the positions of the split matches (note that we cannot call strsplit() on x with match data from s). ----
+## Compute the positions of the split matches (note that we cannot call strsplit() on x with match data from s). ----  
 m <- gregexpr(", *", s)
 m |> str()
 m
@@ -393,7 +393,7 @@ m
 # attr(,"useBytes")
 # [1] TRUE
 
-## And finally extract the non-matched parts. ----
+## And finally extract the non-matched parts. ----  
 regmatches(x, m, invert = TRUE)
 # > regmatches(x, m, invert = TRUE)
 # [[1]]
@@ -432,7 +432,7 @@ fruit |> str_length |> str()
 
 #@ str_sub() == substr() ====  
 
-# https://www.rforexcelusers.com/how-to-mid-right-left-r/ =====
+# https://www.rforexcelusers.com/how-to-mid-right-left-r/ =====  
 
 left = function(text, num_char) {
   substr(text, 1, num_char)
@@ -500,7 +500,7 @@ right = function(text, num_char) {
 
 #@ str_extract() == {regmatches(., regexpr(pattern, .))} -----  
 
-# RegExCheatsheet 2016.09.pdf -----
+# RegExCheatsheet 2016.09.pdf -----  
 string <- c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics")
 pattern <- "t.m"
 
@@ -1022,7 +1022,7 @@ fruit %>% {regmatches(., gregexpr(pattern, .))} |> str()
 
 
 #@ str_match() -----  
-# RegExCheatsheet 2016.09.pdf -----
+# RegExCheatsheet 2016.09.pdf -----  
 string <- c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics")
 pattern <- "t.m"
 
@@ -1152,7 +1152,7 @@ sentences |> str_match(pattern) %>% head
 
 
 
-# https://stackoverflow.com/questions/7963898/extracting-the-last-n-characters-from-a-string-in-r ====
+# https://stackoverflow.com/questions/7963898/extracting-the-last-n-characters-from-a-string-in-r ====  
 x <- "some text in a string"
 
 substrRight <- function(x, n){
@@ -1170,7 +1170,7 @@ substrRight(x, 6)
 # [1] "string" " count"
 
 
-# For example, to get the date part from the string ----
+# For example, to get the date part from the string ----  
 
 substrRightRange <- function(x, m, n){substr(x, nchar(x)-m+1, nchar(x)-m+n)}
 
@@ -1228,7 +1228,7 @@ string |> dput()
 # c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics"
 # )
 
-# Another reasonably straightforward way is to use regular expressions and sub: ----
+# Another reasonably straightforward way is to use regular expressions and sub: ----  
 sub('.*(?=.$)', "", string, perl=T)  # So, "get rid of everything followed by one character". To grab more characters off the end, add however many dots in the lookahead assertion:
 sub('.*(?=.{2}$)', "", string, perl=T)  # where .{2} means .., or "any two characters", so meaning "get rid of everything followed by two characters".
 sub('.*(?=.{3}$)', "", string, perl=T)  # for three characters, etc. You can set the number of characters to grab with a variable, but you'll have to paste the variable value into the regular expression string:

@@ -13,7 +13,7 @@
 # If you have questions, please
 # <#<<<<<< HEAD
 # open an issue
-# =======
+# =======  
 # ask your question in IRC.
 # >#>>>>>> branch-a
 # 
@@ -31,7 +31,7 @@
 
 
 
-# ????? -----
+# ????? -----  
 # https://stackoverflow.com/questions/4318161/can-git-pull-all-update-all-my-local-branches
 # git fetch --all
 # git rebase origin/master
@@ -62,7 +62,7 @@ system("git fetch") # Before Making Commits - Stay Updated About Remote Changes.
 
 
 
-# ????? ------
+# ????? ------  
 # # https://stackoverflow.com/questions/22135465/cant-commit-after-starting-a-merge-in-sourcetree/22135512#22135512
 # # Do a git commit -a once you have resolved the conflicts. This is the last step when you are merging conflicts.
 # 

@@ -84,7 +84,7 @@ structure(1:24, dim = c(3L, 4L, 2L), dimnames = list(paste0("X",1:3), paste0("Y"
 
 
 
-# -------------------
+# -------------------  
 structure(1:12, dim = c(3L, 4L))
 structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 1, paste, collapse = ",")
 structure(1:12, dim = c(3L, 4L)) %>% apply(MARGIN = 2, paste, collapse = ",")
@@ -152,7 +152,7 @@ structure(1:24, dim = c(3L, 4L, 2L)) %>% apply(MARGIN = c(1, 3), paste, collapse
 
 
 
-#-----------------
+#-----------------  
 ## Compute row and column sums for a matrix:
 x <- cbind(x1 = 3, x2 = c(4:1, 2:5))
 x

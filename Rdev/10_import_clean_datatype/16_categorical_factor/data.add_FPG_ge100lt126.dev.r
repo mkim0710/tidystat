@@ -1,5 +1,5 @@
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_FPG_ge100lt126.dev.r
-#%% data.add_FPG_ge100lt126() ======
+#%% data.add_FPG_ge100lt126() ======  
 data.add_FPG_ge100lt126 <- function(dataset, varname4FPG = "BLDS") {
     dataset %>%
       mutate(
@@ -24,7 +24,7 @@ gj_jk.Date.DTH.recode %>% select(BLDS, matches("FPG")) |> summary()
  # NA's   :13       NA's   :13                                                      
 
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% data.add_FPG_ge100lt126 %>% select(matches("FPG")) |> summary() #----
-# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% data.add_FPG_ge100lt126 %>% select(matches("FPG")) |> summary() #----
+# > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% data.add_FPG_ge100lt126 %>% select(matches("FPG")) |> summary() #----  
 #       FPG         FPG_ge100       FPG_ge126       FPG_ge100lt126 
 #  Min.   : 36.00   Mode :logical   Mode :logical   Mode :logical  
 #  1st Qu.: 85.00   FALSE:201498    FALSE:268556    FALSE:216740   

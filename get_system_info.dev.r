@@ -19,7 +19,7 @@
 #     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -59,7 +59,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -76,7 +76,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "get_system_info" |> paste0(".source.r")
@@ -100,7 +100,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -125,7 +125,7 @@ cat(env1$info$DocumentTitle1, ".r", "  \n", sep="")
 cat(env1$info$DocumentTitle1, ".Rmd", "  \n", sep="")
 
 
-#% get_system_info() ====
+#% get_system_info() ====  
 get_system_info = function() {
     summary_list = list(
         GUI = .Platform$GUI,
@@ -270,7 +270,7 @@ str(get_system_info())
 
 
 
-#% get_cpu_model() else if()  ====
+#% get_cpu_model() else if()  ====  
 get_cpu_model <- function() {
     if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Darwin") (trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
     else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") (trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
@@ -282,7 +282,7 @@ get_cpu_model()
 
 
 
-#% get_cpu_model() switch() ====
+#% get_cpu_model() switch() ====  
 # ?.Platform
 get_cpu_model <- function() {
     os_type <- .Platform$OS.type
@@ -303,7 +303,7 @@ get_cpu_model()
 
 
 
-#% get_cpu_model() concise ====
+#% get_cpu_model() concise ====  
 # ?.Platform
 get_cpu_model <- function() {
     if (.Platform$OS.type == "unix") {
@@ -329,7 +329,7 @@ get_cpu_model()
 
 
 
-# ?.Platform ----- 
+# ?.Platform -----  
 # ?.Platform
 str(.Platform)
 # ##@MBP
@@ -349,7 +349,7 @@ str(.Platform)
 
 
 
-# ?Sys.info() ----- 
+# ?Sys.info() -----  
 # ?Sys.info
 dput(Sys.info())
 ##@ MPB
@@ -362,11 +362,11 @@ login = "root", user = "mkim0710", effective_user = "mkim0710"
 
 
 
-# ?sessionInfo() ----- 
-# ?R.Version() -----
-# ?Sys.getlocale() -----
-# ?Sys.timezone() -----
-# ?osVersion -----
+# ?sessionInfo() -----  
+# ?R.Version() -----  
+# ?Sys.getlocale() -----  
+# ?Sys.timezone() -----  
+# ?osVersion -----  
 # ?sessionInfo
 str(sessionInfo(), max.level = 1)
 # dput(sessionInfo())
@@ -438,7 +438,7 @@ str(list(
                                        
 
 
-#? getOption("repos") ------
+#? getOption("repos") ------  
 getOption("repos")
 # > getOption("repos")
 #                        CRAN 
@@ -652,7 +652,7 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 .tmp$objectname = "getwd"; .tmp$object = getwd(); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "path0"; .tmp$object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "path1"; .tmp$object = env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(env1$path$path0), "") |> str_extract("[^/]+")); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
-### env1\$env.internal ====
+### env1\$env.internal ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) {
     .sourcename = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 }

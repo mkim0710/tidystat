@@ -5,7 +5,7 @@
 library(tidyverse)
 
 readClipboard() |> dput() #----
-# > readClipboard() |> dput() #----
+# > readClipboard() |> dput() #----  
 # c("667\t2\t0\t0", "267\t7\t0\t0", "14\t83\t2\t1", "4\t18\t1\t0", 
 # "2\t13\t69\t1", "0\t1\t1\t22", "4\t12\t0\t184")
 
@@ -16,7 +16,7 @@ read.table(file = "clipboard", sep = "\t", header=F) |> dput() #----
 # -7L))
 
 tribble_paste = datapasta::tribble_paste
-# read.table(file = "clipboard", sep = "\t", header=F) |> tribble_paste() #----
+# read.table(file = "clipboard", sep = "\t", header=F) |> tribble_paste() #----  
 tibble::tribble(
    ~V1, ~V2, ~V3,  ~V4,
   667L,  2L,  0L,   0L,

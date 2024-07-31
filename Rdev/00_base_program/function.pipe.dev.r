@@ -2,7 +2,7 @@
 
 
 
-# https://rdrr.io/cran/magrittr/src/tests/testthat/test-anonymous-functions.r ======
+# https://rdrr.io/cran/magrittr/src/tests/testthat/test-anonymous-functions.r ======  
 # Simple vectorized function
 (function(x) 1 + x^2/2 + x^3/9 + x^4/16)(1:10)
 1:10 %>% (function(x) 1 + x^2/2 + x^3/9 + x^4/16)
@@ -34,7 +34,7 @@ library(tidyverse)
 # https://stackoverflow.com/questions/22959635/remove-duplicated-rows-using-dplyr
 set.seed(1234)
 df.example = data.frame(x=sample(0:1,10,replace=T),y=sample(0:1,10,replace=T)) %>% rownames_to_column
-# df.example |> tribble_paste() #----
+# df.example |> tribble_paste() #----  
 tibble::tribble(
     ~rowname, ~x, ~y,
          "1", 0L, 1L,
@@ -195,7 +195,7 @@ d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC
 # +     ) %>% 
 # +     mutate(SVCDATE - lmp, enddate - lmp) %>% 
 # +     select(ENROLID, lmp, `enddate - lmp`, `n()`, `SVCDATE - lmp`, DAYSUPP, everything()) %>% 
-# +     arrange(lmp, ENROLID, SVCDATE) |> print(n=99) #----
+# +     arrange(lmp, ENROLID, SVCDATE) |> print(n=99) #----  
 # Joining, by = "ENROLID"
 # # A tibble: 65 x 31
 #    ENROLID lmp        `enddate - lmp` `n()` `SVCDATE - lmp` DAYSUPP `sum(DAYSUPP)` `mean(DAYSUPP)` `mean(\`dose*ME~ Exposure enddate    SVCDATE    PDDATE     NDCNUM METQTY   QTY `max(enddate)`

@@ -18,7 +18,7 @@ sample_data <- tibble(
 
 
 #@ Using group_by() method ----  
-##%% data.variable.Date.nID_anyTRUE.v3() =====
+##%% data.variable.Date.nID_anyTRUE.v3() =====  
 data.variable.Date.nID_anyTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
@@ -60,7 +60,7 @@ data.variable.Date.nID_anyTRUE.v3(sample_data)
 
 
 #@ Using group_by() method ----  
-##%% data.variable.Date.nID_anyTRUE.v2() =====
+##%% data.variable.Date.nID_anyTRUE.v2() =====  
 data.variable.Date.nID_anyTRUE.v2 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
@@ -99,7 +99,7 @@ data.variable.Date.nID_anyTRUE.v2(sample_data)
 
 
 #@ Direct Filter Method using dplyr::filter() & n_distinct -----  
-##%% data.variable.Date.nID_anyTRUE.v1() =====
+##%% data.variable.Date.nID_anyTRUE.v1() =====  
 data.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
@@ -137,7 +137,7 @@ data.variable.Date.nID_anyTRUE.v1(sample_data)
 # 1  5000   988  2515  2485         921       924
 
 
-#% microbenchmark() -----
+#% microbenchmark() -----  
 mbm <- microbenchmark(
     v3.group_by_method_stepwise = data.variable.Date.nID_anyTRUE.v3(sample_data),
     v2.group_by_method_combined  = data.variable.Date.nID_anyTRUE.v2(sample_data),
@@ -162,7 +162,7 @@ print(mbm)
 
 
 #@ Using group_by() method ----  
-##%% data.variable.Date.nID_anyTRUE_allTRUE.v3() =====
+##%% data.variable.Date.nID_anyTRUE_allTRUE.v3() =====  
 data.variable.Date.nID_anyTRUE_allTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
@@ -210,7 +210,7 @@ data.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
 
 
 #@ Direct Filter Method using dplyr::filter() & n_distinct -----  
-##%% data.variable.Date.nID_anyTRUE_allTRUE.v1() =====
+##%% data.variable.Date.nID_anyTRUE_allTRUE.v1() =====  
 data.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
@@ -273,7 +273,7 @@ data.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data)
 
 
 
-#% microbenchmark() -----
+#% microbenchmark() -----  
 mbm <- microbenchmark(
     data.variable.Date.nID_anyTRUE_allTRUE.v3 = data.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data),
     data.variable.Date.nID_anyTRUE_allTRUE.v1 = data.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data),

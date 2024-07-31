@@ -53,7 +53,7 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 .tmp$objectname = "path1"; .tmp$object = env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(env1$path$path0), "") |> str_extract("[^/]+")); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -69,7 +69,7 @@ if (requireNamespace("rstudioapi")) {
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 # .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # .sourcename = "env1$env.internal" |> paste0(".source.r")
@@ -97,19 +97,19 @@ if (requireNamespace("rstudioapi")) {
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
 if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \% f_file.edit ====
+## \% f_file.edit ====  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-### \% f_file.edit_windows ====
+### \% f_file.edit_windows ====  
 env1$env.internal$ f_file.edit_windows <- function(.file2edit) {
     shell.exec(shQuote(.file2edit))
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### \% f_file.edit_notepad ====
+#### \% f_file.edit_notepad ====  
 env1$env.internal$ f_file.edit_notepad <- function(.file2edit) {
     if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### \% f_file.edit_vscode ====
+#### \% f_file.edit_vscode ====  
 env1$env.internal$ f_file.edit_vscode <- function(.file2edit) {
     if (.Platform$OS.type == "windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
 }
@@ -129,14 +129,14 @@ env1$env.internal$ f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
     URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="',.,'"', sep="")
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-### \% f_file.systemStart ====
+### \% f_file.systemStart ====  
 # Function to open files with the system's default application (fallback)
 env1$env.internal$f_file.systemStart <- function(file) {
     system(paste("start", shQuote(file)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
     # file |> shQuote() %>% paste0("start ",.) |> system(wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-#### \% f_file_PDF.sumatra ====
+#### \% f_file_PDF.sumatra ====  
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
 # Function to open PDF with Sumatra PDF
 env1$env.internal$f_file_PDF.sumatra <- function(
@@ -174,7 +174,7 @@ env1$env.internal$f_file_PDF.sumatra <- function(
     return(invisible(out))
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \% f_filename.ext.createBackup ====
+## \% f_filename.ext.createBackup ====  
 env1$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
     if(is.na(backup_from_ext)) {
         backup_from_path.filename = basename(backup_from_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
@@ -188,7 +188,7 @@ env1$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filen
     file.copy(from=backup_from_path.filename.ext, to=.backup_to_path.filename.ext, overwrite=overwrite); message(paste0("Backup file created: ",.backup_to_path.filename.ext))
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \% f_path_path.backup.overwrite ====
+## \% f_path_path.backup.overwrite ====  
 env1$env.internal$ f_path_path.backup.overwrite <- function(.overwrite_from_path.filename.ext, .destination_path.filename.ext, .backup_to_path = dirname(.destination_path.filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
     if(createFile || file.exists(.destination_path.filename.ext)) {
         if(!is.null(.backup_to_path)) {
@@ -199,13 +199,13 @@ env1$env.internal$ f_path_path.backup.overwrite <- function(.overwrite_from_path
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \% f_path.relative ====
+## \% f_path.relative ====  
 env1$f$ f_path.relative = function(path, basepath = env1$path$path1) {
     path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \% f_path.is_git_tracked  =======
+## \% f_path.is_git_tracked  =======  
 # Function to check if the current project or any of its parent directories are tracked by Git
 env1$env.internal$ f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
     # Normalize the path
@@ -246,18 +246,18 @@ env1$env.internal$ f_path.is_git_tracked <- function(path = getwd(), check_paren
 # }
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-### \$ git_path  =======
+### \$ git_path  =======  
 env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 # env1$path$no_git = is.na(env1$path$git_path)
 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-##@ sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======
+##@ sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/internal.f_path0.list_path_hierarchy.source.r")
 .sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### \$ list_path_hierarchy  =======
+### \$ list_path_hierarchy  =======  
 .max_hierarchy = 5
 env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), .max_hierarchy = .max_hierarchy, print.intermediate = FALSE)
 # for (i in 1:(.max_hierarchy)) {
@@ -276,7 +276,7 @@ env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(pa
 # # source(file.path("https://raw.githubusercontent.com/mkim0710/tidystat/master", "env1$env.internal.source.r"))
 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
+# \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----  
 
 # .tmp$objectname = "get_system_info"
 # #  source(file.path(env1$path$source_base,"",paste0(.tmp$objectname,".source.r")))
