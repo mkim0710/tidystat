@@ -308,9 +308,9 @@ options(width=120)
 # .subpath = "data"
 # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # path.filename.ext = ifelse(
-#     file.exists(paste0(subpath,"/",DataSetName,".rds"))
-#     , paste0(subpath,"/",DataSetName,".rds")
-#     , paste0(env1$path$source_base_github,"/",subpath,"/",DataSetName,".rds")
+#     file.exists(paste0(.subpath,"/",DataSetName,".rds"))
+#     , paste0(.subpath,"/",DataSetName,".rds")
+#     , paste0(env1$path$source_base_github,"/",.subpath,"/",DataSetName,".rds")
 # )
 # cat(" path.filename.ext = ", path.filename.ext, "\n", sep = "")
 # assign( DataSetName, read_rds(path.filename.ext) )
