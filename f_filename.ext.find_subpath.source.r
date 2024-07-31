@@ -185,7 +185,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     if (length(list_out) == 0) {
         cat("----------- File not found while searching following subpaths:\n")
         vec_subpath <- unlist(list_subpath, use.names = FALSE)
-        vec_subpath |> deparse(width.cutoff=500) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-20) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
+        vec_subpath |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}; # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
         return(NULL)
     }
         
