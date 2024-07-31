@@ -375,9 +375,8 @@ f_df.print_byVar = function(df, byVar, n = 99) {
         mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
     by(df, INDICES = df[[quo_name(byVar)]], FUN = function(df_subset) {
         df_subset |>
-            dplyr::select(-!!quo_name(byVar)) |>
-            print(n = n)
-    })
+            dplyr::select(-!!quo_name(byVar)) 
+    }) |> print(n = n)
 }
 data3 |> f_df.print_byVar(sex)
 
@@ -390,8 +389,8 @@ f_df.print_byVar = function(df, byVar, n = 99) {
         mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
     df %>% {by(., 
         INDICES = .[[quo_name(byVar)]], 
-        FUN = function(df_subset) df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)
-    )}
+        FUN = function(df_subset) df_subset |> dplyr::select(-!!quo_name(byVar))
+    )} |> print(n = n)
 }
 data3 |> f_df.print_byVar(sex)
 
@@ -431,9 +430,8 @@ f_df.print_byVar = function(df, byVar, n = 99) {
         mutate(!!quo_name(byVar) := !!byVar |> as.character() |> replace_na("N/A")) |> 
         by(INDICES = .$quo_name(byVar), function(df_subset) {
             df_subset |>
-                dplyr::select(-!!quo_name(byVar)) |>
-                print(n = n)
-        })
+                dplyr::select(-!!quo_name(byVar))
+        }) |> print(n = n)
 }
 data3 |> f_df.print_byVar(sex)
 
@@ -446,9 +444,8 @@ f_df.print_byVar = function(df, byVar, n = 99) {
         mutate(!!quo_name(byVar) := !!byVar |> as.character() |> replace_na("N/A")) |> 
         by(INDICES = .$quo_name(byVar), function(df_subset) {
             df_subset |>
-                dplyr::select(-!!quo_name(byVar)) |>
-                print(n = n)
-        })
+                dplyr::select(-!!quo_name(byVar))
+        }) |> print(n = n)
 }
 data3 |> f_df.print_byVar(sex)
 
