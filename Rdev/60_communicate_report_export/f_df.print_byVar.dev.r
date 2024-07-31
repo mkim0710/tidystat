@@ -367,88 +367,64 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://chatgpt.com/c/0a303d17-ec74-41ca-8012-c9921709ad57
+# @@ Dev) f_df.print_byVar() ----  
+
+## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
+
+### \% by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
 f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
-    df <- df |>
-        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
-    by(df, INDICES = df[[quo_name(byVar)]], FUN = function(df_subset) {
-        df_subset |>
-            dplyr::select(-!!quo_name(byVar)) 
-    }) |> print(n = n)
+    df |>
+        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A")) %>% 
+        by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) |> 
+        print(n = n)
 }
 data3 |> f_df.print_byVar(sex)
-
-
-f_df.print_byVar = function(df, byVar, n = 10) {
-    byVar <- enquo(byVar)
-    df = df |> as_tibble()
-    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
-    df <- df |>
-        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
-    df %>% {by(., 
-        INDICES = .[[quo_name(byVar)]], 
-        FUN = function(df_subset) df_subset |> dplyr::select(-!!quo_name(byVar))
-    )} |> print(n = n)
-}
-data3 |> f_df.print_byVar(sex)
-
-f_df.print_byVar = function(df, byVar, n = 10) {
-    byVar <- enquo(byVar)
-    df = df |> as_tibble()
-    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
-    df <- df |>
-        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
-    df %>% {by(.,
-        INDICES = .[[quo_name(byVar)]], 
-        FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)}
-    )}
-}
-data3 |> f_df.print_byVar(sex)
-
-
-f_df.print_byVar = function(df, byVar, n = 10) {
-    byVar <- enquo(byVar)
-    df = df |> as_tibble()
-    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
-    df <- df |>
-        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
-    # df %>% by(.,
-    #     INDICES = .[[quo_name(byVar)]], 
-    #     FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)}
-    # )
-}
-data3 |> f_df.print_byVar(sex)
-
-
-f_df.print_byVar = function(df, byVar, n = 10) {
-    byVar <- enquo(byVar)
-    df = df |> as_tibble()
-    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
-    df |> 
-        mutate(!!quo_name(byVar) := !!byVar |> as.character() |> replace_na("N/A")) |> 
-        by(INDICES = .$quo_name(byVar), function(df_subset) {
-            df_subset |>
-                dplyr::select(-!!quo_name(byVar))
-        }) |> print(n = n)
-}
-data3 |> f_df.print_byVar(sex)
-
-
-f_df.print_byVar = function(df, byVar, n = 10) {
-    byVar <- enquo(byVar)
-    df = df |> as_tibble()
-    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
-    df |> 
-        mutate(!!quo_name(byVar) := !!byVar |> as.character() |> replace_na("N/A")) |> 
-        by(INDICES = .$quo_name(byVar), function(df_subset) {
-            df_subset |>
-                dplyr::select(-!!quo_name(byVar))
-        }) |> print(n = n)
-}
-data3 |> f_df.print_byVar(sex)
-
+# .[[quo_name(byVar)]]: Female
+# # A tibble: 89 × 11
+#      Num rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
+#    <int> <chr>   <dbl> <dbl>  <dbl> <dbl>   <dbl>    <dbl>     <dbl>    <dbl>   <dbl>
+#  1     8 8          11   361      2    71       2       60        80      538       1
+#  2    12 12         16   654      2    68       2       70        70       NA      23
+#  3    13 13         11   728      2    68       1       90        90       NA       5
+#  4    19 19          1    61      2    56       2       60        60      238      10
+#  5    22 22          6    81      2    49       0      100        70     1175      -8
+#  6    26 26         12   520      2    70       1       90        80      825       6
+#  7    31 31         12   473      2    69       1       90        90     1025      -1
+#  8    34 34         16   107      2    60       2       50        60      925     -15
+#  9    36 36          1   122      2    62       2       50        50     1025      NA
+# 10    38 38         15   965      1    66       1       70        90      875       4
+# # ℹ 79 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+# ------------------------------------------------------------------------------------------ 
+# .[[quo_name(byVar)]]: Male
+# # A tibble: 134 × 11
+#      Num rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
+#    <int> <chr>   <dbl> <dbl>  <dbl> <dbl>   <dbl>    <dbl>     <dbl>    <dbl>   <dbl>
+#  1     2 2           3   455      2    68       0       90        90     1225      15
+#  2     4 4           5   210      2    57       1       90        60     1150      11
+#  3     6 6          12  1022      1    74       1       50        80      513       0
+#  4    10 10          7   166      2    61       2       70        70      271      34
+#  5    11 11          6   170      2    57       1       80        80     1025      27
+#  6    14 14         21    71      2    60      NA       60        70     1225      32
+#  7    15 15         12   567      2    57       1       80        70     2600      60
+#  8    16 16          1   144      2    67       1       80        90       NA      15
+#  9    17 17         22   613      2    70       1       90       100     1150      -5
+# 10    18 18         16   707      2    63       2       50        70     1025      22
+# # ℹ 124 more rows
+# # ℹ Use `print(n = ...)` to see more rows
+# ------------------------------------------------------------------------------------------ 
+# .[[quo_name(byVar)]]: N/A
+# # A tibble: 5 × 11
+#     Num rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
+#   <int> <chr>   <dbl> <dbl>  <dbl> <dbl>   <dbl>    <dbl>     <dbl>    <dbl>   <dbl>
+# 1     1 1           3   306      2    74       1       90       100     1175      NA
+# 2     3 3           3  1010      1    56       0       90        90       NA      15
+# 3     5 5           1   883      2    60       0      100        90       NA       0
+# 4     7 7           7   310      2    68       2       70        60      384      10
+# 5     9 9           1   218      2    53       1       70        80      825      16
 
 
 #|________________________________________________________________________________|#  
