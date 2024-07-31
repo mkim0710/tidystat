@@ -373,14 +373,16 @@ data2 %>%
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://chatgpt.com/c/0a303d17-ec74-41ca-8012-c9921709ad57
-f_df.print_byVar = function(df, byVar) {
+f_df.print_byVar = function(df, byVar, n = 99) {
     byVar <- enquo(byVar)
+    df = df %>% as_tibble()
+    if(!"Num" %in% names(df)) df = df %>% rownames_to_column("Num") %>% mutate(Num = Num %>% as.integer())
     df %>% 
         mutate(!!quo_name(byVar) := !!byVar %>% as.character() %>% replace_na("N/A")) %>% 
         by(.$sex, function(df_subset) {
             df_subset %>%
                 dplyr::select(-!!quo_name(byVar)) %>%
-                print(n = 99)
+                print(n = n)
         })
 }
 
