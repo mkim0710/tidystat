@@ -65,7 +65,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # env1$path$.sourcename_root = .sourcename_root  
 # env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 # env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
+# env1$path$.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
 # cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #     "# ",env1$path$.subpath.filename.dev.r, "  \n",
 #     "# ",env1$path$.subpath.filename.dev.Rmd, "  \n",
@@ -80,7 +80,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
-# .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
+# .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  

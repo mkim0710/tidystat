@@ -4,7 +4,7 @@
 .subpath=r"(Rdev/60_communicate_report_export)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_var_sequence.table" |> paste0(".source.r")
-.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
+.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
 # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ------------  
 source( file.path(env1$path$source_base,.subpath.filename.source.r) )
 
