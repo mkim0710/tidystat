@@ -289,7 +289,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 ```
@@ -331,7 +331,7 @@ survival::lung |> summary()
 ```
   
   
-### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -354,7 +354,7 @@ survival::lung |> as_tibble() |> rownames_to_column() %>%
 # 10 14         21    71      2    60      NA       60        70     1225      32
 # # ℹ 128 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ------------------------------------------------------------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------------------------------------------------------------  
 # .$sex: 2
 # # A tibble: 90 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -384,7 +384,7 @@ data2
 ```
   
   
-### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
@@ -404,7 +404,7 @@ data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: 2
 # # A tibble: 88 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -434,7 +434,7 @@ data3
 ```
   
   
-### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
@@ -454,7 +454,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # 10 40          1   731      2    64       1       80       100     1175      15
 # # ℹ 78 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: Male
 # # A tibble: 131 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -471,7 +471,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: N/A
 # # A tibble: 9 × 10
 #   rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -491,7 +491,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
   
 # @@ Dev) f_df.print_byVar() ----  
 
-## \% f_df.print_byVar = function(df, byVar, n = NULL) { ----
+## \% f_df.print_byVar = function(df, byVar, n = NULL) { ----  
 ### \% by(df, INDICES = df[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
