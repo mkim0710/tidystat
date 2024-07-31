@@ -43,7 +43,7 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://ra
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## env1\$path ====
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
-# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
+# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) |> paste0('"',.,'"') |> paste(collapse = ", \n  ") |> cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -144,27 +144,12 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #@@ RUN ALL ABOVE: CTRL+ALT+B -----
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# #@@ START) data -----
-# # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====
-# # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-# .subpath = "data"
-# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# path.filename.ext = ifelse(
-#     file.exists(paste0(subpath,"/",DataSetName,".rds"))
-#     , paste0(subpath,"/",DataSetName,".rds")
-#     , paste0(env1$path$source_base_github,"/",subpath,"/",DataSetName,".rds")
-# )
-# cat("path.filename.ext = ", path.filename.ext, "\n", sep = "")
-# assign( DataSetName, read_rds(path.filename.ext) )
+#@@ START) data -----
 
-
-
-
-
-survival::lung %>% str()
-survival::lung %>% summary()
-# > survival::lung %>% str()
+## \$ survival::lung ----  
+survival::lung |> str()
+survival::lung |> summary()
+# > survival::lung |> str()
 # 'data.frame':	228 obs. of  10 variables:
 #  $ inst     : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time     : num  306 455 1010 210 883 ...
@@ -176,7 +161,7 @@ survival::lung %>% summary()
 #  $ pat.karno: num  100 90 90 60 90 80 60 80 80 70 ...
 #  $ meal.cal : num  1175 1225 NA 1150 NA ...
 #  $ wt.loss  : num  NA 15 15 11 0 0 10 1 16 34 ...
-# > survival::lung %>% summary()
+# > survival::lung |> summary()
 #       inst            time            status           age             sex           ph.ecog          ph.karno        pat.karno         meal.cal         wt.loss       
 #  Min.   : 1.00   Min.   :   5.0   Min.   :1.000   Min.   :39.00   Min.   :1.000   Min.   :0.0000   Min.   : 50.00   Min.   : 30.00   Min.   :  96.0   Min.   :-24.000  
 #  1st Qu.: 3.00   1st Qu.: 166.8   1st Qu.:1.000   1st Qu.:56.00   1st Qu.:1.000   1st Qu.:0.0000   1st Qu.: 75.00   1st Qu.: 70.00   1st Qu.: 635.0   1st Qu.:  0.000  
@@ -187,8 +172,9 @@ survival::lung %>% summary()
 #  NA's   :1                                                                        NA's   :1        NA's   :1        NA's   :3        NA's   :47       NA's   :14       
 
 
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
 ?by
-survival::lung %>% as_tibble() %>% rownames_to_column() %>% 
+survival::lung |> as_tibble() |> rownames_to_column() |> 
     by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 138 × 10
@@ -206,7 +192,7 @@ survival::lung %>% as_tibble() %>% rownames_to_column() %>%
 # 10 14         21    71      2    60      NA       60        70     1225      32
 # # ℹ 128 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ------------------------------------------------------------------------------------------------------------------------------------ 
+# --------------------------------------------------------------------------------
 # .$sex: 2
 # # A tibble: 90 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -225,10 +211,13 @@ survival::lung %>% as_tibble() %>% rownames_to_column() %>%
 # # ℹ Use `print(n = ...)` to see more rows
 
 
-data = survival::lung %>% as_tibble() %>% rownames_to_column()
+## \$ data2$sex[c(1,3,5,7,9)] = NA ----  
+data = survival::lung |> as_tibble() |> rownames_to_column()
 data2 = data
-data2$sex[1:9] = NA
-data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
+data2$sex[c(1,3,5,7,9)] = NA
+
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+data2 |> by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 131 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -245,7 +234,7 @@ data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ----------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------
 # .$sex: 2
 # # A tibble: 88 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -264,8 +253,9 @@ data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # # ℹ Use `print(n = ...)` to see more rows
 
 
-data2 %>% 
-    mutate(sex = sex %>% as.character %>% replace_na("N/A")) %>% 
+data3 
+data2 |> 
+    mutate(sex = sex |> as.character |> replace_na("N/A")) |> 
     by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 131 × 10
@@ -283,7 +273,7 @@ data2 %>%
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ----------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------
 # .$sex: 2
 # # A tibble: 88 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -300,7 +290,7 @@ data2 %>%
 # 10 40          1   731      2    64       1       80       100     1175      15
 # # ℹ 78 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ----------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------
 # .$sex: N/A
 # # A tibble: 9 × 10
 #   rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -316,10 +306,14 @@ data2 %>%
 # 9 9           1   218      2    53       1       70        80      825      16
 
 
-data2 %>% 
-    mutate(sex = c("Male", "Female")[sex]) %>% 
-    mutate(sex = sex %>% as.character %>% replace_na("N/A")) %>% 
-    by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
+
+## \$ data3 = data2 |> mutate(sex = c("Male", "Female")[sex])  ----  
+data3 = data2 |> mutate(sex = c("Male", "Female")[sex]) |> 
+    mutate(sex = sex |> as.character |> replace_na("N/A")) 
+data3
+
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+data3 |> by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: Female
 # # A tibble: 88 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -336,7 +330,7 @@ data2 %>%
 # 10 40          1   731      2    64       1       80       100     1175      15
 # # ℹ 78 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ----------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------
 # .$sex: Male
 # # A tibble: 131 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -353,7 +347,7 @@ data2 %>%
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ----------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------
 # .$sex: N/A
 # # A tibble: 9 × 10
 #   rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -375,28 +369,98 @@ data2 %>%
 # https://chatgpt.com/c/0a303d17-ec74-41ca-8012-c9921709ad57
 f_df.print_byVar = function(df, byVar, n = 99) {
     byVar <- enquo(byVar)
-    df = df %>% as_tibble()
-    if(!"Num" %in% names(df)) df = df %>% rownames_to_column("Num") %>% mutate(Num = Num %>% as.integer())
-    df %>% 
-        mutate(!!quo_name(byVar) := !!byVar %>% as.character() %>% replace_na("N/A")) %>% 
-        by(.$sex, function(df_subset) {
-            df_subset %>%
-                dplyr::select(-!!quo_name(byVar)) %>%
+    df = df |> as_tibble()
+    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
+    df <- df |>
+        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
+    by(df, INDICES = df[[quo_name(byVar)]], FUN = function(df_subset) {
+        df_subset |>
+            dplyr::select(-!!quo_name(byVar)) |>
+            print(n = n)
+    })
+}
+data3 |> f_df.print_byVar(sex)
+
+
+f_df.print_byVar = function(df, byVar, n = 99) {
+    byVar <- enquo(byVar)
+    df = df |> as_tibble()
+    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
+    df <- df |>
+        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
+    df %>% {by(., 
+        INDICES = .[[quo_name(byVar)]], 
+        FUN = function(df_subset) df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)
+    )}
+}
+data3 |> f_df.print_byVar(sex)
+
+f_df.print_byVar = function(df, byVar, n = 99) {
+    byVar <- enquo(byVar)
+    df = df |> as_tibble()
+    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
+    df <- df |>
+        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
+    df %>% {by(.,
+        INDICES = .[[quo_name(byVar)]], 
+        FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)}
+    )}
+}
+data3 |> f_df.print_byVar(sex)
+
+
+f_df.print_byVar = function(df, byVar, n = 99) {
+    byVar <- enquo(byVar)
+    df = df |> as_tibble()
+    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
+    df <- df |>
+        mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
+    # df |> by(.,
+    #     INDICES = .[[quo_name(byVar)]], 
+    #     FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)}
+    # )
+}
+data3 |> f_df.print_byVar(sex)
+
+
+f_df.print_byVar = function(df, byVar, n = 99) {
+    byVar <- enquo(byVar)
+    df = df |> as_tibble()
+    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
+    df |> 
+        mutate(!!quo_name(byVar) := !!byVar |> as.character() |> replace_na("N/A")) |> 
+        by(INDICES = .$quo_name(byVar), function(df_subset) {
+            df_subset |>
+                dplyr::select(-!!quo_name(byVar)) |>
                 print(n = n)
         })
 }
+data3 |> f_df.print_byVar(sex)
 
 
-data2 %>% f_df.print_byVar(sex)
+f_df.print_byVar = function(df, byVar, n = 99) {
+    byVar <- enquo(byVar)
+    df = df |> as_tibble()
+    if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
+    df |> 
+        mutate(!!quo_name(byVar) := !!byVar |> as.character() |> replace_na("N/A")) |> 
+        by(INDICES = .$quo_name(byVar), function(df_subset) {
+            df_subset |>
+                dplyr::select(-!!quo_name(byVar)) |>
+                print(n = n)
+        })
+}
+data3 |> f_df.print_byVar(sex)
+
 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ END -----  
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) |> paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --app="',.,'"') |> paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:\n", 
     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 #|________________________________________________________________________________|#  
