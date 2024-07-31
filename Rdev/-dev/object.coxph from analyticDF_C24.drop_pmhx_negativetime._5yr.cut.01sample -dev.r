@@ -25,7 +25,7 @@ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r
 #@ object.coxph %>% str #----  
 object.coxph %>% str(max.level = 1) #----
 object.coxph %>% str #----
-# > object.coxph %>% str(max.level = 1) #----
+# > object.coxph %>% str(max.level = 1) #----  
 # List of 21
 #  $ coefficients     : Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #   ..- attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
@@ -69,7 +69,7 @@ object.coxph %>% str #----
 #  $ contrasts        :List of 5
 #  $ call             : language coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ ., data = df, method = "breslow")
 #  - attr(*, "class")= chr "coxph"
-# > object.coxph %>% str #----
+# > object.coxph %>% str #----  
 # List of 21
 #  $ coefficients     : Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #   ..- attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
@@ -283,7 +283,7 @@ tbl_varname_level_coefficients$varname[is.na(tbl_varname_level_coefficients$varn
     tbl_varname_level_coefficients$varnamelevel[is.na(tbl_varname_level_coefficients$varname)]
 
 tbl_varname_level_coefficients %>% print(n=99) #----
-# > tbl_varname_level_coefficients %>% print(n=99) #----
+# > tbl_varname_level_coefficients %>% print(n=99) #----  
 # # A tibble: 15 x 4
 #    varname                     level    varnamelevel                        coefficients
 #    <chr>                       <chr>    <chr>                                      <dbl>
@@ -309,13 +309,13 @@ tbl_varname_level_coefficients %>% print(n=99) #----
 object.coxph$coefficients %>% str
 object.coxph$means %>% str
 object.coxph$residuals %>% str
-# > object.coxph$coefficients %>% str ----
+# > object.coxph$coefficients %>% str ----  
 #  Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #  - attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
-# > object.coxph$means %>% str ----
+# > object.coxph$means %>% str ----  
 #  Named num [1:10] 51.839 0.448 0.205 0.351 0.279 ...
 #  - attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
-# > object.coxph$residuals %>% str ----
+# > object.coxph$residuals %>% str ----  
 #  Named num [1:4563] -4.15e-13 -1.87e-04 -8.10e-14 -6.62e-13 -4.51e-12 ...
 #  - attr(*, "names")= chr [1:4563] "1" "2" "3" "4" ...
 
@@ -323,10 +323,10 @@ object.coxph$residuals %>% str
 #@ object.coxph |> coef() %>% str -----  
 object.coxph |> coef() %>% str
 object.coxph %>% confint %>% str
-# > object.coxph |> coef() %>% str ----
+# > object.coxph |> coef() %>% str ----  
 #  Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #  - attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
-# > object.coxph %>% confint %>% str ----
+# > object.coxph %>% confint %>% str ----  
 #  num [1:10, 1:2] 8.14e-02 -3.58 -1.44 -8.23e+04 -8.45e+04 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
@@ -367,12 +367,12 @@ object.coxph.summary %>% str
 
 object.coxph.summary$coef %>% str
 object.coxph.summary$conf.int %>% str
-# > object.coxph.summary$coef %>% str ----
+# > object.coxph.summary$coef %>% str ----  
 #  num [1:10, 1:5] 0.227 -1.221 1.16 18.752 1.113 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
 #   ..$ : chr [1:5] "coef" "exp(coef)" "se(coef)" "z" ...
-# > object.coxph.summary$conf.int %>% str ----
+# > object.coxph.summary$conf.int %>% str ----  
 #  num [1:10, 1:4] 1.26 2.95e-01 3.19 1.39e+08 3.04 ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...

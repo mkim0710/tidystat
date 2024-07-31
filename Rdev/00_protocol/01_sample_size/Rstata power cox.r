@@ -66,7 +66,7 @@ dput(options("RStata.StataVersion"))
 pwr.2p.test(h = ES.h(p1 = 0.025, p2 = 0.0125), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
 stata.out = stata("power twoproportions 0.025 0.0125, power (0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > pwr.2p.test(h = ES.h(p1 = 0.025, p2 = 0.0125), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----
+# > pwr.2p.test(h = ES.h(p1 = 0.025, p2 = 0.0125), sig.level = 0.05, power = 0.8, alternative = "two.sided") #----  
 # 
 #      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
 # 
@@ -78,7 +78,7 @@ stata.out
 # 
 # NOTE: same sample sizes
 # 
-# > stata.out = stata("power twoproportions 0.025 0.0125, power (0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power twoproportions 0.025 0.0125, power (0.8)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power twoproportions 0.025 0.0125, power (0.8)
 # 
 # Performing iteration ...
@@ -118,7 +118,7 @@ stata("power cox, hratio(2) eventprob(.0125)", data.in = NULL, data.out = F, sta
 stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----
 # > log(2)
 # [1] 0.6931472
-# > stata("power cox, hratio(2) eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----
+# > stata("power cox, hratio(2) eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----  
 # . power cox, hratio(2) eventprob(.0125)
 # 
 # Estimated sample size for Cox PH regression
@@ -141,7 +141,7 @@ stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, sta
 # 
 #             E =        66
 #             N =     5,228
-# > stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----
+# > stata("power cox 0.6931472, eventprob(.0125)", data.in = NULL, data.out = F, stata.version = 15.1) #----  
 # . power cox 0.6931472, eventprob(.0125)
 # 
 # Estimated sample size for Cox PH regression
@@ -195,7 +195,7 @@ qnorm(1-beta)
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# http://powerandsamplesize.com/Calculators/Test-Time-To-Event-Data/Cox-PH-2-Sided-Equality ----
+# http://powerandsamplesize.com/Calculators/Test-Time-To-Event-Data/Cox-PH-2-Sided-Equality ----  
 hr=2
 hr0=1
 pE=0.8
@@ -214,7 +214,7 @@ ceiling(n) # 82
 
 
 stata("power cox, hratio(2) eventprob(0.8)", data.in = NULL, data.out = F, stata.version = 15.1) #----
-# > stata("power cox, hratio(2) eventprob(0.8)", data.in = NULL, data.out = F, stata.version = 15.1) #----
+# > stata("power cox, hratio(2) eventprob(0.8)", data.in = NULL, data.out = F, stata.version = 15.1) #----  
 # . power cox, hratio(2) eventprob(0.8)
 # 
 # Estimated sample size for Cox PH regression

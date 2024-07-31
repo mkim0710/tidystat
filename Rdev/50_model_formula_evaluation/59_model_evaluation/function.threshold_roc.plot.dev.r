@@ -1,6 +1,6 @@
 # function.threshold_roc.plot.dev.r
 
-# https://blog.revolutionanalytics.com/2016/11/calculating-auc.html =====
+# https://blog.revolutionanalytics.com/2016/11/calculating-auc.html =====  
 
 
 library(tidyverse)
@@ -100,7 +100,7 @@ vec_actual_prediction.treshold_roc %>% arrange(1 - Specificity, Sensitivity) %>%
     ggplot(aes(x = 1 - Specificity, y = Sensitivity)) + geom_point() + geom_line() + coord_cartesian(xlim = c(0,1), ylim = c(0,1))
 vec_actual_prediction.treshold_roc
 vec_actual_prediction.treshold_roc |> str() #----
-# > vec_actual_prediction.treshold_roc |> str() #----
+# > vec_actual_prediction.treshold_roc |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’, ‘object.threshold_roc’ and 'data.frame':	20 obs. of  24 variables:
 #  $ threshold      : num  -Inf 1.5 2.5 3.5 4.5 ...
 #  $ TP             : num  10 10 10 10 10 9 9 9 8 8 ...
@@ -196,7 +196,7 @@ df_actual_prediction.treshold_roc |> str() #----
 # 19      19.5     1     0     9    10    20         0.1         1     1       0.526   0.1 0       0.182   0.122    0.357 Inf    Inf      0.900   0.229
 # 20     Inf       0     0    10    10    20         0           1   NaN       0.5     0   0     NaN     NaN      NaN     NaN    NaN      1     NaN    
 # # ... with 5 more variables: SimpleAgreement <dbl>, TN_expected <dbl>, TP_expected <dbl>, ChanceAgreement <dbl>, Cohen_kappa <dbl>
-# > df_actual_prediction.treshold_roc |> str() #----
+# > df_actual_prediction.treshold_roc |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’, ‘object.threshold_roc’ and 'data.frame':	20 obs. of  24 variables:
 #  $ threshold      : num  -Inf 1.5 2.5 3.5 4.5 ...
 #  $ TP             : num  10 10 10 10 10 9 9 9 8 8 ...
@@ -255,7 +255,7 @@ function.threshold_roc.auc = function(object.threshold_roc) {
 }
 
 df_actual_prediction.treshold_roc %>% function.threshold_roc.auc #----
-# > df_actual_prediction.treshold_roc %>% function.threshold_roc.auc #----
+# > df_actual_prediction.treshold_roc %>% function.threshold_roc.auc #----  
 # [1] 0.825
 
 
@@ -299,7 +299,7 @@ function.vec_actual_prediction.auc = function(vec_actual, vec_prediction) {
 }
 
 function.vec_actual_prediction.auc(df_actual_prediction$actual, df_actual_prediction$prediction) #-----
-# > function.vec_actual_prediction.auc(df_actual_prediction$actual, df_actual_prediction$prediction) #-----
+# > function.vec_actual_prediction.auc(df_actual_prediction$actual, df_actual_prediction$prediction) #-----  
 # [1] 0.825
 
 

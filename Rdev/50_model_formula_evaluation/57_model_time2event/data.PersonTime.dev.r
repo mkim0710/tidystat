@@ -310,7 +310,7 @@ analyticDF2797.Outcome2PersonTime7 =
         , Dk_plus1 = event  # defined as in hernanrobins_v2.17.22 $17.2 From hazards to risks 
     ) 
 analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl.time, SecondaryOutcomeP1456fhkl, PeriodSeq, Period, time, timesq, event, k, Dk_plus1) #----
-# > analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl.time, SecondaryOutcomeP1456fhkl, PeriodSeq, Period, time, timesq, event, k, Dk_plus1) #----
+# > analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl.time, SecondaryOutcomeP1456fhkl, PeriodSeq, Period, time, timesq, event, k, Dk_plus1) #----  
 # # A tibble: 93,336 x 10
 #      ENROLID SecondaryOutcomeP1456fhkl.time SecondaryOutcomeP1456fhkl PeriodSeq Period   time timesq event     k Dk_plus1
 #        <dbl>                          <int> <lgl>                         <int> <fct>   <dbl>  <dbl> <lgl> <dbl> <lgl>   

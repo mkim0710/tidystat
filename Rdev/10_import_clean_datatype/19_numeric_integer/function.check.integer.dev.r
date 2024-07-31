@@ -267,7 +267,7 @@ help("==")
 
 
 #@ -----  
-# https://stat.ethz.ch/pipermail/r-help/2012-January/300250.html ====
+# https://stat.ethz.ch/pipermail/r-help/2012-January/300250.html ====  
 .Machine$integer.max
 as.integer(2147483647)
 as.integer(2147483648)

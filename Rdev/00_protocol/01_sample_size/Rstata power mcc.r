@@ -61,7 +61,7 @@ dput(options("RStata.StataVersion"))
 
 stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
 stata.out
-# > stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
+# > stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----  
 # . power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)
 # 
 # Performing iteration ...

@@ -199,7 +199,7 @@ cat(setme,file=file.path(R.home(),'etc/Rprofile.site'),sep="\n")
 # https://www.accelebrate.com/library/how-to-articles/r-rstudio-library
 
 # https://medium.com/@ValidScience/how-to-fix-rstudios-package-installation-on-windows-10-c1e602bf3a1f
-## Before edit -----
+## Before edit -----  
 # > Sys.getenv("R_USER") 
 # [1] "C:/Users/mkim0/Documents"
 # > Sys.getenv("R_LIBS_USER")

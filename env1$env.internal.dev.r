@@ -39,7 +39,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -56,7 +56,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "env1$env.internal" |> paste0(".source.r")
@@ -80,7 +80,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -112,7 +112,7 @@ objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!
 
 
 
-# #@ attach(env1$path) --------
+# #@ attach(env1$path) --------  
 # attach(env1$path)
 # if (dirname(getwd) == path0) {
 #     path1 = getwd; path2 = NA; path3 = NA
@@ -129,7 +129,7 @@ objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!
 # # path2: D:/OneDrive/[][Rproject]/github_tidystat/Rdev
 # # path3: NA
 # 
-# #@ detach(env1$path) --------
+# #@ detach(env1$path) --------  
 # detach(env1$path)
 # 
 
@@ -138,7 +138,7 @@ objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!
 
 
 
-#% f_path0.list_path_hierarchy =======
+#% f_path0.list_path_hierarchy =======  
 f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path <- list()
@@ -218,7 +218,7 @@ str(env1$path)
 # # source(file.path("https://raw.githubusercontent.com/mkim0710/tidystat/master", "env1$env.internal.source.r"))
 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----
+# \% source( file.path(env1$path$source_base,subpath.filename.source.r) ) ----  
 # objectname = "get_system_info"
 # source(file.path(env1$path$source_base,"",paste0(objectname,".source.r")))
 

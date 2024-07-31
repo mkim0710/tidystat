@@ -31,7 +31,7 @@ ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% s
 # 10                  6 2012-05-26          2012-08-21                          3 2012-05-26         2012-08-20                         NA NA                 NA                
 # # ... with 303 more rows
 # > ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(lmp, matches("Window4Exposure")) %>% 
-# +      mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)})  #----
+# +      mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)})  #----  
 # # A tibble: 313 x 10
 #      lmp Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.R~ Window4Exposure.~ Window4Exposure.~ Window4Exposure.~ Window4Exposure.~ Window4Exposure.~
 #    <dbl>              <int>              <dbl>              <dbl>              <int>             <dbl>             <dbl>             <int>             <dbl>             <dbl>
@@ -54,7 +54,7 @@ tblGADM_kor_level2.join_level1.SIDO_SGG_CD = tblGADM_kor_level2.join_level1.SIDO
     mutate_if(is.character, as.factor)
 
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD |> str() #----
-# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD |> str() #----
+# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	229 obs. of  37 variables:
 #  $ OBJECTID_level2: num  1 2 3 4 5 6 7 8 9 10 ...
 #  $ ID_0           : num  213 213 213 213 213 213 213 213 213 213 ...
@@ -558,7 +558,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #---
 #  $ _5yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  44 variables:
 #  $ _6yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	451428 obs. of  44 variables:
 #  $ _7yr:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	440469 obs. of  44 variables:
-# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----
+# > analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	461489 obs. of  44 variables:
 #  $ AGE                         : num  70 52 42 44 56 54 43 58 45 55 ...
 #  $ AGE_group                   : Factor w/ 4 levels "40-","50-","60-",..: 4 2 1 1 2 2 1 2 1 2 ...
@@ -607,7 +607,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr` |> str(give.attr = F) #---
 
 
 
-# debug 181114 unordered - to avoid .L & .Q =====
+# debug 181114 unordered - to avoid .L & .Q =====  
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr`$BMI_cut2325 %>% is.ordered
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, as.factor) %>% {.$BMI_cut2325} %>% is.ordered
 analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordered, factor) %>% {.$BMI_cut2325} %>% is.ordered

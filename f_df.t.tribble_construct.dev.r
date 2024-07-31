@@ -35,7 +35,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -52,7 +52,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")
@@ -76,7 +76,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -653,13 +653,13 @@ env1$f$f_path.size_files = function(.path4read = getwd(), regex4filename = "\\.(
 
 ls.str(env1) #-----
 ls.str(env1$env.internal) #-----
-# > ls.str(env1) #-----
+# > ls.str(env1) #-----  
 # env.internal : <environment: 0x000001d6104168f8> 
 # f_df.transpose : function (df, varname4rowname = "varname")  
 # f_path.size_files : function (.path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
 # f_df.t.tribble_construct : function (df)  
 # f_df.tribble_construct : function (df)  
-# > ls.str(env1$env.internal) #-----
+# > ls.str(env1$env.internal) #-----  
 # clipboard_context : function ()  
 # column_width : function (column, column_type)  
 # console_context : function ()  
@@ -695,7 +695,7 @@ ls.str(env1$env.internal) #-----
 # saveRDS(env1$f$f_df.transpose, paste0("env1$f$f_df.transpose", ".rds"))
 
 
-# #@ source_path = "D:/OneDrive/[][Rproject]/github_tidystat" -------
+# #@ source_path = "D:/OneDrive/[][Rproject]/github_tidystat" -------  
 # source_path = "D:/OneDrive/[][Rproject]/github_tidystat"
 # .t0 = Sys.time()
 # load((file.path(source_path, "f_df.t.tribble_construct.RData")))
@@ -712,7 +712,7 @@ ls.str(env1$env.internal) #-----
 # Sys.time() - .t0 # Time difference of 0.003256798 secs
 
 
-# #@ source_path = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master", source_subpath) ----
+# #@ source_path = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master", source_subpath) ----  
 # source_subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(subpath!="") utils::browseURL(normalizePath(subpath))
 # source_path = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master", source_subpath)
@@ -743,14 +743,14 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 .tmp$objectname = "getwd"; .tmp$object = getwd(); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "path0"; .tmp$object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "path1"; .tmp$object = env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(env1$path$path0), "") |> str_extract("[^/]+")); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
-### env1\$env.internal ====
+### env1\$env.internal ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) {
     .sourcename = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-#### env1\$f_df.t.tribble_construct() ====
+#### env1\$f_df.t.tribble_construct() ====  
 if(!"f_df.t.tribble_construct" %in% names(.GlobalEnv$env1)) {
     .sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 }
@@ -793,7 +793,7 @@ df %>% f_df.transpose #----
 df %>% f_df.t.tribble_construct #----
 .path4read = "../github_tidystat/data"
 env1$f$f_path.size_files(.path4read, "\\.(rds)$") #-----
-# > df %>% f_df.tribble_construct #----
+# > df %>% f_df.tribble_construct #----  
 # tibble::tribble(
 #            ~varname,        ~V1,        ~V2,
 #            "STND_Y",     "2014",     "2014",
@@ -810,19 +810,19 @@ env1$f$f_path.size_files(.path4read, "\\.(rds)$") #-----
 #       "DFAB_PTN_CD",        "0",        "0",
 #       "DFAB_REG_YM",         NA,         NA
 #   )
-# > df %>% f_df.transpose #----
+# > df %>% f_df.transpose #----  
 # # A tibble: 2 × 14
 #   varname STND_Y PERSON_ID SEX   AGE   DTH_MDY  DTH_CODE1 DTH_CODE2 SIDO  IPSN_TYPE_CD CTRB_PT_TYPE_CD DFAB_GRD_CD DFAB_PTN_CD DFAB_REG_YM
 #   <chr>   <chr>  <chr>     <chr> <chr> <chr>    <chr>     <chr>     <chr> <chr>        <chr>           <chr>       <chr>       <chr>      
 # 1 V1      2014   67877095  1     59    20141001 I21       NA        41    6            8               0           0           NA         
 # 2 V2      2014   67877095  1     59    20141001 I21       NA        41    6            8               0           0           NA      
-# > df %>% f_df.t.tribble_construct #----
+# > df %>% f_df.t.tribble_construct #----  
 # tibble::tribble(
 #   ~varname, ~STND_Y, ~PERSON_ID, ~SEX, ~AGE,   ~DTH_MDY, ~DTH_CODE1, ~DTH_CODE2, ~SIDO, ~IPSN_TYPE_CD, ~CTRB_PT_TYPE_CD, ~DFAB_GRD_CD, ~DFAB_PTN_CD, ~DFAB_REG_YM,
 #       "V1",  "2014", "67877095",  "1", "59", "20141001",      "I21",         NA,  "41",           "6",              "8",          "0",          "0",           NA,
 #       "V2",  "2014", "67877095",  "1", "59", "20141001",      "I21",         NA,  "41",           "6",              "8",          "0",          "0",           NA
 #   )
-# > f_path.size_files("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----
+# > f_path.size_files("D:/OneDrive - SNU/[][Rproject]/github_tidystat/data", "\\.(rds)$") #-----  
 # tibble::tribble(
 #                                         ~filename,    ~size,       ~bytes,         ~KB,        ~MB,        ~GB,
 #                              "ATC_RxNorm_NDC.rds", 79768376, "79,768,376", "77,898.80", "76.07305", "7.43e-02",

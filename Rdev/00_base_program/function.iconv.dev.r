@@ -3,17 +3,17 @@ dput(unlist(strsplit(Sys.getlocale(), ";"))) #----
 dput(l10n_info()) #----
 dput(.Platform) #----
 dput(Sys.info()) #----
-# > dput(unlist(strsplit(Sys.getlocale(), ";"))) #----
+# > dput(unlist(strsplit(Sys.getlocale(), ";"))) #----  
 # c("LC_COLLATE=Korean_Korea.949", "LC_CTYPE=Korean_Korea.949", 
 # "LC_MONETARY=Korean_Korea.949", "LC_NUMERIC=C", "LC_TIME=Korean_Korea.949"
 # )
-# > dput(l10n_info()) #----
+# > dput(l10n_info()) #----  
 # list(MBCS = TRUE, `UTF-8` = FALSE, `Latin-1` = FALSE, codepage = 949L)
-# > dput(.Platform) #----
+# > dput(.Platform) #----  
 # list(OS.type = "windows", file.sep = "/", dynlib.ext = ".dll", 
 #     GUI = "RStudio", endian = "little", pkgType = "win.binary", 
 #     path.sep = ";", r_arch = "x64")
-# > dput(Sys.info()) #----
+# > dput(Sys.info()) #----  
 # c(sysname = "Windows", release = ">= 8 x64", version = "build 9200", 
 # nodename = "ID92", machine = "x86-64", login = "MH", user = "MH", 
 # effective_user = "MH")
@@ -24,9 +24,9 @@ dput(Sys.info()) #----
 korpopmap1 |> str(max.level = 1) #----
 korpopmap1 |> str(max.level = 2) #----
 korpopmap1@data |> str() #----
-# > korpopmap1 |> str(max.level = 1) #----
+# > korpopmap1 |> str(max.level = 1) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
-# > korpopmap1 |> str(max.level = 2) #----
+# > korpopmap1 |> str(max.level = 2) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16
@@ -34,7 +34,7 @@ korpopmap1@data |> str() #----
 #   ..@ bbox       : num [1:2, 1:2] 124.6 33.2 130.9 38.6
 #   .. ..- attr(*, "dimnames")=List of 2
 #   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-# > korpopmap1@data |> str() #----
+# > korpopmap1@data |> str() #----  
 # 'data.frame':	16 obs. of  42 variables:
 # Error in nchar(x, type = "w", allowNA = TRUE) : 
 #   invalid multibyte string, element 18
@@ -68,14 +68,14 @@ korpopmap1@data %>% colnames |> dput()
 
 
 Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----
-# > Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----
+# > Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") #----  
 # [1] ""
 # Warning message:
 # In Sys.setlocale("LC_COLLATE", "ko_KR.UTF-8") :
 #   OS reports request to set locale to "ko_KR.UTF-8" cannot be honored
 
 Sys.setlocale("LC_CTYPE", "ko_KR.UTF-8"); #----
-# > Sys.setlocale("LC_CTYPE", "ko_KR.UTF-8"); #----
+# > Sys.setlocale("LC_CTYPE", "ko_KR.UTF-8"); #----  
 # [1] ""
 # Warning message:
 # In Sys.setlocale("LC_CTYPE", "ko_KR.UTF-8") :
@@ -84,14 +84,14 @@ Sys.setlocale("LC_CTYPE", "ko_KR.UTF-8"); #----
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/12_import_files/read.csv(Population-UTF-8.CSV).r
 # # https://hashcode.co.kr/questions/3654/r%EC%97%90%EC%84%9C-%ED%95%9C%EA%B8%80-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%98%A4%EB%A5%98
 Sys.setlocale("LC_ALL", "korean") #----
-# > Sys.setlocale("LC_ALL", "korean") #----
+# > Sys.setlocale("LC_ALL", "korean") #----  
 # [1] "LC_COLLATE=Korean_Korea.949;LC_CTYPE=Korean_Korea.949;LC_MONETARY=Korean_Korea.949;LC_NUMERIC=C;LC_TIME=Korean_Korea.949"
 
 
-# korpopmap1 |> str(max.level = 1) #----
+# korpopmap1 |> str(max.level = 1) #----  
 korpopmap1 |> str(max.level = 2) #----
 korpopmap1@data |> str() #----
-# > korpopmap1 |> str(max.level = 2) #----
+# > korpopmap1 |> str(max.level = 2) #----  
 # Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
 #   ..@ data       :'data.frame':	16 obs. of  42 variables:
 #   ..@ polygons   :List of 16
@@ -99,7 +99,7 @@ korpopmap1@data |> str() #----
 #   ..@ bbox       : num [1:2, 1:2] 124.6 33.2 130.9 38.6
 #   .. ..- attr(*, "dimnames")=List of 2
 #   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-# > korpopmap1@data |> str() #----
+# > korpopmap1@data |> str() #----  
 # 'data.frame':	16 obs. of  42 variables:
 # Error in nchar(x, type = "w", allowNA = TRUE) : 
 #   invalid multibyte string, element 18
@@ -167,7 +167,7 @@ korpopmap1.CP949@data = korpopmap1.CP949@data %>% map_df(iconv, from = "UTF-8", 
 names(korpopmap1.CP949@data) = names(korpopmap1.CP949@data) %>% iconv(from = "UTF-8", to = "CP949")
 
 korpopmap1.CP949@data |> str() #----
-# > korpopmap1.CP949@data |> str() #----
+# > korpopmap1.CP949@data |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	16 obs. of  42 variables:
 #  $ SP_ID                  : chr  "15" "14" "13" "12" ...
 #  $ FID                    : chr  "15" "14" "13" "12" ...
@@ -292,7 +292,7 @@ saveRDS(kormaps2014_kormap321, "kormaps2014_kormap321.rds")
 kormaps2014_kormap1 |> str() #----
 kormaps2014_kormap21 |> str() #----
 kormaps2014_kormap321 |> str() #----
-# > kormaps2014_kormap1 |> str() #----
+# > kormaps2014_kormap1 |> str() #----  
 # 'data.frame':	8831 obs. of  15 variables:
 #  $ id           : chr  "0" "0" "0" "0" ...
 #  $ long         : num  138 138 138 138 138 ...
@@ -309,7 +309,7 @@ kormaps2014_kormap321 |> str() #----
 #  $ SIDO_NM.CP949: Factor w/ 17 levels "강원도","경기도",..: 9 9 9 9 9 9 9 9 9 9 ...
 #  $ region       : Factor w/ 17 levels "11","21","22",..: 1 1 1 1 1 1 1 1 1 1 ...
 #  $ code         : Factor w/ 17 levels "11","21","22",..: 1 1 1 1 1 1 1 1 1 1 ...
-# > kormaps2014_kormap21 |> str() #----
+# > kormaps2014_kormap21 |> str() #----  
 # 'data.frame':	20397 obs. of  18 variables:
 #  $ id              : chr  "0" "0" "0" "0" ...
 #  $ long            : num  138 138 138 138 138 ...
@@ -329,7 +329,7 @@ kormaps2014_kormap321 |> str() #----
 #  $ SIDO_CD         : Factor w/ 17 levels "11","21","22",..: 1 1 1 1 1 1 1 1 1 1 ...
 #  $ SIDO_NM         : Factor w/ 17 levels "강원도","경기도",..: 9 9 9 9 9 9 9 9 9 9 ...
 #  $ SIDO_NM.UTF8    : Factor w/ 17 levels "媛뺤썝\xeb룄",..: 9 9 9 9 9 9 9 9 9 9 ...
-# > kormaps2014_kormap321 |> str() #----
+# > kormaps2014_kormap321 |> str() #----  
 # 'data.frame':	73474 obs. of  21 variables:
 #  $ id             : chr  "0" "0" "0" "0" ...
 #  $ long           : num  138 138 138 138 138 ...
@@ -378,7 +378,7 @@ kormaps2014_korpop3.CP949 = kormaps2014_korpop3.CP949 %>% map_df(function(vec) {
 saveRDS(kormaps2014_korpop3.CP949, "kormaps2014_korpop3.CP949.rds")
 
 kormaps2014_korpop3.CP949 |> str() #----
-# > kormaps2014_korpop3.CP949 |> str() #----
+# > kormaps2014_korpop3.CP949 |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	3492 obs. of  25 variables:
 #  $ C행정구역별_읍면동     : chr  "'1101053" "'1101054" "'1101055" "'1101056" ...
 #  $ 행정구역별_읍면동      : chr  "  사직동" "  삼청동" "  부암동" "  평창동" ...

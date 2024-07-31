@@ -123,7 +123,7 @@ filename %>% {file.info(file.path(.path4read, .))} %>% rownames_to_column("filen
 .t0 = Sys.time()
 assign(objectname, readRDS(file.path(.path4read, filename)) |> as_tibble())
 Sys.time() - .t0
-# > filename %>% {file.info(file.path(.path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----
+# > filename %>% {file.info(file.path(.path4read, .))} %>% rownames_to_column("filename") %>% select(filename, size) %>% mutate(KB = size/2^10, MB = KB/2^10, GB = MB/2^10) |> print() #----  
 #                                                                                                                           filename       size      KB       MB       GB
 # 1 ../data/data.ID_DATE_DX.distinct//os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014.rds 5353198720 5227733 5105.208 4.985555# > .t0 = Sys.time()
 # > assign(objectname, readRDS(file.path(.path4read, filename)) |> as_tibble())

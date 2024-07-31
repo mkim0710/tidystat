@@ -43,7 +43,7 @@ tblClaims_in.t_lmp_end.byICD.ndID =
     )
 
 tblClaims_in.t_lmp_end.byICD.ndID %>% arrange(desc(`n_distinct(enrolid_mom)`)) #-----
-# > tblClaims_in.t_lmp_end.byICD.ndID %>% arrange(desc(`n_distinct(enrolid_mom)`)) #-----
+# > tblClaims_in.t_lmp_end.byICD.ndID %>% arrange(desc(`n_distinct(enrolid_mom)`)) #-----  
 # # A tibble: 8,692 x 5
 #    value     `n()` `n_distinct(enrolid_~ ICD.explain_code.br~ ICD.explain_code                                                                                
 #    <chr>     <int>                 <int> <chr>                <chr>                                                                                           

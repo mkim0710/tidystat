@@ -37,10 +37,10 @@ as.integer(ff)      # the internal codes
 
 (f. <- factor(ff))  # drops the levels that do not occur ----
 ff[, drop = TRUE]   # the same, more transparently ----
-# > (f. <- factor(ff))  # drops the levels that do not occur ----
+# > (f. <- factor(ff))  # drops the levels that do not occur ----  
 #  [1] s t a t i s t i c s
 # Levels: a c i s t
-# > ff[, drop = TRUE]   # the same, more transparently ----
+# > ff[, drop = TRUE]   # the same, more transparently ----  
 #  [1] s t a t i s t i c s
 # Levels: a c i s t
 
@@ -71,7 +71,7 @@ z
 
 
 
-## and "relational" methods work: ----
+## and "relational" methods work: ----  
 stopifnot(sort(z)[c(1,3)] == range(z), min(z) < max(z))
 
 sort(z)[c(1,3)]
@@ -93,7 +93,7 @@ max(z)
 # Levels: A < B < C
 
 
-## suppose you want "NA" as a level, and to allow missing values. ----
+## suppose you want "NA" as a level, and to allow missing values. ----  
 factor(c(1, 2, NA))
 # > factor(c(1, 2, NA))
 # [1] 1    2    <NA>
@@ -123,7 +123,7 @@ is.na(x)
 
 
 
-## More rational, since R 3.4.0 : ----
+## More rational, since R 3.4.0 : ----  
 factor(c(1:2, NA), exclude =  "" ) # keeps <NA> , as
 factor(c(1:2, NA), exclude = NULL) # always did
 # > factor(c(1:2, NA), exclude =  "" ) # keeps <NA> , as
@@ -161,7 +161,7 @@ x <- c("Man", "Male", "Man", "Lady", "Female")
 # Levels: Male Female
 
 
-## Using addNA() ----
+## Using addNA() ----  
 Month <- airquality$Month
 Month |> dput()
 # > Month <- airquality$Month
@@ -205,7 +205,7 @@ table(addNA(Month, ifany = TRUE))
 
 
 
-# https://www.r-bloggers.com/conversion-between-factor-and-dummies-in-r/ ====
+# https://www.r-bloggers.com/conversion-between-factor-and-dummies-in-r/ ====  
 
 library(tidyverse)
 
@@ -347,7 +347,7 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 #  9              1                  0                 0
 # 10              1                  0                 0
 # # ... with 140 more rows
-# > dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
+# > dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----  
 #     Species.setosa Species.versicolor Species.virginica
 # 1                1                  0                 0
 # 11               1                  0                 0
@@ -392,7 +392,7 @@ dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
 #  9     1
 # 10     1
 # # ... with 140 more rows
-# > (dummies %*% 1:ncol(dummies)) %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
+# > (dummies %*% 1:ncol(dummies)) %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----  
 #   1  11  21  31  41  51  61  71  81  91 101 111 121 131 141 
 #   1   1   1   1   1   2   2   2   2   2   3   3   3   3   3 
 
@@ -417,7 +417,7 @@ factor(dummies %*% 1:ncol(dummies), labels = header) %>% {.[0:(length(.)/10-1) *
 #  9 setosa
 # 10 setosa
 # # ... with 140 more rows
-# > factor(dummies %*% 1:ncol(dummies), labels = header) %>% {.[0:(length(.)/10-1) * 10 + 1]} #----
+# > factor(dummies %*% 1:ncol(dummies), labels = header) %>% {.[0:(length(.)/10-1) * 10 + 1]} #----  
 #  [1] setosa     setosa     setosa     setosa     setosa     versicolor versicolor versicolor versicolor versicolor virginica  virginica 
 # [13] virginica  virginica  virginica 
 # Levels: setosa versicolor virginica

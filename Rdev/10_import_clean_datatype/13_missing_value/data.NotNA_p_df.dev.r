@@ -10,7 +10,7 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.nproptable.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.summarize_all_sum_is.na.dev.r
-# get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----
+# get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_anyTRUE_allTRUE.dev.r
@@ -49,7 +49,7 @@ env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n")
 env1$path$df_dirs_recursive.df_files %>% dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @ .subpath, .sourcename ======
+# @ .subpath, .sourcename ======  
 .subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "data.NotNA_p_df" |> paste0(".source.r")
@@ -93,7 +93,7 @@ if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(e
 # #   the input does not start with a magic number compatible with loading from a connection
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_mice_nhanes_mice.rda"))
 nhanes_mice |> str() #-----
-# > nhanes_mice |> str() #-----
+# > nhanes_mice |> str() #-----  
 # 'data.frame':	25 obs. of  4 variables:
 #  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
 #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...
@@ -105,17 +105,17 @@ nhanes_mice |> str() #-----
 nhanes_mice %>% map_df(function(x) sum(is.na(x))) #----
 nhanes_mice %>% map_df(.f = function(x) sum(is.na(x))) #----
 nhanes_mice %>% map_df(.f = funs(sum(is.na(.)))) #----
-# > nhanes_mice %>% map_df(function(x) sum(is.na(x))) #----
+# > nhanes_mice %>% map_df(function(x) sum(is.na(x))) #----  
 # # A tibble: 1 x 4
 #     age   bmi   hyp   chl
 #   <int> <int> <int> <int>
 # 1     0     9     8    10
-# > nhanes_mice %>% map_df(.f = function(x) sum(is.na(x))) #----
+# > nhanes_mice %>% map_df(.f = function(x) sum(is.na(x))) #----  
 # # A tibble: 1 x 4
 #     age   bmi   hyp   chl
 #   <int> <int> <int> <int>
 # 1     0     9     8    10
-# > nhanes_mice %>% map_df(.f = funs(sum(is.na(.)))) #----
+# > nhanes_mice %>% map_df(.f = funs(sum(is.na(.)))) #----  
 # Error: Can't convert a `fun_list` object to function
 # Call `rlang::last_error()` to see a backtrace
 
@@ -126,29 +126,29 @@ nhanes_mice %>% summarise_all(funs(sum(is.na(.)))) #----
 nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----
 nhanes_mice %>% summarise_all(sum(is.na(.))) #----
 nhanes_mice %>% summarise_all(.funs = sum(is.na(.))) #----
-# > nhanes_mice %>% summarise_all(function(x) sum(is.na(x))) #----
+# > nhanes_mice %>% summarise_all(function(x) sum(is.na(x))) #----  
 #   age bmi hyp chl
 # 1   0   9   8  10
-# > nhanes_mice %>% summarise_all(.funs = function(x) sum(is.na(x))) #----
+# > nhanes_mice %>% summarise_all(.funs = function(x) sum(is.na(x))) #----  
 #   age bmi hyp chl
 # 1   0   9   8  10
-# > nhanes_mice %>% summarise_all(funs(sum(is.na(.)))) #----
+# > nhanes_mice %>% summarise_all(funs(sum(is.na(.)))) #----  
 #   age bmi hyp chl
 # 1   0   9   8  10
-# > nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----
+# > nhanes_mice %>% summarise_all(.funs = funs(sum(is.na(.)))) #----  
 #   age bmi hyp chl
 # 1   0   9   8  10
-# > nhanes_mice %>% summarise_all(sum(is.na(.))) #----
+# > nhanes_mice %>% summarise_all(sum(is.na(.))) #----  
 # Error: Can't create call to non-callable object
 # Call `rlang::last_error()` to see a backtrace
-# > nhanes_mice %>% summarise_all(.funs = sum(is.na(.))) #----
+# > nhanes_mice %>% summarise_all(.funs = sum(is.na(.))) #----  
 # Error: Can't create call to non-callable object
 # Call `rlang::last_error()` to see a backtrace
 
 
 
 nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
-# > nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
+# > nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----  
 # age bmi hyp chl 
 #   0   9   8  10 
 
@@ -170,7 +170,7 @@ data.NotNA_p_df = function(data) {
 }
 
 
-# test) data.NotNA_p_df()) nhanes_mice -----
+# test) data.NotNA_p_df()) nhanes_mice -----  
 # library(mice)
 # nhanes_mice = nhanes
 # save(nhanes_mice, file = "data/library_mice_nhanes_mice.rda")
@@ -178,7 +178,7 @@ data.NotNA_p_df = function(data) {
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_mice_nhanes_mice.rda"))
 nhanes_mice |> str() #-----
-# > nhanes_mice |> str() #-----
+# > nhanes_mice |> str() #-----  
 # 'data.frame':	25 obs. of  4 variables:
 #  $ age: num  1 2 1 3 1 3 1 1 2 2 ...
 #  $ bmi: num  NA 22.7 NA NA 20.4 NA 22.5 30.1 22 NA ...
@@ -216,19 +216,19 @@ mscan_pregcohort_r4.sas7bdat$enrolid_inf1 %>% is.na %>% {rbind(round(table(.), 0
 mscan_pregcohort_r4.sas7bdat$enrolid_inf2 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
 mscan_pregcohort_r4.sas7bdat$enrolid_inf3 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
 mscan_pregcohort_r4.sas7bdat$enrolid_inf4 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
-# > mscan_pregcohort_r4.sas7bdat$enrolid_inf1 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
+# > mscan_pregcohort_r4.sas7bdat$enrolid_inf1 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----  
 #           !is.na       is.na     Sum
 # n    1501597.000 1237190.000 2738787
 # prop       0.548       0.452       1
-# > mscan_pregcohort_r4.sas7bdat$enrolid_inf2 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
+# > mscan_pregcohort_r4.sas7bdat$enrolid_inf2 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----  
 #         !is.na       is.na     Sum
 # n    15320.000 2723467.000 2738787
 # prop     0.006       0.994       1
-# > mscan_pregcohort_r4.sas7bdat$enrolid_inf3 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
+# > mscan_pregcohort_r4.sas7bdat$enrolid_inf3 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----  
 #      !is.na   is.na     Sum
 # n         4 2738783 2738787
 # prop      0       1       1
-# > mscan_pregcohort_r4.sas7bdat$enrolid_inf4 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
+# > mscan_pregcohort_r4.sas7bdat$enrolid_inf4 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----  
 #      !is.na   is.na     Sum
 # n         1 2738786 2738787
 # prop      0       1       1

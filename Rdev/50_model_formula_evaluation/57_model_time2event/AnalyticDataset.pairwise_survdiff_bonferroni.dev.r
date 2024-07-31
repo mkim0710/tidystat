@@ -15,11 +15,11 @@ plot_surv200401 <- read_excel("plot_surv200401.xlsx") %>% mutate(
 
 plot_surv200401$stage |> table() #----
 plot_surv200401$stage2 |> table() #----
-# > plot_surv200401$stage |> table() #----
+# > plot_surv200401$stage |> table() #----  
 # .
 #     1     4     5     6     7    10    12 
 # 17543  6633  1021   999   448 21378 23571 
-# > plot_surv200401$stage2 |> table() #----
+# > plot_surv200401$stage2 |> table() #----  
 # .
 #     1     2     3     4 
 # 17543  6633  2468 44949 
@@ -76,7 +76,7 @@ AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = 
 AnalyticDataset.coxph |> summary() #----
 AnalyticDataset.coxph %>% cox.zph  # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph
-# > AnalyticDataset.coxph |> summary() #----
+# > AnalyticDataset.coxph |> summary() #----  
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 # 
@@ -106,7 +106,7 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph
 # Wald test            = 22402  on 6 df,   p=<2e-16
 # Score (logrank) test = 30157  on 6 df,   p=<2e-16
 # 
-# > AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news ~!!! -----
+# > AnalyticDataset.coxph %>% cox.zph # * Caution) significant = bad news ~!!! -----  
 #                       rho  chisq         p
 # Group2 STx CTx     0.1353  824.7 2.29e-181
 # Group3 STx CTx RTx 0.1062  509.5 8.30e-113
@@ -121,7 +121,7 @@ AnalyticDataset.coxph_byPredictedStage <- coxph(Surv(time = time, event = event)
 AnalyticDataset.coxph_byPredictedStage |> summary() #----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news, large p = good news~! Having very small p values indicates that there are time dependent coefficients which you need to take care of ----
 AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
-# > AnalyticDataset.coxph_byPredictedStage |> summary() #----
+# > AnalyticDataset.coxph_byPredictedStage |> summary() #----  
 # Call:
 # coxph(formula = Surv(time = time, event = event) ~ PredictedStage, 
 #     data = AnalyticDataset)
@@ -146,7 +146,7 @@ AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph
 # Wald test            = 21063  on 3 df,   p=<2e-16
 # Score (logrank) test = 28354  on 3 df,   p=<2e-16
 # 
-# > AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news ~!!! -----
+# > AnalyticDataset.coxph_byPredictedStage %>% cox.zph # * Caution) significant = bad news ~!!! -----  
 #                      rho chisq         p
 # PredictedStageII  0.1349   820 2.82e-180
 # PredictedStageIII 0.1341   817 8.84e-180
@@ -178,7 +178,7 @@ AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001
 # 7 CTx         < 2e-16 < 2e-16   < 2e-16       < 2e-16       < 2e-16   < 2e-16
 # 
 # P value adjustment method: BH 
-# > AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
+# > AnalyticDataset.pairwise_survdiff %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
 #               1 STx 2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT
 # 2 STx CTx     ****                                                        
 # 3 STx CTx RTx ****  ****                                                  
@@ -208,7 +208,7 @@ AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = 
 # 7 CTx         < 2e-16 < 2e-16   < 2e-16       < 2e-16       < 2e-16   < 2e-16
 # 
 # P value adjustment method: none 
-# > AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
+# > AnalyticDataset.pairwise_survdiff_unadjusted %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
 #               1 STx 2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT
 # 2 STx CTx     ****                                                        
 # 3 STx CTx RTx ****  ****                                                  
@@ -241,7 +241,7 @@ AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = 
 # 7 CTx         < 2e-16 < 2e-16   < 2e-16       < 2e-16       < 2e-16   < 2e-16
 # 
 # P value adjustment method: bonferroni 
-# > AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----
+# > AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1), symbols = c("****", "***", "**", "*", "+", " "), abbr.colnames = FALSE, na = "")} # Symbolic number coding ----  
 #               1 STx 2 STx CTx 3 STx CTx RTx 4 STx RTx CTx 5 CTx STx 6 CCRT
 # 2 STx CTx     ****                                                        
 # 3 STx CTx RTx ****  ****                                                  

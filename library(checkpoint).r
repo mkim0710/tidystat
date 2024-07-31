@@ -4,7 +4,7 @@
 sessionInfo() # LIVAi7-8700 ----
 sessionInfo() # MKIM-15ZD980-HX70K ----
 sessionInfo() # RStudio.Cloud ----
-# > sessionInfo() # LIVAi7-8700 ----
+# > sessionInfo() # LIVAi7-8700 ----  
 # R version 4.0.2 (2020-06-22)
 # Platform: x86_64-w64-mingw32/x64 (64-bit)
 # Running under: Windows 10 x64 (build 18362)
@@ -32,7 +32,7 @@ sessionInfo() # RStudio.Cloud ----
 # [13] rlang_0.4.7      cli_2.0.2        rstudioapi_0.11  generics_0.0.2   vctrs_0.3.2      ellipsis_0.3.1  
 # [19] tools_4.0.2      glue_1.4.1       purrr_0.3.4      munsell_0.5.0    compiler_4.0.2   pkgconfig_2.0.3 
 # [25] colorspace_1.4-1 datapasta_3.1.0  tidyselect_1.1.0 tibble_3.0.3    
-# > sessionInfo() # RStudio.Cloud ----
+# > sessionInfo() # RStudio.Cloud ----  
 # R version 4.0.2 (2020-06-22)
 # Platform: x86_64-pc-linux-gnu (64-bit)
 # Running under: Ubuntu 16.04.6 LTS
@@ -61,7 +61,7 @@ sessionInfo() # RStudio.Cloud ----
 # 
 # library(checkpoint)
 # .t0 = Sys.time()
-# checkpoint("2020-07-16") # Microsoft R Open 4.0.2 -----
+# checkpoint("2020-07-16") # Microsoft R Open 4.0.2 -----  
 # Sys.time() - .t0
 # q()
 

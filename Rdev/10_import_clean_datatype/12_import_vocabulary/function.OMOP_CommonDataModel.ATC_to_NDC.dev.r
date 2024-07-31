@@ -5,7 +5,7 @@ library(tidyverse)
 ATC_RxNorm_NDC = readRDS("ATC_RxNorm_NDC.rds")
 ATC_RxNorm_NDC |> str(max.level = 1) #-----
 ATC_RxNorm_NDC |> str() #-----
-# > ATC_RxNorm_NDC |> str(max.level = 1) #-----
+# > ATC_RxNorm_NDC |> str(max.level = 1) #-----  
 # List of 9
 #  $ CONCEPT             :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1132568 obs. of  10 variables:
 #  $ CONCEPT_ANCESTOR    :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1807275 obs. of  4 variables:
@@ -16,7 +16,7 @@ ATC_RxNorm_NDC |> str() #-----
 #  $ DRUG_STRENGTH       :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	196806 obs. of  12 variables:
 #  $ RELATIONSHIP        :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	478 obs. of  6 variables:
 #  $ VOCABULARY          :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	27 obs. of  5 variables:
-# > ATC_RxNorm_NDC |> str() #-----
+# > ATC_RxNorm_NDC |> str() #-----  
 # List of 9
 #  $ CONCEPT             :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1132568 obs. of  10 variables:
 #   ..$ concept_id      : int [1:1132568] 0 21604228 21604186 21604092 40254475 21605302 21605290 21605288 40256693 40256481 ...
@@ -195,7 +195,7 @@ openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=T
 if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
 ATC_C02_to_NDC |> str() #-----
-# > ATC_C02_to_NDC |> str() #-----
+# > ATC_C02_to_NDC |> str() #-----  
 # List of 6
 #  $ Step01.CONCEPT.filter_ATC                           :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	109 obs. of  10 variables:
 #   ..$ concept_id      : int [1:109] 21600381 21600382 21600383 21600384 21600385 21600386 21600387 21600388 21600389 21600390 ...

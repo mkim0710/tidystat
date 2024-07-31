@@ -25,7 +25,7 @@ ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>%
     rename_at(vars(matches("\\.ndDate$")), funs(paste0(., ".replace_na"))) %>% 
     select_at(vars(matches("\\.replace_na"))) |> summary() #-----
 # > ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>% 
-# +     select_at(vars(matches("\\.ndDate$"))) |> summary() #-----
+# +     select_at(vars(matches("\\.ndDate$"))) |> summary() #-----  
 #  Window4Eligible.RxCONCEPT_NDC_insulin.ndDate Window4Eligible.RxCONCEPT_NDC_metformin.ndDate Window4Eligible.RxCONCEPT_NDC_SU_TZD_etc.ndDate
 #  Min.   : 1.000                               Min.   :1.000                                  Min.   :1.000                                  
 #  1st Qu.: 1.000                               1st Qu.:1.000                                  1st Qu.:1.000                                  
@@ -45,7 +45,7 @@ ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>%
 # > ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>%
 # +     mutate_at(vars(matches("\\.ndDate$")), replace_na, 0) %>%
 # +     rename_at(vars(matches("\\.ndDate$")), list(~paste0(., ".replace_na"))) %>%
-# +     select_at(vars(matches("\\.replace_na"))) |> summary() #-----
+# +     select_at(vars(matches("\\.replace_na"))) |> summary() #-----  
 #  Window4Eligible.RxCONCEPT_NDC_insulin.ndDate.replace_na Window4Eligible.RxCONCEPT_NDC_metformin.ndDate.replace_na Window4Eligible.RxCONCEPT_NDC_SU_TZD_etc.ndDate.replace_na
 #  Min.   : 1.000                                          Min.   :1.000                                             Min.   :0.000                                             
 #  1st Qu.: 1.000                                          1st Qu.:1.000                                             1st Qu.:0.000                                             
@@ -63,7 +63,7 @@ ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>%
 # > ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>% 
 # +     mutate_at(vars(matches("\\.ndDate$")), replace_na, 0) %>% 
 # +     rename_at(vars(matches("\\.ndDate$")), function(vec) paste0(vec, ".replace_na")) %>% 
-# +     select_at(vars(matches("\\.replace_na"))) |> summary() #-----
+# +     select_at(vars(matches("\\.replace_na"))) |> summary() #-----  
 #  Window4Eligible.RxCONCEPT_NDC_insulin.ndDate.replace_na Window4Eligible.RxCONCEPT_NDC_metformin.ndDate.replace_na Window4Eligible.RxCONCEPT_NDC_SU_TZD_etc.ndDate.replace_na
 #  Min.   : 1.000                                          Min.   :1.000                                             Min.   :0.000                                             
 #  1st Qu.: 1.000                                          1st Qu.:1.000                                             1st Qu.:0.000                                             
@@ -81,7 +81,7 @@ ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>%
 # > ID_Eligible_Exposure.TargetTrial2v40.2.206vs373.Outcome.Covariates.DDD.A1c %>% 
 # +     mutate_at(vars(matches("\\.ndDate$")), replace_na, 0) %>% 
 # +     rename_at(vars(matches("\\.ndDate$")), paste0, ".replace_na") %>% 
-# +     select_at(vars(matches("\\.replace_na"))) |> summary() #-----
+# +     select_at(vars(matches("\\.replace_na"))) |> summary() #-----  
 #  Window4Eligible.RxCONCEPT_NDC_insulin.ndDate.replace_na Window4Eligible.RxCONCEPT_NDC_metformin.ndDate.replace_na Window4Eligible.RxCONCEPT_NDC_SU_TZD_etc.ndDate.replace_na
 #  Min.   : 1.000                                          Min.   :1.000                                             Min.   :0.000                                             
 #  1st Qu.: 1.000                                          1st Qu.:1.000                                             1st Qu.:0.000                                             

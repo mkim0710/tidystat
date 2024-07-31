@@ -342,14 +342,14 @@
 #  13 files changed, 62 insertions(+), 9 deletions(-)
 # 7cc98ee # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 #  .../templates/templates-00env1.minimum.Rmd   |  2 +-
-#  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
+#  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------  
 #  2 files changed, 21 insertions(+), 21 deletions(-)
 # 814b442 Update default.R
 #  rstudio-prefs/templates/default.R | 2 +-
 #  1 file changed, 1 insertion(+), 1 deletion(-)
 # dc4c33a "auto_save_on_blur": true,
 #  ...udio-prefs.json@Rocker@MAGB760M13700KF-240513.json.xz | Bin 0 -> 564 bytes
-#  ...studio-prefs.json@Rocker@MAGB760M13700KF-240520.json} |  15 +++++++++++----
+#  ...studio-prefs.json@Rocker@MAGB760M13700KF-240520.json} |  15 +++++++++++----  
 #  ...udio-prefs.json@Rocker@MAGB760M13700KF-240520.json.xz | Bin 0 -> 648 bytes
 #  3 files changed, 11 insertions(+), 4 deletions(-)
 
@@ -387,7 +387,7 @@
 # 
 # 7cc98ee mkim0710 Mon May 20 14:52:46 2024 # else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"} 
 #  .../templates/templates-00env1.minimum.Rmd   |  2 +-
-#  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------
+#  .../templates-00env1.minimum.nb.html         | 40 +++++++++++-----------  
 #  2 files changed, 21 insertions(+), 21 deletions(-)
 # 
 # 814b442 mkim0710 Mon May 20 14:50:23 2024 Update default.R
@@ -396,7 +396,7 @@
 # 
 # dc4c33a mkim0710 Mon May 20 14:50:02 2024 "auto_save_on_blur": true,
 #  ...udio-prefs.json@Rocker@MAGB760M13700KF-240513.json.xz | Bin 0 -> 564 bytes
-#  ...studio-prefs.json@Rocker@MAGB760M13700KF-240520.json} |  15 +++++++++++----
+#  ...studio-prefs.json@Rocker@MAGB760M13700KF-240520.json} |  15 +++++++++++----  
 #  ...udio-prefs.json@Rocker@MAGB760M13700KF-240520.json.xz | Bin 0 -> 648 bytes
 #  3 files changed, 11 insertions(+), 4 deletions(-)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -532,7 +532,7 @@
 #' @@ -35,7 +35,7 @@
 #'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #'  ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput()
-#'  # > ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput() ----
+#'  # > ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput() ----  
 #' -c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
 #' +.Rproj.user.shared.list.files1 = c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
 #'  "notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9800d5f74/chunks.json", 
@@ -559,7 +559,7 @@
 #'  #|________________________________________________________________________________|#  
 #'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #'  ".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE) |> dput()
-#'  # > ".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE) |> dput() ----
+#'  # > ".Rproj.user/E3EEE3A9" |> list.files(recursive = TRUE) |> dput() ----  
 #' -c("build_options", "copilot_options", "pcs/debug-breakpoints.pper", 
 #' +.Rproj.user.E3EEE3A9.list.files1 = c("build_options", "copilot_options", "pcs/debug-breakpoints.pper", 
 #'  "pcs/files-pane.pper", "pcs/packages-pane.pper", "pcs/source-pane.pper", 

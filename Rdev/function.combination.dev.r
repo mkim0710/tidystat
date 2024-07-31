@@ -6,7 +6,7 @@ function.combination = function(n, x) {
     return(factorial(n) / (factorial(x) * factorial(n-x)))
 }
 
-# #@ test -----
+# #@ test -----  
 # function.permutation(4,0:4)
 # function.combination(4,0:4)
 # # > function.permutation(4,0:4)

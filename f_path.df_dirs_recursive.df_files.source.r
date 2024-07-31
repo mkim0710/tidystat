@@ -36,7 +36,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -52,7 +52,7 @@ if (requireNamespace("rstudioapi")) {
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 # .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")
@@ -295,7 +295,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
 
 
 
-# @ run @ Rocker 240625 ----
+# @ run @ Rocker 240625 ----  
 # > env1$env.internal$f_path.df_dirs_recursive.df_files()
 # .Platform$file.sep: /; input_path0: .
 # Finished iterating through paths.
@@ -318,12 +318,12 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
 
 
 #@ end -----  
-# ls.str(env1) #-----
-# ls.str(env1$env.internal) #-----
-# # > ls.str(env1) #-----
+# ls.str(env1) #-----  
+# ls.str(env1$env.internal) #-----  
+# # > ls.str(env1) #-----  
 # # env.internal : <environment: 0x000001f6d74c17b0> 
 # # f_path.df_dirs_recursive.df_files : function (input_path = ".", max_depth = 9, current_depth = 0, gitignore_escaped_select.UC.regex = .tmp$gitignore_escaped_select.UC.regex)  
 # # gitignore_escaped_select.UC.regex :  chr [1:23] "\\.RPROJ\\.USER" "\\.RHISTORY" "\\.RDATA" "\\.RUSERDATA" ".*\\.ZIP" ".*\\.7Z" ".*\\.RPROJ" "\\.GITIGNORE" ...
-# # > ls.str(env1$env.internal) #-----
+# # > ls.str(env1$env.internal) #-----  
 
 #@ end ----  

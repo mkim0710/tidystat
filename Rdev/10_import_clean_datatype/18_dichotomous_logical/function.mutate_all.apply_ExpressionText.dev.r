@@ -69,7 +69,7 @@ data %>% function.mutate_all.apply_ExpressionText(" == 1.1") %>%
 
 
 
-#-----------
+#-----------  
 function.apply_ExpressionText <- function(input_vector, ExpressionText, print.intermediate = TRUE) {
     function.eval.parse.Vectorize = Vectorize(function(.CodeText) {eval(parse(text=.CodeText))}) 
     out_vector = function.eval.parse.Vectorize(paste(input_vector, ExpressionText))

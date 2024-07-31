@@ -30,17 +30,17 @@ tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$full_join %>% nrow #---
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$inner_join %>% nrow #----
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$left_anti_join %>% nrow #----
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$right_anti_join %>% nrow #----
-# > tblGADM_kor_level2.join_level1 %>% nrow #----
+# > tblGADM_kor_level2.join_level1 %>% nrow #----  
 # [1] 229
-# > tblGADM_kor_level2.join_level1.SIDO_SGG %>% nrow #----
+# > tblGADM_kor_level2.join_level1.SIDO_SGG %>% nrow #----  
 # [1] 229
-# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$full_join %>% nrow #----
+# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$full_join %>% nrow #----  
 # [1] 274
-# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$inner_join %>% nrow #----
+# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$inner_join %>% nrow #----  
 # [1] 210
-# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$left_anti_join %>% nrow #----
+# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$left_anti_join %>% nrow #----  
 # [1] 19
-# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$right_anti_join %>% nrow #----
+# > tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$right_anti_join %>% nrow #----  
 # [1] 45
 
 
@@ -56,7 +56,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 library(readxl)
 assign(objectname, read_excel(paste0(objectname, " -manual.xlsx"), sheet = "manual"))
 str(get(objectname), max.level = 1) #----
-# > str(get(objectname), max.level = 1) #----
+# > str(get(objectname), max.level = 1) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	229 obs. of  37 variables:
 #  $ OBJECTID_level2: num  1 2 3 4 5 6 7 8 9 10 ...
 #  $ ID_0           : num  213 213 213 213 213 213 213 213 213 213 ...

@@ -41,7 +41,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) |> paste0('"',.,'"') |> paste(collapse = ", \n  ") |> cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -56,7 +56,7 @@ if (requireNamespace("rstudioapi")) {
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----
+## env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
 # .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 # env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
 # env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
@@ -112,7 +112,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # .sourcename = "default.template" |> paste0(".source.r")
@@ -136,7 +136,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])} 
 #|________________________________________________________________________________|#
@@ -172,7 +172,7 @@ survival::lung |> summary()
 #  NA's   :1                                                                        NA's   :1        NA's   :1        NA's   :3        NA's   :47       NA's   :14       
 
 
-### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
 ?by
 survival::lung |> as_tibble() |> rownames_to_column() %>% 
     by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
@@ -192,7 +192,7 @@ survival::lung |> as_tibble() |> rownames_to_column() %>%
 # 10 14         21    71      2    60      NA       60        70     1225      32
 # # ℹ 128 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: 2
 # # A tibble: 90 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -216,7 +216,7 @@ data = survival::lung |> as_tibble() |> rownames_to_column()
 data2 = data
 data2$sex[c(1,3,5,7,9)] = NA
 
-### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
 data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 131 × 10
@@ -234,7 +234,7 @@ data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: 2
 # # A tibble: 88 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -273,7 +273,7 @@ data2 |>
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: 2
 # # A tibble: 88 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -290,7 +290,7 @@ data2 |>
 # 10 40          1   731      2    64       1       80       100     1175      15
 # # ℹ 78 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: N/A
 # # A tibble: 9 × 10
 #   rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -312,7 +312,7 @@ data3 = data2 |> mutate(sex = c("Male", "Female")[sex]) |>
     mutate(sex = sex |> as.character() |> replace_na("N/A")) 
 data3
 
-### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
+### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
 data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: Female
 # # A tibble: 88 × 10
@@ -330,7 +330,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # 10 40          1   731      2    64       1       80       100     1175      15
 # # ℹ 78 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: Male
 # # A tibble: 131 × 10
 #    rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -347,7 +347,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # 10 23         11   624      2    50       1       70        80       NA      16
 # # ℹ 121 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------  
 # .$sex: N/A
 # # A tibble: 9 × 10
 #   rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -369,7 +369,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # https://chatgpt.com/c/0a303d17-ec74-41ca-8012-c9921709ad57
 # @@ Dev) f_df.print_byVar() ----  
 
-## \% f_df.print_byVar = function(df, byVar, n = NULL) { ----
+## \% f_df.print_byVar = function(df, byVar, n = NULL) { ----  
 
 ### \% by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
 f_df.print_byVar = function(df, byVar, n = NULL) {
@@ -398,7 +398,7 @@ data3 |> f_df.print_byVar(sex)
 # 10    38 38         15   965      1    66       1       70        90      875       4
 # # ℹ 79 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ------------------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------------------  
 # .[[quo_name(byVar)]]: Male
 # # A tibble: 134 × 11
 #      Num rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss
@@ -415,7 +415,7 @@ data3 |> f_df.print_byVar(sex)
 # 10    18 18         16   707      2    63       2       50        70     1025      22
 # # ℹ 124 more rows
 # # ℹ Use `print(n = ...)` to see more rows
-# ------------------------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------------------------  
 # .[[quo_name(byVar)]]: N/A
 # # A tibble: 5 × 11
 #     Num rowname  inst  time status   age ph.ecog ph.karno pat.karno meal.cal wt.loss

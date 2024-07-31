@@ -52,7 +52,7 @@ tblID_SIDO_full_sgg_sgg2_SIDO_SGG_CD_bar_Stage_plt_inner_join_PM25_inner_join_rm
 # +         , tn11m.floor_month = t0.floor_month %m-% months(11) %>% {lubridate::floor_date(., "month")}
 # +         , tn12m.floor_month = t0.floor_month %m-% months(12) %>% {lubridate::floor_date(., "month")}
 # +     ) %>% 
-# +     as_tibble #----
+# +     as_tibble #----  
 # # A tibble: 1,391 x 17
 #    no    SGG_CD_bar `first visit.x` t0         t0.floor_month tn1m.floor_month tn2m.floor_month tn3m.floor_month tn4m.floor_month
 #    <chr> <chr>                <dbl> <date>     <date>         <date>           <date>           <date>           <date>          

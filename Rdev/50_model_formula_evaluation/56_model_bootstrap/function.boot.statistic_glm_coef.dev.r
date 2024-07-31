@@ -77,7 +77,7 @@ boot.output |> str() #----
 # t4* 1.004014857  2.112864e-06 0.0001328992
 # t5* 1.038979833  3.618223e-03 0.0203703832
 # t6* 0.999527466 -7.589608e-05 0.0003991006
-# > boot.output |> str() #----
+# > boot.output |> str() #----  
 # List of 11
 #  $ t0       : Named num [1:6] 0.00986 0.33282 0.89548 1.00401 1.03898 ...
 #   ..- attr(*, "names")= chr [1:6] "(Intercept)" "Exposure" "k" "I(k^2)" ...
@@ -102,8 +102,8 @@ boot.output |> str() #----
 
 
 
-# boot.output.ci = boot.output %>% boot.ci(type = "bca", index = 2) #----
-# # > boot.out %>% boot.ci(type = "bca") #----
+# boot.output.ci = boot.output %>% boot.ci(type = "bca", index = 2) #----  
+# # > boot.out %>% boot.ci(type = "bca") #----  
 # # Error: cannot allocate vector of size 68.6 Gb
 
 boot.output.ci = boot.output %>% boot.ci(type = "perc", index = 2) #----
@@ -136,7 +136,7 @@ boot.output.ci |> str()
 
 
 
-# boot_bootfuns.q at master · cran_boot.pdf ====
+# boot_bootfuns.q at master · cran_boot.pdf ====  
 
 # boot.ci <- function(boot.out,conf = 0.95,type = "all",
 #                     index = 1L:min(2L, length(boot.out$t0)),
@@ -254,7 +254,7 @@ norm.inter <- function(t,alpha)
 
 
 boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t |> as.data.frame() %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----
-# > boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t |> as.data.frame() %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----
+# > boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t |> as.data.frame() %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----  
 # # A tibble: 6 x 5
 #   rowname         `estimate (95% CI)` `exp(coef(.))` `2.5 %` `97.5 %`
 #   <chr>           <chr>                        <dbl>   <dbl>    <dbl>

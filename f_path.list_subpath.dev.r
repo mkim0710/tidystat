@@ -35,7 +35,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -52,7 +52,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_path.list_subpath" |> paste0(".source.r")
@@ -76,7 +76,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -97,7 +97,7 @@ f_path.list_subpath <- function(input_path = ".", max_depth = 3, include_input_p
 }
 
 
-#% f_path.list_subpath.DepthFirstSearch_recursive =====
+#% f_path.list_subpath.DepthFirstSearch_recursive =====  
 f_path.list_subpath.DepthFirstSearch_recursive <- function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
     # Initialize .initial_max_depth with max_depth on the first call
     if (is.na(.initial_max_depth)) {
@@ -148,7 +148,7 @@ f_path.list_subpath.DepthFirstSearch_recursive <- function(input_path = ".", max
 
 f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) |> as.list() |> str() #----
 f_path.list_subpath.DepthFirstSearch_recursive(getwd()) |> as.list() |> str() #----
-# > f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) |> as.list() |> str() #----
+# > f_path.list_subpath.DepthFirstSearch_recursive(print.intermediate = T) |> as.list() |> str() #----  
 # Subdirectories of  ./data :  1 
 # Subdirectories of  ./other :  8 
 # Subdirectories of  ./Rdev/00_protocol :  4 
@@ -222,7 +222,7 @@ f_path.list_subpath.DepthFirstSearch_recursive(getwd()) |> as.list() |> str() #-
 #  $ : chr "./Rplot"
 #  $ : chr "./tests"
 #  $ : chr "./vignettes"
-# > f_path.list_subpath.DepthFirstSearch_recursive(getwd()) |> as.list() |> str() #----
+# > f_path.list_subpath.DepthFirstSearch_recursive(getwd()) |> as.list() |> str() #----  
 # List of 62
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat"
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat/-info"
@@ -289,7 +289,7 @@ f_path.list_subpath.DepthFirstSearch_recursive(getwd()) |> as.list() |> str() #-
 
 
 
-#% f_path.list_subpath.BreathFirstSearch =====
+#% f_path.list_subpath.BreathFirstSearch =====  
 f_path.list_subpath.BreathFirstSearch <- function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE) {
     if (!file.exists(input_path) || !file.info(input_path)$isdir) {
         stop("The specified input_path does not exist or is not a directory.")
@@ -349,7 +349,7 @@ f_path.list_subpath.BreathFirstSearch <- function(input_path = ".", max_depth = 
 
 f_path.list_subpath.BreathFirstSearch(print.intermediate = T) |> as.list() |> str() #----
 f_path.list_subpath.BreathFirstSearch(getwd()) |> as.list() |> str() #----
-# > f_path.list_subpath.BreathFirstSearch(print.intermediate = T) |> as.list() |> str() #----
+# > f_path.list_subpath.BreathFirstSearch(print.intermediate = T) |> as.list() |> str() #----  
 # Processing:  .  at depth  0 
 # Queue length:  0 
 # Processing:  ./-info  at depth  1 
@@ -540,7 +540,7 @@ f_path.list_subpath.BreathFirstSearch(getwd()) |> as.list() |> str() #----
 #  $ : chr "./Rdev/50_model_formula_evaluation/57_model_time2event"
 #  $ : chr "./Rdev/50_model_formula_evaluation/57_model_trajectory"
 #  $ : chr "./Rdev/50_model_formula_evaluation/59_model_evaluation"
-# > f_path.list_subpath.BreathFirstSearch(getwd()) |> as.list() |> str() #----
+# > f_path.list_subpath.BreathFirstSearch(getwd()) |> as.list() |> str() #----  
 # List of 62
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat"
 #  $ : chr "D:/OneDrive/[][Rproject]/github_tidystat/-info"

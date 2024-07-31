@@ -39,7 +39,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -56,7 +56,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")
@@ -80,7 +80,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -94,26 +94,26 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 library(tidyverse)
 dir(full.names = FALSE) |> str() #----
 dir(full.names = T) |> str() #----
-# dir(full.names = T, recursive = T) |> str() #----
+# dir(full.names = T, recursive = T) |> str() #----  
 # input_path = "Rdev"
-# dir(input_path, full.names = T, recursive = T) |> str() #----
-# dir(input_path, full.names = T, recursive = T, include.dirs = T) |> str() #----
-# setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) |> str() #----
-# list.dirs(input_path, full.names = TRUE) |> str() #----
-# # > dir(full.names = FALSE) |> str() #----
+# dir(input_path, full.names = T, recursive = T) |> str() #----  
+# dir(input_path, full.names = T, recursive = T, include.dirs = T) |> str() #----  
+# setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) |> str() #----  
+# list.dirs(input_path, full.names = TRUE) |> str() #----  
+# # > dir(full.names = FALSE) |> str() #----  
 # #  chr [1:37] "-info" "-tmp" "-void.r" "[[Stat]] CRAN R - Shortcut.lnk" "bfg-1.13.0.jar" "bfg.txt" "bfg.zip" ...
-# # > dir(full.names = T) |> str() #----
+# # > dir(full.names = T) |> str() #----  
 # #  chr [1:37] "./-info" "./-tmp" "./-void.r" "./[[Stat]] CRAN R - Shortcut.lnk" "./bfg-1.13.0.jar" "./bfg.txt" "./bfg.zip" ...
-# # > dir(full.names = T, recursive = T) |> str() #----
+# # > dir(full.names = T, recursive = T) |> str() #----  
 # #  chr [1:444] "./-info/facets_2017 - annotate (3) tableone_by_P_WH.ge.5.zip" "./-info/facets_2017 - annotate.xlsx - 바로 가기.lnk" ...
 # # > input_path = "Rdev"
-# # > dir(input_path, full.names = T, recursive = T) |> str() #----
+# # > dir(input_path, full.names = T, recursive = T) |> str() #----  
 # #  chr [1:231] "Rdev/-dev/object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
-# # > dir(input_path, full.names = T, recursive = T, include.dirs = T) |> str() #----
+# # > dir(input_path, full.names = T, recursive = T, include.dirs = T) |> str() #----  
 # #  chr [1:273] "Rdev/-dev" "Rdev/-dev/object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
-# # > setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) |> str() #----
+# # > setdiff( dir(input_path, full.names = T, recursive = T, include.dirs = T), dir(input_path, full.names = T, recursive = T) ) |> str() #----  
 # #  chr [1:42] "Rdev/-dev" "Rdev/00_base_program" "Rdev/00_protocol" "Rdev/00_protocol/01_sample_size" ...
-# # > list.dirs(input_path, full.names = TRUE) |> str() #----
+# # > list.dirs(input_path, full.names = TRUE) |> str() #----  
 # #  chr [1:43] "Rdev" "Rdev/-dev" "Rdev/00_base_program" "Rdev/00_protocol" "Rdev/00_protocol/01_sample_size" ...
 
 
@@ -135,12 +135,12 @@ env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$pat
 .tmp$objectname = "getwd"; .tmp$object = getwd(); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "path0"; .tmp$object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "path1"; .tmp$object = env1$path$path0 |> paste0("/") |> paste0(env1$path$getwd |> str_replace(fixed(env1$path$path0), "") |> str_extract("[^/]+")); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
-### env1\$env.internal ====
+### env1\$env.internal ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) {
     .sourcename = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-#### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ====
+#### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ====  
 if(!"f_path.df_dirs_recursive.df_files" %in% names(.GlobalEnv$env1)) {
     .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 }
@@ -151,8 +151,8 @@ if(!"f_path.df_dirs_recursive.df_files" %in% names(.GlobalEnv$env1)) {
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
-# df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----
-# df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----
+# df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----  
+# df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----  
 df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
 # df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
 df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat("  \n", sep="")  #----
@@ -162,7 +162,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 # .Platform$file.sep:  / 
 # input_path0:  . 
 # Finished iterating through paths.
-#' > df_dirs_recursive |> str(max.level = 2) #----
+#' > df_dirs_recursive |> str(max.level = 2) #----  
 #' tibble [61 × 17] (S3: tbl_df/tbl/data.frame)
 #'  $ path.level               : num [1:61] 0 1 1 2 2 2 3 3 3 3 ...
 #'  $ path                     : chr [1:61] "" "-info" "Rdev" "Rdev/-dev" ...
@@ -181,9 +181,9 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #'  $ print_tree_path_files.codes: chr [1:61] "@./\nf_df.t.tribble_construct -old.Rmd\nf_df.t.tribble_construct.Rmd\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rds: chr [1:61] "@./\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rda: chr [1:61] "@./\nf_df.t.tribble_construct.RData.xz\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
-#' > # df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----
-#' > # df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----
-#' > df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
+#' > # df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----  
+#' > # df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----  
+#' > df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----  
 #' # A tibble: 61 × 5
 #'    path.level path.parent                                      path.basename                             path                                            full_path
 #'         <dbl> <chr>                                            <chr>                                     <chr>                                           <chr>    
@@ -249,7 +249,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 60          1 .                                                tests                                     "tests"                                         ./tests  
 #' 61          1 .                                                vignettes                                 "vignettes"                                     ./vignet…
 #' > # df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
-#' > df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat("  \n", sep="")  #----
+#' > df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat("  \n", sep="")  #----  
 #' .
 #' -info
 #' Rdev
@@ -311,7 +311,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 	VBA
 #' tests
 #' vignettes
-#' > df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
+#' > df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----  
 #' @./
 #' -info
 #' bfg-1.13.0.jar
@@ -818,7 +818,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' @tests/
 #' @vignettes/
 #' 
-#' > df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
+#' > df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----  
 #' @./
 #' f_df.t.tribble_construct -old.Rmd
 #' f_df.t.tribble_construct.Rmd
@@ -897,8 +897,8 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #@ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
-# df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----
-# df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----
+# df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----  
+# df_dirs_recursive %>% {.$path.basename} |> sort() |> paste(collapse="") |> cat("  \n", sep="")  #----  
 df_dirs_recursive %>% select(path.level, path.parent, path.basename, path, full_path) |> as_tibble() |> print(n=99) #----
 # df_dirs_recursive %>% select(print_tree_path) |> as_tibble()
 df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\n") |> cat("  \n", sep="")  #----
@@ -911,7 +911,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 
 ls.str(env1) #-----
 ls.str(env1$env.internal) #-----
-# > ls.str(env1) #-----
+# > ls.str(env1) #-----  
 # env.internal : <environment: 0x00000147edfbc480> 
 # f_path.df_dirs_recursive.df_files : function (input_path = ".", max_depth = 9, current_depth = 0, gitignore_escaped_select.UC = env1$gitignore_escaped_select.UC)  
 # gitignore_escaped_select.UC :  chr [1:23] "\\.RPROJ\\.USER" "\\.RHISTORY" "\\.RDATA" "\\.RUSERDATA" ".*\\.ZIP" ".*\\.7Z" ".*\\.RPROJ" "\\.GITIGNORE" "MH\\).*\\.R" ".*\\.LNK" ".*ALIAS" ...
@@ -919,7 +919,7 @@ ls.str(env1$env.internal) #-----
 # path : List of 2
 #  $ source_base_local : chr "D:/OneDrive/[][Rproject]/github_tidystat"
 #  $ source_base_github: chr "https://raw.githubusercontent.com/mkim0710/tidystat/master"
-# > ls.str(env1$env.internal) #-----
+# > ls.str(env1$env.internal) #-----  
 
 
 

@@ -57,7 +57,7 @@ binom.test(10, 100) |> str() #-----
 # probability of success 
 #                    0.1 
 # 
-# > binom.test(10, 100) |> str() #-----
+# > binom.test(10, 100) |> str() #-----  
 # List of 9
 #  $ statistic  : Named num 10
 #   ..- attr(*, "names")= chr "number of successes"
@@ -81,15 +81,15 @@ binom.test(10, 100) |> str() #-----
 binom.test(10, 100)$conf.int #-----
 prop.test(10, 100, correct = T)$conf.int #-----
 prop.test(10, 100, correct = F)$conf.int #-----
-# > binom.test(10, 100)$conf.int #-----
+# > binom.test(10, 100)$conf.int #-----  
 # [1] 0.04900469 0.17622260
 # attr(,"conf.level")
 # [1] 0.95
-# > prop.test(10, 100, correct = T)$conf.int #-----
+# > prop.test(10, 100, correct = T)$conf.int #-----  
 # [1] 0.0516301 0.1803577
 # attr(,"conf.level")
 # [1] 0.95
-# > prop.test(10, 100, correct = F)$conf.int #-----
+# > prop.test(10, 100, correct = F)$conf.int #-----  
 # [1] 0.05522914 0.17436566
 # attr(,"conf.level")
 # [1] 0.95
@@ -239,19 +239,19 @@ binconf(10, 100, method = "all")
 
 #@@@ -----  
 binom.test(10, 100)$conf.int |> as.vector() #-----
-# > binom.test(10, 100)$conf.int |> as.vector() #-----
+# > binom.test(10, 100)$conf.int |> as.vector() #-----  
 # [1] 0.04900469 0.17622260
 
 prop.test(10, 100, correct = T)$conf.int |> as.vector() #-----
 scoreint(100, 0.1) |> unlist() |> unname()
-# > prop.test(10, 100, correct = T)$conf.int |> as.vector() #-----
+# > prop.test(10, 100, correct = T)$conf.int |> as.vector() #-----  
 # [1] 0.0516301 0.1803577
 # > scoreint(100, 0.1) |> unlist() |> unname()
 # [1] 0.0516301 0.1803577
 
 prop.test(10, 100, correct = F)$conf.int |> as.vector() #-----
 scoreint(100, 0.1, cc=F) |> unlist() |> unname()
-# > prop.test(10, 100, correct = F)$conf.int |> as.vector() #-----
+# > prop.test(10, 100, correct = F)$conf.int |> as.vector() #-----  
 # [1] 0.05522914 0.17436566
 # > scoreint(100, 0.1, cc=F) |> unlist() |> unname()
 # [1] 0.05522914 0.17436566
@@ -277,7 +277,7 @@ function.n_p.CI(100, 0.1)
 #@@@ -----  
 
 # tribble_paste = datapasta::tribble_paste
-# read.table(file = "clipboard", sep = "\t", header=T) |> tribble_paste() #----
+# read.table(file = "clipboard", sep = "\t", header=T) |> tribble_paste() #----  
 df_nTotal_nEvent = tibble::tribble(
   ~Stage, ~nTotal, ~nEvent,
     "IA",   6303L,   1119L,
@@ -303,7 +303,7 @@ prop.test(df_nTotal_nEvent$nEvent, df_nTotal_nEvent$nTotal, correct = F)
 
 
 1:nrow(df_nTotal_nEvent) %>% map(function(i) prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int) %>% reduce(rbind) |> unname() #----
-# > 1:nrow(df_nTotal_nEvent) %>% map(function(i) prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int) %>% reduce(rbind) |> unname() #----
+# > 1:nrow(df_nTotal_nEvent) %>% map(function(i) prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int) %>% reduce(rbind) |> unname() #----  
 #           [,1]      [,2]
 # [1,] 0.1682982 0.1871636
 # [2,] 0.2903639 0.3265989
@@ -324,7 +324,7 @@ prop.test(df_nTotal_nEvent$nEvent, df_nTotal_nEvent$nTotal, correct = F)
 # +         df_nTotal_nEvent$nEvent[i] / df_nTotal_nEvent$nTotal[i]
 # +         , prop.test(df_nTotal_nEvent$nEvent[i], df_nTotal_nEvent$nTotal[i], correct = F)$conf.int
 # +     )
-# + }) %>% reduce(rbind) |> unname() |> as_tibble() %>% set_names(c("p", "ll", "ul")) #----
+# + }) %>% reduce(rbind) |> unname() |> as_tibble() %>% set_names(c("p", "ll", "ul")) #----  
 # # A tibble: 7 x 3
 #       p    ll    ul
 #   <dbl> <dbl> <dbl>
@@ -374,7 +374,7 @@ function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent) #----
 function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "wilson") #----
 function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "exact") #----
 function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "asymptotic") #----
-# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent) #----
+# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent) #----  
 # # A tibble: 7 x 6
 #   Stage nTotal nEvent     p ll.wilson ul.wilson
 #   <chr>  <int>  <int> <dbl>     <dbl>     <dbl>
@@ -385,7 +385,7 @@ function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "asymptotic") #--
 # 5 IIIA    3344   2139 0.640     0.623     0.656
 # 6 IIIB    2624   2101 0.801     0.785     0.816
 # 7 IV       882    664 0.753     0.723     0.780
-# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "wilson") #----
+# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "wilson") #----  
 # # A tibble: 7 x 6
 #   Stage nTotal nEvent     p ll.wilson ul.wilson
 #   <chr>  <int>  <int> <dbl>     <dbl>     <dbl>
@@ -396,7 +396,7 @@ function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "asymptotic") #--
 # 5 IIIA    3344   2139 0.640     0.623     0.656
 # 6 IIIB    2624   2101 0.801     0.785     0.816
 # 7 IV       882    664 0.753     0.723     0.780
-# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "exact") #----
+# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "exact") #----  
 # # A tibble: 7 x 6
 #   Stage nTotal nEvent     p ll.exact ul.exact
 #   <chr>  <int>  <int> <dbl>    <dbl>    <dbl>
@@ -407,7 +407,7 @@ function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "asymptotic") #--
 # 5 IIIA    3344   2139 0.640    0.623    0.656
 # 6 IIIB    2624   2101 0.801    0.785    0.816
 # 7 IV       882    664 0.753    0.723    0.781
-# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "asymptotic") #----
+# > function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "asymptotic") #----  
 # # A tibble: 7 x 6
 #   Stage nTotal nEvent     p ll.asymptotic ul.asymptotic
 #   <chr>  <int>  <int> <dbl>         <dbl>         <dbl>

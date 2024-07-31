@@ -41,7 +41,7 @@ for (
 
 
 list.tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation |> str() #----
-# > list.tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation |> str() #----
+# > list.tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation |> str() #----  
 # List of 7
 #  $ CovariateDefinition191128: tibble [53 x 12] (S3: tbl_df/tbl/data.frame)
 #   ..$ CriteriaID       : chr [1:53] "t_N180_42.ICD9_CKD_exceptARF" "t_N180_42.ICD9_HTN.Superset" "t_N180_42.ICD9_HTN.Subset" "t_N180_42.ICD9_HTN_pregestational.Subset" ...
@@ -196,7 +196,7 @@ CovariateDefinition191128 = tibble::tribble(
                 )
 
 CovariateDefinition191128 |> str() #----
-# > CovariateDefinition191128 |> str() #----
+# > CovariateDefinition191128 |> str() #----  
 # tibble [53 x 12] (S3: tbl_df/tbl/data.frame)
 #  $ CriteriaID       : chr [1:53] "t_N180_42.ICD9_CKD_exceptARF" "t_N180_42.ICD9_HTN.Superset" "t_N180_42.ICD9_HTN.Subset" "t_N180_42.ICD9_HTN_pregestational.Subset" ...
 #  $ CriteriaID.old   : chr [1:53] "Covariate1" "Covariate2" "Covariate2.i" "Covariate2.ii" ...
@@ -213,7 +213,7 @@ CovariateDefinition191128 |> str() #----
 
 
 CovariateDefinition191128$Code_vec.list |> str() #----
-# > CovariateDefinition191128$Code_vec.list |> str() #----
+# > CovariateDefinition191128$Code_vec.list |> str() #----  
 #  chr [1:53] "581, 582, 583, 585, 587, 588" "Boolean_1st_level" "401, 402, 403, 404, 405" "6420, 6421, 6422, 6427" "493" "Boolean_1st_level" ...
 
 
@@ -221,7 +221,7 @@ CovariateDefinition191128$Code_vec.list |> str() #----
 x <- c(as = "asfef", qu = "qwerty", "yuiop[", "b", "stuff.blah.yech")
 # split x on the letter e
 strsplit(x, "e") |> str() #----
-# > strsplit(x, "e") |> str() #----
+# > strsplit(x, "e") |> str() #----  
 # List of 5
 #  $ as: chr [1:2] "asf" "f"
 #  $ qu: chr [1:2] "qw" "rty"
@@ -298,12 +298,12 @@ str_split_fixed(fruits, " and ", 4)
 
 
 CovariateDefinition191128$Code_vec.list |> str() #----
-# > CovariateDefinition191128$Code_vec.list |> str() #----
+# > CovariateDefinition191128$Code_vec.list |> str() #----  
 #  chr [1:53] "581, 582, 583, 585, 587, 588" "Boolean_1st_level" "401, 402, 403, 404, 405" "6420, 6421, 6422, 6427" "493" "Boolean_1st_level" ...
 
 
 CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split(",") |> str() #----
-# > CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split(",") |> str() #----
+# > CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split(",") |> str() #----  
 # List of 53
 #  $ : chr [1:6] "581" "582" "583" "585" ...
 #  $ : chr "Boolean_1st_level"
@@ -366,7 +366,7 @@ CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split
     str #----
 # > CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split(",") %>% 
 # +     map(function(vec) paste0(vec, "x")) %>% 
-# +     str #----
+# +     str #----  
 # List of 53
 #  $ : chr [1:6] "581x" "582x" "583x" "585x" ...
 #  $ : chr "Boolean_1st_levelx"
@@ -433,7 +433,7 @@ CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split
 # > CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split(",") %>% 
 # +     map(function(vec) paste0(vec, "x")) %>% 
 # +     map(function(vec) paste0( substr(vec, 1, 3), ".", substr(vec, 4, nchar(vec)) ) ) %>% 
-# +     str #----
+# +     str #----  
 # List of 53
 #  $ : chr [1:6] "581.x" "582.x" "583.x" "585.x" ...
 #  $ : chr "Boo.lean_1st_levelx"
@@ -502,7 +502,7 @@ CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split
 # +     map(function(vec) paste0(vec, "x")) %>% 
 # +     map(function(vec) paste0( substr(vec, 1, 3), ".", substr(vec, 4, nchar(vec)) ) ) %>% 
 # +     map(str_c, collapse = ", ") %>% 
-# +     str #----
+# +     str #----  
 # List of 53
 #  $ : chr "581.x, 582.x, 583.x, 585.x, 587.x, 588.x"
 #  $ : chr "Boo.lean_1st_levelx"
@@ -570,7 +570,7 @@ CovariateDefinition191128$Code_vec.list |> str_replace_all(" ", "") |> str_split
 # +     map(function(vec) paste0(vec, "x")) %>% 
 # +     map(function(vec) paste0( substr(vec, 1, 3), ".", substr(vec, 4, nchar(vec)) ) ) %>% 
 # +     map(paste, collapse = ", ") %>% 
-# +     str #----
+# +     str #----  
 # List of 53
 #  $ : chr "581.x, 582.x, 583.x, 585.x, 587.x, 588.x"
 #  $ : chr "Boo.lean_1st_levelx"

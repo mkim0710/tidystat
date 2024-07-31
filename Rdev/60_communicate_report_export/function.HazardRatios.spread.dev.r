@@ -39,13 +39,13 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coe
 analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph #----
 analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% plot(var = c("Exposure"))
 analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Exposure"), font.main = 12, caption = "")}
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----
+# > analyticDF2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----  
 # # A tibble: 2 x 5
 #   rowname      `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 #   <chr>                 <dbl>   <dbl>    <dbl>      <dbl>
 # 1 Exposure               0.1     0.02     0.53       0.01
 # 2 tt(Exposure)           1.45    1.05     1.99       0.02
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph #----
+# > analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph #----  
 #                 rho chisq        p
 # Exposure     -0.119  12.8 0.000339
 # tt(Exposure)  0.118  12.6 0.000376
@@ -71,7 +71,7 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))
 analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph #----
 analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% plot(var = c("Exposure"))
 analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Exposure"), font.main = 12, caption = "")}
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----
+# > analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----  
 # # A tibble: 14 x 5
 #    rowname                                   `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 #    <chr>                                              <dbl>   <dbl>    <dbl>      <dbl>
@@ -89,7 +89,7 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% {survmine
 # 12 t_N180_42.ICD9_Acne                                 0.45    0.19     1.08       0.07
 # 13 t_N180_42.ICD9_CPT_PregnancyTest.Superset           1.63    1.43     1.86       0   
 # 14 tt(Exposure)                                        1.44    1.05     1.98       0.03
-# > analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph #----
+# > analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph #----  
 #                                                rho   chisq        p
 # Exposure                                  -0.11820 12.7201 0.000362
 # Age_at_lmp                                -0.07712  5.9328 0.014862
@@ -125,7 +125,7 @@ HazardRatios.list_df = list(
 })
 
 HazardRatios.list_df |> str() #----
-# > HazardRatios.list_df |> str() #----
+# > HazardRatios.list_df |> str() #----  
 # List of 2
 #  $ coxphTimeOutcome_Exposure_tt           :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2 obs. of  8 variables:
 #   ..$ rowname               : chr [1:2] "Exposure" "tt(Exposure)"
@@ -150,7 +150,7 @@ HazardRatios.list_df |> str() #----
 #@ HazardRatios.bind_rows =====  
 HazardRatios.bind_rows = HazardRatios.list_df %>% map(function(df) {df %>% dplyr::filter(grepl("Exposure", rowname))}) %>% bind_rows(.id = "Model")
 HazardRatios.bind_rows #----
-# > HazardRatios.bind_rows #----
+# > HazardRatios.bind_rows #----  
 # # A tibble: 4 x 9
 #   Model                                   rowname      `estimate (95% CI) %.2f` `estimate (95% CI) %.3f` `percent (95% CI)`      `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 #   <chr>                                   <chr>        <chr>                    <chr>                    <chr>                            <dbl>   <dbl>    <dbl>      <dbl>
@@ -165,7 +165,7 @@ HazardRatios.spread = HazardRatios.bind_rows |> rename(`estimate (95% CI)` = `es
     select(Model, rowname, `estimate (95% CI)`) %>% 
     spread(key = Model, value = `estimate (95% CI)`)
 HazardRatios.spread |> print(n=99) #----
-# > HazardRatios.spread |> print(n=99) #----
+# > HazardRatios.spread |> print(n=99) #----  
 # # A tibble: 2 x 3
 #   rowname      coxphTimeOutcome_Exposure_tt coxphTimeOutcome_Exposure_tt_Covariates
 #   <chr>        <chr>                        <chr>                                  
@@ -174,7 +174,7 @@ HazardRatios.spread |> print(n=99) #----
 
 
 
-# #@ spread.join ====
+# #@ spread.join ====  
 # HazardRatios.spread = bind_rows.HazardRatios |> rename(`estimate (95% CI)` = `estimate (95% CI) %.2f`) %>% 
 #     select(Table, .id, rowname, `estimate (95% CI)`) %>% 
 #     spread(key = rowname, value = `estimate (95% CI)`)
@@ -184,9 +184,9 @@ HazardRatios.spread |> print(n=99) #----
 #     spread(key = rowname, value = `estimate (95% CI)`)
 # spread.join = RiskDifference.spread %>% mutate(Table = Table |> str_extract("^[A-z]+")) %>% 
 #     full_join(  HazardRatios.spread %>% mutate(Table = Table |> str_extract("^[A-z]+"))  )
-# HazardRatios.spread |> print(n=99) #----
-# RiskDifference.spread |> print(n=99) #----
-# spread.join |> print(n=99,width=999) #----
+# HazardRatios.spread |> print(n=99) #----  
+# RiskDifference.spread |> print(n=99) #----  
+# spread.join |> print(n=99,width=999) #----  
 
 
 #@ end ----  

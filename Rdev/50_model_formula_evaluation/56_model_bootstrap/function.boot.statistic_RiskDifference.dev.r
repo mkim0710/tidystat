@@ -113,18 +113,18 @@ boot.output |> str(max.level = 1) #----
 # 4: In max(vapply(X = df_col, FUN = nchar_type, FUN.VALUE = numeric(1),  ... :
 #   no non-missing arguments to max; returning -Inf
 # > 
-# > #@ bootstrap confidence interval (manual) ----
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
+# > #@ bootstrap confidence interval (manual) ----  
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----  
 #       2.5%      97.5% 
 # 0.06483304 0.12071529 
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----  
 #            [,1]      [,2]
 # [1,] 0.05131718 0.1148298
 # [2,] 0.07977163 0.1260402
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} |> as.factor() |> summary() #-----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} |> as.factor() |> summary() #-----  
 # 40 
 # 20 
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  22 variables:
 #  $ max(k)                                   : num  40 40 40 40 40 40 40 40 40 40 ...
 #  $ pNoEvent_k.cumprod0                      : num  0.645 0.652 0.678 0.677 0.661 ...
@@ -148,13 +148,13 @@ boot.output |> str(max.level = 1) #----
 #  $ t_N180_42.ICD9_CPT_PregnancyTest.Superset: num  1.46 1.56 1.89 1.85 1.69 ...
 #  $ Exposure:k                               : num  1.05 1.09 1.03 1.05 1.03 ...
 #  $ Exposure:I(k^2)                          : num  0.999 0.999 1 0.999 1 ...
-# > bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
+# > bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----  
 # # A tibble: 2 x 6
 #   pNoEvent_k.cumprod0 pNoEvent_k.cumprod1 RiskDifference Exposure `Exposure:k` `Exposure:I(k^2)`
 #                 <dbl>               <dbl>          <dbl>    <dbl>        <dbl>             <dbl>
 # 1               0.657               0.762         0.105     0.339         1.04             1.000
 # 2               0.664               0.759         0.0951    0.347         1.04             1.000
-# > boot.output #----
+# > boot.output #----  
 # 
 # ORDINARY NONPARAMETRIC BOOTSTRAP
 # 
@@ -189,7 +189,7 @@ boot.output |> str(max.level = 1) #----
 # t20* 1.697409e+00 -1.221973e-02 1.119179e-01
 # t21* 1.038660e+00  4.218374e-04 2.008776e-02
 # t22* 9.995132e-01  4.065091e-05 3.577571e-04
-# > boot.output |> str(max.level = 1) #----
+# > boot.output |> str(max.level = 1) #----  
 # List of 11
 #  $ t0       : Named num [1:22] 4.00e+01 6.57e-01 7.62e-01 1.05e-01 2.42e-39 ...
 #   ..- attr(*, "names")= chr [1:22] "max(k)" "pNoEvent_k.cumprod0" "pNoEvent_k.cumprod1" "RiskDifference" ...

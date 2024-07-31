@@ -18,7 +18,7 @@ str_extract(system.output_vec, "[0-9]+$")
 
 
 
-## \$ system('ps aux | grep ssh-agent') ------
+## \$ system('ps aux | grep ssh-agent') ------  
 system('ps aux | grep ssh-agent')
 # > system('ps aux | grep ssh-agent')
 # rstudio   2732  0.0  0.0   7980  3496 ?        Ss   07:59   0:00 ssh-agent -s
@@ -31,7 +31,7 @@ system('ps aux | grep ssh-agent')
 # system("kill 3214")
 
 
-## \$ cat ~/.ssh/ssh-agent.socket -------
+## \$ cat ~/.ssh/ssh-agent.socket -------  
 system.output_vec = system('
 cat ~/.ssh/ssh-agent.socket
        ', intern = TRUE); dput(system.output_vec)
@@ -39,7 +39,7 @@ cat ~/.ssh/ssh-agent.socket
 
 #@ Reusing Existing SSH Agents -dev ====  
 
-## \% parts  ----
+## \% parts  ----  
 system.output_vec = system('
 # Source the existing agent details if available
 if [ -f ~/.ssh/ssh-agent.socket ]; then
@@ -57,7 +57,7 @@ echo "Stored SSH_AGENT_PID: $SSH_AGENT_PID"
 
 
 
-## \% parts test ----
+## \% parts test ----  
 system.output_vec = system('
 [ -z "$SSH_AGENT_PID" ]
 echo $?  # Outputs the exit status of the last command, 0 for true, non-0 for false
@@ -150,7 +150,7 @@ echo "export SSH_AGENT_PID=$SSH_AGENT_PID" >> ~/.ssh/ssh-agent.socket
 
 
 
-## \$ system('ps aux | grep ssh-agent') ------
+## \$ system('ps aux | grep ssh-agent') ------  
 system('ps aux | grep ssh-agent')
 # > system('ps aux | grep ssh-agent')
 # rstudio   2732  0.0  0.0   7980  3496 ?        Ss   07:59   0:00 ssh-agent -s
@@ -160,7 +160,7 @@ system('ps aux | grep ssh-agent')
 # system("kill 3214")
 
 
-## \$ cat ~/.ssh/ssh-agent.socket -------
+## \$ cat ~/.ssh/ssh-agent.socket -------  
 system.output_vec = system('
 cat ~/.ssh/ssh-agent.socket
        ', intern = TRUE); dput(system.output_vec)

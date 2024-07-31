@@ -2,10 +2,10 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/20_tidy_group_by_match/27_match/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r
 
 
-# In each line, texts after the sharp ("#") character are comments (not interpreted by the computer). ----
-# install.packages("tidyvserse")  # Only need to install once. ----
+# In each line, texts after the sharp ("#") character are comments (not interpreted by the computer). ----  
+# install.packages("tidyvserse")  # Only need to install once. ----  
 library(tidyverse)
-# install.packages("openxlsx")  # Only need to install once. ----
+# install.packages("openxlsx")  # Only need to install once. ----  
 library(openxlsx)
 
 getwd()                                            # See the current working directory. ----
@@ -13,7 +13,7 @@ ffqtot = readRDS("ffqtot.rds")                     # No need to write the path, 
 ffqtot                                             # If you enter the object name, it will print the object into the Console in the default method.
 write.xlsx(ffqtot, "ffqtot.xlsx", asTable=TRUE)  # If you want to look into the dataset via spreadsheet, I'd recommend exporting into a MS Excel file.
 openXL("ffqtot.xlsx")                              # If the package is properly installed, this commmand will open the file via MS Excel.
-# > ffqtot ----
+# > ffqtot ----  
 # # A tibble: 2,143 x 43
 #    `_rowstate_`   pid   AGE   SEX  RACE YOUREDUC WEIGHTBS HEIGHT BMIBS bmicat bmi25 bmi30 EXERCBS SMOKEBS currsm pastsm   TRT
 #           <dbl> <dbl> <dbl> <dbl> <int>    <dbl>    <dbl>  <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>   <dbl>  <dbl>  <dbl> <dbl>
@@ -200,7 +200,7 @@ for (i in 1:500) {
     ffqtot.select.permutation_list[[i]]$currsm = sample(ffqtot.select$currsm)
 }
 ffqtot.select.permutation_list |> str(max.level = 1) #----
-# > ffqtot.select.permutation_list |> str(max.level = 1) #----
+# > ffqtot.select.permutation_list |> str(max.level = 1) #----  
 # List of 500
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2143 obs. of  27 variables:
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2143 obs. of  27 variables:
@@ -286,13 +286,13 @@ ffqtot.select.permutation_list[[3]] %>% group_by(currsm) %>% summarise(mean(fkca
 # > ffqtot.select %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]}
 #   mean(fkcal)
 # 1    22.86106
-# > ffqtot.select.permutation_list[[1]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} #----
+# > ffqtot.select.permutation_list[[1]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} #----  
 #   mean(fkcal)
 # 1   -56.78954
-# > ffqtot.select.permutation_list[[2]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} #----
+# > ffqtot.select.permutation_list[[2]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} #----  
 #   mean(fkcal)
 # 1   -138.1856
-# > ffqtot.select.permutation_list[[3]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} #----
+# > ffqtot.select.permutation_list[[3]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]} #----  
 #   mean(fkcal)
 # 1   -41.23212
 
@@ -305,7 +305,7 @@ for (i in 1:length(ffqtot.select.permutation_list)) {
 }
 permutation_results_single = unlist(permutation_results_single)
 permutation_results_single |> str() #----
-# > permutation_results_single |> str() #----
+# > permutation_results_single |> str() #----  
 #  Named num [1:500] -56.8 -138.2 -41.2 -39.7 -55.9 ...
 #  - attr(*, "names")= chr [1:500] "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" ...
 
@@ -383,7 +383,7 @@ for (j in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "
 }
 permutation_results_multiple = permutation_results_multiple |> as_data_frame()
 permutation_results_multiple #----
-# > permutation_results_multiple #----
+# > permutation_results_multiple #----  
 # # A tibble: 500 x 26
 #     fkcal atotfat    asat  aoleic alinolc  achol  acarb   aprot  afiber   adca   adiron  adphos    adk     adna  advaiu advare   adthiam   adribo  adniac    advc    atca atiron atvaiu atthiri   atvc asuptoc
 #     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>   <dbl>   <dbl>  <dbl>    <dbl>   <dbl>  <dbl>    <dbl>   <dbl>  <dbl>     <dbl>    <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>   <dbl>  <dbl>   <dbl>
@@ -400,7 +400,7 @@ permutation_results_multiple #----
 # # ... with 490 more rows
 
 
-# > permutation_results_single |> str() #----
+# > permutation_results_single |> str() #----  
 #  Named num [1:500] -56.8 -138.2 -41.2 -39.7 -55.9 ...
 #  - attr(*, "names")= chr [1:500] "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" "mean(fkcal)" ...
 
@@ -417,7 +417,7 @@ sum(abs(EmpiricalDistributionOfStatisticValue) > abs(ObservedStatisticValue) ) /
 
 
 #@ t.test -----  
-# ?t.test  # Open the help documentation for the t.test() function. ----
+# ?t.test  # Open the help documentation for the t.test() function. ----  
 t.test(formula = fkcal ~ currsm, data = ffqtot)       # Print the default output. Formula is in "y ~ x" format.
 str(t.test(formula = fkcal ~ currsm, data = ffqtot))  # Print the "structure" of the default output.
 t.test(formula = fkcal ~ currsm, data = ffqtot)$p.value # Print the "structure" of the default output.
@@ -469,7 +469,7 @@ for (i in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "
 }
 permutationP_multiple = permutationP_multiple |> unlist()
 permutationP_multiple |> str(max.level = 1) #-----
-# > permutationP_multiple |> str(max.level = 1) #-----
+# > permutationP_multiple |> str(max.level = 1) #-----  
 #  Named num [1:26] 0.746 0 0 0 0.752 0 0 0.086 0 0.088 ...
 #  - attr(*, "names")= chr [1:26] "fkcal" "atotfat" "asat" "aoleic" ...
 

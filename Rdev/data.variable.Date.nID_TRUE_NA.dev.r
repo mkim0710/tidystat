@@ -4,7 +4,7 @@
 
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_TRUE_NA.dev.r
-#% data.variable.Date.nID_TRUE_NA <- function(dataset, ...){ ----
+#% data.variable.Date.nID_TRUE_NA <- function(dataset, ...){ ----  
 data.variable.Date.nID_TRUE_NA <- function(dataset, ...){
   library(dplyr)
   
@@ -77,7 +77,7 @@ nsc2_m20.Date.C0097.D0009.D3233.D3748 %>%
 
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_TRUE_NA.dev.r
-#% data.variable.Date.nID_TRUE_NA <- function(dataset, varnames){ ----
+#% data.variable.Date.nID_TRUE_NA <- function(dataset, varnames){ ----  
 data.variable.Date.nID_TRUE_NA <- function(dataset, varnames) {
   library(dplyr)
   

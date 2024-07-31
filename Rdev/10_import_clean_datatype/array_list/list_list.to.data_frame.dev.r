@@ -20,7 +20,7 @@ list_list.to.matrix = function(list_list, type = "list_list[[Col.index]][[Row.in
 }
 
 
-# #@ test) list_list.to.matrix() ----------
+# #@ test) list_list.to.matrix() ----------  
 # list_list = map(1:3, function(j) {
 #     out = map(1:2, function(i) {
 #         paste0("R", i, "C", j)
@@ -86,7 +86,7 @@ list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Ro
     out2
 }
 
-# #@ test) list_list.to.data_frame() ----------
+# #@ test) list_list.to.data_frame() ----------  
 # list_list.to.data_frame(list_list)
 # list_list.to.data_frame(list_list, type = "list_list[[Row.index]][[Col.index]]")
 # # > list_list.to.data_frame(list_list)

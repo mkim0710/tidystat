@@ -96,7 +96,7 @@ varnames4coxph_model_list.Cigar_ge50$Cigar.Cigarette.Age.Sex.Race.Alcohol.Social
       , "nutrition_calories", "nutrition_protein", "nutrition_fat", "nutrition_carb"  # nutrition
     )
 varnames4coxph_model_list.Cigar_ge50 |> str() #----
-# > varnames4coxph_model_list.Cigar_ge50 |> str() #----
+# > varnames4coxph_model_list.Cigar_ge50 |> str() #----  
 # List of 11
 #  $ Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition: chr [1:17] "ihd" "timeihd" "Cigar_ge50" "CigarettePackYear" ...
 #  $ Cigar.Cigarette.Age.Sex.Race.Hx.Alcohol.Social.nutrition    : chr [1:16] "ihd" "timeihd" "Cigar_ge50" "CigarettePackYear" ...

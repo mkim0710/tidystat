@@ -197,7 +197,7 @@ print(tmp.array)
 
 
 
-#---------------------------------------------------------
+#---------------------------------------------------------  
 # function.list_df2array.dev.r
 # data.mice complete() group_by(exposure) summarize(n(), sum(event)).r
 # https://www.r-bloggers.com/tidyrcomplete-to-show-all-possible-combinations-of-variables/
@@ -210,7 +210,7 @@ data.mice %>% complete(2) |> str() #----
 data.mice %>% complete(3) |> str() #----
 data.mice %>% complete(4) |> str() #----
 data.mice %>% complete(5) |> str() #----
-# > data.mice |> summary() #----
+# > data.mice |> summary() #----  
 # Class: mids
 # Number of multiple imputations:  5 
 # Imputation methods:
@@ -259,7 +259,7 @@ data.mice %>% complete(5) |> str() #----
 # 4                                                                                                                                                                                                                                                        Cigar_ge50, Age_cut257545-, Age_cut257575-, Age_cut2575999-, ihd
 # 5 * A ridge penalty had to be used to calculate the inverse crossproduct of the predictor matrix. Please remove duplicate variables or unique respondent names/numbers from the imputation model. It may be advisable to check the fraction of missing information (fmi) to evaluate the validity of the imputation model
 # 6                                                                                                                                                                                                                                                                         Age_cut257545-, Age_cut257575-, Age_cut2575999-
-# > data.mice %>% complete(1) |> str() #----
+# > data.mice %>% complete(1) |> str() #----  
 # 'data.frame':	14407 obs. of  29 variables:
 #  $ N1GM0392_recode    : num  2 4 2 0.214 0.214 ...
 #  $ N1GM0394_recode    : num  0 2 0 2 0 0 10 0 0 0.5 ...
@@ -290,7 +290,7 @@ data.mice %>% complete(5) |> str() #----
 #  $ Age.cut2575        : Factor w/ 5 levels "[25,35)","[35,45)",..: 2 4 1 2 2 5 5 4 3 1 ...
 #  $ ihd                : num  0 1 0 0 0 0 0 0 0 0 ...
 #  $ timeihd            : num  253 59 0 183 257 139 97 253 253 0 ...
-# > data.mice %>% complete(2) |> str() #----
+# > data.mice %>% complete(2) |> str() #----  
 # 'data.frame':	14407 obs. of  29 variables:
 #  $ N1GM0392_recode    : num  0.643 5 3 0.214 0.214 ...
 #  $ N1GM0394_recode    : num  2 27 20 7 0 10 15 5 0.5 15 ...
@@ -321,7 +321,7 @@ data.mice %>% complete(5) |> str() #----
 #  $ Age.cut2575        : Factor w/ 5 levels "[25,35)","[35,45)",..: 2 4 1 2 2 5 5 4 3 1 ...
 #  $ ihd                : num  0 1 0 0 0 0 0 0 0 0 ...
 #  $ timeihd            : num  253 59 0 183 257 139 97 253 253 0 ...
-# > data.mice %>% complete(3) |> str() #----
+# > data.mice %>% complete(3) |> str() #----  
 # 'data.frame':	14407 obs. of  29 variables:
 #  $ N1GM0392_recode    : num  7 0.214 15 7 7 ...
 #  $ N1GM0394_recode    : num  0 0 0 0 0 20 50 27 0 0 ...
@@ -352,7 +352,7 @@ data.mice %>% complete(5) |> str() #----
 #  $ Age.cut2575        : Factor w/ 5 levels "[25,35)","[35,45)",..: 2 4 1 2 2 5 5 4 3 1 ...
 #  $ ihd                : num  0 1 0 0 0 0 0 0 0 0 ...
 #  $ timeihd            : num  253 59 0 183 257 139 97 253 253 0 ...
-# > data.mice %>% complete(4) |> str() #----
+# > data.mice %>% complete(4) |> str() #----  
 # 'data.frame':	14407 obs. of  29 variables:
 #  $ N1GM0392_recode    : num  4 5 0.214 6 3 ...
 #  $ N1GM0394_recode    : num  5 10 0 15 0.5 0 1 0 0 12 ...
@@ -383,7 +383,7 @@ data.mice %>% complete(5) |> str() #----
 #  $ Age.cut2575        : Factor w/ 5 levels "[25,35)","[35,45)",..: 2 4 1 2 2 5 5 4 3 1 ...
 #  $ ihd                : num  0 1 0 0 0 0 0 0 0 0 ...
 #  $ timeihd            : num  253 59 0 183 257 139 97 253 253 0 ...
-# > data.mice %>% complete(5) |> str() #----
+# > data.mice %>% complete(5) |> str() #----  
 # 'data.frame':	14407 obs. of  29 variables:
 #  $ N1GM0392_recode    : num  0.214 0.214 8 0.214 0.214 ...
 #  $ N1GM0394_recode    : num  0 20 40 0 0 10 0 5 0 30 ...
@@ -457,7 +457,7 @@ for (i in 1:5) {
 # 2          1  3506        602
 
 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) |> str() #----
-# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) |> str() #----
+# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) |> str() #----  
 # List of 5
 #  $ :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	2 obs. of  3 variables:
 #   ..$ Cigar_ge50: num [1:2] 0 1
@@ -482,7 +482,7 @@ for (i in 1:5) {
 
 
 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) |> str() #----
-# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) |> str() #----
+# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) |> str() #----  
 # List of 5
 #  $ : num [1:2, 1:3] 0 1 11333 3074 1459 ...
 #   ..- attr(*, "dimnames")=List of 2
@@ -507,7 +507,7 @@ for (i in 1:5) {
 
 
 
-# https://stackoverflow.com/questions/4310727/what-is-rs-multidimensional-equivalent-of-rbind-and-cbind =====
+# https://stackoverflow.com/questions/4310727/what-is-rs-multidimensional-equivalent-of-rbind-and-cbind =====  
 # ?abind::abind()
 
 library(abind)
@@ -544,7 +544,7 @@ abind(x, y, along = 3)
 
 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) |> str() #----
 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3)
-# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) |> str() #----
+# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) |> str() #----  
 #  num [1:2, 1:3, 1:5] 0 1 11333 3074 1459 ...
 #  - attr(*, "dimnames")=List of 3
 #   ..$ : NULL
@@ -584,17 +584,17 @@ abind(x, y, along = 3)
 
 
 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 3, FUN = max) #----
-# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 3, FUN = max) #----
+# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 3, FUN = max) #----  
 # [1] 11333 10889 10778 11239 10901
 
 
 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 1:2, FUN = min) #----
 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 1:2, FUN = max) #----
-# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 1:2, FUN = min) #----
+# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 1:2, FUN = min) #----  
 #      Cigar_ge50   n() sum(ihd)
 # [1,]          0 10778     1285
 # [2,]          1  3074      450
-# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 1:2, FUN = max) #----
+# > 1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 1:2, FUN = max) #----  
 #      Cigar_ge50   n() sum(ihd)
 # [1,]          0 11333     1459
 # [2,]          1  3629      624

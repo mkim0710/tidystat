@@ -14,9 +14,9 @@ objectname = "KoGES201806vars_waves"
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); get(objectname) |> names() |> deparse() |> cat("  \n", sep="") # dput() cat(deparse()) ----
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); get(objectname) |> names() |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); get(objectname) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
-# > data |> names() |> deparse() |> cat("  \n", sep="") #----
+# > data |> names() |> deparse() |> cat("  \n", sep="") #----  
 # c("Time2Event", "Event", "Exposure")
-# > data |> names() |> paste(collapse=", ") #----
+# > data |> names() |> paste(collapse=", ") #----  
 # [1] "Time2Event, Event, Exposure"
 
 
@@ -31,7 +31,7 @@ function.deparse.cat.width=function(x, deparse.width.cutoff=500, cat.sep="") {
     if (cat.sep != "\n") cat("  \n", sep="")
 }
 
-# @ test) function.deparse.cat.width() --------
+# @ test) function.deparse.cat.width() --------  
 letters |> print()
 letters |> dput()
 letters |> deparse()

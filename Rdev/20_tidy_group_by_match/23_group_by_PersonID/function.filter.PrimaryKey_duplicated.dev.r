@@ -7,7 +7,7 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/fun.data.primarykey.dev.r
 
 
-# d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin2000 from .r ----
+# d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin2000 from .r ----  
 tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
     mutate(PrimaryKey = concept_name.toupper) %>% 
     {{. %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 1)} %>% left_join(.)}
@@ -83,7 +83,7 @@ tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_Br
 
 
 
-#### https://stackoverflow.com/questions/16905425/find-duplicate-values-in-r ====
+#### https://stackoverflow.com/questions/16905425/find-duplicate-values-in-r ====  
 
 .t0 = Sys.time()
 enrolid_mom_duplicated = mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp$enrolid_mom |> table() %>% {which(. > 1)} |> names()
@@ -127,7 +127,7 @@ Sys.time() - .t0
 
 
 
-#### https://grokbase.com/t/r/r-help/129wg7ft4n/r-select-original-and-duplicates ====
+#### https://grokbase.com/t/r/r-help/129wg7ft4n/r-select-original-and-duplicates ====  
 
 
 .t0 = Sys.time()
@@ -159,7 +159,7 @@ Sys.time() - .t0
 
 
 
-#### group_by() ====
+#### group_by() ====  
 
 .t0 = Sys.time()
 mscan_pregcohort_r4.sas7bdat.byID_min_rank_lmp %>% 

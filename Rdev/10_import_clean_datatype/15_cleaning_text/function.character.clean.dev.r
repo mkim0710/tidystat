@@ -27,7 +27,7 @@ function.character.clean = function(vec, pattern_to_clean = "[^A-z0-9[:punct:][:
 
 
 
-# #@ test) function.character.clean() -----
+# #@ test) function.character.clean() -----  
 # vec = c("", " ", ".", "Y", "Period.", "K1", "1G", "m1", "1n", "1", "FF00FF", "ff2343", "a\\n b", "Now is the time      ", "\tMillard Fillmore")
 # function.character.clean(vec, pattern_to_clean = "[^A-z0-9]")
 # function.character.clean(vec, pattern_to_clean = "[^A-z0-9[:punct:]]")

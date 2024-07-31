@@ -22,7 +22,7 @@ sudo find /usr/local/texlive -type d -name fonts
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-### if(.Platform$OS.type == "unix")  -----
+### if(.Platform$OS.type == "unix")  -----  
 'whoami' |> system(intern = TRUE)
 'echo $PATH' |> system(intern = TRUE) 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -38,7 +38,7 @@ dir("/usr/local/texlive/tlpkg/tlpobj")
 dir("/usr/local/texlive/texmf-dist")
 dir("/usr/local/texlive/texmf-dist/fonts")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-### \% f_filename.unix_find_path_local ====
+### \% f_filename.unix_find_path_local ====  
 f_filename.unix_find_path_local <- function(filename) {
     vec_path.file <- paste0('sudo find / -type f -iname "*',filename,'*"') |> system(intern = TRUE)
     vec_path = vec_path.file |> dirname() |> unique() |> sort()

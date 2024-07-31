@@ -36,7 +36,7 @@ if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubuserco
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## env1\$path ====
+## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -52,7 +52,7 @@ if (requireNamespace("rstudioapi")) {
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
-### @ .subpath, .sourcename ======
+### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")
@@ -76,7 +76,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 #     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
 #     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
@@ -604,7 +604,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ global functions ----  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_df.tribble_construct" ----
+## \$ .tmp\$objectname = "f_df.tribble_construct" ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% fun.tribble_paste}
 .tmp$objectname = "f_df.tribble_construct"
@@ -619,7 +619,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
-## \$ .tmp\$objectname = "f_df.transpose" ----
+## \$ .tmp\$objectname = "f_df.transpose" ----  
 .tmp$objectname = "f_df.transpose"
 .tmp$object = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
@@ -632,7 +632,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----
+## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----  
 .tmp$objectname = "f_df.t.tribble_construct"
 .tmp$object = function(df) {
     out = env1$f$f_df.transpose(df)
@@ -646,7 +646,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
-## \$ .tmp\$objectname = "f_vec.dput_line_by_line" ----
+## \$ .tmp\$objectname = "f_vec.dput_line_by_line" ----  
 .tmp$objectname = "f_vec.dput_line_by_line"
 # .tmp$object = function(vec) {
 #     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') |> paste0('c("',.,'")\n') |> cat("  \n", sep="")
@@ -675,7 +675,7 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
-## \$ .tmp\$objectname = "f_list.dput_line_by_line" ----
+## \$ .tmp\$objectname = "f_list.dput_line_by_line" ----  
 .tmp$objectname = "f_list.dput_line_by_line"
 .tmp$object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
@@ -703,7 +703,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_vec1_vec2.setdiff" ----
+## \$ .tmp\$objectname = "f_vec1_vec2.setdiff" ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
 .tmp$objectname = "f_vec1_vec2.setdiff"
 .tmp$object = function(vec1, vec2) {
@@ -723,7 +723,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_df.print_byVar" ----
+## \$ .tmp\$objectname = "f_df.print_byVar" ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.print_byVar.dev.r  
 .tmp$objectname = "f_df.print_byVar"
 .tmp$object = function(df, byVar, n = NULL) {
@@ -761,15 +761,15 @@ for (.dependancy in c("f_path.size_files")) {
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# ls.str(env1) #-----
-# ls.str(env1$env.internal) #-----
-# # > ls.str(env1) #-----
+# ls.str(env1) #-----  
+# ls.str(env1$env.internal) #-----  
+# # > ls.str(env1) #-----  
 # # env.internal : <environment: 0x000001d6104168f8> 
 # # f_df.transpose : function (df, varname4rowname = "varname")  
 # # f_path.size_files : function (.path4read = getwd(), regex4filename = "\\.(rdata|rda|rds)$")  
 # # f_df.t.tribble_construct : function (df)  
 # # f_df.tribble_construct : function (df)  
-# # > ls.str(env1$env.internal) #-----
+# # > ls.str(env1$env.internal) #-----  
 # # clipboard_context : function ()  
 # # column_width : function (column, column_type)  
 # # console_context : function ()  

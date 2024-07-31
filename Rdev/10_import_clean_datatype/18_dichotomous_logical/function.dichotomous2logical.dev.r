@@ -326,7 +326,7 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 #     x
 # }
 # 
-# #@ test) function.binary2numeric() ----
+# #@ test) function.binary2numeric() ----  
 # function.binary2numeric(c(T, F ,T))
 # function.binary2numeric(c("A", "A", "B", "B", "A"))
 # function.binary2numeric(c("A", "A", "B", "C", "A"))
@@ -460,9 +460,9 @@ attributes(data4FullModel.by_varname_level.list_list)$attributes =
 
 data4FullModel.by_varname_level.list_list |> str(max.level = 1) #----
 data4FullModel.by_varname_level.list_list |> str(max.level = 2) #----
-# data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----
+# data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----  
 data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #----
-# > data4FullModel.by_varname_level.list_list |> str(max.level = 1) #----
+# > data4FullModel.by_varname_level.list_list |> str(max.level = 1) #----  
 # List of 14
 #  $ AllSubjects        :List of 1
 #  $ Cigar.cut100       :List of 3
@@ -479,7 +479,7 @@ data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #---
 #  $ nutrition_fat      : list()
 #  $ nutrition_carb     : list()
 #  - attr(*, "attributes")=List of 11
-# > data4FullModel.by_varname_level.list_list |> str(max.level = 2) #----
+# > data4FullModel.by_varname_level.list_list |> str(max.level = 2) #----  
 # List of 14
 #  $ AllSubjects        :List of 1
 #   ..$ AllSubjects:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	14407 obs. of  15 variables:
@@ -531,8 +531,8 @@ data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #---
 #   ..$ data.map.typeof   :List of 15
 #   ..$ data.map.class    :List of 15
 #   ..$ data.map.levels   :List of 15
-# > # data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----
-# > data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #----
+# > # data4FullModel.by_varname_level.list_list$SEX$Male |> str(max.level = 1) #----  
+# > data4FullModel.by_varname_level.list_list$Male$`TRUE` |> str(max.level = 1) #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	5810 obs. of  15 variables:
 #  $ ihd                : Factor w/ 2 levels "FALSE","TRUE": 2 1 1 1 1 2 1 1 1 1 ...
 #  $ timeihd            : num  59 253 0 94 253 104 253 253 196 54 ...

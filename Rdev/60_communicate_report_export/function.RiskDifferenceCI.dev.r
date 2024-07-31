@@ -71,10 +71,10 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 #     out
 # }
 # 
-# function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
-# function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
-# function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
-# # > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
+# function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----  
+# function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----  
+# function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----  
+# # > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----  
 # # List of 3
 # #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.33
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
@@ -82,7 +82,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
 # #  $ RiskDifference: Named num [1:3] 0.00771 0.00469 0.01072
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
-# # > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
+# # > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----  
 # # List of 3
 # #  $ OddsRatio     : Named num [1:3] 0.546 0.429 0.694
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
@@ -90,7 +90,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
 # #  $ RiskDifference: Named num [1:3] -0.00771 -0.01072 -0.00469
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
-# # > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
+# # > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----  
 # # List of 3
 # #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.33
 # #   ..- attr(*, "names")= chr [1:3] "Estimate" "LowerLimit" "UpperLimit"
@@ -151,10 +151,10 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 #     out = c(OddsRatio, RiskRatio, RiskDifference) |> as_tibble()
 #     out
 # }
-# function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
-# function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
-# function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
-# # > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
+# function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----  
+# function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----  
+# function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----  
+# # > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----  
 # # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  9 variables:
 # #  $ OddsRatio        : num 1.83
 # #  $ OddsRatio.ll     : num 1.44
@@ -165,7 +165,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #  $ RiskDifference   : num 0.00771
 # #  $ RiskDifference.ll: num 0.00464
 # #  $ RiskDifference.ul: num 0.0108
-# # > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
+# # > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----  
 # # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  9 variables:
 # #  $ OddsRatio        : num 0.546
 # #  $ OddsRatio.ll     : num 0.429
@@ -176,7 +176,7 @@ qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+
 # #  $ RiskDifference   : num -0.00771
 # #  $ RiskDifference.ll: num -0.246
 # #  $ RiskDifference.ul: num 0.23
-# # > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
+# # > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----  
 # # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  9 variables:
 # #  $ OddsRatio        : num 1.83
 # #  $ OddsRatio.ll     : num 1.44
@@ -253,7 +253,7 @@ function.RiskDifferenceCI = function(nDisease0_Exposed0, nDisease0_Exposed1, nDi
 function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
 function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
 function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
-# > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----
+# > function.RiskDifferenceCI(189, 104, 10845, 10933) |> str() #-----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr "1.83 (1.44, 2.33)"
 #  $ OddsRatio (95% CI) %.3f     : chr "1.832 (1.440, 2.331)"
@@ -272,7 +272,7 @@ function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 #  $ RiskDifference              : num 0.00771
 #  $ RiskDifference.ll           : num 0.00464
 #  $ RiskDifference.ul           : num 0.0108
-# > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----
+# > function.RiskDifferenceCI(10845, 10933, 189, 104) |> str() #-----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr "0.55 (0.43, 0.69)"
 #  $ OddsRatio (95% CI) %.3f     : chr "0.546 (0.429, 0.694)"
@@ -291,7 +291,7 @@ function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 #  $ RiskDifference              : num -0.00771
 #  $ RiskDifference.ll           : num -0.246
 #  $ RiskDifference.ul           : num 0.23
-# > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
+# > function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1 obs. of  17 variables:
 #  $ OddsRatio (95% CI) %.2f     : chr "1.83 (1.44, 2.33)"
 #  $ OddsRatio (95% CI) %.3f     : chr "1.832 (1.440, 2.331)"
@@ -346,7 +346,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =
         out
     }
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
+# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
 # # A tibble: 20 x 9
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` nExposed0 nExposed1 nDisease0_Exposed0 nDisease0_Exposed1 nDisease1_Exposed0 nDisease1_Exposed1
 #    <chr>                     <chr>                        <chr>                            <int>     <int>              <int>              <int>              <int>              <int>
@@ -420,7 +420,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$selec
     analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable %>% select(key, matches("3f"))
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----
+# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$select2f #-----  
 # # A tibble: 20 x 7
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` `OddsRatio (95% CI) %.2f` `RiskRatio (95% CI) %.2f` `RiskDifference (95% CI) %.2f` `Percent (95% CI) %.2f`   
 #    <chr>                     <chr>                        <chr>                        <chr>                     <chr>                     <chr>                          <chr>                     
@@ -444,7 +444,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> st
 # 18 SecondaryOutcome6         0 (0.00%)                    3 (2.65%)                    Inf (NaN, Inf)            Inf (NaN, Inf)            0.03 (-Inf, Inf)               2.65% (-Inf%, Inf%)       
 # 19 SecondaryOutcome7         0 (0.00%)                    0 (0.00%)                    NaN (NaN, NaN)            NaN (NaN, NaN)            0.00 (-Inf, Inf)               0.00% (-Inf%, Inf%)       
 # 20 SecondaryOutcomeP1456fhkl 128 (64.00%)                 65 (57.52%)                  0.76 (0.48, 1.22)         0.90 (0.74, 1.09)         -0.06 (-0.25, 0.12)            -6.48% (-25.43%, 12.47%)  
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----
+# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> str() #----  
 # List of 4
 #  $ FullTable:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	20 obs. of  30 variables:
 #   ..$ nDisease|Exposed0 (%) %.2f  : chr [1:20] "5 (2.50%)" "60 (30.00%)" "52 (26.00%)" "5 (2.50%)" ...
@@ -541,10 +541,10 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 #     library(epitools)
 #     riskratio(matrix(c(nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1),nrow = 2, ncol = 2), ...)
 # }
-# function.epitools.RelativeRiskCI(1017,2260,165,992) #----
-# function.epitools.RelativeRiskCI(1017,2260,165,992) |> str() #----
-# function.epitools.RelativeRiskCI(1017,2260,165,992) %>% {.$measure[2,]} #----
-# # > function.epitools.RelativeRiskCI(1017,2260,165,992) #----
+# function.epitools.RelativeRiskCI(1017,2260,165,992) #----  
+# function.epitools.RelativeRiskCI(1017,2260,165,992) |> str() #----  
+# function.epitools.RelativeRiskCI(1017,2260,165,992) %>% {.$measure[2,]} #----  
+# # > function.epitools.RelativeRiskCI(1017,2260,165,992) #----  
 # # $data
 # #           Outcome
 # # Predictor  Disease1 Disease2 Total
@@ -569,7 +569,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 # # 
 # # attr(,"method")
 # # [1] "Unconditional MLE & normal approximation (Wald) CI"
-# # > function.epitools.RelativeRiskCI(1017,2260,165,992) |> str() #----
+# # > function.epitools.RelativeRiskCI(1017,2260,165,992) |> str() #----  
 # # List of 4
 # #  $ data      : num [1:3, 1:3] 1017 2260 3277 165 992 ...
 # #   ..- attr(*, "dimnames")=List of 2
@@ -585,20 +585,20 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 # #   .. ..$ two-sided: chr [1:3] "midp.exact" "fisher.exact" "chi.square"
 # #  $ correction: logi FALSE
 # #  - attr(*, "method")= chr "Unconditional MLE & normal approximation (Wald) CI"
-# # > function.epitools.RelativeRiskCI(1017,2260,165,992) %>% {.$measure[2,]} #----
+# # > function.epitools.RelativeRiskCI(1017,2260,165,992) %>% {.$measure[2,]} #----  
 # # estimate    lower    upper 
 # # 2.185217 1.879441 2.540742 
 # 
-# function.epitools.RelativeRiskCI(189, 104, 10845, 10933) %>% {.$measure[2,]} #----
-# function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="c") %>% {.$measure[2,]} #----
-# function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="b") %>% {.$measure[2,]} #----
-# # > function.epitools.RelativeRiskCI(189, 104, 10845, 10933) %>% {.$measure[2,]} #----
+# function.epitools.RelativeRiskCI(189, 104, 10845, 10933) %>% {.$measure[2,]} #----  
+# function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="c") %>% {.$measure[2,]} #----  
+# function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="b") %>% {.$measure[2,]} #----  
+# # > function.epitools.RelativeRiskCI(189, 104, 10845, 10933) %>% {.$measure[2,]} #----  
 # # estimate    lower    upper 
 # # 1.007840 1.004759 1.010931 
-# # > function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="c") %>% {.$measure[2,]} #----
+# # > function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="c") %>% {.$measure[2,]} #----  
 # #  estimate     lower     upper 
 # # 0.5501150 0.4336731 0.6978217 
-# # > function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="b") %>% {.$measure[2,]} #----
+# # > function.epitools.RelativeRiskCI(189, 104, 10845, 10933, rev="b") %>% {.$measure[2,]} #----  
 # # estimate    lower    upper 
 # # 1.817802 1.433031 2.305884 
 
@@ -615,21 +615,21 @@ function.epitools.RelativeRiskCI = function(nDisease0_Exposed0, nDisease0_Expose
 function.epitools.RelativeRiskCI(189, 104, 10845, 10933) |> str() #-----
 function.epitools.RelativeRiskCI(10845, 10933, 189, 104) |> str() #-----
 function.epitools.RelativeRiskCI(10933, 10845, 104, 189) |> str() #-----
-# > function.epitools.RelativeRiskCI(189, 104, 10845, 10933) |> str() #-----
+# > function.epitools.RelativeRiskCI(189, 104, 10845, 10933) |> str() #-----  
 # List of 3
 #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.34
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskRatio     : Named num [1:3] 1.01 1 1.01
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskDifference: logi NA
-# > function.epitools.RelativeRiskCI(10845, 10933, 189, 104) |> str() #-----
+# > function.epitools.RelativeRiskCI(10845, 10933, 189, 104) |> str() #-----  
 # List of 3
 #  $ OddsRatio     : Named num [1:3] 0.546 0.428 0.693
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskRatio     : Named num [1:3] 0.55 0.434 0.698
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
 #  $ RiskDifference: logi NA
-# > function.epitools.RelativeRiskCI(10933, 10845, 104, 189) |> str() #-----
+# > function.epitools.RelativeRiskCI(10933, 10845, 104, 189) |> str() #-----  
 # List of 3
 #  $ OddsRatio     : Named num [1:3] 1.83 1.44 2.34
 #   ..- attr(*, "names")= chr [1:3] "estimate" "lower" "upper"
@@ -679,42 +679,42 @@ nNoncasesExposed = 10845
 nNoncasesUnexposed = 10933
 stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
 stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
-# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # . cci 189 104 10845 10933
 #                                                          Proportion
 #                  |   Exposed   Unexposed  |      Total     Exposed
-# -----------------+------------------------+------------------------
+# -----------------+------------------------+------------------------  
 #            Cases |       189         104  |        293       0.6451
 #         Controls |     10845       10933  |      21778       0.4980
-# -----------------+------------------------+------------------------
+# -----------------+------------------------+------------------------  
 #            Total |     11034       11037  |      22071       0.4999
 #                  |                        |
 #                  |      Point estimate    |    [95% Conf. Interval]
-#                  |------------------------+------------------------
+#                  |------------------------+------------------------  
 #       Odds ratio |         1.832054       |    1.432251    2.353397 (exact)
 #  Attr. frac. ex. |         .4541645       |    .3017983    .5750823 (exact)
 #  Attr. frac. pop |         .2929594       |
-#                  +-------------------------------------------------
+#                  +-------------------------------------------------  
 #                                chi2(1) =    25.01  Pr>chi2 = 0.0000
-# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # . csi 189 104 10845 10933
 # 
 #                  |   Exposed   Unexposed  |      Total
-# -----------------+------------------------+------------
+# -----------------+------------------------+------------  
 #            Cases |       189         104  |        293
 #         Noncases |     10845       10933  |      21778
-# -----------------+------------------------+------------
+# -----------------+------------------------+------------  
 #            Total |     11034       11037  |      22071
 #                  |                        |
 #             Risk |  .0171289    .0094229  |   .0132753
 #                  |                        |
 #                  |      Point estimate    |    [95% Conf. Interval]
-#                  |------------------------+------------------------
+#                  |------------------------+------------------------  
 #  Risk difference |          .007706       |    .0046878    .0107243 
 #       Risk ratio |         1.817802       |    1.433031    2.305884 
 #  Attr. frac. ex. |          .449885       |    .3021783    .5663269 
 #  Attr. frac. pop |         .2901989       |
-#                  +-------------------------------------------------
+#                  +-------------------------------------------------  
 #                                chi2(1) =    25.01  Pr>chi2 = 0.0000
 
 
@@ -729,7 +729,7 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 #@@@ ======  
 # https://sphweb.bumc.bu.edu/otlt/MPH-Modules/EP/EP713_Association/EP713_Association8.html#headingtaglink_3
-# Example) RR = 3.06, OR = 4.21 -----
+# Example) RR = 3.06, OR = 4.21 -----  
 
 nCasesExposed = 60
 nCasesUnexposed = 45
@@ -737,42 +737,42 @@ nNoncasesExposed = 108
 nNoncasesUnexposed = 341
 stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
 stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
-# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # . cci 60 45 108 341
 #                                                          Proportion
 #                  |   Exposed   Unexposed  |      Total     Exposed
-# -----------------+------------------------+------------------------
+# -----------------+------------------------+------------------------  
 #            Cases |        60          45  |        105       0.5714
 #         Controls |       108         341  |        449       0.2405
-# -----------------+------------------------+------------------------
+# -----------------+------------------------+------------------------  
 #            Total |       168         386  |        554       0.3032
 #                  |                        |
 #                  |      Point estimate    |    [95% Conf. Interval]
-#                  |------------------------+------------------------
+#                  |------------------------+------------------------  
 #       Odds ratio |         4.209877       |    2.638216    6.721812 (exact)
 #  Attr. frac. ex. |         .7624633       |     .620956    .8512306 (exact)
 #  Attr. frac. pop |         .4356933       |
-#                  +-------------------------------------------------
+#                  +-------------------------------------------------  
 #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
-# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # . csi 60 45 108 341
 # 
 #                  |   Exposed   Unexposed  |      Total
-# -----------------+------------------------+------------
+# -----------------+------------------------+------------  
 #            Cases |        60          45  |        105
 #         Noncases |       108         341  |        449
-# -----------------+------------------------+------------
+# -----------------+------------------------+------------  
 #            Total |       168         386  |        554
 #                  |                        |
 #             Risk |  .3571429    .1165803  |   .1895307
 #                  |                        |
 #                  |      Point estimate    |    [95% Conf. Interval]
-#                  |------------------------+------------------------
+#                  |------------------------+------------------------  
 #  Risk difference |         .2405625       |    .1613492    .3197759 
 #       Risk ratio |         3.063492       |    2.177394    4.310191 
 #  Attr. frac. ex. |         .6735751       |    .5407353    .7679917 
 #  Attr. frac. pop |         .3849001       |
-#                  +-------------------------------------------------
+#                  +-------------------------------------------------  
 #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
 
 
@@ -808,11 +808,11 @@ AnalyticDataset =
     select(-n)
 AnalyticDataset |> str() #----
 AnalyticDataset |> table() |> addmargins() #----
-# > AnalyticDataset |> str() #----
+# > AnalyticDataset |> str() #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	554 obs. of  2 variables:
 #  $ Case    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #  $ Exposure: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-# > AnalyticDataset |> table() |> addmargins() #----
+# > AnalyticDataset |> table() |> addmargins() #----  
 #        Exposure
 # Case    FALSE TRUE Sum
 #   FALSE   341  108 449
@@ -824,13 +824,13 @@ AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----
 AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----
 AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----
 AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----
-# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow #----  
 # [1] 60
-# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == T, Exposure == F) %>% nrow #----  
 # [1] 45
-# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == T) %>% nrow #----  
 # [1] 108
-# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----
+# > AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F) %>% nrow #----  
 # [1] 341
 
 nCasesExposed       = AnalyticDataset %>% dplyr::filter(Case == T, Exposure == T) %>% nrow
@@ -840,60 +840,60 @@ nNoncasesUnexposed  = AnalyticDataset %>% dplyr::filter(Case == F, Exposure == F
 
 stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
 stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
-# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # . cci 60 45 108 341
 #                                                          Proportion
 #                  |   Exposed   Unexposed  |      Total     Exposed
-# -----------------+------------------------+------------------------
+# -----------------+------------------------+------------------------  
 #            Cases |        60          45  |        105       0.5714
 #         Controls |       108         341  |        449       0.2405
-# -----------------+------------------------+------------------------
+# -----------------+------------------------+------------------------  
 #            Total |       168         386  |        554       0.3032
 #                  |                        |
 #                  |      Point estimate    |    [95% Conf. Interval]
-#                  |------------------------+------------------------
+#                  |------------------------+------------------------  
 #       Odds ratio |         4.209877       |    2.638216    6.721812 (exact)
 #  Attr. frac. ex. |         .7624633       |     .620956    .8512306 (exact)
 #  Attr. frac. pop |         .4356933       |
-#                  +-------------------------------------------------
+#                  +-------------------------------------------------  
 #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
-# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # . csi 60 45 108 341
 # 
 #                  |   Exposed   Unexposed  |      Total
-# -----------------+------------------------+------------
+# -----------------+------------------------+------------  
 #            Cases |        60          45  |        105
 #         Noncases |       108         341  |        449
-# -----------------+------------------------+------------
+# -----------------+------------------------+------------  
 #            Total |       168         386  |        554
 #                  |                        |
 #             Risk |  .3571429    .1165803  |   .1895307
 #                  |                        |
 #                  |      Point estimate    |    [95% Conf. Interval]
-#                  |------------------------+------------------------
+#                  |------------------------+------------------------  
 #  Risk difference |         .2405625       |    .1613492    .3197759 
 #       Risk ratio |         3.063492       |    2.177394    4.310191 
 #  Attr. frac. ex. |         .6735751       |    .5407353    .7679917 
 #  Attr. frac. pop |         .3849001       |
-#                  +-------------------------------------------------
+#                  +-------------------------------------------------  
 #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
 
 
-# #@ AnalyticDataset.table ====
+# #@ AnalyticDataset.table ====  
 # AnalyticDataset.table = AnalyticDataset |> table()
-# AnalyticDataset.table |> str() #----
-# AnalyticDataset.table |> dput() #----
-# # > AnalyticDataset.table |> str() #----
+# AnalyticDataset.table |> str() #----  
+# AnalyticDataset.table |> dput() #----  
+# # > AnalyticDataset.table |> str() #----  
 # #  'table' int [1:2, 1:2] 341 45 108 60
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ Case    : chr [1:2] "FALSE" "TRUE"
 # #   ..$ Exposure: chr [1:2] "FALSE" "TRUE"
-# # > AnalyticDataset.table |> dput() #----
+# # > AnalyticDataset.table |> dput() #----  
 # # structure(c(341L, 45L, 108L, 60L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("FALSE", "TRUE"), Exposure = c("FALSE", "TRUE")), class = "table")
 # 
-# AnalyticDataset.table |> as.vector() |> dput() #----
-# # > AnalyticDataset.table |> as.vector() |> dput() #----
+# AnalyticDataset.table |> as.vector() |> dput() #----  
+# # > AnalyticDataset.table |> as.vector() |> dput() #----  
 # # c(341L, 45L, 108L, 60L)
 # 
 # AnalyticDataset.table["TRUE", "TRUE"]
@@ -911,31 +911,31 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # 
 # 
 # 
-# AnalyticDataset.table[2:1, 2:1] #----
-# AnalyticDataset.table[2:1, 2:1] |> str() #----
-# AnalyticDataset.table[2:1, 2:1] |> dput() #----
-# # > AnalyticDataset.table[2:1, 2:1] #----
+# AnalyticDataset.table[2:1, 2:1] #----  
+# AnalyticDataset.table[2:1, 2:1] |> str() #----  
+# AnalyticDataset.table[2:1, 2:1] |> dput() #----  
+# # > AnalyticDataset.table[2:1, 2:1] #----  
 # #        Exposure
 # # Case    TRUE FALSE
 # #   TRUE    60    45
 # #   FALSE  108   341
-# # > AnalyticDataset.table[2:1, 2:1] |> str() #----
+# # > AnalyticDataset.table[2:1, 2:1] |> str() #----  
 # #  'table' int [1:2, 1:2] 60 108 45 341
 # #  - attr(*, "dimnames")=List of 2
 # #   ..$ Case    : chr [1:2] "TRUE" "FALSE"
 # #   ..$ Exposure: chr [1:2] "TRUE" "FALSE"
-# # > AnalyticDataset.table[2:1, 2:1] |> dput() #----
+# # > AnalyticDataset.table[2:1, 2:1] |> dput() #----  
 # # structure(c(60L, 108L, 45L, 341L), .Dim = c(2L, 2L), .Dimnames = list(
 # #     Case = c("TRUE", "FALSE"), Exposure = c("TRUE", "FALSE")), class = "table")
 # 
-# AnalyticDataset.table[2:1, 2:1] |> as.vector() #----
-# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----
-# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----
-# # > AnalyticDataset.table[2:1, 2:1] |> as.vector() #----
+# AnalyticDataset.table[2:1, 2:1] |> as.vector() #----  
+# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----  
+# AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----  
+# # > AnalyticDataset.table[2:1, 2:1] |> as.vector() #----  
 # # [1]  60 108  45 341
-# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----
+# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() #----  
 # # [1]  60  45 108 341
-# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----
+# # > AnalyticDataset.table[2:1, 2:1] %>% t |> as.vector() |> paste(collapse = " ") #----  
 # # [1] "60 45 108 341"
 # 
 # 
@@ -944,44 +944,44 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # nNoncasesExposed = AnalyticDataset.table["FALSE", "TRUE"]
 # nNoncasesUnexposed = AnalyticDataset.table["FALSE", "FALSE"]
 # 
-# stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
-# stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
-# # > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
+# stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
+# # > stata(paste("cci", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # # . cci 60 45 108 341
 # #                                                          Proportion
 # #                  |   Exposed   Unexposed  |      Total     Exposed
-# # -----------------+------------------------+------------------------
+# # -----------------+------------------------+------------------------  
 # #            Cases |        60          45  |        105       0.5714
 # #         Controls |       108         341  |        449       0.2405
-# # -----------------+------------------------+------------------------
+# # -----------------+------------------------+------------------------  
 # #            Total |       168         386  |        554       0.3032
 # #                  |                        |
 # #                  |      Point estimate    |    [95% Conf. Interval]
-# #                  |------------------------+------------------------
+# #                  |------------------------+------------------------  
 # #       Odds ratio |         4.209877       |    2.638216    6.721812 (exact)
 # #  Attr. frac. ex. |         .7624633       |     .620956    .8512306 (exact)
 # #  Attr. frac. pop |         .4356933       |
-# #                  +-------------------------------------------------
+# #                  +-------------------------------------------------  
 # #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
-# # > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----
+# # > stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUnexposed), data.in = NULL, data.out = F, stata.version = 15.1) #-----  
 # # . csi 60 45 108 341
 # # 
 # #                  |   Exposed   Unexposed  |      Total
-# # -----------------+------------------------+------------
+# # -----------------+------------------------+------------  
 # #            Cases |        60          45  |        105
 # #         Noncases |       108         341  |        449
-# # -----------------+------------------------+------------
+# # -----------------+------------------------+------------  
 # #            Total |       168         386  |        554
 # #                  |                        |
 # #             Risk |  .3571429    .1165803  |   .1895307
 # #                  |                        |
 # #                  |      Point estimate    |    [95% Conf. Interval]
-# #                  |------------------------+------------------------
+# #                  |------------------------+------------------------  
 # #  Risk difference |         .2405625       |    .1613492    .3197759 
 # #       Risk ratio |         3.063492       |    2.177394    4.310191 
 # #  Attr. frac. ex. |         .6735751       |    .5407353    .7679917 
 # #  Attr. frac. pop |         .3849001       |
-# #                  +-------------------------------------------------
+# #                  +-------------------------------------------------  
 # #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
 
 

@@ -11,7 +11,7 @@
 # (no group_by)
 
 dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) |> summary() %>% t #----
-# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) |> summary() %>% t #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) |> summary() %>% t #----  
 #                                                                         
 # SecondaryOutcome13.void  Mode :logical   FALSE:4456      TRUE :2246     
 # SecondaryOutcome13.i     Mode :logical   FALSE:5951      TRUE :751      
@@ -26,7 +26,7 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_
 dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) |> str() #----
 dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) |> str() #----
 dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) %>% reduce(cbind) #----
-# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) |> str() #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map(table) |> str() #----  
 # List of 9
 #  $ SecondaryOutcome13.void : 'table' int [1:2(1d)] 4456 2246
 #   ..- attr(*, "dimnames")=List of 1
@@ -55,7 +55,7 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_
 #  $ SecondaryOutcome13.iii.3: 'table' int [1:2(1d)] 6607 95
 #   ..- attr(*, "dimnames")=List of 1
 #   .. ..$ : chr [1:2] "FALSE" "TRUE"
-# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) |> str() #----
+# > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) %>% map_df(table) |> str() #----  
 # tibble [9 x 2] (S3: tbl_df/tbl/data.frame)
 #  $ FALSE: int [1:9] 4456 5951 6278 6177 6337 5141 5187 6695 6607
 #  $ TRUE : int [1:9] 2246 751 424 525 365 1561 1515 7 95
@@ -65,7 +65,7 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>%
     # group_by(Intervention, Control, Nothing) %>%
     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% summarize_all(sum, na.rm = T) #----
 # > dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% 
-# +     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% summarize_all(sum, na.rm = T) #----
+# +     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% summarize_all(sum, na.rm = T) #----  
 # # A tibble: 1 x 10
 #   Ntotal SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~ SecondaryOutcom~
 #    <int>            <int>            <int>            <int>            <int>            <int>            <int>            <int>
@@ -149,7 +149,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =
         out
     }
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
-# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----
+# > analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDisease|Exposed0 (%) %.2f`, `nDisease|Exposed1 (%) %.2f`, nExposed0, nExposed1, nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1) #-----  
 # # A tibble: 20 x 9
 #    key                       `nDisease|Exposed0 (%) %.2f` `nDisease|Exposed1 (%) %.2f` nExposed0 nExposed1 nDisease0_Exposed0 nDisease0_Exposed1 nDisease1_Exposed0 nDisease1_Exposed1
 #    <chr>                     <chr>                        <chr>                            <int>     <int>              <int>              <int>              <int>              <int>
@@ -201,7 +201,7 @@ ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>%
     str #----
 # > ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% 
 # +     select(Intervention, Control, Nothing, matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+"), SecondaryOutcomeP1456fhkl) %>% 
-# +     str #----
+# +     str #----  
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	425 obs. of  56 variables:
 #  $ Intervention                 : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #  $ Control                      : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
@@ -266,7 +266,7 @@ ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>%
 ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% select(matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+")) %>% 
     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% map(sum, na.rm = T) |> str() #----
 # > ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% select(matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+")) %>% 
-# +     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% map(sum, na.rm = T) |> str() #----
+# +     add_column(Ntotal = T, .before = 1) %>% select_if(is.logical) %>% map(sum, na.rm = T) |> str() #----  
 # List of 27
 #  $ Ntotal               : int 425
 #  $ PrimaryOutcome1.i.1  : int 11
@@ -312,7 +312,7 @@ df = tibble::tribble(
 df %>% t %>% addmargins(margin = 2) #----
 df %>% ungroup %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
 df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
-# > df %>% t %>% addmargins(margin = 2) #----
+# > df %>% t %>% addmargins(margin = 2) #----  
 #                                   Sum
 # Intervention                0   1   1
 # Control                     1   0   1
@@ -345,7 +345,7 @@ df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is
 # SecondaryOutcome20          1   0   1
 # SecondaryOutcome21          7   0   7
 # SecondaryOutcomeP1456fhkl 174  94 268
-# > df %>% ungroup %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+# > df %>% ungroup %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----  
 #                            [,1]  [,2]
 # Intervention              0.000 1.000
 # Control                   1.000 0.000
@@ -378,7 +378,7 @@ df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is
 # SecondaryOutcome20        0.004 0.000
 # SecondaryOutcome21        0.026 0.000
 # SecondaryOutcomeP1456fhkl 0.654 0.591
-# > df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+# > df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----  
 #                            [,1]  [,2]  [,3]
 # Intervention              0.000 0.006 0.002
 # Control                   0.004 0.000 0.002
@@ -423,11 +423,11 @@ cbind(
     df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
 )
 # > cbind(
-# +     df %>% t %>% addmargins(margin = 2) #----
+# +     df %>% t %>% addmargins(margin = 2) #----  
 # +     , 
-# +     df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+# +     df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----  
 # +     , 
-# +     df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+# +     df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----  
 # + )
 #                                   Sum                                       
 # Intervention                0   1   1 0.000 0.006 0.002   0.00   0.63   0.24
@@ -516,11 +516,11 @@ data %>%
 # +     (
 # +         function(df) {
 # +             cbind(
-# +                 df %>% t %>% addmargins(margin = 2) #----
+# +                 df %>% t %>% addmargins(margin = 2) #----  
 # +                 , 
-# +                 df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----
+# +                 df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>% round(3) #----  
 # +                 , 
-# +                 df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----
+# +                 df |> as.matrix() %>% addmargins(margin = 1) |> as.data.frame() %>% mutate_if(is.numeric, function(vec) vec / .$Ntotal ) %>% t %>%  {. * 100} %>% round(2) #----  
 # +             )
 # +         }
 # +     )
