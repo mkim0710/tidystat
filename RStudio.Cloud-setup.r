@@ -10,7 +10,7 @@
 "/" |> normalizePath()
 "~" |> normalizePath()
 "." |> normalizePath()
-#@ mac ------
+#@ mac ------  
 # > "/" |> normalizePath()
 # [1] "/"
 # > "~" |> normalizePath()
@@ -156,5 +156,5 @@ file.edit(".gitignore")
 "git config --global --get core.autocrlf" |> system(intern = TRUE)
 
 
-#@ end ----
+#@ end ----  
 

@@ -1,6 +1,6 @@
-#@ calculation of Person-Time, which is sum(time2event), and make Table 2. 
+#@ calculation of Person-Time, which is sum(time2event), and make Table 2.  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.calculatePersonTime.dev.r
-#@ Person-Time format of survival data.
+#@ Person-Time format of survival data.  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/data.PersonTime.dev.r
 
 
@@ -67,7 +67,7 @@ analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigne
 
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/data.median_IQR.dev.r
-#@ data.median_IQR.dev.r ------
+#@ data.median_IQR.dev.r ------  
 
 analyticDF_C24C221.drop_pmhx_negativetime.list.cut.addVars._5yr.Match1_5.assigned5532.recode %>% 
     mutate(time = fuduration_yr/365) %>% 
@@ -134,7 +134,7 @@ function.calculatePersonTime <- function(dataset, varname4time, varname4event) {
 
 
 
-#@ end ------
+#@ end ------  
 
 
 library(dplyr)

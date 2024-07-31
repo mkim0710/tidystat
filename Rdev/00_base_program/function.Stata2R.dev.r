@@ -6,7 +6,7 @@ str(give.attr = F)
 
 # stata.covariates.list.sort.unequal.clean from stata.covariates.list.sort.unequal .r
 
-#@ tmp.vector2 ====
+#@ tmp.vector2 ====  
 tmp.vector2 <- tmp.vector
 # grep("Q_bool", tmp.vector2)
 tmp.vector2 <- gsub("^i.", "", tmp.vector2)

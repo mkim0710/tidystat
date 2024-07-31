@@ -36,7 +36,7 @@ tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation
 
 
 
-#@ Regular Expression -----
+#@ Regular Expression -----  
 Evaluation.i = "((t_42_280.CPT88016 > 0)) | ((t_42_308.ICD774 > 0)) & ((t_42_308.CPT36450_36455_36456_82785_82784_82787 >= 0)) * 0 + 3/1 - 2 == 1"
 Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist() |> str()split(c(">", "<", "==", "+", "-", "*", "/", "&", "|"), fixed = T) |> unlist()
 Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist() |> str()split("==|>|<|&|-|/|\\+|\\*|\\|") |> unlist()
@@ -54,7 +54,7 @@ Evaluation.i %>% gsub(" |\\(|\\)", "", .) |> str()split(c(">=", "<=")) |> unlist
 # [11] "1" 
 
 
-#@@@ tblPersonID_CriteriaID.lgl from tblPersonID_FilterName.ndDate #-----
+#@@@ tblPersonID_CriteriaID.lgl from tblPersonID_FilterName.ndDate #-----  
 .t0 = Sys.time()
 # tblPersonID_CriteriaID.lgl =
 #     os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014 %>%
@@ -127,4 +127,4 @@ tblPersonID_CriteriaID.lgl
 
 
 
-#@ end -----
+#@ end -----  

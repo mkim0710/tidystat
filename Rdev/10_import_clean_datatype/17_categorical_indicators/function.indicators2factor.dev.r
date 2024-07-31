@@ -1,7 +1,7 @@
 # function.indicators2factor.dev.r
 
 
-#@ ?factor ====
+#@ ?factor ====  
 # ?factor
 # Usage
 # 
@@ -274,7 +274,7 @@ dummies = structure(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 
 ### CONVERT DUMMIES TO THE FACTOR ###
 
-#@ header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))] ----
+#@ header <- unlist(strsplit(colnames(dummies), '[.]'))[2 * (1:ncol(dummies))] ----  
 colnames(dummies)
 strsplit(colnames(dummies), '[.]') |> str()
 unlist(strsplit(colnames(dummies), '[.]'))
@@ -323,7 +323,7 @@ colnames(dummies) |> str_replace_all("^.+\\.", "")
 
 
 
-#@ -----
+#@ -----  
 dummies |> str()
 dummies |> as_tibble()
 dummies %>% {.[0:(nrow(.)/10-1) * 10 + 1, ]} #----
@@ -444,7 +444,7 @@ all.equal(species, iris$Species)
 
 
 
-#@ function.indicators2factor = function(input.matrix, level = colnames(input.matrix)) { ======
+#@ function.indicators2factor = function(input.matrix, level = colnames(input.matrix)) { ======  
 function.indicators2factor = function(input.matrix, labels = colnames(input.matrix), str_replace_all.pattern2remove = NULL, remove_colnames_before_dot = T) {
     # https://github.com/mkim0710/tidystat/blob/master/R/function.indicators2factor.dev.r
     if (!is.null(str_replace_all.pattern2remove)) labels = labels |> str_replace_all(str_replace_all.pattern2remove, "")
@@ -561,5 +561,5 @@ n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% m
 # 10              0                 1              0 Alcohol_ge2le3pwk
 
 
-#@ end -----
+#@ end -----  
 

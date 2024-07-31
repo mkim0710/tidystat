@@ -42,7 +42,7 @@ dput(options("RStata.StataVersion"))
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@@@ MH) To minimize the sample size requirement ====
+#@@@@ MH) To minimize the sample size requirement ====  
 # look for a large difference between groups (delta)
 # look for a small variance (sigma) 
 # Cf) for proportions, variance is a funciton of proportion (i.e., sigma^2 = np(1-p) <= n/4). -> small variance when p is close to 0 or 1~!
@@ -56,7 +56,7 @@ dput(options("RStata.StataVersion"))
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ matched case-control ====
+#@@ matched case-control ====  
 
 
 stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----

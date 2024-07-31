@@ -1,5 +1,5 @@
 
-#@@@@ Cf) A quick & dirty way below~!!! ................................................................................
+#@@@@ Cf) A quick & dirty way below~!!! ................................................................................  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.HazardRatios.spread.dev.r
 
 
@@ -94,7 +94,7 @@ results <- map(list(
 
 
 
-#@ annotated version -------
+#@ annotated version -------  
 function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
     library(survival)
     library(tidyverse)
@@ -516,8 +516,8 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
 
 
 
-#@@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
-#@ name4MainData, name4MainTransformation, name4FullModel ====
+#@@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
+#@ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
@@ -543,7 +543,7 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE
 # > analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list$cut_model2_ASPIRIN_AGE_group$`_5yr` %>% inherits("coxph")
 # [1] TRUE
 
-#@@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====
+#@@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
 data_list.cut.coxph_list.HRCI =
     analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list %>% 
     map(function(list_object.coxph) {
@@ -610,8 +610,8 @@ data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Beh
                                                                                                                             
                                      
 
-#@@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----
-#@ name4MainData, name4MainTransformation, name4FullModel ====
+#@@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----  
+#@ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
@@ -637,7 +637,7 @@ data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4Main
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_Med   :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 #  $ cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  11 variables:
 
-#@@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----
+#@@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----  
 data_main.cut.coxph_list.HRCI =
     data_list.cut.coxph_list.HRCI %>% map(function(ls) if(is.list(ls)) ls[[name4MainData]] else NULL) %>% compact
                                      
@@ -868,7 +868,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 
 
                                           
-#@ end -----
+#@ end -----  
 getwd()
 .path4write = getwd()
 objectname = ""

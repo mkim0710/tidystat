@@ -155,7 +155,7 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
 
 
 
-#@ AnalyticDataset.censor5yr ====
+#@ AnalyticDataset.censor5yr ====  
 
 # value_for_censor_at_5yr = 365 * 5
 value_for_censor_at_5yr = 5
@@ -184,7 +184,7 @@ dev.off()
 
 
 
-#@ AnalyticDataset.censor10yr ====
+#@ AnalyticDataset.censor10yr ====  
 
 # value_for_censor_at_10yr = 365 * 10
 value_for_censor_at_10yr = 10
@@ -260,7 +260,7 @@ AnalyticDataset.censor10yr.coxph %>% cox.zph %>% ggcoxzph #----
 
 
 
-#@ AnalyticDataset.survfit_byPredictedStage ========
+#@ AnalyticDataset.survfit_byPredictedStage ========  
 AnalyticDataset.survfit_byPredictedStage <- survfit(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
 
 # ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
@@ -313,7 +313,7 @@ AnalyticDataset.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
 # Having very small p values indicates that there are time dependent coefficients which you need to take care of.
 
 
-#@ AnalyticDataset.censor5yr ====
+#@ AnalyticDataset.censor5yr ====  
 
 # value_for_censor_at_5yr = 365 * 5
 value_for_censor_at_5yr = 5
@@ -341,7 +341,7 @@ dev.off()
 
 
 
-#@ AnalyticDataset.censor10yr ====
+#@ AnalyticDataset.censor10yr ====  
 
 # value_for_censor_at_10yr = 365 * 10
 value_for_censor_at_10yr = 10
@@ -406,6 +406,6 @@ AnalyticDataset.censor10yr.coxph_byPredictedStage %>% cox.zph %>% ggcoxzph #----
 
 
 
-#@ end -----
+#@ end -----  
 
 

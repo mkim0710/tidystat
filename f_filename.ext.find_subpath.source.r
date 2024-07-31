@@ -49,7 +49,7 @@ if (requireNamespace("rstudioapi")) {
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----
+#@@ START) source -----  
 ### @ .subpath, .sourcename ======
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
@@ -79,7 +79,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ RUN ALL ABOVE: CTRL+ALT+B -----
+#@@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
@@ -109,7 +109,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 
-#@ objectname = "f_filename.ext.find_subpath" =========
+#@ objectname = "f_filename.ext.find_subpath" =========  
 .tmp$objectname = "f_filename.ext.find_subpath"
 .tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
     # # tools::file_ext(path.basename)
@@ -144,7 +144,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 
 
 
-#@ objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========
+#@ objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========  
 .tmp$objectname = "f_filename.ext.find_subpath.BreathFirstSearch"
 .tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, findMultiple = FALSE) {
     # Breath-first search for the filename.ext in the subdirectories of the input_path

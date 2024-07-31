@@ -1,6 +1,6 @@
-#@ calculation of Person-Time, which is sum(time2event), and make Table 2. 
+#@ calculation of Person-Time, which is sum(time2event), and make Table 2.  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.calculatePersonTime.dev.r
-#@ Person-Time format of survival data.
+#@ Person-Time format of survival data.  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/data.PersonTime.dev.r
 
 
@@ -58,7 +58,7 @@ print(analyticDF2797)
 
 
 
-#@ analyticDF2797.PersonTime7 ====
+#@ analyticDF2797.PersonTime7 ====  
 library(dplyr)
 library(purrr)
 library(tidyr)
@@ -112,7 +112,7 @@ convert.tblID_Event_Time2Event.tblPersonTime_Event_Time2Event <- function(tblID_
 
 
 
-#@ analyticDF2797.PersonTime7 ====
+#@ analyticDF2797.PersonTime7 ====  
 Interval = 7 * 12
 
 analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome123456) %>% 
@@ -200,7 +200,7 @@ analyticDF2797 %>% select(ENROLID, PrimaryOutcome123456.time, PrimaryOutcome1234
 
 
 
-#@@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes ====
+#@@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes ====  
 .t0 = Sys.time()
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes =
     c("PrimaryOutcome123456", "PrimaryOutcome1", "PrimaryOutcome2", "PrimaryOutcome3", "PrimaryOutcome4", "PrimaryOutcome5", "PrimaryOutcome6") %>% set_names(.) %>% 
@@ -250,7 +250,7 @@ warnings()
 
 
 
-#@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====
+#@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====  
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI = list()
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$list_PrimaryOutcomes.ORCI = 
     analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes %>% 
@@ -281,7 +281,7 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
 
 
 
-#@ end -----
+#@ end -----  
 openxlsx::write.xlsx(analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI
                      , "analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI.xlsx", asTable=TRUE)
 
@@ -296,7 +296,7 @@ openxlsx::write.xlsx(analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.l
                                                          
                                                          
 
-#@ analyticDF2797.Outcome2PersonTime7 ====
+#@ analyticDF2797.Outcome2PersonTime7 ====  
 Interval = 7
 analyticDF2797.Outcome2PersonTime7 =
     analyticDF2797 %>% 
@@ -327,14 +327,14 @@ analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl
 # # ... with 93,326 more rows
 
 
-#@ Check the counts/proportions of each outcome by exposure -----
+#@ Check the counts/proportions of each outcome by exposure -----  
 analyticDF2797 %>% select(Exposure, matches("Outcome"), -matches("time")) |> summary() #----
 analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(sum)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
 analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(mean)) %>% column_to_rownames("Exposure") %>% t |> addmargins() %>% round(2) #----
 
 
 
-#@@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates ====
+#@@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates ====  
 data = analyticDF2797.Outcome2PersonTime7 %>% mutate(ksq = k*k) %>% select(
     Dk_plus1, Exposure, k, ksq
     , Age_at_lmp, `year(lmp)`
@@ -346,7 +346,7 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates %>% {cbind( `
 
 
 
-#@@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes ====
+#@@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes ====  
 .t0 = Sys.time()
 analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes =
     c("PrimaryOutcome123456", "SecondaryOutcomeP1456fhkl", "PrimaryOutcome1", 
@@ -412,7 +412,7 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_Secondar
 
 
 
-#@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI =====
+#@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI =====  
 analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI = list()
 analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI$list_SecondaryOutcomes.ORCI = 
     analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes %>% 
@@ -438,7 +438,7 @@ analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_Secondar
     )} %>% gather(key, value, -Exposure) %>% spread(Exposure, value)
 
 
-#@ end -----
+#@ end -----  
 openxlsx::write.xlsx(analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI
                      , "analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes.ORCI.xlsx", asTable=TRUE)
 

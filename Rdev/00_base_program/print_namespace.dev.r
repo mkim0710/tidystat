@@ -53,7 +53,7 @@ if (requireNamespace("rstudioapi")) {
 file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----
+#@@ START) source -----  
 ### @ .subpath, .sourcename ======
 
 
@@ -61,7 +61,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 
 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) dev -----
+#@@ START) dev -----  
 # https://chatgpt.com/c/9faf244b-181e-47ec-ae76-841d14f50e0f
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -163,7 +163,7 @@ existing_special_namespaces |> deparse() |> cat("  \n", sep="")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----
+#@@ START) source -----  
 # ### @ .subpath, .sourcename ======
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"', sep="")} }
@@ -205,7 +205,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ RUN ALL ABOVE: CTRL+ALT+B -----
+#@@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) data -----

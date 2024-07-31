@@ -60,7 +60,7 @@ function.boot.statistic_RiskDifference = function(data, index, glm.formula = Dk_
 
 
 
-#@ nIteration = 20 =====
+#@ nIteration = 20 =====  
 library(boot)
 data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
     mutate(
@@ -92,7 +92,7 @@ boot.output = boot(
 )
 Sys.time() - .t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
-#@ bootstrap confidence interval (manual) ----
+#@ bootstrap confidence interval (manual) ----  
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} |> as.factor() |> summary() #-----
@@ -210,7 +210,7 @@ boot.output |> str(max.level = 1) #----
 
 
 
-#@ nIteration = 500 =====
+#@ nIteration = 500 =====  
 library(boot)
 data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>%
     mutate(
@@ -242,7 +242,7 @@ boot.output = boot(
 )
 Sys.time() - .t0  # 9 sec for 10 iterations -> 9000/60/60 sec = 2.5 hrs for 1000 iterations?
 warnings()
-#@ bootstrap confidence interval (manual) ----
+#@ bootstrap confidence interval (manual) ----  
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} |> as.factor() |> summary() #-----
@@ -264,7 +264,7 @@ boot.output |> str(max.level = 1) #----
                                                
                                                
                                                
-#@ ======
+#@ ======  
 norm.inter <- function(t,alpha)
     # Interpolation on the normal quantile scale. 
     # For a non-integer order statistic this function interpolates between the surrounding order statistics using the normal quantile scale. 
@@ -295,7 +295,7 @@ norm.inter <- function(t,alpha)
     cbind(round(rk, 2), out)
 }
 
-#@ analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci =====
+#@ analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci =====  
 analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci = 
     boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
     mutate(`1-pNoEvent_k.cumprod0` = 1-pNoEvent_k.cumprod0[c(1,3,2)], `1-pNoEvent_k.cumprod1` = 1-pNoEvent_k.cumprod1[c(1,3,2)], `-RiskDifference` = -RiskDifference[c(1,3,2)]) %>% 
@@ -325,13 +325,13 @@ analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
 # 12 1-pNoEvent_k.cumprod1 0.30 (0.27, 0.36)        0.304 (0.267, 0.360)            0.304     0.267     0.360 
 # 13 -RiskDifference       -0.12 (-0.16, -0.06)     -0.123 (-0.163, -0.055)        -0.123    -0.163    -0.0554
 
-#@ boot.output %>% plot(index = which(names(.$t0) == "RiskDifference")) -----
+#@ boot.output %>% plot(index = which(names(.$t0) == "RiskDifference")) -----  
 boot.output %>% plot(index = which(names(.$t0) == "RiskDifference"))
 
 
 
 
-#@ end -----
+#@ end -----  
 write_rds(boot.output, "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.rds", "xz", compression=9)
 openxlsx::write.xlsx(
     analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci

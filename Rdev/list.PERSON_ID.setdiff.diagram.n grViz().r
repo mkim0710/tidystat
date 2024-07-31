@@ -127,7 +127,7 @@ list.PERSON_ID.setdiff.keep %>% map(function(ls) {
 
 
 
-#@ list.PERSON_ID.setdiff.diagram =====
+#@ list.PERSON_ID.setdiff.diagram =====  
 list.PERSON_ID.setdiff.diagram = list()
 for (i in 1:length(list.PERSON_ID.setdiff.keep)) {
     list.PERSON_ID.setdiff.diagram[[paste0("n", i-1)]] = list.PERSON_ID.setdiff.keep[[i]]$vec1
@@ -168,7 +168,7 @@ list.PERSON_ID.setdiff.diagram.n |> str()
 
 
 
-#@ library(DiagrammeR) -----------
+#@ library(DiagrammeR) -----------  
 library(DiagrammeR)
 out.grViz = DiagrammeR::grViz(paste0('
 digraph G {
@@ -216,7 +216,7 @@ rsvg::rsvg_png(charToRaw(out.grViz.svg), paste0(out.filename, ".png"))
 
 
 
-#@ end ----
+#@ end ----  
 objectname = "list.PERSON_ID.setdiff.diagram"
 .path4write = getwd()
 system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))

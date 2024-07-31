@@ -52,7 +52,7 @@ x %>% mutate(tmp = 1) %>%
 # cf) https://github.com/mkim0710/tidystat/blob/master/R/list_list.to.data_frame.dev.r
 
 
-#@ outer(i, j, function(i, j) {}) ============
+#@ outer(i, j, function(i, j) {}) ============  
 library(tidyverse)
 outer(c("A","B"), 1:3, paste0)
 outer(c("A","B"), 1:3, paste0) |> as.vector()
@@ -273,7 +273,7 @@ outer(RACE, c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separat
 #  $ isFemale: logi  FALSE FALSE FALSE FALSE FALSE TRUE ...
 
 
-#@ public_v2_112917.levels123 ======
+#@ public_v2_112917.levels123 ======  
 public_v2_112917.levels123 %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
 public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
 # > public_v2_112917.levels123 %>% group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
@@ -309,7 +309,7 @@ public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.om
 #  9              5: Other            FALSE    44   102144.58
 # 10              5: Other             TRUE    36    61819.94
 
-#@ -----
+#@ -----  
 df_RACE_isCollege_MS_PhD = outer(levels(public_v2_112917.levels123$RACE), c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isCollege_MS_PhD"), sep = "\\|") %>% map_df(as.factor) %>% 
     mutate(isCollege_MS_PhD = as.logical(isCollege_MS_PhD))
 df_RACE_isCollege_MS_PhD
@@ -508,7 +508,7 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/function.pairwise.data_frame.dev.r
 
-#@ function.pairwise.data_frame = function(vars) { ======
+#@ function.pairwise.data_frame = function(vars) { ======  
 function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.pairwise.data_frame.dev.r")
     # library(tidyverse)
@@ -524,7 +524,7 @@ function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
 }
 
 # ?rep
-#@ function.pairwise.data_frame = function(vars) { ======
+#@ function.pairwise.data_frame = function(vars) { ======  
 function.pairwise.data_frame = function(vars, only.lower.tri = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.pairwise.data_frame.dev.r")
     # library(tidyverse)
@@ -614,4 +614,4 @@ system.time(join2014f3od.codeset.valid.7digit %>% function.pairwise.data_frame(o
 
 
 
-#@ end -----
+#@ end -----  

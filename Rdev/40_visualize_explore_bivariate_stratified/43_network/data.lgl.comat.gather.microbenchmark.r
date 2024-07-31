@@ -1,10 +1,10 @@
 # data.lgl.comat.gather.microbenchmark.r
 
-#@ data.lgl.comat.gather = function(data, n11 = F, Fisher.exact.test = F) { ======
+#@ data.lgl.comat.gather = function(data, n11 = F, Fisher.exact.test = F) { ======  
 
 
 
-#@ data.lgl.comat.gather0 = function(data, n11 = F, Fisher.exact.test = F) { ======
+#@ data.lgl.comat.gather0 = function(data, n11 = F, Fisher.exact.test = F) { ======  
 data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
     data.lgl = data %>% map_df(as.logical)
     data.lgl.matrix = as.matrix(data.lgl)
@@ -1415,5 +1415,5 @@ mbm
 #  fun5.n11.cor.test.Fisher.exact.test 3.572550 4.298385 4.629451 4.516325 4.812071 7.819923   100   a
 
 
-#@ end ----
-#@  selected function = data.lgl.comat.gather3 ==========
+#@ end ----  
+#@  selected function = data.lgl.comat.gather3 ==========  

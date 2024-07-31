@@ -46,7 +46,7 @@ if (requireNamespace("rstudioapi")) {
 file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----
+#@@ START) source -----  
 ### @ .subpath, .sourcename ======
 
 
@@ -59,7 +59,7 @@ file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(e
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ #1. Remove the Local Repository ====
+#@@ #1. Remove the Local Repository ====  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #1-1a. (Preferred) Recursively Remove PDF Files from the Index Using git rm --cached (wihout deleting the files in the local file system) ----
 'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat("  ", sep="  \n")
@@ -80,7 +80,7 @@ git commit -m "Untrack PDF/HTML files from the index"
 git push origin main
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ #2. Clone the Repository "--mirror" Cleanly ====
+#@@ #2. Clone the Repository "--mirror" Cleanly ====  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #2-1a. (preferred) Clone a fresh repository "--mirror" into the new directory ----
 # Caution) note the dot at the end~!! 
@@ -98,7 +98,7 @@ paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> sy
 # cd subdir-name
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ #3. Use git filter-repo: Removes PDF files from the entire Git history. ====
+#@@ #3. Use git filter-repo: Removes PDF files from the entire Git history. ====  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #3-0. pip install git-filter-repo ====
 # "pip install git-filter-repo" |> system(intern=TRUE) |> cat("  ", sep="  \n")
@@ -113,7 +113,7 @@ paste0("git clone git@github.com:mkim0710/",basename(getwd()),".git"," .") |> sy
 git push origin --force --mirror
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ #4. Re-clone the Repository (including the PC where the filter-repo was run): Ensures that everyone works with the updated history. ====
+#@@ #4. Re-clone the Repository (including the PC where the filter-repo was run): Ensures that everyone works with the updated history. ====  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ##@ #4-0. delete/rename/archive the old repository directory ====
 # rm -rf /path/to/your/repo
@@ -149,7 +149,7 @@ git add .gitignore
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| (pending) using Git Large File Storage (Git LFS) for handling large files. |#
-#@ (pending) using Git Large File Storage (Git LFS) for handling large files. ======
+#@ (pending) using Git Large File Storage (Git LFS) for handling large files. ======  
 # Git LFS stores large files outside your repository and keeps pointers in your Git history
 # 'git lfs install' |> system(intern=TRUE) |> cat("  ", sep="  \n")
 # 'git lfs track "*.pdf"' |> system(intern=TRUE) |> cat("  ", sep="  \n")

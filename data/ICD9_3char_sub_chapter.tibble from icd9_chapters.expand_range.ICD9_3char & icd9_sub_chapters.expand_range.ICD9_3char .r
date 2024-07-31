@@ -1,4 +1,4 @@
-#@ ICD9_3char_sub_chapter.tibble from icd9_chapters.expand_range.ICD9_3char & icd9_sub_chapters.expand_range.ICD9_3char .r
+#@ ICD9_3char_sub_chapter.tibble from icd9_chapters.expand_range.ICD9_3char & icd9_sub_chapters.expand_range.ICD9_3char .r  
 
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd9_chapters.expand_range.ICD9_3char.rda"))
@@ -139,7 +139,7 @@ icd9_sub_chapters.expand_range.ICD9_3char |> str() #----
 
 
 
-#@ icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----
+#@ icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----  
 icd9_chapters.expand_range.ICD9_3char |> str()
 icd9_chapters.expand_range.ICD9_3char %>% reduce(c) |> str()
 icd9_chapters.expand_range.ICD9_3char |> names() |> str()
@@ -202,7 +202,7 @@ icd9_chapters.expand_range.ICD9_3char %>% {set_names(reduce(., c), rep(names(.),
 
 
 
-#@ icd9_chapters.expand_range.ICD9_3char %>% enframe %>% unnest ----
+#@ icd9_chapters.expand_range.ICD9_3char %>% enframe %>% unnest ----  
 icd9_chapters.expand_range.ICD9_3char %>% enframe #----
 icd9_chapters.expand_range.ICD9_3char %>% enframe %>% unnest #----
 # > icd9_chapters.expand_range.ICD9_3char %>% enframe #----
@@ -309,7 +309,7 @@ icd9_sub_chapters %>% map(function(x) paste0(x, collapse = "-")) %>% enframe(nam
 
 
 
-#@ ICD9_3char_sub_chapter.tibble ICD9_3char_sub_chapter.tibble from icd9_chapters.expand_range.ICD9_3char & icd9_sub_chapters.expand_range.ICD9_3char ====
+#@ ICD9_3char_sub_chapter.tibble ICD9_3char_sub_chapter.tibble from icd9_chapters.expand_range.ICD9_3char & icd9_sub_chapters.expand_range.ICD9_3char ====  
 ICD9_3char_sub_chapter.tibble = 
     full_join(
         (icd9_chapters.expand_range.ICD9_3char %>% enframe(name = "chapter", value = "ICD9_3char") %>% unnest)
@@ -360,12 +360,12 @@ ICD9_3char_sub_chapter.tibble
 
 
 
-#@ end ----
+#@ end ----  
 save(ICD9_3char_sub_chapter.tibble, file = "ICD9_3char_sub_chapter.tibble.rda")
 
 
 
-#@ end -----
+#@ end -----  
 
 getwd()
 .path4write = getwd()

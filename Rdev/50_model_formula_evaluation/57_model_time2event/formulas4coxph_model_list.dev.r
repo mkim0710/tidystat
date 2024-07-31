@@ -1,7 +1,7 @@
 # formulas4coxph_model_list.dev.r
 # formulas4coxph_model_list.Cigar_ge50 from varnames4coxph_model_list.Cigar_ge50 .r
 
-#@ varnames4coxph_model_list.Cigar_ge50 = list() -----
+#@ varnames4coxph_model_list.Cigar_ge50 = list() -----  
 varnames4coxph_model_list.Cigar_ge50 = list()
 varnames4coxph_model_list.Cigar_ge50$Cigar.Cigarette.Age.Sex.Race.BMI.Hx.Alcohol.Social.nutrition = 
     c("ihd", "timeihd"
@@ -159,7 +159,7 @@ c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdif
 # Surv(timeihd, ihd) ~ Cigar_ge50 + CigarettePackYear + Age + Male
 
 
-#@ formulas4coxph_model_list.Cigar_ge50 ====
+#@ formulas4coxph_model_list.Cigar_ge50 ====  
 formulas4coxph_model_list.Cigar_ge50 =
     varnames4coxph_model_list.Cigar_ge50 %>% map(function(vec) {
         vec %>% setdiff(c(varname4time, varname4event)) |> paste0(collapse = " + ") %>% {paste0("Surv(",varname4time, ", ", varname4event, ") ~ ", .)} %>% as.formula
@@ -351,5 +351,5 @@ formulas4coxph_model_list.Cigar_ge50 %>% map(function.formula2text)
 
 
 
-#@ end -----
+#@ end -----  
 

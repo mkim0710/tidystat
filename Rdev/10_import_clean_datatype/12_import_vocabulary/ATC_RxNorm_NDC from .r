@@ -14,7 +14,7 @@ library(tidyverse)
 .path4write = "ATC_RxNorm_NDC/"
 
 
-#@ filenames = list.files(.path4read) %>% grep("csv$",. , value = T) ====
+#@ filenames = list.files(.path4read) %>% grep("csv$",. , value = T) ====  
 filenames = list.files(.path4read) %>% grep("csv$",. , value = T) 
 filenames |> dput()
 # > filenames |> dput()
@@ -313,7 +313,7 @@ out.list |> str(max.level = 1)
 
 
 
-#@ names(out.list) = names(out.list) %>% gsub(paste0(.extension, "$"), "", .) =====
+#@ names(out.list) = names(out.list) %>% gsub(paste0(.extension, "$"), "", .) =====  
 names(out.list) |> dput()
 .extension = ".csv"
 names(out.list) = names(out.list) %>% gsub(paste0(.extension, "$"), "", .)
@@ -332,4 +332,4 @@ names(out.list) |> dput()
 saveRDS(out.list, "ATC_RxNorm_NDC.rds")
 
 
-#@ end -----
+#@ end -----  

@@ -2,13 +2,13 @@
 
 
 
-#@ -----
+#@ -----  
 function.check.integer = function(x) x %% 1 == 0
 function.check.integer.tolerance = function(x, tolerance = .Machine$double.eps^0.5)  abs(x - round(x)) < tolerance
 
 
 
-#@ -----
+#@ -----  
 NHID_GJ_0213.bind_rows.factor %>% map_lgl(function(vec) any(as.numeric(levels(vec)) %% 1 != 0)) |> as.data.frame()
 # > NHID_GJ_0213.bind_rows.factor %>% map_lgl(function(vec) any(as.numeric(levels(vec)) %% 1 != 0)) |> as.data.frame()
 #                               .
@@ -91,7 +91,7 @@ NHID_GJ_0213.bind_rows.integer = NHID_GJ_0213.bind_rows.factor %>% map_df(functi
 })
 
 
-#@ https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f -----
+#@ https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f -----  
 # 7.31 Why doesn’t R think these numbers are equal?
 # The only numbers that can be represented exactly in R’s numeric type are integers and fractions whose denominator is a power of 2. All other numbers are internally rounded to (typically) 53 binary digits accuracy. As a result, two floating point numbers will not reliably be equal unless they have been computed by the same algorithm, and not always even then. For example
 # 
@@ -167,7 +167,7 @@ identical(a * a, 2)
 
 
 
-#@ https://stackoverflow.com/questions/3476782/check-if-the-number-is-integer =====
+#@ https://stackoverflow.com/questions/3476782/check-if-the-number-is-integer =====  
 
 
 -8.9 |> dput()
@@ -266,7 +266,7 @@ help("==")
 
 
 
-#@ -----
+#@ -----  
 # https://stat.ethz.ch/pipermail/r-help/2012-January/300250.html ====
 .Machine$integer.max
 as.integer(2147483647)
@@ -320,4 +320,4 @@ print(max.num <- 2 ^ .Machine$double.digits)
 
 
 
-#@ end ----
+#@ end ----  

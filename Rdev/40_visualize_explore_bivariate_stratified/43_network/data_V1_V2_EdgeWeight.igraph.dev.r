@@ -240,7 +240,7 @@ data_V1_V2_EdgeWeight.igraph = function(
 }
 
 
-#@ test) data_V1_V2_EdgeWeight.igraph() termDocMatrix.t.df.lgl.comat ----
+#@ test) data_V1_V2_EdgeWeight.igraph() termDocMatrix.t.df.lgl.comat ----  
 library(tidyverse)
 load("data/termDocMatrix.rdata")
 termDocMatrix.t.df = termDocMatrix %>% t |> as_data_frame()
@@ -439,7 +439,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% tkplot
 
 
 
-#@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1) ------
+#@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1) ------  
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis
@@ -539,7 +539,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "
 
 
 
-#@ test) data_V1_V2_EdgeWeight.igraph() trainsetCC69agg4i07_829.Ctrl.lgl.comat ----
+#@ test) data_V1_V2_EdgeWeight.igraph() trainsetCC69agg4i07_829.Ctrl.lgl.comat ----  
 library(tidyverse)
 load("data/trainsetCC69agg4i07_829.rda")
 trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% dplyr::filter(is.Case != T) %>% select(-is.Case)
@@ -606,7 +606,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl |> str()
 
 
 
-#@ data.lgl.comat.gather() separate file ======
+#@ data.lgl.comat.gather() separate file ======  
 
 
 trainsetCC69agg4i07_829.Ctrl.lgl 
@@ -765,7 +765,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph %>% tkplot
 
 
 
-#@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1) ------
+#@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph |> str(max.level = 1) ------  
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypothyroidism
@@ -870,4 +870,4 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri.igraph[[1]]$AcquiredHypo
 
 
 
-#@ end ------
+#@ end ------  
