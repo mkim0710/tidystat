@@ -95,7 +95,7 @@ warnings()
 #@ bootstrap confidence interval (manual) ----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} |> as.factor() |> summary() #-----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
 boot.output #----
@@ -121,7 +121,7 @@ boot.output |> str(max.level = 1) #----
 #            [,1]      [,2]
 # [1,] 0.05131718 0.1148298
 # [2,] 0.07977163 0.1260402
-# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
+# > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} |> as.factor() |> summary() #-----
 # 40 
 # 20 
 # > boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
@@ -245,7 +245,7 @@ warnings()
 #@ bootstrap confidence interval (manual) ----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() %>% quantile(probs = c(0.025, 0.975)) #----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$RiskDifference} |> unlist() |> sort() %>% {cbind(.[trunc(0.025*length(.)) + 1:2], .[trunc(0.975*length(.)) + 0:1])} #----
-boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} %>% as.factor |> summary() #-----
+boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% {.$`max(k)`} |> as.factor() |> summary() #-----
 boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} |> str() #----
 bind_rows(boot.output$t0, boot.output %>% {set_names(as_tibble(.$t), nm = names(.$t0))} %>% map_dbl(mean)) %>% select(pNoEvent_k.cumprod0, pNoEvent_k.cumprod1, RiskDifference, Exposure, `Exposure:k`, `Exposure:I(k^2)`) #----
 boot.output #----
@@ -299,7 +299,7 @@ norm.inter <- function(t,alpha)
 analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci = 
     boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
     mutate(`1-pNoEvent_k.cumprod0` = 1-pNoEvent_k.cumprod0[c(1,3,2)], `1-pNoEvent_k.cumprod1` = 1-pNoEvent_k.cumprod1[c(1,3,2)], `-RiskDifference` = -RiskDifference[c(1,3,2)]) %>% 
-    t %>% as.data.frame %>% rownames_to_column %>% 
+    t |> as.data.frame() %>% rownames_to_column %>% 
     transmute(
         rowname = rowname
         , `estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")")

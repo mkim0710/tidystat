@@ -132,10 +132,10 @@ province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> str()
 #  - attr(*, "statistic")= chr "total"
 
 province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) %>% {.$ue91_gt500TRUE}
-province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) %>% as.list %>% {.$ue91_gt500TRUE}
+province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> as.list() %>% {.$ue91_gt500TRUE}
 # > province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) %>% {.$ue91_gt500TRUE}
 # Error in .$ue91_gt500TRUE : $ operator is invalid for atomic vectors
-# > province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) %>% as.list %>% {.$ue91_gt500TRUE}
+# > province.prelim.design.without_fpc %>% svytotal(~ue91_gt500, .) |> as.list() %>% {.$ue91_gt500TRUE}
 # [1] 12
 
 province.prelim.design.without_fpc %>% svytotal(~(ue91_gt500 == T), .)

@@ -3,7 +3,7 @@
 
 dataset %>% 
     dplyr::filter(!is.Case) %>% 
-    cor %>% as.table %>% as.data.frame %>% dplyr::filter(!is.na(Freq)) %>% 
+    cor %>% as.table |> as.data.frame() %>% dplyr::filter(!is.na(Freq)) %>% 
     ggplot(aes(Var2, Var1, fill = Freq))+
     geom_tile()+
     scale_fill_gradientn(colors = c(rgb(0, 0, 0), rgb(1, 0, 0), rgb(1, 1, 0), rgb(1, 1, 1)), na.value = rgb(1, 1, 1),

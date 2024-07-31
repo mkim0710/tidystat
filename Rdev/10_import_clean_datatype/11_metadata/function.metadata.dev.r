@@ -134,7 +134,7 @@ list.files.rda.data.frame = list.files.rda %>% map_chr(function(i) {
 })
 list.files.rda.data.frame |> dput()
 list.files.rda.data.frame %>% na.omit |> dput()
-list.files.rda.data.frame %>% na.omit %>% as.vector |> dput()
+list.files.rda.data.frame %>% na.omit |> as.vector() |> dput()
 # > list.files.rda.data.frame |> dput()
 # c(NA, "trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", NA, NA, 
 # NA, "trainsetCC69agg4i07_829")
@@ -142,7 +142,7 @@ list.files.rda.data.frame %>% na.omit %>% as.vector |> dput()
 # structure(c("trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", 
 # "trainsetCC69agg4i07_829"), na.action = structure(c(1L, 3L, 4L, 
 # 5L), class = "omit"))
-# > list.files.rda.data.frame %>% na.omit %>% as.vector |> dput()
+# > list.files.rda.data.frame %>% na.omit |> as.vector() |> dput()
 # c("trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather", "trainsetCC69agg4i07_829"
 # )
 

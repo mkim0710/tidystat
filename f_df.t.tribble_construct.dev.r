@@ -90,8 +90,8 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.t.tribble_construct.RData"))
 # attach(env1)
 # 
-# # t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste}
-# # nhis_heals_jk.sas7bdat.duplicated %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% tribble_paste
+# # t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% tribble_paste}
+# # nhis_heals_jk.sas7bdat.duplicated %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% tribble_paste
 # # tibble::tribble(
 # #              ~varname,        ~V1,        ~V2,
 # #              "STND_Y",     "2014",     "2014",
@@ -617,7 +617,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 
 #@ global functions ----
 # fun.tribble_paste = env1$env.internal$tribble_paste
-# fun.t.tribble_paste = function(df) {df %>% t %>% as.data.frame %>% rownames_to_column("varname") %>% fun.tribble_paste}
+# fun.t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% fun.tribble_paste}
 env1$f$f_df.tribble_construct = function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
@@ -626,7 +626,7 @@ env1$f$f_df.tribble_construct = function(df) {
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
 env1$f$f_df.transpose = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
-    out = df %>% t %>% as.data.frame %>% rownames_to_column(varname4rowname) |> as_tibble()
+    out = df %>% t |> as.data.frame() %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }
 

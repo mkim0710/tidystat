@@ -89,7 +89,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
     )
     names(out) = cor_method
     out = out %>% map(unlist)
-    out = out %>% as.data.frame 
+    out = out |> as.data.frame() 
     out = out %>% t %>% as.data.frame
     out
 }

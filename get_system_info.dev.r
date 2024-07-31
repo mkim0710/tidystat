@@ -598,7 +598,7 @@ get_cpu() |> str()
 get_ram() |> str()
 get_platform_info() |> str()
 get_r_version() |> str()
-Sys.info() %>% as.list |> str()
+Sys.info() |> as.list() |> str()
 # > get_cpu() |> str()
 # List of 3
 # $ vendor_id  : chr "GenuineIntel"

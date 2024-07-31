@@ -23,7 +23,7 @@ mydb %>% {DBI::dbListTables(.)} |> dput() #----
 mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
     mydb %>% {DBI::dbGetQuery(., paste0('
     select count(*) from "', chr, '"'))} |> unlist()
-}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
+}) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> as.data.frame() %>% setNames("count(*)") |> dput() #----
 Sys.time() - .t0
 mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% dbListFields(chr)
@@ -43,7 +43,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # > mydb %>% {DBI::dbListTables(.)} %>% map_dbl(function(chr) {
 # +     mydb %>% {DBI::dbGetQuery(., paste0('
 # +     select count(*) from "', chr, '"'))} |> unlist()
-# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) %>% as.data.frame %>% setNames("count(*)") |> dput() #----
+# + }) %>% setNames(mydb %>% {DBI::dbListTables(.)}) |> as.data.frame() %>% setNames("count(*)") |> dput() #----
 # structure(list(`count(*)` = c(6717955, 1184201, 82689932, 119756995, 
 # 321397, 22047659, 25068708, 26707411, 40401516, 2738787, 45466555, 
 # 2358125, 233728576, 330453652, 17434069, 47285165, 35285704, 

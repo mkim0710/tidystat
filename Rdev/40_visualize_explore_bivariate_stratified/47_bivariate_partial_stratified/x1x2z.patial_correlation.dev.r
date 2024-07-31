@@ -115,12 +115,12 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
                 # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
                 #   Cannot compute exact p-value with ties
                 unadjusted_cor = cor.test(x1.binary2numeric, x2.binary2numeric, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-                if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+                if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
                 names(unadjusted_cor) = paste0("unadjusted_cor.", names(unadjusted_cor))
                 unadjusted_cor = unadjusted_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
                 names(unadjusted_cor)[1] = "unadjusted_cor"
                 partial_cor = cor.test(resid1, resid2, method = cor_method[i]) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-                if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+                if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
                 partial_cor = partial_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
                 names(partial_cor) = paste0("partial_cor.", names(partial_cor))
                 names(partial_cor)[1] = "partial_cor"
@@ -405,12 +405,12 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
         # In cor.test.default(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") :
         #   Cannot compute exact p-value with ties
         unadjusted_cor = cor.test(x1.binary2numeric, x2.binary2numeric, method = cor_method) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-        if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+        if (!is.null(unadjusted_cor$conf.int)) unadjusted_cor$conf.int = unadjusted_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
         names(unadjusted_cor) = paste0("unadjusted_cor.", names(unadjusted_cor))
         unadjusted_cor = unadjusted_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
         names(unadjusted_cor)[1] = "unadjusted_cor"
         partial_cor = cor.test(resid1, resid2, method = cor_method) %>% {.[c("estimate", "conf.int", "p.value", "statistic")]}  # output is a list of named vectors. $conf.int has a vector of length 2. unlist() will make a named vector.
-        if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int %>% as.vector %>% setNames(c("LL", "UL"))
+        if (!is.null(partial_cor$conf.int)) partial_cor$conf.int = partial_cor$conf.int |> as.vector() %>% setNames(c("LL", "UL"))
         partial_cor = partial_cor |> unlist()  #@ caution) attr(estimate, "names") = "cor" if method == "pearson", "rho" if method == "spearman", "tau" if method == "kendall"
         names(partial_cor) = paste0("partial_cor.", names(partial_cor))
         names(partial_cor)[1] = "partial_cor"

@@ -31,18 +31,18 @@ dput(Sys.info()) #----
 # ?strtoi
 4520 %>% as.octmode
 4520 %>% as.hexmode
-4520 %>% as.hexmode |> dput()
-4520 %>% as.hexmode %>% as.character |> dput()
-4520 %>% as.hexmode %>% as.character |> str()toi(base = 16)
+4520 |> as.hexmode() |> dput()
+4520 |> as.hexmode() |> as.character() |> dput()
+4520 |> as.hexmode() |> as.character() |> str()toi(base = 16)
 # > 4520 %>% as.octmode
 # [1] "10650"
 # > 4520 %>% as.hexmode
 # [1] "11a8"
-# > 4520 %>% as.hexmode |> dput()
+# > 4520 |> as.hexmode() |> dput()
 # structure(4520L, class = "hexmode")
-# > 4520 %>% as.hexmode %>% as.character |> dput()
+# > 4520 |> as.hexmode() |> as.character() |> dput()
 # "11a8"
-# > 4520 %>% as.hexmode %>% as.character |> str()toi(base = 16)
+# > 4520 |> as.hexmode() |> as.character() |> str()toi(base = 16)
 # [1] 4520
 
 

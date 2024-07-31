@@ -126,11 +126,11 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # 
     # #@ object.coxph$formula |> str() ----
     # object.coxph$formula |> str()
-    # object.coxph$formula %>% as.list |> str()
+    # object.coxph$formula |> as.list() |> str()
     # # > object.coxph$formula |> str()
     # # Class 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
     # #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-    # # > object.coxph$formula %>% as.list |> str()
+    # # > object.coxph$formula |> as.list() |> str()
     # # List of 3
     # #  $ : symbol ~
     # #  $ : language Surv(time = fuduration_yr, event = evnttrth_C24_r)
@@ -644,7 +644,7 @@ data_main.cut.coxph_list.HRCI =
                                      
                                      
                                      
-# data_main.cut.coxph_list.HRCI %>% map() select(varname, level, HRCI, p_value, star) %>% as.data.frame |> print() #----
+# data_main.cut.coxph_list.HRCI %>% map() select(varname, level, HRCI, p_value, star) |> as.data.frame() |> print() #----
 data_main.cut.coxph_list.HRCI %>% map(function(ob) {
     # Codes to insert inside in the beginning annonymous function for map
     parent.x = get(".x", envir = parent.frame())
@@ -654,7 +654,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
     # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 
-    ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame |> print()
+    ob %>% select(varname, level, HRCI, p_value, star) |> as.data.frame() |> print()
     "ok"
 })
 # > data_main.cut.coxph_list.HRCI %>% map(function(ob) {
@@ -666,7 +666,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 # +     # print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
 # +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
 # + 
-# +     ob %>% select(varname, level, HRCI, p_value, star) %>% as.data.frame |> print()
+# +     ob %>% select(varname, level, HRCI, p_value, star) |> as.data.frame() |> print()
 # +     "ok"
 # + })
 # Beginning .f() map from list element [[1]] named: cut_model2_ASPIRIN_AGE_group  #---- 

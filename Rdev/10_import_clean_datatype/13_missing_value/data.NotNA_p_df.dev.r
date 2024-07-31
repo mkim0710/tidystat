@@ -160,7 +160,7 @@ nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
 #@ ------
 
 data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
+    out = data %>% map_df(is.na) %>% colSums |> as.data.frame() %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
     colnames(out)[which(colnames(out) == ".")] = "IsNA"
     out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
@@ -186,7 +186,7 @@ nhanes_mice |> str() #-----
 #  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
 
 nhanes_mice %>% {data.NotNA_p_df = function(data) {
-    out = data %>% map_df(is.na) %>% colSums %>% as.data.frame %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
+    out = data %>% map_df(is.na) %>% colSums |> as.data.frame() %>% rownames_to_column |> rename(varname = rowname) %>% rownames_to_column |> rename(RowNum = rowname)
     colnames(out)[which(colnames(out) == ".")] = "IsNA"
     out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out %>% add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")

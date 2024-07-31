@@ -178,10 +178,10 @@ library(tidyverse)
 library(tableone)
 
 # #@ DataSet.CreateTableOne -----
-# # DataSet.TableOne = DataSet %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+# # DataSet.TableOne = DataSet %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 # DataSet.TableOne = DataSet %>% 
-#     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 19) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+#     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 19) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 # DataSet.is.na.TableOne = DataSet %>% 
 #     map_df(is.na) %>% setNames(paste0(names(.), ".is.na")) %>% 
@@ -221,7 +221,7 @@ library(tableone)
                
 #@ DataSet.TableOne.byExposure -----
 DataSet %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
-DataSet.select = DataSet %>% as.data.frame %>% select(-rowname, -PERSON_ID) %>% 
+DataSet.select = DataSet |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
@@ -239,7 +239,7 @@ ObjectName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n"
                               
 assign(ObjectName.TableOne_byExposure, 
        eval(parse(text = ObjectName.select)) %>% 
-           {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+           {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
            CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 )
 assign(ObjectName.is.na.TableOne_byExposure, 
@@ -247,8 +247,8 @@ assign(ObjectName.is.na.TableOne_byExposure,
            {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
            map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
            # mutate( !!rlang::sym(VarNames4Exposure) := CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[[VarNames4Exposure]]) %>%
-           cbind(CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[VarNames4Exposure]) %>%
-           as.data.frame %>%
+           cbind(CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[VarNames4Exposure]) |>
+           as.data.frame() %>%
            CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 )
 
@@ -286,8 +286,8 @@ DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> prin
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -IQR -clean.xlsx"))
 
 function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
-    DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) %>% 
-        as.data.frame %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+    DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
@@ -330,8 +330,8 @@ function.df.edit_Label_Level = function(df) {
 }
 
 function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
-    DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) %>% 
-        as.data.frame %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+    DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
@@ -374,8 +374,8 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_
 
 #@ dev -----------
 function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
-    DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) %>% 
-        as.data.frame %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+    DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
@@ -514,8 +514,8 @@ DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #-----
 # # ... with 159 more rows
 
 function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
-    DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) %>% 
-        as.data.frame %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+    DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
         add_column(VarType = as.character(NA), .before = "Variable") %>%
@@ -617,10 +617,10 @@ DataSet = DataSet %>% mutate(
 
 #@ DataSet.CreateTableOne.by_MissingPattern -----
 VarNames4MissingPattern =  c("MissingPattern")
-# DataSet.TableOne_by_MissingPattern = DataSet %>% select(-rowname, -PERSON_ID) %>% as.data.frame %>% 
+# DataSet.TableOne_by_MissingPattern = DataSet %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 #     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
 DataSet.TableOne_by_MissingPattern = DataSet %>% 
-    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
 Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
@@ -642,7 +642,7 @@ DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnorma
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     openxlsx::write.xlsx("DataSet.TableOne_by_MissingPattern.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne_by_MissingPattern.xlsx")
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
 
@@ -709,7 +709,7 @@ DataSet.svydesign = DataSet %>% svydesign(id = ~PrimarySamplingUnit, strata = ~S
 
 #@ DataSet.svydesign.svyCreateTableOne -----
 DataSet.svydesign.TableOne = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
-    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
@@ -729,7 +729,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne
 DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.svydesign.TableOne.xlsx")
 if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne.xlsx")
-DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.svydesign.TableOne.IQR.xlsx")
 if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne.IQR.xlsx")
 
@@ -741,7 +741,7 @@ VarNames4Exposure =  c("treatment")
 # # Error in dimnames(x) <- dn : 
 # #   length of 'dimnames' [2] not equal to array extent
 DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
-    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>% as.data.frame %>%  # debug181115 not to remove numeric 
+    {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(strata = VarNames4Exposure, data = ., test = T)
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
@@ -763,7 +763,7 @@ DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonno
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     openxlsx::write.xlsx("DataSet.svydesign.TableOne_byExposure.xlsx")
 if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne_byExposure.xlsx")
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column %>% 
+DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() %>% rownames_to_column %>% 
     openxlsx::write.xlsx("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
 if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
 
@@ -1038,7 +1038,7 @@ analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.
 save(analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list, file = "analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list.rda")
 
 analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list %>% map(function(ob) {
-    ob |> print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame %>% rownames_to_column
+    ob |> print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() %>% rownames_to_column
 }) %>% openxlsx::write.xlsx("analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list.xlsx")
 
 

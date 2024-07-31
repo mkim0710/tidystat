@@ -148,11 +148,11 @@ object.coxph$coefficients |> names() %>% dput
 
 #@ object.coxph$formula %>% str ----
 object.coxph$formula %>% str
-object.coxph$formula %>% as.list %>% str
+object.coxph$formula |> as.list() %>% str
 # > object.coxph$formula %>% str
 # Class 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
 #   ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-# > object.coxph$formula %>% as.list %>% str
+# > object.coxph$formula |> as.list() %>% str
 # List of 3
 #  $ : symbol ~
 #  $ : language Surv(time = fuduration_yr, event = evnttrth_C24_r)

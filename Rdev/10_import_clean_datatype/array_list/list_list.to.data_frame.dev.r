@@ -82,7 +82,7 @@ list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Ro
     out2 = unlist(out)
     dim(out2) = dim(out)
     dimnames(out2) = dimnames(out)
-    out2 = out2 %>% as.data.frame %>% rownames_to_column %>% as_data_frame
+    out2 = out2 |> as.data.frame() %>% rownames_to_column %>% as_data_frame
     out2
 }
 

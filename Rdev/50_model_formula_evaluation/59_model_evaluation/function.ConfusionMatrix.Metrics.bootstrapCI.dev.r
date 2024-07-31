@@ -209,8 +209,8 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
         label_value
     }) %>% bind_rows # %>% rownames_to_column
     
-    # out$Metrics = out$Metrics %>% column_to_rownames %>% t %>% as.data.frame %>% rownames_to_column %>% 
-    out$Metrics = out$Metrics %>% t %>% as.data.frame 
+    # out$Metrics = out$Metrics %>% column_to_rownames %>% t |> as.data.frame() %>% rownames_to_column %>% 
+    out$Metrics = out$Metrics %>% t |> as.data.frame() 
     
     # out$Metrics |> dput()
     # out$Metrics %>% map_df(as.numeric) |> dput()
@@ -491,7 +491,7 @@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI |> names() 
 for (i in c("V1", "V2", "V3", "V4", "MacroAverage")) {
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI[[i]] =
         cbind(
-            InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics[[i]] %>% as.character %>% as.numeric
+            InputSquareMatrix1.tbl.ConfusionMatrix.Metrics$Metrics[[i]] |> as.character() %>% as.numeric
             , list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics %>% map(function(ls) {
                 ls$Metrics
             }) %>% transpose %>% {.[[i]]} %>% {set_names(., 1:length(.))} |> as_tibble() %>% map_df(as.character) %>% map_df(as.numeric) %>% 

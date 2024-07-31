@@ -308,7 +308,7 @@ formulas4coxph_model_list.Cigar_ge50 %>% map(deparse) %>% map(paste, collapse = 
 
 
 function.formula2text = function(formula) {
-    formula %>% as.character %>% {paste(.[2], .[1], .[3])}
+    formula |> as.character() %>% {paste(.[2], .[1], .[3])}
 }
 
 formulas4coxph_model_list.Cigar_ge50 %>% map(function.formula2text)
