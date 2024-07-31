@@ -491,10 +491,10 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
   
 # @@ Dev) f_df.print_byVar() ----  
 
-## \% f_df.print_byVar = function(df, byVar, n = 99) { ----
+## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -510,10 +510,10 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-## \% f_df.print_byVar = function(df, byVar, n = 99) { ----
+## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -528,10 +528,10 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-## \% f_df.print_byVar = function(df, byVar, n = 99) { ----
+## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -539,17 +539,17 @@ f_df.print_byVar = function(df, byVar, n = 99) {
         mutate(!!quo_name(byVar) := as.character(!!byVar) |> replace_na("N/A"))
     df %>% {by(.,
         INDICES = .[[quo_name(byVar)]], 
-        FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)}
-    )}
+        FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}
+    )} |> print(n = n)
 }
 data3 |> f_df.print_byVar(sex)
 ```
 
 
-## \% f_df.print_byVar = function(df, byVar, n = 99) { ----
+## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -559,15 +559,16 @@ f_df.print_byVar = function(df, byVar, n = 99) {
     #     INDICES = .[[quo_name(byVar)]], 
     #     FUN = function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar)) |> print(n = n)}
     # )
+    df
 }
 data3 |> f_df.print_byVar(sex)
 ```
 
 
-## \% f_df.print_byVar = function(df, byVar, n = 99) { ----
+## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -583,10 +584,10 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-## \% f_df.print_byVar = function(df, byVar, n = 99) { ----
+## \% f_df.print_byVar = function(df, byVar, n = 10) { ----
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.print_byVar = function(df, byVar, n = 99) {
+f_df.print_byVar = function(df, byVar, n = 10) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
@@ -660,7 +661,7 @@ options(width=120)
 # system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
 # # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))))
 # # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")), compress = "gz" ))
-# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 10 ))
 # # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
 ```
