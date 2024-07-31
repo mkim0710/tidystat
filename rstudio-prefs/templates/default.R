@@ -169,10 +169,11 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # .subpath = r"(data)"|>str_replace_all("\\\\","/")
 # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# .subpath.filename.ext = DataSetName |> paste0(".rds") %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# .path.filename.ext = ifelse( file.exists(.subpath.filename.ext), .subpath.filename.ext, paste0(env1$path$source_base_github,"/data/",DataSetName,".rds") )
-# cat(".path.filename.ext = ", .path.filename.ext, "  \n", sep = "")
-# assign( DataSetName, read_rds(.path.filename.ext) )
+# # .subpath.filename.ext = DataSetName |> paste0(".rds") %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# # .path.filename.ext = ifelse( file.exists(.subpath.filename.ext), .subpath.filename.ext, paste0(env1$path$source_base_github,"/data/",DataSetName,".rds") )
+# # cat(".path.filename.ext = ", .path.filename.ext, "  \n", sep = "")
+# # assign( DataSetName, read_rds(.path.filename.ext) )
+# DataSetName |> paste0(".rds") %>% paste0(.subpath,ifelse(.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv)
 
 
 
