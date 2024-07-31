@@ -15,7 +15,7 @@
 # }
 
     
-#@ https://chatgpt.com/c/b244f16e-295a-4f40-b6ea-62cb774c3462
+#@ https://chatgpt.com/c/b244f16e-295a-4f40-b6ea-62cb774c3462  
 
 
 f_git.01_start.pull = function(intern = TRUE) {

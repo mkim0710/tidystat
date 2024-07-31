@@ -4,7 +4,7 @@
 
 
 
-#@ tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list ====
+#@ tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list ====  
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list = list()
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$full_join = 
     tblGADM_kor_level2.join_level1.SIDO_SGG %>% 
@@ -105,4 +105,4 @@ str(get(objectname), max.level = 1) #----
 
 
 
-#@ end -----
+#@ end -----  

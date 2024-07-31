@@ -197,7 +197,7 @@ ID_lmp_Window4Exposure |> rename_at(vars(-rowname), funs(paste0("prefix.", c.)) 
 
 
 
-#@@@ debug 191017 -----
+#@@@ debug 191017 -----  
 # ID_lmp_Window4Exposure |> rename_if(
 #     function(x) {get("tibble_vars", envir = parent.frame())[get("i", envir = parent.frame())] != "rowname"}
 #     , function(chr) paste0("prefix.", chr)
@@ -305,7 +305,7 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 
 
 
-#@ -----
+#@ -----  
 # Browse[1]> get("tibble_vars", envir = parent.frame(n=2))[get("i", envir = parent.frame(n=2))] != "rowname" #----
 # [1] FALSE
 
@@ -353,7 +353,7 @@ rename_if
 
 
 
-#@@@ debug -----
+#@@@ debug -----  
 ID_lmp_Window4Exposure |> rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
 # > ID_lmp_Window4Exposure |> rename_if(.predicate = function(v) {(v == "rowname")}, toupper)
 # Error in selected[[i]] <- .p(.tbl[[tibble_vars[[i]]]], ...) : 
@@ -365,7 +365,7 @@ ID_lmp_Window4Exposure |> rename_if(.predicate = function(v) {(v == "rowname")},
 
 
 
-#@@@ dev 191016 -----
+#@@@ dev 191016 -----  
 ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) {
     vec - get("value", envir = parent.frame(n=5))$lmp
 })
@@ -411,7 +411,7 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 
 
 
-#@@@ dev 191018 -----
+#@@@ dev 191018 -----  
 
 ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) )
 # > ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeric(vec - .$lmp) )
@@ -429,5 +429,5 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) as.numeri
 
 
 
-#@ end -----
+#@ end -----  
 

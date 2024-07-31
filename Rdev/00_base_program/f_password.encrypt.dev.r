@@ -1,7 +1,7 @@
 
 
 
-#@2. Combining SHA-256 and AES-CBC: Encrypting and Decrypting Passwords ----
+#@2. Combining SHA-256 and AES-CBC: Encrypting and Decrypting Passwords ----  
 library(openssl)
 
 encrypt_password <- function(password, passphrase) {

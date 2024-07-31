@@ -266,7 +266,7 @@ boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.
 # 6 Exposure:I(k^2) 1.00 (1.00, 1.00)          1.000   0.999     1.00 
 
 
-#@ end -----
+#@ end -----  
 write_rds(boot.output, "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.rds", "xz", compression=9)
 openxlsx::write.xlsx(
     boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% t |> as.data.frame() %>% rownames_to_column %>% transmute(rowname = rowname, `estimate (95% CI)` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")"), `exp(coef(.))` = V1,  `2.5 %` = V2, `97.5 %` = V3) |> as_tibble() #----

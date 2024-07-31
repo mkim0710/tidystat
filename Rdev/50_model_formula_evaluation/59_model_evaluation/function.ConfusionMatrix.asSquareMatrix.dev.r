@@ -66,7 +66,7 @@ InputMatrix.tbl %>% {
 # 4 4          1     3     1    39
 
 
-#@ function.ConfusionMatrix.asSquareMatrix ===== 
+#@ function.ConfusionMatrix.asSquareMatrix =====  
 
 function.ConfusionMatrix.asSquareMatrix = function(InputMatrix.tbl) {
     # https://github.com/mkim0710/tidystat/edit/master/Rdev/50_model_formula_evaluation/59_model_evaluation/function.ConfusionMatrix.asSquareMatrix.dev.r
@@ -104,4 +104,4 @@ InputSquareMatrix
 
 
 
-#@ end -----
+#@ end -----  

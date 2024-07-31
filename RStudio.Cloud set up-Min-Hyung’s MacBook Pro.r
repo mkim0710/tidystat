@@ -7,7 +7,7 @@
 "/" |> normalizePath()
 "~" |> normalizePath()
 "." |> normalizePath()
-#@ mac ------
+#@ mac ------  
 # > "/" |> normalizePath()
 # [1] "/"
 # > "~" |> normalizePath()
@@ -154,5 +154,5 @@ file.edit(".gitignore")
 
 
 
-#@ end ----
+#@ end ----  
 

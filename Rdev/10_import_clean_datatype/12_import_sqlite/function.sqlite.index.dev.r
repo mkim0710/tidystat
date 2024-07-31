@@ -170,7 +170,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 
 
 
-#@@@ KNHIS.JK_GJ596284.SICK_SYM.INDEX.sqlite from KNHIS.JK_GJ596284.SICK_SYM.sqlite .r ====
+#@@@ KNHIS.JK_GJ596284.SICK_SYM.INDEX.sqlite from KNHIS.JK_GJ596284.SICK_SYM.sqlite .r ====  
 
 
 library(tidyverse)
@@ -260,7 +260,7 @@ structure(list(`count(*)` = c(2210067, 74606011, 190462550, 246770921,
 
 
 
-#@ sqlite_master =====
+#@ sqlite_master =====  
 .t0 = Sys.time()
 mydb %>% {DBI::dbGetQuery(
     ., paste0("
@@ -332,7 +332,7 @@ Sys.time() - .t0
 
 
 
-#@ PRAGMA TABLE_INFO(TABLE_NAME) ====
+#@ PRAGMA TABLE_INFO(TABLE_NAME) ====  
 .t0 = Sys.time()
 mydb %>% {DBI::dbGetQuery(
     ., paste0("
@@ -478,7 +478,7 @@ Sys.time() - .t0
 
 
 
-#@ CREATE INDEX  =====
+#@ CREATE INDEX  =====  
 
 mydb %>% {DBI::dbGetQuery(
     ., paste0("
@@ -715,7 +715,7 @@ Sys.time() - .t0
 
 
 
-#@ https://cran.r-project.org/web/packages/RSQLite/vignettes/RSQLite.html -----
+#@ https://cran.r-project.org/web/packages/RSQLite/vignettes/RSQLite.html -----  
 # mydb <- dbConnect(RSQLite::SQLite(), "KNHIS.JK_GJ596284.sqlite")
 dbDisconnect(mydb)
 # unlink("KNHIS.JK_GJ596284.sqlite")

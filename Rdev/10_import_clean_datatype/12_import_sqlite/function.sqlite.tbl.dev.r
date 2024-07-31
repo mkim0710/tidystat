@@ -172,8 +172,8 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 
 
 
-#@@@ KNHIS.02ID.2089.sqlite.tbl from .r =====
-#@ KNHIS.02ID.2089.sqlite.tbl ====
+#@@@ KNHIS.02ID.2089.sqlite.tbl from .r =====  
+#@ KNHIS.02ID.2089.sqlite.tbl ====  
 KNHIS.02ID.2089.sqlite.tbl = mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
     mydb %>% tbl(chr)
 }) %>% setNames(mydb %>% {DBI::dbListTables(.)})
@@ -254,7 +254,7 @@ KNHIS.02ID.2089.sqlite.tbl |> str()
 
 
 
-#@     ob %>% show_query -------
+#@     ob %>% show_query -------  
 KNHIS.02ID.2089.sqlite.tbl %>% map(function(ob) {
     ob %>% show_query
     "ok"
@@ -294,7 +294,7 @@ KNHIS.02ID.2089.sqlite.tbl %>% map(function(ob) {
 
 
 
-#@     ob %>% explain -------
+#@     ob %>% explain -------  
 KNHIS.02ID.2089.sqlite.tbl %>% map(function(ob) {
     ob %>% explain
     "ok"
@@ -483,7 +483,7 @@ KNHIS.02ID.2089.sqlite.tbl %>% map(function(ob) {
 
 
 
-#@ KNHIS.02ID.2089.sqlite.tbl -----
+#@ KNHIS.02ID.2089.sqlite.tbl -----  
 KNHIS.02ID.2089.sqlite.tbl
 # > KNHIS.02ID.2089.sqlite.tbl
 # $`NHID_GJ_0213.bind_rows.integer`
@@ -567,5 +567,5 @@ KNHIS.02ID.2089.sqlite.tbl
 
 
 
-#@ end ----
+#@ end ----  
 save(KNHIS.02ID.2089.sqlite.tbl, file = "KNHIS.02ID.2089.sqlite.tbl.rda")

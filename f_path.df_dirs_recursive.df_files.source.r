@@ -51,7 +51,7 @@ if (requireNamespace("rstudioapi")) {
 } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----
+#@@ START) source -----  
 ### @ .subpath, .sourcename ======
 # .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
@@ -317,7 +317,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
 # # ℹ Use `print(n = ...)` to see more rows
 
 
-#@ end -----
+#@ end -----  
 # ls.str(env1) #-----
 # ls.str(env1$env.internal) #-----
 # # > ls.str(env1) #-----
@@ -326,4 +326,4 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
 # # gitignore_escaped_select.UC.regex :  chr [1:23] "\\.RPROJ\\.USER" "\\.RHISTORY" "\\.RDATA" "\\.RUSERDATA" ".*\\.ZIP" ".*\\.7Z" ".*\\.RPROJ" "\\.GITIGNORE" ...
 # # > ls.str(env1$env.internal) #-----
 
-#@ end ----
+#@ end ----  

@@ -421,7 +421,7 @@ data.mice %>% complete(5) |> str() #----
 
 
 
-#@ -----
+#@ -----  
 # 1:5 %>% {data.mice %>% complete(.) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd))}
 
 for (i in 1:5) {
@@ -602,7 +602,7 @@ abind(x, y, along = 3)
 
 # ?reduce
 # ?paste
-#@ data.mice.group_by_exposure.summarize_n_event ====
+#@ data.mice.group_by_exposure.summarize_n_event ====  
 data.mice.group_by_exposure.summarize_n_event = list()
 data.mice.group_by_exposure.summarize_n_event$min = 
     1:5 %>% map(function(i) data.mice %>% complete(i) %>% group_by(Cigar_ge50) %>% summarize(n(), sum(ihd)) %>% map_df(as.numeric)) %>% map(as.matrix) %>% abind(along = 3) %>% apply(MARGIN = 1:2, FUN = min) #----
@@ -640,6 +640,6 @@ dimnames(data.mice.group_by_exposure.summarize_n_event$min_max) = dimnames(data.
 
 
 
-#@ end -----
+#@ end -----  
 
 

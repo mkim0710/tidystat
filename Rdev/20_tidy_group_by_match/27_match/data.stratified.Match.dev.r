@@ -127,7 +127,7 @@ data.tab_strata_exposure = function(
     out
 }
 
-#@ test) data.tab_strata_exposure() rhc_mydata.rda -----
+#@ test) data.tab_strata_exposure() rhc_mydata.rda -----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -162,7 +162,7 @@ rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .
 
 
 
-#@ data.tab_strata_exposure() check minimum matching ratio -----
+#@ data.tab_strata_exposure() check minimum matching ratio -----  
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group"), .exposure = "evnttrth_C24_r") |> summary() #----
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic"), .exposure = "evnttrth_C24_r") |> summary() #----
 analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.vars4strata = c("SEX", "AGE_group", "Socioeconomic", "Disability"), .exposure = "evnttrth_C24_r") |> summary() #----
@@ -203,7 +203,7 @@ analyticDF_C24.drop_pmhx_negativetime.list$`_5yr` %>% data.tab_strata_exposure(.
 
 
 
-#@ -----
+#@ -----  
 data.strata_list = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
@@ -231,7 +231,7 @@ data.strata_list = function(
 }
 
 
-#@ test) data.strata_list() rhc_mydata.rda -----
+#@ test) data.strata_list() rhc_mydata.rda -----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -597,7 +597,7 @@ data.Match = function(
     out
 }
 
-#@ test) data.Match() rhc_mydata.rda -----
+#@ test) data.Match() rhc_mydata.rda -----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -814,7 +814,7 @@ rhc_mydata.Match_propensity_score_matching_weight$data
 # svydesign(ids = ~1, data = ., weights = ~matching_weight)
 
 
-#@ caliper.2 ----- 
+#@ caliper.2 -----  
 rhc_mydata.Match_caliper.2 = rhc_mydata %>% data.Match(
     .vars4Matching = c("female","age","meanbp1")
     , .exposure = "treatment"
@@ -887,7 +887,7 @@ rhc_mydata.Match_Mahal_caliper.2$tableone_post_total |> print(smd = T)
 
 
 
-#@ test) data.Match() rhc_mydata.na ----
+#@ test) data.Match() rhc_mydata.na ----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -1787,7 +1787,7 @@ data.stratified.Match = function(
     out
 }
 
-#@ test) data.stratified.Match() rhc_mydata.rda -----
+#@ test) data.stratified.Match() rhc_mydata.rda -----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -2189,7 +2189,7 @@ rhc_mydata.stratified.Match_propensity_score$data
 # 10     1     0     0      0     0       0     0      0 19.21999      0     128         0     0 [10,20) 0_[10,20)            1944    0_[10,20)_2               3
 # # ... with 4,202 more rows
 
-#@ caliper.2 ----
+#@ caliper.2 ----  
 rhc_mydata.stratified.Match_caplier.2 = rhc_mydata %>% data.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
@@ -2339,7 +2339,7 @@ rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> pr
 #   meanbp1 (mean (sd)) 82.63 (36.24) 82.62 (36.78)  0.995      <0.001
 
 
-#@ test) data.stratified.Match() rhc_mydata.na ----
+#@ test) data.stratified.Match() rhc_mydata.na ----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -2676,4 +2676,4 @@ rhc_mydata.na.stratified.Match$data$RowNum_original |> unique() |> length()
 # [1] 4086
 
 
-#@ end -----
+#@ end -----  

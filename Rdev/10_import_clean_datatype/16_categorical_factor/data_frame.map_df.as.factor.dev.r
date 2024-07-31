@@ -118,7 +118,7 @@ data_frame.map_df.as.factor = function (
 }
 
 
-#@ test) data_frame.map_df.as.factor() -----
+#@ test) data_frame.map_df.as.factor() -----  
 library(tidyverse)
 df = data_frame(LETTERS = LETTERS, letters = letters, numbers = 1:26 * 2, PersonID = 1:26, PERSON_ID = 1:26 + 100, KEY = 1:26 + 10^8, KEY_SEQ = as.character((1:26 + 10^2) * 10^5)) %>% rownames_to_column()
 df
@@ -314,4 +314,4 @@ as.Date("2002-01-01") %>% lubridate::is.Date(.)
 # https://github.com/tidyverse/lubridate/blob/master/R/Dates.r
 # https://github.com/wch/r-source/blob/tags/R-3-5-1/src/library/methods/R/is.R
 
-#@ end -----
+#@ end -----  

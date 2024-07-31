@@ -136,7 +136,7 @@ x1x2z.partial_correlation_scalar1 = function(x1, x2, z, cor_method = "pearson", 
 }
 
 
-#@ test: stackloss) x1x2z.partial_correlation_dbl() ------
+#@ test: stackloss) x1x2z.partial_correlation_dbl() ------  
 x1x2z.partial_correlation0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")
 x1x2z.partial_correlation_dbl0(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")
 x1x2z.partial_correlation_dbl1(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc., cor_method = "pearson")

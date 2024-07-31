@@ -3,7 +3,7 @@
 
 library(tidyverse)
 
-#@ Check if an SSH Agent is Already Running: ====
+#@ Check if an SSH Agent is Already Running: ====  
 # [ -z "$SSH_AGENT_PID" ]: This checks if the variable SSH_AGENT_PID is empty (-z tests for an empty string). If this variable is unset or empty, it indicates that there is no SSH agent PID known to the session, implying no agent is running.
 system.output_vec = system('
 if [ -z "$SSH_AGENT_PID" ]; then
@@ -37,7 +37,7 @@ cat ~/.ssh/ssh-agent.socket
        ', intern = TRUE); dput(system.output_vec)
 
 
-#@ Reusing Existing SSH Agents -dev ====
+#@ Reusing Existing SSH Agents -dev ====  
 
 ## \% parts  ----
 system.output_vec = system('
@@ -102,7 +102,7 @@ fi
 
 
 
-#@ Reusing Existing SSH Agents ====
+#@ Reusing Existing SSH Agents ====  
 system.output_vec = system('
 # Source the existing agent details if available
 if [ -f ~/.ssh/ssh-agent.socket ]; then
@@ -166,7 +166,7 @@ cat ~/.ssh/ssh-agent.socket
        ', intern = TRUE); dput(system.output_vec)
 
 
-#@ ssh-add -------
+#@ ssh-add -------  
 
 if(file.exists("~/.ssh/id_ed25519")) {
     path.file_sshKey = "~/.ssh/id_ed25519"

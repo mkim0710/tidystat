@@ -28,7 +28,7 @@
 
 
 
-#@ ---------
+#@ ---------  
 qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+significance.level/2))
 # > qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+significance.level/2))
 #   Estimate LowerLimit UpperLimit 
@@ -313,7 +313,7 @@ function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 
 
 
-#@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====
+#@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
     analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
@@ -406,7 +406,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>%
 
 
 
-#@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI =====
+#@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI =====  
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI = list()
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable =
     analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% mutate(
@@ -507,7 +507,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> st
 
 
 
-#@ end -----
+#@ end -----  
 getwd()
 .path4write = getwd()
 objectname = "analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
@@ -535,7 +535,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
 
 
-#@@@@ library(epitools) =====
+#@@@@ library(epitools) =====  
 # ?epitools::riskratio
 # function.epitools.RelativeRiskCI = function(nDisease0_Exposed0, nDisease0_Exposed1, nDisease1_Exposed0, nDisease1_Exposed1, ...) {
 #     library(epitools)
@@ -657,7 +657,7 @@ function.epitools.RelativeRiskCI(10933, 10845, 104, 189) |> str() #-----
 
 
 
-#@@@@ library(RStata) =====
+#@@@@ library(RStata) =====  
 library(RStata)
 options("RStata.StataPath" = "\"C:\\Program Files (x86)\\Stata15\\Stata-64\"")
 options("RStata.StataVersion" = 15)
@@ -672,7 +672,7 @@ dput(options("RStata.StataVersion"))
 
 
 
-#@ ------
+#@ ------  
 nCasesExposed = 189
 nCasesUnexposed = 104
 nNoncasesExposed = 10845
@@ -727,7 +727,7 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 
 
-#@@@ ======
+#@@@ ======  
 # https://sphweb.bumc.bu.edu/otlt/MPH-Modules/EP/EP713_Association/EP713_Association8.html#headingtaglink_3
 # Example) RR = 3.06, OR = 4.21 -----
 
@@ -779,7 +779,7 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 
 
-#@@@ =====
+#@@@ =====  
 # https://stackoverflow.com/questions/8753531/repeat-rows-of-a-data-frame-n-times/8753732
 # https://stackoverflow.com/questions/11121385/repeat-rows-of-a-data-frame
 
@@ -788,7 +788,7 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # nNoncasesExposed = 108
 # nNoncasesUnexposed = 341
 
-#@ AnalyticDataset.byCaseExposure =====
+#@ AnalyticDataset.byCaseExposure =====  
 AnalyticDataset.byCaseExposure = 
     tibble::tribble(
     ~Case,      ~Exposure,          ~n,
@@ -802,7 +802,7 @@ seq_len(nrow(AnalyticDataset.byCaseExposure))
 # [1] 1 2 3 4
 
 
-#@ AnalyticDataset =====
+#@ AnalyticDataset =====  
 AnalyticDataset =
     AnalyticDataset.byCaseExposure[rep(seq_len(nrow(AnalyticDataset.byCaseExposure)), AnalyticDataset.byCaseExposure$n), ] %>% 
     select(-n)
@@ -986,6 +986,6 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 
 
-#@ end -----
+#@ end -----  
 
 

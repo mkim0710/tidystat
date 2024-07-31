@@ -1,4 +1,4 @@
-#@ function.svyglm.MainModel.byEffectModifier.dev.r
+#@ function.svyglm.MainModel.byEffectModifier.dev.r  
 
 
 function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni"), allow_multple_spaces = T) {
@@ -103,7 +103,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
 
 
 
-#@@@@ data.SSQ_5_6 =====
+#@@@@ data.SSQ_5_6 =====  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/data.SSQ_5_6.rda"))
 library(survey)
@@ -113,7 +113,7 @@ data.US_BORN_F.svydesign = data.SSQ_5_6 %>% dplyr::filter(US_BORN == "2: Other")
 data.Depressed.svydesign = data.SSQ_5_6 %>% dplyr::filter(DXDEPRESSION %in% c("1: Depressed and previously diagnosed", "2: Depressed and no diagnosis")) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 
 
-#@ tables for manuscript - main effects model () ====
+#@ tables for manuscript - main effects model () ====  
 
 svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} |> 
     rename_all(toupper)
@@ -378,7 +378,7 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 
 
 
-#@@ main effect vs. interaction ======
+#@@ main effect vs. interaction ======  
 
 (
     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
@@ -426,7 +426,7 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 
 
 
-#@@ US_BORN_T vs US_BORN_F -----------
+#@@ US_BORN_T vs US_BORN_F -----------  
 
 (
     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_T.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
@@ -472,7 +472,7 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 
 
 
-#@@@ manuscript table, by(EffectModifier) =====
+#@@@ manuscript table, by(EffectModifier) =====  
 
 function.formula2text = function(formula) {
     formula |> as.character() %>% {paste(.[2], .[1], .[3])}
@@ -700,7 +700,7 @@ function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = form
 # 5                                      2: Other  668    44 0.06586826 2879276 194006.0 0.06738013                 SSQ_5_6_adequateTRUE 0.64 (0.28 ~ 1.47)   0.295     
 
 
-#@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====
+#@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====  
 c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
     function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = formula4MainModel, subscript4MainModel = "10var", varname4EffectModifier = chr)
 }), .)}
@@ -930,7 +930,7 @@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
 
 
 
-#@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { ======
+#@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { ======  
 c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
     function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = formula4MainModel, subscript4MainModel = "10var", varname4EffectModifier = chr)
 }), .)} %>% map(function(ls) ls$table4manuscript)
@@ -964,7 +964,7 @@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
 # 5                                      2: Other  668    44 0.06586826 2879276 194006.0 0.06738013                 SSQ_5_6_adequateTRUE 0.64 (0.28 ~ 1.47)   0.295     
 
 
-#@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====
+#@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====  
 c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
     function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = formula4MainModel, subscript4MainModel = "10var", varname4EffectModifier = chr)
 }), .)} %>% map(function(ls) ls$table4manuscript) %>% bind_rows(.id = "varname4EffectModifier")
@@ -1154,4 +1154,4 @@ if (.Platform$OS.type == "windows") openxlsx::openXL("svyglm.MainModel.byEffectM
 
 
 
-#@ end -----
+#@ end -----  

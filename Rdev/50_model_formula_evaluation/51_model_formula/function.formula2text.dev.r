@@ -1,4 +1,4 @@
-#@ function.formula2text.dev.r
+#@ function.formula2text.dev.r  
 
 
 formula4MainModel = Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year
@@ -107,7 +107,7 @@ paste("my text", format(frm))
 
 
 
-#@ -------
+#@ -------  
 library(tidyverse)
 require(mice)
 
@@ -183,6 +183,6 @@ parse(text = paste0("lm(", deparse(formula), ")"))
 
 
 
-#@ end -----
+#@ end -----  
 
 

@@ -167,7 +167,7 @@ ffqtot %>% select(currsm, fkcal) %>% function.Data_Exposure_Outcome_shuffle(varn
 
 
 
-#@ ffqtot.select ====
+#@ ffqtot.select ====  
 ffqtot.select = ffqtot %>% 
     select(currsm, fkcal, atotfat, asat, aoleic, alinolc, achol, acarb, aprot, afiber, adca, adiron, adphos, adk, adna, advaiu, advare, adthiam, adribo, adniac, advc, atca, atiron, atvaiu, atthiri, atvc, asuptoc)
 ffqtot.select
@@ -190,7 +190,7 @@ ffqtot.select
 
 
 
-#@ ffqtot.select.permutation_list ===== 
+#@ ffqtot.select.permutation_list =====  
 ffqtot.select = ffqtot %>% 
     select(currsm, fkcal, atotfat, asat, aoleic, alinolc, achol, acarb, aprot, afiber, adca, adiron, adphos, adk, adna, advaiu, advare, adthiam, adribo, adniac, advc, atca, atiron, atvaiu, atthiri, atvc, asuptoc)
 ffqtot.select.permutation_list = list()
@@ -264,7 +264,7 @@ ffqtot.select.permutation_list[[3]]
 
 
 
-#@ Calculation of mean difference between the groups ----
+#@ Calculation of mean difference between the groups ----  
 ffqtot.select %>% group_by(currsm) %>% summarise(mean(fkcal))
 # > ffqtot.select %>% group_by(currsm) %>% summarise(mean(fkcal))
 # # A tibble: 2 x 2
@@ -298,7 +298,7 @@ ffqtot.select.permutation_list[[3]] %>% group_by(currsm) %>% summarise(mean(fkca
 
 
 
-#@ permutation_results_single -----
+#@ permutation_results_single -----  
 permutation_results_single = list()
 for (i in 1:length(ffqtot.select.permutation_list)) {
     permutation_results_single[[i]] = ffqtot.select.permutation_list[[i]] %>% group_by(currsm) %>% summarise(mean(fkcal)) %>% {.[2,2] - .[1,2]}
@@ -322,7 +322,7 @@ permutation_results_single |> str() #----
 
 
 
-#@ permutation_results_multiple =====
+#@ permutation_results_multiple =====  
 permutation_results_multiple = matrix(nrow = length(ffqtot.select.permutation_list), ncol = ncol(ffqtot.select) - 1) 
 for (j in 1:ncol(ffqtot.select)) {
     if (names(ffqtot.select)[j] != "currsm") {
@@ -332,7 +332,7 @@ for (j in 1:ncol(ffqtot.select)) {
 
 
 
-#@ permutation_results =====
+#@ permutation_results =====  
 permutation_results_multiple = list()
 for (j in c("fkcal", "atotfat", "asat")) {
 # for (j in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "aprot", "afiber", "adca", "adiron", "adphos", "adk", "adna", "advaiu", "advare", "adthiam", "adribo", "adniac", "advc", "atca", "atiron", "atvaiu", "atthiri", "atvc", "asuptoc")) {
@@ -371,7 +371,7 @@ warnings()
 
 
 
-#@ permutation_results =====
+#@ permutation_results =====  
 permutation_results_multiple = list()
 # for (j in c("fkcal", "atotfat", "asat")) {
 for (j in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "aprot", "afiber", "adca", "adiron", "adphos", "adk", "adna", "advaiu", "advare", "adthiam", "adribo", "adniac", "advc", "atca", "atiron", "atvaiu", "atthiri", "atvc", "asuptoc")) {
@@ -416,7 +416,7 @@ sum(abs(EmpiricalDistributionOfStatisticValue) > abs(ObservedStatisticValue) ) /
 # [1] 0.746
 
 
-#@ t.test -----
+#@ t.test -----  
 # ?t.test  # Open the help documentation for the t.test() function. ----
 t.test(formula = fkcal ~ currsm, data = ffqtot)       # Print the default output. Formula is in "y ~ x" format.
 str(t.test(formula = fkcal ~ currsm, data = ffqtot))  # Print the "structure" of the default output.
@@ -458,7 +458,7 @@ t.test(formula = fkcal ~ currsm, data = ffqtot)$p.value # Print the "structure" 
 
 
 
-#@ permutationP_multiple =====
+#@ permutationP_multiple =====  
 permutationP_multiple = list()
 for (i in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "aprot", "afiber", "adca", "adiron", "adphos", "adk", "adna", "advaiu", "advare", "adthiam", "adribo", "adniac", "advc", "atca", "atiron", "atvaiu", "atthiri", "atvc", "asuptoc") ) {
     EmpiricalDistributionOfStatisticValue = permutation_results_multiple[[i]]
@@ -477,10 +477,10 @@ permutationP_multiple |> str(max.level = 1) #-----
 
 
 
-#@ Advanced Topic: Vectorized Function ----
+#@ Advanced Topic: Vectorized Function ----  
 # ffqtot.select.permutation_list %>% map(function(Data) {
 #     Data
 # })
 
-#@ end ----
+#@ end ----  
 

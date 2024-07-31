@@ -1,4 +1,4 @@
-#@ data.lgl.comat.gather.dev.r
+#@ data.lgl.comat.gather.dev.r  
 
 
 # data.lgl.comat = function(data) {
@@ -73,7 +73,7 @@
 
 
 
-#@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) { ======
+#@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) { ======  
 data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) { 
     # data.lgl.comat.gather3
     data.lgl = data %>% map_df(as.logical)
@@ -242,7 +242,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
 }
 
 
-#@ test) data.lgl.comat.gather() trainsetCC69agg4i07_829.Ctrl.lgl ----
+#@ test) data.lgl.comat.gather() trainsetCC69agg4i07_829.Ctrl.lgl ----  
 library(tidyverse)
 load("data/trainsetCC69agg4i07_829.rda")
 trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% dplyr::filter(is.Case != T) %>% select(-is.Case)
@@ -445,4 +445,4 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # [1] TRUE
 
 
-#@ end ----
+#@ end ----  

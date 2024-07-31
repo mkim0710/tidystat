@@ -45,7 +45,7 @@ dput(options("RStata.StataVersion"))
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@@@ MH) To minimize the sample size requirement ====
+#@@@@ MH) To minimize the sample size requirement ====  
 # look for a large difference between groups (delta)
 # look for a small variance (sigma) 
 # Cf) for proportions, variance is a funciton of proportion (i.e., sigma^2 = np(1-p) <= n/4). -> small variance when p is close to 0 or 1~!
@@ -58,7 +58,7 @@ dput(options("RStata.StataVersion"))
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ t-test for one sample mean =====
+#@@ t-test for one sample mean =====  
 # Null hypothesis (H0):         mu0 = 80
 # Alternative hypothesis (H1):  mu1 = 70
 # (pooled) sd = 20
@@ -190,7 +190,7 @@ stata.out
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ t-test for two sample mean comparison (sample size ratio = 1) =====
+#@@ t-test for two sample mean comparison (sample size ratio = 1) =====  
 # Null hypothesis (H0):         mu2 - mu1 = 0
 # Alternative hypothesis (H1):  mu2 - mu1 = 10
 # sd1 = 20
@@ -280,7 +280,7 @@ stata.out
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ t-test for two sample mean comparison (when sample size of one group is fixed) =====
+#@@ t-test for two sample mean comparison (when sample size of one group is fixed) =====  
 # Null hypothesis (H0):         mu2 - mu1 = 0
 # Alternative hypothesis (H1):  mu2 - mu1 = 10
 # sd1 = 20
@@ -404,7 +404,7 @@ stata.out
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ t-test for two sample mean comparison (sample size ratio = Nexperimental/Ncontrol = 1/5) =====
+#@@ t-test for two sample mean comparison (sample size ratio = Nexperimental/Ncontrol = 1/5) =====  
 # Null hypothesis (H0):         mu2 - mu1 = 0
 # Alternative hypothesis (H1):  mu2 - mu1 = 10
 # sd1 = 20
@@ -453,7 +453,7 @@ stata.out
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ matched case-control two sample mean comparison (sample size ratio = 1) ====
+#@@ matched case-control two sample mean comparison (sample size ratio = 1) ====  
 # Null hypothesis (H0):         mu2 - mu1 = 0
 # Alternative hypothesis (H1):  mu2 - mu1 = 10
 # sd1 = 20
@@ -644,7 +644,7 @@ stata.out
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ matched case-control ====
+#@@ matched case-control ====  
 
 
 stata.out = stata("power mcc (0.15 0.2 0.25), oratio(1.2 1.5 1.8 2.1 2.4) m(5)", data.in = NULL, data.out = T, stata.version = 15.1) #----
@@ -805,4 +805,4 @@ power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.0
 
 
 
-#@ end -----
+#@ end -----  

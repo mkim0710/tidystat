@@ -75,4 +75,4 @@ options(repos = c(CRAN= "https://packagemanager.rstudio.com/cran/__linux__/xenia
 for(.packagename in c("icd")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 # https://packagemanager.rstudio.com/client/#/repos/1/packages/icd
 
-#@ end -----
+#@ end -----  

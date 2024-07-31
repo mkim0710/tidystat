@@ -342,7 +342,7 @@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
 
 
 
-#@ list_bootstrap.InputSquareMatrix1.tbl =====
+#@ list_bootstrap.InputSquareMatrix1.tbl =====  
 df_Actual_Predicted = InputSquareMatrix1.tbl %>% 
     gather(-Actual, key = "Predicted", value = "value") %>% 
     {slice(., unlist( map2(1:nrow(.), .$value, function(x, y) rep(x, y)) ) )} %>% select(Actual, Predicted)
@@ -381,7 +381,7 @@ list_bootstrap.InputSquareMatrix1.tbl |> str() #----
 
 
 
-#@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics ====
+#@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics ====  
 .t0 = Sys.time()
 list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics =
     list_bootstrap.InputSquareMatrix1.tbl %>% map(function.ConfusionMatrix.Metrics)
@@ -480,7 +480,7 @@ list_bootstrap.InputSquareMatrix1.tbl.ConfusionMatrix.Metrics[[1]]$Metrics %>% c
 
 
 
-#@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI =====
+#@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI =====  
 InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI = 
     InputSquareMatrix1.tbl.ConfusionMatrix.Metrics
 InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI =
@@ -528,5 +528,5 @@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI #----
 
 
 
-#@ end ----
+#@ end ----  
 
