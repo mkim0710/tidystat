@@ -255,7 +255,7 @@ data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 
 data3 
 data2 |> 
-    mutate(sex = sex |> as.character |> replace_na("N/A")) %>% 
+    mutate(sex = sex |> as.character() |> replace_na("N/A")) %>% 
     by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
 # # A tibble: 131 × 10
@@ -309,7 +309,7 @@ data2 |>
 
 ## \$ data3 = data2 |> mutate(sex = c("Male", "Female")[sex])  ----  
 data3 = data2 |> mutate(sex = c("Male", "Female")[sex]) |> 
-    mutate(sex = sex |> as.character |> replace_na("N/A")) 
+    mutate(sex = sex |> as.character() |> replace_na("N/A")) 
 data3
 
 ### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----
