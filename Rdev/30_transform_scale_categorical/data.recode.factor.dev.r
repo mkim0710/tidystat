@@ -635,6 +635,64 @@ analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordere
 #  Factor w/ 3 levels "BMI_lt23","BMI_ge23lt25",..: 2 2 1 1 2 1 1 3 2 3 ...
 
 
+
+
+
+
+
+#@ levels order -----
+# https://chatgpt.com/c/3f0e7ff4-096e-49f0-be8e-e278be34053a
+vec_chr = c("a", "B", "1", "@", "z", "A", "#", "{", "}")
+vec_chr %>% map_int(utf8ToInt)
+vec_chr %>% factor() %>% levels() %>% dput()
+# > vec_chr = c("a", "B", "1", "@", "z", "A", "#", "{", "}")
+# > vec_chr %>% map_int(utf8ToInt)
+# [1]  97  66  49  64 122  65  35 123 125
+# > vec_chr %>% factor() %>% levels() %>% dput()
+# c("{", "}", "@", "#", "1", "a", "A", "B", "z")
+
+?factor
+?utf8ToInt()
+?sort
+
+
+Sys.getlocale()
+# > Sys.getlocale()
+# [1] "LC_CTYPE=en_US.UTF-8;LC_NUMERIC=C;LC_TIME=en_US.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=en_US.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=en_US.UTF-8;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=en_US.UTF-8;LC_IDENTIFICATION=C"
+# Define a character vector with special characters
+special_chars <- c("!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "{", "|", "}", "~")
+special_chars %>% sort %>% dput()
+# > special_chars %>% sort %>% dput()
+# c("_", "-", ",", ";", ":", "!", "?", ".", "'", "\"", "(", ")", 
+# "[", "]", "{", "}", "@", "*", "/", "\\", "&", "#", "%", "^", 
+# "+", "<", "=", ">", "|", "~", "$")
+
+
+# # Set the locale to "C" for consistent ASCII sorting
+# Sys.setlocale("LC_COLLATE", "C")
+# special_chars <- c("!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "{", "|", "}", "~")
+# special_chars %>% sort %>% dput()
+# # > special_chars %>% sort %>% dput()
+# # c("!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", 
+# # "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", 
+# # "]", "^", "_", "{", "|", "}", "~")
+
+
+# Underscore (_): It appears first. In some collation rules, underscore is treated as a space or given high precedence.
+# Hyphen (-): Often sorted early in the order as it is a common delimiter.
+# Comma (,), Semicolon (;), Colon (:): These punctuation marks come early in the order.
+# Exclamation (!), Question (?), Period (.): Common punctuation marks often used in texts.
+# Apostrophe ('), Quotation ("): These are common text delimiters.
+# Parentheses ((, )), Square Brackets ([, ]), Curly Braces ({, }): These are grouped together, reflecting their use as paired symbols.
+# At symbol (@): Often appears in email addresses and user handles.
+# Asterisk (*), Slash (/), Backslash (\\): These symbols are used in various contexts including file paths and wildcard expressions.
+# Ampersand (&), Number (#), Percent (%), Caret (^): Common symbols used in programming and texts.
+# Plus (+), Less than (<), Equals (=), Greater than (>): Symbols commonly used in mathematical and logical expressions.
+# Pipe (|), Tilde (~), Dollar ($): These symbols often have specific uses in programming and text processing.
+
+
+
+
 #@ end ----
 save(analyticDF_C24.drop_pmhx_negativetime.list.cut, file = "analyticDF_C24.drop_pmhx_negativetime.list.cut.rda")
 
