@@ -377,7 +377,7 @@ base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |
 # git remote -v
 
 git.remote.v = "git remote -v" |> system(intern=TRUE)
-git.remote.v %>% dput
+git.remote.v |> dput()
 c("origin\thttps://github.com/mkim0710/RprojectAgePeriodCohort.git (fetch)", 
   "origin\thttps://github.com/mkim0710/RprojectAgePeriodCohort.git (push)")
 # > system("git remote -v")

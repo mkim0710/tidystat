@@ -16,7 +16,7 @@ read.table(file = "clipboard", sep = "\t", header=F) |> dput() #----
 # -7L))
 
 tribble_paste = datapasta::tribble_paste
-# read.table(file = "clipboard", sep = "\t", header=F) %>% tribble_paste #----
+# read.table(file = "clipboard", sep = "\t", header=F) |> tribble_paste() #----
 tibble::tribble(
    ~V1, ~V2, ~V3,  ~V4,
   667L,  2L,  0L,   0L,
@@ -49,7 +49,7 @@ nBreakdown.list |> str() #----
 # nBreakdown.list |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% write.table("clipboard", sep="\t", row.names=F, col.names=T)  # error: list -> matrix of lists -> dataframe of list columns
 # nBreakdown.list %>% t %>% t |> as.data.frame() %>% rownames_to_column %>% write.table("clipboard", sep="\t", row.names=F, col.names=T)  # error: list -> matrix of lists -> dataframe of list columns
 nBreakdown.list |> as.data.frame() %>% t |> as.data.frame() %>% rownames_to_column %>% write.table("clipboard", sep="\t", row.names=F, col.names=T)
-nBreakdown.list |> as.data.frame() %>% t |> as.data.frame() %>% rownames_to_column %>% tribble_paste
+nBreakdown.list |> as.data.frame() %>% t |> as.data.frame() %>% rownames_to_column |> tribble_paste()
 
 
 

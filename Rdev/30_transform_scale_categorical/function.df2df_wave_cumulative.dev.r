@@ -282,34 +282,34 @@ tmp.df_wave = list_df_wave$GLU60_TR
 # # 10 FALSE              NA    NA    NA    NA    NA                 NA                
 # # # ℹ 10,020 more rows
 # # # ℹ Use `print(n = ...)` to see more rows
-tmp.df_wave[,1] %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1:5] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1:6] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1:7] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
-tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins 
+tmp.df_wave[,1] %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1:5] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1:6] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1:7] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
+tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins() 
 tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} |> str()
-# > tmp.df_wave[,1] %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1] %>% table(useNA = "always") |> addmargins()
 # A01_GLU60_TR_ge200
 # FALSE  TRUE  <NA>   Sum 
 #  8077  1438   515 10030 
-# > tmp.df_wave[,1] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1  <NA>   Sum 
 #  8077  1438   515 10030 
-# > tmp.df_wave[,1:5] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1:5] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1  <NA>   Sum 
 #  8077  1438   515 10030 
-# > tmp.df_wave[,1:6] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1:6] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1     2  <NA>   Sum 
 #  7257  2009   283   481 10030 
-# > tmp.df_wave[,1:7] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1:7] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1     2     3  <NA>   Sum 
 #  6801  2001   604   150   474 10030 
-# > tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") %>% addmargins 
+# > tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} %>% table(useNA = "always") |> addmargins() 
 # .
 #     0     1     2     3  <NA>   Sum 
 #  6801  2001   604   150   474 10030 
@@ -323,8 +323,8 @@ tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), N
 #@ void2) ----------
 sum(c(NA,NA), na.rm = T)
 # [1] 0
-tmp.df_wave[,1] %>% rowwise %>% mutate(colSums = sum(c_across(everything()), na.rm=TRUE)) %>% table(useNA = "always") %>% addmargins
-# > tmp.df_wave[,1] %>% rowwise %>% mutate(colSums = sum(c_across(everything()), na.rm=TRUE)) %>% table(useNA = "always") %>% addmargins
+tmp.df_wave[,1] %>% rowwise %>% mutate(colSums = sum(c_across(everything()), na.rm=TRUE)) %>% table(useNA = "always") |> addmargins()
+# > tmp.df_wave[,1] %>% rowwise %>% mutate(colSums = sum(c_across(everything()), na.rm=TRUE)) %>% table(useNA = "always") |> addmargins()
 #                   colSums
 # A01_GLU60_TR_ge200     0     1  <NA>   Sum
 #              FALSE  8077     0     0  8077
@@ -367,34 +367,34 @@ tmp.df_wave = list_df_wave$GLU60_TR
 # # 10 FALSE              NA    NA    NA    NA    NA                 NA                
 # # # ℹ 10,020 more rows
 # # # ℹ Use `print(n = ...)` to see more rows
-tmp.df_wave[,1] %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1:5] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1:6] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
-tmp.df_wave[,1:7] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
-tmp.df_wave %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
+tmp.df_wave[,1] %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1:5] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1:6] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
+tmp.df_wave[,1:7] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
+tmp.df_wave %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
 tmp.df_wave %>% rowSums(na.rm = T) |> str()
-# > tmp.df_wave[,1] %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1] %>% table(useNA = "always") |> addmargins()
 # A01_GLU60_TR_ge200
 # FALSE  TRUE  <NA>   Sum 
 #  8077  1438   515 10030 
-# > tmp.df_wave[,1] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1  <NA>   Sum 
 #  8592  1438     0 10030 
-# > tmp.df_wave[,1:5] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1:5] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1  <NA>   Sum 
 #  8592  1438     0 10030 
-# > tmp.df_wave[,1:6] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1:6] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1     2  <NA>   Sum 
 #  7738  2009   283     0 10030 
-# > tmp.df_wave[,1:7] %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave[,1:7] %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1     2     3  <NA>   Sum 
 #  7275  2001   604   150     0 10030 
-# > tmp.df_wave %>% rowSums(na.rm = T) %>% table(useNA = "always") %>% addmargins
+# > tmp.df_wave %>% rowSums(na.rm = T) %>% table(useNA = "always") |> addmargins()
 # .
 #     0     1     2     3  <NA>   Sum 
 #  7275  2001   604   150     0 10030 

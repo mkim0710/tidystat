@@ -960,7 +960,7 @@ diet.strata_list[[1]]
 # # ... with 58 more rows
 
 diet.strata_list %>% map(function(df) {
-    out = df$event %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
+    out = df$event |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
     parent.x = get(".x", envir = parent.frame())
     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
     names(out)[1] = attr(out, "parent_name")
@@ -968,7 +968,7 @@ diet.strata_list %>% map(function(df) {
     out
 }) %>% reduce(bind_rows)
 # > diet.strata_list %>% map(function(df) {
-# +     out = df$event %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
+# +     out = df$event |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
 # +     parent.x = get(".x", envir = parent.frame())
 # +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
 # +     names(out)[1] = attr(out, "parent_name")

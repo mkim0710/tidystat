@@ -8,12 +8,12 @@ library(tidyverse)
 # ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
 # AnalyticDataset %>% select(sex, Group) |> str()
-# AnalyticDataset %>% select(sex, Group) %>% table
+# AnalyticDataset %>% select(sex, Group) |> table()
 # # > AnalyticDataset %>% select(sex, Group) |> str()
 # # 'data.frame':	228 obs. of  2 variables:
 # #  $ sex  : num  1 1 1 1 1 1 2 2 1 1 ...
 # #  $ Group: Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# # > AnalyticDataset %>% select(sex, Group) %>% table
+# # > AnalyticDataset %>% select(sex, Group) |> table()
 # #    Group
 # # sex Female Male
 # #   1      0  138

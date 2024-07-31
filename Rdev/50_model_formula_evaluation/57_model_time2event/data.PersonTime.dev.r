@@ -329,8 +329,8 @@ analyticDF2797.Outcome2PersonTime7 %>% select(ENROLID, SecondaryOutcomeP1456fhkl
 
 #@ Check the counts/proportions of each outcome by exposure -----
 analyticDF2797 %>% select(Exposure, matches("Outcome"), -matches("time")) |> summary() #----
-analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(sum)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
-analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(mean)) %>% column_to_rownames("Exposure") %>% t %>% addmargins %>% round(2) #----
+analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(sum)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
+analyticDF2797 %>% group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), funs(mean)) %>% column_to_rownames("Exposure") %>% t |> addmargins() %>% round(2) #----
 
 
 

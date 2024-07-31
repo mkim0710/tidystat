@@ -13,8 +13,8 @@ tibble::tribble(
            "IIIb",   "III",
              "IV",    "IV"
       ) %>% bind_cols(read.table(file = "clipboard", sep = "\t", header=F)) %>%
-    set_names(c("Actual.old", "Actual", "I", "II", "III", "IV")) %>% 
-    tribble_paste #----
+    set_names(c("Actual.old", "Actual", "I", "II", "III", "IV")) |> 
+    tribble_paste() #----
 InputMatrix1.tbl = tibble::tribble(
     ~Actual.old, ~Actual, ~X1, ~X2, ~X3, ~X4,
            "Ia",     "I",  45,   2,   1,   0,
@@ -30,7 +30,7 @@ InputMatrix1.tbl = tibble::tribble(
 InputSquareMatrix1.tbl = InputMatrix1.tbl %>% select(-matches(".old$")) %>% 
         group_by(Actual) %>% summarise_all(sum) %>% 
         as_tibble
-InputSquareMatrix1.tbl %>% tribble_paste
+InputSquareMatrix1.tbl |> tribble_paste()
 InputSquareMatrix1.tbl = tibble::tribble(
     ~Actual, ~X1, ~X2, ~X3, ~X4,
         "I",  62,   5,   2,   0,
@@ -459,12 +459,12 @@ mat %>% {sum(diag(.))/sum(.)} #----
 
 # Sensitivity = TP/(Actual == TRUE) =====
 # Sensitivity = TP/(TP+FN) =====
-mat %>% addmargins #----
+mat |> addmargins() #----
 mat %>% {diag(.)} # True Positive = (Predicted == TRUE) & (Actual == TRUE) ----
 mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
 mat %>% {diag(.)/rowSums(.)} # Sensitivity = TP/(Actual == T) ----
 mat %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
-# > mat %>% addmargins #----
+# > mat |> addmargins() #----
 #      1  2  3  4 Sum
 # 1   62  5  2  0  69
 # 2    6  8  2  1  17
@@ -508,7 +508,7 @@ mat %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sens
 
 # Specificity = TN/(Actual == FALSE) =====
 # Specificity = TN/(TN+FP) =====
-mat %>% addmargins #----
+mat |> addmargins() #----
 mat %>% {diag(.)} # True Positive = (Predicted == TRUE) & (Actual == TRUE) ----
 mat %>% {colSums(.) - diag(.)} # False Positive = (Predicted == TRUE) & (Actual == FALSE) = (Predicted == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
 mat %>% {rowSums(.) - diag(.)} # False Negative = (Predicted == FALSE) & (Actual == TRUE) = (Actual == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
@@ -518,7 +518,7 @@ mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
 mat %>% {sum(.) - rowSums(.)} # count of (Actual == FALSE) ----
 mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} # Specificity = TN/(Actual == FALSE) ----
 mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
-# > mat %>% addmargins #----
+# > mat |> addmargins() #----
 #      1  2  3  4 Sum
 # 1   62  5  2  0  69
 # 2    6  8  2  1  17
@@ -632,12 +632,12 @@ mat %>% {sum(diag(.))/sum(.)} #----
 
 # Sensitivity = TP/(Actual == TRUE) =====
 # Sensitivity = TP/(TP+FN) =====
-mat %>% addmargins #----
+mat |> addmargins() #----
 mat %>% {diag(.)} # True Positive = (Predicted == TRUE) & (Actual == TRUE) ----
 mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
 mat %>% {diag(.)/rowSums(.)} # Sensitivity = TP/(Actual == T) ----
 mat %>% {diag(.)/rowSums(.)} %>% mean # simple mean of Sensitivity = TP/(Actual == T) ----
-# > mat %>% addmargins #----
+# > mat |> addmargins() #----
 #      1  2  3  4 Sum
 # 1   62  5  2  0  69
 # 2    6  8  2  1  17
@@ -681,7 +681,7 @@ mat %>% {diag(.)/rowSums(.) * colSums(.)/sum(.)} %>% sum # weighted mean of Sens
 
 # Specificity = TN/(Actual == FALSE) =====
 # Specificity = TN/(TN+FP) =====
-mat %>% addmargins #----
+mat |> addmargins() #----
 mat %>% {diag(.)} # True Positive = (Predicted == TRUE) & (Actual == TRUE) ----
 mat %>% {colSums(.) - diag(.)} # False Positive = (Predicted == TRUE) & (Actual == FALSE) = (Predicted == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
 mat %>% {rowSums(.) - diag(.)} # False Negative = (Predicted == FALSE) & (Actual == TRUE) = (Actual == TRUE) - (Predicted == TRUE) & (Actual == TRUE) ----
@@ -691,7 +691,7 @@ mat %>% {rowSums(.)} # count of (Actual == TRUE) ----
 mat %>% {sum(.) - rowSums(.)} # count of (Actual == FALSE) ----
 mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} # Specificity = TN/(Actual == FALSE) ----
 mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.))} %>% mean # simple mean of Specificity = TN/(Actual == FALSE) ----
-# > mat %>% addmargins #----
+# > mat |> addmargins() #----
 #      1  2  3  4 Sum
 # 1   62  5  2  0  69
 # 2    6  8  2  1  17

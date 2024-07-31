@@ -74,13 +74,13 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 #@ -----
 analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
-    mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+    mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
 analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
-    mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+    mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
 # > analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
 # +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
-# +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+# +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
 #                           Exposure0 Exposure1 Sum
 # PrimaryOutcome123456             60        34  94
 # SecondaryOutcomeP1456fhkl       128        65 193
@@ -105,7 +105,7 @@ analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>%
 # Sum                             474       256 730
 # > analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
 # +     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~mean(.==1, na.rm=T)) ) %>% 
-# +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t %>% addmargins #----
+# +     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
 #                           Exposure0  Exposure1        Sum
 # PrimaryOutcome123456          0.300 0.30088496 0.60088496
 # SecondaryOutcomeP1456fhkl     0.640 0.57522124 1.21522124

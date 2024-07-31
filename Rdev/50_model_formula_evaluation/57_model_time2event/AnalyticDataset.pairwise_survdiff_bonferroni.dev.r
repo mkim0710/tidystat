@@ -13,13 +13,13 @@ plot_surv200401 <- read_excel("plot_surv200401.xlsx") %>% mutate(
     , id = id |> as.factor()
 )
 
-plot_surv200401$stage %>% table #----
-plot_surv200401$stage2 %>% table #----
-# > plot_surv200401$stage %>% table #----
+plot_surv200401$stage |> table() #----
+plot_surv200401$stage2 |> table() #----
+# > plot_surv200401$stage |> table() #----
 # .
 #     1     4     5     6     7    10    12 
 # 17543  6633  1021   999   448 21378 23571 
-# > plot_surv200401$stage2 %>% table #----
+# > plot_surv200401$stage2 |> table() #----
 # .
 #     1     2     3     4 
 # 17543  6633  2468 44949 

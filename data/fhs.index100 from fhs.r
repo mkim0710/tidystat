@@ -1159,11 +1159,11 @@ structure(c(78L, 50L, 39L, 25L, 94L, 79L, 84L, 26L, 85L, 74L,
 fhs.index100 = fhs %>% map_df(function(x) {attr(x, "format.stata") = NULL; x})
 set.seed(1); fhs.index100$index100 = fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample
 fhs.index100$index100 |> summary() #----
-fhs.index100$index100 %>% table #----
+fhs.index100$index100 |> table() #----
 # > fhs$index100 |> summary() #----
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #    1.00   25.00   50.00   50.25   75.00  100.00 
-# > fhs.index100$index100 %>% table #----
+# > fhs.index100$index100 |> table() #----
 # .
 #   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25 
 #  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45 

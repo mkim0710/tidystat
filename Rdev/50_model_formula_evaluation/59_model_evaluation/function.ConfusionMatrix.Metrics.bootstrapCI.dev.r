@@ -14,8 +14,8 @@ tibble::tribble(
            "IIIb",   "III",
              "IV",    "IV"
       ) %>% bind_cols(read.table(file = "clipboard", sep = "\t", header=F)) %>%
-    set_names(c("Actual.old", "Actual", "I", "II", "III", "IV")) %>% 
-    tribble_paste #----
+    set_names(c("Actual.old", "Actual", "I", "II", "III", "IV")) |> 
+    tribble_paste() #----
 InputMatrix1.tbl = tibble::tribble(
     ~Actual.old, ~Actual, ~X1, ~X2, ~X3, ~X4,
            "Ia",     "I",  45,   2,   1,   0,
@@ -31,7 +31,7 @@ InputMatrix1.tbl = tibble::tribble(
 InputSquareMatrix1.tbl = InputMatrix1.tbl %>% select(-matches(".old$")) %>% 
         group_by(Actual) %>% summarise_all(sum) %>% 
         as_tibble
-InputSquareMatrix1.tbl %>% tribble_paste
+InputSquareMatrix1.tbl |> tribble_paste()
 InputSquareMatrix1.tbl = tibble::tribble(
     ~Actual, ~X1, ~X2, ~X3, ~X4,
         "I",  62,   5,   2,   0,

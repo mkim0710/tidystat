@@ -91,7 +91,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # attach(env1)
 # 
 # # t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% tribble_paste}
-# # nhis_heals_jk.sas7bdat.duplicated %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% tribble_paste
+# # nhis_heals_jk.sas7bdat.duplicated %>% t |> as.data.frame() %>% rownames_to_column("varname") |> tribble_paste()
 # # tibble::tribble(
 # #              ~varname,        ~V1,        ~V2,
 # #              "STND_Y",     "2014",     "2014",
