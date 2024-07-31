@@ -117,7 +117,8 @@ for (.dependancy in c("f_df.tribble_construct")) {
                KB = format(size/2^10, digits = 3, big.mark=","), 
                MB = format(size/2^20, digits = 3, big.mark=","), 
                GB = format(size/2^30, digits = 3, big.mark=","))
-    out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
+    # out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
+    out = out %>% mutate(filename = filename |> env1$f$f_path.relative()) 
     env1$f$f_df.tribble_construct(out)
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
 } 

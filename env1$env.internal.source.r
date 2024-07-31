@@ -199,6 +199,12 @@ env1$env.internal$ f_path_path.backup.overwrite <- function(.overwrite_from_path
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \% f_path.relative ====
+env1$f$ f_path.relative = function(path, basepath = env1$path$path1) {
+    path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## \% f_path.is_git_tracked  =======
 # Function to check if the current project or any of its parent directories are tracked by Git
 env1$env.internal$ f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
