@@ -726,7 +726,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 ## \$ .tmp\$objectname = "f_df.print_byVar" ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.print_byVar.dev.r  
 .tmp$objectname = "f_df.print_byVar"
-.tmp$object = function(df, byVar, n = 10) {
+.tmp$object = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
     df = df |> as_tibble()
     if(!"Num" %in% names(df)) df = df |> rownames_to_column("Num") |> mutate(Num = Num |> as.integer())
