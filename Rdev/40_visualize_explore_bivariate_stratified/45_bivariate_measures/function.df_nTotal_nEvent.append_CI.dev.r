@@ -277,7 +277,7 @@ function.n_p.CI(100, 0.1)
 #@@@ -----
 
 # tribble_paste = datapasta::tribble_paste
-# read.table(file = "clipboard", sep = "\t", header=T) %>% tribble_paste #----
+# read.table(file = "clipboard", sep = "\t", header=T) |> tribble_paste() #----
 df_nTotal_nEvent = tibble::tribble(
   ~Stage, ~nTotal, ~nEvent,
     "IA",   6303L,   1119L,

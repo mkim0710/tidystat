@@ -50,20 +50,20 @@ NA |> str_extract_all("[0-9]+")
 #@ caution) if there is character(0), you should not unlist~!----
 
 tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>% 
-    str_extract_all("[0-9]+ ?MG") %>% 
-    dput
+    str_extract_all("[0-9]+ ?MG") |> 
+    dput()
+tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>% 
+    str_extract_all("[0-9]+ ?MG") |> 
+    unlist() |> 
+    dput()
 tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>% 
     str_extract_all("[0-9]+ ?MG") %>% 
-    unlist %>% 
-    dput
+    map_chr(function(txt) txt) |> 
+    dput()
 tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>% 
     str_extract_all("[0-9]+ ?MG") %>% 
-    map_chr(function(txt) txt) %>% 
-    dput
-tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>% 
-    str_extract_all("[0-9]+ ?MG") %>% 
-    map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) %>% 
-    dput
+    map_chr(function(txt) txt %>% {if(length(.)==0) as.character(NA) else .} ) |> 
+    dput()
 # > tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>% 
 # +     str_extract_all("[0-9]+ ?MG") %>% 
 # +     dput

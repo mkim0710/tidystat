@@ -138,9 +138,9 @@ object.coxph %>% str #----
 
 
 
-#@ object.coxph$coefficients |> names() %>% dput ----
-object.coxph$coefficients |> names() %>% dput
-# > object.coxph$coefficients |> names() %>% dput
+#@ object.coxph$coefficients |> names() |> dput() ----
+object.coxph$coefficients |> names() |> dput()
+# > object.coxph$coefficients |> names() |> dput()
 # c("AGE", "SEXFemale", "CigaretteCurrentSmokerTRUE", "BMI_Q_yr18.5-", 
 # "BMI_Q_yr23-", "BMI_Q_yr25-", "BMI_Q_yr30-", "CCI_yr", "pmhx_DM_OR_glucose_ge126TRUE", 
 # "total_ddd_yr_METFORMIN.ge30[30,Inf]")
@@ -164,12 +164,12 @@ object.coxph$formula |> as.list() %>% str
 object.coxph$terms %>% str
 object.coxph$terms %>% attr(., "dataClasses") %>% str
 which(object.coxph$terms %>% attr(., "dataClasses") == "logical")
-which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% dput
+which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() |> dput()
 (which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names()) %*% c(F, T)
 which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c(F, T)), .)} %>% str
 which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% str
 which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
-which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
 # > object.coxph$terms %>% str
 # Classes 'terms', 'formula'  language Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ AGE + SEX + CigaretteCurrentSmoker + BMI_Q_yr + CCI_yr + pmh| __truncated__
 #   ..- attr(*, "variables")= language list(Surv(time = fuduration_yr, event = evnttrth_C24_r), AGE, SEX, CigaretteCurrentSmoker, BMI_Q_yr, CCI_yr, pmhx| __truncated__
@@ -195,7 +195,7 @@ which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %
 # > which(object.coxph$terms %>% attr(., "dataClasses") == "logical")
 #   CigaretteCurrentSmoker pmhx_DM_OR_glucose_ge126 
 #                        4                        7 
-# > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% dput
+# > which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() |> dput()
 # c("CigaretteCurrentSmoker", "pmhx_DM_OR_glucose_ge126")
 # > (which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names()) %*% c(F, T)
 # Error in (which(object.coxph$terms %>% attr(., "dataClasses") == "logical") %>%  : 
@@ -210,7 +210,7 @@ which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %
 #  $ pmhx_DM_OR_glucose_ge126: chr [1:2] "FALSE" "TRUE"
 # > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)}
 # named list()
-# > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} %>% dput
+# > which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)} |> dput()
 # structure(list(), .Names = character(0))
 
 
@@ -409,8 +409,8 @@ object.coxph.summary[c("coefficients", "conf.int")] %>% map(round, max(2, digits
 # 9         pmhx_DM_OR_glucose_ge126TRUE   0.832 2.299000e+00     1.171  0.711    0.477 4.35000e-01     0.232    22.809
 # 10 total_ddd_yr_METFORMIN.ge30[30,Inf] -19.905 0.000000e+00 27672.586 -0.001    0.999 4.41348e+08     0.000       Inf
 
-object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join) |> names() %>% dput
-# > object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join) |> names() %>% dput
+object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join) |> names() |> dput()
+# > object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join) |> names() |> dput()
 # Joining, by = c("rowname", "exp(coef)")
 # c("rowname", "coef", "exp(coef)", "se(coef)", "z", "Pr(>|z|)", 
 # "exp(-coef)", "lower .95", "upper .95")
@@ -475,7 +475,7 @@ digits = 3
             add_column(" (", .after = "exp(coef)") %>%
             add_column(", ", .after = "lower .95") %>%
             add_column(")", .after = "upper .95") %>%
-            unite(sep = "") %>% unlist
+            unite(sep = "") |> unlist()
         , p_value = paste0("p=", res$`Pr(>|z|)` %>% sprintf("%.3f", .)) %>% gsub("p=0.000", "p<0.001", .)
         , star = res$`Pr(>|z|)` %>% 
             cut(breaks = c(0, 0.001, 0.005, 0.01, 0.05, 0.1, 1)
@@ -505,7 +505,7 @@ digits = 3
     tbl_varname_level_coefficients_res$`exp(coef)`[is.na(tbl_varname_level_coefficients_res$`exp(coef)`) & !is.na(tbl_varname_level_coefficients_res$level)] = 1
     tbl_varname_level_coefficients_res$HRCI[is.na(tbl_varname_level_coefficients_res$HRCI) & !is.na(tbl_varname_level_coefficients_res$level)] = "(reference)"
     tbl_varname_level_coefficients_res %>% print(n=99)
-    tbl_varname_level_coefficients_res |> names() %>% dput
+    tbl_varname_level_coefficients_res |> names() |> dput()
     # > tbl_varname_level_coefficients_res %>% print(n=99)
     # # A tibble: 15 x 11
     # varname                     level    varnamelevel                        coefficients HRCI                           p_value star  `exp(coef)` `lower .95` `upper .95` `Pr(>|z|)`
@@ -525,11 +525,11 @@ digits = 3
     # 13 pmhx_DM_OR_glucose_ge126    TRUE     pmhx_DM_OR_glucose_ge126TRUE               0.832 "        2.299 (0.232, 22.81)" p=0.477 "   "     2.30e+0      0.232        22.8     0.477  
     # 14 AGE                         NA       AGE                                        0.227 "        1.255 (1.085,  1.45)" p=0.002 ***       1.26e+0      1.08          1.45    0.00225
     # 15 CCI_yr                      NA       CCI_yr                                     0.138 "        1.148 (0.667,  1.97)" p=0.619 "   "     1.15e+0      0.667         1.97    0.619  
-    # > tbl_varname_level_coefficients_res |> names() %>% dput
+    # > tbl_varname_level_coefficients_res |> names() |> dput()
     # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
     # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
     # txt %>% str_extract_all("[A-z0-9_]+") %>% str
-    # txt %>% str_extract_all("[A-z0-9_]+") %>% unlist |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
+    # txt %>% str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
     # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
     
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())

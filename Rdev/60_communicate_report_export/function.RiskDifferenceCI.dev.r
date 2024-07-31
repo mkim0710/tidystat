@@ -807,12 +807,12 @@ AnalyticDataset =
     AnalyticDataset.byCaseExposure[rep(seq_len(nrow(AnalyticDataset.byCaseExposure)), AnalyticDataset.byCaseExposure$n), ] %>% 
     select(-n)
 AnalyticDataset |> str() #----
-AnalyticDataset %>% table %>% addmargins #----
+AnalyticDataset |> table() |> addmargins() #----
 # > AnalyticDataset |> str() #----
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	554 obs. of  2 variables:
 #  $ Case    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 #  $ Exposure: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-# > AnalyticDataset %>% table %>% addmargins #----
+# > AnalyticDataset |> table() |> addmargins() #----
 #        Exposure
 # Case    FALSE TRUE Sum
 #   FALSE   341  108 449
@@ -880,7 +880,7 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 
 # #@ AnalyticDataset.table ====
-# AnalyticDataset.table = AnalyticDataset %>% table
+# AnalyticDataset.table = AnalyticDataset |> table()
 # AnalyticDataset.table |> str() #----
 # AnalyticDataset.table |> dput() #----
 # # > AnalyticDataset.table |> str() #----

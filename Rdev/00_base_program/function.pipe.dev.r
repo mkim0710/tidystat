@@ -34,7 +34,7 @@ library(tidyverse)
 # https://stackoverflow.com/questions/22959635/remove-duplicated-rows-using-dplyr
 set.seed(1234)
 df.example = data.frame(x=sample(0:1,10,replace=T),y=sample(0:1,10,replace=T)) %>% rownames_to_column
-# df.example %>% tribble_paste #----
+# df.example |> tribble_paste() #----
 tibble::tribble(
     ~rowname, ~x, ~y,
          "1", 0L, 1L,

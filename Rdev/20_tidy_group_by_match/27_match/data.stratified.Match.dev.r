@@ -20,7 +20,7 @@
 #     data.nest = data %>% group_by(MatchingGroupID) %>% nest
 #     rm(data)
 #     data.nest = data.nest %>% mutate(data = map2(data, MatchingGroupID, function(df, byVar) {
-#         minMatch = (df[[varname4MatchingUpon]] %>% table %>% min)
+#         minMatch = (df[[varname4MatchingUpon]] |> table() %>% min)
 #         # if(minMatch == 0) {
 #         if(length(unique(df[[varname4MatchingUpon]])) < 2) {
 #             out = df[0, ]
@@ -88,7 +88,7 @@
 # ) {
 #     .mydata.strata_list = .mydata %>% data.strata_list(.vars4strata = .vars4strata)
 #     out = .mydata.strata_list %>% map(function(df) {
-#         out = df[[.exposure]] %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
+#         out = df[[.exposure]] |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
 #         parent.x = get(".x", envir = parent.frame())
 #         attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
 #         names(out)[1] = attr(out, "parent_name")
@@ -115,7 +115,7 @@ data.tab_strata_exposure = function(
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
     # tmp = table(.mydata$strata, .mydata[[.exposure]]) |> as.data.frame()
     # out = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame.matrix %>% rownames_to_column
-    out = table(.mydata$strata, .mydata[[.exposure]]) %>% addmargins %>% as.data.frame.matrix %>% rownames_to_column
+    out = table(.mydata$strata, .mydata[[.exposure]]) |> addmargins() %>% as.data.frame.matrix %>% rownames_to_column
     
     # out$total = rowSums(out[, 2:3], na.rm = T)
     out$ratio = out[[2]] / out[[3]] 
@@ -295,7 +295,7 @@ rhc_mydata.strata_list[[1]]
 # 10     1     0     0      0     0       0     0      0 18.16299      0      65         0     1 [10,20) 0_[10,20)
 # # ... with 12 more rows
 rhc_mydata.strata_list %>% map(function(df) {
-    out = df$treatment %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
+    out = df$treatment |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
     parent.x = get(".x", envir = parent.frame())
     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
     names(out)[1] = attr(out, "parent_name")
@@ -303,7 +303,7 @@ rhc_mydata.strata_list %>% map(function(df) {
     out
 }) %>% reduce(bind_rows)
 # > rhc_mydata.strata_list %>% map(function(df) {
-# +     out = df$treatment %>% table |> as.data.frame() %>% column_to_rownames(var = ".")
+# +     out = df$treatment |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
 # +     parent.x = get(".x", envir = parent.frame())
 # +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
 # +     names(out)[1] = attr(out, "parent_name")

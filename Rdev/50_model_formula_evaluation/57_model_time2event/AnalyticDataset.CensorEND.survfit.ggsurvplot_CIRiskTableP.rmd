@@ -371,7 +371,7 @@ df_NewDMv3.Time2Censor_NewDMv3 |> dplyr::select(time, event, Group, StudyPopulat
 df_NewDMv3.CensorEND %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 df_NewDMv3.CensorEND |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.$StudyPopulation, summary)
 all.equal(df_NewDMv3.Time2Censor_NewDMv3 |> dplyr::select(time, event), df_NewDMv3.CensorEND |> dplyr::select(time, event))
-table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = "always") %>% addmargins
+table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = "always") |> addmargins()
 ```
   
   

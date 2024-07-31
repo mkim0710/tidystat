@@ -48,7 +48,7 @@ c("a/b", "c/a", "b", "a") |> str_split("/") %>% map(str_subset,"^(?!.*a)") |> st
 
 #@ debugged v4 -----
 tmp.df = 
-    d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper %>% table %>% 
+    d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper |> table() %>% 
     sort(decreasing = T) |> as_tibble() %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
     # $is.combination
     mutate( is.combination = grepl("/", concept_name.toupper) ) %>%  
@@ -77,7 +77,7 @@ tmp.df %>% select(concept_name.toupper.rm_BrandName, is.combination) %>%
     mutate(duplicated = duplicated(concept_name.toupper.rm_BrandName)) |> print(n=99)
 # > #@ debugged v4 -----
 # > tmp.df = 
-# +     d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper %>% table %>% 
+# +     d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm.metformin$concept_name.toupper |> table() %>% 
 # +     sort(decreasing = T) |> as_tibble() %>% set_names(c("concept_name.toupper", "n")) %>% mutate(concept_name.toupper = concept_name.toupper %>% as.factor) %>% 
 # +     # $is.combination
 # +     mutate( is.combination = grepl("/", concept_name.toupper) ) %>%  
