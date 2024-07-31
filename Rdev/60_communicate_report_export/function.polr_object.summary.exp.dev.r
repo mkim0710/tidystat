@@ -211,9 +211,9 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
     # # PM25.tn1m_tn12m.mean.quartile[23.7,25.5) -0.1620685 0.4009898
     # # PM25.tn1m_tn12m.mean.quartile[25.5,35.6] -0.1122733 0.4679151
     
-    polr_object.summary.coef.df = polr_object %>% 
-        summary %>% 
-        coef |> 
+    polr_object.summary.coef.df = polr_object |> 
+        summary() |> 
+        coef() |> 
         as.data.frame() %>% rownames_to_column %>% 
         mutate(LowerLimit = Value - 2 * `Std. Error`, UpperLimit = Value + 2 * `Std. Error`) %>% 
         mutate(PValue = pnorm(abs(`t value`), lower.tail = FALSE) * 2)     
@@ -392,9 +392,9 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
     # PM25.tn1m_tn12m.mean.quartile[25.5,35.6] -0.1122733 0.4679151
     
     
-    polr_object.summary.coef.df = polr_object %>% 
-        summary %>% 
-        coef |> 
+    polr_object.summary.coef.df = polr_object |> 
+        summary() |> 
+        coef() |> 
         as.data.frame() %>% rownames_to_column %>% 
         mutate(LowerLimit.approx = Value - 2 * `Std. Error`, UpperLimit.approx = Value + 2 * `Std. Error`) %>% 
         mutate(PValue.approx = pnorm(abs(`t value`), lower.tail = FALSE) * 2)     

@@ -320,10 +320,10 @@ object.coxph$residuals %>% str
 #  - attr(*, "names")= chr [1:4563] "1" "2" "3" "4" ...
 
 
-#@ object.coxph %>% coef %>% str -----
-object.coxph %>% coef %>% str
+#@ object.coxph |> coef() %>% str -----
+object.coxph |> coef() %>% str
 object.coxph %>% confint %>% str
-# > object.coxph %>% coef %>% str ----
+# > object.coxph |> coef() %>% str ----
 #  Named num [1:10] 0.227 -1.221 1.16 18.752 1.113 ...
 #  - attr(*, "names")= chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
 # > object.coxph %>% confint %>% str ----
