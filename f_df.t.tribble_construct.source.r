@@ -651,8 +651,12 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 # .tmp$object = function(vec) {
 #     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') |> paste0('c("',.,'")\n') |> cat("  \n", sep="")
 # }
-.tmp$object = function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
-    env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
+.tmp$object = function(vec, space_between_vec_elements="  \n  ", sep_parentheses = FALSE, end_of_text = "  \n") {
+    if(space_between_vec_elements="  \n  " && sep_parentheses = FALSE && end_of_text = "  \n") {
+        vec |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}  # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
+    } else {
+        env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
+    }
 }
 if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))
@@ -661,6 +665,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
+    # vec |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}  # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
     # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat("  \n", sep="")
     if (is.null(vec)) {
         return("NULL")
