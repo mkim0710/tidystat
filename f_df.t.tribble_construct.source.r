@@ -722,6 +722,25 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
     # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \$ .tmp\$objectname = "f_df.print_byVar" ----
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.print_byVar.dev.r  
+.tmp$objectname = "f_df.print_byVar"
+.tmp$object = function(df, byVar) {
+    byVar <- enquo(byVar)
+    df %>% 
+        mutate(!!quo_name(byVar) := !!byVar %>% as.character() %>% replace_na("N/A")) %>% 
+        by(.$sex, function(df_subset) {
+            df_subset %>%
+                dplyr::select(-!!quo_name(byVar)) %>%
+                print(n = 99)
+        })
+}
+if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
+    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))
+    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
+    # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
+}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ for (.dependancy in c("")) { -----
