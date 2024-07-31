@@ -251,7 +251,7 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_
   
   
 #@@ START) dev) f_path0.list_path_hierarchy ----  
-## \$ original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
+## \$ original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)
@@ -281,7 +281,7 @@ print(original_function(path0, path_last, .max_hierarchy))
 ```
 
 
-## \$ v2_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
+## \$ v2_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)
@@ -322,7 +322,7 @@ print(v2_function(path0, path_last, .max_hierarchy))
 ```
 
 
-## \$ v3_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
+## \$ v3_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Version 3 function
 v3_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
@@ -354,7 +354,7 @@ print(v3_function(path0, path_last, .max_hierarchy))
 ```
 
 
-## \$ v4_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
+## \$ v4_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Version 4 function
 v4_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {

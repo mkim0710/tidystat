@@ -320,7 +320,7 @@ data %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
 #                              3:1           4:1 
 ```
   
-## library(ggplot2)
+## library(ggplot2)  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(ggplot2)
@@ -371,7 +371,7 @@ plot
 ```
   
   
-## \% table_plot
+## \% table_plot  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 table_plot <- data %>%
@@ -391,7 +391,7 @@ table_plot
 ```
   
   
-## library(patchwork)
+## library(patchwork)  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(patchwork)
@@ -402,7 +402,7 @@ plot / table_plot + plot_layout(heights = c(3, 1))
 
 
 
-## library(gridExtra)
+## library(gridExtra)  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/d89ee966-ff08-470d-af04-d78087eaecf9

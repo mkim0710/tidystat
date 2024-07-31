@@ -492,7 +492,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # @@ Dev) f_df.print_byVar() ----  
 
 ## \% f_df.print_byVar = function(df, byVar, n = NULL) { ----  
-### \% by(df, INDICES = df[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
+### \% by(df, INDICES = df[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
@@ -508,7 +508,7 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-### \% df \%>\% {by(., INDICES = .[[quo_name(byVar)]], function(df_subset) df_subset |> dplyr::select(-!!quo_name(byVar)))} 
+### \% df \%>\% {by(., INDICES = .[[quo_name(byVar)]], function(df_subset) df_subset |> dplyr::select(-!!quo_name(byVar)))}  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
@@ -524,7 +524,7 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-### \% df \%>\% {by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})}
+### \% df \%>\% {by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})}  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
@@ -540,7 +540,7 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-### \% df \%>\% by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
+### \% df \%>\% by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
@@ -556,7 +556,7 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-### \% by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
+### \% by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
@@ -572,7 +572,7 @@ data3 |> f_df.print_byVar(sex)
 ```
 
 
-### \% by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) 
+### \% by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
@@ -589,7 +589,7 @@ data3 |> f_df.print_byVar(sex)
   
   
 
-### \% PENDING) group_by(!!byVar) %>% group_walk(~ {
+### \% PENDING) group_by(!!byVar) %>% group_walk(~ {  
 ```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
