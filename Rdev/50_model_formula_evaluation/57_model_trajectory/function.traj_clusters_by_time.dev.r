@@ -12,7 +12,7 @@ dataset |> str()
 
 
 function.t0_value_ge20.dup_max.lag.n_d0 = function(dataset, varname4ID = "ID", varname4value = "value", varname4time = "time") {
-    dataset$ID = dataset[[varname4ID]] %>% as.factor
+    dataset$ID = dataset[[varname4ID]] |> as.factor()
     library(lubridate)
     dataset$time = dataset[[varname4time]] %>% floor_date("day")
     dataset.t0_value_ge20 = dataset %>% dplyr::filter(!!rlang::sym(varname4value) >= 20) %>% group_by(ID) %>% summarise(t0 = min(time)) %>% left_join(dataset) %>% mutate(days_from_t0 = as.Date(time) - as.Date(t0)) %>% 
@@ -80,17 +80,17 @@ function.dataset.transform = function(dataset, varname4value = "value", varname4
         dataset %>% 
         select(ID, sequence, !!rlang::sym(varname4value)) %>%
         spread(key = sequence, value = !!rlang::sym(varname4value)) %>% 
-        na.omit %>% as.data.frame
+        na.omit |> as.data.frame()
     out$time =
         dataset %>% 
         select(ID, sequence, !!rlang::sym(varname4time)) %>%
         spread(key = sequence, value = !!rlang::sym(varname4time)) %>% 
-        na.omit %>% as.data.frame
+        na.omit |> as.data.frame()
     out$sequence =
         dataset %>% 
         select(ID, sequence) %>% 
         spread(key = sequence, value = sequence) %>% 
-        na.omit %>% as.data.frame
+        na.omit |> as.data.frame()
     out
 }
 

@@ -5,12 +5,12 @@ library(tidyverse)
 
 library(readxl)
 plot_surv200401 <- read_excel("plot_surv200401.xlsx") %>% mutate(
-    stage = stage %>% as.factor
-    , stage2 = stage2 %>% as.factor
-    # , SURV = SURV %>% as.factor
-    , age_70 = age_70 %>% as.factor
-    , opnum2 = opnum2 %>% as.factor
-    , id = id %>% as.factor
+    stage = stage |> as.factor()
+    , stage2 = stage2 |> as.factor()
+    # , SURV = SURV |> as.factor()
+    , age_70 = age_70 |> as.factor()
+    , opnum2 = opnum2 |> as.factor()
+    , id = id |> as.factor()
 )
 
 plot_surv200401$stage %>% table #----

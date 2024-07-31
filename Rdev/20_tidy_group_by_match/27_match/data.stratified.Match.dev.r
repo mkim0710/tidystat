@@ -15,7 +15,7 @@
 #     set.seed(seed)
 #     data$runif = runif(nrow(data))
 #     data[varnames4MatchingBy] = data[varnames4MatchingBy] %>% map_df(as.factor)
-#     data$MatchingGroupID = data[varnames4MatchingBy] %>% apply(1, paste0, collapse = "_") %>% as.factor
+#     data$MatchingGroupID = data[varnames4MatchingBy] %>% apply(1, paste0, collapse = "_") |> as.factor()
 #     data = data %>% arrange(MatchingGroupID, desc(!!rlang::sym(varname4MatchingUpon)), runif) |> as_tibble()
 #     data.nest = data %>% group_by(MatchingGroupID) %>% nest
 #     rm(data)
@@ -25,7 +25,7 @@
 #         if(length(unique(df[[varname4MatchingUpon]])) < 2) {
 #             out = df[0, ]
 #         } else {
-#             # df[[varname4MatchingUpon]] = df[[varname4MatchingUpon]] %>% as.factor
+#             # df[[varname4MatchingUpon]] = df[[varname4MatchingUpon]] |> as.factor()
 #             out = df[0, ]
 #             # for (i in levels(df[[varname4MatchingUpon]])) {
 #             for (i in unique(df[[varname4MatchingUpon]])) {
@@ -113,7 +113,7 @@ data.tab_strata_exposure = function(
     
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
-    # tmp = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame
+    # tmp = table(.mydata$strata, .mydata[[.exposure]]) |> as.data.frame()
     # out = table(.mydata$strata, .mydata[[.exposure]]) %>% as.data.frame.matrix %>% rownames_to_column
     out = table(.mydata$strata, .mydata[[.exposure]]) %>% addmargins %>% as.data.frame.matrix %>% rownames_to_column
     
@@ -212,7 +212,7 @@ data.strata_list = function(
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
-    .mydata$strata = .mydata$strata %>% as.factor
+    .mydata$strata = .mydata$strata |> as.factor()
     out = map(
         levels(.mydata$strata)
         , function(chr) {
@@ -1407,7 +1407,7 @@ data.stratified.Match = function(
         # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
         if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
         .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
-        .mydata$strata = .mydata$strata %>% as.factor
+        .mydata$strata = .mydata$strata |> as.factor()
         out = map(
             levels(.mydata$strata)
             , function(chr) {
@@ -1744,7 +1744,7 @@ data.stratified.Match = function(
     # print(paste0("names(.mydata.strata_list.Match) : ", deparse(names(.mydata.strata_list.Match))))
     # print(paste0("names(.mydata.strata_list.Match)[warning_lgl] : ", deparse(names(.mydata.strata_list.Match)[warning_lgl])))
     out$data = .mydata.strata_list.Match[!warning_lgl] %>% map(function(x) x$data) %>% reduce(rbind)
-    out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID) %>% as.factor
+    out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID) |> as.factor()
     
     if (sum(warning_lgl) > 0) {
         # warning(paste0("length(unique(.mydata[[.exposure]]) < 2",": \n", paste0(warning_which, collapse = ", ")))

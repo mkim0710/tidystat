@@ -342,7 +342,7 @@ for (j in c("fkcal", "atotfat", "asat")) {
     }
     permutation_results_multiple[[j]] = unlist(permutation_results_single)
 }
-permutation_results_multiple = permutation_results_multiple %>% as_data_frame
+permutation_results_multiple = permutation_results_multiple |> as_data_frame()
 permutation_results_multiple
 warnings()
 # > permutation_results_multiple
@@ -381,7 +381,7 @@ for (j in c("fkcal", "atotfat", "asat", "aoleic", "alinolc", "achol", "acarb", "
     }
     permutation_results_multiple[[j]] = unlist(permutation_results_single)
 }
-permutation_results_multiple = permutation_results_multiple %>% as_data_frame
+permutation_results_multiple = permutation_results_multiple |> as_data_frame()
 permutation_results_multiple #----
 # > permutation_results_multiple #----
 # # A tibble: 500 x 26

@@ -884,7 +884,7 @@ data.strata_list = function(
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.strata_list.ccwc")
     if ("strata" %in% names(.mydata)) stop("\"strata\" %in% names(.mydata)")
     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, FUN = paste, collapse = paste.collapse)
-    .mydata$strata = .mydata$strata %>% as.factor
+    .mydata$strata = .mydata$strata |> as.factor()
     out = map(
         levels(.mydata$strata)
         , function(chr) {
@@ -1074,7 +1074,7 @@ data.stratified.ccwc = function(
     # out$data = .mydata.strata_list.ccwc[!warning_lgl] %>% map(function(x) x$data) %>% reduce(rbind)
     # debug 180519 v5
     out$data = .mydata.strata_list.ccwc %>% map(function(x) x$data) %>% bind_rows
-    out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID) %>% as.factor
+    out$data$MatchingPairID = paste0(out$data$strata, "_", out$data$MatchingPairID) |> as.factor()
     
     if (sum(warning_lgl) > 0) {
         # warning(paste0("length(unique(.mydata[[varname4event]]) < 2",": \n", paste0(warning_which, collapse = ", ")))
@@ -1488,7 +1488,7 @@ diet.stratified.ccwc #----
 #         stop("\"strata\" %in% names(.mydata)")
 #     .mydata$strata = .mydata[, .vars4strata] %>% apply(MARGIN = 1, 
 #         FUN = paste, collapse = paste.collapse)
-#     .mydata$strata = .mydata$strata %>% as.factor
+#     .mydata$strata = .mydata$strata |> as.factor()
 #     out = map(levels(.mydata$strata), function(chr) {
 #         out2 = .mydata %>% dplyr::filter(strata == (!(!chr))) |> as_tibble()
 #         out2

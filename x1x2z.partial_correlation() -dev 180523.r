@@ -26,7 +26,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
     names(out) = cor_method
     out = out %>% map(unlist)
     out = out |> as.data.frame() 
-    out = out %>% t %>% as.data.frame
+    out = out %>% t |> as.data.frame()
     out
 }
 
@@ -102,7 +102,7 @@ out = map(
 names(out) = cor_method
 out = out %>% map(unlist)
 out = out |> as.data.frame() 
-out = out %>% t %>% as.data.frame
+out = out %>% t |> as.data.frame()
 out
 # > out
 #          unadjusted_cor partial_cor
@@ -151,7 +151,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
     names(out) = cor_method
     out = out %>% map(unlist)
     out = out |> as.data.frame() 
-    out = out %>% t %>% as.data.frame
+    out = out %>% t |> as.data.frame()
     out
 }
 
@@ -381,10 +381,10 @@ out |> str()
 # #  $ kendall : Named num [1:6] 0.59555 0.000671 3.401353 0.445522 0.005307 ...
 # #   ..- attr(*, "names")= chr [1:6] "unadjusted_cor" "unadjusted_corp.value" "unadjusted_corstatistic.z" "partial_cor" ...
 # out = out |> as.data.frame() 
-# # > out = out %>% as.data.frame
+# # > out = out |> as.data.frame()
 # # Error in (function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE,  : 
 # #   arguments imply differing number of rows: 10, 6
-# out = out %>% t %>% as.data.frame
+# out = out %>% t |> as.data.frame()
 # out
 # # > out
 # #          unadjusted_cor partial_cor
@@ -403,8 +403,8 @@ out %>% map(unlist) |> str()
 #   ..- attr(*, "names")= chr [1:6] "unadjusted_cor" "unadjusted_corp.value" "unadjusted_corstatistic.S" "partial_cor" ...
 #  $ kendall : Named num [1:6] 0.59555 0.000671 3.401353 0.445522 0.005307 ...
 #   ..- attr(*, "names")= chr [1:6] "unadjusted_cor" "unadjusted_corp.value" "unadjusted_corstatistic.z" "partial_cor" ...
-out %>% map(unlist) %>% enframe %>% unnest %>% as.data.frame
-# > out %>% map(unlist) %>% enframe %>% unnest %>% as.data.frame
+out %>% map(unlist) %>% enframe %>% unnest |> as.data.frame()
+# > out %>% map(unlist) %>% enframe %>% unnest |> as.data.frame()
 #        name        value
 # 1   pearson 7.818523e-01
 # 2   pearson 5.285640e-01
@@ -909,8 +909,8 @@ out |> unlist() |> str()
 #  Named num [1:22] 7.82e-01 5.29e-01 9.07e-01 2.84e-05 5.47 ...
 #  - attr(*, "names")= chr [1:22] "pearson.unadjusted_cor.cor" "pearson.unadjusted_cor.conf.int1" "pearson.unadjusted_cor.conf.int2" "pearson.unadjusted_cor.p.value" ...
 
-out |> unlist() %>% as.data.frame
-# > out |> unlist() %>% as.data.frame
+out |> unlist() |> as.data.frame()
+# > out |> unlist() |> as.data.frame()
 #                                                .
 # pearson.unadjusted_cor.cor          7.818523e-01
 # pearson.unadjusted_cor.conf.int1    5.285640e-01
@@ -1193,7 +1193,7 @@ out |> str()
 #   ..$ partial_cor.statistic   : Named num 2.79
 #   .. ..- attr(*, "names")= chr "z"
 
-out |> unlist() %>% as.data.frame
+out |> unlist() |> as.data.frame()
 # > out |> unlist() |> as.data.frame() ----
 #                                                .
 # pearson.unadjusted_cor.cor          7.818523e-01

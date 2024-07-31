@@ -532,7 +532,7 @@ all.equal(dummies %>% function.indicators2factor, iris$Species)
 
 
 
-# n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head = n1_2016_withlabels_EPI522_merge_n2_recode1026_drop %>% select(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% head(10) %>% as.data.frame
+# n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head = n1_2016_withlabels_EPI522_merge_n2_recode1026_drop %>% select(Alcohol_le1pwk, Alcohol_ge2le3pwk, Alcohol_ge4pwk) %>% head(10) |> as.data.frame()
 # n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head |> dput()
 n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head = 
     structure(list(

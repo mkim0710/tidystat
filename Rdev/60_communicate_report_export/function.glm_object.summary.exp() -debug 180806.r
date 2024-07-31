@@ -57,7 +57,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
         , sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), glm_object.confint.df$`97.5 %`)
         , ")"
     ), stringsAsFactors = F)
-    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     tmp.df$p_value = sprintf("%.3f", glm_object.summary.coef.df$`Pr(>|z|)`)
     tmp.df$p_value[glm_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
 
@@ -330,7 +330,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
         , sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), glm_object.confint.df$`97.5 %`)
         , ")"
     ), stringsAsFactors = F)
-    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     varname4Pr = colnames(glm_object.summary.coef.df) %>% grep("^Pr", ., value = T)  # debug 180806) in glm() `Pr(>|z|)`, in svyglm() `Pr(>|t|)`
     tmp.df$p_value = sprintf("%.3f", glm_object.summary.coef.df[[varname4Pr]])
     tmp.df$p_value[glm_object.summary.coef.df[[varname4Pr]] <= 0.001] = "<0.001"

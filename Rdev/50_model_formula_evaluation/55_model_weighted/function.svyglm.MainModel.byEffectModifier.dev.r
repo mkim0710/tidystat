@@ -54,7 +54,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
         , ")"
     ), stringsAsFactors = F)
 
-    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     varname4Pr = colnames(glm_object.summary.coef.df) %>% grep("^Pr", ., value = T)  # debug 180806) in glm() `Pr(>|z|)`, in svyglm() `Pr(>|t|)`
     tmp.df$p_value = sprintf("%.3f", glm_object.summary.coef.df[[varname4Pr]])
     tmp.df$p_value[glm_object.summary.coef.df[[varname4Pr]] <= 0.001] = "<0.001"
@@ -289,8 +289,8 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 ) %>% full_join(
     svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGROUP + RACE_White + MARITAL_Married + INC25KMOD_gt75k + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
-) %>% 
-    as.data.frame
+) |> 
+    as.data.frame()
 # > (
 # +     svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Married + INC25K + POVGROUP6_0812CT + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
 # +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".11var")))
@@ -346,8 +346,8 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 ) %>% full_join(
     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".4var")))
-) %>% 
-    as.data.frame
+) |> 
+    as.data.frame()
 # > (
 # +     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
 # +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
@@ -386,8 +386,8 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 ) %>% full_join(
     svyglm(Depressed ~ SSQ_5_6_adequate * US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var.inter")))
-) %>% 
-    as.data.frame
+) |> 
+    as.data.frame()
 # > (
 # +     svyglm(Depressed ~ SSQ_5_6_adequate + US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
 # +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var")))
@@ -434,8 +434,8 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 ) %>% full_join(
     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_F.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_F.10var")))
-) %>% 
-    as.data.frame
+) |> 
+    as.data.frame()
 # > (
 # +     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_T.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
 # +         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_T.10var")))
@@ -495,8 +495,8 @@ function.svyglm.MainModel.interaction = function(
     ) %>% full_join(
         svyglm(formula4EffectModifier, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>%
             set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".", subscript4MainModel, ".inter")))
-    , by = varname4PrimaryKey) %>% 
-        as.data.frame
+    , by = varname4PrimaryKey) |> 
+        as.data.frame()
 }
 function.svyglm.MainModel.interaction(formula4MainModel = formula4MainModel, data.svydesign = data.svydesign, subscript4MainModel = "10var")  
 # > function.svyglm.MainModel.interaction(formula4MainModel = formula4MainModel, data.svydesign = data.svydesign, subscript4MainModel = "10var")
@@ -561,9 +561,9 @@ function.svyglm.MainModel.byEffectModifier = function(
         , nYbin.wt = data.svydesign %>% update(tmp = as.numeric(!!rlang::sym(varname4Ybin) == T)) %>% svytotal(~tmp, .)
         , pYbin.wt = data.svydesign %>% update(tmp = as.numeric(!!rlang::sym(varname4Ybin) == T)) %>% svymean(~tmp, .)
     )
-    if (is.logical(data[[varname4EffectModifier]])) data[[varname4EffectModifier]] = data[[varname4EffectModifier]] %>% as.factor
-    if (is.numeric(data[[varname4EffectModifier]]) & n_distinct(data[[varname4EffectModifier]]) <= 10) data[[varname4EffectModifier]] = data[[varname4EffectModifier]] %>% as.factor
-    # if (is.numeric(data[[varname4EffectModifier]]) & n_distinct(data[[varname4EffectModifier]]) <= 12) data[[varname4EffectModifier]] = data[[varname4EffectModifier]] %>% as.factor
+    if (is.logical(data[[varname4EffectModifier]])) data[[varname4EffectModifier]] = data[[varname4EffectModifier]] |> as.factor()
+    if (is.numeric(data[[varname4EffectModifier]]) & n_distinct(data[[varname4EffectModifier]]) <= 10) data[[varname4EffectModifier]] = data[[varname4EffectModifier]] |> as.factor()
+    # if (is.numeric(data[[varname4EffectModifier]]) & n_distinct(data[[varname4EffectModifier]]) <= 12) data[[varname4EffectModifier]] = data[[varname4EffectModifier]] |> as.factor()
     # #  Error in onestrat(x[index, , drop = FALSE], clusters[index], nPSU[index][1],  : 
     # #   Stratum (5) has only one PSU at stage 1 
     # # 29.

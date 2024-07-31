@@ -159,7 +159,7 @@ trainset.cv.glmnet_alphas_cox = function(
     trainset_colnames_levels$terms.inner[
         trainset_colnames_levels$colnames %in% varname4y
         ] = "varname4y"
-    trainset_colnames_levels$terms.inner = trainset_colnames_levels$terms.inner %>% as.factor
+    trainset_colnames_levels$terms.inner = trainset_colnames_levels$terms.inner |> as.factor()
     
     mf.response <- model.extract(mf, "response")
     if (!inherits(mf.response, "Surv")) stop("Response must be a survival object")
@@ -170,7 +170,7 @@ trainset.cv.glmnet_alphas_cox = function(
     # ..$ : chr [1:1000] "1" "2" "3" "4" ...
     # ..$ : chr [1:2] "time" "status"
     # - attr(*, "type")= chr "right"
-    # Browse[2]> mf.response %>% as.matrix |> str()
+    # Browse[2]> mf.response |> as.matrix() |> str()
     # num [1:1000, 1:2] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
     # - attr(*, "dimnames")=List of 2
     # ..$ : chr [1:1000] "1" "2" "3" "4" ...
@@ -763,11 +763,11 @@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambd
     library(glmnet)
 
     # ?coef.cv.glmnet
-    colnames_levels.select = object_cvglmnet %>% coef.cv.glmnet(s = coef.cv.glmnet.s) %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+    colnames_levels.select = object_cvglmnet %>% coef.cv.glmnet(s = coef.cv.glmnet.s) |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
         mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
     colnames_levels.select
     
-    trainset_colnames_levels.df = object_cvglmnet %>% attr(., "function.input") %>% {.$trainset_colnames_levels} %>% as.data.frame
+    trainset_colnames_levels.df = object_cvglmnet %>% attr(., "function.input") %>% {.$trainset_colnames_levels} |> as.data.frame()
     rownames(trainset_colnames_levels.df) = trainset_colnames_levels.df$colnames_levels
     colnames.select = trainset_colnames_levels.df[colnames_levels.select, "colnames"]
     
@@ -790,7 +790,7 @@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambd
 
 }
 object_list_cvglmnet.newFormula = function(object_list_cvglmnet, coef.cv.glmnet.s = c("lambda.1se","lambda.min")) {
-    # glmnet.alpha = gsub("alpha", "", names(object_list_cvglmnet)) %>% as.numeric
+    # glmnet.alpha = gsub("alpha", "", names(object_list_cvglmnet)) |> as.numeric()
     # out = object_list_cvglmnet %>% seq_along %>% map(function(i) {
     #     coef.cv.glmnet.s %>% map(function(s) {
     #         object_cvglmnet.newFormula(object_cvglmnet[[i]], glmnet.alpha = )
@@ -850,14 +850,14 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 # 10              10       V8              V8   numeric           1                    TRUE                       NA              TRUE        <NA>
 # # ... with 22 more rows
 
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
 # +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "V6"  "V1"  "V9"  "V7"  "V3"  "V5"  "V4"  "V2"  "V10" "V8"  "V25" "V17" "V13" "V30"
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
 # +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "V6"  "V1"  "V9"  "V7"  "V3"  "V5"  "V4"  "V2"  "V8"  "V10"
 
@@ -913,17 +913,17 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {
 # # ... with 26 more rows
 
 
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
-trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
-# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
 # +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "DysthymiaTRUE"                 "AnxietyTRUE"                   "AdjustmentDisorderTRUE"        "StrokeTIATRUE"                 "HyperlipidemiaTRUE"           
 #  [6] "AnemiaTRUE"                    "OsteoporosisTRUE"              "ChronicKidneyTRUE"             "AcquiredHypothyroidismTRUE"    "EpilepsyTRUE"                 
 # [11] "ArthritisTRUE"                 "GlaucomaTRUE"                  "Migraine_ChronicHeadacheTRUE"  "CataractTRUE"                  "CancerSurvivorsTRUE"          
 # [16] "HypertensionTRUE"              "LiverDiseaseTRUE"              "ObstructiveLungDiseaseTRUE"    "Fibromyalgia_Pain_FatigueTRUE"
-# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") %>% as.matrix |> as.data.frame() %>% rownames_to_column %>% 
+# > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() %>% rownames_to_column %>% 
 # +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 # [1] "AnxietyTRUE"
 
@@ -1033,7 +1033,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
         , sprintf(paste0("%", digits_total_incl_decimal, ".", sprintf_fmt_decimal, "f"), coxph_object.confint.df$`97.5 %`)
         , ")"
     ), stringsAsFactors = F)
-    # tmp.dfpvalue=coxphobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=coxphobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     tmp.df$p_value = sprintf("%.3f", coxph_object.summary.coef.df$`Pr(>|z|)`)
     tmp.df$p_value[coxph_object.summary.coef.df$`Pr(>|z|)` <= 0.001] = "<0.001"
 
@@ -1091,7 +1091,7 @@ object_cvglmnet.newFormula_coxph = function(object_cvglmnet, testset, coef.cv.gl
     )
 }
 object_list_cvglmnet.newFormula_coxph = function(object_list_cvglmnet, testset, coef.cv.glmnet.s = c("lambda.1se","lambda.min")) {
-    # glmnet.alpha = gsub("alpha", "", names(object_list_cvglmnet)) %>% as.numeric
+    # glmnet.alpha = gsub("alpha", "", names(object_list_cvglmnet)) |> as.numeric()
     # out = object_list_cvglmnet %>% seq_along %>% map(function(i) {
     #     coef.cv.glmnet.s %>% map(function(s) {
     #         object_cvglmnet.newFormula(object_cvglmnet[[i]], glmnet.alpha = )

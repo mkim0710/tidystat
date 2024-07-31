@@ -9,8 +9,8 @@ function.check.integer.tolerance = function(x, tolerance = .Machine$double.eps^0
 
 
 #@ -----
-NHID_GJ_0213.bind_rows.factor %>% map_lgl(function(vec) any(as.numeric(levels(vec)) %% 1 != 0)) %>% as.data.frame
-# > NHID_GJ_0213.bind_rows.factor %>% map_lgl(function(vec) any(as.numeric(levels(vec)) %% 1 != 0)) %>% as.data.frame
+NHID_GJ_0213.bind_rows.factor %>% map_lgl(function(vec) any(as.numeric(levels(vec)) %% 1 != 0)) |> as.data.frame()
+# > NHID_GJ_0213.bind_rows.factor %>% map_lgl(function(vec) any(as.numeric(levels(vec)) %% 1 != 0)) |> as.data.frame()
 #                               .
 # HCHK_YEAR                 FALSE
 # PERSON_ID                 FALSE

@@ -64,7 +64,7 @@ function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal
     # tmp.vec[is.infinite(tmp.vec)] = NA
     tmp.mat = polr_object.summary.coef.df %>% select(rowname, Value) %>% 
         left_join(polr_object.confint.df %>% rownames_to_column) %>% 
-        column_to_rownames %>% as.matrix
+        column_to_rownames |> as.matrix()
     # Browse[2]> tmp.mat
     #                                              Value     2.5 %   97.5 %
     # PM25.tn1m.floor_month.cut[16,36)         1.0438634 0.8294254 1.314182
@@ -76,7 +76,7 @@ function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal
     # 2|3                                      1.1065274        NA       NA
     # 3|4                                      2.3043945        NA       NA
     
-    tmp.vec = tmp.mat %>% as.vector
+    tmp.vec = tmp.mat |> as.vector()
     tmp.vec[is.infinite(tmp.vec)] = NA
     if (allow_multple_spaces == T) {  # 180816
         digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(tmp.vec, na.rm = T) %>% log10 %>% trunc) + 1
@@ -114,7 +114,7 @@ function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal
 
     # browser()
     
-    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     # varname4Pr = colnames(polr_object.summary.coef.df) %>% grep("^Pr", ., value = T)  # debug 180806) in polr() `Pr(>|z|)`, in svypolr() `Pr(>|t|)`
     # tmp.df$p_value = sprintf("%.3f", p_value.vector)
     
@@ -256,7 +256,7 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
     # tmp.vec = c(polr_object.summary.coef.df$Value, polr_object.confint.df$LowerLimit, polr_object.confint.df$UpperLimit)
     # tmp.vec[is.infinite(tmp.vec)] = NA
     tmp.mat = polr_object.summary.coef.df %>% select(rowname, Value, LowerLimit, UpperLimit) %>% 
-        column_to_rownames %>% as.matrix
+        column_to_rownames |> as.matrix()
     # Browse[2]> tmp.mat
     #                                              Value     2.5 %   97.5 %
     # PM25.tn1m.floor_month.cut[16,36)         1.0438634 0.8294254 1.314182
@@ -268,7 +268,7 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
     # 2|3                                      1.1065274        NA       NA
     # 3|4                                      2.3043945        NA       NA
     
-    tmp.vec = tmp.mat %>% as.vector
+    tmp.vec = tmp.mat |> as.vector()
     tmp.vec[is.infinite(tmp.vec)] = NA
     if (allow_multple_spaces == T) {  # 180816
         digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(tmp.vec, na.rm = T) %>% log10 %>% trunc) + 1
@@ -301,7 +301,7 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
         )
 
     
-    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfpvalue=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     # varname4Pr = colnames(polr_object.summary.coef.df) %>% grep("^Pr", ., value = T)  # debug 180806) in polr() `Pr(>|z|)`, in svypolr() `Pr(>|t|)`
     # tmp.df$p_value = sprintf("%.3f", polr_object.summary.coef.df$PValue)
     
@@ -438,10 +438,10 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
     # tmp.vec[is.infinite(tmp.vec)] = NA
     # tmp.mat = polr_object.summary.coef.df %>% select(rowname, Value) %>% 
     #     left_join(polr_object.confint.df %>% rownames_to_column) %>% 
-    #     column_to_rownames %>% as.matrix
+    #     column_to_rownames |> as.matrix()
     tmp.mat = polr_object.summary.coef.df %>% select(rowname, Value) %>% 
         inner_join(polr_object.confint.df %>% rownames_to_column) %>% 
-        column_to_rownames %>% as.matrix
+        column_to_rownames |> as.matrix()
     # Browse[2]> tmp.mat
     #                                              Value     2.5 %   97.5 %
     # PM25.tn1m.floor_month.cut[16,36)         1.0438634 0.8294254 1.314182
@@ -453,7 +453,7 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
     # 2|3                                      1.1065274        NA       NA
     # 3|4                                      2.3043945        NA       NA
     
-    tmp.vec = tmp.mat %>% as.vector
+    tmp.vec = tmp.mat |> as.vector()
     tmp.vec[is.infinite(tmp.vec)] = NA
     if (allow_multple_spaces == T) {  # 180816
         digits_total_incl_decimal = sprintf_fmt_decimal + 1 + (max(tmp.vec, na.rm = T) %>% log10 %>% trunc) + 1
@@ -491,7 +491,7 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
 
     # browser()
     
-    # tmp.dfPValue.approx=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) %>% as.character
+    # tmp.dfPValue.approx=glmobject.summary.coef.df`Pr(>|z|)` %>% round(3) |> as.character()
     # varname4Pr = colnames(polr_object.summary.coef.df) %>% grep("^Pr", ., value = T)  # debug 180806) in polr() `Pr(>|z|)`, in svypolr() `Pr(>|t|)`
     # tmp.df$PValue.clean = sprintf("%.3f", PValue.clean.vector)
     

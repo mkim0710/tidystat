@@ -22,8 +22,8 @@ function.mutate_all.apply_ExpressionText <- function(input_df, ExpressionText, u
             str_replace_all("=", "eq") %>% 
             str_replace_all("[[:punct:]&&[^\\._]]", "") %>%  # Remove all punctuation except dot
             str_replace_all("\\d+\\.\\d+", function(x) gsub("\\.", "_", x)) %>%  # Replace dot in decimal numbers to underbar("_")
-            str_replace_all(" ", "") %>% 
-            as.vector
+            str_replace_all(" ", "") |> 
+            as.vector()
     }
     
     if(use.StandardName) {

@@ -10,7 +10,7 @@ library(purrr)
 function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
     if(!is.numeric(vector_wave)) {
         warning("vector_wave is not numeric"); cat("  \n", sep="")
-        vector_wave = vector_wave %>% as.numeric
+        vector_wave = vector_wave |> as.numeric()
     }
     if(is.null(vector_colname_at_wave)) {
         vector_colname_at_wave = names(df)
@@ -47,7 +47,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
     for (i in seq_along(df_wave_cumulative)) {
         # df_wave_cumulative[,i] = df_wave[,1:i] %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), NA, 1)} |> unname()
         if (i == 1) {
-            df_wave_cumulative[[i]] = df_wave[[1]] %>% as.integer
+            df_wave_cumulative[[i]] = df_wave[[1]] |> as.integer()
         } else {
             df_wave_cumulative[[i]] = if_else(is.na(df_wave[[i]]), df_wave_cumulative[[i-1]], df_wave[[i]]+df_wave_cumulative[[i-1]] )
         }
@@ -60,7 +60,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
 # Example usage with vectors
 tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
 tmp.df |> str()
-# tmp.df %>% as.matrix |> str()
+# tmp.df |> as.matrix() |> str()
 # tmp.df %>% head
 # > tmp.df |> str()
 # tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
@@ -70,7 +70,7 @@ tmp.df |> str()
 #   ..- attr(*, "names")= chr [1:10030] "92 >=200" "NA >=200" "148 >=200" "NA >=200" ...
 #  $ A07_GLU60_TR_ge200: Named logi [1:10030] NA NA FALSE NA FALSE NA ...
 #   ..- attr(*, "names")= chr [1:10030] "NA >=200" "NA >=200" "148 >=200" "NA >=200" ...
-# > tmp.df %>% as.matrix |> str()
+# > tmp.df |> as.matrix() |> str()
 #  logi [1:10030, 1:3] FALSE FALSE FALSE NA FALSE FALSE ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
