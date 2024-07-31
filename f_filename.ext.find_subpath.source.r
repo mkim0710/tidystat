@@ -182,12 +182,15 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
         }
     }
 
-    if (length(list_out) == 0) {
-        cat("----------- File not found while searching following subpaths:\n")
-        vec_subpath <- unlist(list_subpath, use.names = FALSE)
-        vec_subpath |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}; # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
-        return(NULL)
+    if (print.intermediate) {
+        if (length(list_out) == 0) {
+            cat("----------- File not found while searching following subpaths:\n")
+            vec_subpath <- unlist(list_subpath, use.names = FALSE)
+            vec_subpath |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}; # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
+            return(NULL)
+        }
     }
+    
         
     # # Flatten the list to make it a character vector
     vec_out <- unlist(list_out, use.names = FALSE)
