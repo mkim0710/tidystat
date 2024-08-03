@@ -210,3 +210,6 @@ old/
 !github-backup/
 !github-archive/
 !github-old/
+!MHjavascript/*.html
+!MHjavascript/*/*.html
+!*.js.html
