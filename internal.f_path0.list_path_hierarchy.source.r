@@ -135,9 +135,5 @@ if (requireNamespace("rstudioapi")) {
     
     return(list_path_hierarchy)
 }
-if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
-    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$env.internal$", .tmp$objectname))
-    .GlobalEnv$env1$env.internal[[.tmp$objectname]] = .tmp$object
-    # cat("> .GlobalEnv$env1$env.internal",.tmp$objectname,"()\n",sep=""); get(.tmp$objectname, envir=.GlobalEnv$env1$env.internal)() # Run the loaded function by default
-}
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal")
 
