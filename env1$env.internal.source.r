@@ -97,6 +97,31 @@ if (requireNamespace("rstudioapi")) {
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
 if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \% f_function.load2env.internal ====  
+env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", runLoadedFunction = FALSE) {
+    if(is.null(env1_subenv_name)) {
+        if(!function_name %in% names(.GlobalEnv$env1)) {
+            .GlobalEnv$env1[[function_name]] = function_object
+            if(runLoadedFunction) {
+                cat("> .GlobalEnv$env1$",function_name,"()\n",sep=""); get(.GlobalEnv$env1[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
+            }
+            packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",function_name))
+        }
+    } else {
+        if(!function_name %in% names(.GlobalEnv$env1[[env1_subenv_name]])) {
+            .GlobalEnv$env1[[env1_subenv_name]][[function_name]] = function_object
+            if(runLoadedFunction) {
+                if(is.environment(.GlobalEnv$env1[[env1_subenv_name]])) {
+                    cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(function_name, envir=.GlobalEnv$env1[[env1_subenv_name]])() # Run the loaded function by default
+                } else {
+                    cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(env1_subenv_name[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
+                }
+            }
+            packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",env1_subenv_name,"$", function_name))
+        }
+    }
+}
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \% f_file.edit ====  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### \% f_file.edit_windows ====  
