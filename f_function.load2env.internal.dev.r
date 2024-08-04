@@ -165,27 +165,14 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) dev -----  
 
-
-
-.tmp$objectname = "test"
-.tmp$object = function(df) {
-    out = env1$env.internal$tribble_construct(df)
-    cat(out)
-}
-if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))
-    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
-    # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
-}
-
-env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", runLoadedFunction = FALSE) {
+env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, runLoadedFunction = FALSE) {
     if(is.null(env1_subenv_name)) {
         if(!function_name %in% names(.GlobalEnv$env1)) {
             .GlobalEnv$env1[[function_name]] = function_object
             if(runLoadedFunction) {
                 cat("> .GlobalEnv$env1$",function_name,"()\n",sep=""); get(.GlobalEnv$env1[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
             }
-            packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",function_name))
+            if(show_packageStartupMessage) packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",function_name))
         }
     } else {
         if(!function_name %in% names(.GlobalEnv$env1[[env1_subenv_name]])) {
@@ -197,20 +184,34 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
                     cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(env1_subenv_name[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
                 }
             }
-            packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",env1_subenv_name,"$", function_name))
+            if(show_packageStartupMessage) packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",env1_subenv_name,"$", function_name))
         }
     }
 }
 
-?rm
+
 rm(test, envir = env1$env.internal)
 env1$env.internal$f_function.load2env.internal(LETTERS, "test")
+.GlobalEnv$env1$env.internal$test
+
+
+.tmp$objectname = "test"
+.tmp$object = function(df) {
+    out = env1$env.internal$tribble_construct(df)
+    cat(out)
+}
+
+rm(test, envir = env1$env.internal)
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname)
 env1$env.internal$test
 .GlobalEnv$env1$env.internal$test
 
 rm(test, envir = env1$env.internal)
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname)
 .GlobalEnv$env1$env.internal$test
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, show_packageStartupMessage = FALSE)
+.GlobalEnv$env1$env.internal$test
+
+
 
 rm(test, envir = env1$env.internal)
 (function(df) {
@@ -220,12 +221,20 @@ rm(test, envir = env1$env.internal)
 .GlobalEnv$env1$env.internal$test
 
 
+
+
+.GlobalEnv$env1$f$test = NULL
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
+.GlobalEnv$env1$f$test
+
 .GlobalEnv$env1$f$test = NULL
 (function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }) |> env1$env.internal$f_function.load2env.internal("test", env1_subenv_name = "f")
 .GlobalEnv$env1$f$test
+
+
 
 
 rm(test, envir = env1)
