@@ -122,11 +122,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
     env1$f$f_df.tribble_construct(out)
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
 } 
-if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))
-    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
-    # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
-}
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 
 # > for (.dependancy in c("f_df.t.tribble_construct")) {
 # +     if(!.dependancy %in% names(.GlobalEnv$env1)) {
