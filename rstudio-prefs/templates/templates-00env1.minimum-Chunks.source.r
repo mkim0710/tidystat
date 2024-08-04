@@ -65,10 +65,10 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #@@ START) source -----  
 # ### @ .subpath, .sourcename ======  
 # # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# if(!is.null(.CurrentSource.path.filename.ext)) if(.CurrentSource.path.filename.ext != "") {.subpath = .CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"', sep="")} }
+# if(!is.null(.CurrentSource.path.filename.ext)) if(.CurrentSource.path.filename.ext != "") {.subpath = .CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # # .sourcename = "default.template" |> paste0(".source.r")
-# if(!is.null(.CurrentSource.path.filename.ext)) if(.CurrentSource.path.filename.ext != "") {.sourcename = .CurrentSource.path.filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename" %>% {cat(.,' = "',get(.),'"', sep="")} }
+# if(!is.null(.CurrentSource.path.filename.ext)) if(.CurrentSource.path.filename.ext != "") {.sourcename = .CurrentSource.path.filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # env1$path$.subpath = .subpath
 # .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
