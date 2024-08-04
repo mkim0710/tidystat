@@ -598,7 +598,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@ global functions ----  
+#@ env1$f functions ----  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## \$ .tmp\$objectname = "f_df.tribble_construct" ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
