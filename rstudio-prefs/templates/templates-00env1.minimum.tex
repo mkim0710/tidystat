@@ -117,7 +117,7 @@
 
 \title{templates-00env1.minimum.Rmd}
 \author{MHKim}
-\date{July 29, 2024}
+\date{August 05, 2024}
 
 \begin{document}
 \maketitle
@@ -141,12 +141,61 @@
 \FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
 \CommentTok{\#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |\#}
 \CommentTok{\# .subpath=r"(rstudio{-}prefs\textbackslash{}templates)"|\textgreater{}str\_replace\_all("\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}","/")  \# Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \textbackslash{} as an escape character.}
-\CommentTok{\# \# if(.subpath!="") utils::browseURL(normalizePath(.subpath))}
+\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{CurrentSource.path.filename.ext)) }\ControlFlowTok{if}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{CurrentSource.path.filename.ext }\SpecialCharTok{!=} \StringTok{""}\NormalTok{) \{.subpath }\OtherTok{=}\NormalTok{ env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{CurrentSource.path.filename.ext }\SpecialCharTok{|\textgreater{}} \FunctionTok{dirname}\NormalTok{(); }\StringTok{".subpath"} \SpecialCharTok{\%\textgreater{}\%}\NormalTok{ \{}\FunctionTok{cat}\NormalTok{(.,}\StringTok{\textquotesingle{} = "\textquotesingle{}}\NormalTok{,}\FunctionTok{get}\NormalTok{(.),}\StringTok{\textquotesingle{}"\textquotesingle{}}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{)\} \}}
+\NormalTok{.subpath }\OtherTok{=} \StringTok{"rstudio{-}prefs/templates"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# if(.subpath!="") utils::browseURL(normalizePath(.subpath))}
 \CommentTok{\# .sourcename = "default.template" |\textgreater{} paste0(".source.r")}
-\CommentTok{\# .subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename)}
-\CommentTok{\#|\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%|\#  }
-\CommentTok{\# \textbackslash{}\% source( file.path(env1$path$source\_base,.subpath.filename.source.r) ) {-}{-}{-}{-}  }
-\CommentTok{\# source( file.path(env1$path$source\_base,.subpath.filename.source.r) )}
+\ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{CurrentSource.path.filename.ext)) }\ControlFlowTok{if}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{CurrentSource.path.filename.ext }\SpecialCharTok{!=} \StringTok{""}\NormalTok{) \{.sourcename }\OtherTok{=}\NormalTok{ env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{CurrentSource.path.filename.ext }\SpecialCharTok{|\textgreater{}} \FunctionTok{basename}\NormalTok{() }\SpecialCharTok{|\textgreater{}} \FunctionTok{str\_replace}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.(dev|source)}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.(r|Rmd)$"}\SpecialCharTok{|\textgreater{}}\FunctionTok{regex}\NormalTok{(}\AttributeTok{ignore\_case=}\ConstantTok{TRUE}\NormalTok{), }\StringTok{""}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{str\_replace}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.(r|Rmd)$"}\SpecialCharTok{|\textgreater{}}\FunctionTok{regex}\NormalTok{(}\AttributeTok{ignore\_case=}\ConstantTok{TRUE}\NormalTok{),}\StringTok{""}\NormalTok{); }\StringTok{".sourcename"} \SpecialCharTok{\%\textgreater{}\%}\NormalTok{ \{}\FunctionTok{cat}\NormalTok{(.,}\StringTok{\textquotesingle{} = "\textquotesingle{}}\NormalTok{,}\FunctionTok{get}\NormalTok{(.),}\StringTok{\textquotesingle{}"\textquotesingle{}}\NormalTok{, }\AttributeTok{sep=}\StringTok{""}\NormalTok{)\} \}}
+\NormalTok{.sourcename }\OtherTok{=} \StringTok{"templates{-}00env1.minimum"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}}
+\NormalTok{env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath }\OtherTok{=}\NormalTok{ .subpath}
+\NormalTok{.sourcename\_root }\OtherTok{=}\NormalTok{ .sourcename }\SpecialCharTok{|\textgreater{}} \FunctionTok{str\_replace}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.source}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.r$"}\NormalTok{, }\StringTok{""}\NormalTok{)}
+\NormalTok{env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.sourcename\_root }\OtherTok{=}\NormalTok{ .sourcename\_root}
+\NormalTok{env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.r }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.sourcename\_root,}\StringTok{".dev.r"}\NormalTok{)}
+\NormalTok{env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.Rmd }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.sourcename\_root,}\StringTok{".dev.Rmd"}\NormalTok{)}
+\NormalTok{env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.source.r }\OtherTok{=}\NormalTok{ .sourcename }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"\# "}\NormalTok{,}\StringTok{\textquotesingle{}.sourcename\_root = "\textquotesingle{}}\NormalTok{,.sourcename\_root,}\StringTok{\textquotesingle{}"\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{"\# "}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.r, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{"\# "}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.Rmd, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{"\# "}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.source.r, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{\textquotesingle{}\# \# source("\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.source.r,}\StringTok{\textquotesingle{}")\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{\textquotesingle{}\# \# if(!file.exists("\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.r,}\StringTok{\textquotesingle{}")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio{-}prefs/templates/default.R", destfile = "\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.r,}\StringTok{\textquotesingle{}")\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{\textquotesingle{}\# \# if(!file.exists("\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.Rmd,}\StringTok{\textquotesingle{}")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio{-}prefs/templates/templates{-}00env1.minimum.Rmd", destfile = "\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.Rmd,}\StringTok{\textquotesingle{}")\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{\textquotesingle{}\# \# if(!file.exists("\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.source.r,}\StringTok{\textquotesingle{}")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio{-}prefs/templates/default.R", destfile = "\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.source.r,}\StringTok{\textquotesingle{}")\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{\textquotesingle{}\# file.edit("\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.r,}\StringTok{\textquotesingle{}"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{\textquotesingle{}\# file.edit("\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.dev.Rmd,}\StringTok{\textquotesingle{}"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \StringTok{\textquotesingle{}\# file.edit("\textquotesingle{}}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base\_local,}\StringTok{"/"}\NormalTok{,env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{.subpath.filename.source.r,}\StringTok{\textquotesingle{}"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));\textquotesingle{}}\NormalTok{, }\StringTok{"  }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+    \AttributeTok{sep=}\StringTok{""}\NormalTok{)}
+\CommentTok{\# .sourcename\_root = "templates{-}00env1.minimum"  }
+\CommentTok{\# rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.r  }
+\CommentTok{\# rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.Rmd  }
+\CommentTok{\# rstudio{-}prefs/templates/templates{-}00env1.minimum  }
+\CommentTok{\# \# source("D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum")  }
+\CommentTok{\# \# if(!file.exists("D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio{-}prefs/templates/default.R", destfile = "D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.r")  }
+\CommentTok{\# \# if(!file.exists("D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio{-}prefs/templates/templates{-}00env1.minimum.Rmd", destfile = "D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.Rmd")  }
+\CommentTok{\# \# if(!file.exists("D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio{-}prefs/templates/default.R", destfile = "D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum")  }
+\CommentTok{\# file.edit("D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.r"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));  }
+\CommentTok{\# file.edit("D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum.dev.Rmd"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));  }
+\CommentTok{\# file.edit("D:/OneDrive/[][Rproject]/github\_tidystat/rstudio{-}prefs/templates/templates{-}00env1.minimum"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));  }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \#\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}  }
+\CommentTok{\# \# \textbackslash{}\% source( file.path(env1$path$source\_base,.subpath.filename.source.r) ) {-}{-}{-}{-}  }
+\CommentTok{\# .subpath.filename.source.r = .sourcename \%\textgreater{}\% paste0(.subpath,ifelse(.subpath=="","","/"),.)}
+\CommentTok{\# if(!.sourcename \%in\% names(.GlobalEnv$env1$source)) \{cat(\textquotesingle{}\textgreater{} source("\textquotesingle{},file.path(env1$path$source\_base,.subpath.filename.source.r),\textquotesingle{}")\textquotesingle{}, "  \textbackslash{}n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source\_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -168,13 +217,11 @@
 \CommentTok{\# \# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop\_na.MetS\_NoMeds"}
 \CommentTok{\# .subpath = "data"}
 \CommentTok{\# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01"}
-\CommentTok{\# path.filename.ext = ifelse(}
-\CommentTok{\#     file.exists(paste0(subpath,"/",DataSetName,".rds"))}
-\CommentTok{\#     , paste0(subpath,"/",DataSetName,".rds")}
-\CommentTok{\#     , paste0(env1$path$source\_base\_github,"/",subpath,"/",DataSetName,".rds")}
-\CommentTok{\# )}
-\CommentTok{\# cat(" path.filename.ext = ", path.filename.ext, "\textbackslash{}n", sep = "")}
-\CommentTok{\# assign( DataSetName, read\_rds(path.filename.ext) )}
+\CommentTok{\# \# .subpath.filename.ext = DataSetName |\textgreater{} paste0(".rds") \%\textgreater{}\% paste0(.subpath,ifelse(.subpath=="","","/"),.)}
+\CommentTok{\# \# .path.filename.ext = ifelse( file.exists(.subpath.filename.ext), .subpath.filename.ext, paste0(env1$path$source\_base\_github,"/data/",DataSetName,".rds") )}
+\CommentTok{\# \# cat(".path.filename.ext = ", .path.filename.ext, "  \textbackslash{}n", sep = "")}
+\CommentTok{\# \# assign( DataSetName, read\_rds(.path.filename.ext) )}
+\CommentTok{\# DataSetName |\textgreater{} paste0(".rds") \%\textgreater{}\% paste0(.subpath,ifelse(.subpath=="","","/"),.) |\textgreater{} read\_rds() \%\textgreater{}\% assign(DataSetName, value = ., envir = .GlobalEnv)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -276,10 +323,10 @@
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
-\CommentTok{\# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10\_import\_clean\_datatype/13\_missing\_value/data.NotNA\_p\_df.source.r")}
+\CommentTok{\# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10\_import\_clean\_datatype/13\_missing\_value/data.NotNA\_p\_df.source.r")}
 \NormalTok{.subpath}\OtherTok{=}\NormalTok{r}\StringTok{"(Rdev\textbackslash{}10\_import\_clean\_datatype\textbackslash{}13\_missing\_value)"}\SpecialCharTok{|\textgreater{}}\FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}}\StringTok{"}\NormalTok{,}\StringTok{"/"}\NormalTok{)  }\CommentTok{\# Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \textbackslash{} as an escape character.}
 \NormalTok{.sourcename }\OtherTok{=} \StringTok{"data.NotNA\_p\_df"} \SpecialCharTok{|\textgreater{}} \FunctionTok{paste0}\NormalTok{(}\StringTok{".source.r"}\NormalTok{)}
-\NormalTok{.subpath.filename.source.r }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.sourcename); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,.subpath.filename.source.r) ))}
+\NormalTok{.subpath.filename.source.r }\OtherTok{=}\NormalTok{ .sourcename }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,.subpath.filename.source.r) ))}
   
 \NormalTok{varname4ID }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"CompositeKey"}\NormalTok{, }\StringTok{"PERSON\_ID"}\NormalTok{, }\StringTok{"RN\_INDI"}\NormalTok{, }\StringTok{"NIHID"}\NormalTok{)}
 \FunctionTok{get}\NormalTok{(DataSetName)[}\FunctionTok{intersect}\NormalTok{(varname4ID, }\FunctionTok{colnames}\NormalTok{(}\FunctionTok{get}\NormalTok{(DataSetName)))] }\SpecialCharTok{|\textgreater{}} \FunctionTok{str}\NormalTok{()}
@@ -371,10 +418,10 @@
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
-\CommentTok{\# source("https://github.com/mkim0710/tidystat/raw/master/Rdev/10\_import\_clean\_datatype/13\_missing\_value/data.NotNA\_p\_df.source.r")}
+\CommentTok{\# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10\_import\_clean\_datatype/13\_missing\_value/data.NotNA\_p\_df.source.r")}
 \NormalTok{.subpath}\OtherTok{=}\NormalTok{r}\StringTok{"(Rdev\textbackslash{}10\_import\_clean\_datatype\textbackslash{}13\_missing\_value)"}\SpecialCharTok{|\textgreater{}}\FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}}\StringTok{"}\NormalTok{,}\StringTok{"/"}\NormalTok{)  }\CommentTok{\# Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \textbackslash{} as an escape character.}
 \NormalTok{.sourcename }\OtherTok{=} \StringTok{"data.NotNA\_p\_df"} \SpecialCharTok{|\textgreater{}} \FunctionTok{paste0}\NormalTok{(}\StringTok{".source.r"}\NormalTok{)}
-\NormalTok{.subpath.filename.source.r }\OtherTok{=} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.sourcename); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,.subpath.filename.source.r) ))}
+\NormalTok{.subpath.filename.source.r }\OtherTok{=}\NormalTok{ .sourcename }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{paste0}\NormalTok{(.subpath,}\FunctionTok{ifelse}\NormalTok{(.subpath}\SpecialCharTok{==}\StringTok{""}\NormalTok{,}\StringTok{""}\NormalTok{,}\StringTok{"/"}\NormalTok{),.); }\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{source}\NormalTok{( }\FunctionTok{file.path}\NormalTok{(env1}\SpecialCharTok{$}\NormalTok{path}\SpecialCharTok{$}\NormalTok{source\_base,.subpath.filename.source.r) ))}
   
 \FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{), }\FunctionTok{get}\NormalTok{(DataSetName) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.factor, as.character) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{""}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"N/A"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate\_if}\NormalTok{(is.character, na\_if, }\StringTok{"NA"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{as\_tibble}\NormalTok{() )}
 \FunctionTok{assign}\NormalTok{( }\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{,}\StringTok{".rmAllNA"}\NormalTok{), }\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(DataSetName,}\StringTok{".Date"}\NormalTok{,}\StringTok{".NA"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(vec) }\SpecialCharTok{!}\FunctionTok{all}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(vec))) )}
@@ -459,7 +506,7 @@ paste0(DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{0.005880833}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{0.005631924}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
@@ -479,7 +526,7 @@ paste0(DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{0.004204035}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{0.009469032}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
@@ -496,7 +543,7 @@ paste0(DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{0.003911018}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{0.003955126}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
@@ -516,7 +563,7 @@ paste0(DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{Sys.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ .t0}
-\NormalTok{Time difference of }\FloatTok{0.003370047}\NormalTok{ secs}
+\NormalTok{Time difference of }\FloatTok{0.003842115}\NormalTok{ secs}
 \end{Highlighting}
 \end{Shaded}
 
@@ -574,7 +621,7 @@ paste0(DataSetName,``.Date'',``.NA'',``.rmAllNA'',``.fct'')
 \section{@@ END ----}\label{end--}}
 
 \begin{verbatim}
-Backup file created: D:/OneDrive/[][Rproject]/-backup/notebook-240729_0437.Rmd
+Backup file created: D:/OneDrive/[][Rproject]/-backup/notebook-240805_0021.Rmd
 Update successful: C:/Users/mkim0/AppData/Roaming/RStudio/templates/notebook.Rmd
 Update successful: D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd
 \end{verbatim}

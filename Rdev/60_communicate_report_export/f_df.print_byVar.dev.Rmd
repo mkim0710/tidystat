@@ -682,7 +682,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 ```
   
   
-```{r Render, eval=TRUE, include=FALSE}
+```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
