@@ -100,29 +100,6 @@ if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 ## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----  
 
 
-env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
-  output_context <- list(output_mode = output_mode, nspc = nspc, indent_context = indent_context, indent_head = indent_head)
-  output_context
-}
-.tmp$objectname = "f_df.t.tribble_construct"
-.tmp$object = function(df) {
-    out = env1$env.internal$tribble_construct(df)
-    cat(out)
-}
-if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
-    packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$f$", .tmp$objectname))
-    .GlobalEnv$env1$f[[.tmp$objectname]] = .tmp$object
-    # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
-}
-
-env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal") {
-    if(!function_name %in% names(.GlobalEnv$env1[[env1_subenv_name]])) {
-        packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",env1_subenv_name,"$", function_name))
-        .GlobalEnv$env1[[env1_subenv_name]][[function_name]] = function_object
-        # cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(.GlobalEnv$env1[[env1_subenv_name]][[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
-    }
-}
-
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
