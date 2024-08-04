@@ -43,7 +43,41 @@ knitr::opts_chunk$set(
 # knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
 # *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
 knitr::opts_knit$set(global.par = TRUE)
+
+
+# ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
+# ```
+#   
+# <font size="3">\% env1</font>  
+#   
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+# str(env1$info$info_software_versions)
+
+
+###### env1\$info\$DocumentTitle1 ----  
+# ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    sep="")
 ```
+  
   
 ```{r}
 # gitignore_escaped_select.UC.regex from gitignore.Rmd

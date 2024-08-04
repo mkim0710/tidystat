@@ -23,7 +23,9 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
+# \$ .GlobalEnv$.tmp = list() ====  
 if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }  
+# \$ .GlobalEnv$env1 = new.env() ====  
 if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalEnv) }
 
 env1$data.NotNA_p_df = function(data) {

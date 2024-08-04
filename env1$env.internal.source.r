@@ -40,7 +40,9 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://ra
 #| ------------------------- < If .Rprofile not available > --------------------- |#  
 for(.packagename in c("tidyverse")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# \$ .GlobalEnv$.tmp = list() ====  
 if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }  
+# \$ .GlobalEnv$env1 = new.env() ====  
 if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalEnv) }  
 if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -94,9 +96,37 @@ if (requireNamespace("rstudioapi")) {
 #     sep="")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \$ .GlobalEnv$.tmp = list() ====  
+# \$ .GlobalEnv$.tmp = list() ====  
+if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }  
+# \$ .GlobalEnv$env1 = new.env() ====  
+# \$ .GlobalEnv$env1 = new.env() ====  
+if(!exists("env1", envir=.GlobalEnv)) { assign("env1", new.env(), envir=.GlobalEnv) } 
+# \$ .GlobalEnv$env1$env.internal = new.env() ====  
+# \$ .GlobalEnv$env1$env.internal = new.env() ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
+# \$ .GlobalEnv$env1$source = list() ====  
+# \$ .GlobalEnv$env1$source = list() ====  
+if(!"source" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$source <- list()
+# \$ .GlobalEnv$env1$info = list() ====  
+if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
+# \$ .GlobalEnv$env1$f = list() ====  
 if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
+# \$ .GlobalEnv$env1$path = list() ====  
+if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() } 
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@@ START) dev -----  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#@ env1$env.internal functions ----  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## \% f_function.load2env.internal ====  
 env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, runLoadedFunction = FALSE) {
     if(is.null(env1_subenv_name)) {
