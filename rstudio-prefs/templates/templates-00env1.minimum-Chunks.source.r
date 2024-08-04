@@ -115,7 +115,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$f)) {
     # cat("> .GlobalEnv$env1$f$",.tmp$objectname,"()\n",sep=""); get(f[[.tmp$objectname]], envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
 
-f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal") {
+env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal") {
     if(!function_name %in% names(.GlobalEnv$env1[[env1_subenv_name]])) {
         packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",env1_subenv_name,"$", function_name))
         .GlobalEnv$env1[[env1_subenv_name]][[function_name]] = function_object
