@@ -52,24 +52,13 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://ra
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
-```
-  
-  
-<font size="3">\% env1</font>\  
-  
-```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# ```
+#   
+# <font size="3">\% env1</font>  
+#   
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
 # https://yihui.org/knitr/options/#package-options
-if(!exists("env1", envir=.GlobalEnv)) 
-    assign("env1", new.env(), envir=.GlobalEnv)
-if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-#### env1\$info\$get_system_info() ----  
-.sourcename = "get_system_info" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
-env1$info$info_system_info = env1$env.internal$get_system_info()
-# str(env1$info$info_system_info)
-.CodeText = "env1$info$info_system_info$machine_nodename"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
-.CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
-# .CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
-env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "datapasta","openxlsx"))
+env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
 # str(env1$info$info_software_versions)
 
 
@@ -90,58 +79,32 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
   
 ```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ###### env1\$path ----  
-library(tidyverse);cat("  \n", sep="")
-cat(" getwd() == "); dput(getwd()) #----  
-env1$path$getwd = getwd()
-# env1$path$path0 = file.path("D:", "OneDrive - SNU", "[][Rproject]")
+# cat(" getwd() == "); dput(getwd()) #----   
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
 # # env1$path$data_suffix = ""
 # env1$path$project_suffix = "GJ3"
-# 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
 # env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
-cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
-# 
-# .path4read  = env1$path$.path4read
-# # .path4write = env1$path$.path4read
-# # .path4write = env1$path$.path4write
-.path4read = getwd()
-.path4write = getwd()
-.sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
-if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
-```
-  
-  
-##\% env1\$f_path.size_files() ----  
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-# tribble_paste = datapasta::tribble_paste
-# https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
-#|________________________________________________________________________________|#  
-#@ Old code replaced) load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.t.tribble_construct.RData")) ----  
-## env1\$path ----  
-if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  
-.tmp$objectname = "source_base_local"; .tmp$object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
-.tmp$objectname = "source_base_github"; .tmp$object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
-if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
-## env1\$env.internal ----  
-.sourcename = "env1$env.internal" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
-#### env1\$f_df.t.tribble_construct() ----  
-.sourcename = "f_df.t.tribble_construct" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
-#|________________________________________________________________________________|#  
-# attach(env1)
-  
-# regex4filename = "\\.rds(\\.xz)?$"
-regex4filename = "\\.rds\\.xz$"
-list.files(.path4write) %>% grep(regex4filename, ., value = T) |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----    
-env1$f$f_path.size_files(.path4read = .path4write, regex4filename = regex4filename)
-  
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----  
-regex4filename = "\\.rds$"
-list.files(.path4write) %>% grep(regex4filename, ., value = T) |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----    
-env1$f$f_path.size_files(.path4read = .path4write, regex4filename = regex4filename)
+env1$path$.path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$.path4write = getwd()
+.path4read  = env1$path$.path4read
+.path4write = env1$path$.path4write
+# cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
+
+#@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+cat("> .tmp |> str(max.level = 1)", "  \n", sep="") 
+.tmp |> str(max.level = 1)
+cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
+env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# .sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
   
