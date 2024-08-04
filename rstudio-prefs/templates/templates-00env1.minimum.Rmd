@@ -184,10 +184,12 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd()) #----   
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \$ env1\$path\$CurrentSource.path.filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
+env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = FALSE, overwrite = TRUE)
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
 # # env1$path$data_suffix = ""
@@ -240,11 +242,12 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
   
   
 ```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
-# if(!exists("env1", envir=.GlobalEnv)) 
-#     assign("env1", new.env(), envir=.GlobalEnv)
-# # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \$ env1\$path\$CurrentSource.path.filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
+env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = FALSE, overwrite = TRUE)
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # \$ .GlobalEnv$.tmp = list() ====  
 if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }
 for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {

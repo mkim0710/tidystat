@@ -80,10 +80,12 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 ```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd()) #----   
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \$ env1\$path\$CurrentSource.path.filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "") 
+env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = FALSE, overwrite = TRUE)
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
 # # env1$path$data_suffix = ""
