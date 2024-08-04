@@ -99,7 +99,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
 # #@ for (.dependancy in c("")) { -----  
-# for (.dependancy in c("f_df.tribble_construct")) {
+# for (.dependancy in c("f_df.t.tribble_construct")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 #         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
 #         objectname = .dependancy

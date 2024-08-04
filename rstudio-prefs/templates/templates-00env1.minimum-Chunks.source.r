@@ -1,7 +1,7 @@
 .sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")  
 if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
 # # f_df.t.tribble_construct.source.r
-# # f_df.tribble_construct.source.r
+# # f_df.t.tribble_construct.source.r
 # # f_df.transpose.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r
 # # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.t.tribble_construct.source.r")
@@ -97,14 +97,14 @@ if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env1$env.internal functions ----  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \$ .tmp\$objectname = "f_df.tribble_construct" ----  
+## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----  
 
 
 env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, indent_context = 0, indent_head = TRUE){
   output_context <- list(output_mode = output_mode, nspc = nspc, indent_context = indent_context, indent_head = indent_head)
   output_context
 }
-.tmp$objectname = "f_df.tribble_construct"
+.tmp$objectname = "f_df.t.tribble_construct"
 .tmp$object = function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
@@ -128,10 +128,10 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env1$f functions ----  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \$ .tmp\$objectname = "f_df.tribble_construct" ----  
+## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% fun.tribble_paste}
-.tmp$objectname = "f_df.tribble_construct"
+.tmp$objectname = "f_df.t.tribble_construct"
 .tmp$object = function(df) {
     out = env1$env.internal$tribble_construct(df)
     cat(out)
