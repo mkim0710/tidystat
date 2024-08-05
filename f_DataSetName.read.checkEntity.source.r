@@ -197,13 +197,13 @@ for (.dependancy in c("f_path.size_files")) {
     return.list$str = get(DataSetName) |> str() 
     cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)
     
-    return.list$head = get(DataSetName) |> rownames_to_column() |> head(n=10) |> as_tibble()
-    return.list$tail = get(DataSetName) |> rownames_to_column() |> tail(n=10) |> as_tibble()
+    # return.list$head = get(DataSetName) |> rownames_to_column() |> head(n=10) |> as_tibble()
+    # return.list$tail = get(DataSetName) |> rownames_to_column() |> tail(n=10) |> as_tibble()
     cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     # cat("> ",DataSetName," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(DataSetName)), n=9)
-    cat("> ",DataSetName," |> rownames_to_column() |> head(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column() |> head(n=10) |> as_tibble() |> print()
+    cat("> ",DataSetName," |> rownames_to_column() |> head(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column("rownum") |> head(n=10) |> as_tibble() |> print()
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    cat("> ",DataSetName," |> rownames_to_column() |> tail(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column() |> tail(n=10) |> as_tibble() |> print()
+    cat("> ",DataSetName," |> rownames_to_column() |> tail(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column("rownum") |> tail(n=10) |> as_tibble() |> print()
     # .t0 = Sys.time()
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(DataSetName) |> dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time() - .t0
