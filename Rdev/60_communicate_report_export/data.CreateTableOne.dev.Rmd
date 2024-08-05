@@ -178,6 +178,7 @@ if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.Gl
 .listname = "DataSetNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
 .listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
 .listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.listname = "VarNames.filter"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
 .listname = "VarNames.recode"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
 .listname = "ModelList"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
 ```
