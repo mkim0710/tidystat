@@ -36,8 +36,8 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
     #     map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = c("rowname", "exp(coef)")) %>% 
     #     {.[c("rowname", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")]}
     
-    object.glm.confint.df = as.data.frame(function.confint(object.glm)) %>% rownames_to_column
-    object.glm.summary.coef.df = as.data.frame(coef(summary(object.glm))) %>% rownames_to_column
+    object.glm.confint.df = as.data.frame(function.confint(object.glm)) |> rownames_to_column()
+    object.glm.summary.coef.df = as.data.frame(coef(summary(object.glm))) |> rownames_to_column()
     if (coef.exp == T) {
         object.glm.confint.df$`2.5 %` = exp(object.glm.confint.df$`2.5 %`)
         object.glm.confint.df$`97.5 %` = exp(object.glm.confint.df$`97.5 %`)

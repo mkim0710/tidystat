@@ -20,7 +20,7 @@ function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal
     # PM25.tn1m_tn12m.mean.quartile[23.7,25.5) -0.1620685 0.4009898
     # PM25.tn1m_tn12m.mean.quartile[25.5,35.6] -0.1122733 0.4679151
     
-    polr_object.summary.coef.df = as.data.frame(coef(summary(polr_object))) %>% rownames_to_column
+    polr_object.summary.coef.df = as.data.frame(coef(summary(polr_object))) |> rownames_to_column()
     # Browse[2]> polr_object.summary.coef.df
     #                                    rowname       Value Std. Error    t value
     # 1         PM25.tn1m.floor_month.cut[16,36)  0.04292861  0.1173646  0.3657713
@@ -214,7 +214,7 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
     polr_object.summary.coef.df = polr_object |> 
         summary() |> 
         coef() |> 
-        as.data.frame() %>% rownames_to_column %>% 
+        as.data.frame() |> rownames_to_column() %>% 
         mutate(LowerLimit = Value - 2 * `Std. Error`, UpperLimit = Value + 2 * `Std. Error`) %>% 
         mutate(PValue = pnorm(abs(`t value`), lower.tail = FALSE) * 2)     
     # https://stats.idre.ucla.edu/r/dae/ordinal-logistic-regression/
@@ -224,9 +224,9 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
         polr_object.summary.coef.df =
             polr_object.summary.coef.df %>% 
             mutate(
-                Value = Value %>% exp
-                , LowerLimit = LowerLimit %>% exp
-                , UpperLimit = UpperLimit %>% exp
+                Value = Value |> exp()
+                , LowerLimit = LowerLimit |> exp()
+                , UpperLimit = UpperLimit |> exp()
             )
     }
     
@@ -395,7 +395,7 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
     polr_object.summary.coef.df = polr_object |> 
         summary() |> 
         coef() |> 
-        as.data.frame() %>% rownames_to_column %>% 
+        as.data.frame() |> rownames_to_column() %>% 
         mutate(LowerLimit.approx = Value - 2 * `Std. Error`, UpperLimit.approx = Value + 2 * `Std. Error`) %>% 
         mutate(PValue.approx = pnorm(abs(`t value`), lower.tail = FALSE) * 2)     
     # https://stats.idre.ucla.edu/r/dae/ordinal-logistic-regression/
@@ -405,9 +405,9 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
         polr_object.summary.coef.df =
             polr_object.summary.coef.df %>% 
             mutate(
-                Value = Value %>% exp
-                , LowerLimit.approx = LowerLimit.approx %>% exp
-                , UpperLimit.approx = UpperLimit.approx %>% exp
+                Value = Value |> exp()
+                , LowerLimit.approx = LowerLimit.approx |> exp()
+                , UpperLimit.approx = UpperLimit.approx |> exp()
             )
     }
     

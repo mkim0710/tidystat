@@ -509,8 +509,8 @@ out %>% map(flatten) |> str()
 #   ..$ partial_corp.value       : num 0.00531
 #   ..$ partial_corstatistic.z   : num 2.79
 
-out %>% bind_rows %>% rownames_to_column
-# > out %>% bind_rows %>% rownames_to_column
+out %>% bind_rows |> rownames_to_column()
+# > out %>% bind_rows |> rownames_to_column()
 # # A tibble: 3 x 15
 #   rowname unadjusted_cor unadjusted_corco~ unadjusted_corco~ unadjusted_corp.~ unadjusted_corsta~ partial_cor partial_corconf~ partial_corconf~
 #   <chr>            <dbl>             <dbl>             <dbl>             <dbl>              <dbl>       <dbl>            <dbl>            <dbl>
@@ -1387,8 +1387,8 @@ out %>% map(t)
 #      unadjusted_cor unadjusted_cor.p.value unadjusted_cor.statistic.z partial_cor partial_cor.p.value partial_cor.statistic.z
 # [1,]        0.59555           0.0006705318                   3.401353   0.4455219         0.005306637                2.787806
 
-out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") %>% rownames_to_column |> str()
-# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") %>% rownames_to_column |> str()
+out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") |> rownames_to_column() |> str()
+# > out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = ".id") |> rownames_to_column() |> str()
 # Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	3 obs. of  16 variables:
 #  $ rowname                   : chr  "1" "2" "3"
 #  $ .id                       : chr  "pearson" "spearman" "kendall"

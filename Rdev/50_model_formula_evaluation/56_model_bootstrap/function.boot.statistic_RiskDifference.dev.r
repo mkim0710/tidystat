@@ -299,7 +299,7 @@ norm.inter <- function(t,alpha)
 analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci = 
     boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.$t), nm = names(.$t0))}, function(vec) norm.inter(vec, alpha = c(0.025, 0.975))[,2] ) )} %>% 
     mutate(`1-pNoEvent_k.cumprod0` = 1-pNoEvent_k.cumprod0[c(1,3,2)], `1-pNoEvent_k.cumprod1` = 1-pNoEvent_k.cumprod1[c(1,3,2)], `-RiskDifference` = -RiskDifference[c(1,3,2)]) %>% 
-    t |> as.data.frame() %>% rownames_to_column %>% 
+    t |> as.data.frame() |> rownames_to_column() %>% 
     transmute(
         rowname = rowname
         , `estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(V1,2)), " (", sprintf("%.2f",round(V2,2)), ", ", sprintf("%.2f",round(V3,2)), ")")

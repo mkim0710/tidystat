@@ -195,7 +195,7 @@ for (.dependancy in c("f_path.size_files")) {
     
     cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     return.list$str = get(DataSetName) |> str() 
-    cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)
+    cat("> ",DataSetName," |> rownames_to_column() e.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)
     
     # return.list$head = get(DataSetName) |> rownames_to_column() |> head(n=10) |> as_tibble()
     # return.list$tail = get(DataSetName) |> rownames_to_column() |> tail(n=10) |> as_tibble()

@@ -8,19 +8,19 @@
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list = list()
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$full_join = 
     tblGADM_kor_level2.join_level1.SIDO_SGG %>% 
-    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column %>% 
+    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) |> rownames_to_column() %>% 
     full_join(tblSIDO_SGG_CD %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column("rownum_tblSIDO_SGG_CD"))
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$inner_join = 
     tblGADM_kor_level2.join_level1.SIDO_SGG %>% 
-    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column %>% 
+    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) |> rownames_to_column() %>% 
     inner_join(tblSIDO_SGG_CD %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column("rownum_tblSIDO_SGG_CD"))
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$left_anti_join = 
     tblGADM_kor_level2.join_level1.SIDO_SGG %>% 
-    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column %>% 
+    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) |> rownames_to_column() %>% 
     anti_join(tblSIDO_SGG_CD %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column("rownum_tblSIDO_SGG_CD"))
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD.mismatch_list$right_anti_join = 
     tblGADM_kor_level2.join_level1.SIDO_SGG %>% 
-    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column %>% 
+    mutate(SIDO_NM = SIDO_full, SGG_NM = SGG) %>% arrange(SIDO_NM, SGG_NM) |> rownames_to_column() %>% 
     {anti_join(tblSIDO_SGG_CD %>% arrange(SIDO_NM, SGG_NM) %>% rownames_to_column("rownum_tblSIDO_SGG_CD"), .)}
 
 

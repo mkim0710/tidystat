@@ -8,7 +8,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
     }
     library(tidyverse)
     glm_object.confint.df = as.data.frame(confint(glm_object))
-    glm_object.summary.coef.df = as.data.frame(coef(summary(glm_object))) %>% rownames_to_column
+    glm_object.summary.coef.df = as.data.frame(coef(summary(glm_object))) |> rownames_to_column()
     if (coef.exp == T) {
         glm_object.confint.df = exp(glm_object.confint.df)
         glm_object.summary.coef.df$Estimate = exp(glm_object.summary.coef.df$Estimate)

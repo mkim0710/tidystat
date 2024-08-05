@@ -1127,11 +1127,11 @@ sentences |> str_match(pattern) |> str()
 
 
 
-sentences %>% head
+sentences |> head()
 pattern = "(a|the) ([^ ]+)"
-sentences |> str_extract(pattern) %>% head
-sentences |> str_match(pattern) %>% head
-# > sentences %>% head
+sentences |> str_extract(pattern) |> head()
+sentences |> str_match(pattern) |> head()
+# > sentences |> head()
 # [1] "The birch canoe slid on the smooth planks." 
 # [2] "Glue the sheet to the dark blue background."
 # [3] "It's easy to tell the depth of a well."     
@@ -1139,9 +1139,9 @@ sentences |> str_match(pattern) %>% head
 # [5] "Rice is often served in round bowls."       
 # [6] "The juice of lemons makes fine punch."      
 # > pattern = "(a|the) ([^ ]+)"
-# > sentences |> str_extract(pattern) %>% head
+# > sentences |> str_extract(pattern) |> head()
 # [1] "the smooth" "the sheet"  "the depth"  "a chicken"  NA           NA          
-# > sentences |> str_match(pattern) %>% head
+# > sentences |> str_match(pattern) |> head()
 #      [,1]         [,2]  [,3]     
 # [1,] "the smooth" "the" "smooth" 
 # [2,] "the sheet"  "the" "sheet"  

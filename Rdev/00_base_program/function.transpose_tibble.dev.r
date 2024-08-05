@@ -143,7 +143,7 @@ analyticDF2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summaris
             paste0(x, " (", round(y*100,2), "%)")
         }) 
     )} |>
-    as.data.frame() %>% column_to_rownames("Exposure") %>% t |> as.data.frame() %>% rownames_to_column #----
+    as.data.frame() %>% column_to_rownames("Exposure") %>% t |> as.data.frame() |> rownames_to_column() #----
 # > analyticDF2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summarise_at(., vars(matches("Outcome"), -matches("time")), funs(sum, mean)))} %>% 
 # +     {bind_cols(
 # +         transmute(., Exposure = Exposure, `n()` = paste0(`n()`, " (100%)"))
@@ -152,7 +152,7 @@ analyticDF2797 %>% group_by(Exposure) %>% {left_join(summarize(., n()), summaris
 # +             paste0(x, " (", round(y*100,2), "%)")
 # +         }) 
 # +     )} %>%
-# +     as.data.frame %>% column_to_rownames("Exposure") %>% t |> as.data.frame() %>% rownames_to_column #----  
+# +     as.data.frame %>% column_to_rownames("Exposure") %>% t |> as.data.frame() |> rownames_to_column() #----  
 # Joining, by = "Exposure"
 #                          rowname  insulin_only metformin_after_insulin
 # 1                            n()   2278 (100%)              519 (100%)
@@ -217,7 +217,7 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$list_PrimaryOutcomes.ORCI = 
     analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes %>% 
     map(function(glmObject) {
-        out = glmObject %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble()
+        out = glmObject %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble()
         out = out %>% mutate(
             rowname = rowname
             , `estimate (95% CI) %.2f` = paste0(sprintf("%.2f",round(`exp(coef(.))`,2)), " (", sprintf("%.2f",round(`2.5 %`,2)), ", ", sprintf("%.2f",round(`97.5 %`,2)), ")")

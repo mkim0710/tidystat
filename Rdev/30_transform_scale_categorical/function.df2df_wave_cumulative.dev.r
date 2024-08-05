@@ -61,7 +61,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
 tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
 tmp.df |> str()
 # tmp.df |> as.matrix() |> str()
-# tmp.df %>% head
+# tmp.df |> head()
 # > tmp.df |> str()
 # tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
@@ -75,7 +75,7 @@ tmp.df |> str()
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
 #   ..$ : chr [1:3] "A01_GLU60_TR_ge200" "A06_GLU60_TR_ge200" "A07_GLU60_TR_ge200"
-# > tmp.df %>% head
+# > tmp.df |> head()
 # # A tibble: 6 × 3
 #   A01_GLU60_TR_ge200 A06_GLU60_TR_ge200 A07_GLU60_TR_ge200
 #   <lgl>              <lgl>              <lgl>             
@@ -88,7 +88,7 @@ tmp.df |> str()
 
 tmp_df_wave_cumulative <- tmp.df %>% function.df2df_wave_cumulative(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)
 tmp_df_wave_cumulative |> str()
-# tmp_df_wave_cumulative %>% head
+# tmp_df_wave_cumulative |> head()
 tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table(vec, useNA = "always")))
 # > tmp_df_wave_cumulative |> str()
 # List of 2
@@ -118,7 +118,7 @@ tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table
 #   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
 #   ..$ A07_GLU60_TR_ge200_ever: Named num [1:10030] 0 0 0 NA 0 0 1 0 0 0 ...
 #   .. ..- attr(*, "names")= chr [1:10030] "99 >=200" "139 >=200" "176 >=200" "NA >=200" ...
-# > # tmp_df_wave_cumulative %>% head
+# > # tmp_df_wave_cumulative |> head()
 # > tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table(vec, useNA = "always")))
 # $A01_GLU60_TR_ge200_ever
 # vec

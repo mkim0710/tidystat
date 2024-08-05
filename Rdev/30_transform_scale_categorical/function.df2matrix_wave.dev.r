@@ -45,7 +45,7 @@ function.df2matrix_wave <- function(df, vector_wave, vector_colname_at_wave = NU
 tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
 tmp.df |> str()
 # tmp.df |> as.matrix() |> str()
-# tmp.df %>% head
+# tmp.df |> head()
 # > tmp.df |> str()
 # tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
@@ -59,7 +59,7 @@ tmp.df |> str()
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
 #   ..$ : chr [1:3] "A01_GLU60_TR_ge200" "A06_GLU60_TR_ge200" "A07_GLU60_TR_ge200"
-# > tmp.df %>% head
+# > tmp.df |> head()
 # # A tibble: 6 × 3
 #   A01_GLU60_TR_ge200 A06_GLU60_TR_ge200 A07_GLU60_TR_ge200
 #   <lgl>              <lgl>              <lgl>             
@@ -82,13 +82,13 @@ tmp.df |> str()
 # tmp_matrix_wave <- tmp.df %>% {function.df2matrix_wave(., as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)}
 tmp_matrix_wave <- tmp.df %>% function.df2matrix_wave(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)
 tmp_matrix_wave |> str()
-tmp_matrix_wave %>% head
+tmp_matrix_wave |> head()
 # > tmp_matrix_wave |> str()
 #  logi [1:10030, 1:7] FALSE FALSE FALSE NA FALSE FALSE ...
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
 #   ..$ : chr [1:7] "A01_GLU60_TR_ge200" NA NA NA ...
-# > tmp_matrix_wave %>% head
+# > tmp_matrix_wave |> head()
 #      A01_GLU60_TR_ge200 <NA> <NA> <NA> <NA> A06_GLU60_TR_ge200 A07_GLU60_TR_ge200
 # [1,]              FALSE   NA   NA   NA   NA              FALSE                 NA
 # [2,]              FALSE   NA   NA   NA   NA                 NA                 NA
@@ -102,8 +102,8 @@ list_matrix_wave <- list_df_defDM.indicators %>% map(function(df) {df %>% select
     map(function(dfi) {dfi %>% function.df2matrix_wave(vector_wave = as.numeric(sub("A0(\\d+)_.*", "\\1", names(.))), print.intermediate = F)})
 
 list_matrix_wave |> str()
-list_matrix_wave$DM_C %>% head
-list_matrix_wave$GLU0_TR %>% head
+list_matrix_wave$DM_C |> head()
+list_matrix_wave$GLU0_TR |> head()
 # > list_matrix_wave |> str()
 # List of 7
 #  $ DM_C     : logi [1:10030, 1:7] FALSE FALSE FALSE TRUE FALSE FALSE ...
@@ -134,7 +134,7 @@ list_matrix_wave$GLU0_TR %>% head
 #   ..- attr(*, "dimnames")=List of 2
 #   .. ..$ : NULL
 #   .. ..$ : chr [1:7] "A01_DRUGINS_eq2" "A02_DRUGINS_eq2" "A03_DRUGINS_eq2" "A04_DRUGINS_eq2" ...
-# > list_matrix_wave$DM_C %>% head
+# > list_matrix_wave$DM_C |> head()
 #      A01_DM_C_eq2 A02_DM_C_eq2 A03_DM_C_eq2 A04_DM_C_eq2 A05_DM_C_eq2 A06_DM_C_eq2 A07_DM_C_eq2
 # [1,]        FALSE        FALSE        FALSE           NA        FALSE        FALSE           NA
 # [2,]        FALSE        FALSE        FALSE        FALSE        FALSE           NA           NA
@@ -142,7 +142,7 @@ list_matrix_wave$GLU0_TR %>% head
 # [4,]         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE
 # [5,]        FALSE           NA        FALSE           NA           NA        FALSE        FALSE
 # [6,]        FALSE        FALSE        FALSE        FALSE        FALSE        FALSE           NA
-# > list_matrix_wave$GLU0_TR %>% head
+# > list_matrix_wave$GLU0_TR |> head()
 #      A01_GLU0_TR_ge126 <NA> <NA> <NA> <NA> A06_GLU0_TR_ge126 A07_GLU0_TR_ge126
 # [1,]             FALSE   NA   NA   NA   NA             FALSE                NA
 # [2,]             FALSE   NA   NA   NA   NA                NA                NA
