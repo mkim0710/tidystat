@@ -1,5 +1,5 @@
-# #         https://github.com/mkim0710/tidystat/blob/master/f_objectname.read.checkEntity.dev.r
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_objectname.read.checkEntity.source.r")
+# #         https://github.com/mkim0710/tidystat/blob/master/f_DataSetName.read.checkEntity.dev.r
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DataSetName.read.checkEntity.source.r")
 
 
 cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="") 
