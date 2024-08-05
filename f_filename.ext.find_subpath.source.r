@@ -136,7 +136,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
         return(NULL)
     }
 }
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 
 
@@ -194,7 +194,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 }
 
 
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 
 
