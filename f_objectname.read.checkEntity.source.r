@@ -1,8 +1,8 @@
-# # objectname = "f_objectname.read.checkEntity"
-# # f_objectname.read.checkEntity.dev.r
-# # f_objectname.read.checkEntity.source.r
-# #         https://github.com/mkim0710/tidystat/blob/master/f_objectname.read.checkEntity.dev.r
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_objectname.read.checkEntity.source.r")
+# # objectname = "f_DataSetName.read.checkEntity"
+# # f_DataSetName.read.checkEntity.dev.r
+# # f_DataSetName.read.checkEntity.source.r
+# #         https://github.com/mkim0710/tidystat/blob/master/f_DataSetName.read.checkEntity.dev.r
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DataSetName.read.checkEntity.source.r")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -49,7 +49,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 ### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r")
+.sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.subpath = .subpath
 # .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
@@ -110,8 +110,8 @@ for (.dependancy in c("f_path.size_files")) {
 
 
 
-#@ objectname = "f_objectname.read.checkEntity" =========  
-.tmp$objectname = "f_objectname.read.checkEntity"
+#@ objectname = "f_DataSetName.read.checkEntity" =========  
+.tmp$objectname = "f_DataSetName.read.checkEntity"
 .tmp$object = function(DataSetName, ext = "rds", .path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, return.list = FALSE, print.name.dput = FALSE, print.name.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('.path4read == "',.path4read,'"')
@@ -210,10 +210,10 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 # objectname = "fhs.index100le10"
-# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", .path4read = ".")
-# env1$f$f_objectname.read.checkEntity(objectname = objectname, ext = "rds", .path4read = ".", vec_varname4ID = "randid")
+# env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname, ext = "rds", .path4read = ".")
+# env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname, ext = "rds", .path4read = ".", vec_varname4ID = "randid")
 # # > objectname = "fhs.index100le10"
-# # > f_objectname.read.checkEntity(objectname = objectname)
+# # > f_DataSetName.read.checkEntity(DataSetName = objectname)
 # # Warning:  getwd() != .path4read == "." 
 # # objectname = "fhs.index100le10"
 # # Found subpath: .path4read = "./data"
@@ -341,15 +341,15 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # # Warning messages:
-# # 1: In f_objectname.read.checkEntity(objectname = objectname) :
+# # 1: In f_DataSetName.read.checkEntity(DataSetName = objectname) :
 # #   getwd() != .path4read == "."
-# # 2: In f_objectname.read.checkEntity(objectname = objectname) :
+# # 2: In f_DataSetName.read.checkEntity(DataSetName = objectname) :
 # #   varname for ID not identified.
-# # 3: In f_objectname.read.checkEntity(objectname = objectname) :
+# # 3: In f_DataSetName.read.checkEntity(DataSetName = objectname) :
 # #   varname for ID not identified.
-# # 4: In f_objectname.read.checkEntity(objectname = objectname) :
+# # 4: In f_DataSetName.read.checkEntity(DataSetName = objectname) :
 # #   varname for ID not identified.
-# # > f_objectname.read.checkEntity(objectname = objectname, vec_varname4ID = "randid")
+# # > f_DataSetName.read.checkEntity(DataSetName = objectname, vec_varname4ID = "randid")
 # # Warning:  getwd() != .path4read == "." 
 # # objectname = "fhs.index100le10"
 # # Found subpath: .path4read = "./data"
@@ -475,7 +475,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # # Warning message:
-# # In f_objectname.read.checkEntity(objectname = objectname, vec_varname4ID = "randid") :
+# # In f_DataSetName.read.checkEntity(DataSetName = objectname, vec_varname4ID = "randid") :
 # #   getwd() != .path4read == "."
 
 

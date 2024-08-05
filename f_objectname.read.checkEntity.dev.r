@@ -1,8 +1,8 @@
-# objectname = "f_objectname.read.checkEntity"
-# f_objectname.read.checkEntity.dev.r
-# f_objectname.read.checkEntity.source.r
-#         https://github.com/mkim0710/tidystat/blob/master/f_objectname.read.checkEntity.dev.r
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_objectname.read.checkEntity.source.r")
+# objectname = "f_DataSetName.read.checkEntity"
+# f_DataSetName.read.checkEntity.dev.r
+# f_DataSetName.read.checkEntity.source.r
+#         https://github.com/mkim0710/tidystat/blob/master/f_DataSetName.read.checkEntity.dev.r
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DataSetName.read.checkEntity.source.r")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -51,7 +51,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 ### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = "f_objectname.read.checkEntity" |> paste0(".source.r")
+.sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 env1$path$.subpath = .subpath
 .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
@@ -80,15 +80,15 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #@@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-source("f_objectname.read.checkEntity.source.r")
+source("f_DataSetName.read.checkEntity.source.r")
 
 
 # \$ .tmp\$objectname = "fhs.index100le10" =======  
 objectname = "fhs.index100le10"
-env1$f$f_objectname.read.checkEntity(objectname = objectname)
-env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
+env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname)
+env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname, varname4ID = "randid")
 # > objectname = "fhs.index100le10"
-# > env1$f$f_objectname.read.checkEntity(objectname = objectname)
+# > env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname)
 # Warning:  getwd() != .path4read == "." 
 # objectname = "fhs.index100le10"
 # Found subpath: .path4read = "./data"
@@ -216,15 +216,15 @@ env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "rand
 # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning messages:
-# 1: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
+# 1: In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname) :
 #   getwd() != .path4read == "."
-# 2: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
+# 2: In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname) :
 #   varname for ID not identified.
-# 3: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
+# 3: In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname) :
 #   varname for ID not identified.
-# 4: In env1$f$f_objectname.read.checkEntity(objectname = objectname) :
+# 4: In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname) :
 #   varname for ID not identified.
-# > env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid")
+# > env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname, varname4ID = "randid")
 # Warning:  getwd() != .path4read == "." 
 # objectname = "fhs.index100le10"
 # Found subpath: .path4read = "./data"
@@ -350,7 +350,7 @@ env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "rand
 # #   cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>, bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>,
 # #   prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, prevhyp3 <dbl>, index100 <int>
 # Warning message:
-# In env1$f$f_objectname.read.checkEntity(objectname = objectname, varname4ID = "randid") :
+# In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname, varname4ID = "randid") :
 #   getwd() != .path4read == "."
 
 
