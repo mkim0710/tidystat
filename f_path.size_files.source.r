@@ -118,7 +118,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
     env1$f$f_df.tribble_construct(out)
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
 } 
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 # > for (.dependancy in c("f_df.t.tribble_construct")) {
 # +     if(!.dependancy %in% names(.GlobalEnv$env1)) {
