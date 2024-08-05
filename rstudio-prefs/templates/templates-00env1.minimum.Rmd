@@ -264,6 +264,8 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```{r env1-CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # \$ .GlobalEnv$env1$CODEBOOK = list() ====  
 if(!"CODEBOOK" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$CODEBOOK <- list() }
+.listname = "MetaData"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
+.listname = "DataSetNames"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
 .listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
 .listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
 .listname = "VarNames.recode"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
