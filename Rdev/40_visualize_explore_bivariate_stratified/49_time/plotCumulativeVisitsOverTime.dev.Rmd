@@ -208,6 +208,14 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
   
   
 # @@ CODEBOOK ----  
+```{r env1-CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# \$ .GlobalEnv$env1$CODEBOOK = list() ====  
+if(!"CODEBOOK" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$CODEBOOK <- list() }
+.listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
+.listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
+.listname = "VarNames.recode"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
+.listname = "ModelList"; if(!.listname %in% names(.GlobalEnv$env1$CODEBOOK)) { .GlobalEnv$env1$CODEBOOK[[.listname]] <- list() }
+```
   
 #@@ START) source ----  
 ### @ .subpath, .sourcename = "default.template" |> paste0(".source.r") ----  
