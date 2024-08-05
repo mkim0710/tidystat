@@ -9,8 +9,8 @@
 #         , t_N180_42.ICD9_CKD_exceptARF, t_N180_42.ICD9_HTN.Superset, t_N180_42.ICD9_Asthma, t_N180_42.ICD9_Thyroid.Superset, t_N180_42.ICD9_Depression.Superset, t_N180_42.ICD9_SubstanceAbuse, t_N180_42.ICD9_Bipolar, t_N180_42.ICD9_Anxiety, t_N180_42.ICD9_Acne, t_N180_42.ICD9_CPT_PregnancyTest.Superset 
 #     )
 # analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates = glm(formula = Dk_plus1 ~ Exposure * (k + I(k^2)) + . , data = data, family = binomial)
-# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----  
-# # > analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() %>% rownames_to_column |> as_tibble() #----  
+# analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----  
+# # > analyticDF2797.PersonTime7.glmOutcome_Exposure_k_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} %>% round(2) |> as.data.frame() |> rownames_to_column() |> as_tibble() #----  
 # # # A tibble: 18 x 5
 # #    rowname                                   `exp(coef(.))` `2.5 %` `97.5 %` `Pr(>|z|)`
 # #    <chr>                                              <dbl>   <dbl>    <dbl>      <dbl>
@@ -50,7 +50,7 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2,
     }
     library(tidyverse)
     lm_object.confint.df = as.data.frame(confint(lm_object))
-    lm_object.summary.coef.df = as.data.frame(coef(summary(lm_object))) %>% rownames_to_column
+    lm_object.summary.coef.df = as.data.frame(coef(summary(lm_object))) |> rownames_to_column()
     
     # # https://stackoverflow.com/questions/3443687/formatting-decimal-places-in-r
     # tmp.df = data.frame(coefCI = paste0(
@@ -155,7 +155,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
     }
     library(tidyverse)
     glm_object.confint.df = as.data.frame(confint(glm_object))
-    glm_object.summary.coef.df = as.data.frame(coef(summary(glm_object))) %>% rownames_to_column
+    glm_object.summary.coef.df = as.data.frame(coef(summary(glm_object))) |> rownames_to_column()
     if (coef.exp == T) {
         glm_object.confint.df = exp(glm_object.confint.df)
         glm_object.summary.coef.df$Estimate = exp(glm_object.summary.coef.df$Estimate)
@@ -269,7 +269,7 @@ glm_object %>% function.glm_object.summary.exp
 #     library(tidyverse)
 #     library(survival)
 #     clogit_object.confint.df = as.data.frame(confint(clogit_object))
-#     clogit_object.summary.coef.df = as.data.frame(coef(summary(clogit_object))) %>% rownames_to_column
+#     clogit_object.summary.coef.df = as.data.frame(coef(summary(clogit_object))) |> rownames_to_column()
 #     if (coef.exp == T) {
 #         clogit_object.confint.df = exp(clogit_object.confint.df)
 #         clogit_object.summary.coef.df$coef = exp(clogit_object.summary.coef.df$coef)
@@ -405,7 +405,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
     library(tidyverse)
     library(survival)
     coxph_object.confint.df = as.data.frame(confint(coxph_object))
-    coxph_object.summary.coef.df = as.data.frame(coef(summary(coxph_object))) %>% rownames_to_column
+    coxph_object.summary.coef.df = as.data.frame(coef(summary(coxph_object))) |> rownames_to_column()
     if (coef.exp == T) {
         coxph_object.confint.df = exp(coxph_object.confint.df)
         coxph_object.summary.coef.df$coef = exp(coxph_object.summary.coef.df$coef)
@@ -558,11 +558,11 @@ function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, pri
     out.NA = out
     out.NA [out.NA == 0] = NA
     
-    # out.NA[["exp(coef.min)"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
-    # out.NA[["exp(coef.1se)"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+    # out.NA[["exp(coef.min)"]] = out.NA$coef.min |> exp() %>% sprintf("%.2f", .)
+    # out.NA[["exp(coef.1se)"]] = out.NA$coef.1se |> exp() %>% sprintf("%.2f", .)
     # out.NA = out.NA %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
-    out.NA[["expB.min"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
-    out.NA[["expB.1se"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+    out.NA[["expB.min"]] = out.NA$coef.min |> exp() %>% sprintf("%.2f", .)
+    out.NA[["expB.1se"]] = out.NA$coef.1se |> exp() %>% sprintf("%.2f", .)
     out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
     
     if (nonzero == T) {
@@ -656,11 +656,11 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
         out.NA = out
         out.NA [out.NA == 0] = NA
         
-        # out.NA[["exp(coef.min)"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
-        # out.NA[["exp(coef.1se)"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+        # out.NA[["exp(coef.min)"]] = out.NA$coef.min |> exp() %>% sprintf("%.2f", .)
+        # out.NA[["exp(coef.1se)"]] = out.NA$coef.1se |> exp() %>% sprintf("%.2f", .)
         # out.NA = out.NA %>% select(rownum, rowname, matches("exp\\(coef"), matches("coef\\."))
-        out.NA[["expB.min"]] = out.NA$coef.min %>% exp %>% sprintf("%.2f", .)
-        out.NA[["expB.1se"]] = out.NA$coef.1se %>% exp %>% sprintf("%.2f", .)
+        out.NA[["expB.min"]] = out.NA$coef.min |> exp() %>% sprintf("%.2f", .)
+        out.NA[["expB.1se"]] = out.NA$coef.1se |> exp() %>% sprintf("%.2f", .)
         out.NA = out.NA %>% select(rownum, rowname, matches("expB\\."), matches("coef\\."))
         
         if (nonzero == T) {

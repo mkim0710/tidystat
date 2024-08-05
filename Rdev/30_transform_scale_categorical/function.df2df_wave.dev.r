@@ -46,7 +46,7 @@ function.df2df_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, 
 tmp.df = list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>% {.$GLU60_TR} 
 tmp.df |> str()
 # tmp.df |> as.matrix() |> str()
-# tmp.df %>% head
+# tmp.df |> head()
 # > tmp.df |> str()
 # tibble [10,030 × 3] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
@@ -60,7 +60,7 @@ tmp.df |> str()
 #  - attr(*, "dimnames")=List of 2
 #   ..$ : NULL
 #   ..$ : chr [1:3] "A01_GLU60_TR_ge200" "A06_GLU60_TR_ge200" "A07_GLU60_TR_ge200"
-# > tmp.df %>% head
+# > tmp.df |> head()
 # # A tibble: 6 × 3
 #   A01_GLU60_TR_ge200 A06_GLU60_TR_ge200 A07_GLU60_TR_ge200
 #   <lgl>              <lgl>              <lgl>             
@@ -83,7 +83,7 @@ tmp.df |> str()
 # tmp_df_wave <- tmp.df %>% {function.df2df_wave(., as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)}
 tmp_df_wave <- tmp.df %>% function.df2df_wave(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)
 tmp_df_wave |> str()
-tmp_df_wave %>% head
+tmp_df_wave |> head()
 # > tmp_df_wave |> str()
 # tibble [10,030 × 7] (S3: tbl_df/tbl/data.frame)
 #  $ A01_GLU60_TR_ge200: Named logi [1:10030] FALSE FALSE FALSE NA FALSE FALSE ...
@@ -96,7 +96,7 @@ tmp_df_wave %>% head
 #   ..- attr(*, "names")= chr [1:10030] "92 >=200" "NA >=200" "148 >=200" "NA >=200" ...
 #  $ A07_GLU60_TR_ge200: Named logi [1:10030] NA NA FALSE NA FALSE NA ...
 #   ..- attr(*, "names")= chr [1:10030] "NA >=200" "NA >=200" "148 >=200" "NA >=200" ...
-# > tmp_df_wave %>% head
+# > tmp_df_wave |> head()
 # # A tibble: 6 × 7
 #   A01_GLU60_TR_ge200 V2    V3    V4    V5    A06_GLU60_TR_ge200 A07_GLU60_TR_ge200
 #   <lgl>              <lgl> <lgl> <lgl> <lgl> <lgl>              <lgl>             

@@ -207,9 +207,9 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
         # label_value$p_phi = 		
         # label_value$R_squared = 		
         label_value
-    }) %>% bind_rows # %>% rownames_to_column
+    }) %>% bind_rows # |> rownames_to_column()
     
-    # out$Metrics = out$Metrics %>% column_to_rownames %>% t |> as.data.frame() %>% rownames_to_column %>% 
+    # out$Metrics = out$Metrics %>% column_to_rownames %>% t |> as.data.frame() |> rownames_to_column() %>% 
     out$Metrics = out$Metrics %>% t |> as.data.frame() 
     
     # out$Metrics |> dput()
@@ -218,7 +218,7 @@ function.ConfusionMatrix.Metrics = function(InputSquareMatrix.tbl) {
     
     out$Metrics$MacroAverage = out$Metrics %>% map_df(as.character) %>% map_df(as.numeric) %>% rowMeans
     
-    out$Metrics = out$Metrics %>% rownames_to_column %>% add_column(equation = 	"", .after = "rowname")
+    out$Metrics = out$Metrics |> rownames_to_column() %>% add_column(equation = 	"", .after = "rowname")
     out$Metrics$equation = 
         c(
             rep(NA, 2)

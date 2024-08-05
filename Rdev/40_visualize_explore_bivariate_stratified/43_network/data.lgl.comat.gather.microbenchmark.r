@@ -12,7 +12,7 @@ data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     if (any(is.na(out))) {
         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
     }
-    out = out |> as.data.frame() %>% rownames_to_column %>% 
+    out = out |> as.data.frame() |> rownames_to_column() %>% 
         dplyr::rename(V1 = rowname) %>% 
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -205,7 +205,7 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
     if (any(is.na(out))) {
         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
     }
-    out = out |> as.data.frame() %>% rownames_to_column %>%
+    out = out |> as.data.frame() |> rownames_to_column() %>%
         dplyr::rename(V1 = rowname) %>%
         gather(-V1, key = "V2", value = "cooccurence") %>%
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>%
@@ -331,7 +331,7 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
 #     if (any(is.na(out))) {
 #         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
 #     }
-#     out = out |> as.data.frame() %>% rownames_to_column %>% 
+#     out = out |> as.data.frame() |> rownames_to_column() %>% 
 #         dplyr::rename(V1 = rowname) %>% 
 #         gather(-V1, key = "V2", value = "cooccurence") %>% 
 #         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -458,7 +458,7 @@ data.lgl.comat.gather2 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     if (any(is.na(out))) {
         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
     }
-    out = out |> as.data.frame() %>% rownames_to_column %>% 
+    out = out |> as.data.frame() |> rownames_to_column() %>% 
         dplyr::rename(V1 = rowname) %>% 
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -606,7 +606,7 @@ data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     if (any(is.na(out))) {
         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
     }
-    out = out |> as.data.frame() %>% rownames_to_column %>% 
+    out = out |> as.data.frame() |> rownames_to_column() %>% 
         dplyr::rename(V1 = rowname) %>% 
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -760,7 +760,7 @@ data.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     if (any(is.na(out))) {
         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
     }
-    out = out |> as.data.frame() %>% rownames_to_column %>% 
+    out = out |> as.data.frame() |> rownames_to_column() %>% 
         dplyr::rename(V1 = rowname) %>% 
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -914,7 +914,7 @@ data.lgl.comat.gather5 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     if (any(is.na(out))) {
         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
     }
-    out = out |> as.data.frame() %>% rownames_to_column %>% 
+    out = out |> as.data.frame() |> rownames_to_column() %>% 
         dplyr::rename(V1 = rowname) %>% 
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 

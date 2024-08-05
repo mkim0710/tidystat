@@ -38,8 +38,8 @@
 # 
 # 
 # 
-# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
-#     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl.comat |> as.data.frame() |> rownames_to_column() %>% 
+#     dplyr::rename(V1 = rowname) |> rownames_to_column() %>% 
 #     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 #     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 #     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
@@ -47,8 +47,8 @@
 # trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather
 # identical(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat))
 # # save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.rda")
-# # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
-# # +     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
+# # > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl.comat |> as.data.frame() |> rownames_to_column() %>% 
+# # +     dplyr::rename(V1 = rowname) |> rownames_to_column() %>% 
 # # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>% 
@@ -82,7 +82,7 @@ data.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
     if (any(is.na(out))) {
         warning("any(is.na(t(data.lgl.matrix) %*% data.lgl.matrix))")
     }
-    out = out |> as.data.frame() %>% rownames_to_column %>% 
+    out = out |> as.data.frame() |> rownames_to_column() %>% 
         dplyr::rename(V1 = rowname) %>% 
         gather(-V1, key = "V2", value = "cooccurence") %>% 
         mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(RC = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
@@ -420,8 +420,8 @@ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% select(V1, V2, cooccurence, n1
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather %>% dplyr::filter(R < C)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)
-# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat |> as.data.frame() %>% rownames_to_column %>% 
-# +     dplyr::rename(V1 = rowname) %>% rownames_to_column %>% 
+# > trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat |> as.data.frame() |> rownames_to_column() %>% 
+# +     dplyr::rename(V1 = rowname) |> rownames_to_column() %>% 
 # +     gather(-rowname, -V1, key = "V2", value = "cooccurence") %>% 
 # +     mutate(V1 = as.factor(V1), V2 = as.factor(V2)) %>% mutate(rowname = {paste0("R", 1:nlevels(V1), "C", {rep(1:nlevels(V2), each = nlevels(V1))})} ) %>% 
 # +     mutate(tmp = gsub("^R", "", rowname)) %>% separate(tmp, c("R", "C"), sep = "C") %>% mutate(R = as.integer(R), C = as.integer(C)) %>%

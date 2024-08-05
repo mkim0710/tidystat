@@ -24,7 +24,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Expo
 
 #@ test) function.MatchingPairID_Exposed_Unexposed_shuffle() ---------  
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_CrossScreening_nhanes.fish.match.rda"))
-nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column |> as_tibble()
+nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] |> rownames_to_column() |> as_tibble()
 names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
 nhanes.fish.match.rename
 # > nhanes.fish.match.rename
@@ -269,7 +269,7 @@ sum(abs(dist) > abs(diff(by(data$Outcome, data$isExposed, mean))) )/iteration  #
 
 
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_CrossScreening_nhanes.fish.match.rda"))
-nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] %>% rownames_to_column |> as_tibble()
+nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] |> rownames_to_column() |> as_tibble()
 names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
 nhanes.fish.match.rename
 # > nhanes.fish.match.rename

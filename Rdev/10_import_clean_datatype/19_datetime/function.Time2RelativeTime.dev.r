@@ -93,7 +93,7 @@ sessionInfo() #----
 
 
 
-ID_Eligible_Exposure.TargetTrial2v2.159vs266[1:5, ] %>% select(lmp, matches("Window4Exposure")) %>% add_column(Dummy = T, .before = 1) %>% add_column(rownum = 1:nrow(.), .before = 1) %>% rownames_to_column |> dput() #----
+ID_Eligible_Exposure.TargetTrial2v2.159vs266[1:5, ] %>% select(lmp, matches("Window4Exposure")) %>% add_column(Dummy = T, .before = 1) %>% add_column(rownum = 1:nrow(.), .before = 1) |> rownames_to_column() |> dput() #----
 ID_lmp_Window4Exposure = structure(list(
     rowname = c("1", "2", "3", "4", "5")
     , rownum = 1:5

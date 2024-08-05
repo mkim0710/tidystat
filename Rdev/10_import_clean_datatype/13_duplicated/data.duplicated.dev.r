@@ -46,7 +46,7 @@ nhis_heals_gj0215.0213[
 # https://stackoverflow.com/questions/22959635/remove-duplicated-rows-using-dplyr
 library(tidyverse)
 set.seed(1234)
-df.example = data.frame(x=sample(0:1,10,replace=T),y=sample(0:1,10,replace=T)) %>% rownames_to_column
+df.example = data.frame(x=sample(0:1,10,replace=T),y=sample(0:1,10,replace=T)) |> rownames_to_column()
 # df.example |> tribble_paste() #----  
 tibble::tribble(
     ~rowname, ~x, ~y,
@@ -166,7 +166,7 @@ df.example %>% group_by(x, y) %>% nest %>% arrange(x, y) %>%
 
 # https://stackoverflow.com/questions/22959635/remove-duplicated-rows-using-dplyr
 set.seed(1234)
-df.example = data.frame(x=sample(0:1,10,replace=T),y=sample(0:1,10,replace=T)) %>% rownames_to_column
+df.example = data.frame(x=sample(0:1,10,replace=T),y=sample(0:1,10,replace=T)) |> rownames_to_column()
 # df.example |> tribble_paste() #----  
 tibble::tribble(
     ~rowname, ~x, ~y,

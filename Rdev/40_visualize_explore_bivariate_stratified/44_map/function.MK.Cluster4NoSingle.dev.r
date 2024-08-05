@@ -77,7 +77,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
             group_by(Code.Cluster) %>% summarise(Pop.Cluster = sum(Pop.Cluster, na.rm = T))
         
         DistanceMatrix.new = Results.iteration.list[[length(Results.iteration.list)]]$DistanceMatrix.new |> 
-            as.data.frame() %>% rownames_to_column %>% gather("key", "value", -rowname) %>% 
+            as.data.frame() |> rownames_to_column() %>% gather("key", "value", -rowname) %>% 
             mutate(
                 rowname = rowname %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
                 , key = key %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
@@ -86,7 +86,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
             spread("key", "value") |> as.data.frame() %>% column_to_rownames |> as.matrix()
         
         ODMatrix.new = Results.iteration.list[[length(Results.iteration.list)]]$ODMatrix.new |> 
-            as.data.frame() %>% rownames_to_column %>% gather("key", "value", -rowname) %>% 
+            as.data.frame() |> rownames_to_column() %>% gather("key", "value", -rowname) %>% 
             mutate(
                 rowname = rowname %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
                 , key = key %>% gsub(Code4MergeFrom[1], Code4MergeInto[1], ., fixed = T)
