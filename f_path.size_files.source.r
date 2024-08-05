@@ -92,14 +92,16 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
 .tmp$objectname = "f_path.size_files"
 .tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print.intermediate = FALSE) {
     if (is.na(literal_filename)) {
-        # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = T, value = T)}
-        filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = T)
+        # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = TRUE, value = TRUE)}
+        filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = TRUE)
         if (length(filenames) == 0) {
             cat("No files found matching the regex4filename: ", regex4filename, "\n")
             return()
         }
     } else {
-        filenames = list.files(path = .path4read) %>% {grep(literal_filename, .,  ignore.case = T, value = T, fixed = T)}
+        # # filenames = list.files(path = .path4read) %>% {grep(literal_filename, .,  ignore.case = TRUE, value = TRUE, fixed = TRUE)}
+        # filenames = list.files(path = .path4read) %>% {grep(literal_filename, ., value = TRUE, fixed = TRUE)}
+        filenames = list.files(path = .path4read) |> str_subset(fixed(literal_filename))
         if (length(filenames) == 0) {
             cat("No files found matching the literal_filename: ", literal_filename, "\n")
             return()
@@ -113,10 +115,11 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
                KB = format(size/2^10, digits = 3, big.mark=","), 
                MB = format(size/2^20, digits = 3, big.mark=","), 
                GB = format(size/2^30, digits = 3, big.mark=","))
-    # out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = T) %>% {sub("^/", "", .)})
+    # out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = TRUE) %>% {sub("^/", "", .)})
     out = out %>% mutate(filename = filename |> env1$f$f_path.relative()) 
     env1$f$f_df.tribble_construct(out)
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
+    return(out)
 } 
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
@@ -168,7 +171,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 #   )
 # ----  
 # Warning message:
-# In grep(literal_filename, ., ignore.case = T, value = T, fixed = T) :
+# In grep(literal_filename, ., ignore.case = TRUE, value = TRUE, fixed = TRUE) :
 #   argument 'ignore.case = TRUE' will be ignored
 
 
