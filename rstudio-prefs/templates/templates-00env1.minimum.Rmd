@@ -446,7 +446,7 @@ cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","  \n", sep="")
 ### \$ paste0(DataSetName,".Date",".NA",".rmAllNA",".fct") ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
+vec_varname4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 for (varname in vec_varname4ID) {if(varname %in% names(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))) cat(" n_distinct(",paste0(DataSetName,".Date",".NA",".rmAllNA"),"$",varname,") == ",n_distinct(get(paste0(DataSetName,".Date",".NA",".rmAllNA"))[[varname]]),"  \n", sep="")}
   
   
