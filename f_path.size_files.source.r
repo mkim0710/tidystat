@@ -90,7 +90,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
 
 
 .tmp$objectname = "f_path.size_files"
-.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print.intermediate = FALSE) {
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, print.intermediate = FALSE) {
     if (is.na(literal_filename)) {
         # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = TRUE, value = TRUE)}
         filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = TRUE)
@@ -108,7 +108,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
         }
     }
     if(print.intermediate) filenames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
+    if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
     out = filenames %>% {file.info(file.path(.path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
         mutate(bytes = format(size, digits = 3, big.mark=","), 
@@ -117,8 +117,8 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
                GB = format(size/2^30, digits = 3, big.mark=","))
     # out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = TRUE) %>% {sub("^/", "", .)})
     out = out %>% mutate(filename = filename |> env1$f$f_path.relative()) 
-    env1$f$f_df.tribble_construct(out)
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
+    if(print2console) env1$f$f_df.tribble_construct(out)
+    if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
     return(out %>% select(filename, size))
 } 
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
