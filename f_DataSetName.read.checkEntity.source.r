@@ -166,10 +166,11 @@ for (.dependancy in c("f_path.size_files")) {
     if(print2console) cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="")
     # Error: attributes(get(DataSetName))$n_distinct = list()
     if( !"n_distinct" %in% names(attributes(.GlobalEnv[[DataSetName]])) ) attributes(.GlobalEnv[[DataSetName]])$n_distinct = list()
+    DataSetName.nrow = nrow(get(DataSetName))
+    attributes(.GlobalEnv[[DataSetName]])$n_distinct$nrow = DataSetName.nrow
     for (varname in vec_varname4ID) {
         if(varname %in% names(get(DataSetName))) {
             .varname.n_distinct = n_distinct(get(DataSetName)[[varname]])
-            DataSetName.nrow = nrow(get(DataSetName))
             attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = .varname.n_distinct
             MessageText1 = paste0("nrow(",DataSetName,")")
             MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") = ",.varname.n_distinct)
