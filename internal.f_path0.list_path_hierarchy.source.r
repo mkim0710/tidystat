@@ -99,7 +99,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 .tmp$objectname = "f_path0.list_path_hierarchy"
 .tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
-    list_path <- list()
+    list_path = list()
     
     # Initialize a variable to keep track of the previous directory
     prev_dir <- ""

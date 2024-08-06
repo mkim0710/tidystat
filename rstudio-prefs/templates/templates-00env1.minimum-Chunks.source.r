@@ -49,7 +49,7 @@ library(tidyverse)
 # \$ .GlobalEnv$env1$env.internal = new.env() ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
 # \$ .GlobalEnv$env1$f = list() ====  
-if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
+.sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 

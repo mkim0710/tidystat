@@ -420,7 +420,7 @@ data = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate
 data = data[, varnames4FullModel] %>% map_df(function.if_dichotomous2logical)
 data = data %>% mutate_if(is.logical, as.factor)
 
-data4FullModel.by_varname_level.list_list <- list()
+data4FullModel.by_varname_level.list_list = list()
 data4FullModel.by_varname_level.list_list$AllSubjects = list()
 data4FullModel.by_varname_level.list_list$AllSubjects$AllSubjects = data[, varnames4FullModel]
 for (i in varnames4FullModel) {
@@ -429,7 +429,7 @@ for (i in varnames4FullModel) {
     } else if (is.logical(data[[i]])) {
         temp.data <- data[!is.na(data[[i]]), varnames4FullModel]
         
-        data4FullModel.by_varname_level.list_list[[i]] <- list()
+        data4FullModel.by_varname_level.list_list[[i]] = list()
         for (j in c("FALSE", "TRUE") ) {
             data4FullModel.by_varname_level.list_list[[i]][[j]] <- temp.data[ temp.data[[i]] == j , ]
         }
@@ -437,7 +437,7 @@ for (i in varnames4FullModel) {
     } else {
         temp.data <- data[!is.na(data[[i]]), varnames4FullModel]
         
-        data4FullModel.by_varname_level.list_list[[i]] <- list()
+        data4FullModel.by_varname_level.list_list[[i]] = list()
         for (j in levels(data[[i]]) ) {
             data4FullModel.by_varname_level.list_list[[i]][[j]] <- temp.data[ temp.data[[i]] == j , ]
         }

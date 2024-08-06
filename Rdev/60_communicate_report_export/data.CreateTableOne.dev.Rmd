@@ -174,13 +174,13 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 ```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # \$ .GlobalEnv$CODEBOOK = list() ====  
 if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
-.sublistname = "MetaData"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "DataSetNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.select"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.filter"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.recode"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "ModelList"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "MetaData"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "DataSetNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.select"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.filter"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.recode"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "ModelList"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
 ```
   
 # @@ START) Data ----  

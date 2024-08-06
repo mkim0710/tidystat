@@ -94,10 +94,10 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # \$ .GlobalEnv$env1$env.internal = new.env() ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
 # \$ .GlobalEnv$env1$f = list() ====  
-if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
+.sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 # \$ .GlobalEnv$env1$info = list() ====  
-if(!"info" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$info <- list()
-# if(!"source" %in% names(.GlobalEnv$env1)) .GlobalEnv$env1$source = list()
+.sublistname = "info"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+# .sublistname = "info"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 if(!"path" %in% names(.GlobalEnv$env1)) {
     env1$path = list()
     objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object
@@ -142,7 +142,7 @@ objectname = "path0"; object = file.path("D:", "OneDrive", "[][Rproject]"); if(!
 #% f_path0.list_path_hierarchy =======  
 f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
-    list_path <- list()
+    list_path = list()
     
     # Initialize a variable to keep track of the previous directory
     prev_dir <- ""

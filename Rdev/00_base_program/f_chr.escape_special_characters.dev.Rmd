@@ -220,13 +220,13 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 ```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # \$ .GlobalEnv$CODEBOOK = list() ====  
 if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
-.sublistname = "MetaData"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "DataSetNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.select"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.filter"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.recode"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "ModelList"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "MetaData"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "DataSetNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.select"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.filter"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.recode"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "ModelList"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
 ```
   
 #@@ START) problem ----  

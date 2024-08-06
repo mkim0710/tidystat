@@ -102,7 +102,7 @@ prop.test(10, 100, correct = F)$conf.int #-----
 # https://www.r-bloggers.com/calculating-confidence-intervals-for-proportions/
 
 simpasym <- function(n, p, z=qnorm(0.975), cc=TRUE){
-  out <- list()
+  out = list()
   if(cc){
     out$lb <- p - z*sqrt((p*(1-p))/n) - 0.5/n
     out$ub <- p + z*sqrt((p*(1-p))/n) + 0.5/n
@@ -123,7 +123,7 @@ simpasym(100, 0.1, cc=F) |> unlist()
 
 
 scoreint <- function(n, p, z=qnorm(0.975), cc=TRUE){
-  out <- list()
+  out = list()
   q <- 1-p
   zsq <- z^2
   denom <- (2*(n+zsq))
