@@ -216,7 +216,7 @@ for (.dependancy in c("f_path.size_files")) {
     ## \% return.list$str ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     if(print2console) { invisible_or_not = function(x) x } else { invisible_or_not = function(x) invisible(x) }
-    return.list$str = get(DataSetName) |> str() |> invisible_or_not() |> capture.output()
+    return.list$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
     if(print2console) {cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)}
     
     ## \% return.list$head_tail ====
@@ -240,7 +240,7 @@ for (.dependancy in c("f_path.size_files")) {
     # Sys.time() - .t0
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.factor))"," |> summary()","  \n", sep=""); get(DataSetName) %>% select_if(is.character) %>% map_df(as.factor) |> summary() #-----
     # Sys.time() - .t0
-    if(return.output) return(return.list)
+    if(return.output) return(invisible(return.list))
 }
 ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
