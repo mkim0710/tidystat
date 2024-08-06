@@ -115,8 +115,8 @@ for (.dependancy in c("f_path.size_files")) {
 .tmp$object = function(DataSetName, ext = "rds", .path4read = ".", vec_varname4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('.path4read == "',.path4read,'"')
-    # if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText,"\n",sep="")} #----
-    if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText)} else {MessageText = paste0(MessageText1," == ",MessageText2, "  \n")}
+    # if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)} #----
+    if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n")}
 
     if(print.intermediate) cat('DataSetName = "', DataSetName, '"  \n', sep="")
     filename.ext = paste0(DataSetName,".", ext)
@@ -184,15 +184,15 @@ for (.dependancy in c("f_path.size_files")) {
             attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = .varname.n_distinct
             MessageText1 = paste0("nrow(",DataSetName,")")
             MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") = ",.varname.n_distinct)
-            # if (DataSetName.nrow != .varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText,"\n",sep="")}
-            if (DataSetName.nrow != .varname.n_distinct) {  MessageText = paste0(MessageText1," != ",MessageText2, "  \n"); warning(MessageText)  } else {  MessageText = paste0(MessageText1," == ",MessageText2, "  \n"); if(print2console) cat(MessageText,"\n",sep="")  }
+            # if (DataSetName.nrow != .varname.n_distinct) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)}
+            if (DataSetName.nrow != .varname.n_distinct) {  MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n"); warning(MessageText4cat)  } else {  MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n"); if(print2console) cat(MessageText4cat)  }
         # } else {
         #     attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = NA
         }
     }
     return.list$n_distinct = attributes(.GlobalEnv[[DataSetName]])$n_distinct
-    # if (all(!( vec_varname4ID %in% names(get(DataSetName)) ))) {MessageText = paste0('varname for ID not identified among: ', deparse(vec_varname4ID), "  \n");warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
-    if (  all( !( vec_varname4ID %in% names(get(DataSetName)) ) )  ) {  MessageText = paste0('varname for ID not identified among: ', vec_varname4ID|>deparse(width.cutoff=500), "  \n"); warning(MessageText)  }
+    # if (all(!( vec_varname4ID %in% names(get(DataSetName)) ))) {MessageText4cat = paste0('varname for ID not identified among: ', deparse(vec_varname4ID), "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")}
+    if (  all( !( vec_varname4ID %in% names(get(DataSetName)) ) )  ) {  MessageText4cat = paste0('varname for ID not identified among: ', vec_varname4ID|>deparse(width.cutoff=500), "  \n"); warning(MessageText4cat)  }
     
     ## \% return.list$names ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
