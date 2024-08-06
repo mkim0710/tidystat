@@ -10,7 +10,7 @@ fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "
     object <- readRDS(filename)
   } else if (grepl("\\.[rR][dD][aA]$", filename)) {
     # Loading .rda file
-    env <- new.env()
+    env = new.env()
     load(filename, env)
     objectnames <- ls(env)
 

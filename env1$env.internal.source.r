@@ -45,7 +45,7 @@ for(.packagename in c("tidyverse")) {if(!require(.packagename,character.only=TRU
 # \$ .GlobalEnv$env1 = new.env() ====  
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) } 
 # \$ .GlobalEnv$env1$env.internal = new.env() ====  
-if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
+if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal = new.env() }
 # \$ .GlobalEnv$env1$source = list() ====  
 .sublistname = "source"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 # \$ .GlobalEnv$env1$info = list() ====  
