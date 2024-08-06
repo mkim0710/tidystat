@@ -7,7 +7,7 @@ f_var_sequence.table <- function(data, var_sequence, var_sequence.short_name = N
   # Determine the complete list of levels for all variables
   all_levels <- sort(unique(as.vector(unlist(data[var_sequence]))))
   
-  tables_list <- list()
+  tables_list = list()
   
   # Loop over the sequence of variables to generate pairs
   for (i in 1:(length(var_sequence) - 1)) {

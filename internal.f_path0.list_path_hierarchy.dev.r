@@ -101,7 +101,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #% f_path0.list_path_hierarchy =======  
 f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
     # Initialize a list to hold the path hierarchy
-    list_path <- list()
+    list_path = list()
     
     # Initialize a variable to keep track of the previous directory
     prev_dir <- ""

@@ -90,7 +90,7 @@ library(tidyverse)
 # \$ .GlobalEnv$env1$env.internal = new.env() ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
 # \$ .GlobalEnv$env1$f = list() ====  
-if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
+.sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 
 
@@ -554,7 +554,7 @@ env1$env.internal$clipboard_context <- function(){
 #' @export
 #'
 env1$env.internal$rstudio_context <- function(){
-  output_context <- list()
+  output_context = list()
   output_context$indent_head <- FALSE #head already at cursor
   output_context$output_mode <- "rstudioapi"
   output_context$nspc <- .rs.readUiPref('num_spaces_for_tab')

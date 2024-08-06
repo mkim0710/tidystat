@@ -104,7 +104,7 @@ f_path.list_subpath.DepthFirstSearch_recursive <- function(input_path = ".", max
         stop("The specified input_path does not exist or is not a directory.")
     }
     
-    list_subpath <- list()
+    list_subpath = list()
     
     if (max_depth == 0) {
         if (include_input_path) {
@@ -293,7 +293,7 @@ f_path.list_subpath.BreathFirstSearch <- function(input_path = ".", max_depth = 
     
     # Initialize the queue with the input_path at depth 0
     list_list_path_depth <- list(list(path = input_path, depth = 0))
-    list_subpath <- list()
+    list_subpath = list()
     
     # Process the queue
     while (length(list_list_path_depth) > 0) {

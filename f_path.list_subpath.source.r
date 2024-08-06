@@ -90,7 +90,7 @@ library(tidyverse)
 # \$ .GlobalEnv$env1$env.internal = new.env() ====  
 if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
 # \$ .GlobalEnv$env1$f = list() ====  
-if(!"f" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$f <- list() }
+.sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 if(!"path" %in% names(.GlobalEnv$env1)) {
     env1$path = list()
@@ -121,7 +121,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
         stop("The specified input_path does not exist or is not a directory.")
     }
     
-    list_subpath <- list()
+    list_subpath = list()
     
     if (max_depth == 0) {
         if (include_input_path) {
@@ -173,7 +173,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     
     # Initialize the queue with the input_path at depth 0
     list_list_path_depth <- list(list(path = input_path, depth = 0))
-    list_subpath <- list()
+    list_subpath = list()
     
     # Process the queue
     while (length(list_list_path_depth) > 0) {

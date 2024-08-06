@@ -220,13 +220,13 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 ```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # \$ .GlobalEnv$CODEBOOK = list() ====  
 if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
-.sublistname = "MetaData"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "DataSetNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.select"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.filter"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "VarNames.recode"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
-.sublistname = "ModelList"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "MetaData"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "DataSetNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.select"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.filter"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "VarNames.recode"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
+.sublistname = "ModelList"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] = list() }
 ```
   
 #@@ START) problem ----  
@@ -279,7 +279,7 @@ path_last |> str_replace(fixed(path0), "") |> str_extract("[^/]+")
 options(width=120)
     # if(!exists("env1", envir=.GlobalEnv)) 
 assign("env1", new.env(), envir=.GlobalEnv)
-    if(!"path" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$path <- list() }  
+    .sublistname = "path"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() } 
     .tmp$objectname = "getwd"; .tmp$object = getwd(); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
     .tmp$objectname = "path0"; .tmp$object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
     
