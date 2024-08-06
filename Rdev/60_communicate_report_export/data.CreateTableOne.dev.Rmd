@@ -174,13 +174,13 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 ```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # \$ .GlobalEnv$CODEBOOK = list() ====  
 if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
-.listname = "MetaData"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "DataSetNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames.filter"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames.recode"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "ModelList"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.sublistname = "MetaData"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "DataSetNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "VarNames"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "VarNames.select"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "VarNames.filter"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "VarNames.recode"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
+.sublistname = "ModelList"; if(!.sublistname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.sublistname]] <- list() }
 ```
   
 # @@ START) Data ----  

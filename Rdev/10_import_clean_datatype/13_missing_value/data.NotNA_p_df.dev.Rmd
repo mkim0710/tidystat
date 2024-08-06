@@ -157,7 +157,7 @@ env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 # \$ .GlobalEnv$.tmp = list() ====  
-if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }  
+.listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }  
 suppressPackageStartupMessages({for(.packagename in c("tidyverse","formatR")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}});cat("  \n", sep="")
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
