@@ -111,14 +111,14 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # \$ .GlobalEnv$env1 = new.env() ====  
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) }
 # \$ .GlobalEnv$env1$env.internal = new.env() ====  
-if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
+if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal = new.env() }
 # \$ .GlobalEnv$env1$f = list() ====  
 .sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
 # globalVariables(c(".rs.readUiPref","env1$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
-env1$env.internal$.global_datapasta_env <- new.env()
+env1$env.internal$.global_datapasta_env = new.env()
 env1$env.internal$.global_datapasta_env$decimal_mark <- "."
 env1$env.internal$.global_datapasta_env$max_rows <- 200
 env1$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"

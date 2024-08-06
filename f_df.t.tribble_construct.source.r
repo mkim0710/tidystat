@@ -88,7 +88,7 @@ library(tidyverse)
 # \$ .GlobalEnv$env1 = new.env() ====  
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) }
 # \$ .GlobalEnv$env1$env.internal = new.env() ====  
-if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <- new.env() }
+if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal = new.env() }
 # \$ .GlobalEnv$env1$f = list() ====  
 .sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -102,7 +102,7 @@ if(!"env.internal" %in% names(.GlobalEnv$env1)) { .GlobalEnv$env1$env.internal <
 # globalVariables(c(".rs.readUiPref","env1$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
 # .tmp$env.internal.objectname = ".global_datapasta_env"
 # packageStartupMessage(paste0("Loading: ", "env1$env.internal$", .tmp$env.internal.objectname))
-env1$env.internal$.global_datapasta_env <- new.env()
+env1$env.internal$.global_datapasta_env = new.env()
 env1$env.internal$.global_datapasta_env$decimal_mark <- "."
 env1$env.internal$.global_datapasta_env$max_rows <- 200
 env1$env.internal$.global_datapasta_env$no_clip_msg <- "Clipboard is not available. Is xsel or xclip installed? Is DISPLAY set?"
