@@ -119,7 +119,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
     out = out %>% mutate(filename = filename |> env1$f$f_path.relative()) 
     env1$f$f_df.tribble_construct(out)
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
-    return(out)
+    return(out %>% select(filename, size))
 } 
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
