@@ -107,7 +107,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
             return()
         }
     }
-    if(print.intermediate) filenames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
+    if(print.intermediate) filenames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
     if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
     out = filenames %>% {file.info(file.path(.path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
