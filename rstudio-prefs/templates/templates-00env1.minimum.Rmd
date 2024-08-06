@@ -435,8 +435,8 @@ options(width=120)
   
 assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
 assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
-cat(" dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="") 
-cat(" dim(",DataSetName,".Date",".NA",".rmAllNA",") = ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"  \n", sep="") 
+cat(" dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="") 
+cat(" dim(",DataSetName,".Date",".NA",".rmAllNA",") == ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","  \n", sep=""); env1$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
 ```
