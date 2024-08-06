@@ -95,13 +95,6 @@ DataSetName = "fhs.index100le10"
 ## \% f_DataSetName.read.checkEntity(DataSetName = DataSetName) =====
 out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
 out %>% str
-# > out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
-# Found subpath: .path4read = "./data"  
-# Warning messages:
-# 1: In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName,  :
-#   getwd() != .path4read == "."
-# 2: In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName,  :
-#   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 # > out %>% str
 # List of 7
 #  $ DataSetName   : chr "fhs.index100le10"
@@ -111,27 +104,28 @@ out %>% str
 #  $ read.proc_time: 'proc_time' Named num [1:5] 0.001 0 0.001 0 0
 #   ..- attr(*, "names")= chr [1:5] "user.self" "sys.self" "elapsed" "user.child" ...
 #  $ dim           : int [1:2] 450 81
-#  $ n_distinct    :List of 9
-#   ..$ nrow        : int 450
-#   ..$ rowname     : logi NA
-#   ..$ rownum      : logi NA
-#   ..$ Num         : logi NA
-#   ..$ ID          : logi NA
-#   ..$ CompositeKey: logi NA
-#   ..$ PERSON_ID   : logi NA
-#   ..$ RN_INDI     : logi NA
-#   ..$ NIHID       : logi NA
+#  $ n_distinct    :List of 1
+#   ..$ nrow: int 450
 #  $ names         : chr [1:81] "randid" "death" "angina" "hospmi" ...
-#  $ str           : chr [1:92] "tibble [450 × 81] (S3: tbl_df/tbl/data.frame)" " $ randid   : num [1:450] 24721 54224 83398 84815 95541 ..." " $ death    : num [1:450] 1 1 1 0 1 0 0 0 0 0 ..." " $ angina   : num [1:450] 0 0 0 0 0 0 0 0 0 1 ..." ...
-
+#  $ str           : chr [1:84] "tibble [450 × 81] (S3: tbl_df/tbl/data.frame)" " $ randid   : num [1:450] 24721 54224 83398 84815 95541 ..." " $ death    : num [1:450] 1 1 1 0 1 0 0 0 0 0 ..." " $ angina   : num [1:450] 0 0 0 0 0 0 0 0 0 1 ..." ...
 
 ## \% f_DataSetName.read.checkEntity(DataSetName = DataSetName) =====
 out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = FALSE)
 out %>% str
-# Warning message:
-# In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname,  :
-#   getwd() != .path4read == "."
-
+# > out %>% str
+# List of 7
+#  $ DataSetName   : chr "fhs.index100le10"
+#  $ df_size_files :'data.frame':	1 obs. of  2 variables:
+#   ..$ filename: chr "data/fhs.index100le10.rds"
+#   ..$ size    : num 35747
+#  $ read.proc_time: 'proc_time' Named num [1:5] 0.001 0 0.001 0 0
+#   ..- attr(*, "names")= chr [1:5] "user.self" "sys.self" "elapsed" "user.child" ...
+#  $ dim           : int [1:2] 450 81
+#  $ n_distinct    :List of 2
+#   ..$ nrow  : int 450
+#   ..$ randid: int 450
+#  $ names         : chr [1:81] "randid" "death" "angina" "hospmi" ...
+#  $ str           : chr [1:85] "tibble [450 × 81] (S3: tbl_df/tbl/data.frame)" " $ randid   : num [1:450] 24721 54224 83398 84815 95541 ..." " $ death    : num [1:450] 1 1 1 0 1 0 0 0 0 0 ..." " $ angina   : num [1:450] 0 0 0 0 0 0 0 0 0 1 ..." ...
 
 
 
