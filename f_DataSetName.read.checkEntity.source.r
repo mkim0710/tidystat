@@ -116,7 +116,7 @@ for (.dependancy in c("f_path.size_files")) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('.path4read == "',.path4read,'"')
     # if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
-    if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText)} else {MessageText = paste0(MessageText1," == ",MessageText2)} #----
+    if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText)} else {MessageText = paste0(MessageText1," == ",MessageText2)}
 
     if(print.intermediate) cat('DataSetName = "', DataSetName, '"  \n', sep="")
     filename.ext = paste0(DataSetName,".", ext)
@@ -153,19 +153,27 @@ for (.dependancy in c("f_path.size_files")) {
     #     str_replace_all("\\]", "\\\\]") %>% 
     #     str_replace_all("\\-", "\\\\-") 
     # filename.ext.regex <- filename.ext |> str_replace_all("([().\\[\\]\\-])", "\\\\\\1")
+
+    ## \% return.list$DataSetName ====
     return.list = list()
     return.list$DataSetName = DataSetName
+    
+    ## \% return.list$df_size_files ====
     # return.list$df_size_files = env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename.ext.regex)
     return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read, literal_filename = filename.ext, print2console=print2console)
+    
+    ## \% return.list$read.proc_time ====
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     return.list$read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
     if(print2console) return.list$read.proc_time |> print()
 
+    ## \% return.list$dim ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     return.list$dim = dim(get(DataSetName))
     if(print2console) cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="")
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     
+    ## \% return.list$n_distinct ====
     # Error: attributes(get(DataSetName))$n_distinct = list()
     if( !"n_distinct" %in% names(attributes(.GlobalEnv[[DataSetName]])) ) attributes(.GlobalEnv[[DataSetName]])$n_distinct = list()
     DataSetName.nrow = nrow(get(DataSetName))
@@ -176,8 +184,8 @@ for (.dependancy in c("f_path.size_files")) {
             attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = .varname.n_distinct
             MessageText1 = paste0("nrow(",DataSetName,")")
             MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") = ",.varname.n_distinct)
-            # if (DataSetName.nrow != .varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
-            if (DataSetName.nrow != .varname.n_distinct) {  MessageText = paste0(MessageText1," != ",MessageText2); warning(MessageText)  } else {  MessageText = paste0(MessageText1," == ",MessageText2); if(print2console) cat(MessageText,"\n",sep="")  } #----
+            # if (DataSetName.nrow != .varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")}
+            if (DataSetName.nrow != .varname.n_distinct) {  MessageText = paste0(MessageText1," != ",MessageText2); warning(MessageText)  } else {  MessageText = paste0(MessageText1," == ",MessageText2); if(print2console) cat(MessageText,"\n",sep="")  }
             
         } else {
             attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = NA
@@ -186,7 +194,8 @@ for (.dependancy in c("f_path.size_files")) {
     return.list$n_distinct = attributes(.GlobalEnv[[DataSetName]])$n_distinct
     # if (all(!( vec_varname4ID %in% names(get(DataSetName)) ))) {MessageText = paste0('varname for ID not identified among: ', deparse(vec_varname4ID));warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
     if (  all( !( vec_varname4ID %in% names(get(DataSetName)) ) )  ) {  MessageText = paste0('varname for ID not identified among: ', deparse(vec_varname4ID)); warning(MessageText)  }
-
+    
+    ## \% return.list$names ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     return.list$names = get(DataSetName) |> names() 
     if(print2console) {
@@ -205,6 +214,7 @@ for (.dependancy in c("f_path.size_files")) {
         } else {cat("!print.names.tidyeval  \n")}
     }
     
+    ## \% return.list$str ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     if(print2console) { invisible_or_not = function(x) x } else { invisible_or_not = function(x) invisible(x) }
     return.list$str = get(DataSetName) |> str() |> invisible_or_not() |> capture.output()
