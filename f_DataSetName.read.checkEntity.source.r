@@ -194,7 +194,7 @@ for (.dependancy in c("f_path.size_files")) {
     } else {cat("!print.names.tidyeval  \n")}
     
     cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-    return.list$str = get(DataSetName) |> str() 
+    return.list$str = get(DataSetName) |> str() |> capture.output()
     cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)
     
     # return.list$head = get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble()
