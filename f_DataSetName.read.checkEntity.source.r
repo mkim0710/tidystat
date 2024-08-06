@@ -112,7 +112,7 @@ for (.dependancy in c("f_path.size_files")) {
 
 #@ objectname = "f_DataSetName.read.checkEntity" =========  
 .tmp$objectname = "f_DataSetName.read.checkEntity"
-.tmp$object = function(DataSetName, ext = "rds", .path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, return.output = FALSE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
+.tmp$object = function(DataSetName, ext = "rds", .path4read = ".", vec_varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = "getwd()"
     MessageText2 = paste0('.path4read == "',.path4read,'"')
     # if (getwd() != .path4read) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
@@ -156,54 +156,66 @@ for (.dependancy in c("f_path.size_files")) {
     return.list = list()
     return.list$DataSetName = DataSetName
     # return.list$df_size_files = env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename.ext.regex)
-    return.list$df_size_files = env1$f$f_path.size_files(.path4read = .path4read, literal_filename = filename.ext)
+    return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read, literal_filename = filename.ext, print2console=print2console)
     
-    system.time(assign(DataSetName, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
+    return.list$read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
+    if(print2console) return.list$read.proc_time |> print()
 
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     return.list$dim = dim(get(DataSetName))
-    cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="")
+    if(print2console) cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="")
     # Error: attributes(get(DataSetName))$n_distinct = list()
     if( !"n_distinct" %in% names(attributes(.GlobalEnv[[DataSetName]])) ) attributes(.GlobalEnv[[DataSetName]])$n_distinct = list()
     for (varname in vec_varname4ID) {
         if(varname %in% names(get(DataSetName))) {
-            attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = n_distinct(get(DataSetName)[[varname]])
+            .varname.n_distinct = n_distinct(get(DataSetName)[[varname]])
             DataSetName.nrow = nrow(get(DataSetName))
-            varname.n_distinct = attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]]
-
+            attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = .varname.n_distinct
             MessageText1 = paste0("nrow(",DataSetName,")")
-            MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") = ",varname.n_distinct)
-            # if (DataSetName.nrow != varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
-            if (DataSetName.nrow != varname.n_distinct) {  MessageText = paste0(MessageText1," != ",MessageText2); warning(MessageText)  } else {  MessageText = paste0(MessageText1," == ",MessageText2); cat(MessageText,"\n",sep="")  } #----
+            MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") = ",.varname.n_distinct)
+            # if (DataSetName.nrow != .varname.n_distinct) {MessageText = paste0(MessageText1," != ",MessageText2);warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")} else {MessageText = paste0(MessageText1," == ",MessageText2);cat(MessageText,"\n",sep="")} #----
+            if (DataSetName.nrow != .varname.n_distinct) {  MessageText = paste0(MessageText1," != ",MessageText2); warning(MessageText)  } else {  MessageText = paste0(MessageText1," == ",MessageText2); if(print2console) cat(MessageText,"\n",sep="")  } #----
+            
+        } else {
+            attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = NA
         }
     }
+    return.list$n_distinct = attributes(.GlobalEnv[[DataSetName]])$n_distinct
     # if (all(!( vec_varname4ID %in% names(get(DataSetName)) ))) {MessageText = paste0('varname for ID not identified among: ', deparse(vec_varname4ID));warning(MessageText);cat("Warning: ",MessageText,"\n",sep="")}
     if (  all( !( vec_varname4ID %in% names(get(DataSetName)) ) )  ) {  MessageText = paste0('varname for ID not identified among: ', deparse(vec_varname4ID)); warning(MessageText)  }
 
-    cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     return.list$names = get(DataSetName) |> names() 
-    cat("> names(",DataSetName,') |> deparse(width.cutoff=',.width.cutoff,') |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
-    if(ncol(get(DataSetName)) <= 100 || print.name.dput) {
-        get(DataSetName) |> names() |> deparse(width.cutoff=.width.cutoff) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
-    } else {cat("ncol(get(",DataSetName,")) > 100 && !print.name.dput \n", sep="")}
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # return.list$names.tidyeval = get(DataSetName) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") 
-    cat("> names(",DataSetName,') |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",',.width.cutoff,',"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
-    if(print.names.tidyeval) {
-        get(DataSetName) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",.width.cutoff,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
-    } else {cat("!print.names.tidyeval  \n")}
+    if(print2console) {
+        cat("> names(",DataSetName,') |> deparse(width.cutoff=',.width.cutoff,') |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
+        if(ncol(get(DataSetName)) <= 100 || print.name.dput) {
+            get(DataSetName) |> names() |> deparse(width.cutoff=.width.cutoff) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ----
+        } else {cat("ncol(get(",DataSetName,")) > 100 && !print.name.dput \n", sep="")}
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    }
     
-    cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-    return.list$str = get(DataSetName) |> str() |> capture.output()
-    cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)
+    # return.list$names.tidyeval = get(DataSetName) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",120-20,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") 
+    if(print2console) {
+        cat("> names(",DataSetName,') |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",',.width.cutoff,',"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \\n") |> cat("  \\n", sep="")',"  \n", sep=""); 
+        if(print.names.tidyeval) {
+            get(DataSetName) |> names() |> paste(collapse=", ") |> strsplit(paste0("(?<=.{",.width.cutoff,"})"), perl = TRUE) |> unlist() |> paste0(collapse="  \n") |> cat("  \n", sep=""); # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ----
+        } else {cat("!print.names.tidyeval  \n")}
+    }
+    
+    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+    if(print2console) { invisible_or_not = function(x) x } else { invisible_or_not = function(x) invisible(x) }
+    return.list$str = get(DataSetName) |> str() |> invisible_or_not() |> capture.output()
+    if(print2console) {cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)}
     
     # return.list$head = get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble()
     # return.list$tail = get(DataSetName) |> rownames_to_column('#') |> tail(n=10) |> as_tibble()
-    cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     # cat("> ",DataSetName," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(DataSetName)), n=9)
-    cat("> ",DataSetName," |> rownames_to_column('#') |> head(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble() |> print()
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    cat("> ",DataSetName," |> rownames_to_column('#') |> tail(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> tail(n=10) |> as_tibble() |> print()
+    if(print2console) {
+        cat("> ",DataSetName," |> rownames_to_column('#') |> head(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble() |> print()
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        cat("> ",DataSetName," |> rownames_to_column('#') |> tail(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> tail(n=10) |> as_tibble() |> print()
+    }
     # .t0 = Sys.time()
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(DataSetName) |> dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time() - .t0

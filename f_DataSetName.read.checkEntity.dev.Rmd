@@ -1,0 +1,472 @@
+---
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:  
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document: 
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+header-includes: 
+  - \usepackage{fontspec}
+  - \newcommand{\setfallbackfont}[4]{
+      \IfFontExistsTF{#2}
+        {#1{#2}}
+        {\IfFontExistsTF{#3}
+          {#1{#3}}
+          {#1{#4}}}}
+  # - \setfallbackfont{\setmainfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  # - \setfallbackfont{\setsansfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+  - \usepackage[hangul]{kotex}
+  - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; }
+h1.title { font-size: 28px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+  
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+  
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# _______________
+<!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
+<!-- ##### Rstudio RMarkDown Shortcuts -->
+<!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
+<!-- https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html   -->
+<!-- Insert R chunk	Ctrl+Alt+I	Command+Option+I   -->
+<!-- Preview HTML	Ctrl+Shift+K	Command+Shift+K   -->
+<!-- Run all chunks above	Ctrl+Alt+P	Command+Option+P   -->
+<!-- Run current chunk	Ctrl+Alt+C	Command+Option+C   -->
+<!-- Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter   -->
+<!-- Run next chunk	Ctrl+Alt+N	Command+Option+N   -->
+<!-- Run all chunks	Ctrl+Alt+R	Command+Option+R   -->
+<!-- Go to next chunk/title	Ctrl+PgDown	Command+PgDown   -->
+<!-- Go to previous chunk/title	Ctrl+PgUp	Command+PgUp   -->
+<!-- Show/hide document outline	Ctrl+Shift+O	Command+Shift+O   -->
+<!-- F7 spell-check your document.   -->
+<!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
+<!--    -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
+
+  
+```{r setup, echo=FALSE, results="hide"}
+# ```{r setup, eval=TRUE, include=FALSE}
+if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
+    tidy.opts=list(width.cutoff=120), tidy=FALSE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+
+
+# ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
+# ```
+#   
+# <font size="3">\% env1</font>  
+#   
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+# str(env1$info$info_software_versions)
+
+
+###### env1\$info\$DocumentTitle1 ----  
+# ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    sep="")
+```
+  
+  
+```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+###### env1\$path ----  
+# cat(" getwd() == "); dput(getwd()) #----   
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \$ env1\$path\$CurrentSource.path.filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# env1$path$project_base = "Rproject_HEALS0215"
+# env1$path$data_suffix = "_01"
+# # env1$path$data_suffix = ""
+# env1$path$project_suffix = "GJ3"
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$.path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$.path4write = getwd()
+.path4read  = env1$path$.path4read
+.path4write = env1$path$.path4write
+# cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
+
+#@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+cat("> .tmp |> str(max.level = 1)", "  \n", sep="") 
+.tmp |> str(max.level = 1)
+cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
+env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
+```
+  
+  
+```{r dfDIRsRecursive-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
+# #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
+# .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
+# env1$path$print_tree_path = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> 
+#     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
+# # env1$path$print_tree_path |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> 
+#     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
+# # env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> 
+#     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
+# env1$path$print_tree_path_files.data |> cat("  \n", sep="")
+```
+  
+  
+```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
+# #### env1\$f_path.size_files() ----  
+# .sourcename = "f_path.size_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# #### env1\$f_DataSetName.read.checkEntity() ----  
+# .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# env1$f$f_path.size_files(.path4read = .path4read)
+```
+  
+  
+```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \$ env1\$path\$CurrentSource.path.filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \$ .GlobalEnv$.tmp = list() ====  
+if(!exists(".tmp", envir=.GlobalEnv)) { assign(".tmp", list(), envir=.GlobalEnv) }
+for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+    .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
+    if(.tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext)) {
+        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+        .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+    }
+}
+```
+  
+  
+# @@ CODEBOOK ----  
+```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# \$ .GlobalEnv$CODEBOOK = list() ====  
+if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
+.listname = "MetaData"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.listname = "DataSetNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.listname = "VarNames.filter"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.listname = "VarNames.recode"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+.listname = "ModelList"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+```
+  
+#@@ START) source ----  
+### @ .subpath, .sourcename = "default.template" |> paste0(".source.r") ----  
+```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+options(width=120)
+#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
+# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
+# .sourcename = "default.template" |> paste0(".source.r")
+if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.sourcename = env1$path$CurrentSource.path.filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+env1$path$.subpath = .subpath
+.sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
+env1$path$.sourcename_root = .sourcename_root
+env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
+env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
+env1$path$.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
+    "# ",env1$path$.subpath.filename.dev.r, "  \n",
+    "# ",env1$path$.subpath.filename.dev.Rmd, "  \n",
+    "# ",env1$path$.subpath.filename.source.r, "  \n",
+    '# # source("',env1$path$source_base,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
+    sep="")
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
+# .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+```
+  
+```{r}
+source("f_DataSetName.read.checkEntity.source.r")
+```
+
+  
+# @@ START) Data ----  
+  
+# \$ DataSetName = "fhs.index100le10" =======  
+## \% env1$f$f_DataSetName.read.checkEntity(print2console = FALSE) =======  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
+
+# \$ DataSetName = "fhs.index100le10" =======  
+DataSetName = "fhs.index100le10"
+out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
+# Warning messages:
+# 1: In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname) :
+#   getwd() != .path4read == "."
+# 2: In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname) :
+#   varname for ID not identified among: c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
+```
+  
+  
+  
+## \% env1$f$f_DataSetName.read.checkEntity(vec_varname4ID = "randid", print2console = FALSE) =======  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = FALSE)
+out %>% str
+# Warning message:
+# In env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname,  :
+#   getwd() != .path4read == "."
+```
+  
+  
+## \% f_DataSetName.read.checkEntity(print2console = TRUE) =======  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = TRUE)
+```
+  
+  
+## \% f_DataSetName.read.checkEntity(print2console = TRUE, return.output = FALSE) =======  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = TRUE, return.output = FALSE)
+```
+  
+  
+## \% f_DataSetName.read.checkEntity(print2console = TRUE, return.output = TRUE) =======  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = TRUE, return.output = TRUE)
+```
+  
+  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# @@ END ----  
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# @@ END ----  
+```
+  
+  
+```{r updateTemplateNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
+if (.Platform$OS.type == "windows") {
+    .sourcename = "templates-00env1.minimum-Chunks" |> paste0(".source.r"); .subpath=r"(rstudio-prefs/templates)"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+    #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+    ## \$ env1\$path\$CurrentSource.path.filename.ext ====  
+    # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+    # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+    env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+    #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+    env1$env.internal$RmdChunk.updateTemplateNotebook(.CurrentSource.path.filename.ext = env1$path$CurrentSource.path.filename.ext)
+}
+```
+  
+  
+```{r writeRDS-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# # @ write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))) ----  
+# objectname = "AnalyticDataset200621"
+# system.time(write_rds( get(objectname), paste0(objectname,".rds") ))
+# system.time(write_rds( get(paste0(objectname,".NA",".rmAllNA",".fct")), paste0(objectname,".NA",".rmAllNA",".fct",".rds") ))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")), compress = "gz" ))
+# # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
+# # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname, ".xlsx"))
+```
+  
+  
+```{r createBackup, eval=TRUE, include=FALSE}
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    # if (.Platform$OS.type == "windows") {
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+    # }
+}
+```
+  
+  
+```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all("[ ()]","-")
+env1$path$CurrentSource.path.filename.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all("[ ()]","-")
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    if (.Platform$OS.type == "windows") {
+        .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
+        for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+
+        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
+        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        try(env1$env.internal$f_file_PDF.sumatra(env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}))
+    }
+}
+# cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)},'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
+#     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)},'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)},'") }',"\n",
+#     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)},'", .backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"  \n", sep="")
+# cat("    ________________________________________________________________________    \n")
+env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% cat('  Sys.setenv(PARENT_RENDERING = "YES"); "',.,'" |> rmarkdown::render(output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep=""); env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal$f_filename.ext.createBackup(.backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)  \n', sep=""); env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal$f_URL.open_in_edge_app()  \n', sep="")
+```
+  
+  
+```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (.Platform$OS.type == "windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat(" * To revert to the last commited file, run the following terminal command:\n", 
+    '"git checkout -- ',env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"\n",
+    '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"  \n", sep="")
+```
+  
+  
