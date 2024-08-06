@@ -198,12 +198,14 @@ env1$env.internal$f_function.load2env.internal(LETTERS, "test")
 }
 
 rm(test, envir = env1$env.internal)
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 env1$env.internal$test
 .GlobalEnv$env1$env.internal$test
 
 rm(test, envir = env1$env.internal)
 .GlobalEnv$env1$env.internal$test
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, show_packageStartupMessage = FALSE)
 .GlobalEnv$env1$env.internal$test
 
@@ -220,6 +222,7 @@ rm(test, envir = env1$env.internal)
 
 
 .GlobalEnv$env1$f$test = NULL
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 .GlobalEnv$env1$f$test
 

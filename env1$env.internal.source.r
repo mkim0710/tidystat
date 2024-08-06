@@ -158,6 +158,7 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
         }
     }
 }
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## \$ env1\$path\$CurrentSource.path.filename.ext ====  
@@ -188,6 +189,7 @@ env1$env.internal$ f_URL.open_in_edge_app <- function(URL) {
 ##### \$ .tmp\$objectname = "f_URL.open_in_edge_app" ----  
 .tmp$objectname = "f_URL.open_in_edge_app"
 .tmp$object = env1$env.internal[[.tmp$objectname]]
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (.Platform$OS.type == "windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
@@ -206,6 +208,7 @@ env1$env.internal$ f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
 ##### \$ .tmp\$objectname = "f_URL.open_in_edge_app.printPowerShellCode" ----  
 .tmp$objectname = "f_URL.open_in_edge_app.printPowerShellCode"
 .tmp$object = env1$env.internal[[.tmp$objectname]]
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ### \% f_file.systemStart ====  
