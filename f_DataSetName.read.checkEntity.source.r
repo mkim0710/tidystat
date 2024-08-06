@@ -157,13 +157,15 @@ for (.dependancy in c("f_path.size_files")) {
     return.list$DataSetName = DataSetName
     # return.list$df_size_files = env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename.ext.regex)
     return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read, literal_filename = filename.ext, print2console=print2console)
-    
+    # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     return.list$read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
     if(print2console) return.list$read.proc_time |> print()
 
-    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     return.list$dim = dim(get(DataSetName))
     if(print2console) cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="")
+    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+    
     # Error: attributes(get(DataSetName))$n_distinct = list()
     if( !"n_distinct" %in% names(attributes(.GlobalEnv[[DataSetName]])) ) attributes(.GlobalEnv[[DataSetName]])$n_distinct = list()
     DataSetName.nrow = nrow(get(DataSetName))
@@ -208,15 +210,17 @@ for (.dependancy in c("f_path.size_files")) {
     return.list$str = get(DataSetName) |> str() |> invisible_or_not() |> capture.output()
     if(print2console) {cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)}
     
+    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     # return.list$head = get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble()
     # return.list$tail = get(DataSetName) |> rownames_to_column('#') |> tail(n=10) |> as_tibble()
-    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     # cat("> ",DataSetName," |> as_tibble() |> print(n=9)","  \n", sep=""); print( as_tibble(get(DataSetName)), n=9)
     if(print2console) {
         cat("> ",DataSetName," |> rownames_to_column('#') |> head(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> head(n=10) |> as_tibble() |> print()
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         cat("> ",DataSetName," |> rownames_to_column('#') |> tail(n=10) |> as_tibble()","  \n", sep=""); get(DataSetName) |> rownames_to_column('#') |> tail(n=10) |> as_tibble() |> print()
     }
+    
+    # if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     # .t0 = Sys.time()
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat("> ",DataSetName," |> dplyr::select_if(is.numeric))"," |> summary()","  \n", sep=""); get(DataSetName) |> dplyr::select_if(is.numeric) |> summary() #-----
     # Sys.time() - .t0
