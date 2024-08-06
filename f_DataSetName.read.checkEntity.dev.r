@@ -86,7 +86,7 @@ source("f_DataSetName.read.checkEntity.source.r")
 # \$ .tmp\$objectname = "fhs.index100le10" =======  
 objectname = "fhs.index100le10"
 env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname)
-env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname, varname4ID = "randid")
+env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname, vec_varname4ID = "randid")
 # > objectname = "fhs.index100le10"
 # > env1$f$f_DataSetName.read.checkEntity(DataSetName = objectname)
 # Warning:  getwd() != .path4read == "." 
