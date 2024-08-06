@@ -170,7 +170,7 @@ for (.dependancy in c("f_path.size_files")) {
     ## \% return.list$dim ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     return.list$dim = dim(get(DataSetName))
-    if(print2console) cat("dim(",DataSetName,") = ",deparse(dim(get(DataSetName))),"  \n", sep="")
+    if(print2console) cat("dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="")
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     
     ## \% return.list$n_distinct ====
@@ -183,7 +183,7 @@ for (.dependancy in c("f_path.size_files")) {
             .varname.n_distinct = n_distinct(get(DataSetName)[[varname]])
             attributes(.GlobalEnv[[DataSetName]])$n_distinct[[varname]] = .varname.n_distinct
             MessageText1 = paste0("nrow(",DataSetName,")")
-            MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") = ",.varname.n_distinct)
+            MessageText2 = paste0("n_distinct(",DataSetName,"$",varname,") == ",.varname.n_distinct)
             # if (DataSetName.nrow != .varname.n_distinct) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)}
             if (DataSetName.nrow != .varname.n_distinct) {  MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n"); warning(MessageText4cat)  } else {  MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n"); if(print2console) cat(MessageText4cat)  }
         # } else {
