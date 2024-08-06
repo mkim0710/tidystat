@@ -108,7 +108,7 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ gitignore = read_lines(".gitignore") ----  
@@ -126,14 +126,14 @@ c(".Rproj.user", ".Rhistory", ".RData", ".Ruserdata", "*.zip",
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 gitignore %>% f_vec.extract_non_alphanumeric_list |> unlist() |> unique() |> dput()
 c(".", "*", ")", "-", " ")
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ gitignore_escaped ----  
@@ -155,7 +155,7 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ gitignore_escaped_select ----  
@@ -172,7 +172,7 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # for (i_regex in unique(gitignore_escaped_select)) {
 #     df <- df_dir1 |> dplyr::filter(!str_detect(path.basename, i_regex))
@@ -180,7 +180,7 @@ options(width=120)
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ gitignore_escaped_select.UC ----  
@@ -196,7 +196,7 @@ c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA",
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>% 
     {paste0("(", ., ")")} |> 
@@ -205,7 +205,7 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ end ----  
@@ -213,7 +213,7 @@ options(width=120)
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 # @ end ----  

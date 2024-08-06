@@ -230,27 +230,27 @@ if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.Gl
 ```
   
 #@@ START) problem ----  
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/828c4e1f-d439-4c50-8a35-4cbea4f713fe
 # https://chatgpt.com/c/bd748750-df70-466d-ad49-39414d6041fc
 ```
   
 
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 #@@ START) dev) f_chr.escape_special_characters ----  
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 
@@ -271,7 +271,7 @@ vec_str.test =
 
 
 # \$ escape_special_characters.str_replace_all() 
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Function to escape special characters in a string for use in regex
 escape_special_characters.str_replace_all <- function(string) {
   string |> str_replace_all("([]\\[{}()+*?^$|.-])", "\\\\\\1")
@@ -283,7 +283,7 @@ result.str_replace_all |> str()
 
 
 # \$ escape_special_characters.str_replace_all_v2() 
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Function to escape special characters in a string for use in regex
 escape_special_characters.str_replace_all_v2 <- function(string) {
   string |> str_replace_all("([\\[\\]{}()+*?^$|.-])", "\\\\\\1")
@@ -296,7 +296,7 @@ result.str_replace_all |> identical(result.str_replace_all)
   
   
 # \$ escape_special_characters.gsub() 
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 # Function to escape special characters in a string for use in regex
@@ -311,7 +311,7 @@ result.gsub |> identical(result.str_replace_all)
 
 
 # \$ escape_special_characters.gsub_v2() 
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 
@@ -324,21 +324,21 @@ result.gsub_v2 = vec_str.test |> map(escape_special_characters.gsub_v2)
 result.gsub_v2 |> str()
 result.gsub_v2 |> identical(result.str_replace_all)
 ```
-
-
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+  
+  
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
 
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-```{r, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
