@@ -23,7 +23,7 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 .CodeText = "dim(get(objectname))"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 .CodeText = "dim(get(objectname))"; cat(.CodeText);cat(" = ");dput(eval(parse(text=.CodeText)))
-cat("dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
+cat("dim(",objectname,") == ",deparse(dim(get(objectname))),"  \n", sep="")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 .CodeText = "str(get(objectname), max.level = 2, give.attr = F)"; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
 cat("> ",objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(objectname), max.level=2, give.attr=FALSE)

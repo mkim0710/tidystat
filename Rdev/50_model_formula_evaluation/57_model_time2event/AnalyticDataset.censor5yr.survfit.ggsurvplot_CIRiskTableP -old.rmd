@@ -121,7 +121,7 @@ options(width=120)
 # filename2read = if(file.exists(file.path(.path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
 # env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename2read)
 # system.time(assign(objectname, readRDS(file.path(.path4read, filename2read)), envir=.GlobalEnv))
-# cat(" dim(",objectname,") = ",deparse(dim(get(objectname))),"  \n", sep="")
+# cat(" dim(",objectname,") == ",deparse(dim(get(objectname))),"  \n", sep="")
   
 # get(objectname) %>% {.$PERSON_ID} |> n_distinct()
 # get(objectname) %>% {.$RN_INDI} |> n_distinct()
