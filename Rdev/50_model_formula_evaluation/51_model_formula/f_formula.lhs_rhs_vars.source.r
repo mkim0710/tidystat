@@ -144,9 +144,9 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
-
+include_input_in_output
 # ## \% |> c(env1$f$f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
-# ### Caution) list can have multiple elements with the same name?!  
+# ### Cinclude_input_in_outputve multiple elements with the same name?!  
 # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 # 
 # library(survival)
@@ -180,14 +180,14 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 # #  $ all.vars: chr [1:6] "time2event" "event" "Group" "StudyPopulation" ...
-# #  $ lhs     : language Surv(time = time2event, event = event)
+# #  $ lhs     : language Surv(time = time2event, event = event)include_input_in_output
 # #  $ lhs.vars: chr [1:2] "time2event" "event"
 # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
 # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 
 
 
-#|________________________________________________________________________________|#  
+#|________________________________________________________________________________|#  include_input_in_output
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) source -----  
 ### @ .subpath, .sourcename ======  
