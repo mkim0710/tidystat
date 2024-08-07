@@ -412,10 +412,10 @@ options(width=120)
   
   
   
-#@@ START) function: env1$f$f_formula.lhs_rhs_vars  
+#@@ START) function: f_formula.lhs_rhs_vars  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-env1$f$f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
+f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
     return.list = list()
     if(formula_in_the_list) return.list$formula = formula
     return.list$terms = formula |> terms()
@@ -429,7 +429,7 @@ env1$f$f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
 ```
   
   
-## \% |> c(env1$f$f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
+## \% |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
 ### Caution) list can have multiple elements with the same name?!  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -439,7 +439,7 @@ library(survival)
 CODEBOOK$ModelList$time2event = NULL
 CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(env1$f$f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
+CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
 
 CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
 CODEBOOK$ModelList$time2event$formula
@@ -452,7 +452,7 @@ CODEBOOK$ModelList$time2event$formula
 ```
   
   
-## \% |> c(CODEBOOK$ModelList$time2event$formula |> env1$f$env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+## \% |> c(CODEBOOK$ModelList$time2event$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
@@ -461,7 +461,7 @@ library(survival)
 CODEBOOK$ModelList$time2event = NULL
 CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(CODEBOOK$ModelList$time2event$formula |> env1$f$env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(CODEBOOK$ModelList$time2event$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
 
 CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
 CODEBOOK$ModelList$time2event$formula
@@ -473,7 +473,7 @@ CODEBOOK$ModelList$time2event$formula
 ```
   
   
-## \% |> c(env1$f$f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
+## \% |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
@@ -482,7 +482,7 @@ library(survival)
 CODEBOOK$ModelList$time2event = NULL
 CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 CODEBOOK$ModelList$time2event$formula.lhs_rhs_vars = 
-    CODEBOOK$ModelList$time2event$formula %>% env1$f$f_formula.lhs_rhs_vars()
+    CODEBOOK$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
 CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 ```
   
@@ -499,10 +499,10 @@ options(width=120)
 ```
   
   
-#@@ START) function: env1$f$f_list_formula.append_lhs_rhs_vars  
+#@@ START) function: f_list_formula.append_lhs_rhs_vars  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-env1$f$f_list_formula.append_lhs_rhs_vars = function(list_formula) {
+f_list_formula.append_lhs_rhs_vars = function(list_formula) {
     if("formula" %in% names(list_formula)) {
         formula = list_formula$formula
         list_formula$terms = formula |> terms()
@@ -519,19 +519,19 @@ env1$f$f_list_formula.append_lhs_rhs_vars = function(list_formula) {
 ```
   
   
-## \% |> env1$f$f_list_formula.append_lhs_rhs_vars(CODEBOOK$ModelList$time2event)
+## \% |> f_list_formula.append_lhs_rhs_vars(CODEBOOK$ModelList$time2event)
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 library(survival)
 CODEBOOK$ModelList$time2event = NULL
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
+CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
 CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
+CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
 CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 
 ```
