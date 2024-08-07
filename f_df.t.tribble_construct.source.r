@@ -736,14 +736,14 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     return.list$rhs.vars = formula[[3]] |> all.vars()
     return(return.list)
 
-    # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALinclude_input_in_output
+    # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
     # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     #
     # library(survival)
     # CODEBOOK$ModelList$time2event = NULL
     # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     #
-    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSEinclude_input_in_output
+    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
     # CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
     # # List of 7
     # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
