@@ -1,6 +1,6 @@
 # Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.r  
 # Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd  
-# Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars  
+# Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.source.r  
 # # source("~/github_tidystat/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars")  
 # # if(!file.exists("~/github_tidystat/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.r")  
 # # if(!file.exists("~/github_tidystat/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd")  
@@ -143,7 +143,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) function -----  
-f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
+env1$f$f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
     return.list = list()
     if(formula_in_the_list) return.list$formula = formula
     return.list$terms = formula |> terms()
