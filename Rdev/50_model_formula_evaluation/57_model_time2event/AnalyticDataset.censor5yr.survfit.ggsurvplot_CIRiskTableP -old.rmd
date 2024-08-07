@@ -203,6 +203,7 @@ options(width=120)
 AnalyticDataset = lung |> rename(event = status, Group = sex)
 AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
   
+# cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
   
 # AnalyticDataset.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
@@ -288,8 +289,8 @@ options(width=120)
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
-# suppressPackageStartupMessages(library(tidyverse))
-suppressPackageStartupMessages(library(survival))
+suppressPackageStartupMessages(library(tidyverse))
+# suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung 
 AnalyticDataset = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor())
@@ -306,6 +307,7 @@ AnalyticDataset = survival::lung |> mutate(event = as.logical(status-1), Group =
 # #   2     90    0
 AnalyticDataset |> dplyr::select(time, event, Group) |> summary()
   
+# cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # AnalyticDataset.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?
 # AnalyticDataset.survfit |> ggsurvplot(fun = "event")

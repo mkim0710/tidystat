@@ -57,6 +57,7 @@ AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, dat
 AnalyticDataset.survfit_byPredictedStage <- survfit(Surv(time = time, event = event) ~ PredictedStage, data = AnalyticDataset)
 
 
+# cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 
 # AnalyticDataset.survfit %>% ggsurvplot(fun = "pct")  # default fun = "pct"?
