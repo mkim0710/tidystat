@@ -185,7 +185,7 @@ if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.Gl
   
 # @@ START) Data ----  
   
-## \$ DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01" ----  
+## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01 =  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))

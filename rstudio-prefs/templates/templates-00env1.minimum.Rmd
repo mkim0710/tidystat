@@ -329,7 +329,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
   
 # @@ START) Data ----  
   
-## \$ DataSetName = "analyticDF_time2event" ----  
+## \$ analyticDF_time2event =  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -348,7 +348,7 @@ options(width=120)
 ```
   
   
-## \$ DataSetName = "analyticDF_time2event" ----  
+## \$ analyticDF_time2event =  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
