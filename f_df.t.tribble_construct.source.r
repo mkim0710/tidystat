@@ -721,6 +721,23 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 }
 ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \$ .tmp\$objectname = "f_formula.lhs_rhs_vars" ----  
+# https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd  
+.tmp$objectname = "f_formula.lhs_rhs_vars"
+.tmp$object = function(formula, formula_in_the_list = TRUE) {
+    return.list = list()
+    if(formula_in_the_list) return.list$formula = formula
+    return.list$terms = formula |> terms()
+    return.list$all.vars = formula |> all.vars()
+    return.list$lhs = formula[[2]]
+    return.list$lhs.vars = formula[[2]] |> all.vars()
+    return.list$rhs = formula[[3]]
+    return.list$rhs.vars = formula[[3]] |> all.vars()
+    return(return.list)
+}
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ for (.dependancy in c("")) { -----  
