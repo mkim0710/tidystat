@@ -1,19 +1,19 @@
-# .sourcename = "data.NotNA_p_df" |> paste0(".source.r")
-# data.NotNA_p_df.dev.r
-# data.NotNA_p_df.source.r
-#         https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.Rmd")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+# .sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
+# f_df.NotNA_p_df.dev.r
+# f_df.NotNA_p_df.source.r
+#         https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.dev.r
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.dev.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.dev.Rmd")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.nproptable.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.summarize_all_sum_is.na.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.nproptable.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.summarize_all_sum_is.na.dev.r
 # get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_anyTRUE_allTRUE.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.variable.Date.nID_anyTRUE_allTRUE.dev.r
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -28,7 +28,7 @@
 # \$ .GlobalEnv$env1 = new.env() ====  
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) }
 
-env1$data.NotNA_p_df = function(data) {
+env1$f_df.NotNA_p_df = function(data) {
     out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> setNames("IsNA") |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
     out = out |> mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out |> add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
@@ -37,9 +37,9 @@ env1$data.NotNA_p_df = function(data) {
     out
 }
 
-packageStartupMessage("Loading: env1$data.NotNA_p_df = function(data)")
+packageStartupMessage("Loading: env1$f_df.NotNA_p_df = function(data)")
 
-# test) data.NotNA_p_df()) nhanes_mice -----  
+# test) f_df.NotNA_p_df()) nhanes_mice -----  
 # library(mice)
 # nhanes_mice = nhanes
 # save(nhanes_mice, file = "data/library_mice_nhanes_mice.rda")
@@ -54,7 +54,7 @@ packageStartupMessage("Loading: env1$data.NotNA_p_df = function(data)")
 # #  $ hyp: num  NA 1 1 NA 1 NA 1 1 1 NA ...
 # #  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
 # 
-# nhanes_mice %>% {data.NotNA_p_df = function(data) {
+# nhanes_mice %>% {f_df.NotNA_p_df = function(data) {
 #     out = data %>% map_df(is.na) %>% colSums |> as.data.frame() |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
 #     colnames(out)[which(colnames(out) == ".")] = "IsNA"
 #     out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
@@ -62,9 +62,9 @@ packageStartupMessage("Loading: env1$data.NotNA_p_df = function(data)")
 #     out = out %>% add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
 #     out = out %>% arrange(IsNA)
 #     out
-# }  ;   data.NotNA_p_df(.)}
-# nhanes_mice %>% data.NotNA_p_df
-# # > nhanes_mice %>% data.NotNA_p_df
+# }  ;   f_df.NotNA_p_df(.)}
+# nhanes_mice %>% f_df.NotNA_p_df
+# # > nhanes_mice %>% f_df.NotNA_p_df
 # #   RowNum varname IsNA IsNA_p_df NotNA NotNA_p_df NRow
 # # 1      1     age    0     0.000    25      1.000   25
 # # 2      3     hyp    8     0.320    17      0.680   25

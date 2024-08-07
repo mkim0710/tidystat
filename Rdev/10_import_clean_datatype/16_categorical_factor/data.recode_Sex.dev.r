@@ -1,4 +1,4 @@
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.recode_Sex.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.recode_Sex.dev.r
 #@ function.df_recode_SEX ======  
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) |> summary() #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) |> summary() #-----  
@@ -29,8 +29,8 @@ str((CohortGJ0910.BaselineJKGJ2085NoHx.drop_na$SEX %>% recode(`1` = "Male", `2` 
 #  logi [1:283798] TRUE FALSE FALSE TRUE TRUE TRUE ...
 
 library(dplyr)
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.recode_Sex.dev.r
-data.recode_Sex <- function(dataset, varname4Sex = "SEX", value4Female = "2") {
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.recode_Sex.dev.r
+f_df.recode_Sex <- function(dataset, varname4Sex = "SEX", value4Female = "2") {
     dataset %>%
       mutate(
         Female = if_else(get(varname4Sex) == value4Female, 1, 0),

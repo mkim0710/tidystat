@@ -185,7 +185,7 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 # @ .subpath, .sourcename ======  
 .subpath = r"(Rdev\10_import_clean_datatype\13_missing_value)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = = "data.NotNA_p_df" |> paste0(".source.r")
+.sourcename = = "f_df.NotNA_p_df" |> paste0(".source.r")
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 env1$path$.subpath = .subpath
 .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
@@ -215,12 +215,12 @@ if(!file.exists(env1$path$subpath.filename.source.r)) file.copy(from=file.path(e
 ```
   
   
-# @@ START) data.NotNA_p_df.source.r ----  
+# @@ START) f_df.NotNA_p_df.source.r ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 .subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-.sourcename = "data.NotNA_p_df" |> paste0(".source.r")
+.sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
 ```
   
@@ -237,15 +237,15 @@ nhanes_mice |> str() #----
 #  $ hyp: num  NA 1 1 NA 1 NA 1 1 1 NA ...
 #  $ chl: num  NA 187 187 NA 113 184 118 187 238 NA ...
   
-nhanes_mice %>% {data.NotNA_p_df = function(data) {
+nhanes_mice %>% {f_df.NotNA_p_df = function(data) {
     out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> setNames("IsNA") |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
     out = out |> mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data))
     out = out |> add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
     out = out |> add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
     out = out |> arrange(IsNA)
     out
-}  ;   env1$data.NotNA_p_df(.)}
-nhanes_mice |> env1$data.NotNA_p_df()
+}  ;   env1$f_df.NotNA_p_df(.)}
+nhanes_mice |> env1$f_df.NotNA_p_df()
 ```
   
   

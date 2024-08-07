@@ -1,8 +1,8 @@
-# data.ExposedUnexposed.list.dev.r
+# f_df.ExposedUnexposed.list.dev.r
 
-data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_zero_vars = T) {
+f_df.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_zero_vars = T) {
     # library(tidyverse)
-    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.ExposedUnexposed.list.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.ExposedUnexposed.list.dev.r")
     if(!is.logical(data[[varname_Exposed]])) {
         stop("error - !is.logical(data[[varname_Exposed]])")
     }
@@ -20,14 +20,14 @@ data.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_ze
     # function.deparse.cat.width(setdiff(names(data), names(data2)))
     rm(data)
     
-    data.ExposedUnexposed.list = list()
-    data.ExposedUnexposed.list$Exposed = data2[data2[[varname_Exposed]] == T, ]
-    data.ExposedUnexposed.list$Unexposed = data2[data2[[varname_Exposed]] == F, ]
+    f_df.ExposedUnexposed.list = list()
+    f_df.ExposedUnexposed.list$Exposed = data2[data2[[varname_Exposed]] == T, ]
+    f_df.ExposedUnexposed.list$Unexposed = data2[data2[[varname_Exposed]] == F, ]
     # print("* dim(data2)")
     # print(dim(data2))
     rm(data2)
     
-    data.ExposedUnexposed.list
+    f_df.ExposedUnexposed.list
 }
 
 
@@ -50,8 +50,8 @@ str(lalonde)
 #  $ u75    : int  1 1 1 1 1 1 1 1 1 1 ...
 #  $ treat  : int  1 1 1 1 1 1 1 1 1 1 ...
 #  $ isExposed : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-str(data.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
-# > str(data.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
+str(f_df.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
+# > str(f_df.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_vars = T))
 # [1] "* Dropping variables with all-zero values, either in the Exposed or the Unexposed:"
 # "treat"
 # List of 2

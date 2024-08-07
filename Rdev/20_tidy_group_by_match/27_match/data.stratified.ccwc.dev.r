@@ -1,4 +1,4 @@
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratified.ccwc.dev.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/f_df.stratified.ccwc.dev.r")
 
 #@ to do ----  
 #@ MatchingPairID -> should be unique to each case~!!! (currently, one MatchingPairID may have 2 cases & 10 controls)  
@@ -52,7 +52,7 @@ data.ccwc = function(
     , load.dependent.library = T
     , apply.function.dichotomous2logical = F
 ) {
-    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratified.ccwc.dev.r")
+    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/f_df.stratified.ccwc.dev.r")
     if (load.dependent.library == T) {
         library(tidyverse)
         # library(tableone)
@@ -989,8 +989,8 @@ diet.strata_list %>% map(function(df) {
 
 
 
-#@ data.stratified.ccwc = function( - debug 180519 v5 ----  
-data.stratified.ccwc = function(
+#@ f_df.stratified.ccwc = function( - debug 180519 v5 ----  
+f_df.stratified.ccwc = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
     , paste.collapse = "|"
@@ -1101,7 +1101,7 @@ data.stratified.ccwc = function(
     attr(out$data, ".MatchingRatio") = .MatchingRatio
     attr(out$data, "apply.na.omit") = apply.na.omit
     attr(out, "function.input") = list(
-        data.stratified.ccwc = data.stratified.ccwc
+        f_df.stratified.ccwc = f_df.stratified.ccwc
         , data.strata_list = data.strata_list
         , data.ccwc = data.ccwc
         , .vars4strata = .vars4strata
@@ -1118,14 +1118,14 @@ data.stratified.ccwc = function(
 }
 
 
-#@ test) data.stratified.ccwc() diet ----  
+#@ test) f_df.stratified.ccwc() diet ----  
 .vars4strata = c("job", "energy.grp")
 varname4event = "event"
-diet.stratified.ccwc = diet %>% data.stratified.ccwc(
+diet.stratified.ccwc = diet %>% f_df.stratified.ccwc(
     .vars4strata = .vars4strata, paste.collapse = "|"
     , varname4event = varname4event, varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
     )
-# > diet.stratified.ccwc = diet %>% data.stratified.ccwc(
+# > diet.stratified.ccwc = diet %>% f_df.stratified.ccwc(
 # +     .vars4strata = c("job", "energy.grp"), paste.collapse = "|"
 # +     , varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.map.process = T
 # +     )
@@ -1402,7 +1402,7 @@ diet.stratified.ccwc #----
 #   exit_age (mean (sd))  64.86 (4.92) 58.03 (6.22) <0.001     
 # 
 # attr(,"function.input")
-# attr(,"function.input")$data.stratified.ccwc
+# attr(,"function.input")$f_df.stratified.ccwc
 # function (.mydata, .vars4strata = c("female", "age.cut"), paste.collapse = "|", 
 #     ..., varname4event = "failure", varname4entry = ".entry_age", 
 #     varname4exit = ".exit_age", varname4origin = NULL, .MatchingRatio = 2, 
@@ -1469,7 +1469,7 @@ diet.stratified.ccwc #----
 #     attr(out$data, ".exit") = varname4exit
 #     attr(out$data, ".MatchingRatio") = .MatchingRatio
 #     attr(out$data, "apply.na.omit") = apply.na.omit
-#     attr(out, "function.input") = list(data.stratified.ccwc = data.stratified.ccwc, 
+#     attr(out, "function.input") = list(f_df.stratified.ccwc = f_df.stratified.ccwc, 
 #         data.strata_list = data.strata_list, data.ccwc = data.ccwc, 
 #         .vars4strata = .vars4strata, varname4event = varname4event, 
 #         varname4entry = varname4entry, varname4exit = varname4exit, 
