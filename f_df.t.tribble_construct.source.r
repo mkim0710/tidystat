@@ -735,6 +735,24 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     return.list$rhs = formula[[3]]
     return.list$rhs.vars = formula[[3]] |> all.vars()
     return(return.list)
+    
+    # ## \% |> c(CODEBOOK$ModelList$time2event$formula |> f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+    # 
+    # library(survival)
+    # CODEBOOK$ModelList$time2event = NULL
+    # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # 
+    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(CODEBOOK$ModelList$time2event$formula |> f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+    # # List of 7
+    # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ all.vars: chr [1:6] "time2event" "event" "Group" "StudyPopulation" ...
+    # #  $ lhs     : language Surv(time = time2event, event = event)
+    # #  $ lhs.vars: chr [1:2] "time2event" "event"
+    # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
 ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
