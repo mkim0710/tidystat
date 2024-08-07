@@ -322,11 +322,26 @@ AnalyticDataset.censor1yr = AnalyticDataset |> mutate(
     time = pmin(time, value_for_censor_at_1yr)
     , event = ifelse(time < value_for_censor_at_1yr, event, F)
 )
-survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = event) ~ Group, data = AnalyticDataset.censor1yr), palette = c("#00AFBB", "#FC4E07")
-           , break.time.by = value_for_break.time.by
-           , conf.int = TRUE, risk.table = TRUE, pval = TRUE
-           , title = paste0("Survival Curves Stratified by ", varname4Group)
-           , xlab = paste0("Time in ", time_scale), ylab = "Survival Probability")
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+data.formula.survfit = as.formula(survival::Surv(time = time, event = event) ~ Group) |> 
+    survival::survfit(data = AnalyticDataset.censor1yr)
+data.formula.survfit
+# Call: survfit(formula = (survival::Surv(time = time, event = event) ~ 
+#     Group), data = dplyr::select(dplyr::filter(analyticDF_time2event.CensorEND, 
+#     StudyPopulation), -StudyPopulation))
+# 
+#                n events median 0.95LCL 0.95UCL
+# Group=Female  89     35     NA     348      NA
+# Group=Male   130     77    285     229     337
+data.formula.survfit |> 
+    survminer::ggsurvplot(
+        fun = "cumhaz", 
+        palette = c("#00AFBB", "#FC4E07"), 
+        break.time.by = value_for_break.time.by, 
+        conf.int = TRUE, risk.table = TRUE, pval = TRUE, 
+        xlim = c(0, value_for_Censor_at_END), ylim = c(0, 1), 
+        xlab = paste0("Time in ", time_scale)    )
   
 ```
   
