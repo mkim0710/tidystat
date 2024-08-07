@@ -114,7 +114,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
   
 ## \$ tblID_gj3_jk =  ----  
 @ assign(objectname, read_rds(file.path(.path4read, paste0(objectname,".rds")))) 
-```{r DataSetName-read.checkEntity, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r DataSetName-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
 # objectname = "tblID_gj3_jk"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep="")
