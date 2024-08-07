@@ -508,8 +508,7 @@ cat(" * To revert to the last commited file, run the following terminal command:
 ```
   
   
-## \$ df_NewDMv3.NAtime200621 =  ----  
-###### @ write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))) ----  
+## \$ df_NewDMv3.NAtime200621 \%>\% { write_rds(file.path(.path4write, paste0(deparse(substitute(.)),".rds"))) } ----  
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 # 
 # @ write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))) ----  
