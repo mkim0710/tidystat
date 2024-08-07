@@ -443,7 +443,7 @@ options(width=120)
   
   
 ## ---- < Data Availability Check > ----  
-### \$ paste0(DataSetName,".Date",".NA",".rmAllNA")  ----  
+### \$ DataSetName |> paste0(".Date",".NA",".rmAllNA")  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
@@ -461,7 +461,7 @@ cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","  \n", sep="")
   
   
 ## ---- < DataSet Summary > ----  
-### \$ paste0(DataSetName,".Date",".NA",".rmAllNA",".fct") ----  
+### \$ DataSetName |> paste0(".Date",".NA",".rmAllNA",".fct") ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 vec_varname4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
