@@ -725,9 +725,9 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ## \$ .tmp\$objectname = "f_formula.lhs_rhs_vars" ----
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
 .tmp$objectname = "f_formula.lhs_rhs_vars"
-.tmp$object = function(formula, formula_in_the_list = TRUE) {
+.tmp$object = function(formula, include_input_in_output = TRUE) {
     return.list = list()
-    if(formula_in_the_list) return.list$formula = formula
+    if(include_input_in_output) return.list$formula = formula
     return.list$terms = formula |> terms()
     return.list$all.vars = formula |> all.vars()
     return.list$lhs = formula[[2]]
@@ -736,14 +736,14 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     return.list$rhs.vars = formula[[3]] |> all.vars()
     return(return.list)
 
-    # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALinclude_input_in_output
     # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     #
     # library(survival)
     # CODEBOOK$ModelList$time2event = NULL
     # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     #
-    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSEinclude_input_in_output
     # CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
     # # List of 7
     # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
