@@ -350,9 +350,9 @@ options(width=120)
 ## \$ analyticDF_time2event =  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
-# suppressPackageStartupMessages(library(survival))
-# suppressPackageStartupMessages(library(survminer))
+# suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(survival))
+for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung
 DataSetName = "analyticDF_time2event"
 assign(

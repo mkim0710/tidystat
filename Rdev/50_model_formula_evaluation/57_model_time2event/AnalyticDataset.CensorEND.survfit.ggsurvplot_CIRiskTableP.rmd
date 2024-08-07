@@ -286,9 +286,9 @@ df_NewDMv3.NAtime |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
-# suppressPackageStartupMessages(library(survival))
-# suppressPackageStartupMessages(library(survminer))
+# suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(survival))
+for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
   
 # ?survminer::ggsurvplot  # "event" plots cumulative events (f(y) = 1-y), "cumhaz" plots the cumulative hazard function (f(y) = -log(y)), and "pct" for survival probability in percentage.
 # df_NewDMv3.NAtime.survfit |> ggsurvplot(fun = "pct")  # default fun = "pct"?

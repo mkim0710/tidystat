@@ -288,9 +288,9 @@ options(width=120)
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
-# suppressPackageStartupMessages(library(survival))
-# suppressPackageStartupMessages(library(survminer))
+# suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(survival))
+for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung 
 AnalyticDataset = survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor())
 # AnalyticDataset |> dplyr::select(sex, Group) %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
