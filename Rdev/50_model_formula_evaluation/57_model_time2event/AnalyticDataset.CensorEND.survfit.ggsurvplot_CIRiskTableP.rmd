@@ -111,7 +111,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
   
   
 # @@ START) Baseline ----  
-## \$ .tmp\$objectname = "as1.na.Date.fct.select89" ----  
+## \$ as1.na.Date.fct.select89 =  ----  
 @ assign(objectname, read_rds(file.path(.path4read, paste0(objectname,".rds")))) 
 ```{r DataSetName-read.checkEntity, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -132,7 +132,7 @@ cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", s
   
   
 # @@ START) Outcome ----  
-## \$ .tmp\$objectname = "as1_7.na.Date.fct.cumulative_DM.list" ----  
+## \$ as1_7.na.Date.fct.cumulative_DM.list =  ----  
 @ assign(objectname, read_rds(file.path(.path4read, paste0(objectname,".rds")))) 
 ```{r DataSetName-read.checkEntity, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -508,7 +508,7 @@ cat(" * To revert to the last commited file, run the following terminal command:
 ```
   
   
-## \$ .tmp\$objectname = "df_NewDMv3.NAtime200621" ----  
+## \$ df_NewDMv3.NAtime200621 =  ----  
 ###### @ write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds"))) ----  
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 # 

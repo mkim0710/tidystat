@@ -102,7 +102,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env1$env.internal functions ----  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \$ .tmp\$objectname = "RmdChunk.updateTemplateNotebook" ----  
+## \$ RmdChunk.updateTemplateNotebook =  ----  
 .tmp$objectname = "RmdChunk.updateTemplateNotebook"
 .tmp$object = function(.CurrentSource.path.filename.ext = env1$path$CurrentSource.path.filename.ext) {
     # @@ update tempate (notebook.Rmd) ----  
