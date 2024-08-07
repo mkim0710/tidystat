@@ -105,8 +105,14 @@ cat("> .tmp |> str(max.level = 1)", "  \n", sep="")
 .tmp |> str(max.level = 1)
 cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
 env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) function -----  
-env1$f$f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \$ .tmp\$objectname = "f_formula.lhs_rhs_vars" ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
+.tmp$objectname = "f_formula.lhs_rhs_vars"
+.tmp$object = function(formula, formula_in_the_list = TRUE) {
     return.list = list()
     if(formula_in_the_list) return.list$formula = formula
     return.list$terms = formula |> terms()
@@ -116,11 +122,30 @@ env1$f$f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
     return.list$rhs = formula[[3]]
     return.list$rhs.vars = formula[[3]] |> all.vars()
     return(return.list)
+
+    # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+    #
+    # library(survival)
+    # CODEBOOK$ModelList$time2event = NULL
+    # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    #
+    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+    # # List of 7
+    # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ all.vars: chr [1:6] "time2event" "event" "Group" "StudyPopulation" ...
+    # #  $ lhs     : language Surv(time = time2event, event = event)
+    # #  $ lhs.vars: chr [1:2] "time2event" "event"
+    # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 
-
-# ## \% |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
+# ## \% |> c(env1$f$f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
 # ### Caution) list can have multiple elements with the same name?!  
 # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 # 
@@ -128,7 +153,7 @@ env1$f$f_formula.lhs_rhs_vars = function(formula, formula_in_the_list = TRUE) {
 # CODEBOOK$ModelList$time2event = NULL
 # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 # 
-# CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
+# CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(env1$f$f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
 # CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
 # # List of 8
 # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
