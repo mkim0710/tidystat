@@ -1,6 +1,6 @@
-# data.NA.recode.dev.r
+# f_df.NA.recode.dev.r
 
-data.NA.recode = function(data, numeric_NA_recode_into_0 = T, character_NA_recode_into = "", reorder_factor = T) {
+f_df.NA.recode = function(data, numeric_NA_recode_into_0 = T, character_NA_recode_into = "", reorder_factor = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.strata_list.Match.dev.r")
     library(tidyverse)
     out = data %>% map_df(function(x){

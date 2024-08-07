@@ -1,11 +1,11 @@
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_TRUE_NA.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.variable.Date.nID_TRUE_NA.dev.r
 # nsc2_m20.Date.C0097.D0009.D3233.D3748.rmd
 
 
 
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_TRUE_NA.dev.r
-#% data.variable.Date.nID_TRUE_NA <- function(dataset, ...){ ----  
-data.variable.Date.nID_TRUE_NA <- function(dataset, ...){
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.variable.Date.nID_TRUE_NA.dev.r
+#% f_df.variable.Date.nID_TRUE_NA <- function(dataset, ...){ ----  
+f_df.variable.Date.nID_TRUE_NA <- function(dataset, ...){
   library(dplyr)
   
   # Get the variable names as characters
@@ -54,7 +54,7 @@ data.variable.Date.nID_TRUE_NA <- function(dataset, ...){
 
 
 nsc2_m20.Date.C0097.D0009.D3233.D3748 %>% 
-    data.variable.Date.nID_TRUE_NA(
+    f_df.variable.Date.nID_TRUE_NA(
         MDCARE_STRT_Date.C0097.D0009.D3233.D3748,
         MDCARE_STRT_Date.C0097,
         MDCARE_STRT_Date.D0009,
@@ -76,9 +76,9 @@ nsc2_m20.Date.C0097.D0009.D3233.D3748 %>%
 
 
 
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_TRUE_NA.dev.r
-#% data.variable.Date.nID_TRUE_NA <- function(dataset, varnames){ ----  
-data.variable.Date.nID_TRUE_NA <- function(dataset, varnames) {
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.variable.Date.nID_TRUE_NA.dev.r
+#% f_df.variable.Date.nID_TRUE_NA <- function(dataset, varnames){ ----  
+f_df.variable.Date.nID_TRUE_NA <- function(dataset, varnames) {
   library(dplyr)
   
   single_var_summary <- function(varname, dataset) {
@@ -132,7 +132,7 @@ data.variable.Date.nID_TRUE_NA <- function(dataset, varnames) {
 
 
 nsc2_m20.Date.C0097.D0009.D3233.D3748 %>% 
-    data.variable.Date.nID_TRUE_NA(c("MDCARE_STRT_Date.C0097.D0009.D3233.D3748",
+    f_df.variable.Date.nID_TRUE_NA(c("MDCARE_STRT_Date.C0097.D0009.D3233.D3748",
                                      "MDCARE_STRT_Date.C0097",
                                      "MDCARE_STRT_Date.D0009",
                                      "MDCARE_STRT_Date.D3233",

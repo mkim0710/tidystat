@@ -1,11 +1,11 @@
-# data.lgl.comat.gather.microbenchmark.r
+# f_df.lgl.comat.gather.microbenchmark.r
 
-#@ data.lgl.comat.gather = function(data, n11 = F, Fisher.exact.test = F) { ======  
+#@ f_df.lgl.comat.gather = function(data, n11 = F, Fisher.exact.test = F) { ======  
 
 
 
-#@ data.lgl.comat.gather0 = function(data, n11 = F, Fisher.exact.test = F) { ======  
-data.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
+#@ f_df.lgl.comat.gather0 = function(data, n11 = F, Fisher.exact.test = F) { ======  
+f_df.lgl.comat.gather0 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
     data.lgl = data %>% map_df(as.logical)
     data.lgl.matrix = as.matrix(data.lgl)
     out = t(data.lgl.matrix) %*% data.lgl.matrix
@@ -198,7 +198,7 @@ chisq.test(TeaTasting) |> str()
 # In chisq.test(TeaTasting) : Chi-squared approximation may be incorrect
 
 
-data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
+f_df.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
     data.lgl = data %>% map_df(as.logical)
     data.lgl.matrix = as.matrix(data.lgl)
     out = t(data.lgl.matrix) %*% data.lgl.matrix
@@ -324,7 +324,7 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
 }
 
 
-# data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
+# f_df.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
 #     data.lgl = data %>% map_df(as.logical)
 #     data.lgl.matrix = as.matrix(data.lgl)
 #     out = t(data.lgl.matrix) %*% data.lgl.matrix
@@ -451,7 +451,7 @@ data.lgl.comat.gather1 = function(data, .Fisher.exact.test = F, .cor.test = F) {
 
 
 
-data.lgl.comat.gather2 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
+f_df.lgl.comat.gather2 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
     data.lgl = data %>% map_df(as.logical)
     data.lgl.matrix = as.matrix(data.lgl)
     out = t(data.lgl.matrix) %*% data.lgl.matrix
@@ -598,8 +598,8 @@ data.lgl.comat.gather2 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     out
 }
 
-data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
-    # data.lgl.comat.gather3
+f_df.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
+    # f_df.lgl.comat.gather3
     data.lgl = data %>% map_df(as.logical)
     data.lgl.matrix = as.matrix(data.lgl)
     out = t(data.lgl.matrix) %*% data.lgl.matrix
@@ -753,7 +753,7 @@ data.lgl.comat.gather3 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
     out |> as_tibble()
 }
 
-data.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
+f_df.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
     data.lgl = data %>% map_df(as.logical)
     data.lgl.matrix = as.matrix(data.lgl)
     out = t(data.lgl.matrix) %*% data.lgl.matrix
@@ -907,7 +907,7 @@ data.lgl.comat.gather4 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
 }
 
 
-data.lgl.comat.gather5 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
+f_df.lgl.comat.gather5 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.test = F) {
     data.lgl = data %>% map_df(as.logical)
     data.lgl.matrix = as.matrix(data.lgl)
     out = t(data.lgl.matrix) %*% data.lgl.matrix
@@ -1062,11 +1062,11 @@ data.lgl.comat.gather5 = function(data, .n11 = F, .cor.test = F, .Fisher.exact.t
 }
 
 
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
 # # A tibble: 961 x 6
 #                        V1                     V2 cooccurence    RC     R     C
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>
@@ -1081,7 +1081,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 #  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9
 # 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10
 # # ... with 951 more rows
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
 # # A tibble: 961 x 16
 #                        V1                     V2 cooccurence    RC     R     C  ntot   n00   n10   n01   n11           phi        OR SimpleAgreement ChanceAgreement Cohen_kappa
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int> <int> <dbl> <dbl> <dbl> <dbl>         <dbl>     <dbl>           <dbl>           <dbl>       <dbl>
@@ -1097,15 +1097,15 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 # 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10   829   772    28    28     1 -0.0005172414 0.9846939       0.9846939       0.9324141   0.7735310
 # # ... with 951 more rows
 # Warning message:
-# In data.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
+# In f_df.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
 # Error in out$cor_spearman.ll[k] <- cor.test_spearman.out$conf.int[1] : 
 #   replacement has length zero
 # In addition: Warning message:
 # In cor.test.default(as.numeric(data.lgl[[varname1vec[k]]]), as.numeric(data.lgl[[varname2vec[k]]]),  :
 #   Cannot compute exact p-value with ties
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
 # # A tibble: 961 x 14
 #                        V1                     V2 cooccurence    RC     R     C   cor_pearson cor_pearson.ll cor_pearson.ul cor_pearson.p cor_spearman cor_spearman.ll cor_spearman.ul cor_spearman.p
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>         <dbl>          <dbl>          <dbl>         <dbl>        <dbl>           <dbl>           <dbl>          <dbl>
@@ -1120,7 +1120,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 #  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9  0.0139912063    -0.05415073     0.08200343     0.6874988           NA              NA              NA             NA
 # 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10 -0.0005172414    -0.06860517     0.06757548     0.9881358           NA              NA              NA             NA
 # # ... with 951 more rows
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
 # # A tibble: 961 x 10
 #                        V1                     V2 cooccurence    RC     R     C fisher.test.OR fisher.test.OR_ll95 fisher.test.OR_ul95 fisher.test.p
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>          <dbl>               <dbl>               <dbl>         <dbl>
@@ -1137,135 +1137,135 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 # # ... with 951 more rows
 
 
-data.lgl.comat.gather0
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = T, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = T))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+f_df.lgl.comat.gather0
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = T, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = T))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.05    0.00    0.85 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    1.17    0.05    4.41 
 # Warning message:
-# In data.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
+# In f_df.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.55    0.02    2.17 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    1.41    0.06    4.94 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    2.55    0.16    8.67 
 # Warning message:
-# In data.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
+# In f_df.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.16    0.00    0.58 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = T, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = T, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.61    0.05    2.56 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    1.70    0.08    6.41 
 # Warning message:
-# In data.lgl.comat.gather1(., .cor.test = F, .Fisher.exact.test = T) :
+# In f_df.lgl.comat.gather1(., .cor.test = F, .Fisher.exact.test = T) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.16    0.01    1.31 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    1.17    0.11    4.36 
 # Warning message:
-# In data.lgl.comat.gather2(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
+# In f_df.lgl.comat.gather2(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.53    0.07    2.86 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    1.56    0.14    5.64 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    1.86    0.08    6.36 
 # Warning message:
-# In data.lgl.comat.gather2(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
+# In f_df.lgl.comat.gather2(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
 
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.17    0.00    0.51 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.64    0.06    2.30 
 # Warning message:
-# In data.lgl.comat.gather3(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
+# In f_df.lgl.comat.gather3(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.30    0.02    0.84 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    0.70    0.03    2.53 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    0.99    0.01    3.09 
 # Warning message:
-# In data.lgl.comat.gather3(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
+# In f_df.lgl.comat.gather3(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.19    0.02    0.82 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.63    0.03    2.31 
 # Warning message:
-# In data.lgl.comat.gather4(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
+# In f_df.lgl.comat.gather4(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
 #    user  system elapsed 
 #    0.34    0.00    1.06 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    0.76    0.03    3.26 
-# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+# > system.time(trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
 #    user  system elapsed 
 #    0.98    0.03    3.60 
 # Warning message:
-# In data.lgl.comat.gather4(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
+# In f_df.lgl.comat.gather4(., .n11 = T, .cor.test = F, .Fisher.exact.test = T) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
 
 library(microbenchmark)
 # ?microbenchmark
 # mbm = microbenchmark(
-#     fun = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-#     , fun.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-#     , fun.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-#     , fun.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+#     fun = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+#     , fun.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+#     , fun.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+#     , fun.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
 # )
 # autoplot(mbm)
 # mbm
@@ -1279,24 +1279,24 @@ library(microbenchmark)
 
 
 # mbm = microbenchmark(
-#     fun0 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather0(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-#     , fun0.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather0(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-#     , fun0.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather0(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-#     , fun0.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather0(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-#     , fun0.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
-#     , fun1 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = F))
-#     , fun1.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = T, .Fisher.exact.test = F))
-#     , fun1.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = T))
-#     , fun2 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-#     , fun2.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-#     , fun2.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-#     , fun2.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-#     , fun2.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
-#     , fun3 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-#     , fun3.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-#     , fun3.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-#     , fun3.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-#     , fun3.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+#     fun0 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather0(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+#     , fun0.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather0(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+#     , fun0.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather0(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+#     , fun0.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather0(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+#     , fun0.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+#     , fun1 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = F))
+#     , fun1.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = T, .Fisher.exact.test = F))
+#     , fun1.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather1(.cor.test = F, .Fisher.exact.test = T))
+#     , fun2 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+#     , fun2.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+#     , fun2.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+#     , fun2.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+#     , fun2.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather2(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+#     , fun3 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+#     , fun3.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+#     , fun3.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+#     , fun3.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+#     , fun3.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
 #     , times = 3L
 # )
 # autoplot(mbm)
@@ -1326,16 +1326,16 @@ library(microbenchmark)
 Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 10L
-    , fun3 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-    , fun3.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-    , fun3.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-    , fun3.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-    , fun3.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
-    , fun4 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
-    , fun4.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
-    , fun4.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
-    , fun4.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
-    , fun4.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+    , fun3 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+    , fun3.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+    , fun3.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+    , fun3.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+    , fun3.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
+    , fun4 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = F))
+    , fun4.n11 = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = F))
+    , fun4.cor.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = T, .Fisher.exact.test = F))
+    , fun4.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = F, .cor.test = F, .Fisher.exact.test = T))
+    , fun4.n11.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = F, .Fisher.exact.test = T))
 )
 Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
@@ -1358,8 +1358,8 @@ mbm
 Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 100L
-    , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
-    , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
 )
 Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
@@ -1377,9 +1377,9 @@ mbm
 Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 10L
-    , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
-    , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
-    , fun5.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather5(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun5.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather5(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
 )
 Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
@@ -1397,9 +1397,9 @@ mbm
 Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 mbm = microbenchmark(
     times = 100L
-    , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
-    , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
-    , fun5.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather5(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun3.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather3(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun4.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather4(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
+    , fun5.n11.cor.test.Fisher.exact.test = (trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather5(.n11 = T, .cor.test = T, .Fisher.exact.test = T))
 )
 Sys.time_2 <- Sys.time(); print(paste0("Sys.time_2 - Sys.time_1 : ", deparse(Sys.time_2 - Sys.time_1) ))
 autoplot(mbm)
@@ -1416,4 +1416,4 @@ mbm
 
 
 #@ end ----  
-#@  selected function = data.lgl.comat.gather3 ==========  
+#@  selected function = f_df.lgl.comat.gather3 ==========  

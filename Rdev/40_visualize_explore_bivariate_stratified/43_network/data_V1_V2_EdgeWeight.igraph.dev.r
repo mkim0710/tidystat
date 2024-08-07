@@ -606,15 +606,15 @@ trainsetCC69agg4i07_829.Ctrl.lgl |> str()
 
 
 
-#@ data.lgl.comat.gather() separate file ======  
+#@ f_df.lgl.comat.gather() separate file ======  
 
 
 trainsetCC69agg4i07_829.Ctrl.lgl 
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
-trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = F)
 # # A tibble: 961 x 6
 #                        V1                     V2 cooccurence    RC     R     C
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>
@@ -629,7 +629,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 #  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9
 # 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10
 # # ... with 951 more rows
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = T, .cor.test = F, .Fisher.exact.test = F)
 # # A tibble: 961 x 16
 #                        V1                     V2 cooccurence    RC     R     C  ntot   n00   n10   n01   n11           phi        OR SimpleAgreement ChanceAgreement Cohen_kappa
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int> <int> <dbl> <dbl> <dbl> <dbl>         <dbl>     <dbl>           <dbl>           <dbl>       <dbl>
@@ -645,15 +645,15 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 # 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10   829   772    28    28     1 -0.0005172414 0.9846939       0.9846939       0.9324141   0.7735310
 # # ... with 951 more rows
 # Warning message:
-# In data.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
+# In f_df.lgl.comat.gather(., .n11 = T, .cor.test = F, .Fisher.exact.test = F) :
 #   !identical(out$ntot, colSums(select(out, n00, n10, n01, n11), na.rm = T))
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
 # Error in out$cor_spearman.ll[k] <- cor.test_spearman.out$conf.int[1] : 
 #   replacement has length zero
 # In addition: Warning message:
 # In cor.test.default(as.numeric(data.lgl[[varname1vec[k]]]), as.numeric(data.lgl[[varname2vec[k]]]),  :
 #   Cannot compute exact p-value with ties
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = T, .Fisher.exact.test = F)
 # # A tibble: 961 x 14
 #                        V1                     V2 cooccurence    RC     R     C   cor_pearson cor_pearson.ll cor_pearson.ul cor_pearson.p cor_spearman cor_spearman.ll cor_spearman.ul cor_spearman.p
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>         <dbl>          <dbl>          <dbl>         <dbl>        <dbl>           <dbl>           <dbl>          <dbl>
@@ -668,7 +668,7 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 #  9 AcquiredHypothyroidism               Cataract           9  R1C9     1     9  0.0139912063    -0.05415073     0.08200343     0.6874988           NA              NA              NA             NA
 # 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10 -0.0005172414    -0.06860517     0.06757548     0.9881358           NA              NA              NA             NA
 # # ... with 951 more rows
-# > trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
+# > trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather(.n11 = F, .cor.test = F, .Fisher.exact.test = T)
 # # A tibble: 961 x 10
 #                        V1                     V2 cooccurence    RC     R     C fisher.test.OR fisher.test.OR_ll95 fisher.test.OR_ul95 fisher.test.p
 #                    <fctr>                 <fctr>       <dbl> <chr> <int> <int>          <dbl>               <dbl>               <dbl>         <dbl>
@@ -684,10 +684,10 @@ trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather(.n11 = F, .cor.test =
 # 10 AcquiredHypothyroidism          ChronicKidney           1 R1C10     1    10      0.9847120        2.326087e-02            6.424633  1.000000e+00
 # # ... with 951 more rows
 
-# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather = trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather
 # save(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather, file = "data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple).rda")
 load("data/trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple).rda")
-# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl %>% data.lgl.comat.gather %>% dplyr::filter(R < C)
+# trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl %>% f_df.lgl.comat.gather %>% dplyr::filter(R < C)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri = trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather %>% dplyr::filter(R < C)
 trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri
 identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)

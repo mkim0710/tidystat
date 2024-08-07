@@ -1,6 +1,6 @@
 # function.weighted_join_FIPS_HANES.dev.r
 
-# cf) https://github.com/mkim0710/tidystat/blob/master/R/data.conditional_expectation.dev.r
+# cf) https://github.com/mkim0710/tidystat/blob/master/R/f_df.conditional_expectation.dev.r
 
 #@@@@@@@@@@@ Under Research ====  
 

@@ -1364,7 +1364,7 @@ rhc_mydata.na.Match_propensity_score_matching_weight$data
 
 
 
-data.stratified.Match = function(
+f_df.stratified.Match = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
     , ...
@@ -1772,7 +1772,7 @@ data.stratified.Match = function(
     attr(out$data, ".MatchingRatio") = .MatchingRatio
     attr(out$data, "apply.na.omit") = apply.na.omit
     attr(out, "function.input") = list(
-        data.stratified.Match = data.stratified.Match
+        f_df.stratified.Match = f_df.stratified.Match
         , data.strata_list = data.strata_list
         , data.Match = data.Match
         , .vars4strata = .vars4strata
@@ -1787,18 +1787,18 @@ data.stratified.Match = function(
     out
 }
 
-#@ test) data.stratified.Match() rhc_mydata.rda -----  
+#@ test) f_df.stratified.Match() rhc_mydata.rda -----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
-rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match = rhc_mydata %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
     , print.process = T
 )
-# > rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
+# > rhc_myf_df.stratified.Match = rhc_mydata %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -1868,18 +1868,18 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # 3: In data.Match(., ...) :
 #   !identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )
 # 4: In data.Match(., ...) : length(unique(.mydata[[.exposure]]) < 2
-# 5: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
 
 
-rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match = rhc_mydata %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
 )
-# > rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
+# > rhc_myf_df.stratified.Match = rhc_mydata %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -1892,13 +1892,13 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # 3: In .f(.x[[i]], ...) :
 #   !identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )
 # 4: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 5: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
 
 # library(parallelsugar)
 # system.time(
-#     rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
+#     rhc_myf_df.stratified.Match <- rhc_mydata %>% f_df.stratified.Match(
 #         .vars4strata = c("female", "age.cut")
 #         , .vars4Matching = c("age","meanbp1")
 #         , .exposure = "treatment"
@@ -1907,7 +1907,7 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 #     )
 # )
 # system.time(
-#     rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
+#     rhc_myf_df.stratified.Match1 <- rhc_mydata %>% f_df.stratified.Match(
 #         .vars4strata = c("female", "age.cut")
 #         , .vars4Matching = c("age","meanbp1")
 #         , .exposure = "treatment"
@@ -1916,7 +1916,7 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 #     )
 # )
 # # > system.time(
-# # +     rhc_mydata.stratified.Match <- rhc_mydata %>% data.stratified.Match(
+# # +     rhc_myf_df.stratified.Match <- rhc_mydata %>% f_df.stratified.Match(
 # # +         .vars4strata = c("female", "age.cut")
 # # +         , .vars4Matching = c("age","meanbp1")
 # # +         , .exposure = "treatment"
@@ -1929,11 +1929,11 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # # Warning messages:
 # # 1: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
 # # 2: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# # 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# # 3: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 # #   length(unique(.mydata[[.exposure]]) < 2: 
 # # c("0_[100,Inf]", "1_[100,Inf]")
 # # > system.time(
-# # +     rhc_mydata.stratified.Match1 <- rhc_mydata %>% data.stratified.Match(
+# # +     rhc_myf_df.stratified.Match1 <- rhc_mydata %>% f_df.stratified.Match(
 # # +         .vars4strata = c("female", "age.cut")
 # # +         , .vars4Matching = c("age","meanbp1")
 # # +         , .exposure = "treatment"
@@ -1944,13 +1944,13 @@ rhc_mydata.stratified.Match = rhc_mydata %>% data.stratified.Match(
 # #  ??????  ?ý??? elapsed 
 # #    2.97    2.69   52.17 
 # # Warning message:
-# # In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# # In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 # #   length(unique(.mydata[[.exposure]]) < 2: 
 # # c("0_[100,Inf]", "1_[100,Inf]")
 
-rhc_mydata.stratified.Match |> str(max.level = 1)
-rhc_mydata.stratified.Match %>% attr("function.input") |> str()
-# > rhc_mydata.stratified.Match |> str(max.level = 1)
+rhc_myf_df.stratified.Match |> str(max.level = 1)
+rhc_myf_df.stratified.Match %>% attr("function.input") |> str()
+# > rhc_myf_df.stratified.Match |> str(max.level = 1)
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
@@ -1964,9 +1964,9 @@ rhc_mydata.stratified.Match %>% attr("function.input") |> str()
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ tableone_post_i    :List of 5
 #  - attr(*, "function.input")=List of 8
-# > rhc_mydata.stratified.Match %>% attr("function.input") |> str()
+# > rhc_myf_df.stratified.Match %>% attr("function.input") |> str()
 # List of 8
-#  $ data.stratified.Match:function (.mydata, .vars4strata = c("female", "age.cut"), .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5, .paralletlsugar = F, apply.na.omit = F, 
+#  $ f_df.stratified.Match:function (.mydata, .vars4strata = c("female", "age.cut"), .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5, .paralletlsugar = F, apply.na.omit = F, 
 #     print.process = F, load.dependent.library = T, propensity_score_matching = F)  
 #   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 25 361 1 25 1 1 361
 #   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x00000000288e66c0> 
@@ -1984,20 +1984,20 @@ rhc_mydata.stratified.Match %>% attr("function.input") |> str()
 #  $ apply.na.omit        : logi FALSE
 
 rhc_mydata.Match$data |> dim()
-rhc_mydata.stratified.Match$data |> dim()
+rhc_myf_df.stratified.Match$data |> dim()
 # > rhc_mydata.Match$data |> dim()
 # [1] 4260   17
-# > rhc_mydata.stratified.Match$data |> dim()
+# > rhc_myf_df.stratified.Match$data |> dim()
 # [1] 4212   19
 4260 - 4212
 # > 4260 - 4212
 # [1] 48
 
-rhc_mydata.stratified.Match$tableone_pre |> print(smd = T)
-rhc_mydata.stratified.Match$tableone_post_total |> print(smd = T)  # ----
-rhc_mydata.stratified.Match$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
-rhc_mydata.stratified.Match$data
-# > rhc_mydata.stratified.Match$tableone_pre |> print(smd = T)
+rhc_myf_df.stratified.Match$tableone_pre |> print(smd = T)
+rhc_myf_df.stratified.Match$tableone_post_total |> print(smd = T)  # ----
+rhc_myf_df.stratified.Match$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
+rhc_myf_df.stratified.Match$data
+# > rhc_myf_df.stratified.Match$tableone_pre |> print(smd = T)
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3551          2184                           
@@ -2016,7 +2016,7 @@ rhc_mydata.stratified.Match$data
 #      [100,Inf]            2 ( 0.1)      1 ( 0.0)                    
 #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 #   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
-# > rhc_mydata.stratified.Match$tableone_post_total |> print(smd = T)  # ----  
+# > rhc_myf_df.stratified.Match$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3510           702                           
@@ -2035,7 +2035,7 @@ rhc_mydata.stratified.Match$data
 #      [100,Inf]            0 ( 0.0)      0 ( 0.0)                    
 #   age (mean (sd))     61.69 (17.15) 61.79 (16.94)  0.896       0.005
 #   meanbp1 (mean (sd)) 84.29 (38.28) 67.72 (33.91) <0.001       0.458
-# > rhc_mydata.stratified.Match$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
+# > rhc_myf_df.stratified.Match$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                     702           702                           
@@ -2054,7 +2054,7 @@ rhc_mydata.stratified.Match$data
 #      [100,Inf]            0 ( 0.0)      0 ( 0.0)                    
 #   age (mean (sd))     61.71 (17.14) 61.79 (16.94)  0.931       0.005
 #   meanbp1 (mean (sd)) 84.69 (38.18) 67.72 (33.91) <0.001       0.470
-# > rhc_mydata.stratified.Match$data
+# > rhc_myf_df.stratified.Match$data
 # # A tibble: 4,212 x 18
 #      ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut    strata RowNum_original MatchingPairID MatchingCtrlNum
 #    <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>    <fctr>           <int>         <fctr>           <dbl>
@@ -2071,20 +2071,20 @@ rhc_mydata.stratified.Match$data
 # # ... with 4,202 more rows
 
 
-rhc_mydata.stratified.Match_propensity_score = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match_propensity_score = rhc_mydata %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
     , propensity_score_matching = T
 )
-rhc_mydata.stratified.Match_propensity_score |> str(max.level = 1)
-# rhc_mydata.stratified.Match_propensity_score %>% attr("function.input") |> str()
-rhc_mydata.stratified.Match_propensity_score$tableone_pre |> print(smd = T)
-rhc_mydata.stratified.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----
-# rhc_mydata.stratified.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
-rhc_mydata.stratified.Match_propensity_score$data
-# > rhc_mydata.stratified.Match_propensity_score = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match_propensity_score |> str(max.level = 1)
+# rhc_myf_df.stratified.Match_propensity_score %>% attr("function.input") |> str()
+rhc_myf_df.stratified.Match_propensity_score$tableone_pre |> print(smd = T)
+rhc_myf_df.stratified.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----
+# rhc_myf_df.stratified.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
+rhc_myf_df.stratified.Match_propensity_score$data
+# > rhc_myf_df.stratified.Match_propensity_score = rhc_mydata %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -2098,10 +2098,10 @@ rhc_mydata.stratified.Match_propensity_score$data
 # 3: In .f(.x[[i]], ...) :
 #   !identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )
 # 4: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 5: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
-# > rhc_mydata.stratified.Match_propensity_score |> str(max.level = 1)
+# > rhc_myf_df.stratified.Match_propensity_score |> str(max.level = 1)
 # List of 4
 #  $ tableone_pre       :List of 3
 #   ..- attr(*, "class")= chr "TableOne"
@@ -2115,8 +2115,8 @@ rhc_mydata.stratified.Match_propensity_score$data
 #   ..- attr(*, "class")= chr "TableOne"
 #  $ tableone_post_i    :List of 5
 #  - attr(*, "function.input")=List of 8
-# > # rhc_mydata.stratified.Match_propensity_score %>% attr("function.input") |> str()
-# > rhc_mydata.stratified.Match_propensity_score$tableone_pre |> print(smd = T)
+# > # rhc_myf_df.stratified.Match_propensity_score %>% attr("function.input") |> str()
+# > rhc_myf_df.stratified.Match_propensity_score$tableone_pre |> print(smd = T)
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3551          2184                           
@@ -2135,7 +2135,7 @@ rhc_mydata.stratified.Match_propensity_score$data
 #      [100,Inf]            2 ( 0.1)      1 ( 0.0)                    
 #   age (mean (sd))     61.76 (17.29) 60.75 (15.63)  0.026       0.061
 #   meanbp1 (mean (sd)) 84.87 (38.87) 68.20 (34.24) <0.001       0.455
-# > rhc_mydata.stratified.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----  
+# > rhc_myf_df.stratified.Match_propensity_score$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3510           702                           
@@ -2154,7 +2154,7 @@ rhc_mydata.stratified.Match_propensity_score$data
 #      [100,Inf]            0 ( 0.0)      0 ( 0.0)                    
 #   age (mean (sd))     61.70 (17.15) 61.79 (16.94)  0.900       0.005
 #   meanbp1 (mean (sd)) 84.24 (38.28) 67.72 (33.91) <0.001       0.457
-# > rhc_mydata.stratified.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
+# > rhc_myf_df.stratified.Match_propensity_score$tableone_post_i$MatchingCtrlNum_0_5 |> print(smd = T)
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                     702           702                           
@@ -2173,7 +2173,7 @@ rhc_mydata.stratified.Match_propensity_score$data
 #      [100,Inf]            0 ( 0.0)      0 ( 0.0)                    
 #   age (mean (sd))     61.76 (17.07) 61.79 (16.94)  0.978       0.002
 #   meanbp1 (mean (sd)) 83.92 (39.04) 67.72 (33.91) <0.001       0.443
-# > rhc_mydata.stratified.Match_propensity_score$data
+# > rhc_myf_df.stratified.Match_propensity_score$data
 # # A tibble: 4,212 x 18
 #      ARF   CHF  Cirr colcan  Coma lungcan  MOSF sepsis      age female meanbp1 treatment  died age.cut    strata RowNum_original MatchingPairID MatchingCtrlNum
 #    <dbl> <dbl> <dbl>  <dbl> <dbl>   <dbl> <dbl>  <dbl>    <dbl>  <dbl>   <dbl>     <dbl> <dbl>  <fctr>    <fctr>           <int>         <fctr>           <dbl>
@@ -2190,15 +2190,15 @@ rhc_mydata.stratified.Match_propensity_score$data
 # # ... with 4,202 more rows
 
 #@ caliper.2 ----  
-rhc_mydata.stratified.Match_caplier.2 = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match_caplier.2 = rhc_mydata %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
     , caliper = 0.2
 )
-rhc_mydata.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # ----
-# > rhc_mydata.stratified.Match_caplier.2 = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # ----
+# > rhc_myf_df.stratified.Match_caplier.2 = rhc_mydata %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -2242,11 +2242,11 @@ rhc_mydata.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # -
 #   'Match' object contains no valid matches (probably because of the caliper or the exact option).
 # 4: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
 #   'Match' object contains no valid matches (probably because of the caliper or the exact option).
-# 5: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[10,20)", "0_[100,Inf]", "0_[90,100)", "1_[10,20)", "1_[100,Inf]", length(unique(.mydata[[.exposure]]) < 2: 
 # "1_[20,30)")
-# > rhc_mydata.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # ----  
+# > rhc_myf_df.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    1745           349                           
@@ -2267,7 +2267,7 @@ rhc_mydata.stratified.Match_caplier.2$tableone_post_total |> print(smd = T)  # -
 #   meanbp1 (mean (sd)) 72.08 (30.68) 71.99 (30.89)  0.959       0.003
 
 
-rhc_mydata.stratified.Match_propensity_score_caplier.2 = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match_propensity_score_caplier.2 = rhc_mydata %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
@@ -2275,8 +2275,8 @@ rhc_mydata.stratified.Match_propensity_score_caplier.2 = rhc_mydata %>% data.str
     , propensity_score_matching = T
     , caliper = 0.2
 )
-rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> print(smd = T)  # ----
-# > rhc_mydata.stratified.Match_propensity_score_caplier.2 = rhc_mydata %>% data.stratified.Match(
+rhc_myf_df.stratified.Match_propensity_score_caplier.2$tableone_post_total |> print(smd = T)  # ----
+# > rhc_myf_df.stratified.Match_propensity_score_caplier.2 = rhc_mydata %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -2315,10 +2315,10 @@ rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> pr
 #   'Match' object contains no valid matches (probably because of the caliper or the exact option).
 # 2: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
 #   'Match' object contains no valid matches (probably because of the caliper or the exact option).
-# 3: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# 3: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[10,20)", "0_[100,Inf]", "1_[10,20)", "1_[100,Inf]")
-# > rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> print(smd = T)  # ----  
+# > rhc_myf_df.stratified.Match_propensity_score_caplier.2$tableone_post_total |> print(smd = T)  # ----  
 #                      Stratified by treatment
 #                       0             1             p      test SMD   
 #   n                    3115           623                           
@@ -2339,7 +2339,7 @@ rhc_mydata.stratified.Match_propensity_score_caplier.2$tableone_post_total |> pr
 #   meanbp1 (mean (sd)) 82.63 (36.24) 82.62 (36.78)  0.995      <0.001
 
 
-#@ test) data.stratified.Match() rhc_mydata.na ----  
+#@ test) f_df.stratified.Match() rhc_mydata.na ----  
 library(tidyverse)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
@@ -2363,14 +2363,14 @@ rhc_mydata.na |> str()
 #  $ treatment: num  0 1 1 0 1 0 0 0 0 1 ...
 #  $ died     : num  0 1 0 1 1 0 0 1 0 0 ...
 #  $ age.cut  : Factor w/ 11 levels "[0,10)","[10,20)",..: 8 8 5 8 7 9 6 5 2 5 ...
-rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
+rhc_mydata.na.stratified.Match = rhc_mydata.na %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
     , .MatchingRatio = 5
     , print.process = T
 )
-# > rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
+# > rhc_mydata.na.stratified.Match = rhc_mydata.na %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -2385,7 +2385,7 @@ rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
 #  Rerun with Debug
 #  Error in Match(Tr = .mydata.exposure.vars4Matching.na.omit[[.exposure]],  : 
 #   length(Tr) != nrow(X) 
-rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
+rhc_mydata.na.stratified.Match = rhc_mydata.na %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
@@ -2393,7 +2393,7 @@ rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
     , print.process = T
     , apply.na.omit = T
 )
-# > rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
+# > rhc_mydata.na.stratified.Match = rhc_mydata.na %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -2482,11 +2482,11 @@ rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
 # 3: In data.Match(., ...) :
 #   !identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )
 # 4: In data.Match(., ...) : length(unique(.mydata[[.exposure]]) < 2
-# 5: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
 
-rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
+rhc_mydata.na.stratified.Match = rhc_mydata.na %>% f_df.stratified.Match(
     .vars4strata = c("female", "age.cut")
     , .vars4Matching = c("age","meanbp1")
     , .exposure = "treatment"
@@ -2494,7 +2494,7 @@ rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
     , print.process = F
     , apply.na.omit = T
 )
-# > rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
+# > rhc_mydata.na.stratified.Match = rhc_mydata.na %>% f_df.stratified.Match(
 # +     .vars4strata = c("female", "age.cut")
 # +     , .vars4Matching = c("age","meanbp1")
 # +     , .exposure = "treatment"
@@ -2527,7 +2527,7 @@ rhc_mydata.na.stratified.Match = rhc_mydata.na %>% data.stratified.Match(
 # 3: In .f(.x[[i]], ...) :
 #   !identical( sort(as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical))), 0:1 )
 # 4: In .f(.x[[i]], ...) : length(unique(.mydata[[.exposure]]) < 2
-# 5: In data.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
+# 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[100,Inf]", "1_[100,Inf]")
 
@@ -2552,7 +2552,7 @@ rhc_mydata.na.stratified.Match %>% attr("function.input") |> str()
 #  - attr(*, "function.input")=List of 8
 # > rhc_mydata.na.stratified.Match %>% attr("function.input") |> str()
 # List of 8
-#  $ data.stratified.Match:function (.mydata, .vars4strata = c("female", "age.cut"), .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5, .paralletlsugar = F, apply.na.omit = F, 
+#  $ f_df.stratified.Match:function (.mydata, .vars4strata = c("female", "age.cut"), .vars4Matching = c("age", "income"), .exposure = "treatment", .MatchingRatio = 5, .paralletlsugar = F, apply.na.omit = F, 
 #     print.process = F, load.dependent.library = T, propensity_score_matching = F)  
 #   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 1 25 361 1 25 1 1 361
 #   .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x00000000288e66c0> 
@@ -2570,11 +2570,11 @@ rhc_mydata.na.stratified.Match %>% attr("function.input") |> str()
 #  $ apply.na.omit        : logi TRUE
 
 rhc_mydata.Match$data |> dim()
-rhc_mydata.stratified.Match$data |> dim()
+rhc_myf_df.stratified.Match$data |> dim()
 rhc_mydata.na.stratified.Match$data |> dim()
 # > rhc_mydata.Match$data |> dim()
 # [1] 4260   17
-# > rhc_mydata.stratified.Match$data |> dim()
+# > rhc_myf_df.stratified.Match$data |> dim()
 # [1] 4212   19
 # > rhc_mydata.na.stratified.Match$data |> dim()
 # [1] 4086   19

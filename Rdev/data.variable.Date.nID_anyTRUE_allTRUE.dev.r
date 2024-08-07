@@ -1,11 +1,11 @@
 
-# https://github.com/mkim0710/tidystat/edit/master/Rdev/data.variable.Date.nID_anyTRUE_allTRUE.dev.r
-# data.variable.Date.nID_anyTRUE_allTRUE.dev.r
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/f_df.variable.Date.nID_anyTRUE_allTRUE.dev.r
+# f_df.variable.Date.nID_anyTRUE_allTRUE.dev.r
 
 
 #@ CONCLUSION ----------  
-# data.variable.Date.nID_anyTRUE_allTRUE = data.variable.Date.nID_anyTRUE_allTRUE.v3
-# data.variable.Date.nID_anyTRUE = data.variable.Date.nID_anyTRUE.v1
+# f_df.variable.Date.nID_anyTRUE_allTRUE = f_df.variable.Date.nID_anyTRUE_allTRUE.v3
+# f_df.variable.Date.nID_anyTRUE = f_df.variable.Date.nID_anyTRUE.v1
 
 
 library(dplyr)
@@ -18,8 +18,8 @@ sample_data <- tibble(
 
 
 #@ Using group_by() method ----  
-##%% data.variable.Date.nID_anyTRUE.v3() =====  
-data.variable.Date.nID_anyTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
+##%% f_df.variable.Date.nID_anyTRUE.v3() =====  
+f_df.variable.Date.nID_anyTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
     
@@ -49,8 +49,8 @@ data.variable.Date.nID_anyTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID",
     result <- bind_cols(summary_table.nTRUE, summary_table.nID_anyTRUE)
     return(result)
 }
-data.variable.Date.nID_anyTRUE.v3(sample_data)
-# > data.variable.Date.nID_anyTRUE.v3(sample_data)
+f_df.variable.Date.nID_anyTRUE.v3(sample_data)
+# > f_df.variable.Date.nID_anyTRUE.v3(sample_data)
 # # A tibble: 1 × 6
 #    nrow nd_ID nTRUE   nNA nID_anyTRUE nID_anyNA
 #   <int> <int> <int> <int>       <int>     <int>
@@ -60,8 +60,8 @@ data.variable.Date.nID_anyTRUE.v3(sample_data)
 
 
 #@ Using group_by() method ----  
-##%% data.variable.Date.nID_anyTRUE.v2() =====  
-data.variable.Date.nID_anyTRUE.v2 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
+##%% f_df.variable.Date.nID_anyTRUE.v2() =====  
+f_df.variable.Date.nID_anyTRUE.v2 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
     
@@ -89,8 +89,8 @@ data.variable.Date.nID_anyTRUE.v2 <- function(dataset, varname.ID = "PERSON_ID",
     result <- bind_cols(summary_table.nTRUE, summary_table.nID_anyTRUE)
     return(result)
 }
-data.variable.Date.nID_anyTRUE.v2(sample_data)
-# > data.variable.Date.nID_anyTRUE.v2(sample_data)
+f_df.variable.Date.nID_anyTRUE.v2(sample_data)
+# > f_df.variable.Date.nID_anyTRUE.v2(sample_data)
 # # A tibble: 1 × 6
 #    nrow nd_ID nTRUE   nNA nID_anyTRUE nID_anyNA
 #   <int> <int> <int> <int>       <int>     <int>
@@ -99,8 +99,8 @@ data.variable.Date.nID_anyTRUE.v2(sample_data)
 
 
 #@ Direct Filter Method using dplyr::filter() & n_distinct -----  
-##%% data.variable.Date.nID_anyTRUE.v1() =====  
-data.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
+##%% f_df.variable.Date.nID_anyTRUE.v1() =====  
+f_df.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
     
@@ -129,8 +129,8 @@ data.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID",
     
     return(result)
 }
-data.variable.Date.nID_anyTRUE.v1(sample_data)
-# > data.variable.Date.nID_anyTRUE.v1(sample_data)
+f_df.variable.Date.nID_anyTRUE.v1(sample_data)
+# > f_df.variable.Date.nID_anyTRUE.v1(sample_data)
 # # A tibble: 1 × 6
 #    nrow nd_ID nTRUE   nNA nID_anyTRUE nID_anyNA
 #   <int> <int> <int> <int>       <int>     <int>
@@ -139,9 +139,9 @@ data.variable.Date.nID_anyTRUE.v1(sample_data)
 
 #% microbenchmark() -----  
 mbm <- microbenchmark(
-    v3.group_by_method_stepwise = data.variable.Date.nID_anyTRUE.v3(sample_data),
-    v2.group_by_method_combined  = data.variable.Date.nID_anyTRUE.v2(sample_data),
-    v0.direct_filter_method = data.variable.Date.nID_anyTRUE.v1(sample_data),
+    v3.group_by_method_stepwise = f_df.variable.Date.nID_anyTRUE.v3(sample_data),
+    v2.group_by_method_combined  = f_df.variable.Date.nID_anyTRUE.v2(sample_data),
+    v0.direct_filter_method = f_df.variable.Date.nID_anyTRUE.v1(sample_data),
     times = 100
 )
 plot(mbm)
@@ -162,8 +162,8 @@ print(mbm)
 
 
 #@ Using group_by() method ----  
-##%% data.variable.Date.nID_anyTRUE_allTRUE.v3() =====  
-data.variable.Date.nID_anyTRUE_allTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
+##%% f_df.variable.Date.nID_anyTRUE_allTRUE.v3() =====  
+f_df.variable.Date.nID_anyTRUE_allTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
     
@@ -198,8 +198,8 @@ data.variable.Date.nID_anyTRUE_allTRUE.v3 <- function(dataset, varname.ID = "PER
     return(result)
 }
 
-data.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
-# > data.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
+f_df.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
+# > f_df.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
 # # A tibble: 1 × 8
 #    nrow nd_ID nTRUE   nNA nID_anyTRUE nID_anyNA nID_allTRUE nID_allNA
 #   <int> <int> <int> <int>       <int>     <int>       <int>     <int>
@@ -210,8 +210,8 @@ data.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
 
 
 #@ Direct Filter Method using dplyr::filter() & n_distinct -----  
-##%% data.variable.Date.nID_anyTRUE_allTRUE.v1() =====  
-data.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
+##%% f_df.variable.Date.nID_anyTRUE_allTRUE.v1() =====  
+f_df.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
     if (!varname.Date %in% names(dataset)) stop(paste0("Variable ", varname.Date, " not found in the dataset."))
     
@@ -264,8 +264,8 @@ data.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PER
     
     return(result)
 }
-data.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data)
-# > data.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data)
+f_df.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data)
+# > f_df.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data)
 # # A tibble: 1 × 8
 #    nrow nd_ID nTRUE   nNA nID_anyTRUE nID_anyNA nID_allTRUE nID_allNA
 #   <int> <int> <int> <int>       <int>     <int>       <int>     <int>
@@ -275,8 +275,8 @@ data.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data)
 
 #% microbenchmark() -----  
 mbm <- microbenchmark(
-    data.variable.Date.nID_anyTRUE_allTRUE.v3 = data.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data),
-    data.variable.Date.nID_anyTRUE_allTRUE.v1 = data.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data),
+    f_df.variable.Date.nID_anyTRUE_allTRUE.v3 = f_df.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data),
+    f_df.variable.Date.nID_anyTRUE_allTRUE.v1 = f_df.variable.Date.nID_anyTRUE_allTRUE.v1(sample_data),
     times = 100
 )
 plot(mbm)
@@ -285,11 +285,11 @@ print(mbm)
 # > print(mbm)
 # Unit: milliseconds
 #                                       expr     min       lq     mean   median       uq     max neval
-#  data.variable.Date.nID_anyTRUE_allTRUE.v3 15.9663 16.47005 17.08602 16.74795 17.22630 21.3079   100
-#  data.variable.Date.nID_anyTRUE_allTRUE.v1 20.6117 21.21510 22.43173 21.49395 22.93555 28.3092   100
+#  f_df.variable.Date.nID_anyTRUE_allTRUE.v3 15.9663 16.47005 17.08602 16.74795 17.22630 21.3079   100
+#  f_df.variable.Date.nID_anyTRUE_allTRUE.v1 20.6117 21.21510 22.43173 21.49395 22.93555 28.3092   100
 
 
-#**** data.variable.Date.nID_anyTRUE_allTRUE.v3 is faster for more calculations! 
+#**** f_df.variable.Date.nID_anyTRUE_allTRUE.v3 is faster for more calculations! 
 
 
 #@ end ---------  

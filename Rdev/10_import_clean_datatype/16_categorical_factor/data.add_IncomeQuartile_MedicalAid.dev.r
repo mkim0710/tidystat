@@ -1,6 +1,6 @@
-# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_IncomeQuartile_MedicalAid.dev.r
-#%% data.add_IncomeQuartile_MedicalAid() ====  
-data.add_IncomeQuartile_MedicalAid <- function(DF) {
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_IncomeQuartile_MedicalAid.dev.r
+#%% f_df.add_IncomeQuartile_MedicalAid() ====  
+f_df.add_IncomeQuartile_MedicalAid <- function(DF) {
   # Check if the column CTRB_PT_TYPE_CD exists
   if (is.null(DF$CTRB_PT_TYPE_CD)) {
     print(paste0('Error: no column - ', 'CTRB_PT_TYPE_CD'))
@@ -17,7 +17,7 @@ data.add_IncomeQuartile_MedicalAid <- function(DF) {
   }
 }
 
-gj_jk.Date.DTH.recode = gj_jk.Date.DTH.recode %>% data.add_IncomeQuartile_MedicalAid
+gj_jk.Date.DTH.recode = gj_jk.Date.DTH.recode %>% f_df.add_IncomeQuartile_MedicalAid
 gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) |> summary()
 # > gj_jk.Date.DTH.recode %>% select(CTRB_PT_TYPE_CD, MedicalAid, matches("Income")) |> summary()
 #  CTRB_PT_TYPE_CD    MedicalAid       IncomeDecile    IncomeQuartile

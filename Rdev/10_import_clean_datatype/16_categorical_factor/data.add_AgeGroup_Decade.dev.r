@@ -1,9 +1,9 @@
 
 
 library(dplyr)
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_AgeGroup_Decade.dev.r
-#%% data.add_AgeGroup_Decade() ====  
-data.add_AgeGroup_Decade <- function(dataset, varname4Age = "AGE") {
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_AgeGroup_Decade.dev.r
+#%% f_df.add_AgeGroup_Decade() ====  
+f_df.add_AgeGroup_Decade <- function(dataset, varname4Age = "AGE") {
   dataset %>%
     mutate(
       AgeGroup = case_when(
@@ -44,4 +44,4 @@ data.add_AgeGroup_Decade <- function(dataset, varname4Age = "AGE") {
 
 # Example usage:
 # some_data <- data.frame(AGE = c(3, 8, 13, 28, 33, 48, 53, 68, 73, 88))
-# some_data %>% data.add_AgeGroup_Decade()
+# some_data %>% f_df.add_AgeGroup_Decade()

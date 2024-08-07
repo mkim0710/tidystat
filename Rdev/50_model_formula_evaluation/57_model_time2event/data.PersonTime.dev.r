@@ -1,11 +1,11 @@
 #@ calculation of Person-Time, which is sum(time2event), and make Table 2.  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.calculatePersonTime.dev.r
 #@ Person-Time format of survival data.  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/data.PersonTime.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/f_df.PersonTime.dev.r
 
 
 
-# data.PersonTime.dev.r
+# f_df.PersonTime.dev.r
 # MarketScan PREGCOHORT Step67 Regression SecondaryOutcomes 190818.pptm
 # analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes from .r
 # analyticDF2797.Outcome2PersonTime7.glmOutcome2_Exposure_Covariates.list_SecondaryOutcomes from .r

@@ -12,11 +12,11 @@ for (varname in vec_varname4ID) {if(varname %in% names(get(objectname))) cat("n_
 
 
 ## @ Data Availability Check ------  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.nproptable.dev.r
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.summarize_all_sum_is.na.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.nproptable.dev.r
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.summarize_all_sum_is.na.dev.r
 # get(objectname) %>% summarise_all(function(x) sum(is.na(x)) ) %>% t # Caution) always check for missing values~!!! -----  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.dev.r
-data.NotNA_p_df = function(data) {
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.dev.r
+f_df.NotNA_p_df = function(data) {
     out = data %>% map_df(is.na) %>% colSums |> as.data.frame() |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
     colnames(out)[which(colnames(out) == ".")] = "IsNA"
     out = out %>% mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
@@ -25,8 +25,8 @@ data.NotNA_p_df = function(data) {
     out = out %>% arrange(IsNA)
     out
 }
-get(objectname) %>% data.NotNA_p_df
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/data.variable.Date.nID_anyTRUE_allTRUE.dev.r
+get(objectname) %>% f_df.NotNA_p_df
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.variable.Date.nID_anyTRUE_allTRUE.dev.r
 
 
 

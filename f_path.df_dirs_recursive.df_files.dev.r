@@ -176,7 +176,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #'  $ files.rds                :List of 61
 #'  $ files.rda                :List of 61
 #'  $ print_tree_path_files    : chr [1:61] "@./\n-info\nbfg-1.13.0.jar\nbfg.txt\ndata\nEncoding.txt\nenv1$env.internal.source.r\nenv1.fun.t.tri"| __truncated__ "@-info/\n\tFACETS_data_2017.NA.NonLatino.tableone_by_P_WH.ge.5 -annotate.xlsx\n\tJK2079.GY20CCW.bind_rows0213.M"| __truncated__ "@Rdev/\n\t-dev\n\t00_base_program\n\t00_protocol\n\t10_import_clean_datatype\n\t20_tidy_group_by_match\n\t30_tr"| __truncated__ "@\t-dev/\n" ...
-#'  $ print_tree_path_files.r  : chr [1:61] "@./\n-void.r\nenv1$env.internal.source.r\nenv1.fun.t.tibble.dev -tmp.r\nenv1.fun.t.tribble_co"| __truncated__ "@-info/\n" "@Rdev/\n\tdata.variable.Date.nID_anyTRUE_allTRUE.dev.r\n\tdata.variable.Date.nID_TRUE_NA.dev.r\n\tflowchart_inc"| __truncated__ "@\t-dev/\n\t\tobject.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r\n" ...
+#'  $ print_tree_path_files.r  : chr [1:61] "@./\n-void.r\nenv1$env.internal.source.r\nenv1.fun.t.tibble.dev -tmp.r\nenv1.fun.t.tribble_co"| __truncated__ "@-info/\n" "@Rdev/\n\tf_df.variable.Date.nID_anyTRUE_allTRUE.dev.r\n\tf_df.variable.Date.nID_TRUE_NA.dev.r\n\tflowchart_inc"| __truncated__ "@\t-dev/\n\t\tobject.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r\n" ...
 #'  $ print_tree_path_files.codes: chr [1:61] "@./\nf_df.t.tribble_construct -old.Rmd\nf_df.t.tribble_construct.Rmd\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rds: chr [1:61] "@./\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rda: chr [1:61] "@./\nf_df.t.tribble_construct.RData.xz\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
@@ -360,8 +360,8 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 	40_visualize_explore_bivariate_stratified
 #' 	50_model_formula_evaluation
 #' 	60_communicate_report_export
-#' 	data.variable.Date.nID_anyTRUE_allTRUE.dev.r
-#' 	data.variable.Date.nID_TRUE_NA.dev.r
+#' 	f_df.variable.Date.nID_anyTRUE_allTRUE.dev.r
+#' 	f_df.variable.Date.nID_TRUE_NA.dev.r
 #' 	flowchart_inclusion_exclusions.dev.r
 #' 	f_df.transpose.dev.r
 #' 	f_path.size_files.dev.r
@@ -464,15 +464,15 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 			function.OMOP_CommonDataModel.ATC_to_NDC.dev.r
 #' 			function.OMOP_CommonDataModel.RxNorm_to_NDC.dev.r
 #' @		13_duplicated/
-#' 			data.duplicated.dev.r
+#' 			f_df.duplicated.dev.r
 #' 			function.left_anti_join.dev.r
 #' @		13_missing_value/
-#' 			data.mutate_at.rename_at.dev.r
-#' 			data.NA.recode.dev.r
-#' 			data.NotNA_p_df.dev.r
-#' 			data.nproptable.dev.r
-#' 			data.rm_cols_na.dev.r
-#' 			data.summarize_all_sum_is.na.dev.r
+#' 			f_df.mutate_at.rename_at.dev.r
+#' 			f_df.NA.recode.dev.r
+#' 			f_df.NotNA_p_df.dev.r
+#' 			f_df.nproptable.dev.r
+#' 			f_df.rm_cols_na.dev.r
+#' 			f_df.summarize_all_sum_is.na.dev.r
 #' @		13_split_fold/
 #' 			function.vec.fold.index.dev.r
 #' @		15_cleaning_text/
@@ -492,12 +492,12 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 			function.YYYYMM_to_Date.dev.r
 #' @		16_categorical_factor/
 #' 			add.Date_ICD_chapter.dev.r
-#' 			data.add_AgeGroup_Decade.dev.r
-#' 			data.add_BMI.cut4.dev.r
-#' 			data.add_BP_HTN_140_90.dev.r
-#' 			data.add_FPG_ge100lt126.dev.r
-#' 			data.add_IncomeQuartile_MedicalAid.dev.r
-#' 			data.recode_Sex.dev.r
+#' 			f_df.add_AgeGroup_Decade.dev.r
+#' 			f_df.add_BMI.cut4.dev.r
+#' 			f_df.add_BP_HTN_140_90.dev.r
+#' 			f_df.add_FPG_ge100lt126.dev.r
+#' 			f_df.add_IncomeQuartile_MedicalAid.dev.r
+#' 			f_df.recode_Sex.dev.r
 #' 			data_frame.map_df.as.factor.dev.r
 #' 			function.cut_quartile.dev.r
 #' @		17_categorical_indicators/
@@ -526,22 +526,22 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 		23_group_by_PersonID
 #' 		25_study_population
 #' 		27_match
-#' 		data.ExposedUnexposed.list.dev.r
+#' 		f_df.ExposedUnexposed.list.dev.r
 #' @		23_group_by_PersonID/
-#' 			data.byID_filter_min_rank.dev.r
-#' 			data.byID_filter_minDate_maxDate.dev.r
+#' 			f_df.byID_filter_min_rank.dev.r
+#' 			f_df.byID_filter_minDate_maxDate.dev.r
 #' 			function.filter.PrimaryKey_duplicated.dev.r
 #' @		25_study_population/
-#' 			data.drop_pmhx_negativetime.dev.r
+#' 			f_df.drop_pmhx_negativetime.dev.r
 #' 			tblPersonID_FilterName.ndDate.append_FilterRegexMet.dev.r
 #' 			tblPersonID_FilterName.ndDate_CriteriaID.lgl.dev.r
 #' @		27_match/
-#' 			data.stratified.ccwc.dev.r
-#' 			data.stratified.Match.dev.r
+#' 			f_df.stratified.ccwc.dev.r
+#' 			f_df.stratified.Match.dev.r
 #' 			function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r
 #' 			function.MatchingPairID_Exposed_Unexposed_shuffle.microbenchmark.r
 #' @	30_transform_scale_categorical/
-#' 		data.recode.factor.dev.r
+#' 		f_df.recode.factor.dev.r
 #' 		function.cut.quantile.dev.r
 #' 		function.df2df_wave.dev.r
 #' 		function.df2df_wave_cumulative.dev.r
@@ -552,11 +552,11 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 		44_map
 #' 		45_bivariate_measures
 #' 		47_bivariate_partial_stratified
-#' 		data.conditional_expectation.dev.r
-#' 		data.ggplot.dev.r
+#' 		f_df.conditional_expectation.dev.r
+#' 		f_df.ggplot.dev.r
 #' @		43_network/
-#' 			data.lgl.comat.gather.dev.r
-#' 			data.lgl.comat.gather.microbenchmark.r
+#' 			f_df.lgl.comat.gather.dev.r
+#' 			f_df.lgl.comat.gather.microbenchmark.r
 #' 			data_V1_V2_EdgeWeight.igraph.dev.r
 #' 			data_V1_V2_EdgeWeight.statnet.df.dev.r
 #' @		44_map/
@@ -609,7 +609,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 			AnalyticDataset.CensorEND.survfit.ggsurvplot_CIRiskTableP.rmd
 #' 			AnalyticDataset.CensorLastMeasure.survfit.ggsurvplot_CIRiskTableP.rmd
 #' 			AnalyticDataset.pairwise_survdiff_bonferroni.dev.r
-#' 			data.PersonTime.dev.r
+#' 			f_df.PersonTime.dev.r
 #' 			formulas4coxph_model_list.dev.r
 #' @		57_model_trajectory/
 #' 			function.traj_clusters_by_time.dev.r
@@ -620,9 +620,9 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 			function.threshold_roc.plot.dev.r
 #' @	60_communicate_report_export/
 #' 		calculate.smd.dev.r
-#' 		data.CreateTableOne.dev.r
-#' 		data.gather.group_by_variable.dev.r
-#' 		data.median_IQR.dev.r
+#' 		f_df.CreateTableOne.dev.r
+#' 		f_df.gather.group_by_variable.dev.r
+#' 		f_df.median_IQR.dev.r
 #' 		data_factor.byExposure.table_proptable.dev.r
 #' 		data_logical.byExposure.table_proptable.dev.r
 #' 		function.calculatePersonTime.dev.r

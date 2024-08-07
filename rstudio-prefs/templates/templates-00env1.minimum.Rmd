@@ -400,16 +400,16 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
 ### \$ varname4ID  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 .subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-.sourcename = "data.NotNA_p_df" |> paste0(".source.r")
+.sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
   
 varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str()
 get(DataSetName) |> dim()
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> n_distinct()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$data.NotNA_p_df()
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$f_df.NotNA_p_df()
   
 varname4CompositKey = c("age", "sex")
 vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] |> apply(MARGIN = 1, paste0, collapse = "-")
@@ -441,13 +441,15 @@ options(width=120)
 ```
   
   
-## ---- < Data Availability Check > ----  
-### \$ DataSetName |> paste0(".Date",".NA",".rmAllNA")  ----  
+### ---- < Data Availability Check > ----  
+#### \$ data.Date.NA  ----
+##### \% f_df.NotNA_p_df() ----
+#### \$ data.Date.NA.rmAllNA  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/data.NotNA_p_df.source.r")
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 .subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-.sourcename = "data.NotNA_p_df" |> paste0(".source.r")
+.sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
   
 assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
@@ -455,12 +457,12 @@ assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".D
 cat(" dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="") 
 cat(" dim(",DataSetName,".Date",".NA",".rmAllNA",") == ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-cat(" > ",DataSetName,".Date",".NA"," |> env1$data.NotNA_p_df()","  \n", sep=""); env1$data.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
+cat(" > ",DataSetName,".Date",".NA"," |> env1$f_df.NotNA_p_df()","  \n", sep=""); env1$f_df.NotNA_p_df(get(paste0(DataSetName,".Date",".NA")))
 ```
   
   
-## ---- < DataSet Summary > ----  
-### \$ DataSetName |> paste0(".Date",".NA",".rmAllNA",".fct") ----  
+### ---- < DataSet Summary > ----  
+#### \$ data.Date.NA.rmAllNA.fct  ----
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 vec_varname4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")

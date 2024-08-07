@@ -58,9 +58,9 @@
 # * 8158062 Revert "Add files via upload"
 # * 236fc87 Add files via upload
 # * c2125c7 RUN ALL ABOVE: CTRL+ALT+B
-# * 807e36b data.NotNA_p_df
-# * 60037c4 data.NotNA_p_df = function(data) {
-# * ac85fff data.CreateTableOne
+# * 807e36b f_df.NotNA_p_df
+# * 60037c4 f_df.NotNA_p_df = function(data) {
+# * ac85fff f_df.CreateTableOne
 # * e347769 # for (CodeFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
 # * 1f93687 update
 # * 44e2562 Rocker
@@ -278,9 +278,9 @@
 # R100	recovered_files/RStudio.Cloud set up.r	recovered_files01/RStudio.Cloud set up.r
 # R100	recovered_files/Rocker set up.r	recovered_files01/Rocker set up.r
 # R100	recovered_files/[Working Files List].r	recovered_files01/[Working Files List].r
-# R100	recovered_files/data.CreateTableOne.dev.Rmd	recovered_files01/data.CreateTableOne.dev.Rmd
-# R100	recovered_files/data.CreateTableOne.dev.r	recovered_files01/data.CreateTableOne.dev.r
-# R100	recovered_files/data.CreateTableOne.source.r	recovered_files01/data.CreateTableOne.source.r
+# R100	recovered_files/f_df.CreateTableOne.dev.Rmd	recovered_files01/f_df.CreateTableOne.dev.Rmd
+# R100	recovered_files/f_df.CreateTableOne.dev.r	recovered_files01/f_df.CreateTableOne.dev.r
+# R100	recovered_files/f_df.CreateTableOne.source.r	recovered_files01/f_df.CreateTableOne.source.r
 # R100	recovered_files/f_df.t.tribble_construct.source.r	recovered_files01/f_df.t.tribble_construct.source.r
 # R100	recovered_files/f_session_recover.RsRecovr.r	recovered_files01/f_session_recover.RsRecovr.r
 # R100	recovered_files/f_session_recover.dev.r	recovered_files01/f_session_recover.dev.r
@@ -331,9 +331,9 @@
 #  .../RStudio.Cloud set up.r                         |  0
 #  .../Rocker set up.r                                |  0
 #  .../[Working Files List].r                         |  0
-#  .../data.CreateTableOne.dev.Rmd                    |  0
-#  .../data.CreateTableOne.dev.r                      |  0
-#  .../data.CreateTableOne.source.r                   |  0
+#  .../f_df.CreateTableOne.dev.Rmd                    |  0
+#  .../f_df.CreateTableOne.dev.r                      |  0
+#  .../f_df.CreateTableOne.source.r                   |  0
 #  .../f_df.t.tribble_construct.source.r              |  0
 #  .../f_session_recover.RsRecovr.r                   |  0
 #  .../f_session_recover.dev.r                        |  0
@@ -375,9 +375,9 @@
 #  .../RStudio.Cloud set up.r                         |  0
 #  .../Rocker set up.r                                |  0
 #  .../[Working Files List].r                         |  0
-#  .../data.CreateTableOne.dev.Rmd                    |  0
-#  .../data.CreateTableOne.dev.r                      |  0
-#  .../data.CreateTableOne.source.r                   |  0
+#  .../f_df.CreateTableOne.dev.Rmd                    |  0
+#  .../f_df.CreateTableOne.dev.r                      |  0
+#  .../f_df.CreateTableOne.source.r                   |  0
 #  .../f_df.t.tribble_construct.source.r              |  0
 #  .../f_session_recover.RsRecovr.r                   |  0
 #  .../f_session_recover.dev.r                        |  0
@@ -435,9 +435,9 @@
 # * 8158062 mkim0710 Sat May 18 07:00:11 2024 Revert "Add files via upload"
 # * 236fc87 mkim0710 Sat May 18 06:46:18 2024 Add files via upload
 # * c2125c7 mhkim@rocker@MAGB760M13700KF Sat May 18 03:46:24 2024 RUN ALL ABOVE: CTRL+ALT+B
-# * 807e36b mhkim@rocker@MAGB760M13700KF Fri May 17 03:32:11 2024 data.NotNA_p_df
-# * 60037c4 mkim0710 Fri May 17 03:29:52 2024 data.NotNA_p_df = function(data) {
-# * ac85fff mkim0710 Fri May 17 03:18:12 2024 data.CreateTableOne
+# * 807e36b mhkim@rocker@MAGB760M13700KF Fri May 17 03:32:11 2024 f_df.NotNA_p_df
+# * 60037c4 mkim0710 Fri May 17 03:29:52 2024 f_df.NotNA_p_df = function(data) {
+# * ac85fff mkim0710 Fri May 17 03:18:12 2024 f_df.CreateTableOne
 # * e347769 mkim0710 Fri May 17 03:17:35 2024 # for (CodeFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
 # * 1f93687 mhkim@rocker@MAGB760M13700KF Fri May 17 03:05:50 2024 update
 # * 44e2562 mhkim@rocker@MAGB760M13700KF Fri May 17 03:04:18 2024 Rocker
@@ -495,9 +495,9 @@
 # R100	recovered_files/RStudio.Cloud set up.r	recovered_files01/RStudio.Cloud set up.r
 # R100	recovered_files/Rocker set up.r	recovered_files01/Rocker set up.r
 # R100	recovered_files/[Working Files List].r	recovered_files01/[Working Files List].r
-# R100	recovered_files/data.CreateTableOne.dev.Rmd	recovered_files01/data.CreateTableOne.dev.Rmd
-# R100	recovered_files/data.CreateTableOne.dev.r	recovered_files01/data.CreateTableOne.dev.r
-# R100	recovered_files/data.CreateTableOne.source.r	recovered_files01/data.CreateTableOne.source.r
+# R100	recovered_files/f_df.CreateTableOne.dev.Rmd	recovered_files01/f_df.CreateTableOne.dev.Rmd
+# R100	recovered_files/f_df.CreateTableOne.dev.r	recovered_files01/f_df.CreateTableOne.dev.r
+# R100	recovered_files/f_df.CreateTableOne.source.r	recovered_files01/f_df.CreateTableOne.source.r
 # R100	recovered_files/f_df.t.tribble_construct.source.r	recovered_files01/f_df.t.tribble_construct.source.r
 # R100	recovered_files/f_session_recover.RsRecovr.r	recovered_files01/f_session_recover.RsRecovr.r
 # R100	recovered_files/f_session_recover.dev.r	recovered_files01/f_session_recover.dev.r
@@ -533,12 +533,12 @@
 #'  #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #'  ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput()
 #'  # > ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput() ----  
-#' -c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
-#' +.Rproj.user.shared.list.files1 = c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
-#'  "notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9800d5f74/chunks.json", 
-#'  "notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9a2e5d569/chunks.json", 
-#'  "notebooks/40C0E44C-data.CreateTableOne.dev/1/s/c2kv2ircdtmr9/000002.csv", 
-#' @@ -104,12 +104,24 @@ c("notebooks/40C0E44C-data.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json",
+#' -c("notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
+#' +.Rproj.user.shared.list.files1 = c("notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
+#'  "notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9800d5f74/chunks.json", 
+#'  "notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9a2e5d569/chunks.json", 
+#'  "notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/c2kv2ircdtmr9/000002.csv", 
+#' @@ -104,12 +104,24 @@ c("notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json",
 #'  "notebooks/9EC9A4B0-f_git.03_final.pull_rebase_push.dev/1/s/cyrnlj0ymdq5k/00000f.csv", 
 #'  "notebooks/9EC9A4B0-f_git.03_final.pull_rebase_push.dev/1/s/czk7rsj2uariz/00000f.csv", 
 #'  "notebooks/patch-chunk-names", "notebooks/paths")

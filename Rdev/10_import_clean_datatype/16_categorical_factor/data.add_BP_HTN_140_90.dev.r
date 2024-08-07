@@ -1,6 +1,6 @@
-# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/data.add_BP_HTN_140_90.dev.r
+# https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BP_HTN_140_90.dev.r
 
-data.add_BP_HTN_140_90 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {dataset |>
+f_df.add_BP_HTN_140_90 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = "BP_LWST") {dataset |>
       mutate(
         BP_HTN_140_90 = if_else((get(varname4SBP) >= 140) | (get(varname4DBP) >= 90), TRUE, FALSE)
       )}
@@ -50,7 +50,7 @@ data.add_BP_ACC2017 <- function(dataset, varname4SBP = "BP_HIGH", varname4DBP = 
 
 gj_jk.Date.DTH.recode = 
     gj_jk.Date.DTH.recode %>% 
-    data.add_BP_HTN_140_90 %>% 
+    f_df.add_BP_HTN_140_90 %>% 
     data.add_BP_KSH2018 %>% 
     data.add_BP_ESCESH2018 %>% 
     data.add_BP_ACC2017
