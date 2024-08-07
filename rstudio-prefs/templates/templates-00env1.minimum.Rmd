@@ -274,6 +274,7 @@ if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.Gl
 ```
   
 #@@ START) dev ----  
+## \% survival::lung |> 
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -281,6 +282,7 @@ options(width=120)
   
   
 #@@ START) function ----  
+## \% |> function_name
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
