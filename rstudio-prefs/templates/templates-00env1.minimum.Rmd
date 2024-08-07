@@ -284,13 +284,10 @@ if(file.exists(file.path(.path4read, "CODEBOOK.rds"))) {
 } else {
     if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
 }
-.sublistname = "MetaData"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "DataSetNames"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames.select"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames.filter"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames.recode"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.parentname = "CODEBOOK"
+for (.sublistname in c("MetaData", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+    if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+})
 .CODEBOOK0 = CODEBOOK
 ```
   
