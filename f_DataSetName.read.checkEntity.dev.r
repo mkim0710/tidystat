@@ -110,7 +110,7 @@ out %>% str
 #  $ str           : chr [1:84] "tibble [450 × 81] (S3: tbl_df/tbl/data.frame)" " $ randid   : num [1:450] 24721 54224 83398 84815 95541 ..." " $ death    : num [1:450] 1 1 1 0 1 0 0 0 0 0 ..." " $ angina   : num [1:450] 0 0 0 0 0 0 0 0 0 1 ..." ...
 
 ## \% f_DataSetName.read.checkEntity(DataSetName = DataSetName) =====
-out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = FALSE)
+out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
 out %>% str
 # > out %>% str
 # List of 7

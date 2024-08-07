@@ -336,10 +336,10 @@ out %>% str
   
   
   
-## \% f_DataSetName.read.checkEntity(vec_varname4ID = "randid", print2console = FALSE) =======  
+## \% f_DataSetName.read.checkEntity(vec_candidate4ID = "randid", print2console = FALSE) =======  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = FALSE)
+out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
 out %>% str
 # > out %>% str
 # List of 7
@@ -363,7 +363,7 @@ out %>% str
 ## \% f_DataSetName.read.checkEntity(print2console = TRUE, return.output = FALSE) =======  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_varname4ID = "randid", print2console = TRUE, return.output = FALSE)
+env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = TRUE, return.output = FALSE)
 ```
   
   
