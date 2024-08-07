@@ -311,7 +311,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
   
 #@@ START) dev ----  
 ### \$ CODEBOOK$ModelList$time2event ====  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # https://chatgpt.com/c/9d8abdf0-a130-4724-b955-f6bd0fe4e2ef
@@ -321,7 +321,7 @@ options(width=120)
   
   
 #### \$ CODEBOOK$ModelList$time2event$formula ====  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 library(survival)
@@ -342,7 +342,7 @@ CODEBOOK$ModelList$time2event$formula[[3]] %>% str
   
   
 #### \$ CODEBOOK$ModelList$time2event$terms ====  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 CODEBOOK$ModelList$time2event$terms = CODEBOOK$ModelList$time2event$formula |> terms()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
@@ -355,7 +355,7 @@ CODEBOOK$ModelList$time2event$terms %>% dput
   
   
 #### \$ CODEBOOK$ModelList$time2event$all.vars ====  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 CODEBOOK$ModelList$time2event$all.vars = CODEBOOK$ModelList$time2event$formula |> all.vars()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
@@ -368,7 +368,7 @@ CODEBOOK$ModelList$time2event$all.vars %>% dput
   
   
 #### \$ CODEBOOK$ModelList$time2event$lhs.vars ====  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 CODEBOOK$ModelList$time2event$lhs = CODEBOOK$ModelList$time2event$formula[[2]]
 CODEBOOK$ModelList$time2event$lhs.vars = CODEBOOK$ModelList$time2event$lhs %>% all.vars
@@ -382,7 +382,7 @@ CODEBOOK$ModelList$time2event$lhs.vars %>% dput
   
   
 #### \$ CODEBOOK$ModelList$time2event$rhs.vars ====  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 CODEBOOK$ModelList$time2event$rhs = CODEBOOK$ModelList$time2event$formula[[3]]
 CODEBOOK$ModelList$time2event$rhs.vars = CODEBOOK$ModelList$time2event$rhs %>% all.vars
@@ -398,13 +398,13 @@ CODEBOOK$ModelList$time2event$rhs.vars %>% dput
 
   
   
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -412,7 +412,7 @@ options(width=120)
   
   
 #@@ START) function: f_formula.lhs_rhs_vars  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_formula.lhs_rhs_vars = function(formula, include_input_in_output = TRUE) {
     return.list = list()
@@ -430,7 +430,7 @@ f_formula.lhs_rhs_vars = function(formula, include_input_in_output = TRUE) {
   
 ## \% |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
 ### Caution) list can have multiple elements with the same name?!  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -452,7 +452,7 @@ CODEBOOK$ModelList$time2event$formula
   
   
 ## \% \%>\%  c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -473,7 +473,7 @@ CODEBOOK$ModelList$time2event$formula
   
   
 ## \% $formula.lhs_rhs_vars = CODEBOOK$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -486,20 +486,20 @@ CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 ```
   
   
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 #@@ START) function: f_list_formula.append_lhs_rhs_vars  
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_list_formula.append_lhs_rhs_vars = function(list_formula) {
     if("formula" %in% names(list_formula)) {
@@ -519,7 +519,7 @@ f_list_formula.append_lhs_rhs_vars = function(list_formula) {
   
   
 ## \% |> f_list_formula.append_lhs_rhs_vars(CODEBOOK$ModelList$time2event)
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -536,19 +536,19 @@ CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 ```
 
 
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
