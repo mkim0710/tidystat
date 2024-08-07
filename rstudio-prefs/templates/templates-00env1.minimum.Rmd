@@ -260,19 +260,6 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
-# @@ CODEBOOK ----  
-```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-# \$ .GlobalEnv$CODEBOOK = list() ====  
-if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
-.sublistname = "MetaData"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "DataSetNames"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames.select"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames.filter"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "VarNames.recode"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-.sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-```
-  
 #@@ START) dev ----  
 ## \% survival::lung |> 
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -286,6 +273,20 @@ options(width=120)
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
+```
+  
+  
+# @@ CODEBOOK ----  
+```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# \$ .GlobalEnv$CODEBOOK = list() ====  
+if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
+.sublistname = "MetaData"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.sublistname = "DataSetNames"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.sublistname = "VarNames"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.sublistname = "VarNames.select"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.sublistname = "VarNames.filter"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.sublistname = "VarNames.recode"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 ```
   
   
