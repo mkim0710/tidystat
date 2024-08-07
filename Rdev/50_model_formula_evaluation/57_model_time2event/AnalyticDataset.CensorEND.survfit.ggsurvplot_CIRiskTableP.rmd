@@ -284,7 +284,7 @@ df_NewDMv3.NAtime |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.
 ## \$ analyticDF_time2event =  ----  
 #### [Plot] Stratified Kaplan-Meier Survival Curve  
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
-# {r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
+# ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
@@ -366,7 +366,7 @@ options(width=120)
 ## \$ analyticDF_time2event =  ----  
 #### [Plot] Stratified Kaplan-Meier Survival Curve  
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
-# {r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
+# ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 # library(tidyverse)
 # # library(survival)
 # # library(survminer)
