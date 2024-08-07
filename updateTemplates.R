@@ -7,14 +7,23 @@ if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.p
 # \% Update the templates of RStudio (default.R, notebook.Rmd)  ~~~~~~~~~~~~
 download.file("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = file.path(.path4APPDATA_RStudio, "templates", "default.R"))
 download.file("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"))
+# for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
+#     if (filename.ext %in% dir()) {
+#         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = filename.ext, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+#             download.file(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename.ext), destfile = filename.ext)
+#     }
+# }
 if (.Platform$OS.type == "windows") {
     # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
     # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
-    env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "D:/OneDrive/[][Rproject]/Rproject_Rmd/default.R", .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-    env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd", .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+    for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext), .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+    }
     browseURL("D:/OneDrive/[][Rproject]/-backup")
 
-    download.file("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/OneDrive/[][Rproject]/Rproject_Rmd/default.R")
-    download.file("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "D:/OneDrive/[][Rproject]/Rproject_Rmd/templates-00env1.minimum.Rmd")
+    for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
+        download.file(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename.ext), destfile = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext))
+    }
 }
+
 
