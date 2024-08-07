@@ -121,7 +121,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
     if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
     return(out %>% select(filename, size))
 } 
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 # > for (.dependancy in c("f_df.t.tribble_construct")) {

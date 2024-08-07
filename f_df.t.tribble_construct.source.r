@@ -614,7 +614,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
@@ -625,7 +625,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     out = df %>% t |> as.data.frame() %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }                                    
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----  
@@ -635,7 +635,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
@@ -651,7 +651,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
     }
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -670,7 +670,7 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 .tmp$object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -704,7 +704,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
     out$identical = all.equal(vec1, vec2)
     out
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ .tmp\$objectname = "f_df.print_byVar" ----  
@@ -719,7 +719,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) |> 
         print(n = n)
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ .tmp\$objectname = "f_formula.lhs_rhs_vars" ----  
@@ -736,14 +736,14 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     return.list$rhs.vars = formula[[3]] |> all.vars()
     return(return.list)
     
-    # ## \% |> c(CODEBOOK$ModelList$time2event$formula |> f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # ## \% |> c(CODEBOOK$ModelList$time2event$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
     # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     # 
     # library(survival)
     # CODEBOOK$ModelList$time2event = NULL
     # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # 
-    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(CODEBOOK$ModelList$time2event$formula |> f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
+    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(CODEBOOK$ModelList$time2event$formula |> env1$f$f_formula.lhs_rhs_vars(formula_in_the_list = FALSE))
     # CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
     # # List of 7
     # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
