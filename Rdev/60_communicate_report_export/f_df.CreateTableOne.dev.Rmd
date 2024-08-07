@@ -174,7 +174,7 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 ```{r CODEBOOK0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # \$ .GlobalEnv$CODEBOOK = list() ====  
 if(file.exists(file.path(.path4read, "CODEBOOK.rds"))) { 
-    CODEBOOK = read_rds(file.path(.path4read, "CODEBOOK.rds")) 
+    CODEBOOK = read_rds(file.path(.path4write, "CODEBOOK.rds")) 
 } else {
     if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
 }
@@ -312,6 +312,7 @@ options(width=120)
 # @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
 CODEBOOK$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 .objectname = CODEBOOK$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
 # system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
 # system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))))
