@@ -442,8 +442,8 @@ options(width=120)
   
   
 ### ---- < Data Availability Check > ----  
-#### \$ data.Date.NA  ----
-##### \% f_df.NotNA_p_df() ----
+#### \$ data.Date.NA  ----  
+##### \% f_df.NotNA_p_df() ----  
 #### \$ data.Date.NA.rmAllNA  ----  
 ```{r, echo=-1, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
