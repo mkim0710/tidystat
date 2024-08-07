@@ -756,6 +756,43 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 }
 ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \$ .tmp\$objectname = "f_list_formula.append_lhs_rhs_vars" ----  
+# https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_list_formula.append_lhs_rhs_vars.source.r  
+.tmp$objectname = "f_list_formula.append_lhs_rhs_vars"
+.tmp$object = function(list_formula) {
+    if("formula" %in% names(list_formula)) {
+        formula = list_formula$formula
+        list_formula$terms = formula |> terms()
+        list_formula$all.vars = formula |> all.vars()
+        list_formula$lhs = formula[[2]]
+        list_formula$lhs.vars = formula[[2]] |> all.vars()
+        list_formula$rhs = formula[[3]]
+        list_formula$rhs.vars = formula[[3]] |> all.vars()
+    } else {
+        warning('!"formula" %in% names(list_formula)  \n')
+    }
+    return(list_formula)
+    
+    # ## \% |> env1$f$f_list_formula.append_lhs_rhs_vars(CODEBOOK$ModelList$time2event)
+    # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+    # 
+    # library(survival)
+    # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
+    # CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+    # # List of 7
+    # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ all.vars: chr [1:6] "time2event" "event" "Group" "StudyPopulation" ...
+    # #  $ lhs     : language Surv(time = time2event, event = event)
+    # #  $ lhs.vars: chr [1:2] "time2event" "event"
+    # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
+    # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
+}
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ for (.dependancy in c("")) { -----  
