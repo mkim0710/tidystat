@@ -109,7 +109,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # #@@ START) function -----  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_formula.lhs_rhs_vars" ----
+## \$ f_formula.lhs_rhs_vars =  ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
 .tmp$objectname = "f_formula.lhs_rhs_vars"
 .tmp$object = function(formula, include_input_in_output = TRUE) {

@@ -140,7 +140,7 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     }
 }
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \$ .tmp\$objectname = "f_path.CurrentSource.path.filename.ext" ----  
+## \$ f_path.CurrentSource.path.filename.ext =  ----  
 .tmp$objectname = "f_path.CurrentSource.path.filename.ext"
 .tmp$object = function(check_rstudioapi = TRUE, overwrite = FALSE) {
     if(overwrite || is.null(env1$path$CurrentSource.path.filename.ext) || env1$path$CurrentSource.path.filename.ext == "") {
@@ -186,7 +186,7 @@ env1$env.internal$ f_file.edit_vscode <- function(.file2edit) {
 env1$env.internal$ f_URL.open_in_edge_app <- function(URL) {
     if (.Platform$OS.type == "windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
 }
-##### \$ .tmp\$objectname = "f_URL.open_in_edge_app" ----  
+##### \$ f_URL.open_in_edge_app =  ----  
 .tmp$objectname = "f_URL.open_in_edge_app"
 .tmp$object = env1$env.internal[[.tmp$objectname]]
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
@@ -205,7 +205,7 @@ env1$env.internal$ f_URL.open_in_edge_app.printRCode <- function(URL) {
 env1$env.internal$ f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
     URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="',.,'"  \n', sep="")
 }
-##### \$ .tmp\$objectname = "f_URL.open_in_edge_app.printPowerShellCode" ----  
+##### \$ f_URL.open_in_edge_app.printPowerShellCode =  ----  
 .tmp$objectname = "f_URL.open_in_edge_app.printPowerShellCode"
 .tmp$object = env1$env.internal[[.tmp$objectname]]
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----

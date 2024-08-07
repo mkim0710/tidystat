@@ -112,7 +112,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
   
 # @@ START ----  
   
-## \$ .tmp\$objectname = "tblID_gj3_jk" ----  
+## \$ tblID_gj3_jk =  ----  
 @ assign(objectname, read_rds(file.path(.path4read, paste0(objectname,".rds")))) 
 ```{r DataSetName-read.checkEntity, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)

@@ -606,7 +606,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@ env1$f functions ----  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \$ .tmp\$objectname = "f_df.tribble_construct" ----  
+## \$ f_df.tribble_construct =  ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% fun.tribble_paste}
 .tmp$objectname = "f_df.tribble_construct"
@@ -618,7 +618,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
-## \$ .tmp\$objectname = "f_df.transpose" ----  
+## \$ f_df.transpose =  ----  
 .tmp$objectname = "f_df.transpose"
 .tmp$object = function(df, varname4rowname = "varname") {
     if(varname4rowname %in% colnames(df)) df = df %>% column_to_rownames(var = varname4rowname)
@@ -628,7 +628,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_df.t.tribble_construct" ----  
+## \$ f_df.t.tribble_construct =  ----  
 .tmp$objectname = "f_df.t.tribble_construct"
 .tmp$object = function(df) {
     out = env1$f$f_df.transpose(df)
@@ -639,7 +639,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
-## \$ .tmp\$objectname = "f_vec.dput_line_by_line" ----  
+## \$ f_vec.dput_line_by_line =  ----  
 .tmp$objectname = "f_vec.dput_line_by_line"
 # .tmp$object = function(vec) {
 #     vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") |> paste0(collapse='",\n  "') |> paste0('c("',.,'")\n') |> cat("  \n", sep="")
@@ -665,7 +665,7 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
-## \$ .tmp\$objectname = "f_list.dput_line_by_line" ----  
+## \$ f_list.dput_line_by_line =  ----  
 .tmp$objectname = "f_list.dput_line_by_line"
 .tmp$object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
@@ -690,7 +690,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_vec1_vec2.setdiff" ----  
+## \$ f_vec1_vec2.setdiff =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
 .tmp$objectname = "f_vec1_vec2.setdiff"
 .tmp$object = function(vec1, vec2) {
@@ -707,7 +707,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_df.print_byVar" ----  
+## \$ f_df.print_byVar =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.print_byVar.dev.r  
 .tmp$objectname = "f_df.print_byVar"
 .tmp$object = function(df, byVar, n = NULL) {
@@ -722,7 +722,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_formula.lhs_rhs_vars" ----
+## \$ f_formula.lhs_rhs_vars =  ----
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
 .tmp$objectname = "f_formula.lhs_rhs_vars"
 .tmp$object = function(formula, include_input_in_output = TRUE) {
@@ -757,7 +757,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ .tmp\$objectname = "f_list_formula.append_lhs_rhs_vars" ----  
+## \$ f_list_formula.append_lhs_rhs_vars =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_list_formula.append_lhs_rhs_vars.source.r  
 .tmp$objectname = "f_list_formula.append_lhs_rhs_vars"
 .tmp$object = function(list_formula) {
