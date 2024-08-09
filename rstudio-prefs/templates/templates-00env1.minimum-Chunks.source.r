@@ -62,7 +62,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----  
+# @@ START) source -----  
 # ### @ .subpath, .sourcename ======  
 # # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(!is.null(.CurrentSource.path.filename.ext)) if(.CurrentSource.path.filename.ext != "") {.subpath = .CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
@@ -95,12 +95,12 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ RUN ALL ABOVE: CTRL+ALT+B -----  
+# @@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@ env1$env.internal functions ----  
+# @ env1$env.internal functions ----  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## \$ RmdChunk.updateTemplateNotebook =  ----  
 .tmp$objectname = "RmdChunk.updateTemplateNotebook"
@@ -135,7 +135,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@ env1$f functions ----  
+# @ env1$f functions ----  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
@@ -143,7 +143,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ END -----  
+# @@ END -----  
 # cat("* To revert to the last commited file, run the following terminal command:\n", 
 #     '"git checkout -- ',rstudioapi::getSourceEditorContext()$path,'" |> system(intern=TRUE)',"  \n", sep="")
 #|________________________________________________________________________________|#  

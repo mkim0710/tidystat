@@ -210,7 +210,7 @@ analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot
 
 
 
-#@ ------  
+# @ ------  
 # https://github.com/r-lib/pillar/issues/101
 # kovla commented on Feb 11, 2018
 # Why not let the user decide how many characters they deem necessary? You have pillar.min_title_chars that controls column title truncation, why not implement something similar for character column width?
@@ -228,4 +228,4 @@ analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot
 
 
 
-#@ end -----  
+# @ end -----  

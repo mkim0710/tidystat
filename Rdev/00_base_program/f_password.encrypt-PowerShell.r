@@ -1,7 +1,7 @@
 # https://stackoverflow.com/questions/11478660/is-there-similar-r-function-to-sas-pwencode
 # https://web.archive.org/web/20180201120258/http://www.gilfillan.space/2016/04/21/Using-PowerShell-and-DPAPI-to-securely-mask-passwords-in-R-scripts/
 
-#@  PowerShell Script to Encrypt Passwords:  
+# @  PowerShell Script to Encrypt Passwords:  
 system('
 # Create directory in user profile if it doesn't already exist
 $passwordDir = "$($env:USERPROFILE)\DPAPI\passwords\$($env:computername)"
@@ -18,7 +18,7 @@ $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 
 
-#@ Retrieve the Encrypted Password in R:  
+# @ Retrieve the Encrypted Password in R:  
 
 getEncryptedPassword <- function(credential_label, credential_path) {
     # if path not supplied, use %USERPROFILE%\DPAPI\passwords\computername\credential_label.txt as default

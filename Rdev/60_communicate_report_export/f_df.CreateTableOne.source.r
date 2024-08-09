@@ -50,7 +50,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----  
+# @@ START) source -----  
 ### @ .subpath, .sourcename ======  
 
 
@@ -85,7 +85,7 @@ objectname = "getwd"; object = getwd(); .GlobalEnv$env1$path[[objectname]] = obj
 objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); .GlobalEnv$env1$path[[objectname]] = object
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----  
+# @@ START) source -----  
 ### @ .subpath, .sourcename ======  
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
@@ -265,7 +265,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) data -----  
+# @@ START) data -----  
 
 
 
@@ -282,7 +282,7 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
 
 
 
-#@@ END -----  
+# @@ END -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  

@@ -209,7 +209,7 @@ env1$path$.path4write = getwd()
 .path4write = env1$path$.path4write
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
-#@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+# @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
 cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
 .tmp |> str(max.level = 1, give.attr = FALSE)
 cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 

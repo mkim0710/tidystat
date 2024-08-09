@@ -23,7 +23,7 @@ function.df_dummy2factor = function(df_dummy, varname_prefix = "") {
     out
 }
 
-#@ -----  
+# @ -----  
 as.logical(-0.1)
 as.logical(0)
 as.logical(0.1)
@@ -37,7 +37,7 @@ as.logical(1.1)
 # > as.logical(1.1)
 # [1] TRUE
 
-#@ test) function.dummy2factor() iris.Species.dummy -----  
+# @ test) function.dummy2factor() iris.Species.dummy -----  
 library(tidyverse)
 # model.matrix(~ Species, data = iris) |> str()
 # # > model.matrix(~ Species, data = iris) |> str()
@@ -304,4 +304,4 @@ iris.Species.dummy5 |> as.data.frame() %>% function.df_dummy2factor(varname_pref
 
 
 
-#@ end -----  
+# @ end -----  

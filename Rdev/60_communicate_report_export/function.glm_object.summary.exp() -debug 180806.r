@@ -1,6 +1,6 @@
 # function.glm_object.summary.exp() -debug 180806.r
 
-#@ data.svydesign.svyglm_binomial_Depressed =====  
+# @ data.svydesign.svyglm_binomial_Depressed =====  
 
 
 
@@ -405,4 +405,4 @@ data.svydesign.svyglm_binomial_Depressed %>% function.glm_object.summary.exp()
 
 
 
-#@ end -----  
+# @ end -----  

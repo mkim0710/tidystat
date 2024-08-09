@@ -50,7 +50,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----  
+# @@ START) source -----  
 ### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
@@ -80,7 +80,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ RUN ALL ABOVE: CTRL+ALT+B -----  
+# @@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # # https://github.com/mkim0710/tidystat/blob/master/Rdev/get_system_info.dev.r
@@ -148,7 +148,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 
 
-#@ end -----  
+# @ end -----  
 # ls.str(env1)
 # # > ls.str(env1) #-----  
 # # env.internal : <environment: 0x0000024c23596368> 

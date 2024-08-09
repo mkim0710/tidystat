@@ -1,6 +1,6 @@
 # trainset.cv.glmnet_alphas_cox.dev.r
 
-#@@@ trainset.cv.glmnet_alphas_cox = function( ======  
+# @@@ trainset.cv.glmnet_alphas_cox = function( ======  
 trainset.cv.glmnet_alphas_cox = function(
     trainset, myFormula
     , alphas = c(1, 0.5)
@@ -269,7 +269,7 @@ trainset.cv.glmnet_alphas_cox = function(
     # print( paste0( return_name , ".cv.glmnet_alphas" ) ); # assign( paste0( return_name, ".cv.glmnet_alphas" ) , return_list , envir=.GlobalEnv) 
     out}  ;   # save.image() # update 170509
 
-#@ test) trainset.cv.glmnet_alphas_cox() CoxExample_tibble ----  
+# @ test) trainset.cv.glmnet_alphas_cox() CoxExample_tibble ----  
 # library(glmnet)
 # data(CoxExample)
 # CoxExample_tibble = bind_cols(as_tibble(y), as_tibble(x))
@@ -416,7 +416,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 
 
 
-#@ test) trainset.cv.glmnet_alphas_cox() trainsetCC69agg4i07_829 ----  
+# @ test) trainset.cv.glmnet_alphas_cox() trainsetCC69agg4i07_829 ----  
 library(tidyverse)
 load("trainsetCC69agg4i07_829.rda")
 trainsetCC69agg4i07_829 |> as_tibble()
@@ -544,7 +544,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {
 
 
 
-#@@@ object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) { ==========  
+# @@@ object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) { ==========  
 object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     library(glmnet)
@@ -608,7 +608,7 @@ object_list_cvglmnet.coefexp = function(object_list_cvglmnet, i_names = NULL) {
 }
 
 
-#@ test) object_list_cvglmnet.coefexp() CoxExample_tibble.cv.glmnet_alphas_cox -----  
+# @ test) object_list_cvglmnet.coefexp() CoxExample_tibble.cv.glmnet_alphas_cox -----  
 object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----
 object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
 # > object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----  
@@ -677,7 +677,7 @@ object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
 # 30     30     V30       1.00         NA        0.99          NA -0.00301953           NA -0.0080371921          NA
 
 
-#@ test) object_list_cvglmnet.coefexp() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox -----  
+# @ test) object_list_cvglmnet.coefexp() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox -----  
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.coefexp #----
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.coefexp #----
 # > trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.coefexp #----  
@@ -753,7 +753,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.coefexp #-
 
 
 
-#@@@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambda.min") { ======  
+# @@@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambda.min") { ======  
 object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambda.min") {
     # object_cvglmnet = CoxExample_tibble.cv.glmnet_alphas_cox$alpha1
     # object_cvglmnet = trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1
@@ -807,7 +807,7 @@ object_list_cvglmnet.newFormula = function(object_list_cvglmnet, coef.cv.glmnet.
     out
 }
     
-#@ test) object_cvglmnet.newFormula() CoxExample_tibble.cv.glmnet_alphas_cox -----  
+# @ test) object_cvglmnet.newFormula() CoxExample_tibble.cv.glmnet_alphas_cox -----  
 library(tidyverse)
 CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
 CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
@@ -874,7 +874,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coe
 
 
 
-#@ test) object_cvglmnet.newFormula() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox -----  
+# @ test) object_cvglmnet.newFormula() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox -----  
 load("trainsetCC69agg4i07_829.cv.glmnet_alphas_cox.rda")
 library(tidyverse)
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
@@ -973,7 +973,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.newFormula
 
 
 
-#@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) { =====  
+# @ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) { =====  
 function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal = 2, coef.exp = T, is.clogit = "unknown", p.adjust_method = c("fdr", "bonferroni")) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if (!"coxph" %in% class(coxph_object)) {
@@ -1081,7 +1081,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
     out
 }
 
-#@@@ object_cvglmnet.newFormula_coxph = function(object_cvglmnet, testset, coef.cv.glmnet.s = "lambda.min") { =====  
+# @@@ object_cvglmnet.newFormula_coxph = function(object_cvglmnet, testset, coef.cv.glmnet.s = "lambda.min") { =====  
 object_cvglmnet.newFormula_coxph = function(object_cvglmnet, testset, coef.cv.glmnet.s = "lambda.min") {
     # ?coxph
     library(survival)
@@ -1108,7 +1108,7 @@ object_list_cvglmnet.newFormula_coxph = function(object_list_cvglmnet, testset, 
     out
 }
 
-#@ test) object_cvglmnet.newFormula_coxph() CoxExample_tibble.cv.glmnet_alphas_cox ------  
+# @ test) object_cvglmnet.newFormula_coxph() CoxExample_tibble.cv.glmnet_alphas_cox ------  
 CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = CoxExample_tibble, coef.cv.glmnet.s = "lambda.min")
 CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = CoxExample_tibble, coef.cv.glmnet.s = "lambda.min") %>% function.coxph_object.summary.exp
 # > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = CoxExample_tibble, coef.cv.glmnet.s = "lambda.min")
@@ -1152,7 +1152,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_cox
 # 14     V30 0.97 (0.90 ~ 1.04)   0.370       0.370       1.000      0.9660162  0.8957073   1.0418440 0.03855524  -0.8967573 3.698484e-01
 
 object_list_cvglmnet.newFormula_coxph
-#@ test) object_cvglmnet.newFormula_coxph() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox ------  
+# @ test) object_cvglmnet.newFormula_coxph() trainsetCC69agg4i07_829.cv.glmnet_alphas_cox ------  
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = trainsetCC69agg4i07_829, coef.cv.glmnet.s = "lambda.min") #----
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = trainsetCC69agg4i07_829, coef.cv.glmnet.s = "lambda.min") %>% function.coxph_object.summary.exp #----
 trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.newFormula_coxph(testset = trainsetCC69agg4i07_829) %>% map(function(ls) {map(ls, function(x) function.coxph_object.summary.exp(x))}) #-----
@@ -1266,5 +1266,5 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.newFormula
 
 
 
-#@ end -----  
+# @ end -----  
 

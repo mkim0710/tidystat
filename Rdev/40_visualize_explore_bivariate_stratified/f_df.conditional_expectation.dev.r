@@ -6,7 +6,7 @@
 
 
 
-#@ public_v2_112917.levels123 ======  
+# @ public_v2_112917.levels123 ======  
 public_v2_112917.levels123 %>% 
     group_by(RACE, isCollege_MS_PhD) %>% summarize(N = n(), CAPI_WT.sum = sum(CAPI_WT))
 public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.omit %>% 
@@ -44,7 +44,7 @@ public_v2_112917.levels123 %>% select(RACE, isCollege_MS_PhD, CAPI_WT) %>% na.om
 #  9              5: Other            FALSE    44   102144.58
 # 10              5: Other             TRUE    36    61819.94
 
-#@ -----  
+# @ -----  
 df_RACE_isCollege_MS_PhD = outer(levels(public_v2_112917.levels123$RACE), c(F, T), paste, sep = "|") |> as.vector() |> as_tibble() %>% separate(value, into = c("RACE", "isCollege_MS_PhD"), sep = "\\|") %>% map_df(as.factor) %>% 
     mutate(isCollege_MS_PhD = as.logical(isCollege_MS_PhD))
 df_RACE_isCollege_MS_PhD
@@ -240,8 +240,8 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 
 
 
-#@@@@ Joint probability distribution P(X^dm, X^SDH) table for each possible value set of {X^dm, X^SDH} ======  
-#@@@ joint_distribution P(X^RACE, X^SDH) ====  
+# @@@@ Joint probability distribution P(X^dm, X^SDH) table for each possible value set of {X^dm, X^SDH} ======  
+# @@@ joint_distribution P(X^RACE, X^SDH) ====  
 public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_MS_PhD), F, isCollege_MS_PhD)) %>% 
     group_by(RACE, isCollege_MS_PhD) %>% summarize(N_by_RACE_SDH = n(), CAPI_WT.sum_by_RACE_SDH = sum(CAPI_WT)) %>% 
     ungroup %>% mutate(`P(X^RACE, X^SDH)` = CAPI_WT.sum_by_RACE_SDH/sum(CAPI_WT.sum_by_RACE_SDH))
@@ -270,9 +270,9 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 
 
 
-#@@@@ Conditional probability distribution P(X^SDH | X^dm) table in which conditional random variable X^dm is presented as row index and the random variable for probability estimation X^SDH is presented as column index. Therefore, for each row represent a row vector of conditional probability distribution of X^SDH given X^dm, and the row sum is 1. ======  
-#@@@@ Conditional expectation E(X^SDH | X^dm = x^dm) for given value of conditional random variable X^dm. ======  
-#@@@ conditional_distribution P(X^SDH=1|X^RACE) conditional_expectation E(X^SDH|X^RACE) ====  
+# @@@@ Conditional probability distribution P(X^SDH | X^dm) table in which conditional random variable X^dm is presented as row index and the random variable for probability estimation X^SDH is presented as column index. Therefore, for each row represent a row vector of conditional probability distribution of X^SDH given X^dm, and the row sum is 1. ======  
+# @@@@ Conditional expectation E(X^SDH | X^dm = x^dm) for given value of conditional random variable X^dm. ======  
+# @@@ conditional_distribution P(X^SDH=1|X^RACE) conditional_expectation E(X^SDH|X^RACE) ====  
 public_v2_112917.levels123 %>% 
     group_by(RACE) %>% summarise(N_by_RACE = n(), CAPI_WT.sum_by_RACE = sum(CAPI_WT)) %>% 
     ungroup %>% mutate(`P(X^RACE)` = CAPI_WT.sum_by_RACE/sum(CAPI_WT.sum_by_RACE))
@@ -320,4 +320,4 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 
 
 
-#@ end -----  
+# @ end -----  

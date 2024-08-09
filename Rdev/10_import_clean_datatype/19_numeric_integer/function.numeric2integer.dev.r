@@ -46,7 +46,7 @@ sprintf_but_ceiling5 = function(fmt='%#.2f', x, ...) {
 # [1] "5.56"
 
 
-#@ ?round  
+# @ ?round  
 # ?round
 # Description
 # ceiling takes a single numeric argument x and returns a numeric vector containing the smallest integers not less than the corresponding elements of x.
@@ -92,8 +92,8 @@ signif(x2, 3)
 # [1] 3.14e-02 3.14e+00 3.14e+02 3.14e+04 3.14e+06
 
 
-#@ https://en.wikipedia.org/wiki/Rounding#Comparison_of_approaches_for_rounding_to_an_integer =====  
-#@ tibble(vec = c(-1.8, -1.5, -1.2, -0.8, -0.5, -0.2, 0.2, 0.5, 0.8, 1.2, 1.5, 1.8)) %>% ----  
+# @ https://en.wikipedia.org/wiki/Rounding#Comparison_of_approaches_for_rounding_to_an_integer =====  
+# @ tibble(vec = c(-1.8, -1.5, -1.2, -0.8, -0.5, -0.2, 0.2, 0.5, 0.8, 1.2, 1.5, 1.8)) %>% ----  
 tibble(vec = c(-1.8, -1.5, -1.2, -0.8, -0.5, -0.2, 0.2, 0.5, 0.8, 1.2, 1.5, 1.8)) %>% 
     mutate(
         ceiling(vec)
@@ -129,7 +129,7 @@ tibble(vec = c(-1.8, -1.5, -1.2, -0.8, -0.5, -0.2, 0.2, 0.5, 0.8, 1.2, 1.5, 1.8)
 # 12   1.8              2            1            1            2                       2                 2
 
 
-#@ tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.5, 1.51)) %>%  -----  
+# @ tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.5, 1.51)) %>%  -----  
 tibble(vec = c(-1.51, -1.5, -1.49, -0.51, -0.5, -0.49, 0.49, 0.5, 0.51, 1.49, 1.5, 1.51)) %>% 
     mutate(
         ceiling(vec)
@@ -257,4 +257,4 @@ res10[c("exp(coef)", "lower .95", "upper .95")] %>%
 
 
 
-#@ end -----  
+# @ end -----  

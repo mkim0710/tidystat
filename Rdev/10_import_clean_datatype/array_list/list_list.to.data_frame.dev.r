@@ -107,7 +107,7 @@ list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Ro
 
 
 
-#@ outer(i, j, function(i, j) {}) ============  
+# @ outer(i, j, function(i, j) {}) ============  
 library(tidyverse)
 outer(c("A","B"), 1:3, paste0)
 outer(c("A","B"), 1:3, paste0) |> as.vector()
@@ -131,7 +131,7 @@ outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}) |> as.vector()
 
 
 
-#@ end -----  
+# @ end -----  
 
 
 

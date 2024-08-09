@@ -1,5 +1,5 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.recode_Sex.dev.r
-#@ function.df_recode_SEX ======  
+# @ function.df_recode_SEX ======  
 CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) |> summary() #-----
 # > CohortGJ0910.BaselineJKGJ2085NoHx.drop_na %>% select(SEX) |> summary() #-----  
 #  SEX       
