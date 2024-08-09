@@ -2,9 +2,9 @@
 
 # cf) https://github.com/mkim0710/tidystat/blob/master/R/f_df.conditional_expectation.dev.r
 
-#@@@@@@@@@@@ Under Research ====  
+# @@@@@@@@@@@ Under Research ====  
 
-#@@@@@@@@@@@ deprecated - please use function.learn_wt.list() =======  
+# @@@@@@@@@@@ deprecated - please use function.learn_wt.list() =======  
 # https://github.com/mkim0710/tidystat/blob/master/R/function.learn_wt.list.dev.r
 
 
@@ -527,4 +527,4 @@
 
 
 
-#@ end ------  
+# @ end ------  

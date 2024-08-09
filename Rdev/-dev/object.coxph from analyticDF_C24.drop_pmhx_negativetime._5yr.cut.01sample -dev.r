@@ -2,7 +2,7 @@
 
 
 library(tidyverse)
-#@ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ . , data = df, method = "breslow") ====  
+# @ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ . , data = df, method = "breslow") ====  
 analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample %>% str
 df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample
 vec = c("evnttrth_C24_r", "fuduration_yr"
@@ -22,7 +22,7 @@ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r
 
 
 
-#@ object.coxph %>% str #----  
+# @ object.coxph %>% str #----  
 object.coxph %>% str(max.level = 1) #----
 object.coxph %>% str #----
 # > object.coxph %>% str(max.level = 1) #----  
@@ -138,7 +138,7 @@ object.coxph %>% str #----
 
 
 
-#@ object.coxph$coefficients |> names() |> dput() ----  
+# @ object.coxph$coefficients |> names() |> dput() ----  
 object.coxph$coefficients |> names() |> dput()
 # > object.coxph$coefficients |> names() |> dput()
 # c("AGE", "SEXFemale", "CigaretteCurrentSmokerTRUE", "BMI_Q_yr18.5-", 
@@ -146,7 +146,7 @@ object.coxph$coefficients |> names() |> dput()
 # "total_ddd_yr_METFORMIN.ge30[30,Inf]")
 
 
-#@ object.coxph$formula %>% str ----  
+# @ object.coxph$formula %>% str ----  
 object.coxph$formula %>% str
 object.coxph$formula |> as.list() %>% str
 # > object.coxph$formula %>% str
@@ -160,7 +160,7 @@ object.coxph$formula |> as.list() %>% str
 #  - attr(*, "class")= chr "formula"
 #  - attr(*, ".Environment")=<environment: R_GlobalEnv> 
 
-#@ object.coxph$terms %>% str ----  
+# @ object.coxph$terms %>% str ----  
 object.coxph$terms %>% str
 object.coxph$terms %>% attr(., "dataClasses") %>% str
 which(object.coxph$terms %>% attr(., "dataClasses") == "logical")
@@ -216,7 +216,7 @@ which(object.coxph$terms %>% attr(., "dataClasses") == "exception") |> names() %
 
 
 
-#@ object.coxph$xlevels %>% str(max.level = 1) ----  
+# @ object.coxph$xlevels %>% str(max.level = 1) ----  
 object.coxph$xlevels %>% str(max.level = 1)
 # > object.coxph$xlevels %>% str(max.level = 1)
 # List of 3
@@ -225,9 +225,9 @@ object.coxph$xlevels %>% str(max.level = 1)
 #  $ total_ddd_yr_METFORMIN.ge30: chr [1:2] "[0,30)" "[30,Inf]"
 
 
-#@ # data_main.cut.coxph_list from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list .r  
-#@ tbl_varname_level_coefficients ====  
-#@ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) { =====  
+# @ # data_main.cut.coxph_list from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list .r  
+# @ tbl_varname_level_coefficients ====  
+# @ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) { =====  
 tbl_varname_level_coefficients = 
     object.coxph$xlevels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
         object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
@@ -258,7 +258,7 @@ tbl_varname_level_coefficients
 
 
 
-#@ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) { =====  
+# @ function.tbl_varname_level_coefHR = function (object.coxph, focus.variable = ".*", digits = 3) { =====  
 list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
 list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
 list_levels %>% str
@@ -272,7 +272,7 @@ list_levels %>% str
 
 
 
-#@ tbl_varname_level_coefficients ====  
+# @ tbl_varname_level_coefficients ====  
 tbl_varname_level_coefficients = 
     list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% full_join(
         object.coxph$coefficients %>% as_tibble %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
@@ -305,7 +305,7 @@ tbl_varname_level_coefficients %>% print(n=99) #----
 
 
 
-#@ object.coxph$coefficients %>% str ----  
+# @ object.coxph$coefficients %>% str ----  
 object.coxph$coefficients %>% str
 object.coxph$means %>% str
 object.coxph$residuals %>% str
@@ -320,7 +320,7 @@ object.coxph$residuals %>% str
 #  - attr(*, "names")= chr [1:4563] "1" "2" "3" "4" ...
 
 
-#@ object.coxph |> coef() %>% str -----  
+# @ object.coxph |> coef() %>% str -----  
 object.coxph |> coef() %>% str
 object.coxph %>% confint %>% str
 # > object.coxph |> coef() %>% str ----  
@@ -332,7 +332,7 @@ object.coxph %>% confint %>% str
 #   ..$ : chr [1:10] "AGE" "SEXFemale" "CigaretteCurrentSmokerTRUE" "BMI_Q_yr18.5-" ...
 #   ..$ : chr [1:2] "2.5 %" "97.5 %"
 
-#@ object.coxph.summary = summary(object.coxph) -----  
+# @ object.coxph.summary = summary(object.coxph) -----  
 object.coxph.summary = summary(object.coxph)
 object.coxph.summary %>% str
 # > object.coxph.summary %>% str
@@ -379,7 +379,7 @@ object.coxph.summary$conf.int %>% str
 #   ..$ : chr [1:4] "exp(coef)" "exp(-coef)" "lower .95" "upper .95"
 
 
-#@ object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join) -----  
+# @ object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join) -----  
 object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join)
 object.coxph.summary[c("coefficients", "conf.int")] %>% map(round, max(2, digits)) %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join)
 # > object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join)
@@ -416,7 +416,7 @@ object.coxph.summary[c("coefficients", "conf.int")] %>% map(as.data.frame) %>% m
 # "exp(-coef)", "lower .95", "upper .95")
 
 
-#@ out = summary(object.coxph) ----  
+# @ out = summary(object.coxph) ----  
 focus.variable = ".*"
 digits = 3
 

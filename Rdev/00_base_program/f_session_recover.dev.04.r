@@ -6,7 +6,7 @@
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@ Directory Listing -----  
+# @ Directory Listing -----  
 # session-36531e49/
 # ├── 10460832
 # ├── 10460832-contents
@@ -16,7 +16,7 @@
 # ├── 690764CF-contents
 # ...
 
-#@ Metadata File Structure -----  
+# @ Metadata File Structure -----  
 # {
 #   "path": "/path/to/original/file.R",
 #   "contents": "print('Hello, world!')",
@@ -27,7 +27,7 @@
 #   "type": "r_source"
 # }
 
-#@ Content File -----  
+# @ Content File -----  
 # print('Hello, world!')
 
 

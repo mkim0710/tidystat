@@ -45,7 +45,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----  
+# @@ START) source -----  
 ### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
@@ -75,7 +75,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ RUN ALL ABOVE: CTRL+ALT+B -----  
+# @@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
@@ -109,7 +109,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 
-#@ objectname = "f_path.list_subpath.DepthFirstSearch_recursive" =========  
+# @ objectname = "f_path.list_subpath.DepthFirstSearch_recursive" =========  
 .tmp$objectname = "f_path.list_subpath.DepthFirstSearch_recursive"
 .tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
     # Initialize .initial_max_depth with max_depth on the first call
@@ -164,7 +164,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 
-#@ objectname = "f_path.list_subpath.BreathFirstSearch" =========  
+# @ objectname = "f_path.list_subpath.BreathFirstSearch" =========  
 .tmp$objectname = "f_path.list_subpath.BreathFirstSearch"
 .tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE) {
     if (!file.exists(input_path) || !file.info(input_path)$isdir) {
@@ -225,7 +225,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 
-#@ objectname = "f_path.list_subpath" =========  
+# @ objectname = "f_path.list_subpath" =========  
 .tmp$objectname = "f_path.list_subpath"
 .tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, BreadthFirstSearch = FALSE) {
     if (BreadthFirstSearch) {
@@ -241,7 +241,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 
-#@ end -----  
+# @ end -----  
 
 # > f_path.list_subpath(print.intermediate = T) |> str()
 # Subdirectories of  ./data :  1 

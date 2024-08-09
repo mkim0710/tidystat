@@ -157,7 +157,7 @@ nhanes_mice %>% {apply(., 2, function(x) sum(is.na(x)))} #----
 
 
 
-#@ ------  
+# @ ------  
 
 f_df.NotNA_p_df = function(data) {
     out = data %>% map_df(is.na) %>% colSums |> as.data.frame() |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
@@ -211,7 +211,7 @@ nhanes_mice %>% f_df.NotNA_p_df
 
 
 
-#@ ------  
+# @ ------  
 mscan_pregcohort_r4.sas7bdat$enrolid_inf1 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
 mscan_pregcohort_r4.sas7bdat$enrolid_inf2 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
 mscan_pregcohort_r4.sas7bdat$enrolid_inf3 %>% is.na %>% {rbind(round(table(.), 0), round(prop.table(table(.)), 3))} %>% {dimnames(.) = list(c("n", "prop"), c("!is.na", "is.na"));.} %>% addmargins(margin = 2) #----
@@ -237,8 +237,8 @@ mscan_pregcohort_r4.sas7bdat$enrolid_inf4 %>% is.na %>% {rbind(round(table(.), 0
 
 
 
-#@ ------  
+# @ ------  
 
 
 
-#@ end -----  
+# @ end -----  

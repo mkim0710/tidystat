@@ -22,7 +22,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle = function(MatchingPairID_Expo
     
 }
 
-#@ test) function.MatchingPairID_Exposed_Unexposed_shuffle() ---------  
+# @ test) function.MatchingPairID_Exposed_Unexposed_shuffle() ---------  
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_CrossScreening_nhanes.fish.match.rda"))
 nhanes.fish.match.rename = nhanes.fish.match[,c("treated", "control")] |> rownames_to_column() |> as_tibble()
 names(nhanes.fish.match.rename) = c("MatchingPairID", "Exposed", "Unexposed")
@@ -101,7 +101,7 @@ function.MatchingPairID_Exposed_Unexposed_shuffle_vec = function(MatchingPairID_
 }
 
 
-#@ test) function.MatchingPairID_Exposed_Unexposed_shuffle_vec() ---------  
+# @ test) function.MatchingPairID_Exposed_Unexposed_shuffle_vec() ---------  
 set.seed(1)
 function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> str()
 function.MatchingPairID_Exposed_Unexposed_shuffle_vec(nhanes.fish.match.rename) |> str()
@@ -137,7 +137,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle = function(MatchingPairID_is
     out
 }
 
-#@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle() ---------  
+# @ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle() ---------  
 library(tidyverse)
 n = 10^4
 data = data_frame(
@@ -359,7 +359,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec = function(MatchingPairI
     out
 }
 
-#@ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec() --------  
+# @ test) function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec() --------  
 set.seed(1)
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
 function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed_PERSON_ID = data) |> str()
@@ -388,7 +388,7 @@ function.MatchingPairID_isExposed_PERSON_ID_shuffle_vec(MatchingPairID_isExposed
 
 
 
-#@ shuffle & calculate Statistic ---------  
+# @ shuffle & calculate Statistic ---------  
 
 function.Outcome_mean_diff_byExposed = function(isExposed_Outcome, var_isExposed = "isExposed", var_Outcome = "Outcome") {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.MatchingPairID_Exposed_Unexposed_shuffle.dev.r")

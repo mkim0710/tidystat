@@ -14,7 +14,7 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # https://chatgpt.com/c/c63fa826-37dd-42e3-9ac0-f51ecd0176d4
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@ Compare with the remote branch ----  
+# @ Compare with the remote branch ----  
 'git log origin/master..HEAD' |> system(intern=TRUE) |> cat(sep='\n')
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 "git log --oneline --graph origin/master..HEAD" |> system(intern=TRUE) |> cat("  ", sep="  \n")

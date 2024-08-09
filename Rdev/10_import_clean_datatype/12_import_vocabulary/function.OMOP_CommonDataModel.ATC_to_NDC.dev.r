@@ -180,7 +180,7 @@ function.OMOP_CommonDataModel.ATC_to_NDC = function(text4grepl.ATC_code = "^C02"
 
 
 
-#@ ATC_C02_to_NDC =====  
+# @ ATC_C02_to_NDC =====  
 .t0 = Sys.time()
 ATC_C02_to_NDC = function.OMOP_CommonDataModel.ATC_to_NDC(text4grepl.ATC_code = "^C02", OMOP_CommonDataModel = ATC_RxNorm_NDC)
 Sys.time() - .t0

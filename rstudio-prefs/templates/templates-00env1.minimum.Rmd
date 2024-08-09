@@ -203,7 +203,7 @@ env1$path$.path4write = getwd()
 .path4write = env1$path$.path4write
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
-#@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+# @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
 cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
 .tmp |> str(max.level = 1, give.attr = FALSE)
 cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
@@ -260,7 +260,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
-#@@ START) dev ----  
+# @@ START) dev ----  
 ## \% DataSet |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -268,7 +268,7 @@ options(width=120)
 ```
   
   
-#@@ START) function ----  
+# @@ START) function ----  
 ## \% |> function_name
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -292,7 +292,7 @@ for (.sublistname in c("MetaData", "DataSetNames", "VarNames", "VarNames.select"
 ```
   
   
-#@@ START) source ----  
+# @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -398,7 +398,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
   
 ```
   
-## ---- < Key Variables Check > ----  
+### ---- < Key Variables Check > ----  
 ### \$ varname4ID  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -444,9 +444,9 @@ options(width=120)
   
   
 ### ---- < Data Availability Check > ----  
-#### \$ data.Date.NA  ----  
-##### \% f_df.NotNA_p_df() ----  
-#### \$ data.Date.NA.rmAllNA  ----  
+### \$ data.Date.NA  = ====  
+#### \% f_df.NotNA_p_df() ----  
+### \$ data.Date.NA.rmAllNA  = ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")

@@ -1,7 +1,7 @@
 # fhs.index100 from fhs.r
 
 
-#@ fhs <- readRDS(url("https://github.com/mkim0710/PH207x/blob/master/fhs.rds?raw=true")) =====  
+# @ fhs <- readRDS(url("https://github.com/mkim0710/PH207x/blob/master/fhs.rds?raw=true")) =====  
 fhs <- readRDS(url("https://github.com/mkim0710/PH207x/blob/master/fhs.rds?raw=true"))
 fhs |> str(give.attr = F) #----
 # > fhs |> str(give.attr = F) #----  
@@ -88,7 +88,7 @@ fhs |> str(give.attr = F) #----
 #  $ prevhyp3 : num  0 0 NA NA 1 1 NA 0 1 1 ...
 
 
-#@ K-fold "random" split of the training dataset -----  
+# @ K-fold "random" split of the training dataset -----  
 k = 100
 fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} |> dput() #----
 # > fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} |> dput() #----  
@@ -1155,7 +1155,7 @@ structure(c(78L, 50L, 39L, 25L, 94L, 79L, 84L, 26L, 85L, 74L,
 
 
 
-#@ fhs.index100$index100 ====  
+# @ fhs.index100$index100 ====  
 fhs.index100 = fhs %>% map_df(function(x) {attr(x, "format.stata") = NULL; x})
 set.seed(1); fhs.index100$index100 = fhs %>% nrow %>% {c(rep(1:k, (. %/% k)), 1:(. %% k))} %>% sample
 fhs.index100$index100 |> summary() #----
@@ -1432,7 +1432,7 @@ fhs |> str(give.attr = F) #----
 #  $ prevhyp3 : num  0 0 NA NA 1 1 NA 0 1 1 ...
 #  $ index100 : int  78 50 39 25 94 79 84 26 85 74 ...
 
-#@ end ----  
+# @ end ----  
 saveRDS(fhs.index100, "fhs.index100.rds")
 write.csv(fhs.index100, "fhs.index100.csv")
 openxlsx::write.xlsx(fhs.index100, "fhs.index100.xlsx", asTable=TRUE)
