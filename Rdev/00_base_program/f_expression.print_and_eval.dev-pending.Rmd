@@ -422,10 +422,11 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
 
 
-# \$ as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])
+# \$ e1 = as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 e1 = as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])
+ls(envir = e1)
 ```
 
 
@@ -458,8 +459,7 @@ dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=
 
 
 
-
-## \% pending  
+## *** \% |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
@@ -470,29 +470,39 @@ DataSetName <- "analyticDF_time2event"
 # Create a dummy data frame as an example
 analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
 
-# Step 1: Define the expression
-expr <- quote(dim(get(DataSetName)))
-print("Step 1: Original expression")
-print(expr)
-str(expr)
 
-# Step 2: Use substitute to replace the variable name with its actual value as a string
-substituted_expr <- substitute(dim(get(DataSetName)), list(DataSetName = DataSetName))
-print("Step 2: Substituted expression")
-print(substituted_expr)
-str(substituted_expr)
-
-# Step 3: Evaluate the substituted expression
-evaluated_expr <- eval(substituted_expr)
-print("Step 3: Evaluated expression result")
-print(evaluated_expr)
-str(evaluated_expr)
-
-# Step 4: Print the substituted expression and its evaluation
-print("Step 4: Final output")
-cat(" > ", deparse(substituted_expr), "==", deparse(evaluated_expr), "\n")
-```
-  
+dim(get(DataSetName)) 
+dim(get(DataSetName)) |> expression()
+dim(get(DataSetName)) |> expression() |> eval()
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+dim(get(DataSetName)) |> quote()
+dim(get(DataSetName)) |> quote() |> eval()
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+dim(get(DataSetName)) |> substitute()
+dim(get(DataSetName)) |> substitute() |> eval()
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> expression() |> expression()
+dim(get(DataSetName)) |> quote() |> expression()
+dim(get(DataSetName)) |> expression() |> quote()
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+dim(get(DataSetName)) |> quote() |> is.expression()
+dim(get(DataSetName)) |> expression() |> quote() |> is.expression()
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> expression() |> substitute()
+dim(get(DataSetName)) |> expression() |> substitute() |> str()
+dim(get(DataSetName)) |> expression() |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> expression() |> substitute() |> eval() |> dput() 
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName))
+dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> str()
+dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) 
+dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> str()
+dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> eval() |> dput() 
+```  
   
 ## \% deparse(substitute(path$path1, env = env1))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -503,7 +513,7 @@ deparse(substitute(path$path1, env = env1))
 ```
   
   
-## \% deparse(substitute(path1, env = as.environment(env1$path)))  
+## *** \% deparse(substitute(path1, env = as.environment(env1$path)))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 env1$path$path1
@@ -511,21 +521,7 @@ deparse(substitute(env1$path$path1))
 # deparse(substitute(path$path1, env = env1))
 deparse(substitute(path1, env = as.environment(env1$path)))
 ```
-  
 
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -689,6 +685,98 @@ f_expression.print_and_eval(.text_expression)
 
 ```
 
+
+## *** \% |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+dim(get(DataSetName)) |> substitute()
+dim(get(DataSetName)) |> substitute() |> str()
+dim(get(DataSetName)) |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute() |> eval() |> dput() 
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName))
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) 
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> str()
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> eval() |> dput() 
+```
+  
+  
+## \% |> f_expression.print_and_eval 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+
+.text_expression = "dim(get(DataSetName))"
+# Step 1: Define a function to handle substitution in a non-global environment
+f_expression.print_and_eval <- function(text_expression = "", vec_chr_names) {
+    str(text_expression)
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    str(as.expression(text_expression))
+    str(quote(as.expression(text_expression)))
+    str(substitute(as.expression(text_expression)))
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    str(eval(as.expression(text_expression)))
+    str(eval(quote(as.expression(text_expression))))
+    str(eval(substitute(as.expression(text_expression))))
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    str(eval(eval(as.expression(text_expression))))
+    str(eval(eval(quote(as.expression(text_expression)))))
+    str(eval(eval(substitute(as.expression(text_expression)))))
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    expr = as.expression(text_expression)
+    str(expr)
+    str(quote(expr))
+    str(substitute(expr))
+}
+f_expression.print_and_eval(text_expression = .text_expression)
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
   
   
 # @@ CODEBOOK ----  
