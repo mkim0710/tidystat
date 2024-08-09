@@ -1,5 +1,5 @@
 
-#@@@@ data_numeric.byExposure.mean_sd ======  
+# @@@@ data_numeric.byExposure.mean_sd ======  
 
 
 
@@ -7,11 +7,11 @@
 
 
 
-#@@@@ data_logical.byExposure.sum_mean ======  
+# @@@@ data_logical.byExposure.sum_mean ======  
 
 
 
-#@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
+# @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
     analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
@@ -71,7 +71,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 
 
 
-#@ -----  
+# @ -----  
 analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     group_by(Exposure) %>% summarise_at(vars(matches("Outcome"), -matches("time")), .funs = list(~sum(.==1, na.rm=T)) ) %>% 
     mutate(Exposure = paste0("Exposure", Exposure)) %>% column_to_rownames("Exposure") %>% t |> addmargins() #----
@@ -152,7 +152,7 @@ analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>%
 
 
 
-#@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====  
+# @ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI =====  
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI = list()
 analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.ORCI$list_PrimaryOutcomes.ORCI = 
     analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes %>% 
@@ -213,7 +213,7 @@ analyticDF2797.PersonTime7.glmOutcome_Exposure_Covariates.list_PrimaryOutcomes.O
 
 
 
-#@  -----  
+# @  -----  
 data = ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% 
     select(Intervention, Control, Nothing, matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+"), SecondaryOutcomeP1456fhkl)
 # data %>% mutate(Exposure = Intervention) %>% 
@@ -292,7 +292,7 @@ data %>% mutate(Exposure = Intervention) %>%
 
 
 
-#@@@@ data_factor.byExposure.table_proptable ======  
+# @@@@ data_factor.byExposure.table_proptable ======  
 
 # (pending)
 

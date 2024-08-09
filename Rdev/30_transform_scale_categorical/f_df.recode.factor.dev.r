@@ -4,14 +4,14 @@
 
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/15_cleaning_time/function.time_since_t0.dev.r
-#@ -----  
+# @ -----  
 data %>% mutate_if(lubridate::is.Date, function(vec) if_else(is.na(vec), as.Date("9999-12-31"), vec))
 data %>% mutate_if(lubridate::is.Date, function(vec) replace(vec, is.na(vec), as.Date("9999-12-31")))
 data %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31")))
 
 
 
-#@ mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)}) =====  
+# @ mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)}) =====  
 ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(matches("Window4Exposure"))
 ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(lmp, matches("Window4Exposure")) %>% 
      mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)})  #----
@@ -49,7 +49,7 @@ ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% s
 
 
 
-#@ mutate_if(is.character, as.factor) =====  
+# @ mutate_if(is.character, as.factor) =====  
 tblGADM_kor_level2.join_level1.SIDO_SGG_CD = tblGADM_kor_level2.join_level1.SIDO_SGG_CD %>% 
     mutate_if(is.character, as.factor)
 
@@ -221,7 +221,7 @@ breaks = c(0, .001, 30, Inf)
 
 
 
-#@ analyticDF_C24.drop_pmhx_negativetime.list.cut ====  
+# @ analyticDF_C24.drop_pmhx_negativetime.list.cut ====  
 analyticDF_C24.drop_pmhx_negativetime.list.cut <- analyticDF_C24.drop_pmhx_negativetime.list
 for (i in 3:7) {
     iname <- paste0("_",i,"yr")
@@ -289,7 +289,7 @@ txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>
 
 
 
-#@@@ LETTERS |> list() |> paste() |> cat("  \n", sep="") ----  
+# @@@ LETTERS |> list() |> paste() |> cat("  \n", sep="") ----  
 LETTERS |> dput()
 LETTERS |> deparse() |> cat("  \n", sep="")
 # > LETTERS |> dput()
@@ -640,7 +640,7 @@ analyticDF_C25.drop_pmhx_negativetime.list.recode$`_5yr` %>% mutate_if(is.ordere
 
 
 
-#@ levels order -----  
+# @ levels order -----  
 # https://chatgpt.com/c/3f0e7ff4-096e-49f0-be8e-e278be34053a
 vec_chr = c("a", "B", "1", "@", "z", "A", "#", "{", "}")
 vec_chr %>% map_int(utf8ToInt)
@@ -693,6 +693,6 @@ special_chars %>% sort %>% dput()
 
 
 
-#@ end ----  
+# @ end ----  
 save(analyticDF_C24.drop_pmhx_negativetime.list.cut, file = "analyticDF_C24.drop_pmhx_negativetime.list.cut.rda")
 

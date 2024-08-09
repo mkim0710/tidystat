@@ -75,6 +75,6 @@ all(!vec_lgl)
 # [1] TRUE
 
 
-#@ !any(vec_lgl) and all(!vec_lgl) are identical in the sense that both return TRUE when all elements in vec_lgl are FALSE.  
-#@ !any(!vec_lgl) and all(vec_lgl) are identical because both return TRUE when all elements in vec_lgl are TRUE.  
+# @ !any(vec_lgl) and all(!vec_lgl) are identical in the sense that both return TRUE when all elements in vec_lgl are FALSE.  
+# @ !any(!vec_lgl) and all(vec_lgl) are identical because both return TRUE when all elements in vec_lgl are TRUE.  
 

@@ -43,7 +43,7 @@ dput(options("RStata.StataVersion"))
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@@@ MH) To minimize the sample size requirement ====  
+# @@@@ MH) To minimize the sample size requirement ====  
 # look for a large difference between groups (delta)
 # look for a small variance (sigma) 
 # Cf) for proportions, variance is a funciton of proportion (i.e., sigma^2 = np(1-p) <= n/4). -> small variance when p is close to 0 or 1~!
@@ -56,7 +56,7 @@ dput(options("RStata.StataVersion"))
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ two proportion ====  
+# @@ two proportion ====  
 
 # ?ES.h
 # Compute effect size h for two proportions
@@ -110,7 +110,7 @@ stata.out
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ Cox ====  
+# @@ Cox ====  
 
 
 log(2)
@@ -242,4 +242,4 @@ stata("power cox, hratio(2) eventprob(0.8)", data.in = NULL, data.out = F, stata
 
 
 
-#@ end ----  
+# @ end ----  

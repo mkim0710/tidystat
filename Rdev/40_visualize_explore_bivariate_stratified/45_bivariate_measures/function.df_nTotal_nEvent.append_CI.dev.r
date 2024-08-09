@@ -2,7 +2,7 @@
 
 
 
-#@ ?prop.test =====  
+# @ ?prop.test =====  
 # ?prop.test
 prop.test(10, 100)
 prop.test(10, 100) |> str() #-----
@@ -40,7 +40,7 @@ prop.test(10, 100) |> str() #-----
 
 
 
-#@ ?binom.test =====  
+# @ ?binom.test =====  
 # ?binom.test
 binom.test(10, 100)
 binom.test(10, 100) |> str() #-----
@@ -201,7 +201,7 @@ function.n_p.CI = function(n, p_hat, alpha = 0.05) {
 
 
 
-#@ library(binom) -----  
+# @ library(binom) -----  
 library(binom)
 # ?binom.confint
 binom.confint(10, 100)
@@ -222,7 +222,7 @@ binom.confint(10, 100)
 
 
 
-#@ library(Hmisc) ====  
+# @ library(Hmisc) ====  
 library(Hmisc)
 # ?binconf
 binconf(10, 100, method = "all")
@@ -237,7 +237,7 @@ binconf(10, 100, method = "all")
 
 
 
-#@@@ -----  
+# @@@ -----  
 binom.test(10, 100)$conf.int |> as.vector() #-----
 # > binom.test(10, 100)$conf.int |> as.vector() #-----  
 # [1] 0.04900469 0.17622260
@@ -274,7 +274,7 @@ function.n_p.CI(100, 0.1)
 
 
 
-#@@@ -----  
+# @@@ -----  
 
 # tribble_paste = datapasta::tribble_paste
 # read.table(file = "clipboard", sep = "\t", header=T) |> tribble_paste() #----  
@@ -424,4 +424,4 @@ function.df_nTotal_nEvent.append_CI(df_nTotal_nEvent, method = "asymptotic") #--
 
 
 
-#@ end -----  
+# @ end -----  

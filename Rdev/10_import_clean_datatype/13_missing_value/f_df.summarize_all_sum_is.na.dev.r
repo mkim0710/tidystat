@@ -2,7 +2,7 @@
 
 
 
-#@ analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates ====  
+# @ analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates ====  
 library(survival)
 # data = analyticDF.TargetTrial2v40.2.206vs373 %>% mutate(Exposure = ifelse(Intervention, "1 InsulinMetformin", "0 InsulinOnly") %>% as.factor) %>% mutate_if(is.logical, as.numeric) %>% 
 data = analyticDF.TargetTrial2v40.2.206vs373 %>% mutate(Metformin = Intervention) %>% mutate_if(is.logical, as.numeric) %>% 
@@ -53,4 +53,4 @@ analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% c
 
 
 
-#@ end -----  
+# @ end -----  

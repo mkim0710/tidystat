@@ -3,7 +3,7 @@
 # f_df.variable.Date.nID_anyTRUE_allTRUE.dev.r
 
 
-#@ CONCLUSION ----------  
+# @ CONCLUSION ----------  
 # f_df.variable.Date.nID_anyTRUE_allTRUE = f_df.variable.Date.nID_anyTRUE_allTRUE.v3
 # f_df.variable.Date.nID_anyTRUE = f_df.variable.Date.nID_anyTRUE.v1
 
@@ -17,7 +17,7 @@ sample_data <- tibble(
 )
 
 
-#@ Using group_by() method ----  
+# @ Using group_by() method ----  
 ##%% f_df.variable.Date.nID_anyTRUE.v3() =====  
 f_df.variable.Date.nID_anyTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
@@ -59,7 +59,7 @@ f_df.variable.Date.nID_anyTRUE.v3(sample_data)
 
 
 
-#@ Using group_by() method ----  
+# @ Using group_by() method ----  
 ##%% f_df.variable.Date.nID_anyTRUE.v2() =====  
 f_df.variable.Date.nID_anyTRUE.v2 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
@@ -98,7 +98,7 @@ f_df.variable.Date.nID_anyTRUE.v2(sample_data)
 
 
 
-#@ Direct Filter Method using dplyr::filter() & n_distinct -----  
+# @ Direct Filter Method using dplyr::filter() & n_distinct -----  
 ##%% f_df.variable.Date.nID_anyTRUE.v1() =====  
 f_df.variable.Date.nID_anyTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
@@ -161,7 +161,7 @@ print(mbm)
 
 
 
-#@ Using group_by() method ----  
+# @ Using group_by() method ----  
 ##%% f_df.variable.Date.nID_anyTRUE_allTRUE.v3() =====  
 f_df.variable.Date.nID_anyTRUE_allTRUE.v3 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
@@ -209,7 +209,7 @@ f_df.variable.Date.nID_anyTRUE_allTRUE.v3(sample_data)
 
 
 
-#@ Direct Filter Method using dplyr::filter() & n_distinct -----  
+# @ Direct Filter Method using dplyr::filter() & n_distinct -----  
 ##%% f_df.variable.Date.nID_anyTRUE_allTRUE.v1() =====  
 f_df.variable.Date.nID_anyTRUE_allTRUE.v1 <- function(dataset, varname.ID = "PERSON_ID", varname.Date = "RECU_FR_Date.F0003.G30") {
     if (!varname.ID %in% names(dataset)) stop(paste0("Variable ", varname.ID, " not found in the dataset."))
@@ -292,5 +292,5 @@ print(mbm)
 #**** f_df.variable.Date.nID_anyTRUE_allTRUE.v3 is faster for more calculations! 
 
 
-#@ end ---------  
+# @ end ---------  
 

@@ -36,7 +36,7 @@ Code_vec.list.i
 # [1] "250x1, 250x3"
 
 
-#@ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function( ----  
+# @ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function( ----  
 tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function(
     tblPersonID_FilterName.ndDate
     , tblClaim_Date_Code
@@ -152,7 +152,7 @@ Code_vec.list.i
 
 
 
-#@ tblPersonID_FilterName.ndDate.append_FilterMet <- function( ----  
+# @ tblPersonID_FilterName.ndDate.append_FilterMet <- function( ----  
 tblPersonID_FilterName.ndDate.append_FilterMet <- function(
     tblPersonID_FilterName.ndDate
     , tblClaim_Date_Code
@@ -261,7 +261,7 @@ tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation
 tblClaim_Date_Code4ICD = os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014[1:10^6, ]
 tblClaim_Date_Code4Rx = d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm[1:10^6, ]
 
-#@@@ tblPersonID_FilterName.ndDate -----  
+# @@@ tblPersonID_FilterName.ndDate -----  
 .t0 = Sys.time()
 tblPersonID_FilterName.ndDate =
     ENROLID2797_Age1845_Inc2.ia_Exc12356abcd.t_42_154.exposure.enrolid_inf %>% select(ENROLID) %>% mutate(ENROLID = ENROLID %>% as.numeric)
@@ -353,7 +353,7 @@ structure(list(ENROLID = c(171946801, 1210879901, 1282775301,
 1L, 7L, 2L, 1L, 1L, 2L)), row.names = c(NA, -7L), class = c("tbl_df",
 "tbl", "data.frame"))
 
-#@ end -----  
+# @ end -----  
 
 
 

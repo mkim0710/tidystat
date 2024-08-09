@@ -34,7 +34,7 @@ library(icd)
 # # Some ICD codes are not 'defined' when trying to condense when explaining codes. Consider using warn = FALSE or condense = FALSE. Will drop these and continue. Examples:  A34 A4181 A419 A528 
 
 
-#@ tblClaims_in.t_lmp_end.byICD.ndID$ICD.explain_code =====  
+# @ tblClaims_in.t_lmp_end.byICD.ndID$ICD.explain_code =====  
 tblClaims_in.t_lmp_end.byICD.ndID =
     tblClaims_in.t_lmp_end.byICD.ndID %>% 
     mutate(
@@ -64,4 +64,4 @@ tblClaims_in.t_lmp_end.byICD.ndID %>% arrange(desc(`n_distinct(enrolid_mom)`)) #
 
 
 
-#@ end ----  
+# @ end ----  

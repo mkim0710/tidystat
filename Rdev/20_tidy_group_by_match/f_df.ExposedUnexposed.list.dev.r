@@ -104,4 +104,4 @@ lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T
 
 
 
-#@ end ----  
+# @ end ----  
