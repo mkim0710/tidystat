@@ -422,15 +422,7 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
 
 
-# \$ e1 = as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-e1 = as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])
-ls(envir = e1)
-```
-
-
-## *** \% |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]))  
+## *** \% |> substitute(as.environment(.GlobalEnv))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
@@ -451,15 +443,51 @@ dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
 dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
 dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) 
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> str()
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> eval() |> dput() 
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) 
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> str()
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> eval() |> dput() 
+```
+
+
+# \$ e1 = as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+e1 = as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]] |> as.environment()
+ls(envir = e1)
+```
+
+
+## *** \% |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+dim(get(DataSetName)) |> substitute()
+dim(get(DataSetName)) |> substitute() |> str()
+dim(get(DataSetName)) |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute() |> eval() |> dput() 
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName))
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) 
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> str()
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> eval() |> dput() 
 ```
 
 
 
-## *** \% |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]))  
+## *** \% |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
@@ -498,10 +526,10 @@ dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetNa
 dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
 dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) 
-dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> str()
-dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> expression() |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> eval() |> dput() 
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) 
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> str()
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> eval() |> dput() 
 ```  
   
 ## \% deparse(substitute(path$path1, env = env1))  
@@ -653,7 +681,6 @@ options(width=120)
 ## \% |> f_expression.print_and_eval 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# Define the dataset name
 DataSetName <- "analyticDF_time2event"
 
 # Create a dummy data frame as an example
@@ -663,30 +690,30 @@ analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
 .text_expression = "dim(get(DataSetName))"
 # Step 1: Define a function to handle substitution in a non-global environment
 f_expression.print_and_eval <- function(text_expression = "", vec_chr_names) {
-    vec_chr_names = ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]
-    vec_chr_names |> print()
-    vec_chr_names |> substitute() |> print() 
-    vec_chr_names[1] |> substitute() |> print() 
+    str(text_expression)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    assign(vec_chr_names[1], get(vec_chr_names[1], envir = .GlobalEnv))
-    vec_chr_names[1] |> substitute() |> print() 
+    str( parse(text=text_expression)[[1]] )
+    str(quote( parse(text=text_expression)[[1]] ))
+    str(substitute( parse(text=text_expression)[[1]] ))
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    text_expression |> print()
-    text_expression |> substitute() |> print() 
-    print(substitute(text_expression))
+    str(eval( parse(text=text_expression)[[1]] ))
+    str(eval(quote( parse(text=text_expression)[[1]] )))
+    str(eval(substitute( parse(text=text_expression)[[1]] )))
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    text_expression |> as.expression() |> print()
-    text_expression |> as.expression() |> substitute() |> print() 
+    str(eval(eval( parse(text=text_expression)[[1]] )))
+    str(eval(eval(quote( parse(text=text_expression)[[1]] ))))
+    str(eval(eval(substitute( parse(text=text_expression)[[1]] ))))
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    text_expression.parse =  parse(text=text_expression)[[1]] 
+    str(text_expression.parse)
+    str(quote(text_expression.parse))
+    str(substitute(text_expression.parse))
 }
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-f_expression.print_and_eval()
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-f_expression.print_and_eval(.text_expression)
-
+f_expression.print_and_eval(text_expression = .text_expression)
 ```
-
-
-## *** \% |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]))  
+  
+  
+## *** \% |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
@@ -707,13 +734,13 @@ dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
 dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
 dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) 
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> str()
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> eval() |> dput() 
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) 
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> str()
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> eval() |> dput() 
 ```
-  
-  
+
+
 ## \% |> f_expression.print_and_eval 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -728,30 +755,26 @@ analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
 f_expression.print_and_eval <- function(text_expression = "", vec_chr_names) {
     str(text_expression)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(as.expression(text_expression))
-    str(quote(as.expression(text_expression)))
-    str(substitute(as.expression(text_expression)))
+    str( parse(text=text_expression)[[1]] )
+    str(quote( parse(text=text_expression)[[1]] ))
+    str(substitute( parse(text=text_expression)[[1]] ))
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(eval(as.expression(text_expression)))
-    str(eval(quote(as.expression(text_expression))))
-    str(eval(substitute(as.expression(text_expression))))
+    str(eval( parse(text=text_expression)[[1]] ))
+    str(eval(quote( parse(text=text_expression)[[1]] )))
+    str(eval(substitute( parse(text=text_expression)[[1]] )))
+    str(eval(substitute( parse(text=text_expression)[[1]] , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) )))
+    str(eval(substitute( parse(text=text_expression)[[1]] , as.list(.GlobalEnv) )))
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(eval(eval(as.expression(text_expression))))
-    str(eval(eval(quote(as.expression(text_expression)))))
-    str(eval(eval(substitute(as.expression(text_expression)))))
+    str(eval(eval( parse(text=text_expression)[[1]] )))
+    str(eval(eval(quote( parse(text=text_expression)[[1]] ))))
+    str(eval(eval(substitute(  parse(text=text_expression)[[1]] , as.list(.GlobalEnv) ))))
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    expr = as.expression(text_expression)
-    str(expr)
-    str(quote(expr))
-    str(substitute(expr))
+    str(substitute( eval(parse(text=text_expression)[[1]]) , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) ))
+    str(substitute( eval(parse(text=text_expression)[[1]]) , as.list(.GlobalEnv) ))
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+    str(substitute( eval(eval(parse(text=text_expression)[[1]])) , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) ))
 }
 f_expression.print_and_eval(text_expression = .text_expression)
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
 ```
   
   
