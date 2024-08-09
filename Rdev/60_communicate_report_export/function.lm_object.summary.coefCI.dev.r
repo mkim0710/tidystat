@@ -42,7 +42,7 @@
 
 
 
-#@ ==============  
+# @ ==============  
 function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2, p.adjust_method = c("fdr", "bonferroni")) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     if(class(lm_object) != "lm") {
@@ -124,7 +124,7 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2,
     out
 }
 
-#@ test) function.lm_object.summary.coefCI() ----------  
+# @ test) function.lm_object.summary.coefCI() ----------  
 lm_object = lm(medv ~ ., data = MASS::Boston)
 function.lm_object.summary.coefCI(lm_object)
 # > function.lm_object.summary.coefCI(lm_object)
@@ -249,7 +249,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
 
 
 
-#@ test) function.glm_object.summary.exp() ----  
+# @ test) function.glm_object.summary.exp() ----  
 glm_object = glm(admit ~ gre + gpa + rank, data = read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv"), family = binomial)
 glm_object %>% function.glm_object.summary.exp
 # > glm_object %>% function.glm_object.summary.exp
@@ -497,7 +497,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
 
 
 
-#@ test) function.clogit_object.summary.exp() - clogit object ----  
+# @ test) function.clogit_object.summary.exp() - clogit object ----  
 library(tidyverse)
 library(survival)
 logan2 = data.frame(
@@ -580,7 +580,7 @@ function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, pri
     out.NA
 }
 
-#@ test) function.cv.glmnet_object.coef.exp() -----  
+# @ test) function.cv.glmnet_object.coef.exp() -----  
 library(tidyverse)
 library(glmnet)
 x = matrix(rnorm(1e3 * 100), 1e3, 100)
@@ -715,7 +715,7 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
     }
     out4
 }
-#@ test) function.cv.glmnet_alphas_list_object.coef.exp() -----  
+# @ test) function.cv.glmnet_alphas_list_object.coef.exp() -----  
 
 
 
@@ -731,4 +731,4 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
 
 
 
-#@ end -----  
+# @ end -----  

@@ -203,7 +203,7 @@ env1$path$.path4write = getwd()
 .path4write = env1$path$.path4write
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
-#@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+# @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
 cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
 .tmp |> str(max.level = 1, give.attr = FALSE)
 cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
@@ -260,7 +260,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
-#@@ START) dev ----  
+# @@ START) dev ----  
 ## \% parse(text = )[[1]][[3]]  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -284,7 +284,7 @@ parse(text = "Female = ifelse(A00_SEX == '2', TRUE, FALSE)")[[1]][[3]]
 ```
   
   
-#@@ START) function ----  
+# @@ START) function ----  
 ## \% |> f_expression.extract_variables 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -324,7 +324,7 @@ for (.sublistname in c("MetaData", "DataSetNames", "VarNames", "VarNames.select"
 ```
   
   
-#@@ START) source ----  
+# @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#

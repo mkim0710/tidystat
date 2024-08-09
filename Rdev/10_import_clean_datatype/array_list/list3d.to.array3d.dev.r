@@ -7,7 +7,7 @@ list3d.to.array3d = function(list3d) {
     list3d.unlist
 }
 
-#@ test: list3d.to.array3d() ------  
+# @ test: list3d.to.array3d() ------  
 list3d = as.list(1:(3*4*2))
 dim(list3d) = c(3,4,2)
 list3d |> dput()

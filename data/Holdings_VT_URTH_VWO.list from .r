@@ -53,7 +53,7 @@ library(tidyverse)
 
 
 
-#@ Holdings_VT_raw =====  
+# @ Holdings_VT_raw =====  
 txt4url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/data/Holdings_details_Total_World_Stock_ETF%20200930.csv"
 Holdings_VT_raw = read_lines(txt4url)
 Holdings_VT_raw |> str() #----
@@ -136,7 +136,7 @@ Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] |> tail() |> as_tibble() #----
 
 
 
-#@ Holdings_VT =====  
+# @ Holdings_VT =====  
 Holdings_VT = 
     Holdings_VT_raw[8:(length(Holdings_VT_raw)-28)] %>% 
     read_csv %>% select(-X1)
@@ -215,7 +215,7 @@ Holdings_VT |> str() #----
 
 
 
-#@ Holdings_VWO_raw =====  
+# @ Holdings_VWO_raw =====  
 txt4url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/data/Holdings_details_FTSE_Emerging_Markets_ETF%20200930.csv"
 Holdings_VWO_raw = read_lines(txt4url)
 Holdings_VWO_raw |> str() #----
@@ -297,7 +297,7 @@ Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-29)] |> tail() |> as_tibble() #----
 # 5 ",B4X6ZD0,XPEC Entertainment Inc.,3662,<0.01%,Interactive Home Entertainment,TW,---,$0.34,\"988,965\""           
 # 6 ",2069377,Banco HSBC Bamerindus SA,---,<0.01%,---,BR,---,$0.09,\"52,300\""  
 
-#@ Holdings_VWO =====  
+# @ Holdings_VWO =====  
 Holdings_VWO = 
     Holdings_VWO_raw[8:(length(Holdings_VWO_raw)-28)] %>% 
     read_csv %>% select(-X1)
@@ -431,7 +431,7 @@ Holdings_VWO |> str() #----
 
 
 
-#@ Holdings_URTH_raw =====  
+# @ Holdings_URTH_raw =====  
 txt4url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/data/URTH_holdings%20201106.csv"
 Holdings_URTH_raw = read_lines(txt4url)
 Holdings_URTH_raw |> str() #----
@@ -440,7 +440,7 @@ Holdings_URTH_raw[10:length(Holdings_URTH_raw)] |> str() #----
 Holdings_URTH_raw[10:(length(Holdings_URTH_raw))] |> tail() |> as_tibble() #----
 Holdings_URTH_raw[10:(length(Holdings_URTH_raw)-1)] |> tail() |> as_tibble() #----
 
-#@ Holdings_URTH =====  
+# @ Holdings_URTH =====  
 Holdings_URTH = 
     Holdings_URTH_raw[10:(length(Holdings_URTH_raw)-1)] %>% 
     read_csv 
@@ -579,7 +579,7 @@ Holdings_URTH %>%
 
 
 
-#@ Holdings_VT_URTH_VWO ====  
+# @ Holdings_VT_URTH_VWO ====  
 Holdings_VT_URTH_VWO =
     Holdings_VT %>% 
     transmute(TICKER = TICKER, COUNTRY_VT = COUNTRY, Name_VT = HOLDINGS, Prop_VT = `% OF FUNDS*` |> str_replace_all("%", "") %>% as.numeric, MarketValue_VT = `MARKET VALUE*` |> str_replace_all("\\$", "") |> str_replace_all(",", "") %>% as.numeric) %>% 
@@ -622,7 +622,7 @@ Holdings_VT_URTH_VWO.list =
         , Holdings_VWO = Holdings_VWO
     )
 
-#@ end ----  
+# @ end ----  
 getwd()
 .path4write = getwd()
 objectname = "Holdings_VT_URTH_VWO.list"

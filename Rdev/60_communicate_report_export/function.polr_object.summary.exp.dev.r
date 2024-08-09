@@ -3,7 +3,7 @@
 
 
 
-#@ ==============  
+# @ ==============  
 function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni"), allow_multple_spaces = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.polr_object.summary.exp.dev.r")
     if(!"polr" %in% class(polr_object)) {
@@ -194,7 +194,7 @@ function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal
 
 
 
-#@ ==============  
+# @ ==============  
 function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni"), allow_multple_spaces = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.polr_object.summary.exp.dev.r")
     if(!"polr" %in% class(polr_object)) {
@@ -374,7 +374,7 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
 
 
 
-#@ ==============  
+# @ ==============  
 function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decimal = 2, coef.exp = T, p.adjust_method = c("fdr", "bonferroni"), allow_multple_spaces = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.polr_object.summary.exp.dev.r")
     if(!"polr" %in% class(polr_object)) {
@@ -644,4 +644,4 @@ AnalyticDataset200621.polr_LC_Stage.recode.ordered_list$polr_LC_Stage.recode.ord
 
 
 
-#@ end -----  
+# @ end -----  

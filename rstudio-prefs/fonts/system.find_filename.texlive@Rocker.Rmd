@@ -162,7 +162,7 @@ env1\$info\$info_system_info\$machine_nodename = "15687d125320"  @Rocker
 env1\$info\$info_system_info\$machine_nodename = "application-12164735-deployment-22732286-l5pm"  @Posit.Cloud  
 env1\$info\$info_system_info\$Sys.getlocale\$LC_COLLATE = "en_US.utf8"  
   
-#@@ START ----  
+# @@ START ----  
 ## @ whoami ----  
 Cf) Ctrl+Alt+Enter @ Rstudio  
   
@@ -189,7 +189,7 @@ r2179052@SharedWorkspace@MHKim710@Posit.Cloud
 ```
   
   
-##@ find -type d texlive  ----  
+## @ find -type d texlive  ----  
 ## find / -type d -iname texlive  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 'find / -type d -iname texlive' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
@@ -206,7 +206,7 @@ c("/usr/local/texlive",
 ```
 c("/usr/local/texlive/texmf-dist")  
   
-##@ find -type d packages  ----  
+## @ find -type d packages  ----  
 ### find /usr/share/texlive -type d -iname "fontspec"  
 ### find /usr/local/texlive -type d -iname "fontspec"  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -249,7 +249,7 @@ c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base",
 ```
   
   
-##@ find -type d fonts  ----  
+## @ find -type d fonts  ----  
 ## find /usr/share/texlive -type d -iname "font[s ]"  
 ## find /usr/local/texlive -type d -iname "font[s ]"  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -419,7 +419,7 @@ c("")
 ```
   
   
-##@ find -type d/f fontname  ----  
+## @ find -type d/f fontname  ----  
 ### find /usr/share/texlive -type d -iname "*roboto*"  
 ### find /usr/local/texlive -type d -iname "*roboto*"  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -501,11 +501,11 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 ```
   
   
-#@@ END ----  
+# @@ END ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ END ----  
+# @@ END ----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  

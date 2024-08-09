@@ -55,7 +55,7 @@ f_vec1_vec2.setdiff(
 
 
 
-#@ list.sas7bdat.setdiff =====  
+# @ list.sas7bdat.setdiff =====  
 list.sas7bdat_PERSON_ID.setdiff = list()
 for (i in 2:length(list.sas7bdat)) {
     list.sas7bdat_PERSON_ID.setdiff[[names(list.sas7bdat)[i]]] = 
@@ -132,7 +132,7 @@ list.sas7bdat_PERSON_ID.setdiff |> str() #----
 #   ..$ identical  : logi TRUE
 
 
-#@ end ----  
+# @ end ----  
 objectname = "list.sas7bdat_PERSON_ID.setdiff"
 .path4write = getwd()
 system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))

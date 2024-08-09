@@ -20,7 +20,7 @@ function.is2level = function(x) {
     out
 }
 
-#@ test) function.is2level() ----  
+# @ test) function.is2level() ----  
 # > function.is2level(T)
 # [1] "error - length(levels(x)) < 2"
 # [1] FALSE

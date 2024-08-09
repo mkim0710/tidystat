@@ -203,7 +203,7 @@ env1$path$.path4write = getwd()
 .path4write = env1$path$.path4write
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
-#@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+# @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
 cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
 .tmp |> str(max.level = 1, give.attr = FALSE)
 cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
@@ -273,7 +273,7 @@ if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.Gl
 .listname = "ModelList"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
 ```
   
-#@@ START) source ----  
+# @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -309,7 +309,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 ```
   
   
-#@@ START) dev ----  
+# @@ START) dev ----  
 ### \$ CODEBOOK$ModelList$time2event ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -411,7 +411,7 @@ options(width=120)
   
   
   
-#@@ START) function: f_formula.lhs_rhs_vars  
+# @@ START) function: f_formula.lhs_rhs_vars  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_formula.lhs_rhs_vars = function(formula, include_input_in_output = TRUE) {
@@ -498,7 +498,7 @@ options(width=120)
 ```
   
   
-#@@ START) function: f_list_formula.append_lhs_rhs_vars  
+# @@ START) function: f_list_formula.append_lhs_rhs_vars  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_list_formula.append_lhs_rhs_vars = function(list_formula) {

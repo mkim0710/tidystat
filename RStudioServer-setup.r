@@ -5,8 +5,8 @@
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://posit.cloud/spaces/100015/content/6373416"  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://posit.cloud/spaces/100015/content/6373521"  # Shared Workspace@v - PositCloud@v
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ Check path -----  
-##@ "~" |> normalizePath(winslash="/") ====  
+# @@ Check path -----  
+## @ "~" |> normalizePath(winslash="/") ====  
 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @MAGB760M13700KF D:/OneDrive/Documents |#
@@ -164,7 +164,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #   ..$ localization_system.codepage: NULL
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) source -----  
+# @@ START) source -----  
 ### @ .subpath, .sourcename ======  
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
@@ -197,10 +197,10 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ RUN ALL ABOVE: CTRL+ALT+B -----  
+# @@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) rstudio-prefs -----  
+# @@ START) rstudio-prefs -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### @ rstudio-prefs ----  
@@ -243,19 +243,19 @@ for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) copilot @ RStudio Server -----  
+# @@ START) copilot @ RStudio Server -----  
 
 
-###@ ROOT=TRUE ----  
+### @ ROOT=TRUE ----  
 # https://stackoverflow.com/questions/64562427/how-to-add-rocker-verse-configuration-root-true-to-docker-compose-file
 
-###@ PASSWORD= ----  
+### @ PASSWORD= ----  
 # https://github.com/rocker-org/rocker-versioned2/issues/237
 # https://github.com/rocker-org/rocker/issues/255
 # https://github.com/rocker-org/rocker-versioned2/issues/294
 # https://github.com/rocker-org/rocker-versioned2/pull/298
 
-###@ copilot-enabled=1 ------  
+### @ copilot-enabled=1 ------  
 # https://github.com/rstudio/rstudio/issues/13612
 # https://github.com/rstudio/rstudio/issues/13718
 # https://chatgpt.com/c/4b8f922c-327a-4b0b-871e-18c07575a4d9
@@ -276,7 +276,7 @@ quit(save="no")
 #| Tools > Global Options > Copilot > login |#
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) git setup -----  
+# @@ START) git setup -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### @ .gitignore ----  
@@ -296,7 +296,7 @@ quit(save="no")
 # Connecting rstudio.cloud and GitHub
 # Tools > Global Options > Git/SVN > SSH key
 
-##@ > "~" |> normalizePath(winslash="/") ----  
+## @ > "~" |> normalizePath(winslash="/") ----  
 #### [1] "D:/OneDrive/Documents"  #@ MAGB760M13700KF ----  
 #### [1] "/home/rstudio"  #@ Rocker ----  
 #### [1] "/home/rstudio"  #@ Rocker ----  
@@ -426,14 +426,14 @@ system("git remote -v")
 # fatal: Need to specify how to reconcile divergent branches.
 
 "git config --global pull.rebase false" |> system(intern = TRUE)
-##@ -> This is the default behavior of git pull. So, you don't need to set it.???
-##@ -> Even though the default strategy is merge, Git requires an explicit confirmation in some situations, especially when dealing with divergent branches.~!!!
+## @ -> This is the default behavior of git pull. So, you don't need to set it.???
+## @ -> Even though the default strategy is merge, Git requires an explicit confirmation in some situations, especially when dealing with divergent branches.~!!!
 "git config --global pull.rebase" |> system(intern = TRUE)
 # > system("git config --global pull.rebase")
 # false
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) Posit.Cloud -----  
+# @@ START) Posit.Cloud -----  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ### @ file upload ----  
@@ -457,12 +457,12 @@ system("git remote -v")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) Install Fonts -----  
+# @@ START) Install Fonts -----  
 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) Install Fonts for RStudio Server Editor pane -----  
+# @@ START) Install Fonts for RStudio Server Editor pane -----  
 # https://github.com/rstudio/rstudio/issues/2534
 # Just for future searchers: you can now add fonts to /etc/rstudio/fonts and then change the ‘Editor font’ using the UI.
 # So I’m just pasting the contents of /etc/rstudio/fonts/README.md here, I’m on RStudio Server 2022.07.0 on Ubuntu Server 22.04 LTS:
@@ -503,7 +503,7 @@ system("git remote -v")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ START) install.packages -----  
+# @@ START) install.packages -----  
 # install.packages(.tmp$packagename, type = "binary")  # If the installed R version is too old?
 # install.packages(.tmp$packagename, type = "source")  # If the installed R version is too new?
 #|________________________________________________________________________________|#  
@@ -525,7 +525,7 @@ for(.packagename in c("tidyverse")) {if(!require(.packagename,character.only=TRU
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-#@@ END -----  
+# @@ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
 paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)

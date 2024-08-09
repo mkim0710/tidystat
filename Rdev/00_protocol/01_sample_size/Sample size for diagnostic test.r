@@ -64,7 +64,7 @@ qnorm(1-alpha/2)^2
 # 2014 JBI) Sample size estimation in diagnostic test studies of biomedical informatics.pdf
 # https://www.ncbi.nlm.nih.gov/pubmed/24582925
 
-#@@@ Sample size for adequate sensitivity & specificity =====  
+# @@@ Sample size for adequate sensitivity & specificity =====  
 alpha=0.05
 beta=0.20
 p = 0.8
@@ -87,7 +87,7 @@ p0 = p + 0.07
 
 
 
-#@@@ Sample size for adequate sensitivity & specificity =====  
+# @@@ Sample size for adequate sensitivity & specificity =====  
 alpha=0.05
 beta=0.20
 p = 0.8
@@ -109,7 +109,7 @@ p0 = p + 0.1
 
 
 
-#@@@ Sample size for adequate sensitivity & specificity =====  
+# @@@ Sample size for adequate sensitivity & specificity =====  
 alpha=0.05
 beta=0.20
 p = 0.7

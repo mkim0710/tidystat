@@ -10,7 +10,7 @@
 
 
 
-#@@@@ For a function, see the link below~!!!! ................................................................................  
+# @@@@ For a function, see the link below~!!!! ................................................................................  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.tbl_varname_level_HRCI.dev.r
 
 
@@ -20,8 +20,8 @@
 
 
 
-#@@@@ A quick & dirty way below~!!! ................................................................................  
-#@ analyticDF2797.coxphTimeOutcome_Exposure_tt ====  
+# @@@@ A quick & dirty way below~!!! ................................................................................  
+# @ analyticDF2797.coxphTimeOutcome_Exposure_tt ====  
 library(survival)
 data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
     mutate(Time2Event = PrimaryOutcome123456.time, Event = PrimaryOutcome123456
@@ -53,7 +53,7 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% {survminer::ggcoxzph
 
 
 
-#@ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates ====  
+# @ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates ====  
 library(survival)
 data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
     mutate(Time2Event = PrimaryOutcome123456.time, Event = PrimaryOutcome123456
@@ -110,7 +110,7 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% cox.zph %>% {survmine
 
 
 
-#@ HazardRatios.list_df =====  
+# @ HazardRatios.list_df =====  
 HazardRatios.list_df = list(
     coxphTimeOutcome_Exposure_tt = analyticDF2797.coxphTimeOutcome_Exposure_tt %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
     , coxphTimeOutcome_Exposure_tt_Covariates = analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates %>% {cbind( `exp(coef(.))` = exp(coef(.)), exp(confint.default(.)), `Pr(>|z|)` = summary(.)$coefficients[,"Pr(>|z|)"] )} |> as.data.frame() |> rownames_to_column() |> as_tibble() #----
@@ -147,7 +147,7 @@ HazardRatios.list_df |> str() #----
 #   ..$ Pr(>|z|)              : num [1:14] 5.99e-03 1.63e-02 1.67e-01 6.92e-01 1.99e-06 ...
 
 
-#@ HazardRatios.bind_rows =====  
+# @ HazardRatios.bind_rows =====  
 HazardRatios.bind_rows = HazardRatios.list_df %>% map(function(df) {df %>% dplyr::filter(grepl("Exposure", rowname))}) %>% bind_rows(.id = "Model")
 HazardRatios.bind_rows #----
 # > HazardRatios.bind_rows #----  
@@ -160,7 +160,7 @@ HazardRatios.bind_rows #----
 # 4 coxphTimeOutcome_Exposure_tt_Covariates tt(Exposure) 1.44 (1.05, 1.98)        1.440 (1.046, 1.983)     144.0% (104.6%, 198.3%)         1.44    1.05      1.98     0.0253 
 
 
-#@ HazardRatios.spread ====  
+# @ HazardRatios.spread ====  
 HazardRatios.spread = HazardRatios.bind_rows |> rename(`estimate (95% CI)` = `estimate (95% CI) %.2f`) %>% 
     select(Model, rowname, `estimate (95% CI)`) %>% 
     spread(key = Model, value = `estimate (95% CI)`)
@@ -189,4 +189,4 @@ HazardRatios.spread |> print(n=99) #----
 # spread.join |> print(n=99,width=999) #----  
 
 
-#@ end ----  
+# @ end ----  
