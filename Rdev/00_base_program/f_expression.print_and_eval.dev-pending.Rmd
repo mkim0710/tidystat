@@ -299,6 +299,166 @@ cat(" > ", deparse(substituted_expr), "==", deparse(evaluated_expr), "\n")
 ```
 
 
+## \% deparse(eval(eval(substituted_expr)))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+# Step 1: Define the expression
+.text_expression = "dim(get(DataSetName))"
+expr <- quote(as.expression(.text_expression))
+cat("@ Step 1: Original expression  \n")
+cat(" > print(",deparse(substitute(expr)),"); str(",deparse(substitute(expr)),")  \n", sep="")
+print(expr)
+str(expr)
+
+# Step 2: Use substitute to replace the variable name with its actual value as a string
+# substituted_expr <- substitute(as.expression(.text_expression), list(.text_expression = .text_expression, DataSetName = DataSetName))
+# substituted_expr <- substitute(expr, list(expr = expr, .text_expression = .text_expression, DataSetName = DataSetName))
+substituted_expr <- substitute(eval(substitute(expr, list(expr = expr))), list(expr = expr, .text_expression = .text_expression, DataSetName = DataSetName))
+cat("\n@ Step 2: Substituted expression  \n")
+cat(" > print(", deparse(substitute(substituted_expr)), "); str(", deparse(substitute(substituted_expr)), ")  \n", sep="")
+print(substituted_expr)
+str(substituted_expr)
+
+# Step 3: Evaluate the substituted expression
+evaluated_expr <- eval(substituted_expr)
+cat("\n@ Step 3: Evaluated expression result  \n")
+cat(" > print(", deparse(substitute(evaluated_expr)), "); str(", deparse(substitute(evaluated_expr)), ")  \n", sep="")
+print(evaluated_expr)
+str(evaluated_expr)
+
+# Step 4: Print the substituted expression and its evaluation
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(substituted_expr), "==", deparse(eval(eval(substituted_expr))), "\n")
+```
+
+## \% .text_expression %>% substitute() %>% eval() %>% substitute(env = list(.=., DataSetName = DataSetName))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+# Step 1: Define the expression
+.text_expression = "dim(get(DataSetName))"
+.text_expression %>% substitute()
+.text_expression %>% substitute(env = list(. = .))
+.text_expression %>% substitute(env = list(DataSetName = DataSetName))
+.text_expression %>% substitute() %>% eval()
+.text_expression %>% substitute() %>% eval() %>% substitute()
+.text_expression %>% substitute() %>% eval() %>% substitute(env = list(.=., DataSetName = DataSetName))
+```
+
+
+## \% .substitute(eval(substitute(.text_expression)), env = list(.text_expression = .text_expression))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+substitute(dim(get(DataSetName)))
+expression(dim(get(DataSetName)))
+parse(text = "dim(get(DataSetName))")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+.text_expression = "dim(get(DataSetName))"
+substitute(.text_expression)
+substitute(.text_expression, env = list(.text_expression = .text_expression))
+substitute(.text_expression, env = list(.text_expression = .text_expression, DataSetName = DataSetName))
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+eval(substitute(.text_expression))
+substitute(eval(substitute(.text_expression)))
+substitute(eval(substitute(.text_expression)), env = list(.text_expression = .text_expression))
+substitute(eval(substitute(.text_expression)), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+as.expression(.text_expression)
+eval(as.expression(.text_expression))
+```
+
+
+## \% substitute(eval(substitute(parse(text = .text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+substitute(dim(get(DataSetName)))
+expression(dim(get(DataSetName)))
+parse(text = "dim(get(DataSetName))")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+.text_expression = "dim(get(DataSetName))"
+parse(text = .text_expression)
+substitute(parse(text = .text_expression))
+substitute(parse(text = .text_expression), env = list(.text_expression = .text_expression))
+substitute(parse(text = .text_expression), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+eval(parse(text = .text_expression))
+eval(substitute(parse(text = .text_expression)))
+substitute(eval(substitute(parse(text = .text_expression))))
+substitute(eval(substitute(parse(text = .text_expression))), env = list(.text_expression = .text_expression))
+substitute(eval(substitute(parse(text = .text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+
+```
+
+
+# \$ as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+e1 = as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])
+```
+
+
+## *** \% |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+dim(get(DataSetName)) |> substitute()
+dim(get(DataSetName)) |> substitute() |> str()
+dim(get(DataSetName)) |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute() |> eval() |> dput() 
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName))
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) 
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> str()
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(as.environment(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])) |> eval() |> dput() 
+```
+
+
+
+
 ## \% pending  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -352,11 +512,7 @@ deparse(substitute(env1$path$path1))
 deparse(substitute(path1, env = as.environment(env1$path)))
 ```
   
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
 
-```
   
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
