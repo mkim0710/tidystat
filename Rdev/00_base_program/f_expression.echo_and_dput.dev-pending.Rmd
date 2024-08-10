@@ -591,12 +591,12 @@ options(width=120)
   
   
 #@@ START) function ----  
-## \% |> f_expression.echo_and_print 
+## \% |> f_expression.echo_and_dput 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 .text_expression = "dim(get(DataSetName))"
-f_expression.echo_and_print <- function(text_expression = "", vec_chr_names) {
+f_expression.echo_and_dput <- function(text_expression = "", vec_chr_names) {
     str(text_expression)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
     str( parse(text=text_expression)[[1]] )
@@ -616,16 +616,16 @@ f_expression.echo_and_print <- function(text_expression = "", vec_chr_names) {
     str(quote(text_expression.parse))
     str(substitute(text_expression.parse))
 }
-f_expression.echo_and_print(text_expression = .text_expression)
+f_expression.echo_and_dput(text_expression = .text_expression)
 ```
   
 
 
-## \% |> f_expression.echo_and_print 
+## \% |> f_expression.echo_and_dput 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-f_expression.echo_and_print <- function(text_expression = "", vec_chr_names) {
+f_expression.echo_and_dput <- function(text_expression = "", vec_chr_names) {
     str(text_expression)
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
     str( parse(text=text_expression)[[1]] )
@@ -647,7 +647,7 @@ f_expression.echo_and_print <- function(text_expression = "", vec_chr_names) {
     cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
     str(substitute( eval(eval(parse(text=text_expression)[[1]])) , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) ))
 }
-f_expression.echo_and_print(text_expression = .text_expression)
+f_expression.echo_and_dput(text_expression = .text_expression)
 ```
   
   
