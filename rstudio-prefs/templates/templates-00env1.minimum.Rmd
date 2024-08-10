@@ -260,6 +260,25 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
+# @@ START) data example ----  
+## \$ analyticDF_time2event =  ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+suppressPackageStartupMessages(library(tidyverse))
+# suppressPackageStartupMessages(library(survival))
+for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+# ?survival::lung
+DataSetName = "analyticDF_time2event"
+assign(
+    DataSetName, 
+    survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
+        # dplyr::select(-status, -sex)
+        dplyr::select(-status)
+)
+analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
+```
+  
+  
 # @@ START) dev ----  
 ## \% DataSet |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -447,14 +466,14 @@ options(width=120)
 ### \$ data.Date.NA  = ====  
 #### \% f_df.NotNA_p_df() ----  
 ### \$ data.Date.NA.rmAllNA  = ====  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r data.Date.NA-f_df.NotNA_p_df, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 .subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 .sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
   
-assign( paste0(DataSetName,".Date",".NA"), get(DataSetName) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
+assign( paste0(DataSetName,".Date",".NA"), get(paste0(DataSetName,".Date")) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
 assign( paste0(DataSetName,".Date",".NA",".rmAllNA"), get(paste0(DataSetName,".Date",".NA")) |> select_if(function(vec) !all(is.na(vec))) )
 cat(" dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="") 
 cat(" dim(",DataSetName,".Date",".NA",".rmAllNA",") == ",deparse(dim(get(paste0(DataSetName,".Date",".NA",".rmAllNA")))),"  \n", sep="") 
