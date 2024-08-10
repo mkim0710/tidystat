@@ -292,19 +292,21 @@ expression(dim(get(DataSetName)))
 expression(dim(get(DataSetName))) |> str()
 expression(dim(get(DataSetName))) |> eval()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text = "dim(get(DataSetName))")[[1]]
-parse(text = "dim(get(DataSetName))")[[1]] |> str()
-parse(text = "dim(get(DataSetName))")[[1]] |> eval()
+parse(text="dim(get(DataSetName))")[[1]]
+parse(text="dim(get(DataSetName))")[[1]] |> str()
+parse(text="dim(get(DataSetName))")[[1]] |> eval()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text = "dim(get(DataSetName))")
-parse(text = "dim(get(DataSetName))") |> str()
-parse(text = "dim(get(DataSetName))") |> eval()
+parse(text="dim(get(DataSetName))")
+parse(text="dim(get(DataSetName))") |> str()
+parse(text="dim(get(DataSetName))") |> eval()
 ```
   
 
-## \% |> substitute() ; %>% substitute
+## \% |> substitute() ; \%>\% substitute  
+### -> language dim(get(DataSetName))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 quote(dim(get(DataSetName))) |> str()
 dim(get(DataSetName)) |> quote() |> str()
 dim(get(DataSetName)) %>% quote() |> str()
@@ -317,17 +319,19 @@ expression(dim(get(DataSetName))) |> str()
 dim(get(DataSetName)) |> expression() |> str()
 dim(get(DataSetName)) %>% expression() |> str()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text = "dim(get(DataSetName))")[[1]] |> str()
-"dim(get(DataSetName))" %>% {parse(text = .)[[1]]} |> str()
+parse(text="dim(get(DataSetName))")[[1]] |> str()
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> str()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text = "dim(get(DataSetName))") |> str()
-"dim(get(DataSetName))" %>% {parse(text = .)} |> str()
+parse(text="dim(get(DataSetName))") |> str()
+"dim(get(DataSetName))" %>% {parse(text=.)} |> str()
 ```
 
 
 ## *** \% |> substitute(as.list(.GlobalEnv))  
+### -> language dim(get("analyticDF_time2event"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 dim(get(DataSetName)) |> substitute()
 dim(get(DataSetName)) |> substitute() |> str()
 dim(get(DataSetName)) |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
@@ -343,13 +347,13 @@ dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> str()
 dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
 dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> eval() |> dput() 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]] |> str()
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) 
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> str()
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> eval() |> dput() 
+as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)] |> str()
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) 
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> str()
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> eval() |> dput() 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.GlobalEnv.character = as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]] |> as.environment()
+.GlobalEnv.character = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)] |> as.environment()
 dim(get(DataSetName)) |> substitute(.GlobalEnv.character) 
 dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> str()
 dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
@@ -357,13 +361,38 @@ dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> eval() |> dput()
 ```
 
 
-# @@ START) dev) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="") ----  
-## \% .substitute(eval(substitute(.text_expression)), env = list(.text_expression = .text_expression))  
+## *** \% |> substitute() |> substitute() |> eval()  
+### -> language dim(get(DataSetName))  
+#### *** !! dim(get(DataSetName)) |> substitute() == "dim(get(DataSetName))" %>% {parse(text=.)[[1]]}  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> substitute() |> str()
+dim(get(DataSetName)) |> substitute() |> substitute() |> str()
+dim(get(DataSetName)) |> substitute() |> eval() |> substitute() |> str()
+dim(get(DataSetName)) |> substitute() |> substitute() |> eval() |> str()
+dim(get(DataSetName)) |> substitute() |> substitute() |> eval() |> eval() |> str()
+dim(get(DataSetName)) |> substitute() |> substitute() |> eval() |> eval() |> substitute() |> str()
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> str()
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> str()
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> eval() |> substitute() |> str()
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> eval() |> str()
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> eval() |> eval() |> str()
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> eval() |> eval() |> substitute() |> str()
+```
+
+
+# @@ void- START) dev) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="") ----  
+## \$ .text_expression = 
+## \% substitute(.text_expression, env = list(.text_expression = .text_expression))  
+### -> "dim(get(DataSetName))"
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 substitute(dim(get(DataSetName)))
 expression(dim(get(DataSetName)))
-parse(text = "dim(get(DataSetName))")
+parse(text="dim(get(DataSetName))")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 .text_expression = "dim(get(DataSetName))"
 substitute(.text_expression)
@@ -382,36 +411,100 @@ eval(as.expression(.text_expression))
 
 
 
-# @@ START) parse(text = .text_expression)[[1]]  ----  
+# @@ START) parse(text=.text_expression)[[1]]  ----  
+## \% parse(text=.text_expression)[[1]] 
+### -> language dim(get(DataSetName))
+#### *** !! dim(get(DataSetName)) |> substitute() == parse(text=.text_expression)[[1]]  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> substitute() 
+dim(get(DataSetName)) |> substitute() |> str()
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 .text_expression = "dim(get(DataSetName))"
-parse(text = .text_expression)
-parse(text = .text_expression) |> str()
+parse(text="dim(get(DataSetName))")
+parse(text=.text_expression)
+parse(text=.text_expression) |> str()
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-parse(text = .text_expression)[[1]]
-parse(text = .text_expression)[[1]] |> str()
+parse(text="dim(get(DataSetName))")[[1]]
+parse(text=.text_expression)[[1]]
+parse(text=.text_expression)[[1]] |> str()
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} 
+.text_expression %>% {parse(text=.)[[1]]} 
+.text_expression %>% {parse(text=.)[[1]]} |> str()
 ```
 
 
-## \% substitute(eval(substitute(parse(text = .text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))  
+
+## *** \% |> substitute(as.list(.GlobalEnv))  
+### -> language dim(get("analyticDF_time2event"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-substitute(dim(get(DataSetName)))
-expression(dim(get(DataSetName)))
-parse(text = "dim(get(DataSetName))")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.text_expression = "dim(get(DataSetName))"
-parse(text = .text_expression)
-substitute(parse(text = .text_expression))
-substitute(parse(text = .text_expression), env = list(.text_expression = .text_expression))
-substitute(parse(text = .text_expression), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
+dim(get(DataSetName)) |> substitute()
+dim(get(DataSetName)) |> substitute() |> str()
+dim(get(DataSetName)) |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute() |> eval() |> dput() 
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+parse(text=.text_expression)[[1]]
+parse(text=.text_expression)[[1]] |> str()
+parse(text=.text_expression)[[1]] |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+parse(text=.text_expression)[[1]] |> eval() |> dput() 
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-eval(parse(text = .text_expression))
-eval(substitute(parse(text = .text_expression)))
-substitute(eval(substitute(parse(text = .text_expression))))
-substitute(eval(substitute(parse(text = .text_expression))), env = list(.text_expression = .text_expression))
-substitute(eval(substitute(parse(text = .text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName))
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval()
+dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval() |> str()
+dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval() |> eval() |> dput() 
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() 
+parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() |> str()
+parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() |> eval() |> dput() 
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> eval() 
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+.tmp.language = parse(text=.text_expression)[[1]]
+.tmp.language |> substitute(as.list(.GlobalEnv)) |> eval() 
+.tmp.language |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval()
+.tmp.language |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval() |> eval()
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+.tmp.language2 = .tmp.language |> substitute(as.list(.GlobalEnv)) 
+.tmp.language2 |> substitute(as.list(.GlobalEnv)) |> eval()
+.tmp.language2 |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval()
+.tmp.language2 |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval() |> eval()
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) 
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> str()
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> eval() |> dput() 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+.GlobalEnv.character = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)] |> as.environment()
+dim(get(DataSetName)) |> substitute(.GlobalEnv.character) 
+dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> str()
+dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> eval() |> dput() 
+```
+
+
+## \% substitute(eval(substitute(parse(text=.text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+substitute(parse(text=.text_expression)[[1]])
+substitute(parse(text=.text_expression)[[1]], env = list(.text_expression = .text_expression))
+substitute(parse(text=.text_expression)[[1]], env = list(.text_expression = .text_expression, DataSetName = DataSetName))
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+eval(parse(text=.text_expression))
+eval(substitute(parse(text=.text_expression)))
+substitute(eval(substitute(parse(text=.text_expression))))
+substitute(eval(substitute(parse(text=.text_expression))), env = list(.text_expression = .text_expression))
+substitute(eval(substitute(parse(text=.text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 
 ```
@@ -420,7 +513,7 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .text_expression = "dim(get(DataSetName))"
-parse(text = .text_expression)
+parse(text=.text_expression)
 .text_expression %>% substitute()
 .text_expression %>% substitute(env = list(. = .))
 .text_expression %>% substitute(env = list(DataSetName = DataSetName))
@@ -434,6 +527,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ## *** \% .text_expression %>% substitute() %>% eval() %>% substitute(env = list(.=., DataSetName = DataSetName))
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 .text_expression = "dim(get(DataSetName))"
 .text_expression %>% substitute()
 .text_expression %>% substitute(env = list(. = .))
@@ -445,10 +539,10 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
 
 
-## *** \% |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]])  
+## *** \% |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)])  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 dim(get(DataSetName)) 
 dim(get(DataSetName)) |> expression()
 dim(get(DataSetName)) |> expression() |> eval()
@@ -476,31 +570,12 @@ dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetNa
 dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
 dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) 
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> str()
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[ls(envir=.GlobalEnv)[ls(envir=.GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir=.GlobalEnv)))]]) |> eval() |> dput() 
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) 
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> str()
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
+dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> eval() |> dput() 
 ```  
   
-
-## \% deparse(substitute(path$path1, env = env1))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-env1$path$path1
-deparse(substitute(env1$path$path1))
-deparse(substitute(path$path1, env = env1))
-```
-  
-  
-## *** \% deparse(substitute(path1, env1$path))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-env1$path$path1
-deparse(substitute(env1$path$path1))
-# deparse(substitute(path$path1, env = env1))
-deparse(substitute(path1, env = as.environment(env1$path)))
-deparse(substitute(path1, env1$path))
-```
 
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

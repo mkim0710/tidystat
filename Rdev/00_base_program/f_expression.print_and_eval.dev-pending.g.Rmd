@@ -452,6 +452,500 @@ cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# Function to substitute and evaluate an expression
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Create a substitution environment
+  sub_env <- as.list(.GlobalEnv)
+  sub_env$DataSetName <- dataset_name
+  
+  # Perform the substitution
+  substituted_expr <- substitute(expr, sub_env)
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Substitute DataSetName in the expression
+  substituted_expr <- substitute(expr, list(DataSetName = dataset_name))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Substitute DataSetName in the expression
+  substituted_expr <- eval(substitute(substitute(expr, list(DataSetName = as.name(dataset_name)))))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Perform the substitution
+  substituted_expr <- substitute(expr, list(DataSetName = as.name(dataset_name)))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Evaluate the expression first, then substitute the variable name
+  evaluated_expr <- eval(substitute(expr, list(DataSetName = as.name(dataset_name))))
+  
+  # Perform the substitution on the evaluated expression
+  substituted_expr <- substitute(evaluated_expr)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Perform the substitution directly
+  substituted_expr <- substitute(expr, list(DataSetName = dataset_name))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+## \% custom_substitute()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# Custom substitute function
+custom_substitute <- function(expr, env_list) {
+  for (name in names(env_list)) {
+    expr <- substitute(expr, setNames(list(env_list[[name]]), name))
+  }
+  return(expr)
+}
+
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Perform the custom substitution
+  substituted_expr <- custom_substitute(expr, list(DataSetName = dataset_name))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+
+```
+  
+  
+### \% gsub("DataSetName", paste0('"', dataset_name, '"'), expr_text)  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr_text, dataset_name) {
+  # Substitute the dataset name in the expression text, ensuring it's wrapped in quotes
+  substituted_text <- gsub("DataSetName", paste0('"', dataset_name, '"'), expr_text)
+  
+  # Parse the substituted text into an R expression
+  substituted_expr <- parse(text = substituted_text)[[1]]
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression as text
+expr_text <- "dim(get(DataSetName))"
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr_text, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr_text)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+
+```
+  
+  
+### \% as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir = .GlobalEnv)))]
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(purrr)  # Load the purrr package for functional programming
+
+# Generalized substitute_and_evaluate function
+substitute_and_evaluate <- function(expr_text) {
+  # Get all character variables from .GlobalEnv
+  env_vars <- as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir = .GlobalEnv)))]
+
+  # Substitute all the defined names in .GlobalEnv
+  substituted_text <- expr_text
+  for (name in names(env_vars)) {
+    substituted_text <- gsub(name, paste0('"', env_vars[[name]], '"'), substituted_text)
+  }
+
+  # Parse the substituted text into an R expression
+  substituted_expr <- parse(text = substituted_text)[[1]]
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Example usage:
+# Define some character variables in .GlobalEnv
+DataSetName <- "analyticDF_time2event"
+AnotherVar <- "someOtherValue"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression as text
+expr_text <- "dim(get(DataSetName))"
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr_text)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr_text)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(purrr)
+
+# Generalized substitute_and_evaluate function
+substitute_and_evaluate <- function(expr_text) {
+  # Get all character variables from .GlobalEnv
+  # env_vars <- as.list(.GlobalEnv)
+  # char_vars <- env_vars[map_lgl(env_vars, is.character)]
+  char_vars = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]
+  
+  # Substitute all the defined names in .GlobalEnv
+  substituted_text <- expr_text
+  for (name in names(char_vars)) {
+    substituted_text <- gsub(name, paste0('"', char_vars[[name]], '"'), substituted_text)
+  }
+  
+  # Parse the substituted text into an R expression
+  substituted_expr <- parse(text = substituted_text)[[1]]
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Example usage:
+# Define some character variables in .GlobalEnv
+DataSetName <- "analyticDF_time2event"
+AnotherVar <- "someOtherValue"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression as text
+expr_text <- "dim(get(DataSetName))"
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr_text)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr_text)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
 
 ```
   
