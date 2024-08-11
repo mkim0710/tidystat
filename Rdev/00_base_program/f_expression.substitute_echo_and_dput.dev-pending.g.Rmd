@@ -260,322 +260,85 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
-# @@ START) data example ----  
+# @@ START) dev ----  
+## \% substitute(dim(get(DataSetName)), list(DataSetName = DataSetName))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-analyticDF_time2event <- matrix(1:72, nrow=24, ncol=12) %>% data.frame %>% as_tibble
-dim(analyticDF_time2event)
-analyticDF_time2event
-analyticDF_time2event %>% str
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
 DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+# Step 1: Define the expression
+expr <- quote(dim(get(DataSetName)))
+cat("@ Step 1: Original expression  \n")
+cat(" > print(",deparse(substitute(expr)),"); str(",deparse(substitute(expr)),")  \n", sep="")
+print(expr)
+str(expr)
+
+# Step 2: Use substitute to replace the variable name with its actual value as a string
+substituted_expr <- substitute(dim(get(DataSetName)), list(DataSetName = DataSetName))
+cat("\n@ Step 2: Substituted expression  \n")
+cat(" > print(", deparse(substitute(substituted_expr)), "); str(", deparse(substitute(substituted_expr)), ")  \n", sep="")
+print(substituted_expr)
+str(substituted_expr)
+
+# Step 3: Evaluate the substituted expression
+evaluated_expr <- eval(substituted_expr)
+cat("\n@ Step 3: Evaluated expression result  \n")
+cat(" > print(", deparse(substitute(evaluated_expr)), "); str(", deparse(substitute(evaluated_expr)), ")  \n", sep="")
+print(evaluated_expr)
+str(evaluated_expr)
+
+# Step 4: Print the substituted expression and its evaluation
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(substituted_expr), "==", deparse(evaluated_expr), "\n")
 ```
-  
-# @@ START) DataSetName = ----  
+
+
+## \% deparse(eval(eval(substituted_expr)))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# https://chatgpt.com/c/2c33cac5-5297-4385-90de-4277a03196f1
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# Define the dataset name
 DataSetName <- "analyticDF_time2event"
-dim(analyticDF_time2event)
-dim(get(DataSetName))
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-quote(dim(get(DataSetName)))
-quote(dim(get(DataSetName))) |> str()
-quote(dim(get(DataSetName))) |> as.expression()
-quote(dim(get(DataSetName))) |> eval()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-substitute(dim(get(DataSetName)))
-substitute(dim(get(DataSetName))) |> str()
-substitute(dim(get(DataSetName))) |> as.expression()
-substitute(dim(get(DataSetName))) |> eval()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-expression(dim(get(DataSetName)))
-expression(dim(get(DataSetName))) |> str()
-expression(dim(get(DataSetName))) |> eval()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text="dim(get(DataSetName))")[[1]]
-parse(text="dim(get(DataSetName))")[[1]] |> str()
-parse(text="dim(get(DataSetName))")[[1]] |> eval()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text="dim(get(DataSetName))")
-parse(text="dim(get(DataSetName))") |> str()
-parse(text="dim(get(DataSetName))") |> eval()
-```
-  
 
-## \% |> substitute() ; \%>\% substitute  
-### -> language dim(get(DataSetName))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-quote(dim(get(DataSetName))) |> str()
-dim(get(DataSetName)) |> quote() |> str()
-dim(get(DataSetName)) %>% quote() |> str()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-substitute(dim(get(DataSetName))) |> str()
-dim(get(DataSetName)) |> substitute() |> str()
-dim(get(DataSetName)) %>% substitute() |> str()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-expression(dim(get(DataSetName))) |> str()
-dim(get(DataSetName)) |> expression() |> str()
-dim(get(DataSetName)) %>% expression() |> str()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text="dim(get(DataSetName))")[[1]] |> str()
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> str()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text="dim(get(DataSetName))") |> str()
-"dim(get(DataSetName))" %>% {parse(text=.)} |> str()
-```
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
 
-
-## *** \% |> substitute(as.list(.GlobalEnv))  
-### -> language dim(get("analyticDF_time2event"))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute()
-dim(get(DataSetName)) |> substitute() |> str()
-dim(get(DataSetName)) |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute() |> eval() |> dput() 
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName))
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) 
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> str()
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> eval() |> dput() 
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)] |> str()
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) 
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> str()
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> eval() |> dput() 
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.GlobalEnv.character = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)] |> as.environment()
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) 
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> str()
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> eval() |> dput() 
-```
-
-
-## *** \% |> substitute() |> substitute() |> eval()  
-### -> language dim(get(DataSetName))  
-#### *** !! dim(get(DataSetName)) |> substitute() == "dim(get(DataSetName))" %>% {parse(text=.)[[1]]}  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute() |> str()
-dim(get(DataSetName)) |> substitute() |> substitute() |> str()
-dim(get(DataSetName)) |> substitute() |> eval() |> substitute() |> str()
-dim(get(DataSetName)) |> substitute() |> substitute() |> eval() |> str()
-dim(get(DataSetName)) |> substitute() |> substitute() |> eval() |> eval() |> str()
-dim(get(DataSetName)) |> substitute() |> substitute() |> eval() |> eval() |> substitute() |> str()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> str()
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> str()
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> eval() |> substitute() |> str()
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> eval() |> str()
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> eval() |> eval() |> str()
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} |> substitute() |> eval() |> eval() |> substitute() |> str()
-```
-
-
-# @@ void- START) dev) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="") ----  
-## \$ .text_expression = 
-## \% substitute(.text_expression, env = list(.text_expression = .text_expression))  
-### -> "dim(get(DataSetName))"
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-substitute(dim(get(DataSetName)))
-expression(dim(get(DataSetName)))
-parse(text="dim(get(DataSetName))")
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+# Step 1: Define the expression
 .text_expression = "dim(get(DataSetName))"
-substitute(.text_expression)
-substitute(.text_expression, env = list(.text_expression = .text_expression))
-substitute(.text_expression, env = list(.text_expression = .text_expression, DataSetName = DataSetName))
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-eval(substitute(.text_expression))
-substitute(eval(substitute(.text_expression)))
-substitute(eval(substitute(.text_expression)), env = list(.text_expression = .text_expression))
-substitute(eval(substitute(.text_expression)), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-as.expression(.text_expression)
-eval(as.expression(.text_expression))
+expr <- quote(as.expression(.text_expression))
+cat("@ Step 1: Original expression  \n")
+cat(" > print(",deparse(substitute(expr)),"); str(",deparse(substitute(expr)),")  \n", sep="")
+print(expr)
+str(expr)
+
+# Step 2: Use substitute to replace the variable name with its actual value as a string
+# substituted_expr <- substitute(as.expression(.text_expression), list(.text_expression = .text_expression, DataSetName = DataSetName))
+# substituted_expr <- substitute(expr, list(expr = expr, .text_expression = .text_expression, DataSetName = DataSetName))
+substituted_expr <- substitute(eval(substitute(expr, list(expr = expr))), list(expr = expr, .text_expression = .text_expression, DataSetName = DataSetName))
+cat("\n@ Step 2: Substituted expression  \n")
+cat(" > print(", deparse(substitute(substituted_expr)), "); str(", deparse(substitute(substituted_expr)), ")  \n", sep="")
+print(substituted_expr)
+str(substituted_expr)
+
+# Step 3: Evaluate the substituted expression
+evaluated_expr <- eval(substituted_expr)
+cat("\n@ Step 3: Evaluated expression result  \n")
+cat(" > print(", deparse(substitute(evaluated_expr)), "); str(", deparse(substitute(evaluated_expr)), ")  \n", sep="")
+print(evaluated_expr)
+str(evaluated_expr)
+
+# Step 4: Print the substituted expression and its evaluation
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(substituted_expr), "==", deparse(eval(eval(substituted_expr))), "\n")
 ```
 
-
-
-
-# @@ START) parse(text=.text_expression)[[1]]  ----  
-## \% parse(text=.text_expression)[[1]] 
-### -> language dim(get(DataSetName))
-#### *** !! dim(get(DataSetName)) |> substitute() == parse(text=.text_expression)[[1]]  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute() 
-dim(get(DataSetName)) |> substitute() |> str()
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.text_expression = "dim(get(DataSetName))"
-parse(text="dim(get(DataSetName))")
-parse(text=.text_expression)
-parse(text=.text_expression) |> str()
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-parse(text="dim(get(DataSetName))")[[1]]
-parse(text=.text_expression)[[1]]
-parse(text=.text_expression)[[1]] |> str()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-"dim(get(DataSetName))" %>% {parse(text=.)[[1]]} 
-.text_expression %>% {parse(text=.)[[1]]} 
-.text_expression %>% {parse(text=.)[[1]]} |> str()
-```
-
-
-
-## *** \% |> substitute(as.list(.GlobalEnv))  
-### -> language dim(get("analyticDF_time2event"))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute()
-dim(get(DataSetName)) |> substitute() |> str()
-dim(get(DataSetName)) |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute() |> eval() |> dput() 
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text=.text_expression)[[1]]
-parse(text=.text_expression)[[1]] |> str()
-parse(text=.text_expression)[[1]] |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-parse(text=.text_expression)[[1]] |> eval() |> dput() 
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName))
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> str()
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval()
-dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval() |> str()
-dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute() |> substitute(list(DataSetName = DataSetName)) |> eval() |> eval() |> dput() 
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() 
-parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() |> str()
-parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> eval() |> eval() |> dput() 
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-parse(text=.text_expression)[[1]] |> substitute(list(DataSetName = DataSetName)) |> substitute(list(DataSetName = DataSetName)) |> eval() |> eval() 
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-.tmp.language = parse(text=.text_expression)[[1]]
-.tmp.language |> substitute(as.list(.GlobalEnv)) |> eval() 
-.tmp.language |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval()
-.tmp.language |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval() |> eval()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-.tmp.language2 = .tmp.language |> substitute(as.list(.GlobalEnv)) 
-.tmp.language2 |> substitute(as.list(.GlobalEnv)) |> eval()
-.tmp.language2 |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval()
-.tmp.language2 |> substitute(as.list(.GlobalEnv)) |> substitute(as.list(.GlobalEnv)) |> eval() |> eval()
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) 
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> str()
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(as.list(.GlobalEnv)) |> eval() |> dput() 
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.GlobalEnv.character = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)] |> as.environment()
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) 
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> str()
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> substitute(.GlobalEnv.character) |> eval() |> dput() 
-```
-
-
-## \% substitute(eval(substitute(parse(text=.text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-substitute(parse(text=.text_expression)[[1]])
-substitute(parse(text=.text_expression)[[1]], env = list(.text_expression = .text_expression))
-substitute(parse(text=.text_expression)[[1]], env = list(.text_expression = .text_expression, DataSetName = DataSetName))
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-eval(parse(text=.text_expression))
-eval(substitute(parse(text=.text_expression)))
-substitute(eval(substitute(parse(text=.text_expression))))
-substitute(eval(substitute(parse(text=.text_expression))), env = list(.text_expression = .text_expression))
-substitute(eval(substitute(parse(text=.text_expression))), env = list(.text_expression = .text_expression, DataSetName = DataSetName))
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-
-```
-
-
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-.text_expression = "dim(get(DataSetName))"
-parse(text=.text_expression)
-.text_expression %>% substitute()
-.text_expression %>% substitute(env = list(. = .))
-.text_expression %>% substitute(env = list(DataSetName = DataSetName))
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-.text_expression %>% substitute() %>% eval()
-.text_expression %>% substitute() %>% eval() %>% substitute()
-.text_expression %>% substitute() %>% eval() %>% substitute(env = list(.=., DataSetName = DataSetName))
-```
-
-
-## *** \% .text_expression %>% substitute() %>% eval() %>% substitute(env = list(.=., DataSetName = DataSetName))
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.text_expression = "dim(get(DataSetName))"
-.text_expression %>% substitute()
-.text_expression %>% substitute(env = list(. = .))
-.text_expression %>% substitute(env = list(DataSetName = DataSetName))
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-.text_expression %>% substitute() %>% eval()
-.text_expression %>% substitute() %>% eval() %>% substitute()
-.text_expression %>% substitute() %>% eval() %>% substitute(env = list(.=., DataSetName = DataSetName))
-```
-
-
-## *** \% |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)])  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) 
-dim(get(DataSetName)) |> expression()
-dim(get(DataSetName)) |> expression() |> eval()
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-dim(get(DataSetName)) |> quote()
-dim(get(DataSetName)) |> quote() |> eval()
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-dim(get(DataSetName)) |> substitute()
-dim(get(DataSetName)) |> substitute() |> eval()
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> expression() |> expression()
-dim(get(DataSetName)) |> quote() |> expression()
-dim(get(DataSetName)) |> expression() |> quote()
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-dim(get(DataSetName)) |> quote() |> is.expression()
-dim(get(DataSetName)) |> expression() |> quote() |> is.expression()
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> expression() |> substitute()
-dim(get(DataSetName)) |> expression() |> substitute() |> str()
-dim(get(DataSetName)) |> expression() |> substitute() |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> expression() |> substitute() |> eval() |> dput() 
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName))
-dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> str()
-dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> expression() |> substitute(list(DataSetName = DataSetName)) |> eval() |> dput() 
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) 
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> str()
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> deparse() %>% cat(" > ",.," |> dput()  \n", sep="")
-dim(get(DataSetName)) |> expression() |> substitute(as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]) |> eval() |> dput() 
-```  
-  
 
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -591,63 +354,613 @@ options(width=120)
   
   
 #@@ START) function ----  
-## \% |> f_expression.echo_and_dput 
+## \% |> substitute_in_env 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
 
-.text_expression = "dim(get(DataSetName))"
-f_expression.echo_and_dput <- function(text_expression = "", vec_chr_names) {
-    str(text_expression)
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str( parse(text=text_expression)[[1]] )
-    str(quote( parse(text=text_expression)[[1]] ))
-    str(substitute( parse(text=text_expression)[[1]] ))
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(eval( parse(text=text_expression)[[1]] ))
-    str(eval(quote( parse(text=text_expression)[[1]] )))
-    str(eval(substitute( parse(text=text_expression)[[1]] )))
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(eval(eval( parse(text=text_expression)[[1]] )))
-    str(eval(eval(quote( parse(text=text_expression)[[1]] ))))
-    str(eval(eval(substitute( parse(text=text_expression)[[1]] ))))
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    text_expression.parse =  parse(text=text_expression)[[1]] 
-    str(text_expression.parse)
-    str(quote(text_expression.parse))
-    str(substitute(text_expression.parse))
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+# Define a function to handle substitution in a non-global environment
+substitute_in_env <- function(expr, name) {
+  # Substitute the variable in the expression
+  substituted_expr <- substitute(expr, list(DataSetName = as.name(name)))
+  return(substituted_expr)
 }
-f_expression.echo_and_dput(text_expression = .text_expression)
+
+# Step 1: Define the expression with quote
+expr <- quote(dim(get(DataSetName)))
+cat("@ Step 1: Original expression  \n")
+cat(" > print(", deparse(substitute(expr)), "); str(", deparse(substitute(expr)), ")  \n", sep="")
+print(expr)
+str(expr)
+
+# Step 2: Perform substitution using the function
+substituted_expr <- substitute_in_env(expr, DataSetName)
+cat("\n@ Step 2: Substituted expression  \n")
+cat(" > print(", deparse(substitute(substituted_expr)), "); str(", deparse(substitute(substituted_expr)), ")  \n", sep="")
+print(substituted_expr)
+str(substituted_expr)
+
+# Step 3: Evaluate the substituted expression
+evaluated_expr <- eval(substituted_expr)
+cat("\n@ Step 3: Evaluated expression result  \n")
+cat(" > print(", deparse(substitute(evaluated_expr)), "); str(", deparse(substitute(evaluated_expr)), ")  \n", sep="")
+print(evaluated_expr)
+str(evaluated_expr)
+
+# Step 4: Print the final output
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(substituted_expr), "==", deparse(evaluated_expr), "\n")
+
 ```
   
+  
+## \% |> substitute_and_evaluate 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# Function to substitute and evaluate an expression
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Step 1: Substitute the variable name with its actual value
+  substituted_expr <- substitute(expr, list(DataSetName = as.name(dataset_name)))
+  
+  # Step 2: Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=228, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Step 1: Print original expression
+cat("@ Step 1: Original expression  \n")
+cat(" > print(", deparse(substitute(expr)), "); str(", deparse(substitute(expr)), ")  \n", sep="")
+print(expr)
+str(expr)
+
+# Step 2: Print substituted expression
+cat("\n@ Step 2: Substituted expression  \n")
+cat(" > print(", deparse(substitute(result$substituted_expr)), "); str(", deparse(substitute(result$substituted_expr)), ")  \n", sep="")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+# Step 3: Print evaluated expression
+cat("\n@ Step 3: Evaluated expression result  \n")
+cat(" > print(", deparse(substitute(result$evaluated_expr)), "); str(", deparse(substitute(result$evaluated_expr)), ")  \n", sep="")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+# Step 4: Print the final output
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# Function to substitute and evaluate an expression
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Create a substitution environment
+  sub_env <- as.list(.GlobalEnv)
+  sub_env$DataSetName <- dataset_name
+  
+  # Perform the substitution
+  substituted_expr <- substitute(expr, sub_env)
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Substitute DataSetName in the expression
+  substituted_expr <- substitute(expr, list(DataSetName = dataset_name))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Substitute DataSetName in the expression
+  substituted_expr <- eval(substitute(substitute(expr, list(DataSetName = as.name(dataset_name)))))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Perform the substitution
+  substituted_expr <- substitute(expr, list(DataSetName = as.name(dataset_name)))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Evaluate the expression first, then substitute the variable name
+  evaluated_expr <- eval(substitute(expr, list(DataSetName = as.name(dataset_name))))
+  
+  # Perform the substitution on the evaluated expression
+  substituted_expr <- substitute(evaluated_expr)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Perform the substitution directly
+  substituted_expr <- substitute(expr, list(DataSetName = dataset_name))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
+## \% custom_substitute()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# Custom substitute function
+custom_substitute <- function(expr, env_list) {
+  for (name in names(env_list)) {
+    expr <- substitute(expr, setNames(list(env_list[[name]]), name))
+  }
+  return(expr)
+}
+
+substitute_and_evaluate <- function(expr, dataset_name) {
+  # Perform the custom substitution
+  substituted_expr <- custom_substitute(expr, list(DataSetName = dataset_name))
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression only once
+expr <- quote(dim(get(DataSetName)))
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr)
+str(expr)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+str(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+str(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
 
 
-## \% |> f_expression.echo_and_dput 
+```
+  
+  
+### \% gsub("DataSetName", paste0('"', dataset_name, '"'), expr_text)  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+substitute_and_evaluate <- function(expr_text, dataset_name) {
+  # Substitute the dataset name in the expression text, ensuring it's wrapped in quotes
+  substituted_text <- gsub("DataSetName", paste0('"', dataset_name, '"'), expr_text)
+  
+  # Parse the substituted text into an R expression
+  substituted_expr <- parse(text = substituted_text)[[1]]
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Define the dataset name
+DataSetName <- "analyticDF_time2event"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression as text
+expr_text <- "dim(get(DataSetName))"
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr_text, DataSetName)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr_text)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+
+```
+  
+  
+### \% as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir = .GlobalEnv)))]
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# library(purrr)  # Load the purrr package for functional programming
+# 
+# # Generalized substitute_and_evaluate function
+# substitute_and_evaluate <- function(expr_text) {
+#   # Get all character variables from .GlobalEnv
+#   env_vars <- as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir = .GlobalEnv)))]
+# 
+#   # Substitute all the defined names in .GlobalEnv
+#   substituted_text <- expr_text
+#   for (name in names(env_vars)) {
+#     substituted_text <- gsub(name, paste0('"', env_vars[[name]], '"'), substituted_text)
+#   }
+# 
+#   # Parse the substituted text into an R expression
+#   substituted_expr <- parse(text = substituted_text)[[1]]
+#   
+#   # Evaluate the substituted expression
+#   evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+#   
+#   # Return both substituted and evaluated expressions
+#   list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+# }
+# 
+# # Example usage:
+# # Define some character variables in .GlobalEnv
+# DataSetName <- "analyticDF_time2event"
+# AnotherVar <- "someOtherValue"
+# 
+# # Create a dummy data frame as an example
+# analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+# 
+# # Define the expression as text
+# expr_text <- "dim(get(DataSetName))"
+# 
+# # Use the function to substitute and evaluate the expression
+# result <- substitute_and_evaluate(expr_text)
+# 
+# # Print the results
+# cat("@ Step 1: Original expression  \n")
+# print(expr_text)
+# 
+# cat("\n@ Step 2: Substituted expression  \n")
+# print(result$substituted_expr)
+# 
+# cat("\n@ Step 3: Evaluated expression result  \n")
+# print(result$evaluated_expr)
+# 
+# cat("\n@ Step 4: Final output  \n")
+# cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+# # Error in paste0("\"", env_vars[[name]], "\"") : 
+# #   cannot coerce type 'closure' to vector of type 'character'
+```
+  
+  
+### \% as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(purrr)
+
+# Generalized substitute_and_evaluate function
+substitute_and_evaluate <- function(expr_text) {
+  # Get all character variables from .GlobalEnv
+  # env_vars <- as.list(.GlobalEnv)
+  # char_vars <- env_vars[map_lgl(env_vars, is.character)]
+  char_vars = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(is.character)]
+  
+  # Substitute all the defined names in .GlobalEnv
+  substituted_text <- expr_text
+  for (name in names(char_vars)) {
+    substituted_text <- gsub(name, paste0('"', char_vars[[name]], '"'), substituted_text)
+  }
+  
+  # Parse the substituted text into an R expression
+  substituted_expr <- parse(text = substituted_text)[[1]]
+  
+  # Evaluate the substituted expression
+  evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
+  
+  # Return both substituted and evaluated expressions
+  list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr)
+}
+
+# Example usage:
+# Define some character variables in .GlobalEnv
+DataSetName <- "analyticDF_time2event"
+AnotherVar <- "someOtherValue"
+
+# Create a dummy data frame as an example
+analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
+
+# Define the expression as text
+expr_text <- "dim(get(DataSetName))"
+
+# Use the function to substitute and evaluate the expression
+result <- substitute_and_evaluate(expr_text)
+
+# Print the results
+cat("@ Step 1: Original expression  \n")
+print(expr_text)
+
+cat("\n@ Step 2: Substituted expression  \n")
+print(result$substituted_expr)
+
+cat("\n@ Step 3: Evaluated expression result  \n")
+print(result$evaluated_expr)
+
+cat("\n@ Step 4: Final output  \n")
+cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr), "\n")
+
+```
+  
+  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-f_expression.echo_and_dput <- function(text_expression = "", vec_chr_names) {
-    str(text_expression)
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str( parse(text=text_expression)[[1]] )
-    str(quote( parse(text=text_expression)[[1]] ))
-    str(substitute( parse(text=text_expression)[[1]] ))
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(eval( parse(text=text_expression)[[1]] ))
-    str(eval(quote( parse(text=text_expression)[[1]] )))
-    str(eval(substitute( parse(text=text_expression)[[1]] )))
-    str(eval(substitute( parse(text=text_expression)[[1]] , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) )))
-    str(eval(substitute( parse(text=text_expression)[[1]] , as.list(.GlobalEnv) )))
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(eval(eval( parse(text=text_expression)[[1]] )))
-    str(eval(eval(quote( parse(text=text_expression)[[1]] ))))
-    str(eval(eval(substitute(  parse(text=text_expression)[[1]] , as.list(.GlobalEnv) ))))
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(substitute( eval(parse(text=text_expression)[[1]]) , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) ))
-    str(substitute( eval(parse(text=text_expression)[[1]]) , as.list(.GlobalEnv) ))
-    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-    str(substitute( eval(eval(parse(text=text_expression)[[1]])) , list(DataSetName = DataSetName, text_expression = text_expression, .text_expression = .text_expression) ))
-}
-f_expression.echo_and_dput(text_expression = .text_expression)
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
 ```
   
   
