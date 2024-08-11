@@ -1,0 +1,16 @@
+#1. File > New repository
+
+#2-1. (Caution) Choose Local Path first?! (Choose Path0?!)
+D:\OneDrive\[][Rproject]
+
+#2-2. Repository Name: Path1 (e.g., Rproject_Infertility) 
+
+#2-3. Click Ok.
+
+#3. (Caution) Show in Explorer (Ctrl+Shift+F) --> check if the right path was selected~!
+
+#4. (Finally) Publish repository (Ctrl+P)
+
+#5. (Caution) Check - Keep this code private~!!
+
+
