@@ -277,6 +277,7 @@ df_vec_names |>
 # @@ START) dev ----  
 # https://chatgpt.com/c/1c2ab05c-692c-4ab3-a420-53d8e76e896f
 ## \% vec_names |> str_replace_all  
+Caution) \\w includes Letters (a-z, A-Z), Digits (0-9), and Underscore (_). 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 df_vec_names |> mutate(
