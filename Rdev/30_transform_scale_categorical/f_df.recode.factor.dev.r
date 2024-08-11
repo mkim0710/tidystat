@@ -281,10 +281,10 @@ analyticDF_C24.drop_pmhx_negativetime.list.cut$`_5yr`$BMI_Q_yr |> levels() |> dp
 # c("0-", "18.5-", "23-", "25-", "30-")
 
 txt = "BMI_lt23, BMI_ge23lt25, BMI_cut2325"
-txt |> str_extract_all("[A-z0-9_]+") |> paste() |> cat("  \n", sep="")
-txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {cat('c("',.,'")', "  \n", sep="")}
+txt |> str_extract_all("[A-Za-z0-9_]+") |> paste() |> cat("  \n", sep="")
+txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = '", "') %>% {cat('c("',.,'")', "  \n", sep="")}
 # > txt = "BMI_lt23, BMI_ge23lt25, BMI_cut2325"
-# > txt |> str_extract_all("[A-z0-9_]+") |> paste0(collapse = '", "') |> cat("  \n", sep="")
+# > txt |> str_extract_all("[A-Za-z0-9_]+") |> paste0(collapse = '", "') |> cat("  \n", sep="")
 # c("BMI_lt23", "BMI_ge23lt25", "BMI_cut2325")
 
 

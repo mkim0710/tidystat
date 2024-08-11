@@ -506,8 +506,8 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # # > tbl_varname_level_coefficients_res |> names() |> dput()
     # # c("varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)")
     # # txt = '"varname", "level", "varnamelevel", "coefficients", "HRCI", "p_value", "star", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)"'
-    # # txt |> str_extract_all("[A-z0-9_]+") |> str()
-    # # txt |> str_extract_all("[A-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
+    # # txt |> str_extract_all("[A-Za-z0-9_]+") |> str()
+    # # txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %>% {paste0('select(', ., ')')} |> cat("  \n", sep="")
     # # select(varname, level, varnamelevel, coefficients, HRCI, p_value, star, exp, coef, lower, 95, upper, 95, Pr, z)
     
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())

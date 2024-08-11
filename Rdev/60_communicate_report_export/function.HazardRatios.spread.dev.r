@@ -182,8 +182,8 @@ HazardRatios.spread |> print(n=99) #----
 # RiskDifference.spread = bind_rows.RiskDifference |> rename(`estimate (95% CI)` = `percent (95% CI)`) %>% 
 #     select(Table, .id, rowname, `estimate (95% CI)`) %>% 
 #     spread(key = rowname, value = `estimate (95% CI)`)
-# spread.join = RiskDifference.spread %>% mutate(Table = Table |> str_extract("^[A-z]+")) %>% 
-#     full_join(  HazardRatios.spread %>% mutate(Table = Table |> str_extract("^[A-z]+"))  )
+# spread.join = RiskDifference.spread %>% mutate(Table = Table |> str_extract("^[A-Za-z]+")) %>% 
+#     full_join(  HazardRatios.spread %>% mutate(Table = Table |> str_extract("^[A-Za-z]+"))  )
 # HazardRatios.spread |> print(n=99) #----  
 # RiskDifference.spread |> print(n=99) #----  
 # spread.join |> print(n=99,width=999) #----  
