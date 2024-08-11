@@ -280,7 +280,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
   
   
 # @@ START) dev ----  
-## \% DataSet |> 
+## \% analyticDF_time2event |>  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -416,6 +416,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
 # #  Max.   :1022.0   
   
 ```
+  
   
 ### ---- < Key Variables Check > ----  
 ### \$ varname4ID  ----  
