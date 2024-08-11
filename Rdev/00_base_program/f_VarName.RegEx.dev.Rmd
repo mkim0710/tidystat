@@ -264,8 +264,8 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ## \$ vec_names =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-vec_names = c("name", "varnamea", ".name.", "_name_", "2name2", "$name$", " name ")
-goal      = c("nm",   "varnamea", ".name.", "_name_", "2name2", "$nm$",   " nm ")
+vec_names = c("name", "varname2", ".name.", "_name_", "2name2", "$name$", " name ")
+goal      = c("nm",   "varname2", ".name.", "_name_", "2name2", "$nm$",   " nm ")
 df_vec_names = tibble(vec_names, goal)
 df_vec_names
 df_vec_names |> 
@@ -286,6 +286,7 @@ df_vec_names |> mutate(
     , vec_names |> str_replace_all("([\\b.])name([\\b.])", "\\1nm\\2")
     , vec_names |> str_replace_all("\\b([.]?)name([.]?)\\b", "\\1nm\\2")
     , vec_names |> str_replace_all("([^A-Za-z0-9_.])name([^A-Za-z0-9_.])", "\\1nm\\2")
+    , vec_names |> str_replace_all("(?<![\\w.])name(?![\\w.])", "nm")
     , vec_names %>% {gsub("(?<![\\w.])name(?![\\w.])", "nm", ., perl=TRUE)}
 ) |> rename_with(~str_replace_all(., fixed("str_replace_all(vec_names, "), "")) |>
     rename_with(~str_replace_all(., ', "[^"]*"\\)', "")) |> 
@@ -295,127 +296,7 @@ df_vec_names |> mutate(
 ```
   
   
-# @@ TRE vs PCRE vs ICU ----  
-# https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
 
-library(stringr)
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 1: Dot `.` Behavior
-cat('### Example 1: Dot `.` Behavior', '"    \n', sep="")
-text <- "line1\nline2
-line3"
-cat("  > ",'text', '\n    "', text, '"    \n', sep="")
-
-cat("  > ", 'gsub(".+", "replacement", text)', '\n    "', gsub(".+", "replacement", text), '"    \n', sep="")
-cat("  > ", 'gsub(".+", "replacement", text, perl = TRUE)', '\n    "', gsub(".+", "replacement", text, perl = TRUE), '"    \n', sep="")
-cat("  > ", 'gsub("(?s).+", "replacement", text, perl = TRUE)', '\n    "', gsub("(?s).+", "replacement", text, perl = TRUE), '"    \n', sep="")
-cat("  > ", 'str_replace_all(text, ".+", "replacement")', '\n    "', str_replace_all(text, ".+", "replacement"), '"    \n', sep="")
-
-
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 2: Bracket Expressions and Shorthand Classes
-cat('### Example 2: Bracket Expressions and Shorthand Classes', '"    \n', sep="")
-text <- "123abc\\d"
-cat("Raw string:", text, sep = "\n")
-
-cat("  > ", 'gsub("[\\d]", "X", text)', '\n    "', gsub("[\\d]", "X", text), '"    \n', sep="")
-cat("  > ", 'gsub("[\\d]", "X", text, perl = TRUE)', '\n    "', gsub("[\\d]", "X", text, perl = TRUE), '"    \n', sep="")
-cat("  > ", 'str_replace_all(text, "[\\d]", "X")', '\n    "', str_replace_all(text, "[\\d]", "X"), '"    \n', sep="")
-
-
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 3: Word Boundaries
-cat('### Example 3: Word Boundaries', '"    \n', sep="")
-text <- "word"
-cat("Raw string:", text, sep = "\n")
-
-cat("  > ", 'gsub("\\\\<", "~", text)', '\n    "', gsub("\\<", "~", text), '"    \n', sep="")
-cat("  > ", 'gsub("\\\\>", "~", text)', '\n    "', gsub("\\>", "~", text), '"    \n', sep="")
-cat("  > ", 'gsub("\\\\b", "~", text, perl = TRUE)', '\n    "', gsub("\\b", "~", text, perl = TRUE), '"    \n', sep="")
-cat("  > ", 'str_replace_all(text, "\\\\b", "~")', '\n    "', str_replace_all(text, "\\b", "~"), '"    \n', sep="")
-
-
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 4: Anchors
-cat('### Example 4: Anchors', '"    \n', sep="")
-text <- "pattern\npattern2"
-cat("Raw string:", text, sep = "\n")
-
-cat("  > ", 'gsub("^pattern", "replacement", text)', '\n    "', gsub("^pattern", "replacement", text), '"    \n', sep="")
-cat("  > ", 'gsub("^pattern", "replacement", text, perl = TRUE)', '\n    "', gsub("^pattern", "replacement", text, perl = TRUE), '"    \n', sep="")
-cat("  > ", 'gsub("(?m)^pattern", "replacement", text, perl = TRUE)', '\n    "', gsub("(?m)^pattern", "replacement", text, perl = TRUE), '"    \n', sep="")
-cat("  > ", 'str_replace_all(text, "^pattern", "replacement")', '\n    "', str_replace_all(text, "^pattern", "replacement"), '"    \n', sep="")
-cat("  > ", 'str_replace_all(text, "(?m)^pattern", "replacement")', '\n    "', str_replace_all(text, "(?m)^pattern", "replacement"), '"    \n', sep="")
-
-```
-
-
-### @ positive/negative lookforward/lookbehind  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-library(stringr)
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 1: Positive Lookahead:  PatternToMatch(?=PositiveLookahead)
-cat('### Example 1: Positive Lookahead:  PatternToMatch(?=PositiveLookahead)', '"    \n', sep="")
-
-# Using gsub with perl=TRUE
-cat("  > ", '"apple123banana" %>% gsub("\\d+(?=banana)", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("\\d+(?=banana)", "XYZ", ., perl=TRUE), '"    \n', sep="")
-
-# Using stringr::str_replace_all
-cat("  > ", '"apple123banana" |> str_replace_all("\\d+(?=banana)", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("\\d+(?=banana)", "XYZ"), '"    \n', sep="")
-
-
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 2: Negative Lookahead:  PatternToMatch(?!NegativeLookahead)
-cat('### Example 2: Negative Lookahead:  PatternToMatch(?!NegativeLookahead)', '"    \n', sep="")
-
-# Using gsub with perl=TRUE
-cat("  > ", '"apple123banana" %>% gsub("\\d+(?!banana)", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("\\d+(?!banana)", "XYZ", ., perl=TRUE), '"    \n', sep="")
-
-# Using stringr::str_replace_all
-cat("  > ", '"apple123banana" |> str_replace_all("\\d+(?!banana)", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("\\d+(?!banana)", "XYZ"), '"    \n', sep="")
-
-
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 3: Positive Lookbehind:  (?<=PositiveLookbehind)PatternToMatch
-cat('### Example 3: Positive Lookbehind:  (?<=PositiveLookbehind)PatternToMatch', '"    \n', sep="")
-
-# Using gsub with perl=TRUE
-cat("  > ", '"apple123banana" %>% gsub("(?<=apple)\\d+", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("(?<=apple)\\d+", "XYZ", ., perl=TRUE), '"    \n', sep="")
-
-# Attempt for positive lookbehind using stringr::str_replace_all 
-cat("  > ", '"apple123banana" |> str_replace_all("(?<=apple)\\d+", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("(?<=apple)\\d+", "XYZ"), '"    \n', sep="")
-
-# Using stringr::str_replace_all (not supported, so using a workaround)
-cat("  > ", '"apple123banana" |> str_replace_all("apple(\\d+)", "appleXYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("apple(\\d+)", "appleXYZ"), '"    \n', sep="")
-
-
-
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-### Example 4: Negative Lookbehind:  (?<!NegativeLookbehind)PatternToMatch
-cat('### Example 4: Negative Lookbehind:  (?<!NegativeLookbehind)PatternToMatch', '"    \n', sep="")
-
-# Using gsub with perl=TRUE
-cat("  > ", '"apple123banana" %>% gsub("(?<!apple)\\d+", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("(?<!apple)\\d+", "XYZ", ., perl=TRUE), '"    \n', sep="")
-
-# Attempt for negative lookbehind using stringr::str_replace_all 
-cat("  > ", '"apple123banana" |> str_replace_all("(?<!apple)\\d+", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("(?<!apple)\\d+", "XYZ"), '"    \n', sep="")
-
-
-# Using stringr::str_replace_all (not supported, so using a workaround)
-cat("Workaround needed: ICU does not support lookbehind, so you'll need to handle this differently..?", "  \n", sep="")
-
-```
-
-  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 

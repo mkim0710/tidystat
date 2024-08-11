@@ -263,7 +263,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 # @@ START) data example ----  
 ## \$  =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)\
+options(width=120)
 
 ```
   
@@ -272,7 +272,7 @@ options(width=120)\
 
   
 # @@ TRE vs PCRE vs ICU ----  
-# https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9
+## https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
