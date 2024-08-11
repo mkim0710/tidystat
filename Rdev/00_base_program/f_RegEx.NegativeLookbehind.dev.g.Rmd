@@ -261,39 +261,15 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
   
   
 # @@ START) data example ----  
-## \$ vec_names =  ----  
+## \$  =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-vec_names = c("name", "varnamea", ".name.", "_name_", "2name2", "$name$", " name ")
-goal      = c("nm",   "varnamea", ".name.", "_name_", "2name2", "$nm$",   " nm ")
-df_vec_names = tibble(vec_names, goal)
-df_vec_names
-df_vec_names |> 
-    t() |> as.data.frame() %>% {mutate(  ., `==goal` = apply(., 1, function(vec) paste0(as.numeric(vec == goal), collapse=""))  )} |>
-    rownames_to_column() |> as_tibble()
+options(width=120)\
+
 ```
   
   
 # @@ START) dev ----  
-# https://chatgpt.com/c/1c2ab05c-692c-4ab3-a420-53d8e76e896f
-## \% vec_names |> str_replace_all  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-df_vec_names |> mutate(
-    vec_names |> str_replace_all("name", "nm")
-    , vec_names |> str_replace_all("\\bname\\b", "nm")
-    , vec_names |> str_replace_all("([\\b.]?)name([\\b.]?)", "\\1nm\\2")
-    , vec_names |> str_replace_all("([\\b.])name([\\b.])", "\\1nm\\2")
-    , vec_names |> str_replace_all("\\b([.]?)name([.]?)\\b", "\\1nm\\2")
-    , vec_names |> str_replace_all("([^A-Za-z0-9_.])name([^A-Za-z0-9_.])", "\\1nm\\2")
-    , vec_names %>% {gsub("(?<![\\w.])name(?![\\w.])", "nm", ., perl=TRUE)}
-) |> rename_with(~str_replace_all(., fixed("str_replace_all(vec_names, "), "")) |>
-    rename_with(~str_replace_all(., ', "[^"]*"\\)', "")) |> 
-    rename_with(~str_replace_all(., fixed("\\\\"), "\\")) |> 
-    t() |> as.data.frame() %>% {mutate(  ., `==goal` = apply(., 1, function(vec) paste0(as.numeric(vec == goal), collapse=""))  )} |>
-    rownames_to_column() |> as_tibble()
-```
-  
+
   
 # @@ TRE vs PCRE vs ICU ----  
 # https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9
