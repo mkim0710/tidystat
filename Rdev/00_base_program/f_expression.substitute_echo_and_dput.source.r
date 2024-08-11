@@ -59,8 +59,8 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 # @@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-
-env1$f$f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE) {
+.tmp$objectname = "f_expression.substitute_echo_and_dput"
+.tmp$object = function(expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE) {
   # Get all character variables from .GlobalEnv
   char_vars = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(function(x) is.character(x) && length(x) == 1)]
   if(.print.intermediate) cat("  > char_vars == ", deparse(char_vars), "\n", sep="")
@@ -80,6 +80,10 @@ env1$f$f_expression.substitute_echo_and_dput <- function(expr_text, expression_e
   if (expression_equals_evaluation) sep_between_echo_and_dput = " == " else sep_between_echo_and_dput = "  \n    "
   cat("  > ", deparse(substituted_expr), sep_between_echo_and_dput, deparse(evaluated_expr), "\n", sep="")
 }
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+
+
 
 
 # DataSetName <- "analyticDF_time2event"
