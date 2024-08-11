@@ -1,0 +1,785 @@
+---
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:  
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document: 
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+header-includes: 
+  - \usepackage{fontspec}
+  - \newcommand{\setfallbackfont}[4]{
+      \IfFontExistsTF{#2}
+        {#1{#2}}
+        {\IfFontExistsTF{#3}
+          {#1{#3}}
+          {#1{#4}}}}
+  # - \setfallbackfont{\setmainfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  # - \setfallbackfont{\setsansfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+  - \usepackage[hangul]{kotex}
+  - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; }
+h1.title { font-size: 28px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+  
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+  
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# _______________
+<!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
+<!-- ##### Rstudio RMarkDown Shortcuts -->
+<!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
+<!-- https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html   -->
+<!-- Insert R chunk	Ctrl+Alt+I	Command+Option+I   -->
+<!-- Preview HTML	Ctrl+Shift+K	Command+Shift+K   -->
+<!-- Run all chunks above	Ctrl+Alt+P	Command+Option+P   -->
+<!-- Run current chunk	Ctrl+Alt+C	Command+Option+C   -->
+<!-- Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter   -->
+<!-- Run next chunk	Ctrl+Alt+N	Command+Option+N   -->
+<!-- Run all chunks	Ctrl+Alt+R	Command+Option+R   -->
+<!-- Go to next chunk/title	Ctrl+PgDown	Command+PgDown   -->
+<!-- Go to previous chunk/title	Ctrl+PgUp	Command+PgUp   -->
+<!-- Show/hide document outline	Ctrl+Shift+O	Command+Shift+O   -->
+<!-- F7 spell-check your document.   -->
+<!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
+<!--    -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
+
+  
+```{r setup, echo=FALSE, results="hide"}
+# ```{r setup, eval=TRUE, include=FALSE}
+if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
+    tidy.opts=list(width.cutoff=120), tidy=FALSE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+
+
+# ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
+# ```
+#   
+# <font size="3">\% env1</font>  
+#   
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+# str(env1$info$info_software_versions)
+
+
+###### env1\$info\$DocumentTitle1 ----  
+# ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    sep="")
+```
+  
+  
+```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+###### env1\$path ----  
+# cat(" getwd() == "); dput(getwd()) #----   
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \$ env1\$path\$CurrentSource.path.filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# env1$path$project_base = "Rproject_HEALS0215"
+# env1$path$data_suffix = "_01"
+# # env1$path$data_suffix = ""
+# env1$path$project_suffix = "GJ3"
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$.path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$.path4write = getwd()
+.path4read  = env1$path$.path4read
+.path4write = env1$path$.path4write
+# cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
+
+# @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
+.tmp |> str(max.level = 1, give.attr = FALSE)
+cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
+env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
+```
+  
+  
+```{r dfDIRsRecursive-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
+# #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
+# .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
+# env1$path$print_tree_path = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
+# # env1$path$print_tree_path |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
+# # env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
+# env1$path$print_tree_path_files.data |> cat("  \n", sep="")
+```
+  
+  
+```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
+# #### env1\$f_path.size_files() ----  
+# .sourcename = "f_path.size_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# #### env1\$f_DataSetName.read.checkEntity() ----  
+# .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# env1$f$f_path.size_files(.path4read = .path4read)
+```
+  
+  
+```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \$ env1\$path\$CurrentSource.path.filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \$ .GlobalEnv$.tmp = list() ====  
+.listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
+for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+    .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
+    if(.tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext)) {
+        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+        .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+    }
+}
+```
+  
+  
+# @@ START) data example ----  
+## \$ vec_names =  ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+vec_names = c("name", "varnamea", ".name.", "_name_", "2name2", "$name$", " name ")
+goal      = c("nm",   "varnamea", ".name.", "_name_", "2name2", "$nm$",   " nm ")
+df_vec_names = tibble(vec_names, goal)
+df_vec_names
+df_vec_names |> 
+    t() |> as.data.frame() %>% {mutate(  ., `==goal` = apply(., 1, function(vec) paste0(as.numeric(vec == goal), collapse=""))  )} |>
+    rownames_to_column() |> as_tibble()
+```
+  
+  
+# @@ START) dev ----  
+# https://chatgpt.com/c/1c2ab05c-692c-4ab3-a420-53d8e76e896f
+## \% vec_names |> str_replace_all  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+df_vec_names |> mutate(
+    vec_names |> str_replace_all("name", "nm")
+    , vec_names |> str_replace_all("\\bname\\b", "nm")
+    , vec_names |> str_replace_all("([\\b.]?)name([\\b.]?)", "\\1nm\\2")
+    , vec_names |> str_replace_all("([\\b.])name([\\b.])", "\\1nm\\2")
+    , vec_names |> str_replace_all("\\b([.]?)name([.]?)\\b", "\\1nm\\2")
+    , vec_names |> str_replace_all("([^A-Za-z0-9_.])name([^A-Za-z0-9_.])", "\\1nm\\2")
+    , vec_names %>% {gsub("(?<![\\w.])name(?![\\w.])", "nm", ., perl=TRUE)}
+) |> rename_with(~str_replace_all(., fixed("str_replace_all(vec_names, "), "")) |>
+    rename_with(~str_replace_all(., ', "[^"]*"\\)', "")) |> 
+    rename_with(~str_replace_all(., fixed("\\\\"), "\\")) |> 
+    t() |> as.data.frame() %>% {mutate(  ., `==goal` = apply(., 1, function(vec) paste0(as.numeric(vec == goal), collapse=""))  )} |>
+    rownames_to_column() |> as_tibble()
+```
+  
+  
+# @@ TRE vs PCRE vs ICU ----  
+# https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+library(stringr)
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 1: Dot `.` Behavior
+cat('### Example 1: Dot `.` Behavior', '"    \n', sep="")
+text <- "line1\nline2
+line3"
+cat("  > ",'text', '\n    "', text, '"    \n', sep="")
+
+cat("  > ", 'gsub(".+", "replacement", text)', '\n    "', gsub(".+", "replacement", text), '"    \n', sep="")
+cat("  > ", 'gsub(".+", "replacement", text, perl = TRUE)', '\n    "', gsub(".+", "replacement", text, perl = TRUE), '"    \n', sep="")
+cat("  > ", 'gsub("(?s).+", "replacement", text, perl = TRUE)', '\n    "', gsub("(?s).+", "replacement", text, perl = TRUE), '"    \n', sep="")
+cat("  > ", 'str_replace_all(text, ".+", "replacement")', '\n    "', str_replace_all(text, ".+", "replacement"), '"    \n', sep="")
+
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 2: Bracket Expressions and Shorthand Classes
+cat('### Example 2: Bracket Expressions and Shorthand Classes', '"    \n', sep="")
+text <- "123abc\\d"
+cat("Raw string:", text, sep = "\n")
+
+cat("  > ", 'gsub("[\\d]", "X", text)', '\n    "', gsub("[\\d]", "X", text), '"    \n', sep="")
+cat("  > ", 'gsub("[\\d]", "X", text, perl = TRUE)', '\n    "', gsub("[\\d]", "X", text, perl = TRUE), '"    \n', sep="")
+cat("  > ", 'str_replace_all(text, "[\\d]", "X")', '\n    "', str_replace_all(text, "[\\d]", "X"), '"    \n', sep="")
+
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 3: Word Boundaries
+cat('### Example 3: Word Boundaries', '"    \n', sep="")
+text <- "word"
+cat("Raw string:", text, sep = "\n")
+
+cat("  > ", 'gsub("\\\\<", "~", text)', '\n    "', gsub("\\<", "~", text), '"    \n', sep="")
+cat("  > ", 'gsub("\\\\>", "~", text)', '\n    "', gsub("\\>", "~", text), '"    \n', sep="")
+cat("  > ", 'gsub("\\\\b", "~", text, perl = TRUE)', '\n    "', gsub("\\b", "~", text, perl = TRUE), '"    \n', sep="")
+cat("  > ", 'str_replace_all(text, "\\\\b", "~")', '\n    "', str_replace_all(text, "\\b", "~"), '"    \n', sep="")
+
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 4: Anchors
+cat('### Example 4: Anchors', '"    \n', sep="")
+text <- "pattern\npattern2"
+cat("Raw string:", text, sep = "\n")
+
+cat("  > ", 'gsub("^pattern", "replacement", text)', '\n    "', gsub("^pattern", "replacement", text), '"    \n', sep="")
+cat("  > ", 'gsub("^pattern", "replacement", text, perl = TRUE)', '\n    "', gsub("^pattern", "replacement", text, perl = TRUE), '"    \n', sep="")
+cat("  > ", 'gsub("(?m)^pattern", "replacement", text, perl = TRUE)', '\n    "', gsub("(?m)^pattern", "replacement", text, perl = TRUE), '"    \n', sep="")
+cat("  > ", 'str_replace_all(text, "^pattern", "replacement")', '\n    "', str_replace_all(text, "^pattern", "replacement"), '"    \n', sep="")
+cat("  > ", 'str_replace_all(text, "(?m)^pattern", "replacement")', '\n    "', str_replace_all(text, "(?m)^pattern", "replacement"), '"    \n', sep="")
+
+```
+
+
+### @ positive/negative lookforward/lookbehind  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+library(stringr)
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 1: Positive Lookahead:  PatternToMatch(?=PositiveLookahead)
+cat('### Example 1: Positive Lookahead:  PatternToMatch(?=PositiveLookahead)', '"    \n', sep="")
+
+# Using gsub with perl=TRUE
+cat("  > ", '"apple123banana" %>% gsub("\\d+(?=banana)", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("\\d+(?=banana)", "XYZ", ., perl=TRUE), '"    \n', sep="")
+
+# Using stringr::str_replace_all
+cat("  > ", '"apple123banana" |> str_replace_all("\\d+(?=banana)", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("\\d+(?=banana)", "XYZ"), '"    \n', sep="")
+
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 2: Negative Lookahead:  PatternToMatch(?!NegativeLookahead)
+cat('### Example 2: Negative Lookahead:  PatternToMatch(?!NegativeLookahead)', '"    \n', sep="")
+
+# Using gsub with perl=TRUE
+cat("  > ", '"apple123banana" %>% gsub("\\d+(?!banana)", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("\\d+(?!banana)", "XYZ", ., perl=TRUE), '"    \n', sep="")
+
+# Using stringr::str_replace_all
+cat("  > ", '"apple123banana" |> str_replace_all("\\d+(?!banana)", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("\\d+(?!banana)", "XYZ"), '"    \n', sep="")
+
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 3: Positive Lookbehind:  (?<=PositiveLookbehind)PatternToMatch
+cat('### Example 3: Positive Lookbehind:  (?<=PositiveLookbehind)PatternToMatch', '"    \n', sep="")
+
+# Using gsub with perl=TRUE
+cat("  > ", '"apple123banana" %>% gsub("(?<=apple)\\d+", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("(?<=apple)\\d+", "XYZ", ., perl=TRUE), '"    \n', sep="")
+
+# Attempt for positive lookbehind using stringr::str_replace_all 
+cat("  > ", '"apple123banana" |> str_replace_all("(?<=apple)\\d+", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("(?<=apple)\\d+", "XYZ"), '"    \n', sep="")
+
+# Using stringr::str_replace_all (not supported, so using a workaround)
+cat("  > ", '"apple123banana" |> str_replace_all("apple(\\d+)", "appleXYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("apple(\\d+)", "appleXYZ"), '"    \n', sep="")
+
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+### Example 4: Negative Lookbehind:  (?<!NegativeLookbehind)PatternToMatch
+cat('### Example 4: Negative Lookbehind:  (?<!NegativeLookbehind)PatternToMatch', '"    \n', sep="")
+
+# Using gsub with perl=TRUE
+cat("  > ", '"apple123banana" %>% gsub("(?<!apple)\\d+", "XYZ", ., perl=TRUE)'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" %>% gsub("(?<!apple)\\d+", "XYZ", ., perl=TRUE), '"    \n', sep="")
+
+# Attempt for negative lookbehind using stringr::str_replace_all 
+cat("  > ", '"apple123banana" |> str_replace_all("(?<!apple)\\d+", "XYZ")'|>str_replace_all(fixed("\\"),"\\\\"), '\n    "', "apple123banana" |> str_replace_all("(?<!apple)\\d+", "XYZ"), '"    \n', sep="")
+
+
+# Using stringr::str_replace_all (not supported, so using a workaround)
+cat("Workaround needed: ICU does not support lookbehind, so you'll need to handle this differently..?", "  \n", sep="")
+
+```
+
+
+### @ negative lookbehind workaround in ICU  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+library(stringr)
+
+# Original string
+text <- "apple123banana 456orange 789apple101112"
+cat("  > ", 'text = "', text, '"', "\n", sep="")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+# Step 1: Use a non-lookbehind method to mark where the condition does not apply.
+# Temporarily mark parts of the string where the lookbehind condition is true
+# In this case, we mark "apple123" and "apple101112" with "TOBEIGNORED"
+text_temp <- str_replace_all(text, "(apple\\d+)", "TOBEIGNORED")
+cat("\n > ", 'Step 1: Temporarily mark parts with lookbehind condition', "\n", text_temp, "\n", sep="")
+
+# Step 2: Replace all remaining digits that are not marked
+text_replaced <- str_replace_all(text_temp, "\\d+", "XYZ")
+cat("\n > ", 'Step 2: Replace all remaining digits that are not marked', "\n", text_replaced, "\n", sep="")
+
+# Step 3: Restore the original digits from the marked parts
+final_result <- str_replace_all(text_replaced, "TOBEIGNORED", function(x) str_extract(text, "apple\\d+"))
+cat("\n > ", 'Step 3: Restore original digits from marked parts', "\n", final_result, "\n", sep="")
+
+# Expected output for Step 3:
+# "apple123banana XYZorange XYZapple101112"
+
+
+
+# Expected output for Step 1:
+# "appleTOBEIGNORED123banana 456orange 789appleTOBEIGNORED101112"
+# Expected output for Step 2:
+# "appleTOBEIGNOREDXYZbanana XYZorange XYZappleTOBEIGNOREDXYZ"
+# Expected output for Step 3:
+# "apple123banana XYZorange XYZapple101112"
+
+```
+  
+  
+
+### @ negative lookbehind workaround in ICU  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+library(stringr)
+
+# Original string
+text <- "apple123banana 456orange 789apple101112"
+cat("  > ", 'text = "', text, '"', "\n", sep="")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+# Step 1: Use a non-lookbehind method to mark where the condition does not apply.
+# Temporarily mark parts of the string where the lookbehind condition is true.
+matches <- str_extract_all(text, "apple\\d+")[[1]]
+text_temp <- text
+for (i in seq_along(matches)) {
+  text_temp <- str_replace(text_temp, matches[i], paste0("TOBEIGNORED", i))
+}
+cat("\n > ", 'Step 1: Temporarily mark parts with lookbehind condition', "\n", text_temp, "\n", sep="")
+
+# Step 2: Replace all remaining digits that are not marked
+text_replaced <- str_replace_all(text_temp, "\\d+", "XYZ")
+cat("\n > ", 'Step 2: Replace all remaining digits that are not marked', "\n", text_replaced, "\n", sep="")
+
+# Step 3: Restore the original digits from the marked parts
+for (i in seq_along(matches)) {
+  text_replaced <- str_replace(text_replaced, paste0("TOBEIGNORED", i), matches[i])
+}
+cat("\n > ", 'Step 3: Restore original digits from marked parts', "\n", text_replaced, "\n", sep="")
+
+# Expected output for Step 3:
+# "apple123banana XYZorange XYZapple101112"
+
+
+
+# Expected output for Step 1:
+# "appleTOBEIGNORED123banana 456orange 789appleTOBEIGNORED101112"
+# Expected output for Step 2:
+# "appleTOBEIGNOREDXYZbanana XYZorange XYZappleTOBEIGNOREDXYZ"
+# Expected output for Step 3:
+# "apple123banana XYZorange XYZapple101112"
+
+```
+  
+  
+  
+
+### @ negative lookbehind workaround in ICU  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+library(stringr)
+
+# Original string
+text <- "apple123banana 456orange 789apple101112"
+cat("  > ", 'text = "', text, '"', "\n", sep="")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+# Step 1: Split the string at every occurrence of "apple" (to handle all "apple"-prefixed segments separately)
+parts <- str_split(text, "(apple\\d*)", simplify = TRUE)
+cat("\n > ", 'Step 1: Split the string at "apple" occurrences', "\n", deparse(parts), "\n", sep="")
+
+# Step 2: Replace digits only in parts that are not preceded by "apple"
+# Note: The first part (parts[1]) is not preceded by "apple", so we replace there
+#       Any subsequent parts that do not start with "apple" should be replaced
+for (i in seq_along(parts)) {
+  if (i == 1 || parts[i] == "" || !str_starts(parts[i], "apple")) {
+    parts[i] <- str_replace_all(parts[i], "\\d+", "XYZ")
+  }
+}
+cat("\n > ", 'Step 2: Replace digits in parts not preceded by "apple"', "\n", parts, "\n", sep="")
+
+# Step 3: Recombine the string, ensuring to reattach the "apple"-prefixed parts correctly
+# Since str_split removed the "apple" parts, we reinsert them where necessary
+final_result <- paste0(parts[1], paste0("apple", parts[-1]), collapse = "")
+cat("\n > ", 'Step 3: Recombine the parts', "\n", final_result, "\n", sep="")
+
+# Expected output:
+# "apple123banana XYZorange XYZapple101112"
+
+
+
+
+# Expected output for Step 1:
+# "appleTOBEIGNORED123banana 456orange 789appleTOBEIGNORED101112"
+# Expected output for Step 2:
+# "appleTOBEIGNOREDXYZbanana XYZorange XYZappleTOBEIGNOREDXYZ"
+# Expected output for Step 3:
+# "apple123banana XYZorange XYZapple101112"
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(stringr)
+
+# Original string
+text <- "apple123banana 456orange 789apple101112"
+
+# Step 1: Extract all segments where we either have "apple" followed by digits or any other text
+segments <- str_match_all(text, "(apple\\d+|[^apple]+)")[[1]]
+cat("\n > ", 'Step 1: Extract segments with and without "apple"', "\n", deparse(segments), "\n", sep="")
+
+# Step 2: Replace digits only in segments that do not start with "apple"
+for (i in seq_along(segments)) {
+  if (!str_starts(segments[i], "apple")) {
+    segments[i] <- str_replace_all(segments[i], "\\d+", "XYZ")
+  }
+}
+cat("\n > ", 'Step 2: Replace digits in segments not preceded by "apple"', "\n", deparse(segments), "\n", sep="")
+
+# Step 3: Recombine the segments
+final_result <- paste(segments, collapse = "")
+cat("\n > ", 'Step 3: Recombine the segments', "\n", final_result, "\n", sep="")
+
+# Expected output:
+# "apple123banana XYZorange XYZapple101112"
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(stringr)
+
+# Original string
+text <- "apple123banana 456orange 789apple101112"
+
+# Step 1: Split the string by occurrences of "apple" followed by digits
+# This will separate the string into parts that are either prefixed with "apple" or not
+parts <- str_split(text, "(apple\\d+)", simplify = TRUE)
+cat("\n > ", 'Step 1: Split the string at "apple" occurrences', "\n", parts, "\n", sep="")
+
+# Step 2: Replace digits only in the parts that are not preceded by "apple"
+# We should replace only in segments that are not part of "apple" prefixed parts
+for (i in seq_along(parts)) {
+  if (parts[i] != "" && !str_starts(parts[i], "apple")) {
+    parts[i] <- str_replace_all(parts[i], "\\d+", "XYZ")
+  }
+}
+cat("\n > ", 'Step 2: Replace digits in parts not preceded by "apple"', "\n", parts, "\n", sep="")
+
+# Step 3: Recombine the string, inserting back the "apple" prefixed parts
+# Recombine the parts to form the final string
+final_result <- paste(parts, collapse = "")
+cat("\n > ", 'Step 3: Recombine the parts', "\n", final_result, "\n", sep="")
+
+# Expected output:
+# "apple123banana XYZorange XYZapple101112"
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# @@ START) dev) perl=TRUE ----  
+# https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9
+## \% vec_names |> str_replace_all  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+df_vec_names |> mutate(
+    vec_names %>% {gsub("(?<![\\w.])name(?![\\w.])", "nm", ., perl=TRUE)}
+) |> rename_with(~str_replace_all(., fixed("str_replace_all(vec_names, "), "")) |>
+    rename_with(~str_replace_all(., ', "[^"]*"\\)', "")) |> 
+    rename_with(~str_replace_all(., fixed("\\\\"), "\\")) |> 
+    t() |> as.data.frame() %>% {mutate(  ., `==goal` = apply(., 1, function(vec) paste0(as.numeric(vec == goal), collapse=""))  )} |>
+    rownames_to_column() |> as_tibble()
+```
+  
+  
+# @@ START) function ----  
+## \% |> function_name
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# @@ END ----  
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# @@ END ----  
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+```
+  
+  
+```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
+CODEBOOK$DataSetNames |> names() |> paste0(collapse = "\n") |> cat('"    \n', sep="")
+.objectname = CODEBOOK$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
+# system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
+# system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))
+# # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))))
+# # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz" ))
+# # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# # system.time(openxlsx::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
+# # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(.objectname, ".xlsx"))
+```
+  
+  
+```{r createBackup, eval=TRUE, include=FALSE}
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    # if (.Platform$OS.type == "windows") {
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+    # }
+}
+```
+  
+  
+```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all("[ ()]","-")
+env1$path$CurrentSource.path.filename.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all("[ ()]","-")
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    if (.Platform$OS.type == "windows") {
+        .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
+        for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+
+        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_format = "pdf_document") \n')
+        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        try(env1$env.internal$f_file_PDF.sumatra(env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}))
+    }
+}
+# cat(' Sys.setenv(PARENT_RENDERING = "YES"); "',env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)},'" |> rmarkdown::render(output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")',"\n", 
+#     ' if (.Platform$OS.type == "windows") { env1$env.internal$f_file_PDF.sumatra("',env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)},'") } else { browseURL("',env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)},'") }',"\n",
+#     ' env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)},'", .backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)',"  \n", sep="")
+# cat("    ________________________________________________________________________    \n")
+env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% cat('  Sys.setenv(PARENT_RENDERING = "YES"); "',.,'" |> rmarkdown::render(output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep=""); env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal$f_filename.ext.createBackup(.backup_to_path="-backup", timeFormat="%y%m%d", overwrite=TRUE)  \n', sep=""); env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)} %>% cat('  "',.,'" |> env1$env.internal$f_URL.open_in_edge_app()  \n', sep="")
+```
+  
+  
+```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (.Platform$OS.type == "windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat(" * To revert to the last commited file, run the following terminal command:\n", 
+    '"git checkout -- ',env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"\n",
+    '"git checkout -- ',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)},'" |> system(intern=TRUE)',"  \n", sep="")
+```
+  
+  
