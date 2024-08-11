@@ -60,11 +60,8 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
-
-f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE) {
+env1$f$f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE) {
   # Get all character variables from .GlobalEnv
-  # env_vars <- as.list(.GlobalEnv)
-  # char_vars <- env_vars[map_lgl(env_vars, is.character)]
   char_vars = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(function(x) is.character(x) && length(x) == 1)]
   if(.print.intermediate) cat("  > char_vars == ", deparse(char_vars), "\n", sep="")
   
@@ -77,17 +74,10 @@ f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_e
     substituted_text <- gsub(pattern, paste0('"', char_vars[[name]], '"'), substituted_text, perl = TRUE)
   }
 
-  # Parse the substituted text into an R expression
   substituted_expr <- parse(text = substituted_text)[[1]]
-  
-  # Evaluate the substituted expression
   evaluated_expr <- eval(substituted_expr, envir = .GlobalEnv)
   
-  # return(list(substituted_expr = substituted_expr, evaluated_expr = evaluated_expr))
-  
-  
   if (expression_equals_evaluation) sep_between_echo_and_dput = " == " else sep_between_echo_and_dput = "  \n    "
-  
   cat("  > ", deparse(substituted_expr), sep_between_echo_and_dput, deparse(evaluated_expr), "\n", sep="")
 }
 
@@ -95,14 +85,14 @@ f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_e
 # DataSetName <- "analyticDF_time2event"
 # analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 # 
-# "dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
-# "dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
-# # > "dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
+# "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
+# "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
+# # > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
 # #   > char_vars == list(DataSetName = "analyticDF_time2event")
 # #   > pattern == "(?<![\\w.])DataSetName(?![\\w.])"
 # #   > dim(get("analyticDF_time2event"))  
 # #     c(24L, 12L)
-# # > "dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
+# # > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
 # #   > dim(get("analyticDF_time2event")) == c(24L, 12L)
 
 

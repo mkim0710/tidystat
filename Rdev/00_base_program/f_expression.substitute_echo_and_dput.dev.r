@@ -150,14 +150,14 @@ if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(
 DataSetName <- "analyticDF_time2event"
 analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 
-"dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
-"dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
-# > "dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
+"dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
+"dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
+# > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
 #   > char_vars == list(DataSetName = "analyticDF_time2event")
 #   > pattern == "(?<![\\w.])DataSetName(?![\\w.])"
 #   > dim(get("analyticDF_time2event"))  
 #     c(24L, 12L)
-# > "dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
+# > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
 #   > dim(get("analyticDF_time2event")) == c(24L, 12L)
 
 
