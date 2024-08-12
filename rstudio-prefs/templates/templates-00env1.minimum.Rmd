@@ -481,12 +481,12 @@ if(exists(paste0(DataSetName,".Date"))) DataSetName2 = paste0(DataSetName,".Date
 .vec_nlevel_lt20.value_number.unique %>% dput
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-assign( paste0(DataSetName2,".NA"), get(DataSetName2) |> mutate_if(is.factor, as.character) )
+assign( paste0(DataSetName2,".NA"), get(DataSetName2) |> mutate_if(is.factor, as.character) ); CODEBOOK$DataSetNames[[paste0(DataSetName2,".NA")]] = list(DataSetName = paste0(DataSetName2,".NA"))
 .vec_value4NA = c( "", "N/A", "NA"); cat("    ",".vec_value4NA == ",deparse(.vec_value4NA),"  \n", sep="")
 for (.value4NA in .vec_value4NA) {
     assign( paste0(DataSetName2,".NA"), get(paste0(DataSetName2,".NA")) |> mutate_if(is.character, na_if, .value4NA) )
 }
-assign( paste0(DataSetName2,".NA",".rmAllNA"), get(paste0(DataSetName2,".NA")) |> select_if(function(vec) !all(is.na(vec))) )
+assign( paste0(DataSetName2,".NA",".rmAllNA"), get(paste0(DataSetName2,".NA")) |> select_if(function(vec) !all(is.na(vec))) ); CODEBOOK$DataSetNames[[paste0(DataSetName2,".NA",".rmAllNA")]] = list(DataSetName = paste0(DataSetName2,".NA",".rmAllNA"))
 cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="") 
 cat(" dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(paste0(DataSetName2,".NA",".rmAllNA")))),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
