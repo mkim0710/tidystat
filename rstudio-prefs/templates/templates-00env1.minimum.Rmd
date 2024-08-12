@@ -473,7 +473,7 @@ options(width=120)
 .sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
   
-if(exists(paste0(DataSetName2))) DataSetName2 = paste0(DataSetName2) else DataSetName2 = DataSetName
+if(exists(paste0(DataSetName,".Date"))) DataSetName2 = paste0(DataSetName,".Date") else DataSetName2 = DataSetName
 assign( paste0(DataSetName2,".NA"), get(DataSetName2) |> mutate_if(is.factor, as.character) |> mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> as_tibble() )
 assign( paste0(DataSetName2,".NA",".rmAllNA"), get(paste0(DataSetName2,".NA")) |> select_if(function(vec) !all(is.na(vec))) )
 cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="") 
