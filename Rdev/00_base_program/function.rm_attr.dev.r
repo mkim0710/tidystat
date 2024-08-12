@@ -171,7 +171,7 @@ list.sas7bdat = list.sas7bdat2
 
 # @ end ----  
 objectname = "list.sas7bdat"
-.path4write = getwd()
+.path4write = env1$path$.path4write
 system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
 
 
