@@ -313,7 +313,7 @@ translate_korean_to_english <- function(korean_text) {
   
   # Retry logic to ensure the translation is ready before reading
   translated_text <- NULL
-  retries <- 5
+  retries <- 3
   for (i in 1:retries) {
     Sys.sleep(5)  # Wait for 5 seconds before each retry
     translated_text <- read_sheet(sheet, range = "B1", col_names = FALSE)
@@ -343,6 +343,107 @@ print(translated_text)
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+translate_korean_to_english <- function(korean_text) {
+  # Load necessary packages
+  if (!requireNamespace("googlesheets4", quietly = TRUE)) {
+    install.packages("googlesheets4")
+  }
+  if (!requireNamespace("googledrive", quietly = TRUE)) {
+    install.packages("googledrive")
+  }
+  library(googlesheets4)
+  library(googledrive)
+  
+  # Authorize Google Sheets and Drive access with specified email
+  gs4_auth(email = "mhkim710@gmail.com")
+  drive_auth(email = "mhkim710@gmail.com")
+  
+  # Create a new Google Sheet
+  sheet <- gs4_create("TranslationSheet")
+  
+  # Write Korean text to the first cell (A1)
+  data <- data.frame(Text = korean_text)
+  sheet_write(data, ss = sheet, sheet = "Sheet1")
+  
+  # Write the GOOGLETRANSLATE function directly into the desired cell
+  formula_data <- data.frame(Text = '=GOOGLETRANSLATE(A1, "ko", "en")')
+  range_write(ss = sheet, data = formula_data, sheet = "Sheet1", range = "B1")
+  
+  # Print the Google Sheet ID and URL
+  sheet_id <- as_id(sheet)
+  sheet_url <- paste0("https://docs.google.com/spreadsheets/d/", sheet_id)
+  message("Please check the Google Sheet manually at this URL: ", sheet_url)
+  
+  # Pause the execution to allow manual inspection
+  readline(prompt = "Press [Enter] key after you've checked the Google Sheet...")
+  
+  # Read the translated text from the Google Sheet
+  translated_text <- read_sheet(sheet, range = "B1", col_names = FALSE)
+  
+  # Clean up by deleting the Google Sheet using googledrive package
+  drive_trash(sheet_id)
+  
+  # Return the translated text
+  return(translated_text[[1, 1]])
+}
+
+# Example usage of the function
+translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
+print(translated_text)
+
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+translate_korean_to_english <- function(korean_text) {
+  # Load necessary packages
+  if (!requireNamespace("googlesheets4", quietly = TRUE)) {
+    install.packages("googlesheets4")
+  }
+  if (!requireNamespace("googledrive", quietly = TRUE)) {
+    install.packages("googledrive")
+  }
+  library(googlesheets4)
+  library(googledrive)
+  
+  # Authorize Google Sheets and Drive access with specified email
+  gs4_auth(email = "mhkim710@gmail.com")
+  drive_auth(email = "mhkim710@gmail.com")
+  
+  # Create a new Google Sheet
+  sheet <- gs4_create("TranslationSheet")
+  
+  # Write Korean text to the second row, first cell (A2)
+  data <- data.frame(Text = korean_text)
+  sheet_write(data, ss = sheet, sheet = "Sheet1", range = "A2")
+  
+  # Write the GOOGLETRANSLATE formula directly into the second row, second cell (B2)
+  formula_data <- data.frame(Text = '=GOOGLETRANSLATE(A2, "ko", "en")')
+  range_write(ss = sheet, data = formula_data, sheet = "Sheet1", range = "B2", col_names = FALSE)
+  
+  # Print the Google Sheet ID and URL
+  sheet_id <- as_id(sheet)
+  sheet_url <- paste0("https://docs.google.com/spreadsheets/d/", sheet_id)
+  message("Please check the Google Sheet manually at this URL: ", sheet_url)
+  
+  # Pause the execution to allow manual inspection
+  readline(prompt = "Press [Enter] key after you've checked the Google Sheet...")
+  
+  # Read the translated text from the Google Sheet
+  translated_text <- read_sheet(sheet, range = "B2", col_names = FALSE)
+  
+  # Clean up by deleting the Google Sheet using googledrive package
+  drive_trash(sheet_id)
+  
+  # Return the translated text
+  return(translated_text[[1, 1]])
+}
+
+# Example usage of the function
+translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
+print(translated_text)
+
 
 ```
   
@@ -355,18 +456,121 @@ options(width=120)
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+translate_korean_to_english <- function(korean_text) {
+  # Load necessary packages
+  if (!requireNamespace("googlesheets4", quietly = TRUE)) {
+    install.packages("googlesheets4")
+  }
+  if (!requireNamespace("googledrive", quietly = TRUE)) {
+    install.packages("googledrive")
+  }
+  library(googlesheets4)
+  library(googledrive)
+  
+  # Authorize Google Sheets and Drive access with specified email
+  gs4_auth(email = "mhkim710@gmail.com")
+  drive_auth(email = "mhkim710@gmail.com")
+  
+  # Create a new Google Sheet
+  sheet <- gs4_create("TranslationSheet")
+  
+  # Get the full sheet details
+  sheet_details <- gs4_get(sheet)
+  
+  # Get the name of the first sheet (in case it's not "Sheet1")
+  sheet_name <- sheet_details$sheets$name[1]
+  
+  # Write Korean text to the second row, first cell (A2)
+  data <- data.frame(Text = korean_text)
+  range_write(ss = sheet, data = data, sheet = sheet_name, range = "A2", col_names = FALSE)
+  
+  # Write the GOOGLETRANSLATE formula directly into the second row, second cell (B2)
+  formula_data <- data.frame(Text = '=GOOGLETRANSLATE(A2, "ko", "en")')
+  range_write(ss = sheet, data = formula_data, sheet = sheet_name, range = "B2", col_names = FALSE)
+  
+  # Print the Google Sheet ID and URL
+  sheet_id <- as_id(sheet)
+  sheet_url <- paste0("https://docs.google.com/spreadsheets/d/", sheet_id)
+  message("Please check the Google Sheet manually at this URL: ", sheet_url)
+  
+  # Pause the execution to allow manual inspection
+  readline(prompt = "Press [Enter] key after you've checked the Google Sheet...")
+  
+  # Read the translated text from the Google Sheet
+  translated_text <- read_sheet(sheet, range = "B2", col_names = FALSE)
+  
+  # Clean up by deleting the Google Sheet using googledrive package
+  drive_trash(sheet_id)
+  
+  # Return the translated text
+  return(translated_text[[1, 1]])
+}
+
+# Example usage of the function
+translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
+print(translated_text)
+
 
 ```
   
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+translate_korean_to_english <- function(korean_text) {
+  # Load necessary packages
+  if (!requireNamespace("googlesheets4", quietly = TRUE)) {
+    install.packages("googlesheets4")
+  }
+  if (!requireNamespace("googledrive", quietly = TRUE)) {
+    install.packages("googledrive")
+  }
+  library(googlesheets4)
+  library(googledrive)
+  
+  # Authorize Google Sheets and Drive access with specified email
+  gs4_auth(email = "mhkim710@gmail.com")
+  drive_auth(email = "mhkim710@gmail.com")
+  
+  # Create a new Google Sheet
+  sheet <- gs4_create("TranslationSheet")
+  
+  # Get the full sheet details
+  sheet_details <- gs4_get(sheet)
+  
+  # Get the name of the first sheet (in case it's not "Sheet1")
+  sheet_name <- sheet_details$sheets$name[1]
+  
+  # Write Korean text to the second row, first cell (A2)
+  data <- data.frame(Text = korean_text)
+  range_write(ss = sheet, data = data, sheet = sheet_name, range = "A2", col_names = FALSE)
+  
+  # Prepare the GOOGLETRANSLATE formula
+  formula_data <- data.frame(Text = gs4_formula('=GOOGLETRANSLATE(A2, "ko", "en")'))
+  
+  # Write the formula into the second row, second cell (B2)
+  range_write(ss = sheet, data = formula_data, sheet = sheet_name, range = "B2", col_names = FALSE)
+  
+  # Print the Google Sheet ID and URL
+  sheet_id <- as_id(sheet)
+  sheet_url <- paste0("https://docs.google.com/spreadsheets/d/", sheet_id)
+  message("Please check the Google Sheet manually at this URL: ", sheet_url)
+  
+  # Pause the execution to allow manual inspection
+  readline(prompt = "Press [Enter] key after you've checked the Google Sheet...")
+  
+  # Read the translated text from the Google Sheet
+  translated_text <- read_sheet(sheet, range = "B2", col_names = FALSE)
+  
+  # Clean up by deleting the Google Sheet using googledrive package
+  drive_trash(sheet_id)
+  
+  # Return the translated text
+  return(translated_text[[1, 1]])
+}
 
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
+# Example usage of the function
+translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
+print(translated_text)
 
 ```
   
