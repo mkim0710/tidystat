@@ -260,19 +260,8 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
-# @@ CODEBOOK ----  
 ```{r CODEBOOK0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-# \$ .GlobalEnv$CODEBOOK = list() ====  
-if(file.exists(file.path(.path4read, "CODEBOOK.rds"))) { 
-    CODEBOOK = read_rds(file.path(.path4write, "CODEBOOK.rds")) 
-} else {
-    if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
-}
-.parentname = "CODEBOOK"
-for (.sublistname in c("MetaData", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
-    if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-}
-.CODEBOOK0 = CODEBOOK
+
 ```
   
 # @@ START) source ----  

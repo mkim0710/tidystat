@@ -304,9 +304,59 @@ if(file.exists(file.path(.path4read, "CODEBOOK.rds"))) {
     if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
 }
 .parentname = "CODEBOOK"
-for (.sublistname in c("MetaData", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+# for (.sublistname in c("MetaData", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("MetaData", "DataSetNames", "VarNames", "VarNames.select", "ModelList")) {
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
+
+### @ CODEBOOK$ModelList  ====   
+.parentname = "CODEBOOK"; 
+.sublistname = "ModelList"; 
+for (.sub2listname in c("time2DM", "time2HTN", "time2DL", "time2MetS")) {
+    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+}
+
+### @ CODEBOOK$VarNames  ====   
+.parentname = "CODEBOOK"; 
+.sublistname = "VarNames"; 
+for (.sub2listname in c("Event", "Mediator", "Exposure", "PMHx", "Tx", "FHx", "Exam", "Social", "Behavioral")) {
+    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]] = list() }
+}
+
+#### @ CODEBOOK$VarNames$Event  ====   
+.parentname = "CODEBOOK"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Event"; 
+for (.sub3listname in c("DM", "HTN", "DL", "MetS")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ CODEBOOK$VarNames$Mediator  ====   
+.parentname = "CODEBOOK"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Mediator"; 
+for (.sub3listname in c("BMI", "Waist")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ CODEBOOK$VarNames$Exposure  ====   
+.parentname = "CODEBOOK"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Exposure"; 
+for (.sub3listname in c("Exercise", "Diet", "Alcohol", "Smoking")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ CODEBOOK$VarNames$Demographic  ====   
+.parentname = "CODEBOOK"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Social"; 
+for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marriage")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+CODEBOOK %>% str
+## @ .CODEBOOK0 ====
 .CODEBOOK0 = CODEBOOK
 ```
   
