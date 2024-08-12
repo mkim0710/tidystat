@@ -261,25 +261,68 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
   
   
 # @@ START) data example ----  
+https://chatgpt.com/c/4f1ce650-0362-497e-882b-d48792bf6b9a
+## \% |> extract_non_ascii_with_codes_df()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+extract_non_ascii_with_codes_df <- function(text) {
+  # Use a regular expression to identify non-ASCII characters
+  non_ascii <- gregexpr("[^\\x00-\\x7F]", text, perl = TRUE)
+  
+  # Extract the matched characters
+  result <- regmatches(text, non_ascii)
+  
+  # Combine the extracted characters into a single vector
+  extracted_chars <- unlist(result)
+  
+  # Convert characters to their Unicode code points
+  unicode_codes <- sapply(extracted_chars, function(char) {
+    sprintf("\\u%04X", utf8ToInt(char))
+  })
+  
+  # Create a data frame
+  df <- data.frame(Character = extracted_chars, Unicode_Code = unicode_codes, stringsAsFactors = FALSE)
+  
+  return(df)
+}
+
+
+```
+
 ## \$ text_with_rounded_numbers3 =  ----  
-## \$ text_with_numbers_with_a_period =  ----  
-## \$ text_with_numbers_inside_parenthesis =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
 text_with_rounded_numbers2 <- "ⓞ①②③④⑤⑥⑦⑧⑨"
 text_with_rounded_numbers2 %>% dput
+text_with_rounded_numbers2 %>% extract_non_ascii_with_codes_df()
 
 text_with_rounded_numbers3 = "⓪ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ㉑ ㉒ ㉓ ㉔ ㉕ ㉖ ㉗ ㉘ ㉙ ㉚ ㉛ ㉜ ㉝ ㉞ ㉟ ㊱ ㊲ ㊳ ㊴ ㊵ ㊶ ㊷ ㊸ ㊹ ㊺ ㊻ ㊼ ㊽ ㊾ ㊿ 🄋 ➀ ➁ ➂ ➃ ➄ ➅ ➆ ➇ ➈ ➉ ⓿ ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ ⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ㉈ ㉉ ㉊ ㉋ ㉌ ㉍ ㉎ ㉏ "
 text_with_rounded_numbers3 %>% dput
-
+text_with_rounded_numbers3 %>% extract_non_ascii_with_codes_df()
+```
+  
+## \$ text_with_numbers_with_a_period =  ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
 text_with_numbers_with_a_period = "🄀 ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛"
 text_with_numbers_with_a_period %>% dput
+text_with_numbers_with_a_period %>% extract_non_ascii_with_codes_df()
+```
 
+
+## \$ text_with_numbers_inside_parenthesis =  ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
 text_with_numbers_inside_parenthesis = "⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇" 
 text_with_numbers_inside_parenthesis %>% dput
+text_with_numbers_inside_parenthesis %>% extract_non_ascii_with_codes_df()
+
 ```
+
+
+
   
   
 # @@ START) dev ----  
@@ -353,21 +396,279 @@ text_with_rounded_numbers3 |> convert_unicode_numbers()
 ```
   
   
+## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+convert_unicode_numbers <- function(input_text) {
+  # Define a named vector to map Unicode number variants to standard digits
+  unicode_map <- c(
+    # Superscript Numbers
+    "\u2070" = "0", "\u00B9" = "1", "\u00B2" = "2", "\u00B3" = "3", "\u2074" = "4", 
+    "\u2075" = "5", "\u2076" = "6", "\u2077" = "7", "\u2078" = "8", "\u2079" = "9",
+    
+    # Subscript Numbers
+    "\u2080" = "0", "\u2081" = "1", "\u2082" = "2", "\u2083" = "3", "\u2084" = "4", 
+    "\u2085" = "5", "\u2086" = "6", "\u2087" = "7", "\u2088" = "8", "\u2089" = "9",
+    
+    # Parenthesized Numbers
+    "\u2460" = "1", "\u2461" = "2", "\u2462" = "3", "\u2463" = "4", "\u2464" = "5",
+    "\u2465" = "6", "\u2466" = "7", "\u2467" = "8", "\u2468" = "9", "\u2469" = "10",
+    "\u246A" = "11", "\u246B" = "12", "\u246C" = "13", "\u246D" = "14", "\u246E" = "15",
+    "\u246F" = "16", "\u2470" = "17", "\u2471" = "18", "\u2472" = "19", "\u2473" = "20",
+    
+    # Circled Numbers
+    "\u24EA" = "0", "\u2460" = "1", "\u2461" = "2", "\u2462" = "3", "\u2463" = "4",
+    "\u2464" = "5", "\u2465" = "6", "\u2466" = "7", "\u2467" = "8", "\u2468" = "9",
+    "\u2469" = "10", "\u246A" = "11", "\u246B" = "12", "\u246C" = "13", "\u246D" = "14",
+    "\u246E" = "15", "\u246F" = "16", "\u2470" = "17", "\u2471" = "18", "\u2472" = "19",
+    "\u2473" = "20",
+    
+    # Negative Circled Numbers
+    "\u2776" = "1", "\u2777" = "2", "\u2778" = "3", "\u2779" = "4", "\u277A" = "5",
+    "\u277B" = "6", "\u277C" = "7", "\u277D" = "8", "\u277E" = "9", "\u277F" = "10",
+    
+    # Double Circled Numbers
+    "\u24F5" = "1", "\u24F6" = "2", "\u24F7" = "3", "\u24F8" = "4", "\u24F9" = "5",
+    "\u24FA" = "6", "\u24FB" = "7", "\u24FC" = "8", "\u24FD" = "9", "\u24FE" = "10",
+    
+    # Dingbat Circled Numbers
+    "\u2780" = "1", "\u2781" = "2", "\u2782" = "3", "\u2783" = "4", "\u2784" = "5",
+    "\u2785" = "6", "\u2786" = "7", "\u2787" = "8", "\u2788" = "9", "\u2789" = "10",
+    
+    # Fullwidth Numbers
+    "\uFF10" = "0", "\uFF11" = "1", "\uFF12" = "2", "\uFF13" = "3", "\uFF14" = "4",
+    "\uFF15" = "5", "\uFF16" = "6", "\uFF17" = "7", "\uFF18" = "8", "\uFF19" = "9",
 
+    # Additional Parenthesized Numbers
+    "\u2474" = "1", "\u2475" = "2", "\u2476" = "3", "\u2477" = "4", "\u2478" = "5",
+    "\u2479" = "6", "\u247A" = "7", "\u247B" = "8", "\u247C" = "9", "\u247D" = "10",
+    "\u247E" = "11", "\u247F" = "12", "\u2480" = "13", "\u2481" = "14", "\u2482" = "15",
+    "\u2483" = "16", "\u2484" = "17", "\u2485" = "18", "\u2486" = "19", "\u2487" = "20",
+
+    # Additional Circled Numbers
+    "\u24EB" = "0", "\u24EC" = "1", "\u24ED" = "2", "\u24EE" = "3", "\u24EF" = "4",
+    "\u24F0" = "5", "\u24F1" = "6", "\u24F2" = "7", "\u24F3" = "8", "\u24F4" = "9",
+    "\u24F5" = "10", "\u24F6" = "11", "\u24F7" = "12", "\u24F8" = "13", "\u24F9" = "14",
+    "\u24FA" = "15", "\u24FB" = "16", "\u24FC" = "17", "\u24FD" = "18", "\u24FE" = "19",
+    "\u24FF" = "20", "\u2770" = "21", "\u2771" = "22", "\u2772" = "23", "\u2773" = "24",
+    "\u2774" = "25", "\u2775" = "26", "\u2776" = "27", "\u2777" = "28", "\u2778" = "29",
+    "\u2779" = "30", "\u277A" = "31", "\u277B" = "32", "\u277C" = "33", "\u277D" = "34",
+    "\u277E" = "35", "\u277F" = "36",
+
+    # Additional Negative Circled Numbers
+    "\u2770" = "1", "\u2771" = "2", "\u2772" = "3", "\u2773" = "4", "\u2774" = "5",
+    "\u2775" = "6", "\u2776" = "7", "\u2777" = "8", "\u2778" = "9", "\u2779" = "10",
+    
+    # Additional Dingbat Circled Numbers
+    "\u2780" = "1", "\u2781" = "2", "\u2782" = "3", "\u2783" = "4", "\u2784" = "5",
+    "\u2785" = "6", "\u2786" = "7", "\u2787" = "8", "\u2788" = "9", "\u2789" = "10",
+
+    # Other special forms and parenthesized/ circled numbers
+    "\u24B6" = "A", "\u24B7" = "B", "\u24B8" = "C", "\u24B9" = "D", "\u24BA" = "E",
+    "\u24BB" = "F", "\u24BC" = "G", "\u24BD" = "H", "\u24BE" = "I", "\u24BF" = "J",
+    "\u24C0" = "K", "\u24C1" = "L", "\u24C2" = "M", "\u24C3" = "N", "\u24C4" = "O",
+    "\u24C5" = "P", "\u24C6" = "Q", "\u24C7" = "R", "\u24C8" = "S", "\u24C9" = "T",
+    "\u24CA" = "U", "\u24CB" = "V", "\u24CC" = "W", "\u24CD" = "X", "\u24CE" = "Y",
+    "\u24CF" = "Z", "\u24D0" = "a", "\u24D1" = "b", "\u24D2" = "c", "\u24D3" = "d",
+    "\u24D4" = "e", "\u24D5" = "f", "\u24D6" = "g", "\u24D7" = "h", "\u24D8" = "i",
+    "\u24D9" = "j", "\u24DA" = "k", "\u24DB" = "l", "\u24DC" = "m", "\u24DD" = "n",
+    "\u24DE" = "o", "\u24DF" = "p", "\u24E0" = "q", "\u24E1" = "r", "\u24E2" = "s",
+    "\u24E3" = "t", "\u24E4" = "u", "\u24E5" = "v", "\u24E6" = "w", "\u24E7" = "x",
+    "\u24E8" = "y", "\u24E9" = "z",
+
+    # Enclosed Alphanumerics
+    "\u2460" = "1", "\u2461" = "2", "\u2462" = "3", "\u2463" = "4", "\u2464" = "5",
+    "\u2465" = "6", "\u2466" = "7", "\u2467" = "8", "\u2468" = "9", "\u2469" = "10",
+    "\u246A" = "11", "\u246B" = "12", "\u246C" = "13", "\u246D" = "14", "\u246E" = "15",
+    "\u246F" = "16", "\u2470" = "17", "\u2471" = "18", "\u2472" = "19", "\u2473" = "20",
+    "\u2474" = "1", "\u2475" = "2", "\u2476" = "3", "\u2477" = "4", "\u2478" = "5",
+    "\u2479" = "6", "\u247A" = "7", "\u247B" = "8", "\u247C" = "9", "\u247D" = "10",
+    "\u247E" = "11", "\u247F" = "12", "\u2480" = "13", "\u2481" = "14", "\u2482" = "15",
+    "\u2483" = "16", "\u2484" = "17", "\u2485" = "18", "\u2486" = "19", "\u2487" = "20",
+
+    # Additional Enclosed Alphanumerics
+    "\u24FF" = "0", "\u2776" = "1", "\u2777" = "2", "\u2778" = "3", "\u2779" = "4",
+    "\u277A" = "5", "\u277B" = "6", "\u277C" = "7", "\u277D" = "8", "\u277E" = "9",
+    "\u277F" = "10", "\u24EB" = "1", "\u24EC" = "2", "\u24ED" = "3", "\u24EE" = "4",
+    "\u24EF" = "5", "\u24F0" = "6", "\u24F1" = "7", "\u24F2" = "8", "\u24F3" = "9",
+    "\u24F4" = "10", "\u24F5" = "11", "\u24F6" = "12", "\u24F7" = "13", "\u24F8" = "14",
+    "\u24F9" = "15", "\u24FA" = "16", "\u24FB" = "17", "\u24FC" = "18", "\u24FD" = "19",
+    "\u24FE" = "20", "\u24FF" = "0"
+  )
+  
+  # Convert the input text by replacing each Unicode variant with its corresponding digit
+  converted_text <- chartr(paste(names(unicode_map), collapse = ""), paste(unicode_map, collapse = ""), input_text)
+  
+  return(converted_text)
+}
+
+# Example usage:
+input_text <- "The unicode numbers are \u24EA\u2461\u2462 and \u2776\u2777\u2778."
+convert_unicode_numbers(input_text)
+
+text_with_rounded_numbers <- "ⓞ①②③④"
+text_with_rounded_numbers |> convert_unicode_numbers()
+text_with_rounded_numbers2 |> convert_unicode_numbers()
+text_with_rounded_numbers3 |> convert_unicode_numbers()
 ```
   
   
+## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+library(dplyr)
 
+convert_unicode_numbers <- function(input_text) {
+  # Define a named vector to map Unicode number variants to standard digits
+  unicode_map <- c(
+    # Superscript Numbers
+    "\u2070" = "0", "\u00B9" = "1", "\u00B2" = "2", "\u00B3" = "3", "\u2074" = "4", 
+    "\u2075" = "5", "\u2076" = "6", "\u2077" = "7", "\u2078" = "8", "\u2079" = "9",
+    
+    # Subscript Numbers
+    "\u2080" = "0", "\u2081" = "1", "\u2082" = "2", "\u2083" = "3", "\u2084" = "4", 
+    "\u2085" = "5", "\u2086" = "6", "\u2087" = "7", "\u2088" = "8", "\u2089" = "9",
+    
+    # Parenthesized Numbers
+    "\u2460" = "1", "\u2461" = "2", "\u2462" = "3", "\u2463" = "4", "\u2464" = "5",
+    "\u2465" = "6", "\u2466" = "7", "\u2467" = "8", "\u2468" = "9", "\u2469" = "10",
+    "\u246A" = "11", "\u246B" = "12", "\u246C" = "13", "\u246D" = "14", "\u246E" = "15",
+    "\u246F" = "16", "\u2470" = "17", "\u2471" = "18", "\u2472" = "19", "\u2473" = "20",
+    
+    # Circled Numbers
+    "\u24EA" = "0", "\u2460" = "1", "\u2461" = "2", "\u2462" = "3", "\u2463" = "4",
+    "\u2464" = "5", "\u2465" = "6", "\u2466" = "7", "\u2467" = "8", "\u2468" = "9",
+    "\u2469" = "10", "\u246A" = "11", "\u246B" = "12", "\u246C" = "13", "\u246D" = "14",
+    "\u246E" = "15", "\u246F" = "16", "\u2470" = "17", "\u2471" = "18", "\u2472" = "19",
+    "\u2473" = "20",
+    
+    # Negative Circled Numbers
+    "\u2776" = "1", "\u2777" = "2", "\u2778" = "3", "\u2779" = "4", "\u277A" = "5",
+    "\u277B" = "6", "\u277C" = "7", "\u277D" = "8", "\u277E" = "9", "\u277F" = "10",
+    
+    # Double Circled Numbers
+    "\u24F5" = "1", "\u24F6" = "2", "\u24F7" = "3", "\u24F8" = "4", "\u24F9" = "5",
+    "\u24FA" = "6", "\u24FB" = "7", "\u24FC" = "8", "\u24FD" = "9", "\u24FE" = "10",
+    
+    # Dingbat Circled Numbers
+    "\u2780" = "1", "\u2781" = "2", "\u2782" = "3", "\u2783" = "4", "\u2784" = "5",
+    "\u2785" = "6", "\u2786" = "7", "\u2787" = "8", "\u2788" = "9", "\u2789" = "10",
+    
+    # Fullwidth Numbers
+    "\uFF10" = "0", "\uFF11" = "1", "\uFF12" = "2", "\uFF13" = "3", "\uFF14" = "4",
+    "\uFF15" = "5", "\uFF16" = "6", "\uFF17" = "7", "\uFF18" = "8", "\uFF19" = "9",
+    
+    # Enclosed Alphanumerics
+    "\u24B6" = "A", "\u24B7" = "B", "\u24B8" = "C", "\u24B9" = "D", "\u24BA" = "E",
+    "\u24BB" = "F", "\u24BC" = "G", "\u24BD" = "H", "\u24BE" = "I", "\u24BF" = "J",
+    "\u24C0" = "K", "\u24C1" = "L", "\u24C2" = "M", "\u24C3" = "N", "\u24C4" = "O",
+    "\u24C5" = "P", "\u24C6" = "Q", "\u24C7" = "R", "\u24C8" = "S", "\u24C9" = "T",
+    "\u24CA" = "U", "\u24CB" = "V", "\u24CC" = "W", "\u24CD" = "X", "\u24CE" = "Y",
+    "\u24CF" = "Z", "\u24D0" = "a", "\u24D1" = "b", "\u24D2" = "c", "\u24D3" = "d",
+    "\u24D4" = "e", "\u24D5" = "f", "\u24D6" = "g", "\u24D7" = "h", "\u24D8" = "i",
+    "\u24D9" = "j", "\u24DA" = "k", "\u24DB" = "l", "\u24DC" = "m", "\u24DD" = "n",
+    "\u24DE" = "o", "\u24DF" = "p", "\u24E0" = "q", "\u24E1" = "r", "\u24E2" = "s",
+    "\u24E3" = "t", "\u24E4" = "u", "\u24E5" = "v", "\u24E6" = "w", "\u24E7" = "x",
+    "\u24E8" = "y", "\u24E9" = "z"
+  )
+  
+  # Create a data frame from the unicode map
+  unicode_df <- data.frame(
+    Unicode_Character = names(unicode_map),
+    Unicode_Code = sapply(names(unicode_map), function(x) sprintf("\\u%04X", utf8ToInt(x))),
+    Converted_Alphanumeric = unicode_map,
+    stringsAsFactors = FALSE
+  )
+  
+  return(unicode_df)
+}
+
+convert_unicode_numbers() %>% str
+convert_unicode_numbers() %>% as_tibble
 ```
   
   
+## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+library(dplyr)
 
+convert_unicode_numbers <- function(input_text) {
+  # Define a named vector to map Unicode number variants to standard digits
+  unicode_map <- c(
+    # Superscript Numbers
+    "\u2070" = "0", "\u00B9" = "1", "\u00B2" = "2", "\u00B3" = "3", "\u2074" = "4", 
+    "\u2075" = "5", "\u2076" = "6", "\u2077" = "7", "\u2078" = "8", "\u2079" = "9",
+    
+    # Subscript Numbers
+    "\u2080" = "0", "\u2081" = "1", "\u2082" = "2", "\u2083" = "3", "\u2084" = "4", 
+    "\u2085" = "5", "\u2086" = "6", "\u2087" = "7", "\u2088" = "8", "\u2089" = "9",
+    
+    # Parenthesized Numbers
+    "\u2460" = "1", "\u2461" = "2", "\u2462" = "3", "\u2463" = "4", "\u2464" = "5",
+    "\u2465" = "6", "\u2466" = "7", "\u2467" = "8", "\u2468" = "9", "\u2469" = "10",
+    "\u246A" = "11", "\u246B" = "12", "\u246C" = "13", "\u246D" = "14", "\u246E" = "15",
+    "\u246F" = "16", "\u2470" = "17", "\u2471" = "18", "\u2472" = "19", "\u2473" = "20",
+    
+    # Circled Numbers
+    "\u24EA" = "0", "\u2460" = "1", "\u2461" = "2", "\u2462" = "3", "\u2463" = "4",
+    "\u2464" = "5", "\u2465" = "6", "\u2466" = "7", "\u2467" = "8", "\u2468" = "9",
+    "\u2469" = "10", "\u246A" = "11", "\u246B" = "12", "\u246C" = "13", "\u246D" = "14",
+    "\u246E" = "15", "\u246F" = "16", "\u2470" = "17", "\u2471" = "18", "\u2472" = "19",
+    "\u2473" = "20",
+    
+    # Negative Circled Numbers
+    "\u2776" = "1", "\u2777" = "2", "\u2778" = "3", "\u2779" = "4", "\u277A" = "5",
+    "\u277B" = "6", "\u277C" = "7", "\u277D" = "8", "\u277E" = "9", "\u277F" = "10",
+    
+    # Double Circled Numbers
+    "\u24F5" = "1", "\u24F6" = "2", "\u24F7" = "3", "\u24F8" = "4", "\u24F9" = "5",
+    "\u24FA" = "6", "\u24FB" = "7", "\u24FC" = "8", "\u24FD" = "9", "\u24FE" = "10",
+    
+    # Dingbat Circled Numbers
+    "\u2780" = "1", "\u2781" = "2", "\u2782" = "3", "\u2783" = "4", "\u2784" = "5",
+    "\u2785" = "6", "\u2786" = "7", "\u2787" = "8", "\u2788" = "9", "\u2789" = "10",
+    
+    # Fullwidth Numbers
+    "\uFF10" = "0", "\uFF11" = "1", "\uFF12" = "2", "\uFF13" = "3", "\uFF14" = "4",
+    "\uFF15" = "5", "\uFF16" = "6", "\uFF17" = "7", "\uFF18" = "8", "\uFF19" = "9",
+    
+    # Enclosed Alphanumerics
+    "\u24B6" = "A", "\u24B7" = "B", "\u24B8" = "C", "\u24B9" = "D", "\u24BA" = "E",
+    "\u24BB" = "F", "\u24BC" = "G", "\u24BD" = "H", "\u24BE" = "I", "\u24BF" = "J",
+    "\u24C0" = "K", "\u24C1" = "L", "\u24C2" = "M", "\u24C3" = "N", "\u24C4" = "O",
+    "\u24C5" = "P", "\u24C6" = "Q", "\u24C7" = "R", "\u24C8" = "S", "\u24C9" = "T",
+    "\u24CA" = "U", "\u24CB" = "V", "\u24CC" = "W", "\u24CD" = "X", "\u24CE" = "Y",
+    "\u24CF" = "Z", "\u24D0" = "a", "\u24D1" = "b", "\u24D2" = "c", "\u24D3" = "d",
+    "\u24D4" = "e", "\u24D5" = "f", "\u24D6" = "g", "\u24D7" = "h", "\u24D8" = "i",
+    "\u24D9" = "j", "\u24DA" = "k", "\u24DB" = "l", "\u24DC" = "m", "\u24DD" = "n",
+    "\u24DE" = "o", "\u24DF" = "p", "\u24E0" = "q", "\u24E1" = "r", "\u24E2" = "s",
+    "\u24E3" = "t", "\u24E4" = "u", "\u24E5" = "v", "\u24E6" = "w", "\u24E7" = "x",
+    "\u24E8" = "y", "\u24E9" = "z"
+  )
+  
+  # Find all unique Unicode characters in the input text
+  unique_chars <- unique(strsplit(input_text, NULL)[[1]])
+  
+  # Filter to only those characters that have a conversion in the unicode_map
+  converted_chars <- unique_chars[unique_chars %in% names(unicode_map)]
+  
+  # Create a data frame for the conversion
+  conversion_df <- data.frame(
+    Unicode_Character = converted_chars,
+    Unicode_Code = sapply(converted_chars, function(x) sprintf("\\u%04X", utf8ToInt(x))),
+    Converted_Alphanumeric = unicode_map[converted_chars],
+    stringsAsFactors = FALSE
+  )
+  
+  return(conversion_df)
+}
+
+# Example usage
+input_text <- "The unicode numbers are ⁰¹²³₄₅₆₇₈₉ and ⓪⓫⓬."
+convert_unicode_numbers(input_text)
+text_with_rounded_numbers2 |> convert_unicode_numbers()
+text_with_rounded_numbers3 |> convert_unicode_numbers()
 ```
   
   
