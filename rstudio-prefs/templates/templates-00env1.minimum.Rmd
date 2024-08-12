@@ -288,7 +288,7 @@ options(width=120)
   
   
 # @@ START) function ----  
-## \% |> function_name
+## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
