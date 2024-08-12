@@ -488,13 +488,13 @@ vecCompositeKey |> n_distinct()
 ```
   
   
-#### \$ varname4outcome ----  
+#### \$ .varname4outcome ----  
 #### \$ varname4time ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-varname4outcome = "event"
+.varname4outcome = "event"
 varname4time = c("time", "age")
-get(DataSetName)[c(varname4outcome, varname4time)] |> 
+get(DataSetName)[c(.varname4outcome, varname4time)] |> 
     mutate_if(is.factor, as.character) |>  
     mutate_if(is.character, na_if, "") |> mutate_if(is.character, na_if, "N/A") |> mutate_if(is.character, na_if, "NA") |> 
     mutate_if(is.character, as.factor) |> 
