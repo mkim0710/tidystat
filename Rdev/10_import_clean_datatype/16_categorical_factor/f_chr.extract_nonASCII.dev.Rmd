@@ -285,7 +285,31 @@ https://chatgpt.com/c/4f1ce650-0362-497e-882b-d48792bf6b9a
 ## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+extract_non_ascii_with_codes_df <- function(text) {
+  # Use a regular expression to identify non-ASCII characters
+  non_ascii <- gregexpr("[^\\x00-\\x7F]", text, perl = TRUE)
+  
+  # Extract the matched characters
+  result <- regmatches(text, non_ascii)
+  
+  # Combine the extracted characters into a single vector
+  extracted_chars <- unlist(result)
+  
+  # Convert characters to their Unicode code points
+  unicode_codes <- sapply(extracted_chars, function(char) {
+    sprintf("\\u%04X", utf8ToInt(char))
+  })
+  
+  # Create a data frame
+  df <- data.frame(Character = extracted_chars, Unicode_Code = unicode_codes, stringsAsFactors = FALSE)
+  
+  return(df)
+}
 
+# Example usage:
+text <- "Hello, world! This is an example with Unicode characters: æøåçüñ"
+result_df <- extract_non_ascii_with_codes_df(text)
+print(result_df)
 
 
 ```
