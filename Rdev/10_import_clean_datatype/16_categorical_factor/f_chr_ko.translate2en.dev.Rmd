@@ -286,33 +286,52 @@ https://chatgpt.com/c/b6d36a06-90b6-4835-919b-94ffa260b00f
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 translate_korean_to_english <- function(korean_text) {
-  # Load necessary package
+  # Load necessary packages
   if (!requireNamespace("googlesheets4", quietly = TRUE)) {
     install.packages("googlesheets4")
   }
+  if (!requireNamespace("googledrive", quietly = TRUE)) {
+    install.packages("googledrive")
+  }
   library(googlesheets4)
+  library(googledrive)
   
-  # Authorize Google Sheets access (interactive)
+  # Authorize Google Sheets and Drive access with specified email
   gs4_auth(email = "mhkim710@gmail.com")
+  drive_auth(email = "mhkim710@gmail.com")
   
   # Create a new Google Sheet
   sheet <- gs4_create("TranslationSheet")
   
   # Write Korean text to the first cell (A1)
-  sheet_write(korean_text, sheet, range = "A1")
+  data <- data.frame(Text = korean_text)
+  sheet_write(data, ss = sheet, sheet = "Sheet1")
   
-  # Use the GOOGLETRANSLATE function in the next cell (B1)
-  translate_formula <- '=GOOGLETRANSLATE(A1, "ko", "en")'
-  sheet_write(translate_formula, sheet, range = "B1")
+  # Write the GOOGLETRANSLATE function directly into the desired cell
+  formula_data <- data.frame(Text = '=GOOGLETRANSLATE(A1, "ko", "en")')
+  range_write(ss = sheet, data = formula_data, sheet = "Sheet1", range = "B1")
   
-  # Read the translated text from the Google Sheet
-  translated_text <- sheet_read(sheet1, range = "B1", col_names = FALSE)
+  # Retry logic to ensure the translation is ready before reading
+  translated_text <- NULL
+  retries <- 5
+  for (i in 1:retries) {
+    Sys.sleep(5)  # Wait for 5 seconds before each retry
+    translated_text <- read_sheet(sheet, range = "B1", col_names = FALSE)
+    if (nrow(translated_text) > 0) {
+      break
+    }
+  }
   
-  # Clean up by deleting the Google Sheet (optional)
-  gs4_delete(sheet)2
+  # Check if the translation was successful
+  if (is.null(translated_text) || nrow(translated_text) == 0) {
+    stop("Translation failed or did not complete in time.")
+  }
+  
+  # Clean up by deleting the Google Sheet using googledrive package
+  drive_trash(as_id(sheet))
   
   # Return the translated text
-  return(translated_text[[1,1]])
+  return(translated_text[[1, 1]])
 }
 
 # Example usage of the function
