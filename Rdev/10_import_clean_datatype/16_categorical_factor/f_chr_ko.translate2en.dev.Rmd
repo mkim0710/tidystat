@@ -283,7 +283,7 @@ options(width=120)
 # @@ START) function ----  
 https://chatgpt.com/c/b6d36a06-90b6-4835-919b-94ffa260b00f
 ## \% |> function_name()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 translate_korean_to_english <- function(korean_text) {
   # Load necessary packages
@@ -341,7 +341,8 @@ print(translated_text)
 ```
   
   
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## \% |> function_name()  
+```{r, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 translate_korean_to_english <- function(korean_text) {
   # Load necessary packages
@@ -390,11 +391,58 @@ translate_korean_to_english <- function(korean_text) {
 # Example usage of the function
 translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
 print(translated_text)
+# ✔ Creating new Sheet: TranslationSheet.
+# ✔ Writing to TranslationSheet.
+# ✔ Writing to sheet Sheet1.
+# ✔ Editing TranslationSheet.
+# ✔ Writing to sheet Sheet1.
+# ✔ Changing dims: (2 x 1) --> (2 x 2).
+# Please check the Google Sheet manually at this URL: https://docs.google.com/spreadsheets/d/1V32ZTbPFNNFFXx4JfXEhYqSFEfCpfY45h6OlKX0vWtI
+# Error in translated_text[[1, 1]] :
+# 15.
+# stop(fallback)
+# 14.
+# signal_abort(cnd)
+# 13.
+# cnd_signal(cnd)
+# 12.
+# (function (cnd)
+# {
+# cnd$subscript_arg <- i_arg
+# cnd$subscript_elt <- "row" ...
+# 11.
+# signalCondition(cnd)
+# 10.
+# signal_abort(cnd)
+# 9.
+# cnd_signal(x$err)
+# 8.
+# result_get(vec_as_location2_result(i, n = n, names = names, negative = "error",
+# missing = missing, arg = arg, call = call))
+# 7.
+# vec_as_location2(i, n, call = call)
+# 6.
+# withCallingHandlers(expr, vctrs_error_subscript = function(cnd) {
+# cnd$subscript_arg <- i_arg
+# cnd$subscript_elt <- "row"
+# if (isTRUE(assign) && !isTRUE(cnd$subscript_action %in% c("negate"))) { ...
+# 5.
+# subclass_row_index_errors(vec_as_location2(i, n, call = call),
+# i_arg = i_arg, assign = assign)
+# 4.
+# vectbl_as_row_location2(i, fast_nrow(x), i_arg)
+# 3.
+# `[[.tbl_df`(translated_text, 1, 1)
+# 2.
+# translated_text[[1, 1]]
+# 1.
+# translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
 
 ```
   
   
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## \% |> function_name()  
+```{r, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 translate_korean_to_english <- function(korean_text) {
   # Load necessary packages
@@ -443,18 +491,57 @@ translate_korean_to_english <- function(korean_text) {
 # Example usage of the function
 translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
 print(translated_text)
-
+# ✔ Creating new Sheet: TranslationSheet.
+# ✔ Writing to TranslationSheet.
+# ✔ Writing to sheet Sheet1.
+# ✔ Editing TranslationSheet.
+# ✔ Writing to sheet Sheet1.
+# ✔ Changing dims: (2 x 1) --> (2 x 2).
+# Please check the Google Sheet manually at this URL: https://docs.google.com/spreadsheets/d/1G379SpILn5kE7hivyf0KdqWpvk36yD2378DVjYs4TuA
+# Error in translated_text[[1, 1]] :
+# 15.
+# stop(fallback)
+# 14.
+# signal_abort(cnd)
+# 13.
+# cnd_signal(cnd)
+# 12.
+# (function (cnd)
+# {
+# cnd$subscript_arg <- i_arg
+# cnd$subscript_elt <- "row" ...
+# 11.
+# signalCondition(cnd)
+# 10.
+# signal_abort(cnd)
+# 9.
+# cnd_signal(x$err)
+# 8.
+# result_get(vec_as_location2_result(i, n = n, names = names, negative = "error",
+# missing = missing, arg = arg, call = call))
+# 7.
+# vec_as_location2(i, n, call = call)
+# 6.
+# withCallingHandlers(expr, vctrs_error_subscript = function(cnd) {
+# cnd$subscript_arg <- i_arg
+# cnd$subscript_elt <- "row"
+# if (isTRUE(assign) && !isTRUE(cnd$subscript_action %in% c("negate"))) { ...
+# 5.
+# subclass_row_index_errors(vec_as_location2(i, n, call = call),
+# i_arg = i_arg, assign = assign)
+# 4.
+# vectbl_as_row_location2(i, fast_nrow(x), i_arg)
+# 3.
+# `[[.tbl_df`(translated_text, 1, 1)
+# 2.
+# translated_text[[1, 1]]
+# 1.
+# translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
 
 ```
   
   
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 translate_korean_to_english <- function(korean_text) {
   # Load necessary packages
@@ -466,42 +553,42 @@ translate_korean_to_english <- function(korean_text) {
   }
   library(googlesheets4)
   library(googledrive)
-  
+
   # Authorize Google Sheets and Drive access with specified email
   gs4_auth(email = "mhkim710@gmail.com")
   drive_auth(email = "mhkim710@gmail.com")
-  
+
   # Create a new Google Sheet
   sheet <- gs4_create("TranslationSheet")
-  
+
   # Get the full sheet details
   sheet_details <- gs4_get(sheet)
-  
+
   # Get the name of the first sheet (in case it's not "Sheet1")
   sheet_name <- sheet_details$sheets$name[1]
-  
+
   # Write Korean text to the second row, first cell (A2)
   data <- data.frame(Text = korean_text)
   range_write(ss = sheet, data = data, sheet = sheet_name, range = "A2", col_names = FALSE)
-  
+
   # Write the GOOGLETRANSLATE formula directly into the second row, second cell (B2)
   formula_data <- data.frame(Text = '=GOOGLETRANSLATE(A2, "ko", "en")')
   range_write(ss = sheet, data = formula_data, sheet = sheet_name, range = "B2", col_names = FALSE)
-  
+
   # Print the Google Sheet ID and URL
   sheet_id <- as_id(sheet)
   sheet_url <- paste0("https://docs.google.com/spreadsheets/d/", sheet_id)
   message("Please check the Google Sheet manually at this URL: ", sheet_url)
-  
+
   # Pause the execution to allow manual inspection
   readline(prompt = "Press [Enter] key after you've checked the Google Sheet...")
-  
+
   # Read the translated text from the Google Sheet
   translated_text <- read_sheet(sheet, range = "B2", col_names = FALSE)
-  
+
   # Clean up by deleting the Google Sheet using googledrive package
   drive_trash(sheet_id)
-  
+
   # Return the translated text
   return(translated_text[[1, 1]])
 }
@@ -509,11 +596,20 @@ translate_korean_to_english <- function(korean_text) {
 # Example usage of the function
 translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
 print(translated_text)
-
+# ✔ Creating new Sheet: TranslationSheet.
+# 
+# Quitting from lines  at lines 458-514 [unnamed-chunk-7] (f_chr_ko.translate2en.dev.Rmd)
+# ✔ Editing TranslationSheet.
+# ✔ Writing to sheet 시트1.
+# ✔ Editing TranslationSheet.
+# ✔ Writing to sheet 시트1.
+# Please check the Google Sheet manually at this URL: https://docs.google.com/spreadsheets/d/1Bp7CZLvUgZAzJTJRQg1Zns1D3ERJWLb_6aXVujv-fUg
+# [1] "=GOOGLETRANSLATE(A2, \"ko\", \"en\")"
 
 ```
   
   
+## \% working version~!  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 translate_korean_to_english <- function(korean_text) {
@@ -571,7 +667,13 @@ translate_korean_to_english <- function(korean_text) {
 # Example usage of the function
 translated_text <- translate_korean_to_english("안녕하세요. 만나서 반갑습니다.")
 print(translated_text)
-
+# ✔ Creating new Sheet: TranslationSheet.
+# ✔ Editing TranslationSheet.
+# ✔ Writing to sheet 시트1.
+# ✔ Editing TranslationSheet.
+# ✔ Writing to sheet 시트1.
+# Please check the Google Sheet manually at this URL: https://docs.google.com/spreadsheets/d/1LX9N-mntUHWWSG4Pacvd9gHHmmlAPAW_nsttu0qQBfc
+# [1] "hello. nice to meet you"
 ```
   
   
