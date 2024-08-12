@@ -326,6 +326,7 @@ print(corrected_text)
 ```
   
   
+## \% library(stringdist)  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 for(.packagename in c("stringdist")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
@@ -359,9 +360,48 @@ print(corrected_text)
 ```
   
   
+## \% library(hunspell)  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-"ⓞ①②③④⑤⑥⑦⑧⑨" |> extract_non_ascii_with_codes_df()
+for(.packagename in c("hunspell")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
+
+# # # Install an English dictionary
+# # hunspell::hunspell_install('en_US')
+# 
+# # Define URLs for .dic and .aff files (example for English US)
+# dic_url <- "https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_US.dic"
+# aff_url <- "https://raw.githubusercontent.com/LibreOffice/dictionaries/master/en/en_US.aff"
+# 
+# # Define permanent paths to save the files (adjust the directory as needed)
+# # Example: Save files in a "dictionaries" folder in the working directory
+# dir.create("dictionaries", showWarnings = FALSE)
+# dic_file <- "dictionaries/en_US.dic"
+# aff_file <- "dictionaries/en_US.aff"
+# 
+# # Check if the files already exist
+# if (!file.exists(dic_file)) {
+#   download.file(dic_url, dic_file, mode = "wb")
+# }
+# 
+# if (!file.exists(aff_file)) {
+#   download.file(aff_url, aff_file, mode = "wb")
+# }
+
+
+# Load the dictionary
+dictionary <- hunspell::dictionary('en_US')
+
+# Example text
+text <- "Ths is an exmple"
+
+# Spell check
+misspelled_words <- hunspell(text, dict = dictionary)
+print(misspelled_words)
+
+# Get suggestions for corrections
+suggestions <- hunspell_suggest(text, dict = dictionary)
+print(suggestions)
+
 ```
   
   
