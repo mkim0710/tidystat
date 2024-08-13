@@ -368,7 +368,7 @@ save(ICD9_3char_sub_chapter.tibble, file = "ICD9_3char_sub_chapter.tibble.rda")
 # @ end -----  
 
 getwd()
-.path4write = getwd()
+.path4write = env1$path$.path4write
 objectname = "ICD9_3char_sub_chapter.tibble"
 # saveRDS( get(objectname), xzfile(file.path(.path4write, paste0(objectname,".rds","")), compression=9) )
 # write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")))

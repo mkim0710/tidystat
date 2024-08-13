@@ -171,7 +171,7 @@ for (
 
 
 getwd()
-.path4write = getwd()
+.path4write = env1$path$.path4write
 objectname = "AnalyticDataset200621.nonsmoker.glm_LC_Stage234_list.ORCI"
 # write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)

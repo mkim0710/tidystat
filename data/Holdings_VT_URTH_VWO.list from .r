@@ -624,7 +624,7 @@ Holdings_VT_URTH_VWO.list =
 
 # @ end ----  
 getwd()
-.path4write = getwd()
+.path4write = env1$path$.path4write
 objectname = "Holdings_VT_URTH_VWO.list"
 write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
 openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
