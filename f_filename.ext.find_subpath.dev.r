@@ -81,7 +81,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
-
+env1$source$f_filename.ext.find_subpath.source.r = NULL
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs"
