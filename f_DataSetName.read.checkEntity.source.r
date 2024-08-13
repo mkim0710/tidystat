@@ -114,9 +114,9 @@ for (.dependancy in c("f_path.size_files")) {
 .tmp$objectname = "f_DataSetName.read.checkEntity"
 .tmp$object = function(DataSetName, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
-    MessageText2 = .path4read %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
+    MessageText2 = .path4read[1] %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     # if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)} #----
-    if (getwd()|>normalizePath(winslash="/") != .path4read|>normalizePath(winslash="/")) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n")}
+    if (getwd()|>normalizePath(winslash="/") != .path4read[1]|>normalizePath(winslash="/")) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n")}
 
     if(print.intermediate) cat('DataSetName = "', DataSetName, '"  \n', sep="")
     filename.ext = paste0(DataSetName,".", ext)
@@ -125,14 +125,17 @@ for (.dependancy in c("f_path.size_files")) {
     .path4read = c(.path4read, paste0(.path4read, "/data"))
     .tmp.file.found = FALSE
     for (i in 1:length(.path4read)) {
-        i.path4read = .path4read[i]
+        i.path4read=.path4read[1][i]
         if(file.exists(file.path(i.path4read, filename.ext))) {
             .tmp.file.found = TRUE
+            .path4read2 = i.path4read
         } else if(file.exists(file.path(i.path4read, paste0(filename.ext, ".xz")))) {
             filename.ext = paste0(filename.ext, ".xz")
             .tmp.file.found = TRUE
+            .path4read2 = i.path4read
         }  
     }
+    .path4read=.path4read2
 
     if(!.tmp.file.found && BreathFirstSearch) {
         for (.dependancy in c("f_filename.ext.find_subpath")) {
@@ -148,10 +151,10 @@ for (.dependancy in c("f_path.size_files")) {
             # if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) 
         }
         if (!is.null(path.filename.ext)) { 
+            .tmp.file.found = TRUE
             .path4read = dirname(path.filename.ext)
             cat('Found subpath: ', '.path4read = "', .path4read, '"  \n', sep="")
             filename.ext = basename(path.filename.ext)
-            .tmp.file.found = TRUE
         }
     } 
     
@@ -174,14 +177,14 @@ for (.dependancy in c("f_path.size_files")) {
     return.list$DataSetName = DataSetName
     
     ## \% return.list$df_size_files ====
-    # return.list$df_size_files = env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename.ext.regex)
-    return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read, literal_filename = filename.ext, print2console=print2console)
+    # return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], regex4filename = filename.ext.regex)
+    return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_filename = filename.ext, print2console=print2console)
     
     ## \% return.list$read.proc_time ====
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # return.list$read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
+    # return.list$read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read[1], filename.ext)), envir=.GlobalEnv))
     # if(print2console) return.list$read.proc_time |> print()
-    .read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read, filename.ext)), envir=.GlobalEnv))
+    .read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read[1], filename.ext)), envir=.GlobalEnv))
     if(print2console) .read.proc_time |> print()
 
     ## \% return.list$dim ====
