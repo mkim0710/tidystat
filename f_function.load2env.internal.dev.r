@@ -257,8 +257,8 @@ rm(test, envir = env1)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
-CODEBOOK$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-.objectname = CODEBOOK$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+.objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
 cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
 # system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
 # system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))

@@ -308,7 +308,7 @@ parse(text = "Female = ifelse(A00_SEX == '2', TRUE, FALSE)")[[1]][[3]] |> f_expr
 ```
   
   
-```{r CODEBOOK0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 
 ```
   
@@ -427,8 +427,8 @@ if (.Platform$OS.type == "windows") {
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
 .path4write = env1$path$.path4write
-CODEBOOK$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-.objectname = CODEBOOK$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+.objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
 cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
 # system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
 # system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))

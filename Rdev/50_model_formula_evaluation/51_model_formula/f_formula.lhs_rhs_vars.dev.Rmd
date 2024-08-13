@@ -260,17 +260,17 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
-# @@ CODEBOOK ----  
-```{r CODEBOOK-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-# .GlobalEnv$CODEBOOK = list() ====  
-if(!exists("CODEBOOK", envir=.GlobalEnv)) { assign("CODEBOOK", list(), envir=.GlobalEnv) }  
-.listname = "MetaData"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "DataSetNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames.filter"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "VarNames.recode"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
-.listname = "ModelList"; if(!.listname %in% names(.GlobalEnv$CODEBOOK)) { .GlobalEnv$CODEBOOK[[.listname]] <- list() }
+# @@ MetaData ----  
+```{r MetaData-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# .GlobalEnv$MetaData = list() ====  
+if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
+.listname = "tblVarName"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
+.listname = "DataSetNames"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
+.listname = "VarNames"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
+.listname = "VarNames.select"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
+.listname = "VarNames.filter"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
+.listname = "VarNames.recode"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
+.listname = "ModelList"; if(!.listname %in% names(.GlobalEnv$MetaData)) { .GlobalEnv$MetaData[[.listname]] <- list() }
 ```
   
 # @@ START) source ----  
@@ -310,88 +310,88 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
   
   
 # @@ START) dev ----  
-### \$ CODEBOOK$ModelList$time2event ====  
+### \$ MetaData$ModelList$time2event ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # https://chatgpt.com/c/9d8abdf0-a130-4724-b955-f6bd0fe4e2ef
 
-.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 ```
   
   
-#### \$ CODEBOOK$ModelList$time2event$formula ====  
+#### \$ MetaData$ModelList$time2event$formula ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 library(survival)
-CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-CODEBOOK$ModelList$time2event$formula %>% print
-CODEBOOK$ModelList$time2event$formula %>% str
-CODEBOOK$ModelList$time2event$formula %>% dput
+MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+MetaData$ModelList$time2event$formula %>% print
+MetaData$ModelList$time2event$formula %>% str
+MetaData$ModelList$time2event$formula %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-CODEBOOK$ModelList$time2event$formula[[1]]
-CODEBOOK$ModelList$time2event$formula[[1]] %>% str
+MetaData$ModelList$time2event$formula[[1]]
+MetaData$ModelList$time2event$formula[[1]] %>% str
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-CODEBOOK$ModelList$time2event$formula[[2]]
-CODEBOOK$ModelList$time2event$formula[[2]] %>% str
+MetaData$ModelList$time2event$formula[[2]]
+MetaData$ModelList$time2event$formula[[2]] %>% str
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-CODEBOOK$ModelList$time2event$formula[[3]]
-CODEBOOK$ModelList$time2event$formula[[3]] %>% str
+MetaData$ModelList$time2event$formula[[3]]
+MetaData$ModelList$time2event$formula[[3]] %>% str
 ```
   
   
-#### \$ CODEBOOK$ModelList$time2event$terms ====  
+#### \$ MetaData$ModelList$time2event$terms ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-CODEBOOK$ModelList$time2event$terms = CODEBOOK$ModelList$time2event$formula |> terms()
+MetaData$ModelList$time2event$terms = MetaData$ModelList$time2event$formula |> terms()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$terms %>% print
+MetaData$ModelList$time2event$terms %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$terms %>% str
+MetaData$ModelList$time2event$terms %>% str
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$terms %>% dput
+MetaData$ModelList$time2event$terms %>% dput
 ```
   
   
-#### \$ CODEBOOK$ModelList$time2event$all.vars ====  
+#### \$ MetaData$ModelList$time2event$all.vars ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-CODEBOOK$ModelList$time2event$all.vars = CODEBOOK$ModelList$time2event$formula |> all.vars()
+MetaData$ModelList$time2event$all.vars = MetaData$ModelList$time2event$formula |> all.vars()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$all.vars %>% print
+MetaData$ModelList$time2event$all.vars %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$all.vars %>% str
+MetaData$ModelList$time2event$all.vars %>% str
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$all.vars %>% dput
+MetaData$ModelList$time2event$all.vars %>% dput
 ```
   
   
-#### \$ CODEBOOK$ModelList$time2event$lhs.vars ====  
+#### \$ MetaData$ModelList$time2event$lhs.vars ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-CODEBOOK$ModelList$time2event$lhs = CODEBOOK$ModelList$time2event$formula[[2]]
-CODEBOOK$ModelList$time2event$lhs.vars = CODEBOOK$ModelList$time2event$lhs %>% all.vars
+MetaData$ModelList$time2event$lhs = MetaData$ModelList$time2event$formula[[2]]
+MetaData$ModelList$time2event$lhs.vars = MetaData$ModelList$time2event$lhs %>% all.vars
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$lhs.vars %>% print
+MetaData$ModelList$time2event$lhs.vars %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$lhs.vars %>% str
+MetaData$ModelList$time2event$lhs.vars %>% str
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$lhs.vars %>% dput
+MetaData$ModelList$time2event$lhs.vars %>% dput
 ```
   
   
-#### \$ CODEBOOK$ModelList$time2event$rhs.vars ====  
+#### \$ MetaData$ModelList$time2event$rhs.vars ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-CODEBOOK$ModelList$time2event$rhs = CODEBOOK$ModelList$time2event$formula[[3]]
-CODEBOOK$ModelList$time2event$rhs.vars = CODEBOOK$ModelList$time2event$rhs %>% all.vars
+MetaData$ModelList$time2event$rhs = MetaData$ModelList$time2event$formula[[3]]
+MetaData$ModelList$time2event$rhs.vars = MetaData$ModelList$time2event$rhs %>% all.vars
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$rhs.vars %>% print
+MetaData$ModelList$time2event$rhs.vars %>% print
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$rhs.vars %>% str
+MetaData$ModelList$time2event$rhs.vars %>% str
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
-CODEBOOK$ModelList$time2event$rhs.vars %>% dput
+MetaData$ModelList$time2event$rhs.vars %>% dput
 ```
   
   
@@ -428,61 +428,61 @@ f_formula.lhs_rhs_vars = function(formula, include_input_in_output = TRUE) {
 ```
   
   
-## \% |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
+## \% |> c(f_formula.lhs_rhs_vars(MetaData$ModelList$time2event$formula))
 ### Caution) list can have multiple elements with the same name?!  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 library(survival)
-CODEBOOK$ModelList$time2event = NULL
-CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+MetaData$ModelList$time2event = NULL
+MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event |> c(f_formula.lhs_rhs_vars(CODEBOOK$ModelList$time2event$formula))
+MetaData$ModelList$time2event = MetaData$ModelList$time2event |> c(f_formula.lhs_rhs_vars(MetaData$ModelList$time2event$formula))
 
-CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
-CODEBOOK$ModelList$time2event$formula
+MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event$formula
 
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-CODEBOOK$ModelList$time2event$formula = NULL
-CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
-CODEBOOK$ModelList$time2event$formula
+MetaData$ModelList$time2event$formula = NULL
+MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event$formula
 ```
   
   
 ## \% \%>\%  c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 library(survival)
-CODEBOOK$ModelList$time2event = NULL
-CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+MetaData$ModelList$time2event = NULL
+MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
+MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
 
-CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
-CODEBOOK$ModelList$time2event$formula
+MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event$formula
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-CODEBOOK$ModelList$time2event$formula = NULL
-CODEBOOK$ModelList$time2event %>% str(max.level = 1, give.attr = F)
-CODEBOOK$ModelList$time2event$formula
+MetaData$ModelList$time2event$formula = NULL
+MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
+MetaData$ModelList$time2event$formula
 ```
   
   
-## \% $formula.lhs_rhs_vars = CODEBOOK$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
+## \% $formula.lhs_rhs_vars = MetaData$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 library(survival)
-CODEBOOK$ModelList$time2event = NULL
-CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-CODEBOOK$ModelList$time2event$formula.lhs_rhs_vars = 
-    CODEBOOK$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
-CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+MetaData$ModelList$time2event = NULL
+MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+MetaData$ModelList$time2event$formula.lhs_rhs_vars = 
+    MetaData$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
+MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 ```
   
   
@@ -518,20 +518,20 @@ f_list_formula.append_lhs_rhs_vars = function(list_formula) {
 ```
   
   
-## \% |> f_list_formula.append_lhs_rhs_vars(CODEBOOK$ModelList$time2event)
+## \% |> f_list_formula.append_lhs_rhs_vars(MetaData$ModelList$time2event)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+.subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
 library(survival)
-CODEBOOK$ModelList$time2event = NULL
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
-CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+MetaData$ModelList$time2event = NULL
+MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
+MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
-CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
+MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 
 ```
 
@@ -577,8 +577,8 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
 .path4write = env1$path$.path4write
-CODEBOOK$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-.objectname = CODEBOOK$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+.objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
 cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
 # system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
 # system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))

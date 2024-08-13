@@ -123,13 +123,13 @@ env1$f$f_list_formula.append_lhs_rhs_vars = function(list_formula) {
     }
     return(list_formula)
     
-    # ## \% |> env1$f$f_list_formula.append_lhs_rhs_vars(CODEBOOK$ModelList$time2event)
-    # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "CODEBOOK"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+    # ## \% |> env1$f$f_list_formula.append_lhs_rhs_vars(MetaData$ModelList$time2event)
+    # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     # 
     # library(survival)
-    # CODEBOOK$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-    # CODEBOOK$ModelList$time2event = CODEBOOK$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
-    # CODEBOOK$ModelList$time2event %>% str(max.level = 2, give.attr = F)
+    # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
+    # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
+    # MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
     # # List of 7
     # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
@@ -200,8 +200,8 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
-CODEBOOK$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-.objectname = CODEBOOK$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+.objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
 cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
 # system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
 # system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))
