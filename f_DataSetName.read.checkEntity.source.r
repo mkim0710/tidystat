@@ -116,21 +116,24 @@ for (.dependancy in c("f_path.size_files")) {
     MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     MessageText2 = .path4read[1] %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     # if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)} #----
-    if (getwd()|>normalizePath(winslash="/") != .path4read[1]|>normalizePath(winslash="/")) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n")}
+    if (getwd()|>normalizePath(winslash="/") != .path4read[1]|>normalizePath(winslash="/")) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n");cat(MessageText4cat)}
 
     if(print.intermediate) cat('DataSetName = "', DataSetName, '"  \n', sep="")
     filename.ext = paste0(DataSetName,".", ext)
     
     
-    .path4read = c(.path4read, paste0(.path4read, "/data"))
+    # .path4read = c(.path4read, paste0(.path4read, "/data"))
     .tmp.file.found = FALSE
     for (i in 1:length(.path4read)) {
-        i.path4read=.path4read[1][i]
+        i.path4read=.path4read[i]
+        if(print.intermediate) cat('i.path4read = "', i.path4read, '"  \n', sep="")
         if(file.exists(file.path(i.path4read, filename.ext))) {
+            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
         } else if(file.exists(file.path(i.path4read, paste0(filename.ext, ".xz")))) {
             filename.ext = paste0(filename.ext, ".xz")
+            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
         }  
@@ -138,6 +141,7 @@ for (.dependancy in c("f_path.size_files")) {
     if(.tmp.file.found) .path4read=.path4read2
 
     if(!.tmp.file.found && BreathFirstSearch) {
+        if(print.intermediate) cat('!.tmp.file.found && BreathFirstSearch  \n', sep="")
         for (.dependancy in c("f_filename.ext.find_subpath")) {
             if(!.dependancy %in% names(.GlobalEnv$env1)) {
                 if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }

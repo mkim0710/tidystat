@@ -86,6 +86,11 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # @@ RUN ALL ABOVE: CTRL+ALT+B -----  
 #| RUN ALL ABOVE: CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+env1$source$f_DataSetName.read.checkEntity.source.r = NULL
+env1$f$f_DataSetName.read.checkEntity = NULL
+env1$source$f_filename.ext.find_subpath.source.r = NULL
+env1$f$f_filename.ext.find_subpath = NULL
+env1$f$f_filename.ext.find_subpath.BreathFirstSearch = NULL
 source("f_DataSetName.read.checkEntity.source.r")
 
 
@@ -93,21 +98,59 @@ source("f_DataSetName.read.checkEntity.source.r")
 DataSetName = "fhs.index100le10"
 
 ## \% f_DataSetName.read.checkEntity(DataSetName = DataSetName) =====
+out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, print2console = FALSE, print.intermediate = TRUE)
+# getwd() == .path4read[1] == "."  
+# DataSetName = "fhs.index100le10"  
+# i.path4read = "."  
+# i.path4read = "data"  
+# Found .path.filename.ext == "data/fhs.index100le10.rds"  
+# filename.ext = "fhs.index100le10.rds"  
+# Warning message:
+# In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName,  :
+#   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")  
+
+
+## \% f_DataSetName.read.checkEntity(DataSetName = DataSetName) =====
+out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, print.intermediate = TRUE)
+# > out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, print.intermediate = TRUE)
+# getwd() == .path4read[1] == "."  
+# DataSetName = "fhs.index100le10"  
+# i.path4read = "."  
+# !.tmp.file.found && BreathFirstSearch  
+# > source("~/github_tidystat/f_filename.ext.find_subpath.source.r")  
+# Loading: .GlobalEnv$env1$f$f_filename.ext.find_subpath
+# Loading: .GlobalEnv$env1$f$f_filename.ext.find_subpath.BreathFirstSearch
+# Searching: .                                                 	 at depth 0  
+# Searching: ./-backup                                         	 at depth 1; Queue length: 1  
+# Searching: ./data                                            	 at depth 1; Queue length: 2  
+# Found subpath: .path4read = "./data"  
+# filename.ext = "fhs.index100le10.rds"  
+# Warning message:
+# In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName,  :
+#   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID") 
+
+
+## \% f_DataSetName.read.checkEntity(DataSetName = DataSetName) =====
 out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
 out %>% str
+# getwd() == .path4read[1] == "."  
+# Found .path.filename.ext == "data/fhs.index100le10.rds"  
+# Warning message:
+# In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName,  :
+#   varname for ID not identified among: c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")  
+# 
 # > out %>% str
-# List of 7
-#  $ DataSetName   : chr "fhs.index100le10"
-#  $ df_size_files :'data.frame':	1 obs. of  2 variables:
+# List of 6
+#  $ DataSetName  : chr "fhs.index100le10"
+#  $ df_size_files:'data.frame':	1 obs. of  2 variables:
 #   ..$ filename: chr "data/fhs.index100le10.rds"
 #   ..$ size    : num 35747
-#  $ read.proc_time: 'proc_time' Named num [1:5] 0.001 0 0.001 0 0
-#   ..- attr(*, "names")= chr [1:5] "user.self" "sys.self" "elapsed" "user.child" ...
-#  $ dim           : int [1:2] 450 81
-#  $ n_distinct    :List of 1
+#  $ dim          : int [1:2] 450 81
+#  $ n_distinct   :List of 1
 #   ..$ nrow: int 450
-#  $ names         : chr [1:81] "randid" "death" "angina" "hospmi" ...
-#  $ str           : chr [1:84] "tibble [450 × 81] (S3: tbl_df/tbl/data.frame)" " $ randid   : num [1:450] 24721 54224 83398 84815 95541 ..." " $ death    : num [1:450] 1 1 1 0 1 0 0 0 0 0 ..." " $ angina   : num [1:450] 0 0 0 0 0 0 0 0 0 1 ..." ...
+#  $ names        : chr [1:81] "randid" "death" "angina" "hospmi" ...
+#  $ str          : chr [1:84] "tibble [450 × 81] (S3: tbl_df/tbl/data.frame)" " $ randid   : num [1:450] 24721 54224 83398 84815 95541 ..." " $ death    : num [1:450] 1 1 1 0 1 0 0 0 0 0 ..." " $ angina   : num [1:450] 0 0 0 0 0 0 0 0 0 1 ..." ...
+
 
 ## \% f_DataSetName.read.checkEntity(DataSetName = DataSetName) =====
 out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
