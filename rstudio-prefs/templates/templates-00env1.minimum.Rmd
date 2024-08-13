@@ -642,6 +642,7 @@ if (.Platform$OS.type == "windows") {
     #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
     env1$env.internal$RmdChunk.updateTemplateNotebook(.CurrentSource.path.filename.ext = env1$path$CurrentSource.path.filename.ext)
 }
+### END-OF-CHUNK-updateTemplateNotebook
 ```
   
   
