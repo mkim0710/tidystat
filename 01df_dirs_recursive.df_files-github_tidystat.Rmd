@@ -174,7 +174,7 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
-# \$ .GlobalEnv$env1$info = list() ====  
+# .GlobalEnv$env1$info = list() ====  
 .sublistname = "info"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 env1$info$DocumentTitle0 = paste0("01df_dirs_recursive.df_files","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
@@ -190,7 +190,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd()) #----   
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## \$ env1\$path\$CurrentSource.path.filename.ext ====  
+## env1\$path\$CurrentSource.path.filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
@@ -239,18 +239,18 @@ env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> d
 ```
   
   
-##### \$ env1\$path\$df_dirs_recursive.df_files\$path  
+##### env1\$path\$df_dirs_recursive.df_files\$path  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
 ```
   
   
-##### \$ env1\$path\$print_tree_path_files.codes  
+##### env1\$path\$print_tree_path_files.codes  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
 ```
   
-##### \$ env1\$path\$print_tree_path_files.data  
+##### env1\$path\$print_tree_path_files.data  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 env1$path$print_tree_path_files.data |> cat("  \n", sep="")
 ```
