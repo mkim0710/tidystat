@@ -161,7 +161,8 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
             list_subpath <- c(list_subpath, list(list_path_depth.current$path))
             
             # List subdirectories and enqueue them with incremented depth
-            vec_files_subpath <- list.files(list_path_depth.current$path, full.names = TRUE)
+            # vec_files_subpath <- list.files(list_path_depth.current$path, full.names = TRUE, recursive = FALSE)
+            vec_files_subpath <- list.dirs(list_path_depth.current$path, full.names = TRUE, recursive = FALSE)
             for (i_files_subpath in vec_files_subpath) {
                 if (print.intermediate) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
                 if (file.info(i_files_subpath)$isdir) {
