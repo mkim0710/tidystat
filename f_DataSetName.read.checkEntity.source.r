@@ -135,7 +135,7 @@ for (.dependancy in c("f_path.size_files")) {
             .path4read2 = i.path4read
         }  
     }
-    .path4read=.path4read2
+    if(.tmp.file.found) .path4read=.path4read2
 
     if(!.tmp.file.found && BreathFirstSearch) {
         for (.dependancy in c("f_filename.ext.find_subpath")) {
