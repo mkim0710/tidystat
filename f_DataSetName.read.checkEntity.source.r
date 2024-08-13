@@ -112,7 +112,7 @@ for (.dependancy in c("f_path.size_files")) {
 
 # @ objectname = "f_DataSetName.read.checkEntity" =========  
 .tmp$objectname = "f_DataSetName.read.checkEntity"
-.tmp$object = function(DataSetName, ext = "rds", .path4read = ".", vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
+.tmp$object = function(DataSetName, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     MessageText2 = .path4read %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
     # if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)} #----
@@ -120,11 +120,21 @@ for (.dependancy in c("f_path.size_files")) {
 
     if(print.intermediate) cat('DataSetName = "', DataSetName, '"  \n', sep="")
     filename.ext = paste0(DataSetName,".", ext)
-    if(file.exists(file.path(.path4read, filename.ext))) {
-    } else if(file.exists(file.path(.path4read, paste0(filename.ext, ".xz")))) {
-        filename.ext = paste0(filename.ext, ".xz")
-    } else if(BreathFirstSearch) {
-        
+    
+    
+    .path4read = c(.path4read, paste0(.path4read, "/data"))
+    .tmp.file.found = FALSE
+    for (i in 1:length(.path4read)) {
+        i.path4read = .path4read[i]
+        if(file.exists(file.path(i.path4read, filename.ext))) {
+            .tmp.file.found = TRUE
+        } else if(file.exists(file.path(i.path4read, paste0(filename.ext, ".xz")))) {
+            filename.ext = paste0(filename.ext, ".xz")
+            .tmp.file.found = TRUE
+        }  
+    }
+
+    if(!.tmp.file.found && BreathFirstSearch) {
         for (.dependancy in c("f_filename.ext.find_subpath")) {
             if(!.dependancy %in% names(.GlobalEnv$env1)) {
                 if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
@@ -132,15 +142,20 @@ for (.dependancy in c("f_path.size_files")) {
             }
         }
         
-        path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = .path4read, max_depth = max_depth, print.intermediate = print.intermediate)
+        path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = .path4read[1], max_depth = max_depth, print.intermediate = print.intermediate)
         if (is.null(path.filename.ext)) {
-            path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = .path4read, max_depth = max_depth, print.intermediate = print.intermediate)
-            if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) 
+            path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = .path4read[1], max_depth = max_depth, print.intermediate = print.intermediate)
+            # if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) 
         }
-        .path4read = dirname(path.filename.ext)
-        cat('Found subpath: ', '.path4read = "', .path4read, '"  \n', sep="")
-        filename.ext = basename(path.filename.ext)
-    } else {
+        if (!is.null(path.filename.ext)) { 
+            .path4read = dirname(path.filename.ext)
+            cat('Found subpath: ', '.path4read = "', .path4read, '"  \n', sep="")
+            filename.ext = basename(path.filename.ext)
+            .tmp.file.found = TRUE
+        }
+    } 
+    
+    if(!.tmp.file.found) {
         warning(paste0(filename.ext, " does not exist!")) 
     }
     if(print.intermediate) cat('filename.ext = "', filename.ext, '"  \n', sep="")
