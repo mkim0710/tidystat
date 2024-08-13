@@ -315,6 +315,7 @@ f_path.list_subpath.BreathFirstSearch <- function(input_path = ".", max_depth = 
             # List subdirectories and enqueue them with incremented depth
             vec_files_subpath <- list.files(list_path_depth.current$path, full.names = TRUE)
             for (i_files_subpath in vec_files_subpath) {
+                if (print.intermediate) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
                 if (file.info(i_files_subpath)$isdir) {
                     # Enqueue subdirectories with incremented depth
                     list_list_path_depth <- c(list_list_path_depth, list(list(path = i_files_subpath, depth = list_path_depth.current$depth + 1)))

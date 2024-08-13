@@ -163,6 +163,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
             # List subdirectories and enqueue them with incremented depth
             vec_files_subpath <- list.files(list_path_depth.current$path, full.names = TRUE)
             for (i_files_subpath in vec_files_subpath) {
+                if (print.intermediate) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
                 if (file.info(i_files_subpath)$isdir) {
                     if (print.intermediate) {
                         cat("Searching: ", i_files_subpath, strrep(" ", max(50-nchar(i_files_subpath),0)), "\t at depth ", list_path_depth.current$depth+1, "; ", sep="")
