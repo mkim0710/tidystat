@@ -95,33 +95,33 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 
 
-function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName = "DataSet", VarNames4Exposure =  c("InterventionGroup")) {
+function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup")) {
     library(tidyverse)
     library(tableone)
     
-    ObjectName.select = paste0(objectname,".select")
-    ObjectName.TableOne_byExposure = paste0(objectname,".TableOne_by", VarNames4Exposure)
-    ObjectName.is.na.TableOne_byExposure = paste0(objectname,".is.na.TableOne_by", VarNames4Exposure)
-    ObjectName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-    ObjectName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-    ObjectName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-    # > ObjectName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+    DataSetName.select = paste0(DataSetName,".select")
+    DataSetName.TableOne_byExposure = paste0(DataSetName,".TableOne_by", VarNames4Exposure)
+    DataSetName.is.na.TableOne_byExposure = paste0(DataSetName,".is.na.TableOne_by", VarNames4Exposure)
+    DataSetName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+    DataSetName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+    DataSetName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+    # > DataSetName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select
-    # > ObjectName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+    # > DataSetName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.TableOne_bySEX
-    # > ObjectName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+    # > DataSetName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.is.na.TableOne_bySEX
     
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.TableOne_by_SEX = CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
     #     CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     
     # browser()
-    assign(ObjectName.TableOne_byExposure, 
+    assign(DataSetName.TableOne_byExposure, 
            DataSet.select %>% 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
-    assign(ObjectName.is.na.TableOne_byExposure, 
+    assign(DataSetName.is.na.TableOne_byExposure, 
            DataSet.select %>% 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
                map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
@@ -132,37 +132,37 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
     )
     
     Vars4IQR = names(DataSet.select)[DataSet.select %>% map_lgl(is.numeric)]
-    # eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
-    # eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
-    # eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
-    sink(paste0(ObjectName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
-    eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+    # eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+    # eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+    # eval(parse(text = DataSetName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+    sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
+    eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
     sink()
-    sink(paste0(ObjectName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
-    eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+    sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
+    eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
     sink()
-    sink(paste0(ObjectName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
-    eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+    sink(paste0(DataSetName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
+    eval(parse(text = DataSetName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
     sink()
     
     
     # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
-    DataSet.is.na.TableOne_byExposure.print = eval(parse(text = ObjectName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.is.na.TableOne_byExposure.print = eval(parse(text = DataSetName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
     DataSet.is.na.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
     
-    DataSet.TableOne_byExposure.print = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-    DataSet.TableOne_byExposure.print_showAllLevels = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-    DataSet.TableOne_byExposure.print_showAllLevels.IQR = eval(parse(text = ObjectName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.TableOne_byExposure.print = eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.TableOne_byExposure.print_showAllLevels = eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.TableOne_byExposure.print_showAllLevels.IQR = eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
     DataSet.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
     DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ----
     DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
     
-    # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -clean.xlsx"))
-    # DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-    # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, " -IQR -clean.xlsx"))
+    # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
+    # DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+    # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
     
     
     function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
@@ -238,16 +238,16 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, ObjectName 
         , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
         , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
         # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
-        # ) %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, "(list).xlsx"))
-    ) %>% writexl::write_xlsx(paste0(ObjectName.TableOne_byExposure, ".xlsx"))
-    if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(ObjectName.TableOne_byExposure, ".xlsx"))
+        # ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+    ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
+    if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
     
     return.list = list(
         DataSet.select = DataSet.select
-        , ObjectName = ObjectName
+        , DataSetName = DataSetName
         , VarNames4Exposure = VarNames4Exposure
-        , ObjectName.TableOne_byExposure = ObjectName.TableOne_byExposure
-        , ObjectName.is.na.TableOne_byExposure = ObjectName.is.na.TableOne_byExposure
+        , DataSetName.TableOne_byExposure = DataSetName.TableOne_byExposure
+        , DataSetName.is.na.TableOne_byExposure = DataSetName.is.na.TableOne_byExposure
         , Vars4IQR = Vars4IQR
         , DataSet.is.na.TableOne_byExposure.print = DataSet.is.na.TableOne_byExposure.print
         , DataSet.TableOne_byExposure.print = DataSet.TableOne_byExposure.print
