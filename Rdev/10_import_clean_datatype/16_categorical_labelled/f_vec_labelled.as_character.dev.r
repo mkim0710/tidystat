@@ -207,6 +207,18 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #@@ START) data -----
+
+## \$ fruit ====
+# > fruit %>% str
+#  chr [1:80] "apple" "apricot" "avocado" "banana" "bell pepper" "bilberry" "blackberry" "blackcurrant" "blood orange" "blueberry" ...
+# > fruit %>% as.factor %>% str
+#  Factor w/ 80 levels "apple","apricot",..: 1 2 3 4 5 6 7 8 9 10 ...
+# > fruit %>% as.factor %>% is.factor
+# [1] TRUE
+# > fruit %>% as.factor %>% is.numeric
+# [1] FALSE
+
+
 ## \$ vec_labelled_sex ====
 vec_labelled_sex = structure(c(1, 2, 2, 1, 2), label = "성별", labels = c(남자 = 1, 여자 = 2), class = c("haven_labelled", "vctrs_vctr", "double"))
 
