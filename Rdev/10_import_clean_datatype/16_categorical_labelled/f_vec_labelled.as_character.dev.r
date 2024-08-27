@@ -217,6 +217,12 @@ vec_labelled_sex %>% str
 #'  @ labels: Named num [1:2] 1 2
 #'   ..- attr(*, "names")= chr [1:2] "남자" "여자"
 
+vec_labelled_sex %>% is.numeric
+vec_labelled_sex %>% is.factor
+# > vec_labelled_sex %>% is.numeric
+# [1] TRUE
+# > vec_labelled_sex %>% is.factor
+# [1] FALSE
 
 # vec_labelled_sex %>% as.numeric
 # vec_labelled_sex %>% as.character
