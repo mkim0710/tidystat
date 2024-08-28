@@ -200,6 +200,390 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 # .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# https://haven.tidyverse.org/reference/labelled.html
+# https://chatgpt.com/c/349f6c28-2835-445f-aeb2-bc291bfadc41
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# \% library(haven) ----
+## \% haven::labelled() ----
+s1 <- haven::labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
+s1 %>% str
+s1 %>% dput
+#' > s1 %>% str
+#'  chr+lbl [1:3] M, M, F
+#'  @ labels: Named chr [1:2] "M" "F"
+#'   ..- attr(*, "names")= chr [1:2] "Male" "Female"
+#' > s1 %>% dput
+#' structure(c("M", "M", "F"), labels = c(Male = "M", Female = "F"), class = c("haven_labelled", "vctrs_vctr", "character"))
+
+s2 <- haven::labelled(c(1, 1, 2), c(Male = 1, Female = 2))
+s2 %>% str
+s2 %>% dput
+#' > s2 %>% str
+#'  dbl+lbl [1:3] 1, 1, 2
+#'  @ labels: Named num [1:2] 1 2
+#'   ..- attr(*, "names")= chr [1:2] "Male" "Female"
+#' > s2 %>% dput
+#' structure(c(1, 1, 2), labels = c(Male = 1, Female = 2), class = c("haven_labelled", "vctrs_vctr", "double"))
+
+
+s3 <- haven::labelled(
+  c(1, 1, 2),
+  c(Male = 1, Female = 2),
+  label = "Assigned sex at birth"
+)
+s3 %>% str
+s3 %>% dput
+#' > s3 %>% str
+#'  chr+lbl [1:5] M  , M  , F  , X  , N/A
+#'  @ labels: Named chr [1:4] "M" "F" "X" "N/A"
+#'   ..- attr(*, "names")= chr [1:4] "Male" "Female" "Refused" "Not applicable"
+#' > s3 %>% dput
+#' structure(c("M", "M", "F", "X", "N/A"), labels = c(Male = "M", Female = "F", Refused = "X", `Not applicable` = "N/A"), class = c("haven_labelled", "vctrs_vctr", "character"))
+
+
+### \% haven::labelled() |> as_factor() ----
+# Unfortunately it's not possible to make as.factor work for labelled objects
+# so instead use as_factor. This works for all types of labelled vectors.
+as_factor(s1)
+#> [1] Male   Male   Female
+#> Levels: Female Male
+as_factor(s1, levels = "values")
+#> [1] M M F
+#> Levels: M F
+as_factor(s2)
+#> [1] Male   Male   Female
+#> Levels: Male Female
+
+
+### \% multiple types of missing values ??? ----
+# Other statistical software supports multiple types of missing values
+s3 <- haven::labelled(
+  c("M", "M", "F", "X", "N/A"),
+  c(Male = "M", Female = "F", Refused = "X", "Not applicable" = "N/A")
+)
+s3
+#> <labelled<character>[5]>
+#> [1] M   M   F   X   N/A
+#> 
+#> Labels:
+#>  value          label
+#>      M           Male
+#>      F         Female
+#>      X        Refused
+#>    N/A Not applicable
+as_factor(s3)
+#> [1] Male           Male           Female         Refused       
+#> [5] Not applicable
+#> Levels: Female Male Not applicable Refused
+
+
+## \% haven::zap_labels() ----
+# Often when you have a partially labelled numeric vector, labelled values
+# are special types of missing. Use zap_labels to replace labels with missing
+# values
+x <- haven::labelled(c(1, 2, 1, 2, 10, 9), c(Unknown = 9, Refused = 10))
+haven::zap_labels(x)
+#> [1]  1  2  1  2 10  9
+
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# https://cran.r-project.org/web/packages/labelled/vignettes/intro_labelled.html
+# https://larmarange.github.io/labelled/reference/recode.haven_labelled.html
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+
+# \% library(labelled) ----
+# library(labelled)
+
+## \% labelled::var_label() ----
+labelled::var_label(iris$Sepal.Length) <- "Length of sepal"
+
+labelled::var_label(iris) <- list(
+  Petal.Length = "Length of petal",
+  Petal.Width = "Width of Petal"
+)
+labelled::var_label(iris$Petal.Width)
+## [1] "Width of Petal"
+labelled::var_label(iris)
+## $Sepal.Length
+## [1] "Length of sepal"
+## 
+## $Sepal.Width
+## NULL
+## 
+## $Petal.Length
+## [1] "Length of petal"
+## 
+## $Petal.Width
+## [1] "Width of Petal"
+## 
+## $Species
+## NULL
+labelled::var_label(iris$Sepal.Length) <- NULL
+
+## \% labelled::look_for() ----
+labelled::look_for(iris)
+##  pos variable     label           col_type missing values    
+##  1   Sepal.Length —               dbl      0                 
+##  2   Sepal.Width  —               dbl      0                 
+##  3   Petal.Length Length of petal dbl      0                 
+##  4   Petal.Width  Width of Petal  dbl      0                 
+##  5   Species      —               fct      0       setosa    
+##                                                    versicolor
+##                                                    virginica
+labelled::look_for(iris, "pet")
+##  pos variable     label           col_type missing values
+##  3   Petal.Length Length of petal dbl      0             
+##  4   Petal.Width  Width of Petal  dbl      0
+labelled::look_for(iris, details = FALSE)
+##  pos variable     label          
+##  1   Sepal.Length —              
+##  2   Sepal.Width  —              
+##  3   Petal.Length Length of petal
+##  4   Petal.Width  Width of Petal 
+##  5   Species      —
+
+
+
+v <- labelled::labelled(
+  c(1, 2, 2, 2, 3, 9, 1, 3, 2, NA),
+  c(yes = 1, no = 3, "don't know" = 8, refused = 9)
+)
+v
+## <labelled<double>[10]>
+##  [1]  1  2  2  2  3  9  1  3  2 NA
+## 
+## Labels:
+##  value      label
+##      1        yes
+##      3         no
+##      8 don't know
+##      9    refused
+labelled::val_labels(v)
+##        yes         no don't know    refused 
+##          1          3          8          9
+labelled::val_label(v, 8)
+## [1] "don't know"
+labelled::val_labels(v) <- c(yes = 1, nno = 3, bug = 5)
+v
+## <labelled<double>[10]>
+##  [1]  1  2  2  2  3  9  1  3  2 NA
+## 
+## Labels:
+##  value label
+##      1   yes
+##      3   nno
+##      5   bug
+labelled::val_label(v, 3) <- "no"
+v
+## <labelled<double>[10]>
+##  [1]  1  2  2  2  3  9  1  3  2 NA
+## 
+## Labels:
+##  value label
+##      1   yes
+##      3    no
+##      5   bug
+
+
+## \% labelled::val_label() ----
+#@ With val_label(), you can also add or remove specific value labels.
+labelled::val_label(v, 2) <- "maybe"
+labelled::val_label(v, 5) <- NULL
+v
+## <labelled<double>[10]>
+##  [1]  1  2  2  2  3  9  1  3  2 NA
+## 
+## Labels:
+##  value label
+##      1   yes
+##      3    no
+##      2 maybe
+
+#@ To remove all value labels, use val_labels() and NULL. The haven_labelled class will also be removed.
+
+labelled::val_labels(v) <- NULL
+v
+##  [1]  1  2  2  2  3  9  1  3  2 NA
+
+#@ Adding a value label to a non labelled vector will apply haven_labelled class to it.
+labelled::val_label(v, 1) <- "yes"
+v
+## <labelled<double>[10]>
+##  [1]  1  2  2  2  3  9  1  3  2 NA
+## 
+## Labels:
+##  value label
+##      1   yes
+
+#@ Note that applying val_labels() to a factor will generate an error!
+f <- factor(1:3)
+f
+## [1] 1 2 3
+## Levels: 1 2 3
+labelled::val_labels(f) <- c(yes = 1, no = 3)
+## Error in `val_labels<-.factor`(`*tmp*`, value = c(yes = 1, no = 3)): Value labels cannot be applied to factors.
+
+
+#@ You could also apply val_labels() to several columns of a data frame.
+df <- data.frame(v1 = 1:3, v2 = c(2, 3, 1), v3 = 3:1)
+
+labelled::val_label(df, 1) <- "yes"
+labelled::val_label(df[, c("v1", "v3")], 2) <- "maybe"
+labelled::val_label(df[, c("v2", "v3")], 3) <- "no"
+labelled::val_labels(df)
+## $v1
+##   yes maybe 
+##     1     2 
+## 
+## $v2
+## yes  no 
+##   1   3 
+## 
+## $v3
+##   yes maybe    no 
+##     1     2     3
+labelled::val_labels(df[, c("v1", "v3")]) <- c(YES = 1, MAYBE = 2, NO = 3)
+labelled::val_labels(df)
+## $v1
+##   YES MAYBE    NO 
+##     1     2     3 
+## 
+## $v2
+## yes  no 
+##   1   3 
+## 
+## $v3
+##   YES MAYBE    NO 
+##     1     2     3
+labelled::val_labels(df) <- NULL
+labelled::val_labels(df)
+## $v1
+## NULL
+## 
+## $v2
+## NULL
+## 
+## $v3
+## NULL
+labelled::val_labels(df) <- list(v1 = c(yes = 1, no = 3), v2 = c(a = 1, b = 2, c = 3))
+labelled::val_labels(df)
+## $v1
+## yes  no 
+##   1   3 
+## 
+## $v2
+## a b c 
+## 1 2 3 
+## 
+## $v3
+## NULL
+
+
+
+
+## \% labelled:::recode.haven_labelled() ----
+# combine value labels
+x <- haven::labelled(
+  1:4,
+  c(
+    "strongly agree" = 1,
+    "agree" = 2,
+    "disagree" = 3,
+    "strongly disagree" = 4
+  )
+)
+# library(labelled)
+# dplyr::recode(
+#   x,
+#   `1` = 1L,
+#   `2` = 1L,
+#   `3` = 2L,
+#   `4` = 2L,
+#   .combine_value_labels = TRUE
+# )
+labelled:::recode.haven_labelled(
+  x,
+  `1` = 1L,
+  `2` = 1L,
+  `3` = 2L,
+  `4` = 2L,
+  .combine_value_labels = TRUE
+)
+# > dplyr::recode(
+# +   x,
+# +   `1` = 1L,
+# +   `2` = 1L,
+# +   `3` = 2L,
+# +   `4` = 2L,
+# +   .combine_value_labels = TRUE
+# + )
+# Error in UseMethod("recode") : 
+#   no applicable method for 'recode' applied to an object of class "c('haven_labelled', 'vctrs_vctr', 'integer')"
+#> <labelled<integer>[4]>
+#> [1] 1 1 2 2
+#> 
+#> Labels:
+#>  value                        label
+#>      1       strongly agree / agree
+#>      2 disagree / strongly disagree
+labelled:::recode.haven_labelled(
+  x,
+  `2` = 1L,
+  `4` = 3L,
+  .combine_value_labels = TRUE
+)
+#> <labelled<integer>[4]>
+#> [1] 1 1 3 3
+#> 
+#> Labels:
+#>  value                        label
+#>      1       strongly agree / agree
+#>      3 disagree / strongly disagree
+labelled:::recode.haven_labelled(
+  x,
+  `2` = 1L,
+  `4` = 3L,
+  .combine_value_labels = TRUE,
+  .sep = " or "
+)
+#> <labelled<integer>[4]>
+#> [1] 1 1 3 3
+#> 
+#> Labels:
+#>  value                         label
+#>      1       strongly agree or agree
+#>      3 disagree or strongly disagree
+labelled:::recode.haven_labelled(
+  x,
+  `2` = 1L,
+  .default = 2L,
+  .combine_value_labels = TRUE
+)
+#> <labelled<integer>[4]>
+#> [1] 2 1 2 2
+#> 
+#> Labels:
+#>  value                                         label
+#>      1                                         agree
+#>      2 strongly agree / disagree / strongly disagree
+
+# example when combining some values without a label
+y <- haven::labelled(1:4, c("strongly agree" = 1))
+labelled:::recode.haven_labelled(y, `2` = 1L, `4` = 3L, .combine_value_labels = TRUE)
+#> <labelled<integer>[4]>
+#> [1] 1 1 3 3
+#> 
+#> Labels:
+#>  value          label
+#>      1 strongly agree
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ RUN ALL ABOVE: CTRL+ALT+B -----  
@@ -224,7 +608,7 @@ vec_labelled_sex = structure(c(1, 2, 2, 1, 2), label = "성별", labels = c(남�
 
 vec_labelled_sex %>% str
 #' > vec_labelled_sex %>% str
-#'  hvn_lbll [1:5] 1, 2, 2, 1, 2
+#'  dbl+lbl [1:5] 1, 2, 2, 1, 2
 #'  @ label : chr "성별"
 #'  @ labels: Named num [1:2] 1 2
 #'   ..- attr(*, "names")= chr [1:2] "남자" "여자"
@@ -236,6 +620,9 @@ vec_labelled_sex %>% is.factor
 # > vec_labelled_sex %>% is.factor
 # [1] FALSE
 
+
+
+### \% haven::labelled() |> as.factor() ----
 # vec_labelled_sex %>% as.numeric
 # vec_labelled_sex %>% as.character
 # vec_labelled_sex %>% as.factor
@@ -253,6 +640,7 @@ vec_labelled_sex %>% is.factor
 # # Run `rlang::last_trace()` to see where the error occurred.
 
 
+### \% haven::labelled() |> as_factor() ----
 vec_labelled_sex %>% as_numeric
 vec_labelled_sex %>% as_character
 vec_labelled_sex %>% as_factor
@@ -264,6 +652,17 @@ vec_labelled_sex %>% as_factor
 # Error in UseMethod("as_factor") : 
 #   no applicable method for 'as_factor' applied to an object of class "c('haven_labelled', 'vctrs_vctr', 'double')"
 
+
+
+vec_labelled_sex %>% haven::zap_label() %>% str
+vec_labelled_sex %>% haven::zap_labels() %>% str
+#' > vec_labelled_sex %>% haven::zap_label() %>% str
+#'  dbl+lbl [1:5] 1, 2, 2, 1, 2
+#'  @ labels: Named num [1:2] 1 2
+#'   ..- attr(*, "names")= chr [1:2] "남자" "여자"
+#' > vec_labelled_sex %>% haven::zap_labels() %>% str
+#'  num [1:5] 1 2 2 1 2
+#'  - attr(*, "label")= chr "성별"
 
 
 
@@ -300,330 +699,6 @@ vec_labelled_age %>% as_factor
 
 
 
-#|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# https://haven.tidyverse.org/reference/labelled.html
-# https://larmarange.github.io/labelled/reference/recode.haven_labelled.html
-# https://chatgpt.com/c/349f6c28-2835-445f-aeb2-bc291bfadc41
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# \% library(haven) ----
-## \% haven::labelled() ----
-s1 <- haven::labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
-s2 <- haven::labelled(c(1, 1, 2), c(Male = 1, Female = 2))
-s3 <- haven::labelled(
-  c(1, 1, 2),
-  c(Male = 1, Female = 2),
-  label = "Assigned sex at birth"
-)
-
-# Unfortunately it's not possible to make as.factor work for labelled objects
-# so instead use as_factor. This works for all types of labelled vectors.
-as_factor(s1)
-#> [1] Male   Male   Female
-#> Levels: Female Male
-as_factor(s1, levels = "values")
-#> [1] M M F
-#> Levels: M F
-as_factor(s2)
-#> [1] Male   Male   Female
-#> Levels: Male Female
-
-# Other statistical software supports multiple types of missing values
-s3 <- haven::labelled(
-  c("M", "M", "F", "X", "N/A"),
-  c(Male = "M", Female = "F", Refused = "X", "Not applicable" = "N/A")
-)
-s3
-#> <labelled<character>[5]>
-#> [1] M   M   F   X   N/A
-#> 
-#> Labels:
-#>  value          label
-#>      M           Male
-#>      F         Female
-#>      X        Refused
-#>    N/A Not applicable
-as_factor(s3)
-#> [1] Male           Male           Female         Refused       
-#> [5] Not applicable
-#> Levels: Female Male Not applicable Refused
-
-
-## \% haven::zap_labels() ----
-# Often when you have a partially labelled numeric vector, labelled values
-# are special types of missing. Use zap_labels to replace labels with missing
-# values
-x <- haven::labelled(c(1, 2, 1, 2, 10, 9), c(Unknown = 9, Refused = 10))
-haven::zap_labels(x)
-#> [1]  1  2  1  2 10  9
-
-
-## \% recode.haven_labelled() ----
-# combine value labels
-x <- labelled(
-  1:4,
-  c(
-    "strongly agree" = 1,
-    "agree" = 2,
-    "disagree" = 3,
-    "strongly disagree" = 4
-  )
-)
-dplyr::recode(
-  x,
-  `1` = 1L,
-  `2` = 1L,
-  `3` = 2L,
-  `4` = 2L,
-  .combine_value_labels = TRUE
-)
-#> <labelled<integer>[4]>
-#> [1] 1 1 2 2
-#> 
-#> Labels:
-#>  value                        label
-#>      1       strongly agree / agree
-#>      2 disagree / strongly disagree
-dplyr::recode(
-  x,
-  `2` = 1L,
-  `4` = 3L,
-  .combine_value_labels = TRUE
-)
-#> <labelled<integer>[4]>
-#> [1] 1 1 3 3
-#> 
-#> Labels:
-#>  value                        label
-#>      1       strongly agree / agree
-#>      3 disagree / strongly disagree
-dplyr::recode(
-  x,
-  `2` = 1L,
-  `4` = 3L,
-  .combine_value_labels = TRUE,
-  .sep = " or "
-)
-#> <labelled<integer>[4]>
-#> [1] 1 1 3 3
-#> 
-#> Labels:
-#>  value                         label
-#>      1       strongly agree or agree
-#>      3 disagree or strongly disagree
-dplyr::recode(
-  x,
-  `2` = 1L,
-  .default = 2L,
-  .combine_value_labels = TRUE
-)
-#> <labelled<integer>[4]>
-#> [1] 2 1 2 2
-#> 
-#> Labels:
-#>  value                                         label
-#>      1                                         agree
-#>      2 strongly agree / disagree / strongly disagree
-
-# example when combining some values without a label
-y <- labelled(1:4, c("strongly agree" = 1))
-dplyr::recode(y, `2` = 1L, `4` = 3L, .combine_value_labels = TRUE)
-#> <labelled<integer>[4]>
-#> [1] 1 1 3 3
-#> 
-#> Labels:
-#>  value          label
-#>      1 strongly agree
-
-#|________________________________________________________________________________|#  
-#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# https://cran.r-project.org/web/packages/labelled/vignettes/intro_labelled.html
-# \% library(labelled) ----
-library(labelled)
-
-## \% var_label() ----
-var_label(iris$Sepal.Length) <- "Length of sepal"
-
-var_label(iris) <- list(
-  Petal.Length = "Length of petal",
-  Petal.Width = "Width of Petal"
-)
-var_label(iris$Petal.Width)
-## [1] "Width of Petal"
-var_label(iris)
-## $Sepal.Length
-## [1] "Length of sepal"
-## 
-## $Sepal.Width
-## NULL
-## 
-## $Petal.Length
-## [1] "Length of petal"
-## 
-## $Petal.Width
-## [1] "Width of Petal"
-## 
-## $Species
-## NULL
-var_label(iris$Sepal.Length) <- NULL
-
-## \% look_for() ----
-look_for(iris)
-##  pos variable     label           col_type missing values    
-##  1   Sepal.Length —               dbl      0                 
-##  2   Sepal.Width  —               dbl      0                 
-##  3   Petal.Length Length of petal dbl      0                 
-##  4   Petal.Width  Width of Petal  dbl      0                 
-##  5   Species      —               fct      0       setosa    
-##                                                    versicolor
-##                                                    virginica
-look_for(iris, "pet")
-##  pos variable     label           col_type missing values
-##  3   Petal.Length Length of petal dbl      0             
-##  4   Petal.Width  Width of Petal  dbl      0
-look_for(iris, details = FALSE)
-##  pos variable     label          
-##  1   Sepal.Length —              
-##  2   Sepal.Width  —              
-##  3   Petal.Length Length of petal
-##  4   Petal.Width  Width of Petal 
-##  5   Species      —
-
-
-
-v <- labelled(
-  c(1, 2, 2, 2, 3, 9, 1, 3, 2, NA),
-  c(yes = 1, no = 3, "don't know" = 8, refused = 9)
-)
-v
-## <labelled<double>[10]>
-##  [1]  1  2  2  2  3  9  1  3  2 NA
-## 
-## Labels:
-##  value      label
-##      1        yes
-##      3         no
-##      8 don't know
-##      9    refused
-val_labels(v)
-##        yes         no don't know    refused 
-##          1          3          8          9
-val_label(v, 8)
-## [1] "don't know"
-val_labels(v) <- c(yes = 1, nno = 3, bug = 5)
-v
-## <labelled<double>[10]>
-##  [1]  1  2  2  2  3  9  1  3  2 NA
-## 
-## Labels:
-##  value label
-##      1   yes
-##      3   nno
-##      5   bug
-val_label(v, 3) <- "no"
-v
-## <labelled<double>[10]>
-##  [1]  1  2  2  2  3  9  1  3  2 NA
-## 
-## Labels:
-##  value label
-##      1   yes
-##      3    no
-##      5   bug
-
-
-## \% val_label() ----
-#@ With val_label(), you can also add or remove specific value labels.
-val_label(v, 2) <- "maybe"
-val_label(v, 5) <- NULL
-v
-## <labelled<double>[10]>
-##  [1]  1  2  2  2  3  9  1  3  2 NA
-## 
-## Labels:
-##  value label
-##      1   yes
-##      3    no
-##      2 maybe
-
-#@ To remove all value labels, use val_labels() and NULL. The haven_labelled class will also be removed.
-
-val_labels(v) <- NULL
-v
-##  [1]  1  2  2  2  3  9  1  3  2 NA
-
-#@ Adding a value label to a non labelled vector will apply haven_labelled class to it.
-val_label(v, 1) <- "yes"
-v
-## <labelled<double>[10]>
-##  [1]  1  2  2  2  3  9  1  3  2 NA
-## 
-## Labels:
-##  value label
-##      1   yes
-
-#@ Note that applying val_labels() to a factor will generate an error!
-f <- factor(1:3)
-f
-## [1] 1 2 3
-## Levels: 1 2 3
-val_labels(f) <- c(yes = 1, no = 3)
-## Error in `val_labels<-.factor`(`*tmp*`, value = c(yes = 1, no = 3)): Value labels cannot be applied to factors.
-
-
-#@ You could also apply val_labels() to several columns of a data frame.
-df <- data.frame(v1 = 1:3, v2 = c(2, 3, 1), v3 = 3:1)
-
-val_label(df, 1) <- "yes"
-val_label(df[, c("v1", "v3")], 2) <- "maybe"
-val_label(df[, c("v2", "v3")], 3) <- "no"
-val_labels(df)
-## $v1
-##   yes maybe 
-##     1     2 
-## 
-## $v2
-## yes  no 
-##   1   3 
-## 
-## $v3
-##   yes maybe    no 
-##     1     2     3
-val_labels(df[, c("v1", "v3")]) <- c(YES = 1, MAYBE = 2, NO = 3)
-val_labels(df)
-## $v1
-##   YES MAYBE    NO 
-##     1     2     3 
-## 
-## $v2
-## yes  no 
-##   1   3 
-## 
-## $v3
-##   YES MAYBE    NO 
-##     1     2     3
-val_labels(df) <- NULL
-val_labels(df)
-## $v1
-## NULL
-## 
-## $v2
-## NULL
-## 
-## $v3
-## NULL
-val_labels(df) <- list(v1 = c(yes = 1, no = 3), v2 = c(a = 1, b = 2, c = 3))
-val_labels(df)
-## $v1
-## yes  no 
-##   1   3 
-## 
-## $v2
-## a b c 
-## 1 2 3 
-## 
-## $v3
-## NULL
 
 
 #|________________________________________________________________________________|#  
