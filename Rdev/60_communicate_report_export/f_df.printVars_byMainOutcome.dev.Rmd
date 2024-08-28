@@ -324,10 +324,10 @@ cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 f_df.printVars_byMainOutcome = env1$f$f_df.printVars_byMainOutcome
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-get(DataSetName2.NA.rmAllNA) %>% f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DataSetName2.NA.rmAllNA) |> f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
-get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TRUE) %>% f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TRUE) |> f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 ```
   
   
