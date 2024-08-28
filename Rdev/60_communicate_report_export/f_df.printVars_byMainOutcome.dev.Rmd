@@ -287,13 +287,13 @@ options(width=120)
 # # .CodeBook.filter |> t() %>% apply(2, function(vec) paste0(names(vec),": ",vec)) |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n------------\n")
 # .CodeBook.filter |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-library(tableone)
+# library(tableone)
 get(DataSetName2.NA.rmAllNA) %>% select(any_of(MainOutcome), any_of(.VarName.selected)) %>% 
     # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
     mutate_if(haven::is.labelled, as_factor) |>
     mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
     as.data.frame() %>%  
-    CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
+    tableone::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
 get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TRUE) %>% select(any_of(MainOutcome), any_of(.VarName.selected)) %>% 
@@ -301,7 +301,7 @@ get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TR
     mutate_if(haven::is.labelled, as_factor) |>
     mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
     as.data.frame() %>%  
-    CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
+    tableone::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 # get(DataSetName2.NA.rmAllNA) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
@@ -313,15 +313,18 @@ get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TR
 ## \% f_df.printVars_byMainOutcome() ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.printVars_byMainOutcome = function(DataSet, MainOutcome, VarName.selected, StudyPopulation) {
+f_df.printVars_byMainOutcome = function(DataSet, MainOutcome, VarName.selected) {
     DataSet %>% select(any_of(MainOutcome), any_of(VarName.selected)) %>% 
-        # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
         mutate_if(haven::is.labelled, as_factor) |>
+        # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
         mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
         as.data.frame() %>%  
-        CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
+        tableone::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
 }
-
+get(DataSetName2.NA.rmAllNA) %>% f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
+get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TRUE) %>% f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 ```
   
   
