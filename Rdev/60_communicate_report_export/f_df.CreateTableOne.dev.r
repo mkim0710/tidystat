@@ -284,6 +284,10 @@ DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> prin
 # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
 
+
+
+
+## \% function.DataSet.TableOne_byExposure.print.addCols() ----
 function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
     DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
