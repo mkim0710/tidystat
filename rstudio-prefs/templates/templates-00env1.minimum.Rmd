@@ -472,9 +472,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> rownames_to_col
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
-.subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-.sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
-.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
+# --> Now included in "f_df.t.tribble_construct.source.r"
   
 varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str()
@@ -519,9 +517,7 @@ options(width=120)
 ```{r data.Date.NA-f_df.NotNA_p_df, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
-.subpath=r"(Rdev\10_import_clean_datatype\13_missing_value)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-.sourcename = "f_df.NotNA_p_df" |> paste0(".source.r")
-.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); suppressPackageStartupMessages(source( file.path(env1$path$source_base,.subpath.filename.source.r) ))
+# --> Now included in "f_df.t.tribble_construct.source.r"
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 if(exists(paste0(DataSetName,".Date"))) DataSetName2 = paste0(DataSetName,".Date") else DataSetName2 = DataSetName
