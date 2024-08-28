@@ -160,7 +160,7 @@ DataSet %>%
         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-    ) %>% function.DataSet.TableOne_byExposure.xlsx(DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
+    ) %>% f_df.CreateTableOne_byExposure.xlsx(DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
 
 
 
