@@ -95,7 +95,7 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 
 
-function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup")) {
+function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = TRUE) {
     library(tidyverse)
     library(tableone)
     
@@ -132,27 +132,29 @@ function.DataSet.TableOne_byExposure.xlsx = function(DataSet.select, DataSetName
     )
     
     Vars4IQR = names(DataSet.select)[DataSet.select %>% map_lgl(is.numeric)]
-    # eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
-    # eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
-    # eval(parse(text = DataSetName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
-    sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
-    eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
-    sink()
-    sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
-    eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
-    sink()
-    sink(paste0(DataSetName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
-    eval(parse(text = DataSetName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
-    sink()
-    
+    # get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+    # get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+    # get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+
+    if(output.sink) {
+        sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
+        get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+        sink()
+        sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
+        get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+        sink()
+        sink(paste0(DataSetName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
+        get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
+        sink()
+    }
     
     # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
-    DataSet.is.na.TableOne_byExposure.print = eval(parse(text = DataSetName.is.na.TableOne_byExposure)) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.is.na.TableOne_byExposure.print = get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
     DataSet.is.na.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
     
-    DataSet.TableOne_byExposure.print = eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-    DataSet.TableOne_byExposure.print_showAllLevels = eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-    DataSet.TableOne_byExposure.print_showAllLevels.IQR = eval(parse(text = DataSetName.TableOne_byExposure)) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.TableOne_byExposure.print = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.TableOne_byExposure.print_showAllLevels = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+    DataSet.TableOne_byExposure.print_showAllLevels.IQR = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
     DataSet.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
     DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ----
     DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
