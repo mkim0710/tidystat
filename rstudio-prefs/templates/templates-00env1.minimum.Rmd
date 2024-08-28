@@ -642,6 +642,24 @@ if (.Platform$OS.type == "windows") {
 ```
   
   
+```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+"> MetaData |> str(max.level = 3, give.attr = FALSE)" |> cat("  \n", sep="")
+MetaData |> str(max.level = 3, give.attr = FALSE)
+# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# "> MetaData |> str()" |> cat("  \n", sep="")
+# MetaData |> str()
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+"> all.equal(.MetaData0, MetaData)" |> cat("  \n", sep="")
+all.equal(.MetaData0, MetaData)
+if(!identical(.MetaData0, MetaData)) {
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',file.path(.path4read, "MetaData.rds"),'", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
+    cat('MetaData |> write_rds("',file.path(.path4write, "MetaData.rds"),'", compress = "gz") |> system.time()', "  \n", sep="")
+    cat("'git add -f \"",file.path(.path4write, "MetaData.rds"),"\"' |> system(intern=TRUE)  \n", sep="")
+}
+```
+
+
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
