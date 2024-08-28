@@ -144,7 +144,7 @@ log_file_availability <- function(path) {
   }
 }
 
-.path4read = "data"
+.path4read = paste0(env1$path$path1,"/data")
 objectname = "fhs.index100"
 paste0(.path4read,"/",objectname,".rds")
 log_file_availability(paste0(.path4read,"/",objectname,".rds"))
@@ -158,7 +158,7 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 
 
 library(tidyverse)
-.path4read = "data"
+.path4read = paste0(env1$path$path1,"/data")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 paste0(.path4read,"/",objectname,".rds")
 log_file_availability(paste0(.path4read,"/",objectname,".rds"))
@@ -172,7 +172,7 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 
 
 library(tidyverse)
-.path4read = "data"
+.path4read = paste0(env1$path$path1,"/data")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 paste0(.path4read,"/",objectname,".rds")
 log_file_availability(paste0(.path4read,"/",objectname,".rds"))
@@ -220,7 +220,7 @@ read_rds_safely_with_logging <- function(path, max_attempts = 9) {
   }
 }
 
-.path4read = "data"
+.path4read = paste0(env1$path$path1,"/data")
 objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 paste0(.path4read,"/",objectname,".rds")
 file.exists(paste0(.path4read,"/",objectname,".rds"))

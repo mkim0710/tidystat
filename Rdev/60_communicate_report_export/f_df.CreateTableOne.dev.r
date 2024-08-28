@@ -119,7 +119,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
 # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-.path4read = "data"
+.path4read = paste0(env1$path$path1,"/data")
 DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01" |> str_replace("\\.rds$", "")
 assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) )
 
