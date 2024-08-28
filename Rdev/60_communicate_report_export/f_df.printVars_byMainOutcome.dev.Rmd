@@ -309,8 +309,18 @@ get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TR
 ```
   
   
+# @@ START) function ----  
+## \% f_df.printVars_byMainOutcome() ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+f_df.printVars_byMainOutcome = function(DataSet, MainOutcome, VarName.selected, StudyPopulation) {
+    DataSet %>% select(any_of(MainOutcome), any_of(VarName.selected)) %>% 
+        # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
+        mutate_if(haven::is.labelled, as_factor) |>
+        mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
+        as.data.frame() %>%  
+        CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
+}
 
 ```
   
