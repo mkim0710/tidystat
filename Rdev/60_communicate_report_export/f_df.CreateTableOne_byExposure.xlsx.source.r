@@ -95,7 +95,7 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 
 
-f_df.CreateTableOne_byExposure.xlsx = function(DataSet.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = TRUE) {
+env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = TRUE) {
     library(tidyverse)
     library(tableone)
     
