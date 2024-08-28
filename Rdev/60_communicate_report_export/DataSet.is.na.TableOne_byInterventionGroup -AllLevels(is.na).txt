@@ -1,5 +1,3 @@
-
-> get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
                                                  Stratified by InterventionGroup
                                                   Overall       Group 0     Group 1       p      test SMD   
   n                                               2837          95          2742                            
@@ -59,5 +57,3 @@
   Intervention.ge1.is.na = FALSE (%)              2837 (100.0)  95 (100.0)  2742 (100.0)      NA      <0.001
   InterventionGroup.is.na = FALSE (%)             2837 (100.0)  95 (100.0)  2742 (100.0)      NA      <0.001
   InterventionGroup = Group 1 (%)                 2742 ( 96.7)   0 (  0.0)  2742 (100.0)  <0.001         NaN
-
-> sink()
