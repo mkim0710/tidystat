@@ -1,13 +1,13 @@
-# .sourcename = "f_df.CreateTableOne" |> paste0(".source.r")
-# f_df.CreateTableOne.dev.r
-# f_df.CreateTableOne.source.r
-# utils::browseURL("/Rdev/60_communicate_report_export/f_df.CreateTableOne.dev.r")
-# source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_df.CreateTableOne.source.r"))
-# # source("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne.source.r")
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/60_communicate_report_export/f_df.CreateTableOne.source.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne.dev.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne.dev.Rmd")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne.source.r")
+# .sourcename = "f_df.CreateTableOne_byExposure.xlsx" |> paste0(".source.r")
+# f_df.CreateTableOne_byExposure.xlsx.dev.r
+# f_df.CreateTableOne_byExposure.xlsx.source.r
+# utils::browseURL("/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.r")
+# source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r"))
+# # source("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r")
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.Rmd")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  

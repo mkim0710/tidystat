@@ -35,24 +35,24 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput()
 # > ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput() ----  
-.Rproj.user.shared.list.files1 = c("notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9702e3c18/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9800d5f74/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/E3EEE3A9a2e5d569/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/c2kv2ircdtmr9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/c2x3oh7bg7vcn/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/c49999ibehcer/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/c4tzsvl4tx3z9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cajqc0s3qa66a/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cajqc0s3qa66a/000010.error", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cfodvqfdr55z9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cfypu2gan1bf2/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cin2ot4z8d41v/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/clrumf873fdfj/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cpqgn7q99rlw9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/csetup_chunk/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cw2w3ivglpk94/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTableOne.dev/1/s/cyymmc3upsdwu/000002.csv", 
+.Rproj.user.shared.list.files1 = c("notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/E3EEE3A9702e3c18/chunks.json", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/E3EEE3A9800d5f74/chunks.json", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/E3EEE3A9a2e5d569/chunks.json", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/c2kv2ircdtmr9/000002.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/c2x3oh7bg7vcn/00000f.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/c49999ibehcer/00000f.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/c4tzsvl4tx3z9/000002.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cajqc0s3qa66a/00000f.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cajqc0s3qa66a/000010.error", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cfodvqfdr55z9/000002.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cfypu2gan1bf2/00000f.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/chunks.json", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cin2ot4z8d41v/000002.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/clrumf873fdfj/000002.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cpqgn7q99rlw9/000002.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/csetup_chunk/00000f.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cw2w3ivglpk94/000002.csv", 
+"notebooks/40C0E44C-f_df.CreateTableOne_byExposure.xlsx.dev/1/s/cyymmc3upsdwu/000002.csv", 
 "notebooks/5F81EFC4-01df_dirs_recursive.df_files-templates/1/s/c23qhhe5x2wrv/000002.csv", 
 "notebooks/5F81EFC4-01df_dirs_recursive.df_files-templates/1/s/ce4o8kuj7o02a/000002.csv", 
 "notebooks/5F81EFC4-01df_dirs_recursive.df_files-templates/1/s/chunks.json", 
@@ -548,7 +548,7 @@ print(recovered_files)
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/22452B12-contents is a content file, skipping."
 # [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0"
 # [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0-contents"
-# [1] "Metadata content: {\n  \"id\": [\"638F50C0\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne.dev.r\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/f_df.CreateTableOne.dev.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907877019],\n  \"source_on_save\": [false],\n  \"relative_order\": [3],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"44,31\"],\n    \"scrollLine\": [\"0\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
+# [1] "Metadata content: {\n  \"id\": [\"638F50C0\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.r\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907877019],\n  \"source_on_save\": [false],\n  \"relative_order\": [3],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"44,31\"],\n    \"scrollLine\": [\"0\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0 is not untitled or has no tempName."
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/638F50C0-contents is a content file, skipping."
 # [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF"
@@ -558,12 +558,12 @@ print(recovered_files)
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/690764CF-contents is a content file, skipping."
 # [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163"
 # [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163-contents"
-# [1] "Metadata content: {\n  \"id\": [\"8249F163\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne.dev.Rmd\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/f_df.CreateTableOne.dev.Rmd\"],\n  \"type\": [\"r_markdown\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907877182],\n  \"source_on_save\": [false],\n  \"relative_order\": [4],\n  \"properties\": {\n    \"chunk_output_type\": [\"inline\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"201,26\"],\n    \"scrollLine\": [\"0\"],\n    \"last_setup_crc32\": [\"\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1715915023],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1715915023634],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
+# [1] "Metadata content: {\n  \"id\": [\"8249F163\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.Rmd\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.Rmd\"],\n  \"type\": [\"r_markdown\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907877182],\n  \"source_on_save\": [false],\n  \"relative_order\": [4],\n  \"properties\": {\n    \"chunk_output_type\": [\"inline\"],\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"201,26\"],\n    \"scrollLine\": [\"0\"],\n    \"last_setup_crc32\": [\"\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1715915023],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1715915023634],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163 is not untitled or has no tempName."
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/8249F163-contents is a content file, skipping."
 # [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD"
 # [1] "Content file exists: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD-contents"
-# [1] "Metadata content: {\n  \"id\": [\"9879D8CD\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne.source.r\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/f_df.CreateTableOne.source.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907876927],\n  \"source_on_save\": [false],\n  \"relative_order\": [2],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"9,118\"],\n    \"scrollLine\": [\"0\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
+# [1] "Metadata content: {\n  \"id\": [\"9879D8CD\"],\n  \"path\": [\"~/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r\"],\n  \"project_path\": [\"Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r\"],\n  \"type\": [\"r_source\"],\n  \"hash\": [\"0\"],\n  \"contents\": [\"\"],\n  \"dirty\": [false],\n  \"created\": [1715907876927],\n  \"source_on_save\": [false],\n  \"relative_order\": [2],\n  \"properties\": {\n    \"source_window_id\": [\"\"],\n    \"Source\": [\"Source\"],\n    \"cursorPosition\": [\"9,118\"],\n    \"scrollLine\": [\"0\"],\n    \"docOutlineVisible\": [\"1\"]\n  },\n  \"folds\": [\"\"],\n  \"lastKnownWriteTime\": [1716179718],\n  \"encoding\": [\"UTF-8\"],\n  \"collab_server\": [\"\"],\n  \"source_window\": [\"\"],\n  \"last_content_update\": [1716179718],\n  \"read_only\": [false],\n  \"read_only_alternatives\": []\n}"
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD is not untitled or has no tempName."
 # [1] "File .Rproj.user/E3EEE3A9/sources/session-b71e3d35/9879D8CD-contents is a content file, skipping."
 # [1] "Checking file: .Rproj.user/E3EEE3A9/sources/session-b71e3d35/A05040E0"

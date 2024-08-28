@@ -623,7 +623,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 			function.threshold_roc.plot.dev.r
 #' @	60_communicate_report_export/
 #' 		calculate.smd.dev.r
-#' 		f_df.CreateTableOne.dev.r
+#' 		f_df.CreateTableOne_byExposure.xlsx.dev.r
 #' 		f_df.gather.group_by_variable.dev.r
 #' 		f_df.median_IQR.dev.r
 #' 		data_factor.byExposure.table_proptable.dev.r
