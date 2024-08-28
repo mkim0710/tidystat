@@ -88,11 +88,11 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) source -----  
-# @ .subpath, .sourcename ======  
+## @ .subpath, .sourcename ======  
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_df.CreateTableOne" |> paste0(".source.r")
-# \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
+### \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); source( file.path(env1$path$source_base,.subpath.filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 env1$path$.subpath = .subpath
@@ -123,8 +123,8 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01" |> str_replace("\\.rds$", "")
 assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) )
 
-CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----  
+CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
+# > CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="")   
 # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
 # HEIGHT, WEIGHT, 
 # BP_HIGH, BP_LWST, BLDS, 
@@ -180,7 +180,7 @@ DataSet %>%
 library(tidyverse)
 library(tableone)
 
-# #@ DataSet.CreateTableOne -----  
+##@ DataSet.CreateTableOne -----  
 # # DataSet.TableOne = DataSet %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 # DataSet.TableOne = DataSet %>% 
@@ -194,14 +194,14 @@ library(tableone)
 # Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
 # sink(paste0(.path4write,"/","DataSet.TableOne.txt"), append = FALSE)
-# DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
+# DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
 # sink()
 # sink(paste0(.path4write,"/","DataSet.TableOne.IQR.txt"), append = FALSE)
-# DataSet.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----  
+# DataSet.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---  
 # sink()
 
 
-# # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----  
+# # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ---  
 # DataSet.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
 #     write.csv("DataSet.TableOne -clean.csv")
 # DataSet.is.na.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
@@ -217,14 +217,14 @@ library(tableone)
 
 
 
-# @ DataSet.TableOne.byExposure -----  
-DataSet %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+## @ DataSet.TableOne.byExposure -----  
+DataSet %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
 DataSet.select = DataSet |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
     mutate(Intervention.ge1 = !BMI_ge300) %>% 
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
-DataSet.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+DataSet.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
 # DataSet.select %>% mutate_if(is.numeric, replace_na, 0)
                           
 VarNames4Exposure =  c("InterventionGroup")
@@ -232,9 +232,9 @@ DataSetName = "DataSet"
 DataSetName.select = paste0(DataSetName,".select")
 DataSetName.TableOne_byExposure = paste0(DataSetName,".TableOne_by", VarNames4Exposure)
 DataSetName.is.na.TableOne_byExposure = paste0(DataSetName,".is.na.TableOne_by", VarNames4Exposure)
-DataSetName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-DataSetName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-DataSetName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+DataSetName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
+DataSetName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
+DataSetName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
                               
 assign(DataSetName.TableOne_byExposure, 
        get(DataSetName.select) %>% 
@@ -252,30 +252,30 @@ assign(DataSetName.is.na.TableOne_byExposure,
 )
 
 Vars4IQR = names(get(DataSetName.select))[get(DataSetName.select) %>% map_lgl(is.numeric)]
-# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
-# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----  
-# get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
+# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
+# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---  
+# get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
 sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
-get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 sink()
 sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
-get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
 sink(paste0(DataSetName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
-get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 sink()
 
 
-# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ---            
 DataSet.is.na.TableOne_byExposure.print = get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-DataSet.is.na.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
+DataSet.is.na.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ---
 
 DataSet.TableOne_byExposure.print = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 DataSet.TableOne_byExposure.print_showAllLevels = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 DataSet.TableOne_byExposure.print_showAllLevels.IQR = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-DataSet.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
-DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ----
-DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
+DataSet.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ---
+DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ---
+DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ---
               
 # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
@@ -287,7 +287,7 @@ DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> prin
 
 
 
-## \% function.DataSet.TableOne_byExposure.print.addCols() ----
+# @@ START) function -----  
 function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
     DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
@@ -401,7 +401,7 @@ function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_b
 }
 
 DataSet.TableOne_byExposure.print.addCols = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols
-DataSet.TableOne_byExposure.print.addCols |> print(n=999) #----
+DataSet.TableOne_byExposure.print.addCols |> print(n=999) #---
 # > DataSet.TableOne_byExposure.print.addCols = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols
 # Warning messages:
 # 1: Expected 2 pieces. Additional pieces discarded in 21 rows [26, 27, 28, 29, 30, 31, 32, 41, 42, 43, 79, 80, 81, 82, 83, 122, 136, 139, 140, 154, ...]. 
@@ -416,7 +416,7 @@ DataSet.TableOne_byExposure.print.addCols |> print(n=999) #----
 # 8: Problem with `mutate()` input `smd`.
 # i NAs introduced by coercion
 # i Input `smd` is `as.numeric(SMD)`. 
-# > DataSet.TableOne_byExposure.print.addCols |> print(n=999) #----  
+# > DataSet.TableOne_byExposure.print.addCols |> print(n=999) #---  
 # # A tibble: 157 x 28
 #       `#` `#2`  Class VarType Variable                               level          Label Level Overall                `Group 1`           `Group 2`             SMD      `p-value` star      smd       p test   greatest G1geG2 G1leG2 G1mean   G1sd G2mean  G2sd    G1n G1prop    G2n G2prop
 #     <int> <chr> <chr> <chr>   <chr>                                  <chr>          <chr> <chr> <chr>                  <chr>               <chr>                 <chr>    <chr>     <chr>   <dbl>   <dbl> <chr>  <chr>    <lgl>  <lgl>   <dbl>  <dbl>  <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -453,8 +453,8 @@ function.df.edit_Label_Level = function(df) {
 }
 
 DataSet.TableOne_byExposure.print.addCols.edit = DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
-DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #----
-# > DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #----  
+DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #---
+# > DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #---  
 # # A tibble: 157 x 11
 #       `#` `#2`  Class VarType Variable                               level          Label                              Level                Overall                `Group 1`           `Group 2`            
 #     <int> <chr> <chr> <chr>   <chr>                                  <chr>          <chr>                              <chr>                <chr>                  <chr>               <chr>                
@@ -500,8 +500,8 @@ DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(
                
 
 
-DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #-----
-# > DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #-----  
+DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #---
+# > DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #---  
 # # A tibble: 168 x 8
 #   Variable           level    Overall       Male           Female         p        test  SMD    
 #   <chr>              <chr>    <chr>         <chr>          <chr>          <chr>    <chr> <chr>  
@@ -540,7 +540,7 @@ function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(Data
         as_tibble
 }
 DataSet.TableOne_byExposure.print_showAllLevels.addCols = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
-DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #-----
+DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #---
 # > DataSet.TableOne_byExposure.print_showAllLevels.addCols = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
 # Warning messages:
 # 1: Expected 2 pieces. Additional pieces discarded in 21 rows [25, 26, 27, 28, 29, 30, 31, 39, 40, 41, 70, 71, 72, 73, 74, 118, 139, 144, 145, 164, ...]. 
@@ -553,7 +553,7 @@ DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #-----
 # 6: Problem with `mutate()` input `smd`.
 # i NAs introduced by coercion
 # i Input `smd` is `as.numeric(SMD)`. 
-# > DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #-----  
+# > DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #---  
 # # A tibble: 169 x 28
 #       `#` `#2`  Class VarType Variable                level           Label                    Level           Overall          `Group 1`      `Group 2`       SMD    `p-value` star      smd       p test  greatest G1geG2 G1leG2 G1mean   G1sd G2mean  G2sd    G1n G1prop    G2n G2prop
 #     <int> <chr> <chr> <chr>   <chr>                   <chr>           <chr>                    <chr>           <chr>            <chr>          <chr>           <chr>  <chr>     <chr>   <dbl>   <dbl> <chr> <chr>    <lgl>  <lgl>   <dbl>  <dbl>  <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -601,8 +601,8 @@ DataSet = DataSet %>% mutate(
     , PMHx_highBP.lgl = PMHx_highBP |> as.logical()
 )
 
-DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #----
-# > DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #----  
+DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---
+# > DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---  
 #  N1GM0392_recode  N1GM0394_recode      Cigar        
 #  Min.   : 0.000   Min.   : 0.000   Min.   :  24.99  
 #  1st Qu.: 0.214   1st Qu.: 0.000   1st Qu.:  24.99  
@@ -628,13 +628,13 @@ DataSet.TableOne_by_MissingPattern = DataSet %>%
 Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
 sink(paste0(.path4write,"/","DataSet.TableOne_by_MissingPattern.txt"), append = FALSE)
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 sink(paste0(.path4write,"/","DataSet.TableOne_by_MissingPattern.IQR.txt"), append = FALSE)
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
 
 
-# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----  
+# =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ---  
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
     write.csv("DataSet.TableOne_by_MissingPattern -clean.csv")
 if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne_by_MissingPattern -clean.csv")
@@ -717,9 +717,9 @@ DataSet.svydesign.TableOne = DataSet.svydesign %>% select(-rowname, -PERSON_ID) 
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
 sink(paste0(.path4write,"/","DataSet.svydesign.TableOne.txt"), append = FALSE)
-DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 sink(paste0(.path4write,"/","DataSet.svydesign.TableOne.IQR.txt"), append = FALSE)
-DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
@@ -749,9 +749,9 @@ DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
 sink(paste0(.path4write,"/","DataSet.svydesign.TableOne_byExposure.txt"), append = FALSE)
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
+DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 sink(paste0(.path4write,"/","DataSet.svydesign.TableOne_byExposure.IQR.txt"), append = FALSE)
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
+DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
                
 
@@ -883,8 +883,8 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 
     # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
     ###### |> print(Sys.time())
-    #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
-    cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
+    #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---" ))
+    cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #--- \n" ))
 
     out = ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
     out = out |> rownames_to_column()
@@ -899,8 +899,8 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # + 
 # +     # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
 # +     ###### |> print(Sys.time())
-# +     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
-# +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
+# +     #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---" ))
+# +     cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #--- \n" ))
 # + 
 # +     out = ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
 # +     out = out |> rownames_to_column()
@@ -908,11 +908,11 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 # +     out$parent = names(parent.x)[i]
 # +     out
 # + }) %>% reduce(rbind)
-# Beginning .f() map from list element [[1]] named: _3yr  #----  
-# Beginning .f() map from list element [[2]] named: _4yr  #----  
-# Beginning .f() map from list element [[3]] named: _5yr  #----  
-# Beginning .f() map from list element [[4]] named: _6yr  #----  
-# Beginning .f() map from list element [[5]] named: _7yr  #----  
+# Beginning .f() map from list element [[1]] named: _3yr  #---  
+# Beginning .f() map from list element [[2]] named: _4yr  #---  
+# Beginning .f() map from list element [[3]] named: _5yr  #---  
+# Beginning .f() map from list element [[4]] named: _6yr  #---  
+# Beginning .f() map from list element [[5]] named: _7yr  #---  
 #    parent     n miss p.miss          level freq   percent cum.percent
 # 1    _3yr 33330    0      0        DTH_MDY 2090  6.270627    9.177918
 # 2    _3yr 33330    0      0 RECU_FR_DT_C16 4317 12.952295  100.000000
@@ -933,8 +933,8 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
 
     # Sys.time_1 <- Sys.time() ; print(paste0("Sys.time_1 : ", Sys.time() )) 
     ###### |> print(Sys.time())
-    #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #----" ))
-    cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---- \n" ))
+    #  print(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #---" ))
+    cat(paste0("Beginning .f() map from list element [[", i, "]] named: ", ifelse ( is.null(names(parent.x)[i]), "NULL", names(parent.x)[i] ), "  #--- \n" ))
 
     # out = ob$CatTable$`TRUE`$enddate.is %>% dplyr::filter(level %in% c("DTH_MDY", "RECU_FR_DT_C16") )
     out = ob$CatTable$`TRUE`$enddate.is
