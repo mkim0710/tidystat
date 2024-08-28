@@ -193,10 +193,10 @@ library(tableone)
 
 # Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
-# sink("DataSet.TableOne.txt", append = FALSE)
+# sink(paste0(.path4write,"/","DataSet.TableOne.txt"), append = FALSE)
 # DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
 # sink()
-# sink("DataSet.TableOne.IQR.txt", append = FALSE)
+# sink(paste0(.path4write,"/","DataSet.TableOne.IQR.txt"), append = FALSE)
 # DataSet.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----  
 # sink()
 
@@ -627,9 +627,9 @@ DataSet.TableOne_by_MissingPattern = DataSet %>%
     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
 Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
-sink("DataSet.TableOne_by_MissingPattern.txt", append = FALSE)
+sink(paste0(.path4write,"/","DataSet.TableOne_by_MissingPattern.txt"), append = FALSE)
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
-sink("DataSet.TableOne_by_MissingPattern.IQR.txt", append = FALSE)
+sink(paste0(.path4write,"/","DataSet.TableOne_by_MissingPattern.IQR.txt"), append = FALSE)
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 sink()
 
@@ -716,9 +716,9 @@ DataSet.svydesign.TableOne = DataSet.svydesign %>% select(-rowname, -PERSON_ID) 
     svyCreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
-sink("DataSet.svydesign.TableOne.txt", append = FALSE)
+sink(paste0(.path4write,"/","DataSet.svydesign.TableOne.txt"), append = FALSE)
 DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
-sink("DataSet.svydesign.TableOne.IQR.txt", append = FALSE)
+sink(paste0(.path4write,"/","DataSet.svydesign.TableOne.IQR.txt"), append = FALSE)
 DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 sink()
 
@@ -748,9 +748,9 @@ DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -
     svyCreateTableOne(strata = VarNames4Exposure, data = ., test = T)
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
-sink("DataSet.svydesign.TableOne_byExposure.txt", append = FALSE)
+sink(paste0(.path4write,"/","DataSet.svydesign.TableOne_byExposure.txt"), append = FALSE)
 DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
-sink("DataSet.svydesign.TableOne_byExposure.IQR.txt", append = FALSE)
+sink(paste0(.path4write,"/","DataSet.svydesign.TableOne_byExposure.IQR.txt"), append = FALSE)
 DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
 sink()
                

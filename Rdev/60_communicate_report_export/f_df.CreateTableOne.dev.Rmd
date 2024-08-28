@@ -291,10 +291,10 @@ library(tableone)
 
 # Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
 
-# sink("DataSet.TableOne.txt", append = FALSE)
+# sink(paste0(.path4write,"/","DataSet.TableOne.txt"), append = FALSE)
 # DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
 # sink()
-# sink("DataSet.TableOne.IQR.txt", append = FALSE)
+# sink(paste0(.path4write,"/","DataSet.TableOne.IQR.txt"), append = FALSE)
 # DataSet.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----  
 # sink()
 
