@@ -313,14 +313,17 @@ get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::quo_name(StudyPopulation) := TR
 ## \% f_df.printVars_byMainOutcome() ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-f_df.printVars_byMainOutcome = function(DataSet, MainOutcome, VarName.selected) {
-    DataSet %>% select(any_of(MainOutcome), any_of(VarName.selected)) %>% 
-        mutate_if(haven::is.labelled, as_factor) |>
-        # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
-        mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
-        as.data.frame() %>%  
-        tableone::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
-}
+
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+### \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
+.subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
+# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
+.sourcename = "f_df.printVars_byMainOutcome" |> paste0(".source.r")
+.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+f_df.printVars_byMainOutcome = env1$f$f_df.printVars_byMainOutcome
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 get(DataSetName2.NA.rmAllNA) %>% f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
