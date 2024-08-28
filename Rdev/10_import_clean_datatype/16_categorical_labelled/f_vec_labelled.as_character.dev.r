@@ -427,8 +427,8 @@ f <- factor(1:3)
 f
 ## [1] 1 2 3
 ## Levels: 1 2 3
-labelled::val_labels(f) <- c(yes = 1, no = 3)
-## Error in `val_labels<-.factor`(`*tmp*`, value = c(yes = 1, no = 3)): Value labels cannot be applied to factors.
+# labelled::val_labels(f) <- c(yes = 1, no = 3)
+# ## Error in `val_labels<-.factor`(`*tmp*`, value = c(yes = 1, no = 3)): Value labels cannot be applied to factors.
 
 
 #@ You could also apply val_labels() to several columns of a data frame.
@@ -641,17 +641,18 @@ vec_labelled_sex %>% is.factor
 
 
 ### \% haven::labelled() |> as_factor() ----
-vec_labelled_sex %>% as_numeric
-vec_labelled_sex %>% as_character
+# vec_labelled_sex %>% as_numeric
+# vec_labelled_sex %>% as_character
 vec_labelled_sex %>% as_factor
 # > vec_labelled_sex %>% as_numeric
 # Error in as_numeric(.) : could not find function "as_numeric"
 # > vec_labelled_sex %>% as_character
 # Error in as_character(.) : could not find function "as_character"
 # > vec_labelled_sex %>% as_factor
-# Error in UseMethod("as_factor") : 
-#   no applicable method for 'as_factor' applied to an object of class "c('haven_labelled', 'vctrs_vctr', 'double')"
-
+# [1] 남자 여자 여자 남자 여자
+# attr(,"label")
+# [1] 성별
+# Levels: 남자 여자
 
 
 vec_labelled_sex %>% haven::zap_label() %>% str
@@ -674,6 +675,8 @@ vec_labelled_age %>% str
 #  num [1:5] 22 43 42 41 41
 #  - attr(*, "label")= chr "나이"
 
+
+### \% haven::labelled() |> as.factor() ----
 vec_labelled_age %>% as.numeric
 vec_labelled_age %>% as.character
 vec_labelled_age %>% as.factor
@@ -685,8 +688,10 @@ vec_labelled_age %>% as.factor
 # [1] 22 43 42 41 41
 # Levels: 22 41 42 43
 
-vec_labelled_age %>% as_numeric
-vec_labelled_age %>% as_character
+
+### \% haven::labelled() |> as_factor() ----
+# vec_labelled_age %>% as_numeric
+# vec_labelled_age %>% as_character
 vec_labelled_age %>% as_factor
 # > vec_labelled_age %>% as_numeric
 # Error in as_numeric(.) : could not find function "as_numeric"
