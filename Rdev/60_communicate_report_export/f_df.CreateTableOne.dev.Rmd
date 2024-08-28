@@ -217,7 +217,7 @@ options(width=120)
   
   
 # @@ START) Data ----  
-### \%>\% function.DataSet.TableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
+### |> function.DataSet.TableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
@@ -270,14 +270,15 @@ DataSet %>%
   
 ```
   
-  
+
+# \% library(tableone) -----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
-
-library(tidyverse)
 library(tableone)
+```
 
+##@ DataSet.CreateTableOne -----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # #@ DataSet.CreateTableOne -----  
 # # DataSet.TableOne = DataSet %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
@@ -312,9 +313,11 @@ library(tableone)
 #     , is.na.TableOne = DataSet.is.na.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
 # ) %>% openxlsx::write.xlsx("DataSet.TableOne.xlsx")
 # # if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne.xlsx")
+```
 
 
-
+##@ DataSet.TableOne.byExposure -----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # @ DataSet.TableOne.byExposure -----  
 DataSet %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
 DataSet.select = DataSet |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
@@ -381,31 +384,104 @@ DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> prin
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
 # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
+```
+  
+  
+## \% function.DataSet.TableOne_byExposure.print.addCols() ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+## \% function.DataSet.TableOne_byExposure.print.addCols() ----
+function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
+    DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+        select(-p, -test, p, test) %>%
+        {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
+        add_column(VarType = as.character(NA), .before = "Variable") %>%
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
+        mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
+        mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
+        mutate_at(vars(matches("mean$"), matches("sd$"), matches("G[0-9]n$"), matches("prop$")), as.numeric) %>%
+        mutate(G1geG2 = if_else(VarType == "numeric", G1mean >= G2mean, G1geG2), G1leG2 = if_else(VarType == "numeric", G1mean <= G2mean, G1leG2)) %>% 
+        mutate(G1geG2 = if_else(VarType %in% c("factor", "level"), G1prop >= G2prop, G1geG2), G1leG2 = if_else(VarType %in% c("factor", "level"), G1prop <= G2prop, G1leG2)) %>% 
+        mutate(greatest = paste0(if_else(G1geG2, "G1", ""), if_else(G1leG2, "G2", ""))) %>% 
+        {add_column(., `#` = 1:nrow(.), `#2` = "", Class = "", .before = 1)} %>%    
+        add_column(`p-value` = "", star = "   ", .before = "p") %>% mutate(`p-value` = p, p = as.numeric(if_else(p == "<0.001", "0", p))) %>% 
+        mutate(star = case_when(p<0.001~"***", p<0.01~"** ", p<0.05~"*  ", p<0.1~".  ", is.na(p)~"   ", TRUE~"   ")) %>% 
+        add_column(smd = as.numeric(NA), .before = "p") %>% mutate(smd = as.numeric(SMD)) %>% 
+        add_column(Label = "", Level = "", .before = "Overall") %>% 
+        as_tibble
+}
+```
+  
+  
+## \% function.df.edit_Label_Level()  ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+function.df.edit_Label_Level = function(df) {
+    df = df %>% 
+        mutate(Level = if_else(VarType  == "level", Variable |> str_replace_all("^   ", ""), Level)) %>% 
+        mutate(Level = if_else(Variable |> str_detect(" = "), Variable |> str_extract(" = .*$") |> str_replace_all("^ = ", ""), Level)) %>% 
+        mutate(Level = if_else(Level == "TRUE", "", Level)) %>% 
+        mutate(Level = if_else(Level == "NA", "N/A", Level)) %>% 
+        mutate(Label = if_else(VarType  %in% c("factor", "numeric"), Variable, Label)) %>% 
+        mutate(Label = if_else(Variable |> str_detect(" = "), Label |> str_extract("^.* = ") |> str_replace_all(" = $", ""), Label)) %>% 
+        mutate(Label = Label |> str_replace_all("[_\\.]", " ")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)lt([0-9]+)", "[\\1~,\\2)")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)le([0-9]+)", "(\\1~,\\2]")) %>%
+        mutate(Label = Label |> str_replace_all("gt([0-9]+)", ">\\1")) %>%
+        mutate(Label = Label |> str_replace_all("ge([0-9]+)", ">=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("lt([0-9]+)", "<\\1")) %>%
+        mutate(Label = Label |> str_replace_all("le([0-9]+)", "<=\\1")) %>%
+        mutate(Label = Label |> str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
+        as_tibble
+    df
+}
+```
+  
+  
+## \% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols()  ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
+    DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
+        as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
+        select(-p, -test, p, test) %>%
+        {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
+        add_column(VarType = as.character(NA), .before = "Variable") %>%
+        mutate(VarType = if_else(Variable |> str_detect("%"), "factor", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("^   "), "level", VarType), Variable = Variable |> str_replace_all(" \\(%\\)", "")) %>% 
+        mutate(VarType = if_else(Variable |> str_detect("mean"), "numeric", VarType), Variable = Variable |> str_replace_all(" \\(mean \\(SD\\)\\)", "")) %>% 
+        mutate(greatest = as.character(NA), G1geG2 = as.logical(NA), G1leG2 = as.logical(NA)) %>% 
+        mutate(G1numeric = if_else(VarType == "numeric", `Group 1`, as.character(NA)), G2numeric = if_else(VarType == "numeric", `Group 2`, as.character(NA))) %>% separate(G1numeric, into = paste0("G1", c("mean", "sd")), sep = "[\\(\\)]") %>% separate(G2numeric, into = paste0("G2", c("mean", "sd")), sep = "[\\(\\)]") %>% 
+        mutate(G1categorical = if_else(VarType %in% c("factor", "level"), `Group 1`, as.character(NA)), G2categorical = if_else(VarType %in% c("factor", "level"), `Group 2`, as.character(NA))) %>% separate(G1categorical, into = paste0("G1", c("n", "prop")), sep = "[\\(\\)]") %>% separate(G2categorical, into = paste0("G2", c("n", "prop")), sep = "[\\(\\)]") %>% 
+        mutate_at(vars(matches("mean$"), matches("sd$"), matches("G[0-9]n$"), matches("prop$")), as.numeric) %>%
+        mutate(G1geG2 = if_else(VarType == "numeric", G1mean >= G2mean, G1geG2), G1leG2 = if_else(VarType == "numeric", G1mean <= G2mean, G1leG2)) %>% 
+        mutate(G1geG2 = if_else(VarType %in% c("factor", "level"), G1prop >= G2prop, G1geG2), G1leG2 = if_else(VarType %in% c("factor", "level"), G1prop <= G2prop, G1leG2)) %>% 
+        mutate(greatest = paste0(if_else(G1geG2, "G1", ""), if_else(G1leG2, "G2", ""))) %>% 
+        {add_column(., `#` = 1:nrow(.), `#2` = "", Class = "", .before = 1)} %>%    
+        add_column(`p-value` = "", star = "   ", .before = "p") %>% mutate(`p-value` = p, p = as.numeric(if_else(p == "<0.001", "0", p))) %>% 
+        mutate(star = case_when(p<0.001~"***", p<0.01~"** ", p<0.05~"*  ", p<0.1~".  ", is.na(p)~"   ", TRUE~"   ")) %>% 
+        add_column(smd = as.numeric(NA), .before = "p") %>% mutate(smd = as.numeric(SMD)) %>% 
+        add_column(Label = "", Level = "", .before = "Overall") %>% 
+        as_tibble
+}
 
 ```
   
   
+# @ writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx")) -----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-  
-system(paste0("git checkout -- ",rstudioapi::getSourceEditorContext()$path))
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
+list(
+    byExposure = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
+    , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+    , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
+    # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
+) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
 
 ```
   
