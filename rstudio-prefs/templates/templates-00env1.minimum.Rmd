@@ -540,6 +540,13 @@ cat(" > ",DataSetName2,".NA"," |> env1$f_df.NotNA_p_df()","  \n", sep=""); env1$
 ```
   
   
+### ---- < MetaData Summary > ----  
+#### \% MetaData |> str(max.level = 3) ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+MetaData |> str(max.level = 3)
+```
+
 ### ---- < DataSet Summary > ----  
 #### \$ data.Date.NA.rmAllNA.fct  ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
