@@ -43,10 +43,13 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
       !!rlang::sym(paste0(varname_BMI,"_ge230lt250")) := !!rlang::sym(varname_BMI) >= 23 & !!rlang::sym(varname_BMI) < 25,
       !!rlang::sym(paste0(varname_BMI,"_ge185lt250")) := !!rlang::sym(varname_BMI) >= 18.5 & !!rlang::sym(varname_BMI) < 25,
       !!rlang::sym(paste0(varname_BMI,"_ge250lt300")) := !!rlang::sym(varname_BMI) >= 25 & !!rlang::sym(varname_BMI) < 30,
+      !!rlang::sym(paste0(varname_BMI,"_ge230")) := !!rlang::sym(varname_BMI) >= 23,
+      !!rlang::sym(paste0(varname_BMI,"_ge250")) := !!rlang::sym(varname_BMI) >= 25,
       !!rlang::sym(paste0(varname_BMI,"_ge300")) := !!rlang::sym(varname_BMI) >= 30,
       !!rlang::sym(paste0(varname_BMI,"_ge350")) := !!rlang::sym(varname_BMI) >= 35,
       !!rlang::sym(paste0(varname_BMI,"_ge400")) := !!rlang::sym(varname_BMI) >= 40,
       !!rlang::sym(paste0(varname_BMI,".cut4")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+      !!rlang::sym(paste0(varname_BMI,".cut5")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
     )
   
   return(DataSet)
