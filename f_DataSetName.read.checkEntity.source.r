@@ -241,7 +241,8 @@ for (.dependancy in c("f_path.size_files")) {
     ## \% return.list$str ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     if(print2console) { invisible_or_not = function(x) x } else { invisible_or_not = function(x) invisible(x) }
-    return.list$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
+    # return.list$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
+    attributes(return.list)$str = get(DataSetName) |> str() |> capture.output() |> invisible_or_not()
     if(print2console) {cat("> ",DataSetName," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); str(get(DataSetName), max.level=2, give.attr=FALSE)}
     
     ## \% return.list$head_tail ====
