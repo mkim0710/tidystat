@@ -28,7 +28,7 @@
 # .GlobalEnv$env1 = new.env() ====  
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) }
 
-env1$f_df.NotNA_p_df = function(data) {
+env1$f$f_df.NotNA_p_df = function(data) {
     out = data |> map_df(is.na) |> colSums(na.rm=TRUE) |> as.data.frame() |> setNames("IsNA") |> rownames_to_column() |> rename(varname = rowname) |> rownames_to_column() |> rename(RowNum = rowname)
     out = out |> mutate(NotNA = nrow(data) - IsNA, NRow = nrow(data)) 
     out = out |> add_column(IsNA_p_df = sprintf("%4.3f",out$IsNA/out$NRow), .after = "IsNA")
@@ -37,7 +37,7 @@ env1$f_df.NotNA_p_df = function(data) {
     out
 }
 
-packageStartupMessage("Loading: env1$f_df.NotNA_p_df = function(data)")
+packageStartupMessage("Loading: env1$f$f_df.NotNA_p_df = function(data)")
 
 # test) f_df.NotNA_p_df()) nhanes_mice -----  
 # library(mice)

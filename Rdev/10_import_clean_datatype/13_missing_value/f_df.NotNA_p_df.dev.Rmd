@@ -242,8 +242,8 @@ nhanes_mice %>% {f_df.NotNA_p_df = function(data) {
     out = out |> add_column(NotNA_p_df = sprintf("%4.3f",out$NotNA/out$NRow), .after = "NotNA")
     out = out |> arrange(IsNA)
     out
-}  ;   env1$f_df.NotNA_p_df(.)}
-nhanes_mice |> env1$f_df.NotNA_p_df()
+}  ;   env1$f$f_df.NotNA_p_df(.)}
+nhanes_mice |> env1$f$f_df.NotNA_p_df()
 ```
   
   

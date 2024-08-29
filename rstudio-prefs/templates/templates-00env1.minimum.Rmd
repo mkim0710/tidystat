@@ -478,7 +478,7 @@ varname4ID = c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> str()
 get(DataSetName) |> dim()
 get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> n_distinct()
-get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$f_df.NotNA_p_df()
+get(DataSetName)[intersect(varname4ID, colnames(get(DataSetName)))] |> env1$f$f_df.NotNA_p_df()
   
 varname4CompositKey = c("age", "sex")
 vecCompositeKey = get(DataSetName)[intersect(varname4CompositKey, colnames(get(DataSetName)))] |> apply(MARGIN = 1, paste0, collapse = "-")
@@ -536,7 +536,7 @@ DataSetName2.NA.rmAllNA = paste0(DataSetName2,".NA",".rmAllNA"); DataSetName2.NA
 cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="") 
 cat(" dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA))),"  \n", sep="") 
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-cat(" > ",DataSetName2,".NA"," |> env1$f_df.NotNA_p_df()","  \n", sep=""); env1$f_df.NotNA_p_df(get(DataSetName2.NA))
+cat(" > ",DataSetName2,".NA"," |> env1$f$f_df.NotNA_p_df()","  \n", sep=""); env1$f$f_df.NotNA_p_df(get(DataSetName2.NA))
 ```
   
   
