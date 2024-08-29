@@ -1,5 +1,6 @@
 #%% f_df.add_BMI.cut4() ====  
 # library(dplyr)
+# library(rlang)
 
 
 ## \$ f_df.add_BMI_calculated =  ----  
@@ -12,12 +13,12 @@
     warning(paste0(deparse(varname_BMI),' %in% names(DataSet)')); cat("  \n", sep="")
     DataSet <- DataSet %>%
       mutate(
-        !!rlang::sym(paste0(varname_BMI,"_calculated")) := as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
+        !!rlang::sym(paste0(varname_BMI,"_calculated")) := as.numeric(!!rlang::sym(varname_Weight)) / (as.numeric(!!rlang::sym(varname_Height))/100)^2
       )
   } else {
     DataSet <- DataSet %>%
       mutate(
-        !!rlang::sym(varname_BMI) := as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
+        !!rlang::sym(varname_BMI) := as.numeric(!!rlang::sym(varname_Weight)) / (as.numeric(!!rlang::sym(varname_Height))/100)^2
       )
   }
     
@@ -36,15 +37,16 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
   # Compute additional BMI-related columns
   DataSet <- DataSet %>%
     mutate(
-      BMI_lt185 = !!sym(varname_BMI) < 18.5,
-      BMI_ge185lt230 = !!sym(varname_BMI) >= 18.5 & !!sym(varname_BMI) < 23,
-      BMI_ge230lt250 = !!sym(varname_BMI) >= 23 & !!sym(varname_BMI) < 25,
-      BMI_ge185lt250 = !!sym(varname_BMI) >= 18.5 & !!sym(varname_BMI) < 25,
-      BMI_ge250lt300 = !!sym(varname_BMI) >= 25 & !!sym(varname_BMI) < 30,
-      BMI_ge300 = !!sym(varname_BMI) >= 30,
-      BMI_ge350 = !!sym(varname_BMI) >= 35,
-      BMI_ge400 = !!sym(varname_BMI) >= 40,
-      BMI.cut4 = cut(!!sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
+      !!rlang::sym(paste0(varname_BMI,"_lt185")) := !!rlang::sym(varname_BMI) < 18.5,
+      
+      !!rlang::sym(paste0(varname_BMI,"_ge185lt230")) := !!rlang::sym(varname_BMI) >= 18.5 & !!rlang::sym(varname_BMI) < 23,
+      !!rlang::sym(paste0(varname_BMI,"_ge230lt250")) := !!rlang::sym(varname_BMI) >= 23 & !!rlang::sym(varname_BMI) < 25,
+      !!rlang::sym(paste0(varname_BMI,"_ge185lt250")) := !!rlang::sym(varname_BMI) >= 18.5 & !!rlang::sym(varname_BMI) < 25,
+      !!rlang::sym(paste0(varname_BMI,"_ge250lt300")) := !!rlang::sym(varname_BMI) >= 25 & !!rlang::sym(varname_BMI) < 30,
+      !!rlang::sym(paste0(varname_BMI,"_ge300")) := !!rlang::sym(varname_BMI) >= 30,
+      !!rlang::sym(paste0(varname_BMI,"_ge350")) := !!rlang::sym(varname_BMI) >= 35,
+      !!rlang::sym(paste0(varname_BMI,"_ge400")) := !!rlang::sym(varname_BMI) >= 40,
+      !!rlang::sym(paste0(varname_BMI,".cut4")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 25, 30, Inf), include.lowest = T, right = F)
     )
   
   return(DataSet)
