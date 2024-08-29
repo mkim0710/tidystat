@@ -1,7 +1,11 @@
 #%% f_df.add_BMI.cut4() ====  
-library(dplyr)
+# library(dplyr)
 
-env1$f$f_df.add_BMI_calculated <- function(DataSet, varname_Height = "HEIGHT", varname_Weight = "WEIGHT") {
+
+## \$ f_df.add_BMI_calculated =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.cut4.source.r
+.tmp$objectname = "f_df.add_BMI_calculated"
+.tmp$object = function(DataSet, varname_Height = "HEIGHT", varname_Weight = "WEIGHT") {
 
   # Check if BMI column exists
   if ("BMI" %in% names(DataSet)) {
@@ -19,8 +23,15 @@ env1$f$f_df.add_BMI_calculated <- function(DataSet, varname_Height = "HEIGHT", v
     
   return(DataSet)
 }
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
-env1$f$f_df.add_BMI.cut4 <- function(DataSet, varname_BMI = "BMI") {
+
+
+## \$ f_df.add_BMI.cut4 =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.cut4.source.r
+.tmp$objectname = "f_df.add_BMI.cut4"
+.tmp$object = function(DataSet, varname_BMI = "BMI") {
 
   # Compute additional BMI-related columns
   DataSet <- DataSet %>%
@@ -38,6 +49,8 @@ env1$f$f_df.add_BMI.cut4 <- function(DataSet, varname_BMI = "BMI") {
   
   return(DataSet)
 }
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 
 # gj_jk.Date.DTH.recode = 
