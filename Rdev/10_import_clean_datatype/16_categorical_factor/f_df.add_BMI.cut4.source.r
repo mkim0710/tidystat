@@ -5,19 +5,19 @@
 ## \$ f_df.add_BMI_calculated =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.cut4.source.r
 .tmp$objectname = "f_df.add_BMI_calculated"
-.tmp$object = function(DataSet, varname_Height = "HEIGHT", varname_Weight = "WEIGHT") {
+.tmp$object = function(DataSet, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
 
   # Check if BMI column exists
-  if ("BMI" %in% names(DataSet)) {
-    warning('"BMI" %in% names(DataSet)'); cat("  \n", sep="")
+  if (varname_BMI %in% names(DataSet)) {
+    warning(paste0(deparse(varname_BMI),' %in% names(DataSet)')); cat("  \n", sep="")
     DataSet <- DataSet %>%
       mutate(
-        BMI_calculated = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
+        !!rlang::sym(paste0(varname_BMI,"_calculated")) := as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
       )
   } else {
     DataSet <- DataSet %>%
       mutate(
-        BMI = as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
+        !!rlang::sym(varname_BMI) := as.numeric(!!sym(varname_Weight)) / (as.numeric(!!sym(varname_Height))/100)^2
       )
   }
     
