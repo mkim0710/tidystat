@@ -511,10 +511,10 @@ options(width=120)
   
   
 ### ---- < Data Availability Check > ----  
-### \$ data.Date.NA  = ====  
+### \$ DataSet.Date.NA  = ====  
 #### \% f_df.NotNA_p_df() ----  
-### \$ data.Date.NA.rmAllNA  = ====  
-```{r data.Date.NA-f_df.NotNA_p_df, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+### \$ DataSet.Date.NA.rmAllNA  = ====  
+```{r DataSet.Date.NA-f_df.NotNA_p_df, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
@@ -541,7 +541,7 @@ cat(" > ",DataSetName2,".NA"," |> env1$f$f_df.NotNA_p_df()","  \n", sep=""); env
   
   
 ### ---- < DataSet Summary > ----  
-#### \$ data.Date.NA.rmAllNA.fct  ----
+#### \$ DataSet.Date.NA.rmAllNA.fct  ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
