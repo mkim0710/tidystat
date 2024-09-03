@@ -379,10 +379,11 @@ DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07"))
 
 DataSet <- DataSet %>%
   mutate(across(
-    .cols = matches(.RegEx2match), 
+    .cols = matches(paste0(.RegEx2match,"$")), 
     .fns = ~ cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = TRUE, right = FALSE), 
     .names = "{.col}.cut5"
   ))
+DataSet %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
 ```
   
   
@@ -391,16 +392,18 @@ DataSet <- DataSet %>%
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "\\.pd[1-6]$"
+.RegEx2match = "\\.pd[1-6]"
 
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% str
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
 
-
-DataSet %>% transmute_at(
-    vars(matches(.RegEx2match)), 
-    ~cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = T, right = F)
-) %>% summary
+DataSet <- DataSet %>%
+  mutate(across(
+    .cols = matches(paste0(.RegEx2match,"$")), 
+    .fns = ~ ntile(., 5), 
+    .names = "{.col}.quintile"
+  ))
+DataSet %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))) %>% summary
 ```
   
   
