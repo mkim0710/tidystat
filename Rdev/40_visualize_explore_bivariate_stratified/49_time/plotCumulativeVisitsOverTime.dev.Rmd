@@ -353,7 +353,7 @@ data %>%
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Create the bar plot
-plot <- data %>%
+plot <- DataSet %>% 
   select(matches("_VISIT.cum$")) %>%
   mutate(row = row_number()) %>%
   pivot_longer(cols = -row, names_to = "Visits", values_to = "CumulativeCount") %>%
@@ -372,7 +372,7 @@ plot
 ## \% table_plot  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-table_plot <- data %>%
+table_plot <- DataSet %>% 
   select(matches("_VISIT.cum$")) %>%
   pivot_longer(cols = everything(), names_to = "Visits", values_to = "CumulativeCount") %>% 
   ggplot(aes(x = Visits, y = CumulativeCount, label = CumulativeCount)) +
