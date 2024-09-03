@@ -511,9 +511,9 @@ options(width=120)
   
   
 ### ---- < Data Availability Check > ----  
-### \$ DataSet.Date.NA  = ====  
-#### \% f_df.NotNA_p_df() ----  
-### \$ DataSet.Date.NA.rmAllNA  = ====  
+#### \$ DataSet.Date.NA  ----  
+##### \% f_df.NotNA_p_df() ----  
+#### \$ DataSet.Date.NA.rmAllNA  ----  
 ```{r DataSet.Date.NA-f_df.NotNA_p_df, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
