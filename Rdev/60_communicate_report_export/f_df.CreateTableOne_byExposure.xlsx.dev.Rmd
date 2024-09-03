@@ -174,34 +174,6 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 
 ```
   
-# @@ START) Data ----  
-  
-## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01 =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
-# \$ assign( objectname, read_rds(paste0(.path4read,"/",objectname,".rds")) ) ----  
-# .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-subpath = "data"
-objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-path.filename.ext = ifelse(
-    file.exists(paste0(subpath,"/",objectname,".rds"))
-    , paste0(subpath,"/",objectname,".rds")
-    , paste0(env1$path$source_base_github,"/",subpath,"/",objectname,".rds")
-)
-cat(" path.filename.ext = ", path.filename.ext, "\n", sep = "")
-assign( objectname, read_rds(path.filename.ext) )
-# > paste0(.path4read,"/",objectname,".rds")
-# [1] "./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds"
-# > file.exists(paste0(.path4read,"/",objectname,".rds"))
-# [1] FALSE
-# > assign( objectname, read_rds(normalizePath(paste0(.path4read,"/",objectname,".rds"))) )
-# Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
-  
-CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----  
-```
-  
   
 # @@ START) source ----  
 ### @ .subpath, .sourcename = "f_df.CreateTableOne_byExposure.xlsx" |> paste0(".source.r") ----  
@@ -217,11 +189,9 @@ options(width=120)
   
   
 # @@ START) Data ----  
-### |> env1$f$f_df.CreateTableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
+## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-  
-
 # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
 # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
 # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
@@ -245,7 +215,13 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> 
 # TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, WAIST_ge9080, WAIST_ge9085, BP_ge130_85, 
 # nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
 # nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
+```
 
+
+## \$ DataSet =  
+### |> env1$f$f_df.CreateTableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
 DataSet = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
     rownames_to_column() 
 
