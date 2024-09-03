@@ -741,6 +741,37 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \$ f_df.add_quintile_factors =  ----  
+## -> included in "f_df.t.tribble_construct.source.r"
+# https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
+# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_quintile_factors.dev.Rmd
+.tmp$objectname = "f_df.add_quintile_factors"
+.tmp$object = function(data, regex_pattern) {
+  data %>%
+    mutate(across(
+      .cols = matches(paste0(regex_pattern)), 
+      .fns = ~ {
+        # Compute quintile
+        quintile <- ntile(., 5)
+        
+        # Define labels for the quintiles with rounded values
+        labels <- c(
+          paste0("(", round(quantile(., 0, na.rm = TRUE), 3), ", ", round(quantile(., 0.2, na.rm = TRUE), 3), "]"),
+          paste0("(", round(quantile(., 0.2, na.rm = TRUE), 3), ", ", round(quantile(., 0.4, na.rm = TRUE), 3), "]"),
+          paste0("(", round(quantile(., 0.4, na.rm = TRUE), 3), ", ", round(quantile(., 0.6, na.rm = TRUE), 3), "]"),
+          paste0("(", round(quantile(., 0.6, na.rm = TRUE), 3), ", ", round(quantile(., 0.8, na.rm = TRUE), 3), "]"),
+          paste0("(", round(quantile(., 0.8, na.rm = TRUE), 3), ", ", round(quantile(., 1, na.rm = TRUE), 3), "]")
+        )
+        
+        # Convert to ordered factor
+        factor(quintile, levels = 1:5, labels = labels, ordered = TRUE)
+      },
+      .names = "{.col}.quintile"
+    ))
+}
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ f_formula.lhs_rhs_vars =  ----
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
 .tmp$objectname = "f_formula.lhs_rhs_vars"
