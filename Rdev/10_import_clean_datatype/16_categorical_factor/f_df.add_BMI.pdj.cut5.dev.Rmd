@@ -387,17 +387,7 @@ DataSet %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
 ```
   
   
-#### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
-## \% f_df.add_quintile_factors ====  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-## \$ f_df.add_quintile_factors =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
-# https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
-# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_quintile_factors.dev.Rmd
 
-```
-  
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -419,6 +409,18 @@ cat("    _______________________________________________________________________
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+```
+  
+  
+#### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
+## \% f_df.add_quintile_factors ====  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+## \$ f_df.add_quintile_factors =  ----  
+## -> included in "f_df.t.tribble_construct.source.r"
+# https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
+# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_quintile_factors.dev.Rmd
+
 ```
   
   
