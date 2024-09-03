@@ -283,13 +283,13 @@ data
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# data %>% select(matches("_VISIT$"), matches("_VISIT.cum$")) %>% select(matches("A0[1-4]"))
+# DataSet %>% select(matches("_VISIT$"), matches("_VISIT.cum$")) %>% select(matches("A0[1-4]"))
 
-data %>% select(matches("_VISIT$"))
-data %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
-data %>% select(matches("_VISIT.cum$"))
-data %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
-# > data %>% select(matches("_VISIT$"))
+DataSet %>% select(matches("_VISIT$"))
+DataSet %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
+DataSet %>% select(matches("_VISIT.cum$"))
+DataSet %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
+# > DataSet %>% select(matches("_VISIT$"))
 # # A tibble: 5 × 7
 #   A01_VISIT A02_VISIT A03_VISIT A04_VISIT A05_VISIT A06_VISIT A07_VISIT
 #       <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
@@ -298,11 +298,11 @@ data %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
 # 3         1         0         1         0         1         1         0
 # 4         1         1         1         1         0         0         1
 # 5         0         1         0         1         1         1         0
-# > data %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
+# > DataSet %>% select(matches("_VISIT$")) %>% map_df(as.factor) %>% summary()
 #  A01_VISIT A02_VISIT A03_VISIT A04_VISIT A05_VISIT A06_VISIT A07_VISIT
 #  0:2       0:1       0:2       0:2       0:2       0:2       0:2      
 #  1:3       1:4       1:3       1:3       1:3       1:3       1:3      
-# > data %>% select(matches("_VISIT.cum$"))
+# > DataSet %>% select(matches("_VISIT.cum$"))
 # # A tibble: 5 × 7
 #   A01_VISIT.cum A02_VISIT.cum A03_VISIT.cum A04_VISIT.cum A05_VISIT.cum A06_VISIT.cum A07_VISIT.cum
 #           <dbl>         <dbl>         <dbl>         <dbl>         <dbl>         <dbl>         <dbl>
@@ -311,7 +311,7 @@ data %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
 # 3             1             1             2             2             3             4             4
 # 4             1             2             3             4             4             4             5
 # 5             0             1             1             2             3             4             4
-# > data %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
+# > DataSet %>% select(matches("_VISIT.cum$")) %>% map_df(as.factor) %>% summary()
 #  A01_VISIT.cum A02_VISIT.cum A03_VISIT.cum A04_VISIT.cum A05_VISIT.cum A06_VISIT.cum A07_VISIT.cum
 #  0:2           1:3           1:1           2:3           3:4           3:1           4:3          
 #  1:3           2:2           2:3           3:1           4:1           4:4           5:2          
