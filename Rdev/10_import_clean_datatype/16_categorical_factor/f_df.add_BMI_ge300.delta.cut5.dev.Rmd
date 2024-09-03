@@ -247,8 +247,10 @@ DataSet %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
 options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
-DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A02_","") %>% dput
+.RegEx2match = "BMI"
+i = 2
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 for (i in 2:7) {
     # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
@@ -267,8 +269,10 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
-DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A03_","") %>% dput
+.RegEx2match = "BMI"
+i = 3
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 for (i in 3:7) {
     for (.VarName.suffix in c("BMI")) {
@@ -288,8 +292,9 @@ options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% str
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+i = 7
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
 for (j in 1:(7-1)) {
@@ -311,8 +316,10 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
-DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+.RegEx2match = "BMI|WEIGHT"
+i = 7
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
 
 for (j in 1:(7-1)) {
@@ -365,16 +372,17 @@ for (j in 1:(7-1)) {
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "\\.pd[1-6]$"
+.RegEx2match = "\\.pd[1-6]"
 
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% str
-DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
 
-
-DataSet %>% transmute_at(
-    vars(matches(.RegEx2match)), 
-    ~cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = T, right = F)
-) %>% summary
+DataSet <- DataSet %>%
+  mutate(across(
+    .cols = matches(.RegEx2match), 
+    .fns = ~ cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = TRUE, right = FALSE), 
+    .names = "{.col}.cut5"
+  ))
 ```
   
   
