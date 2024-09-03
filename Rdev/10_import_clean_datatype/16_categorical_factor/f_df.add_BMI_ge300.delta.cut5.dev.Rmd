@@ -217,7 +217,7 @@ DataSet = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>%
 DataSet %>% str
 ```
 
-##### \$ A01_BMI.cut4 =  
+#### \$ A01_BMI.cut4 =  
 ##### \% f_df.add_BMI_calculated()  
 ##### \% f_df.add_BMI.cut4()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -241,8 +241,7 @@ DataSet %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
 ```
 
 
-##### \$ A02_BMI.delta =  
-##### \$ A02_BMI_ge300.delta =  
+#### \$ A02_BMI_ge300.delta =  
 ##### \% f_df.add_VarName1.delta()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -252,17 +251,77 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A02_","") %>% dput
 
 for (i in 2:7) {
-    for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
+    # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
+    for (.VarName.suffix in c("BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
         print(paste0("A0",i,"_",.VarName.suffix,".delta"))
         DataSet = 
             DataSet %>% 
-            env1$f$f_df.add_VarName1.delta(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix))
+            env1$f$f_df.add_VarName1.delta(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
     }
 }
 DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 ```
   
+#### \$ A03_BMI.delta2 =  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+## \$ f_df.add_VarName1.delta =  ----  
+## -> included in "f_df.add_VarName1.delta.source.r"
+DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
+DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A03_","") %>% dput
+
+for (i in 3:7) {
+    for (.VarName.suffix in c("BMI")) {
+        print(paste0("A0",i,"_",.VarName.suffix,".delta2"))
+        DataSet = 
+            DataSet %>% 
+            env1$f$f_df.add_VarName1.delta(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
+    }
+}
+DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
+```
+
   
+#### \$ A0{1+j}_BMI.deltaj =  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+## \$ f_df.add_VarName1.delta =  ----  
+## -> included in "f_df.add_VarName1.delta.source.r"
+DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+
+
+for (j in 1:(7-1)) {
+    for (i in (1+j):7) {
+        for (.VarName.suffix in c("BMI")) {
+            print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
+            DataSet = 
+                DataSet %>% 
+                env1$f$f_df.add_VarName1.delta(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
+        }
+    }
+}
+DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
+```
+
+
+#### \$ A0{1+j}_BMI.deltaj |> print()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+for (j in 1:(7-1)) {
+    for (i in (1+j):7) {
+        for (.VarName.suffix in c("BMI")) {
+            # print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
+            # DataSet =
+            #     DataSet %>%
+            #     env1$f$f_df.add_VarName1.delta(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
+            DataSet[c(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix,".delta",j) )] |> head() |> as.data.frame() |> print()
+        }
+    }
+}
+```
+
+
   
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
