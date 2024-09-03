@@ -287,8 +287,9 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
 options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
-DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+.RegEx2match = "BMI|WEIGHT"
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
 
 
 for (j in 1:(7-1)) {
@@ -359,15 +360,39 @@ for (j in 1:(7-1)) {
 ```
   
   
+#### \$ A0{1+j}_BMI.pdj.cut5, A0{1+j}_WEIGHT.pdj.cut5 =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+## \$ f_df.add_VarNameT.dpT0 =  ----  
+## -> included in "f_df.t.tribble_construct.source.r"
+.RegEx2match = "\\.pd[1-6]$"
 
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+
+
+DataSet %>% transmute_at(
+    vars(matches(.RegEx2match)), 
+    ~cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = T, right = F)
+) %>% summary
 ```
   
   
+#### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+## \$ f_df.add_VarNameT.dpT0 =  ----  
+## -> included in "f_df.t.tribble_construct.source.r"
+.RegEx2match = "\\.pd[1-6]$"
 
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% str
+DataSet %>% select(matches(.RegEx2match)) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+
+
+DataSet %>% transmute_at(
+    vars(matches(.RegEx2match)), 
+    ~cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = T, right = F)
+) %>% summary
 ```
   
   
