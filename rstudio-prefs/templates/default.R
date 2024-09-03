@@ -256,6 +256,8 @@ cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'"
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", "")), compress = "xz", compression = 9 ))
 # # system.time(openxlsx::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(.objectname, ".xlsx"))
+# paste0("git add -f ",shQuote(paste0(.objectname,".rds"))) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")  
+# paste0("git add -f ",shQuote(paste0(.objectname,".rds"))) |> system(intern=TRUE)  
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ END -----  
