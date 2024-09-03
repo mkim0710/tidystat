@@ -727,7 +727,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.deltaT0"
 .tmp$object = function(df, VarName0, VarNameT, prefix = "", suffix = ".deltaT0") {
-    df |> mutate(!!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0))
+    df |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
@@ -736,7 +736,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ## -> included in "f_df.t.tribble_construct.source.r"
 .tmp$objectname = "f_df.add_VarNameT.pdT0"
 .tmp$object = function(df, VarName0, VarNameT, prefix = "", suffix = ".pdT0") {
-    df |> mutate(!!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0))
+    df |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
