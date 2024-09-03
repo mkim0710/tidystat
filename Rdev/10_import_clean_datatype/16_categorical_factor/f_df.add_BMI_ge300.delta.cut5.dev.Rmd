@@ -242,11 +242,11 @@ DataSet %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
 
 
 #### \$ A02_BMI_ge300.delta =  
-##### \% f_df.add_VarName1.delta()  
+##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarName1.delta =  ----  
-## -> included in "f_df.add_VarName1.delta.source.r"
+## \$ f_df.add_VarNameT.deltaT0 =  ----  
+## -> included in "f_df.add_VarNameT.deltaT0.source.r"
 DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A02_","") %>% dput
 
@@ -256,7 +256,7 @@ for (i in 2:7) {
         print(paste0("A0",i,"_",.VarName.suffix,".delta"))
         DataSet = 
             DataSet %>% 
-            env1$f$f_df.add_VarName1.delta(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
+            env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
     }
 }
 DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
@@ -265,8 +265,8 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 #### \$ A03_BMI.delta2 =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarName1.delta =  ----  
-## -> included in "f_df.add_VarName1.delta.source.r"
+## \$ f_df.add_VarNameT.deltaT0 =  ----  
+## -> included in "f_df.add_VarNameT.deltaT0.source.r"
 DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
 DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A03_","") %>% dput
 
@@ -275,7 +275,7 @@ for (i in 3:7) {
         print(paste0("A0",i,"_",.VarName.suffix,".delta2"))
         DataSet = 
             DataSet %>% 
-            env1$f$f_df.add_VarName1.delta(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
+            env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
     }
 }
 DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
@@ -285,8 +285,8 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
 #### \$ A0{1+j}_BMI.deltaj =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarName1.delta =  ----  
-## -> included in "f_df.add_VarName1.delta.source.r"
+## \$ f_df.add_VarNameT.deltaT0 =  ----  
+## -> included in "f_df.add_VarNameT.deltaT0.source.r"
 DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
 DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
 
@@ -297,7 +297,7 @@ for (j in 1:(7-1)) {
             print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
             DataSet = 
                 DataSet %>% 
-                env1$f$f_df.add_VarName1.delta(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
+                env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
         }
     }
 }
@@ -314,7 +314,7 @@ for (j in 1:(7-1)) {
             # print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
             # DataSet =
             #     DataSet %>%
-            #     env1$f$f_df.add_VarName1.delta(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
+            #     env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
             DataSet[c(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix,".delta",j) )] |> head() |> as.data.frame() |> print()
         }
     }
