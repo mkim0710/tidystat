@@ -535,7 +535,7 @@ for (.value4NA in .vec_value4NA) {
 DataSetName2.NA.rmAllNA = paste0(DataSetName2,".NA",".rmAllNA"); DataSetName2.NA = paste0(DataSetName2,".NA"); assign( DataSetName2.NA.rmAllNA, get(DataSetName2.NA) |> select_if(function(vec) !all(is.na(vec))) ); MetaData$DataSetNames[[DataSetName2.NA.rmAllNA]] = list(DataSetName = DataSetName2.NA.rmAllNA)
 cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="") 
 cat(" dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA))),"  \n", sep="") 
-DataSet.NA.rmAllNA = get(DataSetName2.NA.rmAllNA)
+DataSet.Date.NA.rmAllNA = get(DataSetName2.NA.rmAllNA)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat(" > ",DataSetName2,".NA"," |> env1$f$f_df.NotNA_p_df()","  \n", sep=""); env1$f$f_df.NotNA_p_df(get(DataSetName2.NA))
 ```
