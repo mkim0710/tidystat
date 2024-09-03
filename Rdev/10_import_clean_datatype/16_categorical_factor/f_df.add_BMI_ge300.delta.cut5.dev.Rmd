@@ -305,12 +305,7 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
 ```
 
 
-#### \$ A0{1+j}_BMI.deltaj =   
-Unstage line	
- 
- 
-286
-
+##### \% A0{1+j}_BMI.deltaj |> print()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 for (j in 1:(7-1)) {
