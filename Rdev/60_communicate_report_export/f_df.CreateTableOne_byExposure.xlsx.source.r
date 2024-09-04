@@ -139,13 +139,13 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.se
     # get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
 
     if(output.sink) {
-        sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
+        sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
         get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
         sink()
-        sink(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
+        sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
         get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
         sink()
-        sink(paste0(DataSetName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
+        sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
         get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
         sink()
     }
