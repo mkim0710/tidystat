@@ -218,14 +218,14 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> 
 ```
 
 
-## \$ DataSet =  
+## \$ DataSet.Date.NA.rmAllNA =  
 ### |> env1$f$f_df.CreateTableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-DataSet = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
+DataSet.Date.NA.rmAllNA = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
     rownames_to_column() 
 
-DataSet %>% 
+DataSet.Date.NA.rmAllNA %>% 
     select(
         SEX,
         HEIGHT, WEIGHT, 
@@ -256,17 +256,17 @@ library(tableone)
 ##@ DataSet.CreateTableOne -----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # #@ DataSet.CreateTableOne -----  
-# # DataSet.TableOne = DataSet %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
+# # DataSet.TableOne = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
-# DataSet.TableOne = DataSet %>% 
+# DataSet.TableOne = DataSet.Date.NA.rmAllNA %>% 
 #     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 19) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
-# DataSet.is.na.TableOne = DataSet %>% 
+# DataSet.is.na.TableOne = DataSet.Date.NA.rmAllNA %>% 
 #     map_df(is.na) %>% setNames(paste0(names(.), ".is.na")) %>% 
 #     as.data.frame %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 
-# Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
+# Vars4IQR = names(DataSet.Date.NA.rmAllNA)[DataSet.Date.NA.rmAllNA %>% map_lgl(is.numeric)]
 
 # sink(paste0(.path4write,"/","DataSet.TableOne.txt"), append = FALSE)
 # DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
@@ -295,17 +295,17 @@ library(tableone)
 ##@ DataSet.TableOne.byExposure -----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # @ DataSet.TableOne.byExposure -----  
-DataSet %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
-DataSet.select = DataSet |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
+DataSet.Date.NA.rmAllNA %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
     mutate(Intervention.ge1 = !BMI_ge300) %>% 
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
-DataSet.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
-# DataSet.select %>% mutate_if(is.numeric, replace_na, 0)
+DataSet.Date.NA.rmAllNA.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
+# DataSet.Date.NA.rmAllNA.select %>% mutate_if(is.numeric, replace_na, 0)
                           
 VarNames4Exposure =  c("InterventionGroup")
-DataSetName = "DataSet"
+DataSetName = "DataSet.Date.NA.rmAllNA"
 DataSetName.select = paste0(DataSetName,".select")
 DataSetName.TableOne_byExposure = paste0(DataSetName,".TableOne_by", VarNames4Exposure)
 DataSetName.is.na.TableOne_byExposure = paste0(DataSetName,".is.na.TableOne_by", VarNames4Exposure)
@@ -396,8 +396,8 @@ function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_b
 ## \% function.df.edit_Label_Level()  ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-function.df.edit_Label_Level = function(df) {
-    df = df %>% 
+function.df.edit_Label_Level = function(DataSet.Date.NA.rmAllNA) {
+    DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% 
         mutate(Level = if_else(VarType  == "level", Variable |> str_replace_all("^   ", ""), Level)) %>% 
         mutate(Level = if_else(Variable |> str_detect(" = "), Variable |> str_extract(" = .*$") |> str_replace_all("^ = ", ""), Level)) %>% 
         mutate(Level = if_else(Level == "TRUE", "", Level)) %>% 
@@ -413,7 +413,7 @@ function.df.edit_Label_Level = function(df) {
         mutate(Label = Label |> str_replace_all("le([0-9]+)", "<=\\1")) %>%
         mutate(Label = Label |> str_replace_all("([a-z]+)([A-Z])", "\\1 \\2")) %>%
         as_tibble
-    df
+    DataSet.Date.NA.rmAllNA
 }
 ```
   

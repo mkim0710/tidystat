@@ -140,10 +140,10 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> 
 # nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
 # nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
 
-DataSet = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
+DataSet.Date.NA.rmAllNA = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
     rownames_to_column() 
 
-DataSet %>% 
+DataSet.Date.NA.rmAllNA %>% 
     select(
         SEX,
         HEIGHT, WEIGHT, 
@@ -181,17 +181,17 @@ library(tidyverse)
 library(tableone)
 
 ##@ DataSet.CreateTableOne -----  
-# # DataSet.TableOne = DataSet %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
+# # DataSet.TableOne = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
-# DataSet.TableOne = DataSet %>% 
+# DataSet.TableOne = DataSet.Date.NA.rmAllNA %>% 
 #     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 19) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
-# DataSet.is.na.TableOne = DataSet %>% 
+# DataSet.is.na.TableOne = DataSet.Date.NA.rmAllNA %>% 
 #     map_df(is.na) %>% setNames(paste0(names(.), ".is.na")) %>% 
 #     as.data.frame %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 
-# Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
+# Vars4IQR = names(DataSet.Date.NA.rmAllNA %>%)[DataSet.Date.NA.rmAllNA %>% map_lgl(is.numeric)]
 
 # sink(paste0(.path4write,"/","DataSet.TableOne.txt"), append = FALSE)
 # DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
@@ -218,17 +218,17 @@ library(tableone)
 
 
 ## @ DataSet.TableOne.byExposure -----  
-DataSet %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
-DataSet.select = DataSet |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
+DataSet.Date.NA.rmAllNA %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
+DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
     mutate(Intervention.ge1 = !BMI_ge300) %>% 
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
     # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
     mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
-DataSet.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
-# DataSet.select %>% mutate_if(is.numeric, replace_na, 0)
+DataSet.Date.NA.rmAllNA.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
+# DataSet.Date.NA.rmAllNA.select %>% mutate_if(is.numeric, replace_na, 0)
                           
 VarNames4Exposure =  c("InterventionGroup")
-DataSetName = "DataSet"
+DataSetName = "DataSet.Date.NA.rmAllNA"
 DataSetName.select = paste0(DataSetName,".select")
 DataSetName.TableOne_byExposure = paste0(DataSetName,".TableOne_by", VarNames4Exposure)
 DataSetName.is.na.TableOne_byExposure = paste0(DataSetName,".is.na.TableOne_by", VarNames4Exposure)
@@ -587,9 +587,9 @@ DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #---
 
 
 
-# DataSet = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% dplyr::filter(!is.na(Cigar)) %>% dplyr::filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
-DataSet = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% select(-seqnum:-`_merge`, -matches("^count"))
-DataSet = DataSet %>% mutate(
+# DataSet.Date.NA.rmAllNA = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% dplyr::filter(!is.na(Cigar)) %>% dplyr::filter(!n1ah0287 %in% c(1, 3, 9)) %>% select(-seqnum:-`_merge`, -matches("^count"))
+DataSet.Date.NA.rmAllNA = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate %>% select(-seqnum:-`_merge`, -matches("^count"))
+DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate(
     Male.lgl = Male |> as.logical()
     , RaceWhite.lgl = RaceWhite |> as.logical()
     , HighSchoolLastYear.lgl = HighSchoolLastYear |> as.logical()
@@ -601,8 +601,8 @@ DataSet = DataSet %>% mutate(
     , PMHx_highBP.lgl = PMHx_highBP |> as.logical()
 )
 
-DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---
-# > DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---  
+DataSet.Date.NA.rmAllNA %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---
+# > DataSet.Date.NA.rmAllNA %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---  
 #  N1GM0392_recode  N1GM0394_recode      Cigar        
 #  Min.   : 0.000   Min.   : 0.000   Min.   :  24.99  
 #  1st Qu.: 0.214   1st Qu.: 0.000   1st Qu.:  24.99  
@@ -612,7 +612,7 @@ DataSet %>% select(N1GM0392_recode, N1GM0394_recode, Cigar) |> summary() #---
 #  Max.   :20.000   Max.   :50.000   Max.   :3910.71  
 #  NA's   :13960    NA's   :13857    NA's   :7502 
 
-DataSet = DataSet %>% mutate(
+DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate(
     MissingPattern = is.na(Cigar) * 100 + is.na(N1GM0392_recode) * 10 + is.na(N1GM0394_recode)
     , MissingPattern = as.factor(MissingPattern)
 )
@@ -620,12 +620,12 @@ DataSet = DataSet %>% mutate(
 
 # @ DataSet.CreateTableOne.by_MissingPattern -----  
 VarNames4MissingPattern =  c("MissingPattern")
-# DataSet.TableOne_by_MissingPattern = DataSet %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
+# DataSet.TableOne_by_MissingPattern = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 #     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
-DataSet.TableOne_by_MissingPattern = DataSet %>% 
+DataSet.TableOne_by_MissingPattern = DataSet.Date.NA.rmAllNA %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
-Vars4IQR = names(DataSet)[DataSet %>% map_lgl(is.numeric)]
+Vars4IQR = names(DataSet.Date.NA.rmAllNA)[DataSet.Date.NA.rmAllNA %>% map_lgl(is.numeric)]
 
 sink(paste0(.path4write,"/","DataSet.TableOne_by_MissingPattern.txt"), append = FALSE)
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
@@ -705,8 +705,8 @@ library(survey)
 # ## End(Not run)
 
 
-DataSet.svydesign = DataSet %>% svydesign(id = ~PrimarySamplingUnit, strata = ~SamplingStrata, weights = ~SamplingWeight, nest = TRUE, data = . , pps="brewer")
-# DataSet.svydesign = DataSet %>% svydesign(id = ~PSUNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
+DataSet.svydesign = DataSet.Date.NA.rmAllNA %>% svydesign(id = ~PrimarySamplingUnit, strata = ~SamplingStrata, weights = ~SamplingWeight, nest = TRUE, data = . , pps="brewer")
+# DataSet.svydesign = DataSet.Date.NA.rmAllNA %>% svydesign(id = ~PSUNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 
 
 
