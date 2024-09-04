@@ -741,6 +741,32 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \$ f_df.add_RegEx.cut =  ----  
+## -> included in "f_df.t.tribble_construct.source.r"
+# https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
+# Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegEx.cut.dev.Rmd
+.tmp$objectname = "f_df.add_RegEx.cut"
+.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut",length(breaks)-1)) {
+    if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
+        stop("DataSet.Date.NA.rmAllNA must be a data frame.")
+    }
+    
+    # Apply the cut operation across columns matching the regex pattern
+    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+        mutate(across(
+            .cols = matches(regex_pattern), # Select columns matching the regex pattern
+            .fns = ~ cut(., 
+                         breaks = breaks, # Define breakpoints
+                         include.lowest = TRUE, 
+                         right = FALSE), 
+            .names = paste0("{.col}", suffix) # Naming convention for new columns
+        ))
+    
+    return(DataSet.Date.NA.rmAllNA)
+}
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ f_df.add_quintile_factors =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
