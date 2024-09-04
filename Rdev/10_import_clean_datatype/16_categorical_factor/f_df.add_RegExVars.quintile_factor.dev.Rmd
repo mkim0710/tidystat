@@ -245,51 +245,31 @@ DataSet.Date.NA.rmAllNA %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.deltaT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "BMI"
-i = 2
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
-
-for (i in 2:7) {
-    # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
-    for (.VarName.suffix in c("BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
-        print(paste0("A0",i,"_",.VarName.suffix,".delta"))
-        DataSet.Date.NA.rmAllNA = 
-            DataSet.Date.NA.rmAllNA %>% 
-            env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
-    }
-}
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
+# ## \$ f_df.add_VarNameT.deltaT0 =  ----  
+# ## -> included in "f_df.t.tribble_construct.source.r"
+# .RegEx2match = "BMI"
+# i = 2
+# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+# 
+# for (i in 2:7) {
+#     # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
+#     for (.VarName.suffix in c("BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
+#         print(paste0("A0",i,"_",.VarName.suffix,".delta"))
+#         DataSet.Date.NA.rmAllNA = 
+#             DataSet.Date.NA.rmAllNA %>% 
+#             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
+#     }
+# }
+# DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 ```
   
-#### \$ A03_BMI.delta2 =  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-## \$ f_df.add_VarNameT.deltaT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "BMI"
-i = 3
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
 
-for (i in 3:7) {
-    for (.VarName.suffix in c("BMI")) {
-        print(paste0("A0",i,"_",.VarName.suffix,".delta2"))
-        DataSet.Date.NA.rmAllNA = 
-            DataSet.Date.NA.rmAllNA %>% 
-            env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
-    }
-}
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
-```
-
-  
 #### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
+##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.deltaT0 =  ----  
+## \$ f_df.add_VarNameT.deltaT0 =  ----
 ## -> included in "f_df.t.tribble_construct.source.r"
 .RegEx2match = "BMI|WEIGHT"
 i = 7
@@ -301,8 +281,8 @@ for (j in 1:(7-1)) {
     for (i in (1+j):7) {
         for (.VarName.suffix in c("BMI", "WEIGHT")) {
             print(paste0("A0",i,"_",.VarName.suffix,paste0(".delta",j)))
-            DataSet.Date.NA.rmAllNA = 
-                DataSet.Date.NA.rmAllNA |> 
+            DataSet.Date.NA.rmAllNA =
+                DataSet.Date.NA.rmAllNA |>
                 env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-j,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = paste0(".delta",j))
         }
     }
@@ -312,6 +292,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) %>
 
 
 #### \$ A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj =  
+##### \% f_df.add_VarNameT.dpT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
@@ -336,7 +317,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) %>
 ```
 
 
-##### \%  print() A0{1+j}_BMI.deltaj, A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj 
+#### \%  print() A0{1+j}_BMI.deltaj, A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 for (j in 1:(7-1)) {
@@ -368,22 +349,17 @@ for (j in 1:(7-1)) {
   
   
 #### \$ A0{1+j}_BMI.pdj.cut5, A0{1+j}_WEIGHT.pdj.cut5 =  
+##### \% f_df.add_RegEx.cut()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.dpT0 =  ----  
+## \$ f_df.add_RegEx.cut =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "\\.pd[1-6]"
+# https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
+# Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegEx.cut.dev.Rmd
 
-DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% str
-DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+# DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA |> env1$f$f_df.add_RegEx.cut(regex_pattern = "\\.pd[1-6]$", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf))
+# DataSet.Date.NA.rmAllNA %>% select(matches("\\.pd[1-6]\\.cut")) %>% summary
 
-DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
-  mutate(across(
-    .cols = matches(paste0(.RegEx2match,"$")), 
-    .fns = ~ cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = TRUE, right = FALSE), 
-    .names = "{.col}.cut5"
-  ))
-DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
 ```
   
   
@@ -423,14 +399,15 @@ options(width=120)
 ```
   
 
-## \% f_df.add_RegExVars.quintile_factor ====  
+#### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
+##### \% f_df.add_quintile_factors ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_RegExVars.quintile_factor =  ----  
+## \$ f_df.add_quintile_factors =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
-# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
-.tmp$objectname = "f_df.add_RegExVars.quintile_factor"
+# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_quintile_factors.dev.Rmd
+.tmp$objectname = "f_df.add_quintile_factors"
 .tmp$object = function(data, regex_pattern) {
   data %>%
     mutate(across(
@@ -458,7 +435,7 @@ options(width=120)
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 .RegEx2match = "\\.pd[1-6]"
-DataSet.Date.NA.rmAllNA <- env1$f$f_df.add_RegExVars.quintile_factor(DataSet.Date.NA.rmAllNA, paste0(.RegEx2match,"$"))
+DataSet.Date.NA.rmAllNA <- env1$f$f_df.add_quintile_factors(DataSet.Date.NA.rmAllNA, paste0(.RegEx2match,"$"))
 DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))) %>% summary
 
 ```

@@ -245,45 +245,45 @@ DataSet.Date.NA.rmAllNA %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.deltaT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "BMI"
-i = 2
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
-
-for (i in 2:7) {
-    # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
-    for (.VarName.suffix in c("BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
-        print(paste0("A0",i,"_",.VarName.suffix,".delta"))
-        DataSet.Date.NA.rmAllNA = 
-            DataSet.Date.NA.rmAllNA %>% 
-            env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
-    }
-}
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
+# ## \$ f_df.add_VarNameT.deltaT0 =  ----  
+# ## -> included in "f_df.t.tribble_construct.source.r"
+# .RegEx2match = "BMI"
+# i = 2
+# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+# 
+# for (i in 2:7) {
+#     # for (.VarName.suffix in c("BMI", "BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
+#     for (.VarName.suffix in c("BMI_lt185", "BMI_ge185lt230", "BMI_ge230lt250", "BMI_ge185lt250", "BMI_ge250lt300", "BMI_ge230", "BMI_ge250", "BMI_ge300", "BMI_ge350", "BMI_ge400")) {
+#         print(paste0("A0",i,"_",.VarName.suffix,".delta"))
+#         DataSet.Date.NA.rmAllNA = 
+#             DataSet.Date.NA.rmAllNA %>% 
+#             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-1,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta")
+#     }
+# }
+# DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 ```
   
 #### \$ A03_BMI.delta2 =  
 ##### \% f_df.add_VarNameT.deltaT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_VarNameT.deltaT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "BMI"
-i = 3
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
-DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
-
-for (i in 3:7) {
-    for (.VarName.suffix in c("BMI")) {
-        print(paste0("A0",i,"_",.VarName.suffix,".delta2"))
-        DataSet.Date.NA.rmAllNA = 
-            DataSet.Date.NA.rmAllNA %>% 
-            env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
-    }
-}
-DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
+# ## \$ f_df.add_VarNameT.deltaT0 =  ----  
+# ## -> included in "f_df.t.tribble_construct.source.r"
+# .RegEx2match = "BMI"
+# i = 3
+# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% str
+# DataSet.Date.NA.rmAllNA %>% select(matches(.RegEx2match)) %>% select(matches(paste0("A0",i))) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace(paste0("^A0",i,"_"),"") %>% dput
+# 
+# for (i in 3:7) {
+#     for (.VarName.suffix in c("BMI")) {
+#         print(paste0("A0",i,"_",.VarName.suffix,".delta2"))
+#         DataSet.Date.NA.rmAllNA = 
+#             DataSet.Date.NA.rmAllNA %>% 
+#             env1$f$f_df.add_VarNameT.deltaT0(paste0("A0",i-2,"_",.VarName.suffix), paste0("A0",i,"_",.VarName.suffix), prefix = "", suffix = ".delta2")
+#     }
+# }
+# DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
 ```
 
   
