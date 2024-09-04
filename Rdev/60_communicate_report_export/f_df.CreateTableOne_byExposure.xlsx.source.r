@@ -97,7 +97,7 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 
 
-env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = TRUE) {
+env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = TRUE) {
     library(tidyverse)
     library(tableone)
     
@@ -119,21 +119,21 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.select, DataSetNam
     
     # browser()
     assign(DataSetName.TableOne_byExposure, 
-           DataSet.select %>% 
+           DataSet.Date.NA.rmAllNA.select %>% 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
     assign(DataSetName.is.na.TableOne_byExposure, 
-           DataSet.select %>% 
+           DataSet.Date.NA.rmAllNA.select %>% 
                {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
                map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
                # mutate( !!rlang::sym(VarNames4Exposure) := CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select[[VarNames4Exposure]]) %>%
-               cbind(DataSet.select[VarNames4Exposure]) |>
+               cbind(DataSet.Date.NA.rmAllNA.select[VarNames4Exposure]) |>
                as.data.frame() %>%
                CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
     )
     
-    Vars4IQR = names(DataSet.select)[DataSet.select %>% map_lgl(is.numeric)]
+    Vars4IQR = names(DataSet.Date.NA.rmAllNA.select)[DataSet.Date.NA.rmAllNA.select %>% map_lgl(is.numeric)]
     # get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
     # get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
     # get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
@@ -247,7 +247,7 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.select, DataSetNam
     if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
     
     return.list = list(
-        DataSet.select = DataSet.select
+        DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA.select
         , DataSetName = DataSetName
         , VarNames4Exposure = VarNames4Exposure
         , DataSetName.TableOne_byExposure = DataSetName.TableOne_byExposure

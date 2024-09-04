@@ -6,23 +6,23 @@
 ## \$ f_df.add_BMI_calculated =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.cut4.source.r
 .tmp$objectname = "f_df.add_BMI_calculated"
-.tmp$object = function(DataSet, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, varname_Height = "HEIGHT", varname_Weight = "WEIGHT", varname_BMI = "BMI") {
 
   # Check if BMI column exists
-  if (varname_BMI %in% names(DataSet)) {
-    warning(paste0(deparse(varname_BMI),' %in% names(DataSet)')); cat("  \n", sep="")
-    DataSet <- DataSet %>%
+  if (varname_BMI %in% names(DataSet.Date.NA.rmAllNA)) {
+    warning(paste0(deparse(varname_BMI),' %in% names(DataSet.Date.NA.rmAllNA)')); cat("  \n", sep="")
+    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
       mutate(
         !!rlang::sym(paste0(varname_BMI,"_calculated")) := as.numeric(!!rlang::sym(varname_Weight)) / (as.numeric(!!rlang::sym(varname_Height))/100)^2
       )
   } else {
-    DataSet <- DataSet %>%
+    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
       mutate(
         !!rlang::sym(varname_BMI) := as.numeric(!!rlang::sym(varname_Weight)) / (as.numeric(!!rlang::sym(varname_Height))/100)^2
       )
   }
     
-  return(DataSet)
+  return(DataSet.Date.NA.rmAllNA)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
@@ -32,10 +32,10 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ## \$ f_df.add_BMI.cut4 =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_BMI.cut4.source.r
 .tmp$objectname = "f_df.add_BMI.cut4"
-.tmp$object = function(DataSet, varname_BMI = "BMI") {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, varname_BMI = "BMI") {
 
   # Compute additional BMI-related columns
-  DataSet <- DataSet %>%
+  DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
     mutate(
       !!rlang::sym(paste0(varname_BMI,"_lt185")) := !!rlang::sym(varname_BMI) < 18.5,
       
@@ -52,7 +52,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
       !!rlang::sym(paste0(varname_BMI,".cut5")) := cut(!!rlang::sym(varname_BMI), breaks = c(0, 18.5, 23, 25, 30, Inf), include.lowest = T, right = F)
     )
   
-  return(DataSet)
+  return(DataSet.Date.NA.rmAllNA)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
