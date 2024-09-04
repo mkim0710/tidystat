@@ -423,14 +423,14 @@ options(width=120)
 ```
   
 
-## \% f_df.add_quintile_factors ====  
+## \% f_df.add_RegExVars.quintile_factor ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-## \$ f_df.add_quintile_factors =  ----  
+## \$ f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
-# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_quintile_factors.dev.Rmd
-.tmp$objectname = "f_df.add_quintile_factors"
+# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
+.tmp$objectname = "f_df.add_RegExVars.quintile_factor"
 .tmp$object = function(data, regex_pattern) {
   data %>%
     mutate(across(
@@ -458,7 +458,7 @@ options(width=120)
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 .RegEx2match = "\\.pd[1-6]"
-DataSet.Date.NA.rmAllNA <- env1$f$f_df.add_quintile_factors(DataSet.Date.NA.rmAllNA, paste0(.RegEx2match,"$"))
+DataSet.Date.NA.rmAllNA <- env1$f$f_df.add_RegExVars.quintile_factor(DataSet.Date.NA.rmAllNA, paste0(.RegEx2match,"$"))
 DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))) %>% summary
 
 ```
