@@ -370,56 +370,49 @@ for (j in 1:(7-1)) {
   
 #### \$ A0{1+j}_BMI.pdj.cut5, A0{1+j}_WEIGHT.pdj.cut5 =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-## \$ f_df.add_VarNameT.dpT0 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"
-.RegEx2match = "\\.pd[1-6]"
-
-DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% str
-DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
-
-DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
-  mutate(across(
-    .cols = matches(paste0(.RegEx2match,"$")), 
-    .fns = ~ cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = TRUE, right = FALSE), 
-    .names = "{.col}.cut5"
-  ))
-DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
+# options(width=120)
+# ## \$ f_df.add_VarNameT.dpT0 =  ----  
+# ## -> included in "f_df.t.tribble_construct.source.r"
+# .RegEx2match = "\\.pd[1-6]"
+# 
+# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% str
+# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match,"$"))) %>% select(matches("A07")) %>% select_if(function(x) is.numeric(x) | is.logical(x)) %>% names %>% str_replace("^A07_","") %>% dput
+# 
+# DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+#   mutate(across(
+#     .cols = matches(paste0(.RegEx2match,"$")), 
+#     .fns = ~ cut(., breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), include.lowest = TRUE, right = FALSE), 
+#     .names = "{.col}.cut5"
+#   ))
+# DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
 ```
   
   
-## \% f_df.add_pdj.cut5()  
+## \% f_df.add_RegEx.cut()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/20d6b4e3-c198-49c2-90f5-c8959d55c1ed
-# Define the function f_df.add_pdj.cut5
-f_df.add_pdj.cut5 <- function(DataSet.Date.NA.rmAllNA, regex_pattern = "\\.pd[1-6]$", suffix = ".cut5") {
-  
-  # Ensure that the DataSet.Date.NA.rmAllNA parameter is a data frame
-  if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
-    stop("DataSet.Date.NA.rmAllNA must be a data frame.")
-  }
-  
-  # Apply the cut operation across columns matching the regex pattern
-  DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
-    mutate(across(
-      .cols = matches(regex_pattern), # Select columns matching the regex pattern
-      .fns = ~ cut(., 
-                   breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), # Define breakpoints
-                   include.lowest = TRUE, 
-                   right = FALSE), 
-      .names = paste0("{.col}", suffix) # Naming convention for new columns
-    ))
-  
-  # Return the modified DataSet.Date.NA.rmAllNA
-  return(DataSet.Date.NA.rmAllNA)
+f_df.add_RegEx.cut <- function(DataSet.Date.NA.rmAllNA, regex_pattern = ".", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf), suffix = paste0(".cut",length(breaks)-1)) {
+    if (!is.data.frame(DataSet.Date.NA.rmAllNA)) {
+        stop("DataSet.Date.NA.rmAllNA must be a data frame.")
+    }
+    
+    # Apply the cut operation across columns matching the regex pattern
+    DataSet.Date.NA.rmAllNA <- DataSet.Date.NA.rmAllNA %>%
+        mutate(across(
+            .cols = matches(regex_pattern), # Select columns matching the regex pattern
+            .fns = ~ cut(., 
+                         breaks = breaks, # Define breakpoints
+                         include.lowest = TRUE, 
+                         right = FALSE), 
+            .names = paste0("{.col}", suffix) # Naming convention for new columns
+        ))
+    
+    return(DataSet.Date.NA.rmAllNA)
 }
 
-# Example usage of the function
-# Assuming DataSet.Date.NA.rmAllNA is already loaded and processed up to the point where pdj columns exist
-
-# Call the function to add pdj.cut5 variables
-DataSet.Date.NA.rmAllNA <- f_df.add_pdj.cut5(DataSet.Date.NA.rmAllNA)
+DataSet.Date.NA.rmAllNA <- f_df.add_RegEx.cut(DataSet.Date.NA.rmAllNA, regex_pattern = "\\.pd[1-6]$", breaks = c(-Inf, -0.1, -0.05, 0.05, 0.1, Inf))
+DataSet.Date.NA.rmAllNA %>% select(matches("\\.pd[1-6]\\.cut")) %>% summary
 
 ```
   
