@@ -310,7 +310,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
   
   
 # @@ START) dev ----  
-### \$ MetaData$ModelList$time2event ====  
+### \$ MetaData\$ModelList\$time2event ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
@@ -320,7 +320,7 @@ options(width=120)
 ```
   
   
-#### \$ MetaData$ModelList$time2event$formula ====  
+#### \$ MetaData\$ModelList\$time2event\$formula ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -341,7 +341,7 @@ MetaData$ModelList$time2event$formula[[3]] %>% str
 ```
   
   
-#### \$ MetaData$ModelList$time2event$terms ====  
+#### \$ MetaData\$ModelList\$time2event\$terms ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$terms = MetaData$ModelList$time2event$formula |> terms()
@@ -354,7 +354,7 @@ MetaData$ModelList$time2event$terms %>% dput
 ```
   
   
-#### \$ MetaData$ModelList$time2event$all.vars ====  
+#### \$ MetaData\$ModelList\$time2event\$all.vars ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$all.vars = MetaData$ModelList$time2event$formula |> all.vars()
@@ -367,7 +367,7 @@ MetaData$ModelList$time2event$all.vars %>% dput
 ```
   
   
-#### \$ MetaData$ModelList$time2event$lhs.vars ====  
+#### \$ MetaData\$ModelList\$time2event\$lhs.vars ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$lhs = MetaData$ModelList$time2event$formula[[2]]
@@ -381,7 +381,7 @@ MetaData$ModelList$time2event$lhs.vars %>% dput
 ```
   
   
-#### \$ MetaData$ModelList$time2event$rhs.vars ====  
+#### \$ MetaData\$ModelList\$time2event\$rhs.vars ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$rhs = MetaData$ModelList$time2event$formula[[3]]
