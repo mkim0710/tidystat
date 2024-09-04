@@ -98,8 +98,7 @@ objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/
 
 
 env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = TRUE) {
-    library(tidyverse)
-    library(tableone)
+    for(.packagename in c("tidyverse", "tableone")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
     
     DataSetName.select = paste0(DataSetName,".select")
     DataSetName.TableOne_byExposure = paste0(DataSetName,".TableOne_by", VarNames4Exposure)
