@@ -1,0 +1,18 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = mkim0710
+	email = mkim0710@gmail.com
+[core]
+	autocrlf = true
+	excludesFile = C:/Users/mkim0/.gitignore
+	editor = \"C:\\Users\\mkim0\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+[guitool "git lfs track $FILENAMES"]
+	cmd = git lfs track $FILENAMES
+	confirm = yes
+[guitool "git add -f $FILENAMES"]
+	cmd = git add -f $FILENAMES
+	confirm = yes
