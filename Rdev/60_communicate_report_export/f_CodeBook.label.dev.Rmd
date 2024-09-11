@@ -265,7 +265,6 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Load necessary libraries
-# Load necessary libraries
 library(dplyr)
 library(stringr)
 
@@ -326,22 +325,25 @@ for (i in 1:nrow(MetaData$tblVarName$tblVarName.suffix)) {
   var_name <- MetaData$tblVarName$tblVarName.suffix$VarName.suffix[i]
   value_options <- MetaData$tblVarName$tblVarName.suffix$ValueOptions[i]
   
-  # Debug: Print variable name and its corresponding column in the dataset
-  print(paste("Processing variable:", var_name))
-  print(paste("Original data:", paste(your_data[[var_name]], collapse = ", ")))
+  # Check if the column exists in the dataset
+  if (var_name %in% colnames(your_data)) {
+    print(paste("Processing variable:", var_name))
+    print(paste("Original data:", paste(your_data[[var_name]], collapse = ", ")))
 
-  if (exists(var_name)) {
     # Convert the relevant column in your_data
     your_data[[var_name]] <- create_factor(your_data[[var_name]], value_options)
     
     # Debug: Print the updated column after conversion
     print(paste("Converted data:", paste(your_data[[var_name]], collapse = ", ")))
+  } else {
+    print(paste("Variable", var_name, "does not exist in the dataset."))
   }
 }
 
 # Print the final updated dataset
 print("Final dataset:")
 print(your_data)
+
 
 
 
