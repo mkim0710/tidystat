@@ -261,7 +261,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
   
   
 # @@ START) data example ----  
-## \$ 1 =  ----  
+## \$ https://chatgpt.com/c/66e1f092-be28-800e-8527-a0815faa0a37 =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Load necessary libraries
@@ -294,12 +294,22 @@ create_factor <- function(var, value_options) {
     return(var)
   }
 
+  # Print the variable and corresponding ValueOptions for debugging
+  print(paste("Processing variable with ValueOptions:", value_options))
+  
   # Split the ValueOptions by comma
   options_split <- str_split(value_options, ",\\s*")[[1]]
   
+  # Debug: Print the split ValueOptions
+  print(paste("Split ValueOptions:", paste(options_split, collapse = ", ")))
+
   # Split each option into level and label
   levels <- as.numeric(sapply(options_split, function(x) str_split(x, "=")[[1]][1]))
   labels <- sapply(options_split, function(x) str_split(x, "=")[[1]][2])
+
+  # Debug: Print levels and labels
+  print(paste("Levels:", paste(levels, collapse = ", ")))
+  print(paste("Labels:", paste(labels, collapse = ", ")))
 
   # Convert the variable into a factor with the specified levels and labels
   factor(var, levels = levels, labels = labels)
@@ -310,14 +320,23 @@ for (i in 1:nrow(MetaData$tblVarName$tblVarName.suffix)) {
   var_name <- MetaData$tblVarName$tblVarName.suffix$VarName.suffix[i]
   value_options <- MetaData$tblVarName$tblVarName.suffix$ValueOptions[i]
   
+  # Debug: Print variable name and its corresponding column in the dataset
+  print(paste("Processing variable:", var_name))
+  print(paste("Original data:", paste(your_data[[var_name]], collapse = ", ")))
+
   if (exists(var_name)) {
     # Convert the relevant column in your_data
     your_data[[var_name]] <- create_factor(your_data[[var_name]], value_options)
+    
+    # Debug: Print the updated column after conversion
+    print(paste("Converted data:", paste(your_data[[var_name]], collapse = ", ")))
   }
 }
 
-# Print the updated dataset
+# Print the final updated dataset
+print("Final dataset:")
 print(your_data)
+
 
 ```
   
