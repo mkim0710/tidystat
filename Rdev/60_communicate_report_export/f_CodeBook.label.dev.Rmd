@@ -351,10 +351,12 @@ apply_codebook_transformations <- function(data, codebook, sep4levels = ",\\s*",
       if (print.intermediate) {
         # Print only the final updated column after conversion
         print(paste("Converted data:", paste(data[[var_name]], collapse = ", ")))
+        print("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ")
       }
     } else {
       if (print.intermediate) {
         print(paste("Variable", var_name, "does not exist in the dataset."))
+        print("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ")
       }
     }
   }
