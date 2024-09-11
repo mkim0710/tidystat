@@ -557,7 +557,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Sys.time() - .t0
   
 .t0 = Sys.time()
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); cat(" > ",DataSetName2.NA.rmAllNA.fct," = ",DataSetName2.NA.rmAllNA," |> mutate_if(is.character, as.factor)","  \n", sep=""); DataSetName2.NA.rmAllNA.fct = paste0(DataSetName2,".NA",".rmAllNA",".fct"); DataSetName2.NA.rmAllNA = paste0(DataSetName2,".NA",".rmAllNA"); DataSetName2.NA = paste0(DataSetName2,".NA"); assign( DataSetName2.NA.rmAllNA.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) )
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n"); DataSetName2.NA.rmAllNA.fct = paste0(DataSetName2,".NA",".rmAllNA",".fct"); cat(" > ",DataSetName2.NA.rmAllNA.fct," = ",DataSetName2.NA.rmAllNA," |> mutate_if(is.character, as.factor)","  \n", sep=""); DataSetName2.NA.rmAllNA = paste0(DataSetName2,".NA",".rmAllNA"); DataSetName2.NA = paste0(DataSetName2,".NA"); assign( DataSetName2.NA.rmAllNA.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) )
 Sys.time() - .t0
 
 .t0 = Sys.time()
