@@ -288,62 +288,81 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
   )
 )))
 
-# Function to create levels and labels from ValueOptions
-create_factor <- function(var, value_options) {
+# Function to create levels and labels from ValueOptions, with customizable separators and optional intermediate printing
+create_factor <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
   if (is.na(value_options) || value_options == "") {
     return(var)
   }
 
-  # Print the variable and corresponding ValueOptions for debugging
-  print(paste("Processing variable with ValueOptions:", value_options))
+  if (print.intermediate) {
+    # Print the variable and corresponding ValueOptions for debugging
+    print(paste("Processing variable with ValueOptions:", value_options))
+  }
   
-  # Split the ValueOptions by comma
-  options_split <- str_split(value_options, ",\\s*")[[1]]
+  # Split the ValueOptions by the specified separator for levels
+  options_split <- str_split(value_options, sep4levels)[[1]]
   
-  # Debug: Print the split ValueOptions
-  print(paste("Split ValueOptions:", paste(options_split, collapse = ", ")))
+  if (print.intermediate) {
+    # Debug: Print the split ValueOptions
+    print(paste("Split ValueOptions:", paste(options_split, collapse = ", ")))
+  }
+  
+  # Split each option into level and label using the specified name-value separator
+  levels <- as.numeric(sapply(options_split, function(x) str_split(x, sep4name_value)[[1]][1]))
+  labels <- sapply(options_split, function(x) str_split(x, sep4name_value)[[1]][2])
 
-  # Split each option into level and label
-  levels <- as.numeric(sapply(options_split, function(x) str_split(x, "=")[[1]][1]))
-  labels <- sapply(options_split, function(x) str_split(x, "=")[[1]][2])
-
-  # Debug: Print levels and labels
-  print(paste("Levels:", paste(levels, collapse = ", ")))
-  print(paste("Labels:", paste(labels, collapse = ", ")))
-
+  if (print.intermediate) {
+    # Debug: Print levels and labels
+    print(paste("Levels:", paste(levels, collapse = ", ")))
+    print(paste("Labels:", paste(labels, collapse = ", ")))
+  }
+  
   # Convert the variable into a factor with the specified levels and labels
   factor_var <- factor(var, levels = levels, labels = labels)
 
-  # Debug: Print the factor variable to ensure it's been converted
-  print(paste("Converted factor:", paste(factor_var, collapse = ", ")))
+  if (print.intermediate) {
+    # Debug: Print the factor variable to ensure it's been converted
+    print(paste("Converted factor:", paste(factor_var, collapse = ", ")))
+  }
   
   return(factor_var)
 }
 
-# Apply the transformation for each variable in your dataset
-for (i in 1:nrow(MetaData$tblVarName$tblVarName.suffix)) {
-  var_name <- MetaData$tblVarName$tblVarName.suffix$VarName.suffix[i]
-  value_options <- MetaData$tblVarName$tblVarName.suffix$ValueOptions[i]
-  
-  # Check if the column exists in the dataset
-  if (var_name %in% colnames(your_data)) {
-    print(paste("Processing variable:", var_name))
-    print(paste("Original data:", paste(your_data[[var_name]], collapse = ", ")))
-
-    # Convert the relevant column in your_data
-    your_data[[var_name]] <- create_factor(your_data[[var_name]], value_options)
+# Function to apply the codebook transformations to the dataset
+apply_codebook_transformations <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+  # Iterate over the codebook and apply transformations
+  for (i in 1:nrow(codebook)) {
+    var_name <- codebook$VarName.suffix[i]
+    value_options <- codebook$ValueOptions[i]
     
-    # Debug: Print the updated column after conversion
-    print(paste("Converted data:", paste(your_data[[var_name]], collapse = ", ")))
-  } else {
-    print(paste("Variable", var_name, "does not exist in the dataset."))
+    # Check if the column exists in the dataset
+    if (var_name %in% colnames(data)) {
+      if (print.intermediate) {
+        print(paste("Processing variable:", var_name))
+        print(paste("Original data:", paste(data[[var_name]], collapse = ", ")))
+      }
+
+      # Convert the relevant column in data, using customizable separators
+      data[[var_name]] <- create_factor(data[[var_name]], value_options, sep4levels, sep4name_value, print.intermediate)
+      
+      if (print.intermediate) {
+        print(paste("Converted data:", paste(data[[var_name]], collapse = ", ")))
+      }
+    } else {
+      if (print.intermediate) {
+        print(paste("Variable", var_name, "does not exist in the dataset."))
+      }
+    }
   }
+  return(data)
 }
+
+# Apply the codebook transformations to the dataset
+your_data <- apply_codebook_transformations(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = TRUE)
 
 # Print the final updated dataset
 print("Final dataset:")
 print(your_data)
-
 
 
 
