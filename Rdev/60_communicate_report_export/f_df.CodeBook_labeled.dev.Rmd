@@ -262,8 +262,9 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
   
 # @@ START) data example ----  
 ## \$ https://chatgpt.com/c/66e1f092-be28-800e-8527-a0815faa0a37 =  ----  
+## \% create_labeled_data() 
+## \% apply_codebook_labeling() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
 # Load necessary libraries
 library(dplyr)
 library(stringr)
@@ -287,20 +288,14 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
     "1=초등학교 이하, 2=중학교, 3=고등학교, 4=전문대, 5=대학교, 6=대학원 이상"
   )
 )))
-```
 
-
-## \% create_factor() 
-## \% apply_codebook_transformations() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# Function to create levels and labels from ValueOptions, with customizable separators and optional intermediate printing
-create_factor <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+# Function to create labeled data (without converting to factor)
+create_labeled_data <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
   if (is.na(value_options) || value_options == "") {
     return(var)
   }
 
   if (print.intermediate) {
-    # Print the variable and corresponding ValueOptions for debugging
     print(paste("Processing variable with ValueOptions:", value_options))
   }
   
@@ -308,7 +303,6 @@ create_factor <- function(var, value_options, sep4levels = ",\\s*", sep4name_val
   options_split <- str_split(value_options, sep4levels)[[1]]
   
   if (print.intermediate) {
-    # Debug: Print the split ValueOptions
     print(paste("Split ValueOptions:", paste(options_split, collapse = ", ")))
   }
   
@@ -317,58 +311,64 @@ create_factor <- function(var, value_options, sep4levels = ",\\s*", sep4name_val
   labels <- sapply(options_split, function(x) str_split(x, sep4name_value)[[1]][2])
 
   if (print.intermediate) {
-    # Debug: Print levels and labels
     print(paste("Levels:", paste(levels, collapse = ", ")))
     print(paste("Labels:", paste(labels, collapse = ", ")))
   }
-  
-  # Convert the variable into a factor with the specified levels and labels
-  factor_var <- factor(var, levels = levels, labels = labels)
 
-  # Optionally print the factor variable (optional)
-  # print(paste("Converted factor:", paste(factor_var, collapse = ", ")))
+  # Map numeric values to their corresponding labels (for output, not as a factor)
+  labeled_data <- sapply(var, function(x) {
+    label_idx <- which(levels == x)
+    if (length(label_idx) > 0) {
+      return(labels[label_idx])
+    } else {
+      return(NA)  # If no label is found, return NA
+    }
+  })
 
-  return(factor_var)
+  return(labeled_data)
 }
 
-# Function to apply the codebook transformations to the dataset
-apply_codebook_transformations <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+# Function to apply the codebook transformations for labeled data
+apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+  labeled_data <- data  # Copy original data
   # Iterate over the codebook and apply transformations
   for (i in 1:nrow(codebook)) {
     var_name <- codebook$VarName.suffix[i]
     value_options <- codebook$ValueOptions[i]
     
     # Check if the column exists in the dataset
-    if (var_name %in% colnames(data)) {
+    if (var_name %in% colnames(labeled_data)) {
       if (print.intermediate) {
         print(paste("Processing variable:", var_name))
-        print(paste("Original data:", paste(data[[var_name]], collapse = ", ")))
+        print(paste("Original data:", paste(labeled_data[[var_name]], collapse = ", ")))
       }
 
-      # Convert the relevant column in data, using customizable separators
-      data[[var_name]] <- create_factor(data[[var_name]], value_options, sep4levels, sep4name_value, print.intermediate)
+      # Convert the relevant column in labeled_data using create_labeled_data
+      labeled_data[[var_name]] <- create_labeled_data(labeled_data[[var_name]], value_options, sep4levels, sep4name_value, print.intermediate)
       
       if (print.intermediate) {
-        # Print only the final updated column after conversion
-        print(paste("Converted data:", paste(data[[var_name]], collapse = ", ")))
-        print("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ")
+        print(paste("Labeled data:", paste(labeled_data[[var_name]], collapse = ", ")))
       }
     } else {
       if (print.intermediate) {
         print(paste("Variable", var_name, "does not exist in the dataset."))
-        print("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ")
       }
     }
   }
-  return(data)
+  return(labeled_data)
 }
 
-# Apply the codebook transformations to the dataset
-your_data2 <- apply_codebook_transformations(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = TRUE)
+# Apply the codebook labeling to the dataset and store in labeled_data
+labeled_data <- apply_codebook_labeling(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = TRUE)
 
-# Print the final updated dataset
-print("Final dataset:")
-print(your_data2)
+# Print the final labeled dataset
+labeled_data %>% str
+print("Labeled dataset:")
+print(labeled_data)
+
+# Print the original dataset to verify it is unchanged
+print("Original dataset:")
+print(your_data)
 
 
 ```
