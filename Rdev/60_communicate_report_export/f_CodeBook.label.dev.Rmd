@@ -325,11 +325,9 @@ create_factor <- function(var, value_options, sep4levels = ",\\s*", sep4name_val
   # Convert the variable into a factor with the specified levels and labels
   factor_var <- factor(var, levels = levels, labels = labels)
 
-  if (print.intermediate) {
-    # Debug: Print the factor variable to ensure it's been converted
-    print(paste("Converted factor:", paste(factor_var, collapse = ", ")))
-  }
-  
+  # Optionally print the factor variable (optional)
+  # print(paste("Converted factor:", paste(factor_var, collapse = ", ")))
+
   return(factor_var)
 }
 
@@ -351,6 +349,7 @@ apply_codebook_transformations <- function(data, codebook, sep4levels = ",\\s*",
       data[[var_name]] <- create_factor(data[[var_name]], value_options, sep4levels, sep4name_value, print.intermediate)
       
       if (print.intermediate) {
+        # Print only the final updated column after conversion
         print(paste("Converted data:", paste(data[[var_name]], collapse = ", ")))
       }
     } else {
@@ -363,11 +362,11 @@ apply_codebook_transformations <- function(data, codebook, sep4levels = ",\\s*",
 }
 
 # Apply the codebook transformations to the dataset
-your_data <- apply_codebook_transformations(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = TRUE)
+your_data2 <- apply_codebook_transformations(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = TRUE)
 
 # Print the final updated dataset
 print("Final dataset:")
-print(your_data)
+print(your_data2)
 
 
 ```
