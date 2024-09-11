@@ -265,6 +265,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Load necessary libraries
+# Load necessary libraries
 library(dplyr)
 library(stringr)
 
@@ -312,7 +313,12 @@ create_factor <- function(var, value_options) {
   print(paste("Labels:", paste(labels, collapse = ", ")))
 
   # Convert the variable into a factor with the specified levels and labels
-  factor(var, levels = levels, labels = labels)
+  factor_var <- factor(var, levels = levels, labels = labels)
+
+  # Debug: Print the factor variable to ensure it's been converted
+  print(paste("Converted factor:", paste(factor_var, collapse = ", ")))
+  
+  return(factor_var)
 }
 
 # Apply the transformation for each variable in your dataset
@@ -336,6 +342,7 @@ for (i in 1:nrow(MetaData$tblVarName$tblVarName.suffix)) {
 # Print the final updated dataset
 print("Final dataset:")
 print(your_data)
+
 
 
 ```
