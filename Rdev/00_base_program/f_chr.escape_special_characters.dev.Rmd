@@ -357,20 +357,25 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
 .path4write = env1$path$.path4write
-MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-.objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
-cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
-# system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
-# system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))
-# # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))))
-# # # system.time(saveRDS( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gzip" ))
-# # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz", compression = 9 ))
-# # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", "")), compress = "xz", compression = 9 ))
-# # system.time(openxlsx::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
-# # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(.objectname, ".xlsx"))
-# env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)  
-# paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")  
-# # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds")) ) |> system(intern=TRUE)  
+# MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+for (.objectname in names(MetaData$DataSetNames)) {
+    cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
+    paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# .objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
+system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))
+# system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))))
+# # system.time(saveRDS( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gzip" ))
+# system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz", compression = 9 ))
+# system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", "")), compress = "xz", compression = 9 ))
+# system.time(openxlsx::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
+# if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(.objectname, ".xlsx"))
+env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
+paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+# paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds")) ) |> system(intern=TRUE)
 ```
   
   
