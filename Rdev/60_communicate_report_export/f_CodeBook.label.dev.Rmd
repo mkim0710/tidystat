@@ -287,7 +287,12 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
     "1=초등학교 이하, 2=중학교, 3=고등학교, 4=전문대, 5=대학교, 6=대학원 이상"
   )
 )))
+```
 
+
+## \% create_factor() 
+## \% apply_codebook_transformations() 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Function to create levels and labels from ValueOptions, with customizable separators and optional intermediate printing
 create_factor <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
   if (is.na(value_options) || value_options == "") {
@@ -363,7 +368,6 @@ your_data <- apply_codebook_transformations(your_data, MetaData$tblVarName$tblVa
 # Print the final updated dataset
 print("Final dataset:")
 print(your_data)
-
 
 
 ```
