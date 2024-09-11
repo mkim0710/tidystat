@@ -268,6 +268,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 # Load necessary libraries
 library(dplyr)
 library(stringr)
+library(haven)
 
 # Example dataset
 your_data <- data.frame(
@@ -289,8 +290,8 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
   )
 )))
 
-# Function to create labeled data (without converting to factor)
-create_labeled_data <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+# Function to create labelled vectors using haven::labelled()
+create_labelled_data <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
   if (is.na(value_options) || value_options == "") {
     return(var)
   }
@@ -315,20 +316,16 @@ create_labeled_data <- function(var, value_options, sep4levels = ",\\s*", sep4na
     print(paste("Labels:", paste(labels, collapse = ", ")))
   }
 
-  # Map numeric values to their corresponding labels (for output, not as a factor)
-  labeled_data <- sapply(var, function(x) {
-    label_idx <- which(levels == x)
-    if (length(label_idx) > 0) {
-      return(labels[label_idx])
-    } else {
-      return(NA)  # If no label is found, return NA
-    }
-  })
+  # Create a named vector for the labels
+  labels_vector <- setNames(levels, labels)
 
-  return(labeled_data)
+  # Use haven::labelled to assign labels to the original variable
+  labelled_var <- labelled(var, labels = labels_vector)
+
+  return(labelled_var)
 }
 
-# Function to apply the codebook transformations for labeled data
+# Function to apply the codebook transformations for labelled data
 apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
   labeled_data <- data  # Copy original data
   # Iterate over the codebook and apply transformations
@@ -343,11 +340,11 @@ apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4na
         print(paste("Original data:", paste(labeled_data[[var_name]], collapse = ", ")))
       }
 
-      # Convert the relevant column in labeled_data using create_labeled_data
-      labeled_data[[var_name]] <- create_labeled_data(labeled_data[[var_name]], value_options, sep4levels, sep4name_value, print.intermediate)
+      # Convert the relevant column in labeled_data using create_labelled_data
+      labeled_data[[var_name]] <- create_labelled_data(labeled_data[[var_name]], value_options, sep4levels, sep4name_value, print.intermediate)
       
       if (print.intermediate) {
-        print(paste("Labeled data:", paste(labeled_data[[var_name]], collapse = ", ")))
+        print(paste("Labeled data:", labeled_data[[var_name]]))
       }
     } else {
       if (print.intermediate) {
@@ -361,14 +358,21 @@ apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4na
 # Apply the codebook labeling to the dataset and store in labeled_data
 labeled_data <- apply_codebook_labeling(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = TRUE)
 
-# Print the final labeled dataset
+
 labeled_data %>% str
+
+# Print the final labeled dataset
 print("Labeled dataset:")
 print(labeled_data)
+
+# Check labels for a specific column
+print("Labels for DATA_CLASS:")
+print(attr(labeled_data$DATA_CLASS, "labels"))
 
 # Print the original dataset to verify it is unchanged
 print("Original dataset:")
 print(your_data)
+
 
 
 ```
