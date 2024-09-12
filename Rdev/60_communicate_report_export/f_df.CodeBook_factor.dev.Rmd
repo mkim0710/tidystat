@@ -428,15 +428,88 @@ str(converted_data)
 ```
   
   
-
-  
-  
+## \% f_DataSet_CodeBook.map_factor() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# Load necessary packages
+library(stringr)
+library(purrr)
+
+# Function to create levels and labels from ValueOptions
+f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+  if (is.na(ValueOptions) || ValueOptions == "") {
+    return(vec)
+  }
+
+  if (print.intermediate) {
+    cat("Processing variable with ValueOptions:", ValueOptions, "\n")
+  }
+  
+  options_split <- str_split(ValueOptions, sep4levels)[[1]]
+  
+  if (print.intermediate) {
+    cat("Split ValueOptions:", paste(options_split, collapse = ", "), "\n")
+  }
+  
+  levels <- map_dbl(options_split, ~ as.numeric(str_split(.x, sep4name_value)[[1]][1]))
+  labels <- map_chr(options_split, ~ str_split(.x, sep4name_value)[[1]][2])
+  
+  if (print.intermediate) {
+    cat("Levels:", paste(levels, collapse = ", "), "\n")
+    cat("Labels:", paste(labels, collapse = ", "), "\n")
+  }
+
+  vec.factor <- factor(vec, levels = levels, labels = labels)
+
+  return(vec.factor)
+}
+
+# Improved function to apply factor conversion to the entire dataset using df_VarName_ValueOptions
+f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+  # Use map2 to iterate over VarName.suffix and ValueOptions in parallel
+  DataSet <- map2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
+    function(var_name, value_options) {
+      if (var_name %in% colnames(DataSet)) {
+        DataSet[[var_name]] <- f_vec_ValueOptions.factor(DataSet[[var_name]], 
+                                                         value_options, 
+                                                         sep4levels, 
+                                                         sep4name_value, 
+                                                         print.intermediate)
+      }
+      return(DataSet[[var_name]])
+    })
+  
+  # Return the updated DataSet as a data frame
+  return(as.data.frame(DataSet))
+}
+
+# Example usage
+# Sample dataset
+DataSet <- data.frame(
+  RID = c(1, 2, 3),
+  DATA_CLASS = c(10, 20, 10),
+  VISIT = c(0, 1, 1),
+  SEX = c(1, 2, 1),
+  INCOME = c(1, 5, 3),
+  stringsAsFactors = FALSE
+)
+
+# Sample df_VarName_ValueOptions
+df_VarName_ValueOptions <- tibble::tibble(
+  VarName.suffix = c("RID", "DATA_CLASS", "VISIT", "SEX", "INCOME"),
+  ValueOptions = c(NA, "10=안성,20=안산", "0=미참여, 1=참여", "1=남자, 2=여자", "1=50만원미만, 5=200-300만원미만, 3=100-150만원미만")
+)
+
+# Convert the dataset using the improved function
+converted_DataSet <- f_DataSet_CodeBook.map_factor(DataSet, df_VarName_ValueOptions, print.intermediate = TRUE)
+
+# View the converted dataset
+print(converted_DataSet)
 
 ```
   
   
+## \% f_DataSet_CodeBook.map_factor() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
