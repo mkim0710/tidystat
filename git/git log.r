@@ -57,7 +57,7 @@
 # |/  
 # * 8158062 Revert "Add files via upload"
 # * 236fc87 Add files via upload
-# * c2125c7 RUN ALL ABOVE: CTRL+ALT+B
+# * c2125c7 Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B
 # * 807e36b f_df.NotNA_p_df
 # * 60037c4 f_df.NotNA_p_df = function(data) {
 # * ac85fff f_df.CreateTableOne_byExposure.xlsx
@@ -434,7 +434,7 @@
 # |/  
 # * 8158062 mkim0710 Sat May 18 07:00:11 2024 Revert "Add files via upload"
 # * 236fc87 mkim0710 Sat May 18 06:46:18 2024 Add files via upload
-# * c2125c7 mhkim@rocker@MAGB760M13700KF Sat May 18 03:46:24 2024 RUN ALL ABOVE: CTRL+ALT+B
+# * c2125c7 mhkim@rocker@MAGB760M13700KF Sat May 18 03:46:24 2024 Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B
 # * 807e36b mhkim@rocker@MAGB760M13700KF Fri May 17 03:32:11 2024 f_df.NotNA_p_df
 # * 60037c4 mkim0710 Fri May 17 03:29:52 2024 f_df.NotNA_p_df = function(data) {
 # * ac85fff mkim0710 Fri May 17 03:18:12 2024 f_df.CreateTableOne_byExposure.xlsx

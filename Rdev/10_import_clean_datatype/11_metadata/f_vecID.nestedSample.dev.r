@@ -164,8 +164,8 @@ PERSON_ID %>% f_vecID.nestedSample() %>% str()
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @@ RUN ALL ABOVE: CTRL+ALT+B -----  
-#| RUN ALL ABOVE: CTRL+ALT+B |#
+# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
+#| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) data -----  
 # \$ assign( objectname, read_rds(paste0(.path4read,"/",objectname,".rds")) ) ====  
