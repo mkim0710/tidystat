@@ -280,8 +280,11 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
   
   
 # @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+  
 ## \% analyticDF_time2event |>  
-###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -290,7 +293,6 @@ options(width=120)
   
 # @@ START) function ----  
 ## \% |> function_name()  
-###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -506,7 +508,6 @@ get(DataSetName)[c(.varname4outcome, varname4time)] |>
 ##### \$ varname4measures ----  
 ##### \$ varname4labs ----  
 ##### \$ varname4lifestyle ----  
-###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
