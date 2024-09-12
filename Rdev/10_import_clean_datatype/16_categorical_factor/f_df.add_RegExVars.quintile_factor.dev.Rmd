@@ -448,6 +448,20 @@ options(width=120)
 ```
   
   
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 #|________________________________________________________________________________|#  
