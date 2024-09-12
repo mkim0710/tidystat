@@ -225,9 +225,9 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 # env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
 #     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
 # # env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
-# env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
-#     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
-# env1$path$print_tree_path_files.data |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.DataSet = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path_files.DataSet) |> unlist() |> paste(collapse="") 
+# env1$path$print_tree_path_files.DataSet |> cat("  \n", sep="")
 ```
   
   
@@ -241,7 +241,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 ```
   
   
-```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
+```{r open-envCustom-dfDirs-df_VarName_ValueOptions, eval=TRUE, include=FALSE}
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## env1\$path\$CurrentSource.path.filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
@@ -260,7 +260,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
 ```
   
   
-# @@ START) data example ----  
+# @@ START) DataSet example ----  
 ## \$ https://chatgpt.com/c/66e1f092-be28-800e-8527-a0815faa0a37 =  ----  
 ## \$ https://chatgpt.com/c/66e205de-d4d4-800e-a889-5ced38a816ed =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -270,7 +270,7 @@ library(dplyr)
 library(stringr)
 
 # Example dataset
-your_data <- data.frame(
+your_data <- DataSet.frame(
   RID = c(1, 2, 3),
   DATA_CLASS = c(10, 20, 10),
   VISIT = c(0, 1, 1),
@@ -278,7 +278,7 @@ your_data <- data.frame(
   EDU = c(5, 6, 3)
 )
 
-# Example codebook
+# Example df_VarName_ValueOptions
 MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
   VarName.suffix = c("DATA_CLASS", "VISIT", "SEX", "EDU"),
   ValueOptions = c(
@@ -345,47 +345,85 @@ print(sex_factor)
 ```
 
 
-## \% f_df.CodeBook_factor() 
+## \% f_DataSet_CodeBook.map_factor() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# Function to apply the codebook transformations to the dataset
-f_df.CodeBook_factor <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
-  # Iterate over the codebook and apply transformations
-  for (i in 1:nrow(codebook)) {
-    var_name <- codebook$VarName.suffix[i]
-    ValueOptions <- codebook$ValueOptions[i]
-    
-    # Check if the column exists in the dataset
-    if (var_name %in% colnames(data)) {
-      if (print.intermediate) {
-        print(paste("Processing variable:", var_name))
-        print(paste("Original data:", paste(data[[var_name]], collapse = ", ")))
-      }
+# Load necessary packages
+library(dplyr)
+library(purrr)
+library(stringr)
 
-      # Convert the relevant column in data, using customizable separators
-      data[[var_name]] <- f_vec_ValueOptions.factor(data[[var_name]], ValueOptions, sep4levels, sep4name_value, print.intermediate)
-      
-      if (print.intermediate) {
-        # Print only the final updated column after conversion
-        print(paste("Converted data:", paste(data[[var_name]], collapse = ", ")))
-        print("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ")
-      }
-    } else {
-      if (print.intermediate) {
-        print(paste("Variable", var_name, "does not exist in the dataset."))
-        print("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    ")
-      }
-    }
+# Function to create levels and labels from ValueOptions (as defined earlier)
+f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+  if (is.na(ValueOptions) || ValueOptions == "") {
+    return(vec)
   }
-  return(data)
+
+  if (print.intermediate) {
+    cat("Processing variable with ValueOptions:", ValueOptions, "\n")
+  }
+  
+  options_split <- str_split(ValueOptions, sep4levels)[[1]]
+  
+  if (print.intermediate) {
+    cat("Split ValueOptions:", paste(options_split, collapse = ", "), "\n")
+  }
+  
+  levels <- map_dbl(options_split, ~ as.numeric(str_split(.x, sep4name_value)[[1]][1]))
+  labels <- map_chr(options_split, ~ str_split(.x, sep4name_value)[[1]][2])
+  
+  if (print.intermediate) {
+    cat("Levels:", paste(levels, collapse = ", "), "\n")
+    cat("Labels:", paste(labels, collapse = ", "), "\n")
+  }
+
+  vec.factor <- factor(vec, levels = levels, labels = labels)
+
+  return(vec.factor)
 }
 
-# Apply the codebook transformations to the dataset
-your_data2 <- f_df.CodeBook_factor(your_data, MetaData$tblVarName$tblVarName.suffix, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = TRUE)
+# Function to apply factor conversion to the entire dataset using the df_VarName_ValueOptions
+f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+  # Loop over each row in the df_VarName_ValueOptions
+  for (i in 1:nrow(df_VarName_ValueOptions)) {
+    var_name <- df_VarName_ValueOptions$VarName.suffix[i]
+    value_options <- df_VarName_ValueOptions$ValueOptions[i]
+    
+    # Check if the variable exists in the dataset
+    if (var_name %in% colnames(DataSet)) {
+      # Apply the factor conversion function to the column in the dataset
+      DataSet[[var_name]] <- f_vec_ValueOptions.factor(DataSet[[var_name]], 
+                                                    value_options, 
+                                                    sep4levels, 
+                                                    sep4name_value, 
+                                                    print.intermediate)
+    }
+  }
+  return(DataSet)
+}
 
-# Print the final updated dataset
-print("Final dataset:")
-print(your_data2)
+# Example usage
+# Sample dataset (replace 'your_data' with the actual dataset)
+your_data <- DataSet.frame(
+  RID = c(1, 2, 3),
+  DATA_CLASS = c(10, 20, 10),
+  VISIT = c(0, 1, 1),
+  SEX = c(1, 2, 1),
+  INCOME = c(1, 5, 3),
+  stringsAsFactors = FALSE
+)
 
+# Sample df_VarName_ValueOptions (replace 'MetaData' with your actual df_VarName_ValueOptions)
+MetaData <- tibble::tibble(
+  VarName.suffix = c("RID", "DATA_CLASS", "VISIT", "SEX", "INCOME"),
+  ValueOptions = c(NA, "10=안성,20=안산", "0=미참여, 1=참여", "1=남자, 2=여자", "1=50만원미만, 5=200-300만원미만, 3=100-150만원미만")
+)
+
+# Convert the dataset using the df_VarName_ValueOptions
+converted_data <- f_DataSet_CodeBook.map_factor(your_data, MetaData, print.intermediate = TRUE)
+
+# View the converted dataset
+print(converted_data)
+str(converted_data)
 
 ```
   
