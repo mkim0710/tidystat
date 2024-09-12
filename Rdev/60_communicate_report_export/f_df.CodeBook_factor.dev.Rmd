@@ -225,9 +225,9 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 # env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
 #     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
 # # env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
-# env1$path$print_tree_path_files.DataSet = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
-#     dplyr::select(print_tree_path_files.DataSet) |> unlist() |> paste(collapse="") 
-# env1$path$print_tree_path_files.DataSet |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
+# env1$path$print_tree_path_files.data |> cat("  \n", sep="")
 ```
   
   
@@ -270,7 +270,7 @@ library(dplyr)
 library(stringr)
 
 # Example dataset
-your_data <- DataSet.frame(
+your_data <- data.frame(
   RID = c(1, 2, 3),
   DATA_CLASS = c(10, 20, 10),
   VISIT = c(0, 1, 1),
@@ -403,7 +403,7 @@ f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4
 
 # Example usage
 # Sample dataset (replace 'your_data' with the actual dataset)
-your_data <- DataSet.frame(
+your_data <- data.frame(
   RID = c(1, 2, 3),
   DATA_CLASS = c(10, 20, 10),
   VISIT = c(0, 1, 1),
