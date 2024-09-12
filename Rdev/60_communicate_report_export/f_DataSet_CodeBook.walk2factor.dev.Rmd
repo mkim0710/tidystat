@@ -413,13 +413,18 @@ your_data <- data.frame(
 )
 
 # Sample df_VarName_ValueOptions (replace 'MetaData' with your actual df_VarName_ValueOptions)
-MetaData <- tibble::tibble(
-  VarName.suffix = c("RID", "DATA_CLASS", "VISIT", "SEX", "INCOME"),
-  ValueOptions = c(NA, "10=안성,20=안산", "0=미참여, 1=참여", "1=남자, 2=여자", "1=50만원미만, 5=200-300만원미만, 3=100-150만원미만")
-)
+MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
+  VarName.suffix = c("DATA_CLASS", "VISIT", "SEX", "EDU"),
+  ValueOptions = c(
+    "10=안성, 20=안산",
+    "0=미참여, 1=참여",
+    "1=남자, 2=여자",
+    "1=초등학교 이하, 2=중학교, 3=고등학교, 4=전문대, 5=대학교, 6=대학원 이상"
+  )
+)))
 
 # Convert the dataset using the df_VarName_ValueOptions
-converted_data <- f_DataSet_CodeBook.map_factor(your_data, MetaData, print.intermediate = TRUE)
+converted_data <- f_DataSet_CodeBook.map_factor(your_data, MetaData$tblVarName$tblVarName.suffix, print.intermediate = TRUE)
 
 # View the converted dataset
 print(converted_data)
