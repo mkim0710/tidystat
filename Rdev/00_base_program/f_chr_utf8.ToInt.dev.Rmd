@@ -289,48 +289,56 @@ intToUtf8((utf8ToInt("Z")+1):(utf8ToInt("a")-1)) %>% cat("\n", sep="")
   
 # @@ START) function ----  
 ## \% |> function_name()  
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 

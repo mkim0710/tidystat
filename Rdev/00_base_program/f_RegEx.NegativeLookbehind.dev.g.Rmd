@@ -262,6 +262,7 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
   
 # @@ START) data example ----  
 ## \$  =  ----  
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -590,24 +591,28 @@ cat("\n > ", 'Step 3: Recombine the parts', "\n", final_result, "\n", sep="")
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -631,6 +636,7 @@ df_vec_names |> mutate(
   
 # @@ START) function ----  
 ## \% |> function_name()  
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
@@ -638,42 +644,49 @@ options(width=120)
   
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 

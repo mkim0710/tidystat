@@ -462,6 +462,7 @@ if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne
 ```
   
   
+###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
