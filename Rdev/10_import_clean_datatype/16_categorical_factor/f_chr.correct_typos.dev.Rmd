@@ -279,7 +279,6 @@ text_with_rounded_numbers3 %>% extract_non_ascii_with_codes_df()
 # @@ START) dev ----  
 
 ## \% text_example |>  
-###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 

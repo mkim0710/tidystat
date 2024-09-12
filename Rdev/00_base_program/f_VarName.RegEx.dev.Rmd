@@ -343,7 +343,6 @@ df_vec_names |> mutate(
   
 # @@ START) function ----  
 ## \% |> function_name()  
-###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
