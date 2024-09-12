@@ -138,6 +138,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) source -----  
 ### @ .subpath, .sourcename ======  
+#### env1$path$.subpath.filename.source.r ----  
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
@@ -152,9 +153,9 @@ env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),
 env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
 env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
 cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
-    "# ",env1$path$.subpath.filename.dev.r, "  \n",
-    "# ",env1$path$.subpath.filename.dev.Rmd, "  \n",
-    "# ",env1$path$.subpath.filename.source.r, "  \n",
+    "#### ",env1$path$.subpath.filename.dev.r, "----  \n",
+    "#### ",env1$path$.subpath.filename.dev.Rmd, "----  \n",
+    "#### ",env1$path$.subpath.filename.source.r, "----  \n",
     '# # source("',env1$path$source_base,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
