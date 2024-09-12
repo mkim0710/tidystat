@@ -103,12 +103,13 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) function -----  
-.sourcename = "f_DataSet_CodeBook.walk2factor.source.r"
-.sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
-.GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
+# --> Now included in "f_df.t.tribble_construct.source.r"
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ f_vec_ValueOptions.factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
+.tmp$objectname = "f_vec_ValueOptions.factor"
 .tmp$object = function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
   if (is.na(ValueOptions) || ValueOptions == "") {
     return(vec)
