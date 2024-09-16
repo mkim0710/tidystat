@@ -261,6 +261,12 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
   
   
 # @@ START) DataSet example ----  
+
+# @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+
 ## \$ https://chatgpt.com/c/66e1f092-be28-800e-8527-a0815faa0a37 =  ----  
 ## \$ https://chatgpt.com/c/66e205de-d4d4-800e-a889-5ced38a816ed =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
