@@ -176,21 +176,21 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 ## \% f_file.edit ====  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### \% f_file.edit_windows ====  
-env1$env.internal$ f_file.edit_windows <- function(.file2edit) {
+env1$env.internal$f_file.edit_windows <- function(.file2edit) {
     shell.exec(shQuote(.file2edit))
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% f_file.edit_notepad ====  
-env1$env.internal$ f_file.edit_notepad <- function(.file2edit) {
+env1$env.internal$f_file.edit_notepad <- function(.file2edit) {
     if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% f_file.edit_vscode ====  
-env1$env.internal$ f_file.edit_vscode <- function(.file2edit) {
+env1$env.internal$f_file.edit_vscode <- function(.file2edit) {
     if (.Platform$OS.type == "windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-env1$env.internal$ f_URL.open_in_edge_app <- function(URL) {
+env1$env.internal$f_URL.open_in_edge_app <- function(URL) {
     if (.Platform$OS.type == "windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
 }
 ##### \$ f_URL.open_in_edge_app =  ----  
@@ -200,16 +200,16 @@ env1$env.internal$ f_URL.open_in_edge_app <- function(URL) {
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (.Platform$OS.type == "windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
-env1$env.internal$ f_URL.open_in_edge_app.printRCode <- function(URL) {
+env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
     # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
     URL %>% cat('if (.Platform$OS.type == "windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
 }
-# env1$env.internal$ f_URL.open_in_edge_app.printRCode <- function(URL) {
+# env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
 #     URL %>% cat('env1$env.internal$f_URL.open_in_edge_app("',.,'")  \n', sep="")
 # }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
-env1$env.internal$ f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
+env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
     URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="',.,'"  \n', sep="")
 }
 ##### \$ f_URL.open_in_edge_app.printPowerShellCode =  ----  
@@ -264,7 +264,7 @@ env1$env.internal$f_file_PDF.sumatra <- function(
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \% f_filename.ext.createBackup ====  
-env1$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
+env1$env.internal$f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
     # Wrap the main backup logic in a tryCatch for error handling
     tryCatch({
         # Determine the filename and extension if not provided
@@ -295,7 +295,7 @@ env1$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filen
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \% f_path_path.backup.overwrite ====  
-env1$env.internal$ f_path_path.backup.overwrite <- function(.overwrite_from_path.filename.ext, .destination_path.filename.ext, .backup_to_path = dirname(.destination_path.filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
+env1$env.internal$f_path_path.backup.overwrite <- function(.overwrite_from_path.filename.ext, .destination_path.filename.ext, .backup_to_path = dirname(.destination_path.filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
     if(createFile || file.exists(.destination_path.filename.ext)) {
         if(!is.null(.backup_to_path)) {
             env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .destination_path.filename.ext, .backup_to_path=.backup_to_path, timeFormat=timeFormat)
@@ -306,14 +306,14 @@ env1$env.internal$ f_path_path.backup.overwrite <- function(.overwrite_from_path
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## \% f_path.relative ====  
-env1$f$ f_path.relative = function(path, basepath = env1$path$path1) {
+env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## \% f_path.is_git_tracked  =======  
 # Function to check if the current project or any of its parent directories are tracked by Git
-env1$env.internal$ f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
+env1$env.internal$f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
     # Normalize the path
     path <- normalizePath(path, winslash = "/", mustWork = TRUE)
     
