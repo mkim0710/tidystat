@@ -607,7 +607,250 @@ safeDownloadFileIfDifferent(test_url1, local_file1)
 ```
   
   
+## \% |> isRemoteFileDifferent() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(httr)
 
+library(httr)
+
+# Function to check if the remote file has changed using HTTP headers
+isRemoteFileDifferent <- function(url, destfile) {
+    # Make a HEAD request to get the headers of the remote file
+    response <- HEAD(url)
+    
+    # Extract the ETag header from the remote file
+    remote_etag <- headers(response)$etag
+    
+    # Define the path for storing the local ETag
+    etag_file <- paste0(destfile, ".etag")
+    
+    # Debugging prints to inspect ETag values
+    message("Remote ETag: ", remote_etag)
+    
+    # Check if the local file and the ETag file exist
+    if (file.exists(destfile) && file.exists(etag_file)) {
+        # Read the stored local ETag
+        local_etag <- readLines(etag_file)
+        
+        # Debugging prints for local ETag
+        message("Local ETag: ", local_etag)
+        
+        # Compare ETags
+        if (!is.null(remote_etag) && remote_etag == local_etag) {
+            message("Local file is up-to-date with the remote file (ETag).")
+            return(FALSE)
+        }
+    } else {
+        message("Local file or ETag file does not exist.")
+    }
+    
+    # If no match or file does not exist, the files are different
+    return(TRUE)
+}
+
+# Function to download the file only if it differs from the local version
+safeDownloadFileIfDifferent <- function(url, destfile, chunk_size = 65536) {
+    tryCatch({
+        # Check if the remote file differs from the local one using headers
+        if (isRemoteFileDifferent(url, destfile)) {
+            # Proceed to download the file if they are different
+            download.file(url, destfile, quiet = TRUE)
+            
+            # Extract the ETag from the remote response
+            response <- HEAD(url)
+            remote_etag <- headers(response)$etag
+            
+            # Save the ETag locally in the .etag file
+            etag_file <- paste0(destfile, ".etag")
+            writeLines(remote_etag, etag_file)
+            
+            message(paste("Downloaded updated file:", destfile))
+            return(TRUE)
+        } else {
+            message(paste("No update needed for:", destfile))
+            return(FALSE)
+        }
+        
+    }, error = function(e) {
+        message(paste("Failed to download or update:", url))
+        message("Error:", e$message)
+        return(FALSE)
+    })
+}
+
+# Test case
+test_url1 <- "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R"
+local_file1 <- "test_default.R"
+
+safeDownloadFileIfDifferent(test_url1, local_file1)
+
+safeDownloadFileIfDifferent(test_url1, local_file1)
+
+```
+  
+  
+###### \% |> isRemoteFileDifferentBySize() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(httr)
+
+# Function to check if the remote file size differs from the local file size
+isRemoteFileDifferentBySize <- function(url, destfile) {
+    # Make a HEAD request to get the headers of the remote file
+    response <- HEAD(url)
+    
+    # Extract the Content-Length header (file size) from the remote file
+    remote_size <- as.numeric(headers(response)$`content-length`)
+    
+    # Debugging print to inspect the remote file size
+    message("Remote file size: ", remote_size)
+    
+    # Check if the local file exists
+    if (file.exists(destfile)) {
+        # Get the size of the local file
+        local_size <- file.info(destfile)$size
+        
+        # Debugging print to inspect the local file size
+        message("Local file size: ", local_size)
+        
+        # Compare file sizes
+        if (!is.null(remote_size) && remote_size == local_size) {
+            message("Local file is up-to-date with the remote file (File size).")
+            return(FALSE)
+        }
+    } else {
+        message("Local file does not exist.")
+    }
+    
+    # If no match or file does not exist, the files are different
+    return(TRUE)
+}
+
+# Function to download the file using httr to avoid extra metadata issues
+safeDownloadFileIfDifferent <- function(url, destfile) {
+    tryCatch({
+        # Check if the remote file differs from the local one using file size
+        if (isRemoteFileDifferentBySize(url, destfile)) {
+            # Use httr's GET request to download the file correctly
+            response <- GET(url)
+            
+            if (status_code(response) == 200) {
+                writeBin(content(response, "raw"), destfile)
+                message(paste("Downloaded updated file:", destfile))
+                return(TRUE)
+            } else {
+                message("Failed to download file. Status code: ", status_code(response))
+                return(FALSE)
+            }
+        } else {
+            message(paste("No update needed for:", destfile))
+            return(FALSE)
+        }
+        
+    }, error = function(e) {
+        message(paste("Failed to download or update:", url))
+        message("Error:", e$message)
+        return(FALSE)
+    })
+}
+
+# Test case
+test_url1 <- "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R"
+local_file1 <- "test_default.R"
+
+safeDownloadFileIfDifferent(test_url1, local_file1)
+safeDownloadFileIfDifferent(test_url1, local_file1)
+
+```
+  
+  
+###### \% |> safeDownloadFileWithConditionalGET() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(httr)
+
+# Function to download the file using conditional GET based on ETag
+safeDownloadFileWithConditionalGET <- function(url, destfile) {
+    # Check if the local file exists and has an associated ETag
+    if (file.exists(destfile)) {
+        etag_file <- paste0(destfile, ".etag")
+        if (file.exists(etag_file)) {
+            local_etag <- readLines(etag_file)
+            response <- GET(url, add_headers(`If-None-Match` = local_etag))
+        } else {
+            response <- GET(url)
+        }
+    } else {
+        response <- GET(url)
+    }
+
+    # If the status code is 304 (Not Modified), the file hasn't changed
+    if (status_code(response) == 304) {
+        message("No update needed for:", destfile)
+        return(FALSE)
+    } else if (status_code(response) == 200) {
+        # Download the file if there is an update
+        writeBin(content(response, "raw"), destfile)
+        
+        # Save the new ETag
+        etag <- headers(response)$etag
+        if (!is.null(etag)) {
+            etag_file <- paste0(destfile, ".etag")
+            writeLines(etag, etag_file)
+        }
+        message("Downloaded updated file: ", destfile)
+        return(TRUE)
+    } else {
+        message("Unexpected status code: ", status_code(response))
+        return(FALSE)
+    }
+}
+
+# Test case
+test_url1 <- "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R"
+local_file1 <- "test_default.R"
+
+safeDownloadFileWithConditionalGET(test_url1, local_file1)
+safeDownloadFileWithConditionalGET(test_url1, local_file1)
+
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
   
   
 ###### \% |> () ----  
