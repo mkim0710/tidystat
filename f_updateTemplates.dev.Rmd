@@ -270,12 +270,12 @@ env0 = env1
   
 # @@ START) function ----  
 https://chatgpt.com/c/66e7deba-b85c-800e-9f76-124d9087e1a7
-## \% |> f_updateTemplates() ----  
+## \% |> f.updateTemplates() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# ## \$ f_updateTemplates =  ----  
-# # https://github.com/mkim0710/f_updateTemplates.source.r  
-# .tmp$objectname = "f_updateTemplates"
+# ## \$ f.updateTemplates =  ----  
+# # https://github.com/mkim0710/f.updateTemplates.source.r  
+# .tmp$objectname = "f.updateTemplates"
 # .tmp$object = function(list_formula) {
 #     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
 #     if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
@@ -389,11 +389,11 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent(url = "https://raw.githubus
 ```
   
   
-## \% env1$f$f_updateTemplates() ----  
+## \% env1$f$f.updateTemplates() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# https://github.com/mkim0710/f_updateTemplates.source.r
-env1$f$f_updateTemplates = function(.path4APPDATA_RStudio = NULL) {
+# https://github.com/mkim0710/f.updateTemplates.source.r
+env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
     if (is.null(.path4APPDATA_RStudio)) {
@@ -431,7 +431,7 @@ env1$f$f_updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     }
 
 }
-env1$f$f_updateTemplates()
+env1$f$f.updateTemplates()
 ```
   
   

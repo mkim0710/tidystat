@@ -71,9 +71,9 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, 
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \% env1$f$f_updateTemplates ====  
-# https://github.com/mkim0710/f_updateTemplates.source.r
-env1$f$f_updateTemplates = function(.path4APPDATA_RStudio = NULL) {
+## \% env1$f$f.updateTemplates ====  
+# https://github.com/mkim0710/f.updateTemplates.source.r
+env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
     if (is.null(.path4APPDATA_RStudio)) {
