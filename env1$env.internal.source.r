@@ -265,16 +265,29 @@ env1$env.internal$f_file_PDF.sumatra <- function(
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \% f_filename.ext.createBackup ====  
 env1$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
-    if(is.na(backup_from_ext)) {
-        backup_from_path.filename = basename(backup_from_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
-        backup_from_ext = basename(backup_from_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
-    } else {
-        backup_from_path.filename = basename(backup_from_path.filename.ext) |> str_remove(paste0("\\.",backup_from_ext|>str_replace_all("\\.","\\\\."),"$"))
-    }
-    
-    .backup_to_path.filename.ext = file.path( .backup_to_path, paste0(backup_from_path.filename,"-",format(Sys.time(),timeFormat),".",backup_from_ext) )
-    if(!dir.exists(.backup_to_path)) dir.create(.backup_to_path, recursive = TRUE)
-    file.copy(from=backup_from_path.filename.ext, to=.backup_to_path.filename.ext, overwrite=overwrite); message(paste0("Backup file created: ",.backup_to_path.filename.ext))
+    # Wrap the main backup logic in a tryCatch for error handling
+    tryCatch({
+        # Determine the filename and extension if not provided
+        if(is.na(backup_from_ext)) {
+            backup_from_path.filename = basename(backup_from_path.filename.ext) |> str_remove("\\.([[:alnum:]]+)$")
+            backup_from_ext = basename(backup_from_path.filename.ext) |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+        } else {
+            backup_from_path.filename = basename(backup_from_path.filename.ext) |> str_remove(paste0("\\.",backup_from_ext|>str_replace_all("\\.","\\\\."),"$"))
+        }
+        
+        # Construct the destination backup path with timestamp
+        .backup_to_path.filename.ext = file.path( .backup_to_path, paste0(backup_from_path.filename,"-",format(Sys.time(),timeFormat),".",backup_from_ext) )
+        
+        # Create the backup directory if it doesn't exist
+        if(!dir.exists(.backup_to_path)) dir.create(.backup_to_path, recursive = TRUE)
+        
+        # Copy the file to the backup location; if successful, print a message. Otherwise, stop with an error. 
+        success = file.copy(from=backup_from_path.filename.ext, to=.backup_to_path.filename.ext, overwrite=overwrite); if (success) {message(paste0("Backup file created: ", .backup_to_path.filename.ext))} else {stop("File copy failed for unknown reasons.")}
+    }, error = function(e) {
+        # Error handling block to catch any issues during the backup process
+        message(paste("Failed to create backup for:", backup_from_path.filename.ext))
+        message("Error:", e$message)
+    })
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \% f_path_path.backup.overwrite ====  
@@ -340,6 +353,9 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 # env1$path$no_git = is.na(env1$path$git_path)
 
 
+
+
+
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## @ sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
@@ -358,6 +374,11 @@ env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(pa
 # cat("> str(env1$path)\n"); str(env1$path)    
 
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## @ sourcename = "f_expression.substitute_echo_and_dput" |> paste0(".source.r") =======  
+# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/00_base_program/f_expression.substitute_echo_and_dput")
+.sourcename = "f_expression.substitute_echo_and_dput" |> paste0(".source.r"); .subpath=r"(Rdev/00_base_program)"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## @ sourcename = "f_expression.substitute_echo_and_dput" |> paste0(".source.r") =======  
