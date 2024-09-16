@@ -818,9 +818,71 @@ safeDownloadFileWithConditionalGET(test_url1, local_file1)
 ```
   
   
-###### \% |> () ----  
+###### \% |> calculateFileHash() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+library(httr)
+library(digest)
+
+# Function to calculate the hash of a file using MD5 or SHA1
+calculateFileHash <- function(filepath, algo = "md5") {
+    tryCatch({
+        return(digest(file(filepath, "rb"), algo = algo))
+    }, error = function(e) {
+        message("Error calculating hash: ", e$message)
+        return(NULL)
+    })
+}
+
+# Function to compare local and remote file hashes
+safeDownloadFileIfDifferentByHash <- function(url, destfile, hash_algo = "md5") {
+    tryCatch({
+        # Check if the local file exists and calculate its hash
+        if (file.exists(destfile)) {
+            local_hash <- calculateFileHash(destfile, hash_algo)
+            message("Local file hash: ", local_hash)
+        } else {
+            message("Local file does not exist.")
+            local_hash <- NULL
+        }
+        
+        # Download the remote file temporarily to calculate its hash
+        response <- GET(url)
+        if (status_code(response) == 200) {
+            remote_content <- content(response, "raw")
+            remote_tempfile <- tempfile()
+            writeBin(remote_content, remote_tempfile)
+            
+            # Calculate hash of the downloaded remote file
+            remote_hash <- calculateFileHash(remote_tempfile, hash_algo)
+            message("Remote file hash: ", remote_hash)
+            
+            # Compare hashes
+            if (!is.null(local_hash) && local_hash == remote_hash) {
+                message("Local file is up-to-date with the remote file (Hash matches).")
+                return(FALSE)  # No need to download, files are identical
+            }
+            
+            # If hashes differ, replace the local file with the downloaded content
+            writeBin(remote_content, destfile)
+            message(paste("Downloaded and updated file:", destfile))
+            return(TRUE)
+        } else {
+            message("Failed to download file. Status code: ", status_code(response))
+            return(FALSE)
+        }
+    }, error = function(e) {
+        message("Failed to download or update:", e$message)
+        return(FALSE)
+    })
+}
+
+# Test case
+test_url1 <- "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R"
+local_file1 <- "test_default.R"
+
+safeDownloadFileIfDifferentByHash(test_url1, local_file1)
+safeDownloadFileIfDifferentByHash(test_url1, local_file1)
 
 ```
   
