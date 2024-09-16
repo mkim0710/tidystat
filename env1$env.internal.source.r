@@ -281,8 +281,12 @@ env1$env.internal$ f_filename.ext.createBackup = function(backup_from_path.filen
         # Create the backup directory if it doesn't exist
         if(!dir.exists(.backup_to_path)) dir.create(.backup_to_path, recursive = TRUE)
         
+
+        if(!file.exists(backup_from_path.filename.ext)) stop(paste0("File to backup does not exist: ", backup_from_path.filename.ext))
+        if(file.exists(.backup_to_path.filename.ext) && !overwrite) stop(paste0("Backup file already exists: ", .backup_to_path.filename.ext))
+        
         # Copy the file to the backup location; if successful, print a message. Otherwise, stop with an error. 
-        success = file.copy(from=backup_from_path.filename.ext, to=.backup_to_path.filename.ext, overwrite=overwrite); if (success) {message(paste0("Backup file created: ", .backup_to_path.filename.ext))} else {stop("File copy failed for unknown reasons.")}
+        if (file.copy(from=backup_from_path.filename.ext, to=.backup_to_path.filename.ext, overwrite=overwrite)) {message(paste0("Backup file created: ", .backup_to_path.filename.ext))} else {stop("File copy failed for unknown reasons.")}
     }, error = function(e) {
         # Error handling block to catch any issues during the backup process
         message(paste("Failed to create backup for:", backup_from_path.filename.ext))
