@@ -435,17 +435,175 @@ env1$f$f.updateTemplates()
 ```
   
   
-###### \% |> () ----  
+## \% |> isRemoteFileDifferent() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+# library(httr)
+# 
+# # Function to check if the remote file has changed using HTTP headers
+# isRemoteFileDifferent <- function(url, destfile) {
+#     # Make a HEAD request to get the headers of the remote file
+#     response <- HEAD(url)
+#     
+#     # Extract the Last-Modified header from the remote file
+#     remote_last_modified <- headers(response)$`last-modified`
+#     
+#     # Extract ETag header from the remote file
+#     remote_etag <- headers(response)$etag
+#     
+#     # Debugging prints to inspect header values
+#     message("Remote Last-Modified: ", remote_last_modified)
+#     message("Remote ETag: ", remote_etag)
+#     
+#     # Get the local file's last modification time
+#     if (file.exists(destfile)) {
+#         local_last_modified <- format(file.info(destfile)$mtime, "%a, %d %b %Y %H:%M:%S GMT")
+#         
+#         # Debugging prints to inspect local file values
+#         message("Local Last-Modified: ", local_last_modified)
+#         
+#         # Compare Last-Modified times
+#         if (!is.null(remote_last_modified) && remote_last_modified == local_last_modified) {
+#             message("Local file is up-to-date with the remote file (Last-Modified).")
+#             return(FALSE)
+#         }
+#         
+#         # Debugging: If Last-Modified does not match, check ETag
+#         local_etag <- attr(file.info(destfile), "etag")  # Placeholder for ETag (you need to store ETag locally)
+#         message("Local ETag: ", local_etag)
+#         
+#         if (!is.null(remote_etag) && !is.null(local_etag) && remote_etag == local_etag) {
+#             message("Local file matches remote file based on ETag.")
+#             return(FALSE)
+#         }
+#     } else {
+#         message("Local file does not exist.")
+#     }
+#     
+#     # If no match or file does not exist, the files are different
+#     return(TRUE)
+# }
+# 
+# # Function to download the file only if it differs from the local version
+# safeDownloadFileIfDifferent <- function(url, destfile, chunk_size = 65536) {
+#     tryCatch({
+#         # Check if the remote file differs from the local one using headers
+#         if (isRemoteFileDifferent(url, destfile)) {
+#             # Proceed to download the file if they are different
+#             download.file(url, destfile, quiet = TRUE)
+#             message(paste("Downloaded updated file:", destfile))
+#             return(TRUE)
+#         } else {
+#             message(paste("No update needed for:", destfile))
+#             return(FALSE)
+#         }
+#         
+#     }, error = function(e) {
+#         message(paste("Failed to download or update:", url))
+#         message("Error:", e$message)
+#         return(FALSE)
+#     })
+# }
+# 
+# # Test case
+# test_url1 <- "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R"
+# local_file1 <- "test_default.R"
+# 
+# safeDownloadFileIfDifferent(test_url1, local_file1)
+# # Remote Last-Modified: 
+# # Remote ETag: W/"6cadf88b6acf4df2009bf12a34306611c39c4989d16e1ac30ffe7a5315f9785e"
+# # Local Last-Modified: Mon, 16 Sep 2024 17:03:53 GMT
+# # Local ETag: 
+# # Downloaded updated file: test_default.R
+# # [1] TRUE
 ```
   
   
-###### \% |> () ----  
+## \% |> isRemoteFileDifferent() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+library(httr)
 
+# Function to check if the remote file has changed using HTTP headers
+isRemoteFileDifferent <- function(url, destfile) {
+    # Make a HEAD request to get the headers of the remote file
+    response <- HEAD(url)
+    
+    # Extract the ETag header from the remote file
+    remote_etag <- headers(response)$etag
+    
+    # Define path for storing the local ETag
+    etag_file <- paste0(destfile, ".etag")
+    
+    # Debugging prints to inspect header values
+    message("Remote ETag: ", remote_etag)
+    
+    # Check if the local file exists and if an ETag file exists
+    if (file.exists(destfile) && file.exists(etag_file)) {
+        # Read the stored local ETag
+        local_etag <- readLines(etag_file)
+        
+        # Debugging prints for local ETag
+        message("Local ETag: ", local_etag)
+        
+        # Compare ETags
+        if (!is.null(remote_etag) && remote_etag == local_etag) {
+            message("Local file is up-to-date with the remote file (ETag).")
+            return(FALSE)
+        }
+    } else {
+        message("Local file or ETag file does not exist.")
+    }
+    
+    # If no match or file does not exist, the files are different
+    return(TRUE)
+}
+
+# Function to download the file only if it differs from the local version
+safeDownloadFileIfDifferent <- function(url, destfile, chunk_size = 65536) {
+    tryCatch({
+        # Check if the remote file differs from the local one using headers
+        if (isRemoteFileDifferent(url, destfile)) {
+            # Proceed to download the file if they are different
+            download.file(url, destfile, quiet = TRUE)
+            
+            # Extract the ETag from the remote response
+            response <- HEAD(url)
+            remote_etag <- headers(response)$etag
+            
+            # Save the ETag locally
+            etag_file <- paste0(destfile, ".etag")
+            writeLines(remote_etag, etag_file)
+            
+            message(paste("Downloaded updated file:", destfile))
+            return(TRUE)
+        } else {
+            message(paste("No update needed for:", destfile))
+            return(FALSE)
+        }
+        
+    }, error = function(e) {
+        message(paste("Failed to download or update:", url))
+        message("Error:", e$message)
+        return(FALSE)
+    })
+}
+
+# Test case
+test_url1 <- "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R"
+local_file1 <- "test_default.R"
+
+safeDownloadFileIfDifferent(test_url1, local_file1)
+safeDownloadFileIfDifferent(test_url1, local_file1)
+# Remote ETag: W/"6cadf88b6acf4df2009bf12a34306611c39c4989d16e1ac30ffe7a5315f9785e"
+# Local file or ETag file does not exist.
+# Downloaded updated file: test_default.R
+# [1] TRUE
+# Remote ETag: W/"6cadf88b6acf4df2009bf12a34306611c39c4989d16e1ac30ffe7a5315f9785e"
+# Local ETag: W/"6cadf88b6acf4df2009bf12a34306611c39c4989d16e1ac30ffe7a5315f9785e"
+# Local file is up-to-date with the remote file (ETag).
+# No update needed for: test_default.R
+# [1] FALSE
 ```
   
   
