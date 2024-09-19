@@ -518,7 +518,7 @@ options(width=120)
 #### \$ DataSet.Date.NA  ----  
 ##### \% f_df.NotNA_p_df() ----  
 #### \$ DataSet.Date.NA.rmAllNA  ----  
-```{r DataSet.Date.NA-f_df.NotNA_p_df, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r DataSet.Date.NA-f_df.NotNA_p_df-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
