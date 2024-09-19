@@ -49,23 +49,23 @@ tblPersonID_FilterName.ndDate.append_FilterRegexMet <- function(
     , FilterName.i = FilterName.i
     , FilterRegex.i = FilterRegex.i
 ) {
-    out = tblPersonID_FilterName.ndDate %>% 
+    out <- tblPersonID_FilterName.ndDate |> 
         left_join(
-            tblClaim_Date_Code %>% 
-                dplyr::filter( eval(parse(text=varname4t)) >= eval(parse(text=varname4t0)) + eval(parse(text=t_begin.int.i)) ) %>% 
-                dplyr::filter( eval(parse(text=varname4t)) <= eval(parse(text=varname4t0)) + eval(parse(text=t_end.int.i)) ) %>% 
+            tblClaim_Date_Code |> 
+                filter(!!rlang::sym(varname4t) >= !!rlang::sym(varname4t0) + t_begin.int.i) |> 
+                filter(!!rlang::sym(varname4t) <= !!rlang::sym(varname4t0) + t_end.int.i) |> 
                 mutate(
-                    FilterRegexMet = grepl( FilterRegex.i, eval(parse(text=varname4Code)) )
-                ) %>% dplyr::filter(FilterRegexMet) %>% 
-                group_by(ENROLID) %>% summarise(
-                    !!rlang::sym( paste0(FilterName.i, ".ndDate") ) := n_distinct(as.numeric( eval(parse(text=varname4t)) ), na.rm = T)
-                    # , !!rlang::sym( paste0(FilterName.i, ".minDate") ) := min( eval(parse(text=varname4t)) , na.rm = T)
-                    # , !!rlang::sym( paste0(FilterName.i, ".maxDate") ) := max( eval(parse(text=varname4t)) , na.rm = T)
-                ) %>%
-                as_tibble
-            , by = varname4PersonID
+                    FilterRegexMet = grepl(FilterRegex.i, !!rlang::sym(varname4Code))
+                ) |> filter(FilterRegexMet) |> 
+                group_by(!!rlang::sym(varname4PersonID)) |> summarise(
+                    !!rlang::sym(paste0(FilterName.i,".ndDate")) := n_distinct(as.numeric(!!rlang::sym(varname4t)), na.rm = TRUE)
+                    # , !!rlang::sym(paste0(FilterName.i,".minDate")) := min(!!rlang::sym(varname4t), na.rm = TRUE)
+                    # , !!rlang::sym(paste0(FilterName.i,".maxDate")) := max(!!rlang::sym(varname4t), na.rm = TRUE)
+                ) |> 
+                ungroup(),
+            by = varname4PersonID
         )
-    out
+    return(out)
 }
 
 
