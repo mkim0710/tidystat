@@ -215,6 +215,20 @@ if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.geten
 
 file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 
+
+#@ rstudio-prefs.json@PositCloud ----
+# file.edit("~/.config/rstudio/rstudio-prefs.json")
+# file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH240515 copilot.json")
+"https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+
+
+
+
+#@ rstudio-prefs.json@Rocker ----
+"https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
+
+
+
 # Global Options > General > Save workspace to .RData on exit: Never
 # Global Options > Code > Insert spaces for tab: 4
 # Global Options > Code > Auto-indent code after paste: uncheck
