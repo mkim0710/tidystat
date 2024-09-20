@@ -22,7 +22,7 @@ function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", d
             ) #----
     } else {
         tbl_varname_level_coefficients = 
-            list_levels %>% enframe(name = "varname", value = "level") %>% unnest %>% mutate(varnamelevel = paste0(varname, level)) %>% right_join(
+            list_levels %>% enframe(name = "varname", value = "level") %>% unnest(cols = c(level)) %>% mutate(varnamelevel = paste0(varname, level)) %>% right_join(
                 tibble(varnamelevel = names(object.glm$coefficients), coefficients = object.glm$coefficients), by = "varnamelevel"
             ) #----
     }
