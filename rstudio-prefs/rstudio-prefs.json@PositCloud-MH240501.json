@@ -57,5 +57,6 @@
     "doc_outline_show": "sections_and_chunks",
     "visual_markdown_editing_list_spacing": "tight",
     "visual_markdown_editing_wrap": "sentence",
-    "posix_terminal_shell": "bash"
+    "posix_terminal_shell": "bash",
+    "copilot_enabled": true
 }
