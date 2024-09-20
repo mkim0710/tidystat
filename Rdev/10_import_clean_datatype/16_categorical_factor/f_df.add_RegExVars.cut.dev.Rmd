@@ -214,7 +214,7 @@ options(width=120)
 DataSet.Date.NA.rmAllNA = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
     select(matches("HEIGHT|WEIGHT")) %>% 
     rownames_to_column() 
-DataSet.Date.NA.rmAllNA %>% str
+DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 ```
 
 #### \$ A01_BMI.cut4 =  
