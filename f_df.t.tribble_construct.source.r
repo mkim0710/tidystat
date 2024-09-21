@@ -774,7 +774,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.quintile_factor"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern) {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE) {
   DataSet.Date.NA.rmAllNA %>%
     mutate(across(
       .cols = matches(paste0(regex_pattern)), 
@@ -791,8 +791,8 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
           paste0("(", round(quantile(., 0.8, na.rm = TRUE), 3), ", ", round(quantile(., 1, na.rm = TRUE), 3), "]")
         )
         
-        # Convert to ordered factor
-        factor(quintile, levels = 1:5, labels = labels, ordered = TRUE)
+        # Convert to ordered factor - caution) glm makes ordered factor as Quadratic/Cubic contrasts
+        factor(quintile, levels = 1:5, labels = labels, ordered = factor.ordered)
       },
       .names = "{.col}.quintile"
     ))
@@ -805,7 +805,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
 # /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
 .tmp$objectname = "f_df.add_RegExVars.quartile_factor"
-.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern) {
+.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern, factor.ordered = FALSE) {
     DataSet.Date.NA.rmAllNA %>%
         mutate(across(
             .cols = matches(paste0(regex_pattern)), 
@@ -820,8 +820,8 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
                     paste0("(", round(quantile(., 0.75, na.rm = TRUE), 3), ", ", round(quantile(., 1, na.rm = TRUE), 3), "]")
                 )
                 
-                # Convert to ordered factor
-                factor(quartile, levels = 1:4, labels = labels, ordered = TRUE)
+        # Convert to ordered factor - caution) glm makes ordered factor as Quadratic/Cubic contrasts
+                factor(quartile, levels = 1:4, labels = labels, ordered = factor.ordered)
             },
             .names = "{.col}.quartile"
         ))
