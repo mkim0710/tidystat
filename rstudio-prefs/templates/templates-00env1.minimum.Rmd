@@ -681,7 +681,7 @@ all.equal(.MetaData0, MetaData)
 if(!identical(.MetaData0, MetaData)) {
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',file.path(.path4read, "MetaData.rds"),'", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
-    cat('MetaData |> write_rds("',file.path(.path4write, "MetaData.rds"),'", compress = "gz") |> system.time()', "  \n", sep="")
+    cat('MetaData |> write_rds("',file.path(env1$path$path1, "MetaData.rds"),'", compress = "xz") |> system.time()', "  \n", sep="")
     cat("'git add -f \"",file.path(.path4write, "MetaData.rds"),"\"' |> system(intern=TRUE)  \n", sep="")
 }
 ```
@@ -719,6 +719,8 @@ system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectna
 # system.time(openxlsx::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
 # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(.objectname, ".xlsx"))
 env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
+MetaData |> write_rds(file.path(env1$path$path1, "MetaData.rds"), compress = "xz") |> system.time()
+cat("'git add -f \"",file.path(.path4write, "MetaData.rds"),"\"' |> system(intern=TRUE)  \n", sep="")
 paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)
 ```
