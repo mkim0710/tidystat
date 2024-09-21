@@ -800,6 +800,35 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \$ f_df.add_RegExVars.quartile_factor =  ----  
+## -> included in "f_df.t.tribble_construct.source.r"
+# https://chatgpt.com/c/516e86f6-008f-4d70-87e7-b99f3b5a7af5
+# /github_tidystat/Rdev/10_import_clean_datatype/16_categorical_factor/f_df.add_RegExVars.quintile_factor.dev.Rmd
+.tmp$objectname = "f_df.add_RegExVars.quartile_factor"
+.tmp$object = function(DataSet.Date.NA.rmAllNA, regex_pattern) {
+    DataSet.Date.NA.rmAllNA %>%
+        mutate(across(
+            .cols = matches(paste0(regex_pattern)), 
+            .fns = ~ {
+                quartile <- ntile(., 4)
+                
+                # Define labels for the quintiles with rounded values
+                labels <- c(
+                    paste0("(", round(quantile(., 0, na.rm = TRUE), 3), ", ", round(quantile(., 0.25, na.rm = TRUE), 3), "]"),
+                    paste0("(", round(quantile(., 0.25, na.rm = TRUE), 3), ", ", round(quantile(., 0.5, na.rm = TRUE), 3), "]"),
+                    paste0("(", round(quantile(., 0.5, na.rm = TRUE), 3), ", ", round(quantile(., 0.75, na.rm = TRUE), 3), "]"),
+                    paste0("(", round(quantile(., 0.75, na.rm = TRUE), 3), ", ", round(quantile(., 1, na.rm = TRUE), 3), "]")
+                )
+                
+                # Convert to ordered factor
+                factor(quartile, levels = 1:4, labels = labels, ordered = TRUE)
+            },
+            .names = "{.col}.quartile"
+        ))
+}
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ f_formula.lhs_rhs_vars =  ----
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
 .tmp$objectname = "f_formula.lhs_rhs_vars"
