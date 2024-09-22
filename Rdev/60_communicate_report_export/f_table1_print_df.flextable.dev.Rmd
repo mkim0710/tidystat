@@ -453,26 +453,26 @@ f_table1_print_df.flextable <- function(table1_print_df, header_text, footer_tex
 ```
 
 
-### :: table1_df = GermanBreastCancerStudyGroup |> generate_table_one() ----  
+### :: table1_print_df = GermanBreastCancerStudyGroup |> generate_table_one() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Generate Table 1 Data Frame
-table1_df <- f_DataSet.table1.print.df(
+table1_print_df <- f_DataSet.table1.print.df(
     GermanBreastCancerStudyGroup, 
     VarNames4Exposure = "Hormone treatment", 
     print.Varnames_nonnormal = c("Progesterone receptors, fmol/L (median [IQR])",
                        "Estrogen receptors, fmol/L (median [IQR])"),
     Varnames_factor.exclude = "Hormone treatment"
 )
-table1_df
+table1_print_df
 ```
 
-### :: flextable1 = table1_df |> f_table1_print_df.flextable() ----
+### :: flextable1 = table1_print_df |> f_table1_print_df.flextable() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Generate and Save Flextable
 header_text <- "Table 1. Baseline characteristics of 686 patients enrolled in the German Breast Cancer Study Group between 1984 and 1989"
 footer_text <- "Numbers are No. (%) unless otherwise noted. SD = standard deviation, fmol/L = femtomole per liter, IQR = interquartile range"
 
-flextable1 <- f_table1_print_df.flextable(table1_df, header_text = header_text, footer_text = footer_text)
+flextable1 <- f_table1_print_df.flextable(table1_print_df, header_text = header_text, footer_text = footer_text)
 flextable1
 ```
 
