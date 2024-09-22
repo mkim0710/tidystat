@@ -57,32 +57,35 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 ## -> included in "f_df.t.tribble_construct.source.r"? Not Yet
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
 # /github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.source.r
-.tmp$objectname = "f_DataSet.table1"
-.tmp$object  <- function(DataSet, strata_var, nonnormal_vars, cat_vars_exclude = NULL) {
+.tmp$objectname = "f_DataSet.table1.print.df"
+.tmp$object  <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     library(tableone)
 
-    myVars <- setdiff(names(DataSet), strata_var)
-    catVars <- names(DataSet %>% select(where(is.factor)))
+    Varnames.except_Exposure <- setdiff(names(DataSet), VarNames4Exposure)
+    Varnames_factor <- names(DataSet %>% select(where(is.factor)))
     
-    if (!is.null(cat_vars_exclude)) {
-        catVars <- setdiff(catVars, cat_vars_exclude)
+    if (!is.null(Varnames_factor.exclude)) {
+        Varnames_factor <- setdiff(Varnames_factor, Varnames_factor.exclude)
     }
 
-    table1_df <- CreateTableOne(vars = myVars, data = DataSet, 
-                                factorVars = catVars, strata = strata_var, 
-                                addOverall = TRUE, test = TRUE) %>%
-        print(nonnormal = nonnormal_vars,
-              quote = FALSE, noSpaces = TRUE, 
+    table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
+                                factorVars = Varnames_factor, strata = VarNames4Exposure, 
+                                addOverall = addOverall, includeNA = includeNA, test = TRUE) %>%
+        print(nonnormal = print.Varnames_nonnormal,
+              showAllLevels = print.showAllLevels, 
+              quote = FALSE, noSpaces = TRUE,
+              exact = NULL, 
+              smd = TRUE, 
               test = FALSE, contDigits = 1,
               printToggle = FALSE, dropEqual = TRUE, 
-              explain = FALSE) %>%
-        as.data.frame() %>%
-        rownames_to_column(var = "Variable")
-    
+              explain = FALSE) |> 
+        as_tibble(rownames = "Variable") %>% 
+        rename(Level = level)
+        
     # Update First Row's Variable Name
-    table1_df$Variable[1] <- "No."
+    table1.print.df$Variable[1] <- "No."
     
-    return(table1_df)
+    return(table1.print.df)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
@@ -90,10 +93,10 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \$ f_DataSet.table1 =  ----  
-## -> included in "f_df.t.tribble_construct.source.r"? Not Yet
+## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
 # /github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.source.r
-.tmp$objectname = "f_table1.flextable"
+.tmp$objectname = "table1.print.df.flextable"
 .tmp$object  <- function(df, header_text, footer_text, 
                        font.family = "Times New Roman", font.size = 10, border.color = "black",
                        header.border.color = "red", background.color = "#f5f5f5") {

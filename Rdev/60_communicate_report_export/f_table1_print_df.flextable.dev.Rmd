@@ -262,7 +262,6 @@ for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10Co
   
 https://www.r-bloggers.com/2021/11/publication-ready-tables-with-flextable-and-own-theme-in-r/#:~:text=function%20can%20be%20used%20to%20export%20Table%201.&text=package%20is%20a%20great%20package%20for%2C%20you%20guessed%20it%2C%20generating,the%20output%20that%20you%20need.  
 https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b  
-Rproject_Rmd/library/library(flextable) Publication-ready tables with flextable and own theme in R.g.Rmd
 # @@ START) data example ----  
 ## \$ GermanBreastCancerStudyGroup =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -305,35 +304,102 @@ env0 = env1
 
   
 # @@ START) function ----  
-## \% f_DataSet.table1()  
+## @ f_df.CreateTableOne_byExposure.xlsx.dev.r  
+```{r EchoNoEval, eval=FALSE, echo=TRUE}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>%
+    mutate(Intervention.ge1 = !BMI_ge300) %>%
+    # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention", "Control") %>% as.factor)
+    # mutate(Intervention = ifelse(Intervention.ge1 == T, "Intervention >= 1", "Intervention == 0") %>% as.factor)
+    mutate(InterventionGroup = ifelse(Intervention.ge1 == T, "Group 1", "Group 0") %>% as.factor)
+DataSet.Date.NA.rmAllNA.select %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
+# DataSet.Date.NA.rmAllNA.select %>% mutate_if(is.numeric, replace_na, 0)
+
+VarNames4Exposure =  c("InterventionGroup")
+DataSetName = "DataSet.Date.NA.rmAllNA"
+DataSetName.select = paste0(DataSetName,".select")
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+assign(DataSetName.TableOne_byExposure,
+       get(DataSetName.select) %>%
+           {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric
+           CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
+)
+
+Vars4IQR = names(get(DataSetName.select))[get(DataSetName.select) %>% map_lgl(is.numeric)]
+# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+DataSet.TableOne_byExposure.print = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+
+DataSet.TableOne_byExposure.print_showAllLevels = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+
+DataSet.TableOne_byExposure.print_showAllLevels.IQR = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# function.df.edit_Label_Level = function(df) {
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+list(
+    byExposure = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
+    , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+    , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
+    # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
+) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+```
+
+
+
+## \% f_DataSet.table1.print.df()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+
+
+
 # Function to Generate Table 1
-f_DataSet.table1 <- function(DataSet, strata_var, nonnormal_vars, cat_vars_exclude = NULL) {
+f_DataSet.table1.print.df <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     library(tableone)
 
-    myVars <- setdiff(names(DataSet), strata_var)
-    catVars <- names(DataSet %>% select(where(is.factor)))
+    Varnames.except_Exposure <- setdiff(names(DataSet), VarNames4Exposure)
+    Varnames_factor <- names(DataSet %>% select(where(is.factor)))
     
-    if (!is.null(cat_vars_exclude)) {
-        catVars <- setdiff(catVars, cat_vars_exclude)
+    if (!is.null(Varnames_factor.exclude)) {
+        Varnames_factor <- setdiff(Varnames_factor, Varnames_factor.exclude)
     }
 
-    table1_df <- CreateTableOne(vars = myVars, data = DataSet, 
-                                factorVars = catVars, strata = strata_var, 
-                                addOverall = TRUE, test = TRUE) %>%
-        print(nonnormal = nonnormal_vars,
-              quote = FALSE, noSpaces = TRUE, 
+    table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
+                                factorVars = Varnames_factor, strata = VarNames4Exposure, 
+                                addOverall = addOverall, includeNA = includeNA, test = TRUE) %>%
+        print(nonnormal = print.Varnames_nonnormal,
+              showAllLevels = print.showAllLevels, 
+              quote = FALSE, noSpaces = TRUE,
+              exact = NULL, 
+              smd = TRUE, 
               test = FALSE, contDigits = 1,
               printToggle = FALSE, dropEqual = TRUE, 
-              explain = FALSE) %>%
-        as.data.frame() %>%
-        rownames_to_column(var = "Variable")
-    
+              explain = FALSE) |> 
+        as_tibble(rownames = "Variable") %>% 
+        rename(Level = level)
+        
     # Update First Row's Variable Name
-    table1_df$Variable[1] <- "No."
+    table1.print.df$Variable[1] <- "No."
     
-    return(table1_df)
+    return(table1.print.df)
 }
 
 ```
@@ -344,14 +410,15 @@ f_DataSet.table1 <- function(DataSet, strata_var, nonnormal_vars, cat_vars_exclu
 options(width=120)
 # # Custom Table Defaults
 # set_flextable_defaults(font.family = "Calibri", font.size = 10, border.color = "black")
-# -> now within f_table1.flextable() function
+# -> now within f_table1_print_df.flextable() function
 ```
 
 
-## \% f_table1.flextable() ----  
+## \% f_table1_print_df.flextable() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Function to Create Custom Table
-f_table1.flextable <- function(df, header_text, footer_text, 
+# Function to Create Custom Table
+f_table1_print_df.flextable <- function(table1_print_df, header_text, footer_text, 
                        font.family = "Times New Roman", font.size = 10, border.color = "black",
                        header.border.color = "red", background.color = "#f5f5f5") {
     library(flextable)
@@ -368,7 +435,7 @@ f_table1.flextable <- function(df, header_text, footer_text,
     header_text <- str_squish(str_remove(header_text, "\\n"))    # Remove newline characters and squish spaces in header_text
     footer_text <- str_squish(str_remove(footer_text, "\\n"))    # Remove newline characters and squish spaces in footer_text
     
-    flextable(df) %>%    # Initialize a flextable object with the provided data frame (df)
+    flextable(table1_print_df) %>%    # Initialize a flextable object with the provided data frame (df)
         add_header_lines(header_text) %>%    # Add a custom header line using the header_text
         add_footer_lines(footer_text) %>%    # Add a custom footer line using the footer_text
         bold(i = 1, part = "header") %>%    # Make the text in the first row of the header bold
@@ -389,23 +456,23 @@ f_table1.flextable <- function(df, header_text, footer_text,
 ### :: table1_df = GermanBreastCancerStudyGroup |> generate_table_one() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Generate Table 1 Data Frame
-table1_df <- f_DataSet.table1(
+table1_df <- f_DataSet.table1.print.df(
     GermanBreastCancerStudyGroup, 
-    strata_var = "Hormone treatment", 
-    nonnormal_vars = c("Progesterone receptors, fmol/L (median [IQR])",
+    VarNames4Exposure = "Hormone treatment", 
+    print.Varnames_nonnormal = c("Progesterone receptors, fmol/L (median [IQR])",
                        "Estrogen receptors, fmol/L (median [IQR])"),
-    cat_vars_exclude = "Hormone treatment"
+    Varnames_factor.exclude = "Hormone treatment"
 )
 table1_df
 ```
 
-### :: flextable1 = table1_df |> f_table1.flextable() ----
+### :: flextable1 = table1_df |> f_table1_print_df.flextable() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Generate and Save Flextable
 header_text <- "Table 1. Baseline characteristics of 686 patients enrolled in the German Breast Cancer Study Group between 1984 and 1989"
 footer_text <- "Numbers are No. (%) unless otherwise noted. SD = standard deviation, fmol/L = femtomole per liter, IQR = interquartile range"
 
-flextable1 <- f_table1.flextable(table1_df, header_text = header_text, footer_text = footer_text)
+flextable1 <- f_table1_print_df.flextable(table1_df, header_text = header_text, footer_text = footer_text)
 flextable1
 ```
 
@@ -439,7 +506,7 @@ flextable1
 # Save the Table as a Word Document with A4 Paper Size and Small Margins
 save_as_docx(flextable1, path = "library(flextable) flextable1.docx",
              pr_section = prop_section(
-                 page_size = page_size(orient = "portrait", width = 210 / 25.4, height = 297 / 25.4),  # A4 size in inches
+                 page_size = page_size(orient = "landscape", width = 210 / 25.4, height = 297 / 25.4),  # A4 size in inches
                  type = "continuous",
                  page_margins = page_mar(top = 12.7 / 25.4, bottom = 12.7 / 25.4, 
                                          left = 12.7 / 25.4, right = 12.7 / 25.4,
