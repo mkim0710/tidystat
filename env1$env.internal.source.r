@@ -362,7 +362,8 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 
 ## \% env1$env.internal$f_file2.compare ====  
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
-env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) {
+.tmp$objectname = "f_file2.compare"
+.tmp$object <- function(file1, file2, chunk_size = 65536) {
     # Open both files in binary mode
     con1 <- file(file1, "rb")
     con2 <- file(file2, "rb")
@@ -393,12 +394,15 @@ env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) 
     # If all chunks are identical and EOF is reached for both files, return TRUE
     return(TRUE)
 }
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## \% env1$env.internal$f_url_destfile.DownloadIfDifferent ====  
 # Function to download a file only if the web file is different from the local file
-env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
+.tmp$objectname = "f_url_destfile.DownloadIfDifferent"
+.tmp$object <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
     tryCatch({
         # Temporary file to download the remote file for comparison
         temp_file <- tempfile()
@@ -425,6 +429,8 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, 
         return(FALSE)
     })
 }
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
