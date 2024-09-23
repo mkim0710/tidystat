@@ -5,6 +5,7 @@
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://posit.cloud/spaces/100015/content/6373416"  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://posit.cloud/spaces/100015/content/6373521"  # Shared Workspace@v - PositCloud@v
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+library(tidyverse)
 # @@ Check path -----  
 ## @ "~" |> normalizePath(winslash="/") ====  
 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
@@ -201,6 +202,81 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+
+## \% env1$env.internal$f_file2.compare ====  
+# Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
+.tmp$objectname = "f_file2.compare"
+.tmp$object <- function(file1, file2, chunk_size = 65536) {
+    # Open both files in binary mode
+    con1 <- file(file1, "rb")
+    con2 <- file(file2, "rb")
+    
+    # Ensure files are closed after comparison
+    on.exit({
+        close(con1)
+        close(con2)
+    })
+    
+    # Initialize the first chunks
+    chunk1 <- readBin(con1, what = "raw", n = chunk_size)
+    chunk2 <- readBin(con2, what = "raw", n = chunk_size)
+    
+    # While at least one of the chunks has content, continue comparing
+    while(length(chunk1) > 0 || length(chunk2) > 0) {
+        # If the chunks differ, return FALSE
+        if (!identical(chunk1, chunk2)) {
+            return(FALSE)
+        }
+        
+        # Read the next chunk for both files
+        # The file pointer moves automatically as you read, so each call to readBin() continues where the last one left off.
+        chunk1 <- readBin(con1, what = "raw", n = chunk_size)
+        chunk2 <- readBin(con2, what = "raw", n = chunk_size)
+    }
+    
+    # If all chunks are identical and EOF is reached for both files, return TRUE
+    return(TRUE)
+}
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
+
+
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+## \% env1$env.internal$f_url_destfile.DownloadIfDifferent ====  
+# Function to download a file only if the web file is different from the local file
+.tmp$objectname = "f_url_destfile.DownloadIfDifferent"
+.tmp$object <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
+    tryCatch({
+        # Temporary file to download the remote file for comparison
+        temp_file <- tempfile()
+        download.file(url, temp_file, quiet = TRUE)
+        
+        # Compare the local file and the remote file (if local file exists)
+        if (file.exists(destfile)) {
+            files_are_identical <- env1$env.internal$f_file2.compare(destfile, temp_file, chunk_size)
+            
+            if (files_are_identical) {
+                message(paste("No update needed for:", destfile))
+                return(FALSE)
+            }
+        }
+        
+        # If files are different or local file doesn't exist, proceed with the download
+        file.copy(from = temp_file, to = destfile, overwrite = TRUE)
+        message(paste("Downloaded updated file:", destfile))
+        return(TRUE)
+        
+    }, error = function(e) {
+        message(paste("Failed to download or update:", url))
+        message("Error:", e$message)
+        return(FALSE)
+    })
+}
+### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -221,6 +297,10 @@ file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |
 # file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH240515 copilot.json")
 "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
 
+
+env1$env.internal$f_url_destfile.DownloadIfDifferent(
+    "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json", 
+    destfile = file.path("~/.config/rstudio/rstudio-prefs.json"))
 
 
 
