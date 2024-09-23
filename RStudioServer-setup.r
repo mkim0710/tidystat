@@ -219,13 +219,33 @@ if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.geten
 file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 
 
+
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#| @Posit.Cloud |#
+#   symbol normalizePath      
+# 1 /      /                  
+# 2 ~      /cloud/home/r149319
+# 3 .      /cloud/project     
+# 4 ..     /cloud             
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#| @Rocker /home/rstudio |#
+#   symbol normalizePath                
+# 1 /      /                            
+# 2 ~      /home/rstudio                
+# 3 .      /home/rstudio/github_tidystat
+# 4 ..     /home/rstudio                
+
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 #@ rstudio-prefs.json@PositCloud ----
 # file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH240515 copilot.json")
 .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
-
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #@ rstudio-prefs.json@Rocker ----
 .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 
+# "ls ~/.config/rstudio" %>% system(intern=TRUE)
+# dir("~/.config/rstudio")
 .destfile = "~/.config/rstudio/rstudio-prefs.json"
 # file.edit(.destfile)
 
