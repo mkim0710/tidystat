@@ -222,6 +222,10 @@ file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |
 "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
 
 
+env1$env.internal$f_url_destfile.DownloadIfDifferent(
+    "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json", 
+    destfile = file.path("~/.config/rstudio/rstudio-prefs.json"))
+
 
 
 #@ rstudio-prefs.json@Rocker ----
