@@ -285,7 +285,7 @@ for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @@ START) copilot @ RStudio Server -----  
+# @@ START) copilot @ RStudio Server @ Rocker (not necessary in Posit.Cloud?) -----  
 
 
 ### @ ROOT=TRUE ----  
