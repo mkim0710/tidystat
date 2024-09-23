@@ -66,6 +66,41 @@ Sys.setenv(print.intermediate = FALSE)
 # Sys.setenv(print.intermediate = TRUE)
 
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# https://chatgpt.com/c/66f10f41-74a8-800e-aa53-a5b4410ee12a
+
+# Get the current R version as a string (e.g., "4.4")
+r_version <- paste(R.version$major, R.version$minor, sep = ".")
+
+# Function to ensure tidyverse is installed and loaded
+ensure_package <- function(pkg) {
+  if (!require(pkg, character.only = TRUE)) {
+    install.packages(pkg, repos = "https://cloud.r-project.org")
+    library(pkg, character.only = TRUE)
+  } else {
+    library(pkg, character.only = TRUE)
+  }
+}
+
+# Determine user library path dynamically based on OS and R version
+user_lib <- switch(
+  .Platform$OS.type,
+  "windows" = file.path(Sys.getenv("USERPROFILE"), "Documents", "R", "win-library", r_version),
+  "unix" = file.path(Sys.getenv("HOME"), "R", paste0(Sys.info()["machine"], "-library"), r_version),
+  file.path(Sys.getenv("HOME"), "R", "x86_64-pc-linux-gnu-library", r_version)  # default case
+)
+
+# Check if the user has write access to the system library
+.lib <- .libPaths()[1]
+if (!file.access(.lib, 2) == 0) {
+  .lib <- user_lib
+  if (!dir.exists(.lib)) dir.create(.lib, recursive = TRUE)
+  .libPaths(c(.lib, .libPaths()))
+}
+
+# Ensure tidyverse is installed and loaded
+ensure_package("tidyverse")
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
