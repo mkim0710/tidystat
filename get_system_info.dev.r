@@ -677,8 +677,8 @@ if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
 
 env1$info$info_system_info = env1$env.internal$get_system_info()
 # str(env1$info$info_system_info)
-.CodeText = "env1$info$info_system_info$machine_nodename"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
-.CodeText = "env1$info$info_system_info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
-# .CodeText = "env1$info$info_system_info$l10n_info$localization_UTF8"; cat(.CodeText, ' = "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+.CodeText = "env1$info$machine_nodename"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+.CodeText = "env1$info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+# .CodeText = "env1$info$l10n_info$localization_UTF8"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
 
 
