@@ -57,6 +57,8 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # ?.First() ----  
 # https://chatgpt.com/c/1ea6ef8b-322f-4c16-85e7-0b77c2b09a91
+# https://chatgpt.com/c/66f11e32-c7e4-800e-98e7-fd11dd546c13
+# https://chatgpt.com/c/66f10f41-74a8-800e-aa53-a5b4410ee12a
 
 .t0 = Sys.time()
 if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
