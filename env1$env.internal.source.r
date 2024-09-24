@@ -460,6 +460,11 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #     }
     # }
     
+    # \% Update the .Rprofile, f.updateTemplates.source.r, RStudioServer-setup.r  ~~~~~~~~~~~~
+    for (.sourcename in c(".Rprofile", "f.updateTemplates.source.r", "RStudioServer-setup.r"))
+    env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename), destfile = file.path(env1$path$path1,.sourcename))
+    
+    
     if (.Platform$OS.type == "windows") {
         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
         # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
@@ -467,14 +472,13 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
             env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext), .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
         }
         browseURL("D:/OneDrive/[][Rproject]/-backup")
-
+        
         for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
             env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename.ext), destfile = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext))
         }
     }
-
+    
 }
-
 
 
 #|________________________________________________________________________________|#  
