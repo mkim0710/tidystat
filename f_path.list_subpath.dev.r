@@ -59,7 +59,7 @@ env1$path$.sourcename_root = .sourcename_root
 env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
 env1$path$.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
+cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
     "#### ",env1$path$.subpath.filename.dev.r, "----  \n",
     "#### ",env1$path$.subpath.filename.dev.Rmd, "----  \n",
     "#### ",env1$path$.subpath.filename.source.r, "----  \n",

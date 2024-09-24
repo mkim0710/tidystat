@@ -6,7 +6,7 @@
 # env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 # env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
 # env1$path$.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
+# cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 #     "# ",env1$path$.subpath.filename.dev.r, "  \n",
 #     "# ",env1$path$.subpath.filename.dev.Rmd, "  \n",
 #     "# ",env1$path$.subpath.filename.source.r, "  \n",
@@ -86,7 +86,7 @@ env1$path$.sourcename_root = .sourcename_root
 env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
 env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
 env1$path$.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-cat("# ",'.sourcename_root = "',.sourcename_root,'"', "  \n",
+cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
     "#### ",env1$path$.subpath.filename.dev.r, "----  \n",
     "#### ",env1$path$.subpath.filename.dev.Rmd, "----  \n",
     "#### ",env1$path$.subpath.filename.source.r, "----  \n",
@@ -677,8 +677,8 @@ if(!"get_system_info" %in% names(.GlobalEnv$env1$info)) {
 
 env1$info$info_system_info = env1$env.internal$get_system_info()
 # str(env1$info$info_system_info)
-.CodeText = "env1$info$machine_nodename"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
-.CodeText = "env1$info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
-# .CodeText = "env1$info$l10n_info$localization_UTF8"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"', "  \n", sep="")
+.CodeText = "env1$info$machine_nodename"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
+.CodeText = "env1$info$Sys.getlocale$LC_COLLATE"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
+# .CodeText = "env1$info$l10n_info$localization_UTF8"; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
 
 

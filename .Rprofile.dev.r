@@ -171,7 +171,7 @@ ensure_package("tidyverse")
     cat("#|________________________________________________________________________________|#  ", "  \n", sep="")
     cat("Loading time for .Rprofile: ", difftime(Sys.time(), .t0, units = "secs"), " secs \n", sep="")
     cat("Loaded without error: ", .GlobalEnv$env1$info$.Rprofile, "  \n",
-        '    Sys.getlocale() == "', Sys.getlocale(), '"', "  \n",
+        '    Sys.getlocale() == "', Sys.getlocale(), '"  \n',
         "    Today is: ", date(), "  \n", sep="")
 }  
 
