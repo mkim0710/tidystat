@@ -1,5 +1,24 @@
 ##@ now included in env1$env.internal.source.r ----
 
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# .GlobalEnv$.tmp = list() ====  
+.listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }  
+# .GlobalEnv$env1 = new.env() ====  
+.envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) } 
+# .GlobalEnv$env1$env.internal = new.env() ====  
+.subenvname = "env.internal"; .parentname = "env1"; if(!.subenvname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.subenvname]] = new.env() }
+# .GlobalEnv$env1$source = list() ====  
+.sublistname = "source"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+# .GlobalEnv$env1$info = list() ====  
+.sublistname = "info"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+# .GlobalEnv$env1$f = list() ====  
+.sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+# .GlobalEnv$env1$path = list() ====  
+.sublistname = "path"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -52,18 +71,18 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, 
             files_are_identical <- env1$env.internal$f_file2.compare(destfile, temp_file, chunk_size)
             
             if (files_are_identical) {
-                message(paste("No update needed for:", destfile))
+                message(paste0("No update needed for: ", destfile))
                 return(FALSE)
             }
         }
         
         # If files are different or local file doesn't exist, proceed with the download
         file.copy(from = temp_file, to = destfile, overwrite = TRUE)
-        message(paste("Downloaded updated file:", destfile))
+        message(paste0("Downloaded & updated: ", destfile))
         return(TRUE)
         
     }, error = function(e) {
-        message(paste("Failed to download or update:", url))
+        message(paste0("Failed to download or update: ", url))
         message("Error:", e$message)
         return(FALSE)
     })
@@ -97,8 +116,10 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #     }
     # }
     
-    # \% Update the .Rprofile  ~~~~~~~~~~~~
-    env1$env.internal$f_url_destfile.DownloadIfDifferent("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile", destfile = env1$path$path1)
+    # \% Update the .Rprofile, f.updateTemplates.source.r, RStudioServer-setup.r  ~~~~~~~~~~~~
+    for (.sourcename in c(".Rprofile", "f.updateTemplates.source.r", "RStudioServer-setup.r"))
+    env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename), destfile = file.path(env1$path$path1,.sourcename))
+    
     
     if (.Platform$OS.type == "windows") {
         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
@@ -107,11 +128,47 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
             env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext), .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
         }
         browseURL("D:/OneDrive/[][Rproject]/-backup")
-
+        
         for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
             env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename.ext), destfile = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext))
         }
     }
-
+    
 }
+
+env1$f$f.updateTemplates()
+
+
+
+env1$env.internal$f.update_rstudio_prefs = function(.url = NULL, .destfile = NULL) {
+    .CodeText = '.Platform$OS.type'; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
+    .CodeText = 'Sys.info()["sysname"]'; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
+    
+    if(.Platform$OS.type == "unix") {
+        if(Sys.info()["sysname"] == "Linux") {
+            if (is.null(.url)) {
+                if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
+                    .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
+                } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
+                    .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+                }
+            }
+            if (is.null(.destfile)) {
+                .destfile = "~/.config/rstudio/rstudio-prefs.json"
+            }
+            env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .url, destfile = .destfile)
+            
+        } else if(Sys.info()["sysname"] == "Darwin") {
+            if (is.null(.url)) {
+                warning("f.update_rstudio_prefs() not available for macOS")
+            }
+        }
+    } else if(.Platform$OS.type == "windows") {
+        if (is.null(.url)) {
+            warning("f.update_rstudio_prefs() not available for windows")
+        }
+    }
+}
+env1$env.internal$f.update_rstudio_prefs()
+
 
