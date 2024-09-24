@@ -120,6 +120,25 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 #   ..$ localization_system.codepage: int 65001
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @Mac |#
+# List of 9
+#  $ GUI             : chr "X11"
+#  $ os_type         : chr "unix"
+#  $ os_sysname      : chr "Darwin"
+#  $ os_version      : chr "Darwin Kernel Version 23.6.0: Mon Jul 29 21:14:30 PDT 2024; root:xnu-10063.141.2~1/RELEASE_ARM64_T6000"
+#  $ machine_type    : chr "arm64"
+#  $ machine_nodename: chr "Min-Hyungs-MacBook-Pro.local"
+#  $ machine_cpu     : chr "Apple M1 Max"
+#  $ Sys.getlocale   :List of 4
+#   ..$ LC_COLLATE       : chr "en_US.UTF-8"
+#   ..$ LC_CTYPE         : chr "en_US.UTF-8"
+#   ..$ LC_locale_NUMERIC: chr "C"
+#   ..$ LC_locale_TIME   : chr "en_US.UTF-8"
+#  $ l10n_info       :List of 5
+#   ..$ localization_UTF8           : logi TRUE
+#   ..$ localization_Latin1         : logi FALSE
+#   ..$ localization_codeset        : chr "UTF-8"
+#   ..$ localization_codepage       : NULL
+#   ..$ localization_system.codepage: NULL
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #| @Posit.Cloud |#
 # List of 9
