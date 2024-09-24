@@ -97,6 +97,9 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #     }
     # }
     
+    # \% Update the .Rprofile  ~~~~~~~~~~~~
+    env1$env.internal$f_url_destfile.DownloadIfDifferent("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile", destfile = env1$path$path1)
+    
     if (.Platform$OS.type == "windows") {
         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
         # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
