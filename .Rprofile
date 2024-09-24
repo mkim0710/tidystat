@@ -77,7 +77,7 @@ Sys.setenv(print.intermediate = FALSE)
   library(graphics)
   library(stats)
   .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }  
-  for(.packagename in c("tidyverse")) {
+  for(.packagename in c("dplyr", "purrr", "stringr")) {
     tryCatch({
       # Code that might produce an error
       if(!require(.packagename, character.only=TRUE)) {
