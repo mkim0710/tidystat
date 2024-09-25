@@ -86,6 +86,7 @@ Sys.setenv(print.intermediate = FALSE)
         tryCatch({
             if(!require(.packagename, character.only=TRUE)) {
                 stop(paste("Package", .packagename, "is not installed. Please install it before running this script.  \n install.packages(",deparse(.packagename),")"))
+                # install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)   # makes error on Posit.Cloud?
             }
         }, error = function(e) {
             # Additional code to handle the error or provide fallback options
