@@ -1,0 +1,821 @@
+---
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:  
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document: 
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+header-includes: 
+  - \usepackage{fontspec}
+  - \newcommand{\setfallbackfont}[4]{
+      \IfFontExistsTF{#2}
+        {#1{#2}}
+        {\IfFontExistsTF{#3}
+          {#1{#3}}
+          {#1{#4}}}}
+  # - \setfallbackfont{\setmainfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  # - \setfallbackfont{\setsansfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+  - \usepackage[hangul]{kotex}
+  - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; }
+h1.title { font-size: 28px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+  
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+  
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# _______________
+<!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
+<!-- ##### Rstudio RMarkDown Shortcuts -->
+<!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
+<!-- https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html   -->
+<!-- Insert R chunk	Ctrl+Alt+I	Command+Option+I   -->
+<!-- Preview HTML	Ctrl+Shift+K	Command+Shift+K   -->
+<!-- Run all chunks above	Ctrl+Alt+P	Command+Option+P   -->
+<!-- Run current chunk	Ctrl+Alt+C	Command+Option+C   -->
+<!-- Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter   -->
+<!-- Run next chunk	Ctrl+Alt+N	Command+Option+N   -->
+<!-- Run all chunks	Ctrl+Alt+R	Command+Option+R   -->
+<!-- Go to next chunk/title	Ctrl+PgDown	Command+PgDown   -->
+<!-- Go to previous chunk/title	Ctrl+PgUp	Command+PgUp   -->
+<!-- Show/hide document outline	Ctrl+Shift+O	Command+Shift+O   -->
+<!-- F7 spell-check your document.   -->
+<!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
+<!--    -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
+
+  
+```{r setup, echo=FALSE, results="hide"}
+# ```{r setup, eval=TRUE, include=FALSE}
+if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
+    tidy.opts=list(width.cutoff=120), tidy=FALSE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+
+
+# ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
+# ```
+#   
+# <font size="3">\% env1</font>  
+#   
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+# str(env1$info$info_software_versions)
+
+
+###### env1\$info\$DocumentTitle1 ----  
+# ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    sep="")
+```
+  
+  
+```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+###### env1\$path ----  
+# cat(" getwd() == "); dput(getwd()) #----   
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## env1\$path\$CurrentSource.path.filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# env1$path$project_base = "Rproject_HEALS0215"
+# env1$path$data_suffix = "_01"
+# # env1$path$data_suffix = ""
+# env1$path$project_suffix = "GJ3"
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$.path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$.path4write = getwd()
+.path4read  = env1$path$.path4read
+.path4write = env1$path$.path4write
+# cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
+
+# @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
+.tmp |> str(max.level = 1, give.attr = FALSE)
+cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
+env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+# .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
+```
+  
+  
+```{r dfDIRsRecursive-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
+# #### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
+# .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=".", print.message=FALSE)
+# env1$path$print_tree_path = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path) |> unlist() |> paste(collapse="") 
+# # env1$path$print_tree_path |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.codes = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") 
+# # env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
+# env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 5) |> 
+#     dplyr::select(print_tree_path_files.data) |> unlist() |> paste(collapse="") 
+# env1$path$print_tree_path_files.data |> cat("  \n", sep="")
+```
+  
+  
+```{r sizeFiles-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# *** Results hidden in 00env1 - see 01df_dirs_recursive.df_files ***
+# #### env1\$f_path.size_files() ----  
+# .sourcename = "f_path.size_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# #### env1\$f_DataSetName.read.checkEntity() ----  
+# .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# env1$f$f_path.size_files(.path4read = .path4read)
+```
+  
+  
+```{r open-envCustom-dfDirs-CodeBook, eval=TRUE, include=FALSE}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## env1\$path\$CurrentSource.path.filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# .GlobalEnv$.tmp = list() ====  
+.listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
+for (SourceFileBaseName in rev(c("00env1", "01df_dirs_recursive.df_files", "10CodeBook"))) {
+    .tmp$SourceFileName.ext = paste0(SourceFileBaseName,"-",basename(env1$path$path1),".Rmd")
+    if(.tmp$SourceFileName.ext != basename(env1$path$CurrentSource.path.filename.ext)) {
+        # .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+        .tmp$SourceFileName.ext %>% {paste0(env1$path$path1,"/",.)} %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+    }
+}
+```
+  
+  
+https://www.r-bloggers.com/2021/11/publication-ready-tables-with-flextable-and-own-theme-in-r/#:~:text=function%20can%20be%20used%20to%20export%20Table%201.&text=package%20is%20a%20great%20package%20for%2C%20you%20guessed%20it%2C%20generating,the%20output%20that%20you%20need.  
+https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b  
+# @@ START) data example ----  
+## \$ GermanBreastCancerStudyGroup =  ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+suppressPackageStartupMessages(library(tidyverse))
+# Load Required Libraries
+library(survival)
+
+# Load Dataset and Rename
+GermanBreastCancerStudyGroup <- survival::gbsg
+
+# Prepare the Data
+GermanBreastCancerStudyGroup <- GermanBreastCancerStudyGroup %>%
+    select(-pid, -rfstime, -status) %>% 
+    mutate(meno = as_factor(meno),
+           grade = as_factor(grade),
+           hormon = as_factor(hormon)) %>%
+    rename(`Age, years (mean (SD))` = age,
+           Postmenopausal = meno,
+           `Tumor size, mm (mean (SD))` = size,
+           `Tumor grade` = grade,
+           `Positive lymph nodes, (n)` = nodes,
+           `Progesterone receptors, fmol/L (median [IQR])` = pgr,
+           `Estrogen receptors, fmol/L (median [IQR])` = er,
+           `Hormone treatment` = hormon)
+
+# Recode Factor Levels
+GermanBreastCancerStudyGroup$`Hormone treatment` <- fct_recode(GermanBreastCancerStudyGroup$`Hormone treatment`,
+                                                               Treated = "1",
+                                                               Placebo = "0")
+GermanBreastCancerStudyGroup %>% str
+GermanBreastCancerStudyGroup %>% as_tibble
+```
+  
+  
+# @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+
+  
+# @@ START) function ----  
+https://chatgpt.com/c/66f444ad-c638-800e-a884-e76216e05329?model=gpt-4o
+## 1. Replace common alternative column names
+### \% |> replace_column_names() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# Load required libraries
+library(dplyr)
+library(flextable)
+library(rlang)
+
+# Helper Functions
+
+# 1. Replace common alternative column names
+replace_column_names <- function(colnames) {
+  sapply(colnames, function(name) {
+    case_when(
+      name %in% c("p.value", "pvalue") ~ "p",
+      name == "chisq" ~ "chi2",
+      name %in% c("conf.low", "CI_low") ~ "CI_lower",
+      name %in% c("conf.high", "CI_high") ~ "CI_upper",
+      name == "df_error" ~ "df",
+      name == "Cohens_d" ~ "d",
+      name == "Coefficient" ~ "b",
+      name == "t.ratio" ~ "t",
+      name == "Std_Coefficient" ~ "B",
+      name == "r_rank_biserial" ~ "rrb",
+      name %in% c("Eta2", "Eta2_partial") ~ sub("Eta2", "n2", name),
+      name == "mu" ~ "Mu",
+      name == "term" ~ "Term",
+      name == "method" ~ "Method",
+      name == "alternative" ~ "Alternative",
+      TRUE ~ name
+    )
+  }, USE.NAMES = FALSE)
+}
+```
+
+
+## 2. Prepare data from broom package
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## 2. Prepare data from broom package
+prepare_broom <- function(dataframe, broom_type) {
+  if (!is.null(broom_type)) {
+    dataframe <- dataframe %>%
+      rename_with(~ case_when(
+        . == "statistic" ~ "t",
+        . == "std.error" ~ "SE",
+        . == "parameter" ~ "df",
+        TRUE ~ .
+      ))
+    
+    if (broom_type == "t.test") {
+      dataframe <- dataframe %>%
+        rename_with(~ case_when(
+          . == "estimate" ~ "M_diff",
+          . == "estimate1" ~ "Mean1",
+          . == "estimate2" ~ "Mean2",
+          TRUE ~ .
+        )) %>%
+        relocate(df, .before = p) %>%
+        relocate(Method:Alternative)
+    } else if (broom_type == "lm") {
+      dataframe <- dataframe %>%
+        rename_with(~ case_when(
+          . == "estimate" ~ "b",
+          TRUE ~ .
+        ))
+    } else if (broom_type == "cor.test") {
+      dataframe <- dataframe %>%
+        rename_with(~ case_when(
+          . == "estimate" ~ "r",
+          TRUE ~ .
+        )) %>%
+        relocate(df, .before = p) %>%
+        relocate(Method:Alternative, .before = r)
+    } else if (broom_type == "wilcox.test") {
+      dataframe <- dataframe %>%
+        rename_with(~ case_when(
+          . == "statistic" ~ "W",
+          TRUE ~ .
+        )) %>%
+        relocate(Method:Alternative, .before = W)
+    }
+  }
+  return(dataframe)
+}
+```
+
+
+## 3. Prepare data from report package
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## 3. Prepare data from report package
+prepare_report <- function(dataframe, report_type, short) {
+  if (!is.null(report_type) || any(class(dataframe) == "report_table")) {
+    if ("Method" %in% names(dataframe)) {
+      if (all(grepl("t-test", dataframe$Method))) {
+        report_type <- "t.test"
+      } else if (all(grepl("Wilcox", dataframe$Method))) {
+        report_type <- "wilcox"
+      }
+    } else if ("Sum_Squares" %in% names(dataframe)) {
+      report_type <- "aov"
+    } else if (!is.null(attr(dataframe, "model_class"))) {
+      if ("lm" %in% attr(dataframe, "model_class")) {
+        report_type <- "lm"
+      } else if (grepl("correlation", attr(dataframe, "title"))) {
+        report_type <- "cor.test"
+      }
+    }
+    
+    # Remove unnecessary columns and format CI
+    if (report_type == "t.test") {
+      dataframe <- dataframe %>%
+        mutate(`95% CI` = paste0("(", round(CI_lower, 2), ", ", round(CI_upper, 2), ")")) %>%
+        relocate(`95% CI`, .after = t)
+      if (short) {
+        dataframe <- dataframe %>% select(-c(Method, Alternative, Mean1, Mean2, M_diff))
+      }
+    } else if (report_type == "lm") {
+      dataframe <- dataframe %>%
+        mutate(`95% CI (b)` = paste0("(", round(CI_lower, 2), ", ", round(CI_upper, 2), ")")) %>%
+        relocate(`95% CI (b)`, .after = b)
+      if (short) {
+        dataframe <- dataframe %>% select(-c(Method, Alternative, Fit, `95% CI (b)`))
+      }
+    } else if (report_type == "cor.test") {
+      dataframe <- dataframe %>%
+        mutate(`95% CI (r)` = paste0("(", round(CI_lower, 2), ", ", round(CI_upper, 2), ")")) %>%
+        relocate(`95% CI (r)`, .after = r)
+    } else if (report_type == "wilcox") {
+      dataframe <- dataframe %>%
+        mutate(`95% CI (rrb)` = paste0("(", round(CI_lower, 2), ", ", round(CI_upper, 2), ")")) %>%
+        relocate(`95% CI (rrb)`, .after = W)
+    }
+  }
+  return(dataframe)
+}
+```
+
+
+## 4. Format Confidence Intervals
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## 4. Format Confidence Intervals
+format_CI <- function(dataframe, CI_low_high = c("CI_lower", "CI_upper"), col.name = "95% CI") {
+  dataframe %>%
+    mutate(across(all_of(CI_low_high), ~ round(as.numeric(.), 2))) %>%
+    mutate(!!col.name := paste0("(", .[[CI_low_high[1]]], ", ", .[[CI_low_high[2]]], ")")) %>%
+    select(-all_of(CI_low_high))
+}
+```
+
+
+## 5. Create the JAMA flextable
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## 5. Create the JAMA flextable
+create_jama_flextable <- function(data, highlight, width, spacing, note, separate.header) {
+  table <- flextable(data)
+  
+  # Standard JAMA formatting
+  table <- table %>%
+    hline_top(part = "head") %>%
+    hline_bottom(part = "head") %>%
+    hline_top(part = "body") %>%
+    hline_bottom(part = "body") %>%
+    align(j = 1, align = "left", part = "body") %>%
+    align(j = names(data)[sapply(data, is.numeric)], align = "right", part = "body") %>%
+    valign(valign = "center", part = "all") %>%
+    line_spacing(space = spacing, part = "all") %>%
+    fix_border_issues()
+  
+  # Set table properties
+  table <- table %>%
+    set_table_properties(layout = "autofit")
+  if (!is.null(width)) {
+    table <- table %>% set_table_properties(layout = "autofit", width = width)
+  }
+  
+  # Add footnotes if any
+  if (!is.null(note)) {
+    table <- table %>%
+      add_footer_lines("") %>%
+      compose(i = 1, j = 1, value = as_paragraph(as_i("Note. "), note[[1]]), part = "footer") %>%
+      align(part = "footer", align = "left")
+    if (length(note) > 1) {
+      table <- table %>% add_footer_lines(note[-1])
+    }
+  }
+  
+  # Separate headers if needed
+  if (!is.null(separate.header)) {
+    table <- table %>% separate_header("span-top", split = "[.]")
+  }
+  
+  # Font settings
+  table <- table %>%
+    fontsize(part = "all", size = 10) %>%
+    font(part = "all", fontname = "Arial") %>%
+    bold(part = "header")
+  
+  # Merge Dependent Variable if present and duplicated
+  if ("Dependent Variable" %in% names(data) && any(duplicated(data$`Dependent Variable`))) {
+    model.rows <- which(!duplicated(data$`Dependent Variable`, fromLast = TRUE))
+    table <- table %>%
+      merge_v(j = "Dependent Variable") %>%
+      hline(i = model.rows, border = fp_border(width = 1))
+  }
+  
+  return(table)
+}
+```
+
+
+## 6. Format columns for JAMA style
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## 6. Format columns for JAMA style
+format_jama_columns <- function(data, table, separate.header, col.format.p, col.format.r, col.format.custom, format.custom, sh.pattern) {
+  # Format p-values
+  if ("p" %in% names(data)) {
+    table <- table %>%
+      colformat_double(j = "p", big.mark = ",", digits = 3) %>%
+      mutate(p = ifelse(p < 0.001, "<0.001", sprintf("%.3f", p))) %>%
+      colformat_char(j = "p", na_str = "")
+  }
+  
+  # Format r-values
+  if ("r" %in% names(data)) {
+    table <- table %>%
+      colformat_double(j = "r", digits = 2)
+  }
+  
+  # Format custom columns if any
+  if (!is.null(col.format.custom) && !is.null(format.custom)) {
+    for (col in col.format.custom) {
+      if (col %in% names(data)) {
+        # Assuming format.custom is a function
+        table <- table %>%
+          compose(j = col, value = as_paragraph(format.custom(data[[col]])))
+      }
+    }
+  }
+  
+  # Right-align numeric columns (already handled in create_jama_flextable)
+  # Left-align text columns (already handled in create_jama_flextable)
+  
+  # Remove any background shading (already handled)
+  
+  return(table)
+}
+```
+
+
+## 7. Finalize the JAMA table with title and borders
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+## 7. Finalize the JAMA table with title and borders
+finalize_jama_table <- function(table, title) {
+  if (!is.null(title)) {
+    table <- table %>%
+      add_header_lines(values = title) %>%
+      align(part = "header", i = seq_along(title), align = "left") %>%
+      hline(part = "header", i = seq_len(length(title) - 1), border = fp_border(width = 0)) %>%
+      hline(part = "header", i = length(title), border = fp_border(width = 1)) %>%
+      bold(part = "header", bold = TRUE)
+  }
+  return(table)
+}
+
+# 8. Generate header patterns based on delimiters (if needed)
+generate_header_patterns <- function(data) {
+  filtered.names <- grep("[.]", names(data), value = TRUE)
+  unique(gsub("[^\\.]*$", "", filtered.names))
+}
+
+# Main JAMA table function
+jama_table <- function(data,
+                       highlight = FALSE,
+                       col.format.p = NULL,
+                       col.format.r = NULL,
+                       col.format.ci = NULL,
+                       format.custom = NULL,
+                       col.format.custom = NULL,
+                       width = NULL,
+                       spacing = 1.5,
+                       broom = NULL,
+                       report = NULL,
+                       short = FALSE,
+                       title = NULL,
+                       note = NULL,
+                       separate.header = NULL) {
+  
+  # Check required packages
+  if (!requireNamespace("flextable", quietly = TRUE) || !requireNamespace("dplyr", quietly = TRUE)) {
+    stop("Packages 'flextable' and 'dplyr' are required for this function. Please install them.", call. = FALSE)
+  }
+  
+  # Ensure data is a data frame
+  if (!inherits(data, "data.frame")) {
+    message("Non-dataframe detected. Attempting to coerce to dataframe")
+    data <- as.data.frame(data)
+  }
+  
+  # Replace common alternative column names
+  data <- data %>%
+    rename_with(~ replace_column_names(.))
+  
+  # Integrate broom package output if specified
+  data <- prepare_broom(data, broom)
+  
+  # Integrate report package output if specified
+  data <- prepare_report(data, report, short)
+  
+  # Separate headers if required
+  if (!is.null(separate.header)) {
+    sh.pattern <- generate_header_patterns(data)
+  }
+  
+  # Format confidence intervals
+  if (!is.null(col.format.ci)) {
+    # Assuming col.format.ci is a list of columns with lower and upper bounds
+    for (ci_cols in col.format.ci) {
+      if (all(c("CI_lower", "CI_upper") %in% names(data))) {
+        data <- format_CI(data, c("CI_lower", "CI_upper"), "95% CI")
+      }
+    }
+  }
+  
+  # Highlight significant p-values if requested
+  if ("p" %in% names(data) && !is.null(highlight)) {
+    highlight_threshold <- if (isTRUE(highlight)) 0.05 else highlight
+    data <- data %>%
+      mutate(signif = p < highlight_threshold)
+  }
+  
+  # Create the flextable with JAMA formatting
+  table <- create_jama_flextable(data, highlight, width, spacing, note, separate.header)
+  
+  # Apply column-specific formatting
+  table <- format_jama_columns(data, table, separate.header, col.format.p, col.format.r, col.format.custom, format.custom, sh.pattern)
+  
+  # Finalize table with title and borders
+  table <- finalize_jama_table(table, title)
+  
+  # Remove 'signif' column if exists to avoid displaying it
+  if ("signif" %in% names(data)) {
+    table <- table %>% delete_part("body", i = "signif")
+  }
+  
+  return(table)
+}
+```
+
+
+# @@ START) Sample Data ----  
+## :: sample_data = 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# Sample Data
+sample_data <- data.frame(
+  `Dependent Variable` = c("Group A", "Group A", "Group B", "Group B"),
+  t = c(2.35, 3.12, 1.98, 2.45),
+  df = c(30, 30, 30, 30),
+  p = c(0.025, 0.003, 0.075, 0.015),
+  b = c(0.5, 0.7, 0.4, 0.6),
+  CI_lower = c(0.2, 0.3, 0.1, 0.4),
+  CI_upper = c(0.8, 1.1, 0.7, 0.9)
+)
+```
+
+
+### \% |> jama_table() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# Create JAMA Table
+jama_tbl <- jama_table(
+  data = sample_data,
+  title = "Table 1. Comparison of Groups",
+  note = "Note. p-values < 0.05 are considered statistically significant."
+)
+
+# Display the table
+print(jama_tbl)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# @@ END ----  
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# @@ END ----  
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+
+```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
+.path4write = env1$path$.path4write
+# MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+for (.objectname in names(MetaData$DataSetNames)) {
+    cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
+    paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+}
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# .objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
+paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+# paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)
+.objectname = paste0(.objectname,".NA",".rmAllNA",".fct")
+cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
+paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+# paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# .objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
+system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
+# system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))))
+# # system.time(saveRDS( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gzip" ))
+# system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz", compression = 9 ))
+# system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", ".xz")), compress = "xz", compression = 9 ))
+# system.time(openxlsx::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
+# if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(.objectname, ".xlsx"))
+env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
+paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+# paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)
+```
+  
+  
+```{r createBackup, eval=TRUE, include=FALSE}
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    # if (.Platform$OS.type == "windows") {
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+    # }
+}
+```
+  
+  
+```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
+env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (.Platform$OS.type == "windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat("* To revert to the last commited file, run the following terminal command:  \n")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+```
+  
+  
