@@ -210,7 +210,7 @@ for (i in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bin
                     # , Population.df = Population.df0
                 )
                 , file.path(path.output, paste0("function.MK.output.nest_sigungu.SouthKorea", "$", i, "$", j, "$", k, "[CodeDF, Cluster.tbl]", ".xlsx"))
-                , asTable=TRUE
+                , as_table=TRUE
             )
         }
     }
@@ -261,7 +261,7 @@ function.MK.output.nest_sigungu.SouthKorea.metadata =
     }) %>% bind_rows(.id = "Min.SC")
 dir.create(path.output, showWarnings = F)
 saveRDS(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.rds"))
-openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), asTable=TRUE)
+openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), as_table=TRUE)
 
 
 

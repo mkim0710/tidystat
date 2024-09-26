@@ -127,7 +127,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
   
 ```{r setup, echo=FALSE, results="hide"}
 # ```{r setup, eval=TRUE, include=FALSE}
-if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
 Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
 # str(knitr::opts_chunk$get())
@@ -345,7 +345,7 @@ assign(.objectname, structure(get(.objectname), MetaData = MetaData))
 # # system.time(saveRDS( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gzip" ))
 # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz", compression = 9 ))
 system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", ".xz")), compress = "xz", compression = 9 ))
-# system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE))
+# system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
 # if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(.objectname, ".xlsx"))
 env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
 MetaData |> write_rds(file.path(env1$path$path1, "MetaData.rds"), compress = "xz") |> system.time()

@@ -92,7 +92,7 @@ Sys.setenv(LANGUAGE="en")
 Sys.setenv(LANGUAGE='en')
 Sys.setenv(lang = "en_US")
 
-if(.Platform$OS.type == "windows") Sys.setlocale("LC_ALL", "en_US.utf8")
+if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.utf8")
 
 Sys.setlocale("LC_MESSAGES", "en_US.utf8")
 Sys.setlocale("LC_MESSAGES", "C")
