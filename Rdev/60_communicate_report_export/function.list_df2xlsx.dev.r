@@ -1,7 +1,7 @@
 # function.list_df2xlsx.dev.r
 
 function.list_df2xlsx = function(list_df, asTable=TRUE, withFilter=TRUE, overwrite2annotate = F, openXL.filename = " - annotated.xlsx") {
-  library(openxlsx)
+  library(openxlsx2)
   objectname = deparse(substitute(list_df))
   openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable = asTable, withFilter = withFilter)
   file.copy(from = paste0(objectname,".xlsx"), to = paste0(objectname, " - annotated.xlsx"), overwrite = overwrite2annotate)

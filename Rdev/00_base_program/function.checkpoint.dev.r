@@ -88,12 +88,12 @@ dput(installed.packages(.libPaths()[1])[, "Package"])
 # structure(c("boot", "cli", "cmprsk", "cowplot", "datapasta", 
 # "DBI", "dplyr", "exactRankTests", "fansi", "ggpubr", "ggsci", 
 # "ggsignif", "glue", "haven", "km.ci", "KMsurv", "lubridate", 
-# "openxlsx", "pillar", "pkgconfig", "plogr", "polynom", "Rcpp", 
+# "openxlsx2", "pillar", "pkgconfig", "plogr", "polynom", "Rcpp", 
 # "rlang", "survival", "survMisc", "tableone", "tibble", "tidyselect", 
 # "tidyverse", "xtable"), .Names = c("boot", "cli", "cmprsk", "cowplot", 
 # "datapasta", "DBI", "dplyr", "exactRankTests", "fansi", "ggpubr", 
 # "ggsci", "ggsignif", "glue", "haven", "km.ci", "KMsurv", "lubridate", 
-# "openxlsx", "pillar", "pkgconfig", "plogr", "polynom", "Rcpp", 
+# "openxlsx2", "pillar", "pkgconfig", "plogr", "polynom", "Rcpp", 
 # "rlang", "survival", "survMisc", "tableone", "tibble", "tidyselect", 
 # "tidyverse", "xtable"))
 
