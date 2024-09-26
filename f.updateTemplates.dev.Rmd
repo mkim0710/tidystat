@@ -887,9 +887,77 @@ safeDownloadFileIfDifferentByHash(test_url1, local_file1)
 ```
   
   
-###### \% |> () ----  
+#### switch(Sys.info()["sysname"], Linux = { ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# > openxlsx2::xl_open
+# function (x, interactive = NA) 
+# {
+#     UseMethod("xl_open")
+# }
+# <bytecode: 0x0000012b785dd928>
+# <environment: namespace:openxlsx2>
+# > getAnywhere(xl_open)
+# A single object matching ‘xl_open’ was found
+# It was found in the following places
+#   package:openxlsx2
+#   namespace:openxlsx2
+# with value
+# 
+# function (x, interactive = NA) 
+# {
+#     UseMethod("xl_open")
+# }
+# <bytecode: 0x0000012b785dd928>
+# <environment: namespace:openxlsx2>
+# > methods(xl_open)
+# [1] xl_open.default*    xl_open.wbWorkbook*
+# see '?methods' for accessing help and source code
+# > openxlsx2:::xl_open.default
+# function (x, interactive = NA) 
+# {
+#     stopifnot(file.exists(x))
+#     if (is.na(interactive)) {
+#         interactive <- interactive()
+#     }
+#     if (!isTRUE(interactive)) {
+#         warning("will not open file when not interactive", call. = FALSE)
+#         return()
+#     }
+#     file <- normalizePath(x, mustWork = TRUE)
+#     userSystem <- Sys.info()["sysname"]
+#     switch(userSystem, Linux = {
+#         app <- getOption("openxlsx2.excelApp", chooseExcelApp())
+#         system2(app, c(file, "&"))
+#     }, Windows = {
+#         shell.exec(file)
+#     }, Darwin = {
+#         system2("open", shQuote(file))
+#     }, stop("Operating system not handled: ", toString(userSystem)))
+# }
+# <bytecode: 0x0000012b7a03a958>
+# <environment: namespace:openxlsx2>
+
+
+f_file.switch_open <- function(file) {
+    stopifnot(file.exists(file))
+    
+    file <- normalizePath(file, mustWork = TRUE)
+    
+    switch(Sys.info()["sysname"], 
+        Linux = {
+            app <- Sys.getenv("BROWSER", "xdg-open")
+            system2(app, file)
+        }, 
+        Windows = {
+            shell.exec(file)
+        }, 
+        Darwin = {
+            system2("open", shQuote(file))
+        }, 
+        stop("Operating system not handled: ", toString(userSystem))
+    )
+}
 
 ```
   
