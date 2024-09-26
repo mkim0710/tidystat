@@ -193,6 +193,28 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+## \% f_file.switch_open ====  
+env1$f$f_file.switch_open <- function(file) {
+    stopifnot(file.exists(file))
+    
+    file <- normalizePath(file, mustWork = TRUE)
+    
+    switch(Sys.info()["sysname"], 
+        Linux = {
+            app <- Sys.getenv("BROWSER", "xdg-open")
+            system2(app, file)
+        }, 
+        Windows = {
+            shell.exec(shQuote(file))
+        }, 
+        Darwin = {
+            system2("open", shQuote(file))
+        }, 
+        stop("Operating system not handled: ", toString(userSystem))
+    )
+}
+
+
 ## \% f_file.edit ====  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ### \% f_file.edit_windows ====  
