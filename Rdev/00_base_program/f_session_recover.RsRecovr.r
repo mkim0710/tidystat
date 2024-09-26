@@ -1,5 +1,7 @@
 # https://github.com/jmcphers/rsrecovr/tree/master/R
 
+# remotes::install_github("jmcphers/rsrecovr")
+
 #' Recover RStudio Files
 #'
 #' Recovers unsaved changes or abandoned auto-save copies of files
