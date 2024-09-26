@@ -375,6 +375,6 @@ getwd()
 # R.utils::gzip(file.path(.path4write, paste0(.objectname,".rds")), overwrite=T, remove=F, compression=9)
 write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="gz", compression=9 )
 # write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 )
-openxlsx2::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
+openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE)
 # if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(.objectname,".xlsx"))
 

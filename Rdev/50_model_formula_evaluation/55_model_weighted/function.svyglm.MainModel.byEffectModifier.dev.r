@@ -419,7 +419,7 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 #     svyglm(Depressed ~ SSQ_5_6_adequate * US_BORN + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
 #         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), ".10var.inter")))
 # ) %>% 
-#     openxlsx2::write.xlsx("svyglm 10var vs 10var.inter.xlsx")
+#     openxlsx2::write_xlsx("svyglm 10var vs 10var.inter.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx2::openXL("svyglm 10var vs 10var.inter.xlsx")
 
 
@@ -465,7 +465,7 @@ svyglm(Depressed ~ SSQ_5_6 + US_BORN + GENDER + AGEGRP5C + RACE + MARITAL_Marrie
 #     svyglm(Depressed ~ SSQ_5_6_adequate + GENDER + INC10K_integer + AGEGROUP + RACE_White + MARITAL_Married + EDU4CAT_college + HIQ_6 + HUQ_3_lt_1year, design = data.US_BORN_F.svydesign, family=stats::quasibinomial()) %>% function.glm_object.summary.exp %>% {.[1:4]} %>% 
 #         set_names(if_else(names(.) %in% "rowname", names(.), paste0(names(.), "US_BORN_F.10var")))
 # ) %>% 
-#     openxlsx2::write.xlsx("svyglm US_BORN_T.10var vs US_BORN_F.10var.xlsx")
+#     openxlsx2::write_xlsx("svyglm US_BORN_T.10var vs US_BORN_F.10var.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx2::openXL("svyglm US_BORN_T.10var vs US_BORN_F.10var.xlsx")
 
 
@@ -1148,7 +1148,7 @@ c("AGEGROUP", "GENDER", "US_BORN", "INC10K_integer", "INC25K", "INC25KMOD_ge50k"
 
 c("AGEGROUP", "GENDER", "US_BORN", "INC10K_integer", "INC25K", "INC25KMOD_ge50k", "INC25KMOD_ge75k") %>% {set_names(map(., function(chr) {
     function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = formula4MainModel, subscript4MainModel = "10var", varname4EffectModifier = chr)
-}), .)} %>% map(function(ls) ls$table4manuscript) %>% bind_rows(.id = "varname4EffectModifier") %>% openxlsx2::write.xlsx("svyglm.MainModel.byEffectModifier.xlsx")
+}), .)} %>% map(function(ls) ls$table4manuscript) %>% bind_rows(.id = "varname4EffectModifier") %>% openxlsx2::write_xlsx("svyglm.MainModel.byEffectModifier.xlsx")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("svyglm.MainModel.byEffectModifier.xlsx")
 
 

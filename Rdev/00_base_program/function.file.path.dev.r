@@ -9,7 +9,7 @@ file.path(mainDir, subDir, "filename")
 for (i in names(function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_rows)) {
     for (j in names(function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_rows[[i]])) {
         for (k in names(function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_rows[[i]][[j]])) {
-            openxlsx2::write.xlsx(
+            openxlsx2::write_xlsx(
                 list(
                     CodeDF.bind_rows = function.MK.output.nest_sigungu.Seoul11.list3_CodeDF.bind_rows[[i]][[j]][[k]]
                     , Cluster.tbl.bind_rows = function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_rows[[i]][[j]][[k]]

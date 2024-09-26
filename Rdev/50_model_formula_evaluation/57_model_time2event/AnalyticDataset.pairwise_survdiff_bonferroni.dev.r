@@ -261,13 +261,13 @@ AnalyticDataset.pairwise_survdiff_bonferroni %>% {symnum(.$p.value, cutpoints = 
 
 # @ end -----  
 # AnalyticDataset.pairwise_survdiff_unadjusted$p.value |> as.data.frame() |> rownames_to_column() %>% 
-#     {openxlsx2::write.xlsx(., "AnalyticDataset.pairwise_survdiff_unadjusted (200401).xlsx")}
+#     {openxlsx2::write_xlsx(., "AnalyticDataset.pairwise_survdiff_unadjusted (200401).xlsx")}
 # AnalyticDataset.pairwise_survdiff_bonferroni$p.value |> as.data.frame() |> rownames_to_column() %>% 
-#     {openxlsx2::write.xlsx(., "AnalyticDataset.pairwise_survdiff_bonferroni (200401).xlsx")}
+#     {openxlsx2::write_xlsx(., "AnalyticDataset.pairwise_survdiff_bonferroni (200401).xlsx")}
 
 
 out = list()
 out$unadjusted = AnalyticDataset.pairwise_survdiff_unadjusted$p.value |> as.data.frame() |> rownames_to_column()
 out$bonferroni = AnalyticDataset.pairwise_survdiff_bonferroni$p.value |> as.data.frame() |> rownames_to_column()
-out %>% {openxlsx2::write.xlsx(., "AnalyticDataset.pairwise_survdiff_bonferroni (200401).xlsx")}
+out %>% {openxlsx2::write_xlsx(., "AnalyticDataset.pairwise_survdiff_bonferroni (200401).xlsx")}
 

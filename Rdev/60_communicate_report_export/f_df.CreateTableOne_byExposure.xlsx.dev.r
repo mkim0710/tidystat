@@ -228,7 +228,7 @@ library(tableone)
 #     TableOne = DataSet.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
 #     , TableOne.IQR = DataSet.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
 #     , is.na.TableOne = DataSet.is.na.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
-# ) %>% openxlsx2::write.xlsx("DataSet.TableOne.xlsx")
+# ) %>% openxlsx2::write_xlsx("DataSet.TableOne.xlsx")
 # # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne.xlsx")
 
 
@@ -655,14 +655,14 @@ DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnorma
     write.csv("DataSet.TableOne_by_MissingPattern -clean.csv")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern -clean.csv")
 # DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
-#     openxlsx2::write.xlsx("DataSet.TableOne_by_MissingPattern -clean.xlsx")
+#     openxlsx2::write_xlsx("DataSet.TableOne_by_MissingPattern -clean.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern -clean.xlsx")
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
-    openxlsx2::write.xlsx("DataSet.TableOne_by_MissingPattern.xlsx")
+    openxlsx2::write_xlsx("DataSet.TableOne_by_MissingPattern.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern.xlsx")
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
-    openxlsx2::write.xlsx("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
+    openxlsx2::write_xlsx("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
 
 
@@ -743,13 +743,13 @@ DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact =
     write.csv("DataSet.svydesign.TableOne -clean.csv")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne -clean.csv")
 # DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
-#     openxlsx2::write.xlsx("DataSet.svydesign.TableOne -clean.xlsx")
+#     openxlsx2::write_xlsx("DataSet.svydesign.TableOne -clean.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne -clean.xlsx")
 DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
-    openxlsx2::write.xlsx("DataSet.svydesign.TableOne.xlsx")
+    openxlsx2::write_xlsx("DataSet.svydesign.TableOne.xlsx")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne.xlsx")
 DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
-    openxlsx2::write.xlsx("DataSet.svydesign.TableOne.IQR.xlsx")
+    openxlsx2::write_xlsx("DataSet.svydesign.TableOne.IQR.xlsx")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne.IQR.xlsx")
 
 
@@ -776,14 +776,14 @@ DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonno
     write.csv("DataSet.svydesign.TableOne_byExposure -clean.csv")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure -clean.csv")
 # DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
-#     openxlsx2::write.xlsx("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
+#     openxlsx2::write_xlsx("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
 # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
 DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
-    openxlsx2::write.xlsx("DataSet.svydesign.TableOne_byExposure.xlsx")
+    openxlsx2::write_xlsx("DataSet.svydesign.TableOne_byExposure.xlsx")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure.xlsx")
 DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
-    openxlsx2::write.xlsx("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
+    openxlsx2::write_xlsx("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
 if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
 
 
@@ -1058,7 +1058,7 @@ save(analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTabl
 
 analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list %>% map(function(ob) {
     ob |> print(smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column()
-}) %>% openxlsx2::write.xlsx("analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list.xlsx")
+}) %>% openxlsx2::write_xlsx("analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list.xlsx")
 
 
 #|________________________________________________________________________________|#  
