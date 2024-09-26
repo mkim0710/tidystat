@@ -179,7 +179,7 @@ env1$env.internal$f.update_rstudio_prefs = function(.url = NULL, .destfile = NUL
                 warning("f.update_rstudio_prefs() not available for macOS")
             }
         }
-    } else if(.Platform$OS.type == "windows") {
+    } else if(Sys.info()["sysname"] == "Windows") {
         if (is.null(.url)) {
             warning("f.update_rstudio_prefs() not available for windows")
         }

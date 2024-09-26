@@ -263,7 +263,7 @@ cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'"
 # # # system.time(saveRDS( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gzip" ))
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz", compression = 9 ))
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", ".xz")), compress = "xz", compression = 9 ))
-# # system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE))
+# # system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
 # # if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(.objectname, ".xlsx"))
 # env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)  
 # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")  
@@ -301,7 +301,7 @@ if (.Platform$OS.type == "windows") {
         .destination_path = file.path(.path4APPDATA_RStudio, "templates"); if(!dir.exists(.destination_path)) dir.create(.destination_path, recursive=TRUE) ; cat('browseURL("',.destination_path,'")',"  \n", sep="") 
         .destination_path.filename.ext = file.path(.destination_path, env1$path$RTemplate.filename.ext)
         .backup_to_path = file.path(env1$path$path0, "-backup") ; env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .destination_path.filename.ext, .backup_to_path=.backup_to_path) 
-        if(.Platform$OS.type == "windows") {browseURL(.backup_to_path)}
+        if(Sys.info()["sysname"] == "Windows") {browseURL(.backup_to_path)}
         
         if(file.copy(from=env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)}, to=.destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path.filename.ext)) else warning(paste0("Update failed: ", .destination_path.filename.ext))
         # if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.destination_path.filename.ext)), wait=FALSE )} # else if (.Platform$OS.type == "unix") {system(paste0("open -a TextEdit ",.destination_path.filename.ext),wait=FALSE)}  

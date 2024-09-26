@@ -1054,15 +1054,15 @@ save(icd10_sub_chapters.expand_range.ICD10_3char, file = "icd10_sub_chapters.exp
 
 
 
-openxlsx2::write_xlsx(icd10_chapters.expand_range, file = "icd10_chapters.expand_range.xlsx", asTable=TRUE)
-# > openxlsx2::write_xlsx(icd10_chapters.expand_range, file = "icd10_chapters.expand_range.xlsx", asTable=TRUE)
+openxlsx2::write_xlsx(icd10_chapters.expand_range, file = "icd10_chapters.expand_range.xlsx", as_table=TRUE)
+# > openxlsx2::write_xlsx(icd10_chapters.expand_range, file = "icd10_chapters.expand_range.xlsx", as_table=TRUE)
 # Error in writeDataTable(wb = wb, sheet = i, x = x[[i]], startCol = startCol[[i]],  : 
 #   x must be a data.frame.
 # In addition: Warning message:
 # In openxlsx2::write_xlsx(icd10_chapters.expand_range, file = "icd10_chapters.expand_range.xlsx",  :
 #   Truncating list names to 31 characters.
 
-openxlsx2::write_xlsx(ICD10_3char_sub_chapter.tibble, file = "ICD10_3char_sub_chapter.tibble.xlsx", asTable=TRUE)
+openxlsx2::write_xlsx(ICD10_3char_sub_chapter.tibble, file = "ICD10_3char_sub_chapter.tibble.xlsx", as_table=TRUE)
 
 
 

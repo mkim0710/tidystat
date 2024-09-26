@@ -136,7 +136,7 @@ if(.Platform$OS.type == "unix") {
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 .backup_to_path = paste0(env1$path$path0,"/-backup")
 cat('%windir%\\explorer.exe "',.backup_to_path|>normalizePath(winslash="\\"),'"',"  \n", sep="")
-if(.Platform$OS.type == "windows") {browseURL(.backup_to_path)}
+if(Sys.info()["sysname"] == "Windows") {browseURL(.backup_to_path)}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ END -----  

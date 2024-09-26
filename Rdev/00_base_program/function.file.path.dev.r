@@ -17,7 +17,7 @@ for (i in names(function.MK.output.nest_sigungu.Seoul11.list3_Cluster.tbl.bind_r
                     , kormaps2014_kormap321.codebook = kormaps2014_kormap321.codebook
                 )
                 , file.path(mainDir, subDir, paste0("function.MK.output.nest_sigungu.Seoul11", "$", i, "$", j, "$", k, "[CodeDF, Cluster.tbl]", ".xlsx"))
-                , asTable=TRUE
+                , as_table=TRUE
             )
         }
     }
