@@ -92,15 +92,21 @@ ensure_package("tidyverse")
 ##@ f_filename.unix_find_path_local.dev.r ----
 ##@ f_font.tlmgr_installed.dev.r ----
 ##@ f_font_regex_perl.search_TeXLiveDB.dev.r ----
+
 ##@ f_lgl.not_and_or.dev.r ----
 ##@ f_list.dput_line_by_line.dev.r ----
 ##@ f_list.substitute.deparse.dev.Rmd ----
+
 ##@ f_password.encrypt.dev.r ----
 ##@ f_password.encrypt-PowerShell.r ----
+
 ##@ f_RegEx.NegativeLookbehind.dev.g.Rmd ----
+
 ##@ f_session_recover.dev.r ----
 ##@ f_session_recover.RsRecovr.r ----
+
 ##@ f_URL.GET_content.dev.r ----
+
 ##@ f_vec_lgl.all_not.dev.r ----
 ##@ f_VarName.RegEx.dev.Rmd ----
 ##@ f_vec.dput_line_by_line.dev.r ----
