@@ -1,4 +1,4 @@
-# objectname = "f_filename.ext.find_subpath"
+# .objectname = "f_filename.ext.find_subpath"
 # f_filename.ext.find_subpath.dev.r
 # f_filename.ext.find_subpath.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_filename.ext.find_subpath.dev.r

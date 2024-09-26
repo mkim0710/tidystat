@@ -113,23 +113,23 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 # @@ START ----  
   
 ## \$ tblID_gj3_jk =  ----  
-@ assign(objectname, read_rds(file.path(.path4read, paste0(objectname,".rds")))) 
+@ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
 ```{r DataSetName-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # .sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
-# objectname = "tblID_gj3_jk"; cat(" ----\n> ", 'objectname = "', objectname, '"  \n', sep="")
-# filename2read = if(file.exists(file.path(.path4read, paste0(objectname,".rds")))) paste0(objectname,".rds") else paste0(objectname, ".rds.xz")
+# .objectname = "tblID_gj3_jk"; cat(" ----\n> ", '.objectname = "', .objectname, '"  \n', sep="")
+# filename2read = if(file.exists(file.path(.path4read, paste0(.objectname,".rds")))) paste0(.objectname,".rds") else paste0(.objectname, ".rds.xz")
 # env1$f$f_path.size_files(.path4read = .path4read, regex4filename = filename2read)
-# system.time(assign(objectname, readRDS(file.path(.path4read, filename2read)), envir=.GlobalEnv))
-# cat(" dim(",objectname,") == ",deparse(dim(get(objectname))),"  \n", sep="")
+# system.time(assign(.objectname, readRDS(file.path(.path4read, filename2read)), envir=.GlobalEnv))
+# cat(" dim(",.objectname,") == ",deparse(dim(get(.objectname))),"  \n", sep="")
   
-# get(objectname) %>% {.$PERSON_ID} |> n_distinct()
-# get(objectname) %>% {.$RN_INDI} |> n_distinct()
-# get(objectname) |> names() |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---    
-# get(objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}  ;   # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ---    
-# cat(" ----\n> ", "str(get(objectname), max.level = 2, give.attr = F)", "  \n", sep=""); str(get(objectname), max.level = 2, give.attr = F)
-# # get(objectname) |> select_if(is.numeric) |> summary() #----  
-# # get(objectname) |> select_if(is.logical) |> summary() #----  
+# get(.objectname) %>% {.$PERSON_ID} |> n_distinct()
+# get(.objectname) %>% {.$RN_INDI} |> n_distinct()
+# get(.objectname) |> names() |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---    
+# get(.objectname) |> names() |> paste(collapse=", ") %>% {cat(" ----\n", ., "\n\n", sep="")}  ;   # tidyeval) paste(collapse=", ") |> cat("  \n", sep="") ---    
+# cat(" ----\n> ", "str(get(.objectname), max.level = 2, give.attr = F)", "  \n", sep=""); str(get(.objectname), max.level = 2, give.attr = F)
+# # get(.objectname) |> select_if(is.numeric) |> summary() #----  
+# # get(.objectname) |> select_if(is.logical) |> summary() #----  
 ```
   
   

@@ -1,4 +1,4 @@
-# objectname = "f_df.t.tribble_construct"
+# .objectname = "f_df.t.tribble_construct"
 # f_df.t.tribble_construct.dev.r
 # f_df.t.tribble_construct.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_df.t.tribble_construct.dev.r

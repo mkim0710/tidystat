@@ -72,7 +72,7 @@
 # * | | f74220b Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
-# * | b8e5acc .GlobalEnv$env1$path[[objectname]] = object
+# * | b8e5acc .GlobalEnv$env1$path[[.objectname]] = object
 # |/  
 # * b7d5f4d if(!exists("env1", envir=.GlobalEnv))     assign("env1", new.env(), envir=.GlobalEnv)
 # * caa3dd2 #     assign("env1", new.env(), envir=.GlobalEnv)
@@ -449,7 +449,7 @@
 # * | | f74220b mkim0710 Fri May 17 03:02:31 2024 Update f_df.t.tribble_construct.source.r
 # | |/  
 # |/|   
-# * | b8e5acc mkim0710 Fri May 17 02:56:58 2024 .GlobalEnv$env1$path[[objectname]] = object
+# * | b8e5acc mkim0710 Fri May 17 02:56:58 2024 .GlobalEnv$env1$path[[.objectname]] = object
 # |/  
 # * b7d5f4d mkim0710 Fri May 17 02:25:16 2024 if(!exists("env1", envir=.GlobalEnv))     assign("env1", new.env(), envir=.GlobalEnv)
 # * caa3dd2 mkim0710 Fri May 17 02:22:12 2024 #     assign("env1", new.env(), envir=.GlobalEnv)

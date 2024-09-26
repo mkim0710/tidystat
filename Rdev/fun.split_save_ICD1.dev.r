@@ -50,15 +50,15 @@ fun.split_save_ICD1 <- function(dataset_name = "nsc2_m20.sas7bdat",
         message(paste("No data for ICD starting with", i, ". Skipping."))
         return(paste0("N/A for ", i))
     }
-    objectname <- paste0(dataset_name, "_", i)
-    filename <- paste0(objectname,".rds")
+    .objectname <- paste0(dataset_name, "_", i)
+    filename <- paste0(.objectname,".rds")
     
     tmp.df[[varname_icd1]] = NULL
     .t0_write <- Sys.time()
     if (is.null(write_rds_compress)) write_rds(tmp.df, file.path(.path4write, filename))
     else write_rds(tmp.df, file.path(.path4write, filename), compress = write_rds_compress)
-    cat("Time elapsed for write_rds(", objectname, "): ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
-    return(objectname)
+    cat("Time elapsed for write_rds(", .objectname, "): ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
+    return(.objectname)
   })
 }
 
@@ -96,15 +96,15 @@ fun.split_save_ICD1_v2 <- function(dataset_name = "nsc2_m20.sas7bdat",
       return(paste0("N/A for ", i))
     }
     
-    objectname <- paste0(dataset_name, "_", i)
-    filename <- paste0(objectname,".rds")
+    .objectname <- paste0(dataset_name, "_", i)
+    filename <- paste0(.objectname,".rds")
     filtered_data[[varname_icd1]] <- NULL
 
     .t0_write <- Sys.time()
     write_rds(filtered_data, file.path(.path4write, filename), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
     cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
-    return(objectname)
+    return(.objectname)
   })
   
   return(result)
@@ -136,14 +136,14 @@ fun.split_save_ICD1_v3 <- function(dataset_name = "nsc2_m20.sas7bdat",
       return(paste0("N/A for ", i))
     }
     
-    objectname <- paste0(dataset_name, "_", i)
-    filename <- paste0(objectname,".rds")
+    .objectname <- paste0(dataset_name, "_", i)
+    filename <- paste0(.objectname,".rds")
 
     .t0_write <- Sys.time()
     write_rds(filtered_data, file.path(.path4write, filename), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
     cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
-    return(objectname)
+    return(.objectname)
   })
   
   return(result)
@@ -187,14 +187,14 @@ fun.split_save_ICD1_db <- function(dataset_name = "nsc2_m20.sas7bdat",
       return(paste0("N/A for ", i))
     }
     
-    objectname <- paste0(dataset_name, "_", i)
-    filename <- paste0(objectname,".rds")
+    .objectname <- paste0(dataset_name, "_", i)
+    filename <- paste0(.objectname,".rds")
 
     .t0_write <- Sys.time()
     write_rds(filtered_data, file.path(.path4write, filename), compress = ifelse(is.null(write_rds_compress), "xz", write_rds_compress))
     cat("Time elapsed for writing data with ", i, ": ", format_time_diff(difftime(Sys.time(), .t0_write, units = "secs")), "\n")
     
-    return(objectname)
+    return(.objectname)
   })
   
   # Drop the table and detach the database

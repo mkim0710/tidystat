@@ -823,7 +823,7 @@ cat(" > ", deparse(result$substituted_expr), "==", deparse(result$evaluated_expr
 ```
   
   
-### \% as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir = .GlobalEnv)))]
+### \% as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(.objectname) is.character(get(.objectname, envir = .GlobalEnv)))]
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # library(purrr)  # Load the purrr package for functional programming
@@ -831,7 +831,7 @@ options(width=120)
 # # Generalized substitute_and_evaluate function
 # substitute_and_evaluate <- function(expr_text) {
 #   # Get all character variables from .GlobalEnv
-#   env_vars <- as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(objectname) is.character(get(objectname, envir = .GlobalEnv)))]
+#   env_vars <- as.list(.GlobalEnv)[ls(envir = .GlobalEnv) |> map_lgl(function(.objectname) is.character(get(.objectname, envir = .GlobalEnv)))]
 # 
 #   # Substitute all the defined names in .GlobalEnv
 #   substituted_text <- expr_text

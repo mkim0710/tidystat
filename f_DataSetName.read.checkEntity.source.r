@@ -1,4 +1,4 @@
-# # objectname = "f_DataSetName.read.checkEntity"
+# # .objectname = "f_DataSetName.read.checkEntity"
 # # f_DataSetName.read.checkEntity.dev.r
 # # f_DataSetName.read.checkEntity.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_DataSetName.read.checkEntity.dev.r
@@ -98,8 +98,8 @@ library(tidyverse)
 
 if(!"path" %in% names(.GlobalEnv$env1)) {
     env1$path = list()
-    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object
-    objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[objectname]] = object
+    .objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[.objectname]] = object
+    .objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[.objectname]] = object
     if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
 # @ for (.dependancy in c("")) { -----  
@@ -113,7 +113,7 @@ for (.dependancy in c("f_path.size_files")) {
 
 
 
-# @ objectname = "f_DataSetName.read.checkEntity" =========  
+# @ .objectname = "f_DataSetName.read.checkEntity" =========  
 .tmp$objectname = "f_DataSetName.read.checkEntity"
 .tmp$object = function(DataSetName, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}

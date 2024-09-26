@@ -169,10 +169,10 @@ Sys.time() - .t0
 
 getwd()
 .path4write = env1$path$.path4write
-objectname = "RxNorm_clomiphene_to_NDC"
-write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
-openxlsx2::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
-if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(objectname,".xlsx"))
+.objectname = "RxNorm_clomiphene_to_NDC"
+write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 )
+openxlsx2::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
+if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(.objectname,".xlsx"))
 
 RxNorm_clomiphene_to_NDC |> str() #----
 # > RxNorm_clomiphene_to_NDC |> str() #----  
@@ -244,10 +244,10 @@ Sys.time() - .t0
 
 getwd()
 .path4write = env1$path$.path4write
-objectname = "RxNorm_letrozole_to_NDC"
-write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
-openxlsx2::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
-if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(objectname,".xlsx"))
+.objectname = "RxNorm_letrozole_to_NDC"
+write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 )
+openxlsx2::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
+if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(.objectname,".xlsx"))
 
 RxNorm_letrozole_to_NDC |> str() #----
 # > RxNorm_letrozole_to_NDC |> str() #----  

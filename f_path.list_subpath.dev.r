@@ -1,4 +1,4 @@
-# objectname = "f_path.list_subpath"
+# .objectname = "f_path.list_subpath"
 # f_path.list_subpath.dev.r
 # f_path.list_subpath.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_path.list_subpath.dev.r

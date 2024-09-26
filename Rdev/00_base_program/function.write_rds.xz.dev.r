@@ -6,7 +6,7 @@ fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "
 
   # Check if the file is either .rds or .rda
   if (grepl("\\.[rR][dD][sS]$", filename)) {
-    objectname <- gsub("\\.[rR][dD][sS]$", "", filename)
+    .objectname <- gsub("\\.[rR][dD][sS]$", "", filename)
     object <- readRDS(filename)
   } else if (grepl("\\.[rR][dD][aA]$", filename)) {
     # Loading .rda file
@@ -18,14 +18,14 @@ fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "
     if (length(objectnames) != 1) {
       stop("The .rda file must contain exactly one object")
     }
-    objectname <- objectnames[1]
-    object <- get(objectname, envir = env)
+    .objectname <- objectnames[1]
+    object <- get(.objectname, envir = env)
   } else {
     stop("The file must be either .rds or .rda")
   }
 
   # Save the data using write_rds
-  write_rds(object, paste0(objectname,".rds"), compress = compress)
+  write_rds(object, paste0(.objectname,".rds"), compress = compress)
 }
 
 
@@ -34,11 +34,11 @@ fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "
 
 # @ -------  
 
-objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
+.objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
 .t0 = Sys.time()
-write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")) )
+write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")) )
 Sys.time() - .t0
-system(paste0( 'xz -9 --threads=10 "', objectname, ".rds", '"' ))  # no --keep just in case using git
+system(paste0( 'xz -9 --threads=10 "', .objectname, ".rds", '"' ))  # no --keep just in case using git
 Sys.time() - .t0
 
 system("git pull")
@@ -50,7 +50,7 @@ system("git push")
 
 # @ -------  
 # .t0 = Sys.time()
-# write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")), "xz", compression=9L )
+# write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), "xz", compression=9L )
 # Sys.time() - .t0
 
 
@@ -58,11 +58,11 @@ system("git push")
 .path4read = "../data/data.ID_DATE_DX.distinct/"
 .path4write = "../data/data.ID_DATE_DX.distinct/"
 
-objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
+.objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
 .t0 = Sys.time()
-write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")) )
+write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")) )
 Sys.time() - .t0
-system(paste0( 'xz --keep -9 --threads=10 "', file.path(.path4write, paste0(objectname,".rds")), '"' ))
+system(paste0( 'xz --keep -9 --threads=10 "', file.path(.path4write, paste0(.objectname,".rds")), '"' ))
 Sys.time() - .t0
 
 

@@ -272,7 +272,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
     # cat("> .GlobalEnv$env1$",.tmp$objectname,"()\n",sep=""); get(.tmp$objectname, envir=.GlobalEnv$env1)() # Run the loaded function by default
 }
 
-# > cat("> env1$", objectname, "()\n", sep=""); tmp.function = env1[[objectname]]; tmp.function()  # Run the loaded function by default
+# > cat("> env1$", .objectname, "()\n", sep=""); tmp.function = env1[[.objectname]]; tmp.function()  # Run the loaded function by default
 # > env1$env.internal$f_path.df_dirs_recursive.df_files()
 # .Platform$file.sep:  / 
 # input_path0:  . 

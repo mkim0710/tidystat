@@ -510,11 +510,11 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> st
 # @ end -----  
 getwd()
 .path4write = env1$path$.path4write
-objectname = "analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
-# write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")))
-write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")), compress="gz", compression=9 )
-openxlsx2::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
-if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(objectname,".xlsx"))
+.objectname = "analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
+# write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")))
+write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress="gz", compression=9 )
+openxlsx2::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
+if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(.objectname,".xlsx"))
 
 
 

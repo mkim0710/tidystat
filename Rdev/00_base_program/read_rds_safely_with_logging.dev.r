@@ -167,12 +167,12 @@ log_file_availability <- function(path) {
 }
 
 .path4read = paste0(env1$path$path1,"/data")
-objectname = "fhs.index100"
-paste0(.path4read,"/",objectname,".rds")
-log_file_availability(paste0(.path4read,"/",objectname,".rds"))
-try(assign( "DataSet", read_rds(paste0(.path4read,"/",objectname,".rds")) ))
+.objectname = "fhs.index100"
+paste0(.path4read,"/",.objectname,".rds")
+log_file_availability(paste0(.path4read,"/",.objectname,".rds"))
+try(assign( "DataSet", read_rds(paste0(.path4read,"/",.objectname,".rds")) ))
 # error?
-path.filename.ext = paste0(.path4read,"/",objectname,".rds")
+path.filename.ext = paste0(.path4read,"/",.objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( "DataSet", read_rds(path.filename.ext) ))
@@ -181,12 +181,12 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 
 library(tidyverse)
 .path4read = paste0(env1$path$path1,"/data")
-objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-paste0(.path4read,"/",objectname,".rds")
-log_file_availability(paste0(.path4read,"/",objectname,".rds"))
-try(assign( "DataSet", read_rds(paste0(.path4read,"/",objectname,".rds")) ))
+.objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+paste0(.path4read,"/",.objectname,".rds")
+log_file_availability(paste0(.path4read,"/",.objectname,".rds"))
+try(assign( "DataSet", read_rds(paste0(.path4read,"/",.objectname,".rds")) ))
 # error?
-path.filename.ext = paste0(.path4read,"/",objectname,".rds")
+path.filename.ext = paste0(.path4read,"/",.objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
 try(assign( "DataSet", read_rds(path.filename.ext) ))
@@ -195,33 +195,33 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 
 library(tidyverse)
 .path4read = paste0(env1$path$path1,"/data")
-objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-paste0(.path4read,"/",objectname,".rds")
-log_file_availability(paste0(.path4read,"/",objectname,".rds"))
-try(assign( objectname, read_rds(paste0(.path4read,"/",objectname,".rds")) ))
+.objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+paste0(.path4read,"/",.objectname,".rds")
+log_file_availability(paste0(.path4read,"/",.objectname,".rds"))
+try(assign( .objectname, read_rds(paste0(.path4read,"/",.objectname,".rds")) ))
 # error?
-path.filename.ext = paste0(.path4read,"/",objectname,".rds")
+path.filename.ext = paste0(.path4read,"/",.objectname,".rds")
 path.filename.ext
 log_file_availability(path.filename.ext)
-try(assign( objectname, read_rds(path.filename.ext) ))
+try(assign( .objectname, read_rds(path.filename.ext) ))
 
 
 
 # # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# # objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# # .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # rm(".path4read")
-# rm("objectname")
+# rm(".objectname")
 # library(tidyverse)
 # .path4read = "./data"
-# objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-# paste0(.path4read,"/",objectname,".rds")
-# file.exists(paste0(.path4read,"/",objectname,".rds"))
-# assign( objectname, read_rds(normalizePath(paste0(.path4read,"/",objectname,".rds"))) )
-# # > paste0(.path4read,"/",objectname,".rds")
+# .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+# paste0(.path4read,"/",.objectname,".rds")
+# file.exists(paste0(.path4read,"/",.objectname,".rds"))
+# assign( .objectname, read_rds(normalizePath(paste0(.path4read,"/",.objectname,".rds"))) )
+# # > paste0(.path4read,"/",.objectname,".rds")
 # # [1] "./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds"
-# # > file.exists(paste0(.path4read,"/",objectname,".rds"))
+# # > file.exists(paste0(.path4read,"/",.objectname,".rds"))
 # # [1] FALSE
-# # > assign( objectname, read_rds(normalizePath(paste0(.path4read,"/",objectname,".rds"))) )
+# # > assign( .objectname, read_rds(normalizePath(paste0(.path4read,"/",.objectname,".rds"))) )
 # # Warning: path[1]="./data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds": No such file or directoryWarning: cannot open file './data/CohortGJ0910.BaselineJKGJ2085NoHx...01.rds': No such file or directoryError in readRDS(con, refhook = refhook) : cannot open the connection
 # 
 
@@ -243,10 +243,10 @@ read_rds_safely_with_logging <- function(path, max_attempts = 9) {
 }
 
 .path4read = paste0(env1$path$path1,"/data")
-objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
-paste0(.path4read,"/",objectname,".rds")
-file.exists(paste0(.path4read,"/",objectname,".rds"))
-assign( objectname, read_rds_safely_with_logging(paste0(.path4read,"/",objectname,".rds")) )
+.objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
+paste0(.path4read,"/",.objectname,".rds")
+file.exists(paste0(.path4read,"/",.objectname,".rds"))
+assign( .objectname, read_rds_safely_with_logging(paste0(.path4read,"/",.objectname,".rds")) )
 
 
 

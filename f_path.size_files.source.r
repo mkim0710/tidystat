@@ -1,4 +1,4 @@
-# objectname = "f_path.size_files"
+# .objectname = "f_path.size_files"
 # f_path.size_files.dev.r
 # f_path.size_files.source.r
 #         https://github.com/mkim0710/tidystat/blob/master/f_path.size_files.dev.r
@@ -131,8 +131,8 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # > for (.dependancy in c("f_df.t.tribble_construct")) {
 # +     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 # +         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-# +         objectname = .dependancy
-# +         source(file.path(env1$path$source_base,"",paste0(objectname,".source.r")))
+# +         .objectname = .dependancy
+# +         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
 # +     }
 # + }
 # sys.nframe() = 0

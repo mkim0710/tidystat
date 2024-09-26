@@ -1,13 +1,13 @@
 .sourcename = "get_system_info" |> paste0(".source.r")  
 if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
-# # cat("# ", 'objectname = "', objectname, '"', "\n",
-# #     "# ", objectname, ".dev.r", "\n",
-# #     "# ", objectname, ".source.r", "\n",
-# #     "#         https://github.com/mkim0710/tidystat/blob/master/", objectname, ".dev.r", "\n",
-# #     '# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/', objectname, '.source.r")', "\n",
+# # cat("# ", '.objectname = "', .objectname, '"', "\n",
+# #     "# ", .objectname, ".dev.r", "\n",
+# #     "# ", .objectname, ".source.r", "\n",
+# #     "#         https://github.com/mkim0710/tidystat/blob/master/", .objectname, ".dev.r", "\n",
+# #     '# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/', .objectname, '.source.r")', "\n",
 # #     sep="")
-# # file.edit(paste0(objectname,".source.r"))
-# # file.edit(paste0(objectname,".dev.r"))
+# # file.edit(paste0(.objectname,".source.r"))
+# # file.edit(paste0(.objectname,".dev.r"))
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  

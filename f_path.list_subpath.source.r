@@ -1,4 +1,4 @@
-# # objectname = "f_path.list_subpath"
+# # .objectname = "f_path.list_subpath"
 # # f_path.list_subpath.dev.r
 # # f_path.list_subpath.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_path.list_subpath.dev.r
@@ -97,22 +97,22 @@ library(tidyverse)
 
 if(!"path" %in% names(.GlobalEnv$env1)) {
     env1$path = list()
-    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object
-    objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[objectname]] = object
+    .objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[.objectname]] = object
+    .objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[.objectname]] = object
     if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
 # #@ for (.dependancy in c("")) { -----  
 # for (.dependancy in c("f_df.t.tribble_construct")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 #         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-#         objectname = .dependancy
-#         source(file.path(env1$path$source_base,"",paste0(objectname,".source.r")))
+#         .objectname = .dependancy
+#         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
 #     }
 # }
 
 
 
-# @ objectname = "f_path.list_subpath.DepthFirstSearch_recursive" =========  
+# @ .objectname = "f_path.list_subpath.DepthFirstSearch_recursive" =========  
 .tmp$objectname = "f_path.list_subpath.DepthFirstSearch_recursive"
 .tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
     # Initialize .initial_max_depth with max_depth on the first call
@@ -167,7 +167,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 
-# @ objectname = "f_path.list_subpath.BreathFirstSearch" =========  
+# @ .objectname = "f_path.list_subpath.BreathFirstSearch" =========  
 .tmp$objectname = "f_path.list_subpath.BreathFirstSearch"
 .tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE) {
     if (!file.exists(input_path) || !file.info(input_path)$isdir) {
@@ -229,7 +229,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 
-# @ objectname = "f_path.list_subpath" =========  
+# @ .objectname = "f_path.list_subpath" =========  
 .tmp$objectname = "f_path.list_subpath"
 .tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, BreadthFirstSearch = FALSE) {
     if (BreadthFirstSearch) {

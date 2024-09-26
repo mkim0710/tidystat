@@ -1,4 +1,4 @@
-# objectname = "get_system_info"
+# .objectname = "get_system_info"
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.subpath = .subpath
 # .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")

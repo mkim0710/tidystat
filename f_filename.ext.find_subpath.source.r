@@ -1,4 +1,4 @@
-# # objectname = "f_filename.ext.find_subpath"
+# # .objectname = "f_filename.ext.find_subpath"
 # # f_filename.ext.find_subpath.dev.r
 # # f_filename.ext.find_subpath.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/f_filename.ext.find_subpath.dev.r
@@ -96,23 +96,23 @@ library(tidyverse)
 
 if(!"path" %in% names(.GlobalEnv$env1)) {
     env1$path = list()
-    objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[objectname]] = object
-    objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[objectname]] = object
+    .objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[.objectname]] = object
+    .objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[.objectname]] = object
     if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
 # #@ for (.dependancy in c("")) { -----  
 # for (.dependancy in c("f_df.t.tribble_construct")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
 #         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-#         objectname = .dependancy
-#         source(file.path(env1$path$source_base,"",paste0(objectname,".source.r")))
+#         .objectname = .dependancy
+#         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
 #     }
 # }
 
 
 
 
-# @ objectname = "f_filename.ext.find_subpath" =========  
+# @ .objectname = "f_filename.ext.find_subpath" =========  
 .tmp$objectname = "f_filename.ext.find_subpath"
 .tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
     # # tools::file_ext(path.basename)
@@ -144,7 +144,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 
-# @ objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========  
+# @ .objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========  
 .tmp$objectname = "f_filename.ext.find_subpath.BreathFirstSearch"
 .tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, findMultiple = FALSE) {
     # Breath-first search for the filename.ext in the subdirectories of the input_path

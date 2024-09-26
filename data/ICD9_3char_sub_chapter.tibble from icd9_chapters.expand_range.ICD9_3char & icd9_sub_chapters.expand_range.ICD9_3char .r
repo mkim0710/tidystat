@@ -369,12 +369,12 @@ save(ICD9_3char_sub_chapter.tibble, file = "ICD9_3char_sub_chapter.tibble.rda")
 
 getwd()
 .path4write = env1$path$.path4write
-objectname = "ICD9_3char_sub_chapter.tibble"
-# saveRDS( get(objectname), xzfile(file.path(.path4write, paste0(objectname,".rds","")), compression=9) )
-# write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds")))
-# R.utils::gzip(file.path(.path4write, paste0(objectname,".rds")), overwrite=T, remove=F, compression=9)
-write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="gz", compression=9 )
-# write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 )
-openxlsx2::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
-# if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(objectname,".xlsx"))
+.objectname = "ICD9_3char_sub_chapter.tibble"
+# saveRDS( get(.objectname), xzfile(file.path(.path4write, paste0(.objectname,".rds","")), compression=9) )
+# write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")))
+# R.utils::gzip(file.path(.path4write, paste0(.objectname,".rds")), overwrite=T, remove=F, compression=9)
+write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="gz", compression=9 )
+# write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 )
+openxlsx2::write.xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), asTable=TRUE, withFilter=TRUE)
+# if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(.objectname,".xlsx"))
 
