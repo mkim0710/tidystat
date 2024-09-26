@@ -360,7 +360,7 @@ list(
     , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
     # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
 ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
-if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
 ```
 
 

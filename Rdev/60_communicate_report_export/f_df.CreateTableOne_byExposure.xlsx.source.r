@@ -178,11 +178,11 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.se
     DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
     
     # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
     # DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
     # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
+    # # if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
     
     
     function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
@@ -260,7 +260,7 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.se
         # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
         # ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
     ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
-    if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
+    if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
     
     return.list = list(
         DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA.select

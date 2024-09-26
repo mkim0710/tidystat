@@ -222,14 +222,14 @@ library(tableone)
 #     write.csv("DataSet.TableOne -clean.csv")
 # DataSet.is.na.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
 #     write.csv("DataSet.is.na.TableOne -clean.csv")
-# # if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne -clean.csv")
+# # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne -clean.csv")
 
 # list(
 #     TableOne = DataSet.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
 #     , TableOne.IQR = DataSet.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
 #     , is.na.TableOne = DataSet.is.na.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
 # ) %>% openxlsx2::write.xlsx("DataSet.TableOne.xlsx")
-# # if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne.xlsx")
+# # if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne.xlsx")
 
 
 
@@ -294,11 +294,11 @@ DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=
 DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ---
               
 # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
-# # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
+# # if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
 # DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-# # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+# # if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
 # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
-# # if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
+# # if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
 
 
 
@@ -378,7 +378,7 @@ list(
     , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
     # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
 ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
-if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+if (.Platform$OS.type == "windows") openxlsx2::openXL(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
 
 
 
@@ -653,17 +653,17 @@ sink()
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ---  
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
     write.csv("DataSet.TableOne_by_MissingPattern -clean.csv")
-if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne_by_MissingPattern -clean.csv")
+if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern -clean.csv")
 # DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
 #     openxlsx2::write.xlsx("DataSet.TableOne_by_MissingPattern -clean.xlsx")
-# if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne_by_MissingPattern -clean.xlsx")
+# if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern -clean.xlsx")
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     openxlsx2::write.xlsx("DataSet.TableOne_by_MissingPattern.xlsx")
-# if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne_by_MissingPattern.xlsx")
+# if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern.xlsx")
 DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
     openxlsx2::write.xlsx("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
-# if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
+# if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
 
 
 
@@ -741,16 +741,16 @@ sink()
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
 DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
     write.csv("DataSet.svydesign.TableOne -clean.csv")
-if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne -clean.csv")
+if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne -clean.csv")
 # DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
 #     openxlsx2::write.xlsx("DataSet.svydesign.TableOne -clean.xlsx")
-# if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne -clean.xlsx")
+# if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne -clean.xlsx")
 DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
     openxlsx2::write.xlsx("DataSet.svydesign.TableOne.xlsx")
-if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne.xlsx")
+if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne.xlsx")
 DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
     openxlsx2::write.xlsx("DataSet.svydesign.TableOne.IQR.xlsx")
-if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne.IQR.xlsx")
+if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne.IQR.xlsx")
 
 
 # @ DataSet.svydesign.svyCreateTableOne.byExposure -----  
@@ -774,17 +774,17 @@ sink()
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
 DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
     write.csv("DataSet.svydesign.TableOne_byExposure -clean.csv")
-if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne_byExposure -clean.csv")
+if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure -clean.csv")
 # DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
 #     openxlsx2::write.xlsx("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
-# if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
+# if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
 DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
     openxlsx2::write.xlsx("DataSet.svydesign.TableOne_byExposure.xlsx")
-if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne_byExposure.xlsx")
+if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure.xlsx")
 DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
     openxlsx2::write.xlsx("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
-if (.Platform$OS.type == "windows") openxlsx::openXL("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
+if (.Platform$OS.type == "windows") openxlsx2::openXL("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
 
 
 
