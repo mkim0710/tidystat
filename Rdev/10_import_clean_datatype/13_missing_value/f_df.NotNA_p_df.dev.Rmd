@@ -158,7 +158,7 @@ env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 # .GlobalEnv$.tmp = list() ====  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }  
-suppressPackageStartupMessages({for(.packagename in c("tidyverse","formatR")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}});cat("  \n", sep="")
+suppressPackageStartupMessages({for(.packagename in c("tidyverse","formatR")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}});cat("  \n", sep="")
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
 # .GlobalEnv$env1$path = list() ====  

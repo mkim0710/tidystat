@@ -329,7 +329,7 @@ print(corrected_text)
 ## \% library(stringdist)  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-for(.packagename in c("stringdist")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
+for(.packagename in c("stringdist")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 
 correct_typos <- function(text, dictionary) {
   words <- unlist(strsplit(text, "\\s+"))  # Split the text into words
@@ -363,7 +363,7 @@ print(corrected_text)
 ## \% library(hunspell)  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-for(.packagename in c("hunspell")) {if(!require(.packagename,character.only=TRUE))install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
+for(.packagename in c("hunspell")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 
 # # # Install an English dictionary
 # # hunspell::hunspell_install('en_US')
