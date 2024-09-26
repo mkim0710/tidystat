@@ -639,7 +639,7 @@ CovariateDefinition191128$Code_vec.list.dot_x =
 
 CovariateDefinition191128.dot_x = 
     CovariateDefinition191128
-openxlsx::write.xlsx(CovariateDefinition191128.dot_x, "CovariateDefinition191128.dot_x.xlsx")
+openxlsx2::write.xlsx(CovariateDefinition191128.dot_x, "CovariateDefinition191128.dot_x.xlsx")
 
 
 

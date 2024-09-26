@@ -313,7 +313,7 @@ mydb.dbListTables.dbListFields %>% map(function(vec) {
 # #   women_pregcohort_d_r4.sas7bdat <lgl>, women_pregcohort_i_r4.sas7bdat <lgl>, women_pregcohort_o_r4.sas7bdat <lgl>, women_pregcohort_o_r4_mod.sas7bdat <lgl>,
 # #   women_pregcohort_r_r4.sas7bdat <lgl>, women_pregcohort_s_r4.sas7bdat <lgl>, women_pregcohort_s_r4_mod.sas7bdat <lgl>, women_pregcohort_t_r4.sas7bdat <lgl>
 
-openxlsx::write.xlsx(
+openxlsx2::write.xlsx(
     mydb.dbListTables.dbListFields %>% map(function(vec) {
         if_else((mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() %in% vec), T, F)
     }) %>% bind_cols %>% add_column(varname = (mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique()), .before = 1) %>% arrange(varname)

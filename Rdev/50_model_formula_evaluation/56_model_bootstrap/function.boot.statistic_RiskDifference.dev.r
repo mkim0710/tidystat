@@ -333,7 +333,7 @@ boot.output %>% plot(index = which(names(.$t0) == "RiskDifference"))
 
 # @ end -----  
 write_rds(boot.output, "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.rds", "xz", compression=9)
-openxlsx::write.xlsx(
+openxlsx2::write.xlsx(
     analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci
     , "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.RiskDifference.boot.ci.xlsx", asTable=TRUE
 )

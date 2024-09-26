@@ -874,8 +874,8 @@ getwd()
 objectname = ""
 # system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="gz", compression=9 ))
 system.time(write_rds( get(objectname), file.path(.path4write, paste0(objectname,".rds","")), compress="xz", compression=9 ))
-# system.time(openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
-openxlsx::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable = F, withFilter = F)
+# system.time(openxlsx2::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable=TRUE, withFilter=TRUE))
+openxlsx2::write.xlsx(get(objectname), file=paste0(objectname,".xlsx"), asTable = F, withFilter = F)
 if (.Platform$OS.type == "windows") openxlsx::openXL(paste0(objectname,".xlsx"))
 
 

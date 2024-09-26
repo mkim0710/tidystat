@@ -202,7 +202,7 @@ dir.create(path.output, showWarnings = F)
 for (i in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows)) {
     for (j in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows[[i]])) {
         for (k in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows[[i]][[j]])) {
-            openxlsx::write.xlsx(
+            openxlsx2::write.xlsx(
                 list(
                     CodeDF.bind_rows = function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows[[i]][[j]][[k]]
                     , Cluster.tbl.bind_rows = function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows[[i]][[j]][[k]]
@@ -261,7 +261,7 @@ function.MK.output.nest_sigungu.SouthKorea.metadata =
     }) %>% bind_rows(.id = "Min.SC")
 dir.create(path.output, showWarnings = F)
 saveRDS(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.rds"))
-openxlsx::write.xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), asTable=TRUE)
+openxlsx2::write.xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.path(path.output, "function.MK.output.nest_sigungu.SouthKorea.metadata.xlsx"), asTable=TRUE)
 
 
 

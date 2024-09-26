@@ -1435,13 +1435,13 @@ fhs |> str(give.attr = F) #----
 # @ end ----  
 saveRDS(fhs.index100, "fhs.index100.rds")
 write.csv(fhs.index100, "fhs.index100.csv")
-openxlsx::write.xlsx(fhs.index100, "fhs.index100.xlsx", asTable=TRUE)
+openxlsx2::write.xlsx(fhs.index100, "fhs.index100.xlsx", asTable=TRUE)
 
 saveRDS(fhs.index100le10, "fhs.index100le10.rds")
 write.csv(fhs.index100le10, "fhs.index100le10.csv")
-openxlsx::write.xlsx(fhs.index100le10, "fhs.index100le10.xlsx", asTable=TRUE)
+openxlsx2::write.xlsx(fhs.index100le10, "fhs.index100le10.xlsx", asTable=TRUE)
 
 saveRDS(fhs.index100ge11le20, "fhs.index100ge11le20.rds")
 write.csv(fhs.index100ge11le20, "fhs.index100ge11le20.csv")
-openxlsx::write.xlsx(fhs.index100ge11le20, "fhs.index100ge11le20.xlsx", asTable=TRUE)
+openxlsx2::write.xlsx(fhs.index100ge11le20, "fhs.index100ge11le20.xlsx", asTable=TRUE)
 
