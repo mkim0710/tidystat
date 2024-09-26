@@ -2,9 +2,9 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/function.Code_vec.list.dot_x.dev.r
 
 filename = "criteria.tbl - manual add 190901 Treatment Arm 191226 DDD 201005 preeclampsia.xlsx"
-# ?openxlsx::getSheetNames
-openxlsx::getSheetNames(filename) |> dput()
-# > openxlsx::getSheetNames(filename) |> dput()
+# ?openxlsx2::getSheetNames
+openxlsx2::getSheetNames(filename) |> dput()
+# > openxlsx2::getSheetNames(filename) |> dput()
 c("Table 1. Baseline", "ManuscriptTable. Codes", "CovariateDefinition191128", 
 "OutcomeDefinition201005", "OutcomeDefinition191126void", "ExposureDDD_139", 
 "ExposureDDD_Monthly (2)", "ExposureDDD_Monthly", "ExposureDDD", 
@@ -22,7 +22,7 @@ for (
     i in c("CovariateDefinition191128", "OutcomeDefinition201005", "ExposureDDD", "ExposureArms", "ExposureDefinition", "ExclusionCriteria", "InclusionCriteria191008")
 ) {
     list.tblCriteriaID_FilterName_FilterRegex_varname4FilterMet_Evaluation[[i]] =
-        openxlsx::read.xlsx(filename, sheet = i) %>%
+        openxlsx2::read.xlsx(filename, sheet = i) %>%
         mutate_at(
             vars(matches("Evaluation"), matches("FilterName"))
             , .funs = function(vec) {vec %>% gsub("&amp;", "&", ., fixed = T) %>% gsub("&gt;", ">", ., fixed = T) %>% gsub("&lt;", "<", ., fixed = T)}
