@@ -172,7 +172,7 @@ getwd()
 .objectname = "RxNorm_clomiphene_to_NDC"
 write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 )
 openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE)
-if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
 
 RxNorm_clomiphene_to_NDC |> str() #----
 # > RxNorm_clomiphene_to_NDC |> str() #----  
@@ -247,7 +247,7 @@ getwd()
 .objectname = "RxNorm_letrozole_to_NDC"
 write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds","")), compress="xz", compression=9 )
 openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE)
-if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
 
 RxNorm_letrozole_to_NDC |> str() #----
 # > RxNorm_letrozole_to_NDC |> str() #----  

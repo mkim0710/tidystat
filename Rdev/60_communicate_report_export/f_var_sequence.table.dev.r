@@ -91,7 +91,7 @@ combined_table |> capture.output() |> paste0(collapse = "\n") |> cat("\n") |> st
 
 
 # Copy to clipboard based on OS
-if (.Platform$OS.type == "windows") {
+if (Sys.info()["sysname"] == "Windows") {
   combined_table |> capture.output() |> paste0(collapse = "\n") |> writeClipboard()
 } else if (Sys.info()["sysname"] == "Darwin") {
   combined_table |> capture.output() |> paste0(collapse = "\n") |> cat(file = pipe("pbcopy"))

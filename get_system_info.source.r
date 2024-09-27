@@ -113,7 +113,7 @@ library(tidyverse)
             trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))
         else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") 
             trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE))
-        else if (.Platform$OS.type == "windows") 
+        else if (Sys.info()["sysname"] == "Windows") 
             trimws(system("wmic cpu get name", intern=TRUE)[2])
         else NA,
         Sys.getlocale = list(

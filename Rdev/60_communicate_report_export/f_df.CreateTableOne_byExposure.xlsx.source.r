@@ -94,7 +94,7 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }  
 # .GlobalEnv$env1$path = list() ====  
 .sublistname = "path"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() } 
-.objectname = "source_base_local"; object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[.objectname]] = object
+.objectname = "source_base_local"; object = ifelse(Sys.info()["sysname"] == "Windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[.objectname]] = object
 .objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[.objectname]] = object
 if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 .objectname = "getwd"; object = getwd(); .GlobalEnv$env1$path[[.objectname]] = object
@@ -178,11 +178,11 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.se
     DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
     
     # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
+    # # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
     # DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
+    # # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
     # DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
-    # # if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
+    # # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
     
     
     function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
@@ -260,7 +260,7 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.se
         # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
         # ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
     ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
-    if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
+    if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
     
     return.list = list(
         DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA.select

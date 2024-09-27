@@ -214,7 +214,7 @@ cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'"
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz", compression = 9 ))
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", ".xz")), compress = "xz", compression = 9 ))
 # # system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
-# # if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(.objectname, ".xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname, ".xlsx"))
 # env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)  
 # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")  
 # # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)  

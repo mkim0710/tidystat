@@ -145,7 +145,7 @@ get_system_info = function() {
             trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))
         else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") 
             trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE))
-        else if (.Platform$OS.type == "windows") 
+        else if (Sys.info()["sysname"] == "Windows") 
             trimws(system("wmic cpu get name", intern=TRUE)[2])
         else NA,
         Sys.getlocale = list(
@@ -281,7 +281,7 @@ str(get_system_info())
 get_cpu_model <- function() {
     if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Darwin") (trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
     else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") (trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
-    else if (.Platform$OS.type == "windows") trimws(system("wmic cpu get name", intern=TRUE)[2]) else NA
+    else if (Sys.info()["sysname"] == "Windows") trimws(system("wmic cpu get name", intern=TRUE)[2]) else NA
 }
 get_cpu_model()
 # [1] "Apple M1 Max"
@@ -317,7 +317,7 @@ get_cpu_model <- function() {
         if (Sys.info()["sysname"] == "Darwin") return(trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE)))
         return(trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE)))
     }
-    if (.Platform$OS.type == "windows") return(trimws(system("wmic cpu get name", intern=TRUE)[2]))
+    if (Sys.info()["sysname"] == "Windows") return(trimws(system("wmic cpu get name", intern=TRUE)[2]))
     NA
 }
 get_cpu_model()
@@ -655,7 +655,7 @@ Sys.info() |> as.list() |> str()
 # .GlobalEnv$env1$path = list() ====  
 .sublistname = "path"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() } 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-.tmp$objectname = "source_base_local"; .tmp$object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
+.tmp$objectname = "source_base_local"; .tmp$object = ifelse(Sys.info()["sysname"] == "Windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "source_base_github"; .tmp$object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github)
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  

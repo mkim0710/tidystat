@@ -40,7 +40,7 @@
 
 
 # file.edit(file.path(.path4APPDATA_RStudio, filename))
-if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
+if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 
 file.edit(file.path(.path4APPDATA_RStudio, "rstudio-prefs.json"))
 

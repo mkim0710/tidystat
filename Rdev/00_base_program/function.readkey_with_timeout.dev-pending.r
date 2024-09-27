@@ -17,7 +17,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {  Sys.setenv(PARENT_RENDERING = "Y
 # # if(file.exists("templates-00env1.minimum.Rmd")) download.file("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "templates-00env1.minimum.Rmd")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++   
-# if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
+# if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
 # if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
 # # # \% Edit the templates of RStudio (default.R, notebook.Rmd) ~~~~~~~~~~~~   
 # # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
@@ -219,7 +219,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 # Install the R.utils package if not already installed
-if (.Platform$OS.type == "windows" && !require("R.utils")) {
+if (Sys.info()["sysname"] == "Windows" && !require("R.utils")) {
   install.packages("R.utils")
 }
 
@@ -227,7 +227,7 @@ readkey_with_timeout <- function(prompt = "Press [enter] to continue", timeout =
   cat(prompt)
   start_time <- Sys.time()
 
-  if (.Platform$OS.type == "windows") {
+  if (Sys.info()["sysname"] == "Windows") {
     # Windows-specific behavior
     while (TRUE) {
       if (as.numeric(difftime(Sys.time(), start_time, units = "secs")) > timeout) {
@@ -317,7 +317,7 @@ cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'"
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), compress = "gz", compression = 9 ))
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname, ".rds", ".xz")), compress = "xz", compression = 9 ))
 # # system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
-# # if (.Platform$OS.type == "windows") openxlsx2::xl_open(paste0(.objectname, ".xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname, ".xlsx"))
 # env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)  
 # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")  
 # # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)  

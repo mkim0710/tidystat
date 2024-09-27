@@ -69,7 +69,7 @@ git rm -r "*.html"
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 ## @ #1-1c. (Alternative) Completely Delete the Local Repository (and completely remove/rename the base folder) ----  
 'cd ../Rproject_Rmd' |> system(intern=TRUE) |> cat("  ", sep="  \n")
-if (.Platform$OS.type == "windows") {'rmdir /s /q .git' |> system(intern=TRUE)} else {'rm -rf .git' |> system(intern=TRUE)}  # You may just delete from the windows file explorer
+if (Sys.info()["sysname"] == "Windows") {'rmdir /s /q .git' |> system(intern=TRUE)} else {'rm -rf .git' |> system(intern=TRUE)}  # You may just delete from the windows file explorer
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## @ #1-2. Commit and Push the Changes: Ensures the changes are reflected in the repository. ====  
 git commit -m "Untrack PDF/HTML files from the index"

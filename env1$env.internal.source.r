@@ -69,7 +69,7 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
 # .GlobalEnv$env1$path = list() ====  
 .sublistname = "path"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-.tmp$objectname = "source_base_local"; .tmp$object = ifelse(.Platform$OS.type == "windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
+.tmp$objectname = "source_base_local"; .tmp$object = ifelse(Sys.info()["sysname"] == "Windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 .tmp$objectname = "source_base_github"; .tmp$object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
@@ -224,16 +224,16 @@ env1$env.internal$f_file.edit_windows <- function(.file2edit) {
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% f_file.edit_notepad ====  
 env1$env.internal$f_file.edit_notepad <- function(.file2edit) {
-    if (.Platform$OS.type == "windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
+    if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
 }
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #### \% f_file.edit_vscode ====  
 env1$env.internal$f_file.edit_vscode <- function(.file2edit) {
-    if (.Platform$OS.type == "windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
+    if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
 }
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 env1$env.internal$f_URL.open_in_edge_app <- function(URL) {
-    if (.Platform$OS.type == "windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
+    if (Sys.info()["sysname"] == "Windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
 }
 ##### \$ f_URL.open_in_edge_app =  ----  
 .tmp$objectname = "f_URL.open_in_edge_app"
@@ -241,10 +241,10 @@ env1$env.internal$f_URL.open_in_edge_app <- function(URL) {
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#
-# # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (.Platform$OS.type == "windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
+# # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
 env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
     # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
-    URL %>% cat('if (.Platform$OS.type == "windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
+    URL %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }  \n', sep="")
 }
 # env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
 #     URL %>% cat('env1$env.internal$f_URL.open_in_edge_app("',.,'")  \n', sep="")
@@ -482,7 +482,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
     if (is.null(.path4APPDATA_RStudio)) {
-        if (.Platform$OS.type == "windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
+        if (Sys.info()["sysname"] == "Windows") {.path4APPDATA_RStudio = file.path(Sys.getenv("APPDATA"), "RStudio")} else if (.Platform$OS.type == "unix") {.path4APPDATA_RStudio = "~/.config/rstudio"}
     }
     
     # Create the templates directory if it doesn't exist
@@ -507,7 +507,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename), destfile = file.path(env1$path$path1,.sourcename))
     
     
-    if (.Platform$OS.type == "windows") {
+    if (Sys.info()["sysname"] == "Windows") {
         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
         # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
         for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
