@@ -225,6 +225,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
 options(width=120)
 # https://chatgpt.com/c/828c4e1f-d439-4c50-8a35-4cbea4f713fe
 # https://chatgpt.com/c/bd748750-df70-466d-ad49-39414d6041fc
+# https://chatgpt.com/c/66f605cf-6be4-800e-88a3-e8e23a7cb379
 ```
   
 
@@ -242,12 +243,13 @@ options(width=120)
 ```
   
   
-# @@ START) dev) f_chr.escape_special_characters ----  
+# @@ START) dev) f_chr.f_path.escape_special_characters ----  
+## :: vec_path.test =
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 
-vec_str.test = 
+vec_path.test = 
     c("D:\\OneDrive\\[Rproject]\\github",
       "D:/OneDrive/[Rproject]/github",
       "D:/OneDrive/{Rproject}/github",
@@ -259,63 +261,210 @@ vec_str.test =
       "D:/OneDrive/R$project/github",
       "D:/OneDrive/R|project/github",
       "D:/OneDrive/R.project/github",
-      "D:/OneDrive/R-project/github")
+      "D:/OneDrive/R-project/github",
+      "D:/OneDrive/R project/github",
+      "my file (version).txt",
+      "alert!.sh",
+      "backup~2024.tar.gz",
+      "user@domain.com",
+      "price$100.txt",
+      "version.1.0",
+      "data[2024].csv",
+      "range-1.0",
+      "a+b^c")
 ```
 
 
-# \$ escape_special_characters.str_replace_all() 
+### \% f_path.escape_special_characters.str_replace_all() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Function to escape special characters in a string for use in regex
-escape_special_characters.str_replace_all <- function(string) {
-  string |> str_replace_all("([]\\[{}()+*?^$|.-])", "\\\\\\1")
+f_path.escape_special_characters.str_replace_all <- function(input_path) {
+  input_path |>  str_replace_all("([]\\[{}()+*?^$|.-])", "\\\\\\1")
 }
 
-result.str_replace_all = vec_str.test |> map(escape_special_characters.str_replace_all)
+result.str_replace_all = vec_path.test |> map(f_path.escape_special_characters.str_replace_all)
 result.str_replace_all |> str()
 ```
 
 
-# \$ escape_special_characters.str_replace_all_v2() 
+### \% f_path.escape_special_characters.str_replace_all_v2() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Function to escape special characters in a string for use in regex
-escape_special_characters.str_replace_all_v2 <- function(string) {
-  string |> str_replace_all("([\\[\\]{}()+*?^$|.-])", "\\\\\\1")
+f_path.escape_special_characters.str_replace_all_v2 <- function(input_path) {
+  input_path |>  str_replace_all("([\\[\\]{}()+*?^$|.-])", "\\\\\\1")
 }
 
-result.str_replace_all = vec_str.test |> map(escape_special_characters.str_replace_all_v2)
+result.str_replace_all = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_v2)
 result.str_replace_all |> str()
 result.str_replace_all |> identical(result.str_replace_all)
 ```
   
   
-# \$ escape_special_characters.gsub() 
+### \% f_path.escape_special_characters.gsub() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 # Function to escape special characters in a string for use in regex
-escape_special_characters.gsub <- function(string) {
+f_path.escape_special_characters.gsub <- function(input_path) {
   gsub("([][{}()+*?^$|.-])", "\\\\\\1", string)
 }
 
-result.gsub = vec_str.test |> map(escape_special_characters.gsub)
+result.gsub = vec_path.test |> map(f_path.escape_special_characters.gsub)
 result.gsub |> str()
 result.gsub |> identical(result.str_replace_all)
 ```
 
 
-# \$ escape_special_characters.gsub_v2() 
+### \% f_path.escape_special_characters.gsub_v2() 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-library(stringr)
+# library(stringr)
+# 
+# # Function to escape special characters in a string for use in regex
+# f_path.escape_special_characters.gsub_v2 <- function(input_path) {
+#     # gsub("([\\[\\]{}()+*^$|.])", "\\\\\\1", string)
+#     # gsub("([\\[\\]\\{\\}()+*^$|.])", "\\\\\\1", string)
+#     gsub("([\\[\\]\\{\\}()+*?^$|.])", "\\\\\\1", string)
+#     # it works without errors in some regex engines, treating { and } as literal characters.
+#     # However, in R's default TRE engine, the { and } characters have special meanings (they denote quantifiers like {n}, {n,}, etc.). When these characters are placed inside a character class ([]) without proper escaping, TRE can misinterpret them, leading to compilation errors such as:
+# }
+# 
+# result.gsub_v2 = vec_path.test |> map(f_path.escape_special_characters.gsub_v2)
+# result.gsub_v2 |> str()
+# result.gsub_v2 |> identical(result.str_replace_all)
+# 
+# # > result.gsub_v2 = vec_path.test |> map(f_path.escape_special_characters.gsub_v2)
+# # Warning: TRE pattern compilation error 'Invalid use of repetition operators'Error in `map()`:
+# # ℹ In index: 1.
+# # Caused by error in `gsub()`:
+# # ! invalid regular expression '([\[\]\{\}()+*?^$|.])', reason 'Invalid use of repetition operators'
+# # Backtrace:
+# #  1. purrr::map(vec_path.test, f_path.escape_special_characters.gsub_v2)
+# #  2. purrr:::map_("list", .x, .f, ..., .progress = .progress)
+# #  6. global .f(.x[[i]], ...)
+# #  7. base::gsub("([\\[\\]\\{\\}()+*?^$|.])", "\\\\\\1", string)
+```
+  
+  
 
-# Function to escape special characters in a string for use in regex
-escape_special_characters.gsub_v2 <- function(string) {
-  gsub("([\\[\\]{}()+*^$|.])", "\\\\\\1", string)
+### \% f_path.escape_special_characters.manual() 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+f_path.escape_special_characters.manual <- function(input_path) {
+    specials <- c("\\", ".", "?", "+", "*", "^", "$", "(", ")", "[", "]", "{", "}", "|", "-")
+    for (char in specials) {
+        # Replace the character with a backslash followed by the character
+        # Since `fixed = TRUE`, `pattern` should be the character itself
+        # `replacement` should be "\\" + char, which in R string is "\\\\ + char"
+        # string <- gsub(char, paste0("\\\\", char), string, fixed = TRUE)
+        string <- gsub(char, paste0("\\", char), string, fixed = TRUE)
+    }
+    return(string)
 }
 
-result.gsub_v2 = vec_str.test |> map(escape_special_characters.gsub_v2)
-result.gsub_v2 |> str()
-result.gsub_v2 |> identical(result.str_replace_all)
+# Apply the function using purrr::map
+result.manual <- vec_path.test |> map(f_path.escape_special_characters.manual)
+result.manual |> str()
+result.manual |> identical(result.str_replace_all)
+```
+
+  
+##@ https://github.com/rstudio/rmarkdown/blob/main/R/util.R ----  
+## :: .shell_chars_regex <- '[ <>()|\\:&;#?*\']'
+### \% file_name_without_shell_chars() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+# Regular expression representing characters likely to be considered special by
+# the shell (require quoting/escaping)
+.shell_chars_regex <- '[ <>()|\\:&;#?*\']'
+
+file_name_without_shell_chars <- function(file) {
+  name <- gsub(.shell_chars_regex, '-', basename(file))
+  dir <- dirname(file)
+  if (nzchar(dir) && !identical(dir, "."))
+    file.path(dir, name)
+  else
+    name
+}
+vec_path.test |> map(file_name_without_shell_chars) |> str()
+
+
+improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
+# Function to escape special characters in a string for use in regex
+f_path.escape_special_characters.str_replace_all_improved <- function(input_path) {
+  input_path |>  str_replace_all(improved_shell_regex, "\\\\\\&")
+}
+
+result.str_replace_all_improved = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_improved)
+result.str_replace_all_improved |> str()
+```
+  
+  
+### \% f_path.escape_special_characters.shell_chars_regex() 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+# Regular expression representing characters likely to be considered special by
+# the shell (require quoting/escaping)
+.shell_chars_regex <- '[ <>()|\\:&;#?*\']'
+
+f_path.escape_special_characters.shell_chars_regex <- function(input_path) {
+  input_path |>  str_replace_all(.shell_chars_regex, "\\\\\\&")
+}
+
+f_path.escape_special_characters.shell_chars_regex = vec_path.test |> map(f_path.escape_special_characters.shell_chars_regex)
+f_path.escape_special_characters.shell_chars_regex |> str()
+```
+
+
+##@ https://chatgpt.com/c/66f601c7-8c30-800e-8e13-499fee371a88 ----  
+## :: improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
+### \% f_path.escape_special_characters.gsub_improved() 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
+# Function to escape special characters in a string for use in regex
+f_path.escape_special_characters.str_replace_all_improved <- function(input_path) {
+  input_path |>  str_replace_all(improved_shell_regex, "\\\\\\&")
+}
+
+result.str_replace_all_improved = vec_path.test |> map(f_path.escape_special_characters.str_replace_all_improved)
+result.str_replace_all_improved |> str()
+```
+
+
+### \% f_path.escape_special_characters.gsub_improved() 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# options(width=120)
+# improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
+# # Function to escape special characters in a string for use in regex
+# f_path.escape_special_characters.gsub_improved <- function(input_path) {
+#   gsub(improved_shell_regex, "\\\\\\&", string)
+# }
+# 
+# result.gsub_improved = vec_path.test |> map(f_path.escape_special_characters.gsub_improved)
+# result.gsub_improved |> str()
+# result.gsub_improved |> identical(result.str_replace_all)
+# # Warning: TRE pattern compilation error 'Invalid contents of {}'Error in `map()`:
+# # ℹ In index: 1.
+# # Caused by error in `gsub()`:
+# # ! invalid regular expression '[<>()|&;!$`\\'"*?\[\]{}~#^%+=,:/@]', reason 'Invalid contents of {}'
+# # Backtrace:
+# #  1. purrr::map(vec_path.test, f_path.escape_special_characters.gsub_improved)
+# #  2. purrr:::map_("list", .x, .f, ..., .progress = .progress)
+# #  6. global .f(.x[[i]], ...)
+# #  7. base::gsub(improved_shell_regex, "\\\\\\1", string)
+# # Error in map(vec_path.test, f_path.escape_special_characters.gsub_improved) : 
+# # Caused by error in `gsub()`:
+# # ! invalid regular expression '[<>()|&;!$`\\'"*?\[\]{}~#^%+=,:/@]', reason 'Invalid contents of {}'
+```
+  
+  
+## :: improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
 ```
   
   
@@ -325,7 +474,42 @@ options(width=120)
 
 ```
   
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
 
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 ###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
