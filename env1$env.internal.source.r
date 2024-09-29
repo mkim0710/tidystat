@@ -455,18 +455,18 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
             files_are_identical <- env1$env.internal$f_file2.compare(destfile, temp_file, chunk_size)
             
             if (files_are_identical) {
-                message(paste("No update needed for:", destfile))
+                message(paste0("No update needed for: ", destfile))
                 return(FALSE)
             }
         }
         
         # If files are different or local file doesn't exist, proceed with the download
         file.copy(from = temp_file, to = destfile, overwrite = TRUE)
-        message(paste("Downloaded updated file:", destfile))
+        message(paste0("Downloaded & updated: ", destfile))
         return(TRUE)
         
     }, error = function(e) {
-        message(paste("Failed to download or update:", url))
+        message(paste0("Failed to download or update: ", url))
         message("Error:", e$message)
         return(FALSE)
     })
