@@ -561,41 +561,35 @@ for(.packagename in c("flexlsx")) {if(!require(.packagename,character.only=TRUE)
 ### \% |> wb_workbook()$add_worksheet() ----  
 ### \% |> wb_add_flextable() ----  
 ### \% |> wb$save() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# if (Sys.getenv("PARENT_RENDERING") != "YES") {
-#     .ft = flextable1
-#     .wb <- openxlsx2::wb_workbook()$add_worksheet("flextable")
-#     
-#     # add the flextable ft to the workbook, sheet "flextable"
-#     # offset the table to cell 'C2'
-#     .wb <- wb_add_flextable(.wb, "flextable", .ft, dims = "C2")
-#     
-#     .wb %>% str(max.level = 2)
-#     
-#     # save the workbook to a temporary xlsx file
-#     .tmpfile <- tempfile(fileext = ".xlsx")
-#     .wb$save(.tmpfile)
-#     if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.tmpfile)
-# }
-
+```{r wb-save-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     .wb <- openxlsx2::wb_workbook()
-    
-    for (.objectname in c("GermanBreastCancerStudyGroup", "table1_print_df")) {    # name of the data.frame object  
+
+    .names4data.frame = if(exists("MetaData")) {
+        MetaData$DataSetNames |> names()
+    } else mget(ls()) |> keep(is.data.frame) |> names()
+    cat(".names4data.frame == ", deparse(.names4data.frame), "  \n", sep="")
+    # for (.objectname in .names4data.frame) {    # name of the data.frame object
+    #     .wb$add_worksheet(.objectname)  # make sheet name same as .objectname
+    #     .wb$add_data(.objectname, get(.objectname), start_col = 2, start_row = 3, row_names = TRUE)    # offset the table to cell 'C2'
+    # }
+
+    .names4flextable = mget(ls()) |> purrr::keep(~"flextable" %in% class(.x)) |> names()
+    cat(".names4flextable == ", deparse(.names4flextable), "  \n", sep="")
+    for (.objectname in .names4flextable) {    # name of the flextable object
         .wb$add_worksheet(.objectname)  # make sheet name same as .objectname
-        .wb$add_data(.objectname, get(.objectname), start_col = 2, start_row = 3, row_names = TRUE)    # offset the table to cell 'C2'
-    }
-    
-    for (.objectname in c("flextable1")) {    # name of the flextable object  
-        .wb$add_worksheet(.objectname)  # make sheet name same as .objectname
-        .wb <- .wb %>% wb_add_flextable(.objectname, get(.objectname), start_col = 2, start_row = 3)    # offset the table to cell 'C2'
+        .wb <- .wb %>% flexlsx::wb_add_flextable(.objectname, get(.objectname), start_col = 2, start_row = 3)    # offset the table to cell 'C2'
     }
 
-    .path4write = getwd()
+    # .path.file <- tempfile(fileext = ".xlsx")
+    .path4write = env1$path$path1
     .CurrentSource.path.filename = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$","")
     .path.file = paste0(.path4write,"/",.CurrentSource.path.filename,".xlsx")
     .wb$save(.path.file)
+    cat(".path.file == ", deparse(.path.file), "  \n", sep="")
     if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.file)
+    paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 }
 ```
 
