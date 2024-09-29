@@ -369,21 +369,7 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 ```
-  
-  
-```{r updateTemplateNotebook-NoEchoNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="hide", collapse=TRUE, paged.print=FALSE}
-if (Sys.info()["sysname"] == "Windows") {
-    .sourcename = "templates-00env1.minimum-Chunks" |> paste0(".source.r"); .subpath=r"(rstudio-prefs/templates)"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
-    #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-    ## env1\$path\$CurrentSource.path.filename.ext ====  
-    # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-    # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-    env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-    #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-    env1$env.internal$RmdChunk.updateTemplateNotebook(.CurrentSource.path.filename.ext = env1$path$CurrentSource.path.filename.ext)
-}
-### END-OF-CHUNK-updateTemplateNotebook
-```
+
   
   
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
