@@ -128,7 +128,7 @@ git push origin --force --mirror
 # 'echo "*.pdf" >> .gitignore' |> system(intern=TRUE) |> cat("  ", sep="  \n")
 # 'echo "*.pdf.xz" >> .gitignore' |> system(intern=TRUE) |> cat("  ", sep="  \n")
 # 'echo "*.pdf.gz" >> .gitignore' |> system(intern=TRUE) |> cat("  ", sep="  \n")
-".gitignore" |> file.edit()
+".gitignore" %>% {.[file.exists(.)]} |> file.edit()
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 ## @ #4-3. git add .gitignore ====  
 git add .gitignore
