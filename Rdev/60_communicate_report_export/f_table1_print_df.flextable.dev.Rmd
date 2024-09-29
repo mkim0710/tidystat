@@ -513,9 +513,93 @@ save_as_docx(flextable1, path = "library(flextable) flextable1.docx",
                                          gutter = 0)  # Small margins in inches and no gutter
              ))
 
+f_file.switch_open <- function(file) {
+    stopifnot(file.exists(file))
+    
+    file <- normalizePath(file, mustWork = TRUE)
+    
+    switch(Sys.info()["sysname"], 
+        Linux = {
+            app <- Sys.getenv("BROWSER", "xdg-open")
+            system2(app, file)
+        }, 
+        Windows = {
+            shell.exec(file)
+        }, 
+        Darwin = {
+            system2("open", shQuote(file))
+        }, 
+        stop("Operating system not handled: ", toString(userSystem))
+    )
+}
+env1$f$f_file.switch_open("library(flextable) flextable1.docx")
+```
+  
+ 
+  
+## library(openxlsx2) ----  
+## library(flextable) ----  
+## library(remotes) ----  
+## library(flexlsx) ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+for(.packagename in c("openxlsx2", "flextable")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
+
+# Warning in install.packages :
+#   package ‘flexlsx’ is not available for this version of R
+# 
+# A version of this package for your version of R might be available elsewhere,
+# see the ideas at
+# https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+
+for(.packagename in c("remotes")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
+
+for(.packagename in c("flexlsx")) {if(!require(.packagename,character.only=TRUE)) remotes::install_github("pteridin/flexlsx")  ;  library(.packagename,character.only=TRUE)}
 ```
   
   
+### \% |> wb_workbook()$add_worksheet() ----  
+### \% |> wb_add_flextable() ----  
+### \% |> wb$save() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# if (Sys.getenv("PARENT_RENDERING") != "YES") {
+#     .ft = flextable1
+#     .wb <- openxlsx2::wb_workbook()$add_worksheet("flextable")
+#     
+#     # add the flextable ft to the workbook, sheet "flextable"
+#     # offset the table to cell 'C2'
+#     .wb <- wb_add_flextable(.wb, "flextable", .ft, dims = "C2")
+#     
+#     .wb %>% str(max.level = 2)
+#     
+#     # save the workbook to a temporary xlsx file
+#     .tmpfile <- tempfile(fileext = ".xlsx")
+#     .wb$save(.tmpfile)
+#     if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.tmpfile)
+# }
+
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    .wb <- openxlsx2::wb_workbook()
+    
+    for (.objectname in c("GermanBreastCancerStudyGroup", "table1_print_df")) {    # name of the data.frame object  
+        .wb$add_worksheet(.objectname)  # make sheet name same as .objectname
+        .wb$add_data(.objectname, get(.objectname), start_col = 2, start_row = 3, row_names = TRUE)    # offset the table to cell 'C2'
+    }
+    
+    for (.objectname in c("flextable1")) {    # name of the flextable object  
+        .wb$add_worksheet(.objectname)  # make sheet name same as .objectname
+        .wb <- .wb %>% wb_add_flextable(.objectname, get(.objectname), start_col = 2, start_row = 3)    # offset the table to cell 'C2'
+    }
+
+    .path4write = getwd()
+    .CurrentSource.path.filename = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$","")
+    .path.file = paste0(.path4write,"/",.CurrentSource.path.filename,".xlsx")
+    .wb$save(.path.file)
+    if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.file)
+}
+```
+
+
 ###### \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
