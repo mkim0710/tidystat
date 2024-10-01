@@ -259,8 +259,11 @@ options(width=120)
 # @@ MetaData ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # .GlobalEnv$MetaData = list() ====  
-if(file.exists(env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"))) { 
-    MetaData = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds") |> read_rds() 
+env1$path$CurrentSource.path.filename.MetaData.rds = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
+if(file.exists(env1$path$CurrentSource.path.filename.MetaData.rds)) { 
+    MetaData = env1$path$CurrentSource.path.filename.MetaData.rds |> read_rds() 
+} else {
+    if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 } else {
     if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 }

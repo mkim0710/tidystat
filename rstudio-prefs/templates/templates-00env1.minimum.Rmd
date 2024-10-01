@@ -292,8 +292,11 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # @@ MetaData ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # .GlobalEnv$MetaData = list() ====  
-if(file.exists(env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"))) { 
-    MetaData = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds") |> read_rds() 
+env1$path$CurrentSource.path.filename.MetaData.rds = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
+if(file.exists(env1$path$CurrentSource.path.filename.MetaData.rds)) { 
+    MetaData = env1$path$CurrentSource.path.filename.MetaData.rds |> read_rds() 
+} else {
+    if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 } else {
     if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 }
@@ -634,12 +637,12 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 all.equal(.MetaData0, MetaData)
 if(!identical(.MetaData0, MetaData)) {
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "', env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), '", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
-    # cat('MetaData |> write_rds("', env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), '", compress = "xz") |> system.time()', "  \n", sep="")
-    # cat("'git add -f \"", env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds") ,"\"' |> system(intern=TRUE)  \n", sep="")
-    env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
-    MetaData |> write_rds(env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), compress = "xz") |> system.time()
-    paste0("git add -f ", env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds") |> shQuote()) |> system(intern=TRUE)
+    # cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "', env1$path$CurrentSource.path.filename.MetaData.rds, '", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
+    # cat('MetaData |> write_rds("', env1$path$CurrentSource.path.filename.MetaData.rds, '", compress = "xz") |> system.time()', "  \n", sep="")
+    # cat("'git add -f \"", env1$path$CurrentSource.path.filename.MetaData.rds ,"\"' |> system(intern=TRUE)  \n", sep="")
+    env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = env1$path$CurrentSource.path.filename.MetaData.rds, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
+    MetaData |> write_rds(env1$path$CurrentSource.path.filename.MetaData.rds, compress = "xz") |> system.time()
+    paste0("git add -f ", env1$path$CurrentSource.path.filename.MetaData.rds |> shQuote()) |> system(intern=TRUE)
 }
 ```
 
