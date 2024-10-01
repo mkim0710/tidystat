@@ -56,7 +56,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## \$ f_DataSet.table1.print.df =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"? Not Yet
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
-# /github_tidystat/Rdev/60_communicate_report_export/f_table1_print_df.flextable.source.r
+# /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
 .tmp$objectname = "f_DataSet.table1.print.df"
 .tmp$object  <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     library(tableone)
@@ -92,12 +92,12 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ f_table1_print_df.flextable =  ----  
+## \$ f_Table1_print_df.flextable =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
-# /github_tidystat/Rdev/60_communicate_report_export/f_table1_print_df.flextable.source.r
-.tmp$objectname = "f_table1_print_df.flextable"
-.tmp$object  <- function(table1_print_df, header_text, footer_text, 
+# /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
+.tmp$objectname = "f_Table1_print_df.flextable"
+.tmp$object  <- function(Table1_print_df, header_text, footer_text, 
                        font.family = "Times New Roman", font.size = 10, border.color = "black",
                        header.border.color = "red", background.color = "#f5f5f5") {
     library(flextable)
@@ -114,7 +114,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     header_text <- str_squish(str_remove(header_text, "\\n"))    # Remove newline characters and squish spaces in header_text
     footer_text <- str_squish(str_remove(footer_text, "\\n"))    # Remove newline characters and squish spaces in footer_text
     
-    flextable(table1_print_df) %>%    # Initialize a flextable object with the provided data frame (df)
+    flextable(Table1_print_df) %>%    # Initialize a flextable object with the provided data frame (df)
         add_header_lines(header_text) %>%    # Add a custom header line using the header_text
         add_footer_lines(footer_text) %>%    # Add a custom footer line using the footer_text
         bold(i = 1, part = "header") %>%    # Make the text in the first row of the header bold
