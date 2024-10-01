@@ -219,7 +219,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> 
 
 
 ## \$ DataSet.Date.NA.rmAllNA =  
-### |> env1$f$f_df.CreateTableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
+### |> env1\$f\$f_df.CreateTableOne_byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 DataSet.Date.NA.rmAllNA = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
