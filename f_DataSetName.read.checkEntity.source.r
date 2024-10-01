@@ -198,7 +198,6 @@ for (.dependancy in c("f_path.size_files")) {
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     return.list$dim = dim(get(DataSetName))
     if(print2console) cat("dim(",DataSetName,") == ",deparse(dim(get(DataSetName))),"  \n", sep="")
-    if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
     
     ## \% return.list$n_distinct ====
     # Error: attributes(get(DataSetName))$n_distinct = list()
