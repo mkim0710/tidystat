@@ -1002,10 +1002,13 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "> all.equal(.MetaData0, MetaData)" |> cat("  \n", sep="")
 all.equal(.MetaData0, MetaData)
 if(!identical(.MetaData0, MetaData)) {
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "',file.path(.path4read, "MetaData.rds"),'", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
-    cat('MetaData |> write_rds("',file.path(.path4read, "MetaData.rds"),'", compress = "xz") |> system.time()', "  \n", sep="")
-    cat("'git add -f \"",file.path(.path4read, "MetaData.rds"),"\"' |> system(intern=TRUE)  \n", sep="")
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    # cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "', env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), '", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
+    # cat('MetaData |> write_rds("', env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), '", compress = "xz") |> system.time()', "  \n", sep="")
+    # cat("'git add -f \"", env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds") ,"\"' |> system(intern=TRUE)  \n", sep="")
+    env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
+    MetaData |> write_rds(env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds"), compress = "xz") |> system.time()
+    paste0("git add -f ", env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds") |> shQuote()) |> system(intern=TRUE)
 }
 ```
 
