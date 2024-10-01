@@ -1,13 +1,13 @@
-# .sourcename = "f_df.CreateTableOne_byExposure.xlsx" |> paste0(".source.r")
-# f_df.CreateTableOne_byExposure.xlsx.dev.r
-# f_df.CreateTableOne_byExposure.xlsx.source.r
-# utils::browseURL("/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.r")
-# source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r"))
-# # source("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r")
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.dev.Rmd")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTableOne_byExposure.xlsx.source.r")
+# .sourcename = "f_df.CreateTable1byExposure.xlsx" |> paste0(".source.r")
+# f_df.CreateTable1byExposure.xlsx.dev.r
+# f_df.CreateTable1byExposure.xlsx.source.r
+# utils::browseURL("/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.dev.r")
+# source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r"))
+# # source("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r")
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.dev.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.dev.Rmd")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -106,7 +106,7 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 # @@ START) source -----  
 ## @ .subpath, .sourcename ======  
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
-.sourcename = "f_df.CreateTableOne_byExposure.xlsx" |> paste0(".source.r")
+.sourcename = "f_df.CreateTable1byExposure.xlsx" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); 
 cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); source( file.path(env1$path$source_base,.subpath.filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE
@@ -176,7 +176,7 @@ DataSet.Date.NA.rmAllNA %>%
         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-    ) |> env1$f$f_df.CreateTableOne_byExposure.xlsx(DataSetName.short = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
+    ) |> env1$f$f_df.CreateTable1byExposure.xlsx(DataSetName.short = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
 
 
 
@@ -197,43 +197,43 @@ library(tidyverse)
 library(tableone)
 
 ##@ DataSet.CreateTableOne -----  
-# # DataSet.TableOne = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
+# # DataSet.Table1 = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
-# DataSet.TableOne = DataSet.Date.NA.rmAllNA %>% 
+# DataSet.Table1 = DataSet.Date.NA.rmAllNA %>% 
 #     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 19) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
-# DataSet.is.na.TableOne = DataSet.Date.NA.rmAllNA %>% 
+# DataSet.is.na.Table1 = DataSet.Date.NA.rmAllNA %>% 
 #     map_df(is.na) %>% setNames(paste0(names(.), ".is.na")) %>% 
 #     as.data.frame %>%  # debug181115 not to remove numeric 
 #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 
 # Vars4IQR = names(DataSet.Date.NA.rmAllNA %>%)[DataSet.Date.NA.rmAllNA %>% map_lgl(is.numeric)]
 
-# sink(paste0(.path4write,"/","DataSet.TableOne.txt"), append = FALSE)
-# DataSet.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
+# sink(paste0(.path4write,"/","DataSet.Table1.txt"), append = FALSE)
+# DataSet.Table1 |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
 # sink()
-# sink(paste0(.path4write,"/","DataSet.TableOne.IQR.txt"), append = FALSE)
-# DataSet.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---  
+# sink(paste0(.path4write,"/","DataSet.Table1.IQR.txt"), append = FALSE)
+# DataSet.Table1 |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---  
 # sink()
 
 
 # # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ---  
-# DataSet.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
-#     write.csv("DataSet.TableOne -clean.csv")
-# DataSet.is.na.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
-#     write.csv("DataSet.is.na.TableOne -clean.csv")
-# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.TableOne -clean.csv")
+# DataSet.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+#     write.csv("DataSet.Table1 -clean.csv")
+# DataSet.is.na.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+#     write.csv("DataSet.is.na.Table1 -clean.csv")
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.Table1 -clean.csv")
 
 # list(
-#     TableOne = DataSet.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
-#     , TableOne.IQR = DataSet.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
-#     , is.na.TableOne = DataSet.is.na.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
-# ) %>% openxlsx2::write_xlsx("DataSet.TableOne.xlsx")
-# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.TableOne.xlsx")
+#     Table1 = DataSet.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
+#     , Table1.IQR = DataSet.Table1 |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
+#     , is.na.Table1 = DataSet.is.na.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column()
+# ) %>% openxlsx2::write_xlsx("DataSet.Table1.xlsx")
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.Table1.xlsx")
 
 
 
-## @ DataSet.TableOne.byExposure -----  
+## @ DataSet.Table1.byExposure -----  
 DataSet.Date.NA.rmAllNA %>% summarise_all(function(x) sum(is.na(x))) %>% t #---
 DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
     mutate(Intervention.ge1 = !BMI_ge300) %>% 
@@ -246,18 +246,18 @@ DataSet.Date.NA.rmAllNA.select %>% summarise_all(function(x) sum(is.na(x))) %>% 
 VarNames4Exposure =  c("InterventionGroup")
 DataSetName = "DataSet.Date.NA.rmAllNA"
 DataSetName.select = paste0(DataSetName,".select")
-DataSetName.TableOne_byExposure = paste0(DataSetName,".TableOne_by", VarNames4Exposure)
-DataSetName.is.na.TableOne_byExposure = paste0(DataSetName,".is.na.TableOne_by", VarNames4Exposure)
+DataSetName.Table1byExposure = paste0(DataSetName,".Table1by", VarNames4Exposure)
+DataSetName.is.na.Table1byExposure = paste0(DataSetName,".is.na.Table1by", VarNames4Exposure)
 DataSetName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
-DataSetName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
-DataSetName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
+DataSetName.Table1byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
+DataSetName.is.na.Table1byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") 
                               
-assign(DataSetName.TableOne_byExposure, 
+assign(DataSetName.Table1byExposure, 
        get(DataSetName.select) %>% 
            {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
            CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 )
-assign(DataSetName.is.na.TableOne_byExposure, 
+assign(DataSetName.is.na.Table1byExposure, 
        get(DataSetName.select) %>% 
            {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} %>%
            map_df(is.na) %>% setNames(paste0(names(.), ".is.na") |> str_replace_all("\\`", "")) %>%  # debug) Error in parse(text = x, keep.source = FALSE)
@@ -268,44 +268,44 @@ assign(DataSetName.is.na.TableOne_byExposure,
 )
 
 Vars4IQR = names(get(DataSetName.select))[get(DataSetName.select) %>% map_lgl(is.numeric)]
-# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
-# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---  
-# get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
-sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.TableOne_byExposure, " -AllLevels.txt"), append = FALSE)
-get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+# get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
+# get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---  
+# get(DataSetName.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---  
+sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.Table1byExposure, " -AllLevels.txt"), append = FALSE)
+get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 sink()
-sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.TableOne_byExposure, " -AllLevels -IQR.txt"), append = FALSE)
-get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
+sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.Table1byExposure, " -AllLevels -IQR.txt"), append = FALSE)
+get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
-sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.is.na.TableOne_byExposure, " -AllLevels(is.na).txt"), append = FALSE)
-get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.is.na.Table1byExposure, " -AllLevels(is.na).txt"), append = FALSE)
+get(DataSetName.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 sink()
 
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ---            
-DataSet.is.na.TableOne_byExposure.print = get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-DataSet.is.na.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ---
+DataSet.is.na.Table1byExposure.print = get(DataSetName.is.na.Table1byExposure) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.is.na.Table1byExposure.print |> print(n=5) ###### |> print(n=5) ---
 
-DataSet.TableOne_byExposure.print = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-DataSet.TableOne_byExposure.print_showAllLevels = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-DataSet.TableOne_byExposure.print_showAllLevels.IQR = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-DataSet.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ---
-DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ---
-DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ---
+DataSet.Table1byExposure.print = get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.Table1byExposure.print_showAllLevels = get(DataSetName.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.Table1byExposure.print_showAllLevels.IQR = get(DataSetName.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.Table1byExposure.print |> print(n=5) ###### |> print(n=5) ---
+DataSet.Table1byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ---
+DataSet.Table1byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ---
               
-# DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
-# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
-# DataSet.TableOne_byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -AllLevels -clean.xlsx"))
-# DataSet.TableOne_byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -AllLevels -IQR -clean.xlsx"))
-# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -IQR -clean.xlsx"))
+# DataSet.Table1byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.Table1byExposure, " -clean.xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Table1byExposure, " -clean.xlsx"))
+# DataSet.Table1byExposure.print_showAllLevels %>% writexl::write_xlsx(paste0(DataSetName.Table1byExposure, " -AllLevels -clean.xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Table1byExposure, " -AllLevels -clean.xlsx"))
+# DataSet.Table1byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.Table1byExposure, " -AllLevels -IQR -clean.xlsx"))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Table1byExposure, " -IQR -clean.xlsx"))
 
 
 
 
 # @@ START) function -----  
-function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
-    DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
+function.DataSet.Table1byExposure.print.addCols = function(DataSet.Table1byExposure.print) {
+    DataSet.Table1byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
@@ -348,8 +348,8 @@ function.df.edit_Label_Level = function(df) {
     df
 }
 
-function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
-    DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
+function.DataSet.Table1byExposure.print_showAllLevels.addCols = function(DataSet.Table1byExposure.print_showAllLevels) {
+    DataSet.Table1byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
@@ -373,12 +373,12 @@ function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(Data
 }
 
 list(
-    byExposure = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
-    , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
-    , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
-    # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
-) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+    byExposure = DataSet.Table1byExposure.print %>% function.DataSet.Table1byExposure.print.addCols %>% function.df.edit_Label_Level
+    , byExposure.AllLevels = DataSet.Table1byExposure.print_showAllLevels %>% function.DataSet.Table1byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+    , byExposure.IQR = DataSet.Table1byExposure.print_showAllLevels.IQR
+    # , is.na.byExposure = DataSet.is.na.Table1byExposure.print
+) %>% writexl::write_xlsx(paste0(DataSetName.Table1byExposure, "(list).xlsx"))
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Table1byExposure, "(list).xlsx"))
 
 
 
@@ -392,8 +392,8 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Ta
 
 
 ## @ dev -----------  
-function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
-    DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
+function.DataSet.Table1byExposure.print.addCols = function(DataSet.Table1byExposure.print) {
+    DataSet.Table1byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
@@ -416,9 +416,9 @@ function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_b
         as_tibble
 }
 
-DataSet.TableOne_byExposure.print.addCols = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols
-DataSet.TableOne_byExposure.print.addCols |> print(n=999) #---
-# > DataSet.TableOne_byExposure.print.addCols = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols
+DataSet.Table1byExposure.print.addCols = DataSet.Table1byExposure.print %>% function.DataSet.Table1byExposure.print.addCols
+DataSet.Table1byExposure.print.addCols |> print(n=999) #---
+# > DataSet.Table1byExposure.print.addCols = DataSet.Table1byExposure.print %>% function.DataSet.Table1byExposure.print.addCols
 # Warning messages:
 # 1: Expected 2 pieces. Additional pieces discarded in 21 rows [26, 27, 28, 29, 30, 31, 32, 41, 42, 43, 79, 80, 81, 82, 83, 122, 136, 139, 140, 154, ...]. 
 # 2: Expected 2 pieces. Additional pieces discarded in 21 rows [26, 27, 28, 29, 30, 31, 32, 41, 42, 43, 79, 80, 81, 82, 83, 122, 136, 139, 140, 154, ...]. 
@@ -432,7 +432,7 @@ DataSet.TableOne_byExposure.print.addCols |> print(n=999) #---
 # 8: Problem with `mutate()` input `smd`.
 # i NAs introduced by coercion
 # i Input `smd` is `as.numeric(SMD)`. 
-# > DataSet.TableOne_byExposure.print.addCols |> print(n=999) #---  
+# > DataSet.Table1byExposure.print.addCols |> print(n=999) #---  
 # # A tibble: 157 x 28
 #       `#` `#2`  Class VarType Variable                               level          Label Level Overall                `Group 1`           `Group 2`             SMD      `p-value` star      smd       p test   greatest G1geG2 G1leG2 G1mean   G1sd G2mean  G2sd    G1n G1prop    G2n G2prop
 #     <int> <chr> <chr> <chr>   <chr>                                  <chr>          <chr> <chr> <chr>                  <chr>               <chr>                 <chr>    <chr>     <chr>   <dbl>   <dbl> <chr>  <chr>    <lgl>  <lgl>   <dbl>  <dbl>  <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -468,9 +468,9 @@ function.df.edit_Label_Level = function(df) {
     df
 }
 
-DataSet.TableOne_byExposure.print.addCols.edit = DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
-DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #---
-# > DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #---  
+DataSet.Table1byExposure.print.addCols.edit = DataSet.Table1byExposure.print.addCols %>% function.df.edit_Label_Level
+DataSet.Table1byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #---
+# > DataSet.Table1byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(n=999) #---  
 # # A tibble: 157 x 11
 #       `#` `#2`  Class VarType Variable                               level          Label                              Level                Overall                `Group 1`           `Group 2`            
 #     <int> <chr> <chr> <chr>   <chr>                                  <chr>          <chr>                              <chr>                <chr>                  <chr>               <chr>                
@@ -516,8 +516,8 @@ DataSet.TableOne_byExposure.print.addCols.edit %>% select(1:`Group 2`) |> print(
                
 
 
-DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #---
-# > DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #---  
+DataSet.Table1byExposure.print_showAllLevels |> print(n=9) #---
+# > DataSet.Table1byExposure.print_showAllLevels |> print(n=9) #---  
 # # A tibble: 168 x 8
 #   Variable           level    Overall       Male           Female         p        test  SMD    
 #   <chr>              <chr>    <chr>         <chr>          <chr>          <chr>    <chr> <chr>  
@@ -532,8 +532,8 @@ DataSet.TableOne_byExposure.print_showAllLevels |> print(n=9) #---
 # 9 ""                 "6"      59620 (21.0)  18044 (12.2)   41576 (30.6)   ""       ""    ""     
 # # ... with 159 more rows
 
-function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
-    DataSet.TableOne_byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
+function.DataSet.Table1byExposure.print_showAllLevels.addCols = function(DataSet.Table1byExposure.print_showAllLevels) {
+    DataSet.Table1byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
         select(-p, -test, p, test) %>%
         {names(.)[!names(.) %in% c("Variable", "level", "Overall", "SMD", "p", "test")] = paste0("Group ", 1:(ncol(.)-6));.} %>% 
@@ -555,9 +555,9 @@ function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(Data
         add_column(Label = "", Level = "", .before = "Overall") %>% 
         as_tibble
 }
-DataSet.TableOne_byExposure.print_showAllLevels.addCols = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
-DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #---
-# > DataSet.TableOne_byExposure.print_showAllLevels.addCols = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+DataSet.Table1byExposure.print_showAllLevels.addCols = DataSet.Table1byExposure.print_showAllLevels %>% function.DataSet.Table1byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+DataSet.Table1byExposure.print_showAllLevels.addCols |> print(n=999) #---
+# > DataSet.Table1byExposure.print_showAllLevels.addCols = DataSet.Table1byExposure.print_showAllLevels %>% function.DataSet.Table1byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
 # Warning messages:
 # 1: Expected 2 pieces. Additional pieces discarded in 21 rows [25, 26, 27, 28, 29, 30, 31, 39, 40, 41, 70, 71, 72, 73, 74, 118, 139, 144, 145, 164, ...]. 
 # 2: Expected 2 pieces. Additional pieces discarded in 21 rows [25, 26, 27, 28, 29, 30, 31, 39, 40, 41, 70, 71, 72, 73, 74, 118, 139, 144, 145, 164, ...]. 
@@ -569,7 +569,7 @@ DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #---
 # 6: Problem with `mutate()` input `smd`.
 # i NAs introduced by coercion
 # i Input `smd` is `as.numeric(SMD)`. 
-# > DataSet.TableOne_byExposure.print_showAllLevels.addCols |> print(n=999) #---  
+# > DataSet.Table1byExposure.print_showAllLevels.addCols |> print(n=999) #---  
 # # A tibble: 169 x 28
 #       `#` `#2`  Class VarType Variable                level           Label                    Level           Overall          `Group 1`      `Group 2`       SMD    `p-value` star      smd       p test  greatest G1geG2 G1leG2 G1mean   G1sd G2mean  G2sd    G1n G1prop    G2n G2prop
 #     <int> <chr> <chr> <chr>   <chr>                   <chr>           <chr>                    <chr>           <chr>            <chr>          <chr>           <chr>  <chr>     <chr>   <dbl>   <dbl> <chr> <chr>    <lgl>  <lgl>   <dbl>  <dbl>  <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -636,34 +636,34 @@ DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate(
 
 ## @ DataSet.CreateTableOne.by_MissingPattern -----  
 VarNames4MissingPattern =  c("MissingPattern")
-# DataSet.TableOne_by_MissingPattern = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
+# DataSet.Table1by_MissingPattern = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 #     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
-DataSet.TableOne_by_MissingPattern = DataSet.Date.NA.rmAllNA %>% 
+DataSet.Table1by_MissingPattern = DataSet.Date.NA.rmAllNA %>% 
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
 Vars4IQR = names(DataSet.Date.NA.rmAllNA)[DataSet.Date.NA.rmAllNA %>% map_lgl(is.numeric)]
 
-sink(paste0(.path4write,"/","DataSet.TableOne_by_MissingPattern.txt"), append = FALSE)
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
-sink(paste0(.path4write,"/","DataSet.TableOne_by_MissingPattern.IQR.txt"), append = FALSE)
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
+sink(paste0(.path4write,"/","DataSet.Table1by_MissingPattern.txt"), append = FALSE)
+DataSet.Table1by_MissingPattern |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+sink(paste0(.path4write,"/","DataSet.Table1by_MissingPattern.IQR.txt"), append = FALSE)
+DataSet.Table1by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
 
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ---  
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
-    write.csv("DataSet.TableOne_by_MissingPattern -clean.csv")
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.TableOne_by_MissingPattern -clean.csv")
-# DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
-#     openxlsx2::write_xlsx("DataSet.TableOne_by_MissingPattern -clean.xlsx")
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.TableOne_by_MissingPattern -clean.xlsx")
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+DataSet.Table1by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
+    write.csv("DataSet.Table1by_MissingPattern -clean.csv")
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.Table1by_MissingPattern -clean.csv")
+# DataSet.Table1by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
+#     openxlsx2::write_xlsx("DataSet.Table1by_MissingPattern -clean.xlsx")
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.Table1by_MissingPattern -clean.xlsx")
+DataSet.Table1by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
-    openxlsx2::write_xlsx("DataSet.TableOne_by_MissingPattern.xlsx")
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.TableOne_by_MissingPattern.xlsx")
-DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
-    openxlsx2::write_xlsx("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.TableOne_by_MissingPattern.IQR.xlsx")
+    openxlsx2::write_xlsx("DataSet.Table1by_MissingPattern.xlsx")
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.Table1by_MissingPattern.xlsx")
+DataSet.Table1by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
+    openxlsx2::write_xlsx("DataSet.Table1by_MissingPattern.IQR.xlsx")
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.Table1by_MissingPattern.IQR.xlsx")
 
 
 
@@ -727,64 +727,64 @@ DataSet.svydesign = DataSet.Date.NA.rmAllNA %>% svydesign(id = ~PrimarySamplingU
 
 
 ## @ DataSet.svydesign.svyCreateTableOne -----  
-DataSet.svydesign.TableOne = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
+DataSet.svydesign.Table1 = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
-sink(paste0(.path4write,"/","DataSet.svydesign.TableOne.txt"), append = FALSE)
-DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
-sink(paste0(.path4write,"/","DataSet.svydesign.TableOne.IQR.txt"), append = FALSE)
-DataSet.svydesign.TableOne |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
+sink(paste0(.path4write,"/","DataSet.svydesign.Table1.txt"), append = FALSE)
+DataSet.svydesign.Table1 |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+sink(paste0(.path4write,"/","DataSet.svydesign.Table1.IQR.txt"), append = FALSE)
+DataSet.svydesign.Table1 |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
-    write.csv("DataSet.svydesign.TableOne -clean.csv")
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne -clean.csv")
-# DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
-#     openxlsx2::write_xlsx("DataSet.svydesign.TableOne -clean.xlsx")
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne -clean.xlsx")
-DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
-    openxlsx2::write_xlsx("DataSet.svydesign.TableOne.xlsx")
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne.xlsx")
-DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
-    openxlsx2::write_xlsx("DataSet.svydesign.TableOne.IQR.xlsx")
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne.IQR.xlsx")
+DataSet.svydesign.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% 
+    write.csv("DataSet.svydesign.Table1 -clean.csv")
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1 -clean.csv")
+# DataSet.svydesign.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
+#     openxlsx2::write_xlsx("DataSet.svydesign.Table1 -clean.xlsx")
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1 -clean.xlsx")
+DataSet.svydesign.Table1 |> print(showAllLevels = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% 
+    openxlsx2::write_xlsx("DataSet.svydesign.Table1.xlsx")
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1.xlsx")
+DataSet.svydesign.Table1 |> print(showAllLevels = F, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
+    openxlsx2::write_xlsx("DataSet.svydesign.Table1.IQR.xlsx")
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1.IQR.xlsx")
 
 
 ## @ DataSet.svydesign.svyCreateTableOne.byExposure -----  
 VarNames4Exposure =  c("treatment")
-# DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
+# DataSet.svydesign.Table1byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
 #     svyCreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 # # Error in dimnames(x) <- dn : 
 # #   length of 'dimnames' [2] not equal to array extent
-DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
+DataSet.svydesign.Table1byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(strata = VarNames4Exposure, data = ., test = T)
 Vars4IQR = names(DataSet.svydesign)[DataSet.svydesign %>% map_lgl(is.numeric)]
 
-sink(paste0(.path4write,"/","DataSet.svydesign.TableOne_byExposure.txt"), append = FALSE)
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
-sink(paste0(.path4write,"/","DataSet.svydesign.TableOne_byExposure.IQR.txt"), append = FALSE)
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
+sink(paste0(.path4write,"/","DataSet.svydesign.Table1byExposure.txt"), append = FALSE)
+DataSet.svydesign.Table1byExposure |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+sink(paste0(.path4write,"/","DataSet.svydesign.Table1byExposure.IQR.txt"), append = FALSE)
+DataSet.svydesign.Table1byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ---
 sink()
                
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1))
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
-    write.csv("DataSet.svydesign.TableOne_byExposure -clean.csv")
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne_byExposure -clean.csv")
-# DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
-#     openxlsx2::write_xlsx("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne_byExposure -clean.xlsx")
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
+DataSet.svydesign.Table1byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>%
+    write.csv("DataSet.svydesign.Table1byExposure -clean.csv")
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1byExposure -clean.csv")
+# DataSet.svydesign.Table1byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>%
+#     openxlsx2::write_xlsx("DataSet.svydesign.Table1byExposure -clean.xlsx")
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1byExposure -clean.xlsx")
+DataSet.svydesign.Table1byExposure |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) %>% as.data.frame(stringsAsFactors = F) |> rownames_to_column() %>% {.[1, 6]="=NUMBERVALUE(MID(B2,1,SEARCH(\"(\",B2,1)-1))"; .} %>% 
     mutate(Group0 = `Group 0`, Group1 = `Group 1`) %>% separate(Group0, into = paste0("Group0", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% separate(Group1, into = paste0("Group1", c("mean", "sd", "larger")), sep = "[\\(\\)]") %>% mutate(Group0mean = Group0mean %>% as.numeric, Group1mean = Group1mean %>% as.numeric, Group0sd = Group0sd %>% as.numeric, Group1sd = Group1sd %>% as.numeric, Group0larger = ifelse(Group0mean>Group1mean, 1, 0), Group1larger = ifelse(Group0mean<Group1mean, 1, 0)) %>%  # debug181115 mutate(Group0 = `Group 0`, Group1 = `Group 1`)
-    openxlsx2::write_xlsx("DataSet.svydesign.TableOne_byExposure.xlsx")
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne_byExposure.xlsx")
-DataSet.svydesign.TableOne_byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
-    openxlsx2::write_xlsx("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne_byExposure.IQR.xlsx")
+    openxlsx2::write_xlsx("DataSet.svydesign.Table1byExposure.xlsx")
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1byExposure.xlsx")
+DataSet.svydesign.Table1byExposure |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as.data.frame() |> rownames_to_column() %>% 
+    openxlsx2::write_xlsx("DataSet.svydesign.Table1byExposure.IQR.xlsx")
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Table1byExposure.IQR.xlsx")
 
 
 

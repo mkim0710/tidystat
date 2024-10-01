@@ -260,7 +260,7 @@ env0 = env1
 
   
 # @@ START) function ----  
-## @ f_df.CreateTableOne_byExposure.xlsx.dev.r  
+## @ f_df.CreateTable1byExposure.xlsx.dev.r  
 ```{r EchoNoEval, eval=FALSE, echo=TRUE}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -277,28 +277,28 @@ DataSetName = "DataSet.Date.NA.rmAllNA"
 DataSetName.select = paste0(DataSetName,".select")
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-assign(DataSetName.TableOne_byExposure,
+assign(DataSetName.Table1byExposure,
        get(DataSetName.select) %>%
            {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric
            CreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
 )
 
 Vars4IQR = names(get(DataSetName.select))[get(DataSetName.select) %>% map_lgl(is.numeric)]
-# get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
+# get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ---
 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-DataSet.TableOne_byExposure.print = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.Table1byExposure.print = get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 
-DataSet.TableOne_byExposure.print_showAllLevels = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.Table1byExposure.print_showAllLevels = get(DataSetName.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 
-DataSet.TableOne_byExposure.print_showAllLevels.IQR = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
+DataSet.Table1byExposure.print_showAllLevels.IQR = get(DataSetName.Table1byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
 
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
+# function.DataSet.Table1byExposure.print.addCols = function(DataSet.Table1byExposure.print) {
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -306,17 +306,17 @@ DataSet.TableOne_byExposure.print_showAllLevels.IQR = get(DataSetName.TableOne_b
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(DataSet.TableOne_byExposure.print_showAllLevels) {
+# function.DataSet.Table1byExposure.print_showAllLevels.addCols = function(DataSet.Table1byExposure.print_showAllLevels) {
 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 list(
-    byExposure = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
-    , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
-    , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
-    # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
-) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
-if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+    byExposure = DataSet.Table1byExposure.print %>% function.DataSet.Table1byExposure.print.addCols %>% function.df.edit_Label_Level
+    , byExposure.AllLevels = DataSet.Table1byExposure.print_showAllLevels %>% function.DataSet.Table1byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+    , byExposure.IQR = DataSet.Table1byExposure.print_showAllLevels.IQR
+    # , is.na.byExposure = DataSet.is.na.Table1byExposure.print
+) %>% writexl::write_xlsx(paste0(DataSetName.Table1byExposure, "(list).xlsx"))
+if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Table1byExposure, "(list).xlsx"))
 ```
 
 
