@@ -113,7 +113,7 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 
 
-env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = FALSE) {
+env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE) {
     # for(.packagename in c("tidyverse", "tableone")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
     library(tableone)
     
@@ -253,14 +253,16 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.se
             as_tibble
     }
     
-    list(
-        byExposure = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
-        , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
-        , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
-        # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
-        # ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
-    ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
-    if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
+    if(output.xlsx) {
+        list(
+            byExposure = DataSet.TableOne_byExposure.print %>% function.DataSet.TableOne_byExposure.print.addCols %>% function.df.edit_Label_Level
+            , byExposure.AllLevels = DataSet.TableOne_byExposure.print_showAllLevels %>% function.DataSet.TableOne_byExposure.print_showAllLevels.addCols %>% function.df.edit_Label_Level %>% mutate(Level = level)
+            , byExposure.IQR = DataSet.TableOne_byExposure.print_showAllLevels.IQR
+            # , is.na.byExposure = DataSet.is.na.TableOne_byExposure.print
+            # ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx"))
+        ) %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
+        if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, ".xlsx"))
+    }
     
     return.list = list(
         DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA.select
