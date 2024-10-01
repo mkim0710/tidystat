@@ -113,16 +113,16 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 
 
-env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE) {
+env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE, TableOne_byExposure.print = TRUE) {
     # for(.packagename in c("tidyverse", "tableone")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
     library(tableone)
-    
+
     DataSetName.select = paste0(DataSetName,".select")
     DataSetName.TableOne_byExposure = paste0(DataSetName,".TableOne_by", VarNames4Exposure)
     DataSetName.is.na.TableOne_byExposure = paste0(DataSetName,".is.na.TableOne_by", VarNames4Exposure)
-    DataSetName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-    DataSetName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-    DataSetName.is.na.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+    .objectname = "DataSetName.select"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="") 
+    .objectname = "DataSetName.TableOne_byExposure"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="") 
+    .objectname = "DataSetName.is.na.TableOne_byExposure"; cat("> ", .objectname, " = ", deparse(get(.objectname)), "  \n", sep="") 
     # > DataSetName.select |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
     # CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds.select
     # > DataSetName.TableOne_byExposure |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
@@ -168,14 +168,15 @@ env1$f$f_df.CreateTableOne_byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.se
     
     # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
     DataSet.is.na.TableOne_byExposure.print = get(DataSetName.is.na.TableOne_byExposure) |> print(showAllLevels = F, smd = F, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-    DataSet.is.na.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
+    # DataSet.is.na.TableOne_byExposure.print |> print(n=99) ###### |> print(n=99) ----
     
     DataSet.TableOne_byExposure.print = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = F, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
     DataSet.TableOne_byExposure.print_showAllLevels = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = NULL, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
     DataSet.TableOne_byExposure.print_showAllLevels.IQR = get(DataSetName.TableOne_byExposure) |> print(showAllLevels = T, smd = T, nonnormal = Vars4IQR, exact = NULL, quote = FALSE, noSpaces = TRUE, printToggle = FALSE) |> as_tibble(rownames = "Variable")
-    DataSet.TableOne_byExposure.print |> print(n=5) ###### |> print(n=5) ----
-    DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ----
-    DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
+    # DataSet.TableOne_byExposure.print |> print(n=99) ###### |> print(n=99) ----
+    if(TableOne_byExposure.print) DataSet.TableOne_byExposure.print |> as.data.frame() |> print()
+    # DataSet.TableOne_byExposure.print_showAllLevels |> print(n=5) ###### |> print(n=5) ----
+    # DataSet.TableOne_byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n=5) ----
     
     # DataSet.TableOne_byExposure.print %>% writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
     # # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.TableOne_byExposure, " -clean.xlsx"))
