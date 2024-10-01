@@ -270,21 +270,21 @@ for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.selec
     if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
-### @ MetaData$ModelList  ====   
+### @ MetaData\$ModelList  ====   
 .parentname = "MetaData"; 
 .sublistname = "ModelList"; 
 for (.sub2listname in c("time2DM", "time2HTN", "time2DL", "time2MetS")) {
     if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 }
 
-### @ MetaData$VarNames  ====   
+### @ MetaData\$VarNames  ====   
 .parentname = "MetaData"; 
 .sublistname = "VarNames"; 
 for (.sub2listname in c("Event", "Mediator", "Exposure", "PMHx", "Tx", "FHx", "Exam", "Social", "Behavioral", "Unclassified", "Calculated")) {
     if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]] = list() }
 }
 
-#### @ MetaData$VarNames$Event  ====   
+#### @ MetaData\$VarNames\$Event  ====   
 .parentname = "MetaData"; 
 .sublistname = "VarNames"; 
 .sub2listname = "Event"; 
@@ -292,7 +292,7 @@ for (.sub3listname in c("DM", "HTN", "DL", "MetS")) {
     if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
 }
 
-#### @ MetaData$VarNames$Mediator  ====   
+#### @ MetaData\$VarNames\$Mediator  ====   
 .parentname = "MetaData"; 
 .sublistname = "VarNames"; 
 .sub2listname = "Mediator"; 
@@ -300,7 +300,7 @@ for (.sub3listname in c("BMI", "Waist")) {
     if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
 }
 
-#### @ MetaData$VarNames$Exposure  ====   
+#### @ MetaData\$VarNames\$Exposure  ====   
 .parentname = "MetaData"; 
 .sublistname = "VarNames"; 
 .sub2listname = "Exposure"; 
@@ -308,7 +308,7 @@ for (.sub3listname in c("Exercise", "Diet", "Alcohol", "Smoking")) {
     if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
 }
 
-#### @ MetaData$VarNames$Demographic  ====   
+#### @ MetaData\$VarNames\$Demographic  ====   
 .parentname = "MetaData"; 
 .sublistname = "VarNames"; 
 .sub2listname = "Social"; 
