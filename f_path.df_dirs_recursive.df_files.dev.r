@@ -89,7 +89,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 
 
-# @ input_path = "Rdev" =====  
+## @ input_path = "Rdev" =====  
 library(tidyverse)
 dir(full.names = FALSE) |> str() #----
 dir(full.names = T) |> str() #----
@@ -121,7 +121,7 @@ dir(full.names = T) |> str() #----
 library(tidyverse)
 
 
-# @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$filename)) ----  
+## @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$filename)) ----  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # .GlobalEnv$.tmp = list() ====  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }  
@@ -158,7 +158,7 @@ if(!"f_path.df_dirs_recursive.df_files" %in% names(.GlobalEnv$env1)) {
 
 
 
-# @ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
+## @ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
 # df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----  
@@ -904,7 +904,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 
 
 
-# @ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
+## @ df_dirs_recursive = "Rdev" %>% f_path.df_dirs_recursive.df_files() =======  
 df_dirs_recursive = env1$env.internal$f_path.df_dirs_recursive.df_files()
 df_dirs_recursive |> str(max.level = 2) #----
 # df_dirs_recursive %>% {.$full_path} |> sort() |> paste(collapse="") |> cat("  \n", sep="") #----  
@@ -917,7 +917,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 
 
 
-# @ end -----  
+# @@ END-----  
 
 ls.str(env1) #-----
 ls.str(env1$env.internal) #-----
@@ -933,7 +933,7 @@ ls.str(env1$env.internal) #-----
 
 
 
-# @ end ----  
+# @@ END----  
 
 
 

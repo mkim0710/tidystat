@@ -30,7 +30,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
     out
 }
 
-# @ test) array3d_R_C_strata2df() --------  
+## @ test) array3d_R_C_strata2df() --------  
 # > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) |> as_tibble()
 # # A tibble: 78 x 4
 #      Var1   Var2   Var3  Freq
@@ -49,7 +49,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
 
 
 
-# @ x1x2z.partial_correlation() revision 180523 v5 ==========  
+## @ x1x2z.partial_correlation() revision 180523 v5 ==========  
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {  # revision 180523 v5
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
@@ -133,7 +133,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 }
 
 
-# @ test: stackloss) x1x2z.partial_correlation() ------  
+## @ test: stackloss) x1x2z.partial_correlation() ------  
 library(tidyverse)
 str(stackloss)
 # > str(stackloss)
@@ -208,7 +208,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 #   Cannot compute exact p-value with ties
 
 
-# @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation() ------  
+## @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation() ------  
 # > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 # > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 #          unadjusted_cor partial_cor
@@ -219,7 +219,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 
 
 
-# @ test: data) x1x2z.partial_correlation() ------  
+## @ test: data) x1x2z.partial_correlation() ------  
 library(tidyverse)
 n = 100
 data = data_frame(
@@ -338,7 +338,7 @@ x1x2z.partial_correlation(x1 = data$Outcome.gt0, x2 = data$Strata, z = data$isEx
 
 
 
-# @ x1x2z.partial_correlation_dbl() revision 180523 ==========  
+## @ x1x2z.partial_correlation_dbl() revision 180523 ==========  
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F, p.value = F) {  # revision 180523
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
@@ -422,7 +422,7 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
 
 
 
-# @ test: stackloss) x1x2z.partial_correlation_dbl() ------  
+## @ test: stackloss) x1x2z.partial_correlation_dbl() ------  
 x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 # > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 # unadjusted_cor_pearson    partial_cor_pearson
@@ -446,7 +446,7 @@ x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp
 #  - attr(*, "names")= chr [1:10] "unadjusted_cor_pearson" "unadjusted_cor.conf.int.LL_pearson" "unadjusted_cor.conf.int.UL_pearson" "unadjusted_cor.p.value_pearson" ...
 
 
-# @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------  
+## @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------  
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 tmp.df |> as_tibble()
 # > tmp.df |> as_tibble()
@@ -509,7 +509,7 @@ x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]
 
 
 
-# @ test: data) x1x2z.partial_correlation_dbl() ------------  
+## @ test: data) x1x2z.partial_correlation_dbl() ------------  
 x1x2z.partial_correlation_dbl(x1 = data$Outcome, x2 = data$Outcome2, z = data$Strata)
 x1x2z.partial_correlation_dbl(x1 = data$Outcome.gt0, x2 = data$Outcome2.gt0, z = data$Strata)
 x1x2z.partial_correlation_dbl(x1 = data$Outcome.gt0, x2 = data$Strata, z = data$isExposed)
@@ -526,7 +526,7 @@ x1x2z.partial_correlation_dbl(x1 = data$Outcome.gt0, x2 = data$Strata, z = data$
 
 
 
-# @ x1x2z.partial_correlation_scalar() ==========  
+## @ x1x2z.partial_correlation_scalar() ==========  
 x1x2z.partial_correlation_scalar = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
@@ -556,7 +556,7 @@ x1x2z.partial_correlation_scalar = function(x1, x2, z, cor_method = "pearson", c
     partial_cor
 }
 
-# @ test: stackloss) x1x2z.partial_correlation_scalar() ------  
+## @ test: stackloss) x1x2z.partial_correlation_scalar() ------  
 x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 x1x2z.partial_correlation_scalar(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 # > x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
@@ -569,7 +569,7 @@ x1x2z.partial_correlation_scalar(x1 = stackloss$Air.Flow, x2 = stackloss$Water.T
 
 
 
-# @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_scalar() ------  
+## @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_scalar() ------  
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 tmp.df |> as_tibble()
 # > tmp.df |> as_tibble()
@@ -606,7 +606,7 @@ x1x2z.partial_correlation_scalar(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[
 
 
 
-# @ test: data) x1x2z.partial_correlation_scalar() ------------  
+## @ test: data) x1x2z.partial_correlation_scalar() ------------  
 x1x2z.partial_correlation_scalar(x1 = data$Outcome, x2 = data$Outcome2, z = data$Strata)
 x1x2z.partial_correlation_scalar(x1 = data$Outcome.gt0, x2 = data$Outcome2.gt0, z = data$Strata)
 x1x2z.partial_correlation_scalar(x1 = data$Outcome.gt0, x2 = data$Strata, z = data$isExposed)

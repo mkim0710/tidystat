@@ -47,11 +47,11 @@
 
 
 
-# @ MH =====  
+## @ MH =====  
 # invisible(lapply(search()[search() %in% paste0("package:",names(sessionInfo()$otherPkgs))], detach, character.only=TRUE, unload=TRUE))
 
 
-# @ 
+## @ 
 detach_packages_safely <- function() {
   library(tools)  # For parsing package dependencies
 

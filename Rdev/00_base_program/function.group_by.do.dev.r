@@ -1,7 +1,7 @@
 
 https://stackoverflow.com/questions/26796829/how-can-dplyr-generate-data-frame-for-each-group-after-the-group-by-operation
 http://www.win-vector.com/blog/2017/07/better-grouped-summaries-in-dplyr/
-# @ df |> rownames_to_column() %>% group_by(GROUP) %>% do(tail(.,3)) #----  
+## @ df |> rownames_to_column() %>% group_by(GROUP) %>% do(tail(.,3)) #----  
 ENROLID2797_Age1845_Inc2.ia_Exc12356abcd.t_42_154.exposure.enrolid_inf.outcomes %>% 
     mutate(
         PrimaryOutcome1.minDate = if_else(final_type %in% c(3, 5), enddate, as.Date(NA))

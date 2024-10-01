@@ -102,7 +102,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     .objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[.objectname]] = object
     if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
 } 
-# @ for (.dependancy in c("")) { -----  
+## @ for (.dependancy in c("")) { -----  
 # for (.dependancy in c("f_filename.ext.find_subpath", "f_path.size_files")) {
 for (.dependancy in c("f_path.size_files")) {
     if(!.dependancy %in% names(.GlobalEnv$env1)) {
@@ -113,7 +113,7 @@ for (.dependancy in c("f_path.size_files")) {
 
 
 
-# @ .objectname = "f_DataSetName.read.checkEntity" =========  
+## @ .objectname = "f_DataSetName.read.checkEntity" =========  
 .tmp$objectname = "f_DataSetName.read.checkEntity"
 .tmp$object = function(DataSetName, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}

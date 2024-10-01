@@ -28,7 +28,7 @@
 
 
 
-# @ ---------  
+## @ ---------  
 qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+significance.level/2))
 # > qnorm(c(Estimate = 0.5, LowerLimit = 0.5-significance.level/2, UpperLimit = 0.5+significance.level/2))
 #   Estimate LowerLimit UpperLimit 
@@ -313,7 +313,7 @@ function.RiskDifferenceCI(10933, 10845, 104, 189) |> str() #-----
 
 
 
-# @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
+## @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
     analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
@@ -406,7 +406,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>%
 
 
 
-# @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI =====  
+## @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI =====  
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI = list()
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI$FullTable =
     analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% mutate(
@@ -507,7 +507,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> st
 
 
 
-# @ end -----  
+# @@ END-----  
 getwd()
 .path4write = env1$path$.path4write
 .objectname = "analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI"
@@ -672,7 +672,7 @@ dput(options("RStata.StataVersion"))
 
 
 
-# @ ------  
+## @ ------  
 nCasesExposed = 189
 nCasesUnexposed = 104
 nNoncasesExposed = 10845
@@ -788,7 +788,7 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # nNoncasesExposed = 108
 # nNoncasesUnexposed = 341
 
-# @ AnalyticDataset.byCaseExposure =====  
+## @ AnalyticDataset.byCaseExposure =====  
 AnalyticDataset.byCaseExposure = 
     tibble::tribble(
     ~Case,      ~Exposure,          ~n,
@@ -802,7 +802,7 @@ seq_len(nrow(AnalyticDataset.byCaseExposure))
 # [1] 1 2 3 4
 
 
-# @ AnalyticDataset =====  
+## @ AnalyticDataset =====  
 AnalyticDataset =
     AnalyticDataset.byCaseExposure[rep(seq_len(nrow(AnalyticDataset.byCaseExposure)), AnalyticDataset.byCaseExposure$n), ] %>% 
     select(-n)
@@ -986,6 +986,6 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 
 
 
-# @ end -----  
+# @@ END-----  
 
 

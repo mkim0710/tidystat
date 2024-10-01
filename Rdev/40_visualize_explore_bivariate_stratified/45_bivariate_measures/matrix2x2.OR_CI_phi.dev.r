@@ -48,7 +48,7 @@ matrix2x2.OR_CI_phi = function(matrix2x2) {
 }
 
 
-# @ test --------  
+## @ test --------  
 # > matrix2x2.OR_CI_phi(matrix(1:4, nrow = 2))
 # # A tibble: 1 x 4
 #          OR OR_LowerLimit OR_UpperLimit         phi

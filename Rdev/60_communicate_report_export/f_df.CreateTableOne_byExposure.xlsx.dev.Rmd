@@ -294,7 +294,7 @@ library(tableone)
 
 ##@ DataSet.TableOne.byExposure -----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# @ DataSet.TableOne.byExposure -----  
+## @ DataSet.TableOne.byExposure -----  
 DataSet.Date.NA.rmAllNA %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
 DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
     mutate(Intervention.ge1 = !BMI_ge300) %>% 
@@ -448,7 +448,7 @@ function.DataSet.TableOne_byExposure.print_showAllLevels.addCols = function(Data
 ```
   
   
-# @ writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx")) -----
+## @ writexl::write_xlsx(paste0(DataSetName.TableOne_byExposure, "(list).xlsx")) -----
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 list(
@@ -489,7 +489,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
+## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
 .path4write = env1$path$.path4write
 # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 for (.objectname in names(MetaData$DataSetNames)) {

@@ -174,7 +174,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 
 
 # @@@ mydb.dbListTables.dbListFields.ifelse.bindcols from .r =====  
-# @ mydb.dbListTables.dbListFields ======  
+## @ mydb.dbListTables.dbListFields ======  
 mydb.dbListTables.dbListFields = 
     mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
         mydb %>% dbListFields(chr)
@@ -332,7 +332,7 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(
 
 
 
-# @ mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() ------  
+## @ mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() ------  
 # ?unique
 mydb.dbListTables.dbListFields |> unlist() |> unname() |> unique() |> str()
 mydb.dbListTables.dbListFields |> unlist() |> unname() |> toupper() |> unique() |> str()
@@ -353,7 +353,7 @@ mydb.dbListTables.dbListFields.ifelse.bindcols =
 
 
 
-# @ end -----  
+# @@ END-----  
 save(mydb.dbListTables.dbListFields, file = "mydb.dbListTables.dbListFields.rda")
 save(mydb.dbListTables.dbListFields.ifelse.bindcols, file = "mydb.dbListTables.dbListFields.ifelse.bindcols.rda")
 

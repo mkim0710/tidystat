@@ -118,7 +118,7 @@ set.seed(1); sample(1:9, 30, replace = T) %>% {tibble(ID = ., Freq = 1)} %>% gro
 
 
 
-# @ function.frequencyDF ====  
+## @ function.frequencyDF ====  
 function.frequencyDF = function(vec) {
     vec %>% {tibble(ID = ., Freq = 1)} %>% group_by(ID) %>% summarise(Freq = sum(Freq, na.rm = T))
 }
@@ -138,4 +138,4 @@ set.seed(1); sample(1:9, 30, replace = T) %>% function.frequencyDF
 # 9     9     5
 
 
-# @ end ----  
+# @@ END----  

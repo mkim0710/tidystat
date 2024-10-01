@@ -84,13 +84,13 @@ if (Sys.info()["sysname"] == "Windows") {'rmdir /s /q .git' |> system(intern=TRU
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| Remove PDF Files from Git History |#
-# @ Remove PDF Files from Git History: ======  
+## @ Remove PDF Files from Git History: ======  
 # "pip install git-filter-repo" |> system(intern=TRUE) |> cat("  ", sep="  \n")
 # "git filter-repo --path-glob '*.pdf' --invert-paths" |> system(intern=TRUE) |> cat("  ", sep="  \n")
 # "git push origin --force --all" |> system(intern=TRUE) |> cat("  ", sep="  \n")
 # "git push origin --force --tags" |> system(intern=TRUE) |> cat("  ", sep="  \n")
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-# @ Remove Existing PDF Files from the Repository ====  
+## @ Remove Existing PDF Files from the Repository ====  
 # 'git rm --recursive *.pdf'  # This will actually delete the files from the local file system.
 'git rm --recursive --cached *.pdf' |> system(intern=TRUE)  # This will untrack the files (remove files from the repository), but not from the local file system  
 'git commit -m "Remove PDF files from repository and add to .gitignore"' |> system(intern=TRUE) |> cat("  ", sep="  \n")

@@ -29,7 +29,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
     # out = out %>% map_df(as.numeric)
     out
 }
-# @ test) array3d_R_C_strata2df() --------  
+## @ test) array3d_R_C_strata2df() --------  
 # > array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3))) |> as_tibble()
 # # A tibble: 78 x 4
 #      Var1   Var2   Var3  Freq
@@ -93,7 +93,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
     out = out %>% t |> as.data.frame()
     out
 }
-# @ test) x1x2z.partial_correlation() ------  
+## @ test) x1x2z.partial_correlation() ------  
 # > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 # > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 #          unadjusted_cor partial_cor
@@ -202,7 +202,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
     out
 }
 
-# @ test) array3d_R_C_strata.OR_CI_partial_cor_strata() -------  
+## @ test) array3d_R_C_strata.OR_CI_partial_cor_strata() -------  
 # > array(1:12, dim = c(2, 2, 3))
 # , , 1
 # 
@@ -249,7 +249,7 @@ array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_
 # 5           Strata3 0.9818182    0.29081865      3.314667 2.619048 -0.00456103 -0.00456103 -0.00456103     9    11    10    12    42
 
 
-# @ test2) array3d_R_C_strata.OR_CI_partial_cor_strata() ------  
+## @ test2) array3d_R_C_strata.OR_CI_partial_cor_strata() ------  
 # > array(
 # +   c( 2, 90, 2, 660
 # +      , 16,360,13,1250

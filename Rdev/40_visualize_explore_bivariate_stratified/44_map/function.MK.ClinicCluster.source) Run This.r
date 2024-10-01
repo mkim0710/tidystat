@@ -3,7 +3,7 @@
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-# @ Global Parameters) Users should take care of this. -----  
+## @ Global Parameters) Users should take care of this. -----  
 vector_of_Min.SC = c(0.4, 0.5, 0.6, 0.7, 0.8)
 vector_of_Max.Distance = c(20, 30, 60, 120)
 vector_of_Min.Pop = c(1000)
@@ -14,7 +14,7 @@ area.level = "SouthKorea"
 
 
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
-# @ Global Parameters) Automatically calculated. -----  
+## @ Global Parameters) Automatically calculated. -----  
 name.subscript = paste0(".", area.level, ".", software.version)
 path.output = paste0("output", name.subscript)
 if(area.level == "SouthKorea") SIDO_CD4filter = c("11", "21", "22", "23", "24", "25", "26", "29", "31", "32", "33", "34", "35", "36", "37", "38", "39")
@@ -55,7 +55,7 @@ ODMatrix.marginDF0 =
 
 source(filename.function.source)
 
-# @ function.MK.output.nest_sigungu.SouthKorea$Min.SC$Max.Distance$Min.Pop$SGG_CD from input ................................................................................  
+## @ function.MK.output.nest_sigungu.SouthKorea$Min.SC$Max.Distance$Min.Pop$SGG_CD from input ................................................................................  
 .t0 = Sys.time(); t0
 if(!exists("function.MK.output.nest_sigungu.SouthKorea")) function.MK.output.nest_sigungu.SouthKorea = list()
 for (Min.SC in vector_of_Min.SC) {
@@ -118,7 +118,7 @@ saveRDS(function.MK.output.nest_sigungu.SouthKorea, file.path(path.output, "func
 
 
 
-# @ function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows ================  
+## @ function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows ================  
 function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows =
     function.MK.output.nest_sigungu.SouthKorea %>% map(function(ls2) {
         ls2 %>% map(function(ls) {
@@ -137,7 +137,7 @@ saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_CodeDF.bind_rows, file.
 
 
 
-# @ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows ----  
+## @ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows ----  
 function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows =
     function.MK.output.nest_sigungu.SouthKorea %>% map(function(ls2) {
         ls2 %>% map(function(ls) {
@@ -157,7 +157,7 @@ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows =
 
 
 
-# @ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean ======  
+## @ function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean ======  
 Population.df0 = readRDS("Population.df.rds")
 function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.Korean = 
     function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows %>% map(function(ls2) {
@@ -197,7 +197,7 @@ saveRDS(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows.K
 
 
 
-# @ function.MK.output.nest_sigungu.SouthKorea$i$j$k[CodeDF, Cluster.tbl].xlsx ============  
+## @ function.MK.output.nest_sigungu.SouthKorea$i$j$k[CodeDF, Cluster.tbl].xlsx ============  
 dir.create(path.output, showWarnings = F)
 for (i in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows)) {
     for (j in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows[[i]])) {
@@ -218,7 +218,7 @@ for (i in names(function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bin
 
 
 
-# @ function.MK.output.nest_sigungu.SouthKorea.metadata =====  
+## @ function.MK.output.nest_sigungu.SouthKorea.metadata =====  
 function.MK.output.nest_sigungu.SouthKorea.metadata =    
     function.MK.output.nest_sigungu.SouthKorea.list3_Cluster.tbl.bind_rows %>% map(function(ls2) {
         ls2 %>% map(function(ls) {
@@ -277,7 +277,7 @@ openxlsx2::write_xlsx(function.MK.output.nest_sigungu.SouthKorea.metadata, file.
 
 
 
-# @ end ============  
+# @@ END============  
 
 
 

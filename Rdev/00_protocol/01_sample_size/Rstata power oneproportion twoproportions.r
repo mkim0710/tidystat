@@ -1033,4 +1033,4 @@ z=log(OR)*sqrt(nB)/sqrt(1/(kappa*pA*(1-pA))+1/(pB*(1-pB)))
 
 
 
-# @ end -----  
+# @@ END-----  

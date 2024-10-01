@@ -2,7 +2,7 @@
 
 
 
-# @ -----  
+## @ -----  
 ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(matches("Window4Exposure"))
 ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% select(lmp, matches("Window4Exposure")) %>% 
      mutate_if(function(x) lubridate::is.Date(x), function(x) {as.numeric(x - .$lmp)})  #----
@@ -50,7 +50,7 @@ ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.DDD.A1c %>% s
 
 
 
-# @ -----  
+## @ -----  
 data %>% mutate_if(lubridate::is.Date, function(vec) if_else(is.na(vec), as.Date("9999-12-31"), vec))
 data %>% mutate_if(lubridate::is.Date, function(vec) replace(vec, is.na(vec), as.Date("9999-12-31")))
 data %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("9999-12-31")))
@@ -59,7 +59,7 @@ data %>% mutate_if(lubridate::is.Date, function(vec) replace_na(vec, as.Date("99
 
 
 
-# @ -----  
+## @ -----  
 
 # https://stackoverflow.com/questions/24282550/no-non-missing-arguments-warning-when-using-min-or-max-in-reshape2 -----  
 as.Date(Inf)
@@ -125,7 +125,7 @@ data.frame(value = structure(c(15318, -Inf, NA, Inf, 15033), class = "Date")) %>
 #  3rd Qu.:2011-09-29  
 #  Max.   :2011-12-10  
 #  NA's   :3        
-# @ end -----  
+# @@ END-----  
 
 
 
@@ -192,7 +192,7 @@ ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure %>% map_df(function(x) if(clas
 
 
 
-# @ ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure ====  
+## @ ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure ====  
 # ENROLID3169_Age1845_Inc2.ia_Exc12356abcd.exposure = 
 #     ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(
 #         ENROLID3169_Age1845_Inc2.ia_Exc12356abcd %>% left_join(d.ID_DATE_DX.distinct.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.CONCEPT_NDC_DM.na_rm) %>%
@@ -289,7 +289,7 @@ class(structure(0, class = "Date")) == "Date"
 
 
 
-# @ -----  
+## @ -----  
 
 structure(0, class = "Date")
 structure(0, class = c("POSIXt", "POSIXct"))
@@ -305,7 +305,7 @@ structure(0, class = c("POSIXt", "POSIXct"))
 
 
 
-# @ -----  
+## @ -----  
 
 is.numeric(as.Date("2002-01-01"))
 is.integer(as.Date("2002-01-01"))
@@ -399,4 +399,4 @@ as.Date("2002-01-01") %>% lubridate::is.Date(.)
 
 
 
-# @ end -----  
+# @@ END-----  

@@ -7,7 +7,7 @@
 
 
 
-# @ data_logical.table_proptable.dev.r  
+## @ data_logical.table_proptable.dev.r  
 # (no group_by)
 
 dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>% select_if(is.logical) |> summary() %>% t #----
@@ -116,7 +116,7 @@ dbClaims.T2DM.6702$tblPersonID_CriteriaID.minDate.SecondaryOutcome13 %>%
 
 
 
-# @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
+## @ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure =====  
 analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure = 
     analyticDF.TargetTrial2v38.2.113vs200 |> rename(Exposure = Intervention) %>% 
     {
@@ -193,7 +193,7 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure %>% select(key, `nDise
 
 
 
-# @ data ====  
+## @ data ====  
 data = ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% 
     select(Intervention, Control, Nothing, matches("^PrimaryOutcome[0-9]+"), matches("^SecondaryOutcome[0-9]+"), SecondaryOutcomeP1456fhkl)
 ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% 
@@ -469,7 +469,7 @@ cbind(
 
 
 
-# @ data_logical.byExposure.table_proptable.dev.r ------  
+## @ data_logical.byExposure.table_proptable.dev.r ------  
 
 data %>% 
     group_by(Intervention, Control, Nothing) %>%
@@ -567,7 +567,7 @@ data %>%
 
 
 
-# @ data_factor.byExposure.table_proptable.dev.r -----  
+## @ data_factor.byExposure.table_proptable.dev.r -----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/data_factor.byExposure.table_proptable.dev.r
 
 data = ID_Eligible_Exposure.TargetTrial2v2.159vs266.Outcome.Covariates %>% 
@@ -610,5 +610,5 @@ data %>% mutate(Exposure = Intervention) %>%
 # # ... with 18 more rows
 
 
-# @ end -----  
+# @@ END-----  
 

@@ -319,7 +319,7 @@ filename.ext = "templates-00env1.minimum.Rmd"; if(file.exists(filename.ext)) {
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
+## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
 .path4write = env1$path$.path4write
 # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 for (.objectname in names(MetaData$DataSetNames)) {

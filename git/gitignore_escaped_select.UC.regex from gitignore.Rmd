@@ -111,7 +111,7 @@ f_vec.extract_non_alphanumeric_list <- function(input_vec) {
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore = read_lines(".gitignore") ----  
+## @ gitignore = read_lines(".gitignore") ----  
 # file.edit(".gitignore")
 gitignore = read_lines(".gitignore", skip_empty_rows = T)
 # gitignore = gitignore %>% c(".*")
@@ -136,7 +136,7 @@ c(".", "*", ")", "-", " ")
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped ----  
+## @ gitignore_escaped ----  
 gitignore_escaped = gitignore[gitignore != ""] unique(_replace_all("\\.", "\\\\.") %>% # Caution: dot should be handled before asterisk~!
     str_replace_all("\\*", "\\.\\*") unique(_replace_all("\\)", "\\\\)") unique(_replace_all("\\-", "\\\\-") %>% 
     # str_replace_all("\\ ", "\\\\ ") %>% # spaces  are generally treated as literal spaces in regular expressions 
@@ -158,7 +158,7 @@ c("\\.Rproj\\.user", "\\.Rhistory", "\\.RData", "\\.Ruserdata",
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped_select ----  
+## @ gitignore_escaped_select ----  
 gitignore_escaped |> str_which("doc|xls|ppt")
 gitignore_escaped_select = gitignore_escaped %>% {.[-str_which(., "doc|xls|ppt")]}
 gitignore_escaped_select |> dput() #----  
@@ -183,7 +183,7 @@ options(width=120)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ gitignore_escaped_select.UC ----  
+## @ gitignore_escaped_select.UC ----  
 gitignore_escaped_select.UC = gitignore_escaped_select |> toupper() |> unique()
 gitignore_escaped_select.UC |> dput() #----  
 c("\\.RPROJ\\.USER", "\\.RHISTORY", "\\.RDATA", "\\.RUSERDATA", 
@@ -208,7 +208,7 @@ gitignore_escaped_select.UC.regex = gitignore_escaped_select.UC %>%
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ end ----  
+# @@ END----  
   
 ```
   
@@ -216,7 +216,7 @@ options(width=120)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
-# @ end ----  
+# @@ END----  
   
 ```
   

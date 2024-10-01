@@ -151,7 +151,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 
 
-# @ end -----  
+# @@ END-----  
 # ls.str(env1)
 # # > ls.str(env1) #-----  
 # # env.internal : <environment: 0x0000024c23596368> 

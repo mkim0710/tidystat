@@ -2,7 +2,7 @@
 # # To paste text in the terminal use Shift + Insert. (Or Ctrl + Shift + v)
 
 
-# @ https://chatgpt.com/c/b244f16e-295a-4f40-b6ea-62cb774c3462  
+## @ https://chatgpt.com/c/b244f16e-295a-4f40-b6ea-62cb774c3462  
 system('git status')
 system("git fetch") # Before Making Commits - Stay Updated About Remote Changes. Fetches updates for all branches from the default remote, updating remote-tracking branches.
 # system('git fetch origin') # Specifically fetches all data from the origin remote, updating the associated remote-tracking branches.

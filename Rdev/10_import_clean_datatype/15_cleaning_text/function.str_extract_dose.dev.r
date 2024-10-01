@@ -2,7 +2,7 @@
 
 
 
-# @ =====  
+## @ =====  
 tbl.concept_name.toupper.CONCEPT_NDC_metformin %>% mutate(
     concept_name.toupper.METFORMIN.dose = concept_name.toupper.METFORMIN |> str_extract_all("[0-9]+ ?MG") %>% gsub(" ?MG", "", .)
 )
@@ -47,7 +47,7 @@ NA |> str_extract_all("[0-9]+")
 # [1] NA
 
 
-# @ caution) if there is character(0), you should not unlist~!----  
+## @ caution) if there is character(0), you should not unlist~!----  
 
 tbl.concept_name.toupper.CONCEPT_NDC_metformin$concept_name.toupper.METFORMIN %>% 
     str_extract_all("[0-9]+ ?MG") |> 

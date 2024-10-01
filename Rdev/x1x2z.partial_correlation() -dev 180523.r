@@ -3,7 +3,7 @@
 
 # @@ old function -----  
 
-# @ x1x2z.partial_correlation() ==========  
+## @ x1x2z.partial_correlation() ==========  
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
@@ -31,7 +31,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 }
 
 
-# @ test: stackloss) x1x2z.partial_correlation() ------  
+## @ test: stackloss) x1x2z.partial_correlation() ------  
 library(tidyverse)
 str(stackloss)
 # > str(stackloss)
@@ -54,7 +54,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 #  $ partial_cor   : num  0.736 0.598 0.446
 
 
-# @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation() ------  
+## @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation() ------  
 # > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 # > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 #          unadjusted_cor partial_cor
@@ -63,7 +63,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 # kendall      -0.0120125  0.14541024
 
 
-# @ dissect function ----  
+## @ dissect function ----  
 
 x1 = stackloss$Air.Flow
 x2 = stackloss$Water.Temp
@@ -210,7 +210,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 
 
 # ?cor.test
-# @ cor.test() -----  
+## @ cor.test() -----  
 cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "pearson") |> str()
 cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") |> str()
 cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "kendall") |> str()
@@ -280,7 +280,7 @@ cor.test(stackloss$Air.Flow, stackloss$Water.Temp, method = "spearman") %>% {.[c
 #   Cannot compute exact p-value with ties
 
 
-# @ dissect function ----  
+## @ dissect function ----  
 
 x1 = stackloss$Air.Flow
 x2 = stackloss$Water.Temp
@@ -1448,7 +1448,7 @@ out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(metho
 
 
 
-# @ x1x2z.partial_correlation() revision 180523 v5 ==========  
+## @ x1x2z.partial_correlation() revision 180523 v5 ==========  
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {  # revision 180523 v5
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
@@ -1532,7 +1532,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 }
 
 
-# @ test: stackloss) x1x2z.partial_correlation() ------  
+## @ test: stackloss) x1x2z.partial_correlation() ------  
 library(tidyverse)
 str(stackloss)
 # > str(stackloss)
@@ -1607,7 +1607,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 #   Cannot compute exact p-value with ties
 
 
-# @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation() ------  
+## @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation() ------  
 # > tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 # > x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 #          unadjusted_cor partial_cor
@@ -1619,6 +1619,6 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 
 
 
-# @ end ----  
+# @@ END----  
 
 

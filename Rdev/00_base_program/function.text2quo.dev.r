@@ -3,7 +3,7 @@
 
 
 
-# @ bare_to_quo_in_func =====  
+## @ bare_to_quo_in_func =====  
 bare_to_quo_in_func <- function(x, var) {
     x %>% select(!!enquo(var)) %>% head(1)
 }
@@ -22,7 +22,7 @@ bare_to_quo_in_func(mtcars, mpg)
 
 
 
-# @ char_to_quo =====  
+## @ char_to_quo =====  
 char_to_quo <- function(x, var) {
     x %>% select(!!rlang::sym(var)) %>% head(1)
 }
@@ -64,7 +64,7 @@ char_to_quo(mtcars, "mpg")
 
 
 
-# @ txt = "Variable1" ====  
+## @ txt = "Variable1" ====  
 Variable1 = 111
 txt = "Variable1"
 txt |> str()
@@ -221,6 +221,6 @@ eval(~txt) |> dput()
 
 
 
-# @ end -----  
+# @@ END-----  
 
 

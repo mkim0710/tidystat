@@ -1,7 +1,7 @@
 #@ x1x2z.partial_correlation_dbl() -dev 180523.r  
 
 
-# @ old x1x2z.partial_correlation_dbl() ==========  
+## @ old x1x2z.partial_correlation_dbl() ==========  
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
@@ -30,13 +30,13 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
     out
 }
 
-# @ test: stackloss) x1x2z.partial_correlation_dbl() ------  
+## @ test: stackloss) x1x2z.partial_correlation_dbl() ------  
 x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 # > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 # unadjusted_cor_pearson    partial_cor_pearson
 #              0.7818523              0.7356413
 
-# @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------  
+## @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------  
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 x1x2z.partial_correlation(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
 x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]])
@@ -66,7 +66,7 @@ x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]
 
 
 
-# @ x1x2z.partial_correlation_dbl() revision 180523 ==========  
+## @ x1x2z.partial_correlation_dbl() revision 180523 ==========  
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F, p.value = F) {  # revision 180523
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
     # library(tidyverse)
@@ -150,7 +150,7 @@ x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", conv
 
 
 
-# @ test: stackloss) x1x2z.partial_correlation_dbl() ------  
+## @ test: stackloss) x1x2z.partial_correlation_dbl() ------  
 x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 # > x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z = stackloss$Acid.Conc.)
 # unadjusted_cor_pearson    partial_cor_pearson
@@ -174,7 +174,7 @@ x1x2z.partial_correlation_dbl(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp
 #  - attr(*, "names")= chr [1:10] "unadjusted_cor_pearson" "unadjusted_cor.conf.int.LL_pearson" "unadjusted_cor.conf.int.UL_pearson" "unadjusted_cor.p.value_pearson" ...
 
 
-# @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------  
+## @ test: array(1:12, dim = c(2, 2, 3)) ) x1x2z.partial_correlation_dbl() ------  
 tmp.df = array3d_R_C_strata2df(array(1:12, dim = c(2, 2, 3)))
 tmp.df |> as_tibble()
 # > tmp.df |> as_tibble()

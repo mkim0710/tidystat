@@ -241,7 +241,7 @@ c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% funct
 
 
 
-# @ test) function.binary2numeric() ----  
+## @ test) function.binary2numeric() ----  
 library(tidyverse)
 c(T, F, T) %>% is.numeric
 c(T, F, T) %>% is.character
@@ -300,7 +300,7 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 
 
 
-# @ ------  
+## @ ------  
 # function.binary2numeric = function(x, binary2logical = F) {
 #     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.binary2numeric.dev.r")
 #     # caution) as.numeric(CategoricalVariable_3MoreLevels)
@@ -358,7 +358,7 @@ function.dichotomous2logical(c("A", "A", "B", "C", "A"), dichotomous2integer = T
 
 
 
-# @ ------  
+## @ ------  
 df$FamilyIncome_ge7000 %>% head(10) |> dput()
 # > df$FamilyIncome_ge7000 %>% head(10) |> dput()
 # c(0, 1, 0, 1, 1, 0, NA, 1, 0, 0)
@@ -414,7 +414,7 @@ function.if_dichotomous2logical = function(x, dichotomous2integer = F) {
     x
 }
     
-# @ data4FullModel.by_varname_level.list_list ====  
+## @ data4FullModel.by_varname_level.list_list ====  
 # data = analyticDF_C24.drop_pmhx_negativetime.list.cut[[name4MainData]]
 data = n1_2016_withlabels_EPI522_merge_n2_recode1026.factor.mutate
 data = data[, varnames4FullModel] %>% map_df(function.if_dichotomous2logical)

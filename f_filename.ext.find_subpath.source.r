@@ -112,7 +112,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 
-# @ .objectname = "f_filename.ext.find_subpath" =========  
+## @ .objectname = "f_filename.ext.find_subpath" =========  
 .tmp$objectname = "f_filename.ext.find_subpath"
 .tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
     # # tools::file_ext(path.basename)
@@ -144,7 +144,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 
-# @ .objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========  
+## @ .objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========  
 .tmp$objectname = "f_filename.ext.find_subpath.BreathFirstSearch"
 .tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, findMultiple = FALSE) {
     # Breath-first search for the filename.ext in the subdirectories of the input_path

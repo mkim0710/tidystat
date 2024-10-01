@@ -618,7 +618,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 
 
 
-# @ global functions ----  
+## @ global functions ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
 # fun.t.tribble_paste = function(df) {df %>% t |> as.data.frame() %>% rownames_to_column("varname") %>% fun.tribble_paste}
 env1$f$f_df.tribble_construct = function(df) {
@@ -687,7 +687,7 @@ ls.str(env1$env.internal) #-----
 
 
 
-# @ end -----  
+# @@ END-----  
 # attach(env1)
 # save.image(file = "f_df.t.tribble_construct.RData")
 
@@ -733,7 +733,7 @@ if(subpath!="") utils::browseURL(normalizePath(subpath))
 
 
 
-# @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$filename)) ----  
+## @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$filename)) ----  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
 # .GlobalEnv$.tmp = list() ====  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }  

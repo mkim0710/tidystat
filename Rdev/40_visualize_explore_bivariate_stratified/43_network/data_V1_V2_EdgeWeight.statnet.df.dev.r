@@ -14,13 +14,13 @@ library(intergraph)
 library(statnet)
 
 
-# @ test) termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph ------  
+## @ test) termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph ------  
 load("data/termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph.rda")
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet = 
     termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph %>% asNetwork
 save(termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet, file = "data/termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet.rda")
 
-# @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) -----  
+## @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 1) -----  
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% network.size #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> summary() #----
@@ -247,7 +247,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet |> str(max.level = 2) #---
 
 
 
-# @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% components -----  
+## @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% components -----  
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% components
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% components
 # Node 1, Reach 21, Total 21
@@ -273,7 +273,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% components
 # Node 21, Reach 21, Total 441
 # [1] 1
 
-# @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() %>% {.$gdist} %>% max -----  
+## @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() %>% {.$gdist} %>% max -----  
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() |> str() #----
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() %>% {.$gdist} %>% max #----
 lgc = termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% component.largest(result="graph") #----
@@ -359,14 +359,14 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% geodist() #----
 # [21,]    1    1    1    1    1    1    1    1    1     1     1     1     1     1     1     1     1     1     1     1     0
 
 
-# @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %v% 'vertex.names' -----  
+## @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %v% 'vertex.names' -----  
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %v% 'vertex.names'
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %v% 'vertex.names'
 #  [1] "analysis"     "applications" "code"         "computing"    "data"         "examples"     "introduction"
 #  [8] "mining"       "network"      "package"      "parallel"     "positions"    "postdoctoral" "r"           
 # [15] "research"     "series"       "slides"       "social"       "time"         "tutorial"     "users"       
 
-# @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% degree(gmode = "graph") -----  
+## @ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% degree(gmode = "graph") -----  
 termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% degree(gmode = "graph")
 # > termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% degree(gmode = "graph")
 #  [1] 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
@@ -425,4 +425,4 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% object_statnet.summary
 
 
 
-# @ end -----  
+# @@ END-----  

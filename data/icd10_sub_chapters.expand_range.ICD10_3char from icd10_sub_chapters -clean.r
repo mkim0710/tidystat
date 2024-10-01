@@ -302,7 +302,7 @@ icd10_sub_chapters |> str() #----
 
 
 
-# @ icd10_chapters.expand_range = icd10_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])}) ------  
+## @ icd10_chapters.expand_range = icd10_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])}) ------  
 icd10_chapters.expand_range = icd10_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])})
 icd10_chapters.expand_range |> str()
 # > icd10_chapters.expand_range |> str()
@@ -386,7 +386,7 @@ icd10_chapters.expand_range.ICD10_3char |> str()
 
 
 
-# @ icd10_sub_chapters.expand_range = icd10_sub_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])}) ----  
+## @ icd10_sub_chapters.expand_range = icd10_sub_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])}) ----  
 icd10_sub_chapters.expand_range = icd10_sub_chapters %>% map(function(x) {icd:::expand_range.icd10cm(x[1], x[2])})
 icd10_sub_chapters.expand_range |> str()
 # > icd10_sub_chapters.expand_range |> str() -----  
@@ -707,7 +707,7 @@ icd10_sub_chapters.expand_range.ICD10_3char |> str()
 
 
 
-# @ library(jsonlite) ----  
+## @ library(jsonlite) ----  
 
 library(jsonlite)
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd10_chapters.expand_range.ICD10_3char.rda"))
@@ -1042,7 +1042,7 @@ icd10_sub_chapters.expand_range.ICD10_3char %>% toJSON(pretty = T)
 
 
 
-# @ end -----  
+# @@ END-----  
 save(icd10_chapters, file = "icd10_chapters.rda")
 save(icd10_sub_chapters, file = "icd10_sub_chapters.rda")
 

@@ -253,7 +253,7 @@ list_df_wave_cumulative$GLU60_TR |> str()
 
 
 
-# @ debugged - NA if all NAs ----------  
+## @ debugged - NA if all NAs ----------  
 # as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) |> summary()
 # # > as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) |> summary()
 # #   A01_GLU60_TR  
@@ -320,7 +320,7 @@ tmp.df_wave %>% {rowSums(., na.rm=TRUE) * ifelse(rowSums(is.na(.)) == ncol(.), N
 
 
 
-# @ void2) ----------  
+## @ void2) ----------  
 sum(c(NA,NA), na.rm = T)
 # [1] 0
 tmp.df_wave[,1] %>% rowwise %>% mutate(colSums = sum(c_across(everything()), na.rm=TRUE)) %>% table(useNA = "always") |> addmargins()
@@ -336,7 +336,7 @@ tmp.df_wave[,1] %>% rowwise %>% mutate(colSums = sum(c_across(everything()), na.
 
 
 
-# @ void) should make NA if all NAs ---------------  
+## @ void) should make NA if all NAs ---------------  
 # https://stackoverflow.com/questions/33672059/rowsums-with-all-na
 
 # as1_7.na.Date.fct.select971 %>% select(A01_GLU60_TR) |> summary()

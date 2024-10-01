@@ -143,7 +143,7 @@ icd10_sub_chapters.expand_range.ICD10_3char |> str()
 
 
 
-# @ icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----  
+## @ icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.), times = map_dbl(., length)))} %>% enframe ----  
 icd10_chapters.expand_range.ICD10_3char |> str()
 icd10_chapters.expand_range.ICD10_3char %>% reduce(c) |> str()
 icd10_chapters.expand_range.ICD10_3char |> names() |> str()
@@ -209,7 +209,7 @@ icd10_chapters.expand_range.ICD10_3char %>% {set_names(reduce(., c), rep(names(.
 
 
 
-# @ icd10_chapters.expand_range.ICD10_3char %>% enframe %>% unnest ----  
+## @ icd10_chapters.expand_range.ICD10_3char %>% enframe %>% unnest ----  
 icd10_chapters.expand_range.ICD10_3char %>% enframe
 icd10_chapters.expand_range.ICD10_3char %>% enframe %>% unnest
 # > icd10_chapters.expand_range.ICD10_3char %>% enframe
@@ -311,7 +311,7 @@ icd10_sub_chapters %>% map(function(x) paste0(x, collapse = "-")) %>% enframe(na
 
 
 
-# @ ICD10_3char_sub_chapter.tibble ICD10_3char_sub_chapter.tibble from icd10_chapters.expand_range.ICD10_3char & icd10_sub_chapters.expand_range.ICD10_3char ====  
+## @ ICD10_3char_sub_chapter.tibble ICD10_3char_sub_chapter.tibble from icd10_chapters.expand_range.ICD10_3char & icd10_sub_chapters.expand_range.ICD10_3char ====  
 ICD10_3char_sub_chapter.tibble = 
     full_join(
         (icd10_chapters.expand_range.ICD10_3char %>% enframe(name = "chapter", value = "ICD10_3char") %>% unnest)
@@ -355,5 +355,5 @@ ICD10_3char_sub_chapter.tibble
 
 
 
-# @ end ----  
+# @@ END----  
 save(ICD10_3char_sub_chapter.tibble, file = "ICD10_3char_sub_chapter.tibble.rda")

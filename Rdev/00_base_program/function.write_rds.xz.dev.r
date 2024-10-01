@@ -32,7 +32,7 @@ fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "
 
 
 
-# @ -------  
+## @ -------  
 
 .objectname = "os.ID_DATE_DX.distinct.gather_DX.byID_min_rank_lmp.ID_lmp.ge_lmp_365_le_enddate.lmp_le2014"
 .t0 = Sys.time()
@@ -48,13 +48,13 @@ system("git push")
 
 
 
-# @ -------  
+## @ -------  
 # .t0 = Sys.time()
 # write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds")), "xz", compression=9L )
 # Sys.time() - .t0
 
 
-# @ -------  
+## @ -------  
 .path4read = "../data/data.ID_DATE_DX.distinct/"
 .path4write = "../data/data.ID_DATE_DX.distinct/"
 
@@ -67,7 +67,7 @@ Sys.time() - .t0
 
 
 
-# @ -------  
+## @ -------  
 
 # .t0 = Sys.time()
 # write_rds(ID_Covariates.tbl, "ID_Covariates.tbl(v38).rds", "xz", compression=9)
@@ -93,4 +93,4 @@ Sys.time() - .t0
 # Time difference of 1.115018 mins
 
 
-# @ end ----  
+# @@ END----  

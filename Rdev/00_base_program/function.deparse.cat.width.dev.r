@@ -31,7 +31,7 @@ function.deparse.cat.width=function(x, deparse.width.cutoff=500, cat.sep="") {
     if (cat.sep != "\n") cat("  \n", sep="")
 }
 
-# @ test) function.deparse.cat.width() --------  
+## @ test) function.deparse.cat.width() --------  
 letters |> print()
 letters |> dput()
 letters |> deparse()
@@ -98,5 +98,5 @@ identical(v1, v4)
 # [1] TRUE
 
 
-# @ end ----  
+# @@ END----  
 

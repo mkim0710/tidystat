@@ -110,7 +110,7 @@ korpopmap1@data |> str() #----
 
 
 
-# @ Encoding(names(korpopmap1.UTF8@data)) = "UTF-8" =====  
+## @ Encoding(names(korpopmap1.UTF8@data)) = "UTF-8" =====  
 korpopmap1.UTF8 = korpopmap1
 Encoding(names(korpopmap1.UTF8@data)) = "UTF-8"
 korpopmap1.UTF8@data = korpopmap1.UTF8@data %>% map_df(function(vec) {if(is.character(vec)) Encoding(vec) = "UTF-8"; vec})
@@ -161,7 +161,7 @@ korpopmap1@data |> names() %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()
 
 
 
-# @ names(korpopmap1.CP949@data) = names(korpopmap1.CP949@data) %>% iconv(from = "UTF-8", to = "CP949") ====  
+## @ names(korpopmap1.CP949@data) = names(korpopmap1.CP949@data) %>% iconv(from = "UTF-8", to = "CP949") ====  
 korpopmap1.CP949 = korpopmap1
 korpopmap1.CP949@data = korpopmap1.CP949@data %>% map_df(iconv, from = "UTF-8", to = "CP949")
 names(korpopmap1.CP949@data) = names(korpopmap1.CP949@data) %>% iconv(from = "UTF-8", to = "CP949")

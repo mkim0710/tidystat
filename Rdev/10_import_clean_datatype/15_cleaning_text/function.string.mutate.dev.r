@@ -4,7 +4,7 @@
 
 
 
-# @ ?nchar ====  
+## @ ?nchar ====  
 # ?nchar
 # Usage
 # nchar(x, type = "chars", allowNA = FALSE, keepNA = NA)
@@ -70,7 +70,7 @@ stopifnot(apply(ncT, 1, function(.) length(unique(.))) == 1,
           apply(ncF, 1, function(.) length(unique(.))) == 1)
 
 
-# @ ?substr ====  
+## @ ?substr ====  
 # ?substr
 # Usage
 # substr(x, start, stop)
@@ -115,7 +115,7 @@ x
 
 
 
-# @ ?regmatches =====  
+## @ ?regmatches =====  
 # ?regmatches
 # Usage
 # regmatches(x, m, invert = FALSE)
@@ -418,7 +418,7 @@ LETTERS |> str()
 #  chr [1:26] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 
 
-# @ str_length() == nchar() ====  
+## @ str_length() == nchar() ====  
 fruit |> str()
 fruit %>% nchar |> str()
 fruit |> str_length |> str()
@@ -430,7 +430,7 @@ fruit |> str_length |> str()
 #  int [1:80] 5 7 7 6 11 8 10 12 12 9 ...
 
 
-# @ str_sub() == substr() ====  
+## @ str_sub() == substr() ====  
 
 # https://www.rforexcelusers.com/how-to-mid-right-left-r/ =====  
 
@@ -480,7 +480,7 @@ right = function(text, num_char) {
 # [1] "Angeles"
 
 
-# @ |> str_extract("^.{8}") %>%  str_extract(".{4}$") ----  
+## @ |> str_extract("^.{8}") %>%  str_extract(".{4}$") ----  
 "Chicago" |> str_extract("^.{3}")
 "New York City" |> str_extract("^.{8}") %>%  str_extract(".{4}$")
 "Los Angeles" %>%  str_extract(".{7}$")
@@ -498,7 +498,7 @@ right = function(text, num_char) {
 
 
 
-# @ str_extract() == {regmatches(., regexpr(pattern, .))} -----  
+## @ str_extract() == {regmatches(., regexpr(pattern, .))} -----  
 
 # RegExCheatsheet 2016.09.pdf -----  
 string <- c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics")
@@ -1021,7 +1021,7 @@ fruit %>% {regmatches(., gregexpr(pattern, .))} |> str()
 
 
 
-# @ str_match() -----  
+## @ str_match() -----  
 # RegExCheatsheet 2016.09.pdf -----  
 string <- c("Hiphopopotamus", "Rhymenoceros", "time for bottomless lyrics")
 pattern <- "t.m"
@@ -1180,7 +1180,7 @@ substrRightRange(value, 10, 8)
 
 stri_sub("abcde",1,3)
 
-# @ ----  
+## @ ----  
 substrR <- function(x, n) { 
   if(n > 0) substr(x, (nchar(x)-n+1), nchar(x)) else substr(x, 1, (nchar(x)+n))
 }
@@ -1196,7 +1196,7 @@ substrL(substrR(x,-4),-2)
 
 
 
-# @ ----  
+## @ ----  
 # I use substr too, but in a different way. I want to extract the last 6 characters of "Give me your food." Here are the steps:
 # 
 # (1) Split the characters
@@ -1210,7 +1210,7 @@ tail(splits[[1]], n=6)
 
 
 
-# @ -----  
+## @ -----  
 x <- "some text in a string"
 regmatches(x, regexpr(".{6}$", x))
 # > x <- "some text in a string"
@@ -1221,7 +1221,7 @@ x |> str_extract(".{6}$")
 # > x |> str_extract(".{6}$")
 # [1] "string"
 
-# @ ----  
+## @ ----  
 
 string |> dput()
 # > string |> dput()
@@ -1249,7 +1249,7 @@ sub(paste('.+(?=.{', n, '})', sep=""), "", string, perl=T)
 
 
 
-# @ ?boundary ====  
+## @ ?boundary ====  
 # ?boundary
 pattern <- "a.b"
 strings <- c("abb", "a.b")
@@ -1328,5 +1328,5 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 
 
 
-# @ end -----  
+# @@ END-----  
 

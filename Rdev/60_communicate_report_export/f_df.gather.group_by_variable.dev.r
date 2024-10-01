@@ -1,6 +1,6 @@
 # f_df.gather.group_by_variable.dev.r
 
-# @ ---------------  
+## @ ---------------  
 # data_wide %>% gather(key = "variable", value = "value") %>%
 #     ggplot(aes(x = value, fill = variable)) + geom_histogram(position = "identity", alpha = 0.4, bins = 100) +
 #     geom_vline(aes(xintercept = JK02.2079...Match.TimeFrame1.recode.1_1.CCW63.CaseCtrl.pairwise.partial_correlation.join124.p_diff$LookBackWindow.gt.1y$r_Case[i]), color = "red") +
@@ -12,7 +12,7 @@ iris[,1:4] %>% gather(key = "variable", value = "value") %>%
 
 
 
-# @ ------------  
+## @ ------------  
 data.numeric.gather.group_by.summarise_all = function(data, round_digits = 3) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.gather.group_by_variable.dev.r")
     Q1 = function(x) quantile(x, probs = 0.25)

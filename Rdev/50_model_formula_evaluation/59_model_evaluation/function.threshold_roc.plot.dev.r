@@ -49,7 +49,7 @@ roc_obj[c("sensitivities", "specificities")] |> as_tibble()
 
 
 
-# @ -----  
+## @ -----  
 function.vec_actual_prediction.threshold_roc = function(vec_actual, vec_prediction) {
     if (length(vec_actual) != length(vec_prediction)) {
         warning("length(vec_actual) != length(vec_prediction)")
@@ -131,7 +131,7 @@ vec_actual_prediction.treshold_roc |> str() #----
 
 
 
-# @ -----  
+## @ -----  
 function.df_actual_prediction.threshold_roc = function(df_actual_prediction, varname4actual = "actual", varname4prediction = "prediction") {
     out = tibble(threshold = df_actual_prediction[[varname4prediction]] |> unique() |> sort(decreasing = F) %>% {(. + dplyr::lag(.))/2} %>% replace_na(-Inf) %>% {c(., Inf)} ) %>%
         mutate(
@@ -263,7 +263,7 @@ df_actual_prediction.treshold_roc %>% function.threshold_roc.auc #----
 
 
 
-# @ -----  
+## @ -----  
 function.vec_actual_prediction.auc = function(vec_actual, vec_prediction) {
     if (length(vec_actual) != length(vec_prediction)) {
         warning("length(vec_actual) != length(vec_prediction)")
@@ -356,4 +356,4 @@ function.threshold_roc.plot = function(object.threshold_roc) {
 df_actual_prediction.treshold_roc %>% function.threshold_roc.plot
 
 
-# @ end ----  
+# @@ END----  

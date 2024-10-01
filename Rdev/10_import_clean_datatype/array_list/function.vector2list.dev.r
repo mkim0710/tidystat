@@ -24,7 +24,7 @@ c("AGEGROUP", "GENDER", x = "US_BORN") %>% {set_names(., {if(is.null(names(.))) 
 
 
 
-# @ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====  
+## @ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====  
 c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
     function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = formula4MainModel, subscript4MainModel = "10var", varname4EffectModifier = chr)
 }), .)}
@@ -254,7 +254,7 @@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
 
 
 
-# @ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { ======  
+## @ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { ======  
 c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
     function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = formula4MainModel, subscript4MainModel = "10var", varname4EffectModifier = chr)
 }), .)} %>% map(function(ls) ls$table4manuscript)
@@ -288,7 +288,7 @@ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
 # 5                                      2: Other  668               44       0.06586826                 SSQ_5_6_adequateTRUE 0.64 (0.28 ~ 1.47)   0.295     
 
 
-# @ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====  
+## @ c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) { =====  
 c("AGEGROUP", "GENDER", "US_BORN") %>% {set_names(map(., function(chr) {
     function.svyglm.MainModel.byEffectModifier(data = data, formula4MainModel = formula4MainModel, subscript4MainModel = "10var", varname4EffectModifier = chr)
 }), .)} %>% map(function(ls) ls$table4manuscript) %>% bind_rows(.id = "varname4EffectModifier")
@@ -367,4 +367,4 @@ c("AGEGROUP", "GENDER", "US_BORN", "INC10K_integer", "INC25K") %>% {set_names(ma
 
 
 
-# @ end -----  
+# @@ END-----  

@@ -203,7 +203,7 @@ env1$path$.path4write = getwd()
 .path4write = env1$path$.path4write
 # cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
 
-# @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+## @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
 cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
 .tmp |> str(max.level = 1, give.attr = FALSE)
 cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
@@ -340,7 +340,7 @@ options(width=120)
 ```{r writeRDS-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-# @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
+## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
 .path4write = env1$path$.path4write
 # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 for (.objectname in names(MetaData$DataSetNames)) {

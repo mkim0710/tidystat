@@ -1,10 +1,10 @@
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/f_df.stratified.ccwc.dev.r")
 
-# @ to do ----  
-# @ MatchingPairID -> should be unique to each case~!!! (currently, one MatchingPairID may have 2 cases & 10 controls)  
-# @ consider sampling controls with replacement?  
-# @ .entry_age_of_Case  
-# @ EndTime.of.Case  
+## @ to do ----  
+## @ MatchingPairID -> should be unique to each case~!!! (currently, one MatchingPairID may have 2 cases & 10 controls)  
+## @ consider sampling controls with replacement?  
+## @ .entry_age_of_Case  
+## @ EndTime.of.Case  
 # 
 # dataset %>% 
 #     dplyr::filter(MatchingCtrlNum == 0) %>% 
@@ -35,7 +35,7 @@
 #     )
 
 
-# @ data.ccwc = function( - debug 180519 v5 =====  
+## @ data.ccwc = function( - debug 180519 v5 =====  
 data.ccwc = function(
     .mydata
     , ...
@@ -332,7 +332,7 @@ data.ccwc = function(
 }
 
 
-# @ test) data.ccwc() mycohort_1strata_tie ----  
+## @ test) data.ccwc() mycohort_1strata_tie ----  
 library(tidyverse)
 mycohort_1strata_tie = tibble::tribble(
     ~RowNum_original, ~entry_age, ~exit_age, ~event,              ~strata,
@@ -736,7 +736,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 
 
 
-# @ test) data.ccwc() mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE ----  
+## @ test) data.ccwc() mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE ----  
 mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE =
 structure(list(RowNum_original_before_strata = c(39429L, 39894L,
 40732L, 41167L, 41447L, 41513L, 41969L, 42023L, 42319L, 42587L,
@@ -825,7 +825,7 @@ mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>%
 # 26                         46412 2002-01-01 2004-10-31          FALSE  FALSE      11688     12722      999999999       999999999   FALSE              TRUE       FALSE
 
 
-# @ test) data.ccwc() mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE -----  
+## @ test) data.ccwc() mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE -----  
 mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE = 
 structure(list(RowNum_original_before_strata = c(36092L, 37713L,
 38766L), entry = structure(c(11688, 11688, 11688), class = "Date"),
@@ -875,7 +875,7 @@ mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>%
 
 
 
-# @ data.strata_list = function( -----  
+## @ data.strata_list = function( -----  
 data.strata_list = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
@@ -903,7 +903,7 @@ data.strata_list = function(
 }
 
 
-# @ test) data.strata_list() diet.rda -----  
+## @ test) data.strata_list() diet.rda -----  
 # data(diet, package = "Epi")
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_Epi_diet.rda"))
 diet = diet %>% mutate(
@@ -989,7 +989,7 @@ diet.strata_list %>% map(function(df) {
 
 
 
-# @ f_df.stratified.ccwc = function( - debug 180519 v5 ----  
+## @ f_df.stratified.ccwc = function( - debug 180519 v5 ----  
 f_df.stratified.ccwc = function(
     .mydata
     , .vars4strata = c("female", "age.cut")
@@ -1118,7 +1118,7 @@ f_df.stratified.ccwc = function(
 }
 
 
-# @ test) f_df.stratified.ccwc() diet ----  
+## @ test) f_df.stratified.ccwc() diet ----  
 .vars4strata = c("job", "energy.grp")
 varname4event = "event"
 diet.stratified.ccwc = diet %>% f_df.stratified.ccwc(
@@ -1719,4 +1719,4 @@ diet.stratified.ccwc #----
 
 
 
-# @ end -----  
+# @@ END-----  

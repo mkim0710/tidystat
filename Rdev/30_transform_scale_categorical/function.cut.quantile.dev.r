@@ -30,7 +30,7 @@ breaks = c(0, .001, 30, Inf)
 
 
 
-# @ analyticDF_C24.drop_pmhx_negativetime.list_binary ====  
+## @ analyticDF_C24.drop_pmhx_negativetime.list_binary ====  
 analyticDF_C24.drop_pmhx_negativetime.list_binary <- analyticDF_C24.drop_pmhx_negativetime.list_continuous
 for (i in 3:7) {
     iname <- paste0("_",i,"yr")
@@ -69,7 +69,7 @@ for (i in 3:7) {
 
 }
 
-# @ -----  
+## @ -----  
 
 out$propensities |> unname() %>% round(4) |> sort() |> deparse() |> cat("  \n", sep="")
 # > out$propensities |> unname() %>% round(4) |> sort() |> deparse() |> cat("  \n", sep="")
@@ -98,5 +98,5 @@ out$propensities %>% cut(., quantile(., 0:5/5), include.lowest = T, right = T) |
 #           790           789           772           796           764 
 
 
-# @ end -----  
+# @@ END-----  
 

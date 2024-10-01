@@ -94,7 +94,7 @@ results <- map(list(
 
 
 
-# @ annotated version -------  
+## @ annotated version -------  
 function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
     library(survival)
     library(tidyverse)
@@ -517,7 +517,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
 
 
 # @@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
-# @ name4MainData, name4MainTransformation, name4FullModel ====  
+## @ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
@@ -611,7 +611,7 @@ data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Beh
                                      
 
 # @@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----  
-# @ name4MainData, name4MainTransformation, name4FullModel ====  
+## @ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
 # name4MainTransformation = "cut"
 name4FullModel = "cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Behavior_Hx_DM_Med"
@@ -868,7 +868,7 @@ data_main.cut.coxph_list.HRCI %>% map(function(ob) {
 
 
                                           
-# @ end -----  
+# @@ END-----  
 getwd()
 .path4write = env1$path$.path4write
 .objectname = ""

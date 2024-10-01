@@ -3,7 +3,7 @@
 
 
 
-# @ end -----  
+# @@ END-----  
 
 getwd()
 .path4write = env1$path$.path4write
@@ -14,7 +14,7 @@ system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectna
 
 
 
-# @ end -----  
+# @@ END-----  
 .objectname = "NHID_GY20_0213.bind_rows"
 .path4write = env1$path$.path4write
 .t0 = Sys.time()
@@ -22,7 +22,7 @@ save( list = .objectname, file = file.path(.path4write, paste0(.objectname,".rda
 print(Sys.time() - .t0)
 
 
-# @ end -----  
+# @@ END-----  
 
 getwd()
 .path4write = env1$path$.path4write
@@ -37,7 +37,7 @@ system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectna
 
 
 
-# @ end -----  
+# @@ END-----  
 getwd()
 .path4write = env1$path$.path4write
 .objectname = "tblGADM_kor_level1_NL_NAME_1.SIDO_CD"
@@ -50,7 +50,7 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".
 
 
 
-# @ -----  
+## @ -----  
 library(tidyverse)
 getwd()
 .path4read = env1$path$.path4read 
@@ -62,7 +62,7 @@ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds"))) 
 
 
 
-# @ -----  
+## @ -----  
 library(tidyverse)
 getwd()
 .path4read = env1$path$.path4read 
@@ -79,7 +79,7 @@ Sys.time() - .t0
 
 
 
-# @ -----  
+## @ -----  
 library(tidyverse)
 getwd()
 .path4write = env1$path$.path4write

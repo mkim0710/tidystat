@@ -15,7 +15,7 @@
 
 
 
-# @ ------------------------  
+## @ ------------------------  
 ID_Criteria.n_distinct.tbl |> names() |> dput()
 # > ID_Criteria.n_distinct.tbl |> names() |> dput()
 # c("ENROLID", "Inc2.ia.1.a.ndDate", "Inc2.ia.1.b.1.ndDate", "Inc2.ia.1.b.2.ndDate", 
@@ -75,8 +75,8 @@ ID_Criteria.n_distinct_lgl.tbl = ID_Criteria.n_distinct.tbl %>%
 
 
 
-# @ ------------------------  
-# @ txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)" ----  
+## @ ------------------------  
+## @ txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)" ----  
 txt = "rowname                  HRCI p_value star  p.fdr *fdr  p.bon *bon  exp(coef) exp(2.5 %) exp(97.5 %)  se(coef)           z     Pr(>|z|)"
 txt |> str_extract_all("[A-Za-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
 # > txt |> str_extract_all("[A-Za-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = '", "') %>% {paste0('"', ., '"')} %>% {paste0('c(', ., ')')} |> cat("  \n", sep="")
@@ -84,7 +84,7 @@ txt |> str_extract_all("[A-Za-z0-9_.*()|>%]+") |> unlist() |> paste0(collapse = 
 
 
 
-# @ txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"' -----  
+## @ txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"' -----  
 txt = '"varname", "level", "varnamelevel", "coefficients", "exp(coef)", "lower .95", "upper .95", "Pr(>|z|)", "HR"'
 txt |> str_extract_all("[A-Za-z0-9_]+") |> str()
 txt |> str_extract_all("[A-Za-z0-9_]+") |> paste0(collapse = ', ') |> str()
@@ -103,7 +103,7 @@ txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = ', ') %
 
 
 
-# @ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----  
+## @ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----  
 txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
 txt |> dput()
 # > txt |> dput()
@@ -121,7 +121,7 @@ txt %>% gsub("[ \t\n\r\f\v]+", ", ", .) %>% {paste0('c(', ., ')')} |> cat("  \n"
 
 
 
-# @ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----  
+## @ txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"' -----  
 txt = '"N1GM0390"        "N1GM0392"        "N1GM0392_recode" "N1GM0394"        "N1GM0394_recode" "Cigar"'
 txt |> dput()
 # > txt |> dput()
@@ -168,7 +168,7 @@ txt |> str_extract_all("[A-Za-z0-9_]+") |> unlist() |> paste0(collapse = '", "')
 
 
 
-# @ txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar" -----  
+## @ txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar" -----  
 txt = "N1GM0390, N1GM0392, N1GM0392_recode, N1GM0394, N1GM0394_recode, Cigar"
 
 txt %>% gsub("[ \t\n\r\f\v]+", "", .) 
@@ -262,7 +262,7 @@ list(LETTERS, letters) |> paste("1", collapse = "|") |> cat("  \n", sep="")
 
 
 
-# @ txt = ' =====  
+## @ txt = ' =====  
 txt = '
 Cigar Cigar_ge1 Cigar_ge30 Cigar_ge50 Cigar_ge100 Cigar_ge365 Cigar_cutMY Cigar_cut800
 CigarettePackYear CigarettePackYear_ge1 CigarettePackYear_cut40
@@ -304,7 +304,7 @@ txt %>% gsub("\n", " ", .) %>% gsub(" +", " ", .) %>% gsub("^ ", "", .) %>% gsub
 
 
 
-# @ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
+## @ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
 txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 txt %>% gsub(" ", ", ", .) |> dput()
 # > txt %>% gsub(" ", ", ", .) |> dput()
@@ -321,7 +321,7 @@ n1_2016_withlabels_EPI522_merge_n2_recode %>% dplyr::filter(N1GM0390 == 1 & Ciga
 
 
 
-# @ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
+## @ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
 txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 
 txt %>% gsub(" ", '\\", \\"', .)
@@ -359,7 +359,7 @@ c("N1GM0390", "N1GM0392", "N1GM0392_recode", "N1GM0394", "N1GM0394_recode", "Cig
 
 
 
-# @ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
+## @ txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar" -----  
 txt = "N1GM0390 N1GM0392 N1GM0392_recode N1GM0394 N1GM0394_recode Cigar"
 txt %>% gsub("\\b", "@", .)
 # > txt %>% gsub("\\b", "@", .)
@@ -373,7 +373,7 @@ txt %>% gsub("\\b", '\\"', .)
 
 
 
-# @ ?boundary ====  
+## @ ?boundary ====  
 # ?boundary
 pattern <- "a.b"
 strings <- c("abb", "a.b")
@@ -559,5 +559,5 @@ ENROLID.2353768.join_criteria.na_rm.2plus %>%
 
 
 
-# @ end ---  
+# @@ END---  
 

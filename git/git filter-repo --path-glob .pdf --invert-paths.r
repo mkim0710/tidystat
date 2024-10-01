@@ -145,7 +145,7 @@ git add .gitignore
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #| (pending) using Git Large File Storage (Git LFS) for handling large files. |#
-# @ (pending) using Git Large File Storage (Git LFS) for handling large files. ======  
+## @ (pending) using Git Large File Storage (Git LFS) for handling large files. ======  
 # Git LFS stores large files outside your repository and keeps pointers in your Git history
 # 'git lfs install' |> system(intern=TRUE) |> cat("  ", sep="  \n")
 # 'git lfs track "*.pdf"' |> system(intern=TRUE) |> cat("  ", sep="  \n")

@@ -53,7 +53,7 @@ all.equal(gj_jk.Date.DTH.recode$BMI_calculated, gj_jk.Date.DTH.recode$BMI)
 
 
 
-# @ function.df_add_BMI.cut4 ======  
+## @ function.df_add_BMI.cut4 ======  
 function.df_add_BMI.cut4 = function(df) {
     df %>% mutate(
         BMI = as.numeric(WEIGHT) / (as.numeric(HEIGHT)/100)^2

@@ -391,7 +391,7 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Ta
 
 
 
-# @ dev -----------  
+## @ dev -----------  
 function.DataSet.TableOne_byExposure.print.addCols = function(DataSet.TableOne_byExposure.print) {
     DataSet.TableOne_byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
         as.data.frame() %>% {.[1,]=paste0(names(.), " (N = ", .[2,], ")");.[1,1]=VarNames4Exposure;.[1,c("p","test","SMD")]=c("p-value", "test", "SMD");.} %>% 
@@ -634,7 +634,7 @@ DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate(
 )
 
 
-# @ DataSet.CreateTableOne.by_MissingPattern -----  
+## @ DataSet.CreateTableOne.by_MissingPattern -----  
 VarNames4MissingPattern =  c("MissingPattern")
 # DataSet.TableOne_by_MissingPattern = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 #     CreateTableOne(strata = VarNames4MissingPattern, data = ., test = T, includeNA = T, addOverall = T)
@@ -687,7 +687,7 @@ DataSet.TableOne_by_MissingPattern |> print(showAllLevels = F, smd = T, nonnorma
 
 
 
-# @ library(survey) =====  
+## @ library(survey) =====  
 library(survey)
 # ?svydesign
 #   data(api)
@@ -726,7 +726,7 @@ DataSet.svydesign = DataSet.Date.NA.rmAllNA %>% svydesign(id = ~PrimarySamplingU
 
 
 
-# @ DataSet.svydesign.svyCreateTableOne -----  
+## @ DataSet.svydesign.svyCreateTableOne -----  
 DataSet.svydesign.TableOne = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
     {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> as.data.frame() %>%  # debug181115 not to remove numeric 
     svyCreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
@@ -753,7 +753,7 @@ DataSet.svydesign.TableOne |> print(showAllLevels = F, nonnormal = Vars4IQR, exa
 if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.TableOne.IQR.xlsx")
 
 
-# @ DataSet.svydesign.svyCreateTableOne.byExposure -----  
+## @ DataSet.svydesign.svyCreateTableOne.byExposure -----  
 VarNames4Exposure =  c("treatment")
 # DataSet.svydesign.TableOne_byExposure = DataSet.svydesign %>% select(-rowname, -PERSON_ID) %>%
 #     svyCreateTableOne(strata = VarNames4Exposure, data = ., test = T, includeNA = T, addOverall = T)
@@ -788,7 +788,7 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open("DataSet.svydesign.Ta
 
 
 
-# @ ------  
+## @ ------  
 df = JK02.2079.CCW.MIN_Date.ge365_EndTime.is.Case.confirm.365.Match.TimeFrame1$LookBackWindow.gt.1y %>% 
   dplyr::filter(MatchingCtrlNum %in% c(0, 1)) %>%
   select(AcquiredHypothyroidism: VisualImpairment, EndTime.is.Case.confirm.365)
@@ -799,7 +799,7 @@ df %>%
 
 
 
-# @ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne -----  
+## @ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne -----  
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne |> str(max.level = 1)
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.CreateTableOne |> str(max.level = 1)
 # List of 5
@@ -1040,7 +1040,7 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.C
     ggplot(aes(x = parent, y = as.numeric(freq), group = level, color = level)) + geom_point() + geom_smooth(method = lm)
 
 
-# @ end ------  
+# @@ END------  
 analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list = list()
 analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.list$by.evnttrth_C16_r =
     analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.CreateTableOne.by.evnttrth_C16_r
