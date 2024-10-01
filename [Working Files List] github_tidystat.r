@@ -252,8 +252,8 @@ if (getwd() |> normalizePath(winslash="/") == .overwrite_from_path) {
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## @ .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/") -----  
-#### \% f_df.CreateTable1byExposure.xlsx -----  
-.subpath = r"(Rdev/60_communicate_report_export)"; .filename.r = "f_df.CreateTable1byExposure.xlsx" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); .subpath.filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
+#### \% f_df.Table1byExposure.xlsx -----  
+.subpath = r"(Rdev/60_communicate_report_export)"; .filename.r = "f_df.Table1byExposure.xlsx" |> paste0(c(".source.r",".dev.r",".dev.Rmd")); .subpath.filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 

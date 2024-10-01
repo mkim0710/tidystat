@@ -45,7 +45,7 @@ data.ccwc = function(
     , varname4origin = NULL
     , .MatchingRatio = 2
     , seed = 1
-    , add_tableone_pre_post = F
+    , add_Table1_pre_post = F
     , RowNum_original_before_strata = NULL
     , apply.na.omit = F
     , print.process = F
@@ -177,17 +177,17 @@ data.ccwc = function(
         )
         attr(out, "error.message") = "length(unique(.mydata[[varname4event]])) < 2"  # attr() is shown with str(max.level = 1)
         
-        # if (add_tableone_pre_post == T) {
-        #     out$tableone_pre = NA
-        #     out$tableone_post_total = NA
-        #     out$tableone_post_i = NA
+        # if (add_Table1_pre_post == T) {
+        #     out$Table1_pre = NA
+        #     out$Table1_post_total = NA
+        #     out$Table1_post_i = NA
         # }
     } else {
         out = list()
-        # if (add_tableone_pre_post == T) {
-        #     out$tableone_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = .mydata, test=T, includeNA = T)
+        # if (add_Table1_pre_post == T) {
+        #     out$Table1_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = .mydata, test=T, includeNA = T)
         #     # # debug 180516
-        #     # out$tableone_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = map_df(, function(x) ifelse(is.factor(x), as.character(x), x)), test=T, includeNA = T)
+        #     # out$Table1_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = map_df(, function(x) ifelse(is.factor(x), as.character(x), x)), test=T, includeNA = T)
         # }
 
         .mydata = .mydata %>%  mutate(
@@ -282,27 +282,27 @@ data.ccwc = function(
             
         # .mydata.ccwc$.new.label = c("Control", "Case")[as.numeric(.mydata.ccwc$MatchingCtrlNum == 0)+1]
         
-        # if (add_tableone_pre_post == T) {
-        #     out$tableone_post_total = CreateTableOne(
+        # if (add_Table1_pre_post == T) {
+        #     out$Table1_post_total = CreateTableOne(
         #         vars = c(varname4entry, varname4exit), strata = "is.Case"
         #         , data = dplyr::filter(.mydata.ccwc, is.assigned == T)
         #         , test=T
         #         , includeNA = T)
         #     # # debug 180516
-        #     # out$tableone_post_total = CreateTableOne(
+        #     # out$Table1_post_total = CreateTableOne(
         #     #     vars = c(varname4entry, varname4exit), strata = "is.Case"
         #     #     , data = map_df(dplyr::filter(.mydata.ccwc, is.assigned == T), function(x) ifelse(is.factor(x), as.character(x), x))
         #     #     , test=T
         #     #     , includeNA = T)
         #     
-        #     # out$tableone_post_i = lapply(1:.MatchingRatio, function(i) {
+        #     # out$Table1_post_i = lapply(1:.MatchingRatio, function(i) {
         #     #     CreateTableOne(
         #     #         vars = c(varname4entry, varname4exit), strata = varname4event
         #     #         , data = .mydata.ccwc %>% dplyr::filter(MatchingCtrlNum %in% c(0,i))
         #     #         , test=T
         #     #         , includeNA = T)
         #     # })
-        #     # names(out$tableone_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
+        #     # names(out$Table1_post_i) = paste0("MatchingCtrlNum", "_0_", 1:.MatchingRatio)
         # }
         
     }
@@ -432,16 +432,16 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
 # [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
 # List of 3
-#  $ tableone_pre       :List of 3
-#   ..- attr(*, "class")= chr "TableOne"
+#  $ Table1_pre       :List of 3
+#   ..- attr(*, "class")= chr "tableone"
 #  $ data               :Classes ??tbl_df??, ??tbl?? and 'data.frame':	12 obs. of  13 variables:
 #   ..- attr(*, ".event")= chr "event"
 #   ..- attr(*, ".entry")= chr "entry_age"
 #   ..- attr(*, ".exit")= chr "exit_age"
 #   ..- attr(*, ".MatchingRatio")= num 2
 #   ..- attr(*, "apply.na.omit")= logi FALSE
-#  $ tableone_post_total:List of 3
-#   ..- attr(*, "class")= chr "TableOne"
+#  $ Table1_post_total:List of 3
+#   ..- attr(*, "class")= chr "tableone"
 #  - attr(*, "function.input")=List of 9
 # > mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "entry_age", varname4exit = "exit_age", varname4origin = NULL, print.process = F) %>% {.[c(2, 1, 3)]}
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
@@ -464,14 +464,14 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 # 11             258        57       70 FALSE Driver|>2750 KCals FALSE          57        70            999             999 FALSE   TRUE              FALSE      
 # 12             315        47       63 FALSE Driver|>2750 KCals FALSE          47        63            999             999 FALSE   TRUE              FALSE      
 # 
-# $tableone_pre
+# $Table1_pre
 #                        Stratified by event
 #                         FALSE        TRUE          p      test
 #   n                         7            5                    
 #   entry_age (mean (sd)) 50.14 (8.97) 49.20 (12.01)  0.879     
 #   exit_age (mean (sd))  63.71 (8.08) 59.20 (10.62)  0.420     
 # 
-# $tableone_post_total
+# $Table1_post_total
 #                        Stratified by is.Case
 #                         FALSE        TRUE          p      test
 #   n                         6            3                    
@@ -482,7 +482,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 244L"
 # [1] "*** Caution) a future case has been assigned as a control - RowNum_original: 143L"
 # [1] "*** Caution) 4-th iteration for: 68 -> this case may have already been assigned as control"
-# $tableone_pre
+# $Table1_pre
 #                        Stratified by event
 #                         FALSE        TRUE          p      test
 #   n                         7            5                    
@@ -506,7 +506,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 # 11             258        57       70 FALSE Driver|>2750 KCals FALSE          57        70            999             999 FALSE   TRUE              FALSE      
 # 12             315        47       63 FALSE Driver|>2750 KCals FALSE          47        63            999             999 FALSE   TRUE              FALSE      
 # 
-# $tableone_post_total
+# $Table1_post_total
 #                        Stratified by is.Case
 #                         FALSE        TRUE          p      test
 #   n                         6            3                    
@@ -521,7 +521,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 # attr(,"function.input")$fun
 # function (.mydata, ..., varname4event = "failure", varname4entry = ".entry_age", 
 #     varname4exit = ".exit_age", varname4origin = NULL, .MatchingRatio = 2, 
-#     seed = 1, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     seed = 1, add_Table1_pre_post = T, RowNum_original_before_strata = NULL, 
 #     apply.na.omit = F, print.process = F, load.dependent.library = T, 
 #     apply.function.dichotomous2logical = F) 
 # {
@@ -602,8 +602,8 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #     }
 #     else {
 #         out = list()
-#         if (add_tableone_pre_post == T) {
-#             out$tableone_pre = CreateTableOne(vars = c(varname4entry, 
+#         if (add_Table1_pre_post == T) {
+#             out$Table1_pre = CreateTableOne(vars = c(varname4entry, 
 #                 varname4exit), strata = varname4event, data = .mydata, 
 #                 test = T, includeNA = T)
 #         }
@@ -689,8 +689,8 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #             }
 #         }
 #         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
-#         if (add_tableone_pre_post == T) {
-#             out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
+#         if (add_Table1_pre_post == T) {
+#             out$Table1_post_total = CreateTableOne(vars = c(varname4entry, 
 #                 varname4exit), strata = "is.Case", data = dplyr::filter(.mydata.ccwc, 
 #                 is.assigned == T), test = T, includeNA = T)
 #         }
@@ -783,7 +783,7 @@ mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>%
         , apply.na.omit = F
         , print.process = F
         , print.map.process = F
-        , add_tableone_pre_post = F
+        , add_Table1_pre_post = F
     ) %>% {.$data}
 # > mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>%
 # +     data.ccwc(
@@ -794,7 +794,7 @@ mydata2089.strata_list_1_17_1q_41_49_TRUE_TRUE %>%
 # +         , apply.na.omit = F
 # +         , print.process = F
 # +         , print.map.process = F
-# +         , add_tableone_pre_post = F
+# +         , add_Table1_pre_post = F
 # +     ) %>% {.$data}
 #    RowNum_original_before_strata      entry EndTime.YM EndTime.is.MDD .event .entry_age .exit_age MatchingPairID MatchingCtrlNum is.Case is.Ctrl.Candidate is.assigned
 # 1                          39894 2002-01-01 2010-06-30           TRUE   TRUE      11688     14790              1               0    TRUE             FALSE        TRUE
@@ -851,7 +851,7 @@ mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>%
         , apply.na.omit = F
         , print.process = F
         , print.map.process = F
-        , add_tableone_pre_post = F
+        , add_Table1_pre_post = F
     ) %>% {.$data}
 # > mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>% 
 # +     data.ccwc(
@@ -862,7 +862,7 @@ mydata2089.strata_list_2_18_3q_11_36_FALSE_TRUE_TRUE %>%
 # +         , apply.na.omit = F
 # +         , print.process = F
 # +         , print.map.process = F
-# +         , add_tableone_pre_post = F
+# +         , add_Table1_pre_post = F
 # +     ) %>% {.$data}
 # [1] "length(which.Ctrl.Candidate) == 0 for .mydata.ccwc[which.Case,], where which.Case is: 3L"
 # # A tibble: 3 x 13
@@ -1001,7 +1001,7 @@ f_df.stratified.ccwc = function(
     , varname4origin = NULL
     , .MatchingRatio = 2
     , seed = 1
-    , add_tableone_pre_post = F
+    , add_Table1_pre_post = F
     , RowNum_original_before_strata = NULL
     , apply.na.omit = F
     , print.process = F
@@ -1033,7 +1033,7 @@ f_df.stratified.ccwc = function(
             , varname4origin = varname4origin
             , seed = seed
             , .MatchingRatio = .MatchingRatio
-            , add_tableone_pre_post = F
+            , add_Table1_pre_post = F
             , print.process = print.process
             , RowNum_original_before_strata = "RowNum_original_before_strata"
             , apply.na.omit = apply.na.omit
@@ -1050,7 +1050,7 @@ f_df.stratified.ccwc = function(
                 , varname4origin = varname4origin
                 , seed = seed
                 , .MatchingRatio = .MatchingRatio
-                , add_tableone_pre_post = F
+                , add_Table1_pre_post = F
                 , print.process = F
                 , RowNum_original_before_strata = "RowNum_original_before_strata"
                 , apply.na.omit = apply.na.omit
@@ -1060,9 +1060,9 @@ f_df.stratified.ccwc = function(
     }
     # map = purrr::map
     out = list()
-    # # out$tableone_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = .mydata, test=T, includeNA = T)
+    # # out$Table1_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = .mydata, test=T, includeNA = T)
     # # debug 180516
-    # out$tableone_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = map_df(.mydata, function(x) ifelse(is.factor(x), as.character(x), x)), test=T, includeNA = T)
+    # out$Table1_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = map_df(.mydata, function(x) ifelse(is.factor(x), as.character(x), x)), test=T, includeNA = T)
     
     warning_lgl = .mydata.strata_list.ccwc %>% map_lgl(function(object) {
         as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[varname4event]])) < 2")) # sum() to avoid error "argument is of length zero" in if()
@@ -1082,13 +1082,13 @@ f_df.stratified.ccwc = function(
         warning(paste0("length(unique(.mydata[[varname4event]]) < 2",": \n", deparse(names(.mydata.strata_list.ccwc)[warning_lgl])))
     }
     
-    # # out$tableone_post_total = CreateTableOne(
+    # # out$Table1_post_total = CreateTableOne(
     # #     vars = c(varname4entry, varname4exit), strata = "is.Case"
     # #     , data = dplyr::filter(out$data, is.assigned == T)
     # #     , test=T
     # #     , includeNA = T)
     # # debug 180516
-    # out$tableone_post_total = CreateTableOne(
+    # out$Table1_post_total = CreateTableOne(
     #     vars = c(varname4entry, varname4exit), strata = "is.Case"
     #     , data = map_df(dplyr::filter(out$data, is.assigned == T), function(x) ifelse(is.factor(x), as.character(x), x))
     #     , test=T
@@ -1357,21 +1357,21 @@ diet.stratified.ccwc #----
 # 10   272 1969-03-16 1973-12-13 1920-03-06  4.74     3 Bank wo~     3   20.3   175.   61.0  8.54 0.765 <=2750 KC~     1               6      49.1     53.8 TRUE  Bank worker~ TRUE         49.1
 # # ... with 327 more rows, and 6 more variables: .exit_age <dbl>, MatchingPairID <fct>, MatchingCtrlNum <dbl>, is.Case <lgl>, is.Ctrl.Candidate <lgl>, is.assigned <lgl>
 # 
-# $tableone_pre
+# $Table1_pre
 #                        Stratified by event
 #                         FALSE        TRUE         p      test
 #   n                       257           80                   
 #   entry_age (mean (sd)) 49.02 (7.17) 51.05 (6.23)  0.023     
 #   exit_age (mean (sd))  64.36 (5.80) 59.34 (6.18) <0.001     
 # 
-# $tableone_post_total
+# $Table1_post_total
 #                        Stratified by is.Case
 #                         FALSE        TRUE         p      test
 #   n                       114           57                   
 #   entry_age (mean (sd)) 49.84 (6.03) 50.90 (6.38)  0.289     
 #   exit_age (mean (sd))  64.86 (4.92) 58.03 (6.22) <0.001  
 # > diet.stratified.ccwc #----  
-# $tableone_pre
+# $Table1_pre
 #                        Stratified by event
 #                         FALSE        TRUE         p      test
 #   n                       257           80                   
@@ -1394,7 +1394,7 @@ diet.stratified.ccwc #----
 # 10   272 1969-03-16 1973-12-13 1920-03-06  4.74     3 Bank wo~     3   20.3   175.   61.0  8.54 0.765 <=2750 KC~     1               6      49.1     53.8 TRUE  Bank worker~ TRUE         49.1
 # # ... with 327 more rows, and 6 more variables: .exit_age <dbl>, MatchingPairID <fct>, MatchingCtrlNum <dbl>, is.Case <lgl>, is.Ctrl.Candidate <lgl>, is.assigned <lgl>
 # 
-# $tableone_post_total
+# $Table1_post_total
 #                        Stratified by is.Case
 #                         FALSE        TRUE         p      test
 #   n                       114           57                   
@@ -1406,7 +1406,7 @@ diet.stratified.ccwc #----
 # function (.mydata, .vars4strata = c("female", "age.cut"), paste.collapse = "|", 
 #     ..., varname4event = "failure", varname4entry = ".entry_age", 
 #     varname4exit = ".exit_age", varname4origin = NULL, .MatchingRatio = 2, 
-#     seed = 1, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     seed = 1, add_Table1_pre_post = T, RowNum_original_before_strata = NULL, 
 #     apply.na.omit = F, print.process = F, print.map.process = T, 
 #     load.dependent.library = T, apply.function.dichotomous2logical = F) 
 # {
@@ -1430,7 +1430,7 @@ diet.stratified.ccwc #----
 #             }, varname4event = varname4event, varname4entry = varname4entry, 
 #                 varname4exit = varname4exit, varname4origin = varname4origin, 
 #                 seed = seed, .MatchingRatio = .MatchingRatio, 
-#                 add_tableone_pre_post = F, print.process = print.process, 
+#                 add_Table1_pre_post = F, print.process = print.process, 
 #                 RowNum_original_before_strata = "RowNum_original_before_strata", 
 #                 apply.na.omit = apply.na.omit, load.dependent.library = F, 
 #                 apply.function.dichotomous2logical = apply.function.dichotomous2logical)
@@ -1440,13 +1440,13 @@ diet.stratified.ccwc #----
 #         .mydata.strata_list.ccwc = .mydata.strata_list %>% map(data.ccwc, 
 #             varname4event = varname4event, varname4entry = varname4entry, 
 #             varname4exit = varname4exit, varname4origin = varname4origin, 
-#             seed = seed, .MatchingRatio = .MatchingRatio, add_tableone_pre_post = F, 
+#             seed = seed, .MatchingRatio = .MatchingRatio, add_Table1_pre_post = F, 
 #             print.process = F, RowNum_original_before_strata = "RowNum_original_before_strata", 
 #             apply.na.omit = apply.na.omit, load.dependent.library = F, 
 #             apply.function.dichotomous2logical = apply.function.dichotomous2logical)
 #     }
 #     out = list()
-#     out$tableone_pre = CreateTableOne(vars = c(varname4entry, 
+#     out$Table1_pre = CreateTableOne(vars = c(varname4entry, 
 #         varname4exit), strata = varname4event, data = .mydata, 
 #         test = T, includeNA = T)
 #     warning_lgl = .mydata.strata_list.ccwc %>% map_lgl(function(object) {
@@ -1460,7 +1460,7 @@ diet.stratified.ccwc #----
 #         warning(paste0("length(unique(.mydata[[varname4event]]) < 2", 
 #             ": \n", deparse(names(.mydata.strata_list.ccwc)[warning_lgl])))
 #     }
-#     out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
+#     out$Table1_post_total = CreateTableOne(vars = c(varname4entry, 
 #         varname4exit), strata = "is.Case", data = dplyr::filter(out$data, 
 #         is.assigned == T), test = T, includeNA = T)
 #     attr(out$data, ".vars4strata") = .vars4strata
@@ -1504,7 +1504,7 @@ diet.stratified.ccwc #----
 # attr(,"function.input")$data.ccwc
 # function (.mydata, ..., varname4event = "failure", varname4entry = ".entry_age", 
 #     varname4exit = ".exit_age", varname4origin = NULL, .MatchingRatio = 2, 
-#     seed = 1, add_tableone_pre_post = T, RowNum_original_before_strata = NULL, 
+#     seed = 1, add_Table1_pre_post = T, RowNum_original_before_strata = NULL, 
 #     apply.na.omit = F, print.process = F, load.dependent.library = T, 
 #     apply.function.dichotomous2logical = F) 
 # {
@@ -1585,8 +1585,8 @@ diet.stratified.ccwc #----
 #     }
 #     else {
 #         out = list()
-#         if (add_tableone_pre_post == T) {
-#             out$tableone_pre = CreateTableOne(vars = c(varname4entry, 
+#         if (add_Table1_pre_post == T) {
+#             out$Table1_pre = CreateTableOne(vars = c(varname4entry, 
 #                 varname4exit), strata = varname4event, data = .mydata, 
 #                 test = T, includeNA = T)
 #         }
@@ -1672,8 +1672,8 @@ diet.stratified.ccwc #----
 #             }
 #         }
 #         out$data = .mydata.ccwc %>% arrange(MatchingPairID, MatchingCtrlNum)
-#         if (add_tableone_pre_post == T) {
-#             out$tableone_post_total = CreateTableOne(vars = c(varname4entry, 
+#         if (add_Table1_pre_post == T) {
+#             out$Table1_post_total = CreateTableOne(vars = c(varname4entry, 
 #                 varname4exit), strata = "is.Case", data = dplyr::filter(.mydata.ccwc, 
 #                 is.assigned == T), test = T, includeNA = T)
 #         }

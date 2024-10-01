@@ -1,13 +1,13 @@
-# .sourcename = "f_df.CreateTable1byExposure.xlsx" |> paste0(".source.r")
-# f_df.CreateTable1byExposure.xlsx.dev.r
-# f_df.CreateTable1byExposure.xlsx.source.r
-# utils::browseURL("/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.dev.r")
-# source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r"))
-# # source("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r")
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.dev.r")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.dev.Rmd")
-# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.CreateTable1byExposure.xlsx.source.r")
+# .sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
+# f_df.Table1byExposure.xlsx.dev.r
+# f_df.Table1byExposure.xlsx.source.r
+# utils::browseURL("/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.r")
+# source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"))
+# # source("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r")
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.r")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.dev.Rmd")
+# file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -116,7 +116,7 @@ env1$f$f_df.printVars_byMainOutcome = function(DataSet, MainOutcome, VarName.sel
         # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
         mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
         as.data.frame() %>%  
-        tableone::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
+        Table1::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
 }
 
 

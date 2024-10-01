@@ -30,7 +30,7 @@
 
 
 
-# https://github.com/kaz-yos/tableone/blob/48edcec1998969774e1b9349bd4528689fe1b2ee/R/modules-smd.R
+# https://github.com/kaz-yos/Table1/blob/48edcec1998969774e1b9349bd4528689fe1b2ee/R/modules-smd.R
 ### Continuous/binary standardized mean differences
 ## Expects continuous or 0,1 binary variable
 StdDiff <- function(variable, group, binary = FALSE, na.rm = TRUE) {

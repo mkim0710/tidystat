@@ -104,7 +104,7 @@ dir(full.names = T) |> str() #----
 # # > dir(full.names = T) |> str() #----  
 # #  chr [1:37] "./-info" "./-tmp" "./-void.r" "./[[Stat]] CRAN R - Shortcut.lnk" "./bfg-1.13.0.jar" "./bfg.txt" "./bfg.zip" ...
 # # > dir(full.names = T, recursive = T) |> str() #----  
-# #  chr [1:444] "./-info/facets_2017 - annotate (3) tableone_by_P_WH.ge.5.zip" "./-info/facets_2017 - annotate.xlsx - 바로 가기.lnk" ...
+# #  chr [1:444] "./-info/facets_2017 - annotate (3) Table1byP_WH.ge.5.zip" "./-info/facets_2017 - annotate.xlsx - 바로 가기.lnk" ...
 # # > input_path = "Rdev"
 # # > dir(input_path, full.names = T, recursive = T) |> str() #----  
 # #  chr [1:231] "Rdev/-dev/object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r" ...
@@ -186,7 +186,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #'  $ files.rmd                :List of 61
 #'  $ files.rds                :List of 61
 #'  $ files.rda                :List of 61
-#'  $ print_tree_path_files    : chr [1:61] "@./\n-info\nbfg-1.13.0.jar\nbfg.txt\ndata\nEncoding.txt\nenv1$env.internal.source.r\nenv1.fun.t.tri"| __truncated__ "@-info/\n\tFACETS_data_2017.NA.NonLatino.tableone_by_P_WH.ge.5 -annotate.xlsx\n\tJK2079.GY20CCW.bind_rows0213.M"| __truncated__ "@Rdev/\n\t-dev\n\t00_base_program\n\t00_protocol\n\t10_import_clean_datatype\n\t20_tidy_group_by_match\n\t30_tr"| __truncated__ "@\t-dev/\n" ...
+#'  $ print_tree_path_files    : chr [1:61] "@./\n-info\nbfg-1.13.0.jar\nbfg.txt\ndata\nEncoding.txt\nenv1$env.internal.source.r\nenv1.fun.t.tri"| __truncated__ "@-info/\n\tFACETS_data_2017.NA.NonLatino.Table1byP_WH.ge.5 -annotate.xlsx\n\tJK2079.GY20CCW.bind_rows0213.M"| __truncated__ "@Rdev/\n\t-dev\n\t00_base_program\n\t00_protocol\n\t10_import_clean_datatype\n\t20_tidy_group_by_match\n\t30_tr"| __truncated__ "@\t-dev/\n" ...
 #'  $ print_tree_path_files.r  : chr [1:61] "@./\n-void.r\nenv1$env.internal.source.r\nenv1.fun.t.tibble.dev -tmp.r\nenv1.fun.t.tribble_co"| __truncated__ "@-info/\n" "@Rdev/\n\tf_df.variable.Date.nID_anyTRUE_allTRUE.dev.r\n\tf_df.variable.Date.nID_TRUE_NA.dev.r\n\tflowchart_inc"| __truncated__ "@\t-dev/\n\t\tobject.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample -dev.r\n" ...
 #'  $ print_tree_path_files.codes: chr [1:61] "@./\nf_df.t.tribble_construct -old.Rmd\nf_df.t.tribble_construct.Rmd\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
 #'  $ print_tree_path_files.rds: chr [1:61] "@./\n" "@-info/\n" "@Rdev/\n" "@\t-dev/\n" ...
@@ -359,8 +359,8 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' tests
 #' vignettes
 #' @-info/
-#' 	FACETS_data_2017.NA.NonLatino.tableone_by_P_WH.ge.5 -annotate.xlsx
-#' 	JK2079.GY20CCW.bind_rows0213.MIN_Date.ge365.CC69.JAMIA21.CreateTableOne.by_SEX -annotate.xlsx
+#' 	FACETS_data_2017.NA.NonLatino.Table1byP_WH.ge.5 -annotate.xlsx
+#' 	JK2079.GY20CCW.bind_rows0213.MIN_Date.ge365.CC69.JAMIA21.Table1bySEX -annotate.xlsx
 #' @Rdev/
 #' 	-dev
 #' 	00_base_program
@@ -631,7 +631,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 			function.threshold_roc.plot.dev.r
 #' @	60_communicate_report_export/
 #' 		calculate.smd.dev.r
-#' 		f_df.CreateTable1byExposure.xlsx.dev.r
+#' 		f_df.Table1byExposure.xlsx.dev.r
 #' 		f_df.gather.group_by_variable.dev.r
 #' 		f_df.median_IQR.dev.r
 #' 		data_factor.byExposure.table_proptable.dev.r
@@ -815,7 +815,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 		Data_for_lab_2018_MK(INDEX) -clean.xlsx
 #' 		ID 207 Rist Matching 2. Numerical Example of Matching in a cohort study.xlsx
 #' 		ID 207 Rist Matching 4. Numerical Example of Matching in a Case-Control Study.xlsx
-#' 		ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.tableone_by_exposure -manuscript.xlsx
+#' 		ID_Eligible_Exposure.TargetTrial2v38.2.113vs200.Outcome.Covariates.Table1byExposure -manuscript.xlsx
 #' 		Lab_1_instructions_2018_MK(Welch) -clean.pdf
 #' @	ODBC/
 #' @	SAS/

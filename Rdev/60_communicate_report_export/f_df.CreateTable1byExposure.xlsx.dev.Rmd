@@ -176,13 +176,13 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
   
   
 # @@ START) source ----  
-### @ .subpath, .sourcename = "f_df.CreateTable1byExposure.xlsx" |> paste0(".source.r") ----  
+### @ .subpath, .sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r") ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = "f_df.CreateTable1byExposure.xlsx" |> paste0(".source.r")
+.sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); source( file.path(env1$path$source_base,.subpath.filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
 ```
@@ -219,7 +219,7 @@ CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> 
 
 
 ## \$ DataSet.Date.NA.rmAllNA =  
-### |> env1\$f\$f_df.CreateTable1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
+### |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 DataSet.Date.NA.rmAllNA = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
@@ -242,7 +242,7 @@ DataSet.Date.NA.rmAllNA %>%
         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-    ) |> env1$f$f_df.CreateTable1byExposure.xlsx(DataSetName.short = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
+    ) |> env1$f$f_df.Table1byExposure.xlsx(DataSetName.short = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
   
 ```
   
@@ -253,9 +253,9 @@ options(width=120)
 library(tableone)
 ```
 
-##@ DataSet.CreateTableOne -----  
+##@ DataSet.Table1 -----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# #@ DataSet.CreateTableOne -----  
+# #@ DataSet.Table1 -----  
 # # DataSet.Table1 = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
 # DataSet.Table1 = DataSet.Date.NA.rmAllNA %>% 

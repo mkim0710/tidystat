@@ -25,7 +25,7 @@ sessionInfo()
 # [1] stats     graphics  grDevices utils     datasets  methods   base     
 # 
 # other attached packages:
-#  [1] tableone_0.10.0      lubridate_1.7.4      forcats_0.4.0        stringr_1.4.0        dplyr_0.8.0.1        purrr_0.3.2         
+#  [1] Table1_0.10.0      lubridate_1.7.4      forcats_0.4.0        stringr_1.4.0        dplyr_0.8.0.1        purrr_0.3.2         
 #  [7] readr_1.3.1          tidyr_0.8.3          tibble_2.1.1         ggplot2_3.1.1        tidyverse_1.2.1      RevoUtils_11.0.3    
 # [13] RevoUtilsMath_11.0.0
 # 

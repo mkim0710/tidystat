@@ -35,24 +35,24 @@
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput()
 # > ".Rproj.user/shared" |> list.files(recursive = TRUE) |> dput() ----  
-c("notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/E3EEE3A9702e3c18/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/E3EEE3A9800d5f74/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/E3EEE3A9a2e5d569/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/c2kv2ircdtmr9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/c2x3oh7bg7vcn/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/c49999ibehcer/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/c4tzsvl4tx3z9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cajqc0s3qa66a/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cajqc0s3qa66a/000010.error", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cfodvqfdr55z9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cfypu2gan1bf2/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/chunks.json", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cin2ot4z8d41v/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/clrumf873fdfj/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cpqgn7q99rlw9/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/csetup_chunk/00000f.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cw2w3ivglpk94/000002.csv", 
-"notebooks/40C0E44C-f_df.CreateTable1byExposure.xlsx.dev/1/s/cyymmc3upsdwu/000002.csv", 
+c("notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/E3EEE3A9702e3c18/chunks.json", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/E3EEE3A9800d5f74/chunks.json", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/E3EEE3A9a2e5d569/chunks.json", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/c2kv2ircdtmr9/000002.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/c2x3oh7bg7vcn/00000f.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/c49999ibehcer/00000f.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/c4tzsvl4tx3z9/000002.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cajqc0s3qa66a/00000f.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cajqc0s3qa66a/000010.error", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cfodvqfdr55z9/000002.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cfypu2gan1bf2/00000f.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/chunks.json", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cin2ot4z8d41v/000002.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/clrumf873fdfj/000002.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cpqgn7q99rlw9/000002.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/csetup_chunk/00000f.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cw2w3ivglpk94/000002.csv", 
+"notebooks/40C0E44C-f_df.Table1byExposure.xlsx.dev/1/s/cyymmc3upsdwu/000002.csv", 
 "notebooks/5F81EFC4-01df_dirs_recursive.df_files-templates/1/s/c23qhhe5x2wrv/000002.csv", 
 "notebooks/5F81EFC4-01df_dirs_recursive.df_files-templates/1/s/ce4o8kuj7o02a/000002.csv", 
 "notebooks/5F81EFC4-01df_dirs_recursive.df_files-templates/1/s/chunks.json", 
@@ -235,16 +235,16 @@ str(recovered_files)
 #  $ : NULL
 #  $ : NULL
 #  $ : NULL
-#  $ : chr "recovered_files/f_df.CreateTable1byExposure.xlsx.dev.r"
+#  $ : chr "recovered_files/f_df.Table1byExposure.xlsx.dev.r"
 #  $ : NULL
 #  $ : chr "recovered_files/RStudio Server Setup.r"
 #  $ : NULL
 #  $ : NULL
-#  $ : chr "recovered_files/f_df.CreateTable1byExposure.xlsx.dev.Rmd"
+#  $ : chr "recovered_files/f_df.Table1byExposure.xlsx.dev.Rmd"
 #  $ : NULL
 #  $ : NULL
 #  $ : NULL
-#  $ : chr "recovered_files/f_df.CreateTable1byExposure.xlsx.source.r"
+#  $ : chr "recovered_files/f_df.Table1byExposure.xlsx.source.r"
 #  $ : NULL
 #  $ : chr "recovered_files/[Working Files List].r"
 #  $ : NULL

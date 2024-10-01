@@ -176,13 +176,13 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
   
 
 # @@ START) source ----  
-### @ .subpath, .sourcename = "f_df.CreateTable1byExposure.xlsx" |> paste0(".source.r") ----  
+### @ .subpath, .sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r") ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = "f_df.CreateTable1byExposure.xlsx" |> paste0(".source.r")
+.sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); source( file.path(env1$path$source_base,.subpath.filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
 ```
@@ -293,7 +293,7 @@ get(DataSetName2.NA.rmAllNA) %>% select(any_of(MainOutcome), any_of(.VarName.sel
     mutate_if(haven::is.labelled, as_factor) |>
     mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
     as.data.frame() %>%  
-    tableone::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
+    Table1::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 cat("  ## @ StudyPopulation == ",deparse(StudyPopulation),"    \n", sep="")
 get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) %>% select(any_of(MainOutcome), any_of(.VarName.selected)) %>% 
@@ -301,7 +301,7 @@ get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) %
     mutate_if(haven::is.labelled, as_factor) |>
     mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor) |>
     as.data.frame() %>%  
-    tableone::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
+    Table1::CreateTableOne(vars = names(.)[names(.)!=MainOutcome], strata = MainOutcome, data = ., test = T, includeNA = T, addOverall = T)
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 # get(DataSetName2.NA.rmAllNA) |> select(matches(.VarName.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
 # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
