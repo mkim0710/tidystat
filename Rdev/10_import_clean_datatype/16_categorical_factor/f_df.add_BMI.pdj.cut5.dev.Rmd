@@ -134,7 +134,7 @@ Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has pre
 # cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
-    eval=TRUE, echo=TRUE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
     comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
@@ -190,7 +190,7 @@ options(width=120)
   
 # @@ START) Data ----  
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 
@@ -209,7 +209,7 @@ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> str_subset("^
 
 
 ## \$ DataSet =  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 DataSet = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
     select(matches("HEIGHT|WEIGHT")) %>% 
@@ -220,7 +220,7 @@ DataSet %>% str
 #### \$ A01_BMI.cut4 =  
 ##### \% f_df.add_BMI_calculated()  
 ##### \% f_df.add_BMI.cut4()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
@@ -243,7 +243,7 @@ DataSet %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
 
 #### \$ A02_BMI_ge300.delta =  
 ##### \% f_df.add_VarNameT.deltaT0()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -265,7 +265,7 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A02")) %>% str
 ```
   
 #### \$ A03_BMI.delta2 =  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -287,7 +287,7 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A03")) %>% str
 
   
 #### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -312,7 +312,7 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
 
 
 #### \$ A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj =  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -337,7 +337,7 @@ DataSet %>% select(matches("BMI")) %>% select(matches("A07")) %>% str
 
 
 ##### \%  print() A0{1+j}_BMI.deltaj, A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
@@ -368,7 +368,7 @@ for (j in 1:(7-1)) {
   
   
 #### \$ A0{1+j}_BMI.pdj.cut5, A0{1+j}_WEIGHT.pdj.cut5 =  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -390,7 +390,7 @@ DataSet %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
 
   
 ###### \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -415,7 +415,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
 #### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
 ## \% f_df.add_RegExVars.quintile_factor ====  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"

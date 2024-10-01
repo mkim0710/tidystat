@@ -159,7 +159,7 @@ as1_7.na.Date.fct.cumulative_DM.list |> str(max.level = 2)
   
   
 # \$ as1_7.na.Date.fct.cumulative_DM.list\$Time2Event_NewDMv3 ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 =
 #     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
@@ -208,7 +208,7 @@ as1_7.na.Date.fct.cumulative_DM.list$Time2Event_NewDMv3 |> table(useNA="always")
   
   
 # \$ as1_7.na.Date.fct.cumulative_DM.list\$Time2Censor_NewDMv3 ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 =
 #     as1_7.na.Date.fct.cumulative_DM.list$NewDMv3_atWavei %>% 
@@ -335,7 +335,7 @@ data.formula.survfit |>
 #! Double-Check the event & time  
   
 # \$ df_NewDMv3.Time2Censor_NewDMv3 ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 df_NewDMv3.Time2Censor_NewDMv3 = as1_7.na.Date.fct.cumulative_DM.list$Time2Censor_NewDMv3 |> 
     rename(event = Event_NewDMv3, time = Time2Censor_NewDMv3) |> 
@@ -353,28 +353,28 @@ table(df_NewDMv3.Time2Censor_NewDMv3$event, df_NewDMv3.CensorEND$event, useNA = 
   
   
 ###### \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
