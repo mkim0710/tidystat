@@ -1,14 +1,14 @@
-# .sourcename_root = "f_table1.flextable"  
-#### Rdev/60_communicate_report_export/f_table1.flextable.dev.r----  
-#### Rdev/60_communicate_report_export/f_table1.flextable.dev.Rmd----  
-#### Rdev/60_communicate_report_export/f_table1.flextable.source.r----  
-# # source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_table1.flextable.source.r"))  
-# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.dev.r")  
-# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.dev.Rmd")  
-# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.source.r")  
-# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.dev.r"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));  
-# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.dev.Rmd"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));  
-# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_table1.flextable.source.r"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext)); 
+# .sourcename_root = "f_Table1.flextable"  
+#### Rdev/60_communicate_report_export/f_Table1.flextable.dev.r----  
+#### Rdev/60_communicate_report_export/f_Table1.flextable.dev.Rmd----  
+#### Rdev/60_communicate_report_export/f_Table1.flextable.source.r----  
+# # source(paste0(env1$path$source_base,"/","Rdev/60_communicate_report_export/f_Table1.flextable.source.r"))  
+# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.r")  
+# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.Rmd")  
+# # if(!file.exists("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.source.r")  
+# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.r"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));  
+# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.dev.Rmd"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));  
+# file.edit("~/github_tidystat/Rdev/60_communicate_report_export/f_Table1.flextable.source.r"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext)); 
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # @@ START) source -----  
@@ -53,11 +53,11 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
-## \$ f_DataSet.table1.print.df =  ----  
+## \$ f_DataSet.Table1.print.df =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"? Not Yet
 # https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
 # /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
-.tmp$objectname = "f_DataSet.table1.print.df"
+.tmp$objectname = "f_DataSet.Table1.print.df"
 .tmp$object  <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     library(tableone)
 
@@ -68,7 +68,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
         Varnames_factor <- setdiff(Varnames_factor, Varnames_factor.exclude)
     }
 
-    table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
+    Table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
                                 factorVars = Varnames_factor, strata = VarNames4Exposure, 
                                 addOverall = addOverall, includeNA = includeNA, test = TRUE) %>%
         print(nonnormal = print.Varnames_nonnormal,
@@ -83,9 +83,9 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
         rename(Level = level)
         
     # Update First Row's Variable Name
-    table1.print.df$Variable[1] <- "No."
+    Table1.print.df$Variable[1] <- "No."
     
-    return(table1.print.df)
+    return(Table1.print.df)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)

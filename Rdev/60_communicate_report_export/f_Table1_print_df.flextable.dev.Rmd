@@ -321,14 +321,14 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Ta
 
 
 
-## \% f_DataSet.table1.print.df()  
+## \% f_DataSet.Table1.print.df()  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 
 
 # Function to Generate Table 1
-f_DataSet.table1.print.df <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
+f_DataSet.Table1.print.df <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
     library(tableone)
 
     Varnames.except_Exposure <- setdiff(names(DataSet), VarNames4Exposure)
@@ -338,7 +338,7 @@ f_DataSet.table1.print.df <- function(DataSet, VarNames4Exposure = c("Interventi
         Varnames_factor <- setdiff(Varnames_factor, Varnames_factor.exclude)
     }
 
-    table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
+    Table1.print.df <- CreateTableOne(vars = Varnames.except_Exposure, data = DataSet, 
                                 factorVars = Varnames_factor, strata = VarNames4Exposure, 
                                 addOverall = addOverall, includeNA = includeNA, test = TRUE) %>%
         print(nonnormal = print.Varnames_nonnormal,
@@ -353,9 +353,9 @@ f_DataSet.table1.print.df <- function(DataSet, VarNames4Exposure = c("Interventi
         rename(Level = level)
         
     # Update First Row's Variable Name
-    table1.print.df$Variable[1] <- "No."
+    Table1.print.df$Variable[1] <- "No."
     
-    return(table1.print.df)
+    return(Table1.print.df)
 }
 
 ```
@@ -412,7 +412,7 @@ f_Table1_print_df.flextable <- function(Table1_print_df, header_text, footer_tex
 ### :: Table1_print_df = GermanBreastCancerStudyGroup |> generate_table_one() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Generate Table 1 Data Frame
-Table1_print_df <- f_DataSet.table1.print.df(
+Table1_print_df <- f_DataSet.Table1.print.df(
     GermanBreastCancerStudyGroup, 
     VarNames4Exposure = "Hormone treatment", 
     print.Varnames_nonnormal = c("Progesterone receptors, fmol/L (median [IQR])",
