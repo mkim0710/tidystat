@@ -247,10 +247,20 @@ DataSet.Date.NA.rmAllNA %>%
 ```
   
 
+## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+.path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NA.rmAllNA.recode")
+DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode"
+paste0(.path4read,"/",DataSetName,".rds") |> env1$f$f_DataSet_path.read.checkEntity()
+```
+
+
 # \% library(tableone) -----
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tableone)
+
 ```
 
 ##@ DataSet.Table1 -----  
