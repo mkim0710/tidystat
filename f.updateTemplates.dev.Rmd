@@ -1029,23 +1029,23 @@ for (.objectname in names(MetaData$DataSetNames)) {
 }
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 # .objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
-assign(.objectname, structure(get(.objectname), MetaData = MetaData))
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-# .path.file = paste0(.path4write,"/",.objectname,".rds")
-# system.time(write_rds( get(.objectname), .path.file)))
-# # system.time(saveRDS( get(.objectname), .path.file, compress = "gzip" ))
-# system.time(write_rds( get(.objectname), .path.file, compress = "gz", compression = 9 ))
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-.path.file = paste0(.path4write,"/",.objectname,".rds", ".xz")
-system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
-env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-# paste0( "git add -f ",shQuote(.path.file) ) |> system(intern=TRUE)
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-# .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
-# system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
+# assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+# # .path.file = paste0(.path4write,"/",.objectname,".rds")
+# # system.time(write_rds( get(.objectname), .path.file)))
+# # # system.time(saveRDS( get(.objectname), .path.file, compress = "gzip" ))
+# # system.time(write_rds( get(.objectname), .path.file, compress = "gz", compression = 9 ))
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+# .path.file = paste0(.path4write,"/",.objectname,".rds", ".xz")
+# system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
+# env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
+# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+# paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+# # paste0( "git add -f ",shQuote(.path.file) ) |> system(intern=TRUE)
+# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+# # .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# # system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
 ```
   
   
