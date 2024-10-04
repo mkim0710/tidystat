@@ -190,69 +190,127 @@ options(width=120)
   
 # @@ START) Data ----  
 ## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
+### \$ DataSet.Date.NA.rmAllNA =  
+#### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
-# .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
-# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
-.path4read = paste0(env1$path$path1,"/data")
-DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01" |> str_replace("\\.rds$", "")
-assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) )
+# # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
+# # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
+# # DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
+# .path4read = paste0(env1$path$path1,"/data")
+# DataSetName = "CohortGJ0910.BaselineJKGJ2085NoHx...01" |> str_replace("\\.rds$", "")
+# assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) )
+# 
+# CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
+# # > CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----  
+# # PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
+# # HEIGHT, WEIGHT, 
+# # BP_HIGH, BP_LWST, BLDS, 
+# # TOT_CHOLE, 
+# # HMG, OLIG_PROTE_CD, SGOT_AST, SGPT_ALT, GAMMA_GTP, FMLY_HPRTS_PATIEN_YN, FMLY_APOP_PATIEN_YN, FMLY_HDISE_PATIEN_YN, FMLY_DIABML_PATIEN_YN, FMLY_CANCER_PATIEN_YN, SMK_STAT_TYPE_RSPS_CD, DRNK_HABIT_RSPS_CD, TM1_DRKQTY_RSPS_CD, 
+# # WAIST, TRIGLYCERIDE, HDL_CHOLE, LDL_CHOLE, 
+# # CREATININE, HCHK_APOP_PMH_YN, HCHK_HDISE_PMH_YN, HCHK_HPRTS_PMH_YN, HCHK_DIABML_PMH_YN, HCHK_HPLPDM_PMH_YN, HCHK_ETCDSE_PMH_YN, PAST_SMK_TERM_RSPS_CD, PAST_DSQTY_RSPS_CD, CUR_SMK_TERM_RSPS_CD, CUR_DSQTY_RSPS_CD, MOV20_WEK_FREQ_ID, MOV30_WEK_FREQ_ID, WLK30_WEK_FREQ_ID, HCHK_PHSS_PMH_YN, n.ICD_E0814, minDate.ICD_E0814, maxDate.ICD_E0814, diffDate.ICD_E0814, n.ICD_I1016, minDate.ICD_I1016, maxDate.ICD_I1016, diffDate.ICD_I1016, n.ICD_I2025, minDate.ICD_I2025, maxDate.ICD_I2025, diffDate.ICD_I2025, n.ICD_I3052, minDate.ICD_I3052, maxDate.ICD_I3052, diffDate.ICD_I3052, n.ICD_I6069, minDate.ICD_I6069, maxDate.ICD_I6069, diffDate.ICD_I6069, n.ICD_I7079, minDate.ICD_I7079, maxDate.ICD_I7079, diffDate.ICD_I7079, Female, BMI, BMI_lt185, BMI_ge185lt230, BMI_ge230lt250, BMI_ge185lt250, BMI_ge250lt300, BMI_ge300, BMI_ge350, BMI_ge400, 
+# # BMI.cut4, FPG, 
+# # FPG_ge100, FPG_ge126, 
+# # SBP, DBP, BP_ESCESH2018, 
+# # FPG_ge100lt126, 
+# # TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, WAIST_ge9080, WAIST_ge9085, BP_ge130_85, 
+# # nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
+# # nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
 
-CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----
-# > CohortGJ0910.BaselineJKGJ2085NoHx...01 |> names() |> paste0(collapse = ", ") |> cat("  \n", sep="") ###### |> cat("  \n", sep="") ----  
-# PERSON_ID, EnrollYear, SEX, AGE_GROUP, DTH_YM, DTH_CODE1, DTH_CODE2, SIDO, SGG, IPSN_TYPE_CD, CTRB_PT_TYPE_CD, DFAB_GRD_CD, DFAB_PTN_CD, DFAB_REG_YM, YKIHO_GUBUN_CD, 
-# HEIGHT, WEIGHT, 
-# BP_HIGH, BP_LWST, BLDS, 
-# TOT_CHOLE, 
-# HMG, OLIG_PROTE_CD, SGOT_AST, SGPT_ALT, GAMMA_GTP, FMLY_HPRTS_PATIEN_YN, FMLY_APOP_PATIEN_YN, FMLY_HDISE_PATIEN_YN, FMLY_DIABML_PATIEN_YN, FMLY_CANCER_PATIEN_YN, SMK_STAT_TYPE_RSPS_CD, DRNK_HABIT_RSPS_CD, TM1_DRKQTY_RSPS_CD, 
-# WAIST, TRIGLYCERIDE, HDL_CHOLE, LDL_CHOLE, 
-# CREATININE, HCHK_APOP_PMH_YN, HCHK_HDISE_PMH_YN, HCHK_HPRTS_PMH_YN, HCHK_DIABML_PMH_YN, HCHK_HPLPDM_PMH_YN, HCHK_ETCDSE_PMH_YN, PAST_SMK_TERM_RSPS_CD, PAST_DSQTY_RSPS_CD, CUR_SMK_TERM_RSPS_CD, CUR_DSQTY_RSPS_CD, MOV20_WEK_FREQ_ID, MOV30_WEK_FREQ_ID, WLK30_WEK_FREQ_ID, HCHK_PHSS_PMH_YN, n.ICD_E0814, minDate.ICD_E0814, maxDate.ICD_E0814, diffDate.ICD_E0814, n.ICD_I1016, minDate.ICD_I1016, maxDate.ICD_I1016, diffDate.ICD_I1016, n.ICD_I2025, minDate.ICD_I2025, maxDate.ICD_I2025, diffDate.ICD_I2025, n.ICD_I3052, minDate.ICD_I3052, maxDate.ICD_I3052, diffDate.ICD_I3052, n.ICD_I6069, minDate.ICD_I6069, maxDate.ICD_I6069, diffDate.ICD_I6069, n.ICD_I7079, minDate.ICD_I7079, maxDate.ICD_I7079, diffDate.ICD_I7079, Female, BMI, BMI_lt185, BMI_ge185lt230, BMI_ge230lt250, BMI_ge185lt250, BMI_ge250lt300, BMI_ge300, BMI_ge350, BMI_ge400, 
-# BMI.cut4, FPG, 
-# FPG_ge100, FPG_ge126, 
-# SBP, DBP, BP_ESCESH2018, 
-# FPG_ge100lt126, 
-# TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, WAIST_ge9080, WAIST_ge9085, BP_ge130_85, 
-# nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
-# nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-```
 
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# DataSet.Date.NA.rmAllNA = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
+#     rownames_to_column() 
 
-## \$ DataSet.Date.NA.rmAllNA =  
-### |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-DataSet.Date.NA.rmAllNA = CohortGJ0910.BaselineJKGJ2085NoHx...01 %>% 
-    rownames_to_column() 
-
-DataSet.Date.NA.rmAllNA %>% 
-    select(
-        SEX,
-        HEIGHT, WEIGHT, 
-        BMI.cut4, 
-        WAIST, 
-        WAIST_ge9080, WAIST_ge9085, 
-        SBP, DBP, BP_ESCESH2018, 
-        BP_ge130_85, 
-        FPG, 
-        FPG_ge100, FPG_ge126, 
-        TOT_CHOLE, 
-        TRIGLYCERIDE, 
-        HDL_CHOLE, LDL_CHOLE, 
-        TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
-        nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
-        nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-    ) |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
-  
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+# DataSet.Date.NA.rmAllNA %>% 
+#     select(
+#         SEX,
+#         HEIGHT, WEIGHT, 
+#         BMI.cut4, 
+#         WAIST, 
+#         WAIST_ge9080, WAIST_ge9085, 
+#         SBP, DBP, BP_ESCESH2018, 
+#         BP_ge130_85, 
+#         FPG, 
+#         FPG_ge100, FPG_ge126, 
+#         TOT_CHOLE, 
+#         TRIGLYCERIDE, 
+#         HDL_CHOLE, LDL_CHOLE, 
+#         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
+#         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
+#         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
+#     ) |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
 ```
   
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode  
+### @ VarName.suffix.regex = "A0[0-2]"
+### :: DataSet.Date.NA.rmAllNA = get(DataSetName) |> select(matches(VarName.suffix.regex))
+#### \% |> select(matches("A0[0-3]")) ----  
+#### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.cut5"))  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NA.rmAllNA.recode")
 DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode"
 paste0(.path4read,"/",DataSetName,".rds") |> env1$f$f_DataSet_path_filename_ext.read.checkEntity()
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+VarName.suffix.regex =
+    c(
+        paste0("A0[1-5]_",
+               c("WEIGHT", "HEIGHT",
+                 "BMI.cut5")),
+        # outer(c("delta", "pd"), 1:4, paste0),
+        paste0("A02_", ".*",
+               c("delta", "pd"),
+               "1"),
+        paste0("A02_", ".*",
+               c("delta", "pd"),
+               "1"),
+        paste0("A03_", ".*",
+               c("delta", "pd"),
+               "2"),
+        paste0("A05_", ".*",
+               c("delta", "pd"),
+               "4"),
+        paste0("A00_",
+               c("SEX")),
+        "Female",
+        paste0("A01_",
+               c("EDATE", "AGE", "INCOME",
+                 "WAIST", "HIP",
+                 "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG",
+                 # "BP", "PULSE", "HTN_C", "HTNCU", "TREATD1", "DRUGHTCU", "FMHTN",
+                 "PULSE", "HTN_C", "HTNCU", "DRUGHTCU", "FMHTN",
+                 "HBA1C", "GLU0_TR", "DM_C", "DMCU", "TREATD2", "DRUGDMCU", "DRUGINSCU", "FMDM",
+                 "PHYSTB", "PHYSIT", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU",
+                 "BRF", "MEALRG", "AFTDNN",
+                 "DRINK", "DRDU",
+                 "SMOKE", "SMAG", "SMDU", "SMAM", "PSM", "PSMDU",
+                 "LIPCU",
+                 "MICU", "CHFCU", "CADCU", "PVDCU", "TREATD8", "FMHEA",
+                 "CEVACU",
+                 "KIDCU", "TREATD14"))
+    ) %>% paste0(collapse="|")
+VarName.suffix.regex %>% dput
+DataSet.Date.NA.rmAllNA = get(DataSetName) %>% select(matches(VarName.suffix.regex), matches("A0[0-2]")) %>%
+    # select(matches("A00|A01|A04|A07"))
+    # select(matches("A00|A01|A07"))
+    select(matches("A0[0-3]"))
+DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA[sort(names(DataSet.Date.NA.rmAllNA))]
+DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
+DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
+
+#|________________________________________________________________________________|#  
+#|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
+.VarNames4Exposure =  c("A01_BMI.cut5")  
+.DataSetName4output = DataSetName
+# DataSet.Date.NA.rmAllNA |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = .DataSetName4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES")
 ```
 
 
