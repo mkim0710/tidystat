@@ -116,7 +116,7 @@ for (.dependancy in c("f_path.size_files")) {
 
 
 ## @ .objectname = "f_DataSet_path_filename_ext.read.checkEntity" =========  
-.tmp$objectname = "f_DataSet_path.read.checkEntity"
+.tmp$objectname = "f_DataSet_path_filename_ext.read.checkEntity"
 .tmp$object = function(DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     
     if(print.intermediate) cat('DataSet_path_filename_ext = ', deparse(DataSet_path_filename_ext), '  \n', sep="")
@@ -290,7 +290,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     
     DataSet_path_filename_ext = file.path(.path4read, filename.ext)
     
-    env1$f$f_DataSet_path.read.checkEntity(DataSet_path_filename_ext, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, print.intermediate = print.intermediate)
+    env1$f$f_DataSet_path_filename_ext.read.checkEntity(DataSet_path_filename_ext, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, print.intermediate = print.intermediate)
     
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
