@@ -342,15 +342,15 @@ Vars4IQR = names(get(DataSetName.select))[get(DataSetName.select) %>% map_lgl(is
 # get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
 # get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----  
 # get(DataSetName.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----  
-sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.Table1byExposure, " -AllLevels.txt"), append = FALSE)
+# sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.Table1byExposure, " -AllLevels.txt"), append = FALSE)
 get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
-sink()
-sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.Table1byExposure, " -AllLevels -IQR.txt"), append = FALSE)
+# sink()
+# sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.Table1byExposure, " -AllLevels -IQR.txt"), append = FALSE)
 get(DataSetName.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ###### |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
-sink()
-sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.is.na.Table1byExposure, " -AllLevels(is.na).txt"), append = FALSE)
+# sink()
+# sink(paste0(env1$path$CurrentSource.path,"/",DataSetName.is.na.Table1byExposure, " -AllLevels(is.na).txt"), append = FALSE)
 get(DataSetName.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) ###### |> print(showAllLevels = F, smd = T) ----
-sink()
+# sink()
 
 
 # =NUMBERVALUE(MID(B2,1,SEARCH("(",B2,1)-1)) ----            
