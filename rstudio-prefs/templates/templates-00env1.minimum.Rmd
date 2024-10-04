@@ -669,7 +669,7 @@ assign(.objectname, structure(get(.objectname), MetaData = MetaData))
 # system.time(write_rds( get(.objectname), .path.file, compress = "gz", compression = 9 ))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 .path.file = paste0(.path4write,"/",.objectname,".rds", ".xz")
-system.time(write_rds( get(.objectname), .path.file), compress = "xz", compression = 9 ))
+system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
 env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
