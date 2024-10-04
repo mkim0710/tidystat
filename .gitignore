@@ -185,7 +185,6 @@ old/
 *.bmp
 *.svg
 
-
 # Machine-specific backup files
 *-ID92i5-4570T*
 *-MKIM-15ZD980-HX70K*
@@ -193,6 +192,12 @@ old/
 *-ASRockX300Ryzen5600G*
 *-Min-Hyung’s MacBook Pro*
 *-MAGB760M13700KF*
+
+
+# MHahk
+msedgeprofile_autocoder/
+browser/
+bin/
 
 # Negation (Do Not Ignore, Always Track)
 !*@Rocker.html
