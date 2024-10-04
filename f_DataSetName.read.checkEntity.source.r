@@ -1,8 +1,8 @@
-# # .objectname = "f_DataSetName.read.checkEntity"
-# # f_DataSetName.read.checkEntity.dev.r
-# # f_DataSetName.read.checkEntity.source.r
-# #         https://github.com/mkim0710/tidystat/blob/master/f_DataSetName.read.checkEntity.dev.r
-# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DataSetName.read.checkEntity.source.r")
+# # .objectname = "f_DataSetName.Search.read.checkEntity"
+# # f_DataSetName.Search.read.checkEntity.dev.r
+# # f_DataSetName.Search.read.checkEntity.source.r
+# #         https://github.com/mkim0710/tidystat/blob/master/f_DataSetName.Search.read.checkEntity.dev.r
+# # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_DataSetName.Search.read.checkEntity.source.r")
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
 #|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
@@ -50,7 +50,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 ### @ .subpath, .sourcename ======  
 .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-.sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r")
+.sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # env1$path$.subpath = .subpath
 # .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
@@ -114,63 +114,18 @@ for (.dependancy in c("f_path.size_files")) {
 
 
 
-## @ .objectname = "f_DataSetName.read.checkEntity" =========  
-.tmp$objectname = "f_DataSetName.read.checkEntity"
-.tmp$object = function(DataSetName, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
-    MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
-    MessageText2 = .path4read[1] %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
-    # if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)} #----
-    if (getwd()|>normalizePath(winslash="/") != .path4read[1]|>normalizePath(winslash="/")) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n");cat(MessageText4cat)}
 
-    if(print.intermediate) cat('DataSetName = "', DataSetName, '"  \n', sep="")
-    filename.ext = paste0(DataSetName,".", ext)
-    
-    
-    # .path4read = c(.path4read, paste0(.path4read, "/data"))
-    .tmp.file.found = FALSE
-    for (i in 1:length(.path4read)) {
-        i.path4read=.path4read[i]
-        if(print.intermediate) cat('i.path4read = "', i.path4read, '"  \n', sep="")
-        if(file.exists(file.path(i.path4read, filename.ext))) {
-            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
-            .tmp.file.found = TRUE
-            .path4read2 = i.path4read
-        } else if(file.exists(file.path(i.path4read, paste0(filename.ext, ".xz")))) {
-            filename.ext = paste0(filename.ext, ".xz")
-            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
-            .tmp.file.found = TRUE
-            .path4read2 = i.path4read
-        }  
-    }
-    if(.tmp.file.found) .path4read=.path4read2
 
-    if(!.tmp.file.found && BreathFirstSearch) {
-        if(print.intermediate) cat('!.tmp.file.found && BreathFirstSearch  \n', sep="")
-        for (.dependancy in c("f_filename.ext.find_subpath")) {
-            if(!.dependancy %in% names(.GlobalEnv$env1)) {
-                if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
-                .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
-            }
-        }
-        
-        path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = .path4read[1], max_depth = max_depth, print.intermediate = print.intermediate)
-        if (is.null(path.filename.ext)) {
-            path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = .path4read[1], max_depth = max_depth, print.intermediate = print.intermediate)
-            # if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) 
-        }
-        if (!is.null(path.filename.ext)) { 
-            .tmp.file.found = TRUE
-            .path4read = dirname(path.filename.ext)
-            cat('Found subpath: ', '.path4read = "', .path4read, '"  \n', sep="")
-            filename.ext = basename(path.filename.ext)
-        }
-    } 
+## @ .objectname = "f_DataSet_path_filename_ext.read.checkEntity" =========  
+.tmp$objectname = "f_DataSet_path.read.checkEntity"
+.tmp$object = function(DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
     
-    if(!.tmp.file.found) {
-        warning(paste0(filename.ext, " does not exist!")) 
-    }
-    if(print.intermediate) cat('filename.ext = "', filename.ext, '"  \n', sep="")
+    if(print.intermediate) cat('DataSet_path_filename_ext = ', deparse(DataSet_path_filename_ext), '  \n', sep="")
 
+    .path4read = DataSet_path_filename_ext |> dirname() 
+    filename.ext = DataSet_path_filename_ext |> basename()
+    DataSetName = filename.ext |> str_remove("\\.(gz|xz)$") |> str_remove("\\.([[:alnum:]]+)$")
+    
     # filename.ext.regex = filename.ext %>%  
     #     str_replace_all("\\.", "\\\\.") %>%
     #     str_replace_all("\\(", "\\\\(") %>% 
@@ -274,17 +229,86 @@ for (.dependancy in c("f_path.size_files")) {
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 
+
+
+
+## @ .objectname = "f_DataSetName.Search.read.checkEntity" =========  
+.tmp$objectname = "f_DataSetName.Search.read.checkEntity"
+.tmp$object = function(DataSetName, ext = "rds", .path4read =  c(".", "data"), vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff=120-15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE) {
+    MessageText1 = getwd() %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
+    MessageText2 = .path4read[1] %>% {paste0(deparse(substitute(.)),' == "',.,'"')}
+    # if (getwd() != .path4read) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat);cat("Warning: ",MessageText4cat,"\n",sep="")} else {MessageText4cat = paste0(MessageText1," == ",MessageText2, "  \n");cat(MessageText4cat)} #----
+    if (getwd()|>normalizePath(winslash="/") != .path4read[1]|>normalizePath(winslash="/")) {MessageText4cat = paste0(MessageText1," != ",MessageText2, "  \n");warning(MessageText4cat)} else {MessageText4cat = paste0("getwd() == ",MessageText2, "  \n");cat(MessageText4cat)}
+
+    if(print.intermediate) cat('DataSetName = "', DataSetName, '"  \n', sep="")
+    filename.ext = paste0(DataSetName,".", ext)
+    
+    
+    # .path4read = c(.path4read, paste0(.path4read, "/data"))
+    .tmp.file.found = FALSE
+    for (i in 1:length(.path4read)) {
+        i.path4read=.path4read[i]
+        if(print.intermediate) cat('i.path4read = "', i.path4read, '"  \n', sep="")
+        if(file.exists(file.path(i.path4read, filename.ext))) {
+            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
+            .tmp.file.found = TRUE
+            .path4read2 = i.path4read
+        } else if(file.exists(file.path(i.path4read, paste0(filename.ext, ".xz")))) {
+            filename.ext = paste0(filename.ext, ".xz")
+            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
+            .tmp.file.found = TRUE
+            .path4read2 = i.path4read
+        }  
+    }
+    if(.tmp.file.found) .path4read=.path4read2
+
+    if(!.tmp.file.found && BreathFirstSearch) {
+        if(print.intermediate) cat('!.tmp.file.found && BreathFirstSearch  \n', sep="")
+        for (.dependancy in c("f_filename.ext.find_subpath")) {
+            if(!.dependancy %in% names(.GlobalEnv$env1)) {
+                if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+                .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+            }
+        }
+        
+        path.filename.ext = env1$f$f_filename.ext.find_subpath(filename.ext, input_path = .path4read[1], max_depth = max_depth, print.intermediate = print.intermediate)
+        if (is.null(path.filename.ext)) {
+            path.filename.ext = env1$f$f_filename.ext.find_subpath(paste0(filename.ext, ".xz"), input_path = .path4read[1], max_depth = max_depth, print.intermediate = print.intermediate)
+            # if (is.null(path.filename.ext)) warning(paste0(filename.ext, " does not exist!")) 
+        }
+        if (!is.null(path.filename.ext)) { 
+            .tmp.file.found = TRUE
+            .path4read = dirname(path.filename.ext)
+            cat('Found subpath: ', '.path4read = "', .path4read, '"  \n', sep="")
+            filename.ext = basename(path.filename.ext)
+        }
+    } 
+    
+    if(!.tmp.file.found) {
+        warning(paste0(filename.ext, " does not exist!")) 
+    }
+    # if(print.intermediate) cat('filename.ext = "', filename.ext, '"  \n', sep="")
+    
+    DataSet_path_filename_ext = file.path(.path4read, filename.ext)
+    
+    env1$f$f_DataSet_path.read.checkEntity(DataSet_path_filename_ext, vec_candidate4ID = vec_candidate4ID, .width.cutoff=.width.cutoff, print2console = print2console, return.output = return.output, print.name.dput = print.name.dput, print.names.tidyeval = print.names.tidyeval, print.intermediate = print.intermediate)
+    
+}
+### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+
+
 # # \$ DataSetName = "fhs.index100le10" =======  
 # DataSetName = "fhs.index100le10"
-# out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
+# out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE)
 # # Warning messages:
-# # 1: In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName) :
+# # 1: In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) :
 # #   getwd() != .path4read == "."
-# # 2: In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName) :
+# # 2: In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) :
 # #   varname for ID not identified among: c("ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID")
-# out = env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
+# out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, vec_candidate4ID = "randid", print2console = FALSE)
 # # Warning message:
-# # In env1$f$f_DataSetName.read.checkEntity(DataSetName = DataSetName,  :
+# # In env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName,  :
 # #   getwd() != .path4read == "."
 
 
