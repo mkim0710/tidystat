@@ -291,9 +291,15 @@ print(result)
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
 ## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
-MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-.objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
-cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
+.path4write = env1$path$.path4write
+# MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+for (.objectname in names(MetaData$DataSetNames)) {
+    assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+    .path.file = paste0(.path4write,"/",.objectname,".rds")
+    cat(.objectname, ' |> write_rds("',.path.file,'", compress = "none") |> system.time()', "  \n", sep="")
+    paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+}
 # system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
 # system.time(write_rds( get(paste0(.objectname,".NA",".rmAllNA",".fct")), paste0(.objectname,".NA",".rmAllNA",".fct",".rds") ))
 # # system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))))
