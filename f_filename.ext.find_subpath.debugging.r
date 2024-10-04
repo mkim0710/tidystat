@@ -171,8 +171,8 @@ env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
-.tmp = env1$f$f_DataSetName.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, print.intermediate = TRUE)
-# > MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, print.intermediate = TRUE)
+.tmp = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, print.intermediate = TRUE)
+# > MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, print.intermediate = TRUE)
 # getwd() == .path4read[1] == "/home/rstudio/Rproject_Rmd"  
 # DataSetName = "NationalFamilyAndFertiltySurvey2021_230314"  
 # i.path4read = "/home/rstudio/Rproject_Rmd"  

@@ -912,9 +912,9 @@ for (.dependancy in c("f_path.size_files")) {
 }
 #|________________________________________________________________________________|#  
 #|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|#  
-## @ "f_DataSetName.read.checkEntity" |> paste0(".source.r") |> source() ----  
+## @ "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r") |> source() ----  
 .subpath=r"()"|>str_replace_all("\\\\","/"); 
-.sourcename = "f_DataSetName.read.checkEntity" |> paste0(".source.r"); 
+.sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); 
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); 
 if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])  }
 #|________________________________________________________________________________|#  
