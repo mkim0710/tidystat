@@ -212,11 +212,18 @@ themes = [
 
 # Function to download each image
 for theme in themes:
-    response = requests.get(theme['url'])
-    if response.status_code == 200:
-        file_path = os.path.join(output_dir, theme['theme_name'].replace(' ', '_') + '.png')
-        with open(file_path, 'wb') as f:
-            f.write(response.content)
-        print(f"Downloaded: {theme['theme_name']}")
+    url = theme['url']
+    if url.startswith('http'):  # Only proceed if the URL is valid
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                file_path = os.path.join(output_dir, theme['theme_name'].replace(' ', '_') + '.png')
+                with open(file_path, 'wb') as f:
+                    f.write(response.content)
+                print(f"Downloaded: {theme['theme_name']}")
+            else:
+                print(f"Failed to download: {theme['theme_name']}, Status Code: {response.status_code}")
+        except Exception as e:
+            print(f"Error downloading {theme['theme_name']}: {e}")
     else:
-        print(f"Failed to download: {theme['theme_name']}")
+        print(f"Invalid URL for {theme['theme_name']}: {url}")
