@@ -109,7 +109,7 @@ print(tmp_array)
 
 
 
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/10_import_clean_datatype/array_list/function.list_df2array.dev.r
 # Function to convert a list of tibbles to a 3D array
 function.list_df2array_old <- function(list_of_tibbles) {

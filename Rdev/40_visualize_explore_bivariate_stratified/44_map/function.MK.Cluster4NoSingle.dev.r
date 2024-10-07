@@ -29,7 +29,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     
     
     
-    #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---------- 
     #@ Internal functions =====
 
     # ODMatrix_rowP.ftn receives input.ODMatrix and input.ODMatrix as input, and normalize by a rowSums vector (which is a column vector). 
@@ -163,7 +163,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     
     
     
-    #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#----------
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~----------
     
     
     #@@@@ Start of tuning =====
@@ -223,7 +223,7 @@ function.MK.Cluster4NoSingle = function(input.PopulationDF, input.DistanceMatrix
     ) # list inside attr() is not shown with str(max.level = 1)
     
     # browser()
-    #|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#---------- 
+    ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---------- 
     #@ iteration) Singles = Cluster.tbl.last %>% dplyr::filter(n_Code == 1) %>% {.$Code.Cluster} ======
     # print(Sys.time() - .t0)
     # cat("..for Min.Pop")

@@ -58,7 +58,7 @@ function.safe_sum0 <- function(x, y) {
 }
 
 
-#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.safe_sum.dev.r
 function.safe_sum = function(x, y) {if_else(is.na(x)&is.na(y), NA, if_else(is.na(x),0,x)+if_else(is.na(y),0,y))}
     

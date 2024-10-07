@@ -2,7 +2,7 @@
 
 
 
-#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## @ Global Parameters) Users should take care of this. -----  
 vector_of_Min.SC = c(0.4, 0.5, 0.6, 0.7, 0.8)
 vector_of_Max.Distance = c(20, 30, 60, 120)
@@ -13,12 +13,12 @@ software.version = "v6"
 area.level = "SouthKorea"
 
 
-#|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|#  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ## @ Global Parameters) Automatically calculated. -----  
 name.subscript = paste0(".", area.level, ".", software.version)
 path.output = paste0("output", name.subscript)
 if(area.level == "SouthKorea") SIDO_CD4filter = c("11", "21", "22", "23", "24", "25", "26", "29", "31", "32", "33", "34", "35", "36", "37", "38", "39")
-#|++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|#  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 
 
 for(.packagename in c("tidyverse", "openxlsx2")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
