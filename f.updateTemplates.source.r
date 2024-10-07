@@ -187,4 +187,4 @@ env1$env.internal$f.update_rstudio_prefs = function(.url = NULL, .destfile = NUL
 }
 env1$env.internal$f.update_rstudio_prefs()
 
-
+"https://raw.githubusercontent.com/mattia-liuzzo/RStudio-VScode-theme/main/rs-vscode.rstheme" %>% rstudioapi::addTheme(apply=TRUE, force=TRUE)
