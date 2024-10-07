@@ -105,7 +105,7 @@ file.edit("/home/rstudio/.ssh/id_ed25519.pub")
 # # git config --global user.email "USEREMAIL@gmail.com"
 # # git config --global user.name "USERNAME"
 system('git config --global user.email "mkim0710@gmail.com"')
-system('git config --global user.name "mkim0710@RStudio.Cloud"')
+system('git config --global user.name "mkim0710@Posit.Cloud"')
 
 # system('git config --global user.email "mhkim710@gmail.com"')
 # system('git config --global user.name "mhkim@rocker@MAGB760M13700KF"')
