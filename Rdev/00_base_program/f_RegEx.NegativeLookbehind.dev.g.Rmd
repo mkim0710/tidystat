@@ -703,7 +703,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
         for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
 
-        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = dirname(env1$path$CurrentSource.path.filename.ext), output_format = "pdf_document") \n')
+        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$CurrentSource.path.filename.ext)),', output_format = "pdf_document")  \n')
         Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
         .path.file = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}
         paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
