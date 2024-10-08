@@ -348,20 +348,20 @@ smd_categorical <- function(variable, group_var) {
 ```
   
   
-###data |> calculate_smd() ----  
+### data |> calculate_smd() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# Sample data
-data <- data.frame(
-    group = factor(c(rep(0, 50), rep(1, 50))),
-    age = rnorm(100, mean = 50, sd = 10),
-    gender = factor(c(rep(0, 25), rep(1, 25), rep(0, 25), rep(1, 25))),
-    cholesterol = rnorm(100, mean = 200, sd = 30)
-)
-
-# Calculate SMD for "age" and "gender"
-smd_results <- calculate_smd(data, group_var = "group", vars = c("age", "gender"))
-print(smd_results)
+# # Sample data
+# data <- data.frame(
+#     group = factor(c(rep(0, 50), rep(1, 50))),
+#     age = rnorm(100, mean = 50, sd = 10),
+#     gender = factor(c(rep(0, 25), rep(1, 25), rep(0, 25), rep(1, 25))),
+#     cholesterol = rnorm(100, mean = 200, sd = 30)
+# )
+# 
+# # Calculate SMD for "age" and "gender"
+# smd_results <- calculate_smd(data, group_var = "group", vars = c("age", "gender"))
+# print(smd_results)
 
 ```
   
@@ -487,21 +487,38 @@ smd_categorical <- function(variable, group_var) {
 ```
 
 
+### data_example |> calculate_smd() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Example usage with a sample dataset
-set.seed(123)
+# set.seed(123)
+# data_example <- data.frame(
+#     group = factor(rep(c("A", "B"), each = 50)),
+#     continuous_var = c(rnorm(50, mean = 10, sd = 2), rnorm(50, mean = 12, sd = 3)),
+#     binary_var = c(rep(c(0, 1), each = 25), rep(c(0, 1), each = 25)),
+#     factor_var = factor(c(rep(c("X", "Y"), each = 25), rep(c("X", "Y"), each = 25))),
+#     unsupported_var = letters[1:100] # Unsupported variable type
+# )
+# 
+# # Call the function
+# result <- calculate_smd(data_example, group_var = "group", vars = c("continuous_var", "binary_var", "factor_var", "unsupported_var"))
+# 
+# # Print result
+# print(result)
+
+
+# Example with deterministic data
 data_example <- data.frame(
-    group = factor(rep(c("A", "B"), each = 50)),
-    continuous_var = c(rnorm(50, mean = 10, sd = 2), rnorm(50, mean = 12, sd = 3)),
-    binary_var = c(rep(c(0, 1), each = 25), rep(c(0, 1), each = 25)),
-    factor_var = factor(c(rep(c("X", "Y"), each = 25), rep(c("X", "Y"), each = 25))),
-    unsupported_var = letters[1:100] # Unsupported variable type
+    group = factor(rep(c("A", "B"), each = 5)),
+    continuous_var = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),  # Continuous data
+    binary_var = c(0, 1, 0, 1, 0, 1, 0, 1, 0, 1),       # Binary data
+    factor_var = factor(c("X", "X", "Y", "Y", "X", "X", "Y", "Y", "X", "X")),  # Categorical
+    unsupported_var = letters[1:10]  # Unsupported variable
 )
 
 # Call the function
 result <- calculate_smd(data_example, group_var = "group", vars = c("continuous_var", "binary_var", "factor_var", "unsupported_var"))
 
-# Print result
+# Print the result
 print(result)
 
 ```
