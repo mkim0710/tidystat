@@ -427,21 +427,21 @@ DataSet.Date.NA.rmAllNA %>% select(matches("\\.pd[1-6]\\.cut")) %>% summary
 ```
   
   
-###### \% |> () ----  
+###### (echo) \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-###### \% |> () ----  
+###### (echo) \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
-###### \% |> () ----  
+###### (echo) \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 

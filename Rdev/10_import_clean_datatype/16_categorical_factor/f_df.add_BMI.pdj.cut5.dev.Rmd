@@ -389,7 +389,7 @@ DataSet %>% select(matches(paste0(.RegEx2match, "\\.cut5$"))) %>% summary
   
 
   
-###### \% |> () ----  
+###### (echo) \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
