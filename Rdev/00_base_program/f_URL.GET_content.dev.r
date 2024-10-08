@@ -154,7 +154,7 @@ temp_file
 "templates-00env1.minimum.Rmd" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> httr::GET() |> httr::content("text") |> writeLines(temp_file)
 
 
-Sys.setenv(PARENT_RENDERING = "YES"); temp_file |> rmarkdown::render(output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
+Sys.setenv(PARENT_RENDERING = "YES"); temp_file |> rmarkdown::render(output_dir = dirname(env1$path$CurrentSource.path.filename.ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
 temp_file |> tools::file_path_sans_ext() %>% paste0("file://",.,".nb.html")
 # > temp_file |> tools::file_path_sans_ext() %>% paste0("file://",.,".nb.html")
 # [1] "file:///tmp/RtmpnBlbKA/filebe35d76b87e.nb.html"
