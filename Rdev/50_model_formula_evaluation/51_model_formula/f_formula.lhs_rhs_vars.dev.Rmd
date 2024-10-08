@@ -285,7 +285,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
   
 # @@ START) dev ----  
 ### \$ MetaData\$ModelList\$time2event ====  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # https://chatgpt.com/c/9d8abdf0-a130-4724-b955-f6bd0fe4e2ef
@@ -295,7 +295,7 @@ options(width=120)
   
   
 #### \$ MetaData\$ModelList\$time2event\$formula ====  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 library(survival)
@@ -316,7 +316,7 @@ MetaData$ModelList$time2event$formula[[3]] %>% str
   
   
 #### \$ MetaData\$ModelList\$time2event\$terms ====  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$terms = MetaData$ModelList$time2event$formula |> terms()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
@@ -329,7 +329,7 @@ MetaData$ModelList$time2event$terms %>% dput
   
   
 #### \$ MetaData\$ModelList\$time2event\$all.vars ====  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$all.vars = MetaData$ModelList$time2event$formula |> all.vars()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); 
@@ -342,7 +342,7 @@ MetaData$ModelList$time2event$all.vars %>% dput
   
   
 #### \$ MetaData\$ModelList\$time2event\$lhs.vars ====  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$lhs = MetaData$ModelList$time2event$formula[[2]]
 MetaData$ModelList$time2event$lhs.vars = MetaData$ModelList$time2event$lhs %>% all.vars
@@ -356,7 +356,7 @@ MetaData$ModelList$time2event$lhs.vars %>% dput
   
   
 #### \$ MetaData\$ModelList\$time2event\$rhs.vars ====  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 MetaData$ModelList$time2event$rhs = MetaData$ModelList$time2event$formula[[3]]
 MetaData$ModelList$time2event$rhs.vars = MetaData$ModelList$time2event$rhs %>% all.vars
@@ -373,14 +373,14 @@ MetaData$ModelList$time2event$rhs.vars %>% dput
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -388,7 +388,7 @@ options(width=120)
   
   
 # @@ START) function: f_formula.lhs_rhs_vars  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_formula.lhs_rhs_vars = function(formula, include_input_in_output = TRUE) {
     return.list = list()
@@ -406,7 +406,7 @@ f_formula.lhs_rhs_vars = function(formula, include_input_in_output = TRUE) {
   
 ## \% |> c(f_formula.lhs_rhs_vars(MetaData$ModelList$time2event$formula))
 ### Caution) list can have multiple elements with the same name?!  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -428,7 +428,7 @@ MetaData$ModelList$time2event$formula
   
   
 ## \% \%>\%  c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -449,7 +449,7 @@ MetaData$ModelList$time2event$formula
   
   
 ## \% $formula.lhs_rhs_vars = MetaData$ModelList$time2event$formula %>% f_formula.lhs_rhs_vars()
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -463,21 +463,21 @@ MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 # @@ START) function: f_list_formula.append_lhs_rhs_vars  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_list_formula.append_lhs_rhs_vars = function(list_formula) {
     if("formula" %in% names(list_formula)) {
@@ -497,7 +497,7 @@ f_list_formula.append_lhs_rhs_vars = function(list_formula) {
   
   
 ## \% |> f_list_formula.append_lhs_rhs_vars(MetaData$ModelList$time2event)
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
@@ -515,21 +515,21 @@ MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)
 
 
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```

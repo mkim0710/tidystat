@@ -136,7 +136,7 @@ options(width=120)
 # \$ lung <- as_tibble(survival::lung) ----  
 ## Step 1: Load the Required Libraries and Data  
 ## Step 2: Exploratory Data Analysis  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
 library(survival)
@@ -178,7 +178,7 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = stat
 ```
   
 ## Step 5: Cox Proportional Hazards Model  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Fit a Cox proportional hazards model
 cox_model <- coxph(surv_obj ~ sex + age + ph.ecog, data = survival::lung)
@@ -189,7 +189,7 @@ summary(cox_model)
 ```
   
 ## Step 6: Check Proportional Hazards Assumption  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Test for proportional hazards
 cox.zph(cox_model)
@@ -198,7 +198,7 @@ cox.zph(cox_model)
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/50_model_formula_evaluation/57_model_time2event/AnalyticDataset.censor1yr.survfit.ggsurvplot_CIRiskTableP.dev.r  
   
 ## \$ AnalyticDataset ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset = lung |> rename(event = status, Group = sex)
 AnalyticDataset.survfit <- survfit(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
@@ -214,13 +214,13 @@ AnalyticDataset.survfit |> ggsurvplot  # default fun = "pct"?
 ```
   
   
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T)
 ```
   
   
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.coxph <- coxph(Surv(time = time, event = event) ~ Group, data = AnalyticDataset)
 AnalyticDataset.coxph |> summary() #----  
@@ -230,7 +230,7 @@ AnalyticDataset.coxph %>% cox.zph %>% ggcoxzph #----
   
   
 ## \$ AnalyticDataset.censor1yr ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 value_for_censor_at_1yr = 365 * 1
@@ -250,14 +250,14 @@ AnalyticDataset.censor1yr.survfit |> ggsurvplot  # default fun = "pct"?
 ```
   
   
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
   
 ```
   
   
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pval = T, break.time.by = value_for_break.time.by)
   
@@ -265,21 +265,21 @@ AnalyticDataset.censor1yr.survfit |> ggsurvplot(conf.int = T, risk.table = T, pv
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```

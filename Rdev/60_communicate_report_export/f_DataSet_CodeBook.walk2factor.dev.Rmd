@@ -243,7 +243,7 @@ env0 = env1
 
 ## \$ https://chatgpt.com/c/66e1f092-be28-800e-8527-a0815faa0a37 =  ----  
 ## \$ https://chatgpt.com/c/66e205de-d4d4-800e-a889-5ced38a816ed =  ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Load necessary libraries
 library(dplyr)
@@ -272,7 +272,7 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
 
 
 ## \% f_vec_ValueOptions.factor() 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Load necessary packages
 library(stringr)
 library(purrr)
@@ -326,7 +326,7 @@ print(sex_factor)
 
 
 ## \% f_DataSet_CodeBook.map_factor() 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Load necessary packages
 library(dplyr)
 library(purrr)
@@ -414,7 +414,7 @@ str(converted_data)
   
   
 ## \% f_DataSet_CodeBook.map2factor() 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Load necessary packages
 library(stringr)
@@ -495,7 +495,7 @@ print(converted_DataSet)
   
   
 ## \% f_DataSet_CodeBook.walk2_factor() 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Load necessary packages
 library(stringr)
@@ -575,7 +575,7 @@ print(converted_DataSet)
   
   
 #### Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #### Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  ----  
 .subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
@@ -592,28 +592,28 @@ options(width=120)
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```

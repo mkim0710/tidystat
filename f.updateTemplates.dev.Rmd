@@ -227,7 +227,7 @@ env0 = env1
 # @@ START) function ----  
 https://chatgpt.com/c/66e7deba-b85c-800e-9f76-124d9087e1a7
 ## \% |> f.updateTemplates() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # ## \$ f.updateTemplates =  ----  
 # # https://github.com/mkim0710/f.updateTemplates.source.r  
@@ -268,7 +268,7 @@ options(width=120)
 
 
 ## \% |> env1$env.internal$f_file2.compare()  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
 env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) {
@@ -306,7 +306,7 @@ env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) 
 
 
 ## \% |> env1$env.internal$f_url_destfile.DownloadIfDifferent() 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Function to download a file only if the web file is different from the local file
 env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
     tryCatch({
@@ -346,7 +346,7 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent(url = "https://raw.githubus
   
   
 ## \% env1$f$f.updateTemplates() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://github.com/mkim0710/f.updateTemplates.source.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
@@ -392,7 +392,7 @@ env1$f$f.updateTemplates()
   
   
 ## \% |> isRemoteFileDifferent() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # library(httr)
 # 
@@ -476,7 +476,7 @@ options(width=120)
   
   
 ## \% |> isRemoteFileDifferent() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -564,7 +564,7 @@ safeDownloadFileIfDifferent(test_url1, local_file1)
   
   
 ## \% |> isRemoteFileDifferent() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -647,7 +647,7 @@ safeDownloadFileIfDifferent(test_url1, local_file1)
   
   
 ###### \% |> isRemoteFileDifferentBySize() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -722,7 +722,7 @@ safeDownloadFileIfDifferent(test_url1, local_file1)
   
   
 ###### \% |> safeDownloadFileWithConditionalGET() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -775,7 +775,7 @@ safeDownloadFileWithConditionalGET(test_url1, local_file1)
   
   
 ###### \% |> calculateFileHash() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(httr)
 library(digest)
@@ -844,7 +844,7 @@ safeDownloadFileIfDifferentByHash(test_url1, local_file1)
   
   
 #### switch(Sys.info()["sysname"], Linux = { ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # > openxlsx2::xl_open
 # function (x, interactive = NA) 
@@ -919,42 +919,42 @@ f_file.switch_open <- function(file) {
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```

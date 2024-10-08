@@ -220,7 +220,7 @@ https://www.r-bloggers.com/2021/11/publication-ready-tables-with-flextable-and-o
 https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b  
 # @@ START) data example ----  
 ## \$ GermanBreastCancerStudyGroup =  ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # Load Required Libraries
@@ -263,7 +263,7 @@ env0 = env1
 https://chatgpt.com/c/66f444ad-c638-800e-a884-e76216e05329?model=gpt-4o
 ## 1. Replace common alternative column names
 ### \% |> replace_column_names() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # Load required libraries
 library(dplyr)
@@ -299,7 +299,7 @@ replace_column_names <- function(colnames) {
 
 
 ## 2. Prepare data from broom package
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ## 2. Prepare data from broom package
 prepare_broom <- function(dataframe, broom_type) {
   if (!is.null(broom_type)) {
@@ -350,7 +350,7 @@ prepare_broom <- function(dataframe, broom_type) {
 
 
 ## 3. Prepare data from report package
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ## 3. Prepare data from report package
 prepare_report <- function(dataframe, report_type, short) {
   if (!is.null(report_type) || any(class(dataframe) == "report_table")) {
@@ -401,7 +401,7 @@ prepare_report <- function(dataframe, report_type, short) {
 
 
 ## 4. Format Confidence Intervals
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ## 4. Format Confidence Intervals
 format_CI <- function(dataframe, CI_low_high = c("CI_lower", "CI_upper"), col.name = "95% CI") {
   dataframe %>%
@@ -413,7 +413,7 @@ format_CI <- function(dataframe, CI_low_high = c("CI_lower", "CI_upper"), col.na
 
 
 ## 5. Create the JAMA flextable
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ## 5. Create the JAMA flextable
 create_jama_flextable <- function(data, highlight, width, spacing, note, separate.header) {
   table <- flextable(data)
@@ -473,7 +473,7 @@ create_jama_flextable <- function(data, highlight, width, spacing, note, separat
 
 
 ## 6. Format columns for JAMA style
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ## 6. Format columns for JAMA style
 format_jama_columns <- function(data, table, separate.header, col.format.p, col.format.r, col.format.custom, format.custom, sh.pattern) {
   # Format p-values
@@ -512,7 +512,7 @@ format_jama_columns <- function(data, table, separate.header, col.format.p, col.
 
 
 ## 7. Finalize the JAMA table with title and borders
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ## 7. Finalize the JAMA table with title and borders
 finalize_jama_table <- function(table, title) {
   if (!is.null(title)) {
@@ -613,7 +613,7 @@ jama_table <- function(data,
 
 # @@ START) Sample Data ----  
 ## :: sample_data = 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Sample Data
 sample_data <- data.frame(
   `Dependent Variable` = c("Group A", "Group A", "Group B", "Group B"),
@@ -628,7 +628,7 @@ sample_data <- data.frame(
 
 
 ### \% |> jama_table() ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Create JAMA Table
 jama_tbl <- jama_table(
   data = sample_data,
@@ -643,42 +643,42 @@ print(jama_tbl)
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -702,14 +702,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```

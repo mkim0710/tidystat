@@ -223,7 +223,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
   
 # @@ START) problem ----  
 ### \$ rstudioapi::getSourceEditorContext()\$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # https://chatgpt.com/c/828c4e1f-d439-4c50-8a35-4cbea4f713fe
@@ -237,7 +237,7 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_
 
 
 ### \$ rstudioapi::getSourceEditorContext()\$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 setwd("/Rdev/40_visualize_explore_bivariate_stratified/49_time/")
 rstudioapi::getSourceEditorContext()$path
@@ -251,7 +251,7 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_
   
 # @@ START) dev) f_path0.list_path_hierarchy ----  
 ## \$ original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)
 
@@ -281,7 +281,7 @@ print(original_function(path0, path_last, .max_hierarchy))
 
 
 ## \$ v2_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(stringr)
 library(purrr)
 
@@ -322,7 +322,7 @@ print(v2_function(path0, path_last, .max_hierarchy))
 
 
 ## \$ v3_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Version 3 function
 v3_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
   special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
@@ -354,7 +354,7 @@ print(v3_function(path0, path_last, .max_hierarchy))
 
 
 ## \$ v4_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Version 4 function
 v4_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {
   path0_escaped <- gsub("([][{}()+*^$|])", "\\\\\\1", path0)
@@ -382,7 +382,7 @@ print(v4_function(path0, path_last, .max_hierarchy))
   
   
 # \% library(microbenchmark) ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(microbenchmark)
 
@@ -402,14 +402,14 @@ print(benchmark_results)
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```

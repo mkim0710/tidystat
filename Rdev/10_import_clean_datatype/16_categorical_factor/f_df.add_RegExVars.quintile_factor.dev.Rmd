@@ -190,7 +190,7 @@ options(width=120)
   
 # @@ START) Data ----  
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
   
 
@@ -209,7 +209,7 @@ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode |> names() |> str_subset("^
 
 
 ## \$ DataSet.Date.NA.rmAllNA =  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 DataSet.Date.NA.rmAllNA = df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode %>% 
     select(matches("HEIGHT|WEIGHT")) %>% 
@@ -220,7 +220,7 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 #### \$ A01_BMI.cut4 =  
 ##### \% f_df.add_BMI_calculated()  
 ##### \% f_df.add_BMI.cut4()  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -243,7 +243,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("HEIGHT|WEIGHT|BMI")) %>% str
 
 #### \$ A02_BMI_ge300.delta =  
 ##### \% f_df.add_VarNameT.deltaT0()  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # ## \$ f_df.add_VarNameT.deltaT0 =  ----  
 # ## -> included in "f_df.t.tribble_construct.source.r"
@@ -267,7 +267,7 @@ options(width=120)
 
 #### \$ A0{1+j}_BMI.deltaj, A0{1+j}_WEIGHT.deltaj =  
 ##### \% f_df.add_VarNameT.deltaT0()  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.deltaT0 =  ----
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -293,7 +293,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) %>
 
 #### \$ A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj =  
 ##### \% f_df.add_VarNameT.dpT0()  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -318,7 +318,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) %>
 
 
 #### \%  print() A0{1+j}_BMI.deltaj, A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj 
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 for (j in 1:(7-1)) {
     for (i in (1+j):7) {
@@ -350,7 +350,7 @@ for (j in 1:(7-1)) {
   
 #### \$ A0{1+j}_BMI.pdj.cut5, A0{1+j}_WEIGHT.pdj.cut5 =  
 ##### \% f_df.add_RegExVars.cut()  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_RegExVars.cut =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -364,7 +364,7 @@ options(width=120)
   
   
 #### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -401,7 +401,7 @@ options(width=120)
 
 #### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
 ##### \% f_df.add_RegExVars.quintile_factor ====  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -442,21 +442,21 @@ DataSet.Date.NA.rmAllNA %>% select(matches(paste0(.RegEx2match, "\\.quintile$"))
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 ```
