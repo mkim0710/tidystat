@@ -380,9 +380,129 @@ options(width=120)
 ```
   
   
-###### ECHO \% |> () ----  
+# @@ START-GPT2) function ----  
+https://chatgpt.com/c/6704d71a-6620-800e-87ff-2c435e0408d2
+
+## \% |> calculate_smd()  
+## \% |> smd_continuous()  
+## \% |> smd_categorical()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# Improved Function to calculate SMD for a list of variables
+calculate_smd <- function(data, group_var, vars) {
+    # Ensure that the group_var is a factor with exactly two levels
+    group_var <- factor(data[[group_var]])
+    
+    if (nlevels(group_var) != 2) {
+        stop("The group variable must have exactly two levels.")
+    }
+    
+    # Initialize a data frame to store SMD results
+    smd_df <- data.frame(
+        variable = character(),
+        smd_value = numeric(),
+        variable_type = character(),
+        stringsAsFactors = FALSE
+    )
+    
+    # Iterate over the variables for which SMD needs to be calculated
+    for (var in vars) {
+        # Extract the variable
+        variable <- data[[var]]
+        
+        # Check if the variable is continuous or categorical
+        if (is.numeric(variable)) {
+            # Calculate SMD for continuous variable
+            smd_value <- smd_continuous(variable, group_var)
+            smd_type <- "Continuous"
+        } else if (is.factor(variable) || is.logical(variable)) {
+            # Calculate SMD for categorical variable
+            smd_value <- smd_categorical(variable, group_var)
+            smd_type <- "Categorical"
+        } else {
+            warning(paste("Variable", var, "is not supported for SMD calculation."))
+            smd_value <- NA
+            smd_type <- "Unsupported"
+        }
+        
+        # Append the result to the data frame
+        smd_df <- rbind(smd_df, data.frame(variable = var, smd_value = smd_value, variable_type = smd_type))
+    }
+    
+    return(smd_df)
+}
+
+# Improved function for continuous variables
+smd_continuous <- function(variable, group_var) {
+    # Split the variable by the group
+    group1 <- variable[group_var == levels(group_var)[1]]
+    group2 <- variable[group_var == levels(group_var)[2]]
+    
+    # Calculate means and pooled standard deviation
+    mean1 <- mean(group1, na.rm = TRUE)
+    mean2 <- mean(group2, na.rm = TRUE)
+    sd1 <- sd(group1, na.rm = TRUE)
+    sd2 <- sd(group2, na.rm = TRUE)
+    
+    pooled_sd <- sqrt((sd1^2 + sd2^2) / 2)
+    
+    # Handle case where pooled_sd is 0 (e.g., when the variable has no variance)
+    if (pooled_sd == 0) {
+        warning("Pooled standard deviation is zero, returning NA for SMD.")
+        return(NA)
+    }
+    
+    # Calculate SMD
+    smd <- (mean1 - mean2) / pooled_sd
+    return(smd)
+}
+
+# Improved function for categorical variables (binary or factor)
+smd_categorical <- function(variable, group_var) {
+    # Create a contingency table
+    table_data <- table(variable, group_var)
+    
+    # Ensure that the categorical variable has two levels
+    if (nrow(table_data) != 2) {
+        stop("Categorical variable must have exactly two levels for SMD calculation.")
+    }
+    
+    # Calculate proportions for both groups
+    prop1 <- prop.table(table_data, 2)[, 1]
+    prop2 <- prop.table(table_data, 2)[, 2]
+    
+    # Calculate pooled proportion
+    pooled_prop <- (prop1 + prop2) / 2
+    
+    # Handle case where pooled proportion is 0 or 1 (i.e., no variance in proportion)
+    if (any(pooled_prop == 0 | pooled_prop == 1)) {
+        warning("Pooled proportion is 0 or 1, returning NA for SMD.")
+        return(NA)
+    }
+    
+    # Calculate SMD
+    smd <- (prop1 - prop2) / sqrt(pooled_prop * (1 - pooled_prop))
+    return(smd)
+}
+```
+
+
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# Example usage with a sample dataset
+set.seed(123)
+data_example <- data.frame(
+    group = factor(rep(c("A", "B"), each = 50)),
+    continuous_var = c(rnorm(50, mean = 10, sd = 2), rnorm(50, mean = 12, sd = 3)),
+    binary_var = c(rep(c(0, 1), each = 25), rep(c(0, 1), each = 25)),
+    factor_var = factor(c(rep(c("X", "Y"), each = 25), rep(c("X", "Y"), each = 25))),
+    unsupported_var = letters[1:100] # Unsupported variable type
+)
+
+# Call the function
+result <- calculate_smd(data_example, group_var = "group", vars = c("continuous_var", "binary_var", "factor_var", "unsupported_var"))
+
+# Print result
+print(result)
 
 ```
   
@@ -401,10 +521,56 @@ options(width=120)
 ```
   
   
-###### ECHO \% |> () ----  
+# @@ START-Gemini) function ----  
+
+## \% |> calculate_smd()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+calculate_smd <- function(variable, group, type = "pooled", na.rm = TRUE) {
 
+  # Check if variables are appropriate
+  if (!is.numeric(variable)) {
+    stop("`variable` must be numeric.")
+  }
+  if (!is.factor(group) || nlevels(group) != 2) {
+    stop("`group` must be a factor with two levels.")
+  }
+
+  # Remove missing values if specified
+  if (na.rm) {
+    complete_cases <- complete.cases(variable, group)
+    variable <- variable[complete_cases]
+    group <- group[complete_cases]
+  }
+
+  # Calculate group means and standard deviations
+  means <- tapply(variable, group, mean)
+  sds <- tapply(variable, group, sd)
+
+  # Calculate SMD based on specified type
+  if (type == "pooled") {
+    # Pooled standard deviation
+    pooled_sd <- sqrt(((length(variable[group == levels(group)[1]]) - 1) * sds[1]^2 +
+                         (length(variable[group == levels(group)[2]]) - 1) * sds[2]^2) /
+                        (length(variable) - 2))
+    smd <- (means[1] - means[2]) / pooled_sd
+  } else if (type == "control") {
+    # Control group standard deviation
+    smd <- (means[1] - means[2]) / sds[1]  # Assuming first level is control
+  } else {
+    stop("Invalid `type` argument. Must be 'pooled' or 'control'.")
+  }
+
+  return(smd)
+}
+```
+  
+  
+###### ECHO \% mtcars |> calculate_smd() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+data(mtcars)
+calculate_smd(mtcars$mpg, mtcars$am, type = "pooled") 
 ```
   
   
@@ -419,6 +585,92 @@ options(width=120)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
+```
+  
+  
+# @@ START-Gemini_coding) function ----  
+
+## \% |> calculate_smd()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+calculate_smd <- function(variable, group, type = c("continuous", "categorical")) {
+
+  # Check input types
+  if (!is.numeric(variable) && type == "continuous") {
+    stop("Variable must be numeric for continuous SMD calculation.")
+  }
+  if (!is.factor(group)) {
+    stop("Group must be a factor.")
+  }
+
+  type <- match.arg(type)
+
+  if (type == "continuous") {
+    # Calculate SMD for continuous variables
+    means <- tapply(variable, group, mean, na.rm = TRUE)
+    vars <- tapply(variable, group, var, na.rm = TRUE)
+    ns <- tapply(variable, group, function(x) sum(!is.na(x)))
+    
+    pooled_sd <- sqrt(sum((ns - 1) * vars) / (sum(ns) - length(ns)))
+    smd <- (means[1] - means[2]) / pooled_sd
+    
+  } else if (type == "categorical") {
+    # Calculate SMD for categorical variables (using Mahalanobis distance)
+    
+    # Convert the categorical variable to a set of dummy variables
+    dummy_vars <- model.matrix(~ 0 + variable)
+    
+    # Calculate the group means and covariance matrix
+    means <- aggregate(dummy_vars, by = list(group), FUN = mean, na.rm = TRUE)[-1]
+    cov_matrix <- cov(dummy_vars, use = "pairwise.complete.obs")
+    
+    # Calculate the Mahalanobis distance
+    inv_cov_matrix <- solve(cov_matrix)
+    diff_means <- as.matrix(means[1, ] - means[2, ])
+    mahalanobis_dist <- sqrt(t(diff_means) %*% inv_cov_matrix %*% diff_means)
+    
+    smd <- mahalanobis_dist
+  }
+
+  return(smd)
+}
+```
+  
+  
+###### ECHO \% continuous_var |> calculate_smd() ----  
+###### ECHO \% categorical_var |> calculate_smd() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# # Example usage for continuous variable
+# continuous_var <- rnorm(100)
+# group_var <- factor(rep(c("A", "B"), each = 50))
+# smd_continuous <- calculate_smd(continuous_var, group_var, type = "continuous")
+# print(smd_continuous)
+# # Expected output: A value close to 0 (since the data is randomly generated 
+# # from a standard normal distribution with mean 0, the difference in means 
+# # between the two groups should be small)
+# 
+# 
+# # Example usage for categorical variable
+# categorical_var <- factor(sample(c("X", "Y", "Z"), 100, replace = TRUE))
+# smd_categorical <- calculate_smd(categorical_var, group_var, type = "categorical")
+# print(smd_categorical)
+# # Expected output: The Mahalanobis distance between the two groups, which will 
+# # vary depending on the random sample. It will generally be a positive value.
+
+
+# Example usage for continuous variable
+continuous_var <- c(1:50, 51:100)  # Deterministic sequence
+group_var <- factor(rep(c("A", "B"), each = 50))
+smd_continuous <- calculate_smd(continuous_var, group_var, type = "continuous")
+print(smd_continuous) 
+# Expected output: 2 
+
+# Example usage for categorical variable
+categorical_var <- factor(rep(c("X", "Y", "Z"), length.out = 100)) # Repeating pattern
+smd_categorical <- calculate_smd(categorical_var, group_var, type = "categorical")
+print(smd_categorical) 
+# Expected output: 1.732051
 ```
   
   
