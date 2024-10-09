@@ -219,3 +219,4 @@ bin/
 !MHjavascript/*/*.html
 !*.js.html
 !*.js-call.html
+!*-edit.md
