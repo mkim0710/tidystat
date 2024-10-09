@@ -469,9 +469,12 @@ improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
 ```
   
   
+##@ https://chatgpt.com/c/6703f128-b4b4-800e-b718-68b28c7de362 ----  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# document.title.replace(/[^a-zA-Z0-9가-힣 _().,@]/g, '_');
+# document.title.replace(/[^a-zA-Z0-9가-힣 _().,@\[\]!#$%^&+=;'~`]/g, '_');
 
 ```
   
