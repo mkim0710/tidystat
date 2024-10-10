@@ -238,6 +238,133 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
 env0 = env1
 ```
   
+# https://cloud.r-project.org/web/packages/labelled/vignettes/intro_labelled.html
+
+# Introduction to labelled  
+
+## library(labelled)
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+if(!requireNamespace("labelled", quietly = TRUE)) install.packages("labelled")
+library(labelled)
+```
+
+## ## Variable labels  
+
+A variable label could be specified for any vector using `var_label()`.
+
+### ECHO :: var_label(df$Var1) = "VarDescription1" ----  
+```{r}
+iris = datasets::iris
+iris %>% str
+var_label(iris$Sepal.Length) <- "Length of sepal"
+iris %>% str
+```
+
+### ECHO :: var_label(df) <- list(Var1 = "VarDescription1", Var2 = "VarDescription2") ----  
+```{r}
+iris = datasets::iris
+iris %>% str
+    var_label(iris) <- list(
+      Petal.Length = "Length of petal",
+      Petal.Width = "Width of Petal"
+    )
+iris %>% str
+```
+
+
+You can display and search through variable names and labels with `look_for()`:
+#### ECHO \% df |> look_for() ----  
+```{r}
+    look_for(iris)
+```
+
+    ##  pos variable     label           col_type missing values    
+    ##  1   Sepal.Length —               dbl      0                 
+    ##  2   Sepal.Width  —               dbl      0                 
+    ##  3   Petal.Length Length of petal dbl      0                 
+    ##  4   Petal.Width  Width of Petal  dbl      0                 
+    ##  5   Species      —               fct      0       setosa    
+    ##                                                    versicolor
+    ##                                                    virginica
+
+#### ECHO \% df |> look_for("varname_part") ----  
+```{r}
+    look_for(iris, "pet")
+```
+
+    ##  pos variable     label           col_type missing values
+    ##  3   Petal.Length Length of petal dbl      0             
+    ##  4   Petal.Width  Width of Petal  dbl      0
+
+#### ECHO \% df |> look_for(details = FALSE) ----  
+```{r}
+    look_for(iris, details = FALSE)
+```
+
+    ##  pos variable     label          
+    ##  1   Sepal.Length —              
+    ##  2   Sepal.Width  —              
+    ##  3   Petal.Length Length of petal
+    ##  4   Petal.Width  Width of Petal 
+    ##  5   Species      —
+
+
+## ## Value labels  
+
+### :: v = 
+### ECHO :: labelled() ----  
+```{r}
+    v <- labelled(
+      c(1, 2, 2, 2, 3, 9, 1, 3, 2, NA),
+      c(yes = 1, no = 3, "don't know" = 8, refused = 9)
+    )
+    v
+```
+
+    ## <labelled<double>[10]>
+    ##  [1]  1  2  2  2  3  9  1  3  2 NA
+    ## 
+    ## Labels:
+    ##  value      label
+    ##      1        yes
+    ##      3         no
+    ##      8 don't know
+    ##      9    refused
+
+#### ECHO :: val_labels(df$Var1) = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB") ----  
+```{r}
+    val_labels(v) <- c(yes = 1, nno = 3, bug = 5)
+    v
+```
+
+    ## <labelled<double>[10]>
+    ##  [1]  1  2  2  2  3  9  1  3  2 NA
+    ## 
+    ## Labels:
+    ##  value label
+    ##      1   yes
+    ##      3   nno
+    ##      5   bug
+
+### :: df =
+#### ECHO :: val_labels(df) = list(Var1 = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB"), Var2 = c(ValueLabel1 = 1, ValueLabel2 = 2)) ----  
+```{r}
+    df <- data.frame(v1 = 1:3, v2 = c(2, 3, 1), v3 = 3:1)
+    val_labels(df) <- list(v1 = c(yes = 1, no = 3), v2 = c(a = 1, b = 2, c = 3))
+    val_labels(df)
+```
+
+    ## $v1
+    ## yes  no 
+    ##   1   3 
+    ## 
+    ## $v2
+    ## a b c 
+    ## 1 2 3 
+    ## 
+    ## $v3
+    ## NULL
+
 ## \% analyticDF_time2event |>  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
