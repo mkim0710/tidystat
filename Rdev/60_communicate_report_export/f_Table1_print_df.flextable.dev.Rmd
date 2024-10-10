@@ -545,7 +545,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
     .wb$save(.path.file)
     cat(".path.file == ", deparse(.path.file), "  \n", sep="")
     if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.file)
-    paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 }
 ```
 

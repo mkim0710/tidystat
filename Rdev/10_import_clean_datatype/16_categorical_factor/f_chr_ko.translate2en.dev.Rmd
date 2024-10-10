@@ -674,7 +674,7 @@ for (.objectname in names(MetaData$DataSetNames)) {
     assign(.objectname, structure(get(.objectname), MetaData = MetaData))
     .path.file = paste0(.path4write,"/",.objectname,".rds")
     cat(.objectname, ' |> write_rds("',.path.file,'", compress = "xz", compression = 9) |> system.time()', "  \n", sep="")
-    paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -690,7 +690,7 @@ for (.objectname in names(MetaData$DataSetNames)) {
 # system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
 # env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-# paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+# paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 # # paste0( "git lfs track ",shQuote(.path.file) ) |> system(intern=TRUE)
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 # # .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
@@ -720,14 +720,14 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$CurrentSource.path.filename.ext)),', output_format = "pdf_document")  \n')
         Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
         .path.file = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}
-        paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+        paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .path.file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
         try(env1$env.internal$f_file_PDF.sumatra(.path.file))
     }
 }
-# env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}; paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal$f_file_PDF.sumatra(',deparse(.path.file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path.file),')  \n', sep="") }
+# env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}; paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal$f_file_PDF.sumatra(',deparse(.path.file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path.file),')  \n', sep="") }
 # cat("    ________________________________________________________________________    \n")
-env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)}; paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal$f_URL.open_in_edge_app(',deparse(.path.file),')  \n', sep="")
+env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)}; paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal$f_URL.open_in_edge_app(',deparse(.path.file),')  \n', sep="")
 ```
   
   
