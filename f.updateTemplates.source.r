@@ -136,6 +136,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     for (.sourcename in c(".Rprofile", "f.updateTemplates.source.r", "RStudioServer-setup.r"))
     env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename), destfile = file.path(env1$path$path1,.sourcename))
     
+    # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
+    
     
     if (Sys.info()["sysname"] == "Windows") {
         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
