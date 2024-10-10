@@ -1007,10 +1007,10 @@ if(exists("MetaData")) {
         .path.file = env1$path$CurrentSource.path.filename.MetaData.rds
         # cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "', .path.file, '", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
         # cat('MetaData |> write_rds("', .path.file, '", compress = "xz") |> system.time()', "  \n", sep="")
-        # cat("'git lfs track \"", .path.file ,"\"' |> system(intern=TRUE)  \n", sep="")
+        # cat("'git lfs track ",shQuote(.path.file),"' |> system(intern=TRUE)  \n", sep=""); cat("'git add -f ",shQuote(.path.file),"' |> system(intern=TRUE)  \n", sep="")
         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .path.file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
         MetaData |> write_rds(.path.file, compress = "xz") |> system.time()
-        paste0("git lfs track ", .path.file |> shQuote()) |> system(intern=TRUE)
+        paste0( "git lfs track ",shQuote(.path.file) ) |> system(intern=TRUE); paste0( "git add -f ",shQuote(.path.file) ) |> system(intern=TRUE)
     }
 } else {warning("MetaData does not exist!  \n")}
 ```
