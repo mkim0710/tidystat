@@ -211,4 +211,10 @@ ensure_package("tidyverse")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #|________________________________________________________________________________|#  
 #@@ END ----
+system('git lfs track "data/ATC_RxNorm_NDC.rds.xz"')
+system('git lfs track "data/CDMv5_CONCEPT.rds.xz"')
+system('git lfs track "data/CMS_SynPUF_CDMv5.rds.xz"')
+system('git add -f "data/ATC_RxNorm_NDC.rds.xz"')
+system('git add -f "data/CDMv5_CONCEPT.rds.xz"')
+system('git add -f "data/CMS_SynPUF_CDMv5.rds.xz"')
 
