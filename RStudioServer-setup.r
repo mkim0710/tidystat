@@ -450,7 +450,7 @@ git.remote.v2
 
 # system("git remote set-url origin git@github.com:mkim0710/REPOSITORY.git")
 # system("git config remote.origin.url git@github.com:mkim0710/tidystat.git")
-paste0("git config remote.origin.url ", git.remote.v2) %>% system()
+paste0("git config remote.origin.url ", git.remote.v2) |> system(intern = TRUE)
 
 system("git remote -v")
 # > system("git remote -v")
@@ -493,6 +493,16 @@ system("git remote -v")
 "git config --global pull.rebase" |> system(intern = TRUE)
 # > system("git config --global pull.rebase")
 # false
+
+#|________________________________________________________________________________|#  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ "sudo apt-get install -y git-lfs" |> system(intern = TRUE) ----
+
+"sudo apt-get update" |> system(intern = TRUE)
+"sudo apt-get install -y curl ca-certificates" |> system(intern = TRUE)
+"curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash" |> system(intern = TRUE)
+"sudo apt-get install -y git-lfs" |> system(intern = TRUE)
+
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) Posit.Cloud -----  
