@@ -211,7 +211,7 @@ for (.objectname in names(MetaData$DataSetNames)) {
     assign(.objectname, structure(get(.objectname), MetaData = MetaData))
     .path.file = paste0(.path4write,"/",.objectname,".rds")
     cat(.objectname, ' |> write_rds("',.path.file,'", compress = "xz", compression = 9) |> system.time()', "  \n", sep="")
-    paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 }
 # system.time(write_rds( get(.objectname), paste0(.objectname,".rds") ))
@@ -223,8 +223,8 @@ for (.objectname in names(MetaData$DataSetNames)) {
 # # system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
 # # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname, ".xlsx"))
 # env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)  
-# paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")  
-# # paste0( "git add -f ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)  
+# paste0( "git lfs track ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")  
+# # paste0( "git lfs track ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> system(intern=TRUE)  
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ END -----  
