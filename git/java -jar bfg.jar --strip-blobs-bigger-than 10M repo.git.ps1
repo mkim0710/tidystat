@@ -4,39 +4,32 @@
 # *** Ctrl+Alt+Enter to run the code in the terminal ***
 
 # *** --dry-run creates bfg-report.txt with a list of large files? -> feature not implemented yet! -_- ***
-##################################
+
 # mkdir repo-mirror
 mkdir github_tidystat-mirror
 # cd repo-mirror
 cd github_tidystat-mirror
 # git clone --mirror https://github.com/username/repo.git
 git clone --mirror https://github.com/mkim0710/tidystat.git
-#==================================
+
 # wget https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar
 # Invoke-WebRequest -Uri "https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar" -OutFile "bfg-1.14.0.jar"
 curl -L -o bfg-1.14.0.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar
-#==================================
+
 # https://adoptium.net/temurin/archive/?version=17
 # OpenJDK17U-jre_x64_windows_hotspot_17.0.12_7.msi (JRE 17 LTS) was enough to run bfg-1.14.0.jar
 java -version
-#----------------------------------
+
 # java -jar /path/to/bfg.jar --strip-blobs-bigger-than 10M /path/to/repo-mirror/repo.git -> do not delete  if the file exists in the current working folder (HEAD)
 java -jar bfg-1.14.0.jar --strip-blobs-bigger-than 10M tidystat.git
-#++++++++++++++++++++++++++++++++++
 ## java -jar /path/to/bfg.jar --strip-blobs-bigger-than 10M --no-blob-protection /path/to/repo-mirror/repo.git -> delete even if the file exists in the current working folder (HEAD)
 # java -jar bfg-1.14.0.jar --strip-blobs-bigger-than 10M --no-blob-protection tidystat.git
-#++++++++++++++++++++++++++++++++++
-## (wrong) java -jar bfg.jar --delete-files RootFileName.ext data/filename.csv RelativePathFromRoot/filename.ext  /path/to/repo-mirror/repo.git -> delete specific files
-# (wrong) java -jar bfg-1.14.0.jar --delete-files data/CMS_SynPUF_CDMv5.rda tidystat.git
-## (correct) java -jar bfg.jar --delete-files File1 File2 --no-blob-protection tidystat.git -> delete specific files
-# java -jar bfg-1.14.0.jar --delete-files CMS_SynPUF_CDMv5.rda --no-blob-protection tidystat.git
-#==================================
+
 # cd repo.git
 cd tidystat.git
 git reflog expire --expire=now --all && git gc --prune=now --aggressive
 git push --force --all
 git push --force --tags
-##################################
 
 
 ##################################
@@ -50,7 +43,6 @@ git stash
 #==================================
 # Fetch the updated remote history
 git fetch --all
-git fetch --all --prune
 #----------------------------------
 # Reset Local Branches to Match the Remote
 git reset --hard origin/main 
