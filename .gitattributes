@@ -21,7 +21,6 @@
 ################################################
 # *** Auto detect text files and perform LF normalization ***
 * text=auto
-
 #==========================================#
 # *** Ensure consistent line endings for text files ***
 # R and R-related files
@@ -35,19 +34,16 @@
 *.rmD text eol=lf
 *.rMd text eol=lf
 *.rmd text eol=lf
-
 # Python scripts
 *.PY text eol=lf
 *.Py text eol=lf
 *.pY text eol=lf
 *.py text eol=lf
-
 # Shell scripts
 *.SH text eol=lf
 *.Sh text eol=lf
 *.sH text eol=lf
 *.sh text eol=lf
-
 # JavaScript and TypeScript files
 *.JS text eol=lf
 *.Js text eol=lf
@@ -67,7 +63,6 @@
 *.Ts text eol=lf
 *.tS text eol=lf
 *.ts text eol=lf
-
 # CSS and related files
 *.CSS text eol=lf
 *.cSS text eol=lf
@@ -83,7 +78,6 @@
 *.leSS text eol=lf
 *.Less text eol=lf
 *.less text eol=lf
-
 # HTML, XML, and related files
 *.HTML text eol=lf
 *.hTML text eol=lf
@@ -97,7 +91,6 @@
 *.xML text eol=lf
 *.Xml text eol=lf
 *.xml text eol=lf
-
 # JSON and YAML files
 *.JSON text eol=lf
 *.jSON text eol=lf
@@ -111,7 +104,6 @@
 *.yML text eol=lf
 *.Yml text eol=lf
 *.yml text eol=lf
-
 # Markdown files
 *.MD text eol=lf
 *.Md text eol=lf
@@ -121,7 +113,6 @@
 *.mARKDOWN text eol=lf
 *.Markdown text eol=lf
 *.markdown text eol=lf
-
 # C/C++ source and header files
 *.C text eol=lf
 *.c text eol=lf
@@ -135,7 +126,6 @@
 *.hPP text eol=lf
 *.Hpp text eol=lf
 *.hpp text eol=lf
-
 #==========================================#
 # *** Ensure CRLF line endings for Windows script files ***
 # Batch scripts
@@ -147,7 +137,6 @@
 *.bAt text eol=crlf
 *.baT text eol=crlf
 *.bat text eol=crlf
-
 # Command scripts
 *.CMD text eol=crlf
 *.CMd text eol=crlf
@@ -157,13 +146,11 @@
 *.cMd text eol=crlf
 *.cmD text eol=crlf
 *.cmd text eol=crlf
-
 # PowerShell scripts
 *.PS1 text eol=crlf
 *.Ps1 text eol=crlf
 *.pS1 text eol=crlf
 *.ps1 text eol=crlf
-
 #==========================================#
 # *** Treat binary files correctly ***
 # Image files
@@ -175,7 +162,6 @@
 *.gIf binary
 *.giF binary
 *.gif binary
-
 *.JPG binary
 *.JPg binary
 *.JpG binary
@@ -184,7 +170,6 @@
 *.jPg binary
 *.jpG binary
 *.jpg binary
-
 *.PNG binary
 *.PNg binary
 *.PnG binary
@@ -193,7 +178,6 @@
 *.pNg binary
 *.pnG binary
 *.png binary
-
 # Dynamic-link library files
 *.DLL binary
 *.DLl binary
@@ -203,7 +187,6 @@
 *.dLl binary
 *.dlL binary
 *.dll binary
-
 # Executable files
 *.EXE binary
 *.EXe binary
@@ -213,7 +196,6 @@
 *.eXe binary
 *.exE binary
 *.exe binary
-
 # PDF files
 *.PDF binary
 *.PDf binary
@@ -223,7 +205,6 @@
 *.pDf binary
 *.pdF binary
 *.pdf binary
-
 # Word documents
 *.DOC binary
 *.DOc binary
@@ -247,7 +228,6 @@
 *.doCX binary
 *.doCx binary
 *.docx binary
-
 # PowerPoint files
 *.PPT binary
 *.PPt binary
@@ -270,7 +250,6 @@
 *.ppTX binary
 *.ppTx binary
 *.pptx binary
-
 # Excel files
 *.XLS binary
 *.XLs binary
@@ -294,21 +273,17 @@
 *.xlSX binary
 *.xlSx binary
 *.xlsx binary
-
 # Compressed files
 *.7Z binary
 *.7z binary
-
 *.BZ2 binary
 *.bZ2 binary
 *.Bz2 binary
 *.bz2 binary
-
 *.GZ binary
 *.Gz binary
 *.gZ binary
 *.gz binary
-
 *.RAR binary
 *.RAr binary
 *.RaR binary
@@ -317,7 +292,6 @@
 *.rAr binary
 *.raR binary
 *.rar binary
-
 *.TAR binary
 *.TAr binary
 *.TaR binary
@@ -326,12 +300,10 @@
 *.tAr binary
 *.taR binary
 *.tar binary
-
 *.XZ binary
 *.Xz binary
 *.xZ binary
 *.xz binary
-
 *.ZIP binary
 *.ZIp binary
 *.ZiP binary
@@ -345,13 +317,11 @@
 *.Py text eol=lf
 *.pY text eol=lf
 *.py text eol=lf
-
 # Shell scripts
 *.SH text eol=lf
 *.Sh text eol=lf
 *.sH text eol=lf
 *.sh text eol=lf
-
 # JavaScript and TypeScript files
 *.JS text eol=lf
 *.Js text eol=lf
@@ -371,7 +341,6 @@
 *.Ts text eol=lf
 *.tS text eol=lf
 *.ts text eol=lf
-
 # CSS and related files
 *.CSS text eol=lf
 *.cSS text eol=lf
@@ -387,7 +356,6 @@
 *.leSS text eol=lf
 *.Less text eol=lf
 *.less text eol=lf
-
 # HTML, XML, and related files
 *.HTML text eol=lf
 *.hTML text eol=lf
@@ -401,7 +369,6 @@
 *.xML text eol=lf
 *.Xml text eol=lf
 *.xml text eol=lf
-
 # JSON and YAML files
 *.JSON text eol=lf
 *.jSON text eol=lf
@@ -415,7 +382,6 @@
 *.yML text eol=lf
 *.Yml text eol=lf
 *.yml text eol=lf
-
 # Markdown files
 *.MD text eol=lf
 *.Md text eol=lf
@@ -425,7 +391,6 @@
 *.mARKDOWN text eol=lf
 *.Markdown text eol=lf
 *.markdown text eol=lf
-
 # C/C++ source and header files
 *.C text eol=lf
 *.c text eol=lf
@@ -439,7 +404,6 @@
 *.hPP text eol=lf
 *.Hpp text eol=lf
 *.hpp text eol=lf
-
 #==========================================#
 # *** Ensure CRLF line endings for Windows script files ***
 # Batch scripts
@@ -451,7 +415,6 @@
 *.bAt text eol=crlf
 *.baT text eol=crlf
 *.bat text eol=crlf
-
 # Command scripts
 *.CMD text eol=crlf
 *.CMd text eol=crlf
@@ -461,13 +424,11 @@
 *.cMd text eol=crlf
 *.cmD text eol=crlf
 *.cmd text eol=crlf
-
 # PowerShell scripts
 *.PS1 text eol=crlf
 *.Ps1 text eol=crlf
 *.pS1 text eol=crlf
 *.ps1 text eol=crlf
-
 #==========================================#
 # *** Treat binary files correctly ***
 # Image files
@@ -479,7 +440,6 @@
 *.gIf binary
 *.giF binary
 *.gif binary
-
 *.JPG binary
 *.JPg binary
 *.JpG binary
@@ -488,7 +448,6 @@
 *.jPg binary
 *.jpG binary
 *.jpg binary
-
 *.PNG binary
 *.PNg binary
 *.PnG binary
@@ -497,7 +456,6 @@
 *.pNg binary
 *.pnG binary
 *.png binary
-
 # Dynamic-link library files
 *.DLL binary
 *.DLl binary
@@ -507,7 +465,6 @@
 *.dLl binary
 *.dlL binary
 *.dll binary
-
 # Executable files
 *.EXE binary
 *.EXe binary
@@ -517,7 +474,6 @@
 *.eXe binary
 *.exE binary
 *.exe binary
-
 # PDF files
 *.PDF binary
 *.PDf binary
@@ -527,7 +483,6 @@
 *.pDf binary
 *.pdF binary
 *.pdf binary
-
 # Word documents
 *.DOC binary
 *.DOc binary
@@ -551,7 +506,6 @@
 *.doCX binary
 *.doCx binary
 *.docx binary
-
 # PowerPoint files
 *.PPT binary
 *.PPt binary
@@ -574,7 +528,6 @@
 *.ppTX binary
 *.ppTx binary
 *.pptx binary
-
 # Excel files
 *.XLS binary
 *.XLs binary
@@ -598,21 +551,17 @@
 *.xlSX binary
 *.xlSx binary
 *.xlsx binary
-
 # Compressed files
 *.7Z binary
 *.7z binary
-
 *.BZ2 binary
 *.bZ2 binary
 *.Bz2 binary
 *.bz2 binary
-
 *.GZ binary
 *.Gz binary
 *.gZ binary
 *.gz binary
-
 *.RAR binary
 *.RAr binary
 *.RaR binary
@@ -621,7 +570,6 @@
 *.rAr binary
 *.raR binary
 *.rar binary
-
 *.TAR binary
 *.TAr binary
 *.TaR binary
@@ -630,12 +578,10 @@
 *.tAr binary
 *.taR binary
 *.tar binary
-
 *.XZ binary
 *.Xz binary
 *.xZ binary
 *.xz binary
-
 *.ZIP binary
 *.ZIp binary
 *.ZiP binary
@@ -644,3 +590,6 @@
 *.zIp binary
 *.ziP binary
 *.zip binary
+data/ATC_RxNorm_NDC.rds.xz filter=lfs diff=lfs merge=lfs -text
+data/CDMv5_CONCEPT.rds.xz filter=lfs diff=lfs merge=lfs -text
+data/CMS_SynPUF_CDMv5.rds.xz filter=lfs diff=lfs merge=lfs -text
