@@ -1,4 +1,7 @@
+# mkim0710@gmail.com
 # https://chatgpt.com/c/6707b65a-edf8-800e-a45a-2fd88ac2ccf1
+
+# *** Ctrl+Alt+Enter to run the code in the terminal ***
 
 # *** --dry-run creates bfg-report.txt with a list of large files? -> feature not implemented yet! -_- ***
 
@@ -17,8 +20,10 @@ curl -L -o bfg-1.14.0.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/b
 # OpenJDK17U-jre_x64_windows_hotspot_17.0.12_7.msi (JRE 17 LTS) was enough to run bfg-1.14.0.jar
 java -version
 
-# java -jar /path/to/bfg.jar --strip-blobs-bigger-than 10M /path/to/repo-mirror/repo.git
+# java -jar /path/to/bfg.jar --strip-blobs-bigger-than 10M /path/to/repo-mirror/repo.git -> do not delete  if the file exists in the current working folder (HEAD)
 java -jar bfg-1.14.0.jar --strip-blobs-bigger-than 10M tidystat.git
+## java -jar /path/to/bfg.jar --strip-blobs-bigger-than 10M --no-blob-protection /path/to/repo-mirror/repo.git -> delete even if the file exists in the current working folder (HEAD)
+# java -jar bfg-1.14.0.jar --strip-blobs-bigger-than 10M --no-blob-protection tidystat.git
 
 # cd repo.git
 cd tidystat.git
