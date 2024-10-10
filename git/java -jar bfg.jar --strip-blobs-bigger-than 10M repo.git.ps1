@@ -31,15 +31,29 @@ git push --force --tags
 #@ in other computers
 # If I have changes in my local repository, I need to stash (back up) them.
 git stash
-# If I am not on the main branch, I need to switch to the main branch.
+#++++++++++++++++++++++++++++++++++
+## If I am not on the main branch, I need to switch to the main branch.
 # git checkout main
 # git checkout master
+#==================================
 # Fetch the updated remote history
 git fetch --all
+#----------------------------------
 # Reset Local Branches to Match the Remote
 git reset --hard origin/main 
 git reset --hard origin/master 
-# Cf) Discard all local changes and pull the latest from the remote repository
+## Cf) Discard all local changes and pull the latest from the remote repository
 # git reset --hard HEAD
+#==================================
+# Shrink the .git Folder Size After Running BFG: Run Garbage Collection
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+git prune --expire now
+#----------------------------------
+# Verify the Size of .git Folder on Linux/macOS
+du -sh .git
+# Verify the Size of .git Folder on Windows
+Get-ChildItem -Recurse .git | Measure-Object -Property Length -Sum
+#++++++++++++++++++++++++++++++++++
 # If I had stashed changes, I can reapply them with:
 git stash pop
+
