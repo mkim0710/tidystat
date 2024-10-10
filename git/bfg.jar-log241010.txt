@@ -1,0 +1,124 @@
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror> java -version
+openjdk version "17.0.12" 2024-07-16
+OpenJDK Runtime Environment Temurin-17.0.12+7 (build 17.0.12+7)
+OpenJDK 64-Bit Server VM Temurin-17.0.12+7 (build 17.0.12+7, mixed mode, sharing)
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror> java -jar bfg-1.14.0.jar --strip-blobs-bigger-than 10M tidystat.git
+
+Using repo : D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git
+
+Scanning packfile for large blobs: 24003
+Scanning packfile for large blobs completed in 66 ms.
+Found 5 blob ids for large blobs - biggest=93000604 smallest=13465496
+Total size (unpacked)=227018575
+Found 564 objects to protect
+Found 2 commit-pointing refs : HEAD, refs/heads/master
+
+Protected commits
+-----------------
+
+These are your protected commits, and so their contents will NOT be altered:
+
+ * commit 8b5668eb (protected by 'HEAD') - contains 3 dirty files :
+        - data/ATC_RxNorm_NDC.rds (76.1 MB)
+        - data/CDMv5_CONCEPT.rda (88.7 MB)
+        - git/bfg-1.13.0.jar (12.8 MB)
+
+WARNING: The dirty content above may be removed from other commits, but as
+the *protected* commits still use it, it will STILL exist in your repository.
+
+Details of protected dirty content have been recorded here :
+
+D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git.bfg-report\2024-10-10\22-47-33\protected-dirt\
+
+If you *really* want this content gone, make a manual commit that removes it,
+and then run the BFG on a fresh copy of your repo.
+
+
+Cleaning
+--------
+
+Found 2558 commits
+Cleaning commits:       100% (2558/2558)
+Cleaning commits completed in 2,797 ms.
+
+Updating 1 Ref
+--------------
+
+        Ref                 Before     After
+        ---------------------------------------
+        refs/heads/master | 8b5668eb | c0f667d9
+
+Updating references:    100% (1/1)
+...Ref update completed in 14 ms.
+
+Commit Tree-Dirt History
+------------------------
+
+        Earliest                                              Latest
+        |                                                          |
+        .....DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+
+        D = dirty commits (file tree fixed)
+        m = modified commits (commit message or parents changed)
+        . = clean commits (no changes to file tree)
+
+                                Before     After
+        -------------------------------------------
+        First modified commit | a29d049d | 242b5c9c
+        Last dirty commit     | 1c11c6a8 | 9a800ae3
+
+Deleted files
+-------------
+
+        Filename                   Git id
+        ---------------------------------------------
+        ATC_RxNorm_NDC.rds       | fd538119 (76.1 MB)
+        CDMv5_CONCEPT.rda        | 00516508 (88.7 MB)
+        CMS_SynPUF_CDMv5_YZ.json | 1c28e121 (13.2 MB)
+        bfg-1.13.0.jar           | 63ab513b (12.8 MB)
+        bfg.jar                  | 63ab513b (12.8 MB)
+        icd10cm2019.csv          | 75ccf4f3 (25.7 MB)
+
+
+In total, 4749 object ids were changed. Full details are logged here:
+
+        D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git.bfg-report\2024-10-10\22-47-33
+
+BFG run is complete! When ready, run: git reflog expire --expire=now --all && git gc --prune=now --aggressive
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror> git reflog expire --expire=now --all && git gc --prune=now --aggressive
+fatal: not a git repository (or any of the parent directories): .git
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror> cd tidystat.git
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git reflog expire --expire=now --all && git gc --prune=now --aggressive
+Enumerating objects: 24007, done.
+Counting objects: 100% (24007/24007), done.
+Delta compression using up to 24 threads
+Compressing objects: 100% (23966/23966), done.
+Writing objects: 100% (24007/24007), done.
+Selecting bitmap commits: 2550, done.
+Building bitmaps: 100% (130/130), done.
+Total 24007 (delta 20344), reused 977 (delta 0), pack-reused 0 (from 0)
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git push --force --all
+Enumerating objects: 24007, done.
+Writing objects: 100% (24007/24007), 208.02 MiB | 8.83 MiB/s, done.
+Total 24007 (delta 0), reused 0 (delta 0), pack-reused 24007 (from 1)
+remote: Resolving deltas: 100% (20344/20344), done.
+remote: warning: See https://gh.io/lfs for more information.
+remote: warning: File data/ATC_RxNorm_NDC.rds is 76.07 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+remote: warning: File data/CDMv5_CONCEPT.rda is 88.69 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+To https://github.com/mkim0710/tidystat.git
+ + 8b5668eb...c0f667d9 master -> master (forced update)
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git push --force --tags
+To https://github.com/mkim0710/tidystat.git
+ ! [remote rejected]   master (refusing to delete the current branch: refs/heads/master)
+error: failed to push some refs to 'https://github.com/mkim0710/tidystat.git'
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git push --tags
+To https://github.com/mkim0710/tidystat.git
+ ! [remote rejected]   master (refusing to delete the current branch: refs/heads/master)
+error: failed to push some refs to 'https://github.com/mkim0710/tidystat.git'
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git show-ref --tags
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git tag
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git fetch --tags
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git> git status
+fatal: this operation must be run in a work tree
+PS D:\OneDrive\[][Rproject]\github_tidystat.mirror\tidystat.git>
