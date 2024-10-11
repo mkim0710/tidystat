@@ -504,7 +504,7 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 #### \% |> select(matches("DM")) ----  
 #### \% |> select(matches("PHY")) ----  
 #### \% |> select(matches("EDU")) ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 DataSet.Date.NA.rmAllNA %>% select(matches("DM")) %>% str(max.level = 2)
 DataSet.Date.NA.rmAllNA %>% select(matches("PHY")) %>% str(max.level = 2)
 DataSet.Date.NA.rmAllNA %>% select(matches("EDU")) %>% str(max.level = 2)
@@ -532,7 +532,7 @@ library(labelled)
 A variable label could be specified for any vector using `var_label()`.
 
 ### ECHO :: var_label(df$Var1) = "VarDescription1" ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 iris = datasets::iris
 iris %>% str
 var_label(iris$Sepal.Length) <- "Length of sepal"
@@ -540,7 +540,7 @@ iris %>% str
 ```
 
 ### ECHO :: var_label(df) <- list(Var1 = "VarDescription1", Var2 = "VarDescription2") ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 iris = datasets::iris
 iris %>% str
     var_label(iris) <- list(
@@ -553,7 +553,7 @@ iris %>% str
 
 You can display and search through variable names and labels with `look_for()`:
 #### ECHO \% df |> look_for() ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     look_for(iris)
 ```
 
@@ -567,7 +567,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##                                                    virginica
 
 #### ECHO \% df |> look_for("varname_part") ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     look_for(iris, "pet")
 ```
 
@@ -576,7 +576,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##  4   Petal.Width  Width of Petal  dbl      0
 
 #### ECHO \% df |> look_for(details = FALSE) ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     look_for(iris, details = FALSE)
 ```
 
@@ -592,7 +592,7 @@ You can display and search through variable names and labels with `look_for()`:
 
 ### :: v = 
 ### ECHO :: labelled() ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     v <- labelled(
       c(1, 2, 2, 2, 3, 9, 1, 3, 2, NA),
       c(yes = 1, no = 3, "don't know" = 8, refused = 9)
@@ -611,7 +611,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##      9    refused
 
 #### ECHO :: val_labels(df$Var1) = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB") ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     val_labels(v) <- c(yes = 1, nno = 3, bug = 5)
     v
 ```
@@ -627,7 +627,7 @@ You can display and search through variable names and labels with `look_for()`:
 
 ### :: df =
 #### ECHO :: val_labels(df) = list(Var1 = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB"), Var2 = c(ValueLabel1 = 1, ValueLabel2 = 2)) ----  
-```{r}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     df <- data.frame(v1 = 1:3, v2 = c(2, 3, 1), v3 = 3:1)
     val_labels(df) <- list(v1 = c(yes = 1, no = 3), v2 = c(a = 1, b = 2, c = 3))
     val_labels(df)
