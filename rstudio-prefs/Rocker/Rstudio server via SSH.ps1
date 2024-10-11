@@ -28,14 +28,18 @@ New-NetFirewallRule -Name "SSH" -DisplayName "OpenSSH SSH Server" -Enabled True 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #@ Create a new local user on your work PC for SSH access in cmd
-net user <username> <password> /add
-net localgroup Administrators <username> /add
+# net user <username> <password> /add
+# net localgroup Administrators <username> /add
 
 ############################################################
 #@ Test SSH connection locally on the work PC 
 # Open PowerShell or Command Prompt
 ssh <username>@localhost
+ssh sshuser@localhost
 # Enter the password for ED25519 key fingerprint
+#------------------------------------------------------------
+# (Optional) Set Password to Never Expire:
+WMIC UserAccount where Name='sshuser' set PasswordExpires=false
 
 ############################################################
 #@ Configure SSH Server on Windows 10
@@ -45,7 +49,7 @@ ssh <username>@localhost
 # Port 22
 # ListenAddress
 # PermitRootLogin no
-# PasswordAuthentication yes
+# PasswordAuthentication yes? no?
 # PubkeyAuthentication yes
 # AuthorizedKeysFile .ssh/authorized_keys
 # AllowUsers <username>
@@ -53,5 +57,38 @@ ssh <username>@localhost
 
 
 ############################################################
+#@ Configure Port Forwarding on Your Router
+# External Port: Choose a high, unused port like 65022.
+# Internal IP Address: 192.168.0.224 (your work PC's IP).
+# Internal Port: 22 (default SSH port).
+# Protocol: TCP.
+
+
+############################################################
+############################################################
+############################################################
 #@ SSH into your work PC from your home PC
+ssh -L 8787:localhost:65087 -p 65022 sshuser@147.46.170.167
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#@ Single SSH Port with Multiple Forwarded Ports
+ssh -L 65087:localhost:65087 -L 58723:localhost:58723 -L 58733:localhost:58733 -p 65022 sshuser@147.46.170.167
+
+
+############################################################
+#@ (Recommended) Use SSH Keys for Authentication 
+# Generate an SSH Key Pair on Your Home PC:
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# Copy the Public Key to Your Work PC:
+ssh-copy-id -i ~/.ssh/id_ed25519.pub -p 65022 sshuser@147.46.170.167
+
+
+############################################################
+#@ (Optional) Disable Password Authentication
+# C:\ProgramData\ssh\sshd_config on the server PC
+# PasswordAuthentication no
+#------------------------------------------------------------
+# Restart the SSH server: 
+Restart-Service sshd
+
+
 
