@@ -1,0 +1,41 @@
+# https://chatgpt.com/c/7c78bb8e-b6a9-40d5-b384-38cc9dbdeed2?model=o1-preview
+
+# C:\Windows\System32\drivers\etc\hosts
+
+127.0.0.1   rstudio1.local
+127.0.0.1   rstudio2.local
+
+
+http://rstudio1.local:58723/
+or
+http://rstudio2.local:58733/
+
+
+# Update RStudio Server Configuration (Optional)
+
+docker exec -it rv433-github_tidystat-58723-restart /bin/bash
+touch /etc/rstudio/rserver.conf
+
+www-address=rstudio1.local
+or
+www-address=rstudio2.local
+
+
+rstudio-server restart
+exit
+
+
+# Clear Browser Cache and Cookies for localhost
+chrome://settings/siteData
+# -> Search for localhost and remove all associated data.
+
+
+# Alternative option: Configure RStudio Server Session Cookies
+
+# Add the following line to /etc/rstudio/rserver.conf
+session-cookie-name=RSESSIONID1
+or
+session-cookie-name=RSESSIONID2
+
+rstudio-server restart
+
