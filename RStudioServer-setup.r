@@ -368,7 +368,8 @@ path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
 "~/.ssh/id_ed25519.pub" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 "~/.ssh/id_ed25519" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 
-system("sudo chmod 400 ~/.ssh/id_ed25519")
+system("sudo chmod 600 ~/.ssh/id_ed25519")  # read & write for the owner
+system("sudo chmod 400 ~/.ssh/id_ed25519")  # read only for the owner
 path.file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path.file)) file.edit(path.file)
 path.file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path.file)) file.edit(path.file)
 
@@ -376,9 +377,15 @@ system("git status")
 
 # https://github.com/settings/keys
 browseURL("https://github.com/settings/keys")
-#' @Rocker@MAGB760M13700KF 240509
+#' @Rocker@MAGB760M13700KF-240509
 #' SHA256:PXJBET0lW71UCJsf7ai2UXdF9/i8vsTY3er+n+rIcx8
 #' Added on May 10, 2024
+#' @Rocker@MAGB760M13700KF-241012
+#' SHA256:j6KHOmd+yakjqAWUgK2jX2TWTFEDoMSHzhQPp4fGJA0
+#' Added on Oct 12, 2024
+#' -> To check SHA256 of the public key in my PC, run the following command:
+#' ssh-keygen -lf ~/.ssh/id_ed25519.pub
+
 base64_fingerprint = "~/.ssh/id_ed25519.pub" |> readLines() |> str_extract(" .*? ") |> str_replace_all(" ","") |>
     base64_decode() |> sha256() |> base64_encode()
 base64_fingerprint |> str_length()
