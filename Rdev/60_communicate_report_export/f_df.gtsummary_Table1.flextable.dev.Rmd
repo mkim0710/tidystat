@@ -739,7 +739,7 @@ if(exists("MetaData")) {
     all.equal(.MetaData0, MetaData)
     if(!identical(.MetaData0, MetaData)) {
         # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        .path.file = env1$path$CurrentSource.path.filename.MetaData.rds
+        .path.file = env1$path$CurrentSource.path.filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)}
         # cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "', .path.file, '", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
         # cat('MetaData |> write_rds("', .path.file, '", compress = "xz") |> system.time()', "  \n", sep="")
         # cat("'git lfs track ",shQuote(.path.file),"' |> system(intern=TRUE)  \n", sep=""); cat("'git add -f ",shQuote(.path.file),"' |> system(intern=TRUE)  \n", sep="")
