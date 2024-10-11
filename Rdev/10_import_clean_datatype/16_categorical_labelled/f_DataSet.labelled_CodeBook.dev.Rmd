@@ -233,6 +233,213 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
 ```
   
   
+# @@ MetaData ----  
+```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# .GlobalEnv$MetaData = list() ====  
+env1$path$CurrentSource.path.filename.MetaData.rds = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
+if(file.exists(env1$path$CurrentSource.path.filename.MetaData.rds)) { 
+    MetaData = env1$path$CurrentSource.path.filename.MetaData.rds |> read_rds() 
+} else {
+    if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
+}
+.parentname = "MetaData"
+# for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "ModelList")) {
+    if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+}
+
+### @ MetaData\$ModelList  ====   
+.parentname = "MetaData"; 
+.sublistname = "ModelList"; 
+for (.sub2listname in c("time2DM", "time2HTN", "time2DL", "time2MetS")) {
+    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+}
+
+### @ MetaData\$VarNames  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+for (.sub2listname in c("Event", "Mediator", "Exposure", "PMHx", "Tx", "FHx", "Exam", "Social", "Behavioral", "Unclassified", "Calculated")) {
+    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Event  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Event"; 
+for (.sub3listname in c("DM", "HTN", "DL", "MetS")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Mediator  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Mediator"; 
+for (.sub3listname in c("BMI", "Waist")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Exposure  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Exposure"; 
+for (.sub3listname in c("Exercise", "Diet", "Alcohol", "Smoking")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Demographic  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Social"; 
+for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marriage")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+MetaData %>% str
+## @ .MetaData0 ====
+.MetaData0 = MetaData
+```
+  
+
+## \$ MetaData\$tblVarName\$tblVarName.suffix = KoGES201806vars.CLEAN_TRIM ----   
+```{r KoGES201806vars.CLEAN_TRIM-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+.DataSetName = "KoGES201806vars.CLEAN_TRIM"
+assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
+MetaData$tblVarName$tblVarName.suffix = get(.DataSetName)
+attributes(MetaData$tblVarName$tblVarName.suffix)$DataSetName = .DataSetName
+```
+  
+  
+## \$ MetaData\$tblVarName\$tblWAVE_VARNAME = KoGES201806vars_waves.rev.CLEAN ----   
+```{r KoGES201806vars_waves.rev.CLEAN-read.checkEntity-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+.DataSetName = "KoGES201806vars_waves.rev.CLEAN"
+assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
+MetaData$tblVarName$tblWAVE_VARNAME = get(.DataSetName)
+attributes(MetaData$tblVarName$tblWAVE_VARNAME)$DataSetName = .DataSetName
+```
+  
+  
+```{r MetaData.VarNames-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+options(width=120)
+### \% KoGES201806vars.CLEAN_TRIM \%>\% {cat(" > ",deparse(substitute(.))," |> str()","\\n", sep=""); str(.)} #----  
+MetaData$tblVarName$tblVarName.suffix %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)} #----  
+MetaData$VarNames$VarName.suffix503 = KoGES201806vars.CLEAN_TRIM$VarName.suffix |> as.character() |> unique()
+MetaData$VarNames$VarName.suffix503 |> str()
+### \% KoGES201806vars_waves.rev.CLEAN \%>\% {cat(" > ",deparse(substitute(.))," |> str()","\\n", sep=""); str(.)} #----  
+MetaData$tblVarName$tblWAVE_VARNAME %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)} #----  
+MetaData$VarNames$WAVE_VARNAME3293 = KoGES201806vars_waves.rev.CLEAN$WAVE_VARNAME |> as.character() |> unique()
+```
+  
+  
+## @ MetaData) TableNames ----  
+
+## @ MetaData) VarNames.filter ----  
+Caution) filter the variables based on RegEx for VarNames, or VarDescription, or VarClassification.  
+  
+## @ MetaData) VarNames.select ----  
+Caution) filter the selected variables (VarNames.select) from the codebook, select the selected variables (VarNames.select) from the dataset.  
+  
+```{r MetaData.VarNames.select, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+## @ KoGES201806vars.CLEAN_TRIM |> dplyr::filter(Select == "Select") \%>\% {.\$VarName.suffix} |> as.character()  
+## @ KoGES201806vars.CLEAN_TRIM |> dplyr::filter(Select == "Select") \%>\% {.\$WAVE1_VarName.suffix} |> as.character()  
+## @ MetaData\$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") \%>\% {.\$WAVE_VARNAME}  
+MetaData$VarNames.select$VarName.suffix.select122 = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(Select == "Select") %>% {.$VarName.suffix} |> as.character()
+MetaData$VarNames.select$VarName.suffix.select122 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
+MetaData$VarNames.select$VarName.suffix.select122 |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---    
+cat("    ========================================================================    \n")
+MetaData$VarNames.select$WAVE_VARNAME.select836 = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") %>% {.$WAVE_VARNAME} |> as.character()
+MetaData$VarNames.select$WAVE_VARNAME.select836 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
+MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") |> dplyr::select(VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, ValueChange) %>% spread(WAVE_VARNAME, key = "Wave") |> print(n=200)
+# MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") |> group_by(VarName.suffix, VarDescription, VarType, ValueChange) |> summarise(n=n(), nd.Wave = n_distinct(Wave), nd.WAVE_VARNAME = n_distinct(WAVE_VARNAME)) |> print(n=200)
+MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") %>% group_by(VarName.suffix, VarDescription, VarType, ValueChange) %>% summarise(n=n(), nd.Wave = n_distinct(Wave), nd.WAVE_VARNAME = n_distinct(WAVE_VARNAME)) |> filter(n < 7)
+```  
+  
+  
+## @ MetaData) Varnames.suffix ----  
+  
+```{r A00.suffix-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+options(width=120)
+MetaData$VarNames$A00.suffix = c("DATA_CLASS", "CKSTEAM", "CKROAST", "CKFRI", "CKSSN", "CKSOUP", "CKOIL", "CKOILETC", "SPCOIL", "SPCOILETC",   
+  "RMEALFQA", "BMEALFQA", "SKPMEAL", "EATOUTFQ", "ALNMEALFQ", "SOUPEAT", "FRFSWT", "FRFSLT", "FRFSPCY",   
+  "FRFSOUR", "FRFOILY", "MNSAG", "PREG", "FPREGAG", "CHILD", "FLABAG", "BRSTF", "BRSTC", "SABHX", "SABNO",   
+  "AABHX", "AABNO", "GDM", "VISITALL", "SEX", "EDU", "SMAG")
+MetaData$VarNames$A00.suffix %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
+```
+  
+  
+```{r A01_7.suffix465-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+options(width=120)
+MetaData$VarNames$A01_7.suffix465 = c("PHYSTB", "PHYSIT", "PHYACTL", "PHYACTM", "PHYACTH", "AEROBFQ", "AEROBAM", "JOGFQ", "JOGAM", "SWIMFQ", "SWIMAM", 
+"TENIFQ", "TENIAM", "GOLFFQ", "GOLFAM", "BOWLFQ", "BOWLAM", "HEALTHFQ", "HEALTHAM", "WALKFQ", "WALKAM", "CLIMBFQ", 
+"CLIMBAM", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU", "SBP_L", "DBP_L", "SBP_R", "DBP_R", "PULSE", "WAIST", 
+"HIP", "HEIGHT", "WEIGHT", "DS", "DT", "DZ", "DP", "MS", "MT", "MZ", "MP", "HBA1C", "GLU0_ORI", "GLU0_TR", 
+"GLU60_ORI", "GLU60_TR", "GLU120_ORI", "GLU120_TR", "TOTPRT", "ALBUMIN_ORI", "ALBUMIN_TR", "BUN_ORI", "BUN_TR", 
+"CREATININ_ORI", "CREATININ_TR", "CA", "TOTBIL", "AST_ORI", "AST_TR", "ALT_ORI", "ALT_TR", "R_GTP_ORI", "R_GTP_TR", 
+"CRP", "HSCRP", "TCHL_ORI", "TCHL_TR", "HDL_ORI", "HDL_TR", "TRIGLY_ORI", "TRIGLY_TR", "NA", "K", "CL", "WBC_B_ORI", 
+"WBC_B_TR", "RBC_B_ORI", "RBC_B_TR", "HB_ORI", "HB_TR", "HCT_ORI", "HCT_TR", "PLAT_ORI", "PLAT_TR", "INS0", 
+"INS60", "INS120", "RENIN", "PRT_U", "CREATINE_U", "URICACID_U", "CA_U", "NA_U", "K_U", "MICALBU_U", "ALBU_U", 
+"PH_U", "NITRIT_U", "SG_U", "PRT16_U", "GLU16_U", "KETONE_U", "BILI16_U", "BLOOD16_U", "UROBILI_U", "COLOR_U", 
+"RBC_U", "WBC_U", "EPCELL_U", "CASTS_U", "BACTERIA_U", "CRYSTAL1_U", "CRYSTAL2_U", "CRYSTAL3_U", "CRYSTAL4_U", 
+"CRYSTAL5_U", "CRYSTAL6_U", "OTHER_U", "VITB12", "FOLATE", "FREET4", "TSH", "CD", "PB", "AL", "INCELL", "IB1_2", 
+"IB1_3", "IB1_4", "EXCELL", "BODYPRT", "BODYMIN", "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG", "CH0", "CH2", "CH3", 
+"CH4", "CH5", "CH6", "CH7", "CH8", "CH9", "CH10", "CH11", "CH12", "CH13", "CH14", "CH15", "CH16", "CH17", 
+"CH18", "CH19", "CH20", "CH21", "CH23", "CH24", "CH25", "CH26", "CH27", "CH28", "CH29", "CH30", "CH31", "CH32", 
+"CH33", "BRF", "MEALRG", "OVEREAT", "MEALSPD", "AFTDNN", "MEATFAT", "HTN", "HTNAG", "HTNCU", "DM", "DMAG", 
+"DMCU", "ULCER", "ULCERAG", "ULCERCU", "ALLER", "ALLERAG", "ALLERCU", "MI", "MIAG", "MICU", "THY", "THYAG", 
+"THYCU", "CHF", "CHFAG", "CHFCU", "CAD", "CADAG", "CADCU", "LIP", "LIPAG", "LIPCU", "ASTH", "ASTHAG", "ASTHCU", 
+"CLD", "CLDAG", "CLDCU", "PVD", "PVDAG", "PVDCU", "KID", "KIDAG", "KIDCU", "HEPA", "HEPAAG", "HEPACU", "TB", 
+"TBAG", "TBCU", "CEVA", "CEVAAG", "CEVACU", "HEIN", "HEINAG", "HEINCU", "UTI", "UTIAG", "UTICU", "ARTH", "ARTHAG", 
+"ARTHCU", "GOUT", "GOUTAG", "GOUTCU", "LCA", "LCAAG", "LCACU", "GCA", "GCAAG", "GCACU", "HCCCA", "HCCCAAG", 
+"HCCCACU", "COLCA", "COLCAAG", "COLCACU", "PACA", "PACAAG", "PACACU", "UTCA", "UTCAAG", "UTCACU", "BRCA", 
+"BRCAAG", "BRCACU", "THYCA", "THYCAAG", "THYCACU", "PROCA", "PROCAAG", "PROCACU", "GALLCA", "GALLCAAG", "GALLCACU", 
+"HTN_C", "HTNAG_C", "DM_C", "DMAG_C", "DRINK", "DRDU", "DRQDU", "TAKFQ", "TAKAM", "RICEFQ", "RICEAM", "WINEFQ", 
+"WINEAM", "SOJUFQ", "SOJUAM", "BEERFQ", "BEERAM", "HLIQFQ", "HLIQAM", "ETCNA", "ETCFQ", "ETCT", "ETCAM", "TOTALC", 
+"DRUGST", "DRUGSTYR1", "DRUGSTCU", "DRUGSTYR2", "DRUGSP", "DRUGSPYR1", "DRUGSPCU", "DRUGSPYR2", "DRUGSL", 
+"DRUGSLYR1", "DRUGSLCU", "DRUGSLYR2", "DRUGCP", "DRUGCPYR1", "DRUGCPCU", "DRUGCPYR2", "DRUGTB", "DRUGTBYR1", 
+"DRUGTBCU", "DRUGTBYR2", "DRUGINS", "DRUGINSYR1", "DRUGINSCU", "DRUGINSYR2", "DRUGHT", "DRUGHTYR1", "DRUGHTCU", 
+"DRUGHTYR2", "DRUGAR", "DRUGARYR1", "DRUGARCU", "DRUGARYR2", "DRUGUL", "DRUGULYR1", "DRUGULCU", "DRUGULYR2", 
+"DRUGTH", "DRUGTHYR1", "DRUGTHCU", "DRUGTHYR2", "DRUGOR", "DRUGORYR1", "DRUGORCU", "DRUGORYR2", "DRUGFH", 
+"DRUGFHYR1", "DRUGFHCU", "DRUGFHYR2", "DRUGOS", "DRUGOSYR1", "DRUGOSCU", "DRUGOSYR2", "DRUGDM", "DRUGDMYR1", 
+"DRUGDMCU", "DRUGDMYR2", "DRUGICD", "DRUGICDYR1", "DRUGICDCU", "DRUGICDYR2", "DRUGDI", "DRUGDIYR1", "DRUGDICU", 
+"DRUGDIYR2", "DRUGAS", "DRUGASYR1", "DRUGASCU", "DRUGASYR2", "DRUGLP", "DRUGLPYR1", "DRUGLPCU", "DRUGLPYR2", 
+"EKG", "FMHTN", "FMFHT", "FMFHTAG", "FMMHT", "FMMHTAG", "FMBHT", "FMBHTAG", "FMCHT", "FMCHTAG", "FMDM", "FMFDM", 
+"FMFDMAG", "FMMDM", "FMMDMAG", "FMBDM", "FMBDMAG", "FMCDM", "FMCDMAG", "FMHEA", "FMFHEA", "FMFHEAAG", "FMMHEA", 
+"FMMHEAAG", "FMBHEA", "FMBHEAAG", "FMCHEA", "FMCHEAAG", "PMYN_C", "PMAG_C", "B01", "B02", "B03", "B04", "B05", 
+"B06", "B07", "B08", "B09", "B10", "B11", "B12", "B13", "B14", "B15", "B16", "B17", "B18", "B19", "B20", "B21", 
+"B23", "B24", "VISIT", "EDATE", "AGE", "MARRY", "INCOME", "SMOKE", "SMQYR", "SMQMO", "SMDU", "SMAM", "SMIN", 
+"PACKYR", "PSM", "PSMHFQ", "PSMHMIN", "PSMOFQ", "PSMOMIN", "PSMDU", "TREATD1", "TREATD2", "TREATD3", "TREATD4", 
+"TREATD5", "TREATD6", "TREATD7", "TREATD8", "TREATD9", "TREATD11", "TREATD13", "TREATD14", "TREATD15", "TREATD16", 
+"TREATD20", "TREATD21", "TREATD22", "TREATD23", "TREATD24", "TREATD27", "TREATD18A", "TREATD18B", "TREATD18C", 
+"TREATD18D", "TREATD18E", "TREATD18F", "TREATD18G", "TREATD18H", "TREATD18I", "TREATD18J")   
+MetaData$VarNames$A01_7.suffix465 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
+```
+  
+  
+## @ MetaData) Varnames.matrix ----  
+  
+```{r A00.names-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+## \$ A00.names ----  
+MetaData$VarNames$A00.names = paste0("A00_", MetaData$VarNames$A00.suffix)
+MetaData$VarNames$A00.names %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
+```
+  
+  
+```{r A01_7.names.matrix-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+### \$ A01_7.names.matrix ----  
+MetaData$VarNames$A01_7.names.matrix = outer(1:7, MetaData$VarNames$A01_7.suffix465, function(x,y) paste0("A0", x, "_", y)) %>% structure(., dimnames=list(paste0("A0", 1:7), MetaData$VarNames$A01_7.suffix465))
+MetaData$VarNames$A01_7.names.matrix %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
+ # chr [1:7, 1:465] "A01_PHYSTB" "A02_PHYSTB" "A03_PHYSTB" "A04_PHYSTB" "A05_PHYSTB" "A06_PHYSTB" "A07_PHYSTB" "A01_PHYSIT" ...
+ # - attr(*, "dimnames")=List of 2
+ #  ..$ : chr [1:7] "A01" "A02" "A03" "A04" ...
+ #  ..$ : chr [1:465] "PHYSTB" "PHYSIT" "PHYACTL" "PHYACTM" ...
+```
+
+
+
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
@@ -465,72 +672,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ```
   
   
-# @@ MetaData ----  
-```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-# .GlobalEnv$MetaData = list() ====  
-env1$path$CurrentSource.path.filename.MetaData.rds = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
-if(file.exists(env1$path$CurrentSource.path.filename.MetaData.rds)) { 
-    MetaData = env1$path$CurrentSource.path.filename.MetaData.rds |> read_rds() 
-} else {
-    if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
-}
-.parentname = "MetaData"
-# for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
-for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "ModelList")) {
-    if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-}
 
-### @ MetaData\$ModelList  ====   
-.parentname = "MetaData"; 
-.sublistname = "ModelList"; 
-for (.sub2listname in c("time2DM", "time2HTN", "time2DL", "time2MetS")) {
-    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-}
-
-### @ MetaData\$VarNames  ====   
-.parentname = "MetaData"; 
-.sublistname = "VarNames"; 
-for (.sub2listname in c("Event", "Mediator", "Exposure", "PMHx", "Tx", "FHx", "Exam", "Social", "Behavioral", "Unclassified", "Calculated")) {
-    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]] = list() }
-}
-
-#### @ MetaData\$VarNames\$Event  ====   
-.parentname = "MetaData"; 
-.sublistname = "VarNames"; 
-.sub2listname = "Event"; 
-for (.sub3listname in c("DM", "HTN", "DL", "MetS")) {
-    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
-}
-
-#### @ MetaData\$VarNames\$Mediator  ====   
-.parentname = "MetaData"; 
-.sublistname = "VarNames"; 
-.sub2listname = "Mediator"; 
-for (.sub3listname in c("BMI", "Waist")) {
-    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
-}
-
-#### @ MetaData\$VarNames\$Exposure  ====   
-.parentname = "MetaData"; 
-.sublistname = "VarNames"; 
-.sub2listname = "Exposure"; 
-for (.sub3listname in c("Exercise", "Diet", "Alcohol", "Smoking")) {
-    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
-}
-
-#### @ MetaData\$VarNames\$Demographic  ====   
-.parentname = "MetaData"; 
-.sublistname = "VarNames"; 
-.sub2listname = "Social"; 
-for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marriage")) {
-    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
-}
-
-MetaData %>% str
-## @ .MetaData0 ====
-.MetaData0 = MetaData
-```
-  
   
 # @@ START) Data ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
