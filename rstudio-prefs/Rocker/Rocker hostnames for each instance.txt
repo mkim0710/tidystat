@@ -2,13 +2,16 @@
 
 # C:\Windows\System32\drivers\etc\hosts
 
-127.0.0.1   rstudio1.local
-127.0.0.1   rstudio2.local
+127.0.0.1   rstudio-58723.local
+127.0.0.1   rstudio-58733.local
+127.0.0.1   rstudio-65313.local
 
 
-http://rstudio1.local:58723/
+http://rstudio-58723.local:58723/
 or
-http://rstudio2.local:58733/
+http://rstudio-58733.local:58733/
+or
+http://rstudio-65313.local:65313/
 
 
 # Update RStudio Server Configuration (Optional)
@@ -16,10 +19,11 @@ http://rstudio2.local:58733/
 docker exec -it rv433-github_tidystat-58723-restart /bin/bash
 touch /etc/rstudio/rserver.conf
 
-www-address=rstudio1.local
+www-address=rstudio-58723.local
 or
-www-address=rstudio2.local
-
+www-address=rstudio-58733.local
+or
+www-address=rstudio-65313.local
 
 rstudio-server restart
 exit
