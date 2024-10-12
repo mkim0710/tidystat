@@ -250,7 +250,7 @@ rm(test, envir = env1)
 for (.objectname in names(MetaData$DataSetNames)) {
     assign(.objectname, structure(get(.objectname), MetaData = MetaData))
     .path.file = paste0(.path4write,"/",.objectname,".rds")
-    cat(.objectname, ' |> write_rds("',.path.file,'", compress = "xz", compression = 9) |> system.time()', "  \n", sep="")
+    cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = "xz", compression = 9) |> system.time()', "  \n", sep="")
     paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 }
