@@ -545,7 +545,7 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
     .wb$save(.path.file)
     cat(".path.file == ", deparse(.path.file), "  \n", sep="")
     if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.file)
-    paste0( "git lfs track ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""); paste0( "git add -f ",shQuote(.path.file) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, execute_code = FALSE)
 }
 ```
 
@@ -638,9 +638,14 @@ options(width=120)
 .path4write = env1$path$.path4write
 # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 for (.objectname in names(MetaData$DataSetNames)) {
-    cat(.objectname, ' |> write_rds("',paste0(.path4write,"/",.objectname,".rds"),'", compress = "none") |> system.time()', "  \n", sep="")
-    paste0( "git lfs track ",shQuote(paste0(.path4write,"/",.objectname,".rds", ".xz")) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    if (exists(.objectname)) {
+        .path.file = paste0(.path4write,"/",.objectname,".rds",".xz"); cat("> .path.file = ", .path.file, "  \n", sep="")
+        system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
+        env1$f$f_path.size_files(.path4read = .path4write, regex4filename  = .objectname)
+        env1$f$f_file.git_lfs_track_add_f(.path.file, execute_code = FALSE)
+    } else {
+        cat("> !exists(", deparse(.objectname), ")  \n", sep="")
+    }
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # .objectname = MetaData$DataSetNames %>% {names(.)[length(.)]}; .objectname %>% cat(deparse(substitute(.)), ' == "',.,'"  \n', sep="")
