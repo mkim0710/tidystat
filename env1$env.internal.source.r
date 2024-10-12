@@ -138,7 +138,18 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ env1$env.internal functions ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \% f_function.load2env.internal ====  
+## \$f_TerminalCodeText2RCode ====  
+env1$f$f_TerminalCodeText2RCode = function(.TerminalCodeText, execute_code = FALSE) {
+    .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+    if(execute_code) {
+        .TerminalCodeText |> system(intern=TRUE)
+    }
+    invisible(        
+        .TerminalCodeText |> deparse() |> paste0(" |> system(intern=TRUE)  \n", sep="")
+    )
+}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## \$f_function.load2env.internal ====  
 env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, runLoadedFunction = FALSE) {
     if(is.null(env1_subenv_name)) {
         if(!function_name %in% names(.GlobalEnv$env1)) {
@@ -194,7 +205,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \% f_file.switch_open ====  
+## \$f_file.switch_open ====  
 env1$f$f_file.switch_open <- function(file) {
     stopifnot(file.exists(file))
     
@@ -216,19 +227,19 @@ env1$f$f_file.switch_open <- function(file) {
 }
 
 
-## \% f_file.edit ====  
+## \$f_file.edit ====  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### \% f_file.edit_windows ====  
+### \$f_file.edit_windows ====  
 env1$env.internal$f_file.edit_windows <- function(.file2edit) {
     shell.exec(shQuote(.file2edit))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### \% f_file.edit_notepad ====  
+#### \$f_file.edit_notepad ====  
 env1$env.internal$f_file.edit_notepad <- function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### \% f_file.edit_vscode ====  
+#### \$f_file.edit_vscode ====  
 env1$env.internal$f_file.edit_vscode <- function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
 }
@@ -261,14 +272,14 @@ env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### \% f_file.systemStart ====  
+### \$f_file.systemStart ====  
 # Function to open files with the system's default application (fallback)
 env1$env.internal$f_file.systemStart <- function(file) {
     system(paste("start", shQuote(file)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
     # file |> shQuote() %>% paste0("start ",.) |> system(wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### \% f_file_PDF.sumatra ====  
+#### \$f_file_PDF.sumatra ====  
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
 # Function to open PDF with Sumatra PDF
 env1$env.internal$f_file_PDF.sumatra <- function(
@@ -306,7 +317,7 @@ env1$env.internal$f_file_PDF.sumatra <- function(
     return(invisible(out))
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \% f_filename.ext.createBackup ====  
+## \$f_filename.ext.createBackup ====  
 env1$env.internal$f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
     # Wrap the main backup logic in a tryCatch for error handling
     tryCatch({
@@ -337,7 +348,7 @@ env1$env.internal$f_filename.ext.createBackup = function(backup_from_path.filena
     })
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \% f_path_path.backup.overwrite ====  
+## \$f_path_path.backup.overwrite ====  
 env1$env.internal$f_path_path.backup.overwrite <- function(.overwrite_from_path.filename.ext, .destination_path.filename.ext, .backup_to_path = dirname(.destination_path.filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
     if(createFile || file.exists(.destination_path.filename.ext)) {
         if(!is.null(.backup_to_path)) {
@@ -348,13 +359,13 @@ env1$env.internal$f_path_path.backup.overwrite <- function(.overwrite_from_path.
 }
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \% f_path.relative ====  
+## \$f_path.relative ====  
 env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 }
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \% f_path.is_git_tracked  =======  
+## \$f_path.is_git_tracked  =======  
 # Function to check if the current project or any of its parent directories are tracked by Git
 env1$env.internal$f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
     # Normalize the path
@@ -395,15 +406,29 @@ env1$env.internal$f_path.is_git_tracked <- function(path = getwd(), check_parent
 # }
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### \$ git_path  =======  
+### :: env1\$path\$git_path =  =======  
 env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 # env1$path$no_git = is.na(env1$path$git_path)
 
 
+
+#|________________________________________________________________________________|#  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## \$f_file.git_lfs_track_add_f ====  
+env1$f$f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
+    list_TerminalCodeText = list(
+        paste0( "git lfs track ",shQuote(.path.file) )
+        , paste0( "git add -f ",shQuote(.path.file) )
+    )
+    invisible(
+        list_TerminalCodeText |> map(env1$f$f_TerminalCodeText2RCode, execute_code)
+    )
+}
+
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-## \% env1$env.internal$f_file2.compare ====  
+## \$env.internal\$f_file2.compare ====  
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
 .tmp$objectname = "f_file2.compare"
 .tmp$object <- function(file1, file2, chunk_size = 65536) {
@@ -442,7 +467,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \% env1$env.internal$f_url_destfile.DownloadIfDifferent ====  
+## \$env.internal\$f_url_destfile.DownloadIfDifferent ====  
 # Function to download a file only if the web file is different from the local file
 .tmp$objectname = "f_url_destfile.DownloadIfDifferent"
 .tmp$object <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
@@ -477,7 +502,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \% env1$f$f.updateTemplates ====  
+## \$f\$f.updateTemplates ====  
 # https://github.com/mkim0710/f.updateTemplates.source.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
