@@ -212,7 +212,7 @@ options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
 # ?survival::lung
-DataSetName = "analyticDF_time2event"
+.objectname = DataSetName = "analyticDF_time2event"
 assign(
     DataSetName, 
     survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
