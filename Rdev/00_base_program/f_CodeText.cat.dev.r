@@ -198,7 +198,52 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+#|________________________________________________________________________________|#  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+#     .CodeText |> cat("  \n", sep="")
+#     if(execute_code) {
+#         if(output.deparse_cat) {
+#             eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
+#         } else {
+#             # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
+#             eval(parse(text = .CodeText))
+#         }
+#     }
+# }
+
+
+f_CodeText.cat = function(.CodeText,
+                          execute_code = FALSE,
+                          output.deparse_cat = TRUE,
+                          substitute_ObjectNames = FALSE,
+                          ObjectNames4substitute = NULL,
+                          print.intermediate = FALSE) {
+    
+    if(substitute_ObjectNames) {
+        # Get all objects defined in the parent frame
+        parent_env <- parent.frame()
+        if(is.null(ObjectNames4substitute)) {
+            ObjectNames4substitute <- ls(envir = parent_env, all.names = TRUE) %>% 
+                set_names() %>% map(get) %>% 
+                keep(is.character) %>% 
+                keep(function(vec) {length(vec) == 1}) %>% 
+                names()
+        }
+        
+        # Sort object names by length in descending order
+        ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
+        if(print.intermediate) print(ObjectNames4substitute)
+        
+        # Substitute each object name
+        for (ObjectName in ObjectNames4substitute) {
+            # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
+            if(print.intermediate) print(ObjectName)
+            .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
+            .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
+            if(print.intermediate) print(.CodeText)
+        }
+    }
     .CodeText |> cat("  \n", sep="")
     if(execute_code) {
         if(output.deparse_cat) {
@@ -210,9 +255,79 @@ f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse_cat = 
     }
 }
 
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## .CodeText = "dim(get(.objectname))" ----
+.CodeText = "dim(get(.objectname))" 
+.CodeText |> f_CodeText.cat()
+.CodeText |> f_CodeText.cat(substitute_ObjectNames = TRUE)
+.CodeText |> f_CodeText.cat(execute_code = TRUE)
+.CodeText |> f_CodeText.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText = "dim(get(.objectname))" 
+# > .CodeText |> f_CodeText.cat()
+# dim(get(.objectname))  
+# > .CodeText |> f_CodeText.cat(substitute_ObjectNames = TRUE)
+# dim(analyticDF_time2event)  
+# > .CodeText |> f_CodeText.cat(execute_code = TRUE)
+# dim(get(.objectname))  
+# c(228L, 12L)  
+# > .CodeText |> f_CodeText.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+# dim(get(.objectname))  
+# [1] 228  12
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
+.CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
+.CodeText |> f_CodeText.cat()
+.CodeText |> f_CodeText.cat(substitute_ObjectNames = TRUE)
+.CodeText |> f_CodeText.cat(execute_code = TRUE)
+.CodeText |> f_CodeText.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.cat()
+# str(get(.objectname), max.level = 2, give.attr = F)  
+# > .CodeText |> f_CodeText.cat(substitute_ObjectNames = TRUE)
+# str(analyticDF_time2event, max.level = 2, give.attr = F)  
+# > .CodeText |> f_CodeText.cat(execute_code = TRUE)
+# str(get(.objectname), max.level = 2, give.attr = F)  
+# 'data.frame':	228 obs. of  12 variables:
+#  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
+#  $ time           : num  306 455 1010 210 883 ...
+#  $ age            : num  74 68 56 57 60 74 68 71 53 61 ...
+#  $ sex            : num  1 1 1 1 1 1 2 2 1 1 ...
+#  $ ph.ecog        : num  1 0 0 1 0 1 2 2 1 2 ...
+#  $ ph.karno       : num  90 90 90 90 100 50 70 60 70 70 ...
+#  $ pat.karno      : num  100 90 90 60 90 80 60 80 80 70 ...
+#  $ meal.cal       : num  1175 1225 NA 1150 NA ...
+#  $ wt.loss        : num  NA 15 15 11 0 0 10 1 16 34 ...
+#  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
+#  $ Group          : chr  "Male" "Male" "Male" "Male" ...
+#  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+# NULL  
+# > .CodeText |> f_CodeText.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+# str(get(.objectname), max.level = 2, give.attr = F)  
+# 'data.frame':	228 obs. of  12 variables:
+#  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
+#  $ time           : num  306 455 1010 210 883 ...
+#  $ age            : num  74 68 56 57 60 74 68 71 53 61 ...
+#  $ sex            : num  1 1 1 1 1 1 2 2 1 1 ...
+#  $ ph.ecog        : num  1 0 0 1 0 1 2 2 1 2 ...
+#  $ ph.karno       : num  90 90 90 90 100 50 70 60 70 70 ...
+#  $ pat.karno      : num  100 90 90 60 90 80 60 80 80 70 ...
+#  $ meal.cal       : num  1175 1225 NA 1150 NA ...
+#  $ wt.loss        : num  NA 15 15 11 0 0 10 1 16 34 ...
+#  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
+#  $ Group          : chr  "Male" "Male" "Male" "Male" ...
+#  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 
+
+
+
+
+
+
+
+
+#|________________________________________________________________________________|#  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Parse the code into an expression
     library(rlang)
     expr <- parse_expr(.CodeText)
@@ -239,7 +354,7 @@ f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat =
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Replace get(.objectname) with the actual object name in the code to be displayed
     .CodeText_display <- gsub("get\\(\\.objectname\\)", .objectname, .CodeText)
     cat(.CodeText_display, "\n")
@@ -257,7 +372,7 @@ f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat =
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Ensure .objectname is defined in your environment
     if (!exists(".objectname", envir = parent.frame())) {
         stop("'.objectname' is not defined.")
@@ -325,7 +440,7 @@ f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat =
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Get variable names and their values from the parent frame
     var_names <- ls(envir = parent.frame())
     var_values <- mget(var_names, envir = parent.frame())
@@ -405,7 +520,7 @@ f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat =
 
 
 ## https://gemini.google.com/app/efcecda0973ba3f4 ----
-f_CodeText.cat <- function(.CodeText, 
+f_CodeText.substitute.cat <- function(.CodeText, 
                           .objectname = NULL, 
                           execute_code = FALSE, 
                           output.deparse_cat = TRUE) { # Keep original naming
@@ -434,43 +549,57 @@ f_CodeText.cat <- function(.CodeText,
   }
 }
 
-## ## https://gemini.google.com/app/efcecda0973ba3f4 ----
-# f_CodeText.cat <- function(.CodeText, 
-#                           execute_code = FALSE, 
-#                           output.deparse_cat = TRUE) {
-# 
-#   # Get all objects defined in the parent frame
-#   parent_env <- parent.frame()
-#   object_names <- ls(envir = parent_env)
-# 
-#   # Substitute each object name
-#   for (obj_name in object_names) {
-#     .CodeText <- gsub(paste0("get\\(", obj_name, "\\)"), obj_name, .CodeText) # Without quotes
-#     .CodeText <- gsub(obj_name, paste0("\"", obj_name, "\""), .CodeText, fixed = TRUE) # With quotes
-#   }
-# 
-#   cat(.CodeText, "\n")
-# 
-#   if (execute_code) {
-#     result <- eval(parse(text = .CodeText))
-# 
-#     if (output.deparse_cat) {
-#       cat(deparse(result), "\n")
-#     } else {
-#       print(result)
-#     }
-#   }
-# }
-## -> makes bug when both "object" and "objectname" are defined in the environment?
+## https://gemini.google.com/app/efcecda0973ba3f4 ----
+f_CodeText.substitute.cat <- function(.CodeText,
+                                      execute_code = FALSE,
+                                      output.deparse_cat = TRUE,
+                                      ObjectNames4substitute = NULL,
+                                      print.intermediate = FALSE) {
+    
+    # Get all objects defined in the parent frame
+    parent_env <- parent.frame()
+    if(is.null(ObjectNames4substitute)) {
+        ObjectNames4substitute <- ls(envir = parent_env, all.names = TRUE) %>% 
+            set_names() %>% map(get) %>% 
+            keep(is.character) %>% names()
+    }
+
+    # Sort object names by length in descending order
+    ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
+    if(print.intermediate) print(ObjectNames4substitute)
+    
+    # Substitute each object name
+    for (ObjectName in ObjectNames4substitute) {
+        # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
+        if(print.intermediate) print(ObjectName)
+        .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
+        .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
+        if(print.intermediate) print(.CodeText)
+    }
+    
+    cat(.CodeText, "\n")
+    
+    if (execute_code) {
+        result <- eval(parse(text = .CodeText))
+        
+        if (output.deparse_cat) {
+            cat(deparse(result), "\n")
+        } else {
+            print(result)
+        }
+    }
+}
+# -> makes bug when both "object" and "objectname" are defined in the environment?
 
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
 .CodeText = "dim(get(.objectname))" 
-.CodeText |> f_CodeText.cat()
-.CodeText |> f_CodeText.cat(execute_code = TRUE)
-.CodeText |> f_CodeText.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.substitute.cat(print.intermediate = TRUE)
+.CodeText |> f_CodeText.substitute.cat()
+.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE)
+.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE, output.deparse_cat = FALSE)
 # > .CodeText = "dim(get(.objectname))" 
 # > .CodeText |> f_CodeText.cat()
 # dim(get(.objectname))  
@@ -483,9 +612,9 @@ f_CodeText.cat <- function(.CodeText,
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
-.CodeText |> f_CodeText.cat()
-.CodeText |> f_CodeText.cat(execute_code = TRUE)
-.CodeText |> f_CodeText.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.substitute.cat()
+.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE)
+.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE, output.deparse_cat = FALSE)
 # > .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 # > .CodeText |> f_CodeText.cat()
 # str(get(.objectname), max.level = 2, give.attr = F)  
