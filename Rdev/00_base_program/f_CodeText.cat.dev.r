@@ -211,6 +211,259 @@ f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse_cat = 
 }
 
 
+## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
+f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+    # Parse the code into an expression
+    library(rlang)
+    expr <- parse_expr(.CodeText)
+    
+    # Substitute .objectname with its actual value in the expression
+    expr_modified <- expr_substitute(expr, quote(.objectname), sym(.objectname))
+    
+    # Convert the modified expression back to a string for display
+    .CodeText_display <- expr_deparse(expr_modified)
+    
+    # Display the code with the substituted object name
+    cat(.CodeText_display, "\n")
+    
+    # Execute the original code if requested
+    if (execute_code) {
+        if (output.deparse_cat) {
+            result <- eval(parse_expr(.CodeText))
+            cat(deparse(result), "\n")
+        } else {
+            eval(parse_expr(.CodeText))
+        }
+    }
+}
+
+
+## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
+f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+    # Replace get(.objectname) with the actual object name in the code to be displayed
+    .CodeText_display <- gsub("get\\(\\.objectname\\)", .objectname, .CodeText)
+    cat(.CodeText_display, "\n")
+    
+    # Execute the original code if requested
+    if (execute_code) {
+        if (output.deparse_cat) {
+            result <- eval(parse(text = .CodeText))
+            cat(deparse(result), "\n")
+        } else {
+            eval(parse(text = .CodeText))
+        }
+    }
+}
+
+
+## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
+f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+    # Ensure .objectname is defined in your environment
+    if (!exists(".objectname", envir = parent.frame())) {
+        stop("'.objectname' is not defined.")
+    }
+    object_name <- get(".objectname", envir = parent.frame())
+    
+    # Parse the code into an expression
+    expr <- parse(text = .CodeText)[[1]]
+    
+    # Define a recursive function to substitute .objectname appropriately
+    substitute_objectname <- function(expr) {
+        if (is.call(expr)) {
+            # If the call is to get(.objectname), replace with object_name as symbol
+            if (identical(expr[[1]], as.name("get")) && length(expr) >= 2) {
+                if (identical(expr[[2]], as.name(".objectname"))) {
+                    # Replace get(.objectname) with object_name as symbol
+                    return(as.name(object_name))
+                } else {
+                    # Process the arguments of get()
+                    expr[[2]] <- substitute_objectname(expr[[2]])
+                    if (length(expr) > 2) {
+                        for (i in 3:length(expr)) {
+                            expr[[i]] <- substitute_objectname(expr[[i]])
+                        }
+                    }
+                    return(expr)
+                }
+            } else {
+                # Process all arguments of the call
+                for (i in seq_along(expr)) {
+                    expr[[i]] <- substitute_objectname(expr[[i]])
+                }
+                return(expr)
+            }
+        } else if (is.symbol(expr) && identical(expr, as.name(".objectname"))) {
+            # Replace .objectname with object_name in quotes
+            return(object_name)
+        } else {
+            # Return the expression as is
+            return(expr)
+        }
+    }
+    
+    # Perform substitution for display purposes
+    expr_display <- substitute_objectname(expr)
+    
+    # Convert the modified expression back to a string for display
+    .CodeText_display <- deparse(expr_display)
+    .CodeText_display <- paste(.CodeText_display, collapse = "\n")
+    
+    # Display the code with the substituted object name
+    cat(.CodeText_display, "\n")
+    
+    # Execute the original code if requested
+    if (execute_code) {
+        if (output.deparse_cat) {
+            result <- eval(parse(text = .CodeText))
+            cat(deparse(result), "\n")
+        } else {
+            eval(parse(text = .CodeText), envir = parent.frame())
+        }
+    }
+}
+
+
+
+## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
+f_CodeText.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+    # Get variable names and their values from the parent frame
+    var_names <- ls(envir = parent.frame())
+    var_values <- mget(var_names, envir = parent.frame())
+    
+    # Parse the code into an expression
+    expr <- parse(text = .CodeText)[[1]]
+    
+    # Define a recursive function to substitute variable names appropriately
+    substitute_variables <- function(expr, inside_get = FALSE) {
+        if (is.call(expr)) {
+            # If the call is to get(VariableName)
+            if (identical(expr[[1]], as.name("get")) && length(expr) >= 2) {
+                # Process the first argument of get()
+                arg1 <- expr[[2]]
+                if (is.symbol(arg1)) {
+                    varname <- as.character(arg1)
+                    if (varname %in% var_names) {
+                        # Replace get(VariableName) with the value of the variable as a symbol
+                        return(as.name(var_values[[varname]]))
+                    }
+                }
+                # If not a symbol or not in var_names, process arguments recursively
+                expr[[2]] <- substitute_variables(expr[[2]], inside_get = TRUE)
+                if (length(expr) > 2) {
+                    for (i in 3:length(expr)) {
+                        expr[[i]] <- substitute_variables(expr[[i]], inside_get = FALSE)
+                    }
+                }
+                return(expr)
+            } else {
+                # Not a get() call, process all arguments
+                for (i in seq_along(expr)) {
+                    expr[[i]] <- substitute_variables(expr[[i]], inside_get = FALSE)
+                }
+                return(expr)
+            }
+        } else if (is.symbol(expr)) {
+            varname <- as.character(expr)
+            if (varname %in% var_names) {
+                if (inside_get) {
+                    # Replace symbol with variable value as symbol
+                    return(as.name(var_values[[varname]]))
+                } else {
+                    # Replace symbol with variable value in quotes
+                    return(var_values[[varname]])
+                }
+            } else {
+                return(expr)
+            }
+        } else {
+            # Return other types of expressions as-is
+            return(expr)
+        }
+    }
+    
+    # Perform substitution for display purposes
+    expr_display <- substitute_variables(expr)
+    
+    # Convert the modified expression back to a string for display
+    .CodeText_display <- deparse(expr_display)
+    .CodeText_display <- paste(.CodeText_display, collapse = "\n")
+    
+    # Display the code with the substituted variable names
+    cat(.CodeText_display, "\n")
+    
+    # Execute the original code if requested
+    if (execute_code) {
+        if (output.deparse_cat) {
+            result <- eval(parse(text = .CodeText), envir = parent.frame())
+            cat(deparse(result), "\n")
+        } else {
+            eval(parse(text = .CodeText), envir = parent.frame())
+        }
+    }
+}
+
+
+
+## https://gemini.google.com/app/efcecda0973ba3f4 ----
+f_CodeText.cat <- function(.CodeText, 
+                          .objectname = NULL, 
+                          execute_code = FALSE, 
+                          output.deparse_cat = TRUE) { # Keep original naming
+
+  # Check if .objectname is defined in the parent environment
+  if (is.null(.objectname) && exists(".objectname", envir = parent.frame())) {
+    .objectname <- get(".objectname", envir = parent.frame())
+  }
+
+  # Substitute .objectname if provided
+  if (!is.null(.objectname)) {
+    .CodeText <- gsub("get\\(.objectname\\)", .objectname, .CodeText) # Substitute get(.objectname) without quotes
+    .CodeText <- gsub(".objectname", paste0("\"", .objectname, "\""), .CodeText, fixed = TRUE) # Substitute .objectname with quotes
+  }
+
+  cat(.CodeText, "\n")
+
+  if (execute_code) {
+    result <- eval(parse(text = .CodeText))
+
+    if (output.deparse_cat) { 
+      cat(deparse(result), "\n")
+    } else {
+      print(result)
+    }
+  }
+}
+
+## ## https://gemini.google.com/app/efcecda0973ba3f4 ----
+# f_CodeText.cat <- function(.CodeText, 
+#                           execute_code = FALSE, 
+#                           output.deparse_cat = TRUE) {
+# 
+#   # Get all objects defined in the parent frame
+#   parent_env <- parent.frame()
+#   object_names <- ls(envir = parent_env)
+# 
+#   # Substitute each object name
+#   for (obj_name in object_names) {
+#     .CodeText <- gsub(paste0("get\\(", obj_name, "\\)"), obj_name, .CodeText) # Without quotes
+#     .CodeText <- gsub(obj_name, paste0("\"", obj_name, "\""), .CodeText, fixed = TRUE) # With quotes
+#   }
+# 
+#   cat(.CodeText, "\n")
+# 
+#   if (execute_code) {
+#     result <- eval(parse(text = .CodeText))
+# 
+#     if (output.deparse_cat) {
+#       cat(deparse(result), "\n")
+#     } else {
+#       print(result)
+#     }
+#   }
+# }
+## -> makes bug when both "object" and "objectname" are defined in the environment?
+
+
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
