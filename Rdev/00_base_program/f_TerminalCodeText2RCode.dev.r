@@ -1,7 +1,7 @@
 ##@ now included in env1$env.internal.source.r ----
 
 # Rdev/00_base_program/f_CodeText.cat.dev.r
-# Rdev/00_base_program/f_TerminalCodeText2RCode.dev.r
+# Rdev/00_base_program/f_TerminalCodeText2RCodeText.cat.dev.r
 # Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -30,7 +30,7 @@
 
 
 
-f_TerminalCodeText2RCode = function(.TerminalCodeText, execute_code = FALSE) {
+f_TerminalCodeText2RCodeText.cat = function(.TerminalCodeText, execute_code = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     if(execute_code) {
         .TerminalCodeText |> system(intern=TRUE)
@@ -48,7 +48,7 @@ f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
         , paste0( "git add -f ",shQuote(.path.file) )
     )
     invisible(        
-        list_TerminalCodeText |> map(f_TerminalCodeText2RCode, execute_code)
+        list_TerminalCodeText |> map(f_TerminalCodeText2RCodeText.cat, execute_code)
     )
 }
 

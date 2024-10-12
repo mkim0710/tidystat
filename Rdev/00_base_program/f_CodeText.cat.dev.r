@@ -1,5 +1,5 @@
 # Rdev/00_base_program/f_CodeText.cat.dev.r
-# Rdev/00_base_program/f_TerminalCodeText2RCode.dev.r
+# Rdev/00_base_program/f_TerminalCodeText2RCodeText.cat.dev.r
 # Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
