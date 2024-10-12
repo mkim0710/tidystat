@@ -18,6 +18,10 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+# https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643
+# https://gemini.google.com/app/efcecda0973ba3f4
+
 # @@ START) example -----  
 ## \$ analyticDF_time2event =  ----  
 suppressPackageStartupMessages(library(tidyverse))
@@ -200,6 +204,7 @@ f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse_cat = 
         if(output.deparse_cat) {
             eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
         } else {
+            # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
             eval(parse(text = .CodeText))
         }
     }
