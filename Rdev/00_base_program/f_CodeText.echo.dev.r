@@ -142,6 +142,7 @@ cat("> ",.objectname," |> rownames_to_column() |> tail() |> as_tibble()","  \n",
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")") ----
 .objectname = "analyticDF_time2event"
+
 .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")"); cat(.CodeText);cat(" == ");dput(eval(parse(text=.CodeText)))
 cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objectname)[[varname]]), sep="")
 # > .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")"); cat(.CodeText);cat(" == ");dput(eval(parse(text=.CodeText)))
@@ -285,9 +286,7 @@ f_CodeText.echo = function(
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
-.CodeText = "dim(get(.objectname)); nrow(get(.objectname))" 
-.CodeText = "dim(get(.objectname))
-nrow(get(.objectname))" 
+.CodeText = "dim(get(.objectname))"
 .CodeText |> f_CodeText.echo()
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 .CodeText |> f_CodeText.echo(execute_code = TRUE)
@@ -346,6 +345,24 @@ nrow(get(.objectname))"
 #  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## Multi-statement .CodeText  ----
+.objectname = "analyticDF_time2event"
+.CodeText = "dim(get(.objectname)); nrow(get(.objectname))" 
+.CodeText |> f_CodeText.echo()
+.CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
+.CodeText |> f_CodeText.echo(execute_code = TRUE)
+.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## Multi-line .CodeText  ----
+.objectname = "analyticDF_time2event"
+.CodeText = "dim(get(.objectname))
+nrow(get(.objectname))" 
+.CodeText |> f_CodeText.echo()
+.CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
+.CodeText |> f_CodeText.echo(execute_code = TRUE)
+.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
 
 
 
