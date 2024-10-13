@@ -21,3 +21,10 @@ my.regex
 # [1] "my\\.regex"
 
 
+
+my.regex = r"(my\.regex)"
+my.regex
+# > my.regex = r"(my\.regex)"
+# > my.regex
+# [1] "my\\.regex"
+
