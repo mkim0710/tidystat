@@ -149,8 +149,10 @@ Sys.setenv(print.intermediate = FALSE)
         .sourcename = "get_system_info" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]]);}
     }  
     .GlobalEnv$env1$info = env1$env.internal$get_system_info()
-    cat("> .tmp |> str(max.level = 1)", "  \n", sep="") 
-    .tmp |> str(max.level = 1)
+    cat('> ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1)', "  \n", sep="") 
+    ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1)
+    cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
+    .tmp |> str(max.level = 1, give.attr = FALSE)
     cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
     env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
