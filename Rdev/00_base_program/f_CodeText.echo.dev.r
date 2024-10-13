@@ -148,9 +148,13 @@ cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objec
 # n_distinct(get(.objectname)$NIHID) == 0L
 # > cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objectname)[[varname]]), sep="")
 # > analyticDF_time2event.NA.rmAllNA$NIHID |> n_distinct() == 0
-
-
-
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## .CodeText = 'ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  \n", sep="")' ----
+.CodeText = 'ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  \n", sep="")'; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
+# > .CodeText = 'ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  \n", sep="")'; cat(.CodeText);cat("  \n", sep="");eval(parse(text=.CodeText))
+# ls(all.names = TRUE) |> deparse(width.cutoff = 500) |> cat("  
+# ", sep="")  
+# c(".CodeText", ".dependancy", ".envname", ".First", ".GlobalEnv", ".Last", ".listname", ".max_hierarchy", ".objectname", ".packagename", ".parentname", ".path4read", ".path4write", ".sourcename", ".sourcename_root", ".subenvname", ".sublistname", ".subpath", ".subpath.filename.source.r", ".t0", ".tmp", "analyticDF_time2event", "DataSetName", "env0", "env1", "f_CodeText.echo", "MetaData", "object", "params") 
 
 
 #|________________________________________________________________________________|#  
