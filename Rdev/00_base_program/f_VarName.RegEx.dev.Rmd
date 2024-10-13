@@ -255,7 +255,124 @@ df_vec_names |> mutate(
 ```
   
   
+# 
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
 
+```
+  
+  
+# https://gemini.google.com/app/7fb0911fcaab56c0
+## :: code = 
+### pattern <- '(?<=^|[^\\w_.]|\"|\')VarNameOld\\.ToBeChanged(?=$|[^\\w_.]|\"|\')'  ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+code <- '
+result <- VarNameOld.ToBeChanged * 5
+print(VarNameOld.ToBeChanged.1)
+.VarNameOld.ToBeChanged <- 10
+get("VarNameOld.ToBeChanged")
+assign("VarNameOld.ToBeChanged", 100)
+'
+
+# pattern <- '(?<=^|[^\\w_.]|\"|\')VarNameOld\\.ToBeChanged(?=$|[^\\w_.]|\"|\')' 
+# new_name <- "VarNameNew"
+# new_code <- gsub(pattern, new_name, code)
+
+pattern <- paste0(
+  "(^|[^\\w_.])",  # Match start of string or non-variable-name character
+  "VarNameOld\\.ToBeChanged", 
+  "($|[^\\w_.])"   # Match end of string or non-variable-name character
+)
+
+new_code <- gsub(pattern, "\\1New\\.Name\\2", code)
+
+cat(new_code)
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# https://chatgpt.com/c/670b3d9d-88dc-800e-ba56-009debb2bab5
+## :: text = 
+### pattern <- '(?<![A-Za-z0-9_.])(["\']?)Old\\.Name\\1(?![A-Za-z0-9_.])'  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=150)
+# Load necessary library
+library(stringr)
+
+# Sample text
+text <- c(
+  "Old.Name <- data.frame(x = 1:10)",
+  "new_variable <- Old.Name",
+  "someFunction(Old.Name)",
+  'get("Old.Name")',
+  "assign('Old.Name', value)",
+  "Old.Name_extra <- Old.Name",
+  "Old.Names <- c('name1', 'name2')",
+  "An example with Old.Name in the middle of a sentence.",
+  "Don't replace Old.Name1 or Old.Name_extra",
+  "But do replace Old.Name even if it's at the end",
+  "This is Old.Name's data",
+  'Accessing "Old.Name" directly',
+  "CombiningOld.NameWithText",
+  "Old.NameOld.Name",
+  "Nested function call: someFunction(get('Old.Name'))"
+)
+
+# # Regular expression pattern with capturing groups
+# pattern <- '(?<![A-Za-z0-9_.])(["\']?)Old\\.Name\\1(?![A-Za-z0-9_.])'
+# 
+# # Replacement string
+# replacement <- '\\1New.Name\\1'
+
+# Regular expression pattern with capturing groups
+# pattern <- '(?<![A-Za-z0-9_.])Old\\.Name(?![A-Za-z0-9_.])'
+pattern = r"((?<=^|[^A-Za-z0-9_.])Old\.Name(?=$|[^A-Za-z0-9_.]))"
+pattern %>% print
+pattern %>% dput
+
+# Replacement string
+replacement <- 'New.Name'
+
+
+# Perform substitution
+modified_text <- str_replace_all(text, pattern, replacement)
+
+# Create a data frame to show original and modified text
+result <- data.frame(
+  Original = text,
+  Modified = modified_text,
+  Substituted = text != modified_text,
+  stringsAsFactors = FALSE
+)
+
+# Display the results
+print(result)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
