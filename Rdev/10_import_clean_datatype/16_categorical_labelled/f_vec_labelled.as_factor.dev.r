@@ -101,8 +101,8 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 # # Rdev/50_model_formula_evaluation/59_model_evaluation
 # # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
-cat('> ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1)', "  \n", sep="") 
-ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1)
+cat('> ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)', "  \n", sep="") 
+ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)
 cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
 .tmp |> str(max.level = 1, give.attr = FALSE)
 cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
