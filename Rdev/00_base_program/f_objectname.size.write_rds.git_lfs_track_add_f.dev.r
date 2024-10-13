@@ -222,7 +222,7 @@ f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path4wr
         if(object.size(.objectname) > 1e7) {
             env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, execute_code = execute_code) 
         } else {
-            env1$f$f_TerminalCodeText2RCodeText.cat(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), execute_code = execute_code)
+            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), execute_code = execute_code)
         }
     }
     invisible()

@@ -138,9 +138,9 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ env1$env.internal functions ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_CodeText.cat ====
-# Rdev/00_base_program/f_CodeText.cat.dev.r
-env1$f$f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, print.intermediate = FALSE) {
+## \$f_CodeText.echo ====
+# Rdev/00_base_program/f_CodeText.echo.dev.r
+env1$f$f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, print.intermediate = FALSE) {
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -178,9 +178,9 @@ env1$f$f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse
 }
 
 
-## \$f_TerminalCodeText2RCodeText.cat ====  
-# Rdev/00_base_program/f_TerminalCodeText2RCodeText.cat.dev.r
-env1$f$f_TerminalCodeText2RCodeText.cat = function(.TerminalCodeText, execute_code = FALSE) {
+## \$f_TerminalFromRCodeText.echo ====  
+# Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
+env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, execute_code = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     if(execute_code) {
         .TerminalCodeText |> system(intern=TRUE)
@@ -463,7 +463,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
         , paste0( "git add -f ",shQuote(.path.file) )
     )
     invisible(
-        list_TerminalCodeText |> map(env1$f$f_TerminalCodeText2RCodeText.cat, execute_code)
+        list_TerminalCodeText |> map(env1$f$f_TerminalFromRCodeText.echo, execute_code)
     )
 }
 
