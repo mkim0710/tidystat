@@ -301,7 +301,7 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     # +             object.coxph$coefficients |> as_tibble() %>% rownames_to_column("varnamelevel") |> rename(coefficients = value), by = "varnamelevel"
     # +         ) #----
     # Error in mutate_impl(.data, dots) : 
-    #   Evaluation error: object 'level' not found.
+    #   Evaluation error: .object 'level' not found.
     # 
     # 
     #   

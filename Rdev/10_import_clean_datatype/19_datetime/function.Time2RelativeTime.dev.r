@@ -207,7 +207,7 @@ ID_lmp_Window4Exposure |> rename_at(vars(-rowname), funs(paste0("prefix.", c.)) 
 # # +     , function(chr) paste0("prefix.", chr)
 # # + )
 # # Error in get("tibble_vars", envir = parent.frame()) : 
-# #   object 'tibble_vars' not found
+# #   .object 'tibble_vars' not found
 # # Called from: get("tibble_vars", envir = parent.frame())
 
 
@@ -235,7 +235,7 @@ get( ls(envir = parent.frame(n=2)) [1], envir = parent.frame(n=2)) #----
 # character(0)
 # Browse[1]> get( ls(envir = parent.frame()) [1], envir = parent.frame(n=2)) #----  
 # Error in get(ls(envir = parent.frame())[1], envir = parent.frame(n = 2)) : 
-#   object 'NA' not found
+#   .object 'NA' not found
 
 # Browse[1]> ls(envir = parent.frame(n=2)) #----  
 # [1] "i"           "n"           "selected"    "tibble_vars"
@@ -373,7 +373,7 @@ ID_lmp_Window4Exposure %>% mutate_if(lubridate::is.Date, function(vec) {
 # +     vec - get("value", envir = parent.frame(n=5))$lmp
 # + })
 # Error in get("value", envir = parent.frame(n = 5)) : 
-#   object 'value' not found
+#   .object 'value' not found
 # Called from: get("value", envir = parent.frame(n = 5))
 
 

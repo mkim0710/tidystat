@@ -136,7 +136,7 @@ recovr_source_file <- function(folder, id, out_folder) {
         is.null(metadata$properties$tempName))
     {
       if (identical(metadata$type, "r_dataframe")) {
-        # data viewer object; no filename
+        # data viewer .object; no filename
         paste0("Data", "-", id)
       } else {
         # no way to infer a name, bail out and use the raw ID

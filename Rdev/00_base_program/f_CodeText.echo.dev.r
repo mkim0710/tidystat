@@ -256,11 +256,11 @@ f_CodeText.echo = function(
                 names()
         }
         
-        # Sort object names by length in descending order
+        # Sort .object names by length in descending order
         ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
         if(print.intermediate) print(ObjectNames4substitute)
         
-        # Substitute each object name
+        # Substitute each .object name
         for (ObjectName in ObjectNames4substitute) {
             # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
             if(print.intermediate) print(ObjectName)

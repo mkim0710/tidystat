@@ -240,11 +240,11 @@ f_CodeText.echo = function(.CodeText,
                 names()
         }
         
-        # Sort object names by length in descending order
+        # Sort .object names by length in descending order
         ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
         if(print.intermediate) print(ObjectNames4substitute)
         
-        # Substitute each object name
+        # Substitute each .object name
         for (ObjectName in ObjectNames4substitute) {
             # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
             if(print.intermediate) print(ObjectName)
@@ -349,7 +349,7 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
     # Convert the modified expression back to a string for display
     .CodeText_display <- expr_deparse(expr_modified)
     
-    # Display the code with the substituted object name
+    # Display the code with the substituted .object name
     cat(.CodeText_display, "\n")
     
     # Execute the original code if requested
@@ -366,7 +366,7 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
 f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
-    # Replace get(.objectname) with the actual object name in the code to be displayed
+    # Replace get(.objectname) with the actual .object name in the code to be displayed
     .CodeText_display <- gsub("get\\(\\.objectname\\)", .objectname, .CodeText)
     cat(.CodeText_display, "\n")
     
@@ -434,7 +434,7 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
     .CodeText_display <- deparse(expr_display)
     .CodeText_display <- paste(.CodeText_display, collapse = "\n")
     
-    # Display the code with the substituted object name
+    # Display the code with the substituted .object name
     cat(.CodeText_display, "\n")
     
     # Execute the original code if requested
@@ -575,11 +575,11 @@ f_CodeText.substitute.echo <- function(.CodeText,
             keep(is.character) %>% names()
     }
 
-    # Sort object names by length in descending order
+    # Sort .object names by length in descending order
     ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
     if(print.intermediate) print(ObjectNames4substitute)
     
-    # Substitute each object name
+    # Substitute each .object name
     for (ObjectName in ObjectNames4substitute) {
         # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
         if(print.intermediate) print(ObjectName)
@@ -600,7 +600,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
         }
     }
 }
-# -> makes bug when both "object" and "objectname" are defined in the environment?
+# -> makes bug when both ".object" and ".objectname" are defined in the environment?
 
 
 
@@ -683,11 +683,11 @@ env1$f$f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.depars
                 names()
         }
         
-        # Sort object names by length in descending order
+        # Sort .object names by length in descending order
         ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
         if(print.intermediate) print(ObjectNames4substitute)
         
-        # Substitute each object name
+        # Substitute each .object name
         for (ObjectName in ObjectNames4substitute) {
             # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
             if(print.intermediate) print(ObjectName)

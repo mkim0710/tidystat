@@ -97,11 +97,11 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }  
 # .GlobalEnv$env1$path = list() ====  
 .sublistname = "path"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() } 
-.objectname = "source_base_local"; object = ifelse(Sys.info()["sysname"] == "Windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[.objectname]] = object
-.objectname = "source_base_github"; object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[.objectname]] = object
+.objectname = "source_base_local"; .object = ifelse(Sys.info()["sysname"] == "Windows", "D:/OneDrive/[][Rproject]/github_tidystat", "~/github_tidystat"); .GlobalEnv$env1$path[[.objectname]] = .object
+.objectname = "source_base_github"; .object = "https://raw.githubusercontent.com/mkim0710/tidystat/master"; .GlobalEnv$env1$path[[.objectname]] = .object
 if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = ifelse(dir.exists(env1$path$source_base_local), env1$path$source_base_local, env1$path$source_base_github) }  
-.objectname = "getwd"; object = getwd(); .GlobalEnv$env1$path[[.objectname]] = object
-.objectname = "path0"; object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); .GlobalEnv$env1$path[[.objectname]] = object
+.objectname = "getwd"; .object = getwd(); .GlobalEnv$env1$path[[.objectname]] = .object
+.objectname = "path0"; .object = c(file.path("D:", "OneDrive", "[][Rproject]"), "/home/rstudio", "/cloud") |> keep(dir.exists) |> first(default = dirname(getwd())); .GlobalEnv$env1$path[[.objectname]] = .object
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
@@ -1026,15 +1026,15 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
     ggplot(aes(x = as.numeric(as.factor(parent)), y = freq, color = level)) + geom_point()
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is %>% 
 # +     ggplot(aes(x = parent, y = freq, color = level)) + geom_point()
-# Don't know how to automatically pick scale for object of type table. Defaulting to continuous.
+# Don't know how to automatically pick scale for .object of type table. Defaulting to continuous.
 # Error in dimnames(x) <- dnx : 'dimnames' applied to non-array
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is %>% 
 # +     ggplot(aes(x = as.factor(parent), y = freq, color = level)) + geom_point()
-# Don't know how to automatically pick scale for object of type table. Defaulting to continuous.
+# Don't know how to automatically pick scale for .object of type table. Defaulting to continuous.
 # Error in dimnames(x) <- dnx : 'dimnames' applied to non-array
 # > Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is %>% 
 # +     ggplot(aes(x = as.numeric(as.factor(parent)), y = freq, color = level)) + geom_point()
-# Don't know how to automatically pick scale for object of type table. Defaulting to continuous.
+# Don't know how to automatically pick scale for .object of type table. Defaulting to continuous.
 # Error in dimnames(x) <- dnx : 'dimnames' applied to non-array
 
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is %>% 

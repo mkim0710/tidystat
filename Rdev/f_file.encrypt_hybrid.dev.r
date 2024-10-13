@@ -42,7 +42,7 @@ xor_decrypt <- function(encrypted_data, password) {
   # Perform XOR decryption
   decrypted_raw <- xor(encrypted_data, as.raw(password_repeated))
   
-  # Deserialize the raw vector back to an R object
+  # Deserialize the raw vector back to an R .object
   data <- unserialize(decrypted_raw)
   
   return(data)
@@ -106,7 +106,7 @@ decrypt_data <- function(encrypted_data, iv, password) {
   # Decrypt the data
   decrypted_data_raw <- aes_cbc_decrypt(encrypted_data, key = key, iv = iv)
   
-  # Deserialize the raw vector back to an R object
+  # Deserialize the raw vector back to an R .object
   data <- unserialize(decrypted_data_raw)
   
   return(data)
@@ -180,7 +180,7 @@ decrypt_data_hybrid <- function(encrypted_data, encrypted_symmetric_key, iv, pri
   # Decrypt the dataset using the symmetric key
   decrypted_data_raw <- aes_cbc_decrypt(encrypted_data, key = symmetric_key, iv = iv)
   
-  # Deserialize the raw vector back to an R object
+  # Deserialize the raw vector back to an R .object
   data <- unserialize(decrypted_data_raw)
   
   return(data)

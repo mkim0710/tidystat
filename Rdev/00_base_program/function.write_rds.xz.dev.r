@@ -7,25 +7,25 @@ fun.read_and_write_rds <- function(filename, compress = c("none", "gz", "bz2", "
   # Check if the file is either .rds or .rda
   if (grepl("\\.[rR][dD][sS]$", filename)) {
     .objectname <- gsub("\\.[rR][dD][sS]$", "", filename)
-    object <- readRDS(filename)
+    .object <- readRDS(filename)
   } else if (grepl("\\.[rR][dD][aA]$", filename)) {
     # Loading .rda file
     env = new.env()
     load(filename, env)
     objectnames <- ls(env)
 
-    # Check if there's exactly one object in the .rda file
+    # Check if there's exactly one .object in the .rda file
     if (length(objectnames) != 1) {
-      stop("The .rda file must contain exactly one object")
+      stop("The .rda file must contain exactly one .object")
     }
     .objectname <- objectnames[1]
-    object <- get(.objectname, envir = env)
+    .object <- get(.objectname, envir = env)
   } else {
     stop("The file must be either .rds or .rda")
   }
 
   # Save the data using write_rds
-  write_rds(object, paste0(.objectname,".rds"), compress = compress)
+  write_rds(.object, paste0(.objectname,".rds"), compress = compress)
 }
 
 

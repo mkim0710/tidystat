@@ -278,7 +278,7 @@ out.list %>% bind_rows(.id = ".id")
 # [1] "trainsetCC69agg4i07_829"
 # Warning message:
 # In rm(list = i, envir=.GlobalEnv) :
-#   object 'trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)' not found
+#   .object 'trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather(simple)' not found
 # > out.list |> str()
 # List of 5
 #  $ trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather                  :List of 7

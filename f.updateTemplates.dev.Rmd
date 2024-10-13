@@ -856,7 +856,7 @@ options(width=120)
 # <bytecode: 0x0000012b785dd928>
 # <environment: namespace:openxlsx2>
 # > getAnywhere(xl_open)
-# A single object matching ‘xl_open’ was found
+# A single .object matching ‘xl_open’ was found
 # It was found in the following places
 #   package:openxlsx2
 #   namespace:openxlsx2

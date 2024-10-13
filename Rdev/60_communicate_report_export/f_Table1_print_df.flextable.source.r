@@ -114,7 +114,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     header_text <- str_squish(str_remove(header_text, "\\n"))    # Remove newline characters and squish spaces in header_text
     footer_text <- str_squish(str_remove(footer_text, "\\n"))    # Remove newline characters and squish spaces in footer_text
     
-    flextable(Table1_print_df) %>%    # Initialize a flextable object with the provided data frame (df)
+    flextable(Table1_print_df) %>%    # Initialize a flextable .object with the provided data frame (df)
         add_header_lines(header_text) %>%    # Add a custom header line using the header_text
         add_footer_lines(footer_text) %>%    # Add a custom footer line using the footer_text
         bold(i = 1, part = "header") %>%    # Make the text in the first row of the header bold

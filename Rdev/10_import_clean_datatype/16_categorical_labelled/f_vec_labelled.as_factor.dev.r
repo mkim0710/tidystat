@@ -517,7 +517,7 @@ labelled:::recode.haven_labelled(
 # +   .combine_value_labels = TRUE
 # + )
 # Error in UseMethod("recode") : 
-#   no applicable method for 'recode' applied to an object of class "c('haven_labelled', 'vctrs_vctr', 'integer')"
+#   no applicable method for 'recode' applied to an .object of class "c('haven_labelled', 'vctrs_vctr', 'integer')"
 #> <labelled<integer>[4]>
 #> [1] 1 1 2 2
 #> 

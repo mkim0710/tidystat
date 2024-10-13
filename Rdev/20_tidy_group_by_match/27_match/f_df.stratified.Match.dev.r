@@ -90,7 +90,7 @@
 #     out = .mydata.strata_list %>% map(function(df) {
 #         out = df[[.exposure]] |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
 #         parent.x = get(".x", envir = parent.frame())
-#         attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+#         attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(.object) {identical(df, .object)}))]
 #         names(out)[1] = attr(out, "parent_name")
 #         out = out %>% t |> as.data.frame() |> rownames_to_column()
 #         out
@@ -297,7 +297,7 @@ rhc_mydata.strata_list[[1]]
 rhc_mydata.strata_list %>% map(function(df) {
     out = df$treatment |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
     parent.x = get(".x", envir = parent.frame())
-    attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+    attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(.object) {identical(df, .object)}))]
     names(out)[1] = attr(out, "parent_name")
     out = out %>% t |> as.data.frame() |> rownames_to_column()
     out
@@ -305,7 +305,7 @@ rhc_mydata.strata_list %>% map(function(df) {
 # > rhc_mydata.strata_list %>% map(function(df) {
 # +     out = df$treatment |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
 # +     parent.x = get(".x", envir = parent.frame())
-# +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+# +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(.object) {identical(df, .object)}))]
 # +     names(out)[1] = attr(out, "parent_name")
 # +     out = out %>% t |> as.data.frame() |> rownames_to_column()
 # +     out
@@ -361,7 +361,7 @@ data.Match = function(
     
     # if (exists(Weight)) {
     #     stop("Weight argument deprecated : use Weight_covariates = c(\"InverseVariance\", \"MahalanobisDistance\", \"WeightMatrix\")[1]")
-    # }  # Error - object 'Weight' not found -> argument Weight is matched to Weight_covariates if the argument is placed before ...
+    # }  # Error - .object 'Weight' not found -> argument Weight is matched to Weight_covariates if the argument is placed before ...
     Call <- match.call(expand.dots = TRUE)
     for (argname in c("Weight")) {
         if (!is.null(Call[[argname]])) {
@@ -445,7 +445,7 @@ data.Match = function(
     if (length(unique(.mydata[[.exposure]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical)), 0:1 ))
         print("length(unique(.mydata[[.exposure]]) < 2")
         # out = list()
-        out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+        out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
         attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
         
         # if (add_Table1_pre_post == T) {
@@ -519,7 +519,7 @@ data.Match = function(
             if (length(.mydata.Match$index.treated) == 0) {
                 print("length(.mydata.Match$index.treated) == 0")
                 # out = list()
-                out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+                out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
                 attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
             } else {
                 
@@ -1455,7 +1455,7 @@ f_df.stratified.Match = function(
         
         # if (exists(Weight)) {
         #     stop("Weight argument deprecated : use Weight_covariates = c(\"InverseVariance\", \"MahalanobisDistance\", \"WeightMatrix\")[1]")
-        # }  # Error - object 'Weight' not found -> argument Weight is matched to Weight_covariates if the argument is placed before ...
+        # }  # Error - .object 'Weight' not found -> argument Weight is matched to Weight_covariates if the argument is placed before ...
         Call <- match.call(expand.dots = TRUE)
         for (argname in c("Weight")) {
             if (!is.null(Call[[argname]])) {
@@ -1539,7 +1539,7 @@ f_df.stratified.Match = function(
         if (length(unique(.mydata[[.exposure]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.exposure.vars4Matching.na.omit.exposure.logical)), 0:1 ))
             print("length(unique(.mydata[[.exposure]]) < 2")
             # out = list()
-            out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+            out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
             attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
             
             # if (add_Table1_pre_post == T) {
@@ -1614,7 +1614,7 @@ f_df.stratified.Match = function(
                     # print("length(.mydata.Match$index.treated) == 0")
                     print(paste0("length(.mydata.Match) == 1 : .mydata.Match = ", .mydata.Match))
                     # out = list()
-                    out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+                    out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
                     attr(out, "error.message") = "length(unique(.mydata[[.exposure]])) < 2"  # attr() is shown with str(max.level = 1)
                 } else {
                     
@@ -1737,8 +1737,8 @@ f_df.stratified.Match = function(
     out = list()
     out$Table1_pre = CreateTableOne(vars = c(.vars4strata, .vars4Matching), strata = .exposure, data = .mydata, test=T, includeNA = T)
     
-    warning_lgl = .mydata.strata_list.Match %>% map_lgl(function(object) {
-        as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[.exposure]])) < 2")) # sum() to avoid error "argument is of length zero" in if()
+    warning_lgl = .mydata.strata_list.Match %>% map_lgl(function(.object) {
+        as.logical(sum(attr(.object, "error.message") == "length(unique(.mydata[[.exposure]])) < 2")) # sum() to avoid error "argument is of length zero" in if()
     })
     # print(paste0("warning_lgl : ", deparse(warning_lgl)))
     # print(paste0("names(.mydata.strata_list.Match) : ", deparse(names(.mydata.strata_list.Match))))
@@ -2235,13 +2235,13 @@ rhc_myf_df.stratified.Match_caplier.2$Table1_post_total |> print(smd = T)  # ---
 # [1] "map to data.Match() with .mydata.strata_list$1_[90,100)"
 # Warning messages:
 # 1: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
-#   'Match' object contains no valid matches (probably because of the caliper or the exact option).
+#   'Match' .object contains no valid matches (probably because of the caliper or the exact option).
 # 2: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
-#   'Match' object contains no valid matches (probably because of the caliper or the exact option).
+#   'Match' .object contains no valid matches (probably because of the caliper or the exact option).
 # 3: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
-#   'Match' object contains no valid matches (probably because of the caliper or the exact option).
+#   'Match' .object contains no valid matches (probably because of the caliper or the exact option).
 # 4: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
-#   'Match' object contains no valid matches (probably because of the caliper or the exact option).
+#   'Match' .object contains no valid matches (probably because of the caliper or the exact option).
 # 5: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[10,20)", "0_[100,Inf]", "0_[90,100)", "1_[10,20)", "1_[100,Inf]", length(unique(.mydata[[.exposure]]) < 2: 
@@ -2312,9 +2312,9 @@ rhc_myf_df.stratified.Match_propensity_score_caplier.2$Table1_post_total |> prin
 # [1] "map to data.Match() with .mydata.strata_list$1_[90,100)"
 # Warning messages:
 # 1: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
-#   'Match' object contains no valid matches (probably because of the caliper or the exact option).
+#   'Match' .object contains no valid matches (probably because of the caliper or the exact option).
 # 2: In Match(Tr = .mydata.exposure.vars4Matching.na.omit.exposure.logical,  :
-#   'Match' object contains no valid matches (probably because of the caliper or the exact option).
+#   'Match' .object contains no valid matches (probably because of the caliper or the exact option).
 # 3: In f_df.stratified.Match(., .vars4strata = c("female", "age.cut"),  :
 #   length(unique(.mydata[[.exposure]]) < 2: 
 # c("0_[10,20)", "0_[100,Inf]", "1_[10,20)", "1_[100,Inf]")

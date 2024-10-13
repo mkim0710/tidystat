@@ -29,7 +29,7 @@ tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_Br
 # +     mutate(PrimaryKey = concept_name.toupper) %>% 
 # +     {{. %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 1)} %>% left_join(.)}
 # Error in UseMethod("left_join") : 
-#   no applicable method for 'left_join' applied to an object of class "c('fseq', 'function')"
+#   no applicable method for 'left_join' applied to an .object of class "c('fseq', 'function')"
 # > tmp.df %>% mutate(concept_name.toupper.rm_METFORMIN = concept_name.toupper.rm_BrandName) %>% separate_rows(concept_name.toupper.rm_METFORMIN, sep = "/") %>% 
 # +     mutate(PrimaryKey = concept_name.toupper) %>% 
 # +     {~function(df) {df %>% group_by(PrimaryKey) %>% summarize(n()) %>% dplyr::filter(`n()` > 1)} %>% left_join(df)}

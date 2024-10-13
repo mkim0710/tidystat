@@ -166,7 +166,7 @@ data.ccwc = function(
     if (length(unique(.mydata[[varname4event]])) < 2) {  # This set is a subset of (!identical( as.integer(unique(.mydata.event.entry.exit.na.omit.event.logical)), 0:1 ))
         print("length(unique(.mydata[[varname4event]]) < 2")
         out = list()
-        # out$data = NA  # need this object to avoid error "attempt to set an attribute on NULL"
+        # out$data = NA  # need this .object to avoid error "attempt to set an attribute on NULL"
         # debug 180519 v5
         out$data = .mydata %>%  mutate(
             MatchingPairID = NA
@@ -962,7 +962,7 @@ diet.strata_list[[1]]
 diet.strata_list %>% map(function(df) {
     out = df$event |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
     parent.x = get(".x", envir = parent.frame())
-    attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+    attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(.object) {identical(df, .object)}))]
     names(out)[1] = attr(out, "parent_name")
     out = out %>% t |> as.data.frame() |> rownames_to_column()
     out
@@ -970,7 +970,7 @@ diet.strata_list %>% map(function(df) {
 # > diet.strata_list %>% map(function(df) {
 # +     out = df$event |> table() |> as.data.frame() %>% column_to_rownames(var = ".")
 # +     parent.x = get(".x", envir = parent.frame())
-# +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(object) {identical(df, object)}))]
+# +     attr(out, "parent_name") = names(parent.x)[which(map_lgl(parent.x, function(.object) {identical(df, .object)}))]
 # +     names(out)[1] = attr(out, "parent_name")
 # +     out = out %>% t |> as.data.frame() |> rownames_to_column()
 # +     out
@@ -1064,8 +1064,8 @@ f_df.stratified.ccwc = function(
     # # debug 180516
     # out$Table1_pre = CreateTableOne(vars = c(varname4entry, varname4exit), strata = varname4event, data = map_df(.mydata, function(x) ifelse(is.factor(x), as.character(x), x)), test=T, includeNA = T)
     
-    warning_lgl = .mydata.strata_list.ccwc %>% map_lgl(function(object) {
-        as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[varname4event]])) < 2")) # sum() to avoid error "argument is of length zero" in if()
+    warning_lgl = .mydata.strata_list.ccwc %>% map_lgl(function(.object) {
+        as.logical(sum(attr(.object, "error.message") == "length(unique(.mydata[[varname4event]])) < 2")) # sum() to avoid error "argument is of length zero" in if()
     })
     # print(paste0("warning_lgl : ", deparse(warning_lgl)))
     # print(paste0("names(.mydata.strata_list.ccwc) : ", deparse(names(.mydata.strata_list.ccwc))))
@@ -1449,8 +1449,8 @@ diet.stratified.ccwc #----
 #     out$Table1_pre = CreateTableOne(vars = c(varname4entry, 
 #         varname4exit), strata = varname4event, data = .mydata, 
 #         test = T, includeNA = T)
-#     warning_lgl = .mydata.strata_list.ccwc %>% map_lgl(function(object) {
-#         as.logical(sum(attr(object, "error.message") == "length(unique(.mydata[[varname4event]])) < 2"))
+#     warning_lgl = .mydata.strata_list.ccwc %>% map_lgl(function(.object) {
+#         as.logical(sum(attr(.object, "error.message") == "length(unique(.mydata[[varname4event]])) < 2"))
 #     })
 #     out$data = .mydata.strata_list.ccwc[!warning_lgl] %>% map(function(x) x$data) %>% 
 #         reduce(rbind)

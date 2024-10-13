@@ -131,7 +131,7 @@ fit = nhanes2.imp %>% mice::with.mids(lm(chl ~ age + bmi))
 fit = nhanes2.imp %>% with.mids(lm(chl ~ age + bmi))
 fit = nhanes2.imp %>% with(lm(chl ~ age + bmi))
 # > fit = nhanes2.imp %>% mice::with.mids(lm(chl ~ age + bmi))
-# Error: 'with.mids' is not an exported object from 'namespace:mice'
+# Error: 'with.mids' is not an exported .object from 'namespace:mice'
 # > fit = nhanes2.imp %>% with.mids(lm(chl ~ age + bmi))
 # Error in with.mids(., lm(chl ~ age + bmi)) : 
 #   could not find function "with.mids"

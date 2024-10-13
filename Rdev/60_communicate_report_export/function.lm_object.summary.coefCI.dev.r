@@ -497,7 +497,7 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
 
 
 
-## @ test) function.clogit_object.summary.exp() - clogit object ----  
+## @ test) function.clogit_object.summary.exp() - clogit .object ----  
 library(tidyverse)
 library(survival)
 logan2 = data.frame(

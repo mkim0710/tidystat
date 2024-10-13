@@ -155,7 +155,7 @@ Sys.setlocale("LC_TIME", "en_US.utf8") # some Linux versions
 library("lubridate")
 #> 
 #> Attaching package: 'lubridate'
-#> The following object is masked from 'package:base':
+#> The following .object is masked from 'package:base':
 #> 
 #>     date
 lubridate::tz(lubridate::ymd("2016-03-26"))
