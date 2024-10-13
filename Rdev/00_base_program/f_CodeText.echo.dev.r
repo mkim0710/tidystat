@@ -222,12 +222,24 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 # }
 
 
-f_CodeText.echo = function(.CodeText,
-                          execute_code = FALSE,
-                          output.deparse_cat = TRUE,
-                          substitute_ObjectNames = FALSE,
-                          ObjectNames4substitute = NULL,
-                          print.intermediate = FALSE) {
+f_CodeText.echo = function(
+        .CodeText,
+        execute_code = FALSE,
+        output.deparse_cat = TRUE,
+        LinePrefix4CodeText = "    ",
+        LinePrefix4Output = "    ## ",
+        substitute_ObjectNames = FALSE,
+        ObjectNames4substitute = NULL,
+        print.intermediate = FALSE) {
+    
+    if(.CodeText |> str_detect('\n')) {
+        # warning('The newline character(s) will be substituted by "; "')
+        # .CodeText = .CodeText |> str_replace_all('\n', "; ")
+        stop('The newline character(s) is not allowed')
+    }
+    if(.CodeText |> str_detect(';')) {
+        stop('The semicolon character is not allowed')
+    }
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -253,6 +265,8 @@ f_CodeText.echo = function(.CodeText,
             if(print.intermediate) print(.CodeText)
         }
     }
+    
+    # .CodeText.addPrefix = .CodeText |> strsplit("\n") |> unlist() |> paste(LinePrefix4CodeText, ., sep="")
     .CodeText |> cat("  \n", sep="")
     if(execute_code) {
         if(output.deparse_cat) {
@@ -267,7 +281,9 @@ f_CodeText.echo = function(.CodeText,
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
-.CodeText = "dim(get(.objectname))" 
+.CodeText = "dim(get(.objectname)); nrow(get(.objectname))" 
+.CodeText = "dim(get(.objectname))
+nrow(get(.objectname))" 
 .CodeText |> f_CodeText.echo()
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 .CodeText |> f_CodeText.echo(execute_code = TRUE)
