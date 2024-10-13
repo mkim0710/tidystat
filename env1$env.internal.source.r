@@ -138,7 +138,48 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ env1$env.internal functions ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## \$f_CodeText.cat ====
+# Rdev/00_base_program/f_CodeText.cat.dev.r
+env1$f$f_CodeText.cat = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, print.intermediate = FALSE) {
+    
+    if(substitute_ObjectNames) {
+        # Get all objects defined in the parent frame
+        parent_env <- parent.frame()
+        if(is.null(ObjectNames4substitute)) {
+            ObjectNames4substitute <- ls(envir = parent_env, all.names = TRUE) %>% 
+                set_names() %>% map(get) %>% 
+                keep(is.character) %>% 
+                keep(function(vec) {length(vec) == 1}) %>% 
+                names()
+        }
+        
+        # Sort object names by length in descending order
+        ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
+        if(print.intermediate) print(ObjectNames4substitute)
+        
+        # Substitute each object name
+        for (ObjectName in ObjectNames4substitute) {
+            # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
+            if(print.intermediate) print(ObjectName)
+            .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
+            .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
+            if(print.intermediate) print(.CodeText)
+        }
+    }
+    .CodeText |> cat("  \n", sep="")
+    if(execute_code) {
+        if(output.deparse_cat) {
+            eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
+        } else {
+            # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
+            eval(parse(text = .CodeText))
+        }
+    }
+}
+
+
 ## \$f_TerminalCodeText2RCodeText.cat ====  
+# Rdev/00_base_program/f_TerminalCodeText2RCodeText.cat.dev.r
 env1$f$f_TerminalCodeText2RCodeText.cat = function(.TerminalCodeText, execute_code = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
     if(execute_code) {
@@ -415,6 +456,7 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_file.git_lfs_track_add_f ====  
+# Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
 env1$f$f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
     list_TerminalCodeText = list(
         paste0( "git lfs track ",shQuote(.path.file) )
