@@ -338,7 +338,7 @@ f_CodeText.echo = function(.CodeText,
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Parse the code into an expression
     library(rlang)
     expr <- parse_expr(.CodeText)
@@ -365,7 +365,7 @@ f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.de
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Replace get(.objectname) with the actual object name in the code to be displayed
     .CodeText_display <- gsub("get\\(\\.objectname\\)", .objectname, .CodeText)
     cat(.CodeText_display, "\n")
@@ -383,7 +383,7 @@ f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.de
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Ensure .objectname is defined in your environment
     if (!exists(".objectname", envir = parent.frame())) {
         stop("'.objectname' is not defined.")
@@ -451,7 +451,7 @@ f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.de
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
     # Get variable names and their values from the parent frame
     var_names <- ls(envir = parent.frame())
     var_values <- mget(var_names, envir = parent.frame())
@@ -531,7 +531,7 @@ f_CodeText.substitute.cat <- function(.CodeText, execute_code = FALSE, output.de
 
 
 ## https://gemini.google.com/app/efcecda0973ba3f4 ----
-f_CodeText.substitute.cat <- function(.CodeText, 
+f_CodeText.substitute.echo <- function(.CodeText, 
                           .objectname = NULL, 
                           execute_code = FALSE, 
                           output.deparse_cat = TRUE) { # Keep original naming
@@ -561,7 +561,7 @@ f_CodeText.substitute.cat <- function(.CodeText,
 }
 
 ## https://gemini.google.com/app/efcecda0973ba3f4 ----
-f_CodeText.substitute.cat <- function(.CodeText,
+f_CodeText.substitute.echo <- function(.CodeText,
                                       execute_code = FALSE,
                                       output.deparse_cat = TRUE,
                                       ObjectNames4substitute = NULL,
@@ -608,10 +608,10 @@ f_CodeText.substitute.cat <- function(.CodeText,
 ## .CodeText = "dim(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))" 
-.CodeText |> f_CodeText.substitute.cat(print.intermediate = TRUE)
-.CodeText |> f_CodeText.substitute.cat()
-.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE)
-.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.substitute.echo(print.intermediate = TRUE)
+.CodeText |> f_CodeText.substitute.echo()
+.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE)
+.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE, output.deparse_cat = FALSE)
 # > .CodeText = "dim(get(.objectname))" 
 # > .CodeText |> f_CodeText.echo()
 # dim(get(.objectname))  
@@ -625,9 +625,9 @@ f_CodeText.substitute.cat <- function(.CodeText,
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
-.CodeText |> f_CodeText.substitute.cat()
-.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE)
-.CodeText |> f_CodeText.substitute.cat(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.substitute.echo()
+.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE)
+.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE, output.deparse_cat = FALSE)
 # > .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 # > .CodeText |> f_CodeText.echo()
 # str(get(.objectname), max.level = 2, give.attr = F)  
