@@ -215,6 +215,8 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
   
   
 # Rdev/00_base_program/f_CodeText.echo.dev.r
+# Rdev/00_base_program/f_CodeText.substitute.echo.dev.r -> incorporated in f_CodeText.echo.dev.r
+
 
 # @@ START) data example ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
