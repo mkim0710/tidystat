@@ -231,8 +231,8 @@ f_CodeText.echo = function(
         .CodeText,
         execute_code = FALSE,
         output.deparse_cat = TRUE,
-        LinePrefix4CodeText = "    ",
-        LinePrefix4Output = "    ## ",
+        LinePrefix4CodeText = "\t",
+        LinePrefix4Output = "\t## ",
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
         print.intermediate = FALSE) {
@@ -277,7 +277,6 @@ f_CodeText.echo = function(
     .CodeText.vec.addPrefix = .CodeText.vec %>% str_replace_all("^", LinePrefix4CodeText)
     
     for (i in 1:length(.CodeText.vec2)) {
-        
         # cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
         if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
         
@@ -290,8 +289,6 @@ f_CodeText.echo = function(
             }
         }
     }
-    
-
 }
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -303,15 +300,15 @@ f_CodeText.echo = function(
 .CodeText |> f_CodeText.echo(execute_code = TRUE)
 .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = FALSE)
-#     dim(get(.objectname))  
+# 	dim(get(.objectname))  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-#     dim(analyticDF_time2event)  
+# 	dim(analyticDF_time2event)  
 # > .CodeText |> f_CodeText.echo(execute_code = TRUE)
-#     dim(analyticDF_time2event)  
-#     ## c(228L, 12L)  
+# 	dim(analyticDF_time2event)  
+# 	## c(228L, 12L)  
 # > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
-#     dim(analyticDF_time2event)  
-#     ## [1] 228  12
+# 	dim(analyticDF_time2event)  
+# 	## [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)" ----
 .objectname = "analyticDF_time2event"
@@ -321,11 +318,11 @@ f_CodeText.echo = function(
 .CodeText |> f_CodeText.echo(execute_code = TRUE)
 .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = FALSE)
-#     str(get(.objectname), max.level = 2, give.attr = F)  
+# 	str(get(.objectname), max.level = 2, give.attr = F)  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-#     str(analyticDF_time2event, max.level = 2, give.attr = F)  
+# 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # > .CodeText |> f_CodeText.echo(execute_code = TRUE)
-#     str(analyticDF_time2event, max.level = 2, give.attr = F)  
+# 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
 #  $ time           : num  306 455 1010 210 883 ...
@@ -339,22 +336,22 @@ f_CodeText.echo = function(
 #  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
 #  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-#     ## NULL  
+# 	## NULL  
 # > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
-#     str(analyticDF_time2event, max.level = 2, give.attr = F)  
-#     ## 'data.frame':	228 obs. of  12 variables:
-#     ##  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
-#     ##  $ time           : num  306 455 1010 210 883 ...
-#     ##  $ age            : num  74 68 56 57 60 74 68 71 53 61 ...
-#     ##  $ sex            : num  1 1 1 1 1 1 2 2 1 1 ...
-#     ##  $ ph.ecog        : num  1 0 0 1 0 1 2 2 1 2 ...
-#     ##  $ ph.karno       : num  90 90 90 90 100 50 70 60 70 70 ...
-#     ##  $ pat.karno      : num  100 90 90 60 90 80 60 80 80 70 ...
-#     ##  $ meal.cal       : num  1175 1225 NA 1150 NA ...
-#     ##  $ wt.loss        : num  NA 15 15 11 0 0 10 1 16 34 ...
-#     ##  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
-#     ##  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-#     ##  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+# 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
+# 	## 'data.frame':	228 obs. of  12 variables:
+# 	##  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
+# 	##  $ time           : num  306 455 1010 210 883 ...
+# 	##  $ age            : num  74 68 56 57 60 74 68 71 53 61 ...
+# 	##  $ sex            : num  1 1 1 1 1 1 2 2 1 1 ...
+# 	##  $ ph.ecog        : num  1 0 0 1 0 1 2 2 1 2 ...
+# 	##  $ ph.karno       : num  90 90 90 90 100 50 70 60 70 70 ...
+# 	##  $ pat.karno      : num  100 90 90 60 90 80 60 80 80 70 ...
+# 	##  $ meal.cal       : num  1175 1225 NA 1150 NA ...
+# 	##  $ wt.loss        : num  NA 15 15 11 0 0 10 1 16 34 ...
+# 	##  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
+# 	##  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
+# 	##  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## Multi-statement .CodeText  ----
 .objectname = "analyticDF_time2event"
