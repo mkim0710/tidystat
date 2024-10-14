@@ -242,6 +242,7 @@ env1$f$f_CodeText.echo = function(
         CodeEqualsOutput = TRUE,
         VERBOSE = getOption("verbose")) {
     if(is.null(VERBOSE)) VERBOSE = FALSE
+    out = NULL
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -314,23 +315,27 @@ env1$f$f_CodeText.echo = function(
                 # if(CodeEqualsOutput && .CodeText.split_LF.split_semicolon.i.parse.eval.deparse != "NULL") {
                 if(CodeEqualsOutput && identical(.CodeText.split_LF, .CodeText.split_LF.split_semicolon) && ! .CodeText.split_LF.split_semicolon[i] |> str_detect(r"((^|[^\w_.])str($|[^\w_.]))")) {
                     cat(" == ")
-                    eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(sep="")
+                    out = eval(parse(text = .CodeText.split_LF.split_semicolon[i])) 
+                    out |> deparse() %>% cat(sep="")
                     # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse %>% cat(., "  \n", sep="")
                 } else {
                     cat("  \n")
                     # eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
                     # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse %>% cat(LinePrefix4Output, ., "  \n", sep="")
-                    eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(LinePrefix4Output, ., sep="")
+                    out = eval(parse(text = .CodeText.split_LF.split_semicolon[i]))
+                    out |> deparse() %>% cat(LinePrefix4Output, ., sep="")
                 }
             } else {
                 # eval(parse(text = .CodeText.split_LF[i]))
                 cat("  \n")
-                eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") 
+                out = eval(parse(text = .CodeText.split_LF.split_semicolon[i])) 
+                out |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") 
             }
         } 
         # cat("  \n")
         if(deparse_cat) cat("  \n")
     }
+    invisible(out)
 }
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
