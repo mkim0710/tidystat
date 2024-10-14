@@ -140,7 +140,15 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_CodeText.echo ====
 # Rdev/00_base_program/f_CodeText.echo.dev.r
-env1$f$f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, print.intermediate = FALSE) {
+env1$f$f_CodeText.echo = function(
+        .CodeText,
+        execute_code = FALSE,
+        output.deparse_cat = TRUE,
+        LinePrefix4CodeText = "\t",
+        LinePrefix4Output = "\t## ",
+        substitute_ObjectNames = TRUE,
+        ObjectNames4substitute = NULL,
+        print.intermediate = FALSE) {
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -166,18 +174,38 @@ env1$f$f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.depars
             if(print.intermediate) print(.CodeText)
         }
     }
-    .CodeText |> cat("  \n", sep="")
-    if(execute_code) {
-        if(output.deparse_cat) {
-            eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
-        } else {
-            # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
-            eval(parse(text = .CodeText))
+    
+    if(.CodeText |> str_detect("[\n;]") && execute_code) {
+        # warning('The newline character(s) will be substituted by "; "')
+        # .CodeText = .CodeText |> str_replace_all('\n', "; ")
+        # tryCatch(stop('The newline character(s) is not allowed'), error = function(e) print(e))
+        warning('execute_code not fully implemented for line feed (\\n) or semicolon (;)')
+        # return(invisible())
+    }
+
+    .CodeText.vec = .CodeText |> strsplit("\n") |> unlist() |> trimws()
+    .CodeText.vec2 = .CodeText.vec |> strsplit(";") |> unlist() |> trimws()
+    
+    # .CodeText.vec.addPrefix = paste0(LinePrefix4CodeText, .CodeText.vec)
+    .CodeText.vec.addPrefix = .CodeText.vec %>% str_replace_all("^", LinePrefix4CodeText)
+    
+    for (i in 1:length(.CodeText.vec2)) {
+        # cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
+        if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
+        
+        if(execute_code) {
+            if(output.deparse_cat) {
+                eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
+            } else {
+                # eval(parse(text = .CodeText.vec[i]))
+                eval(parse(text = .CodeText.vec2[i])) |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") # ; cat("\n")
+            }
         }
     }
 }
 
 
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$f_TerminalFromRCodeText.echo ====  
 # Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
 env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, execute_code = FALSE) {
