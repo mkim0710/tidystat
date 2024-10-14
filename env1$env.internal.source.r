@@ -148,7 +148,9 @@ env1$f$f_CodeText.echo = function(
         LinePrefix4Output = "\t## ",
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
+        CodeEqualsOutput = TRUE,
         print.intermediate = FALSE) {
+    
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -189,17 +191,33 @@ env1$f$f_CodeText.echo = function(
     # .CodeText.vec.addPrefix = paste0(LinePrefix4CodeText, .CodeText.vec)
     .CodeText.vec.addPrefix = .CodeText.vec %>% str_replace_all("^", LinePrefix4CodeText)
     
+
+    
     for (i in 1:length(.CodeText.vec2)) {
         # cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
-        if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
+        # if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
+        if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], sep="")
         
         if(Execute) {
             if(deparse_cat) {
-                eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                # .CodeText.vec2.i.parse.eval.deparse = eval(parse(text = .CodeText.vec2[i])) |> deparse()
+                # if(CodeEqualsOutput && .CodeText.vec2.i.parse.eval.deparse != "NULL") {
+                if(CodeEqualsOutput && ! .CodeText |> str_detect(r"((^|[^\w_.])str($|[^\w_.]))")) {
+                    cat(" == ")
+                    eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(., "  \n", sep="")
+                    # .CodeText.vec2.i.parse.eval.deparse %>% cat(., "  \n", sep="")
+                } else {
+                    cat("  \n")
+                    eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                    # .CodeText.vec2.i.parse.eval.deparse %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                }
             } else {
                 # eval(parse(text = .CodeText.vec[i]))
+                cat("  \n")
                 eval(parse(text = .CodeText.vec2[i])) |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") # ; cat("\n")
             }
+        } else {
+            cat("  \n")
         }
     }
 }
