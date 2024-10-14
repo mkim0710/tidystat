@@ -102,12 +102,9 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # # Rdev/50_model_formula_evaluation/59_model_evaluation
 # # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
-cat('> ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)', "  \n", sep="") 
-ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)
-cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
-.tmp |> str(max.level = 1, give.attr = FALSE)
-cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
-env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
@@ -204,7 +201,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ?exists
 .objectname
 get(.objectname) %>% str(max.level = 2)
-f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path4write = env1$path$.path4write, execute_code = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
+f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path4write = env1$path$.path4write, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DataSetNames)) {
@@ -216,15 +213,15 @@ f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path4wr
     .path.file = paste0(.path4write,"/",.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))
     cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = ',shQuote(CompressionMethod),', compression = 9) |> system.time()', "  \n", sep="")
     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
-    if(execute_code) {
+    if(Execute) {
         system.time(write_rds( get(.objectname), .path.file, compress = CompressionMethod, compression = 9 ))
         env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
     }
     if(git_add_f) {
         if(object.size(.objectname) > 1e7) {
-            env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, execute_code = execute_code) 
+            env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
         } else {
-            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), execute_code = execute_code)
+            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
         }
     }
     invisible()

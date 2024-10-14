@@ -101,12 +101,9 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 # # Rdev/50_model_formula_evaluation/59_model_evaluation
 # # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
-cat('> ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)', "  \n", sep="") 
-ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)
-cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
-.tmp |> str(max.level = 1, give.attr = FALSE)
-cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
-env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
@@ -710,7 +707,7 @@ for (.objectname in names(MetaData$DataSetNames)) {
     cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = "xz", compression = 9) |> system.time()', "  \n", sep="")
     # system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
-    env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, execute_code = FALSE)
+    env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE)
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

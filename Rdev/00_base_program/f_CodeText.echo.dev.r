@@ -214,10 +214,10 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+# f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE) {
 #     .CodeText |> cat("  \n", sep="")
-#     if(execute_code) {
-#         if(output.deparse_cat) {
+#     if(Execute) {
+#         if(deparse_cat) {
 #             eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
 #         } else {
 #             # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
@@ -229,8 +229,8 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 
 f_CodeText.echo = function(
         .CodeText,
-        execute_code = FALSE,
-        output.deparse_cat = TRUE,
+        Execute = FALSE,
+        deparse_cat = TRUE,
         LinePrefix4CodeText = "\t",
         LinePrefix4Output = "\t## ",
         substitute_ObjectNames = TRUE,
@@ -262,11 +262,11 @@ f_CodeText.echo = function(
         }
     }
     
-    if(.CodeText |> str_detect("[\n;]") && execute_code) {
+    if(.CodeText |> str_detect("[\n;]") && Execute) {
         # warning('The newline character(s) will be substituted by "; "')
         # .CodeText = .CodeText |> str_replace_all('\n', "; ")
         # tryCatch(stop('The newline character(s) is not allowed'), error = function(e) print(e))
-        warning('execute_code not fully implemented for line feed (\\n) or semicolon (;)')
+        warning('Execute not fully implemented for line feed (\\n) or semicolon (;)')
         # return(invisible())
     }
 
@@ -280,8 +280,8 @@ f_CodeText.echo = function(
         # cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
         if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
         
-        if(execute_code) {
-            if(output.deparse_cat) {
+        if(Execute) {
+            if(deparse_cat) {
                 eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
             } else {
                 # eval(parse(text = .CodeText.vec[i]))
@@ -297,16 +297,16 @@ f_CodeText.echo = function(
 .CodeText = "dim(get(.objectname))"
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = FALSE)
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.echo(Execute = TRUE)
+.CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = FALSE)
 # 	dim(get(.objectname))  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 # 	dim(analyticDF_time2event)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 # 	dim(analyticDF_time2event)  
 # 	## c(228L, 12L)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # 	dim(analyticDF_time2event)  
 # 	## [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -315,13 +315,13 @@ f_CodeText.echo = function(
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = FALSE)
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.echo(Execute = TRUE)
+.CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = FALSE)
 # 	str(get(.objectname), max.level = 2, give.attr = F)  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -337,7 +337,7 @@ f_CodeText.echo = function(
 #  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # 	## NULL  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
 # 	## 'data.frame':	228 obs. of  12 variables:
 # 	##  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -358,26 +358,26 @@ f_CodeText.echo = function(
 .CodeText = "dim(get(.objectname)); nrow(get(.objectname))" 
 .CodeText |> f_CodeText.echo()
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.echo(Execute = TRUE)
+.CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText |> f_CodeText.echo()
 #     dim(analyticDF_time2event); nrow(analyticDF_time2event)  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 #     dim(analyticDF_time2event); nrow(analyticDF_time2event)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 #     dim(analyticDF_time2event); nrow(analyticDF_time2event)  
 #     ## c(228L, 12L)  
 #     ## 228L  
 # Warning message:
-# In f_CodeText.echo(.CodeText, execute_code = TRUE) :
-#   execute_code not fully implemented for line feed (\n) or semicolon (;)
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# In f_CodeText.echo(.CodeText, Execute = TRUE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 #     dim(analyticDF_time2event); nrow(analyticDF_time2event)  
 #     ## [1] 228  12
 #     ## [1] 228
 # Warning message:
-# In f_CodeText.echo(.CodeText, execute_code = TRUE, output.deparse_cat = FALSE) :
-#   execute_code not fully implemented for line feed (\n) or semicolon (;)
+# In f_CodeText.echo(.CodeText, Execute = TRUE, deparse_cat = FALSE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## Multi-line .CodeText  ----
 .objectname = "analyticDF_time2event"
@@ -385,30 +385,30 @@ f_CodeText.echo = function(
 nrow(get(.objectname))" 
 .CodeText |> f_CodeText.echo()
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.echo(Execute = TRUE)
+.CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText |> f_CodeText.echo()
 #     dim(analyticDF_time2event)  
 #     nrow(analyticDF_time2event)  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 #     dim(analyticDF_time2event)  
 #     nrow(analyticDF_time2event)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 #     dim(analyticDF_time2event)  
 #     ## c(228L, 12L)  
 #     nrow(analyticDF_time2event)  
 #     ## 228L  
 # Warning message:
-# In f_CodeText.echo(.CodeText, execute_code = TRUE) :
-#   execute_code not fully implemented for line feed (\n) or semicolon (;)
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# In f_CodeText.echo(.CodeText, Execute = TRUE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 #     dim(analyticDF_time2event)  
 #     ## [1] 228  12
 #     nrow(analyticDF_time2event)  
 #     ## [1] 228
 # Warning message:
-# In f_CodeText.echo(.CodeText, execute_code = TRUE, output.deparse_cat = FALSE) :
-#   execute_code not fully implemented for line feed (\n) or semicolon (;)
+# In f_CodeText.echo(.CodeText, Execute = TRUE, deparse_cat = FALSE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
 
 
 

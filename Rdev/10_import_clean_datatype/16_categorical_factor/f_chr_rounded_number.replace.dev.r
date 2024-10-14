@@ -102,12 +102,9 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # # Rdev/50_model_formula_evaluation/59_model_evaluation
 # # Rdev/60_communicate_report_export
 #|________________________________________________________________________________|#  
-cat('> ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)', "  \n", sep="") 
-ls(all.names = TRUE) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)
-cat("> .tmp |> str(max.level = 1, give.attr = FALSE)", "  \n", sep="") 
-.tmp |> str(max.level = 1, give.attr = FALSE)
-cat("> env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)", "  \n", sep="") 
-env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)
+"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+"env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  

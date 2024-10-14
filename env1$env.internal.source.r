@@ -142,8 +142,8 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 # Rdev/00_base_program/f_CodeText.echo.dev.r
 env1$f$f_CodeText.echo = function(
         .CodeText,
-        execute_code = FALSE,
-        output.deparse_cat = TRUE,
+        Execute = FALSE,
+        deparse_cat = TRUE,
         LinePrefix4CodeText = "\t",
         LinePrefix4Output = "\t## ",
         substitute_ObjectNames = TRUE,
@@ -175,11 +175,11 @@ env1$f$f_CodeText.echo = function(
         }
     }
     
-    if(.CodeText |> str_detect("[\n;]") && execute_code) {
+    if(.CodeText |> str_detect("[\n;]") && Execute) {
         # warning('The newline character(s) will be substituted by "; "')
         # .CodeText = .CodeText |> str_replace_all('\n', "; ")
         # tryCatch(stop('The newline character(s) is not allowed'), error = function(e) print(e))
-        warning('execute_code not fully implemented for line feed (\\n) or semicolon (;)')
+        warning('Execute not fully implemented for line feed (\\n) or semicolon (;)')
         # return(invisible())
     }
 
@@ -193,8 +193,8 @@ env1$f$f_CodeText.echo = function(
         # cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
         if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
         
-        if(execute_code) {
-            if(output.deparse_cat) {
+        if(Execute) {
+            if(deparse_cat) {
                 eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
             } else {
                 # eval(parse(text = .CodeText.vec[i]))
@@ -208,9 +208,9 @@ env1$f$f_CodeText.echo = function(
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$f_TerminalFromRCodeText.echo ====  
 # Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
-env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, execute_code = FALSE) {
+env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-    if(execute_code) {
+    if(Execute) {
         .TerminalCodeText |> system(intern=TRUE)
     }
     invisible(        
@@ -485,13 +485,13 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_file.git_lfs_track_add_f ====  
 # Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
-env1$f$f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
+env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
     list_TerminalCodeText = list(
         paste0( "git lfs track ",shQuote(.path.file) )
         , paste0( "git add -f ",shQuote(.path.file) )
     )
     invisible(
-        list_TerminalCodeText |> map(env1$f$f_TerminalFromRCodeText.echo, execute_code)
+        list_TerminalCodeText |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
     )
 }
 

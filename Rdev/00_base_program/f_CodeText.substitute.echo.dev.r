@@ -209,10 +209,10 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+# f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE) {
 #     .CodeText |> cat("  \n", sep="")
-#     if(execute_code) {
-#         if(output.deparse_cat) {
+#     if(Execute) {
+#         if(deparse_cat) {
 #             eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
 #         } else {
 #             # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
@@ -223,8 +223,8 @@ cat("> ",.objectname," |> str(max.level=2, give.attr=FALSE)","  \n", sep=""); st
 
 
 f_CodeText.echo = function(.CodeText,
-                          execute_code = FALSE,
-                          output.deparse_cat = TRUE,
+                          Execute = FALSE,
+                          deparse_cat = TRUE,
                           substitute_ObjectNames = FALSE,
                           ObjectNames4substitute = NULL,
                           print.intermediate = FALSE) {
@@ -254,8 +254,8 @@ f_CodeText.echo = function(.CodeText,
         }
     }
     .CodeText |> cat("  \n", sep="")
-    if(execute_code) {
-        if(output.deparse_cat) {
+    if(Execute) {
+        if(deparse_cat) {
             eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
         } else {
             # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
@@ -270,17 +270,17 @@ f_CodeText.echo = function(.CodeText,
 .CodeText = "dim(get(.objectname))" 
 .CodeText |> f_CodeText.echo()
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.echo(Execute = TRUE)
+.CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText = "dim(get(.objectname))" 
 # > .CodeText |> f_CodeText.echo()
 # dim(get(.objectname))  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 # dim(analyticDF_time2event)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 # dim(get(.objectname))  
 # c(228L, 12L)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # dim(get(.objectname))  
 # [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -289,13 +289,13 @@ f_CodeText.echo = function(.CodeText,
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 .CodeText |> f_CodeText.echo()
 .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.echo(Execute = TRUE)
+.CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText |> f_CodeText.echo()
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # > .CodeText |> f_CodeText.echo(substitute_ObjectNames = TRUE)
 # str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -311,7 +311,7 @@ f_CodeText.echo = function(.CodeText,
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # NULL  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -338,7 +338,7 @@ f_CodeText.echo = function(.CodeText,
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, Execute = FALSE, deparse_cat = TRUE) {
     # Parse the code into an expression
     library(rlang)
     expr <- parse_expr(.CodeText)
@@ -353,8 +353,8 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
     cat(.CodeText_display, "\n")
     
     # Execute the original code if requested
-    if (execute_code) {
-        if (output.deparse_cat) {
+    if (Execute) {
+        if (deparse_cat) {
             result <- eval(parse_expr(.CodeText))
             cat(deparse(result), "\n")
         } else {
@@ -365,14 +365,14 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, Execute = FALSE, deparse_cat = TRUE) {
     # Replace get(.objectname) with the actual .object name in the code to be displayed
     .CodeText_display <- gsub("get\\(\\.objectname\\)", .objectname, .CodeText)
     cat(.CodeText_display, "\n")
     
     # Execute the original code if requested
-    if (execute_code) {
-        if (output.deparse_cat) {
+    if (Execute) {
+        if (deparse_cat) {
             result <- eval(parse(text = .CodeText))
             cat(deparse(result), "\n")
         } else {
@@ -383,7 +383,7 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, Execute = FALSE, deparse_cat = TRUE) {
     # Ensure .objectname is defined in your environment
     if (!exists(".objectname", envir = parent.frame())) {
         stop("'.objectname' is not defined.")
@@ -438,8 +438,8 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
     cat(.CodeText_display, "\n")
     
     # Execute the original code if requested
-    if (execute_code) {
-        if (output.deparse_cat) {
+    if (Execute) {
+        if (deparse_cat) {
             result <- eval(parse(text = .CodeText))
             cat(deparse(result), "\n")
         } else {
@@ -451,7 +451,7 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
 
 
 ## https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643 ----
-f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE) {
+f_CodeText.substitute.echo <- function(.CodeText, Execute = FALSE, deparse_cat = TRUE) {
     # Get variable names and their values from the parent frame
     var_names <- ls(envir = parent.frame())
     var_values <- mget(var_names, envir = parent.frame())
@@ -518,8 +518,8 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
     cat(.CodeText_display, "\n")
     
     # Execute the original code if requested
-    if (execute_code) {
-        if (output.deparse_cat) {
+    if (Execute) {
+        if (deparse_cat) {
             result <- eval(parse(text = .CodeText), envir = parent.frame())
             cat(deparse(result), "\n")
         } else {
@@ -533,8 +533,8 @@ f_CodeText.substitute.echo <- function(.CodeText, execute_code = FALSE, output.d
 ## https://gemini.google.com/app/efcecda0973ba3f4 ----
 f_CodeText.substitute.echo <- function(.CodeText, 
                           .objectname = NULL, 
-                          execute_code = FALSE, 
-                          output.deparse_cat = TRUE) { # Keep original naming
+                          Execute = FALSE, 
+                          deparse_cat = TRUE) { # Keep original naming
 
   # Check if .objectname is defined in the parent environment
   if (is.null(.objectname) && exists(".objectname", envir = parent.frame())) {
@@ -549,10 +549,10 @@ f_CodeText.substitute.echo <- function(.CodeText,
 
   cat(.CodeText, "\n")
 
-  if (execute_code) {
+  if (Execute) {
     result <- eval(parse(text = .CodeText))
 
-    if (output.deparse_cat) { 
+    if (deparse_cat) { 
       cat(deparse(result), "\n")
     } else {
       print(result)
@@ -562,8 +562,8 @@ f_CodeText.substitute.echo <- function(.CodeText,
 
 ## https://gemini.google.com/app/efcecda0973ba3f4 ----
 f_CodeText.substitute.echo <- function(.CodeText,
-                                      execute_code = FALSE,
-                                      output.deparse_cat = TRUE,
+                                      Execute = FALSE,
+                                      deparse_cat = TRUE,
                                       ObjectNames4substitute = NULL,
                                       print.intermediate = FALSE) {
     
@@ -590,10 +590,10 @@ f_CodeText.substitute.echo <- function(.CodeText,
     
     cat(.CodeText, "\n")
     
-    if (execute_code) {
+    if (Execute) {
         result <- eval(parse(text = .CodeText))
         
-        if (output.deparse_cat) {
+        if (deparse_cat) {
             cat(deparse(result), "\n")
         } else {
             print(result)
@@ -610,15 +610,15 @@ f_CodeText.substitute.echo <- function(.CodeText,
 .CodeText = "dim(get(.objectname))" 
 .CodeText |> f_CodeText.substitute.echo(print.intermediate = TRUE)
 .CodeText |> f_CodeText.substitute.echo()
-.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.substitute.echo(Execute = TRUE)
+.CodeText |> f_CodeText.substitute.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText = "dim(get(.objectname))" 
 # > .CodeText |> f_CodeText.echo()
 # dim(get(.objectname))  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 # dim(get(.objectname))  
 # c(228L, 12L)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # dim(get(.objectname))  
 # [1] 228  12
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -626,12 +626,12 @@ f_CodeText.substitute.echo <- function(.CodeText,
 .objectname = "analyticDF_time2event"
 .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 .CodeText |> f_CodeText.substitute.echo()
-.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE)
-.CodeText |> f_CodeText.substitute.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+.CodeText |> f_CodeText.substitute.echo(Execute = TRUE)
+.CodeText |> f_CodeText.substitute.echo(Execute = TRUE, deparse_cat = FALSE)
 # > .CodeText = "str(get(.objectname), max.level = 2, give.attr = F)"
 # > .CodeText |> f_CodeText.echo()
 # str(get(.objectname), max.level = 2, give.attr = F)  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -647,7 +647,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
 #  $ Group          : chr  "Male" "Male" "Male" "Male" ...
 #  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
 # NULL  
-# > .CodeText |> f_CodeText.echo(execute_code = TRUE, output.deparse_cat = FALSE)
+# > .CodeText |> f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
 # str(get(.objectname), max.level = 2, give.attr = F)  
 # 'data.frame':	228 obs. of  12 variables:
 #  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
@@ -669,7 +669,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## \$f_CodeText.echo ====
 # Rdev/00_base_program/f_CodeText.echo.dev.r
-env1$f$f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, print.intermediate = FALSE) {
+env1$f$f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, print.intermediate = FALSE) {
 
     
     if(substitute_ObjectNames) {
@@ -697,8 +697,8 @@ env1$f$f_CodeText.echo = function(.CodeText, execute_code = FALSE, output.depars
         }
     }
     .CodeText |> cat("  \n", sep="")
-    if(execute_code) {
-        if(output.deparse_cat) {
+    if(Execute) {
+        if(deparse_cat) {
             eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
         } else {
             # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")

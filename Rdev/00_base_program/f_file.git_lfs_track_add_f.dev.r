@@ -11,7 +11,7 @@
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-# f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
+# f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
 #     list_TerminalCodeText = list(
 #         paste0( "git lfs track ",shQuote(.path.file) )
 #         , paste0( "git add -f ",shQuote(.path.file) )
@@ -19,7 +19,7 @@
 # 
 #     list_TerminalCodeText |> 
 #         map(function(.TerminalCodeText) .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep=""))
-#     if(execute_code) {
+#     if(Execute) {
 #         list_TerminalCodeText |> 
 #             map(function(.TerminalCodeText) .TerminalCodeText |> system(intern=TRUE))
 #     } 
@@ -30,9 +30,9 @@
 
 
 
-# f_TerminalFromRCodeText.echo = function(.TerminalCodeText, execute_code = FALSE) {
+# f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALSE) {
 #     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-#     if(execute_code) {
+#     if(Execute) {
 #         .TerminalCodeText |> system(intern=TRUE)
 #     }
 #     invisible(        
@@ -40,13 +40,13 @@
 #     )
 # }
 
-# f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
+# f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
 #     list_TerminalCodeText = list(
 #         paste0( "git lfs track ",shQuote(.path.file) )
 #         , paste0( "git add -f ",shQuote(.path.file) )
 #     )
 #     invisible(        
-#         list_TerminalCodeText |> map(f_TerminalFromRCodeText.echo, execute_code)
+#         list_TerminalCodeText |> map(f_TerminalFromRCodeText.echo, Execute)
 #     )
 # }
 
@@ -57,9 +57,9 @@
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_TerminalFromRCodeText.echo ====  
-env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, execute_code = FALSE) {
+env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-    if(execute_code) {
+    if(Execute) {
         .TerminalCodeText |> system(intern=TRUE)
     }
     invisible(        
@@ -70,21 +70,21 @@ env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, execute_code =
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_file.git_lfs_track_add_f ====  
-env1$f$f_file.git_lfs_track_add_f = function(.path.file, execute_code = FALSE) {
+env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
     list_TerminalCodeText = list(
         paste0( "git lfs track ",shQuote(.path.file) )
         , paste0( "git add -f ",shQuote(.path.file) )
     )
     invisible(
-        list_TerminalCodeText |> map(env1$f$f_TerminalFromRCodeText.echo, execute_code)
+        list_TerminalCodeText |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
     )
 }
 
 # ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## \$f_file.git_add_f ====  
-# env1$f$f_file.git_add_f = function(.path.file, execute_code = FALSE) {
+# env1$f$f_file.git_add_f = function(.path.file, Execute = FALSE) {
 #     invisible(
-#         paste0( "git add -f ",shQuote(.path.file) ) |> env1$f$f_TerminalFromRCodeText.echo(execute_code = execute_code)
+#         paste0( "git add -f ",shQuote(.path.file) ) |> env1$f$f_TerminalFromRCodeText.echo(Execute = Execute)
 #     )
 # }
 
