@@ -546,7 +546,7 @@ cat(" dim(",DataSetName2,") == ",deparse(dim(get(DataSetName2))),"  \n", sep="")
 cat(" dim(",DataSetName2,".NA",".rmAllNA",") == ",deparse(dim(get(DataSetName2.NA.rmAllNA))),"  \n", sep="") 
 DataSet.Date.NA.rmAllNA = get(DataSetName2.NA.rmAllNA)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-cat(" > ",DataSetName2,".NA"," |> env1$f$f_df.NotNA_p_df()","  \n", sep=""); env1$f$f_df.NotNA_p_df(get(DataSetName2.NA))
+"get(DataSetName2.NA) |> env1$f$f_df.NotNA_p_df()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ```
   
   
