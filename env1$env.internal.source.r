@@ -149,8 +149,8 @@ env1$f$f_CodeText.echo = function(
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
         CodeEqualsOutput = TRUE,
-        print.intermediate = FALSE) {
-    
+        VERBOSE = getOption("verbose")) {
+    if(is.null(VERBOSE)) VERBOSE = FALSE
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -165,16 +165,15 @@ env1$f$f_CodeText.echo = function(
         
         # Sort .object names by length in descending order
         ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
-        if(print.intermediate) print(ObjectNames4substitute)
+        if(VERBOSE) cat("<VERBOSE> ObjectNames4substitute == ", deparse(ObjectNames4substitute), "  \n", sep="") 
         
         # Substitute each .object name
         for (ObjectName in ObjectNames4substitute) {
             # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
-            if(print.intermediate) print(ObjectName)
             .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
             .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
-            if(print.intermediate) print(.CodeText)
         }
+        if(VERBOSE) cat("<VERBOSE> .CodeText == ", deparse(.CodeText), "  \n", sep="") 
     }
     
     if(.CodeText |> str_detect("[\n;]") && Execute) {
@@ -185,40 +184,61 @@ env1$f$f_CodeText.echo = function(
         # return(invisible())
     }
 
-    .CodeText.vec = .CodeText |> strsplit("\n") |> unlist() |> trimws()
-    .CodeText.vec2 = .CodeText.vec |> strsplit(";") |> unlist() |> trimws()
+    # Split .CodeText by newline character, considering semicolons within curly brackets
+    # .CodeText.split_LF = .CodeText |> strsplit("\n") |> unlist() |> trimws()
+    .CodeText.split_LF <- .CodeText |> strsplit("\n(?=[^{}]*(?:{|$))", perl = TRUE) |> unlist() |> trimws()
+    if(VERBOSE) cat("<VERBOSE> .CodeText.split_LF == ", deparse(.CodeText.split_LF), "  \n", sep="") 
+    # PatternToMatch(?=PositiveLookahead)
+    # \n(?=[^{}]*(?:{|$)) 
+    # - \n: splits the code by newline characters (\n) 
+    # - (?=PositiveLookahead): only if they are followed by a sequence of characters that
+    # - [^{}]*: does not contain any curly braces ([^{}]*) 
+    # - (?:{|$): and then either an opening curly brace ({) or the end of the string ($). 
+    # This ensures that newline characters within curly braces are ignored.
     
-    # .CodeText.vec.addPrefix = paste0(LinePrefix4CodeText, .CodeText.vec)
-    .CodeText.vec.addPrefix = .CodeText.vec %>% str_replace_all("^", LinePrefix4CodeText)
-    
+    # Split .CodeText by semicolon outside of curly brackets
+    # .CodeText.split_LF.split_semicolon = .CodeText.split_LF |> strsplit(";") |> unlist() |> trimws()
+    .CodeText.split_LF.split_semicolon <- .CodeText.split_LF |> strsplit(";(?![^{]*})", perl = TRUE) |> unlist() |> trimws()
+    if(VERBOSE) cat("<VERBOSE> .CodeText.split_LF.split_semicolon == ", deparse(.CodeText.split_LF.split_semicolon), "  \n", sep="") 
+    # PatternToMatch(?!NegativeLookahead)
+    # ;(?![^{}]*}) 
+    # ;: splits the code by semicolons (;) 
+    # (?!NegativeLookahead): only if they are not followed by 
+    # }: a closing curly brace (}) 
+    # [^{]*: that is preceded by a sequence of characters without any opening curly braces ([^{]*). This ensures that semicolons within curly braces are ignored.
 
-    
-    for (i in 1:length(.CodeText.vec2)) {
-        # cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
-        # if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
-        if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], sep="")
+    # .CodeText.split_LF.addPrefix = paste0(LinePrefix4CodeText, .CodeText.split_LF)
+    .CodeText.split_LF.addPrefix = .CodeText.split_LF %>% str_replace_all("^", LinePrefix4CodeText)
+    if(VERBOSE) cat("<VERBOSE> .CodeText.split_LF.addPrefix == ", deparse(.CodeText.split_LF.addPrefix), "  \n", sep="") 
+
+    for (i in 1:length(.CodeText.split_LF.split_semicolon)) {
+        if(VERBOSE) cat("<VERBOSE> i == ", deparse(i), "  \n", sep="") 
+        # cat(.CodeText.split_LF.addPrefix[i], "  \n", sep="")
+        # if (i <= length(.CodeText.split_LF.addPrefix)) cat(.CodeText.split_LF.addPrefix[i], "  \n", sep="")
+        if (i <= length(.CodeText.split_LF.addPrefix)) cat(.CodeText.split_LF.addPrefix[i], sep="")
         
         if(Execute) {
             if(deparse_cat) {
-                # .CodeText.vec2.i.parse.eval.deparse = eval(parse(text = .CodeText.vec2[i])) |> deparse()
-                # if(CodeEqualsOutput && .CodeText.vec2.i.parse.eval.deparse != "NULL") {
-                if(CodeEqualsOutput && ! .CodeText |> str_detect(r"((^|[^\w_.])str($|[^\w_.]))")) {
+                # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse = eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse()
+                # if(CodeEqualsOutput && .CodeText.split_LF.split_semicolon.i.parse.eval.deparse != "NULL") {
+                if(CodeEqualsOutput && identical(.CodeText.split_LF, .CodeText.split_LF.split_semicolon) && ! .CodeText.split_LF.split_semicolon[i] |> str_detect(r"((^|[^\w_.])str($|[^\w_.]))")) {
                     cat(" == ")
-                    eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(., "  \n", sep="")
-                    # .CodeText.vec2.i.parse.eval.deparse %>% cat(., "  \n", sep="")
+                    eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(sep="")
+                    # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse %>% cat(., "  \n", sep="")
                 } else {
                     cat("  \n")
-                    eval(parse(text = .CodeText.vec2[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
-                    # .CodeText.vec2.i.parse.eval.deparse %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                    # eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                    # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                    eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(LinePrefix4Output, ., sep="")
                 }
             } else {
-                # eval(parse(text = .CodeText.vec[i]))
+                # eval(parse(text = .CodeText.split_LF[i]))
                 cat("  \n")
-                eval(parse(text = .CodeText.vec2[i])) |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") # ; cat("\n")
+                eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") 
             }
-        } else {
-            cat("  \n")
-        }
+        } 
+        # cat("  \n")
+        if(deparse_cat) cat("  \n")
     }
 }
 
