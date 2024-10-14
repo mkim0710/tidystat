@@ -693,6 +693,22 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 }
 
 
+
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## \$ f_list.str_by_element =  ----  
+# Rdev/00_base_program/f_list.str_by_element.dev.r
+env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, tabInsteadOfSpace = FALSE, width = getOption("width") - 4, strict.width = strO$strict.width, ...) {
+    cat("# List of ",length(ls),"  \n", sep="")
+    for(i in names(ls)) {
+        cat("# $ ",i,"\t\t:", sep="")
+        if (tabInsteadOfSpace) {
+            str(ls[[i]], max.level = max.level-1, give.attr = give.attr, width = width - 4, ...) |> capture.output() |> str_replace_all(" {4,}","\t") |> cat(sep="\n##") # ; cat("\n")
+        } else {
+            str(ls[[i]], max.level = max.level-1, give.attr = give.attr, width = width - 4, ...) |> capture.output() |> cat(sep="\n##") # ; cat("\n")
+        }
+        cat("# ________________________________________________________________________    \n")
+    }
+}
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_vec1_vec2.setdiff =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
