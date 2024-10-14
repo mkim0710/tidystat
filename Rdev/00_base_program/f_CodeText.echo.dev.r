@@ -240,8 +240,8 @@ env1$f$f_CodeText.echo = function(
         substitute_ObjectNames = TRUE,
         ObjectNames4substitute = NULL,
         CodeEqualsOutput = TRUE,
-        print.intermediate = FALSE) {
-    
+        VERBOSE = getOption("verbose")) {
+    if(is.null(VERBOSE)) VERBOSE = FALSE
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -256,16 +256,15 @@ env1$f$f_CodeText.echo = function(
         
         # Sort .object names by length in descending order
         ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
-        if(print.intermediate) print(ObjectNames4substitute)
+        if(VERBOSE) cat("<VERBOSE> ObjectNames4substitute == ", deparse(ObjectNames4substitute), "  \n", sep="") 
         
         # Substitute each .object name
         for (ObjectName in ObjectNames4substitute) {
             # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
-            if(print.intermediate) print(ObjectName)
             .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
             .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
-            if(print.intermediate) print(.CodeText)
         }
+        if(VERBOSE) cat("<VERBOSE> .CodeText == ", deparse(.CodeText), "  \n", sep="") 
     }
     
     if(.CodeText |> str_detect("[\n;]") && Execute) {
@@ -277,8 +276,9 @@ env1$f$f_CodeText.echo = function(
     }
 
     # Split .CodeText by newline character, considering semicolons within curly brackets
-    # .CodeText.vec = .CodeText |> strsplit("\n") |> unlist() |> trimws()
-    .CodeText.vec <- .CodeText |> strsplit("\n(?=[^{}]*(?:{|$))", perl = TRUE) |> unlist() |> trimws()
+    # .CodeText.split_LF = .CodeText |> strsplit("\n") |> unlist() |> trimws()
+    .CodeText.split_LF <- .CodeText |> strsplit("\n(?=[^{}]*(?:{|$))", perl = TRUE) |> unlist() |> trimws()
+    if(VERBOSE) cat("<VERBOSE> .CodeText.split_LF == ", deparse(.CodeText.split_LF), "  \n", sep="") 
     # PatternToMatch(?=PositiveLookahead)
     # \n(?=[^{}]*(?:{|$)) 
     # - \n: splits the code by newline characters (\n) 
@@ -288,49 +288,55 @@ env1$f$f_CodeText.echo = function(
     # This ensures that newline characters within curly braces are ignored.
     
     # Split .CodeText by semicolon outside of curly brackets
-    # .CodeText.vec3 = .CodeText.vec |> strsplit(";") |> unlist() |> trimws()
-    .CodeText.vec3 <- .CodeText.vec |> strsplit(";(?![^{}]*})", perl = TRUE) |> unlist() |> trimws()
+    # .CodeText.split_LF.split_semicolon = .CodeText.split_LF |> strsplit(";") |> unlist() |> trimws()
+    .CodeText.split_LF.split_semicolon <- .CodeText.split_LF |> strsplit(";(?![^{]*})", perl = TRUE) |> unlist() |> trimws()
+    if(VERBOSE) cat("<VERBOSE> .CodeText.split_LF.split_semicolon == ", deparse(.CodeText.split_LF.split_semicolon), "  \n", sep="") 
     # PatternToMatch(?!NegativeLookahead)
     # ;(?![^{}]*}) 
     # ;: splits the code by semicolons (;) 
     # (?!NegativeLookahead): only if they are not followed by 
     # }: a closing curly brace (}) 
-    # [^{}]*: that is preceded by a sequence of characters without any curly braces ([^{}]*). This ensures that semicolons within curly braces are ignored.
+    # [^{]*: that is preceded by a sequence of characters without any opening curly braces ([^{]*). This ensures that semicolons within curly braces are ignored.
 
-    # .CodeText.vec.addPrefix = paste0(LinePrefix4CodeText, .CodeText.vec)
-    .CodeText.vec.addPrefix = .CodeText.vec %>% str_replace_all("^", LinePrefix4CodeText)
+    # .CodeText.split_LF.addPrefix = paste0(LinePrefix4CodeText, .CodeText.split_LF)
+    .CodeText.split_LF.addPrefix = .CodeText.split_LF %>% str_replace_all("^", LinePrefix4CodeText)
+    if(VERBOSE) cat("<VERBOSE> .CodeText.split_LF.addPrefix == ", deparse(.CodeText.split_LF.addPrefix), "  \n", sep="") 
 
-    for (i in 1:length(.CodeText.vec3)) {
-        # cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
-        # if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
-        if (i <= length(.CodeText.vec.addPrefix)) cat(.CodeText.vec.addPrefix[i], sep="")
+    for (i in 1:length(.CodeText.split_LF.split_semicolon)) {
+        if(VERBOSE) cat("<VERBOSE> i == ", deparse(i), "  \n", sep="") 
+        # cat(.CodeText.split_LF.addPrefix[i], "  \n", sep="")
+        # if (i <= length(.CodeText.split_LF.addPrefix)) cat(.CodeText.split_LF.addPrefix[i], "  \n", sep="")
+        if (i <= length(.CodeText.split_LF.addPrefix)) cat(.CodeText.split_LF.addPrefix[i], sep="")
         
         if(Execute) {
             if(deparse_cat) {
-                # .CodeText.vec3.i.parse.eval.deparse = eval(parse(text = .CodeText.vec3[i])) |> deparse()
-                # if(CodeEqualsOutput && .CodeText.vec3.i.parse.eval.deparse != "NULL") {
-                if(CodeEqualsOutput && ! .CodeText |> str_detect(r"((^|[^\w_.])str($|[^\w_.]))")) {
+                # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse = eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse()
+                # if(CodeEqualsOutput && .CodeText.split_LF.split_semicolon.i.parse.eval.deparse != "NULL") {
+                if(CodeEqualsOutput && identical(.CodeText.split_LF, .CodeText.split_LF.split_semicolon) && ! .CodeText.split_LF.split_semicolon[i] |> str_detect(r"((^|[^\w_.])str($|[^\w_.]))")) {
                     cat(" == ")
-                    eval(parse(text = .CodeText.vec3[i])) |> deparse() %>% cat(., "  \n", sep="")
-                    # .CodeText.vec3.i.parse.eval.deparse %>% cat(., "  \n", sep="")
+                    eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(sep="")
+                    # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse %>% cat(., "  \n", sep="")
                 } else {
                     cat("  \n")
-                    eval(parse(text = .CodeText.vec3[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
-                    # .CodeText.vec3.i.parse.eval.deparse %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                    # eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                    # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse %>% cat(LinePrefix4Output, ., "  \n", sep="")
+                    eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(LinePrefix4Output, ., sep="")
                 }
             } else {
-                # eval(parse(text = .CodeText.vec[i]))
+                # eval(parse(text = .CodeText.split_LF[i]))
                 cat("  \n")
-                eval(parse(text = .CodeText.vec3[i])) |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") # ; cat("\n")
+                eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> capture.output() %>% paste0(LinePrefix4Output, .) |> cat(sep="\n") 
             }
-        } else {
-            cat("  \n")
-        }
+        } 
+        # cat("  \n")
+        if(deparse_cat) cat("  \n")
     }
 }
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
+options(verbose = TRUE)
+options(verbose = FALSE)
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))"
 .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
@@ -397,41 +403,28 @@ env1$f$f_CodeText.echo = function(
 .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
 .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE)
 .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
-# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
-# 	str(get(.objectname), max.level = 2, give.attr = F)  
+# > .CodeText |> env1$f$f_CodeText.echo()
+# 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
+#   
 # > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
-# 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
+# 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
+#   
 # > .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE)
-# 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# 'data.frame':	228 obs. of  12 variables:
-#  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
-#  $ time           : num  306 455 1010 210 883 ...
-#  $ age            : num  74 68 56 57 60 74 68 71 53 61 ...
-#  $ sex            : num  1 1 1 1 1 1 2 2 1 1 ...
-#  $ ph.ecog        : num  1 0 0 1 0 1 2 2 1 2 ...
-#  $ ph.karno       : num  90 90 90 90 100 50 70 60 70 70 ...
-#  $ pat.karno      : num  100 90 90 60 90 80 60 80 80 70 ...
-#  $ meal.cal       : num  1175 1225 NA 1150 NA ...
-#  $ wt.loss        : num  NA 15 15 11 0 0 10 1 16 34 ...
-#  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
-#  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-#  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-# 	## NULL  
+# 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
+# 	## c(228L, 12L)  
+#   
+# 	## 228L  
+# Warning message:
+# In env1$f$f_CodeText.echo(.CodeText, Execute = TRUE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
 # > .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
-# 	str(analyticDF_time2event, max.level = 2, give.attr = F)  
-# 	## 'data.frame':	228 obs. of  12 variables:
-# 	##  $ inst           : num  3 3 3 5 1 12 7 11 1 7 ...
-# 	##  $ time           : num  306 455 1010 210 883 ...
-# 	##  $ age            : num  74 68 56 57 60 74 68 71 53 61 ...
-# 	##  $ sex            : num  1 1 1 1 1 1 2 2 1 1 ...
-# 	##  $ ph.ecog        : num  1 0 0 1 0 1 2 2 1 2 ...
-# 	##  $ ph.karno       : num  90 90 90 90 100 50 70 60 70 70 ...
-# 	##  $ pat.karno      : num  100 90 90 60 90 80 60 80 80 70 ...
-# 	##  $ meal.cal       : num  1175 1225 NA 1150 NA ...
-# 	##  $ wt.loss        : num  NA 15 15 11 0 0 10 1 16 34 ...
-# 	##  $ event          : logi  TRUE TRUE FALSE TRUE TRUE FALSE ...
-# 	##  $ Group          : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 2 1 1 2 2 ...
-# 	##  $ StudyPopulation: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+# 	dim(analyticDF_time2event); nrow(analyticDF_time2event)  
+# 	## [1] 228  12
+#   
+# 	## [1] 228
+# Warning message:
+# In env1$f$f_CodeText.echo(.CodeText, Execute = TRUE, deparse_cat = FALSE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## Multi-line .CodeText  ----
 .objectname = "analyticDF_time2event"
@@ -489,7 +482,21 @@ DataSetName2 = "analyticDF_time2event"
 .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
 .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE)
 .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
-
+# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+# 	.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
+# > .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = TRUE)
+# 	.vec_nlevel_lt20.value_number.unique = analyticDF_time2event %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
+# > .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE)
+# 	.vec_nlevel_lt20.value_number.unique = analyticDF_time2event %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort == c("0", "1", "10", "100", "11", "12", "13", "15", "16", "2", "21", "22", "26", "3", "30", "32", "33", "4", "40", "5", "50", "6", "60", "7", "70", "80", "90")  
+# Warning message:
+# In env1$f$f_CodeText.echo(.CodeText, Execute = TRUE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
+# > .CodeText |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE)
+# 	.vec_nlevel_lt20.value_number.unique = analyticDF_time2event %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort  
+# 	## 
+# Warning message:
+# In env1$f$f_CodeText.echo(.CodeText, Execute = TRUE, deparse_cat = FALSE) :
+#   Execute not fully implemented for line feed (\n) or semicolon (;)
 
 
 
@@ -512,7 +519,7 @@ DataSetName2 = "analyticDF_time2event"
 #     substitute_ObjectNames = TRUE,
 #     ObjectNames4substitute = NULL,
 #     CodeEqualsOutput = TRUE,
-#     print.intermediate = FALSE
+#     VERBOSE = FALSE
 # ) {
 #     # Load necessary packages
 #     library(rlang)
@@ -533,7 +540,7 @@ DataSetName2 = "analyticDF_time2event"
 #                 names()
 #         }
 #         
-#         if (print.intermediate) print(ObjectNames4substitute)
+#         if (VERBOSE) print(ObjectNames4substitute)
 #     }
 #     
 #     # Parse the code into expressions
