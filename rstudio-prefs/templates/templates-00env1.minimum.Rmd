@@ -530,7 +530,7 @@ options(width=120)
   
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 if(exists(paste0(DataSetName,".Date"))) DataSetName2 = paste0(DataSetName,".Date") else DataSetName2 = DataSetName
-'.vec_nlevel_lt20.value_number.unique = get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
+.vec_nlevel_lt20.value_number.unique = 'get(DataSetName2) %>% map(function (vec) {vec.unique = unique(vec); if(length(vec.unique) < 20) return(vec.unique) else return(NULL) }) %>% unlist %>% unique %>% str_subset("^[0-9]+$") %>% sort' |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = TRUE, LinePrefix4CodeText = "> ", LinePrefix4Output = "", CodeEqualsOutput = FALSE)
 .vec_nlevel_lt20.value_number.unique %>% str
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
