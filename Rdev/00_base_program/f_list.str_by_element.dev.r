@@ -24,6 +24,9 @@
 # }
 # ```
 
+
+
+## env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----
 env1 |> as.list() |> str(max.level = 2, give.attr = FALSE)  
 env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, width = 80)  
 env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "cut")  
@@ -571,6 +574,8 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
 }
 
 
+
+### env1 |> as.list() |> env1$f$f_list.str_by_element() ----
 env1 |> as.list() |> env1$f$f_list.str_by_element()
 # List of 5  
 # $ env.internal		:<environment: 0x55fff4433250> 
@@ -653,4 +658,14 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ list_path_hierarchy:List of 6
 # ________________________________________________________________________ 
 
+
+
+### "env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") ----
+"env1 |> as.list() |> env1$f$f_list.str_by_element()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+
+
+
+
+
+#@@ END ----
 
