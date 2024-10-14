@@ -142,7 +142,7 @@ cat("> ",.objectname," |> rownames_to_column() |> tail() |> as_tibble()","  \n",
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")") ----
 .objectname = "analyticDF_time2event"
-
+varname = "NIHID"
 .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")"); cat(.CodeText);cat(" == ");dput(eval(parse(text=.CodeText)))
 cat("> ",.objectname,"$",varname," |> n_distinct()"," == ",n_distinct(get(.objectname)[[varname]]), sep="")
 # > .CodeText = paste0("n_distinct(get(.objectname)$", varname, ")"); cat(.CodeText);cat(" == ");dput(eval(parse(text=.CodeText)))
@@ -237,15 +237,6 @@ f_CodeText.echo = function(
         ObjectNames4substitute = NULL,
         print.intermediate = FALSE) {
     
-    if(.CodeText |> str_detect('\n')) {
-        # warning('The newline character(s) will be substituted by "; "')
-        # .CodeText = .CodeText |> str_replace_all('\n', "; ")
-        stop('The newline character(s) is not allowed')
-    }
-    if(.CodeText |> str_detect(';')) {
-        stop('The semicolon character is not allowed')
-    }
-    
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
         parent_env <- parent.frame()
@@ -271,16 +262,32 @@ f_CodeText.echo = function(
         }
     }
     
-    # .CodeText.addPrefix = .CodeText |> strsplit("\n") |> unlist() |> paste(LinePrefix4CodeText, ., sep="")
-    .CodeText |> cat("  \n", sep="")
-    if(execute_code) {
-        if(output.deparse_cat) {
-            eval(parse(text = .CodeText)) |> deparse() |> cat("  \n", sep="")
-        } else {
-            # eval(parse(text = .CodeText)) |> capture.output() |> cat(sep="\n"); cat("\n")
-            eval(parse(text = .CodeText))
+    if(.CodeText |> str_detect("[\n;]")) {
+        # warning('The newline character(s) will be substituted by "; "')
+        # .CodeText = .CodeText |> str_replace_all('\n', "; ")
+        # tryCatch(stop('The newline character(s) is not allowed'), error = function(e) print(e))
+        warning('execute_code is not fully implmented for the newline character (\\n) or the the semicolon character (;)')
+        # return(invisible())
+    }
+
+    .CodeText.vec = .CodeText |> strsplit("[\n;]") |> unlist() |> trimws()
+    
+    .CodeText.vec.addPrefix = paste0(LinePrefix4CodeText, .CodeText.vec)
+    
+    for (i in 1:length(.CodeText.vec)) {
+        cat(.CodeText.vec.addPrefix[i], "  \n", sep="")
+        
+        if(execute_code) {
+            if(output.deparse_cat) {
+                eval(parse(text = .CodeText.vec[i])) |> deparse() |> cat("  \n", sep="")
+            } else {
+                # eval(parse(text = .CodeText.vec[i])) |> capture.output() |> cat(sep="\n"); cat("\n")
+                eval(parse(text = .CodeText.vec[i]))
+            }
         }
     }
+    
+
 }
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
