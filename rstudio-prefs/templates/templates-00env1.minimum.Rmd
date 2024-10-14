@@ -567,8 +567,6 @@ DataSetName2.NA.rmAllNA.fct = paste0(DataSetName2,".NA",".rmAllNA",".fct");
 "assign( DataSetName2.NA.rmAllNA.fct, get(DataSetName2.NA.rmAllNA) |> mutate_if(is.character, as.factor) , envir = .GlobalEnv)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 cat("   #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n"); 
 "get(DataSetName2.NA.rmAllNA.fct) |> select_if(is.factor) |> summary()" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "") |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); cat(" > ",DataSetName2.NA.rmAllNA," |> select_if(is.factor))"," |> summary()","  \n", sep=""); get(DataSetName2.NA.rmAllNA) |> select_if(is.character) |> map_df(as.factor) |> summary() #----  
-# Sys.time() - .t0
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.dichotomous2logical.dev.r
 ```
   
@@ -650,29 +648,20 @@ options(width=120)
   
 ```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
 if(exists("MetaData")) {
-    "> MetaData |> str(max.level = 2, give.attr = FALSE)" |> cat("  \n", sep="")
-    MetaData |> str(max.level = 2, give.attr = FALSE)
+    "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # "> MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> cat("  \n", sep="")
-    # MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)
+    # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # "> MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)" |> cat("  \n", sep="")
-    # MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)
+    # "MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    "> MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> cat("  \n", sep="")
-    MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)
+    "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    "> MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)" |> cat("  \n", sep="")
-    MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)
+    "MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    "> MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> cat("  \n", sep="")
-    MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)
+    "MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # "> MetaData |> str()" |> cat("  \n", sep="")
-    # MetaData |> str()
-    "> all.equal(.MetaData0, MetaData)" |> cat("  \n", sep="")
-    all.equal(.MetaData0, MetaData)
+    
+    "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     if(!identical(.MetaData0, MetaData)) {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
         .path.file = env1$path$CurrentSource.path.filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)}
