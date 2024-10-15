@@ -123,8 +123,15 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
     
     # \% Update the templates of RStudio (default.R, notebook.Rmd)  ~~~~~~~~~~~~
-    env1$env.internal$f_url_destfile.DownloadIfDifferent("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = file.path(.path4APPDATA_RStudio, "templates", "default.R"))
-    env1$env.internal$f_url_destfile.DownloadIfDifferent("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd"))
+    for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
+        if (filename.ext == "templates-00env1.minimum.Rmd") {
+            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", "notebook.Rmd")
+        } else {
+            .file.copy.to = file.path(.path4APPDATA_RStudio, "templates", .sourcename)
+        }
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.sourcename)
+        env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+    }
     # for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
     #     if (filename.ext %in% dir()) {
     #         env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = filename.ext, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
@@ -133,8 +140,11 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     # }
     
     # \% Update the .Rprofile, f.updateTemplates.exe.r, RStudioServer-setup.r  ~~~~~~~~~~~~
-    for (.sourcename in c(".Rprofile", "f.updateTemplates.exe.r", "RStudioServer-setup.r"))
-    env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename), destfile = file.path(env1$path$path1,.sourcename))
+    for (.sourcename in c(".Rprofile", "f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
+        .file.copy.to = file.path(env1$path$path1,.sourcename)
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename)
+        env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+    }
     
     # remove old files
     for (.file.old in c("updateTemplates.R", "f.updateTemplates.source.r")) {
@@ -147,14 +157,21 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     if (Sys.info()["sysname"] == "Windows") {
         # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
         # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$CurrentSource.path.filename.ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
-        for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
-            env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext), .backup_to_path="D:/OneDrive/[][Rproject]/-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        
+        for (filename.ext in c(".Rprofile")) {
+            if(file.exists()) {
+                
+            }
         }
-        browseURL("D:/OneDrive/[][Rproject]/-backup")
         
         for (filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
-            env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename.ext), destfile = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext))
+            .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
+            .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",filename.ext)
+            .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",filename.ext)
+            env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .destfile, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
+            env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         }
+        browseURL("D:/OneDrive/[][Rproject]/-backup")
     }
     
 }
