@@ -522,7 +522,6 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 ##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_file.git_lfs_track_add_f ====  
-## \$f_file.git_lfs_track_add_f ====  
 # Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
 env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
     # git_lfs_available <-try(system2("git", args = "lfs", stdout = NULL, stderr = NULL) == 0)  # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a
@@ -542,6 +541,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
         )
     }
 }
+
 ##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
