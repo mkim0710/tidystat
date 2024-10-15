@@ -39,21 +39,21 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 # 4 ..     /home/rstudio                
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="http://localhost:58723/files/github_tidystat/rstudio-prefs/templates/default.R"
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="http://localhost:58723/files/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.nb.html"
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Rocker Setup.r
 
 # paste0(env1$path$source_base_local,"/","-private/docker run -d -p --restart=always --name -e -v -private.sh") |> file.edit()
 # # file.edit("Rocker set up.r")
 # # file.edit("Rocker set up -private.r")
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #| To paste text in the terminal use Shift + Insert. (Or Ctrl + Shift + v) |#
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#|________________________________________________________________________________|#  ----  
+##________________________________________________________________________________    ----  
 #| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
 #| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
 #| Ctrl+Alt+Shift+Left/Right: First/Last tab
@@ -80,7 +80,7 @@ tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> nor
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1\$path ====  
 # To check default paths in the Server.
@@ -183,7 +183,8 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 #   ..$ localization_codeset        : chr "UTF-8"
 #   ..$ localization_codepage       : NULL
 #   ..$ localization_system.codepage: NULL
-#|________________________________________________________________________________|#  
+
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 ### @ .subpath, .sourcename ======  
@@ -220,15 +221,16 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
 # # cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])
 # if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
+
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) rstudio-prefs -----  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ rstudio-prefs ----  
 #|  @ rstudio-prefs  
@@ -255,36 +257,49 @@ file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |
 # 3 .      /home/rstudio/github_tidystat
 # 4 ..     /home/rstudio                
 
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-#@ rstudio-prefs.json@PositCloud ----
-# file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH241015copilot-false.json")
-.url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH241015copilot-false.json"
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#@ rstudio-prefs.json@Rocker ----
-.url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 
-# "ls ~/.config/rstudio" %>% system(intern=TRUE)
-# dir("~/.config/rstudio")
-.destfile = "~/.config/rstudio/rstudio-prefs.json"
-# file.edit(.destfile)
+# #@@ Now Included in f.updateTemplates.exe.r -----
+#| @@ Now Included in f.updateTemplates.exe.r -----
+# ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+# ##@ rstudio-prefs.json@PositCloud ----
+# # file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH241015copilot-false.json")
+# .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH241015copilot-false.json"
+# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# ##@ rstudio-prefs.json@Rocker ----
+# .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
+# ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+# 
+# # "ls ~/.config/rstudio" %>% system(intern=TRUE)
+# # dir("~/.config/rstudio")
+# .destfile = "~/.config/rstudio/rstudio-prefs.json"
+# # file.edit(.destfile)
+# 
+# # download.file(url = .url, destfile = .destfile)
+# env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .url, destfile = .destfile)
+# 
+# 
+# # Global Options > General > Save workspace to .RData on exit: Never
+# # Global Options > Code > Insert spaces for tab: 4
+# # Global Options > Code > Auto-indent code after paste: uncheck
+# # Global Options > Code > Display > Show indent guides: check (Rainbow lines?)
+# # Global Options > Code > Display > Syntax: Highlight R function calls
+# # Global Options > Code > Display > Syntax: Use rainbow parentheses
+# # Global Options > Appearance > Editor theme: Ambiance -void
+# # Global Options > Appearance > Editor theme: Twilight (better for RMD, red for titles)
+# 
+# 
+# 
+# ##________________________________________________________________________________    
+# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# ### @ templates ----  
+# #|  @ templates  
+# # if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
+# # filename.ext = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
+# # filename.ext = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
 
-# download.file(url = .url, destfile = .destfile)
-env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .url, destfile = .destfile)
 
 
-# Global Options > General > Save workspace to .RData on exit: Never
-# Global Options > Code > Insert spaces for tab: 4
-# Global Options > Code > Auto-indent code after paste: uncheck
-# Global Options > Code > Display > Show indent guides: check (Rainbow lines?)
-# Global Options > Code > Display > Syntax: Highlight R function calls
-# Global Options > Code > Display > Syntax: Use rainbow parentheses
-# Global Options > Appearance > Editor theme: Ambiance -void
-# Global Options > Appearance > Editor theme: Twilight (better for RMD, red for titles)
-
-
-
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ install.packages ----  
 #|  @ install.packages  
@@ -292,21 +307,13 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .url, destfile = .des
 for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 
 
-#|________________________________________________________________________________|#  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### @ templates ----  
-#|  @ templates  
-# if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
-# filename.ext = "default.R"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
-# filename.ext = "notebook.Rmd"; if(!file.exists(file.path(.path4APPDATA_RStudio, "templates", filename.ext))) file.create(file.path(.path4APPDATA_RStudio, "templates", filename.ext)); file.edit(file.path(.path4APPDATA_RStudio, "templates", filename.ext))
 
 
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) copilot @ RStudio Server @ Rocker (not necessary in Posit.Cloud?) -----  
-
 
 ### @ ROOT=TRUE ----  
 # https://stackoverflow.com/questions/64562427/how-to-add-rocker-verse-configuration-root-true-to-docker-compose-file
@@ -322,24 +329,37 @@ for(.packagename in c("rmarkdown", "xfun")) {if(!require(.packagename,character.
 # https://github.com/rstudio/rstudio/issues/13718
 # https://chatgpt.com/c/4b8f922c-327a-4b0b-871e-18c07575a4d9
 
-system("sudo R")
-system("sudo chmod 666 /etc/rstudio/rsession.conf")
-file_path <- "/etc/rstudio/rsession.conf"
-lines <- readLines(file_path, warn = FALSE)
-modified_lines <- lines[!grepl("^copilot-enabled=", lines)]
-modified_lines = c(modified_lines, "copilot-enabled=1", "")
-writeLines(modified_lines, file_path)
-file.edit(file_path)
-system("sudo chmod 644 /etc/rstudio/rsession.conf")
-#|________________________________________________________________________________|#  
+if(.Platform$OS.type == "unix") {
+    if(Sys.info()["sysname"] == "Linux") {
+        if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
+            system("sudo R")
+            system("sudo chmod 666 /etc/rstudio/rsession.conf")
+            file_path <- "/etc/rstudio/rsession.conf"
+            lines <- readLines(file_path, warn = FALSE)
+            modified_lines <- lines[!grepl("^copilot-enabled=", lines)]
+            modified_lines = c(modified_lines, "copilot-enabled=1", "")
+            writeLines(modified_lines, file_path)
+            file.edit(file_path)
+            system("sudo chmod 644 /etc/rstudio/rsession.conf")
+        } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
+            
+        } else if(Sys.info()["sysname"] == "Darwin") {
+            
+        }
+    } else if(Sys.info()["sysname"] == "Windows") {
+        
+    }
+}
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-quit(save="no")
+# quit(save="no")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #| Tools > Global Options > Copilot > login |#
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
 # @@ START) git setup -----  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ .gitignore ----  
 #|  @ .gitignore  
@@ -350,7 +370,7 @@ quit(save="no")
 ".gitignore" |> env1$env.internal$f_file.edit_vscode()
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ Git/SVN > SSH Key ----  
 #|  @ Git/SVN > SSH Key  
@@ -368,8 +388,27 @@ path2look = "~/.ssh"; if(!dir.exists(path2look)) dir.create(path2look)
 "~/.ssh/id_ed25519.pub" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 "~/.ssh/id_ed25519" %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 
-system("sudo chmod 600 ~/.ssh/id_ed25519")  # read & write for the owner
-system("sudo chmod 400 ~/.ssh/id_ed25519")  # read only for the owner
+#| Click Tools > Global Options > Git/SVN > [Create SSH Key]
+# if(!file.exists("~/.ssh/id_ed25519")) {
+#     if(.Platform$OS.type == "unix") {
+#         if(Sys.info()["sysname"] == "Linux") {
+#             if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
+#                 system('ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -N "" -C "mkim0710@Rocker"')
+#             } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
+#                 system('ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -N "" -C "mkim0710@Posit.Cloud"')
+#             } else if(Sys.info()["sysname"] == "Darwin") {
+#                 system('ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -N "" -C "mkim@MacOS"')
+#            }
+#         } else if(Sys.info()["sysname"] == "Windows") {
+#                 system('ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -N "" -C "mkim0710@Windows"')
+#         }
+#     }
+# }
+
+if(FALSE) {  # Do not auto-run
+    system("sudo chmod 600 ~/.ssh/id_ed25519")  # read & write for the owner
+    system("sudo chmod 400 ~/.ssh/id_ed25519")  # read only for the owner
+}
 path.file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519.pub"); if(file.exists(path.file)) file.edit(path.file)
 path.file = file.path(env1$path$path0,"-private",".ssh@Docker","id_ed25519"); if(file.exists(path.file)) file.edit(path.file)
 
@@ -395,7 +434,7 @@ base64_fingerprint |> str_replace_all("=$", "")  # Remove padding from the end o
 base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |> str_replace_all("\\/", "_")  # Replace + with - and / with _ to make it URL safe
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ git config --global user.email "mkim0710@gmail.com" ----  
 ### @ git config --global user.name "mhkim@rocker@MAGB760M13700KF" ----  
@@ -410,19 +449,31 @@ base64_fingerprint |> str_replace_all("=$", "") |> str_replace_all("\\+", "-") |
 # Omit --global to set the identity only in this repository.
 # fatal: unable to auto-detect email address (got 'rstudio-user@application-3089508-deployment-7850965-gpdff.(none)')
 
-# # If necessary configure git
-# # To paste text in the terminal use Shift + Insert.
-# # git config --global user.email "USEREMAIL@gmail.com"
-# # git config --global user.name "USERNAME"
-# system('git config --global user.email "mkim0710@gmail.com"')
-# system('git config --global user.name "mkim0710@Posit.Cloud"')
+# If necessary configure git
+# To paste text in the terminal use Shift + Insert.
+# git config --global user.email "USEREMAIL@gmail.com"
+# git config --global user.name "USERNAME"
+
+
+system('git config --global user.email "mkim0710@gmail.com"')
 
 # system('git config --global user.email "mhkim710@gmail.com"')
-# system('git config --global user.name "mhkim@rocker@MAGB760M13700KF"')
+if(.Platform$OS.type == "unix") {
+    if(Sys.info()["sysname"] == "Linux") {
+        if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
+            system('git config --global user.name "mhkim@rocker@MAGB760M13700KF"')
+        } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
+            system('git config --global user.name "mkim0710@Posit.Cloud"')
+        } else if(Sys.info()["sysname"] == "Darwin") {
+            system('git config --global user.name "mkim@MacOS"')
+        }
+    } else if(Sys.info()["sysname"] == "Windows") {
+        # system('git config --global user.name "mkim@Windows"')
+    }
+}
 
 
-
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ git remote set-url origin git@github.com:mkim0710/Rproject_.git ----  
 #|  @ git remote set-url origin git@github.com:mkim0710/Rproject_.git  
@@ -465,7 +516,7 @@ system("git remote -v")
 # origin	git@github.com:mkim0710/tidystat.git (push)
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ install-git-hooks.sh ----  
 #|  @ install-git-hooks.sh  
@@ -475,7 +526,7 @@ system("git remote -v")
 "chmod +x git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
 "./git/hooks/install-git-hooks.sh" |> system(intern = TRUE)
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ git config --global pull.rebase false ----  
 #|  @ git config --global pull.rebase false  
@@ -501,7 +552,7 @@ system("git remote -v")
 # > system("git config --global pull.rebase")
 # false
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ "sudo apt-get install -y git-lfs" |> system(intern = TRUE) ----
 
@@ -510,10 +561,10 @@ system("git remote -v")
 "curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash" |> system(intern = TRUE)
 "sudo apt-get install -y git-lfs" |> system(intern = TRUE)
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) Posit.Cloud -----  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ file upload ----  
 #|  @ file upload  
@@ -521,7 +572,7 @@ system("git remote -v")
 
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ Posit.Cloud: Resources> RAM 0.5, CPU 0.5, Background 1 hr -----  
 #|  @ Posit.Cloud: Resources> RAM 0.5, CPU 0.5, Background 1 hr |#
@@ -534,12 +585,12 @@ system("git remote -v")
 
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) Install Fonts -----  
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) Install Fonts for RStudio Server Editor pane -----  
 # https://github.com/rstudio/rstudio/issues/2534
@@ -580,12 +631,12 @@ system("git remote -v")
 
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) install.packages -----  
 # install.packages(.tmp$packagename, type = "binary")  # If the installed R version is too old?
 # install.packages(.tmp$packagename, type = "source")  # If the installed R version is too new?
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### @ checkpoint ----  
 # # https://community.rstudio.com/t/using-library-checkpoint-in-rstudio-cloud/
@@ -618,7 +669,7 @@ for(.packagename in c("dplyr", "purrr", "stringr")) {
 
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
@@ -627,10 +678,10 @@ paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$
 paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
