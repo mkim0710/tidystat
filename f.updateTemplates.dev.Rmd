@@ -231,7 +231,7 @@ https://chatgpt.com/c/66e7deba-b85c-800e-9f76-124d9087e1a7
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # ## \$ f.updateTemplates =  ----  
-# # https://github.com/mkim0710/f.updateTemplates.exe.r  
+# # https://github.com/mkim0710/exe.f.updateTemplates.R  
 # .tmp$objectname = "f.updateTemplates"
 # .tmp$object = function(list_formula) {
 #     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
@@ -349,7 +349,7 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent(url = "https://raw.githubus
 ## \$ env1\$f\$f.updateTemplates() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-# https://github.com/mkim0710/f.updateTemplates.exe.r
+# https://github.com/mkim0710/exe.f.updateTemplates.R
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
