@@ -203,7 +203,7 @@ env1$env.internal$f.update_rstudio_prefs = function(.file.copy.from = NULL, .fil
                 if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
                     .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
                 } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
-                    .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+                    .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH241015copilot-false.json"
                 }
             }
             if (is.null(.file.copy.to)) {

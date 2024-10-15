@@ -58,5 +58,5 @@
     "visual_markdown_editing_list_spacing": "tight",
     "visual_markdown_editing_wrap": "sentence",
     "posix_terminal_shell": "bash",
-    "copilot_enabled": true
+    "copilot_enabled": false
 }

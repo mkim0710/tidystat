@@ -569,7 +569,7 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
         } else {
             str(ls[[i]], max.level = max.level-1, give.attr = give.attr, width = width - 4, ...) |> capture.output() |> cat(sep="\n##") # ; cat("\n")
         }
-        cat("# ________________________________________________________________________    \n")
+        cat("# ________________________________________________________________________________    \n")
     }
 }
 
@@ -579,7 +579,7 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
 env1 |> as.list() |> env1$f$f_list.str_by_element()
 # List of 5  
 # $ env.internal		:<environment: 0x55fff4433250> 
-# ________________________________________________________________________    
+# ________________________________________________________________________________    
 # $ info		:List of 9
 ## $ GUI             : chr "X11"
 ## $ os_type         : chr "unix"
@@ -590,7 +590,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ machine_cpu     : chr "13th Gen Intel(R) Core(TM) i7-13700KF"
 ## $ Sys.getlocale   :List of 4
 ## $ l10n_info       :List of 5
-# ________________________________________________________________________    
+# ________________________________________________________________________________    
 # $ f		:List of 29
 ## $ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
 ##    substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
@@ -631,7 +631,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
 ## $ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
 ##    output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE)  
-# ________________________________________________________________________    
+# ________________________________________________________________________________    
 # $ source		:List of 11
 ## $ .Rprofile                                     : chr "/home/rstudio/github_tidystat/.Rprofile"
 ## $ env1$env.internal.source.r                    : chr "~/github_tidystat/env1$env.internal.source.r"
@@ -644,7 +644,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_df.printVars_byMainOutcome.source.r         : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.printVars_byMainOutcome.source.r"
 ## $ f_df.Table1byExposure.xlsx.source.r           : chr "~/github_tidystat/Rdev/60_communicate_report_export/f_df.Table1byExposure.xlsx.source.r"
 ## $ get_system_info.source.r                      : chr "~/github_tidystat/get_system_info.source.r"
-# ________________________________________________________________________    
+# ________________________________________________________________________________    
 # $ path		:List of 10
 ## $ source_base_local  : Named chr "~/github_tidystat"
 ## $ source_base_github : chr "https://raw.githubusercontent.com/mkim0710/tidystat/master"

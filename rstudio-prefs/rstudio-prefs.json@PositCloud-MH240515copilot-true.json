@@ -1,0 +1,62 @@
+{
+    "jobs_tab_visibility": "shown",
+    "panes": {
+        "quadrants": [
+            "Source",
+            "Console",
+            "TabSet1",
+            "TabSet2",
+            "HiddenTabSet"
+        ],
+        "tabSet1": [
+            "Environment",
+            "History",
+            "Connections",
+            "Build",
+            "VCS",
+            "Tutorial",
+            "Presentation"
+        ],
+        "tabSet2": [
+            "Files",
+            "Plots",
+            "Packages",
+            "Help",
+            "Viewer",
+            "Presentations"
+        ],
+        "hiddenTabSet": [],
+        "console_left_on_top": false,
+        "console_right_on_top": true,
+        "additional_source_columns": 0
+    },
+    "save_workspace": "never",
+    "default_r_version": {
+        "version": "",
+        "r_home": "",
+        "label": "",
+        "module": ""
+    },
+    "num_spaces_for_tab": 4,
+    "reindent_on_paste": false,
+    "highlight_selected_line": true,
+    "show_invisibles": true,
+    "highlight_r_function_calls": true,
+    "rainbow_parentheses": true,
+    "auto_append_newline": true,
+    "line_ending_conversion": "posix",
+    "default_encoding": "UTF-8",
+    "indent_guides": "rainbowlines",
+    "console_double_click_select": true,
+    "editor_theme": "Twilight",
+    "server_editor_font_enabled": true,
+    "server_editor_font": "Cascadia Code",
+    "show_doc_outline_rmd": true,
+    "visual_markdown_editing_show_margin": true,
+    "visual_markdown_code_editor_line_numbers": true,
+    "doc_outline_show": "sections_and_chunks",
+    "visual_markdown_editing_list_spacing": "tight",
+    "visual_markdown_editing_wrap": "sentence",
+    "posix_terminal_shell": "bash",
+    "copilot_enabled": turue
+}
