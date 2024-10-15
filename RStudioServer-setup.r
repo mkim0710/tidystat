@@ -257,8 +257,8 @@ file.path(.path4APPDATA_RStudio, "rstudio-prefs.json") %>% {.[file.exists(.)]} |
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #@ rstudio-prefs.json@PositCloud ----
-# file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH240515 copilot.json")
-.url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+# file.edit("rstudio-prefs/rstudio-prefs.json@PositCloud-MH241015copilot-false.json")
+.url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH241015copilot-false.json"
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 #@ rstudio-prefs.json@Rocker ----
 .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
