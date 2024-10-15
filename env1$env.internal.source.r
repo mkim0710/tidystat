@@ -547,7 +547,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
 # Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, Execute = FALSE, path.size_files = TRUE, git_add_f = TRUE, CompressionMethod = NULL) {
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_add_f = TRUE, CompressionMethod = NULL) {
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
@@ -575,10 +575,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path.file))             .path.file = paste0(.path4write,"/",.filename.ext4write)
 
+    if(createBackup) cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = ',shQuote(CompressionMethod),', compression = 9) |> system.time()', "  \n", sep="")
     if(path.size_files) cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
     if(Execute) {
+        if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .path.file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
         system.time(write_rds( get(.objectname), .path.file, compress = CompressionMethod, compression = 9 ))
         if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
     }

@@ -664,14 +664,8 @@ if(exists("MetaData")) {
     "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     if(!identical(.MetaData0, MetaData)) {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        .path.file = env1$path$CurrentSource.path.filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)}
-        cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = "', .path.file, '", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)', "  ;  ", sep="")
-        cat('MetaData |> write_rds("', .path.file, '", compress = "xz") |> system.time()', "  \n", sep="")
-        cat("'git add -f ",shQuote(.path.file),"' |> system(intern=TRUE)  \n", sep="")
-        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .path.file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
-        MetaData |> write_rds(.path.file, compress = "xz") |> system.time()
-        paste0( "git add -f ",shQuote(.path.file) ) |> system(intern=TRUE)
+        .path.file = ifelse(is.null(env1$path$CurrentSource.path.filename.MetaData.rds), NULL, env1$path$CurrentSource.path.filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)})
+        MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.path.file = .path.file, createBackup = TRUE, Execute = TRUE)
     }
 } else {warning("> !exists(MetaData)  \n")}
 ```
