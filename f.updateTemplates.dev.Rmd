@@ -346,7 +346,7 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent(url = "https://raw.githubus
 ```
   
   
-## \% env1$f$f.updateTemplates() ----  
+## \$ env1\$f\$f.updateTemplates() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 # https://github.com/mkim0710/f.updateTemplates.exe.r

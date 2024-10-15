@@ -38,7 +38,7 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \% env1$env.internal$f_file2.compare ====  
+## \$ env1\$env.internal\$f_file2.compare ====  
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
 env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) {
     # Open both files in binary mode
@@ -74,7 +74,7 @@ env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) 
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \% env1$env.internal$f_url_destfile.DownloadIfDifferent ====  
+## \$ env1\$env.internal\$f_url_destfile.DownloadIfDifferent ====  
 # Function to download a file only if the web file is different from the local file
 env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
     tryCatch({
@@ -106,7 +106,7 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, 
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \% env1$f$f.updateTemplates ====  
+## \$ env1\$f\$f.updateTemplates ====  
 # https://github.com/mkim0710/f.updateTemplates.exe.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
