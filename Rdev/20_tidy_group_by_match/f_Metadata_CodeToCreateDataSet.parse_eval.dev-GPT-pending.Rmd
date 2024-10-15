@@ -622,12 +622,14 @@ options(width=120)
 ##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
-# MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-cat("    ========================================================================    \n")
-for (.objectname in names(MetaData$DataSetNames)) {
-    assign(.objectname, structure(get(.objectname), MetaData = MetaData))
-    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, Execute = FALSE, path.size_files = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+if(exists("MetaData")) {
+    # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+    cat("    ========================================================================    \n")
+    for (.objectname in names(MetaData$DataSetNames)) {
+        assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+        env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    }
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
