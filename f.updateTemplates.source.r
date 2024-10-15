@@ -136,6 +136,10 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     for (.sourcename in c(".Rprofile", "f.updateTemplates.exe.r", "RStudioServer-setup.r"))
     env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename), destfile = file.path(env1$path$path1,.sourcename))
     
+    # remove old files
+    if (file.exists("f.updateTemplates.source.r") && file.exists("f.updateTemplates.exe.r")) file.remove("f.updateTemplates.source.r")
+    
+    
     # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
     
     
