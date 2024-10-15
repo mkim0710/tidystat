@@ -131,16 +131,32 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
         }
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/","rstudio-prefs/templates/",.filename.ext)
         env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+        
+        if (Sys.info()["sysname"] == "Windows") {
+            # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
+            # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$CurrentSource.path.filename.ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
+            
+            .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename.ext)
+            .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
+            env1$env.internal$f_.filename.ext.createBackup(backup_from_path.filename.ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
+            env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+        }
+        
+        browseURL("D:/OneDrive/[][Rproject]/-backup")
     }
-    # for (.filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
-    #     if (.filename.ext %in% dir()) {
-    #         env1$env.internal$f_.filename.ext.createBackup(backup_from_path.filename.ext = .filename.ext, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-    #             download.file(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.filename.ext), destfile = .filename.ext)
-    #     }
-    # }
     
-    # \% Update the .Rprofile, f.updateTemplates.exe.r, RStudioServer-setup.r  ~~~~~~~~~~~~
-    for (.filename.ext in c(".Rprofile", "f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
+    # \% Update the .Rprofile  @ Project Directory & User Folder ~~~~~~~~~~~~
+    for (.filename.ext in c(".Rprofile")) {
+        .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename.ext)
+        for (.file.copy.to in c(file.path(env1$path$path1,.filename.ext), file.path("~",.filename.ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename.ext))) {
+            if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename.ext)) {
+                env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+            }
+        }
+    }
+    
+    # \% Update the f.updateTemplates.exe.r, RStudioServer-setup.r  @ Project Directory ~~~~~~~~~~~~
+    for (.filename.ext in c("f.updateTemplates.exe.r", "RStudioServer-setup.r")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename.ext)
         .file.copy.to = file.path(env1$path$path1,.filename.ext)
         env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
@@ -153,61 +169,36 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     
     # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
     
-    
-    if (Sys.info()["sysname"] == "Windows") {
-        # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
-        # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$CurrentSource.path.filename.ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
-        
-        for (.filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
-            .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename.ext)
-            .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
-            .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.filename.ext)
-            env1$env.internal$f_.filename.ext.createBackup(backup_from_path.filename.ext = .destfile, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
-            env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
-        }
-        
-        for (.filename.ext in c(".Rprofile")) {
-            .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename.ext)
-            .file.copy.to = file.path("~",.filename.ext)
-            if(file.exists()) {
-                
-            }
-        }
-        
-        browseURL("D:/OneDrive/[][Rproject]/-backup")
-    }
-    
 }
 
 env1$f$f.updateTemplates()
 
 
 
-env1$env.internal$f.update_rstudio_prefs = function(.url = NULL, .destfile = NULL) {
+env1$env.internal$f.update_rstudio_prefs = function(.file.copy.from = NULL, .file.copy.to = NULL) {
     .CodeText = '.Platform$OS.type'; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
     .CodeText = 'Sys.info()["sysname"]'; cat(.CodeText, ' == "', eval(parse(text=.CodeText)), '"  \n', sep="")
     
     if(.Platform$OS.type == "unix") {
         if(Sys.info()["sysname"] == "Linux") {
-            if (is.null(.url)) {
+            if (is.null(.file.copy.from)) {
                 if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
-                    .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
+                    .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40Rocker%40MAGB760M13700KF-240520.json"
                 } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
-                    .url = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+                    .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
                 }
             }
-            if (is.null(.destfile)) {
-                .destfile = "~/.config/rstudio/rstudio-prefs.json"
+            if (is.null(.file.copy.to)) {
+                .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
             }
-            env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .url, destfile = .destfile)
-            
+            env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         } else if(Sys.info()["sysname"] == "Darwin") {
-            if (is.null(.url)) {
+            if (is.null(.file.copy.from)) {
                 warning("f.update_rstudio_prefs() not available for macOS")
             }
         }
     } else if(Sys.info()["sysname"] == "Windows") {
-        if (is.null(.url)) {
+        if (is.null(.file.copy.from)) {
             warning("f.update_rstudio_prefs() not available for windows")
         }
     }
