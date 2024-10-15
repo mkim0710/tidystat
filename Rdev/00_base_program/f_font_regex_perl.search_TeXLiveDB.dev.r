@@ -1,5 +1,5 @@
 # f_font_regex_perl.search_TeXLiveDB.dev.r
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # check fonts and install - tinytex@Rocker.r
 # https://chatgpt.com/c/8d563256-b9b9-4685-b048-343944290455
@@ -9,7 +9,7 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#|________________________________________________________________________________|#  ----  
+##________________________________________________________________________________----  
 #| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
 #| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
 #| Ctrl+Alt+Shift+Left/Right: First/Last tab
@@ -35,7 +35,7 @@
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
@@ -48,7 +48,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 ### @ .subpath, .sourcename ======  
@@ -56,12 +56,12 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 library(tidyverse)
 if (!requireNamespace("tinytex", quietly = TRUE)) {
@@ -71,7 +71,7 @@ library(tinytex)
 # https://stackoverflow.com/questions/51468447/is-there-r-code-for-moving-the-focus-to-the-rstudio-console
 # https://docs.posit.co/ide/server-pro/rstudio_ide_commands/rstudio_ide_commands.html
 rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstudioapi::executeCommand("activateSource")
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #% |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE) -----  
 "(?i)inconsolata.*regular" |> tinytex::tlmgr_search(file = TRUE, all = FALSE, global = FALSE)
@@ -96,7 +96,7 @@ rstudioapi::executeCommand("activateConsole"); tinytex::install_tinytex(); rstud
 # 	texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi4-Regular.otf
 # 	texmf-dist/fonts/opentype/public/inconsolata/InconsolataN-Regular.otf
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) font_filename ====  
 ### \% f_font_filename.search_path_local ====  
@@ -156,7 +156,7 @@ c("noname", "inconsolata", "cascadia") |> f_vec_font_filename.search_path_local(
 # tlmgr search --all 'cascadia'
 # cascadia is not installed.
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) font_regex_perl  ====  
 ## \$ vec_font_regex_perl =====  
@@ -169,7 +169,7 @@ vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
   "D2Coding" = "(?i)d2coding")
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 ### \% f_font_regex_perl.search_path_local ====  
 f_font_regex_perl.search_path_local <- function(font_regex_perl) {
@@ -700,7 +700,7 @@ f_font_regex_perl.search_path_local <- function(font_regex_perl) {
 # tlgs.windows:
 # 	tlpkg/tlgs/lib/cid2code.ps 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 ### if(Sys.info()["sysname"] == "Windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts")) -----  
 if(Sys.info()["sysname"] == "Windows") browseURL(paste0(Sys.getenv("APPDATA"),"/TinyTeX/texmf-dist/fonts"))
@@ -784,7 +784,7 @@ c("/usr/local/sbin",
 Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/usr/local/texlive", "/usr/local/texlive/texmf-dist", "/usr/share/fonts", sep = ":"))
 'echo $PATH' |> system(intern = TRUE) 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ### \% f_filename.unix_find_path_local ====  
@@ -847,7 +847,7 @@ c("/etc/fonts/conf.avail",
   "/usr/local/texlive/texmf-dist/tex/latex/roboto")
 
 dir("/etc/fonts")
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 vec_font_regex_perl = c("Roboto Condensed" = "(?i)roboto.*condensed",
   "Roboto Serif" = "(?i)roboto.*serif",
@@ -868,7 +868,7 @@ vec_font_regex_perl |> map(f_font_regex_perl.search_path_local) |> env1$f$f_list
 #          NULL),
 #      "D2Coding" = c(
 #          NULL))
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 ### \% f_font_regex_perl.search_TeXLiveDB ====  
 f_font_regex_perl.search_TeXLiveDB <- function(font_regex_perl) {
@@ -912,12 +912,12 @@ vec_font_regex_perl.TexLiveDB_list %>% str
 # "fira" |> tinytex::tlmgr_install()
 
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 # https://www.ctan.org/pkg/cascadia-code
@@ -984,7 +984,7 @@ vec_font_regex_perl.TexLiveDB_list %>% str
 # sudo cp /usr/share/fonts/d2coding/D2Coding/*.ttf /usr/share/fonts/
 # sudo fc-cache -f -v
 
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
@@ -993,12 +993,12 @@ paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$
 paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#|________________________________________________________________________________|#  
+##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
