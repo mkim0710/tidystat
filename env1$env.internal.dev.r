@@ -144,7 +144,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 #% f_path0.list_path_hierarchy =======  
-f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
+f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = getOption("verbose")) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     

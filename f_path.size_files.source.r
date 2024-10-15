@@ -94,7 +94,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
 
 
 .tmp$objectname = "f_path.size_files"
-.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = FALSE) {
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = getOption("verbose")) {
     if (is.na(literal_filename)) {
         # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = TRUE, value = TRUE)}
         filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = TRUE)

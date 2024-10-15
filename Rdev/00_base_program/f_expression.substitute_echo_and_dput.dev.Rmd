@@ -617,7 +617,7 @@ options(width=120)
 library(purrr)
 
 # Generalized substitute_and_evaluate function
-f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE) {
+f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = getOption("verbose")) {
   # Get all character variables from .GlobalEnv
   # env_vars <- as.list(.GlobalEnv)
   # char_vars <- env_vars[map_lgl(env_vars, is.character)]

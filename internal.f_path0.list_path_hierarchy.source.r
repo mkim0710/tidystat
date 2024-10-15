@@ -101,7 +101,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 
 #% f_path0.list_path_hierarchy =======  
 .tmp$objectname = "f_path0.list_path_hierarchy"
-.tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
+.tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = getOption("verbose")) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     

@@ -103,7 +103,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 #% f_path0.list_path_hierarchy =======  
-f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
+f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = getOption("verbose")) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     
@@ -156,7 +156,7 @@ print(list_paths)
 
 library(stringr)
 
-f_path0.list_path_hierarchy.v2 <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
+f_path0.list_path_hierarchy.v2 <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = getOption("verbose")) {
   # Escape special characters in path0 for regex
   special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
   path0_escaped <- path0
@@ -213,7 +213,7 @@ print(list_paths)
 library(stringr)
 library(purrr)
 
-f_path0.list_path_hierarchy.v3 <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
+f_path0.list_path_hierarchy.v3 <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = getOption("verbose")) {
   # Escape special characters in path0 for regex
   special_chars <- c("\\[", "\\]", "\\(", "\\)", "\\{", "\\}", "\\.", "\\+", "\\*", "\\?", "\\^", "\\$", "\\|")
   path0_escaped <- path0
@@ -295,7 +295,7 @@ library(stringr)
 library(purrr)
 
 # Define the function
-f_path0.list_path_hierarchy.v4 <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
+f_path0.list_path_hierarchy.v4 <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = getOption("verbose")) {
   # Escape special characters in path0 for regex
   path0_escaped <- gsub("([][{}()+*^$|])", "\\\\\\1", path0)
   

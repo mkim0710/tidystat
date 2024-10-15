@@ -7,7 +7,7 @@ library(purrr)
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave_cumulative.dev.r
-function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wave = NULL, VERBOSE = FALSE) {
+function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wave = NULL, VERBOSE = getOption("verbose")) {
     if(!is.numeric(vector_wave)) {
         warning("vector_wave is not numeric"); cat("  \n", sep="")
         vector_wave = vector_wave |> as.numeric()
