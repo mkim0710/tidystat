@@ -544,6 +544,45 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
 
 ##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## \$f_objectname.size.write_rds.git_lfs_track_add_f ====  
+# Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
+# https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
+# https://gemini.google.com/app/6d9de55c5c7085c6 
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
+    if(exists("MetaData")) {
+        if("DataSetNames" %in% names(MetaData)) {
+            if(.objectname %in% names(MetaData$DataSetNames)) {
+                assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+            }
+        } 
+    }
+    if(is.null(CompressionMethod))      CompressionMethod = ifelse(object.size(.objectname) > 1e6, "xz", "gz")
+    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))
+    if(is.null(.path4write))            .path4write = env1$path$.path4write
+    if(is.null(.path.file))             .path.file = paste0(.path4write,"/",.filename.ext4write)
+
+    cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = ',shQuote(CompressionMethod),', compression = 9) |> system.time()', "  \n", sep="")
+    cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
+    
+    if(Execute) {
+        system.time(write_rds( get(.objectname), .path.file, compress = CompressionMethod, compression = 9 ))
+        env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
+    }
+    
+    if(git_add_f) {
+        if(object.size(.objectname) > 1e7) {
+            env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
+        } else {
+            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
+        }
+    }
+    
+    invisible()
+}
+
+
+##________________________________________________________________________________
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 ## \$env.internal\$f_file2.compare ====  
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB

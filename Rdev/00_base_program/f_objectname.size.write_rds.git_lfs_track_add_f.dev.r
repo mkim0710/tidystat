@@ -1,4 +1,4 @@
-# default.R
+# @@ Now included in env1$env.internal.source.r ----
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # #@ The templates at source_base_github (default.R, templates-00env1.minimum.Rmd) ++++++++++++   
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
@@ -110,6 +110,10 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
+
+# https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a ----
+# https://gemini.google.com/app/6d9de55c5c7085c6 ----
+
 ## env0 = env1 ----
 env0 = env1
 
@@ -170,10 +174,13 @@ get(.objectname) %>% str(max.level = 2)
 
 
 
-
-
-
-f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
+##________________________________________________________________________________
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## \$f_objectname.size.write_rds.git_lfs_track_add_f ====  
+# Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
+# https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
+# https://gemini.google.com/app/6d9de55c5c7085c6 
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DataSetNames)) {
@@ -188,10 +195,12 @@ f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path.fi
 
     cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = ',shQuote(CompressionMethod),', compression = 9) |> system.time()', "  \n", sep="")
     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
+    
     if(Execute) {
         system.time(write_rds( get(.objectname), .path.file, compress = CompressionMethod, compression = 9 ))
         env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
     }
+    
     if(git_add_f) {
         if(object.size(.objectname) > 1e7) {
             env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
@@ -199,11 +208,21 @@ f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path.fi
             env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
         }
     }
+    
     invisible()
 }
 
-	
-.objectname %>% f_objectname.size.write_rds.git_lfs_track_add_f
-MetaData |> write_rds('/home/rstudio/github_tidystat/rstudio-prefs/templates/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
-env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/rstudio-prefs/templates', regex4filename = 'MetaData')  
-"git add -f '/home/rstudio/github_tidystat/rstudio-prefs/templates/MetaData.rds'" |> system(intern=TRUE)  
+
+
+.objectname |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# > .objectname %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f
+# MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
+# env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
+# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE) 
+
+"MetaData" |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# > "MetaData" %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
+# env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
+# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE) 
+
