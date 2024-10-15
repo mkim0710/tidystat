@@ -164,7 +164,10 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     
     # remove old files
     for (.file.old in c("updateTemplates.R", "f.updateTemplates.source.r")) {
-        if (file.exists(.file.old) && file.exists("f.updateTemplates.exe.r")) file.remove(.file.old)
+        if (file.exists(.file.old) && file.exists("f.updateTemplates.exe.r")) {
+            file.remove(.file.old)
+            warning(paste0("Removed old file: ", .file.old))
+        }
     }
     
     # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
