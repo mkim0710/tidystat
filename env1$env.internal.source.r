@@ -556,7 +556,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
 # Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_add_f = TRUE, CompressionMethod = NULL) {
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL) {
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
@@ -595,10 +595,14 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     }
     
     if(git_add_f) {
-        if(object.size(.objectname) > 1e7) {
-            env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
-        } else {
-            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
+        if (git_lfs_track == "determine based on object size") {
+            if(object.size(.objectname) > 1e7) {
+                env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
+            } else {
+                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
+            }
+        } else if (git_lfs_track == TRUE) {
+                env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
         }
     }
     
