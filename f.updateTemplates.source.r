@@ -107,7 +107,7 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \% env1$f$f.updateTemplates ====  
-# https://github.com/mkim0710/f.updateTemplates.source.r
+# https://github.com/mkim0710/f.updateTemplates.exe.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
     # Assign .path4APPDATA_RStudio based on the platform if it's NULL
@@ -132,8 +132,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #     }
     # }
     
-    # \% Update the .Rprofile, f.updateTemplates.source.r, RStudioServer-setup.r  ~~~~~~~~~~~~
-    for (.sourcename in c(".Rprofile", "f.updateTemplates.source.r", "RStudioServer-setup.r"))
+    # \% Update the .Rprofile, f.updateTemplates.exe.r, RStudioServer-setup.r  ~~~~~~~~~~~~
+    for (.sourcename in c(".Rprofile", "f.updateTemplates.exe.r", "RStudioServer-setup.r"))
     env1$env.internal$f_url_destfile.DownloadIfDifferent(paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.sourcename), destfile = file.path(env1$path$path1,.sourcename))
     
     # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
