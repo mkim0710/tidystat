@@ -89,17 +89,17 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs"
-env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# Error in env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T) : 
+env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
+# > env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
+# Error in env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T) : 
 #   Error: filename.ext must have an extension.
 
 
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs.index100le10"
-env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
+# > env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 # Searching: .                                                 	 at depth 0
 # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -171,8 +171,8 @@ env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
 
 library(tidyverse)
 source("f_filename.ext.find_subpath.source.r")
-.tmp = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, print.intermediate = TRUE)
-# > MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, print.intermediate = TRUE)
+.tmp = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, VERBOSE = TRUE)
+# > MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, VERBOSE = TRUE)
 # getwd() == .path4read[1] == "/home/rstudio/Rproject_Rmd"  
 # DataSetName = "NationalFamilyAndFertiltySurvey2021_230314"  
 # i.path4read = "/home/rstudio/Rproject_Rmd"  

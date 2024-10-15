@@ -144,7 +144,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 
 #% f_path0.list_path_hierarchy =======  
-f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
+f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     
@@ -154,7 +154,7 @@ f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarc
     # Loop to dynamically check the relationship between path_last and path0
     while (TRUE) {
         list_path <- c(list(path_last), list_path)  # Prepend the current path to the hierarchy
-        if (print.intermediate) {
+        if (VERBOSE) {
             cat("> # Current path: ", path_last, "\n")
             # cat("Current list_path: ", toString(list_path), "\n\n")
             cat("> str(list_path)\n"); str(list_path)
@@ -184,9 +184,9 @@ f_path0.list_path_hierarchy <- function(path0, path_last = getwd(), .max_hierarc
 path_last <- "D:/OneDrive/[][Rproject]/github_tidystat/Rdev"
 path0 <- "D:/OneDrive/[][Rproject]"
 .max_hierarchy <- 5
-list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = TRUE)
+list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, VERBOSE = TRUE)
 str(list_path_hierarchy)
-# > list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, print.intermediate = TRUE)
+# > list_path_hierarchy <- f_path0.list_path_hierarchy(path0 = path0, path_last = path_last, .max_hierarchy = .max_hierarchy, VERBOSE = TRUE)
 # > # Current path:  D:/OneDrive/[][Rproject]/github_tidystat/Rdev 
 # > str(list_path)
 # List of 1

@@ -87,14 +87,14 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 ## @ for (.dependancy in c("")) { -----  
 for (.dependancy in c("f_df.t.tribble_construct")) {
     if(!.dependancy %in% names(.GlobalEnv$env1)) {
-        if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+        if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
         .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
     }
 }
 
 
 .tmp$objectname = "f_path.size_files"
-.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, print.intermediate = FALSE) {
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = FALSE) {
     if (is.na(literal_filename)) {
         # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = TRUE, value = TRUE)}
         filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = TRUE)
@@ -111,7 +111,7 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
             return()
         }
     }
-    if(print.intermediate) filenames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
+    if(VERBOSE) filenames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
     if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
     out = filenames %>% {file.info(file.path(.path4read,.))} %>%
         rownames_to_column("filename") %>% select(filename, size) %>%
@@ -131,7 +131,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 # > for (.dependancy in c("f_df.t.tribble_construct")) {
 # +     if(!.dependancy %in% names(.GlobalEnv$env1)) {
-# +         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+# +         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
 # +         .objectname = .dependancy
 # +         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
 # +     }

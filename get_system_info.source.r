@@ -1,5 +1,5 @@
 .sourcename = "get_system_info" |> paste0(".source.r")  
-if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
 # # cat("# ", '.objectname = "', .objectname, '"', "\n",
 # #     "# ", .objectname, ".dev.r", "\n",
 # #     "# ", .objectname, ".source.r", "\n",

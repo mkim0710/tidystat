@@ -1,5 +1,5 @@
 .sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r")  
-if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
 # # internal.f_path0.list_path_hierarchy.dev.r
 # # internal.f_path0.list_path_hierarchy.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/internal.f_path0.list_path_hierarchy.dev.r
@@ -101,7 +101,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 
 #% f_path0.list_path_hierarchy =======  
 .tmp$objectname = "f_path0.list_path_hierarchy"
-.tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, print.intermediate = FALSE) {
+.tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = FALSE) {
     # Initialize a list to hold the path hierarchy
     list_path = list()
     
@@ -111,7 +111,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
     # Loop to dynamically check the relationship between path_last and path0
     while (TRUE) {
         list_path <- c(list(path_last), list_path)  # Prepend the current path to the hierarchy
-        if (print.intermediate) {
+        if (VERBOSE) {
             cat("> # Current path: ", path_last, "\n")
             # cat("Current list_path: ", toString(list_path), "\n\n")
             cat("> str(list_path)\n"); str(list_path)

@@ -61,17 +61,17 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .tmp$objectname = "f_expression.substitute_echo_and_dput"
-.tmp$object = function(expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE) {
+.tmp$object = function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE) {
   # Get all character variables from .GlobalEnv
   char_vars = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(function(x) is.character(x) && length(x) == 1)]
-  if(.print.intermediate) cat("  > char_vars == ", deparse(char_vars), "\n", sep="")
+  if(.VERBOSE) cat("  > char_vars == ", deparse(char_vars), "\n", sep="")
   
   # Substitute all the defined names in .GlobalEnv, considering variable name characters
   substituted_text <- expr_text
   for (name in names(char_vars)) {
     # substituted_text <- gsub(name, paste0('"', char_vars[[name]], '"'), substituted_text)
     pattern <- paste0("(?<![\\w.])",name,"(?![\\w.])")
-    if(.print.intermediate) cat("  > pattern == ", deparse(pattern), "\n", sep="")
+    if(.VERBOSE) cat("  > pattern == ", deparse(pattern), "\n", sep="")
     substituted_text <- gsub(pattern, paste0('"', char_vars[[name]], '"'), substituted_text, perl = TRUE)
   }
 
@@ -91,9 +91,9 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # DataSetName <- "analyticDF_time2event"
 # analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 # 
-# "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
+# "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.VERBOSE = TRUE)
 # "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
-# # > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
+# # > "dim(get(DataSetName))" |> env1$f$f_expression.substitute_echo_and_dput(.VERBOSE = TRUE)
 # #   > char_vars == list(DataSetName = "analyticDF_time2event")
 # #   > pattern == "(?<![\\w.])DataSetName(?![\\w.])"
 # #   > dim(get("analyticDF_time2event"))  

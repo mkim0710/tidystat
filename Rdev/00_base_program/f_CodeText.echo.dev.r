@@ -340,8 +340,8 @@ env1$f$f_CodeText.echo = function(
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## .CodeText = "dim(get(.objectname))" ----
-options(verbose = TRUE)
-options(verbose = FALSE)
+options(verbose = TRUE);  # getOption("verbose");  
+options(verbose = FALSE);  # getOption("verbose");  
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))"
 .CodeText |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)

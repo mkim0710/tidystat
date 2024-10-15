@@ -7,7 +7,7 @@ library(purrr)
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave_cumulative.dev.r
-function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
+function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wave = NULL, VERBOSE = FALSE) {
     if(!is.numeric(vector_wave)) {
         warning("vector_wave is not numeric"); cat("  \n", sep="")
         vector_wave = vector_wave |> as.numeric()
@@ -27,7 +27,7 @@ function.df2df_wave_cumulative <- function(df, vector_wave, vector_colname_at_wa
     df_wave = as_tibble(array(dim = c(nrow(df), max(vector_wave))))
 
     for (i in seq_along(vector_wave)) {
-        if(print.intermediate) {
+        if(VERBOSE) {
             cat("Column name for time = ", vector_wave[i], " : ", vector_colname_at_wave[i], "\n")
         }
 
@@ -86,7 +86,7 @@ tmp.df |> str()
 # 5 FALSE              FALSE              FALSE             
 # 6 FALSE              FALSE              NA                
 
-tmp_df_wave_cumulative <- tmp.df %>% function.df2df_wave_cumulative(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)
+tmp_df_wave_cumulative <- tmp.df %>% function.df2df_wave_cumulative(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), VERBOSE = TRUE)
 tmp_df_wave_cumulative |> str()
 # tmp_df_wave_cumulative |> head()
 tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table(vec, useNA = "always")))
@@ -158,7 +158,7 @@ tmp_df_wave_cumulative$df_wave_cumulative %>% map(function(vec) addmargins(table
 
 # Applying the function to each dataframe in the list
 list_df_wave_cumulative <- list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>%
-    map(function(dfi) {dfi %>% function.df2df_wave_cumulative(vector_wave = as.numeric(sub("A0(\\d+)_.*", "\\1", names(.))), print.intermediate = F)})
+    map(function(dfi) {dfi %>% function.df2df_wave_cumulative(vector_wave = as.numeric(sub("A0(\\d+)_.*", "\\1", names(.))), VERBOSE = F)})
 
 list_df_wave_cumulative |> str(max.level = 2)
 list_df_wave_cumulative$DM_C |> str()

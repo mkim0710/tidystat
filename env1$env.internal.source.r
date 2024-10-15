@@ -1,5 +1,5 @@
 .sourcename = "env1$env.internal" |> paste0(".source.r")  
-if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
 # # env1$env.internal.dev.r
 # # env1$env.internal.source.r
 # #         https://github.com/mkim0710/tidystat/blob/master/env1$env.internal.dev.r
@@ -94,12 +94,12 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 # # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 # if (requireNamespace("rstudioapi")) {
-#     if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}
+#     if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}
 #     if (rstudioapi::isAvailable()) {
 #         env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-#     } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-#     if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}
-# } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
+#     } else { if(Sys.getenv("VERBOSE")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
+#     if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}
+# } else { if(Sys.getenv("VERBOSE")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
@@ -287,14 +287,14 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     if(overwrite || is.null(env1$path$CurrentSource.path.filename.ext) || env1$path$CurrentSource.path.filename.ext == "") {
         if (check_rstudioapi) {
             if (requireNamespace("rstudioapi")) {
-                if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
+                if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
                 if (rstudioapi::isAvailable()) {
                     env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
                     env1$path$CurrentSource.path = env1$path$CurrentSource.path.filename.ext |> dirname()
                     if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = env1$path$CurrentSource.path}  
-                } else { if(Sys.getenv("print.intermediate")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-                if(Sys.getenv("print.intermediate")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
-            } else { if(Sys.getenv("print.intermediate")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
+                } else { if(Sys.getenv("VERBOSE")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
+                if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
+            } else { if(Sys.getenv("VERBOSE")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
         } else {
             # env1$path$CurrentSource.path.filename.ext = getwd() |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
             env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
@@ -665,7 +665,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ### \$ list_path_hierarchy  =======  
 .max_hierarchy = 5
-env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), .max_hierarchy = .max_hierarchy, print.intermediate = FALSE)
+env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(path0 = env1$path$path0, path_last = getwd(), .max_hierarchy = .max_hierarchy, VERBOSE = FALSE)
 # for (i in 1:(.max_hierarchy)) {
 #     # if(!is.na(env1$path$list_path_hierarchy[[i+1]]))
 #     env1$path[[paste0("path", i)]] = env1$path$list_path_hierarchy[[i+1]]

@@ -6,12 +6,12 @@ library(purrr)
 
 # Function to find the longest common prefix of two strings
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/function.str2.longest_common_prefix.dev.r
-function.str2.longest_common_prefix <- function(str1, str2, print.intermediate = F) {
+function.str2.longest_common_prefix <- function(str1, str2, VERBOSE = F) {
     if(is.na(str1)) return(NA)
     if(is.na(str2)) return(NA)
   vec_chars1 <- strsplit(str1, "")[[1]]
   vec_chars2 <- strsplit(str2, "")[[1]]
-  if(print.intermediate) {print(vec_chars1) ; print(vec_chars2)}
+  if(VERBOSE) {print(vec_chars1) ; print(vec_chars2)}
   min_length <- min(length(vec_chars1), length(vec_chars2))
   vec_chars1 <- vec_chars1[1:min_length]
   vec_chars2 <- vec_chars2[1:min_length]
@@ -29,7 +29,7 @@ function.str2.longest_common_prefix <- function(str1, str2, print.intermediate =
 }
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/function.list_df2array.dev.r
-function.list_df2array <- function(list_of_tibbles, print.intermediate = F) {
+function.list_df2array <- function(list_of_tibbles, VERBOSE = F) {
   # Ensure the list is not empty
   if (length(list_of_tibbles) == 0) {
     stop("The list is empty")
@@ -49,14 +49,14 @@ function.list_df2array <- function(list_of_tibbles, print.intermediate = F) {
   if (is.null(row_names) || all(row_names == as.character(seq_along(row_names)))) {
     row_names <- NULL
   }
-  if (print.intermediate) {cat("row_names : ", row_names, "\n")}
+  if (VERBOSE) {cat("row_names : ", row_names, "\n")}
 
   # Process column names to find the longest common prefix
   all_col_names <- map(list_of_tibbles, names)
-  if (print.intermediate) print(str(all_col_names))
-  common_col_names <- reduce(all_col_names, ~ map2_chr(.x, .y, function.str2.longest_common_prefix, print.intermediate = print.intermediate))
+  if (VERBOSE) print(str(all_col_names))
+  common_col_names <- reduce(all_col_names, ~ map2_chr(.x, .y, function.str2.longest_common_prefix, VERBOSE = VERBOSE))
   common_col_names = ifelse(is.na(common_col_names), "", common_col_names)
-  if (print.intermediate) {cat("common_col_names : ", common_col_names, "\n")}
+  if (VERBOSE) {cat("common_col_names : ", common_col_names, "\n")}
 
   # Convert each tibble to a matrix and stack them
   array_data <- array(dim = c(n_rows, n_cols, length(list_of_tibbles)))

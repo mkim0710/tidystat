@@ -105,7 +105,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 # #@ for (.dependancy in c("")) { -----  
 # for (.dependancy in c("f_df.t.tribble_construct")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
-#         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+#         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
 #         .objectname = .dependancy
 #         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
 #     }
@@ -115,7 +115,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 ## @ .objectname = "f_path.list_subpath.DepthFirstSearch_recursive" =========  
 .tmp$objectname = "f_path.list_subpath.DepthFirstSearch_recursive"
-.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, .initial_max_depth = NA) {
+.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, VERBOSE = FALSE, .initial_max_depth = NA) {
     # Initialize .initial_max_depth with max_depth on the first call
     if (is.na(.initial_max_depth)) {
         .initial_max_depth <- max_depth
@@ -137,9 +137,9 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     vec_files_subpath.excl_origin <- list.files(input_path, full.names = TRUE)
     for (i_files_subpath in vec_files_subpath.excl_origin) {
         if (file.info(i_files_subpath)$isdir) {
-            subvec_files_subpath.excl_origin <- env1$f$f_path.list_subpath.DepthFirstSearch_recursive(i_files_subpath, max_depth - 1, FALSE, print.intermediate, .initial_max_depth = .initial_max_depth)
+            subvec_files_subpath.excl_origin <- env1$f$f_path.list_subpath.DepthFirstSearch_recursive(i_files_subpath, max_depth - 1, FALSE, VERBOSE, .initial_max_depth = .initial_max_depth)
             
-            if (print.intermediate && length(subvec_files_subpath.excl_origin) > 0) {
+            if (VERBOSE && length(subvec_files_subpath.excl_origin) > 0) {
                 cat("Subdirectories of ", i_files_subpath, ": ", length(subvec_files_subpath.excl_origin), "\n")
             }
             
@@ -154,7 +154,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     vec_subpath <- unlist(list_subpath, use.names = FALSE)
     
     # Print the structure of the final list of subpaths if at the top level
-    if (print.intermediate && max_depth == .initial_max_depth) {
+    if (VERBOSE && max_depth == .initial_max_depth) {
         cat("Structure of the final list of subpaths at the top level:\n")
         str(vec_subpath)
     }
@@ -170,7 +170,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 ## @ .objectname = "f_path.list_subpath.BreathFirstSearch" =========  
 .tmp$objectname = "f_path.list_subpath.BreathFirstSearch"
-.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE) {
+.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, VERBOSE = FALSE) {
     if (!file.exists(input_path) || !file.info(input_path)$isdir) {
         stop("The specified input_path does not exist or is not a directory.")
     }
@@ -185,7 +185,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         list_path_depth.current <- list_list_path_depth[[1]]
         list_list_path_depth <- list_list_path_depth[-1]  # Remove the first element
         
-        if (print.intermediate) {
+        if (VERBOSE) {
             cat("Processing: ", list_path_depth.current$path, " at depth ", list_path_depth.current$depth, "\n")
             cat("Queue length: ", length(list_list_path_depth), "\n")
         }
@@ -199,7 +199,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
             # List subdirectories and enqueue them with incremented depth
             vec_files_subpath <- list.files(list_path_depth.current$path, full.names = TRUE)
             for (i_files_subpath in vec_files_subpath) {
-                if (print.intermediate) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
+                if (VERBOSE) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
                 if (file.info(i_files_subpath)$isdir) {
                     # Enqueue subdirectories with incremented depth
                     list_list_path_depth <- c(list_list_path_depth, list(list(path = i_files_subpath, depth = list_path_depth.current$depth + 1)))
@@ -217,7 +217,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     vec_subpath <- unlist(list_subpath, use.names = FALSE)
     
     # Print the final vector of subpaths if requested
-    if (print.intermediate) {
+    if (VERBOSE) {
         cat("Structure of the final list of subpaths:\n")
         print(str(vec_subpath))
     }
@@ -232,11 +232,11 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 ## @ .objectname = "f_path.list_subpath" =========  
 .tmp$objectname = "f_path.list_subpath"
-.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, print.intermediate = FALSE, BreadthFirstSearch = FALSE) {
+.tmp$object = function(input_path = ".", max_depth = 3, include_input_path = TRUE, VERBOSE = FALSE, BreadthFirstSearch = FALSE) {
     if (BreadthFirstSearch) {
-        env1$f$f_path.list_subpath.BreathFirstSearch(input_path, max_depth, include_input_path, print.intermediate)
+        env1$f$f_path.list_subpath.BreathFirstSearch(input_path, max_depth, include_input_path, VERBOSE)
     } else {
-        env1$f$f_path.list_subpath.DepthFirstSearch_recursive(input_path, max_depth, include_input_path, print.intermediate)
+        env1$f$f_path.list_subpath.DepthFirstSearch_recursive(input_path, max_depth, include_input_path, VERBOSE)
     }
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
@@ -248,7 +248,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 # @@ END-----  
 
-# > f_path.list_subpath(print.intermediate = T) |> str()
+# > f_path.list_subpath(VERBOSE = T) |> str()
 # Subdirectories of  ./data :  1 
 # Subdirectories of  ./other :  8 
 # Subdirectories of  ./Rdev/00_protocol :  4 
@@ -260,7 +260,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # Structure of the final list of subpaths at the top level:
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
 #  chr [1:62] "." "./-info" "./-tmp" "./data" "./data/ATC_RxNorm_NDC" "./examples" "./other" "./other/Bash" "./other/Batch" "./other/C" "./other/Excel" "./other/ODBC" ...
-# > f_path.list_subpath(print.intermediate = T, BreadthFirstSearch = T) |> str()
+# > f_path.list_subpath(VERBOSE = T, BreadthFirstSearch = T) |> str()
 # Processing:  .  at depth  0 
 # Queue length:  0 
 # Processing:  ./-info  at depth  1 

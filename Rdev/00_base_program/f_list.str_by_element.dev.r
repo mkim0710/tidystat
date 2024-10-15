@@ -48,7 +48,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
 #   ..$ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
-#     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, print.intermediate = FALSE)  
+#     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
 #   ..$ f_file.switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
@@ -56,7 +56,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
 #   ..$ f_file.git_lfs_track_add_f                  :function (.path.file, Execute = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
-#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE)  
+#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
 #   ..$ f_df.transpose                              :function (df, varname4rowname = "varname")  
 #   ..$ f_df.t.tribble_construct                    :function (df)  
@@ -74,14 +74,14 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
-#     print2console = TRUE, print.intermediate = FALSE)  
+#     print2console = TRUE, VERBOSE = FALSE)  
 #   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
-#     print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+#     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", "rownum", 
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, 
 #     .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.names.tidyeval = FALSE, 
-#     print.intermediate = FALSE)  
+#     VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
 #   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
 #   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 
@@ -125,7 +125,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #  $ f           :List of 29
 #   ..$ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", 
 #     LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, 
-#     print.intermediate = FALSE)  
+#     VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
 #   ..$ f_file.switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
@@ -133,7 +133,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
 #   ..$ f_file.git_lfs_track_add_f                  :function (.path.file, Execute = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
-#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE)  
+#   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
 #   ..$ f_df.transpose                              :function (df, varname4rowname = "varname")  
 #   ..$ f_df.t.tribble_construct                    :function (df)  
@@ -153,16 +153,16 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
-#     print2console = TRUE, print.intermediate = FALSE)  
+#     print2console = TRUE, VERBOSE = FALSE)  
 #   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", 
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
-#     print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+#     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
 #     "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), 
 #     BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15, 
 #     print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
-#     print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+#     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
 #   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
 #   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", 
@@ -206,7 +206,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ l10n_info       :List of 5
 #  $ f           :List of 29
 #   ..$ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE,"..
-#     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, print.intermediate = FALSE)  
+#     substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
 #   ..$ f_file.switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
@@ -232,14 +232,14 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, re"..
-#     print2console = TRUE, print.intermediate = FALSE)  
+#     print2console = TRUE, VERBOSE = FALSE)  
 #   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c"..
 #     "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
-#     print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+#     print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", ""..
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3, 
 #     .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, print.name..
-#     print.intermediate = FALSE)  
+#     VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
 #   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
 #   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4out"..
@@ -283,7 +283,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #  $ f           :List of 29
 #   ..$ f_CodeText.echo                             :function (.CodeText, Execu"..
 #     LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE, ObjectNames4su..
-#     print.intermediate = FALSE)  
+#     VERBOSE = FALSE)  
 #   ..$ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText..
 #   ..$ f_file.switch_open                          :function (file)  
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
@@ -311,16 +311,16 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_formula.lhs_rhs_vars                      :function (formula, include_..
 #   ..$ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 #   ..$ f_path.size_files                           :function (.path4read = get"..
-#     print2console = TRUE, print.intermediate = FALSE)  
+#     print2console = TRUE, VERBOSE = FALSE)  
 #   ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_fil"..
 #     "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cuto..
 #     15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
-#     print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+#     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext"..
 #     "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), 
 #     BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15, 
 #     print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
-#     print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+#     print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 #   ..$ f_df.NotNA_p_df                             :function (data)  
 #   ..$ f_df.printVars_byMainOutcome                :function (DataSet, MainOutc..
 #   ..$ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA."..
@@ -365,7 +365,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # $ f :List of 29
 # ..$ f_CodeText.echo :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t",
 #    LinePrefix4Output = "\t## ",
-# substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, print.intermediate = FALSE)
+# substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)
 # ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, Execute = FALSE)
 # ..$ f_file.switch_open :function (file)
 # ..$ f_URL.open_in_edge_app :function (URL)
@@ -374,7 +374,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_file.git_lfs_track_add_f :function (.path.file, Execute = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
 # ..$ f_expression.substitute_echo_and_dput :function (expr_text, expression_equals_evaluation = FALSE,
-#    .print.intermediate = FALSE)
+#    .VERBOSE = FALSE)
 # ..$ f_df.tribble_construct :function (df)
 # ..$ f_df.transpose :function (df, varname4rowname = "varname")
 # ..$ f_df.t.tribble_construct :function (df)
@@ -400,17 +400,17 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
 # ..$ f_path.size_files :function (.path4read = getwd(), literal_filename = NA, regex4filename =
 #    "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
-# print2console = TRUE, print.intermediate = FALSE)
+# print2console = TRUE, VERBOSE = FALSE)
 # ..$ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID =
 #    c("rowname", "rownum", "Num", "ID", "CompositeKey",
 # "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE,
-# print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE)
+# print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)
 # ..$ f_DataSetName.Search.read.checkEntity :function (DataSetName, ext = "rds", .path4read = c(".", "data"),
 #    vec_candidate4ID = c("rowname", "rownum",
 # "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, max_depth = 3,
 # .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
 #    print.names.tidyeval = FALSE,
-# print.intermediate = FALSE)
+# VERBOSE = FALSE)
 # ..$ f_df.NotNA_p_df :function (data)
 # ..$ f_df.printVars_byMainOutcome :function (DataSet, MainOutcome, VarName.selected)
 # ..$ f_df.Table1byExposure.xlsx :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet",
@@ -463,7 +463,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #    LinePrefix4CodeText = "\t",
 # LinePrefix4Output = "\t## ", substitute_ObjectNames = TRUE,
 #    ObjectNames4substitute = NULL,
-# print.intermediate = FALSE)
+# VERBOSE = FALSE)
 # ..$ f_TerminalFromRCodeText.echo :function (.TerminalCodeText, Execute = FALSE)
 # ..$ f_file.switch_open :function (file)
 # ..$ f_URL.open_in_edge_app :function (URL)
@@ -472,7 +472,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_file.git_lfs_track_add_f :function (.path.file, Execute = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
 # ..$ f_expression.substitute_echo_and_dput :function (expr_text,
-#    expression_equals_evaluation = FALSE, .print.intermediate = FALSE)
+#    expression_equals_evaluation = FALSE, .VERBOSE = FALSE)
 # ..$ f_df.tribble_construct :function (df)
 # ..$ f_df.transpose :function (df, varname4rowname = "varname")
 # ..$ f_df.t.tribble_construct :function (df)
@@ -500,19 +500,19 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_list_formula.append_lhs_rhs_vars :function (list_formula)
 # ..$ f_path.size_files :function (.path4read = getwd(), literal_filename = NA,
 #    regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$",
-# print2console = TRUE, print.intermediate = FALSE)
+# print2console = TRUE, VERBOSE = FALSE)
 # ..$ f_DataSet_path_filename_ext.read.checkEntity:function
 #    (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum",
 # "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff =
 #    120 -
 # 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
-# print.names.tidyeval = FALSE, print.intermediate = FALSE)
+# print.names.tidyeval = FALSE, VERBOSE = FALSE)
 # ..$ f_DataSetName.Search.read.checkEntity :function (DataSetName, ext = "rds",
 #    .path4read = c(".", "data"), vec_candidate4ID = c("rowname",
 # "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"),
 # BreathFirstSearch = TRUE, max_depth = 3, .width.cutoff = 120 - 15,
 # print2console = TRUE, return.output = TRUE, print.name.dput = FALSE,
-# print.names.tidyeval = FALSE, print.intermediate = FALSE)
+# print.names.tidyeval = FALSE, VERBOSE = FALSE)
 # ..$ f_df.NotNA_p_df :function (data)
 # ..$ f_df.printVars_byMainOutcome :function (DataSet, MainOutcome,
 #    VarName.selected)
@@ -593,7 +593,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 # ________________________________________________________________________    
 # $ f		:List of 29
 ## $ f_CodeText.echo                             :function (.CodeText, Execute = FALSE, deparse_cat = TRUE, LinePrefix4CodeText = "\t", LinePrefix4Output = "\t## ", 
-##    substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, print.intermediate = FALSE)  
+##    substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, VERBOSE = FALSE)  
 ## $ f_TerminalFromRCodeText.echo                :function (.TerminalCodeText, Execute = FALSE)  
 ## $ f_file.switch_open                          :function (file)  
 ## $ f_URL.open_in_edge_app                      :function (URL)  
@@ -601,7 +601,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_path.relative                             :function (path, basepath = env1$path$path1)  
 ## $ f_file.git_lfs_track_add_f                  :function (.path.file, Execute = FALSE)  
 ## $ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
-## $ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE)  
+## $ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 ## $ f_df.tribble_construct                      :function (df)  
 ## $ f_df.transpose                              :function (df, varname4rowname = "varname")  
 ## $ f_df.t.tribble_construct                    :function (df)  
@@ -619,14 +619,14 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_formula.lhs_rhs_vars                      :function (formula, include_input_in_output = TRUE)  
 ## $ f_list_formula.append_lhs_rhs_vars          :function (list_formula)  
 ## $ f_path.size_files                           :function (.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", 
-##    print2console = TRUE, print.intermediate = FALSE)  
+##    print2console = TRUE, VERBOSE = FALSE)  
 ## $ f_DataSet_path_filename_ext.read.checkEntity:function (DataSet_path_filename_ext, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", 
 ##    "PERSON_ID", "RN_INDI", "NIHID"), .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, 
-##    print.name.dput = FALSE, print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+##    print.name.dput = FALSE, print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 ## $ f_DataSetName.Search.read.checkEntity       :function (DataSetName, ext = "rds", .path4read = c(".", "data"), vec_candidate4ID = c("rowname", 
 ##    "rownum", "Num", "ID", "CompositeKey", "PERSON_ID", "RN_INDI", "NIHID"), BreathFirstSearch = TRUE, 
 ##    max_depth = 3, .width.cutoff = 120 - 15, print2console = TRUE, return.output = TRUE, print.name.dput = FALSE, 
-##    print.names.tidyeval = FALSE, print.intermediate = FALSE)  
+##    print.names.tidyeval = FALSE, VERBOSE = FALSE)  
 ## $ f_df.NotNA_p_df                             :function (data)  
 ## $ f_df.printVars_byMainOutcome                :function (DataSet, MainOutcome, VarName.selected)  
 ## $ f_df.Table1byExposure.xlsx                  :function (DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", VarNames4Exposure = c("InterventionGroup"), 

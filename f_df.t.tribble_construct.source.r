@@ -1,5 +1,5 @@
 .sourcename = "f_df.t.tribble_construct" |> paste0(".source.r")  
-if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
 # # f_df.t.tribble_construct.source.r
 # # f_df.tribble_construct.source.r
 # # f_df.transpose.source.r
@@ -922,7 +922,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ## @ for (.dependancy in c("")) { -----  
 for (.dependancy in c("f_path.size_files")) {
     if(!.dependancy %in% names(.GlobalEnv$env1)) {
-        if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+        if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
         .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
     }
 }

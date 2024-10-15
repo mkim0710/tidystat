@@ -227,7 +227,7 @@ f_CodeText.echo = function(.CodeText,
                           deparse_cat = TRUE,
                           substitute_ObjectNames = FALSE,
                           ObjectNames4substitute = NULL,
-                          print.intermediate = FALSE) {
+                          VERBOSE = FALSE) {
     
     if(substitute_ObjectNames) {
         # Get all objects defined in the parent frame
@@ -242,15 +242,15 @@ f_CodeText.echo = function(.CodeText,
         
         # Sort .object names by length in descending order
         ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
-        if(print.intermediate) print(ObjectNames4substitute)
+        if(VERBOSE) print(ObjectNames4substitute)
         
         # Substitute each .object name
         for (ObjectName in ObjectNames4substitute) {
             # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
-            if(print.intermediate) print(ObjectName)
+            if(VERBOSE) print(ObjectName)
             .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
             .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
-            if(print.intermediate) print(.CodeText)
+            if(VERBOSE) print(.CodeText)
         }
     }
     .CodeText |> cat("  \n", sep="")
@@ -565,7 +565,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
                                       Execute = FALSE,
                                       deparse_cat = TRUE,
                                       ObjectNames4substitute = NULL,
-                                      print.intermediate = FALSE) {
+                                      VERBOSE = FALSE) {
     
     # Get all objects defined in the parent frame
     parent_env <- parent.frame()
@@ -577,15 +577,15 @@ f_CodeText.substitute.echo <- function(.CodeText,
 
     # Sort .object names by length in descending order
     ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
-    if(print.intermediate) print(ObjectNames4substitute)
+    if(VERBOSE) print(ObjectNames4substitute)
     
     # Substitute each .object name
     for (ObjectName in ObjectNames4substitute) {
         # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
-        if(print.intermediate) print(ObjectName)
+        if(VERBOSE) print(ObjectName)
         .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
         .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
-        if(print.intermediate) print(.CodeText)
+        if(VERBOSE) print(.CodeText)
     }
     
     cat(.CodeText, "\n")
@@ -608,7 +608,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
 ## .CodeText = "dim(get(.objectname))" ----
 .objectname = "analyticDF_time2event"
 .CodeText = "dim(get(.objectname))" 
-.CodeText |> f_CodeText.substitute.echo(print.intermediate = TRUE)
+.CodeText |> f_CodeText.substitute.echo(VERBOSE = TRUE)
 .CodeText |> f_CodeText.substitute.echo()
 .CodeText |> f_CodeText.substitute.echo(Execute = TRUE)
 .CodeText |> f_CodeText.substitute.echo(Execute = TRUE, deparse_cat = FALSE)
@@ -669,7 +669,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## \$f_CodeText.echo ====
 # Rdev/00_base_program/f_CodeText.echo.dev.r
-env1$f$f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, print.intermediate = FALSE) {
+env1$f$f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE, substitute_ObjectNames = FALSE, ObjectNames4substitute = NULL, VERBOSE = FALSE) {
 
     
     if(substitute_ObjectNames) {
@@ -685,15 +685,15 @@ env1$f$f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE
         
         # Sort .object names by length in descending order
         ObjectNames4substitute <- ObjectNames4substitute[order(-nchar(ObjectNames4substitute))]
-        if(print.intermediate) print(ObjectNames4substitute)
+        if(VERBOSE) print(ObjectNames4substitute)
         
         # Substitute each .object name
         for (ObjectName in ObjectNames4substitute) {
             # escaped_ObjectName <- gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", ObjectName)
-            if(print.intermediate) print(ObjectName)
+            if(VERBOSE) print(ObjectName)
             .CodeText <- gsub(paste0("get(", ObjectName, ")"), get(ObjectName), .CodeText, fixed = TRUE)
             .CodeText <- gsub(ObjectName, paste0("\"", get(ObjectName), "\""), .CodeText, fixed = TRUE)
-            if(print.intermediate) print(.CodeText)
+            if(VERBOSE) print(.CodeText)
         }
     }
     .CodeText |> cat("  \n", sep="")

@@ -102,7 +102,7 @@ source("f_DataSetName.Search.read.checkEntity.source.r")
 DataSetName = "fhs.index100le10"
 
 ## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE, print.intermediate = TRUE)
+out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, print2console = FALSE, VERBOSE = TRUE)
 # getwd() == .path4read[1] == "."  
 # DataSetName = "fhs.index100le10"  
 # i.path4read = "."  
@@ -115,8 +115,8 @@ out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, pr
 
 
 ## \% f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName) =====
-out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, print.intermediate = TRUE)
-# > out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, print.intermediate = TRUE)
+out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, VERBOSE = TRUE)
+# > out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, .path4read = ".", print2console = FALSE, VERBOSE = TRUE)
 # getwd() == .path4read[1] == "."  
 # DataSetName = "fhs.index100le10"  
 # i.path4read = "."  

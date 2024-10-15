@@ -129,7 +129,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 # ```{r setup, eval=TRUE, include=FALSE}
 if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
 # Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
-Sys.setenv(LANGUAGE="en")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
 # str(knitr::opts_chunk$get())
 # cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
@@ -617,19 +617,19 @@ options(width=120)
 library(purrr)
 
 # Generalized substitute_and_evaluate function
-f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .print.intermediate = FALSE) {
+f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE) {
   # Get all character variables from .GlobalEnv
   # env_vars <- as.list(.GlobalEnv)
   # char_vars <- env_vars[map_lgl(env_vars, is.character)]
   char_vars = as.list(.GlobalEnv)[as.list(.GlobalEnv)|>map_lgl(function(x) is.character(x) && length(x) == 1)]
-  if(.print.intermediate) cat("  > char_vars == ", deparse(char_vars), "\n", sep="")
+  if(.VERBOSE) cat("  > char_vars == ", deparse(char_vars), "\n", sep="")
   
   # Substitute all the defined names in .GlobalEnv, considering variable name characters
   substituted_text <- expr_text
   for (name in names(char_vars)) {
     # substituted_text <- gsub(name, paste0('"', char_vars[[name]], '"'), substituted_text)
     pattern <- paste0("(?<![\\w.])",name,"(?![\\w.])")
-    if(.print.intermediate) cat("  > pattern == ", deparse(pattern), "\n", sep="")
+    if(.VERBOSE) cat("  > pattern == ", deparse(pattern), "\n", sep="")
     substituted_text <- gsub(pattern, paste0('"', char_vars[[name]], '"'), substituted_text, perl = TRUE)
   }
 
@@ -650,7 +650,7 @@ f_expression.substitute_echo_and_dput <- function(expr_text, expression_equals_e
 DataSetName <- "analyticDF_time2event"
 analyticDF_time2event <- data.frame(matrix(1:12, nrow=24, ncol=12))
 
-"dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(.print.intermediate = TRUE)
+"dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(.VERBOSE = TRUE)
 "dim(get(DataSetName))" |> f_expression.substitute_echo_and_dput(expression_equals_evaluation = TRUE)
 
 ```

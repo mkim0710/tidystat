@@ -5,7 +5,7 @@ library(purrr)
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2df_wave.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/30_transform_scale_categorical/function.df2matrix_wave.dev.r
 # function to convert a dataframe to a matrix
-function.df2matrix_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, print.intermediate = FALSE) {
+function.df2matrix_wave <- function(df, vector_wave, vector_colname_at_wave = NULL, VERBOSE = FALSE) {
     if(!is.numeric(vector_wave)) {
         warning("vector_wave is not numeric"); cat("  \n", sep="")
         vector_wave = vector_wave |> as.numeric()
@@ -25,7 +25,7 @@ function.df2matrix_wave <- function(df, vector_wave, vector_colname_at_wave = NU
     matrix_data = array(dim = c(nrow(df), max(vector_wave)))
 
     for (i in seq_along(vector_wave)) {
-        if(print.intermediate) {
+        if(VERBOSE) {
             cat("Column name for time = ", vector_wave[i], " : ", vector_colname_at_wave[i], "\n")
         }
 
@@ -76,11 +76,11 @@ tmp.df |> str()
 # tmp.vector_wave
 
 # Applying the function to a dataframe
-# tmp_matrix_wave <- function.df2matrix_wave(tmp.df, vector_wave, vector_colname_at_wave, print.intermediate = TRUE)
-# tmp_matrix_wave <- function.df2matrix_wave(tmp.df, tmp.vector_wave, print.intermediate = TRUE)
-# tmp_matrix_wave <- function.df2matrix_wave(tmp.df, as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(tmp.df))), print.intermediate = TRUE)
-# tmp_matrix_wave <- tmp.df %>% {function.df2matrix_wave(., as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)}
-tmp_matrix_wave <- tmp.df %>% function.df2matrix_wave(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), print.intermediate = TRUE)
+# tmp_matrix_wave <- function.df2matrix_wave(tmp.df, vector_wave, vector_colname_at_wave, VERBOSE = TRUE)
+# tmp_matrix_wave <- function.df2matrix_wave(tmp.df, tmp.vector_wave, VERBOSE = TRUE)
+# tmp_matrix_wave <- function.df2matrix_wave(tmp.df, as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(tmp.df))), VERBOSE = TRUE)
+# tmp_matrix_wave <- tmp.df %>% {function.df2matrix_wave(., as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), VERBOSE = TRUE)}
+tmp_matrix_wave <- tmp.df %>% function.df2matrix_wave(as.numeric(sub("A0(\\d+)_.*", "\\1", colnames(.))), VERBOSE = TRUE)
 tmp_matrix_wave |> str()
 tmp_matrix_wave |> head()
 # > tmp_matrix_wave |> str()
@@ -99,7 +99,7 @@ tmp_matrix_wave |> head()
 
 # Applying the function to each dataframe in the list
 list_matrix_wave <- list_df_defDM.indicators %>% map(function(df) {df %>% select_if(is.logical)}) %>%
-    map(function(dfi) {dfi %>% function.df2matrix_wave(vector_wave = as.numeric(sub("A0(\\d+)_.*", "\\1", names(.))), print.intermediate = F)})
+    map(function(dfi) {dfi %>% function.df2matrix_wave(vector_wave = as.numeric(sub("A0(\\d+)_.*", "\\1", names(.))), VERBOSE = F)})
 
 list_matrix_wave |> str()
 list_matrix_wave$DM_C |> head()

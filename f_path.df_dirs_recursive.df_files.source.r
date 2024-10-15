@@ -1,5 +1,5 @@
 .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")  
-if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
 # # .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r")
 # # f_path.df_dirs_recursive.df_files.dev.r
 # # f_path.df_dirs_recursive.df_files.source.r

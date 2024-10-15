@@ -1,5 +1,5 @@
 .sourcename = "templates-00env1.minimum-Chunks" |> paste0(".source.r")  
-if(Sys.getenv("print.intermediate")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
+if(Sys.getenv("VERBOSE")==TRUE) { print(paste0('Sourcing: "',.sourcename,'"')) }  
 # rstudio-prefs/templates/f_df.t.tribble_construct.dev.r  
 # rstudio-prefs/templates/f_df.t.tribble_construct.dev.Rmd  
 # rstudio-prefs/templates/f_df.t.tribble_construct.source.r  

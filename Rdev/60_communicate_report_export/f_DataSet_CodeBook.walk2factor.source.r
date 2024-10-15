@@ -113,25 +113,25 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 ## \$ f_vec_ValueOptions.factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
 .tmp$objectname = "f_vec_ValueOptions.factor"
-.tmp$object = function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+.tmp$object = function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = FALSE) {
   if (is.na(ValueOptions) || ValueOptions == "") {
     return(vec)
   }
 
-  if (print.intermediate) {
+  if (VERBOSE) {
     cat("Processing variable with ValueOptions:", ValueOptions, "\n")
   }
   
   options_split <- str_split(ValueOptions, sep4levels)[[1]]
   
-  if (print.intermediate) {
+  if (VERBOSE) {
     cat("Split ValueOptions:", paste(options_split, collapse = ", "), "\n")
   }
   
   levels <- map_dbl(options_split, ~ as.numeric(str_split(.x, sep4name_value)[[1]][1]))
   labels <- map_chr(options_split, ~ str_split(.x, sep4name_value)[[1]][2])
   
-  if (print.intermediate) {
+  if (VERBOSE) {
     cat("Levels:", paste(levels, collapse = ", "), "\n")
     cat("Labels:", paste(labels, collapse = ", "), "\n")
   }
@@ -146,7 +146,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 ## \$ f_DataSet_CodeBook.walk2factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
 .tmp$objectname = "f_DataSet_CodeBook.walk2factor"
-.tmp$object = function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", print.intermediate = FALSE) {
+.tmp$object = function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = FALSE) {
   # Use walk2 to iterate over VarName.suffix and ValueOptions in parallel and update DataSet in place
   walk2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
     function(var_name, value_options) {
@@ -155,7 +155,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
                                                           value_options, 
                                                           sep4levels, 
                                                           sep4name_value, 
-                                                          print.intermediate)
+                                                          VERBOSE)
       }
     })
   

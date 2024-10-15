@@ -104,7 +104,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 # #@ for (.dependancy in c("")) { -----  
 # for (.dependancy in c("f_df.t.tribble_construct")) {
 #     if(!.dependancy %in% names(.GlobalEnv$env1)) {
-#         if(Sys.getenv("print.intermediate")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+#         if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
 #         .objectname = .dependancy
 #         source(file.path(env1$path$source_base,"",paste0(.objectname,".source.r")))
 #     }
@@ -115,7 +115,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
 ## @ .objectname = "f_filename.ext.find_subpath" =========  
 .tmp$objectname = "f_filename.ext.find_subpath"
-.tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
+.tmp$object = function(filename.ext, input_path = ".", max_depth = 3, VERBOSE = FALSE, BreathFirstSearch = TRUE, findMultiple = FALSE) {
     # # tools::file_ext(path.basename)
     # # # > tools::file_ext
     # # # function (x) 
@@ -128,14 +128,14 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
     ext = filename.ext |> str_extract("\\.([[:alnum:]]+)$") |> str_replace("^\\.", "")
     if (is.na(ext)) {stop("Error: filename.ext must have an extension.")}
     
-    if (print.intermediate) {
+    if (VERBOSE) {
         cat("Searching: ", input_path, strrep(" ", max(50-nchar(input_path),0)), "\t at depth ", 0, "  \n", sep="")
     }
     
     if (file.exists(file.path(input_path, filename.ext))) {
         return(file.path(input_path, filename.ext))
     } else if (BreathFirstSearch) {
-        return(env1$f$f_filename.ext.find_subpath.BreathFirstSearch(filename.ext=filename.ext, input_path=input_path, max_depth=max_depth, print.intermediate=print.intermediate, findMultiple=findMultiple))
+        return(env1$f$f_filename.ext.find_subpath.BreathFirstSearch(filename.ext=filename.ext, input_path=input_path, max_depth=max_depth, VERBOSE=VERBOSE, findMultiple=findMultiple))
     } else {
         return(NULL)
     }
@@ -147,7 +147,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 ## @ .objectname = "f_filename.ext.find_subpath.BreathFirstSearch" =========  
 .tmp$objectname = "f_filename.ext.find_subpath.BreathFirstSearch"
-.tmp$object = function(filename.ext, input_path = ".", max_depth = 3, print.intermediate = FALSE, findMultiple = FALSE) {
+.tmp$object = function(filename.ext, input_path = ".", max_depth = 3, VERBOSE = FALSE, findMultiple = FALSE) {
     # Breath-first search for the filename.ext in the subdirectories of the input_path
     # Initialize the queue with the input_path at depth 0
     list_list_path_depth <- list(list(path = input_path, depth = 0))
@@ -169,9 +169,9 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
             vec_files_subpath <- list.dirs(list_path_depth.current$path, full.names = TRUE, recursive = FALSE)
             vec_files_subpath = vec_files_subpath[!basename(vec_files_subpath) %in% c(".git", ".Rproj.user", "-backup", "cache", ".history", "libs")]
             for (i_files_subpath in vec_files_subpath) {
-                if (print.intermediate) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
+                if (VERBOSE) cat(' >  i_files_subpath == ',deparse(i_files_subpath), "  \n", sep = "")
                 if (file.info(i_files_subpath)$isdir) {
-                    if (print.intermediate) {
+                    if (VERBOSE) {
                         cat("Searching: ", i_files_subpath, strrep(" ", max(50-nchar(i_files_subpath),0)), "\t at depth ", list_path_depth.current$depth+1, "; ", sep="")
                         cat("Queue length: ", length(list_list_path_depth)+1, "  \n", sep="")
                     }
@@ -186,7 +186,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         }
     }
 
-    if (print.intermediate) {
+    if (VERBOSE) {
         if (length(list_out) == 0) {
             cat("----------- File not found while searching following subpaths:\n")
             vec_subpath <- unlist(list_subpath, use.names = FALSE)
@@ -208,8 +208,8 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 # filename.ext = "fhs.index100le10.rds"
-# env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# # > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
+# # > env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 # # Searching: .                                                 	 at depth 0
 # # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -218,8 +218,8 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # # [1] "./data/fhs.index100le10.rds"
 # 
 # filename.ext = "help.array.r"
-# env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# # > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
+# # > env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 # # Searching: .                                                 	 at depth 0
 # # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
@@ -272,8 +272,8 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 # # [1] "./Rdev/10_import_clean_datatype/array_list/help.array.r"
 # 
 # filename.ext = "does not exist.r"
-# env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
-# # > env1$f$f_filename.ext.find_subpath(filename.ext, print.intermediate = T)
+# env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
+# # > env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 # # Searching: .                                                 	 at depth 0
 # # Searching: ./-info                                           	 at depth 1; Queue length: 1
 # # Searching: ./-personal -old                                  	 at depth 1; Queue length: 2
