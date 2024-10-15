@@ -143,9 +143,9 @@ backup/
 *-backup*
 archive/
 *-archive*
-old/
-*- old*
-*-old*
+# old/
+# *- old*
+# *-old*
 
 # Log files
 # *-log*.*
