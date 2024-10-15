@@ -642,7 +642,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
             
             .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename.ext)
             .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
-            env1$env.internal$f_.filename.ext.createBackup(backup_from_path.filename.ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
+            env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
             env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         }
     }
