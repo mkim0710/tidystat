@@ -112,98 +112,68 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # @@ START) dev -----  
 ## env0 = env1 ----
 env0 = env1
-## \% survival::lung |> 
+
+#@ ```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"} ----
+# ```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# #|________________________________________________________________________________|#  
+# ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# ## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
+# .path4write = env1$path$.path4write
+# # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+# cat("    ========================================================================    \n")
+# for (.objectname in names(MetaData$DataSetNames)) {
+#     assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+#     .path.file = paste0(.path4write,"/",.objectname,".rds",".xz")
+#     cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = "xz", compression = 9) |> system.time()', "  \n", sep="")
+#     # system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
+#     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
+#     env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE)
+#     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# }
+# # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# # .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# # system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
+# # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
+# ```
+
 
 #|________________________________________________________________________________|#  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
 # .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
 # .GlobalEnv$env1$f[[.sourcename_root]] = "Sourcing..." 
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-# source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
-# --> Now included in "f_df.t.tribble_construct.source.r"
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_formula.lhs_rhs_vars =  ----
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
-.tmp$objectname = "f_formula.lhs_rhs_vars"
-.tmp$object = function(formula, include_input_in_output = TRUE) {
-    return.list = list()
-    if(include_input_in_output) return.list$formula = formula
-    return.list$terms = formula |> terms()
-    return.list$all.vars = formula |> all.vars()
-    return.list$lhs = formula[[2]]
-    return.list$lhs.vars = formula[[2]] |> all.vars()
-    return.list$rhs = formula[[3]]
-    return.list$rhs.vars = formula[[3]] |> all.vars()
-    return(return.list)
 
-    # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-    # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-    #
-    # library(survival)
-    # MetaData$ModelList$time2event = NULL
-    # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-    #
-    # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-    # MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
-    # # List of 7
-    # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-    # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-    # #  $ all.vars: chr [1:6] "time2event" "event" "Group" "StudyPopulation" ...
-    # #  $ lhs     : language Surv(time = time2event, event = event)
-    # #  $ lhs.vars: chr [1:2] "time2event" "event"
-    # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
-    # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
-}
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
-#|________________________________________________________________________________|#  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) source -----  
-### @ .subpath, .sourcename ======  
-#### env1$path$.subpath.filename.source.r ----  
-# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# .sourcename = "default.template" |> paste0(".source.r")
-if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.sourcename_root = env1$path$CurrentSource.path.filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$path$.subpath = .subpath
-if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
-.sourcename = .sourcename_root |> paste0(".source.r")
-env1$path$.sourcename_root = .sourcename_root
-env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
-cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-    "#### ",env1$path$.subpath.filename.dev.r, "----  \n",
-    "#### ",env1$path$.subpath.filename.dev.Rmd, "----  \n",
-    "#### ",env1$path$.subpath.filename.source.r, "----  \n",
-    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath.filename.source.r,'"))', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    sep="")
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## env1 = env0 ----
-### \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
-# env1 = env0
-# .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# # cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])
-# if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
-#|________________________________________________________________________________|#  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
-#| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-?exists
-.objectname
+MetaData <- readRDS("rstudio-prefs/templates/templates-00env1.minimum.MetaData.rds")
+.objectname = "MetaData"
 get(.objectname) %>% str(max.level = 2)
-f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path4write = env1$path$.path4write, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
+# > get(.objectname) %>% str(max.level = 2)
+# List of 5
+#  $ tblVarName     : list()
+#  $ DataSetNames   :List of 2
+#   ..$ analyticDF_time2event.NA        :List of 1
+#   ..$ analyticDF_time2event.NA.rmAllNA:List of 1
+#  $ VarNames       :List of 11
+#   ..$ Event       :List of 4
+#   ..$ Mediator    :List of 2
+#   ..$ Exposure    :List of 4
+#   ..$ PMHx        : list()
+#   ..$ Tx          : list()
+#   ..$ FHx         : list()
+#   ..$ Exam        : list()
+#   ..$ Social      :List of 6
+#   ..$ Behavioral  : list()
+#   ..$ Unclassified: list()
+#   ..$ Calculated  : list()
+#  $ VarNames.select: list()
+#  $ ModelList      : list()
+
+
+
+
+
+
+f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DataSetNames)) {
@@ -211,8 +181,11 @@ f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path4wr
             }
         } 
     }
-    if(is.null(CompressionMethod)) CompressionMethod = ifelse(object.size(.objectname) > 1e6, "xz", "gz")
-    .path.file = paste0(.path4write,"/",.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))
+    if(is.null(CompressionMethod))      CompressionMethod = ifelse(object.size(.objectname) > 1e6, "xz", "gz")
+    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))
+    if(is.null(.path4write))            .path4write = env1$path$.path4write
+    if(is.null(.path.file))             .path.file = paste0(.path4write,"/",.filename.ext4write)
+
     cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = ',shQuote(CompressionMethod),', compression = 9) |> system.time()', "  \n", sep="")
     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     if(Execute) {
@@ -231,3 +204,6 @@ f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path4wr
 
 	
 .objectname %>% f_objectname.size.write_rds.git_lfs_track_add_f
+MetaData |> write_rds('/home/rstudio/github_tidystat/rstudio-prefs/templates/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
+env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/rstudio-prefs/templates', regex4filename = 'MetaData')  
+"git add -f '/home/rstudio/github_tidystat/rstudio-prefs/templates/MetaData.rds'" |> system(intern=TRUE)  
