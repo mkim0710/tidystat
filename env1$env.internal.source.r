@@ -645,9 +645,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
             env1$env.internal$f_.filename.ext.createBackup(backup_from_path.filename.ext = .file.copy.to, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE)
             env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
         }
-        
-        browseURL("D:/OneDrive/[][Rproject]/-backup")
     }
+    if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-backup")
     
     # \% Update the .Rprofile  @ Project Directory & User Folder ~~~~~~~~~~~~
     for (.filename.ext in c(".Rprofile")) {
