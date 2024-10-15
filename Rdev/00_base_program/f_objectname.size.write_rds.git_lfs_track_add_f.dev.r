@@ -230,9 +230,13 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
 
 
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
 # env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
+# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
+# > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
 # "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
 
 .objectname |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
@@ -240,14 +244,12 @@ MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # stop: Error: is.character(.object) && length(.object) == 1 --> Did you provide an object name instead of the object itself?
 # 
 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname)
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData")
-# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname)
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, path.size_files = FALSE)
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", path.size_files = FALSE)
+# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, path.size_files = FALSE)
 # MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
-# env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
 # "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
-# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData")
+# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData", path.size_files = FALSE)
 # MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
-# env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
 # "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
 
