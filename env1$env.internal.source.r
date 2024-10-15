@@ -534,13 +534,13 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
     #         ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
     #     )
     # } else {
-    #     warning("git lfs is not available")
+    #     warning("git lfs is not available  \n")
     #     invisible(
     #         paste0( "git add -f ",shQuote(.path.file) ) |> env1$f$f_TerminalFromRCodeText.echo(Execute = Execute)
     #     )
     # }
     
-    if(!git_lfs_available) warning("git lfs is not available")
+    if(!git_lfs_available) warning("git lfs is not available  \n")
     
     invisible(
         list(
