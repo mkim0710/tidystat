@@ -34,7 +34,7 @@ suppressPackageStartupMessages(library(tidyverse))
 .objectname = DataSetName = "analyticDF_time2event"
 assign(
     DataSetName, 
-    survival::lung |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
+    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
         # dplyr::select(-status, -sex)
         dplyr::select(-status)
 )
