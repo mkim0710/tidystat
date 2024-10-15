@@ -233,7 +233,7 @@ f_CodeText.echo = function(.CodeText,
         # Get all objects defined in the parent frame
         parent_env <- parent.frame()
         if(is.null(ObjectNames4substitute)) {
-            ObjectNames4substitute <- ls(envir = parent_env, all.names = TRUE) %>% 
+            ObjectNames4substitute <- ls(all.names = TRUE, envir = .GlobalEnv) %>% 
                 set_names() %>% map(get) %>% 
                 keep(is.character) %>% 
                 keep(function(vec) {length(vec) == 1}) %>% 
@@ -570,7 +570,7 @@ f_CodeText.substitute.echo <- function(.CodeText,
     # Get all objects defined in the parent frame
     parent_env <- parent.frame()
     if(is.null(ObjectNames4substitute)) {
-        ObjectNames4substitute <- ls(envir = parent_env, all.names = TRUE) %>% 
+        ObjectNames4substitute <- ls(all.names = TRUE, envir = .GlobalEnv) %>% 
             set_names() %>% map(get) %>% 
             keep(is.character) %>% names()
     }
@@ -676,7 +676,7 @@ env1$f$f_CodeText.echo = function(.CodeText, Execute = FALSE, deparse_cat = TRUE
         # Get all objects defined in the parent frame
         parent_env <- parent.frame()
         if(is.null(ObjectNames4substitute)) {
-            ObjectNames4substitute <- ls(envir = parent_env, all.names = TRUE) %>% 
+            ObjectNames4substitute <- ls(all.names = TRUE, envir = .GlobalEnv) %>% 
                 set_names() %>% map(get) %>% 
                 keep(is.character) %>% 
                 keep(function(vec) {length(vec) == 1}) %>% 
