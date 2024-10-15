@@ -180,7 +180,22 @@ get(.objectname) %>% str(max.level = 2)
 # Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, Execute = FALSE, git_add_f = TRUE, CompressionMethod = NULL) {
+    
+    if(!is.null(.object)) {
+        if(is.character(.object) && length(.object) == 1) {
+            # .objectname <- .object
+            # .object <- get(.object)
+            "is.character(.object) && length(.object) == 1 --> Did you provide an object name instead of the object itself?" |> stop(call. = FALSE) |> tryCatch(error = function(e) message("stop: ", e)); return(invisible())
+        } 
+    }
+    
+    # # If the object name is provided but not the object itself, retrieve the object
+    # if (!is.null(.objectname) && is.null(.object)) {.object <- get(.objectname)}
+    
+    # If the object is provided but not the object name, create an object name
+    if (!is.null(.object) && is.null(.objectname)) {.objectname <- deparse(substitute(.object))}
+    
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
             if(.objectname %in% names(MetaData$DataSetNames)) {
@@ -214,15 +229,25 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.objectname, .
 
 
 
-.objectname |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
-# > .objectname %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f
+MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
 # env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
-# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE) 
+# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
 
-"MetaData" |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
-# > "MetaData" %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+.objectname |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# > .objectname |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# stop: Error: is.character(.object) && length(.object) == 1 --> Did you provide an object name instead of the object itself?
+# 
+
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname)
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData")
+# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname)
 # MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
 # env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
-# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE) 
+# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
+# > env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData")
+# MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9) |> system.time()  
+# env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
+# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
 
