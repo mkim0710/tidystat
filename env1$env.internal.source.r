@@ -676,21 +676,21 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     
     # *** be careful not to overwite .gitattributes~! git LFS may become regular file~!
     
-    if(.Platform$OS.type == "unix") {
-        if(Sys.info()["sysname"] == "Linux") {
-            if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
-                
-            } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
-                .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
-                .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
-                env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
-            } else if(Sys.info()["sysname"] == "Darwin") {
-                
-            }
-        } else if(Sys.info()["sysname"] == "Windows") {
-            
-        }
-    }
+    # if(.Platform$OS.type == "unix") {
+    #     if(Sys.info()["sysname"] == "Linux") {
+    #         if("~" |> normalizePath() == "/home/rstudio") {  # @Rocker
+    #             
+    #         } else if ("~" |> normalizePath() |> dirname() == "/cloud/home") {  # @Posit.Cloud
+    #             .file.copy.from = "https://github.com/mkim0710/tidystat/raw/master/rstudio-prefs/rstudio-prefs.json%40PositCloud-MH240515%20copilot.json"
+    #             .file.copy.to = "~/.config/rstudio/rstudio-prefs.json"
+    #             env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
+    #         } else if(Sys.info()["sysname"] == "Darwin") {
+    #             
+    #         }
+    #     } else if(Sys.info()["sysname"] == "Windows") {
+    #         
+    #     }
+    # }
 }
 
 
