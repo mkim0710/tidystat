@@ -216,7 +216,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # @@ Rdev/00_base_program/f_vec_named.swap.dev.Rmd  
-# @@ Rdev/10_import_clean_datatype/11_metadata/f_chr_Value_Label2vector.dev.Rmd  
+# @@ Rdev/10_import_clean_datatype/11_metadata/f_chrValueLabelPairs2vector.dev.Rmd  
 # @@ Rdev/10_import_clean_datatype/16_categorical_labelled/f_DataSet.labelled_CodeBook.dev.Rmd  
 
 # @@ START) dev ----  
@@ -540,7 +540,7 @@ dput(swapped_vector)
 ```
 
 
-## \% |> f_chr_Value_Label2vector() ----  
+## \% |> f_chrValueLabelPairs2vector() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
