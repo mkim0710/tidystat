@@ -580,7 +580,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
         } 
     }
     if(is.null(CompressionMethod))      CompressionMethod = ifelse(object.size(.objectname) > 1e6, "xz", "gz")
-    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz", ".xz", ""))
+    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(.objectname) > 1e6, ".xz", ""))
     if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path.file))             .path.file = paste0(.path4write,"/",.filename.ext4write)
 
