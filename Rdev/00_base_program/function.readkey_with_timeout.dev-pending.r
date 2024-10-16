@@ -292,19 +292,20 @@ print(result)
 
 ##________________________________________________________________________________
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ write_rds( get(.objectname), file.path(.path4write, paste0(.objectname,".rds"))) ----  
-.path4write = env1$path$.path4write
-# MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-cat("    ========================================================================    \n")
-for (.objectname in names(MetaData$DataSetNames)) {
-    assign(.objectname, structure(get(.objectname), MetaData = MetaData))
-    .path.file = paste0(.path4write,"/",.objectname,".rds",".xz")
-    cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = "xz", compression = 9) |> system.time()', "  \n", sep="")
-    # system.time(write_rds( get(.objectname), .path.file, compress = "xz", compression = 9 ))
-    cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
-    env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE)
-    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
+if(exists("MetaData")) {
+    # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+    cat("    ========================================================================    \n")
+    for (.objectname in names(MetaData$DataSetNames)) {
+        assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+        env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    }
 }
+# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
 # system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
