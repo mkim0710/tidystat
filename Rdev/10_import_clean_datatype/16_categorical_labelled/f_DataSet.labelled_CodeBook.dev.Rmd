@@ -512,15 +512,10 @@ DataSet.Date.NA.rmAllNA %>% select(matches("EDU")) %>% str(max.level = 2)
 ```
 
 
-
-# @@ START) dev ----  
-```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
-env0 = env1
-```
   
-# https://cloud.r-project.org/web/packages/labelled/vignettes/intro_labelled.html
-
-# Introduction to labelled  
+# _______________  
+https://cloud.r-project.org/web/packages/labelled/vignettes/intro_labelled.html 
+# @@ Introduction to labelled  
 
 ## library(labelled)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -818,9 +813,9 @@ DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> muta
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> as_tibble()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-as1_7.sas7bdat |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
+# as1_7.sas7bdat |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-as1_7.sas7bdat |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> as_tibble()
+# as1_7.sas7bdat |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> as_tibble()
 ```
 
 (55555=추적조사 미참여, 66666=조사안함, 77777=해당없음, 99999=미상/무응답/미측정)  
@@ -886,8 +881,12 @@ KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suf
 ```
 
 
+# _______________
 
-
+# @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
 
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
