@@ -349,7 +349,7 @@ options(width=120)
 MetaData$VarNames.select$VarName.suffix.select122 = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(Select == "Select") %>% {.$VarName.suffix} |> as.character()
 MetaData$VarNames.select$VarName.suffix.select122 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 MetaData$VarNames.select$VarName.suffix.select122 |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---    
-cat("    ========================================================================    \n")
+cat("    ________________________________________________________________________    \n")
 MetaData$VarNames.select$WAVE_VARNAME.select836 = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") %>% {.$WAVE_VARNAME} |> as.character()
 MetaData$VarNames.select$WAVE_VARNAME.select836 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
 MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") |> dplyr::select(VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, ValueChange) %>% spread(WAVE_VARNAME, key = "Wave") |> print(n=200)
@@ -1285,7 +1285,7 @@ if(exists("MetaData")) {
 ## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
 if(exists("MetaData")) {
     # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-    cat("    ========================================================================    \n")
+    cat("    ________________________________________________________________________    \n")
     for (.objectname in names(MetaData$DataSetNames)) {
         assign(.objectname, structure(get(.objectname), MetaData = MetaData))
         env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")

@@ -124,7 +124,7 @@ env0 = env1
 # ## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
 # .path4write = env1$path$.path4write
 # # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
-# cat("    ========================================================================    \n")
+# cat("    ________________________________________________________________________    \n")
 # for (.objectname in names(MetaData$DataSetNames)) {
 #     assign(.objectname, structure(get(.objectname), MetaData = MetaData))
 #     .path.file = paste0(.path4write,"/",.objectname,".rds",".xz")
