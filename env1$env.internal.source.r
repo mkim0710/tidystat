@@ -590,7 +590,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     
     if(Execute) {
         if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .path.file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
-        system.time(write_rds( get(.objectname), .path.file, compress = CompressionMethod, compression = 9 ))
+        system.time(write_rds( get(.objectname), .path.file, compress = CompressionMethod, compression = 9L ))
         if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
     }
     
