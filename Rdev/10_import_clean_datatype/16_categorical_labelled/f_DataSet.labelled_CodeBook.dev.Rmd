@@ -606,7 +606,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##      8 don't know
     ##      9    refused
 
-#### **ECHO** :: val_labels(df$Var1) = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB") ----  
+#### **ECHO** :: val_labels(df$Var1) = c(LabelA = "ValueA", LabelB = "ValueB") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     val_labels(v) <- c(yes = 1, nno = 3, bug = 5)
     v
@@ -622,7 +622,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##      5   bug
 
 ### :: df =
-#### **ECHO** :: val_labels(df) = list(Var1 = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB"), Var2 = c(ValueLabel1 = 1, ValueLabel2 = 2)) ----  
+#### **ECHO** :: val_labels(df) = list(Var1 = c(LabelA = "ValueA", LabelB = "ValueB"), Var2 = c(Label1 = 1, Label2 = 2)) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     df <- data.frame(v1 = 1:3, v2 = c(2, 3, 1), v3 = 3:1)
     val_labels(df) <- NULL
@@ -870,13 +870,13 @@ env0 = env1
 
 ## \% eval(parse(text = .CodeText)) ----  
 
-### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
 #### https://chatgpt.com/c/670fd3f1-de80-800e-bfdc-f379288fc625
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(tidyverse)
 
 # Sample ValueOptions string
-value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+value_options <- "ValueA=LabelA, ValueB=LabelB"
 
 # Step 1: Split the string into individual pairs by comma
 value_label_pairs <- str_split(value_options, ", ") %>% unlist()
@@ -884,7 +884,7 @@ value_label_pairs <- str_split(value_options, ", ") %>% unlist()
 # Step 2: Separate each pair into values and labels
 value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
 
-# Step 3: Create the named vector where ValueLabel is the name and Value is the value
+# Step 3: Create the named vector where Label is the name and Value is the value
 named_vector <- setNames(map_chr(value_label_list, 1), map_chr(value_label_list, 2))
 
 # Print the named vector
@@ -906,14 +906,14 @@ string_to_named_vector <- function(value_options) {
   # Step 2: Separate each pair into values and labels
   value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
   
-  # Step 3: Create the named vector where Value is the name and ValueLabel is the value
+  # Step 3: Create the named vector where Value is the name and Label is the value
   named_vector <- setNames(map_chr(value_label_list, 2), map_chr(value_label_list, 1))
   
   return(named_vector)
 }
 
 # Example usage
-value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+value_options <- "ValueA=LabelA, ValueB=LabelB"
 value_options
 named_vector <- string_to_named_vector(value_options)
 print(named_vector)
@@ -931,7 +931,7 @@ swap_named_vector <- function(named_vector) {
 }
 
 # Example usage
-named_vector = c(ValueA = "ValueLabelA", ValueB = "ValueLabelB")
+named_vector = c(ValueA = "LabelA", ValueB = "LabelB")
 named_vector
 dput(named_vector)
 swapped_vector <- swap_named_vector(named_vector)
@@ -942,13 +942,13 @@ dput(swapped_vector)
 
 
 
-### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
 #### https://gemini.google.com/app/639552d667363004
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(tidyverse)
 
 # Example ValueOptions string
-value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+value_options <- "ValueA=LabelA, ValueB=LabelB"
 
 str_split(value_options, ", ") %>% 
   unlist() %>% str
@@ -973,7 +973,7 @@ named_vector <- str_split(value_options, ", ") %>%
 print(named_vector)
 
 # Expected output:
-# ValueLabelA ValueLabelB 
+# LabelA LabelB 
 #    "ValueA"    "ValueB"
 ```
 
@@ -999,7 +999,7 @@ swap_names_values <- function(named_vector) {
 }
 
 # Example usage
-value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+value_options <- "ValueA=LabelA, ValueB=LabelB"
 value_options
 
 # Convert string to named vector
@@ -1008,21 +1008,21 @@ print(named_vector)
 dput(named_vector)
 # Expected output:
 # ValueA ValueB 
-# "ValueLabelA" "ValueLabelB"
+# "LabelA" "LabelB"
 
 # Swap names and values
 swapped_vector <- swap_names_values(named_vector)
 print(swapped_vector)
 dput(swapped_vector)
 # Expected output:
-# ValueLabelA ValueLabelB 
+# LabelA LabelB 
 #    "ValueA"    "ValueB" 
 ```
 
 
-### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-i.ValueOptions = "ValueA=ValueLabelA, ValueB=ValueLabelB"
+i.ValueOptions = "ValueA=LabelA, ValueB=LabelB"
 .CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
 eval(parse(text = .CodeText)) %>% dput
 ```

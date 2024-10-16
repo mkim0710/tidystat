@@ -236,7 +236,7 @@ swap_named_vector <- function(named_vector) {
 }
 
 # Example usage
-named_vector = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB")
+named_vector = c(LabelA = "ValueA", LabelB = "ValueB")
 named_vector
 dput(named_vector)
 swapped_vector <- swap_named_vector(named_vector)
@@ -258,19 +258,19 @@ string_to_named_vector <- function(value_options, pair_sep = ",", value_label_se
   # Step 2: Separate each pair into values and labels using value_label_sep (handling whitespaces)
   value_label_list <- map(value_label_pairs, ~ str_split(.x, paste0("\\s*", value_label_sep, "\\s*")) %>% unlist())
   
-  # Step 3: Create the named vector where Value is the name and ValueLabel is the value
+  # Step 3: Create the named vector where Value is the name and Label is the value
   named_vector <- setNames(map_chr(value_label_list, 2), map_chr(value_label_list, 1))
   
   return(named_vector)
 }
 
 # Example usage with default separators
-value_options <- "ValueA = ValueLabelA, ValueB = ValueLabelB"
+value_options <- "ValueA = LabelA, ValueB = LabelB"
 named_vector <- string_to_named_vector(value_options)
 print(named_vector)
 
 # Example usage with custom separators
-value_options_custom <- "ValueA:ValueLabelA | ValueB:ValueLabelB"
+value_options_custom <- "ValueA:LabelA | ValueB:LabelB"
 named_vector_custom <- string_to_named_vector(value_options_custom, pair_sep = "\\|", value_label_sep = ":")
 print(named_vector_custom)
 
@@ -286,7 +286,7 @@ print(named_vector_custom)
 library(tidyverse)
 
 # Example ValueOptions string
-value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+value_options <- "ValueA=LabelA, ValueB=LabelB"
 
 str_split(value_options, ", ") %>% 
   unlist() %>% str
@@ -311,7 +311,7 @@ named_vector <- str_split(value_options, ", ") %>%
 print(named_vector)
 
 # Expected output:
-# ValueLabelA ValueLabelB 
+# LabelA LabelB 
 #    "ValueA"    "ValueB"
 ```
 
@@ -326,7 +326,7 @@ swap_names_values <- function(named_vector) {
   set_names(names(named_vector), named_vector)
 }
 # Example usage
-named_vector = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB")
+named_vector = c(LabelA = "ValueA", LabelB = "ValueB")
 named_vector
 dput(named_vector)
 swapped_vector <- swap_names_values(named_vector)
@@ -372,7 +372,7 @@ f_vecNamed.swap <- function(vecNamed) {
 }
 
 # Example usage
-named_vector = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB")
+named_vector = c(LabelA = "ValueA", LabelB = "ValueB")
 named_vector
 dput(named_vector)
 swapped_vector <- f_vecNamed.swap(named_vector)
