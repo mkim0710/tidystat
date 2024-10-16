@@ -532,7 +532,7 @@ library(labelled)
 
 A variable label could be specified for any vector using `var_label()`.
 
-### ECHO :: var_label(df$Var1) = "VarDescription1" ----  
+### **ECHO** :: var_label(df$Var1) = "VarDescription1" ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 iris = datasets::iris
 iris %>% str
@@ -540,7 +540,7 @@ var_label(iris$Sepal.Length) <- "Length of sepal"
 iris %>% str
 ```
 
-### ECHO :: var_label(df) <- list(Var1 = "VarDescription1", Var2 = "VarDescription2") ----  
+### **ECHO** :: var_label(df) <- list(Var1 = "VarDescription1", Var2 = "VarDescription2") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 iris = datasets::iris
 iris %>% str
@@ -611,7 +611,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##      8 don't know
     ##      9    refused
 
-#### ECHO :: val_labels(df$Var1) = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB") ----  
+#### **ECHO** :: val_labels(df$Var1) = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     val_labels(v) <- c(yes = 1, nno = 3, bug = 5)
     v
@@ -627,9 +627,10 @@ You can display and search through variable names and labels with `look_for()`:
     ##      5   bug
 
 ### :: df =
-#### ECHO :: val_labels(df) = list(Var1 = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB"), Var2 = c(ValueLabel1 = 1, ValueLabel2 = 2)) ----  
+#### **ECHO** :: val_labels(df) = list(Var1 = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB"), Var2 = c(ValueLabel1 = 1, ValueLabel2 = 2)) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
     df <- data.frame(v1 = 1:3, v2 = c(2, 3, 1), v3 = 3:1)
+    val_labels(df) <- NULL
     val_labels(df) <- list(v1 = c(yes = 1, no = 3), v2 = c(a = 1, b = 2, c = 3))
     val_labels(df)
 ```
