@@ -35,7 +35,7 @@
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
@@ -48,7 +48,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 ### @ .subpath, .sourcename ======  
@@ -60,7 +60,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
 # https://chatgpt.com/c/9faf244b-181e-47ec-ae76-841d14f50e0f
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \% search()  -----  
 
@@ -80,13 +80,13 @@ search() |> deparse() |> cat("  \n", sep="")
 c(".GlobalEnv", "tools:rstudio", "package:lubridate", "package:forcats", "package:stringr", "package:dplyr", "package:purrr", "package:readr", "package:tidyr", "package:tibble", "package:ggplot2", "package:tidyverse", "package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "Autoloads", "package:base")  # "tools:rstudio" is loaded after library(tidyverse)
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # https://bookdown.dongzhuoer.com/hadley/r-pkgs/namespace
 # https://chatgpt.com/c/027e3714-b507-4e91-a20a-7e4c591be8de
 # https://homepage.divms.uiowa.edu/~luke/R/namespaces/morenames.html
 # https://chatgpt.com/c/e5eff8f3-6345-4f11-a739-e019bb1ccb82
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ls(envir = asNamespace("base")) %>%  str
 # > ls(envir = asNamespace("base")) %>%  str
@@ -111,7 +111,7 @@ setdiff(getNamespaceExports("base"), ls(envir = asNamespace("base"))) |> deparse
 # > setdiff(getNamespaceExports("base"), ls(envir = asNamespace("base"))) |> deparse() |> cat("  \n", sep="")
 c(".GlobalEnv", ".handleSimpleError", ".C", ".set_row_names",  ".NotYetImplemented", ".LC.categories", ".noGenerics", ".cache_class",  ".getRequiredPackages2", ".OptRequireMethods", ".makeMessage",  ".packages", ".amatch_costs", ".External.graphics", ".decode_numeric_version",  ".rowNamesDF<-", ".maskedMsg", ".colSums", ".Primitive", ".S3PrimitiveGenerics",  ".AutoloadEnv", ".Devices", ".userHooksEnv", ".subset", ".gt",  ".Library", ".ArgsEnv", ".popath", ".format.zeros", ".C_R_getTaskCallbackNames",  ".detach", ".kappa_tri", ".getRequiredPackages", ".doWrap", ".col",  ".POSIXct", ".POSIXlt", ".F_dchdc", ".isMethodsDispatchOn", ".gtn",  ".mergeExportMethods", ".primTrace", ".Machine", ".rowMeans",  ".Call", ".expand_R_libs_env_var", ".mergeImportMethods", ".subset2",  ".knownS3Generics", ".deparseOpts", ".row", ".standard_regexps",  ".__H__.rbind", ".signalSimpleWarning", ".External2", ".pretty",  ".Date", ".rowSums", ".formula2varlist", ".difftime", ".NotYetUsed",  ".First.sys", ".F_dqrqy", ".F_dqrxb", ".F_dqrcf", ".Last.value",  ".encode_numeric_version", "..getNamespace", ".F_dqrqty", ".getNamespace",  ".isOpen", ".F_dqrrsd", ".Traceback", ".Library.site", ".packageStartupMessage",  ".Call.graphics", ".C_R_addTaskCallback", ".amatch_bounds", ".S3_methods_table",  ".row_names_info", ".F_dqrdc2", ".leap.seconds", ".mapply", ".C_R_removeTaskCallback",  ".libPaths", ".getNamespaceInfo", ".S3method", ".primUntrace",  ".Options", ".colMeans", ".dynLibs", "...length", ".__H__.cbind",  ".External", ".BaseNamespaceEnv", ".Internal", ".Fortran", ".sys.timezone",  "..deparseOpts", ".TAOCP1997init", ".GenericArgsEnv", ".make_numeric_version",  ".F_dtrco", ".kronecker", ".traceback", ".bincode", ".class2",  ".Deprecated", ".check_tzones", ".doSortWrap", ".rmpkg", ".Platform",  ".__S3MethodsTable__.", "...elt", "...names", ".Script", ".doTrace",  ".Device", ".tryResumeInterrupt", ".valid.factor", ".Defunct" )
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##% loadedNamespaces() ----  
 loadedNamespaces() |> deparse() |> cat("  \n", sep="")
@@ -147,18 +147,18 @@ existing_special_namespaces |> deparse() |> cat("  \n", sep="")
 # c("base", "tools")
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
 
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 # ### @ .subpath, .sourcename ======  
@@ -201,7 +201,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # }
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
@@ -232,7 +232,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
@@ -241,11 +241,11 @@ paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$
 paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 

@@ -35,7 +35,7 @@
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  cat('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  \n')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## env1\$path ====  
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
@@ -48,7 +48,7 @@ env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 ### @ .subpath, .sourcename ======  
@@ -60,14 +60,14 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
 # https://chatgpt.com/c/9faf244b-181e-47ec-ae76-841d14f50e0f
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \% search()  -----  
 search() |> deparse() |> cat("  \n", sep="")
 # > search() |> deparse() |> cat("  \n", sep="")
 # c(".GlobalEnv", "package:lubridate", "package:forcats", "package:stringr",  "package:dplyr", "package:purrr", "package:readr", "package:tidyr",  "package:tibble", "package:ggplot2", "package:tidyverse", "tools:rstudio",  "package:stats", "package:graphics", "package:grDevices", "package:utils",  "package:datasets", "package:methods", "Autoloads", "package:base" )
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy
 print_environment_hierarchy <- function(env) {
@@ -100,7 +100,7 @@ f_global()
 # Current environment path:
 #  emptyenv() -> base -> Autoloads -> package:methods -> package:datasets -> package:utils -> package:grDevices -> package:graphics -> package:stats -> tools:rstudio -> package:tidyverse -> package:ggplot2 -> package:tibble -> package:tidyr -> package:readr -> package:purrr -> package:dplyr -> package:stringr -> package:forcats -> package:lubridate -> R_GlobalEnv -> <environment> -> environment() 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy
 print_environment_hierarchy <- function(env) {
@@ -139,7 +139,7 @@ f_global()
 #  emptyenv() -> <environment: base> -> [1] "Autoloads" -> attr(,"name") -> <environment: 0x55e96efc8b58> -> [1] "/usr/local/lib/R/library/methods" -> attr(,"path") -> [1] "package:methods" -> attr(,"name") -> <environment: package:methods> -> [1] "/usr/local/lib/R/library/datasets" -> attr(,"path") -> [1] "package:datasets" -> attr(,"name") -> <environment: package:datasets> -> [1] "/usr/local/lib/R/library/utils" -> attr(,"path") -> [1] "package:utils" -> attr(,"name") -> <environment: package:utils> -> [1] "/usr/local/lib/R/library/grDevices" -> attr(,"path") -> [1] "package:grDevices" -> attr(,"name") -> <environment: package:grDevices> -> [1] "/usr/local/lib/R/library/graphics" -> attr(,"path") -> [1] "package:graphics" -> attr(,"name") -> <environment: package:graphics> -> [1] "/usr/local/lib/R/library/stats" -> attr(,"path") -> [1] "package:stats" -> attr(,"name") -> <environment: package:stats> -> [1] "tools:rstudio" -> attr(,"name") -> <environment: 0x55e970e13a70> -> [1] "/usr/local/lib/R/site-library/tidyverse" -> attr(,"path") -> [1] "package:tidyverse" -> attr(,"name") -> <environment: package:tidyverse> -> [1] "/usr/local/lib/R/site-library/ggplot2" -> attr(,"path") -> [1] "package:ggplot2" -> attr(,"name") -> <environment: package:ggplot2> -> [1] "/usr/local/lib/R/site-library/tibble" -> attr(,"path") -> [1] "package:tibble" -> attr(,"name") -> <environment: package:tibble> -> [1] "/usr/local/lib/R/site-library/tidyr" -> attr(,"path") -> [1] "package:tidyr" -> attr(,"name") -> <environment: package:tidyr> -> [1] "/usr/local/lib/R/site-library/readr" -> attr(,"path") -> [1] "package:readr" -> attr(,"name") -> <environment: package:readr> -> [1] "/usr/local/lib/R/site-library/purrr" -> attr(,"path") -> [1] "package:purrr" -> attr(,"name") -> <environment: package:purrr> -> [1] "/usr/local/lib/R/site-library/dplyr" -> attr(,"path") -> [1] "package:dplyr" -> attr(,"name") -> <environment: package:dplyr> -> [1] "/usr/local/lib/R/site-library/stringr" -> attr(,"path") -> [1] "package:stringr" -> attr(,"name") -> <environment: package:stringr> -> [1] "/usr/local/lib/R/site-library/forcats" -> attr(,"path") -> [1] "package:forcats" -> attr(,"name") -> <environment: package:forcats> -> [1] "/usr/local/lib/R/site-library/lubridate" -> attr(,"path") -> [1] "package:lubridate" -> attr(,"name") -> <environment: package:lubridate> -> <environment: R_GlobalEnv> -> f_global_env -> f_internal_env
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy
 # Function to print the environment hierarchy
@@ -182,7 +182,7 @@ f_global()
 # Current environment path:
 #  emptyenv() -> base -> <environment: [1] "Autoloads"> -> <environment: attr(,"name")> -> <environment: <environment: 0x55e96efc8b58>> -> <environment: [1] "/usr/local/lib/R/library/methods"> -> <environment: attr(,"path")> -> <environment: [1] "package:methods"> -> <environment: attr(,"name")> -> <environment: <environment: package:methods>> -> <environment: [1] "/usr/local/lib/R/library/datasets"> -> <environment: attr(,"path")> -> <environment: [1] "package:datasets"> -> <environment: attr(,"name")> -> <environment: <environment: package:datasets>> -> <environment: [1] "/usr/local/lib/R/library/utils"> -> <environment: attr(,"path")> -> <environment: [1] "package:utils"> -> <environment: attr(,"name")> -> <environment: <environment: package:utils>> -> <environment: [1] "/usr/local/lib/R/library/grDevices"> -> <environment: attr(,"path")> -> <environment: [1] "package:grDevices"> -> <environment: attr(,"name")> -> <environment: <environment: package:grDevices>> -> <environment: [1] "/usr/local/lib/R/library/graphics"> -> <environment: attr(,"path")> -> <environment: [1] "package:graphics"> -> <environment: attr(,"name")> -> <environment: <environment: package:graphics>> -> <environment: [1] "/usr/local/lib/R/library/stats"> -> <environment: attr(,"path")> -> <environment: [1] "package:stats"> -> <environment: attr(,"name")> -> <environment: <environment: package:stats>> -> <environment: [1] "tools:rstudio"> -> <environment: attr(,"name")> -> <environment: <environment: 0x55e970e13a70>> -> <environment: [1] "/usr/local/lib/R/site-library/tidyverse"> -> <environment: attr(,"path")> -> <environment: [1] "package:tidyverse"> -> <environment: attr(,"name")> -> <environment: <environment: package:tidyverse>> -> <environment: [1] "/usr/local/lib/R/site-library/ggplot2"> -> <environment: attr(,"path")> -> <environment: [1] "package:ggplot2"> -> <environment: attr(,"name")> -> <environment: <environment: package:ggplot2>> -> <environment: [1] "/usr/local/lib/R/site-library/tibble"> -> <environment: attr(,"path")> -> <environment: [1] "package:tibble"> -> <environment: attr(,"name")> -> <environment: <environment: package:tibble>> -> <environment: [1] "/usr/local/lib/R/site-library/tidyr"> -> <environment: attr(,"path")> -> <environment: [1] "package:tidyr"> -> <environment: attr(,"name")> -> <environment: <environment: package:tidyr>> -> <environment: [1] "/usr/local/lib/R/site-library/readr"> -> <environment: attr(,"path")> -> <environment: [1] "package:readr"> -> <environment: attr(,"name")> -> <environment: <environment: package:readr>> -> <environment: [1] "/usr/local/lib/R/site-library/purrr"> -> <environment: attr(,"path")> -> <environment: [1] "package:purrr"> -> <environment: attr(,"name")> -> <environment: <environment: package:purrr>> -> <environment: [1] "/usr/local/lib/R/site-library/dplyr"> -> <environment: attr(,"path")> -> <environment: [1] "package:dplyr"> -> <environment: attr(,"name")> -> <environment: <environment: package:dplyr>> -> <environment: [1] "/usr/local/lib/R/site-library/stringr"> -> <environment: attr(,"path")> -> <environment: [1] "package:stringr"> -> <environment: attr(,"name")> -> <environment: <environment: package:stringr>> -> <environment: [1] "/usr/local/lib/R/site-library/forcats"> -> <environment: attr(,"path")> -> <environment: [1] "package:forcats"> -> <environment: attr(,"name")> -> <environment: <environment: package:forcats>> -> <environment: [1] "/usr/local/lib/R/site-library/lubridate"> -> <environment: attr(,"path")> -> <environment: [1] "package:lubridate"> -> <environment: attr(,"name")> -> <environment: <environment: package:lubridate>> -> R_GlobalEnv -> f_global_env -> f_internal_env 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy
 print_environment_hierarchy <- function(env) {
@@ -227,7 +227,7 @@ f_global()
 # Current environment path:
 #  emptyenv() -> base -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> unknown -> R_GlobalEnv -> f_global_env -> f_internal_env 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy
 print_environment_hierarchy <- function(env) {
@@ -272,7 +272,7 @@ f_global()
 # Current environment path:
 #  emptyenv() -> base -> unknown -> package:methods -> package:datasets -> package:utils -> package:grDevices -> package:graphics -> package:stats -> unknown -> package:tidyverse -> package:ggplot2 -> package:tibble -> package:tidyr -> package:readr -> package:purrr -> package:dplyr -> package:stringr -> package:forcats -> package:lubridate -> R_GlobalEnv -> f_global_env -> f_internal_env 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy with more details
 print_environment_hierarchy <- function(env) {
@@ -318,7 +318,7 @@ f_global()
 #  emptyenv() -> base -> unknown (<environment: 0x55e96efc8b58>) -> package:methods -> package:datasets -> package:utils -> package:grDevices -> package:graphics -> package:stats -> unknown (<environment: 0x55e970e13a70>) -> package:tidyverse -> package:ggplot2 -> package:tibble -> package:tidyr -> package:readr -> package:purrr -> package:dplyr -> package:stringr -> package:forcats -> package:lubridate -> R_GlobalEnv -> f_global_env -> f_internal_env 
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy with memory addresses
 print_environment_hierarchy <- function(env) {
@@ -360,7 +360,7 @@ f_global <- function() {
 f_global()
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # Function to print the environment hierarchy with memory addresses and specific checks for known environments
 print_environment_hierarchy <- function(env) {
@@ -413,26 +413,26 @@ f_global()
 # Current environment path:
 #  emptyenv() -> base(<environment: base>) -> Autoloads(<environment: 0x55e96efc8b58>) -> package:methods(<environment: package:methods>) -> package:datasets(<environment: package:datasets>) -> package:utils(<environment: package:utils>) -> package:grDevices(<environment: package:grDevices>) -> package:graphics(<environment: package:graphics>) -> package:stats(<environment: package:stats>) -> tools:rstudio(<environment: 0x55e970e13a70>) -> package:tidyverse(<environment: package:tidyverse>) -> package:ggplot2(<environment: package:ggplot2>) -> package:tibble(<environment: package:tibble>) -> package:tidyr(<environment: package:tidyr>) -> package:readr(<environment: package:readr>) -> package:purrr(<environment: package:purrr>) -> package:dplyr(<environment: package:dplyr>) -> package:stringr(<environment: package:stringr>) -> package:forcats(<environment: package:forcats>) -> package:lubridate(<environment: package:lubridate>) -> R_GlobalEnv(<environment: R_GlobalEnv>) -> f_global_env(<environment: 0x55e9842b9da0>) -> f_internal_env(<environment: 0x55e9842b96a0>) 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
 
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 # ### @ .subpath, .sourcename ======  
@@ -475,7 +475,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # }
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B -----  
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
@@ -506,7 +506,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ END -----  
 # paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
@@ -515,11 +515,11 @@ paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$
 paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(rstudioapi::getSourceEditorContext()$path) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-##________________________________________________________________________________
+##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
