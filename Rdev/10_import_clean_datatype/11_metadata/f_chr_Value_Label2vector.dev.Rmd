@@ -227,8 +227,45 @@ env0 = env1
 ## \% eval(parse(text = .CodeText)) ----  
 
 ### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# i.ValueOptions = "ValueA=ValueLabelA, ValueB=ValueLabelB"
+# .CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
+# eval(parse(text = .CodeText)) %>% dput
+```
+
+
+### \% "1=남자, 2=여자" |> ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# MetaData$tblVarName$tblVarName.suffix %>% filter(VarName.suffix == "SEX") %>% pull(ValueOptions) %>% as.character %>% dput
+# i.ValueOptions = "1=남자, 2=여자"
+# .CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
+# eval(parse(text = .CodeText)) %>% dput
+```
+
+
+
+### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
 #### https://chatgpt.com/c/670fd3f1-de80-800e-bfdc-f379288fc625
-##### ECHO \% |> string_to_named_vector() ----  
+
+##### \% |> swap_named_vector() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# Function to swap names and values in the named vector
+swap_named_vector <- function(named_vector) {
+  swapped_vector <- setNames(names(named_vector), named_vector)
+  return(swapped_vector)
+}
+
+# Example usage
+named_vector = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB")
+named_vector
+dput(named_vector)
+swapped_vector <- swap_named_vector(named_vector)
+print(swapped_vector)
+dput(swapped_vector)
+```
+
+##### \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
@@ -261,23 +298,6 @@ print(named_vector_custom)
 ```
 
 
-##### ECHO \% |> swap_named_vector() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-# Function to swap names and values in the named vector
-swap_named_vector <- function(named_vector) {
-  swapped_vector <- setNames(names(named_vector), named_vector)
-  return(swapped_vector)
-}
-
-# Example usage
-named_vector = c(ValueA = "ValueLabelA", ValueB = "ValueLabelB")
-named_vector
-dput(named_vector)
-swapped_vector <- swap_named_vector(named_vector)
-print(swapped_vector)
-dput(swapped_vector)
-```
 
 
 
@@ -318,7 +338,7 @@ print(named_vector)
 ```
 
 
-##### ECHO \% |> swap_names_values() ----  
+##### \% |> swap_names_values() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
@@ -328,7 +348,7 @@ swap_names_values <- function(named_vector) {
   set_names(names(named_vector), named_vector)
 }
 # Example usage
-named_vector = c(ValueA = "ValueLabelA", ValueB = "ValueLabelB")
+named_vector = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB")
 named_vector
 dput(named_vector)
 swapped_vector <- swap_names_values(named_vector)
@@ -339,7 +359,7 @@ dput(swapped_vector)
 
 
 
-##### ECHO \% |> string_to_named_vector() ----  
+##### \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
@@ -368,7 +388,7 @@ dput(named_vector)
 ```
 
 
-##### ECHO \% |> string_to_named_vector() ----  
+##### \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
@@ -415,47 +435,8 @@ dput(named_vector2)
 
 
 
-### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-i.ValueOptions = "ValueA=ValueLabelA, ValueB=ValueLabelB"
-.CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
-eval(parse(text = .CodeText)) %>% dput
-```
 
 
-### \% "1=남자, 2=여자" |> ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-MetaData$tblVarName$tblVarName.suffix %>% filter(VarName.suffix == "SEX") %>% pull(ValueOptions) %>% as.character %>% dput
-i.ValueOptions = "1=남자, 2=여자"
-.CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
-eval(parse(text = .CodeText)) %>% dput
-```
-
-
-
-
-
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
   
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -479,52 +460,32 @@ options(width=120)
   
   
 # @@ START) function ----  
-## \% |> function_name()  
+## \% |> f_vec_named.swap()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# Function to swap names and values in the named vector
+f_vec_named.swap <- function(vec_named) {
+    names(vec_named) |> setNames(vec_named)
+}
 
+# Example usage
+named_vector = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB")
+named_vector
+dput(named_vector)
+swapped_vector <- f_vec_named.swap(named_vector)
+print(swapped_vector)
+dput(swapped_vector)
 ```
-  
-  
-# @@ START) source ----  
-```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-options(width=120)
-#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
-# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# .sourcename = "default.template" |> paste0(".source.r")
-if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.sourcename_root = env1$path$CurrentSource.path.filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$path$.subpath = .subpath
-if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
-.sourcename = .sourcename_root |> paste0(".source.r")
-env1$path$.sourcename_root = .sourcename_root
-env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
-cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-    "#### ",env1$path$.subpath.filename.dev.r, "----  \n",
-    "#### ",env1$path$.subpath.filename.dev.Rmd, "----  \n",
-    "#### ",env1$path$.subpath.filename.source.r, "----  \n",
-    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath.filename.source.r,'"))', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    sep="")
-# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
-# .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# if(!.sourcename %in% names(.GlobalEnv$env1$source)) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+
+
+### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+# i.ValueOptions = "ValueA=ValueLabelA, ValueB=ValueLabelB"
+# .CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
+# eval(parse(text = .CodeText)) %>% dput
 ```
-  
-  
 
   
-
 ###### \% |> () ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
