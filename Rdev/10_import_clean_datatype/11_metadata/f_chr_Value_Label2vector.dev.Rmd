@@ -215,6 +215,10 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
+# @@ Rdev/00_base_program/f_vec_named.swap.dev.Rmd  
+# @@ Rdev/10_import_clean_datatype/11_metadata/f_chr_Value_Label2vector.dev.Rmd  
+# @@ Rdev/10_import_clean_datatype/16_categorical_labelled/f_DataSet.labelled_CodeBook.dev.Rmd  
+
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
@@ -224,39 +228,19 @@ env0 = env1
 
 ### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
 #### https://chatgpt.com/c/670fd3f1-de80-800e-bfdc-f379288fc625
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-library(tidyverse)
-
-# Sample ValueOptions string
-value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
-
-# Step 1: Split the string into individual pairs by comma
-value_label_pairs <- str_split(value_options, ", ") %>% unlist()
-
-# Step 2: Separate each pair into values and labels
-value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
-
-# Step 3: Create the named vector where ValueLabel is the name and Value is the value
-named_vector <- setNames(map_chr(value_label_list, 1), map_chr(value_label_list, 2))
-
-# Print the named vector
-print(named_vector)
-```
-
-
 ##### ECHO \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
 
-# Function to convert ValueOptions string to a named vector
-string_to_named_vector <- function(value_options) {
+# Function to convert ValueOptions string to a named vector with customizable separators
+string_to_named_vector <- function(value_options, pair_sep = ",", value_label_sep = "=") {
   
-  # Step 1: Split the string into individual pairs by comma
-  value_label_pairs <- str_split(value_options, ", ") %>% unlist()
+  # Step 1: Split the string into individual pairs using pair_sep (handling whitespaces)
+  value_label_pairs <- str_split(value_options, paste0("\\s*", pair_sep, "\\s*")) %>% unlist()
   
-  # Step 2: Separate each pair into values and labels
-  value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
+  # Step 2: Separate each pair into values and labels using value_label_sep (handling whitespaces)
+  value_label_list <- map(value_label_pairs, ~ str_split(.x, paste0("\\s*", value_label_sep, "\\s*")) %>% unlist())
   
   # Step 3: Create the named vector where Value is the name and ValueLabel is the value
   named_vector <- setNames(map_chr(value_label_list, 2), map_chr(value_label_list, 1))
@@ -264,12 +248,16 @@ string_to_named_vector <- function(value_options) {
   return(named_vector)
 }
 
-# Example usage
-value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
-value_options
+# Example usage with default separators
+value_options <- "ValueA = ValueLabelA, ValueB = ValueLabelB"
 named_vector <- string_to_named_vector(value_options)
 print(named_vector)
-dput(named_vector)
+
+# Example usage with custom separators
+value_options_custom <- "ValueA:ValueLabelA | ValueB:ValueLabelB"
+named_vector_custom <- string_to_named_vector(value_options_custom, pair_sep = "\\|", value_label_sep = ":")
+print(named_vector_custom)
+
 ```
 
 
@@ -330,24 +318,39 @@ print(named_vector)
 ```
 
 
-##### ECHO \% |> string_to_named_vector() ----  
 ##### ECHO \% |> swap_names_values() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(tidyverse)
 
-# Function to convert ValueOptions string to a named vector
+# Function to swap names and values in a named vector
+swap_names_values <- function(named_vector) {
+  set_names(names(named_vector), named_vector)
+}
+# Example usage
+named_vector = c(ValueA = "ValueLabelA", ValueB = "ValueLabelB")
+named_vector
+dput(named_vector)
+swapped_vector <- swap_names_values(named_vector)
+print(swapped_vector)
+dput(swapped_vector)
+```
+
+
+
+
+##### ECHO \% |> string_to_named_vector() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(tidyverse)
+
+# Function to convert ValueOptions string to a named vector with swapped names and values
 string_to_named_vector <- function(value_options) {
   str_split(value_options, ", ") %>% 
     unlist() %>% 
     str_split("=") %>% 
-    map(~ set_names(c(.x[2]), .x[1])) %>% 
+    map(~ set_names(c(.x[2]), .x[1])) %>%  # Swap here directly
     unlist()
-}
-
-# Function to swap names and values in a named vector
-swap_names_values <- function(named_vector) {
-  set_names(names(named_vector), named_vector)
 }
 
 # Example usage
@@ -360,16 +363,56 @@ print(named_vector)
 dput(named_vector)
 # Expected output:
 # ValueA ValueB 
-# "ValueLabelA" "ValueLabelB"
+# "ValueLabelA" "ValueLabelB" 
 
-# Swap names and values
-swapped_vector <- swap_names_values(named_vector)
-print(swapped_vector)
-dput(swapped_vector)
-# Expected output:
-# ValueLabelA ValueLabelB 
-#    "ValueA"    "ValueB" 
 ```
+
+
+##### ECHO \% |> string_to_named_vector() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(tidyverse)
+
+# Function to convert ValueOptions string to a named vector with swapped names and values
+string_to_named_vector <- function(value_options, 
+                                    pair_separator = ",", 
+                                    value_label_separator = "=") {
+  
+  # Split by pair separator, allowing for variable whitespace
+  pairs <- str_split(value_options, paste0("\\s*", pair_separator, "\\s*")) %>% 
+    unlist()
+  
+  # Split by value-label separator, allowing for variable whitespace
+  split_pairs <- str_split(pairs, paste0("\\s*", value_label_separator, "\\s*"))
+  
+  # Create named vector, swapping values and labels
+  map(split_pairs, ~ set_names(c(.x[2]), .x[1])) %>% 
+    unlist()
+}
+
+# Example usage with different separators and whitespace
+value_options1 <- "ValueA = ValueLabelA, ValueB=ValueLabelB"
+value_options2 <- "ValueA - ValueLabelA;  ValueB-ValueLabelB"
+
+# Convert strings to named vectors
+named_vector1 <- string_to_named_vector(value_options1)
+named_vector2 <- string_to_named_vector(value_options2, pair_separator = ";", value_label_separator = "-")
+
+# Print the named vectors
+print(named_vector1)
+dput(named_vector1)
+# Expected output:
+# ValueA ValueB 
+# "ValueLabelA" "ValueLabelB" 
+
+print(named_vector2)
+dput(named_vector2)
+# Expected output:
+# ValueA ValueB 
+# "ValueLabelA" "ValueLabelB"
+```
+
+
 
 
 ### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
