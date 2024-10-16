@@ -100,7 +100,7 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 #     } else { if(Sys.getenv("VERBOSE")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
 #     if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}
 # } else { if(Sys.getenv("VERBOSE")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
-##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 ## @ .subpath, .sourcename ======  
@@ -131,7 +131,7 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
 ##________________________________________________________________________________  
@@ -810,6 +810,7 @@ env1$path$list_path_hierarchy = env1$env.internal$f_path0.list_path_hierarchy(pa
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
 # @@ END -----  
 # source(file.path("D:/OneDrive/[][Rproject]/github_tidystat", "env1$env.internal.source.r"))
 # # source(file.path("https://raw.githubusercontent.com/mkim0710/tidystat/master", "env1$env.internal.source.r"))
