@@ -575,35 +575,14 @@ f_chrNameValuePairs2vector = function(chrNameValuePairs, NameValuePair_separator
     return(vecNamed)    
 }
 
-
-
-
-cat("    ________________________________________________________________________    \n")
-cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-list.vec.Name_Value %>% map_chr(1) %>% dput
-list.vec.Name_Value %>% map_chr(2) %>% dput
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-list.vec.Name_Value %>% {setNames(map_chr(., 2), map_chr(., 1))} %>% dput
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% dput
-list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist %>% dput  # ***
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-list.vec.Name_Value %>% map_chr(~ set_names(c(.x[2]), .x[1])) %>% dput
-
-cat("    ________________________________________________________________________    \n")
-cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
-# Step 3: Create the named vector where Value is the name and Label is the value
-# named_vector <- list.vec.Name_Value %>% {setNames(map_chr(., 2), map_chr(., 1))}
-named_vector <- list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist
-named_vector %>% dput
 ```
   
   
 ### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# i.ValueOptions = "ValueA=LabelA, ValueB=LabelB"
-# .CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
-# eval(parse(text = .CodeText)) %>% dput
+"ValueA=LabelA, ValueB=LabelB" |> env1$f$f_chrNameValuePairs2vector() %>% dput
+"ValueA=LabelA, ValueB=LabelB" |> env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE) %>% dput
+
 ```
 
   

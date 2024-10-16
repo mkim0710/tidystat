@@ -861,170 +861,47 @@ KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suf
 ```
 
 
-# _______________
+# _______________  
+# @@ Rdev/00_base_program/f_vecNamed.swap.dev.Rmd  
+# @@ Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd  
+# @@ Rdev/10_import_clean_datatype/16_categorical_labelled/f_DataSet.labelled_CodeBook.dev.Rmd  
 
-# @@ START) dev ----  
-```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
-env0 = env1
-```
-
-## \% eval(parse(text = .CodeText)) ----  
-
-### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
-#### https://chatgpt.com/c/670fd3f1-de80-800e-bfdc-f379288fc625
+# @@ START) source ----  
+## \% |> f_chrNameValuePairs2vector() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-library(tidyverse)
-
-# Sample ValueOptions string
-value_options <- "ValueA=LabelA, ValueB=LabelB"
-
-# Step 1: Split the string into individual pairs by comma
-value_label_pairs <- str_split(value_options, ", ") %>% unlist()
-
-# Step 2: Separate each pair into values and labels
-value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
-
-# Step 3: Create the named vector where Label is the name and Value is the value
-named_vector <- setNames(map_chr(value_label_list, 1), map_chr(value_label_list, 2))
-
-# Print the named vector
-print(named_vector)
-```
-
-
-##### ECHO \% |> string_to_named_vector() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-library(tidyverse)
 
-# Function to convert ValueOptions string to a named vector
-string_to_named_vector <- function(value_options) {
-  
-  # Step 1: Split the string into individual pairs by comma
-  value_label_pairs <- str_split(value_options, ", ") %>% unlist()
-  
-  # Step 2: Separate each pair into values and labels
-  value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
-  
-  # Step 3: Create the named vector where Value is the name and Label is the value
-  named_vector <- setNames(map_chr(value_label_list, 2), map_chr(value_label_list, 1))
-  
-  return(named_vector)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_chrNameValuePairs2vector =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd
+.tmp$objectname = "f_chrNameValuePairs2vector"
+.tmp$object = function(chrNameValuePairs, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
+    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() 
+    list.vec.Name_Value = vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))
+    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist()
+    if (vecNamed.swap) vecNamed = names(vecNamed) |> setNames(vecNamed)
+    return(vecNamed)    
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+f_chrNameValuePairs2vector = function(chrNameValuePairs, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
+    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() 
+    list.vec.Name_Value = vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))
+    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist()
+    if (vecNamed.swap) vecNamed = names(vecNamed) |> setNames(vecNamed)
+    return(vecNamed)    
 }
 
-# Example usage
-value_options <- "ValueA=LabelA, ValueB=LabelB"
-value_options
-named_vector <- string_to_named_vector(value_options)
-print(named_vector)
-dput(named_vector)
 ```
-
-
-##### ECHO \% |> swap_named_vector() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-# Function to swap names and values in the named vector
-swap_named_vector <- function(named_vector) {
-  swapped_vector <- setNames(names(named_vector), named_vector)
-  return(swapped_vector)
-}
-
-# Example usage
-named_vector = c(ValueA = "LabelA", ValueB = "LabelB")
-named_vector
-dput(named_vector)
-swapped_vector <- swap_named_vector(named_vector)
-print(swapped_vector)
-dput(swapped_vector)
-```
-
-
-
-
-### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
-#### https://gemini.google.com/app/639552d667363004
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-library(tidyverse)
-
-# Example ValueOptions string
-value_options <- "ValueA=LabelA, ValueB=LabelB"
-
-str_split(value_options, ", ") %>% 
-  unlist() %>% str
-
-str_split(value_options, ", ") %>% 
-  unlist() %>% 
-  str_split("=") %>% str
-
-str_split(value_options, ", ") %>% 
-  unlist() %>% 
-  str_split("=") %>% 
-  map(~ set_names(.x[1], .x[2])) %>% str
-
-# Create the named vector using tidyverse functions
-named_vector <- str_split(value_options, ", ") %>% 
-  unlist() %>% 
-  str_split("=") %>% 
-  map(~ set_names(.x[1], .x[2])) %>% 
-  unlist()
-
-# Print the named vector
-print(named_vector)
-
-# Expected output:
-# LabelA LabelB 
-#    "ValueA"    "ValueB"
-```
-
-
-##### ECHO \% |> string_to_named_vector() ----  
-##### ECHO \% |> swap_names_values() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-library(tidyverse)
-
-# Function to convert ValueOptions string to a named vector
-string_to_named_vector <- function(value_options) {
-  str_split(value_options, ", ") %>% 
-    unlist() %>% 
-    str_split("=") %>% 
-    map(~ set_names(c(.x[2]), .x[1])) %>% 
-    unlist()
-}
-
-# Function to swap names and values in a named vector
-swap_names_values <- function(named_vector) {
-  set_names(names(named_vector), named_vector)
-}
-
-# Example usage
-value_options <- "ValueA=LabelA, ValueB=LabelB"
-value_options
-
-# Convert string to named vector
-named_vector <- string_to_named_vector(value_options)
-print(named_vector)
-dput(named_vector)
-# Expected output:
-# ValueA ValueB 
-# "LabelA" "LabelB"
-
-# Swap names and values
-swapped_vector <- swap_names_values(named_vector)
-print(swapped_vector)
-dput(swapped_vector)
-# Expected output:
-# LabelA LabelB 
-#    "ValueA"    "ValueB" 
-```
-
-
+  
+  
 ### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-i.ValueOptions = "ValueA=LabelA, ValueB=LabelB"
-.CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
-eval(parse(text = .CodeText)) %>% dput
+"ValueA=LabelA, ValueB=LabelB" |> env1$f$f_chrNameValuePairs2vector() %>% dput
+"ValueA=LabelA, ValueB=LabelB" |> env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE) %>% dput
+
 ```
 
 
@@ -1032,11 +909,17 @@ eval(parse(text = .CodeText)) %>% dput
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 MetaData$tblVarName$tblVarName.suffix %>% filter(VarName.suffix == "SEX") %>% pull(ValueOptions) %>% as.character %>% dput
 i.ValueOptions = "1=남자, 2=여자"
-.CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
-eval(parse(text = .CodeText)) %>% dput
+i.ValueOptions |> env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE) %>% dput
 ```
 
 
+
+
+# _______________  
+# @@ START) dev ----  
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env
+```
 
 
 ## @ MetaData) Variables: demographics ----  
@@ -1127,6 +1010,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) function ----  
 ## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -1135,6 +1019,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
