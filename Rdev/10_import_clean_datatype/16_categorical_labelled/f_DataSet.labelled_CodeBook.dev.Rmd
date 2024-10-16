@@ -699,6 +699,7 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 ```
   
   
+# _______________  
 # @@ 12CodeBook.recode-df_NewDMv3.CensorEND.select971.NA.rmAllNA.recode.Rmd
 
 ## :: DataSet = get(DataSetName)  
@@ -707,33 +708,12 @@ options(width=120)
 DataSet = get(DataSetName)  
 ```
 
-
-## @ MetaData) Variables: exposure/mediator ----  
-### \% VarCategory \%in\% c("생활습관(운동력)", "생활습관(음주력)", "생활습관(흡연력)", "식습관")  
+## @ MetaData) Variables: demographics ----  
+### \% VarCategory \%in\% c("일반사항", "일반정보")  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("생활습관(운동력)", "생활습관(음주력)", "생활습관(흡연력)", "식습관")) |> 
+KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("일반사항", "일반정보")) |> 
     dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-  
-  
-
-### \% VarCategory \%in\% c("신체계측", "체성분검사")  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("신체계측", "체성분검사")) |> 
-    dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-  
-  
-### \% VarDescription |> str_detect("활동|운동"|>regex(ignore_case=TRUE))  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarDescription.regex = "(활동)|(운동)"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarDescription |> str_detect(VarDescription.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
 ```
 
 
@@ -888,10 +868,220 @@ KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suf
 env0 = env1
 ```
 
-###### ECHO \% |> () ----  
+## \% eval(parse(text = .CodeText)) ----  
+
+### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+#### https://chatgpt.com/c/670fd3f1-de80-800e-bfdc-f379288fc625
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+library(tidyverse)
+
+# Sample ValueOptions string
+value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+
+# Step 1: Split the string into individual pairs by comma
+value_label_pairs <- str_split(value_options, ", ") %>% unlist()
+
+# Step 2: Separate each pair into values and labels
+value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
+
+# Step 3: Create the named vector where ValueLabel is the name and Value is the value
+named_vector <- setNames(map_chr(value_label_list, 1), map_chr(value_label_list, 2))
+
+# Print the named vector
+print(named_vector)
+```
+
+
+##### ECHO \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+library(tidyverse)
 
+# Function to convert ValueOptions string to a named vector
+string_to_named_vector <- function(value_options) {
+  
+  # Step 1: Split the string into individual pairs by comma
+  value_label_pairs <- str_split(value_options, ", ") %>% unlist()
+  
+  # Step 2: Separate each pair into values and labels
+  value_label_list <- map(value_label_pairs, ~ str_split(.x, "=") %>% unlist())
+  
+  # Step 3: Create the named vector where Value is the name and ValueLabel is the value
+  named_vector <- setNames(map_chr(value_label_list, 2), map_chr(value_label_list, 1))
+  
+  return(named_vector)
+}
+
+# Example usage
+value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+value_options
+named_vector <- string_to_named_vector(value_options)
+print(named_vector)
+dput(named_vector)
+```
+
+
+##### ECHO \% |> swap_named_vector() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# Function to swap names and values in the named vector
+swap_named_vector <- function(named_vector) {
+  swapped_vector <- setNames(names(named_vector), named_vector)
+  return(swapped_vector)
+}
+
+# Example usage
+named_vector = c(ValueA = "ValueLabelA", ValueB = "ValueLabelB")
+named_vector
+dput(named_vector)
+swapped_vector <- swap_named_vector(named_vector)
+print(swapped_vector)
+dput(swapped_vector)
+```
+
+
+
+
+### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+#### https://gemini.google.com/app/639552d667363004
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+library(tidyverse)
+
+# Example ValueOptions string
+value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+
+str_split(value_options, ", ") %>% 
+  unlist() %>% str
+
+str_split(value_options, ", ") %>% 
+  unlist() %>% 
+  str_split("=") %>% str
+
+str_split(value_options, ", ") %>% 
+  unlist() %>% 
+  str_split("=") %>% 
+  map(~ set_names(.x[1], .x[2])) %>% str
+
+# Create the named vector using tidyverse functions
+named_vector <- str_split(value_options, ", ") %>% 
+  unlist() %>% 
+  str_split("=") %>% 
+  map(~ set_names(.x[1], .x[2])) %>% 
+  unlist()
+
+# Print the named vector
+print(named_vector)
+
+# Expected output:
+# ValueLabelA ValueLabelB 
+#    "ValueA"    "ValueB"
+```
+
+
+##### ECHO \% |> string_to_named_vector() ----  
+##### ECHO \% |> swap_names_values() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(tidyverse)
+
+# Function to convert ValueOptions string to a named vector
+string_to_named_vector <- function(value_options) {
+  str_split(value_options, ", ") %>% 
+    unlist() %>% 
+    str_split("=") %>% 
+    map(~ set_names(c(.x[2]), .x[1])) %>% 
+    unlist()
+}
+
+# Function to swap names and values in a named vector
+swap_names_values <- function(named_vector) {
+  set_names(names(named_vector), named_vector)
+}
+
+# Example usage
+value_options <- "ValueA=ValueLabelA, ValueB=ValueLabelB"
+value_options
+
+# Convert string to named vector
+named_vector <- string_to_named_vector(value_options)
+print(named_vector)
+dput(named_vector)
+# Expected output:
+# ValueA ValueB 
+# "ValueLabelA" "ValueLabelB"
+
+# Swap names and values
+swapped_vector <- swap_names_values(named_vector)
+print(swapped_vector)
+dput(swapped_vector)
+# Expected output:
+# ValueLabelA ValueLabelB 
+#    "ValueA"    "ValueB" 
+```
+
+
+### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+i.ValueOptions = "ValueA=ValueLabelA, ValueB=ValueLabelB"
+.CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
+eval(parse(text = .CodeText)) %>% dput
+```
+
+
+### \% "1=남자, 2=여자" |> ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+MetaData$tblVarName$tblVarName.suffix %>% filter(VarName.suffix == "SEX") %>% pull(ValueOptions) %>% as.character %>% dput
+i.ValueOptions = "1=남자, 2=여자"
+.CodeText = i.ValueOptions %>% {paste0("c(",.,")")}
+eval(parse(text = .CodeText)) %>% dput
+```
+
+
+
+
+## @ MetaData) Variables: demographics ----  
+### \% VarCategory \%in\% c("일반사항", "일반정보")  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("일반사항", "일반정보")) |> 
+    dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
+```
+
+
+#### \% VarName.suffix |> str_detect("Sex"|>regex(ignore_case=TRUE))  
+##### \% VarName.suffix \%in\% c("SEX")  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+# VarName.suffix.regex = "(SEX)"
+# KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix |> str_detect(VarName.suffix.regex|>regex(ignore_case=TRUE)))
+# KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
+# ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+VarName.suffix.selected = c("SEX")
+# KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected)
+# VarName.suffix.selected |> deparse() |> cat("  \n", sep="")
+# cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+.tblWAVE_VARNAME.join = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected) %>% select(Num, VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, Select) %>% 
+    left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix")
+.tblWAVE_VARNAME.join
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+.tblWAVE_VARNAME.join$VarDescription |> as.character() |> deparse() |> cat("  \n", sep="")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+library(labelled)
+for (i.WAVE_VARNAME in .tblWAVE_VARNAME.join$WAVE_VARNAME) {
+    var_label(DataSet[[i.WAVE_VARNAME]]) = .tblWAVE_VARNAME.join %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(VarDescription) %>% as.character
+}
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+.tblWAVE_VARNAME.join$ValueOptions |> as.character() |> deparse() |> cat("  \n", sep="")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+library(labelled)
+for (i.WAVE_VARNAME in .tblWAVE_VARNAME.join$WAVE_VARNAME) {
+    .CodeText = .tblWAVE_VARNAME.join %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(ValueOptions) %>% {paste0("c(",.,")")}
+    print(.CodeText)
+    # eval(parse(text = .CodeText))
+}
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> str()
 ```
   
   
