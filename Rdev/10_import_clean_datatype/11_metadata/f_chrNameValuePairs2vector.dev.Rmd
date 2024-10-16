@@ -552,7 +552,21 @@ dput(swapped_vector)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_chrNameValuePairs2vector =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd
+.tmp$objectname = "f_chrNameValuePairs2vector"
+.tmp$object = function(chrNameValuePairs, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
+    vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() 
+    list.vec.Name_Value = vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))
+    vecNamed = list.vec.Name_Value %>% map(~ set_names(c(.x[2]), .x[1])) %>% unlist()
+    if (vecNamed.swap) vecNamed = names(vecNamed) |> setNames(vecNamed)
+    return(vecNamed)    
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 f_chrNameValuePairs2vector = function(chrNameValuePairs, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
     vec.NameValuePair = chrNameValuePairs %>% str_split(paste0("\\s*", NameValuePair_separator, "\\s*")) %>% unlist() 
     list.vec.Name_Value = vec.NameValuePair %>% str_split(paste0("\\s*", Name_Value_separator, "\\s*"))
@@ -560,6 +574,7 @@ f_chrNameValuePairs2vector = function(chrNameValuePairs, NameValuePair_separator
     if (vecNamed.swap) vecNamed = names(vecNamed) |> setNames(vecNamed)
     return(vecNamed)    
 }
+
 
 
 
