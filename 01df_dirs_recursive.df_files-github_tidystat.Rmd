@@ -174,7 +174,7 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 # https://yihui.org/knitr/options/#package-options
 if(!exists("env1", envir=.GlobalEnv)) 
     assign("env1", new.env(), envir=.GlobalEnv)
-# .GlobalEnv$env1$info = list() ====  
+### .GlobalEnv$env1$info = list() ====  
 .sublistname = "info"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 env1$info$DocumentTitle0 = paste0("01df_dirs_recursive.df_files","-",basename(getwd()))
 env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
