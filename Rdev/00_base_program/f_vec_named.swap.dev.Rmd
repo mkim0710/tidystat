@@ -215,7 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-# @@ Rdev/00_base_program/f_vec_named.swap.dev.Rmd  
+# @@ Rdev/00_base_program/f_vecNamed.swap.dev.Rmd  
 # @@ Rdev/10_import_clean_datatype/11_metadata/f_chrValueLabelPairs2vector.dev.Rmd  
 # @@ Rdev/10_import_clean_datatype/16_categorical_labelled/f_DataSet.labelled_CodeBook.dev.Rmd  
 
@@ -360,22 +360,22 @@ options(width=120)
   
   
 # @@ START) function ----  
-## \% |> f_vec_named.swap()  
+## \% |> f_vecNamed.swap()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
 
 
 
-f_vec_named.swap <- function(vec_named) {
-    names(vec_named) |> setNames(vec_named)
+f_vecNamed.swap <- function(vecNamed) {
+    names(vecNamed) |> setNames(vecNamed)
 }
 
 # Example usage
 named_vector = c(ValueLabelA = "ValueA", ValueLabelB = "ValueB")
 named_vector
 dput(named_vector)
-swapped_vector <- f_vec_named.swap(named_vector)
+swapped_vector <- f_vecNamed.swap(named_vector)
 print(swapped_vector)
 dput(swapped_vector)
 ```
