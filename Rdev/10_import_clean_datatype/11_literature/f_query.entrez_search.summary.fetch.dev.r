@@ -101,14 +101,14 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-#|________________________________________________________________________________|#  ----  
+#_________________________________________________________________________________  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) dev -----  
 ## env0 = env1 ----
 env0 = env1
 ## \% survival::lung |> 
 
-#|________________________________________________________________________________|#  ----  
+#_________________________________________________________________________________  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) function -----  
 # .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
@@ -152,7 +152,7 @@ env0 = env1
 ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
-#|________________________________________________________________________________|#  ----  
+#_________________________________________________________________________________  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
 ## @ .subpath, .sourcename ======  
