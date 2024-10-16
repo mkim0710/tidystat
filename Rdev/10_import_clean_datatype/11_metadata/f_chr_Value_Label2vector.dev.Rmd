@@ -459,6 +459,68 @@ options(width=120)
 ```
   
   
+# @@ START) my dev ----  
+
+## \% chrValueLabelPairs |> str_split(ValueLabelPair_separator) ----  
+## \% vec.ValueLabelPair |> str_split(Value_Label_separator) ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+ValueLabelPair_separator = ","
+Value_Label_separator = "="
+chrValueLabelPairs <- "ValueA = ValueLabelA, ValueB = ValueLabelB"
+
+chrValueLabelPairs %>% str_split(paste0("\\s*", ValueLabelPair_separator, "\\s*")) %>% str
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+chrValueLabelPairs %>% str_split(paste0("\\s*", ValueLabelPair_separator, "\\s*")) %>% unlist() %>% str
+
+# Step 1: Split the string into individual pairs using ValueLabelPair_separator (handling whitespaces)
+vec.ValueLabelPair <- chrValueLabelPairs %>% str_split(paste0("\\s*", ValueLabelPair_separator, "\\s*")) %>% unlist()
+
+cat("    ________________________________________________________________________    \n")
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+vec.ValueLabelPair %>% map(~ .x %>% str_split(paste0("\\s*", Value_Label_separator, "\\s*"))) %>% str
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+vec.ValueLabelPair %>% map(~ .x %>% str_split(paste0("\\s*", Value_Label_separator, "\\s*")) %>% unlist()) %>% str
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+vec.ValueLabelPair %>% str_split(paste0("\\s*", Value_Label_separator, "\\s*")) %>% str
+
+# Step 2: Separate each pair into values and labels using Value_Label_separator (handling whitespaces)
+list.vec.Value_Label <- vec.ValueLabelPair %>% str_split(paste0("\\s*", Value_Label_separator, "\\s*"))
+
+cat("    ________________________________________________________________________    \n")
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+list.vec.Value_Label %>% map_chr(1) %>% str
+list.vec.Value_Label %>% map_chr(2) %>% str
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+list.vec.Value_Label %>% {setNames(map_chr(., 2), map_chr(., 1))}
+
+# Step 3: Create the named vector where Value is the name and ValueLabel is the value
+named_vector <- setNames(map_chr(list.vec.Value_Label, 2), map_chr(list.vec.Value_Label, 1))
+named_vector
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+
+
 # @@ START) function ----  
 ## \% |> f_vec_named.swap()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -478,6 +540,13 @@ dput(swapped_vector)
 ```
 
 
+## \% |> f_chr_Value_Label2vector() ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 ### \% "ValueA=ValueLabelA, ValueB=ValueLabelB" |> ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # i.ValueOptions = "ValueA=ValueLabelA, ValueB=ValueLabelB"
