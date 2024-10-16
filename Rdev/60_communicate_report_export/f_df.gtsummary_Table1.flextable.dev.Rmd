@@ -215,6 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
+# _______________  
 # @@ START) data example ----  
 ## \$ analyticDF_time2event =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -592,6 +593,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) function ----  
 ## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -600,6 +602,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)

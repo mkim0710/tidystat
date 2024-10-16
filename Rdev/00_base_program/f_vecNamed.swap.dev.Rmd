@@ -359,6 +359,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) function ----  
 ## \% |> f_vecNamed.swap()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

@@ -175,6 +175,7 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 ```
   
   
+# _______________  
 # @@ START) source ----  
 ## @ .subpath, .sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r") ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
@@ -188,6 +189,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) Data ----  
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

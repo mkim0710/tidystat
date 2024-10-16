@@ -111,6 +111,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
+# _______________  
 # @@ START) Baseline ----  
 ## \$ as1.na.Date.fct.select89 =  ----  
 @ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
@@ -132,6 +133,7 @@ cat(" ----\n> ", "str(get(.objectname), max.level = 2, give.attr = F)", "  \n", 
 ```
   
   
+# _______________  
 # @@ START) Outcome ----  
 ## \$ as1_7.na.Date.fct.cumulative_DM.list =  ----  
 @ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
@@ -380,6 +382,7 @@ options(width=120)
 
 ```
   
+# _______________  
 # @@ START) Analysis ----  
   
 ## \$ analyticDF_time2event =  ----  

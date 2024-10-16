@@ -236,6 +236,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
 ```
   
   
+# _______________  
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
@@ -248,6 +249,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) function ----  
 https://chatgpt.com/c/f29a5a72-bcf6-42be-b834-9c0cc0e765db
 ## \% |> function_name()  
@@ -324,6 +326,7 @@ MetaData %>% str
 ```
   
   
+# _______________  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)

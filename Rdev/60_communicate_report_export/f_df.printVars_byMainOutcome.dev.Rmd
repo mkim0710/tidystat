@@ -188,6 +188,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) Data ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -309,6 +310,7 @@ get(DataSetName2.NA.rmAllNA) %>% filter(!!rlang::sym(StudyPopulation) == TRUE) %
 ```
   
   
+# _______________  
 # @@ START) function ----  
 ## \% f_df.printVars_byMainOutcome() ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

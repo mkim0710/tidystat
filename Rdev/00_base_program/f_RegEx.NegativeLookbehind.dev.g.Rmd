@@ -225,6 +225,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) dev ----  
 
   
@@ -575,6 +576,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) dev) perl=TRUE ----  
 # https://chatgpt.com/c/8f370edc-8df9-4ca9-96c1-e26d9bbb6ff9
 ## \% vec_names |> str_replace_all  
@@ -590,6 +592,7 @@ df_vec_names |> mutate(
 ```
   
   
+# _______________  
 # @@ START) function ----  
 ## \% |> function_name()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

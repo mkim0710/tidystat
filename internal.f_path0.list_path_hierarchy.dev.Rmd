@@ -222,6 +222,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ```
   
+# _______________  
 # @@ START) problem ----  
 ### \$ rstudioapi::getSourceEditorContext()\$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -250,6 +251,7 @@ rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_
 ```
   
   
+# _______________  
 # @@ START) dev) f_path0.list_path_hierarchy ----  
 ## \$ original_function <- function(path0, path_last = getwd(), .max_hierarchy = 5) {  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

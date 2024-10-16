@@ -222,6 +222,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ```
   
+# _______________  
 # @@ START) problem ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -245,6 +246,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) dev) f_chr.f_path.escape_special_characters ----  
 ## :: vec_path.test =
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}

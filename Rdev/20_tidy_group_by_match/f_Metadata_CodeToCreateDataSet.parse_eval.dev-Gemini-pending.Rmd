@@ -215,6 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
+# _______________  
 # @@ START) data example ----  
 ## \$ analyticDF_time2event =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -234,6 +235,7 @@ suppressPackageStartupMessages(library(tidyverse))
 ```
   
   
+# _______________  
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
@@ -256,6 +258,7 @@ options(width=120)
 
   
   
+# _______________  
 # @@ START) function ----  
 # https://gemini.google.com/app/6ce9c0bf85531677
 

@@ -217,6 +217,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
+# _______________  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
@@ -253,6 +254,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ```
   
   
+# _______________  
 # @@ START) log_file_availability ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
@@ -346,6 +348,7 @@ options(width=120)
 ```
   
   
+# _______________  
 # @@ START) read_rds_safely_with_logging ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)

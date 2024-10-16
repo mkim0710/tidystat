@@ -162,6 +162,7 @@ env1\$info\$info_system_info\$machine_nodename = "15687d125320"  @Rocker
 env1\$info\$info_system_info\$machine_nodename = "application-12164735-deployment-22732286-l5pm"  @Posit.Cloud  
 env1\$info\$info_system_info\$Sys.getlocale\$LC_COLLATE = "en_US.utf8"  
   
+# _______________  
 # @@ START ----  
 ## @ whoami ----  
 Cf) Ctrl+Alt+Enter @ Rstudio  
