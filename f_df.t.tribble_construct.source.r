@@ -102,7 +102,7 @@ library(tidyverse)
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ env1$env.internal functions ----  
+# @@ env1$env.internal functions ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # https://github.com/cran/datapasta/blob/master/R/tribble_paste.R
 # globalVariables(c(".rs.readUiPref","env1$env.internal$.global_datapasta_env"), "datapasta") #ignore this function in R CMD checks, since it is part of RStudio runtime
@@ -610,7 +610,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 ##________________________________________________________________________________  
 #|________________________________________________________________________________|#  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ env1$f functions ----  
+# @@ env1$f functions ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$ f_df.tribble_construct =  ----  
 # fun.tribble_paste = env1$env.internal$tribble_paste
@@ -620,7 +620,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
     out = env1$env.internal$tribble_construct(df)
     cat(out)
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
@@ -631,7 +631,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     out = df %>% t |> as.data.frame() %>% rownames_to_column(varname4rowname) |> as_tibble()
     out
 }                                    
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_df.t.tribble_construct =  ----  
@@ -641,7 +641,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     out = env1$env.internal$tribble_construct(out)
     cat(out)
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_vec.dput_line_by_line.dev.r
@@ -657,9 +657,10 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         env1$env.internal$f_vec.format_line_by_line(vec, space_between_vec_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
     }
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+## \$env.internal\$f_vec.format_line_by_line =  ----  
 env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
     # vec |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")}  # env1$f$f_vec.dput_line_by_line(); |> paste0(collapse='",  \n  "') %>% {cat('c("',.,'")  \n', sep="")} ----
     # vec |> str_replace_all("\\\\","\\\\\\\\") |> str_replace_all("\"","\\\\\"") %>% {paste0('c("',paste0(., collapse='",\n  "'),'")\n')} |> cat("  \n", sep="")
@@ -676,9 +677,10 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 .tmp$object = function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## \$env.internal\$f_list.format_line_by_line =  ----  
 env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
     .f_vec.paste_collapse <- function(vec, space_between_vec_elements="\n") {
         if (is.null(vec)) {
@@ -726,7 +728,7 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
     out$identical = all.equal(vec1, vec2)
     out
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_df.print_byVar =  ----  
@@ -741,7 +743,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))}) |> 
         print(n = n)
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_df.add_VarNameT.deltaT0 =  ----  
@@ -750,7 +752,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 .tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0") {
     DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_df.add_VarNameT.pdT0 =  ----  
@@ -759,7 +761,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 .tmp$object = function(DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0") {
     DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_df.add_RegExVars.cut =  ----  
@@ -785,7 +787,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     
     return(DataSet.Date.NA.rmAllNA)
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_df.add_RegExVars.quintile_factor =  ----  
@@ -816,7 +818,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
       .names = "{.col}.quintile"
     ))
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_df.add_RegExVars.quartile_factor =  ----  
@@ -845,7 +847,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
             .names = "{.col}.quartile"
         ))
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_formula.lhs_rhs_vars =  ----
@@ -880,7 +882,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
     # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_list_formula.append_lhs_rhs_vars =  ----  
@@ -916,10 +918,19 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
     # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
+
+
+
+
+
+
 ##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ source() ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ for (.dependancy in c("")) { -----  
 for (.dependancy in c("f_path.size_files")) {
