@@ -87,58 +87,15 @@ if(!".path4read" %in% names(env1$path)) {.path4read = env1$path$.path4read = env
 if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = ifelse("CurrentSource.path" %in% names(env1$path), env1$path$CurrentSource.path, env1$path$path1)}  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## env1\$path ====  
-# tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
-# if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-# if (requireNamespace("rstudioapi")) {
-#     if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}
-#     if (rstudioapi::isAvailable()) {
-#         env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-#     } else { if(Sys.getenv("VERBOSE")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-#     if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path.filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}
-# } else { if(Sys.getenv("VERBOSE")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
-#_________________________________________________________________________________  ----  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) source -----  
-## @ .subpath, .sourcename ======  
-# .subpath = r"()" |> str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# .sourcename = "env1$env.internal" |> paste0(".source.r")
-# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# env1$path$.subpath = .subpath
-# .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
-# env1$path$.sourcename_root = .sourcename_root  
-# env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-# env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-# env1$path$.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-#     "# ",env1$path$.subpath.filename.dev.r, "  \n",
-#     "# ",env1$path$.subpath.filename.dev.Rmd, "  \n",
-#     "# ",env1$path$.subpath.filename.source.r, "  \n",
-#     '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath.filename.source.r,'"))', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
-#     '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-#     '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-#     sep="")
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
 #_________________________________________________________________________________  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
-##________________________________________________________________________________  
+# @@ f_CodeText, f_function ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ env1$env.internal functions ----  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_CodeText.echo ====
+## :: f_CodeText.echo ====
 # Rdev/00_base_program/f_CodeText.echo.dev.r
 env1$f$f_CodeText.echo = function(
         .CodeText,
@@ -244,7 +201,7 @@ env1$f$f_CodeText.echo = function(
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$f_TerminalFromRCodeText.echo ====  
+## :: f_TerminalFromRCodeText.echo ====  
 # Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
 env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALSE) {
     .TerminalCodeText |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
@@ -255,8 +212,9 @@ env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALS
         .TerminalCodeText |> deparse() |> paste0(" |> system(intern=TRUE)  \n", sep="")
     )
 }
+
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_function.load2env.internal ====  
+## :: f_function.load2env.internal ====  
 env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, runLoadedFunction = FALSE) {
     if(is.null(env1_subenv_name)) {
         if(!function_name %in% names(.GlobalEnv$env1)) {
@@ -280,8 +238,20 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
         }
     }
 }
+
+
+
+#_________________________________________________________________________________  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$ f_path.CurrentSource.path.filename.ext =  ----  
+# @@ f_file, f_URL, f_path ----  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.relative ====  
+env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
+    path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.CurrentSource.path.filename.ext =  ----  
 .tmp$objectname = "f_path.CurrentSource.path.filename.ext"
 .tmp$object = function(check_rstudioapi = TRUE, overwrite = FALSE) {
     if(overwrite || is.null(env1$path$CurrentSource.path.filename.ext) || env1$path$CurrentSource.path.filename.ext == "") {
@@ -303,50 +273,31 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
         }
     }
 }
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## env1\$path\$CurrentSource.path.filename.ext ====  
+### env1\$path\$CurrentSource.path.filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$env.internal$f_path.CurrentSource.path.filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
+
+
+#_________________________________________________________________________________  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_file.switch_open ====  
-env1$f$f_file.switch_open <- function(file) {
-    stopifnot(file.exists(file))
-    
-    file <- normalizePath(file, mustWork = TRUE)
-    
-    switch(Sys.info()["sysname"], 
-        Linux = {
-            app <- Sys.getenv("BROWSER", "xdg-open")
-            system2(app, file)
-        }, 
-        Windows = {
-            shell.exec(shQuote(file))
-        }, 
-        Darwin = {
-            system2("open", shQuote(file))
-        }, 
-        stop("Operating system not handled: ", toString(userSystem))
-    )
-}
-
-
-## \$f_file.edit ====  
+## @ f_file.edit, f_file.open ====  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### \$f_file.edit_windows ====  
+### :: f_file.edit_windows ====  
 env1$env.internal$f_file.edit_windows <- function(.file2edit) {
     shell.exec(shQuote(.file2edit))
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### \$f_file.edit_notepad ====  
+#### :: f_file.edit_notepad ====  
 env1$env.internal$f_file.edit_notepad <- function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {shell( paste0("notepad.exe"," ",shQuote(.file2edit)) )} else {warning("This function is only available in Windows.")}
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### \$f_file.edit_vscode ====  
+#### :: f_file.edit_vscode ====  
 env1$env.internal$f_file.edit_vscode <- function(.file2edit) {
     if (Sys.info()["sysname"] == "Windows") {.path4editor = c( file.path(Sys.getenv('LOCALAPPDATA'),"Programs","Microsoft VS Code","Code.exe"), "C:/Program Files/Microsoft VS Code/Code.exe" ) |> keep(file.exists) |> first(default = "notepad.exe") |> normalizePath(winslash="/"); shell( paste0('cmd /c ""',.path4editor, '" "',.file2edit, '""')  )}
 }
@@ -354,10 +305,10 @@ env1$env.internal$f_file.edit_vscode <- function(.file2edit) {
 env1$env.internal$f_URL.open_in_edge_app <- function(URL) {
     if (Sys.info()["sysname"] == "Windows") {system(paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',URL,'"'), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)} else {utils::browseURL(URL); env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode(URL)}
 }
-##### \$ f_URL.open_in_edge_app =  ----  
+#### :: f_URL.open_in_edge_app =  ----  
 .tmp$objectname = "f_URL.open_in_edge_app"
 .tmp$object = env1$env.internal[[.tmp$objectname]]
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
@@ -373,20 +324,20 @@ env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
 env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
     URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="',.,'"  \n', sep="")
 }
-##### \$ f_URL.open_in_edge_app.printPowerShellCode =  ----  
+#### :: f_URL.open_in_edge_app.printPowerShellCode =  ----  
 .tmp$objectname = "f_URL.open_in_edge_app.printPowerShellCode"
 .tmp$object = env1$env.internal[[.tmp$objectname]]
-### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f")
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### \$f_file.systemStart ====  
+### :: f_file.systemStart ====  
 # Function to open files with the system's default application (fallback)
 env1$env.internal$f_file.systemStart <- function(file) {
     system(paste("start", shQuote(file)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
     # file |> shQuote() %>% paste0("start ",.) |> system(wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
 }
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-#### \$f_file_PDF.sumatra ====  
+#### :: f_file_PDF.sumatra ====  
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
 # Function to open PDF with Sumatra PDF
 env1$env.internal$f_file_PDF.sumatra <- function(
@@ -423,8 +374,34 @@ env1$env.internal$f_file_PDF.sumatra <- function(
     out <- try(system(sumafile, wait = FALSE, ...), silent = TRUE)
     return(invisible(out))
 }
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_file.switch_open ====  
+env1$f$f_file.switch_open <- function(file) {
+    stopifnot(file.exists(file))
+    
+    file <- normalizePath(file, mustWork = TRUE)
+    
+    switch(Sys.info()["sysname"], 
+        Linux = {
+            app <- Sys.getenv("BROWSER", "xdg-open")
+            system2(app, file)
+        }, 
+        Windows = {
+            shell.exec(shQuote(file))
+        }, 
+        Darwin = {
+            system2("open", shQuote(file))
+        }, 
+        stop("Operating system not handled: ", toString(userSystem))
+    )
+}
+
+
+#_________________________________________________________________________________  ----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ f_file.backup, f_path.backup ====  
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$f_filename.ext.createBackup ====  
+## :: f_filename.ext.createBackup ====  
 env1$env.internal$f_filename.ext.createBackup = function(backup_from_path.filename.ext, backup_from_ext = NA, .backup_to_path = file.path(env1$path$path0, "-backup"), timeFormat = "%y%m%d_%H%M", overwrite=TRUE) {
     # Wrap the main backup logic in a tryCatch for error handling
     tryCatch({
@@ -455,7 +432,7 @@ env1$env.internal$f_filename.ext.createBackup = function(backup_from_path.filena
     })
 }
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$f_path_path.backup.overwrite ====  
+## :: f_path_path.backup.overwrite ====  
 env1$env.internal$f_path_path.backup.overwrite <- function(.overwrite_from_path.filename.ext, .destination_path.filename.ext, .backup_to_path = dirname(.destination_path.filename.ext), timeFormat = "%y%m%d", createFile = FALSE) {
     if(createFile || file.exists(.destination_path.filename.ext)) {
         if(!is.null(.backup_to_path)) {
@@ -464,15 +441,14 @@ env1$env.internal$f_path_path.backup.overwrite <- function(.overwrite_from_path.
         if(file.copy(from=.overwrite_from_path.filename.ext, to=.destination_path.filename.ext, overwrite=TRUE)) message(paste0("Update successful: ", .destination_path.filename.ext)) else warning(paste0("Update failed: ", .destination_path.filename.ext))
     } else {warning(paste0("File does not exist: ", .destination_path.filename.ext))}
 }
+
+
+#_________________________________________________________________________________  ----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ f_git ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_path.relative ====  
-env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
-    path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-}
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_path.is_git_tracked  =======  
+## :: f_path.is_git_tracked  =======  
 # Function to check if the current project or any of its parent directories are tracked by Git
 env1$env.internal$f_path.is_git_tracked <- function(path = getwd(), check_parents = TRUE) {
     # Normalize the path
@@ -521,7 +497,7 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_file.git_lfs_track_add_f ====  
+## :: f_file.git_lfs_track_add_f ====  
 # Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
 env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
     git_lfs_available = try(system2("git", args = "lfs version", stdout = TRUE, stderr = TRUE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
@@ -550,9 +526,12 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
     )
 }
 
+#_________________________________________________________________________________  ----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## @ f_file.save, f_file.update ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## \$f_objectname.size.write_rds.git_lfs_track_add_f ====  
+## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
 # Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
@@ -610,11 +589,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
 }
 
 
-
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-
-## \$env.internal\$f_file2.compare ====  
+## :: env.internal\$f_file2.compare ====  
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
 .tmp$objectname = "f_file2.compare"
 .tmp$object <- function(file1, file2, chunk_size = 65536) {
@@ -653,7 +630,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$env.internal\$f_url_destfile.DownloadIfDifferent ====  
+## :: env.internal\$f_url_destfile.DownloadIfDifferent ====  
 # Function to download a file only if the web file is different from the local file
 .tmp$objectname = "f_url_destfile.DownloadIfDifferent"
 .tmp$object <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
@@ -688,7 +665,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 
 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$f\$f.updateTemplates ====  
+### \$f\$f.updateTemplates ====  
 # https://github.com/mkim0710/f.updateTemplates.exe.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     #@ The Templates of RStudio (default.R, notebook.Rmd) ++++++++++++
@@ -771,7 +748,10 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
 }
 
 
-
+##________________________________________________________________________________  
+#|________________________________________________________________________________|#  ----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ source() ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ .sourcename = "internal.f_path0.list_path_hierarchy" |> paste0(".source.r") =======  
