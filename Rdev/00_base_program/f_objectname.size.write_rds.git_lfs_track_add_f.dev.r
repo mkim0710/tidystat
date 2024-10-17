@@ -229,6 +229,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
             }
         } else if (git_lfs_track == TRUE) {
                 env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
+        } else {
+            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
         }
     }
     
