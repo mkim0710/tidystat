@@ -184,7 +184,7 @@ options(width=120)
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
 ### \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
-.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); source( file.path(env1$path$source_base,.subpath.filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
+.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% .GlobalEnv$env1$source) {message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); source( file.path(env1$path$source_base,.subpath.filename.source.r) ); .GlobalEnv$env1$source[[.sourcename]] = TRUE}
 ```
   
   
@@ -322,7 +322,7 @@ options(width=120)
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 .sourcename = "f_df.printVars_byMainOutcome" |> paste0(".source.r")
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-cat('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")', "  \n", sep=""); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])
+message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 get(DataSetName2.NA.rmAllNA) |> env1$f$f_df.printVars_byMainOutcome(MainOutcome = MainOutcome, VarName.selected = .VarName.selected)
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
