@@ -184,6 +184,11 @@ get(.objectname) %>% str(max.level = 2)
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 
 
+MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# > MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
+# . |> write_rds('Rdev/00_base_program/..rds', compress = 'gz', compression = 9L) |> system.time()  
+# env1$f$f_path.size_files(.path4read = 'Rdev/00_base_program', regex4filename = '.')  
+# "git add -f 'Rdev/00_base_program/..rds'" |> system(intern=TRUE) 
 
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(createBackup = TRUE)
