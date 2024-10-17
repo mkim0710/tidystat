@@ -661,13 +661,19 @@ library(Z.gtsummary.addons)
 ```
 
 
-### ECHO \% |> tbl_summary() ----  
+### ECHO \% |> tbl_summary(by) ----  
+#### **ECHO** \% |> add_n() ----  
+#### **ECHO** \% |> add_p() ----  
+#### **ECHO** \% |> add_overall() ----  
 #### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ref_group = TRUE) ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 trial %>% 
-    tbl_summary(by = grade, include = c(age, stage)) %>%
-    # add_n() %>% 
+    select(grade, age, stage) %>% 
+    # tbl_summary(by = grade, include = c(age, stage)) %>%
+    tbl_summary(by = grade) %>%
+    # add_n() %>%
+    add_overall() |>
     # add_SMD(location = "both", ci = TRUE, ref_group = TRUE) %>% 
     add_p() |>
     print() |> invisible()
