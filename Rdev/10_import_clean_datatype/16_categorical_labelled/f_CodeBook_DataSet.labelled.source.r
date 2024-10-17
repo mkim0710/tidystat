@@ -21,7 +21,7 @@
 ## \$ f_CodeBook_DataSet_VarName.labelled =  ----
 # https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.labelled.source.r
 .tmp$objectname = "f_CodeBook_DataSet_VarName.labelled"
-.tmp$object = function(DataSet, vec.VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", output.select = FALSE, VERBOSE = getOption("verbose")) {
+.tmp$object = function(DataSet, vec.VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", output.select = FALSE, VERBOSE = getOption("verbose")) {
     .packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     for (i.Varname in vec.VarName) {
 
@@ -34,9 +34,12 @@
             tblVarName_VarDescription_ValueOptions %>% 
             dplyr::filter(VarName == i.Varname) %>% 
             pull(VarDescription) %>% as.character
-        if (tblVarName_VarDescription_ValueOptions %>% 
+        if (
+            tblVarName_VarDescription_ValueOptions %>% 
             dplyr::filter(VarName == i.Varname) %>% 
-            pull(VarType) == VarType.numeric) {
+            pull(VarType) %in% c(VarType.numeric, VarType.Date) || 
+            is.Date(DataSet[[i.Varname]])  
+        ) {
             attributes(DataSet[[i.Varname]])$ValueOptions = 
                 tblVarName_VarDescription_ValueOptions %>% 
                 filter(VarName == i.Varname) %>% 
@@ -72,7 +75,7 @@
 ## \$ f_CodeBook_DataSet_VarName.labelled =  ----
 # https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.labelled.source.r
 .tmp$objectname = "f_CodeBook_DataSet.labelled"
-.tmp$object = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VERBOSE = getOption("verbose")) {
+.tmp$object = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", VERBOSE = getOption("verbose")) {
     
     DataSet[names(DataSet) %in% tblVarName$VarName] =
         DataSet[names(DataSet) %in% tblVarName$VarName] %>% mutate_if(is.factor, as.character)
@@ -89,6 +92,7 @@
                         Name_Value_separator = Name_Value_separator, 
                         vecNamed.swap = vecNamed.swap, 
                         VarType.numeric = VarType.numeric,
+                        VarType.Date = VarType.Date,
                         output.select = FALSE,
                         VERBOSE = VERBOSE)
             })
