@@ -367,7 +367,7 @@ options(width=120)
 ##### ECHO \% |> modify_header() ----  
 ##### ECHO \% |> modify_column_hide(all_stat_cols()) ----  
 ### **ECHO** \% tbl_merge(list(t0, t1, t2)) ----  
-##### ECHO \% |> modify_spanning_header() ----  
+##### ECHO \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",var_label(byVar),"**"), starts_with("p.value") ~ "**p-values**") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
     # table summarizing data with no p-values
