@@ -177,7 +177,8 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
     env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
     env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
-    sep="")
+    sep="") |>
+    print() |> invisible()
 ```
   
   
@@ -286,7 +287,8 @@ trial |>
   modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") |> 
   add_n() |> 
   bold_labels() |> 
-  modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**")
+  modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**") |>
+    print() |> invisible()
 ```
 
 
@@ -305,7 +307,8 @@ trial %>%
     ) %>%
     add_n() %>%
     add_overall() %>%
-    add_p()
+    add_p() |>
+    print() |> invisible()
 ```
   
   
@@ -353,8 +356,8 @@ options(width=120)
       ) |> 
       add_difference() |> 
       add_n() |> 
-      modify_header(all_stat_cols() ~ "**{level}**") %>% 
-        print() %>% invisible()
+      modify_header(all_stat_cols() ~ "**{level}**") |>
+    print() |> invisible()
 ```
 
 
@@ -397,7 +400,8 @@ options(width=120)
       modify_spanning_header(
         all_stat_cols() ~ "**Tumor Grade**",
         starts_with("p.value") ~ "**p-values**"
-      )
+      ) |>
+    print() |> invisible()
 ```
 
 
@@ -411,7 +415,8 @@ It’s often needed to summarize a continuous variable by one, two, or more cate
 options(width=120)
     trial |> 
       tbl_continuous(variable = marker, by = trt, include = grade) |> 
-      modify_spanning_header(all_stat_cols() ~ "**Treatment Assignment**")
+      modify_spanning_header(all_stat_cols() ~ "**Treatment Assignment**") |>
+    print() |> invisible()
 ```
 
 
@@ -429,7 +434,8 @@ options(width=120)
         ~ .x |> 
           tbl_summary(by = trt, missing = "no") |> 
           modify_header(all_stat_cols() ~ "**{level}**")
-      )
+      ) |>
+    print() |> invisible()
 ```
 
 
@@ -448,7 +454,8 @@ options(width=120)
 for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
 devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
-library(Z.gtsummary.addons)
+library(Z.gtsummary.addons) |>
+    print() |> invisible()
 ```
   
   
@@ -458,7 +465,8 @@ library(Z.gtsummary.addons)
 options(width=120)
 trial %>%
   tbl_summary(by = grade, include = c(age, stage)) %>%
-  add_SMD(location = "both")
+  add_SMD(location = "both") |>
+    print() |> invisible()
 ```
   
   
@@ -468,7 +476,8 @@ trial %>%
 options(width=120)
 trial %>% 
   tbl_summary(by = grade, include = c(age, stage)) %>%
-  add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";")
+  add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";") |>
+    print() |> invisible()
 ```
   
   
@@ -556,7 +565,8 @@ options(width=120)
 #         TRIGLYCERIDE_ge150, HDL_CHOLE_lt4050, 
 #         nMetS_NoMeds_WAIST_ge9080, nMetS_NoMeds_WAIST_ge9080.ge3, 
 #         nMetS_NoMeds_WAIST_ge9085, nMetS_NoMeds_WAIST_ge9085.ge3
-#     ) |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX"))
+#     ) |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = "CohortGJ0910.BaselineJKGJ2085NoHx...01.select_MetS", VarNames4Exposure =  c("SEX")) |>
+    print() |> invisible()
 ```
   
 
@@ -625,7 +635,8 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 .VarNames4Exposure =  c("A01_BMI.cut5")  
 .DataSetName4output = DataSetName
-# DataSet.Date.NA.rmAllNA |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = .DataSetName4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES")
+# DataSet.Date.NA.rmAllNA |> env1$f$f_df.Table1byExposure.xlsx(DataSetName4output = .DataSetName4output, VarNames4Exposure = .VarNames4Exposure, output.xlsx = Sys.getenv("PARENT_RENDERING") != "YES") |>
+    print() |> invisible()
 ```
 
 
@@ -648,7 +659,8 @@ options(width=120)
 for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
 devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
-library(Z.gtsummary.addons)
+library(Z.gtsummary.addons) |>
+    print() |> invisible()
 ```
 
 
@@ -660,8 +672,8 @@ trial %>%
     tbl_summary(by = grade, include = c(age, stage)) %>%
     # add_n() %>% 
     # add_SMD(location = "both", ci = TRUE, ref_group = TRUE) %>% 
-    add_p() %>% 
-    print() %>% invisible()
+    add_p() |>
+    print() |> invisible()
 ```
   
   
@@ -816,7 +828,8 @@ cat("    _______________________________________________________________________
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat("    ************************************************************************    \n")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n") |>
+    print() |> invisible()
 ```
   
   
@@ -875,7 +888,8 @@ if(exists("MetaData")) {
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
 # system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx) |>
+    print() |> invisible()
 ```
   
   
@@ -907,7 +921,8 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 }
 # env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal$f_file_PDF.sumatra(',deparse(.path.file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path.file),')  \n', sep="") }
 # cat("    ________________________________________________________________________    \n")
-env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal$f_URL.open_in_edge_app(',deparse(.path.file),')  \n', sep="")
+env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal$f_URL.open_in_edge_app(',deparse(.path.file),')  \n', sep="") |>
+    print() |> invisible()
 ```
   
   
@@ -921,7 +936,8 @@ paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$
 paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
 paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="") |>
+    print() |> invisible()
 ```
   
   
