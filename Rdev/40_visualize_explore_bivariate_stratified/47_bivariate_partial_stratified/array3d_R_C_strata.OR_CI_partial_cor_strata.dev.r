@@ -21,7 +21,7 @@ function.binary2numeric = function(x) {
 }
 
 array3d_R_C_strata2df = function(array3d_R_C_strata) {
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     x1x2z.df = array3d_R_C_strata |> as.table() |> as.data.frame()
     
     index = map(1:nrow(x1x2z.df), function(i) rep(i, x1x2z.df[i,4])) |> unlist()
@@ -50,7 +50,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
 matrix2x2.OR_CI = function(matrix2x2) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/matrix2x2.OR_CI_phi.dev.r")
     # version 170630
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out = list()
     if(length(matrix2x2) == 4) {
         OR = matrix2x2[1,1] * matrix2x2[2,2] / matrix2x2[1,2] / matrix2x2[2,1]
@@ -70,7 +70,7 @@ matrix2x2.OR_CI = function(matrix2x2) {
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     x1.binary2numeric = function.binary2numeric(x1)
@@ -114,7 +114,7 @@ function.sequence_with_leading_zeros = function(num) {
 array3d_R_C_strata.OR_CI_partial_cor_strata = function(array3d_R_C_strata, .cor_method = "pearson") {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/array3d_R_C_strata.OR_CI_partial_cor_strata.dev.r")
     # version 170717
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # if(is.null(array3d_R_C_strata)) array3d_R_C_strata = table(df_x1_x2_z)
     if( length(dim(array3d_R_C_strata)) == 3 & dim(array3d_R_C_strata)[1] == 2 & dim(array3d_R_C_strata)[2] == 2 ) {
         out = list()

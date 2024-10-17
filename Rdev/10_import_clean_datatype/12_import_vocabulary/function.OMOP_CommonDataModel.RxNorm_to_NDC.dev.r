@@ -1,7 +1,7 @@
 # function.OMOP_CommonDataModel.RxNorm_to_NDC.dev.r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ATC_RxNorm_NDC = readRDS("ATC_RxNorm_NDC.rds")
 ATC_RxNorm_NDC |> str(max.level = 1) #-----
 ATC_RxNorm_NDC |> str() #-----

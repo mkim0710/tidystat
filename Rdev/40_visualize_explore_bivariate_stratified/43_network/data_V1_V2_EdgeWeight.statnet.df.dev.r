@@ -386,7 +386,7 @@ object_statnet.summary_df = function(object_statnet) {
     }
     library(intergraph)
     library(statnet)
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     library(statnet)
     out.df = data.frame(vertex.names = (object_statnet %v% 'vertex.names'))
     out.df$degree = object_statnet %>% degree(gmode = "graph")

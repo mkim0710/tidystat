@@ -1,7 +1,7 @@
 # AnalyticDataset.pairwise_survdiff_bonferonni (200401) from plot_surv200401 .r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 library(readxl)
 plot_surv200401 <- read_excel("plot_surv200401.xlsx") %>% mutate(
@@ -25,7 +25,7 @@ plot_surv200401$stage2 |> table() #----
 # 17543  6633  2468 44949 
 
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(survminer)
 
 # ?survival::Surv

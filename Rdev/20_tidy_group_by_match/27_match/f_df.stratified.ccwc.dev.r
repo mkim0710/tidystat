@@ -54,7 +54,7 @@ data.ccwc = function(
 ) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/f_df.stratified.ccwc.dev.r")
     if (load.dependent.library == T) {
-        library(tidyverse)
+        .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         # library(tableone)
     }
     select = dplyr::select
@@ -333,7 +333,7 @@ data.ccwc = function(
 
 
 ## @ test) data.ccwc() mycohort_1strata_tie ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 mycohort_1strata_tie = tibble::tribble(
     ~RowNum_original, ~entry_age, ~exit_age, ~event,              ~strata,
                 125L,        31L,        42,   TRUE, "Driver|>2750 KCals",
@@ -526,7 +526,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 #     apply.function.dichotomous2logical = F) 
 # {
 #     if (load.dependent.library == T) {
-#         library(tidyverse)
+#         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #         library(tableone)
 #     }
 #     select = dplyr::select
@@ -1012,7 +1012,7 @@ f_df.stratified.ccwc = function(
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.strata_list.ccwc.dev.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
     if (load.dependent.library == T) {
-        library(tidyverse)
+        .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         # library(tableone)
     }
     select = dplyr::select
@@ -1413,7 +1413,7 @@ diet.stratified.ccwc #----
 #     if (!is.data.frame(.mydata)) 
 #         stop("!is.data.frame(.mydata)")
 #     if (load.dependent.library == T) {
-#         library(tidyverse)
+#         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #         library(tableone)
 #     }
 #     select = dplyr::select
@@ -1509,7 +1509,7 @@ diet.stratified.ccwc #----
 #     apply.function.dichotomous2logical = F) 
 # {
 #     if (load.dependent.library == T) {
-#         library(tidyverse)
+#         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #         library(tableone)
 #     }
 #     select = dplyr::select

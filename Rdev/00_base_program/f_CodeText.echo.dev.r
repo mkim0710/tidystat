@@ -28,7 +28,7 @@
 
 # @@ START) example -----  
 ## \$ analyticDF_time2event =  ----  
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 # ?survival::lung
 .objectname = DataSetName = "analyticDF_time2event"

@@ -225,7 +225,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Load necessary libraries
 library(dplyr)
 library(stringr)
-library(haven)
+.packagename = "haven"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # Example dataset
 your_data <- data.frame(

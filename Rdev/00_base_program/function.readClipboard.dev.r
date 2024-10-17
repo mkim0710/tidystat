@@ -2,7 +2,7 @@
 
 # https://www.dummies.com/programming/r/how-to-use-the-clipboard-to-copy-and-paste-data-in-r/
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 readClipboard() |> dput() #----
 # > readClipboard() |> dput() #----  

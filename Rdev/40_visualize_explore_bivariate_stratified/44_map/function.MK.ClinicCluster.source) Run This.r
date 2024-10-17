@@ -28,7 +28,7 @@ dput(.Platform) #----
 dput(Sys.info()) #----
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 Population.df0 <- readRDS("Population.df.rds")
 DistanceMatrix0 <- readRDS("DistanceMatrix.rds")
 ODMatrix0 <- readRDS("ODMatrix.rds")

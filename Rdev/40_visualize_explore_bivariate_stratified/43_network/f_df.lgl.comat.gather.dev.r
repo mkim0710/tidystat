@@ -243,7 +243,7 @@ f_df.lgl.comat.gather = function(data, .n11 = F, .cor.test = F, .Fisher.exact.te
 
 
 ## @ test) f_df.lgl.comat.gather() trainsetCC69agg4i07_829.Ctrl.lgl ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load("data/trainsetCC69agg4i07_829.rda")
 trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% dplyr::filter(is.Case != T) %>% select(-is.Case)
 # trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()

@@ -136,7 +136,7 @@ c("ihd", "timeihd", "Cigar_ge50", "CigarettePackYear", "Age", "Male") %>% setdif
 # [1] "Cigar_ge50 + CigarettePackYear + Age + Male"
 
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # ?survival::Surv
 paste0("Surv(",varname4time, ", ", varname4event, ") ~ ")
 # > paste0("Surv(",varname4time, ", ", varname4event, ") ~ ")

@@ -44,7 +44,7 @@ packageStartupMessage("Loading: env1$f$f_df.NotNA_p_df = function(data)")
 # nhanes_mice = nhanes
 # save(nhanes_mice, file = "data/library_mice_nhanes_mice.rda")
 
-# library(tidyverse)
+# .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/library_mice_nhanes_mice.rda"))
 # nhanes_mice |> str() #-----  
 # # > nhanes_mice |> str() #-----  

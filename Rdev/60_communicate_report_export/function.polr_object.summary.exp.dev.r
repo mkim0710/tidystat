@@ -10,7 +10,7 @@ function.polr_object.summary.exp.old = function(polr_object, sprintf_fmt_decimal
         stop("!\"polr\" %in% class(polr_object)")
     }
     # browser()
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     polr_object.confint.df = as.data.frame(confint(polr_object))
     # Browse[2]> polr_object.confint.df
     #                                               2.5 %    97.5 %
@@ -201,7 +201,7 @@ function.polr_object.summary.exp.approx = function(polr_object, sprintf_fmt_deci
         stop("!\"polr\" %in% class(polr_object)")
     }
     # browser()
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # polr_object.confint.df = as.data.frame(confint(polr_object))
     # # Browse[2]> polr_object.confint.df
     # #                                               2.5 %    97.5 %
@@ -381,7 +381,7 @@ function.polr_object.summary.exp.clean = function(polr_object, sprintf_fmt_decim
         stop("!\"polr\" %in% class(polr_object)")
     }
     # browser()
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     polr_object.confint.df = as.data.frame(confint(polr_object))
     # Browse[2]> polr_object.confint.df
     #                                               2.5 %    97.5 %

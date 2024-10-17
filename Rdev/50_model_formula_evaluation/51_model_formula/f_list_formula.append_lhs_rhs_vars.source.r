@@ -130,7 +130,7 @@ env1$f$f_list_formula.append_lhs_rhs_vars = function(list_formula) {
     # ## \% |> env1$f$f_list_formula.append_lhs_rhs_vars(MetaData$ModelList$time2event)
     # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     # 
-    # library(survival)
+    # .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
     # MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)

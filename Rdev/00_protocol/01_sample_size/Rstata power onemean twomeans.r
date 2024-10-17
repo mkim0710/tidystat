@@ -1,6 +1,6 @@
 # Rstata power onemean twomeans.r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(pwr)
 library(RStata)
 options("RStata.StataPath" = "\"C:\\Program Files (x86)\\Stata15\\Stata-64\"")

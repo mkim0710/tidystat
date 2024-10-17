@@ -242,7 +242,7 @@ c(as.Date("2024-01-01"), as.Date("2024-01-02"), as.Date("2024-01-03")) %>% funct
 
 
 ## @ test) function.binary2numeric() ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 c(T, F, T) %>% is.numeric
 c(T, F, T) %>% is.character
 c(T, F, T) |> levels()

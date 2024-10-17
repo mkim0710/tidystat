@@ -364,7 +364,7 @@ lubridate::is.Date(as.Date("2002-01-01"))
 # > lubridate::is.Date(as.Date("2002-01-01"))
 # [1] TRUE
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 as.Date("2002-01-01") %>% is("Date")
 as.Date("2002-01-01") %>% inherits("Date")
 as.Date("2002-01-01") %>% class %>% {. == "Date"}

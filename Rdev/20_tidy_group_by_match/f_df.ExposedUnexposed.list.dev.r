@@ -1,7 +1,7 @@
 # f_df.ExposedUnexposed.list.dev.r
 
 f_df.ExposedUnexposed.list = function(data, varname_Exposed = "isExposed", rm_zero_vars = T) {
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/f_df.ExposedUnexposed.list.dev.r")
     if(!is.logical(data[[varname_Exposed]])) {
         stop("error - !is.logical(data[[varname_Exposed]])")
@@ -82,7 +82,7 @@ str(f_df.ExposedUnexposed.list(lalonde, varname_Exposed = "isExposed", rm_zero_v
 #   ..$ u75    : int [1:260] 1 1 1 1 1 1 1 1 1 1 ...
 #   ..$ isExposed : logi [1:260] FALSE FALSE FALSE FALSE FALSE FALSE ...
 
-library(tableone)
+.packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T) |> print(smd = T, nonnormal = "age")
 # > lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T) |> print(smd = T, nonnormal = "age")
 #                       Stratified by isExposed

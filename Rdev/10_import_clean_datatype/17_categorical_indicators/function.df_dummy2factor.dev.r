@@ -12,7 +12,7 @@ function.df_dummy2factor = function(df_dummy, varname_prefix = "") {
     if (any(as.matrix(df_dummy)!=0 & as.matrix(df_dummy)!=1, na.rm = T)) {
         warning("any(as.matrix(df_dummy)!=0 & as.matrix(df_dummy)!=1, na.rm = T)")
     }
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     df_dummy.logical.numeric = as.data.frame(df_dummy) %>% map_df(as.logical) %>% map_df(as.numeric)
     if (any(rowSums(df_dummy.logical.numeric)!=1, na.rm = T)) {
         warning("any(rowSums(df_dummy.logical.numeric)!=1, na.rm = T)")
@@ -38,7 +38,7 @@ as.logical(1.1)
 # [1] TRUE
 
 ## @ test) function.dummy2factor() iris.Species.dummy -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # model.matrix(~ Species, data = iris) |> str()
 # # > model.matrix(~ Species, data = iris) |> str()
 # #  num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...

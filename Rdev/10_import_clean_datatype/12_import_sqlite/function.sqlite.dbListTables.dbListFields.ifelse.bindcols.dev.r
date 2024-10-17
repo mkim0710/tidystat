@@ -2,7 +2,7 @@
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 getwd() |> dput()
 # > getwd() |> dput()
 # "X:/mkim/Rproject"

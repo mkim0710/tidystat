@@ -140,8 +140,8 @@ options(width=120)
 ## Step 2: Exploratory Data Analysis  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(tidyverse)
-library(survival)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(survminer)
   
 # # Load the lung dataset
@@ -155,8 +155,8 @@ summary(survival::lung)
   
 ## Step 3: Kaplan-Meier Survival Curve  
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
-library(tidyverse)
-# library(survival)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+# .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # library(survminer)
 survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = status) ~ 1, data = survival::lung)
            , break.time.by = 365
@@ -168,8 +168,8 @@ survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = stat
   
 ## Step 4: Stratified Kaplan-Meier Survival Curve  
 ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
-library(tidyverse)
-# library(survival)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+# .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # library(survminer)
 survminer::ggsurvplot(survival::survfit(survival::Surv(time = time, event = status) ~ sex, data = survival::lung), palette = c("#00AFBB", "#FC4E07")
            , break.time.by = 365
@@ -295,7 +295,7 @@ options(width=120)
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung 

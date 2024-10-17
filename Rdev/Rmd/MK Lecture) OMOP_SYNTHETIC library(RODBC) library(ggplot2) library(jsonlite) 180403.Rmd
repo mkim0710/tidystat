@@ -38,7 +38,7 @@ c("tidyverse", "RODBC", "maps", "jsonlite") %>%
   
 detach("package:maps", unload=TRUE) # package:maps conflicts with some other packages, so load only when you need it, detach when you are done with it.
   
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(RODBC)
   
 # You should be within WCMC network to connect to VITS-ARCHSQLP04 server.

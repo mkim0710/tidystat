@@ -1,7 +1,7 @@
 # function.MK.ClinicCluster.v6clean.r
 # function.MK.ClinicCluster.v7clean.r
 function.MK.ClinicCluster = function(input.PopulationDF, input.DistanceMatrix, input.ODMatrix, input.ODMatrix.marginDF, Min.SC, Max.Distance, Min.Pop, print.iteration = T) {
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # browser()
 
     if (!identical(input.PopulationDF$Code, sort(input.PopulationDF$Code))) {stop("!identical(input.PopulationDF$Code, sort(input.PopulationDF$Code))")}

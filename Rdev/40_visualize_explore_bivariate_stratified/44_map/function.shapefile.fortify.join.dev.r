@@ -95,7 +95,7 @@ korpopmap3.CP949 |> str(max.level = 2) #----
 # https://encaion.wordpress.com/2016/03/13/%ED%95%9C%EA%B5%AD-%ED%96%89%EC%A0%95%EA%B2%BD%EA%B3%84%EC%A7%80%EB%8F%84-%EC%8B%9C%EA%B0%81%ED%99%942/
 
 function.shapefile.fortify.join = function(shapefile) {
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # shapefile.fortify = shapefile %>% fortify
     shapefile %>% fortify %>% left_join(shapefile@data %>% select(-long, -lat, -order, -hole, -piece, -group))
 }

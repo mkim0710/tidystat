@@ -119,7 +119,7 @@ data_frame.map_df.as.factor = function (
 
 
 ## @ test) data_frame.map_df.as.factor() -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 df = data_frame(LETTERS = LETTERS, letters = letters, numbers = 1:26 * 2, PersonID = 1:26, PERSON_ID = 1:26 + 100, KEY = 1:26 + 10^8, KEY_SEQ = as.character((1:26 + 10^2) * 10^5)) %>% rownames_to_column()
 df
 # > df = data_frame(LETTERS = LETTERS, letters = letters, numbers = 1:26 * 2, PersonID = 1:26, PERSON_ID = 1:26 + 100, KEY = 1:26 + 10^8, KEY_SEQ = as.character((1:26 + 10^2) * 10^5)) %>% rownames_to_column()
@@ -293,7 +293,7 @@ lubridate::is.Date(as.Date("2002-01-01"))
 # > lubridate::is.Date(as.Date("2002-01-01"))
 # [1] TRUE
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 as.Date("2002-01-01") %>% is("Date")
 as.Date("2002-01-01") %>% inherits("Date")
 as.Date("2002-01-01") %>% class %>% {. == "Date"}

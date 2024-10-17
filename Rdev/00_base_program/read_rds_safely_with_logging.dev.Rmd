@@ -260,7 +260,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
   
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
   
 # Function to log file availability
 log_file_availability <- function(path) {
@@ -292,7 +292,7 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
   
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 .path4read = paste0(env1$path$path1,"/data")
 .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 paste0(.path4read,"/",.objectname,".rds")
@@ -310,7 +310,7 @@ try(assign( "DataSet", read_rds(path.filename.ext) ))
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
   
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 .path4read = paste0(env1$path$path1,"/data")
 .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 paste0(.path4read,"/",.objectname,".rds")
@@ -332,7 +332,7 @@ options(width=120)
 # # .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx.drop_na.MetS_NoMeds"
 # rm(".path4read")
 # rm(".objectname")
-# library(tidyverse)
+# .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # .path4read = "./data"
 # .objectname = "CohortGJ0910.BaselineJKGJ2085NoHx...01"
 # paste0(.path4read,"/",.objectname,".rds")

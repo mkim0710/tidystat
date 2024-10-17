@@ -1,6 +1,6 @@
 # [Flowchart][Graphviz] library(DiagrammeR) flowchart_inclusion_exclusions().RMD
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 flowchart_inclusion_exclusions_v3.4 <- function(
   list_n_inclusions = list(
     "Total population" = 2000,

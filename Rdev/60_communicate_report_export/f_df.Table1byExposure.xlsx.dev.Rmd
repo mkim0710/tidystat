@@ -319,7 +319,7 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 # \% library(tableone) -----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(tableone)
+.packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 ```
 

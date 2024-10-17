@@ -5,7 +5,7 @@
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://posit.cloud/spaces/100015/content/6373416"  # Shared Workspace@MKim0710 - github_mkim0710_tidystat
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://posit.cloud/spaces/100015/content/6373521"  # Shared Workspace@v - PositCloud@v
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # @@ Check path -----  
 ## @ "~" |> normalizePath(winslash="/") ====  
 tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  \n", sep="  \n")
@@ -554,8 +554,7 @@ system("git remote -v")
 
 ##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "sudo apt-get install -y git-lfs" |> system(intern = TRUE) ----
-
+## @ git lfs install
 "sudo apt-get update" |> system(intern = TRUE)
 "sudo apt-get install -y curl ca-certificates" |> system(intern = TRUE)
 "curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash" |> system(intern = TRUE)

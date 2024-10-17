@@ -87,7 +87,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 env1$source$f_filename.ext.find_subpath.source.r = NULL
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs"
 env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
@@ -96,7 +96,7 @@ env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 #   Error: filename.ext must have an extension.
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs.index100le10"
 env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
@@ -170,7 +170,7 @@ env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs.index100le10.rds"
 env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
@@ -239,7 +239,7 @@ env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "does not exist.r"
 env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
@@ -313,7 +313,7 @@ env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "tblID_gj3_jk.rds"
 env1$f$f_filename.ext.find_subpath(filename.ext, input_path = dirname(env1$path$source_base), VERBOSE = T)

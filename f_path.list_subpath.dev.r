@@ -86,7 +86,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # Function to recursively list all subpaths of a given directory with a maximum depth
 
 f_path.list_subpath <- function(input_path = ".", max_depth = 3, include_input_path = TRUE, VERBOSE = FALSE, BreadthFirstSearch = FALSE) {

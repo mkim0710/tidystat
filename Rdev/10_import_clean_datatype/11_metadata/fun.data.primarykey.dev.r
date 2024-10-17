@@ -5,7 +5,7 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/fun.data.primarykey.dev.r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 .t0 = Sys.time()
 nhis_heals_jk.sas7bdat <- readRDS("D:/OneDrive - SNU/[][SASproject]/SASproject_KNHIS_HEALS0215/nhis_heals_jk.sas7bdat.rds")
 Sys.time() - .t0
@@ -237,7 +237,7 @@ nhis_heals_jk.sas7bdat %>% fun.data.primarykey(c("PERSON_ID", "STND_Y")) |> str(
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 check_primary_key <- function(df, varname_ID, varname_Time) {
   

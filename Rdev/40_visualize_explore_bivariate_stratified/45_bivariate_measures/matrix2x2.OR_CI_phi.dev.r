@@ -1,5 +1,5 @@
 matrix2x2.phi = function(matrix2x2) {
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     if(length(matrix2x2) == 4) {
         n00 = matrix2x2[1,1]
         n01 = matrix2x2[1,2]
@@ -13,7 +13,7 @@ matrix2x2.phi = function(matrix2x2) {
 }
 
 # matrix2x2.cor = function(matrix2x2) {
-#   library(tidyverse)
+#   .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #   if(length(matrix2x2) == 4) {
 #     out = list()
 #     tmp.df = matrix2x2 |> as.table() |> as.data.frame()
@@ -30,7 +30,7 @@ matrix2x2.phi = function(matrix2x2) {
 matrix2x2.OR_CI_phi = function(matrix2x2) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/matrix2x2.OR_CI_phi.dev.r")
     # version 170630
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out = list()
     if(length(matrix2x2) == 4) {
         OR = matrix2x2[1,1] * matrix2x2[2,2] / matrix2x2[1,2] / matrix2x2[2,1]

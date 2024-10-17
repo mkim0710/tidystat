@@ -54,7 +54,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # https://chatgpt.com/c/82e6c7a3-d288-42b3-92d4-3d22cf42fc93
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # # Load necessary libraries
-# library(tidyverse)
+# .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # # List all files recursively and filter for PDF files
 # pdf_files <- getwd() |> list.files(pattern = "\\.pdf$", recursive = TRUE, full.names = TRUE)
 # pdf_files |> dput()

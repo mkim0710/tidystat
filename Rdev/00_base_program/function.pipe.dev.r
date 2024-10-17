@@ -29,7 +29,7 @@
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # https://stackoverflow.com/questions/22959635/remove-duplicated-rows-using-dplyr
 set.seed(1234)
