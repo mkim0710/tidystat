@@ -320,6 +320,24 @@ MetaData$tblVarName$tblWAVE_VARNAME = get(.DataSetName)
 ```
   
   
+## \$ MetaData\$tblVarName\$tblVarName = left_join() ----   
+```{r tblVarName-join-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+tblVarName = MetaData$tblVarName$tblWAVE_VARNAME |>
+    # mutate(WAVE = paste0("A0", Wave) |> as.factor()) |>
+    left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix") %>% 
+    mutate(VarName = WAVE_VARNAME, ValueOptions = ValueOptions %>% as.character()) %>% 
+    select(VarName, WAVE_VARNAME, Wave, VarName.suffix, VarDescription, VarType, ValueOptions, Select)
+attributes(tblVarName)$n_distinct = 
+    list(nrow = tblVarName %>% nrow(),
+         VarName = n_distinct(tblVarName$VarName),
+         Wave = n_distinct(tblVarName$Wave),
+         VarName.suffix = n_distinct(tblVarName$VarName.suffix) )
+tblVarName %>% str()
+MetaData$tblVarName$tblVarName = tblVarName
+```
+  
+  
 ```{r MetaData.VarNames-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 ### \% KoGES201806vars.CLEAN_TRIM \%>\% {cat(" > ",deparse(substitute(.))," |> str()","\\n", sep=""); str(.)} #----  
