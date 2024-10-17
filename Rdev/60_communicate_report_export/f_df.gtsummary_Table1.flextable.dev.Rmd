@@ -261,8 +261,11 @@ trial %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); (str(.)
 # __________|------  
 # @@ START) references ----  
 
-# https://www.danieldsjoberg.com/gtsummary/articles/gallery.html
 
+# __________|------  
+## @ EPI library(gtsummary) CheatSheet.Rmd
+## @ EPI library(gtsummary) danieldsjoberg.com FAQ+gallery.Rmd
+## https://www.danieldsjoberg.com/gtsummary/articles/gallery.html
 
 ### # Summary by trt. 
 
@@ -429,11 +432,42 @@ options(width=120)
 ```
 
 
+# __________|------  
+## @ EPI library(gtsummary) library(Z.gtsummary.addons) add_SMD().Rmd
 
-## \% analyticDF_time2event |>  
+## https://github.com/zheer-kejlberg/Z.gtsummary.addons  
+## library(gtsummary) ----  
+## ECHO \% devtools::install_github("zheer-kejlberg/Z.gtsummary.addons") ----  
+## library(Z.gtsummary.addons) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
+.packagename = "gtsummary"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+
+for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+
+devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
+library(Z.gtsummary.addons)
+```
+  
+  
+### ECHO \% |> tbl_summary() ----  
+#### **ECHO** \% |> add_SMD(location = "both") ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+trial %>%
+  tbl_summary(by = grade, include = c(age, stage)) %>%
+  add_SMD(location = "both")
+```
+  
+  
+### ECHO \% |> tbl_summary() ----  
+#### **ECHO** \% |> add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";") ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+trial %>% 
+  tbl_summary(by = grade, include = c(age, stage)) %>%
+  add_SMD(location = "level", ci = TRUE, ci_bracket="[]", ci_sep=";")
 ```
   
   
