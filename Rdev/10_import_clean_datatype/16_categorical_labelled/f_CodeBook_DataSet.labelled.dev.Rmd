@@ -305,22 +305,23 @@ MetaData$tblVarName$tblWAVE_VARNAME = get(.DataSetName)
 ### \$tblVarName\$tblVarName = left_join() ----   
 ```{r tblVarName-join-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+# .DataSetName = "tblVarName"
+# assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
 tblVarName = MetaData$tblVarName$tblWAVE_VARNAME |>
     # mutate(WAVE = paste0("A0", Wave) |> as.factor()) |>
-    left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix") %>% 
+    left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix") %>%
     mutate(VarName = WAVE_VARNAME, ValueOptions = ValueOptions %>% as.character())
 tblVarName = tblVarName %>% mutate(
-    ValueUnit = ifelse(VarType == "Continuous", ValueOptions %>% str_replace_all("[^(]*\\(.*\\) *", ""), NA) %>% as.factor() 
+    ValueUnit = ifelse(VarType == "Continuous", ValueOptions %>% str_replace_all("[^(]*\\(.*\\) *", ""), NA) %>% as.factor()
     # , VarDescription = ifelse(VarType == "Continuous", as.character(VarDescription) %>% paste0(" (",ValueUnit,")"), as.character(VarDescription)) %>% as.factor
 )
-tblVarName = tblVarName %>% 
+tblVarName = tblVarName %>%
     select(VarName, WAVE_VARNAME, Wave, VarName.suffix, VarDescription, VarType, ValueOptions, ValueUnit, Select)
-attributes(tblVarName)$n_distinct = 
+attributes(tblVarName)$n_distinct =
     list(nrow = tblVarName %>% nrow(),
          VarName = n_distinct(tblVarName$VarName),
          Wave = n_distinct(tblVarName$Wave),
          VarName.suffix = n_distinct(tblVarName$VarName.suffix) )
-tblVarName %>% str()
 MetaData$tblVarName$tblVarName = tblVarName
 ```
   
