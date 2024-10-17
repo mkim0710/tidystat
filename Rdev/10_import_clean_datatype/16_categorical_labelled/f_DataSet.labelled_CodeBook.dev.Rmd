@@ -308,7 +308,6 @@ options(width=120)
 .DataSetName = "KoGES201806vars.CLEAN_TRIM"
 assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
 MetaData$tblVarName$tblVarName.suffix = get(.DataSetName)
-attributes(MetaData$tblVarName$tblVarName.suffix)$DataSetName = .DataSetName
 ```
   
   
@@ -318,7 +317,6 @@ options(width=120)
 .DataSetName = "KoGES201806vars_waves.rev.CLEAN"
 assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.DataSetName,".rds")))
 MetaData$tblVarName$tblWAVE_VARNAME = get(.DataSetName)
-attributes(MetaData$tblVarName$tblWAVE_VARNAME)$DataSetName = .DataSetName
 ```
   
   
