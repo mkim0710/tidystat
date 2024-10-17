@@ -210,7 +210,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(getOption("function.reload")) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -248,7 +248,7 @@ MetaData <- list(tblVarName = list(tblVarName.suffix = tibble::tibble(
 )))
 
 # Function to create labelled vectors using haven::labelled()
-create_labelled_data <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+create_labelled_data <- function(var, value_options, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   if (is.na(value_options) || value_options == "") {
     return(var)
   }
@@ -283,7 +283,7 @@ create_labelled_data <- function(var, value_options, sep4levels = ",\\s*", sep4n
 }
 
 # Function to apply the codebook transformations for labelled data
-apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+apply_codebook_labeling <- function(data, codebook, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   labeled_data <- data  # Copy original data
   # Iterate over the codebook and apply transformations
   for (i in 1:nrow(codebook)) {

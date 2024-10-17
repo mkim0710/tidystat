@@ -210,7 +210,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(getOption("function.reload")) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -280,7 +280,7 @@ library(stringr)
 library(purrr)
 
 # Function to create levels and labels from ValueOptions
-f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   # Return the original vector if ValueOptions is missing or empty
   if (is.na(ValueOptions) || ValueOptions == "") {
     return(vec)
@@ -335,7 +335,7 @@ library(purrr)
 library(stringr)
 
 # Function to create levels and labels from ValueOptions (as defined earlier)
-f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   if (is.na(ValueOptions) || ValueOptions == "") {
     return(vec)
   }
@@ -364,7 +364,7 @@ f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", s
 }
 
 # Function to apply factor conversion to the entire dataset using the df_VarName_ValueOptions
-f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   # Loop over each row in the df_VarName_ValueOptions
   for (i in 1:nrow(df_VarName_ValueOptions)) {
     var_name <- df_VarName_ValueOptions$VarName.suffix[i]
@@ -423,7 +423,7 @@ library(stringr)
 library(purrr)
 
 # Function to create levels and labels from ValueOptions
-f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   if (is.na(ValueOptions) || ValueOptions == "") {
     return(vec)
   }
@@ -452,7 +452,7 @@ f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", s
 }
 
 # Improved function to apply factor conversion to the entire dataset using df_VarName_ValueOptions
-f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+f_DataSet_CodeBook.map_factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   # Use map2 to iterate over VarName.suffix and ValueOptions in parallel
   DataSet <- map2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
     function(var_name, value_options) {
@@ -504,7 +504,7 @@ library(stringr)
 library(purrr)
 
 # Function to create levels and labels from ValueOptions
-f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   if (is.na(ValueOptions) || ValueOptions == "") {
     return(vec)
   }
@@ -533,7 +533,7 @@ f_vec_ValueOptions.factor <- function(vec, ValueOptions, sep4levels = ",\\s*", s
 }
 
 # Refined function to apply factor conversion to the entire dataset using df_VarName_ValueOptions
-f_DataSet_CodeBook.walk2factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = getOption("verbose")) {
+f_DataSet_CodeBook.walk2factor <- function(DataSet, df_VarName_ValueOptions, sep4levels = ",\\s*", sep4name_value = "=", VERBOSE = options()$verbose) {
   # Use walk2 to iterate over VarName.suffix and ValueOptions in parallel and update DataSet in place
   walk2(df_VarName_ValueOptions$VarName.suffix, df_VarName_ValueOptions$ValueOptions, 
     function(var_name, value_options) {
