@@ -683,7 +683,7 @@ tbl = trial %>%
     # add_overall() |>
     add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
     add_p() |>
-    # modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", starts_with("SMD") ~ "") |>
+    modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**SMD**", starts_with("p.value") ~ "**p**") |>
     modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"))
 tbl %>% show_header_names
