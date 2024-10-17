@@ -735,6 +735,7 @@ options(width=120)
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
+options(function.reload = TRUE)
 .subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled"  
 .sourcename_root = "f_CodeBook_DataSet.labelled"  
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
