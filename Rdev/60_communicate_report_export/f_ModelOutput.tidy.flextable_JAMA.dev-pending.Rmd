@@ -270,7 +270,7 @@ https://chatgpt.com/c/66f444ad-c638-800e-a884-e76216e05329?model=gpt-4o
 options(width=120)
 # Load required libraries
 library(dplyr)
-library(flextable)
+.packagename = "flextable"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(rlang)
 
 # Helper Functions

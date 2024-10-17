@@ -417,7 +417,7 @@ https://cloud.r-project.org/web/packages/labelled/vignettes/intro_labelled.html
 ## library(labelled)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 if(!requireNamespace("labelled", quietly = TRUE)) install.packages("labelled")
-library(labelled)
+.packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ```
 
 ## ## Variable labels  
@@ -631,7 +631,7 @@ tblVarName.filter
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 DataSet = get(DataSetName)
 DataSet %>% select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
-library(labelled)
+.packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$VarDescription |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
@@ -641,7 +641,7 @@ for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$ValueOptions |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-library(labelled)
+.packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
     val_labels(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
         filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% 
@@ -677,7 +677,7 @@ tblVarName.filter
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 DataSet = get(DataSetName)
 DataSet %>% select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
-library(labelled)
+.packagename = "labelled"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$VarDescription |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")

@@ -101,8 +101,8 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 .tmp$object  <- function(Table1_print_df, header_text, footer_text, 
                        font.family = "Times New Roman", font.size = 10, border.color = "black",
                        header.border.color = "red", background.color = "#f5f5f5") {
-    library(flextable)
-    library(officer)
+    .packagename = "flextable"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+    .packagename = "officer"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # Set default flextable formatting
     set_flextable_defaults(
