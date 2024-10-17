@@ -151,7 +151,7 @@ for (.dependancy in c("f_path.size_files")) {
     .read.proc_time = system.time(assign(DataSetName, read_rds(.path.file), envir=.GlobalEnv))
     if(print2console) .read.proc_time |> print()
     attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-    attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path.file = .path.file
+    attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path.file = .path.file |> normalizePath(winslash = "/") |> str_replace_all(env1$path$path1|>fixed(ignore_case=TRUE), "") |> str_replace("^/", "")
 
     ## \% return.list$dim ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
