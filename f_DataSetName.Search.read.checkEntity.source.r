@@ -151,7 +151,7 @@ for (.dependancy in c("f_path.size_files")) {
     .read.proc_time = system.time(assign(DataSetName, read_rds(.path.file), envir=.GlobalEnv))
     if(print2console) .read.proc_time |> print()
     attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
-    attributes(.GlobalEnv[[DataSetName]]$DataSetName)$.path.file = .path.file
+    attributes(attributes(.GlobalEnv[[DataSetName]])$DataSetName)$.path.file = .path.file
 
     ## \% return.list$dim ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -282,7 +282,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         if (!is.null(path.filename.ext)) { 
             .tmp.file.found = TRUE
             .path4read = dirname(path.filename.ext)
-            cat('Found subpath: ', '.path4read = "', .path4read, '"  \n', sep="")
+            message('Found subpath: ', '.path4read = ', deparse(.path4read))
             filename.ext = basename(path.filename.ext)
         }
     } 
