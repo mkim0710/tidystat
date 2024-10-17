@@ -320,6 +320,15 @@ assign(.DataSetName, read_rds(paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",
 MetaData$tblVarName$tblWAVE_VARNAME = get(.DataSetName)
 ```
   
+
+```{r}
+i.VarName = "A01_AGE"
+tblVarName %>% filter(VarName == i.VarName) %>% pull(ValueOptions)
+tblVarName %>% filter(VarName == i.VarName) %>% pull(ValueOptions) %>% str_replace_all("[^(]*\\( *\\) *", "")
+i.ValueUnit = tblVarName %>% filter(VarName == i.VarName) %>% pull(ValueOptions) %>% str_replace_all("[^(]*\\(.*\\) *", "")
+```
+
+
   
 ## \$ MetaData\$tblVarName\$tblVarName = left_join() ----   
 ```{r tblVarName-join-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -327,8 +336,12 @@ options(width=120)
 tblVarName = MetaData$tblVarName$tblWAVE_VARNAME |>
     # mutate(WAVE = paste0("A0", Wave) |> as.factor()) |>
     left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix") %>% 
-    mutate(VarName = WAVE_VARNAME, ValueOptions = ValueOptions %>% as.character()) %>% 
-    select(VarName, WAVE_VARNAME, Wave, VarName.suffix, VarDescription, VarType, ValueOptions, Select)
+    mutate(VarName = WAVE_VARNAME, ValueOptions = ValueOptions %>% as.character())
+tblVarName = tblVarName %>% mutate(
+    ValueUnit = ifelse(VarType == "Continuous", ValueOptions %>% str_replace_all("[^(]*\\(.*\\) *", ""), NA) %>% as.factor()
+)
+tblVarName = tblVarName %>% 
+    select(VarName, WAVE_VARNAME, Wave, VarName.suffix, VarDescription, VarType, ValueOptions, ValueUnit, Select)
 attributes(tblVarName)$n_distinct = 
     list(nrow = tblVarName %>% nrow(),
          VarName = n_distinct(tblVarName$VarName),
@@ -1029,21 +1042,27 @@ for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 tblVarName.filter$ValueOptions |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-library(labelled)
-for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
-    val_labels(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
-        filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% 
-        pull(ValueOptions) %>% as.character |> 
-        env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
-}
-cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str()
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str()
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
+# library(labelled)
+# for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
+#     val_labels(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
+#         filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% 
+#         pull(ValueOptions) %>% as.character |> 
+#         env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
+# }
+# cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str()
+# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
+# cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str()
+# DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
 ```
-
+    # Error in `vec_cast_named()`:
+    # ! Can't convert `labels` <character> to match type of `x` <double>.
+    # Backtrace:
+    #  1. labelled::`val_labels<-`(...)
+    #  2. labelled:::`val_labels<-.numeric`(...)
+    #  3. haven::labelled(x, value, label = var_label(x))
+    #  4. haven:::vec_cast_named(labels, x, x_arg = "labels", to_arg = "x")
 
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -1086,7 +1105,14 @@ f_CodeBook_DataSet_VarName.labelled = function(DataSet, vec.VarName, tblVarName_
             attributes(DataSet[[i.Varname]])$ValueOptions = 
                 tblVarName_VarDescription_ValueOptions %>% 
                 filter(VarName == i.Varname) %>% 
-                pull(ValueOptions)
+                pull(ValueOptions) %>% as.character()
+            attributes(DataSet[[i.Varname]])$ValueUnit = 
+                tblVarName_VarDescription_ValueOptions %>% 
+                filter(VarName == i.Varname) %>% 
+                pull(ValueUnit) %>% as.character()
+            attributes(DataSet[[i.Varname]])$label =
+                attributes(DataSet[[i.Varname]])$label %>% 
+                paste0(" (", attributes(DataSet[[i.Varname]])$ValueUnit, ")")
         } else {
             val_labels(DataSet[[i.Varname]]) = tblVarName_VarDescription_ValueOptions %>% 
                 filter(VarName == i.Varname) %>% 
@@ -1119,7 +1145,7 @@ f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2, "_AGE"), tblVarNa
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-f_CodeBook_DataSet.labelled = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VERBOSE = getOption("verbose")) {
+f_CodeBook_DataSet.labelled = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VERBOSE = getOption("verbose")) {
     for (i.VarName in names(DataSet)) {
         if (i.VarName %in% tblVarName$VarName) {
             if(VERBOSE) cat("i.VarName = ", i.VarName, "\n", sep="")
@@ -1131,6 +1157,7 @@ f_CodeBook_DataSet.labelled = function(DataSet, tblVarName_VarDescription_ValueO
                         NameValuePair_separator = NameValuePair_separator, 
                         Name_Value_separator = Name_Value_separator, 
                         vecNamed.swap = vecNamed.swap, 
+                        VarType.numeric = VarType.numeric,
                         output.select = FALSE,
                         VERBOSE = VERBOSE)
             })
