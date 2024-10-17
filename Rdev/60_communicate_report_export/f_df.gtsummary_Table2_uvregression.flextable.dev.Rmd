@@ -539,7 +539,7 @@ options(width=120)
 #     select_if(function(x) all(!is.na(x))) %>% 
 #     select_if(function(vec) !is.Date(vec))
 DataSet = DataSet.Date.NA.rmAllNA %>% 
-    select(matches("A01_BMI"))
+    select(A01_BMI_ge250, A01_BMI)
 tbl = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) all(!is.na(x))) %>% 
@@ -563,6 +563,7 @@ tbl = DataSet %>%
     bold_labels() |>
     italicize_levels()
 tbl %>% show_header_names
+tbl$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value)
 tbl |>
     print() |> invisible()
 ```  
