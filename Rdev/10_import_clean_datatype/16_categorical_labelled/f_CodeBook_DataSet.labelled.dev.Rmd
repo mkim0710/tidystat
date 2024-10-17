@@ -321,15 +321,6 @@ MetaData$tblVarName$tblWAVE_VARNAME = get(.DataSetName)
 ```
   
 
-```{r}
-i.VarName = "A01_AGE"
-tblVarName %>% filter(VarName == i.VarName) %>% pull(ValueOptions)
-tblVarName %>% filter(VarName == i.VarName) %>% pull(ValueOptions) %>% str_replace_all("[^(]*\\( *\\) *", "")
-i.ValueUnit = tblVarName %>% filter(VarName == i.VarName) %>% pull(ValueOptions) %>% str_replace_all("[^(]*\\(.*\\) *", "")
-```
-
-
-  
 ## \$ MetaData\$tblVarName\$tblVarName = left_join() ----   
 ```{r tblVarName-join-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
