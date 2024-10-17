@@ -215,7 +215,9 @@ env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALS
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_function.load2env.internal ====  
-env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, function.reload = FALSE, runLoadedFunction = FALSE) {
+env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE) {
+    if(is.null(function.reload)) function.reload = FALSE 
+        
     if(is.null(env1_subenv_name)) {
         if(function.reload || !function_name %in% names(.GlobalEnv$env1)) {
             .GlobalEnv$env1[[function_name]] = function_object
