@@ -93,7 +93,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
         }, error = function(e) {
             # Additional code to handle the error or provide fallback options
             # Print a warning message but allow R to continue
-            warning("Error in .Rprofile: ", e$message)
+            warning("Error in .Rprofile: ", e$message, "\n", call. = FALSE, immediate. = TRUE)
         })
     }  
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
