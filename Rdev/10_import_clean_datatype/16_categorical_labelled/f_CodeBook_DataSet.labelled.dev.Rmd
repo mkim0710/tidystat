@@ -769,17 +769,18 @@ env1$env.internal$f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2,
 options(width=120)
 
 DataSet = get(DataSetName)
-attributes(DataSet)$MetaData = NULL
+# attributes(DataSet)$MetaData = NULL
 # DataSet = DataSet %>% select(matches("SEX"))
 # DataSet = DataSet %>% select(matches("^A00"))
 # DataSet = DataSet %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
-DataSet = DataSet %>% select(matches("^A0[0-1]"))
+# DataSet = DataSet %>% select(matches("^A0[0-1]"))
 # DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
-DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE)
-DataSet %>% as_tibble() %>% print(n=5)
-DataSet %>% str(maxlevel = 2)
+DataSet.labelled = DataSet %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE)
+DataSet.labelled %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% as_tibble() %>% print(n=5)
+DataSet.labelled %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 cat("    ________________________________________________________________________    \n")
-DataSet %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor) %>% str(maxlevel = 2)
+DataSet.labelled.fct = DataSet.labelled %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor)
+DataSet.labelled.fct %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 ```
   
   
@@ -788,19 +789,20 @@ DataSet %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(v
 options(width=120)
 
 DataSet = get(DataSetName)
-attributes(DataSet)$MetaData = NULL
+# attributes(DataSet)$MetaData = NULL
 # DataSet = DataSet %>% select(matches("SEX"))
 # DataSet = DataSet %>% select(matches("^A00"))
 # DataSet = DataSet %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
-DataSet = DataSet %>% select(matches("^A0[0-1]"))
+# DataSet = DataSet %>% select(matches("^A0[0-1]"))
 # DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
 DataSet.fct = DataSet %>% mutate_if(is.character, as.factor)
 DataSet.fct %>% str
-DataSet.fct = DataSet.fct %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE)
-DataSet.fct %>% as_tibble() %>% print(n=5)
-DataSet.fct %>% str(maxlevel = 2)
+DataSet.fct.labelled = DataSet.fct %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE)
+DataSet.fct.labelled %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% as_tibble() %>% print(n=5)
+DataSet.fct.labelled %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 cat("    ________________________________________________________________________    \n")
-DataSet.fct %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor) %>% str(maxlevel = 2)
+DataSet.fct.labelled.fct = DataSet.fct.labelled %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor) 
+DataSet.fct.labelled.fct %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NULL; .} %>% str(maxlevel = 2)
 ```
 
 
@@ -933,7 +935,29 @@ if(exists("MetaData")) {
 # .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
 # system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
 # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+DataSetName
+DataSetName %>% paste0(".labelled")
+DataSetName %>% paste0(".labelled.fct")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+DataSet.labelled.fct %>% select(1) %>% str
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+for (i.suffix in c(".labelled", ".labelled.fct")) {
+    .objectname = DataSetName %>% paste0(i.suffix)
+    .path.file = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/",.objectname,".rds",".xz") 
+    get(paste0("DataSet",i.suffix)) %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = ., .objectname = .objectname, .path.file = .path.file, .path4write = NULL, .filename.ext4write = NULL, createBackup = FALSE, .backup_to_path="-backup", Execute = TRUE, path.size_files = TRUE, git_lfs_track = FALSE, git_add_f = FALSE, CompressionMethod = "xz", VERBOSE = FALSE)
+    cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+}
+
 ```
+  
+    df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.labelled |> write_rds('/home/rstudio/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.labelled.rds.xz', compress = 'xz', compression = 9L) |> system.time()  
+    env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.labelled')  
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.labelled.fct |> write_rds('/home/rstudio/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.labelled.fct.rds.xz', compress = 'xz', compression = 9L) |> system.time()  
+    env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat/Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.labelled.fct')  
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 ```{r createBackup, eval=TRUE, include=FALSE}
