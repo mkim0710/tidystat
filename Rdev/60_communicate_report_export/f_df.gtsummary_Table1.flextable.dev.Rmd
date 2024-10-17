@@ -270,7 +270,7 @@ trial %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); (str(.)
 ### # Summary by trt. 
 
 ### ECHO \% |> tbl_summary(by = trt, statistic = all_continuous() ~ "{median} ({p25}, {p75})") ----  
-##### ECHO \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") ----  
+##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") ----  
 ##### **ECHO** \% |> add_n() ----  
 ##### ECHO \% |> bold_labels() ----  
 ##### ECHO \% |> modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**") ----  
