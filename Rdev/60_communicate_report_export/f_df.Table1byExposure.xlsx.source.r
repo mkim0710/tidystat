@@ -116,7 +116,7 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 
 env1$f$f_df.Table1byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, DataSetName4output = "DataSet", VarNames4Exposure =  c("InterventionGroup"), output.sink = FALSE, output.xlsx = TRUE, Table1byExposure.print = TRUE) {
     # for(.packagename in c("tidyverse", "tableone")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-    library(tableone)
+    .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
     DataSetName4output.select = paste0(DataSetName4output,".select")
     DataSetName4output.Table1byExposure = paste0(DataSetName4output,".Table1by", VarNames4Exposure)

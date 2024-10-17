@@ -1,7 +1,7 @@
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/15_cleaning_time/convert.YYYYMM_to_Date.dev.r
 #%% function.YYYYMM_to_Date() =====  
 function.YYYYMM_to_Date <- function(string_YYYYMM) {
-    library(lubridate)
+    .packagename = "lubridate"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     ceiling_date(as.Date(paste0(string_YYYYMM, "01"), format="%Y%m%d"), "month") - days(1)
 }
 dput(as.character(function.YYYYMM_to_Date(202300+1:12)))
@@ -46,7 +46,7 @@ c("2023-01-31", "2023-02-28", "2023-03-31", "2023-04-30", "2023-05-31", "2023-06
 
 
 library(dplyr)
-library(lubridate)
+.packagename = "lubridate"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/15_cleaning_time/convert.YYYYMM_to_Date.dev.r

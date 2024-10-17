@@ -55,7 +55,7 @@ data.ccwc = function(
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/f_df.stratified.ccwc.dev.r")
     if (load.dependent.library == T) {
         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-        # library(tableone)
+        # .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     }
     select = dplyr::select
     
@@ -527,7 +527,7 @@ mycohort_1strata_tie %>% data.ccwc(varname4event = "event", varname4entry = "ent
 # {
 #     if (load.dependent.library == T) {
 #         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-#         library(tableone)
+#         .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #     }
 #     select = dplyr::select
 #     if (is.null(.mydata$RowNum_original)) {
@@ -1013,7 +1013,7 @@ f_df.stratified.ccwc = function(
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
     if (load.dependent.library == T) {
         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-        # library(tableone)
+        # .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     }
     select = dplyr::select
     .mydata$RowNum_original_before_strata = 1:nrow(.mydata)
@@ -1414,7 +1414,7 @@ diet.stratified.ccwc #----
 #         stop("!is.data.frame(.mydata)")
 #     if (load.dependent.library == T) {
 #         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-#         library(tableone)
+#         .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #     }
 #     select = dplyr::select
 #     .mydata$RowNum_original_before_strata = 1:nrow(.mydata)
@@ -1510,7 +1510,7 @@ diet.stratified.ccwc #----
 # {
 #     if (load.dependent.library == T) {
 #         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-#         library(tableone)
+#         .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #     }
 #     select = dplyr::select
 #     if (is.null(.mydata$RowNum_original)) {

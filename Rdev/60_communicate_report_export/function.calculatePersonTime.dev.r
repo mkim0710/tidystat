@@ -138,7 +138,7 @@ function.calculatePersonTime <- function(dataset, varname4time, varname4event) {
 
 
 library(dplyr)
-library(lubridate)
+.packagename = "lubridate"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 calculatePersonTime <- function(start_date, end_date) {
   # Ensure the dates are of Date class

@@ -60,7 +60,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # /github_tidystat/Rdev/60_communicate_report_export/f_Table1_print_df.flextable.source.r
 .tmp$objectname = "f_DataSet.Table1.print.df"
 .tmp$object  <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
-    library(tableone)
+    .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
     Varnames.except_Exposure <- setdiff(names(DataSet), VarNames4Exposure)
     Varnames_factor <- names(DataSet %>% select(where(is.factor)))

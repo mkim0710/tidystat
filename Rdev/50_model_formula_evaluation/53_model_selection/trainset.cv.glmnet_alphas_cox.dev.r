@@ -547,7 +547,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {
 # @@@ object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) { ==========  
 object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
-    library(glmnet)
+    .packagename = "glmnet"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
         coef.cv.glmnet(object_cvglmnet, s = chr)
@@ -573,7 +573,7 @@ object_cvglmnet.coefexp = function(object_cvglmnet, nonzero = F) {
 }
 object_list_cvglmnet.coefexp = function(object_list_cvglmnet, i_names = NULL) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")    
-    library(glmnet)
+    .packagename = "glmnet"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out2 = object_list_cvglmnet %>% map(object_cvglmnet.coefexp)
     if (is.null(i_names)) {
@@ -760,7 +760,7 @@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambd
     # coef.cv.glmnet.s = "lambda.min"
 
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-    library(glmnet)
+    .packagename = "glmnet"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
     # ?coef.cv.glmnet
     colnames_levels.select = object_cvglmnet %>% coef.cv.glmnet(s = coef.cv.glmnet.s) |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 

@@ -40,7 +40,7 @@ env1$f$f_df.NotNA_p_df = function(data) {
 packageStartupMessage("Loading: env1$f$f_df.NotNA_p_df = function(data)")
 
 # test) f_df.NotNA_p_df()) nhanes_mice -----  
-# library(mice)
+# .packagename = "mice"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # nhanes_mice = nhanes
 # save(nhanes_mice, file = "data/library_mice_nhanes_mice.rda")
 

@@ -288,7 +288,7 @@ options(width=120)
 # # .CodeBook.filter |> t() %>% apply(2, function(vec) paste0(names(vec),": ",vec)) |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n------------\n")
 # .CodeBook.filter |> dplyr::select(VarName, VarDescription, ValueOptions) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# library(tableone)
+# .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 get(DataSetName2.NA.rmAllNA) %>% select(any_of(MainOutcome), any_of(.VarName.selected)) %>% 
     # {.[map_lgl(., function(vec) if_else(is.numeric(vec), T, n_distinct(vec) <= 10) )]} |> 
     mutate_if(haven::is.labelled, as_factor) |>

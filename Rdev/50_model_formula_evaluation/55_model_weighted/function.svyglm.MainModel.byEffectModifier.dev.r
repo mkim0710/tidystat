@@ -106,7 +106,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
 # @@@@ data.SSQ_5_6 =====  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/data.SSQ_5_6.rda"))
-library(survey)
+.packagename = "survey"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 data.svydesign = data.SSQ_5_6 %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 data.US_BORN_T.svydesign = data.SSQ_5_6 %>% dplyr::filter(US_BORN == "1: US-Born, 50 States, DC, PR and Territories") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
 data.US_BORN_F.svydesign = data.SSQ_5_6 %>% dplyr::filter(US_BORN == "2: Other") %>% select(-US_BORN) %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")
@@ -531,7 +531,7 @@ function.svyglm.MainModel.byEffectModifier = function(
     , svydesign.pps="brewer"
     , function.glm_object.summary.exp.allow_multple_spaces = F
 ) {
-    library(survey)
+    .packagename = "survey"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out.list = list()
     
     data.svydesign = data %>% svydesign(id = svydesign.id, strata = svydesign.strata, weights = svydesign.weights, nest = svydesign.nest, data = . , pps = svydesign.pps)

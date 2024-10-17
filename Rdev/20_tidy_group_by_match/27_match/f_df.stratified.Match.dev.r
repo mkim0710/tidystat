@@ -352,9 +352,9 @@ data.Match = function(
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     if (load.dependent.library == T) {
         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-        library(Matching)
-        library(tableone)
-        # library(useful)
+        .packagename = "Matching"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+        .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+        # .packagename = "useful"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     }
     select = dplyr::select
     .mydata$RowNum_original = 1:nrow(.mydata)
@@ -471,7 +471,7 @@ data.Match = function(
             .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data = ifelse(as.integer(.mydata.exposure.vars4Matching.na.omit[[.exposure]]) == 1, psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
             .mydata.exposure.vars4Matching.na.omit$pMin = pmin(psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
             .mydata.exposure.vars4Matching.na.omit$matching_weight = .mydata.exposure.vars4Matching.na.omit$pMin / .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data
-            library(survey)
+            .packagename = "survey"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
             .mydata.exposure.vars4Matching.na.omit.svydesign = .mydata.exposure.vars4Matching.na.omit %>% svydesign(ids = ~ 1, data = ., weights = ~ matching_weight)
             
             out$data = .mydata.exposure.vars4Matching.na.omit.svydesign
@@ -1385,9 +1385,9 @@ f_df.stratified.Match = function(
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
     if (load.dependent.library == T) {
         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-        library(Matching)
-        library(tableone)
-        # library(useful)
+        .packagename = "Matching"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+        .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+        # .packagename = "useful"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     }
     select = dplyr::select
     .mydata$RowNum_original_before_strata = 1:nrow(.mydata)
@@ -1446,9 +1446,9 @@ f_df.stratified.Match = function(
         # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
         if (load.dependent.library == T) {
             .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-            library(Matching)
-            library(tableone)
-            # library(useful)
+            .packagename = "Matching"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+            .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+            # .packagename = "useful"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         }
         select = dplyr::select
         .mydata$RowNum_original = 1:nrow(.mydata)
@@ -1565,7 +1565,7 @@ f_df.stratified.Match = function(
                 .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data = ifelse(as.integer(.mydata.exposure.vars4Matching.na.omit[[.exposure]]) == 1, psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
                 .mydata.exposure.vars4Matching.na.omit$pMin = pmin(psModel.predict_pExposure_is_T, 1 - psModel.predict_pExposure_is_T)
                 .mydata.exposure.vars4Matching.na.omit$matching_weight = .mydata.exposure.vars4Matching.na.omit$pMin / .mydata.exposure.vars4Matching.na.omit$pExposure_as_observed_data
-                library(survey)
+                .packagename = "survey"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
                 .mydata.exposure.vars4Matching.na.omit.svydesign = .mydata.exposure.vars4Matching.na.omit %>% svydesign(ids = ~ 1, data = ., weights = ~ matching_weight)
                 
                 out$data = .mydata.exposure.vars4Matching.na.omit.svydesign

@@ -13,7 +13,7 @@ dataset |> str()
 
 function.t0_value_ge20.dup_max.lag.n_d0 = function(dataset, varname4ID = "ID", varname4value = "value", varname4time = "time") {
     dataset$ID = dataset[[varname4ID]] |> as.factor()
-    library(lubridate)
+    .packagename = "lubridate"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     dataset$time = dataset[[varname4time]] %>% floor_date("day")
     dataset.t0_value_ge20 = dataset %>% dplyr::filter(!!rlang::sym(varname4value) >= 20) %>% group_by(ID) %>% summarise(t0 = min(time)) %>% left_join(dataset) %>% mutate(days_from_t0 = as.Date(time) - as.Date(t0)) %>% 
         dplyr::filter(days_from_t0 >= 0)

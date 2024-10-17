@@ -546,7 +546,7 @@ clogit_object %>% function.coxph_object.summary.exp
 
 function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
-    library(glmnet)
+    .packagename = "glmnet"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
         coef(cv.glmnet_object, s = chr)
@@ -644,7 +644,7 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
     
     function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
         # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
-        library(glmnet)
+        .packagename = "glmnet"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
             coef(cv.glmnet_object, s = chr)
@@ -678,7 +678,7 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
         out.NA
     }
 
-    library(glmnet)
+    .packagename = "glmnet"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out2 = cv.glmnet_alphas_list_object %>% map(function.cv.glmnet_object.coef.exp)
     if (is.null(i_names)) {

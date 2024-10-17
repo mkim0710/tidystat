@@ -689,7 +689,7 @@ DataSet.Table1by_MissingPattern |> print(showAllLevels = F, smd = T, nonnormal =
 
 
 ## @ library(survey) =====  
-library(survey)
+.packagename = "survey"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # ?svydesign
 #   data(api)
 # # stratified sample

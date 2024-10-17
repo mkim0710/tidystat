@@ -332,7 +332,7 @@ options(width=120)
 
 # Function to Generate Table 1
 f_DataSet.Table1.print.df <- function(DataSet, VarNames4Exposure = c("InterventionGroup"), Varnames_factor.exclude = NULL, addOverall = TRUE, includeNA = TRUE, print.Varnames_nonnormal = NULL, print.showAllLevels = TRUE) {
-    library(tableone)
+    .packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
     Varnames.except_Exposure <- setdiff(names(DataSet), VarNames4Exposure)
     Varnames_factor <- names(DataSet %>% select(where(is.factor)))
