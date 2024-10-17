@@ -315,7 +315,7 @@ trial %>%
 ### # Show continuous summary statistics on multiple lines.
 
 ### ECHO \% |> tbl_summary(by = trt, type = all_continuous() ~ "continuous2", statistic = all_continuous() ~ "{median} ({p25}, {p75})") ----  
-##### ECHO \% |> italicize_levels() ----  
+##### **ECHO** \% |> italicize_levels() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
     trial |> 
