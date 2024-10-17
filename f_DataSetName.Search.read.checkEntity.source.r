@@ -148,7 +148,7 @@ for (.dependancy in c("f_path.size_files")) {
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
     # return.list$read.proc_time = system.time(assign(DataSetName, read_rds(.path.file, envir=.GlobalEnv)))
     # if(print2console) return.list$read.proc_time |> print()
-    .read.proc_time = system.time(assign(DataSetName, read_rds(.path.file, envir=.GlobalEnv)))
+    .read.proc_time = system.time(assign(DataSetName, read_rds(.path.file), envir=.GlobalEnv))
     if(print2console) .read.proc_time |> print()
     attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
     attributes(.GlobalEnv[[DataSetName]]$DataSetName)$.path.file = .path.file
