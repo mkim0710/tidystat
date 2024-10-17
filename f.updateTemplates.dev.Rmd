@@ -265,7 +265,7 @@ options(width=120)
 #     }
 #     
 # }
-# ### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+# ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 # env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE)
 ```
 

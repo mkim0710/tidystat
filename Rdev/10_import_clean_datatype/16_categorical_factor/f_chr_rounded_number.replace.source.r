@@ -112,7 +112,7 @@ env0 = env1
   return(paste(replaced_text, collapse = ""))
 }
 
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 
 

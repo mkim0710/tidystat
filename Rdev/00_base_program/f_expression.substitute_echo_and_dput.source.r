@@ -84,7 +84,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
   if (expression_equals_evaluation) sep_between_echo_and_dput = " == " else sep_between_echo_and_dput = "  \n    "
   cat("  > ", deparse(substituted_expr), sep_between_echo_and_dput, deparse(evaluated_expr), "\n", sep="")
 }
-### @ f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ----
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 # env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
 env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = FALSE)
 
