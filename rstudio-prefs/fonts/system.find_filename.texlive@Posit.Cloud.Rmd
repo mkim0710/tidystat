@@ -502,6 +502,7 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
 ```
   
   
+# _______________  
 # @@ END ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 ##________________________________________________________________________________  
