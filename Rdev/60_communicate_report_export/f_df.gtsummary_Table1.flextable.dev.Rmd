@@ -257,6 +257,195 @@ trial %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); (str(.)
 ```
 
 
+
+# _______________  
+# @@ START) references ----  
+
+# https://www.danieldsjoberg.com/gtsummary/articles/gallery.html
+
+
+### # Summary by trt. 
+
+### ECHO \% |> tbl_summary(by = trt, statistic = all_continuous() ~ "{median} ({p25}, {p75})") ----  
+##### ECHO \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") ----  
+##### ECHO \% |> add_n() ----  
+##### ECHO \% |> bold_labels() ----  
+##### ECHO \% |> modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**") ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+trial |> 
+  tbl_summary(
+    by = trt,
+    include = c(age, grade),
+    missing = "no",
+    statistic = all_continuous() ~ "{median} ({p25}, {p75})"
+  ) |> 
+  modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") |> 
+  add_n() |> 
+  bold_labels() |> 
+  modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**")
+```
+
+
+### # Show continuous summary statistics on multiple lines.
+
+### ECHO \% |> tbl_summary(by = trt, type = all_continuous() ~ "continuous2", statistic = all_continuous() ~ "{median} ({p25}, {p75})") ----  
+##### ECHO \% |> italicize_levels() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+    trial |> 
+      tbl_summary(
+        by = trt,
+        include = c(age, marker),
+        type = all_continuous() ~ "continuous2",
+        statistic =
+          all_continuous() ~ c("{N_nonmiss}",
+                               "{mean} ({sd})",
+                               "{median} ({p25}, {p75})",
+                               "{min}, {max}"),
+        missing = "no"
+      ) |> 
+      italicize_levels()
+
+```
+
+
+### # Report treatment differences between two groups. 
+
+### **ECHO** \% |> tbl_summary(by = trt, statistic = list(all_continuous() ~ "{mean} ({sd})", all_categorical() ~ "{p}%")) ----  
+##### ECHO \% |> add_difference() ----  
+##### **ECHO** \% |> add_n() ----  
+##### ECHO \% |> modify_header(all_stat_cols() ~ "**{level}**") ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+    trial |> 
+      tbl_summary(
+        by = trt,
+        include = c(response, marker),
+        statistic = list(
+          all_continuous() ~ "{mean} ({sd})",
+          all_categorical() ~ "{p}%"
+        ),
+        missing = "no"
+      ) |> 
+      add_difference() |> 
+      add_n() |> 
+      modify_header(all_stat_cols() ~ "**{level}**")
+```
+
+
+### # Include p-values comparing all groups to a single reference group.
+
+### ECHO \% |> tbl_summary(by = grade) ----  
+##### ECHO \% |> add_p() ----  
+##### ECHO \% |> modify_header() ----  
+##### ECHO \% |> modify_column_hide(all_stat_cols()) ----  
+### **ECHO** \% tbl_merge(list(t0, t1, t2)) ----  
+##### ECHO \% |> modify_spanning_header() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+    # table summarizing data with no p-values
+    small_trial <- trial |> select(grade, age, response)
+    t0 <- small_trial |> 
+      tbl_summary(by = grade, missing = "no") |> 
+      modify_header(all_stat_cols() ~ "**{level}**")
+    
+    # table comparing grade I and II
+    t1 <- small_trial |> 
+      dplyr::filter(grade %in% c("I", "II")) |> 
+      tbl_summary(by = grade, missing = "no") |> 
+      add_p() |> 
+      modify_header(p.value ~ "**I vs. II**") |> 
+      # hide summary stat columns
+      modify_column_hide(all_stat_cols())
+    
+    # table comparing grade I and II
+    t2 <- small_trial |> 
+      dplyr::filter(grade %in% c("I", "III")) |> 
+      tbl_summary(by = grade, missing = "no") |> 
+      add_p() |> 
+      modify_header(p.value = "**I vs. III**") |> 
+      # hide summary stat columns
+      modify_column_hide(all_stat_cols())
+    
+    # merging the 3 tables together, and adding additional gt formatting
+    tbl_merge(list(t0, t1, t2)) |> 
+      modify_spanning_header(
+        all_stat_cols() ~ "**Tumor Grade**",
+        starts_with("p.value") ~ "**p-values**"
+      )
+```
+
+
+### # summarize a continuous variable by one, two, or more categorical variables. 
+
+It’s often needed to summarize a continuous variable by one, two, or more categorical variables. The example below shows a table summarizing a continuous variable by two categorical variables. To summarize by more than two categorical variables, use `tbl_continuous` in conjunction with `tbl_strata` (see an example of `tbl_strata` [here](#tbl_strata)).
+
+### ? ECHO \% |> tbl_continuous(variable = marker, by = trt, include = grade) ----  
+##### ECHO \% |> modify_spanning_header() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+    trial |> 
+      tbl_continuous(variable = marker, by = trt, include = grade) |> 
+      modify_spanning_header(all_stat_cols() ~ "**Treatment Assignment**")
+```
+
+
+
+### # Build a summary table stratified by more than one variable.
+
+### **ECHO** \% |> tbl_strata(strata = grade, ~ .x |> tbl_summary(by = trt)) ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+    trial |> 
+      select(trt, grade, age, stage) |> 
+      mutate(grade = paste("Grade", grade)) |> 
+      tbl_strata(
+        strata = grade,
+        ~ .x |> 
+          tbl_summary(by = trt, missing = "no") |> 
+          modify_header(all_stat_cols() ~ "**{level}**")
+      )
+```
+
+
+
+## \% analyticDF_time2event |>  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# _______________  
 # @@ START) Data ----  
 ## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
 ### \$ DataSet.Date.NA.rmAllNA =  
@@ -385,225 +574,14 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 ```
 
 
+
+# _______________  
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
 
-# https://www.danieldsjoberg.com/gtsummary/articles/gallery.html
 
-
-### # Summary by trt. 
-
-### ECHO \% |> tbl_summary(by = trt, statistic = all_continuous() ~ "{median} ({p25}, {p75})") ----  
-##### ECHO \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") ----  
-##### ECHO \% |> add_n() ----  
-##### ECHO \% |> bold_labels() ----  
-##### ECHO \% |> modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-trial |> 
-  tbl_summary(
-    by = trt,
-    include = c(age, grade),
-    missing = "no",
-    statistic = all_continuous() ~ "{median} ({p25}, {p75})"
-  ) |> 
-  modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") |> 
-  add_n() |> 
-  bold_labels() |> 
-  modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**")
-```
-
-
-### # Show continuous summary statistics on multiple lines.
-
-### ECHO \% |> tbl_summary(by = trt, type = all_continuous() ~ "continuous2", statistic = all_continuous() ~ "{median} ({p25}, {p75})") ----  
-##### ECHO \% |> italicize_levels() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-    trial |> 
-      tbl_summary(
-        by = trt,
-        include = c(age, marker),
-        type = all_continuous() ~ "continuous2",
-        statistic =
-          all_continuous() ~ c("{N_nonmiss}",
-                               "{mean} ({sd})",
-                               "{median} ({p25}, {p75})",
-                               "{min}, {max}"),
-        missing = "no"
-      ) |> 
-      italicize_levels()
-
-```
-
-
-### # Report treatment differences between two groups. 
-
-### ECHO \% |> tbl_summary(by = trt, statistic = list(all_continuous() ~ "{mean} ({sd})", all_categorical() ~ "{p}%")) ----  
-##### ECHO \% |> add_difference() ----  
-##### ECHO \% |> add_n() ----  
-##### ECHO \% |> modify_header(all_stat_cols() ~ "**{level}**") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-    trial |> 
-      tbl_summary(
-        by = trt,
-        include = c(response, marker),
-        statistic = list(
-          all_continuous() ~ "{mean} ({sd})",
-          all_categorical() ~ "{p}%"
-        ),
-        missing = "no"
-      ) |> 
-      add_difference() |> 
-      add_n() |> 
-      modify_header(all_stat_cols() ~ "**{level}**")
-```
-
-
-### # Include p-values comparing all groups to a single reference group.
-
-### ECHO \% |> tbl_summary(by = grade) ----  
-##### ECHO \% |> add_p() ----  
-##### ECHO \% |> modify_header() ----  
-##### ECHO \% |> modify_column_hide(all_stat_cols()) ----  
-### ECHO \% tbl_merge(list(t0, t1, t2)) ----  
-##### ECHO \% |> modify_spanning_header() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-    # table summarizing data with no p-values
-    small_trial <- trial |> select(grade, age, response)
-    t0 <- small_trial |> 
-      tbl_summary(by = grade, missing = "no") |> 
-      modify_header(all_stat_cols() ~ "**{level}**")
-    
-    # table comparing grade I and II
-    t1 <- small_trial |> 
-      dplyr::filter(grade %in% c("I", "II")) |> 
-      tbl_summary(by = grade, missing = "no") |> 
-      add_p() |> 
-      modify_header(p.value ~ "**I vs. II**") |> 
-      # hide summary stat columns
-      modify_column_hide(all_stat_cols())
-    
-    # table comparing grade I and II
-    t2 <- small_trial |> 
-      dplyr::filter(grade %in% c("I", "III")) |> 
-      tbl_summary(by = grade, missing = "no") |> 
-      add_p() |> 
-      modify_header(p.value = "**I vs. III**") |> 
-      # hide summary stat columns
-      modify_column_hide(all_stat_cols())
-    
-    # merging the 3 tables together, and adding additional gt formatting
-    tbl_merge(list(t0, t1, t2)) |> 
-      modify_spanning_header(
-        all_stat_cols() ~ "**Tumor Grade**",
-        starts_with("p.value") ~ "**p-values**"
-      )
-```
-
-
-### # summarize a continuous variable by one, two, or more categorical variables. 
-
-It’s often needed to summarize a continuous variable by one, two, or more categorical variables. The example below shows a table summarizing a continuous variable by two categorical variables. To summarize by more than two categorical variables, use `tbl_continuous` in conjunction with `tbl_strata` (see an example of `tbl_strata` [here](#tbl_strata)).
-
-### ECHO \% |> tbl_continuous(variable = marker, by = trt, include = grade) ----  
-##### ECHO \% |> modify_spanning_header() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-    trial |> 
-      tbl_continuous(variable = marker, by = trt, include = grade) |> 
-      modify_spanning_header(all_stat_cols() ~ "**Treatment Assignment**")
-```
-
-
-
-### # Build a summary table stratified by more than one variable.
-
-### ECHO \% |> tbl_strata(strata = grade, ~ .x |> tbl_summary(by = trt)) ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-    trial |> 
-      select(trt, grade, age, stage) |> 
-      mutate(grade = paste("Grade", grade)) |> 
-      tbl_strata(
-        strata = grade,
-        ~ .x |> 
-          tbl_summary(by = trt, missing = "no") |> 
-          modify_header(all_stat_cols() ~ "**{level}**")
-      )
-```
-
-
-
-## \% analyticDF_time2event |>  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-# _______________  
-# @@ START) function ----  
-## \% |> function_name()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
 # _______________  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
@@ -642,8 +620,15 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ```
   
   
+# _______________  
+# @@ START) function ----  
+## \% |> function_name()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
 
+```
   
+
 ###### \% |> () ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
