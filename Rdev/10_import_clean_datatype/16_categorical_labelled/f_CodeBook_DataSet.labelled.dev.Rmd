@@ -216,26 +216,6 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   
 # _______________  
-# @@ START) data example ----  
-## \$ analyticDF_time2event =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
-# suppressPackageStartupMessages(library(survival))
-for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-# ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
-assign(
-    DataSetName, 
-    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
-        # dplyr::select(-status, -sex)
-        dplyr::select(-status)
-)
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
-```
-  
-  
-# _______________  
 # @@ MetaData ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # .GlobalEnv$MetaData = list() ====  
@@ -1113,27 +1093,6 @@ env1$env.internal$f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2,
 ## \% |> env1$f$f_CodeBook_DataSet.labelled()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
-env1$f$f_CodeBook_DataSet.labelled = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VERBOSE = getOption("verbose")) {
-    for (i.VarName in names(DataSet)) {
-        if (i.VarName %in% tblVarName$VarName) {
-            if(VERBOSE) cat("i.VarName = ", i.VarName, "\n", sep="")
-            try({
-                DataSet = DataSet %>% 
-                    env1$env.internal$f_CodeBook_DataSet_VarName.labelled(
-                        vec.VarName = i.VarName, 
-                        tblVarName_VarDescription_ValueOptions = tblVarName_VarDescription_ValueOptions, 
-                        NameValuePair_separator = NameValuePair_separator, 
-                        Name_Value_separator = Name_Value_separator, 
-                        vecNamed.swap = vecNamed.swap, 
-                        VarType.numeric = VarType.numeric,
-                        output.select = FALSE,
-                        VERBOSE = VERBOSE)
-            })
-        }
-    }
-    return(DataSet)
-}
 
 DataSet = get(DataSetName)
 attributes(DataSet)$MetaData = NULL
