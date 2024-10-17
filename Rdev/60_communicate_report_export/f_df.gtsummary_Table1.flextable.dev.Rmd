@@ -270,10 +270,10 @@ trial %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); (str(.)
 ### # Summary by trt. 
 
 ### ECHO \% |> tbl_summary(by = trt, statistic = all_continuous() ~ "{median} ({p25}, {p75})") ----  
-#### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") ----  
+##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") ----  
 ##### **ECHO** \% |> add_n() ----  
 ##### **ECHO** \% |> bold_labels() ----  
-##### ECHO \% |> modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**") ----  
+###### ECHO \% |> modify_spanning_header(all_stat_cols() ~ "**Chemotherapy Treatment**") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 trial |> 
@@ -367,7 +367,7 @@ options(width=120)
 ##### ECHO \% |> modify_header() ----  
 ##### ECHO \% |> modify_column_hide(all_stat_cols()) ----  
 ### **ECHO** \% tbl_merge(list(t0, t1, t2)) ----  
-##### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
+###### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
     # table summarizing data with no p-values
@@ -409,7 +409,7 @@ options(width=120)
 It’s often needed to summarize a continuous variable by one, two, or more categorical variables. The example below shows a table summarizing a continuous variable by two categorical variables. To summarize by more than two categorical variables, use `tbl_continuous` in conjunction with `tbl_strata` (see an example of `tbl_strata` [here](#tbl_strata)).
 
 ### ? ECHO \% |> tbl_continuous(variable = marker, by = trt, include = grade) ----  
-##### ECHO \% |> modify_spanning_header() ----  
+###### ECHO \% |> modify_spanning_header() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
     trial |> 
@@ -667,8 +667,8 @@ library(Z.gtsummary.addons)
 ##### **ECHO** \% |> bold_labels() ----  
 #### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
 #### **ECHO** \% |> add_p() ----  
-#### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
-##### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
+##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
+###### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 tbl = trial %>% 
