@@ -535,7 +535,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
 # Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL) {
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL, VERBOSE = getOption("verbose")) {
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
@@ -545,11 +545,40 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
         } 
     }
     
-    # # If the object name is provided but not the object itself, retrieve the object
+    # # If the object name is provided but not the object itself, retrieve the object 
     # if (!is.null(.objectname) && is.null(.object)) {.object <- get(.objectname)}
+    # --> Not necessary to duplicate the .object, because the .object can be retrieved by get(.objectname). 
     
-    # If the object is provided but not the object name, create an object name
-    if (!is.null(.object) && is.null(.objectname)) {.objectname <- deparse(substitute(.object))}
+    if (!is.null(.object)) {
+        if (is.null(.objectname)) {  # If the object is provided but not the object name, create an object name
+            .objectname <- deparse(substitute(.object))
+            if (.objectname == ".") {
+                warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe(), immediate. = TRUE)
+                # if (VERBOSE) 1:sys.nframe() %>% set_names() %>% map(function(n) { deparse(substitute(.object, parent.frame(n = n)))}) %>% str()
+                if (VERBOSE) 0:sys.nframe() %>% set_names() %>% map(function(n) { ls(envir = sys.frame(which = n)) }) %>% dput()
+                # message('-> Trying: ','deparse(substitute(.object, parent.frame(n = 2)))')
+                # .objectname <- deparse(substitute(.object, parent.frame(n = 2)))
+                message('-> Trying: ','ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names')
+                .objectname = ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names
+                if (length(.objectname) > 1) {
+                    warning('length(.objectname) > 1', immediate. = TRUE)
+                    .objectname %>% dput()
+                    if (any(!.objectname %in% c(".", ".object"))) {
+                        .objectname = .objectname[!.objectname %in% c(".", ".object")][1]
+                    } else {
+                        .objectname = .objectname[1]
+                    }
+                }
+                if (.objectname %in% c(".", ".object")) {
+                    warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe())
+                    "Try using `|>` instead of` `%>%`, or provide a valid object." |> stop(call. = FALSE) |> tryCatch(error = function(e) message("stop: ", e)); return(invisible())
+                }
+            }
+        } else {  # If both the object and object name are provided, assign the object to the object name to avoid the problematic cases when .object != get(.objectname.
+            assign(.objectname, .object)
+        }
+
+    }
     
     if(exists("MetaData")) {
         if("DataSetNames" %in% names(MetaData)) {
@@ -558,8 +587,8 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
             }
         } 
     }
-    if(is.null(CompressionMethod))      CompressionMethod = ifelse(object.size(.objectname) > 1e6, "xz", "gz")
-    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(.objectname) > 1e6, ".xz", ""))
+    if(is.null(CompressionMethod))      CompressionMethod = ifelse(object.size(get(.objectname)) > 1e6, "xz", "gz")
+    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6, ".xz", ""))
     if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path.file))             .path.file = paste0(.path4write,"/",.filename.ext4write)
 

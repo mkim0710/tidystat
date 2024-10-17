@@ -186,9 +186,15 @@ get(.objectname) %>% str(max.level = 2)
 
 MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # > MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
-# . |> write_rds('Rdev/00_base_program/..rds', compress = 'gz', compression = 9L) |> system.time()  
-# env1$f$f_path.size_files(.path4read = 'Rdev/00_base_program', regex4filename = '.')  
-# "git add -f 'Rdev/00_base_program/..rds'" |> system(intern=TRUE) 
+# Warning in env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.) :
+#   .objectname == "."   #@ sys.nframe() == 2
+# -> Trying: ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names
+# Warning in env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.) :
+#   length(.objectname) > 1
+# c(".object", "MetaData")
+# MetaData |> write_rds('Rdev/00_base_program/MetaData.rds', compress = 'gz', compression = 9L) |> system.time()  
+# env1$f$f_path.size_files(.path4read = 'Rdev/00_base_program', regex4filename = 'MetaData')  
+# "git add -f 'Rdev/00_base_program/MetaData.rds'" |> system(intern=TRUE)  
 
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(createBackup = TRUE)
