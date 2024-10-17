@@ -137,5 +137,5 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
     return(list_path_hierarchy)
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = FALSE)
+.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 

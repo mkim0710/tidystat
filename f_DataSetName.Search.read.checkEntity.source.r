@@ -229,7 +229,7 @@ for (.dependancy in c("f_path.size_files")) {
     if(return.output) return(invisible(return.list))
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 
 
 
@@ -298,7 +298,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     
 }
 ### |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ----
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 
 
 # # \$ DataSetName = "fhs.index100le10" =======  

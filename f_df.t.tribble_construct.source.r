@@ -628,7 +628,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
     }
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### :: env.internal\$f_vec.format_line_by_line =  ----  
 env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_elements="\n  ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -648,7 +648,7 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
     env1$env.internal$f_list.format_line_by_line(list_vec, space_between_vec_elements, space_between_list_elements, sep_parentheses, end_of_text) |> cat("  \n", sep="")
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### :: env.internal\$f_list.format_line_by_line =  ----  
 env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between_vec_elements="\n         ", space_between_list_elements = "\n     ", sep_parentheses = FALSE, end_of_text = "\n") {
@@ -695,7 +695,7 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
     return(vecNamed)    
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_vec1_vec2.setdiff =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
@@ -712,7 +712,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     out
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 
 
 
@@ -756,7 +756,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_list_formula.append_lhs_rhs_vars =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_list_formula.append_lhs_rhs_vars.source.r  
@@ -792,7 +792,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 
 
 
@@ -811,7 +811,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     cat(out)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/f_df.transpose.dev.r
 ## :: f_df.transpose =  ----  
@@ -822,7 +822,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     out
 }                                    
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.t.tribble_construct =  ----  
 .tmp$objectname = "f_df.t.tribble_construct"
@@ -832,7 +832,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     cat(out)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_df.print_byVar =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/60_communicate_report_export/f_df.print_byVar.dev.r  
@@ -847,7 +847,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         print(n = n)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_VarNameT.deltaT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -856,7 +856,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := !!rlang::sym(VarNameT) - !!rlang::sym(VarName0) )
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_VarNameT.pdT0 =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -865,7 +865,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     DataSet.Date.NA.rmAllNA |> mutate( !!rlang::sym(paste0(prefix,VarNameT,suffix)) := (!!rlang::sym(VarNameT) - !!rlang::sym(VarName0)) / !!rlang::sym(VarName0) ) 
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.cut =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -891,7 +891,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     return(DataSet.Date.NA.rmAllNA)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.quintile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -922,7 +922,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
     ))
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: f_df.add_RegExVars.quartile_factor =  ----  
 ## -> included in "f_df.t.tribble_construct.source.r"
@@ -951,7 +951,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         ))
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 
 
 
