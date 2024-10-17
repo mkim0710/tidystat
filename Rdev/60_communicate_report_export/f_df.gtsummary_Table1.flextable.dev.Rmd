@@ -694,6 +694,7 @@ tbl = trial %>%
     bold_labels() |>
     italicize_levels()
 tbl %>% show_header_names
+tbl$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value)
 tbl |>
     print() |> invisible()
 ```
@@ -742,6 +743,7 @@ tbl = DataSet %>%
     bold_labels() |>
     italicize_levels()
 tbl %>% show_header_names
+tbl$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value)
 tbl |>
     print() |> invisible()
 ```
