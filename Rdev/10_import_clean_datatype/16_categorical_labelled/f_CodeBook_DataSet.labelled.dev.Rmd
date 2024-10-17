@@ -738,6 +738,8 @@ options(width=120)
 options(function.reload = TRUE)
 .subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled"  
 .sourcename_root = "f_CodeBook_DataSet.labelled"  
+if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
+.sourcename = .sourcename_root |> paste0(".source.r")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
