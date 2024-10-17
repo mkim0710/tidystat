@@ -1,8 +1,9 @@
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 
 getwd()
@@ -12,16 +13,18 @@ system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectna
 # system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
 # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 .objectname = "NHID_GY20_0213.bind_rows"
 .path4write = env1$path$.path4write
 .t0 = Sys.time()
 save( list = .objectname, file = file.path(.path4write, paste0(.objectname,".rda", "")), compress="xz", compression_level=9 )
 print(Sys.time() - .t0)
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 
 getwd()
@@ -34,8 +37,9 @@ system.time(write_rds( get(.objectname), file.path(.path4write, paste0(.objectna
 # system.time(openxlsx2::write_xlsx(get(.objectname), file=paste0(.objectname,".xlsx"), as_table=TRUE))
 # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".xlsx"))
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 getwd()
 .path4write = env1$path$.path4write

@@ -282,8 +282,9 @@ str(check_primary_key(df_example, "PERSON_ID", "STND_Y"))
 #  $ n_distinct_Time    : int 2
 #  $ n_distinct_ID_Time : int 7
 #  $ varname_primary_key: chr "PERSON_ID_STND_Y"
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 
 

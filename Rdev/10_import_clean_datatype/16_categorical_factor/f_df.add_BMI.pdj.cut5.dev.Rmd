@@ -104,7 +104,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 <!-- 4: Approximately 14 pixels. -->
 <!-- 5: Approximately 18 pixels. -->
 <!-- 6: Approximately 24 pixels. -->
-# _______________  
+# __________|------  
 <!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
 <!-- ##### Rstudio RMarkDown Shortcuts -->
 <!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
@@ -175,7 +175,7 @@ env1$info$info_software_versions = env1$env.internal$get_software_versions(libra
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) source ----  
 ## @ .subpath, .sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r") ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
@@ -189,7 +189,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) Data ----  
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.rds  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -398,7 +398,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  

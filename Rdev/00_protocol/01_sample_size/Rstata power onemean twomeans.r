@@ -803,6 +803,7 @@ power.t.test(delta = (mu1 - mu2) / sd_pooled, type="two.sample", sig.level = 0.0
 # NOTE: n is number in *each* group
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  

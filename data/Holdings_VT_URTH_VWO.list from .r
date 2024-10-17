@@ -620,8 +620,9 @@ Holdings_VT_URTH_VWO.list =
         , Holdings_VT = Holdings_VT
         , Holdings_URTH = Holdings_URTH
         , Holdings_VWO = Holdings_VWO
-    )
-
+    )  
+  
+# __________|------  
 # @@ END----  
 getwd()
 .path4write = env1$path$.path4write

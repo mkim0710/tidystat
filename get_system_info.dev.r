@@ -644,8 +644,9 @@ Sys.info() |> as.list() |> str()
 # $ version.string: chr "R version 3.4.3 (2017-11-30)"
 # $ nickname      : chr "Kite-Eating Tree"
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 
 

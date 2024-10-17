@@ -1413,7 +1413,8 @@ mbm
 #  fun3.n11.cor.test.Fisher.exact.test 3.723355 4.289194 4.556821 4.499253 4.738552 7.115376   100   a
 #  fun4.n11.cor.test.Fisher.exact.test 3.804902 4.317565 4.643447 4.537701 4.769974 7.096995   100   a
 #  fun5.n11.cor.test.Fisher.exact.test 3.572550 4.298385 4.629451 4.516325 4.812071 7.819923   100   a
-
-
+  
+  
+# __________|------  
 # @@ END----  
 ## @  selected function = f_df.lgl.comat.gather3 ==========  

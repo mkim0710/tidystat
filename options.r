@@ -51,7 +51,8 @@ pdf.options(family = "Korea1deb")
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END----  
 

@@ -1326,7 +1326,8 @@ str_extract_all("a\nb\nc", regex("a.", dotall = TRUE))
 # [1] "a\n"
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 

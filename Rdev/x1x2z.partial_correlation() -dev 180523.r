@@ -1,6 +1,6 @@
-# x1x2z.partial_correlation() -dev 180523.r
-
-
+# x1x2z.partial_correlation() -dev 180523.r  
+  
+# __________|------  
 # @@ old function -----  
 
 ## @ x1x2z.partial_correlation() ==========  
@@ -109,9 +109,9 @@ out
 # pearson       0.7818523   0.7356413
 # spearman      0.7330699   0.5976564
 # kendall       0.5955500   0.4455219
-
-
-
+  
+  
+# __________|------  
 # @@ new function 180523 =====  
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {
@@ -741,9 +741,9 @@ glm((stackloss$Air.Flow/abs(stackloss$Air.Flow) + 1)/2 ~ stackloss$Water.Temp, f
 # AIC: 4
 # 
 # Number of Fisher Scoring iterations: 24
-
-
-
+  
+  
+# __________|------  
 # @@ new function 180523 v2 -----  
 out = map(
     seq_along(cor_method)
@@ -1017,9 +1017,9 @@ out %>% map(function(ls) ls %>% map(unname)) |> str()
 
 
 
-
-
-
+  
+  
+# __________|------  
 # @@ new function 180523 v3 -----  
 out = map(
     seq_along(cor_method)
@@ -1080,9 +1080,9 @@ out |> str()
 
 out %>% bind_rows |> as.data.frame() %>% select(starts_with("unadjusted"), starts_with("partial")) |> str()
 
-
-
-
+  
+  
+# __________|------  
 # @@ new function 180523 v4 -----  
 out = map(
     seq_along(cor_method)
@@ -1297,9 +1297,9 @@ out %>% map(unlist) %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") 
 
 
 
-
-
-
+  
+  
+# __________|------  
 # @@ new function 180523 v5 -----  
 out = map(
     seq_along(cor_method)
@@ -1617,8 +1617,9 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END----  
 
 

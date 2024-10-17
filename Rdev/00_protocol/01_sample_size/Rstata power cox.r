@@ -240,6 +240,7 @@ stata("power cox, hratio(2) eventprob(0.8)", data.in = NULL, data.out = F, stata
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END----  

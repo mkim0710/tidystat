@@ -687,8 +687,9 @@ ls.str(env1$env.internal) #-----
 # tribble_format : function (input_table, output_context = env1$env.internal$console_context())  
 # tribble_paste : function (input_table, output_context = env1$env.internal$guess_output_context())  
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 # attach(env1)
 # save.image(file = "f_df.t.tribble_construct.RData")

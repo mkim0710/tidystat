@@ -7,6 +7,7 @@ function.vec.fold.index = function(data, k = 5) data %>% { rep(1:k, (nrow(.) %/%
 dataset.train %>% function.vec.fold.index |> dput()
 set.seed(12345); dataset.train %>% function.vec.fold.index %>% sample |> dput()
 set.seed(12345); dataset.train$fold.index = dataset.train %>% function.vec.fold.index %>% sample
-
-
+  
+  
+# __________|------  
 # @@ END----  

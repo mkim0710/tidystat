@@ -102,6 +102,7 @@ lalonde %>% CreateTableOne(strata = "isExposed", data = ., test=F, includeNA = T
 #   treat (mean (sd))       0.00 (0.00)            1.00 (0.00)          Inf  
 #   isExposed = TRUE (%)       0 (0.0)              185 (100.0)         NaN  
 
-
-
+  
+  
+# __________|------  
 # @@ END----  

@@ -301,9 +301,9 @@ DataSet.Table1byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n
 # DataSet.Table1byExposure.print_showAllLevels.IQR %>% writexl::write_xlsx(paste0(DataSetName.Table1byExposure, " -AllLevels -IQR -clean.xlsx"))
 # # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Table1byExposure, " -IQR -clean.xlsx"))
 
-
-
-
+  
+  
+# __________|------  
 # @@ START) function -----  
 function.DataSet.Table1byExposure.print.addCols = function(DataSet.Table1byExposure.print) {
     DataSet.Table1byExposure.print %>% add_column(level = as.character(NA), .after = "Variable") %>% add_row(.before = 1) |> 
@@ -1039,8 +1039,9 @@ Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.T
 
 Heals_FinalCohortFile_161022do.dta_nan_as_factor_droplevels.is.dropped_34567yr.Table1.TRUE_enddate.is %>% 
     ggplot(aes(x = parent, y = as.numeric(freq), group = level, color = level)) + geom_point() + geom_smooth(method = lm)
-
-
+  
+  
+# __________|------  
 # @@ END------  
 analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list = list()
 analyticDF.AddVar.pmhx_negativetime.excluded.list.bin_5yr_Vars23.Table1.list$by.evnttrth_C16_r =

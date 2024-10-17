@@ -130,8 +130,9 @@ list.sas7bdat_PERSON_ID.setdiff |> str() #----
 #   ..$ setdiff_1_2: chr(0) 
 #   ..$ setdiff_2_1: chr(0) 
 #   ..$ identical  : logi TRUE
-
-
+  
+  
+# __________|------  
 # @@ END----  
 .objectname = "list.sas7bdat_PERSON_ID.setdiff"
 .path4write = env1$path$.path4write

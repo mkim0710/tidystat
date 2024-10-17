@@ -318,8 +318,9 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
 # # ℹ 51 more rows
 # # ℹ abbreviated names: ¹​print_tree_path_files.codes, ²​print_tree_path_files.data
 # # ℹ Use `print(n = ...)` to see more rows
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 # ls.str(env1) #-----  
 # ls.str(env1$env.internal) #-----  
@@ -327,6 +328,7 @@ if(!.tmp$objectname %in% names(.GlobalEnv$env1$env.internal)) {
 # # env.internal : <environment: 0x000001f6d74c17b0> 
 # # f_path.df_dirs_recursive.df_files : function (input_path = ".", max_depth = 9, current_depth = 0, gitignore_escaped_select.UC.regex = .tmp$gitignore_escaped_select.UC.regex)  
 # # gitignore_escaped_select.UC.regex :  chr [1:23] "\\.RPROJ\\.USER" "\\.RHISTORY" "\\.RDATA" "\\.RUSERDATA" ".*\\.ZIP" ".*\\.7Z" ".*\\.RPROJ" "\\.GITIGNORE" ...
-# # > ls.str(env1$env.internal) #-----  
-
+# # > ls.str(env1$env.internal) #-----    
+  
+# __________|------  
 # @@ END----  

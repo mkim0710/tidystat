@@ -4,7 +4,7 @@ output: html_notebook
     df_print: tibble
 ---
   
-# _______________  
+# __________|------  
 <!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
 <!-- ##### Rstudio RMarkDown Shortcuts -->
 <!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
@@ -111,7 +111,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) Baseline ----  
 ## \$ as1.na.Date.fct.select89 =  ----  
 @ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
@@ -133,7 +133,7 @@ cat(" ----\n> ", "str(get(.objectname), max.level = 2, give.attr = F)", "  \n", 
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) Outcome ----  
 ## \$ as1_7.na.Date.fct.cumulative_DM.list =  ----  
 @ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds")))) 
@@ -382,7 +382,7 @@ options(width=120)
 
 ```
   
-# _______________  
+# __________|------  
 # @@ START) Analysis ----  
   
 ## \$ analyticDF_time2event =  ----  
@@ -494,7 +494,7 @@ data.formula.survfit |>
 ```
   
   
-# _______________  
+# __________|------  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  

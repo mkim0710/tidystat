@@ -136,6 +136,7 @@ set.seed(1); sample(1:9, 30, replace = T) %>% function.frequencyDF
 # 7     7     4
 # 8     8     1
 # 9     9     5
-
-
+  
+  
+# __________|------  
 # @@ END----  

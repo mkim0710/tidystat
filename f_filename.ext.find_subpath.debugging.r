@@ -230,6 +230,7 @@ file.info("/home/rstudio/Rproject_Rmd/default.symlink.R" )
 # /home/rstudio/Rproject_Rmd/default.symlink.R   NA    NA <NA>  <NA>  <NA>  <NA>  NA  NA  <NA>   <NA>
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  

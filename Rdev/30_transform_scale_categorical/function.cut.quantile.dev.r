@@ -96,7 +96,8 @@ out$propensities %>% cut(., quantile(., 0:5/5), include.lowest = T, right = T) |
 # > out$propensities %>% cut(., quantile(., 0:5/5), include.lowest = T, right = T) |> summary()
 # [0.477,0.651]  (0.651,0.68]  (0.68,0.706] (0.706,0.734] (0.734,0.777] 
 #           790           789           772           796           764 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 

@@ -193,7 +193,8 @@ if (getwd() |> normalizePath(winslash="/") == .overwrite_from_path) {
 .subpath="git"; .filename.r = "git filter-repo --path-glob .pdf --invert-paths.sh"; .subpath.filename.r = paste0(.subpath,ifelse(.subpath=="","","/"),.filename.r); file.path(env1$path$source_base, .subpath.filename.r) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext))
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-
+  
+# __________|------  
 # @@ START) Default Templates -----  
 
 ### @ sourceTemplate.path.filename.ext -----  

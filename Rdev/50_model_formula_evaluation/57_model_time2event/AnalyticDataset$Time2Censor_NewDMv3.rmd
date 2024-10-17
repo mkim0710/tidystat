@@ -4,7 +4,7 @@ output: html_notebook
     df_print: tibble
 ---
   
-# _______________  
+# __________|------  
 Rstudio RMarkDown Shortcuts
 https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE
 https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html

@@ -4,7 +4,7 @@ output: html_notebook
     df_print: tibble
 ---
   
-# _______________  
+# __________|------  
 <!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
 <!-- ##### Rstudio RMarkDown Shortcuts -->
 <!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
@@ -111,7 +111,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START ----  
   
 ## \$ tblID_gj3_jk =  ----  
@@ -287,7 +287,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) Analysis ----  
   
 ## \$ analyticDF_time2event =  ----  
@@ -349,8 +349,10 @@ data.formula.survfit |>
         xlim = c(0, value_for_Censor_at_END), ylim = c(0, 1), 
         xlab = paste0("Time in ", time_scale)    )
   
-```
+```  
   
+  
+# __________|------  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  

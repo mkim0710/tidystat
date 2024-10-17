@@ -526,7 +526,8 @@ InputSquareMatrix1.tbl.ConfusionMatrix.Metrics.bootstrapCI$MetricsCI #----
 # 21                 c                                         c = (Sensitivity + Specificity)/2     0.89 (0.84, 0.94)       0.69 (0.55, 0.81)       0.63 (0.53, 0.72)      0.90 (0.84, 0.95)       0.78 (0.72, 0.83)
 
 
-
-
+  
+  
+# __________|------  
 # @@ END----  
 

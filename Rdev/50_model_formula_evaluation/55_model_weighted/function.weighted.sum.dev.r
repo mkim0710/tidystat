@@ -165,6 +165,7 @@ province.prelim.design.without_fpc %>% svytable(~ue91_gt500, .) %>% prop.table
 # FALSE  TRUE 
 # 0.625 0.375 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  

@@ -24,8 +24,9 @@
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 # https://chatgpt.com/c/670a8ab2-8eb0-800e-81b1-c15d45654643
-# https://gemini.google.com/app/efcecda0973ba3f4
-
+# https://gemini.google.com/app/efcecda0973ba3f4  
+  
+# __________|------  
 # @@ START) example -----  
 ## \$ analyticDF_time2event =  ----  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}

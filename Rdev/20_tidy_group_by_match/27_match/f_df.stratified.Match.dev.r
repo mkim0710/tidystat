@@ -2674,6 +2674,7 @@ rhc_mydata.na.stratified.Match$data |> summary()
 rhc_mydata.na.stratified.Match$data$RowNum_original |> unique() |> length()
 # > rhc_mydata.na.stratified.Match$data$RowNum_original |> unique() |> length()
 # [1] 4086
-
-
+  
+  
+# __________|------  
 # @@ END-----  

@@ -354,6 +354,7 @@ function.threshold_roc.plot = function(object.threshold_roc) {
 # #   !"object.threshold_roc" %in% class(object.threshold_roc) 
 
 df_actual_prediction.treshold_roc %>% function.threshold_roc.plot
-
-
+  
+  
+# __________|------  
 # @@ END----  

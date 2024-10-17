@@ -443,6 +443,7 @@ identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tr
 # # ... with 455 more rows
 # > identical(as.numeric(nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat.gather.upper.tri)), ncol(trainsetCC69agg4i07_829.Ctrl.lgl.comat) * {nrow(trainsetCC69agg4i07_829.Ctrl.lgl.comat) - 1} / 2)
 # [1] TRUE
-
-
+  
+  
+# __________|------  
 # @@ END----  

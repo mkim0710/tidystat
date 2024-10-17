@@ -837,8 +837,9 @@ mat %>% {(sum(.) + diag(.) - rowSums(.) - colSums(.)) / (sum(.) - rowSums(.)) * 
 # 
 # |C|(|C|-1)/2 pairs
 
-
-
+  
+  
+# __________|------  
 # @@ END----  
 # saveRDS(InputSquareMatrix.tbl.ConfusionMatrix.Metrics, file = "InputSquareMatrix.tbl.ConfusionMatrix.Metrics.rds")
 # openxlsx2::write_xlsx(InputSquareMatrix.tbl.ConfusionMatrix.Metrics, "InputSquareMatrix.tbl.ConfusionMatrix.Metrics.xlsx", as_table=TRUE)

@@ -96,7 +96,8 @@ identical(v1, v4)
 # [1] TRUE
 # > identical(v1, v4)
 # [1] TRUE
-
-
+  
+  
+# __________|------  
 # @@ END----  
 

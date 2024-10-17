@@ -124,8 +124,9 @@ health_data %>% f_df.add_UC
 #   <chr>      <chr>        <chr>      <fct>    <fct>         <chr>         <chr>        <chr>        <fct>       <fct>           
 # 1 P001       Diabetes     Metformin  High     Good          P001          DIABETES     METFORMIN    HIGH        GOOD            
 # 2 P002       Hypertension Lisinopril Moderate Moderate      P002          HYPERTENSION LISINOPRIL   MODERATE    MODERATE        
-# 3 P003       Asthma       Inhaler    Mild     Poor          P003          ASTHMA       INHALER      MILD        POOR        
-
+# 3 P003       Asthma       Inhaler    Mild     Poor          P003          ASTHMA       INHALER      MILD        POOR          
+  
+# __________|------  
 # @@ END-----  
 
 

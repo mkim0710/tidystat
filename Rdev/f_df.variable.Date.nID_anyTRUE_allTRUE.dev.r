@@ -290,7 +290,8 @@ print(mbm)
 
 
 #**** f_df.variable.Date.nID_anyTRUE_allTRUE.v3 is faster for more calculations! 
-
-
+  
+  
+# __________|------  
 # @@ END---------  
 

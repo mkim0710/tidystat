@@ -480,7 +480,8 @@ permutationP_multiple |> str(max.level = 1) #-----
 ## @ Advanced Topic: Vectorized Function ----  
 # ffqtot.select.permutation_list %>% map(function(Data) {
 #     Data
-# })
-
+# })  
+  
+# __________|------  
 # @@ END----  
 

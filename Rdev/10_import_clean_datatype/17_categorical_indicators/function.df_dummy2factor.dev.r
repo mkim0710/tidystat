@@ -302,6 +302,7 @@ iris.Species.dummy5 |> as.data.frame() %>% function.df_dummy2factor(varname_pref
 #   any(rowSums(df_dummy.logical.numeric)!=1, na.rm = T)
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  

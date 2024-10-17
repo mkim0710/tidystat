@@ -104,7 +104,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 <!-- 4: Approximately 14 pixels. -->
 <!-- 5: Approximately 18 pixels. -->
 <!-- 6: Approximately 24 pixels. -->
-# _______________  
+# __________|------  
 <!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
 <!-- ##### Rstudio RMarkDown Shortcuts -->
 <!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
@@ -215,18 +215,17 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-
-
+# __________|------  
 # @@ START) data example ----  
   
-# _______________  
+# __________|------  
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) function ----  
 https://chatgpt.com/c/66e7deba-b85c-800e-9f76-124d9087e1a7
 ## \% |> f.updateTemplates() ----  
@@ -963,7 +962,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  

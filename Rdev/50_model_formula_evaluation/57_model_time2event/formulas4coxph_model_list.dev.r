@@ -349,7 +349,8 @@ formulas4coxph_model_list.Cigar_ge50 %>% map(function.formula2text)
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 

@@ -52,6 +52,7 @@ nBreakdown.list |> as.data.frame() %>% t |> as.data.frame() |> rownames_to_colum
 nBreakdown.list |> as.data.frame() %>% t |> as.data.frame() |> rownames_to_column() |> tribble_paste()
 
 
-
-
+  
+  
+# __________|------  
 # @@ END----  

@@ -351,8 +351,9 @@ mydb.dbListTables.dbListFields.ifelse.bindcols =
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 save(mydb.dbListTables.dbListFields, file = "mydb.dbListTables.dbListFields.rda")
 save(mydb.dbListTables.dbListFields.ifelse.bindcols, file = "mydb.dbListTables.dbListFields.ifelse.bindcols.rda")

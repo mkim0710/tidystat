@@ -638,8 +638,9 @@ dimnames(data.mice.group_by_exposure.summarize_n_event$min_max) = dimnames(data.
 # [3,] "3-3"        "71-779"     "15-40"  
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 
 

@@ -422,6 +422,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.statnet %>% object_statnet.summary
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  

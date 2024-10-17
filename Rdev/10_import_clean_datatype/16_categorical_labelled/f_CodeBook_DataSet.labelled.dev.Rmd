@@ -104,7 +104,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 <!-- 4: Approximately 14 pixels. -->
 <!-- 5: Approximately 18 pixels. -->
 <!-- 6: Approximately 24 pixels. -->
-# _______________  
+# __________|------  
 <!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
 <!-- ##### Rstudio RMarkDown Shortcuts -->
 <!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
@@ -215,7 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-# _______________  
+# __________|------  
 # @@ MetaData ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # .GlobalEnv$MetaData = list() ====  
@@ -343,7 +343,7 @@ MetaData$VarNames$WAVE_VARNAME3293 = KoGES201806vars_waves.rev.CLEAN$WAVE_VARNAM
 
 
 
-# _______________  
+# __________|------  
 # @@ START) Data ----  
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode  
@@ -413,7 +413,7 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 
 
   
-# _______________  
+# __________|------  
 https://cloud.r-project.org/web/packages/labelled/vignettes/intro_labelled.html 
 # @@ Introduction to labelled  
 
@@ -542,11 +542,12 @@ You can display and search through variable names and labels with `look_for()`:
     ## NULL
 
 
-# _______________  
+# __________|------  
 # @@ Rdev/00_base_program/f_vecNamed.swap.dev.Rmd  
 # @@ Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd  
 # @@ Rdev/10_import_clean_datatype/16_categorical_labelled/env1$f$f_CodeBook_DataSet.labelled.dev.Rmd  
-
+  
+# __________|------  
 # @@ START) source ----  
 ## \% |> f_chrNameValuePairs2vector() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -597,7 +598,7 @@ i.ValueOptions |> env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE) %>% dp
 
 
 
-# _______________  
+# __________|------  
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
@@ -734,7 +735,7 @@ options(width=120)
   
   
 
-# _______________  
+# __________|------  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
@@ -750,7 +751,7 @@ if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) function ----  
 ## \% |> env1$env.internal$f_CodeBook_DataSet_VarName.labelled()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -857,7 +858,7 @@ options(width=120)
   
   
   
-# _______________  
+# __________|------  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  

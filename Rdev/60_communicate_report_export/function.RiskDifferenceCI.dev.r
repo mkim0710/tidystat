@@ -505,8 +505,9 @@ analyticDF.TargetTrial2v38.2.113vs200.nOutcome_byExposure.RiskDifferenceCI |> st
 #   ..$ Percent (95% CI) %.3f       : chr [1:20] "1.040% (-128.400%, 130.479%)" "0.088% (-35.098%, 35.275%)" "0.549% (-38.016%, 39.113%)" "-2.500% (-Inf%, Inf%)" ...
 
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 getwd()
 .path4write = env1$path$.path4write
@@ -983,8 +984,9 @@ stata(paste("csi", nCasesExposed, nCasesUnexposed, nNoncasesExposed, nNoncasesUn
 # #                  +-------------------------------------------------  
 # #                                chi2(1) =    44.10  Pr>chi2 = 0.0000
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 
 

@@ -226,6 +226,7 @@ analyticDF.TargetTrial2v40.2.206vs373.PersonTime_glm_RiskDifference_Model32.boot
 # Addresses #101 by implementing an option pillar.min_character_chars to give control over how wide to make characters for a character column. The option works similarly to pillar.min_title_chars. The default is currently 0 to be backwards compatible.
 # Like others, I needed this for a project I am working on (a bookdown book that needs users to see the full names of a kibble's character column) and was frustrated trying to get it to work. If there is a better approach to this, happy to adjust.
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  

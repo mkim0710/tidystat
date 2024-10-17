@@ -559,7 +559,8 @@ n1_2016_withlabels_EPI522_merge_n2_recode1026_drop.Alcohol.indicators.head %>% m
 #  8              0                 0              1 Alcohol_ge4pwk   
 #  9             NA                NA             NA NA               
 # 10              0                 1              0 Alcohol_ge2le3pwk
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 

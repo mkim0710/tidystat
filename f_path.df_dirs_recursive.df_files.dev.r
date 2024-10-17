@@ -917,8 +917,9 @@ df_dirs_recursive %>% select(print_tree_path) |> unlist() |> paste(collapse = "\
 df_dirs_recursive %>% select(print_tree_path_files) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
 df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")  #----
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 
 ls.str(env1) #-----
@@ -933,8 +934,9 @@ ls.str(env1$env.internal) #-----
 #  $ source_base_github: chr "https://raw.githubusercontent.com/mkim0710/tidystat/master"
 # > ls.str(env1$env.internal) #-----  
 
-
-
+  
+  
+# __________|------  
 # @@ END----  
 
 

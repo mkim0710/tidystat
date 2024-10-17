@@ -132,8 +132,9 @@ function.calculatePersonTime <- function(dataset, varname4time, varname4event) {
 
 
 
-
-
+  
+  
+# __________|------  
 # @@ END------  
 
 

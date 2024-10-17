@@ -104,7 +104,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 <!-- 4: Approximately 14 pixels. -->
 <!-- 5: Approximately 18 pixels. -->
 <!-- 6: Approximately 24 pixels. -->
-# _______________  
+# __________|------  
 <!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
 <!-- ##### Rstudio RMarkDown Shortcuts -->
 <!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
@@ -215,8 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-
-
+# __________|------  
 # @@ START) data example ----  
 ## \$ analyticDF_time2event =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -236,7 +235,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) dev ----  
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
@@ -249,7 +248,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) function ----  
 https://chatgpt.com/c/f29a5a72-bcf6-42be-b834-9c0cc0e765db
 ## \% |> function_name()  
@@ -259,7 +258,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ MetaData ----  
 ```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # .GlobalEnv$MetaData = list() ====  
@@ -327,7 +326,7 @@ MetaData %>% str
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
@@ -414,7 +413,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  

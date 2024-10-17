@@ -355,6 +355,7 @@ traj_clusters_by_time |> str()
 #   ..$ cluster     : int [1:325] 4 4 4 4 4 9 9 9 9 9 ...
 
 
-
-
+  
+  
+# __________|------  
 # @@ END----  

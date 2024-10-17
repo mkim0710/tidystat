@@ -214,8 +214,9 @@ out.filename = "out.grViz.svg"
 rsvg::rsvg_pdf(charToRaw(out.grViz.svg), paste0(out.filename, ".pdf"))
 rsvg::rsvg_png(charToRaw(out.grViz.svg), paste0(out.filename, ".png"))
 
-
-
+  
+  
+# __________|------  
 # @@ END----  
 .objectname = "list.PERSON_ID.setdiff.diagram"
 .path4write = env1$path$.path4write

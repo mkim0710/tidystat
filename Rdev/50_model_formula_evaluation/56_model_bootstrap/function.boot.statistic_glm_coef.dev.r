@@ -264,8 +264,9 @@ boot.output %>% {rbind( as_tibble(as.list(.$t0)), map_df( {set_names(as_tibble(.
 # 4 I(k^2)          1.00 (1.00, 1.00)          1.00    1.00      1.00  
 # 5 Exposure:k      1.04 (1.00, 1.08)          1.04    1.00      1.08  
 # 6 Exposure:I(k^2) 1.00 (1.00, 1.00)          1.000   0.999     1.00 
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 write_rds(boot.output, "analyticDF2797.ipw.PersonTime7.SWglmOutcome_Exposure_k.boot.rds", "xz", compression=9)
 openxlsx2::write_xlsx(

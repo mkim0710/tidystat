@@ -333,6 +333,7 @@ out = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName = DataSetName, ve
 # #   heartrte2 <dbl>, prevap2 <dbl>, prevchd2 <dbl>, prevmi2 <dbl>, prevstrk2 <dbl>, prevhyp2 <dbl>, sex3 <dbl>, time3 <dbl>, age3 <dbl>,
 # #   sysbp3 <dbl>, diabp3 <dbl>, bpmeds3 <dbl>, cursmoke3 <dbl>, cigpday3 <dbl>, educ3 <dbl>, totchol3 <dbl>, hdlc3 <dbl>, ldlc3 <dbl>,
 # #   bmi3 <dbl>, glucose3 <dbl>, diabetes3 <dbl>, heartrte3 <dbl>, prevap3 <dbl>, prevchd3 <dbl>, prevmi3 <dbl>, prevstrk3 <dbl>, …
-
-
+  
+  
+# __________|------  
 # @@ END-----  

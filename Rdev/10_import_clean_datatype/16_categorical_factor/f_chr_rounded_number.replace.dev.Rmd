@@ -104,7 +104,7 @@ pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', '
 <!-- 4: Approximately 14 pixels. -->
 <!-- 5: Approximately 18 pixels. -->
 <!-- 6: Approximately 24 pixels. -->
-# _______________  
+# __________|------  
 <!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
 <!-- ##### Rstudio RMarkDown Shortcuts -->
 <!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
@@ -215,8 +215,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ```
   
   
-
-
+# __________|------  
 # @@ START) data example ----  
 https://chatgpt.com/c/4f1ce650-0362-497e-882b-d48792bf6b9a
 ## \% |> extract_non_ascii_with_codes_df()  
@@ -282,7 +281,7 @@ text_with_numbers_inside_parenthesis %>% extract_non_ascii_with_codes_df()
 
   
   
-# _______________  
+# __________|------  
 # @@ START) dev ----  
 
 ## \% text_with_rounded_numbers |>  
@@ -292,7 +291,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ START) function ----  
 https://chatgpt.com/c/ae6269b8-2256-435c-8881-c6c8962debee
 https://chatgpt.com/c/e3de44e5-961f-4244-a2fd-94668801c04c
@@ -659,7 +658,7 @@ options(width=120)
 ```
   
   
-# _______________  
+# __________|------  
 # @@ END ----  
 ```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
 ##________________________________________________________________________________  

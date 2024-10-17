@@ -51,6 +51,7 @@ analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% c
 analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph %>% plot(var = c("Metformin"))
 analyticDF.TargetTrial2v40.2.206vs373.coxphTimeOutcome_Exposure_Covariates %>% cox.zph %>% {survminer::ggcoxzph(., var = c("Metformin"), font.main = 12, caption = "")}
 
-
-
+  
+  
+# __________|------  
 # @@ END-----  

@@ -608,7 +608,8 @@ data %>% mutate(Exposure = Intervention) %>%
 #  9 PrimaryOutcome2_sum      66 (24.81%) 39 (24.53%)
 # 10 PrimaryOutcome3_sum      1 (0.38%)   0 (0%)     
 # # ... with 18 more rows
-
-
+  
+  
+# __________|------  
 # @@ END-----  
 

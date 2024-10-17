@@ -513,9 +513,9 @@ function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*",
     out = tbl_varname_level_coefficients_res %>% select(varname, level, HRCI, p_value, star, everything())
 }
 
-
-
-
+  
+  
+# __________|------  
 # @@ data_list.cut.coxph_list.HRCI from analyticDF_C24.drop_pmhx_negativetime.list.cut.coxph_list ====  
 ## @ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
@@ -609,7 +609,8 @@ data_list.cut.coxph_list.HRCI$cut_model13_ASPIRIN_AGE_group_NSAID_SEX_Social_Beh
                                                                                                                             
                                                                                                                             
                                      
-
+  
+# __________|------  
 # @@ data_main.cut.coxph_list.HRCI from data_list.cut.coxph_list.HRCI ----  
 ## @ name4MainData, name4MainTransformation, name4FullModel ====  
 name4MainData = "_5yr"
