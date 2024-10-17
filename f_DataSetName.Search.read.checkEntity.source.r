@@ -144,11 +144,14 @@ for (.dependancy in c("f_path.size_files")) {
     return.list$df_size_files = env1$f$f_path.size_files(.path4read=.path4read[1], literal_filename = filename.ext, print2console=print2console)
     
     ## \% return.list$read.proc_time ====
+    .path.file = file.path(.path4read[1], filename.ext))
     # if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-    # return.list$read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read[1], filename.ext)), envir=.GlobalEnv))
+    # return.list$read.proc_time = system.time(assign(DataSetName, read_rds(.path.file, envir=.GlobalEnv))
     # if(print2console) return.list$read.proc_time |> print()
-    .read.proc_time = system.time(assign(DataSetName, read_rds(file.path(.path4read[1], filename.ext)), envir=.GlobalEnv))
+    .read.proc_time = system.time(assign(DataSetName, read_rds(.path.file, envir=.GlobalEnv))
     if(print2console) .read.proc_time |> print()
+    attributes(.GlobalEnv[[DataSetName]])$DataSetName = DataSetName
+    attributes(.GlobalEnv[[DataSetName]]$DataSetName)$.path.file = .path.file
 
     ## \% return.list$dim ====
     if(print2console) cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
