@@ -182,60 +182,6 @@ get(.objectname) %>% str(max.level = 2)
 # Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path.file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = NULL, createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL) {
-    
-    if(!is.null(.object)) {
-        if(is.character(.object) && length(.object) == 1) {
-            # .objectname <- .object
-            # .object <- get(.object)
-            "is.character(.object) && length(.object) == 1 --> Did you provide an object name instead of the object itself?" |> stop(call. = FALSE) |> tryCatch(error = function(e) message("stop: ", e)); return(invisible())
-        } 
-    }
-    
-    # # If the object name is provided but not the object itself, retrieve the object
-    # if (!is.null(.objectname) && is.null(.object)) {.object <- get(.objectname)}
-    
-    # If the object is provided but not the object name, create an object name
-    if (!is.null(.object) && is.null(.objectname)) {.objectname <- deparse(substitute(.object))}
-    
-    if(exists("MetaData")) {
-        if("DataSetNames" %in% names(MetaData)) {
-            if(.objectname %in% names(MetaData$DataSetNames)) {
-                assign(.objectname, structure(get(.objectname), MetaData = MetaData))
-            }
-        } 
-    }
-    if(is.null(CompressionMethod))      CompressionMethod = ifelse(object.size(.objectname) > 1e6, "xz", "gz")
-    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(.objectname) > 1e6, ".xz", ""))
-    if(is.null(.path4write))            .path4write = env1$path$.path4write
-    if(is.null(.path.file))             .path.file = paste0(.path4write,"/",.filename.ext4write)
-
-    if(createBackup) cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
-    cat(.objectname, ' |> write_rds(',shQuote(.path.file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time()', "  \n", sep="")
-    if(path.size_files) cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
-    
-    if(Execute) {
-        if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .path.file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
-        system.time(write_rds( get(.objectname), .path.file, compress = CompressionMethod, compression = 9L ))
-        if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
-    }
-    
-    if(git_add_f) {
-        if (git_lfs_track == "determine based on object size") {
-            if(object.size(.objectname) > 1e7) {
-                env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
-            } else {
-                env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
-            }
-        } else if (git_lfs_track == TRUE) {
-                env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = Execute) 
-        } else {
-            env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path.file) ), Execute = Execute)
-        }
-    }
-    
-    invisible()
-}
 
 
 
