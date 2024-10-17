@@ -143,7 +143,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
   return(vec.factor)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_DataSet_CodeBook.walk2factor =  ----  
 # https://github.com/mkim0710/51_model_formula/blob/main/Rdev/60_communicate_report_export/f_DataSet_CodeBook.walk2factor.source.r  
@@ -166,7 +166,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 }
 
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 #_________________________________________________________________________________  ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  

@@ -61,7 +61,7 @@
     }
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## \$ f_CodeBook_DataSet_VarName.labelled =  ----
 # https://github.com/mkim0710/blob/main/Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.labelled.source.r
@@ -88,7 +88,7 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
 }
 
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
-env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name = "f", show_packageStartupMessage = TRUE)
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = getOption("function.reload"), runLoadedFunction = FALSE)
 
 
 
