@@ -340,111 +340,7 @@ MetaData$VarNames$WAVE_VARNAME3293 = KoGES201806vars_waves.rev.CLEAN$WAVE_VARNAM
 ```
   
   
-## @ MetaData) TableNames ----  
 
-## @ MetaData) VarNames.filter ----  
-Caution) filter the variables based on RegEx for VarNames, or VarDescription, or VarClassification.  
-  
-## @ MetaData) VarNames.select ----  
-Caution) filter the selected variables (VarNames.select) from the codebook, select the selected variables (VarNames.select) from the dataset.  
-  
-```{r MetaData.VarNames.select, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-## @ KoGES201806vars.CLEAN_TRIM |> dplyr::filter(Select == "Select") \%>\% {.\$VarName.suffix} |> as.character()  
-## @ KoGES201806vars.CLEAN_TRIM |> dplyr::filter(Select == "Select") \%>\% {.\$WAVE1_VarName.suffix} |> as.character()  
-## @ MetaData\$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") \%>\% {.\$WAVE_VARNAME}  
-MetaData$VarNames.select$VarName.suffix.select122 = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(Select == "Select") %>% {.$VarName.suffix} |> as.character()
-MetaData$VarNames.select$VarName.suffix.select122 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
-MetaData$VarNames.select$VarName.suffix.select122 |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n  ") %>% {cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n", ., "  \n", sep="")}  # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---    
-cat("    ________________________________________________________________________    \n")
-MetaData$VarNames.select$WAVE_VARNAME.select836 = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") %>% {.$WAVE_VARNAME} |> as.character()
-MetaData$VarNames.select$WAVE_VARNAME.select836 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
-MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") |> dplyr::select(VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, ValueChange) %>% spread(WAVE_VARNAME, key = "Wave") |> print(n=200)
-# MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") |> group_by(VarName.suffix, VarDescription, VarType, ValueChange) |> summarise(n=n(), nd.Wave = n_distinct(Wave), nd.WAVE_VARNAME = n_distinct(WAVE_VARNAME)) |> print(n=200)
-MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(Select == "Select") %>% group_by(VarName.suffix, VarDescription, VarType, ValueChange) %>% summarise(n=n(), nd.Wave = n_distinct(Wave), nd.WAVE_VARNAME = n_distinct(WAVE_VARNAME)) |> filter(n < 7)
-```  
-  
-  
-## @ MetaData) Varnames.suffix ----  
-  
-```{r A00.suffix-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-options(width=120)
-MetaData$VarNames$A00.suffix = c("DATA_CLASS", "CKSTEAM", "CKROAST", "CKFRI", "CKSSN", "CKSOUP", "CKOIL", "CKOILETC", "SPCOIL", "SPCOILETC",   
-  "RMEALFQA", "BMEALFQA", "SKPMEAL", "EATOUTFQ", "ALNMEALFQ", "SOUPEAT", "FRFSWT", "FRFSLT", "FRFSPCY",   
-  "FRFSOUR", "FRFOILY", "MNSAG", "PREG", "FPREGAG", "CHILD", "FLABAG", "BRSTF", "BRSTC", "SABHX", "SABNO",   
-  "AABHX", "AABNO", "GDM", "VISITALL", "SEX", "EDU", "SMAG")
-MetaData$VarNames$A00.suffix %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
-```
-  
-  
-```{r A01_7.suffix465-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-options(width=120)
-MetaData$VarNames$A01_7.suffix465 = c("PHYSTB", "PHYSIT", "PHYACTL", "PHYACTM", "PHYACTH", "AEROBFQ", "AEROBAM", "JOGFQ", "JOGAM", "SWIMFQ", "SWIMAM", 
-"TENIFQ", "TENIAM", "GOLFFQ", "GOLFAM", "BOWLFQ", "BOWLAM", "HEALTHFQ", "HEALTHAM", "WALKFQ", "WALKAM", "CLIMBFQ", 
-"CLIMBAM", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU", "SBP_L", "DBP_L", "SBP_R", "DBP_R", "PULSE", "WAIST", 
-"HIP", "HEIGHT", "WEIGHT", "DS", "DT", "DZ", "DP", "MS", "MT", "MZ", "MP", "HBA1C", "GLU0_ORI", "GLU0_TR", 
-"GLU60_ORI", "GLU60_TR", "GLU120_ORI", "GLU120_TR", "TOTPRT", "ALBUMIN_ORI", "ALBUMIN_TR", "BUN_ORI", "BUN_TR", 
-"CREATININ_ORI", "CREATININ_TR", "CA", "TOTBIL", "AST_ORI", "AST_TR", "ALT_ORI", "ALT_TR", "R_GTP_ORI", "R_GTP_TR", 
-"CRP", "HSCRP", "TCHL_ORI", "TCHL_TR", "HDL_ORI", "HDL_TR", "TRIGLY_ORI", "TRIGLY_TR", "NA", "K", "CL", "WBC_B_ORI", 
-"WBC_B_TR", "RBC_B_ORI", "RBC_B_TR", "HB_ORI", "HB_TR", "HCT_ORI", "HCT_TR", "PLAT_ORI", "PLAT_TR", "INS0", 
-"INS60", "INS120", "RENIN", "PRT_U", "CREATINE_U", "URICACID_U", "CA_U", "NA_U", "K_U", "MICALBU_U", "ALBU_U", 
-"PH_U", "NITRIT_U", "SG_U", "PRT16_U", "GLU16_U", "KETONE_U", "BILI16_U", "BLOOD16_U", "UROBILI_U", "COLOR_U", 
-"RBC_U", "WBC_U", "EPCELL_U", "CASTS_U", "BACTERIA_U", "CRYSTAL1_U", "CRYSTAL2_U", "CRYSTAL3_U", "CRYSTAL4_U", 
-"CRYSTAL5_U", "CRYSTAL6_U", "OTHER_U", "VITB12", "FOLATE", "FREET4", "TSH", "CD", "PB", "AL", "INCELL", "IB1_2", 
-"IB1_3", "IB1_4", "EXCELL", "BODYPRT", "BODYMIN", "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG", "CH0", "CH2", "CH3", 
-"CH4", "CH5", "CH6", "CH7", "CH8", "CH9", "CH10", "CH11", "CH12", "CH13", "CH14", "CH15", "CH16", "CH17", 
-"CH18", "CH19", "CH20", "CH21", "CH23", "CH24", "CH25", "CH26", "CH27", "CH28", "CH29", "CH30", "CH31", "CH32", 
-"CH33", "BRF", "MEALRG", "OVEREAT", "MEALSPD", "AFTDNN", "MEATFAT", "HTN", "HTNAG", "HTNCU", "DM", "DMAG", 
-"DMCU", "ULCER", "ULCERAG", "ULCERCU", "ALLER", "ALLERAG", "ALLERCU", "MI", "MIAG", "MICU", "THY", "THYAG", 
-"THYCU", "CHF", "CHFAG", "CHFCU", "CAD", "CADAG", "CADCU", "LIP", "LIPAG", "LIPCU", "ASTH", "ASTHAG", "ASTHCU", 
-"CLD", "CLDAG", "CLDCU", "PVD", "PVDAG", "PVDCU", "KID", "KIDAG", "KIDCU", "HEPA", "HEPAAG", "HEPACU", "TB", 
-"TBAG", "TBCU", "CEVA", "CEVAAG", "CEVACU", "HEIN", "HEINAG", "HEINCU", "UTI", "UTIAG", "UTICU", "ARTH", "ARTHAG", 
-"ARTHCU", "GOUT", "GOUTAG", "GOUTCU", "LCA", "LCAAG", "LCACU", "GCA", "GCAAG", "GCACU", "HCCCA", "HCCCAAG", 
-"HCCCACU", "COLCA", "COLCAAG", "COLCACU", "PACA", "PACAAG", "PACACU", "UTCA", "UTCAAG", "UTCACU", "BRCA", 
-"BRCAAG", "BRCACU", "THYCA", "THYCAAG", "THYCACU", "PROCA", "PROCAAG", "PROCACU", "GALLCA", "GALLCAAG", "GALLCACU", 
-"HTN_C", "HTNAG_C", "DM_C", "DMAG_C", "DRINK", "DRDU", "DRQDU", "TAKFQ", "TAKAM", "RICEFQ", "RICEAM", "WINEFQ", 
-"WINEAM", "SOJUFQ", "SOJUAM", "BEERFQ", "BEERAM", "HLIQFQ", "HLIQAM", "ETCNA", "ETCFQ", "ETCT", "ETCAM", "TOTALC", 
-"DRUGST", "DRUGSTYR1", "DRUGSTCU", "DRUGSTYR2", "DRUGSP", "DRUGSPYR1", "DRUGSPCU", "DRUGSPYR2", "DRUGSL", 
-"DRUGSLYR1", "DRUGSLCU", "DRUGSLYR2", "DRUGCP", "DRUGCPYR1", "DRUGCPCU", "DRUGCPYR2", "DRUGTB", "DRUGTBYR1", 
-"DRUGTBCU", "DRUGTBYR2", "DRUGINS", "DRUGINSYR1", "DRUGINSCU", "DRUGINSYR2", "DRUGHT", "DRUGHTYR1", "DRUGHTCU", 
-"DRUGHTYR2", "DRUGAR", "DRUGARYR1", "DRUGARCU", "DRUGARYR2", "DRUGUL", "DRUGULYR1", "DRUGULCU", "DRUGULYR2", 
-"DRUGTH", "DRUGTHYR1", "DRUGTHCU", "DRUGTHYR2", "DRUGOR", "DRUGORYR1", "DRUGORCU", "DRUGORYR2", "DRUGFH", 
-"DRUGFHYR1", "DRUGFHCU", "DRUGFHYR2", "DRUGOS", "DRUGOSYR1", "DRUGOSCU", "DRUGOSYR2", "DRUGDM", "DRUGDMYR1", 
-"DRUGDMCU", "DRUGDMYR2", "DRUGICD", "DRUGICDYR1", "DRUGICDCU", "DRUGICDYR2", "DRUGDI", "DRUGDIYR1", "DRUGDICU", 
-"DRUGDIYR2", "DRUGAS", "DRUGASYR1", "DRUGASCU", "DRUGASYR2", "DRUGLP", "DRUGLPYR1", "DRUGLPCU", "DRUGLPYR2", 
-"EKG", "FMHTN", "FMFHT", "FMFHTAG", "FMMHT", "FMMHTAG", "FMBHT", "FMBHTAG", "FMCHT", "FMCHTAG", "FMDM", "FMFDM", 
-"FMFDMAG", "FMMDM", "FMMDMAG", "FMBDM", "FMBDMAG", "FMCDM", "FMCDMAG", "FMHEA", "FMFHEA", "FMFHEAAG", "FMMHEA", 
-"FMMHEAAG", "FMBHEA", "FMBHEAAG", "FMCHEA", "FMCHEAAG", "PMYN_C", "PMAG_C", "B01", "B02", "B03", "B04", "B05", 
-"B06", "B07", "B08", "B09", "B10", "B11", "B12", "B13", "B14", "B15", "B16", "B17", "B18", "B19", "B20", "B21", 
-"B23", "B24", "VISIT", "EDATE", "AGE", "MARRY", "INCOME", "SMOKE", "SMQYR", "SMQMO", "SMDU", "SMAM", "SMIN", 
-"PACKYR", "PSM", "PSMHFQ", "PSMHMIN", "PSMOFQ", "PSMOMIN", "PSMDU", "TREATD1", "TREATD2", "TREATD3", "TREATD4", 
-"TREATD5", "TREATD6", "TREATD7", "TREATD8", "TREATD9", "TREATD11", "TREATD13", "TREATD14", "TREATD15", "TREATD16", 
-"TREATD20", "TREATD21", "TREATD22", "TREATD23", "TREATD24", "TREATD27", "TREATD18A", "TREATD18B", "TREATD18C", 
-"TREATD18D", "TREATD18E", "TREATD18F", "TREATD18G", "TREATD18H", "TREATD18I", "TREATD18J")   
-MetaData$VarNames$A01_7.suffix465 %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
-```
-  
-  
-## @ MetaData) Varnames.matrix ----  
-  
-```{r A00.names-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-## \$ A00.names ----  
-MetaData$VarNames$A00.names = paste0("A00_", MetaData$VarNames$A00.suffix)
-MetaData$VarNames$A00.names %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
-```
-  
-  
-```{r A01_7.names.matrix-NoEcho, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-### \$ A01_7.names.matrix ----  
-MetaData$VarNames$A01_7.names.matrix = outer(1:7, MetaData$VarNames$A01_7.suffix465, function(x,y) paste0("A0", x, "_", y)) %>% structure(., dimnames=list(paste0("A0", 1:7), MetaData$VarNames$A01_7.suffix465))
-MetaData$VarNames$A01_7.names.matrix %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); str(.)}
- # chr [1:7, 1:465] "A01_PHYSTB" "A02_PHYSTB" "A03_PHYSTB" "A04_PHYSTB" "A05_PHYSTB" "A06_PHYSTB" "A07_PHYSTB" "A01_PHYSIT" ...
- # - attr(*, "dimnames")=List of 2
- #  ..$ : chr [1:7] "A01" "A02" "A03" "A04" ...
- #  ..$ : chr [1:465] "PHYSTB" "PHYSIT" "PHYACTL" "PHYACTM" ...
-```
 
 
 # _______________  
@@ -511,14 +407,6 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 ```
 
 
-#### \% |> select(matches("DM")) ----  
-#### \% |> select(matches("PHY")) ----  
-#### \% |> select(matches("EDU")) ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-DataSet.Date.NA.rmAllNA %>% select(matches("DM")) %>% str(max.level = 2)
-DataSet.Date.NA.rmAllNA %>% select(matches("PHY")) %>% str(max.level = 2)
-DataSet.Date.NA.rmAllNA %>% select(matches("EDU")) %>% str(max.level = 2)
-```
 
 
   
@@ -649,225 +537,6 @@ You can display and search through variable names and labels with `look_for()`:
     ## 
     ## $v3
     ## NULL
-
-
-
-# _______________  
-# @@ 321Table1-df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode.Rmd
-
-
-## @ VarName.suffix.regex = 
-## :: DataSet.Date.NA.rmAllNA = get(DataSetName) |> select(matches(VarName.suffix.regex))
-### \% |> select(matches("A0[0-3]")) ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-VarName.suffix.regex = 
-    c(
-        paste0("A0[1-5]_", 
-               c("WEIGHT", "HEIGHT", 
-                 "BMI.cut5")), 
-        # outer(c("delta", "pd"), 1:4, paste0), 
-        paste0("A02_", ".*", 
-               c("delta", "pd"), 
-               "1"),
-        paste0("A02_", ".*", 
-               c("delta", "pd"), 
-               "1"),
-        paste0("A03_", ".*", 
-               c("delta", "pd"), 
-               "2"),
-        paste0("A05_", ".*", 
-               c("delta", "pd"), 
-               "4"),
-        paste0("A00_", 
-               c("SEX")), 
-        "Female",
-        paste0("A01_", 
-               c("EDATE", "AGE", "INCOME", 
-                 "WAIST", "HIP", 
-                 "BODYFAT", "OBDIG1", "OBDIG2", "OBDEG", 
-                 # "BP", "PULSE", "HTN_C", "HTNCU", "TREATD1", "DRUGHTCU", "FMHTN", 
-                 "PULSE", "HTN_C", "HTNCU", "DRUGHTCU", "FMHTN", 
-                 "HBA1C", "GLU0_TR", "DM_C", "DMCU", "TREATD2", "DRUGDMCU", "DRUGINSCU", "FMDM",
-                 "PHYSTB", "PHYSIT", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU", 
-                 "BRF", "MEALRG", "AFTDNN",
-                 "DRINK", "DRDU", 
-                 "SMOKE", "SMAG", "SMDU", "SMAM", "PSM", "PSMDU", 
-                 "LIPCU", 
-                 "MICU", "CHFCU", "CADCU", "PVDCU", "TREATD8", "FMHEA", 
-                 "CEVACU", 
-                 "KIDCU", "TREATD14"))
-    ) %>% paste0(collapse="|")
-VarName.suffix.regex %>% dput
-DataSet.Date.NA.rmAllNA = get(DataSetName) %>% select(matches(VarName.suffix.regex)) %>% 
-    # select(matches("A00|A01|A04|A07"))
-    # select(matches("A00|A01|A07"))
-    select(matches("A0[0-3]"))
-DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA[sort(names(DataSet.Date.NA.rmAllNA))]
-DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% mutate_if(function(vec) {is.numeric(vec) && n_distinct(vec) <= 10}, as.factor)
-DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
-```
-  
-  
-# _______________  
-# @@ 12CodeBook.recode-df_NewDMv3.CensorEND.select971.NA.rmAllNA.recode.Rmd
-
-## :: DataSet = get(DataSetName)  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-DataSet = get(DataSetName)  
-```
-
-## @ MetaData) Variables: demographics ----  
-### \% VarCategory \%in\% c("일반사항", "일반정보")  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("일반사항", "일반정보")) |> 
-    dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-
-
-#### \% VarName.suffix |> str_detect("Sex"|>regex(ignore_case=TRUE))  
-##### \% VarName.suffix \%in\% c("SEX")  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarName.suffix.regex = "(SEX)"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix |> str_detect(VarName.suffix.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-VarName.suffix.selected = c("SEX")
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected)
-VarName.suffix.selected |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# KoGES201806vars.CLEAN_TRIM.filter |> t() %>% apply(2, function(vec) paste0(names(vec),": ",vec)) |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n------------\n")
-KoGES201806vars.CLEAN_TRIM.filter %>% mutate(VarName.suffix_Description = paste0(VarName.suffix, "\t| ", VarDescription, "\t| ", ValueOptions)) %>% select(VarName.suffix_Description, Questionnaire) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected) |> dplyr::select(VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, ValueChange) %>% spread(WAVE_VARNAME, key = "Wave")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> as_tibble()
-```
-  
-  
-
-## @ MetaData) Variables: exposure/mediator ----  
-### \% VarCategory \%in\% c("생활습관(운동력)", "생활습관(음주력)", "생활습관(흡연력)", "식습관")  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("생활습관(운동력)", "생활습관(음주력)", "생활습관(흡연력)", "식습관")) |> 
-    dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-  
-  
-
-### \% VarCategory \%in\% c("신체계측", "체성분검사")  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("신체계측", "체성분검사")) |> 
-    dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-  
-  
-### \% VarDescription |> str_detect("활동|운동"|>regex(ignore_case=TRUE))  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarDescription.regex = "(활동)|(운동)"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarDescription |> str_detect(VarDescription.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-
-
-#### \% VarName.suffix |> str_detect("MET|PHYS|EXER"|>regex(ignore_case=TRUE))  
-##### \% VarName.suffix \%in\% c("PHYSTB", "PHYSIT", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU" )   
-##### \% VarName.suffix \%in\% c("PHYSTB", "MET")   
-###### ! Check as1_7.sas7bdat  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarName.suffix.regex = "(MET)|(PHYS)|(EXER)"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix |> str_detect(VarName.suffix.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-VarName.suffix.selected = c("PHYSTB", "PHYSIT", "MET", "EXERCUR", "EXER", "EXERFQ", "EXERDU" ) 
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected)
-VarName.suffix.selected |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# KoGES201806vars.CLEAN_TRIM.filter |> t() %>% apply(2, function(vec) paste0(names(vec),": ",vec)) |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n------------\n")
-KoGES201806vars.CLEAN_TRIM.filter %>% mutate(VarName.suffix_Description = paste0(VarName.suffix, "\t| ", VarDescription, "\t| ", ValueOptions)) %>% select(VarName.suffix_Description, Questionnaire) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected) |> dplyr::select(VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, ValueChange) %>% spread(WAVE_VARNAME, key = "Wave")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> as_tibble()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# as1_7.sas7bdat |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# as1_7.sas7bdat |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> as_tibble()
-```
-
-(55555=추적조사 미참여, 66666=조사안함, 77777=해당없음, 99999=미상/무응답/미측정)  
-
-
-
-
-  
-### \% VarDescription |> str_detect("식사|섭취"|>regex(ignore_case=TRUE))  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarDescription.regex = "(식사)|(섭취)"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarDescription |> str_detect(VarDescription.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-
-
-#### \% VarName.suffix |> str_detect("B0[1-4]"|>regex(ignore_case=TRUE))  
-##### \% VarName.suffix \%in\% c("BRF", "MEALRG", "AFTDNN", "B01", "B02", "B03", "B04", "B10", "B24")   
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarName.suffix.regex = "(B0[1-4])"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix |> str_detect(VarName.suffix.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-VarName.suffix.selected = c("BRF", "MEALRG", "AFTDNN", "B01", "B02", "B03", "B04", "B10", "B24") 
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected)
-VarName.suffix.selected |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-# KoGES201806vars.CLEAN_TRIM.filter |> t() %>% apply(2, function(vec) paste0(names(vec),": ",vec)) |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n------------\n")
-KoGES201806vars.CLEAN_TRIM.filter %>% mutate(VarName.suffix_Description = paste0(VarName.suffix, "\t| ", VarDescription, "\t| ", ValueOptions)) %>% select(VarName.suffix_Description, Questionnaire) |> t() |> as.data.frame() %>% map_chr(paste, collapse="\n") %>% cat(sep="\n    ------------------------------------------------------------------------    \n")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected) |> dplyr::select(VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, ValueChange) %>% spread(WAVE_VARNAME, key = "Wave")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> mutate_if(is.character, as.factor) |> summary()
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-DataSet |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> as_tibble()
-```
-
-
-### \% VarDescription |> str_detect("음주"|>regex(ignore_case=TRUE))  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarDescription.regex = "(음주)"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarDescription |> str_detect(VarDescription.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
-
-
-
-### \% VarDescription |> str_detect("흡연"|>regex(ignore_case=TRUE))  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-VarDescription.regex = "(흡연)"
-KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarDescription |> str_detect(VarDescription.regex|>regex(ignore_case=TRUE)))
-KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suffix, VarDescription, ValueOptions, Select) |> env1$f$f_df.print_byVar(VarCategory, n=99)
-```
 
 
 # _______________  
@@ -1111,6 +780,28 @@ DataSet %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(v
 ```
   
   
+## \% DataSet.fct |> env1$f$f_CodeBook_DataSet.labelled()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+DataSet = get(DataSetName)
+attributes(DataSet)$MetaData = NULL
+# DataSet = DataSet %>% select(matches("SEX"))
+# DataSet = DataSet %>% select(matches("^A00"))
+# DataSet = DataSet %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
+DataSet = DataSet %>% select(matches("^A0[0-1]"))
+# DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
+DataSet.fct = DataSet %>% mutate_if(is.character, as.factor)
+DataSet.fct %>% str
+DataSet.fct = DataSet.fct %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE)
+DataSet.fct %>% as_tibble() %>% print(n=5)
+DataSet.fct %>% str(maxlevel = 2)
+cat("    ________________________________________________________________________    \n")
+DataSet.fct %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(vec), as_factor) %>% str(maxlevel = 2)
+```
+
+
+
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -1134,28 +825,7 @@ options(width=120)
   
 
 
-  
-
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### \% |> () ----  
-```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
+ 
   
 ###### \% |> () ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
