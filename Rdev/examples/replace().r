@@ -1,7 +1,7 @@
 # replace().r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 df <- tibble(x = c(1, 2, NA), y = c("a", NA, "b"), z = list(1:5, NULL, 10:20))
 df %>% replace_na(list(x = 0, y = "unknown"))
 df$x %>% replace_na(0)

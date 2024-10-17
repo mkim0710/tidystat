@@ -1,7 +1,7 @@
 # function.traj_clusters_by_time.dev.r
 
 Sys.setenv(LANG = "en")
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(RODBC)
 channel = odbcDriverConnect("Driver= {SQL Server}  ;   server=VITS-ARCHSQLP04; database=DM_DEID")
 dataset = sqlQuery(channel, paste("
@@ -73,7 +73,7 @@ dataset
 
 
 function.dataset.transform = function(dataset, varname4value = "value", varname4time = "days_from_t0", nsequence = 5) {
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out = list()
     dataset = dataset %>% dplyr::filter(sequence %in% 1:nsequence)
     out$data =
@@ -134,7 +134,7 @@ dataset.transform |> str()
 
 
 function.traj_clusters_by_sequence = function(input, seed = 1) {
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     library(traj)
     measures = input %>% {step1measures(.$data, .$sequence, ID = T)}
     factors = measures %>% step2factors
@@ -251,7 +251,7 @@ traj_clusters_by_sequence |> str()
 
 
 function.traj_clusters_by_time = function(input, seed = 1) {
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     library(traj)
     measures = input %>% {step1measures(.$data, .$time, ID = T)}
     factors = measures %>% step2factors

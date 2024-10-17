@@ -303,7 +303,7 @@ options(width=120)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 MetaData$ModelList$time2event$formula %>% print
 MetaData$ModelList$time2event$formula %>% str
@@ -416,7 +416,7 @@ f_formula.lhs_rhs_vars = function(formula, include_input_in_output = TRUE) {
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 MetaData$ModelList$time2event = NULL
 MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 
@@ -438,7 +438,7 @@ MetaData$ModelList$time2event$formula
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 MetaData$ModelList$time2event = NULL
 MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 
@@ -459,7 +459,7 @@ MetaData$ModelList$time2event$formula
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 MetaData$ModelList$time2event = NULL
 MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
 MetaData$ModelList$time2event$formula.lhs_rhs_vars = 
@@ -508,7 +508,7 @@ f_list_formula.append_lhs_rhs_vars = function(list_formula) {
 options(width=120)
 .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 MetaData$ModelList$time2event = NULL
 MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% f_list_formula.append_lhs_rhs_vars()
 MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)

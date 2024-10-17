@@ -1,5 +1,5 @@
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/17_categorical_indicators/function.df_factor.one_hot_encode.dev.r
 function.df_factor.one_hot_encode <- function(input_df, sep4levelname = "_") {

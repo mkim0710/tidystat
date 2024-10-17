@@ -87,7 +87,7 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ## .GlobalEnv$.tmp = list() ====  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
 ## .GlobalEnv$env1 = new.env() ====  
@@ -740,7 +740,7 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
     # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
     # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     #
-    # library(survival)
+    # .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # MetaData$ModelList$time2event = NULL
     # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     #
@@ -778,7 +778,7 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
     # ## \% |> env1$f$f_list_formula.append_lhs_rhs_vars(MetaData$ModelList$time2event)
     # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     # 
-    # library(survival)
+    # .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
     # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% env1$f$f_list_formula.append_lhs_rhs_vars()
     # MetaData$ModelList$time2event %>% str(max.level = 2, give.attr = F)

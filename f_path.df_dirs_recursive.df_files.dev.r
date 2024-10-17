@@ -92,7 +92,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 
 
 ## @ input_path = "Rdev" =====  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 dir(full.names = FALSE) |> str() #----
 dir(full.names = T) |> str() #----
 # dir(full.names = T, recursive = T) |> str() #----  
@@ -120,7 +120,7 @@ dir(full.names = T) |> str() #----
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 
 ## @ source(file.path(.GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$path, .GlobalEnv$env1$source[[paste0("source.", .GlobalEnv$env1$source$tmp_objectname)]]$filename)) ----  

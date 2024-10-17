@@ -4,7 +4,7 @@
 ## @ old x1x2z.partial_correlation_dbl() ==========  
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     if (convert_binary2numeric == T) {
@@ -69,7 +69,7 @@ x1x2z.partial_correlation_dbl(x1 = tmp.df[[1]], x2 = tmp.df[[2]], z = tmp.df[[3]
 ## @ x1x2z.partial_correlation_dbl() revision 180523 ==========  
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F, p.value = F) {  # revision 180523
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     if (convert_binary2numeric == T) {

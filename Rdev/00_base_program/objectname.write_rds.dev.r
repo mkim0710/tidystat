@@ -50,7 +50,7 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(.objectname,".
 
 
 ## @ -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 getwd()
 .path4read = env1$path$.path4read 
 .objectname = "d.NDCNUM_concept_name.join_redbook2019.STRNGTH_Manual"
@@ -62,7 +62,7 @@ assign(.objectname, read_rds(file.path(.path4read, paste0(.objectname,".rds"))) 
 
 
 ## @ -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 getwd()
 .path4read = env1$path$.path4read 
 .objectname = "d.NDCNUM_concept_name.join_redbook2019.STRNGTH_Manual"
@@ -79,7 +79,7 @@ Sys.time() - .t0
 
 
 ## @ -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 getwd()
 .path4write = env1$path$.path4write
 .objectname = "data_list.AgeSexAdjusted"

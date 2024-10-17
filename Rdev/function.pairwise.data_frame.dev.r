@@ -53,7 +53,7 @@ x %>% mutate(tmp = 1) %>%
 
 
 ## @ outer(i, j, function(i, j) {}) ============  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 outer(c("A","B"), 1:3, paste0)
 outer(c("A","B"), 1:3, paste0) |> as.vector()
 # > outer(c("A","B"), 1:3, paste0)
@@ -511,7 +511,7 @@ public_v2_112917.levels123 %>% mutate(isCollege_MS_PhD = ifelse(is.na(isCollege_
 ## @ function.pairwise.data_frame = function(vars) { ======  
 function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.pairwise.data_frame.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     vars.outer = outer(vars, vars, function(x, y) paste(x, y, sep = "&"))
     if (only.lower.tri == T) {
         tmp = data_frame(vars = vars.outer[lower.tri(vars.outer)])
@@ -527,7 +527,7 @@ function.pairwise.data_frame.old = function(vars, only.lower.tri = T) {
 ## @ function.pairwise.data_frame = function(vars) { ======  
 function.pairwise.data_frame = function(vars, only.lower.tri = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.pairwise.data_frame.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     vars.factor.unique.sort = sort(unique(as.factor(vars)))
     out = data.frame(
         var_i = rep(vars.factor.unique.sort, each = length(vars.factor.unique.sort))

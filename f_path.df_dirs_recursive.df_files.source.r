@@ -79,7 +79,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ## .GlobalEnv$.tmp = list() ====  
 .listname = ".tmp"; if(!exists(.listname, envir=.GlobalEnv)) { assign(.listname, list(), envir=.GlobalEnv) }
 ## .GlobalEnv$env1 = new.env() ====  

@@ -1,6 +1,6 @@
 #@ ICD10_3char_sub_chapter.tibble from icd10_chapters.expand_range.ICD10_3char & icd10_sub_chapters.expand_range.ICD10_3char .r  
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd10_chapters.expand_range.ICD10_3char.rda"))
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/icd10_sub_chapters.expand_range.ICD10_3char.rda"))
 

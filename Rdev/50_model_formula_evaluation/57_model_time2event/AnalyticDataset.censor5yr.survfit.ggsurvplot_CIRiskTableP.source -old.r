@@ -2,8 +2,8 @@
 
 # [Plot] Stratified Kaplan-Meier Survival Curve ---------  
 # ```{r, paged.print=FALSE, fig.width=8, fig.height=6}
-library(tidyverse)
-# library(survival)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+# .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # library(survminer)
 # ?survival::lung 
 AnalyticDataset = survival::lung %>% mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] %>% as.factor)
@@ -73,7 +73,7 @@ data.formula.survfit |>
 
 
 #--------------  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 library(readxl)
 plot_surv200401 <- read_excel("plot_surv200401.xlsx") %>% mutate(
@@ -86,7 +86,7 @@ plot_surv200401 <- read_excel("plot_surv200401.xlsx") %>% mutate(
 )
 
 
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(survminer)
 
 # ?survival::Surv

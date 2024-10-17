@@ -1,7 +1,7 @@
 # Holdings_VT_URTH_VWO.list from .r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # ?read_csv
 # ?read_file
 

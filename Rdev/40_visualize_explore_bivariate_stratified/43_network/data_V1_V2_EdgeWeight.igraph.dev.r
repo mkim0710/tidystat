@@ -51,7 +51,7 @@ data_V1_V2_EdgeWeight.igraph = function(
             # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
         }
     }
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     library(igraph)
     par.mfrow.original = par()$mfrow
     par.mar.original = par()$mar
@@ -241,7 +241,7 @@ data_V1_V2_EdgeWeight.igraph = function(
 
 
 ## @ test) data_V1_V2_EdgeWeight.igraph() termDocMatrix.t.df.lgl.comat ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load("data/termDocMatrix.rdata")
 termDocMatrix.t.df = termDocMatrix %>% t |> as_data_frame()
 termDocMatrix.t.df %>% map_df(as.factor) |> summary()
@@ -540,7 +540,7 @@ termDocMatrix.t.df.lgl.comat.gather.upper.tri.igraph[[1]]$analysis %>% attr(., "
 
 
 ## @ test) data_V1_V2_EdgeWeight.igraph() trainsetCC69agg4i07_829.Ctrl.lgl.comat ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load("data/trainsetCC69agg4i07_829.rda")
 trainsetCC69agg4i07_829.Ctrl.lgl = trainsetCC69agg4i07_829 %>% select_if(is.logical) %>% dplyr::filter(is.Case != T) %>% select(-is.Case)
 trainsetCC69agg4i07_829.Ctrl.lgl %>% map_df(as.factor) |> summary()

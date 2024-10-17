@@ -48,7 +48,7 @@ function.lm_object.summary.coefCI = function(lm_object, sprintf_fmt_decimal = 2,
     if(class(lm_object) != "lm") {
         stop("class(lm_object) != \"lm\"")
     }
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     lm_object.confint.df = as.data.frame(confint(lm_object))
     lm_object.summary.coef.df = as.data.frame(coef(summary(lm_object))) |> rownames_to_column()
     
@@ -153,7 +153,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
     if(!"glm" %in% class(glm_object)) {
         stop("!\"glm\" %in% class(glm_object)")
     }
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     glm_object.confint.df = as.data.frame(confint(glm_object))
     glm_object.summary.coef.df = as.data.frame(coef(summary(glm_object))) |> rownames_to_column()
     if (coef.exp == T) {
@@ -266,8 +266,8 @@ glm_object %>% function.glm_object.summary.exp
 #     if(!"clogit" %in% class(clogit_object)) {
 #         stop("!\"clogit\" %in% class(clogit_object)")
 #     }
-#     library(tidyverse)
-#     library(survival)
+#     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+#     .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #     clogit_object.confint.df = as.data.frame(confint(clogit_object))
 #     clogit_object.summary.coef.df = as.data.frame(coef(summary(clogit_object))) |> rownames_to_column()
 #     if (coef.exp == T) {
@@ -344,7 +344,7 @@ glm_object %>% function.glm_object.summary.exp
 # 
 # 
 # #@ test) function.clogit_object.summary.exp() ----  
-# library(survival)
+# .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # logan2 = data.frame(
 #     survival::logan[rep(1:nrow(survival::logan), length(levels(survival::logan$occupation))), ]
 #     , id = rep(1:nrow(survival::logan), length(levels(survival::logan$occupation)))
@@ -402,8 +402,8 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
             stop("!\"clogit\" %in% class(coxph_object)")
         }
     } 
-    library(tidyverse)
-    library(survival)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+    .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     coxph_object.confint.df = as.data.frame(confint(coxph_object))
     coxph_object.summary.coef.df = as.data.frame(coef(summary(coxph_object))) |> rownames_to_column()
     if (coef.exp == T) {
@@ -498,8 +498,8 @@ function.coxph_object.summary.exp = function(coxph_object, sprintf_fmt_decimal =
 
 
 ## @ test) function.clogit_object.summary.exp() - clogit .object ----  
-library(tidyverse)
-library(survival)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 logan2 = data.frame(
     survival::logan[rep(1:nrow(survival::logan), length(levels(survival::logan$occupation))), ]
     , id = rep(1:nrow(survival::logan), length(levels(survival::logan$occupation)))
@@ -547,7 +547,7 @@ clogit_object %>% function.coxph_object.summary.exp
 function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
     library(glmnet)
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
         coef(cv.glmnet_object, s = chr)
     }) %>% map(as.matrix) %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = "rowname")
@@ -581,7 +581,7 @@ function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, pri
 }
 
 ## @ test) function.cv.glmnet_object.coef.exp() -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(glmnet)
 x = matrix(rnorm(1e3 * 100), 1e3, 100)
 y = rnorm(1e3)
@@ -645,7 +645,7 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
     function.cv.glmnet_object.coef.exp = function(cv.glmnet_object, nonzero = F, print_any_expB_gt.2 = F) {
         # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/function.lm_object.summary.coefCI.dev.r")
         library(glmnet)
-        library(tidyverse)
+        .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         out = c("lambda.min", "lambda.1se") %>% map(function(chr) {
             coef(cv.glmnet_object, s = chr)
         }) %>% map(as.matrix) %>% map(as.data.frame) %>% map(rownames_to_column) %>% reduce(full_join, by = "rowname")
@@ -679,7 +679,7 @@ function.cv.glmnet_alphas_list_object.coef.exp = function(cv.glmnet_alphas_list_
     }
 
     library(glmnet)
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out2 = cv.glmnet_alphas_list_object %>% map(function.cv.glmnet_object.coef.exp)
     if (is.null(i_names)) {
         # names(cv.glmnet_alphas_list_object) %>% grep("\\.a1$|\\.a0\\.[1-9]$", ., value = T)

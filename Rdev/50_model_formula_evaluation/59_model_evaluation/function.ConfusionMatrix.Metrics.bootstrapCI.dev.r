@@ -1,7 +1,7 @@
 # function.ConfusionMatrix.Metrics.bootstrapCI.dev.r
 # function.ConfusionMatrix.Metrics.dev.r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # InputSquareMatrix.tbl <- read_delim("InputSquareMatrix.tbl.csv", "\t", escape_double = FALSE, trim_ws = TRUE)
 tribble_paste = datapasta::tribble_paste
 tibble::tribble(

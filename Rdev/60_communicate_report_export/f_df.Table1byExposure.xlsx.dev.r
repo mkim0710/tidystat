@@ -194,8 +194,8 @@ DataSet.Date.NA.rmAllNA %>%
 
 
 
-library(tidyverse)
-library(tableone)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+.packagename = "tableone"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 ##@ DataSet.Table1 -----  
 # # DataSet.Table1 = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 

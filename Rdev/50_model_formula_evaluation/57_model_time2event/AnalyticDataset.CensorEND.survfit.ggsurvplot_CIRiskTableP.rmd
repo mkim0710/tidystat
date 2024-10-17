@@ -289,7 +289,7 @@ df_NewDMv3.NAtime |> dplyr::select(time, event, Group, StudyPopulation) %>% by(.
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
   
@@ -390,7 +390,7 @@ options(width=120)
 ```{r plot-CodeTemplate, eval=FALSE, include=FALSE}
 # ```{r plotWidth10Height6, results="markup", collapse=TRUE, paged.print=FALSE, fig.width=10, fig.height=6}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 ?survival::lung

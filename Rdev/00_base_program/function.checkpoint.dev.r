@@ -99,8 +99,8 @@ dput(installed.packages(.libPaths()[1])[, "Package"])
 
 
 
-library(tidyverse)
-# > library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+# > .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
 # ✔ ggplot2 2.2.1       ✔ purrr   0.2.4  
 # ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1

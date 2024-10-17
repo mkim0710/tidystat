@@ -1,5 +1,5 @@
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(lubridate)
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/19_numeric_integer/function.df_continuous_vars.normalize.dev.r

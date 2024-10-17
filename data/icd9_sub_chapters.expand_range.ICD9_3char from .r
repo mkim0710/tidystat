@@ -1,7 +1,7 @@
 # icd9_sub_chapters.expand_range.ICD9_3char from .r
 # icd10_sub_chapters.expand_range.ICD10_3char from icd10_sub_chapters .r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(icd)
 packageVersion("icd")
 # > library(icd)

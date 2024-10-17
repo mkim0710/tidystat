@@ -1,6 +1,6 @@
 # function.metadata.dev.r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 list.files("data/") %>% grep(".rda$", ., value = T)
 list.files.rda = list.files("data/") %>% grep(".rda$", ., value = T) %>% gsub(".rda$", "", .)
 

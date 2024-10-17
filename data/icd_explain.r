@@ -1,6 +1,6 @@
 # icd_explain from .r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(icd)
 icd_explain(c("43410", "43491"), short_code = TRUE)
 explain_code(c("43410", "43491"), short_code = TRUE)

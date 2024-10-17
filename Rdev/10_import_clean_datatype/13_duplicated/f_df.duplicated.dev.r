@@ -1,6 +1,6 @@
 # f_df.duplicated.dev.r
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/13_duplicated/f_df.duplicated.dev.r
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 
 
@@ -44,7 +44,7 @@ nhis_heals_gj0215.0213[
 
 
 # https://stackoverflow.com/questions/22959635/remove-duplicated-rows-using-dplyr
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 set.seed(1234)
 df.example = data.frame(x=sample(0:1,10,replace=T),y=sample(0:1,10,replace=T)) |> rownames_to_column()
 # df.example |> tribble_paste() #----  

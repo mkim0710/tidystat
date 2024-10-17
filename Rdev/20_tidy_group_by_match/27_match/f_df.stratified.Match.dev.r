@@ -6,7 +6,7 @@
 
 # #@ function.11matching.by.factors() -----  
 # function.11matching.by.factors = function(data, varname4MatchingUpon = "diabetes", varnames4MatchingBy = c("age", "sex"), seed = 1) {
-#     library(tidyverse)
+#     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 #     if ("RowNum_original" %in% names(data)) {
 #         warning('"RowNum_original" %in% names(data)')
 #     } else {
@@ -128,7 +128,7 @@ data.tab_strata_exposure = function(
 }
 
 ## @ test) data.tab_strata_exposure() rhc_mydata.rda -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata %>% data.tab_strata_exposure(.vars4strata = c("female", "age.cut"), .exposure = "treatment")
@@ -232,7 +232,7 @@ data.strata_list = function(
 
 
 ## @ test) data.strata_list() rhc_mydata.rda -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata |> as_tibble()
@@ -351,7 +351,7 @@ data.Match = function(
 ) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     if (load.dependent.library == T) {
-        library(tidyverse)
+        .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         library(Matching)
         library(tableone)
         # library(useful)
@@ -598,7 +598,7 @@ data.Match = function(
 }
 
 ## @ test) data.Match() rhc_mydata.rda -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.Match = rhc_mydata %>% data.Match(
@@ -888,7 +888,7 @@ rhc_mydata.Match_Mahal_caliper.2$Table1_post_total |> print(smd = T)
 
 
 ## @ test) data.Match() rhc_mydata.na ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.na = rhc_mydata
@@ -1384,7 +1384,7 @@ f_df.stratified.Match = function(
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
     if (!is.data.frame(.mydata)) stop("!is.data.frame(.mydata)")
     if (load.dependent.library == T) {
-        library(tidyverse)
+        .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
         library(Matching)
         library(tableone)
         # library(useful)
@@ -1445,7 +1445,7 @@ f_df.stratified.Match = function(
     ) {
         # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/R/data.stratfied.Match.dev.r")
         if (load.dependent.library == T) {
-            library(tidyverse)
+            .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
             library(Matching)
             library(tableone)
             # library(useful)
@@ -1788,7 +1788,7 @@ f_df.stratified.Match = function(
 }
 
 ## @ test) f_df.stratified.Match() rhc_mydata.rda -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_myf_df.stratified.Match = rhc_mydata %>% f_df.stratified.Match(
@@ -2340,7 +2340,7 @@ rhc_myf_df.stratified.Match_propensity_score_caplier.2$Table1_post_total |> prin
 
 
 ## @ test) f_df.stratified.Match() rhc_mydata.na ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/rhc_mydata.rda"))
 rhc_mydata$age.cut = rhc_mydata$age %>% cut(breaks = c(0, 10 * 1:10, Inf), include.lowest = T, right = F)
 rhc_mydata.na = rhc_mydata

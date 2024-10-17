@@ -786,7 +786,7 @@ if(!"f_df.t.tribble_construct" %in% names(.GlobalEnv$env1)) {
 #    0.00    0.01    1.02 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 df =
 tibble::tribble(
              ~varname,        ~V1,        ~V2,

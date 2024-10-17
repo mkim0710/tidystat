@@ -108,7 +108,7 @@ paste("my text", format(frm))
 
 
 ## @ -------  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 require(mice)
 
 nhanes2 |> dput()

@@ -1,7 +1,7 @@
 
 # https://chatgpt.com/c/97499aa6-b413-44c2-ad01-cd13a3e6c3fa
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 ## @ Check if an SSH Agent is Already Running: ====  
 # [ -z "$SSH_AGENT_PID" ]: This checks if the variable SSH_AGENT_PID is empty (-z tests for an empty string). If this variable is unset or empty, it indicates that there is no SSH agent PID known to the session, implying no agent is running.

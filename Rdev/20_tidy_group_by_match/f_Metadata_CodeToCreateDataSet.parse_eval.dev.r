@@ -1,7 +1,7 @@
 # f_Metadata_CodeToCreateDataSet.parse_eval.dev.r
 
 ## \$ analyticDF_time2event =  ----  
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 # ?survival::lung

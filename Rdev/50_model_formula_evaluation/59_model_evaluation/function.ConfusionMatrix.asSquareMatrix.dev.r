@@ -1,6 +1,6 @@
 # function.ConfusionMatrix.asSquareMatrix.dev.r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 InputMatrix.tbl = 
     structure(list(
         Actual = c("1a", "1b", "2a", "2b", "3a", "3b", "4")

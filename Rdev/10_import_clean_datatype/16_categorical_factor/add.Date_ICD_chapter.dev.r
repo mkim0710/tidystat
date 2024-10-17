@@ -29,7 +29,7 @@ paste0("I", 70:79) |> dput() #----
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 set.seed(123)
 
 sample_data <- tibble(
@@ -121,7 +121,7 @@ sample_data %>%
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 set.seed(123)
 sample_data <- tibble(

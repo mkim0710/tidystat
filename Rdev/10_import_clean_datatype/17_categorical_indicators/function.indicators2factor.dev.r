@@ -207,7 +207,7 @@ table(addNA(Month, ifany = TRUE))
 
 # https://www.r-bloggers.com/conversion-between-factor-and-dummies-in-r/ ====  
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 data(iris)
 str(iris)

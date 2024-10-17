@@ -87,7 +87,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs"
 env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
@@ -96,7 +96,7 @@ env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 #   Error: filename.ext must have an extension.
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 filename.ext = "fhs.index100le10"
 env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
@@ -170,7 +170,7 @@ env1$f$f_filename.ext.find_subpath(filename.ext, VERBOSE = T)
 
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 source("f_filename.ext.find_subpath.source.r")
 .tmp = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, VERBOSE = TRUE)
 # > MetaData$DataSetNames[[DataSetName]] = env1$f$f_DataSetName.Search.read.checkEntity(DataSetName=DataSetName,ext="rds", .path4read=.path4read, vec_candidate4ID = c("rowname", "rownum", "Num", "ID", "CompositeKey", "hpid", "pid", "hid"), return.output = TRUE, VERBOSE = TRUE)

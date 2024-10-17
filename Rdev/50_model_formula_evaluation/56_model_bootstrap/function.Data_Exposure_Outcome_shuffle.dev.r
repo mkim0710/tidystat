@@ -4,9 +4,9 @@
 
 # In each line, texts after the sharp ("#") character are comments (not interpreted by the computer). ----  
 # install.packages("tidyvserse")  # Only need to install once. ----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # install.packages("openxlsx2")  # Only need to install once. ----  
-library(openxlsx2)
+.packagename = "openxlsx2"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 getwd()                                            # See the current working directory. ----
 ffqtot = readRDS("ffqtot.rds")                     # No need to write the path, if the file is in the current working directory.
@@ -84,7 +84,7 @@ ffqtot$currsm %>% sample |> str()
 
 
 function.Data_Exposure_Outcome_shuffle = function(Data_Exposure_Outcome, varname4Outcome = "Outcome", seed = NULL) {
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
     # if(!is.null(seed)) {
     #     set.seed(seed)

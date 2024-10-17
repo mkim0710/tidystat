@@ -2,9 +2,9 @@
 # function.tableDF.dev.r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 set.seed(1); sample(1:9, 30, replace = T) |> dput() #----
-# > library(tidyverse)
+# > .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # > set.seed(1); sample(1:9, 30, replace = T) |> dput() #----  
 c(3L, 4L, 6L, 9L, 2L, 9L, 9L, 6L, 6L, 1L, 2L, 2L, 7L, 4L, 7L,
 5L, 7L, 9L, 4L, 7L, 9L, 2L, 6L, 2L, 3L, 4L, 1L, 4L, 8L, 4L)

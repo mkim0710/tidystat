@@ -1,7 +1,7 @@
 # function.sqlite.index.dev.r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 getwd() |> dput()
 # > getwd() |> dput()
 # "X:/mkim/Rproject"
@@ -173,7 +173,7 @@ mydb %>% {DBI::dbListTables(.)} %>% map(function(chr) {
 # @@@ KNHIS.JK_GJ596284.SICK_SYM.INDEX.sqlite from KNHIS.JK_GJ596284.SICK_SYM.sqlite .r ====  
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 mydb <- DBI::dbConnect(RSQLite::SQLite(), "KNHIS.JK_GJ596284.SICK_SYM.INDEX.sqlite")
 
 mydb %>% {DBI::dbListTables(.)} |> dput()

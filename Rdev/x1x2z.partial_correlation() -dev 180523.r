@@ -6,7 +6,7 @@
 ## @ x1x2z.partial_correlation() ==========  
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall")) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     x1.binary2numeric = function.binary2numeric(x1)
@@ -32,7 +32,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 
 
 ## @ test: stackloss) x1x2z.partial_correlation() ------  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 str(stackloss)
 # > str(stackloss)
 # 'data.frame':	21 obs. of  4 variables:
@@ -116,7 +116,7 @@ out
 
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     x1.binary2numeric = function.binary2numeric(x1)
@@ -1451,7 +1451,7 @@ out %>% map(t) %>% map(as_tibble) %>% bind_rows(.id = "method") %>% select(metho
 ## @ x1x2z.partial_correlation() revision 180523 v5 ==========  
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {  # revision 180523 v5
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     x1.binary2numeric = function.binary2numeric(x1)
@@ -1533,7 +1533,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 
 
 ## @ test: stackloss) x1x2z.partial_correlation() ------  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 str(stackloss)
 # > str(stackloss)
 # 'data.frame':	21 obs. of  4 variables:

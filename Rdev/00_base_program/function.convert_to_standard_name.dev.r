@@ -1,4 +1,4 @@
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/18_dichotomous_logical/function.ExpressionText2StandardName.dev.r
 # https://github.com/mkim0710/tidystat/new/master/Rdev/00_base_program/function.convert_to_standard_name.dev.r

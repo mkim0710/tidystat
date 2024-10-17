@@ -94,7 +94,7 @@ system.time(replicate(10^5, check.integer.tolerance2(8.9)))
 #    user  system elapsed 
 #    0.78    0.01    0.79 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(microbenchmark)
 mbm = microbenchmark(
     check.integer1 = check.integer1(8.9)

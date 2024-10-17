@@ -1,6 +1,6 @@
 # function.read_encoded_csv.dev.r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 library(readr)
 # > duplicate_ID92_190320 <- read_csv("G:/My Drive/duplicate_ID92_190320.txt")
 # Parsed with column specification:

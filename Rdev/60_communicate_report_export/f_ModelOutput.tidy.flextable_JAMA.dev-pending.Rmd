@@ -223,9 +223,9 @@ https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b
 ## \$ GermanBreastCancerStudyGroup =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # Load Required Libraries
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # Load Dataset and Rename
 GermanBreastCancerStudyGroup <- survival::gbsg

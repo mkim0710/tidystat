@@ -6,7 +6,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
     if(!"glm" %in% class(glm_object)) {
         stop("!\"glm\" %in% class(glm_object)")
     }
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     glm_object.confint.df = as.data.frame(confint(glm_object))
     glm_object.summary.coef.df = as.data.frame(coef(summary(glm_object))) |> rownames_to_column()
     if (coef.exp == T) {
@@ -104,7 +104,7 @@ function.glm_object.summary.exp = function(glm_object, sprintf_fmt_decimal = 2, 
 
 
 # @@@@ data.SSQ_5_6 =====  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 load(url("https://raw.githubusercontent.com/mkim0710/tidystat/master/data/data.SSQ_5_6.rda"))
 library(survey)
 data.svydesign = data.SSQ_5_6 %>% svydesign(id = ~PSUNEST+HHNEST, strata = ~BOROSTRATUM, weights = ~CAPI_WT, nest = TRUE, data = . , pps="brewer")

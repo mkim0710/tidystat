@@ -83,7 +83,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 # gitignore_escaped_select.UC.regex from gitignore.Rmd
 # f_vec.extract_non_alphanumeric_list.dev.r
   
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 f_vec.extract_non_alphanumeric_list <- function(input_vec) {
   f_str.extract_non_alphanumeric_vec <- function(input_string) {
     positions <- gregexpr("[^[:alnum:]]", input_string)  # Match any non-alphanumeric character

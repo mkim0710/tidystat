@@ -1,7 +1,7 @@
 # list.PERSON_ID.setdiff.diagram.n grViz().r
 # https://github.com/mkim0710/tidystat/edit/master/Rdev/list.PERSON_ID.setdiff.diagram.n%20grViz().r
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 list.PERSON_ID.setdiff = read_rds("list.PERSON_ID.setdiff.rds")
 list.PERSON_ID.setdiff |> str() #----
 # > list.PERSON_ID.setdiff |> str() #----  

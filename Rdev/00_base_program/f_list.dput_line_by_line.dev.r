@@ -74,7 +74,7 @@ list_vec = list(`Roboto Condensed` = c("\ttexmf-dist/fonts/opentype/google/robot
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # |> deparse() |> cat("  \n", sep="") -----  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 list_vec |> deparse() |> cat("  \n", sep="")
 list("Roboto Condensed" = c("\ttexmf-dist/fonts/opentype/google/roboto",  "\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto",  "\ttexmf-dist/fonts/vf/google/roboto", "."), "Roboto Serif" = c("\ttexmf-dist/fonts/opentype/google/roboto",  "\ttexmf-dist/fonts/tfm/google/roboto", "\ttexmf-dist/fonts/type1/google/roboto",  "\ttexmf-dist/fonts/vf/google/roboto", "\ttexmf-dist/tex/latex/roboto",  "."), "Cascadia Code Semibold" = c("\ttexmf-dist/fonts/opentype/public/cascadia-code",  "\ttexmf-dist/fonts/tfm/public/cascadia-code", "\ttexmf-dist/fonts/type1/public/cascadia-code",  "\ttexmf-dist/fonts/vf/public/cascadia-code", "."), NanumMyeongjo = NULL,      NanumGothic = NULL, D2Coding = NULL)
 

@@ -268,7 +268,7 @@ dput(swapped_vector)
 ##### \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # Function to convert ValueOptions string to a named vector with customizable separators
 string_to_named_vector <- function(value_options, pair_sep = ",", value_label_sep = "=") {
@@ -305,7 +305,7 @@ print(named_vector_custom)
 ### \% "ValueA=LabelA, ValueB=LabelB" |> ----  
 #### https://gemini.google.com/app/639552d667363004
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # Example ValueOptions string
 value_options <- "ValueA=LabelA, ValueB=LabelB"
@@ -341,7 +341,7 @@ print(named_vector)
 ##### \% |> swap_names_values() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # Function to swap names and values in a named vector
 swap_names_values <- function(named_vector) {
@@ -362,7 +362,7 @@ dput(swapped_vector)
 ##### \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # Function to convert ValueOptions string to a named vector with swapped names and values
 string_to_named_vector <- function(value_options) {
@@ -391,7 +391,7 @@ dput(named_vector)
 ##### \% |> string_to_named_vector() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 # Function to convert ValueOptions string to a named vector with swapped names and values
 string_to_named_vector <- function(value_options, 

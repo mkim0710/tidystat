@@ -2,7 +2,7 @@
 # modified from function.tbl_varname_level_HRCI.dev.r & function.lm_object.summary.coefCI.dev.r
 
 function.tbl_varname_level_ORCI = function (object.glm, focus.variable = ".*", digits = 2, coef.exp = T, use.confint.default = F) {
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     if(use.confint.default) {
         function.confint = confint.default

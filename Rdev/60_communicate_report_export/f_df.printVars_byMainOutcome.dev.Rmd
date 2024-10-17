@@ -193,7 +193,7 @@ options(width=120)
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
-# suppressPackageStartupMessages(library(tidyverse))
+# .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # #@@ START) data -----
 # ## \$ DataSetName |> paste0(".rds") %>% paste0(.path4read.subpath,ifelse(.path4read.subpath=="","","/"),.) |> read_rds() %>% assign(DataSetName, value = ., envir = .GlobalEnv) ====
 # .path4read.subpath = r"(data)"|>str_replace_all("\\\\","/")
@@ -210,7 +210,7 @@ options(width=120)
 ## \$ analyticDF_time2event =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # suppressPackageStartupMessages(library(survival))
 # ?survival::lung
 .objectname = DataSetName = "analyticDF_time2event"

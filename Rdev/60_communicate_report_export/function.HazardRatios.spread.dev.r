@@ -22,7 +22,7 @@
 
 # @@@@ A quick & dirty way below~!!! ................................................................................  
 ## @ analyticDF2797.coxphTimeOutcome_Exposure_tt ====  
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
     mutate(Time2Event = PrimaryOutcome123456.time, Event = PrimaryOutcome123456
            # , Time2Censor = PrimaryOutcome123456.time #, Censor = PrimaryOutcome123456
@@ -54,7 +54,7 @@ analyticDF2797.coxphTimeOutcome_Exposure_tt %>% cox.zph %>% {survminer::ggcoxzph
 
 
 ## @ analyticDF2797.coxphTimeOutcome_Exposure_tt_Covariates ====  
-library(survival)
+.packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 data = analyticDF2797 %>% mutate(Exposure = Exposure=="metformin_after_insulin") %>% mutate_if(is.logical, as.numeric) %>% 
     mutate(Time2Event = PrimaryOutcome123456.time, Event = PrimaryOutcome123456
            # , Time2Censor = PrimaryOutcome123456.time #, Censor = PrimaryOutcome123456

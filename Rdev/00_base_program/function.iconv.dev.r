@@ -125,7 +125,7 @@ saveRDS(korpopmap1.UTF8, "korpopmap1.UTF8.rds")
 
 
 # http://blog.naver.com/PostView.nhn?blogId=n2ll_&logNo=221427614530&categoryNo=7&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 korpopmap1@data |> names() %>% iconv(from = "EUC-KR", to = "UTF-8") |> dput()
 korpopmap1@data |> names() %>% iconv(from = "UTF-8", to = "CP949") |> dput()
 korpopmap1@data |> names() %>% iconv(from = "UTF-8", to = "EUC-KR") |> dput()

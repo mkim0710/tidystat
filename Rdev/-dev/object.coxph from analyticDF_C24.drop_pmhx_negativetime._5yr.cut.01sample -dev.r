@@ -1,7 +1,7 @@
 # object.coxph from analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample.r
 
 
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 ## @ object.coxph = coxph(formula = Surv(time = fuduration_yr, event = evnttrth_C24_r) ~ . , data = df, method = "breslow") ====  
 analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample %>% str
 df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample

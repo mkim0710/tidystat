@@ -21,7 +21,7 @@ function.binary2numeric = function(x) {
 }
 
 array3d_R_C_strata2df = function(array3d_R_C_strata) {
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     x1x2z.df = array3d_R_C_strata |> as.table() |> as.data.frame()
     
     index = map(1:nrow(x1x2z.df), function(i) rep(i, x1x2z.df[i,4])) |> unlist()
@@ -52,7 +52,7 @@ array3d_R_C_strata2df = function(array3d_R_C_strata) {
 ## @ x1x2z.partial_correlation() revision 180523 v5 ==========  
 x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spearman", "kendall"), p.value = F) {  # revision 180523 v5
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     x1.binary2numeric = function.binary2numeric(x1)
@@ -134,7 +134,7 @@ x1x2z.partial_correlation = function(x1, x2, z, cor_method = c("pearson", "spear
 
 
 ## @ test: stackloss) x1x2z.partial_correlation() ------  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 str(stackloss)
 # > str(stackloss)
 # 'data.frame':	21 obs. of  4 variables:
@@ -220,7 +220,7 @@ x1x2z.partial_correlation(x1 = stackloss$Air.Flow, x2 = stackloss$Water.Temp, z 
 
 
 ## @ test: data) x1x2z.partial_correlation() ------  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 n = 100
 data = data_frame(
   PERSON_ID = as.factor(1:(n * 2))
@@ -341,7 +341,7 @@ x1x2z.partial_correlation(x1 = data$Outcome.gt0, x2 = data$Strata, z = data$isEx
 ## @ x1x2z.partial_correlation_dbl() revision 180523 ==========  
 x1x2z.partial_correlation_dbl = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F, p.value = F) {  # revision 180523
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     if (convert_binary2numeric == T) {
@@ -529,7 +529,7 @@ x1x2z.partial_correlation_dbl(x1 = data$Outcome.gt0, x2 = data$Strata, z = data$
 ## @ x1x2z.partial_correlation_scalar() ==========  
 x1x2z.partial_correlation_scalar = function(x1, x2, z, cor_method = "pearson", convert_binary2numeric = F) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/x1x2z.patial_correlation.dev.r")
-    # library(tidyverse)
+    # .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # caution) as.numeric(CategoricalVariable_3MoreLevels)
     if (convert_binary2numeric == T) {

@@ -187,7 +187,7 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ## \$ example_data =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-suppressPackageStartupMessages(library(tidyverse))
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 # Create an example dataset
 set.seed(123)  # For reproducibility
 example_data <- data.frame(

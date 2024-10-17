@@ -160,7 +160,7 @@ map.parent_name2 = function(vec, .f, .max.object.size.to.store = object.size(`[<
 
 
 ## @ test) map.parent_name() 1:3 -------  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 set.seed(1); 1:3 %>% map(rnorm, n = 10) |> str()
 set.seed(1); 1:3 %>% map.parent_name(rnorm, n = 10, .add.attributes = F) |> str()
 set.seed(1); 1:3 %>% map.parent_name2(rnorm, n = 10, .add.attributes = F) |> str()

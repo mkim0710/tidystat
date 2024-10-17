@@ -602,7 +602,7 @@ function.get_ram()
 
 ####
 library(benchmarkme)
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 
 get_cpu() |> str()
 get_ram() |> str()

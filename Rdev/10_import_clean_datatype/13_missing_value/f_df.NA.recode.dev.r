@@ -2,7 +2,7 @@
 
 f_df.NA.recode = function(data, numeric_NA_recode_into_0 = T, character_NA_recode_into = "", reorder_factor = T) {
     # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/data.strata_list.Match.dev.r")
-    library(tidyverse)
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out = data %>% map_df(function(x){
         if (is.numeric(x)) {
             if (numeric_NA_recode_into_0 == T) {

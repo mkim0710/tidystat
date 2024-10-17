@@ -108,7 +108,7 @@ list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Ro
 
 
 ## @ outer(i, j, function(i, j) {}) ============  
-library(tidyverse)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
 outer(c("A","B"), 1:3, paste0)
 outer(c("A","B"), 1:3, paste0) |> as.vector()
 # > outer(c("A","B"), 1:3, paste0)

@@ -6,8 +6,8 @@
 
 
 function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
-    library(survival)
-    library(tidyverse)
+    .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     list_levels = object.coxph$xlevels  # debug181027 for logical variables appended with "TRUE" in the dataseet.
     list_levels = c(list_levels, which(object.coxph$terms %>% attr(., "dataClasses") == "logical") |> names() %>% {set_names(map(., function(x) c("FALSE", "TRUE")), .)})  # debug181027 for logical variables appended with "TRUE" in the dataseet.
@@ -96,8 +96,8 @@ results <- map(list(
 
 ## @ annotated version -------  
 function.tbl_varname_level_HRCI = function (object.coxph, focus.variable = ".*", digits = 2) {
-    library(survival)
-    library(tidyverse)
+    .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+    .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     
     # df = analyticDF_C24.drop_pmhx_negativetime._5yr.cut.01sample
     # vec = c("evnttrth_C24_r", "fuduration_yr"
