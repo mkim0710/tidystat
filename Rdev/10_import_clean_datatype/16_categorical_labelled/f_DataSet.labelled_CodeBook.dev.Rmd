@@ -440,6 +440,8 @@ MetaData$VarNames$A01_7.names.matrix %>% {cat(" > ",deparse(substitute(.))," |> 
  #  ..$ : chr [1:465] "PHYSTB" "PHYSIT" "PHYACTL" "PHYACTM" ...
 ```
 
+
+# _______________  
 # @@ START) Data ----  
 
 ## \$ df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode  
@@ -909,6 +911,7 @@ f_chrNameValuePairs2vector = function(chrNameValuePairs, NameValuePair_separator
 ### \% "1=남자, 2=여자" |> ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 MetaData$tblVarName$tblVarName.suffix %>% filter(VarName.suffix == "SEX") %>% pull(ValueOptions) %>% as.character %>% dput
+i.ValueOptions = MetaData$tblVarName$tblVarName.suffix %>% filter(VarName.suffix == "SEX") %>% pull(ValueOptions) %>% as.character
 i.ValueOptions = "1=남자, 2=여자"
 i.ValueOptions |> env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE) %>% dput
 ```
@@ -934,8 +937,11 @@ KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarCategory %in% c("일반사항", "
 
 #### \% VarName.suffix |> str_detect("Sex"|>regex(ignore_case=TRUE))  
 ##### \% VarName.suffix \%in\% c("SEX")  
+###### :: var_label(DataSet[[i.WAVE_VARNAME]]) = ----  
+###### :: val_label(DataSet[[i.WAVE_VARNAME]]) = ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # VarName.suffix.regex = "(SEX)"
 # KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix |> str_detect(VarName.suffix.regex|>regex(ignore_case=TRUE)))
 # KoGES201806vars.CLEAN_TRIM.filter$VarName.suffix |> as.character() |> deparse() |> cat("  \n", sep="")
@@ -944,28 +950,35 @@ VarName.suffix.selected = c("SEX")
 # KoGES201806vars.CLEAN_TRIM.filter = KoGES201806vars.CLEAN_TRIM |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected)
 # VarName.suffix.selected |> deparse() |> cat("  \n", sep="")
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.tblWAVE_VARNAME.join = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected) %>% select(Num, VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, Select) %>% 
+tblVarName.filter = MetaData$tblVarName$tblWAVE_VARNAME |> dplyr::filter(VarName.suffix %in% VarName.suffix.selected) %>% select(Num, VarName.suffix, VarDescription, Wave, WAVE_VARNAME, VarType, Select) %>% 
     left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix")
-.tblWAVE_VARNAME.join
+tblVarName.filter
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.tblWAVE_VARNAME.join$VarDescription |> as.character() |> deparse() |> cat("  \n", sep="")
-cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+DataSet = get(DataSetName)
+DataSet %>% select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
 library(labelled)
-for (i.WAVE_VARNAME in .tblWAVE_VARNAME.join$WAVE_VARNAME) {
-    var_label(DataSet[[i.WAVE_VARNAME]]) = .tblWAVE_VARNAME.join %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(VarDescription) %>% as.character
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+tblVarName.filter$VarDescription |> as.character() |> deparse() |> cat("  \n", sep="")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
+    var_label(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(VarDescription) %>% as.character
 }
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-.tblWAVE_VARNAME.join$ValueOptions |> as.character() |> deparse() |> cat("  \n", sep="")
+tblVarName.filter$ValueOptions |> as.character() |> deparse() |> cat("  \n", sep="")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 library(labelled)
-for (i.WAVE_VARNAME in .tblWAVE_VARNAME.join$WAVE_VARNAME) {
-    .CodeText = .tblWAVE_VARNAME.join %>% dplyr::filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% pull(ValueOptions) %>% {paste0("c(",.,")")}
-    print(.CodeText)
-    # eval(parse(text = .CodeText))
+for (i.WAVE_VARNAME in tblVarName.filter$WAVE_VARNAME) {
+    val_labels(DataSet[[i.WAVE_VARNAME]]) = tblVarName.filter %>% 
+        filter(WAVE_VARNAME == i.WAVE_VARNAME) %>% 
+        pull(ValueOptions) %>% as.character |> 
+        env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
 }
-
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(matches(VarName.suffix.selected|>paste(collapse="|"))) |> str()
+DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> str()
+DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> as_tibble() |> print(n=5)
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> str()
+DataSet %>% {attr(., "n_distinct") = NULL; attr(., "MetaData") = NULL; .} |> select(any_of(tblVarName.filter$WAVE_VARNAME)) |> mutate_all(as_factor) |> as_tibble() |> print(n=5)
 ```
   
   
@@ -990,30 +1003,59 @@ options(width=120)
 ```
   
   
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
 
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-options(width=120)
-
-```
-  
-  
 # _______________  
 # @@ START) function ----  
-## \% |> function_name()  
+## \% |> f_CodeBook_vec.labelled()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+f_CodeBook_df_VarName.labelled = function(DataSet, VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE) {
+    library(labelled)
+    var_label(DataSet[[VarName]]) = tblVarName_VarDescription_ValueOptions %>% 
+        dplyr::filter(WAVE_VARNAME == VarName) %>% 
+        pull(VarDescription) %>% as.character
+    val_labels(DataSet[[VarName]]) = tblVarName_VarDescription_ValueOptions %>% 
+        filter(WAVE_VARNAME == VarName) %>% 
+        pull(ValueOptions) %>% as.character |> 
+        env1$f$f_chrNameValuePairs2vector(vecNamed.swap = TRUE)
+}
+
+
+DataSet = get(DataSetName)
+f_CodeBook_df_VarName.labelled(DataSet, "A00_SEX", tblVarName.filter)
+
+
+```
+
+
+## \% |> f_CodeBook_DataSet.labelled()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+f_CodeBook_DataSet.labelled = function(DataSet) {
+    
+}
+
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
