@@ -322,6 +322,7 @@ attributes(tblVarName)$n_distinct =
          VarName = n_distinct(tblVarName$VarName),
          Wave = n_distinct(tblVarName$Wave),
          VarName.suffix = n_distinct(tblVarName$VarName.suffix) )
+tblVarName %>% str()
 MetaData$tblVarName$tblVarName = tblVarName
 ```
   
