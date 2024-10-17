@@ -137,7 +137,7 @@ env1$f$f_CodeText.echo = function(
         # warning('The newline character(s) will be substituted by "; "')
         # .CodeText = .CodeText |> str_replace_all('\n', "; ")
         # 'The newline character(s) is not allowed' |> stop(call. = FALSE) |> tryCatch(error = function(e) {message("stop: ", e); return(invisible())})
-        'Execute not fully implemented for line feed (\\n) or semicolon (;)' |> warning(call. = FALSE, immediate. = TRUE)
+        'Execute not fully implemented for line feed (\\n) or semicolon (;)' |> warning("  \n", call. = FALSE, immediate. = TRUE)
         # return(invisible())
     }
 
