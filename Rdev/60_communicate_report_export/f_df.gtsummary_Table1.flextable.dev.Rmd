@@ -662,12 +662,13 @@ library(Z.gtsummary.addons)
     
     
 ### **ECHO** \% |> tbl_summary(by = trt, statistic = list(all_continuous() ~ "{median} ({p25};{p75})", all_categorical() ~ "{n} ({p}%)")) ---- 
-#### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") ----  
-##### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
 #### \% |> add_n() ----  
 #### \% |> add_overall() ----  
+##### **ECHO** \% |> bold_labels() ----  
 #### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
 #### **ECHO** \% |> add_p() ----  
+#### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
+##### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 tbl = trial %>% 
@@ -677,14 +678,16 @@ tbl = trial %>%
     tbl_summary(
         by = grade,
         statistic = list(all_continuous() ~ "{median} ({p25};{p75})", all_categorical() ~ "{n} ({p}%)"),
+        # statistic = list(all_continuous() ~ "**{median}** ({p25};{p75})", all_categorical() ~ "{n} (**{p}%**)"),
         missing = "ifany"
     ) |> 
     # add_n() %>%
     # add_overall() |>
+    bold_labels() |>
     add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
     add_p() |>
-    modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)") |>
-    # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**SMD**", starts_with("p.value") ~ "**p**") |>
+    modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
+    # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**{colname |> str_replace("^SMD: ","")}**", starts_with("p.value") ~ "***p***") |>
     modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"))
 tbl %>% show_header_names
 tbl |>
