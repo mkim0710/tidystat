@@ -52,7 +52,7 @@ data_V1_V2_EdgeWeight.igraph = function(
         }
     }
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-    library(igraph)
+    .packagename = "igraph"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     par.mfrow.original = par()$mfrow
     par.mar.original = par()$mar
     

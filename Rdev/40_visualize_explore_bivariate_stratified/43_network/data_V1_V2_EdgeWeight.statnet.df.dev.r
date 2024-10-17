@@ -384,10 +384,9 @@ object_statnet.summary_df = function(object_statnet) {
             # paste0("!paste0(\"package:\",", packagename_to_unload,") %in% search()") |> cat("  \n", sep="")
         }
     }
-    library(intergraph)
-    library(statnet)
     .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-    library(statnet)
+    .packagename = "intergraph"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+    .packagename = "statnet"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
     out.df = data.frame(vertex.names = (object_statnet %v% 'vertex.names'))
     out.df$degree = object_statnet %>% degree(gmode = "graph")
     out.df$closeness = object_statnet %>% closeness(gmode = "graph")
