@@ -554,8 +554,7 @@ system("git remote -v")
 
 ##________________________________________________________________________________    
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "sudo apt-get install -y git-lfs" |> system(intern = TRUE) ----
-
+## @ git lfs install
 "sudo apt-get update" |> system(intern = TRUE)
 "sudo apt-get install -y curl ca-certificates" |> system(intern = TRUE)
 "curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash" |> system(intern = TRUE)
