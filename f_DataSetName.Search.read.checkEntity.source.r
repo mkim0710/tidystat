@@ -253,12 +253,12 @@ env1$env.internal$f_function.load2env.internal(.tmp$object, .tmp$objectname, env
         i.path4read=.path4read[i]
         if(VERBOSE) cat('i.path4read = "', i.path4read, '"  \n', sep="")
         if(file.exists(file.path(i.path4read, filename.ext))) {
-            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
+            message( 'Found .path.filename.ext == ', deparse(file.path(i.path4read, filename.ext)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
         } else if(file.exists(file.path(i.path4read, paste0(filename.ext, ".xz")))) {
             filename.ext = paste0(filename.ext, ".xz")
-            cat('Found .path.filename.ext == "', file.path(i.path4read, filename.ext), '"  \n', sep="")
+            message( 'Found .path.filename.ext == ', deparse(file.path(i.path4read, filename.ext)) )
             .tmp.file.found = TRUE
             .path4read2 = i.path4read
         }  
