@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -230,7 +230,7 @@ env0 = env1
 # @@ START) function ----  
 https://chatgpt.com/c/66e7deba-b85c-800e-9f76-124d9087e1a7
 ## \% |> f.updateTemplates() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # ## \$ f.updateTemplates =  ----  
 # # https://github.com/mkim0710/f.updateTemplates.exe.r  
@@ -271,7 +271,7 @@ options(width=120)
 
 
 ## \% |> env1$env.internal$f_file2.compare()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Function to compare two source code files chunk-by-chunk using while loop with a chunk size of 64KB
 env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) {
@@ -309,7 +309,7 @@ env1$env.internal$f_file2.compare <- function(file1, file2, chunk_size = 65536) 
 
 
 ## \% |> env1$env.internal$f_url_destfile.DownloadIfDifferent() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to download a file only if the web file is different from the local file
 env1$env.internal$f_url_destfile.DownloadIfDifferent <- function(url, destfile, chunk_size = 65536) {  # Default 64KB chunk size
     tryCatch({
@@ -349,7 +349,7 @@ env1$env.internal$f_url_destfile.DownloadIfDifferent(url = "https://raw.githubus
   
   
 ## \$ env1\$f\$f.updateTemplates() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # https://github.com/mkim0710/f.updateTemplates.exe.r
 env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
@@ -395,7 +395,7 @@ env1$f$f.updateTemplates()
   
   
 ## \% |> isRemoteFileDifferent() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # library(httr)
 # 
@@ -479,7 +479,7 @@ options(width=120)
   
   
 ## \% |> isRemoteFileDifferent() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -567,7 +567,7 @@ safeDownloadFileIfDifferent(test_url1, local_file1)
   
   
 ## \% |> isRemoteFileDifferent() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -650,7 +650,7 @@ safeDownloadFileIfDifferent(test_url1, local_file1)
   
   
 ###### \% |> isRemoteFileDifferentBySize() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -725,7 +725,7 @@ safeDownloadFileIfDifferent(test_url1, local_file1)
   
   
 ###### \% |> safeDownloadFileWithConditionalGET() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(httr)
 
@@ -778,7 +778,7 @@ safeDownloadFileWithConditionalGET(test_url1, local_file1)
   
   
 ###### \% |> calculateFileHash() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(httr)
 library(digest)
@@ -847,7 +847,7 @@ safeDownloadFileIfDifferentByHash(test_url1, local_file1)
   
   
 #### switch(Sys.info()["sysname"], Linux = { ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # > openxlsx2::xl_open
 # function (x, interactive = NA) 
@@ -922,42 +922,42 @@ f_file.switch_open <- function(file) {
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```

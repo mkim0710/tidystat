@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -220,7 +220,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # @@ START) data example ----  
 https://chatgpt.com/c/4f1ce650-0362-497e-882b-d48792bf6b9a
 ## \% |> extract_non_ascii_with_codes_df()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 extract_non_ascii_with_codes_df <- function(text) {
   # Use a regular expression to identify non-ASCII characters
@@ -247,7 +247,7 @@ extract_non_ascii_with_codes_df <- function(text) {
 ```
 
 ## \$ text_with_rounded_numbers3 =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
@@ -261,7 +261,7 @@ text_with_rounded_numbers3 %>% extract_non_ascii_with_codes_df()
 ```
   
 ## \$ text_with_numbers_with_a_period =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 text_with_numbers_with_a_period = "🄀 ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛"
 text_with_numbers_with_a_period %>% dput
@@ -270,7 +270,7 @@ text_with_numbers_with_a_period %>% extract_non_ascii_with_codes_df()
 
 
 ## \$ text_with_numbers_inside_parenthesis =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 text_with_numbers_inside_parenthesis = "⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇" 
 text_with_numbers_inside_parenthesis %>% dput
@@ -286,7 +286,7 @@ text_with_numbers_inside_parenthesis %>% extract_non_ascii_with_codes_df()
 # @@ START) dev ----  
 
 ## \% text_with_rounded_numbers |>  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -297,7 +297,7 @@ options(width=120)
 https://chatgpt.com/c/ae6269b8-2256-435c-8881-c6c8962debee
 https://chatgpt.com/c/e3de44e5-961f-4244-a2fd-94668801c04c
 ## \% |> function_name()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Function to convert Unicode rounded/circled numbers to regular numbers
 convert_unicode_numbers <- function(text) {
@@ -356,7 +356,7 @@ text_with_rounded_numbers3 |> convert_unicode_numbers()
   
   
 ## \% |> function_name()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 convert_unicode_numbers <- function(input_text) {
   # Define a named vector to map Unicode number variants to standard digits
@@ -473,7 +473,7 @@ text_with_rounded_numbers3 |> convert_unicode_numbers()
   
   
 ## \% |> function_name()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(dplyr)
 
@@ -548,7 +548,7 @@ convert_unicode_numbers() %>% as_tibble
   
   
 ## \% |> function_name()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(dplyr)
 
@@ -632,28 +632,28 @@ text_with_rounded_numbers3 |> convert_unicode_numbers()
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```

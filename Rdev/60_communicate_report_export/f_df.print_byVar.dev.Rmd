@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -262,7 +262,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # @@ START) Data ----  
   
 ## \$ survival::lung ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 
@@ -296,7 +296,7 @@ survival::lung |> summary()
   
   
 ### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ?by
@@ -339,7 +339,7 @@ survival::lung |> as_tibble() |> rownames_to_column() %>%
   
   
 ## \$ data2$sex[c(1,3,5,7,9)] = NA ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 data = survival::lung |> as_tibble() |> rownames_to_column()
 data2 = data
@@ -349,7 +349,7 @@ data2
   
   
 ### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: 1
@@ -390,7 +390,7 @@ data2 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
   
   
 ## \$ data3 = data2 |> mutate(sex = c("Male", "Female")[sex])  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 data3 = data2 |> mutate(sex = c("Male", "Female")[sex]) |> 
     mutate(sex = sex |> as.character() |> replace_na("N/A")) 
@@ -399,7 +399,7 @@ data3
   
   
 ### \% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 # .$sex: Female
@@ -457,7 +457,7 @@ data3 %>% by(.$sex, function(df) {df |> dplyr::select(-sex) |> print(n=99)})
 
 ## \% f_df.print_byVar = function(df, byVar, n = NULL) { ----  
 ### \% by(df, INDICES = df[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
@@ -473,7 +473,7 @@ data3 |> f_df.print_byVar(sex)
 
 
 ### \% df \%>\% {by(., INDICES = .[[quo_name(byVar)]], function(df_subset) df_subset |> dplyr::select(-!!quo_name(byVar)))}  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
@@ -489,7 +489,7 @@ data3 |> f_df.print_byVar(sex)
 
 
 ### \% df \%>\% {by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})}  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
@@ -505,7 +505,7 @@ data3 |> f_df.print_byVar(sex)
 
 
 ### \% df \%>\% by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
@@ -521,7 +521,7 @@ data3 |> f_df.print_byVar(sex)
 
 
 ### \% by(., INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
@@ -537,7 +537,7 @@ data3 |> f_df.print_byVar(sex)
 
 
 ### \% by(INDICES = .[[quo_name(byVar)]], function(df_subset) {df_subset |> dplyr::select(-!!quo_name(byVar))})  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
@@ -554,7 +554,7 @@ data3 |> f_df.print_byVar(sex)
   
 
 ### \% PENDING) group_by(!!byVar) %>% group_walk(~ {  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_df.print_byVar = function(df, byVar, n = NULL) {
     byVar <- enquo(byVar)
@@ -575,35 +575,35 @@ data3 |> f_df.print_byVar(sex)
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```

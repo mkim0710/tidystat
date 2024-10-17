@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -218,7 +218,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # _______________  
 # @@ START) data example ----  
 ## \$ analyticDF_time2event =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
@@ -242,21 +242,21 @@ env0 = env1
 ```
   
 ## \% analyticDF_time2event |>  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -269,7 +269,7 @@ https://chatgpt.com/c/6704c7a7-5300-800e-ab73-107106b8d594
 ## \% |> calculate_smd()  
 ## \% |> smd_continuous()  
 ## \% |> smd_categorical()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 calculate_smd <- function(data, group_var, vars) {
     # Ensure that the group_var is a factor
@@ -352,7 +352,7 @@ smd_categorical <- function(variable, group_var) {
   
   
 ### data |> calculate_smd() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # # Sample data
 # data <- data.frame(
@@ -370,14 +370,14 @@ options(width=120)
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -390,7 +390,7 @@ https://chatgpt.com/c/6704d71a-6620-800e-87ff-2c435e0408d2
 ## \% |> calculate_smd()  
 ## \% |> smd_continuous()  
 ## \% |> smd_categorical()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Improved Function to calculate SMD for a list of variables
 calculate_smd <- function(data, group_var, vars) {
@@ -492,7 +492,7 @@ smd_categorical <- function(variable, group_var) {
 
 
 ### data_example |> calculate_smd() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Example usage with a sample dataset
 # set.seed(123)
 # data_example <- data.frame(
@@ -529,14 +529,14 @@ print(result)
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -546,7 +546,7 @@ options(width=120)
 # @@ START-Gemini) function ----  
 
 ## \% |> calculate_smd()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 calculate_smd <- function(variable, group, type = "pooled", na.rm = TRUE) {
 
@@ -589,7 +589,7 @@ calculate_smd <- function(variable, group, type = "pooled", na.rm = TRUE) {
   
   
 ###### ECHO \% mtcars |> calculate_smd() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 data(mtcars)
 calculate_smd(mtcars$mpg, mtcars$am, type = "pooled") 
@@ -597,14 +597,14 @@ calculate_smd(mtcars$mpg, mtcars$am, type = "pooled")
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -614,7 +614,7 @@ options(width=120)
 # @@ START-Gemini_coding) function ----  
 
 ## \% |> calculate_smd()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 calculate_smd <- function(variable, group, type = c("continuous", "categorical")) {
 
@@ -662,7 +662,7 @@ calculate_smd <- function(variable, group, type = c("continuous", "categorical")
   
 ###### ECHO \% continuous_var |> calculate_smd() ----  
 ###### ECHO \% categorical_var |> calculate_smd() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # # Example usage for continuous variable
 # continuous_var <- rnorm(100)
@@ -698,7 +698,7 @@ print(smd_categorical)
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -806,14 +806,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
 
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```

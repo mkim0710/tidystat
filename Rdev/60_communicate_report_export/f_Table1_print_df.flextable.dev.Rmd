@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -221,7 +221,7 @@ https://www.r-bloggers.com/2021/11/publication-ready-tables-with-flextable-and-o
 https://chatgpt.com/c/66ef713d-52ac-800e-aca5-ac9bb72d680b  
 # @@ START) data example ----  
 ## \$ GermanBreastCancerStudyGroup =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # Load Required Libraries
@@ -325,7 +325,7 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Ta
 
 
 ## \% f_DataSet.Table1.print.df()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 
@@ -365,7 +365,7 @@ f_DataSet.Table1.print.df <- function(DataSet, VarNames4Exposure = c("Interventi
   
   
 ## \% set_flextable_defaults() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # # Custom Table Defaults
 # set_flextable_defaults(font.family = "Calibri", font.size = 10, border.color = "black")
@@ -374,7 +374,7 @@ options(width=120)
 
 
 ## \% f_Table1_print_df.flextable() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to Create Custom Table
 # Function to Create Custom Table
 f_Table1_print_df.flextable <- function(Table1_print_df, header_text, footer_text, 
@@ -413,7 +413,7 @@ f_Table1_print_df.flextable <- function(Table1_print_df, header_text, footer_tex
 
 
 ### :: Table1_print_df = GermanBreastCancerStudyGroup |> generate_table_one() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Generate Table 1 Data Frame
 Table1_print_df <- f_DataSet.Table1.print.df(
     GermanBreastCancerStudyGroup, 
@@ -426,7 +426,7 @@ Table1_print_df
 ```
 
 ### :: flextable1 = Table1_print_df |> f_Table1_print_df.flextable() ----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Generate and Save Flextable
 header_text <- "Table 1. Baseline characteristics of 686 patients enrolled in the German Breast Cancer Study Group between 1984 and 1989"
 footer_text <- "Numbers are No. (%) unless otherwise noted. SD = standard deviation, fmol/L = femtomole per liter, IQR = interquartile range"
@@ -437,7 +437,7 @@ flextable1
 
 
 ###### \% |> save_as_docx() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # # Save the Table as a Word Document with A4 Paper Size and Small Margins
 # save_as_docx(flextable1, path = "library(flextable) flextable1.docx",
 #              pr_section = prop_section(
@@ -500,7 +500,7 @@ env1$f$f_file.switch_open("library(flextable) flextable1.docx")
 ## library(flextable) ----  
 ## library(remotes) ----  
 ## library(flexlsx) ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 for(.packagename in c("openxlsx2", "flextable")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}
 
@@ -554,49 +554,49 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
 
 
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -622,14 +622,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```

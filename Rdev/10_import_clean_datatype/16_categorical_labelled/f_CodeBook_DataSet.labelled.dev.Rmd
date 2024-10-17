@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -218,7 +218,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # _______________  
 # @@ START) data example ----  
 ## \$ analyticDF_time2event =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(survival))
@@ -473,7 +473,7 @@ MetaData$VarNames$A01_7.names.matrix %>% {cat(" > ",deparse(substitute(.))," |> 
 ### :: DataSet.Date.NA.rmAllNA = get(DataSetName) |> select(matches(VarName.suffix.regex))
 #### \% |> select(matches("A0[0-3]")) ----  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.cut5"))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NA.rmAllNA.recode")
 DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode"
@@ -532,7 +532,7 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 #### \% |> select(matches("DM")) ----  
 #### \% |> select(matches("PHY")) ----  
 #### \% |> select(matches("EDU")) ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 DataSet.Date.NA.rmAllNA %>% select(matches("DM")) %>% str(max.level = 2)
 DataSet.Date.NA.rmAllNA %>% select(matches("PHY")) %>% str(max.level = 2)
 DataSet.Date.NA.rmAllNA %>% select(matches("EDU")) %>% str(max.level = 2)
@@ -545,7 +545,7 @@ https://cloud.r-project.org/web/packages/labelled/vignettes/intro_labelled.html
 # @@ Introduction to labelled  
 
 ## library(labelled)
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 if(!requireNamespace("labelled", quietly = TRUE)) install.packages("labelled")
 library(labelled)
 ```
@@ -555,7 +555,7 @@ library(labelled)
 A variable label could be specified for any vector using `var_label()`.
 
 ### **ECHO** :: var_label(df$Var1) = "VarDescription1" ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 iris = datasets::iris
 iris %>% str
 var_label(iris$Sepal.Length) <- "Length of sepal"
@@ -563,7 +563,7 @@ iris %>% str
 ```
 
 ### **ECHO** :: var_label(df) <- list(Var1 = "VarDescription1", Var2 = "VarDescription2") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 iris = datasets::iris
 iris %>% str
     var_label(iris) <- list(
@@ -576,7 +576,7 @@ iris %>% str
 
 You can display and search through variable names and labels with `look_for()`:
 #### ECHO \% df |> look_for() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
     look_for(iris)
 ```
 
@@ -590,7 +590,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##                                                    virginica
 
 #### ECHO \% df |> look_for("varname_part") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
     look_for(iris, "pet")
 ```
 
@@ -599,7 +599,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##  4   Petal.Width  Width of Petal  dbl      0
 
 #### ECHO \% df |> look_for(details = FALSE) ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
     look_for(iris, details = FALSE)
 ```
 
@@ -615,7 +615,7 @@ You can display and search through variable names and labels with `look_for()`:
 
 ### :: v = 
 ### ECHO :: labelled() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
     v <- labelled(
       c(1, 2, 2, 2, 3, 9, 1, 3, 2, NA),
       c(yes = 1, no = 3, "don't know" = 8, refused = 9)
@@ -634,7 +634,7 @@ You can display and search through variable names and labels with `look_for()`:
     ##      9    refused
 
 #### **ECHO** :: val_labels(df$Var1) = c(LabelA = "ValueA", LabelB = "ValueB") ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
     val_labels(v) <- c(yes = 1, nno = 3, bug = 5)
     v
 ```
@@ -650,7 +650,7 @@ You can display and search through variable names and labels with `look_for()`:
 
 ### :: df =
 #### **ECHO** :: val_labels(df) = list(Var1 = c(LabelA = "ValueA", LabelB = "ValueB"), Var2 = c(Label1 = 1, Label2 = 2)) ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
     df <- data.frame(v1 = 1:3, v2 = c(2, 3, 1), v3 = 3:1)
     val_labels(df) <- NULL
     val_labels(df) <- list(v1 = c(yes = 1, no = 3), v2 = c(a = 1, b = 2, c = 3))
@@ -1059,21 +1059,21 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #  4. haven:::vec_cast_named(labels, x, x_arg = "labels", to_arg = "x")
 
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -1096,7 +1096,7 @@ if(!.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.p
 # _______________  
 # @@ START) function ----  
 ## \% |> env1$env.internal$f_CodeBook_DataSet_VarName.labelled()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 DataSet = get(DataSetName)
@@ -1111,7 +1111,7 @@ env1$env.internal$f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2,
 
 
 ## \% |> env1$f$f_CodeBook_DataSet.labelled()  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 env1$f$f_CodeBook_DataSet.labelled = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VERBOSE = getOption("verbose")) {
@@ -1151,21 +1151,21 @@ DataSet %>% mutate_if(function(vec) is.character(vec) && labelled::is.labelled(v
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -1238,14 +1238,14 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
 
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```

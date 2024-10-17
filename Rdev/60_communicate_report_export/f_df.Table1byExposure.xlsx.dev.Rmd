@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -194,7 +194,7 @@ options(width=120)
 ## \$ CohortGJ0910.BaselineJKGJ2085NoHx...01  
 ### \$ DataSet.Date.NA.rmAllNA =  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("SEX"))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # # \$ assign( DataSetName, read_rds(paste0(.path4read,"/",DataSetName,".rds")) ) ====  
 # # .path4read = file.path(env1$path$path0,"Rproject_KNHIS.CohortGJ0910 NoHx")
@@ -254,7 +254,7 @@ options(width=120)
 ### :: DataSet.Date.NA.rmAllNA = get(DataSetName) |> select(matches(VarName.suffix.regex))
 #### \% |> select(matches("A0[0-3]")) ----  
 #### \% |> env1\$f\$f_df.Table1byExposure.xlsx(VarNames4Exposure =  c("A01_BMI.cut5"))  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .path4read = paste0(env1$path$path0,"/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n88.select971.NA.rmAllNA.recode")
 DataSetName = "df_NewDMv3.CensorEND.n88.select293.NA.rmAllNA.recode"
@@ -317,14 +317,14 @@ DataSet.Date.NA.rmAllNA %>% str(max.level = 2)
 
 
 # \% library(tableone) -----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(tableone)
 
 ```
 
 ##@ DataSet.Table1 -----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # #@ DataSet.Table1 -----  
 # # DataSet.Table1 = DataSet.Date.NA.rmAllNA %>% select(-rowname, -PERSON_ID) |> as.data.frame() %>% 
 # #     CreateTableOne(data = ., test = T, includeNA = T, addOverall = T)
@@ -363,7 +363,7 @@ library(tableone)
 
 
 ##@ DataSet.Table1.byExposure -----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 ## @ DataSet.Table1.byExposure -----  
 DataSet.Date.NA.rmAllNA %>% summarise_all(function(x) sum(is.na(x))) %>% t #-----
 DataSet.Date.NA.rmAllNA.select = DataSet.Date.NA.rmAllNA |> as.data.frame() %>% select(-rowname, -PERSON_ID) %>% 
@@ -434,7 +434,7 @@ DataSet.Table1byExposure.print_showAllLevels.IQR |> print(n=5) ###### |> print(n
   
   
 ## \% function.DataSet.Table1byExposure.print.addCols() ----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ## \% function.DataSet.Table1byExposure.print.addCols() ----
 function.DataSet.Table1byExposure.print.addCols = function(DataSet.Table1byExposure.print) {
@@ -464,7 +464,7 @@ function.DataSet.Table1byExposure.print.addCols = function(DataSet.Table1byExpos
   
   
 ## \% function.df.edit_Label_Level()  ----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 function.df.edit_Label_Level = function(DataSet.Date.NA.rmAllNA) {
     DataSet.Date.NA.rmAllNA = DataSet.Date.NA.rmAllNA %>% 
@@ -489,7 +489,7 @@ function.df.edit_Label_Level = function(DataSet.Date.NA.rmAllNA) {
   
   
 ## \% function.DataSet.Table1byExposure.print_showAllLevels.addCols()  ----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 function.DataSet.Table1byExposure.print_showAllLevels.addCols = function(DataSet.Table1byExposure.print_showAllLevels) {
     DataSet.Table1byExposure.print_showAllLevels %>% add_row(.before = 1) |> 
@@ -519,7 +519,7 @@ function.DataSet.Table1byExposure.print_showAllLevels.addCols = function(DataSet
   
   
 ## @ writexl::write_xlsx(paste0(DataSetName.Table1byExposure, "(list).xlsx")) -----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 list(
     byExposure = DataSet.Table1byExposure.print %>% function.DataSet.Table1byExposure.print.addCols %>% function.df.edit_Label_Level
@@ -533,7 +533,7 @@ if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(paste0(DataSetName.Ta
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```

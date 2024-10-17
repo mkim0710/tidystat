@@ -121,7 +121,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -168,7 +168,7 @@ env1\$info\$info_system_info\$Sys.getlocale\$LC_COLLATE = "en_US.utf8"
 Cf) Ctrl+Alt+Enter @ Rstudio  
   
 ## whoami  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'whoami' |> system(intern = TRUE) |> cat("  \n", sep="")
 ```
 rstudio@Rocker  
@@ -177,14 +177,14 @@ r2179046@SharedWorkspace@V@Posit.Cloud
 r2179052@SharedWorkspace@MHKim710@Posit.Cloud  
   
 ## echo \$PATH  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'echo $PATH' |> system(intern = TRUE) |> cat("  \n", sep="")
 ```
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/bin/linux:/usr/lib/rstudio-server/bin/quarto/bin:/usr/lib/rstudio-server/bin/postback 
   
   
 ## @ fc-list ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # On Unix-based systems, you can use the fc-list command to list available fonts. This command shows both system fonts and those managed by fontconfig (including some TeX Live-installed fonts).
 'fc-list : family' |> system(intern = TRUE) |> sort() |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -192,7 +192,7 @@ r2179052@SharedWorkspace@MHKim710@Posit.Cloud
   
 ## @ find -type d texlive  ----  
 ## find / -type d -iname texlive  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find / -type d -iname texlive' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive",  
@@ -202,7 +202,7 @@ c("/usr/local/texlive",
   "/opt/texlive")  
   
 ## find / -type d -iname texmf-dist  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find / -type d -iname texmf-dist' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
 c("/usr/local/texlive/texmf-dist")  
@@ -210,7 +210,7 @@ c("/usr/local/texlive/texmf-dist")
 ## @ find -type d packages  ----  
 ### find /usr/share/texlive -type d -iname "fontspec"  
 ### find /usr/local/texlive -type d -iname "fontspec"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "fontspec"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -219,7 +219,7 @@ c("/usr/local/texlive/texmf-dist/tex/latex/fontspec")
   
 ## find /usr/share/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf  
 ## find /usr/local/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf "%f\n"' |> system(intern = TRUE) |> sort() |> dput()
 'find /usr/local/texlive/texmf-dist/tex/latex -maxdepth 1 -type d -printf "%f\n"' |> system(intern = TRUE) |> sort() |> dput()
 ```
@@ -236,7 +236,7 @@ c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base",
   
 ### find /usr/share/texlive -type d -iname "roboto"  
 ### find /usr/local/texlive -type d -iname "roboto"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "roboto"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -244,7 +244,7 @@ c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base",
   
 ### find /usr/share/texlive -type d -iname "cascadia*code"  
 ### find /usr/local/texlive -type d -iname "cascadia*code"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -253,7 +253,7 @@ c("ae", "amsfonts", "amsmath", "atveryend", "auxhook", "base",
 ## @ find -type d fonts  ----  
 ## find /usr/share/texlive -type d -iname "font[s ]"  
 ## find /usr/local/texlive -type d -iname "font[s ]"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "font[s ]"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -263,7 +263,7 @@ c("/usr/local/texlive/texmf-dist/tex/context/fonts",
   
 ## ls -F /usr/share/texlive/texmf-dist/fonts  
 ## ls -F /usr/local/texlive/texmf-dist/fonts  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -283,7 +283,7 @@ c("afm/",
   
 ### ls -F /usr/share/texlive/texmf-dist/fonts/opentype  
 ### ls -F /usr/local/texlive/texmf-dist/fonts/opentype  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/opentype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -292,7 +292,7 @@ c("google/",
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -306,7 +306,7 @@ c("cascadia-code/",
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -314,7 +314,7 @@ c("roboto/")
   
 ##### ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google/roboto  
 ##### ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google/roboto  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/opentype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -390,7 +390,7 @@ c("Roboto-BlackItalic.otf",
   
 ### ls -F /usr/share/texlive/texmf-dist/fonts/truetype  
 ### ls -F /usr/local/texlive/texmf-dist/fonts/truetype  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/truetype' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -398,7 +398,7 @@ c("")
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/public' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -406,7 +406,7 @@ c("")
   
 #### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google  
 #### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -414,7 +414,7 @@ c("")
   
 ##### ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google/roboto  
 ##### ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google/roboto  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'ls -F /usr/share/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'ls -F /usr/local/texlive/texmf-dist/fonts/truetype/google/roboto' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -423,7 +423,7 @@ c("")
 ## @ find -type d/f fontname  ----  
 ### find /usr/share/texlive -type d -iname "*roboto*"  
 ### find /usr/local/texlive -type d -iname "*roboto*"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -437,7 +437,7 @@ c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
   
 #### find /usr/share/texlive -type f -iname "*roboto*"  
 #### find /usr/local/texlive -type f -iname "*roboto*"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "*roboto*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -451,7 +451,7 @@ c("/usr/local/texlive/texmf-dist/tex/latex/roboto",
   
 ##### find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"  
 ##### find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type f -iname "*roboto*mono*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -469,7 +469,7 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Light.o
   
 ### find /usr/share/texlive -type d -iname "*inconsolata*"  
 ### find /usr/local/texlive -type d -iname "*inconsolata*"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "*inconsolata*"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -477,7 +477,7 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/google/roboto/RobotoMono-Light.o
   
 #### find /usr/share/texlive -type f -iname "*inconsolata*.?tf"  
 #### find /usr/local/texlive -type f -iname "*inconsolata*.?tf"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type f -iname "*inconsolata*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -488,7 +488,7 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
   
 ### find /usr/share/texlive -type d -iname "cascadia*code"  
 ### find /usr/local/texlive -type d -iname "cascadia*code"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type d -iname "cascadia*code"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
@@ -496,14 +496,14 @@ c("/usr/local/texlive/texmf-dist/fonts/opentype/public/inconsolata/Inconsolatazi
   
 #### find /usr/share/texlive -type f -iname "*cascadia*.?tf"  
 #### find /usr/local/texlive -type f -iname "*cascadia*.?tf"  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 'find /usr/share/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 'find /usr/local/texlive -type f -iname "*cascadia*.?tf"' |> system(intern = TRUE) |> env1$f$f_vec.dput_line_by_line()
 ```
   
   
 # @@ END ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ END ----  

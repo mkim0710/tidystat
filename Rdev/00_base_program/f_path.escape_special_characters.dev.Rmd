@@ -135,7 +135,7 @@ Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAG
 # list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
 knitr::opts_chunk$set(
     eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
-    comment="", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
     warning=TRUE, message=TRUE, include=TRUE, 
     error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
     tidy.opts=list(width.cutoff=120), tidy=FALSE, 
@@ -224,7 +224,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # _______________  
 # @@ START) problem ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # https://chatgpt.com/c/828c4e1f-d439-4c50-8a35-4cbea4f713fe
 # https://chatgpt.com/c/bd748750-df70-466d-ad49-39414d6041fc
@@ -233,14 +233,14 @@ options(width=120)
   
 
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
@@ -249,7 +249,7 @@ options(width=120)
 # _______________  
 # @@ START) dev) f_chr.f_path.escape_special_characters ----  
 ## :: vec_path.test =
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 
@@ -280,7 +280,7 @@ vec_path.test =
 
 
 ### \% f_path.escape_special_characters.str_replace_all() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to escape special characters in a string for use in regex
 f_path.escape_special_characters.str_replace_all <- function(input_path) {
   input_path |>  str_replace_all("([]\\[{}()+*?^$|.-])", "\\\\\\1")
@@ -292,7 +292,7 @@ result.str_replace_all |> str()
 
 
 ### \% f_path.escape_special_characters.str_replace_all_v2() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to escape special characters in a string for use in regex
 f_path.escape_special_characters.str_replace_all_v2 <- function(input_path) {
   input_path |>  str_replace_all("([\\[\\]{}()+*?^$|.-])", "\\\\\\1")
@@ -305,7 +305,7 @@ result.str_replace_all |> identical(result.str_replace_all)
   
   
 ### \% f_path.escape_special_characters.gsub() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(stringr)
 # Function to escape special characters in a string for use in regex
@@ -320,7 +320,7 @@ result.gsub |> identical(result.str_replace_all)
 
 
 ### \% f_path.escape_special_characters.gsub_v2() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # library(stringr)
 # 
@@ -352,7 +352,7 @@ options(width=120)
   
 
 ### \% f_path.escape_special_characters.manual() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 f_path.escape_special_characters.manual <- function(input_path) {
     specials <- c("\\", ".", "?", "+", "*", "^", "$", "(", ")", "[", "]", "{", "}", "|", "-")
@@ -376,7 +376,7 @@ result.manual |> identical(result.str_replace_all)
 ##@ https://github.com/rstudio/rmarkdown/blob/main/R/util.R ----  
 ## :: .shell_chars_regex <- '[ <>()|\\:&;#?*\']'
 ### \% file_name_without_shell_chars() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 # Regular expression representing characters likely to be considered special by
@@ -406,7 +406,7 @@ result.str_replace_all_improved |> str()
   
   
 ### \% f_path.escape_special_characters.shell_chars_regex() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 # Regular expression representing characters likely to be considered special by
@@ -425,7 +425,7 @@ f_path.escape_special_characters.shell_chars_regex |> str()
 ##@ https://chatgpt.com/c/66f601c7-8c30-800e-8e13-499fee371a88 ----  
 ## :: improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
 ### \% f_path.escape_special_characters.gsub_improved() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
 # Function to escape special characters in a string for use in regex
@@ -439,7 +439,7 @@ result.str_replace_all_improved |> str()
 
 
 ### \% f_path.escape_special_characters.gsub_improved() 
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # options(width=120)
 # improved_shell_regex <- "[<>()|&;!$`\\\\'\"*?\\[\\]{}~#^%+=,:/@]"
 # # Function to escape special characters in a string for use in regex
@@ -466,7 +466,7 @@ result.str_replace_all_improved |> str()
   
   
 ## :: improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
 ```
@@ -474,7 +474,7 @@ improved_regex_metachar_regex <- "[\\\\.^$|?*+(){}\\[\\]]"
   
 ##@ https://chatgpt.com/c/6703f128-b4b4-800e-b718-68b28c7de362 ----  
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # document.title.replace(/[^a-zA-Z0-9가-힣 \-_().,@+=;&]/g, '_');
 # document.title.replace(/[^a-zA-Z0-9가-힣 \-_().,@+=;&!#$%^\[\]'~`]/g, '_');
@@ -483,49 +483,49 @@ options(width=120)
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
   
   
 ###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
 ```
