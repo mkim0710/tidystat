@@ -270,7 +270,7 @@ trial %>% {cat(" > ",deparse(substitute(.))," |> str()","  \n", sep=""); (str(.)
 ### # Summary by trt. 
 
 ### **ECHO** \% |> tbl_uvregression() ----  
-##### ECHO \% |> add_global_p() ----  
+##### **ECHO** \% |> add_global_p() ----  
 ##### **ECHO** \% |> add_n(location = "level") ----  
 ##### **ECHO** \% |> add_nevent(location = "level") ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -525,7 +525,7 @@ tbl |>
   
   
 ### **ECHO** \% |> tbl_uvregression() ----  
-##### ECHO \% |> add_global_p(keep = TRUE) ----  
+##### **ECHO** \% |> add_global_p(keep = TRUE) ----  
 ##### **ECHO** \% |> add_n(location = "level") ----  
 ##### **ECHO** \% |> add_nevent(location = "level") ----  
 ##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
