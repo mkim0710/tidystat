@@ -891,7 +891,7 @@ KoGES201806vars.CLEAN_TRIM.filter |> dplyr::select(Num, VarCategory, VarName.suf
 # _______________  
 # @@ Rdev/00_base_program/f_vecNamed.swap.dev.Rmd  
 # @@ Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd  
-# @@ Rdev/10_import_clean_datatype/16_categorical_labelled/f_CodeBook_DataSet.labelled.dev.Rmd  
+# @@ Rdev/10_import_clean_datatype/16_categorical_labelled/env1$f$f_CodeBook_DataSet.labelled.dev.Rmd  
 
 # @@ START) source ----  
 ## \% |> f_chrNameValuePairs2vector() ----  
@@ -1081,73 +1081,46 @@ options(width=120)
   
 
 # _______________  
+# @@ START) source ----  
+```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+options(width=120)
+.subpath = "Rdev/10_import_clean_datatype/16_categorical_labelled"  
+.sourcename_root = "f_CodeBook_DataSet.labelled"  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----
+.subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+if(!.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+```
+  
+  
+# _______________  
 # @@ START) function ----  
-## \% |> f_CodeBook_DataSet_VarName.labelled()  
+## \% |> env1$env.internal$f_CodeBook_DataSet_VarName.labelled()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
-f_CodeBook_DataSet_VarName.labelled = function(DataSet, vec.VarName, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", output.select = FALSE, VERBOSE = getOption("verbose")) {
-    library(labelled)
-    for (i.Varname in vec.VarName) {
-        var_label(DataSet[[i.Varname]]) = 
-            tblVarName_VarDescription_ValueOptions %>% 
-            dplyr::filter(VarName == i.Varname) %>% 
-            pull(VarDescription) %>% as.character
-        if (tblVarName_VarDescription_ValueOptions %>% 
-            dplyr::filter(VarName == i.Varname) %>% 
-            pull(VarType) == VarType.numeric) {
-            attributes(DataSet[[i.Varname]])$ValueOptions = 
-                tblVarName_VarDescription_ValueOptions %>% 
-                filter(VarName == i.Varname) %>% 
-                pull(ValueOptions) %>% as.character()
-            if ("ValueUnit" %in% names(tblVarName_VarDescription_ValueOptions)) {
-                attributes(DataSet[[i.Varname]])$ValueUnit = 
-                    tblVarName_VarDescription_ValueOptions %>% 
-                    filter(VarName == i.Varname) %>% 
-                    pull(ValueUnit) %>% as.character()
-                attributes(DataSet[[i.Varname]])$label =
-                    attributes(DataSet[[i.Varname]])$label %>% 
-                    paste0(" (", attributes(DataSet[[i.Varname]])$ValueUnit, ")")
-            }
-        } else {
-            val_labels(DataSet[[i.Varname]]) = tblVarName_VarDescription_ValueOptions %>% 
-                filter(VarName == i.Varname) %>% 
-                pull(ValueOptions) %>% as.character |> 
-                env1$f$f_chrNameValuePairs2vector(
-                    NameValuePair_separator = NameValuePair_separator, 
-                    Name_Value_separator = Name_Value_separator, 
-                    vecNamed.swap = vecNamed.swap)
-        }
-    }
-    if (output.select) {
-        return(DataSet[vec.VarName])
-    } else {
-        return(DataSet)
-    }
-}
 
 DataSet = get(DataSetName)
 attributes(DataSet)$MetaData = NULL
 # cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-f_CodeBook_DataSet_VarName.labelled(DataSet, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
-f_CodeBook_DataSet_VarName.labelled(DataSet, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
+env1$env.internal$f_CodeBook_DataSet_VarName.labelled(DataSet, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
+env1$env.internal$f_CodeBook_DataSet_VarName.labelled(DataSet, "A00_SEX", tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
-f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
+env1$env.internal$f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% as_tibble() %>% print(n=5)
+env1$env.internal$f_CodeBook_DataSet_VarName.labelled(DataSet, paste0("A0", 1:2, "_AGE"), tblVarName, vecNamed.swap = TRUE, output.select = TRUE) %>% str(maxlevel = 2)
 ```
 
 
-## \% |> f_CodeBook_DataSet.labelled()  
+## \% |> env1$f$f_CodeBook_DataSet.labelled()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 
-f_CodeBook_DataSet.labelled = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VERBOSE = getOption("verbose")) {
+env1$f$f_CodeBook_DataSet.labelled = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VERBOSE = getOption("verbose")) {
     for (i.VarName in names(DataSet)) {
         if (i.VarName %in% tblVarName$VarName) {
             if(VERBOSE) cat("i.VarName = ", i.VarName, "\n", sep="")
             try({
                 DataSet = DataSet %>% 
-                    f_CodeBook_DataSet_VarName.labelled(
+                    env1$env.internal$f_CodeBook_DataSet_VarName.labelled(
                         vec.VarName = i.VarName, 
                         tblVarName_VarDescription_ValueOptions = tblVarName_VarDescription_ValueOptions, 
                         NameValuePair_separator = NameValuePair_separator, 
@@ -1168,8 +1141,8 @@ attributes(DataSet)$MetaData = NULL
 # DataSet = DataSet %>% select(matches("^A00"))
 # DataSet = DataSet %>% select(matches("^A0[0-1]")) %>% select(matches("AGE"))
 DataSet = DataSet %>% select(matches("^A0[0-1]"))
-# DataSet = DataSet %>% f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
-DataSet = DataSet %>% f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE)
+# DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE, VERBOSE = TRUE) 
+DataSet = DataSet %>% env1$f$f_CodeBook_DataSet.labelled(tblVarName, vecNamed.swap = TRUE)
 DataSet %>% as_tibble() %>% print(n=5)
 DataSet %>% str(maxlevel = 2)
 cat("    ________________________________________________________________________    \n")
@@ -1198,43 +1171,7 @@ options(width=120)
 ```
   
   
-# _______________  
-# @@ START) source ----  
-```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-options(width=120)
-#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
-# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# .sourcename = "default.template" |> paste0(".source.r")
-if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.sourcename_root = env1$path$CurrentSource.path.filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$path$.subpath = .subpath
-if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
-.sourcename = .sourcename_root |> paste0(".source.r")
-env1$path$.sourcename_root = .sourcename_root
-env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
-cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-    "#### ",env1$path$.subpath.filename.dev.r, "----  \n",
-    "#### ",env1$path$.subpath.filename.dev.Rmd, "----  \n",
-    "#### ",env1$path$.subpath.filename.source.r, "----  \n",
-    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath.filename.source.r,'"))', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
-    sep="")
-# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
-# .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# if(!.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
-```
-  
-  
+
 
   
 
