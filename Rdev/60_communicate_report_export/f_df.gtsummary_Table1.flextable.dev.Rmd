@@ -664,15 +664,17 @@ library(Z.gtsummary.addons)
 ### **ECHO** \% |> tbl_summary(by, statistic = list(all_continuous() ~ "{median} ({p25};{p75})", all_categorical() ~ "{n} ({p}%)")) ---- 
 #### \% |> add_n() ----  
 #### \% |> add_overall() ----  
-##### **ECHO** \% |> bold_labels() ----  
 #### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
 #### **ECHO** \% |> add_p() ----  
 ##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
 ###### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
+##### **ECHO** \% |> bold_p(t = 0.10) ----  
+##### **ECHO** \% |> bold_labels() ----  
+##### **ECHO** \% |> italicize_levels() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 tbl = trial %>% 
-    select(grade, age, stage) %>% 
+    # select(grade, age, stage) %>% 
     # tbl_summary(by = grade, include = c(age, stage)) %>%
     # tbl_summary(by = grade) %>%
     tbl_summary(
@@ -683,12 +685,14 @@ tbl = trial %>%
     ) |> 
     # add_n() %>%
     # add_overall() |>
-    bold_labels() |>
     add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
     add_p() |>
     modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**{colname |> str_replace("^SMD: ","")}**", starts_with("p.value") ~ "***p***") |>
-    modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"))
+    modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**")) |>
+    bold_p(t = 0.10) |>
+    bold_labels() |>
+    italicize_levels()
 tbl %>% show_header_names
 tbl |>
     print() |> invisible()
