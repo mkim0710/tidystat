@@ -226,7 +226,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # _______________  
 # @@ START) dfDirs ----  
   
-#### f_path.df_dirs_recursive.df_files() ----  
+### f_path.df_dirs_recursive.df_files() ----  
 ```{r dfDIRsRecursive-NoEchoHideResults, echo=FALSE, results="hide"}
 .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
 env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
@@ -242,18 +242,18 @@ env1$path$print_tree_path_files.data = env1$path$df_dirs_recursive.df_files |> d
 ```
   
   
-##### env1\$path\$df_dirs_recursive.df_files\$path  
+##### env1\$path\$df_dirs_recursive.df_files\$path ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
 ```
   
   
-##### env1\$path\$print_tree_path_files.codes  
+##### env1\$path\$print_tree_path_files.codes ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 env1$path$print_tree_path_files.codes |> cat("  \n", sep="")
 ```
   
-##### env1\$path\$print_tree_path_files.data  
+##### env1\$path\$print_tree_path_files.data ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE}
 env1$path$print_tree_path_files.data |> cat("  \n", sep="")
 ```
