@@ -998,9 +998,9 @@ if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file
 if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])  }
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## @ "f_df.Table1byExposure.xlsx" |> paste0(".source.r") |> source() ----  
-.subpath = r"(Rdev/60_communicate_report_export)" |> str_replace_all("\\\\","/")  
-.sourcename = "f_df.Table1byExposure.xlsx" |> paste0(".source.r")
+## @ "f_CodeBook_DataSet.labelled" |> paste0(".source.r") |> source() ----  
+.subpath = r"(Rdev/10_import_clean_datatype/16_categorical_labelled)" |> str_replace_all("\\\\","/")  
+.sourcename = "f_CodeBook_DataSet.labelled" |> paste0(".source.r")
 .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); 
 if(!.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])  }
 ##////////////////////////////////////////////////////////////////////////////////  
