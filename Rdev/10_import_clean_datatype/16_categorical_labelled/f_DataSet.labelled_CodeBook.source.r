@@ -203,6 +203,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 #| Restart & RUN ALL ABOVE: CTRL+SHIFT+F10 & CTRL+ALT+B |#
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# _______________  
 # @@ MetaData ----  
 # .GlobalEnv$MetaData = list() ====  
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
