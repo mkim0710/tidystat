@@ -353,7 +353,8 @@ options(width=120)
       ) |> 
       add_difference() |> 
       add_n() |> 
-      modify_header(all_stat_cols() ~ "**{level}**")
+      modify_header(all_stat_cols() ~ "**{level}**") %>% 
+        print() %>% invisible()
 ```
 
 
@@ -636,6 +637,69 @@ env0 = env1
 ```
 
 
+## library(gtsummary) ----  
+## ECHO \% devtools::install_github("zheer-kejlberg/Z.gtsummary.addons") ----  
+## library(Z.gtsummary.addons) ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+.packagename = "gtsummary"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+
+for(.packagename in c("devtools")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+
+devtools::install_github("zheer-kejlberg/Z.gtsummary.addons")
+library(Z.gtsummary.addons)
+```
+
+
+### ECHO \% |> tbl_summary() ----  
+#### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ref_group = TRUE) ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+trial %>% 
+    tbl_summary(by = grade, include = c(age, stage)) %>%
+    # add_n() %>% 
+    # add_SMD(location = "both", ci = TRUE, ref_group = TRUE) %>% 
+    add_p() %>% 
+    print() %>% invisible()
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 # __________|------  
 # @@ START) source ----  
 ```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
