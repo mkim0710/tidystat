@@ -499,12 +499,12 @@ env0 = env1
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-tbl = tbl_uvregression(
-    trial,
-    method = coxph,
-    y = Surv(ttdeath, death),
-    exponentiate = TRUE
-) %>%
+tbl = trial %>% 
+    tbl_uvregression(
+        method = coxph,
+        y = Surv(ttdeath, death),
+        exponentiate = TRUE
+    ) %>%
     add_global_p(keep = TRUE) %>%
     # add_n(location = "both") %>%
     # add_nevent(location = "both") |>
@@ -522,10 +522,46 @@ tbl |>
 ```
   
   
-###### \% |> () ----  
+### **ECHO** \% |> tbl_uvregression() ----  
+##### **ECHO** \% |> add_global_p(keep = TRUE) ----  
+##### **ECHO** \% |> add_n(location = "level") ----  
+##### **ECHO** \% |> add_nevent(location = "level") ----  
+##### **ECHO** \% |> modify_header(p.value ~ "***p***") ----  
+##### **ECHO** \% |> bold_p(t = 0.10) ----  
+##### **ECHO** \% |> bold_labels() ----  
+##### **ECHO** \% |> italicize_levels() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-
+.byVar = "A01_BMI_ge250"
+DataSet = DataSet.Date.NA.rmAllNA %>% 
+    mutate_if(is.factor, droplevels) %>% 
+    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(vec) !is.Date(vec))
+tbl = DataSet %>% 
+    mutate_if(is.factor, droplevels) %>% 
+    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(vec) !is.Date(vec)) %>% 
+    select_if(function(vec) n_distinct(vec[!is.na(vec)]) > 1) %>%
+    tbl_uvregression(
+        method = glm,
+        method.arg = list(family = binomial),
+        y = !!rlang::sym(.byVar),
+        exponentiate = TRUE
+    ) %>%
+    add_global_p(keep = TRUE) %>%
+    # add_n(location = "both") %>%
+    # add_nevent(location = "both") |>
+    add_n(location = "level") %>%
+    add_nevent(location = "level") |>
+    # modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
+    modify_header(p.value ~ "***p***") |>
+    # modify_spanning_header(all_stat_cols() ~ "summary") |>
+    bold_p(t = 0.10) |>
+    bold_labels() |>
+    italicize_levels()
+tbl %>% show_header_names
+tbl |>
+    print() |> invisible()
 ```
   
   

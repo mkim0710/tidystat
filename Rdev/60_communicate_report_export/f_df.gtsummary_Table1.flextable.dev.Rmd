@@ -716,7 +716,11 @@ tbl |>
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 .byVar = "A01_BMI.cut5"
-tbl = DataSet.Date.NA.rmAllNA %>% 
+DataSet = DataSet.Date.NA.rmAllNA %>% 
+    mutate_if(is.factor, droplevels) %>% 
+    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(vec) !is.Date(vec))
+tbl = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) all(!is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -733,7 +737,7 @@ tbl = DataSet.Date.NA.rmAllNA %>%
     modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**{colname |> str_replace("^SMD: ","")}**", starts_with("p.value") ~ "***p***") |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",.$meta_data %>% filter(variable == .byvar) %>% pull(var_label),"**")) |>
-    modify_spanning_header(all_stat_cols() ~ paste0("**",ifelse(is.null(labelled::var_label(DataSet.Date.NA.rmAllNA[[.byVar]])), .byVar, labelled::var_label(DataSet.Date.NA.rmAllNA[[.byVar]])),"**")) |>
+    modify_spanning_header(all_stat_cols() ~ paste0("**",ifelse(is.null(labelled::var_label(DataSet[[.byVar]])), .byVar, labelled::var_label(DataSet[[.byVar]])),"**")) |>
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
