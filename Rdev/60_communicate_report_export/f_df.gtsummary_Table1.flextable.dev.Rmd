@@ -719,11 +719,11 @@ options(width=120)
 .byVar = "A01_BMI.cut5"
 DataSet = DataSet.Date.NA.rmAllNA %>% 
     mutate_if(is.factor, droplevels) %>% 
-    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
 gtsummary_Table1 = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
-    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
     tbl_summary(
         by = !!rlang::sym(.byVar),

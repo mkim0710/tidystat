@@ -544,7 +544,7 @@ DataSet = DataSet.Date.NA.rmAllNA %>%
     select(A01_BMI_ge250, A01_BMI, A01_BMI_ge230)
 gtsummary_Table2_uvregression = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
-    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
     select_if(function(vec) n_distinct(vec[!is.na(vec)]) > 1) %>%
     tbl_uvregression(
@@ -584,11 +584,11 @@ options(width=120)
 .byVar = "A01_BMI_ge250"
 DataSet = DataSet.Date.NA.rmAllNA %>% 
     mutate_if(is.factor, droplevels) %>% 
-    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
 gtsummary_Table2_uvregression = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
-    select_if(function(x) all(!is.na(x))) %>% 
+    select_if(function(x) !all(is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
     select_if(function(vec) n_distinct(vec[!is.na(vec)]) > 1) %>%
     tbl_uvregression(
