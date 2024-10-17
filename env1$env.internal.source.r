@@ -553,7 +553,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
         if (is.null(.objectname)) {  # If the object is provided but not the object name, create an object name
             .objectname <- deparse(substitute(.object))
             if (.objectname == ".") {
-                warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe(), immediate. = TRUE)
+                warning('.objectname == ',deparse(.objectname),'   #@ sys.nframe() == ', sys.nframe(), "  \n", immediate. = TRUE)
                 # if (VERBOSE) 1:sys.nframe() %>% set_names() %>% map(function(n) { deparse(substitute(.object, parent.frame(n = n)))}) %>% str()
                 if (VERBOSE) 0:sys.nframe() %>% set_names() %>% map(function(n) { ls(envir = sys.frame(which = n)) }) %>% dput()
                 # message('-> Trying: ','deparse(substitute(.object, parent.frame(n = 2)))')
@@ -561,7 +561,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
                 message('-> Trying: ','ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names')
                 .objectname = ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names
                 if (length(.objectname) > 1) {
-                    warning('length(.objectname) > 1', immediate. = TRUE)
+                    warning('length(.objectname) > 1', "  \n", immediate. = TRUE)
                     .objectname %>% dput()
                     if (any(!.objectname %in% c(".", ".object"))) {
                         .objectname = .objectname[!.objectname %in% c(".", ".object")][1]
