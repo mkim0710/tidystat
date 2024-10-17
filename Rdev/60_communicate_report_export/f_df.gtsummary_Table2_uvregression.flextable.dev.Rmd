@@ -499,7 +499,7 @@ env0 = env1
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-tbl = trial %>% 
+gtsummary_Table2_uvregression = trial %>% 
     tbl_uvregression(
         method = coxph,
         y = Surv(ttdeath, death),
@@ -516,9 +516,9 @@ tbl = trial %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-tbl %>% show_header_names
-tbl$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
-tbl |>
+gtsummary_Table2_uvregression %>% show_header_names
+gtsummary_Table2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
+gtsummary_Table2_uvregression |>
     print() |> invisible()
 ```
   
@@ -542,7 +542,7 @@ options(width=120)
 DataSet = DataSet.Date.NA.rmAllNA %>% 
     # select(matches("A01_BMI"))
     select(A01_BMI_ge250, A01_BMI, A01_BMI_ge230)
-tbl = DataSet %>% 
+gtsummary_Table2_uvregression = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) all(!is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -564,9 +564,9 @@ tbl = DataSet %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-tbl %>% show_header_names
-tbl$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
-tbl |>
+gtsummary_Table2_uvregression %>% show_header_names
+gtsummary_Table2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
+gtsummary_Table2_uvregression |>
     print() |> invisible()
 ```  
   
@@ -586,7 +586,7 @@ DataSet = DataSet.Date.NA.rmAllNA %>%
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) all(!is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
-tbl = DataSet %>% 
+gtsummary_Table2_uvregression = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) all(!is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -608,9 +608,9 @@ tbl = DataSet %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-tbl %>% show_header_names
-tbl$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
-tbl |>
+gtsummary_Table2_uvregression %>% show_header_names
+gtsummary_Table2_uvregression$table_body %>% select(variable, N_obs, N_event, label, estimate, std.error, statistic, conf.low, conf.high, ci, p.value) |> print(n=99)
+gtsummary_Table2_uvregression |>
     print() |> invisible()
 ```
   

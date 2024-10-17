@@ -673,7 +673,7 @@ library(Z.gtsummary.addons)
 ##### **ECHO** \% |> italicize_levels() ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
-tbl = trial %>% 
+gtsummary_Table1 = trial %>% 
     # select(grade, age, stage) %>% 
     # tbl_summary(by = grade, include = c(age, stage)) %>%
     # tbl_summary(by = grade) %>%
@@ -693,9 +693,9 @@ tbl = trial %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-tbl %>% show_header_names
-tbl$table_body %>% select(variable, label, starts_with("stat"), starts_with("SMD"), test_result , statistic, parameter , p.value) |> print(n=99)
-tbl |>
+gtsummary_Table1 %>% show_header_names
+gtsummary_Table1$table_body %>% select(variable, label, starts_with("stat"), starts_with("SMD"), test_result , statistic, parameter , p.value) |> print(n=99)
+gtsummary_Table1 |>
     print() |> invisible()
 ```
   
@@ -721,7 +721,7 @@ DataSet = DataSet.Date.NA.rmAllNA %>%
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) all(!is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec))
-tbl = DataSet %>% 
+gtsummary_Table1 = DataSet %>% 
     mutate_if(is.factor, droplevels) %>% 
     select_if(function(x) all(!is.na(x))) %>% 
     select_if(function(vec) !is.Date(vec)) %>% 
@@ -742,9 +742,9 @@ tbl = DataSet %>%
     bold_p(t = 0.10) |>
     bold_labels() |>
     italicize_levels()
-tbl %>% show_header_names
-tbl$table_body %>% select(variable, label, starts_with("stat"), starts_with("SMD"), test_result , statistic, parameter , p.value) |> print(n=99)
-tbl |>
+gtsummary_Table1 %>% show_header_names
+gtsummary_Table1$table_body %>% select(variable, label, starts_with("stat"), starts_with("SMD"), test_result , statistic, parameter , p.value) |> print(n=99)
+gtsummary_Table1 |>
     print() |> invisible()
 ```
   
