@@ -312,7 +312,7 @@ tblVarName = MetaData$tblVarName$tblWAVE_VARNAME |>
     left_join(MetaData$tblVarName$tblVarName.suffix %>% select(VarName.suffix, ValueOptions), by="VarName.suffix") %>%
     mutate(VarName = WAVE_VARNAME, ValueOptions = ValueOptions %>% as.character())
 tblVarName = tblVarName %>% mutate(
-    ValueUnit = ifelse(VarType == "Continuous", ValueOptions %>% str_replace_all("[^(]*\\(.*\\) *", ""), NA) %>% as.factor()
+    ValueUnit = ifelse(VarType == "Continuous", ValueOptions %>% str_replace_all("[^(]*\\(.*\\) *", "") |> na_if(""), NA) %>% as.factor()
     # , VarDescription = ifelse(VarType == "Continuous", as.character(VarDescription) %>% paste0(" (",ValueUnit,")"), as.character(VarDescription)) %>% as.factor
 )
 tblVarName = tblVarName %>%
