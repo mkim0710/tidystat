@@ -79,8 +79,9 @@
     
     DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] =
         DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] %>% mutate_if(is.factor, as.character)
-    DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName)] =
-        DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName)] %>% mutate_all(as.numeric)
+    
+    DataSet[names(DataSet) %in% (tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName))] =
+        DataSet[names(DataSet) %in% (tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName))] %>% mutate_all(as.numeric)
         
     for (i.VarName in names(DataSet)) {
         if (i.VarName %in% tblVarName$VarName) {
