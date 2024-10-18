@@ -710,6 +710,7 @@ gtsummary_Table1 |>
 #### **ECHO** \% |> add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) ----  
 #### **ECHO** \% |> add_p() ----  
 ##### **ECHO** \% |> modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") ----  
+##### **ECHO** \% |> modify_table_body(  ~ .x %>% mutate( label = if_else(row_type == "level", label, if_else(label == variable, label, paste0(variable, " (", label, ")"))) )  ) ----  
 ###### **ECHO** \% |> modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(byVar),"**")) ----  
 ##### **ECHO** \% |> bold_p(t = 0.10) ----  
 ##### **ECHO** \% |> bold_labels() ----  
@@ -735,7 +736,9 @@ gtsummary_Table1 = DataSet %>%
     # add_overall() |>
     # add_SMD(location = "both", ci = TRUE, ci_bracket = "()", ci_sep = ";", ref_group = TRUE) %>%
     add_p() |>
-    modify_header(all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |>
+    modify_header(label = "**Variable (label)**", all_stat_cols() ~ "**{level}**  \nN = {n} ({style_percent(p)}%)", p.value ~ "***p***") |> 
+    # modify_table_styling(columns = "label", fmt_fun = function(i.label) {paste0(names(DataSet), " (", i.label, ")")}) |>
+    modify_table_body(  ~ .x %>% mutate( label = if_else(row_type == "level", label, if_else(label == variable, label, paste0(variable, " (", label, ")"))) )  ) |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",labelled::var_label(trial$grade),"**"), starts_with("SMD") ~ "**{colname |> str_replace("^SMD: ","")}**", starts_with("p.value") ~ "***p***") |>
     # modify_spanning_header(all_stat_cols() ~ paste0("**",.$meta_data %>% filter(variable == .byvar) %>% pull(var_label),"**")) |>
     modify_spanning_header(all_stat_cols() ~ paste0("**",ifelse(is.null(labelled::var_label(DataSet[[.byVar]])), .byVar, labelled::var_label(DataSet[[.byVar]])),"**")) |>
