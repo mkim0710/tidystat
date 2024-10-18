@@ -123,7 +123,7 @@ env0 = env1
 # ```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # ##________________________________________________________________________________  
 # ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
+# ## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() ----  
 # .path4write = env1$path$.path4write
 # # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 # cat("    ________________________________________________________________________    \n")
