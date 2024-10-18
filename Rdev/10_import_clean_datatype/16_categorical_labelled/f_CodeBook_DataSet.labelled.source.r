@@ -77,9 +77,11 @@
 .tmp$objectname = "f_CodeBook_DataSet.labelled"
 .tmp$object = function(DataSet, tblVarName_VarDescription_ValueOptions, NameValuePair_separator = ",", Name_Value_separator = "=", vecNamed.swap = FALSE, VarType.numeric = "Continuous", VarType.Date = "Date", VERBOSE = options()$verbose) {
     
-    DataSet[names(DataSet) %in% tblVarName$VarName] =
-        DataSet[names(DataSet) %in% tblVarName$VarName] %>% mutate_if(is.factor, as.character)
-    
+    DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] =
+        DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions$VarName] %>% mutate_if(is.factor, as.character)
+    DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName)] =
+        DataSet[names(DataSet) %in% tblVarName_VarDescription_ValueOptions %>% filter(VarType == "Continuous") %>% pull(VarName)] %>% mutate_all(as.numeric)
+        
     for (i.VarName in names(DataSet)) {
         if (i.VarName %in% tblVarName$VarName) {
             if(VERBOSE) cat("i.VarName = ", i.VarName, "\n", sep="")
