@@ -54,7 +54,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
-#   ..$ f_file.git_lfs_track_add_f                  :function (.path.file, Execute = FALSE)  
+#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 #   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
@@ -131,7 +131,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
-#   ..$ f_file.git_lfs_track_add_f                  :function (.path.file, Execute = FALSE)  
+#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 #   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 #   ..$ f_df.tribble_construct                      :function (df)  
@@ -212,7 +212,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 #   ..$ f_path.relative                             :function (path, basepath = env1$path$path1)  
-#   ..$ f_file.git_lfs_track_add_f                  :function (.path.file, Execute = FALSE)  
+#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 #   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE,..
 #   ..$ f_df.tribble_construct                      :function (df)  
@@ -289,7 +289,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_URL.open_in_edge_app                      :function (URL)  
 #   ..$ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 #   ..$ f_path.relative                             :function (path, basepath = ..
-#   ..$ f_file.git_lfs_track_add_f                  :function (.path.file, Execu..
+#   ..$ f_file.git_lfs_track_add_f                  :function (.path_file, Execu..
 #   ..$ f.updateTemplates                           :function (.path4APPDATA_RSt..
 #   ..$ f_expression.substitute_echo_and_dput       :function (expr_text, expres..
 #   ..$ f_df.tribble_construct                      :function (df)  
@@ -371,7 +371,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_URL.open_in_edge_app :function (URL)
 # ..$ f_URL.open_in_edge_app.printPowerShellCode :function (URL)
 # ..$ f_path.relative :function (path, basepath = env1$path$path1)
-# ..$ f_file.git_lfs_track_add_f :function (.path.file, Execute = FALSE)
+# ..$ f_file.git_lfs_track_add_f :function (.path_file, Execute = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
 # ..$ f_expression.substitute_echo_and_dput :function (expr_text, expression_equals_evaluation = FALSE,
 #    .VERBOSE = FALSE)
@@ -469,7 +469,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_URL.open_in_edge_app :function (URL)
 # ..$ f_URL.open_in_edge_app.printPowerShellCode :function (URL)
 # ..$ f_path.relative :function (path, basepath = env1$path$path1)
-# ..$ f_file.git_lfs_track_add_f :function (.path.file, Execute = FALSE)
+# ..$ f_file.git_lfs_track_add_f :function (.path_file, Execute = FALSE)
 # ..$ f.updateTemplates :function (.path4APPDATA_RStudio = NULL)
 # ..$ f_expression.substitute_echo_and_dput :function (expr_text,
 #    expression_equals_evaluation = FALSE, .VERBOSE = FALSE)
@@ -599,7 +599,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_URL.open_in_edge_app                      :function (URL)  
 ## $ f_URL.open_in_edge_app.printPowerShellCode  :function (URL)  
 ## $ f_path.relative                             :function (path, basepath = env1$path$path1)  
-## $ f_file.git_lfs_track_add_f                  :function (.path.file, Execute = FALSE)  
+## $ f_file.git_lfs_track_add_f                  :function (.path_file, Execute = FALSE)  
 ## $ f.updateTemplates                           :function (.path4APPDATA_RStudio = NULL)  
 ## $ f_expression.substitute_echo_and_dput       :function (expr_text, expression_equals_evaluation = FALSE, .VERBOSE = FALSE)  
 ## $ f_df.tribble_construct                      :function (df)  

@@ -32,17 +32,17 @@ Loading required package: tidyverse
 [1] "env1$print.intermediate == TRUE"
 [1] "requireNamespace(\"rstudioapi\") == TRUE"
 [1] "rstudioapi::isAvailable() == FALSE"
-[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+[1] "is.null(env1$path$CurrentSource.path_filename.ext) == TRUE"
 > source("~/github_tidystat/internal.f_path0.list_path_hierarchy.source.r")  
 [1] "Sourcing: \"internal.f_path0.list_path_hierarchy.source.r\""
 [1] "env1$print.intermediate == TRUE"
 [1] "requireNamespace(\"rstudioapi\") == TRUE"
 [1] "rstudioapi::isAvailable() == FALSE"
-[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+[1] "is.null(env1$path$CurrentSource.path_filename.ext) == TRUE"
 > source("~/github_tidystat/f_df.t.tribble_construct.source.r")  
 [1] "requireNamespace(\"rstudioapi\") == TRUE"
 [1] "rstudioapi::isAvailable() == FALSE"
-[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+[1] "is.null(env1$path$CurrentSource.path_filename.ext) == TRUE"
 Loading: env1$f_df.tribble_construct
 Loading: env1$f_df.transpose
 Loading: env1$f_df.t.tribble_construct
@@ -51,12 +51,12 @@ Loading: env1$f_list.dput_line_by_line
 Loading: env1$f_vec1_vec2.setdiff
 [1] "requireNamespace(\"rstudioapi\") == TRUE"
 [1] "rstudioapi::isAvailable() == FALSE"
-[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+[1] "is.null(env1$path$CurrentSource.path_filename.ext) == TRUE"
 Loading: env1$f_path.size_files
 > source("~/github_tidystat/get_system_info.source.r")  
 [1] "requireNamespace(\"rstudioapi\") == TRUE"
 [1] "rstudioapi::isAvailable() == FALSE"
-[1] "is.null(env1$path$CurrentSource.path.filename.ext) == TRUE"
+[1] "is.null(env1$path$CurrentSource.path_filename.ext) == TRUE"
 Loading: env1$info$get_system_info
 List of 9
  $ GUI             : chr "X11"
