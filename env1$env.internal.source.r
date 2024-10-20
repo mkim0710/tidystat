@@ -739,10 +739,11 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     }
     if (Sys.info()["sysname"] == "Windows")  browseURL("D:/OneDrive/[][Rproject]/-backup")
     
-    # \% Update the .Rprofile  @ Project Directory & User Folder ~~~~~~~~~~~~
+    # \% Update the .Rprofile  @ Project Directory (& User Folder? may cause an error) ~~~~~~~~~~~~
     for (.filename.ext in c(".Rprofile")) {
         .file.copy.from = paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/",.filename.ext)
-        for (.file.copy.to in c(file.path(env1$path$path1,.filename.ext), file.path("~",.filename.ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename.ext))) {
+        # for (.file.copy.to in c(file.path(env1$path$path1,.filename.ext), file.path("~",.filename.ext), paste0(Sys.getenv("USERPROFILE"),"/Documents/",.filename.ext))) {
+        for (.file.copy.to in file.path(env1$path$path1,.filename.ext)) {
             if(file.exists(.file.copy.to) || .file.copy.to == file.path(env1$path$path1,.filename.ext)) {
                 env1$env.internal$f_url_destfile.DownloadIfDifferent(url = .file.copy.from, destfile = .file.copy.to)
             }
