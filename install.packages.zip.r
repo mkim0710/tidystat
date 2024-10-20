@@ -1,4 +1,5 @@
 # install.packages.zip.r
+# Rdev/00_base_program/f_RegEx.gregexpr.regmatches.dev.r
 
 
 
@@ -16,7 +17,6 @@
 package_name = "cli"
 
 # Retrieve CRAN mirror URL ----
-cranmi
 cran_mirror <- "https://cran.r-project.org"
 getOption("pkgType")
 # > getOption("pkgType")
@@ -36,7 +36,7 @@ cran_mirror.available.packages |> colnames() |> deparse(width.cutoff = 500) |> c
 
 
 ## > cran_mirror.available.packages[package_name, ] |> as.list |> str() ----
-cran_mirror.available.packages[package_name, ] |> as.list |> str()
+cran_mirror.available.packages[package_name, ] |> as.list() |> str()
 cran_mirror.available.packages[package_name, "Repository"]
 cran_mirror.available.packages[package_name, "Version"]
 # List of 17
@@ -63,7 +63,6 @@ cran_mirror.available.packages[package_name, "Version"]
 # [1] "https://cran.r-project.org/bin/windows/contrib/4.3"
 # > cran_mirror.available.packages[package_name, "Version"]
 # [1] "3.6.3"
-
 
 
 ## # > packageDescription(package_name) |> str() ----
@@ -96,55 +95,81 @@ packageDescription(package_name) |> str()
 #  - attr(*, "file")= chr "C:/Users/mkim0/AppData/Local/R/win-library/4.3/cli/Meta/package.rds"
 
 
+#@ package_name.packageDescription.Version = 
+package_name.packageDescription.Version = packageDescription(package_name)$Version
 
 #@ installr::install.packages.zip() ----
 # Constr()uct the URL for the latest version dynamically
-package_url <- sprintf("%s/bin/windows/contrib/r-release/cli_%s.zip", cran_mirror, latest_version)
+package_url <- sprintf("%s/bin/windows/contrib/r-release/cli_%s.zip", cran_mirror, package_name.packageDescription.Version)
+package_url
 
 # Install the package using the dynamically generated URL
 installr::install.packages.zip(package_url)
+
+
+## :: install.packages.zip.warnings = ====
 install.packages.zip.warnings = names(warnings())[[length(warnings())]] 
 install.packages.zip.warnings |> dput()
 "problem copying C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll to C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll: Permission denied"
-install.packages.zip.warnings |> (function(ls) gsub(".*(C\\:[^ ]*) *", "$1", ls[[length(ls)]]))()
 
-# regex4path_letters = "A-Za-z0-9./\\-"
-# regex4winpath = paste0("[A-Z]:[", regex4path_letters, "]*")
-# regex4winpath
-# install.packages.zip.warnings.split = strsplit(install.packages.zip.warnings, " ")[[1]]
-# grep(paste0("^", regex4winpath), install.packages.zip.warnings.split, value = TRUE) |> deparse(width.cutoff = 500) |> cat("\n")
-# gsub(paste0("[^", regex4path_letters, "]*"), "", grep(paste0("^", regex4winpath), install.packages.zip.warnings.split, value = TRUE)) |> deparse(width.cutoff = 500) |> cat("\n")
-# # > regex4winpath
-# # [1] "[A-Z]:[A-Za-z0-9. /\\-]*"
-# # > install.packages.zip.warnings.split = strsplit(install.packages.zip.warnings, " ")[[1]]
-# # > grep(paste0("^", regex4winpath), install.packages.zip.warnings.split, value = TRUE) |> deparse(width.cutoff = 500) |> cat("\n")
-# # c("C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll", "C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll:") 
-# # > gsub(paste0("[^", regex4path_letters, "]*"), "", grep(paste0("^", regex4winpath), install.packages.zip.warnings.split, value = TRUE)) |> deparse(width.cutoff = 500) |> cat("\n")
-# # c("C\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll", "C\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll") 
-
+## :: regex4path_letters = ==== 
+## :: regex4winpath = ==== 
 regex4path_letters = "A-Za-z0-9./\\-"
 regex4winpath = paste0("[A-Z]:[", regex4path_letters, "]*")
-vec.path_file = regmatches(install.packages.zip.warnings, gregexpr(regex4winpath, install.packages.zip.warnings))[[1]] 
+
+
+
+
+
+### |> f_str_RegEx.gregexpr.regmatches(regex4winpath) ----
+# Rdev/00_base_program/f_RegEx.gregexpr.regmatches.dev.r
+f_str_RegEx.gregexpr.regmatches = function(input_string, RegEx) {
+    regmatches(input_string, gregexpr(RegEx, input_string)) |> unlist()
+}
+
+vec.path_file = install.packages.zip.warnings |> f_str_RegEx.gregexpr.regmatches(regex4winpath) 
 vec.path_file |> deparse(width.cutoff = 500) |> cat("\n")
-vec.path_file[length(vec.path_file)] |> file.remove()
 # > vec.path_file |> deparse(width.cutoff = 500) |> cat("\n")
 # c("C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\cli\\libs\\x64\\cli.dll", "C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\cli\\libs\\x64\\cli.dll") 
-# > vec.path_file[length(vec.path_file)] |> file.remove()
-# [1] FALSE
-# Warning message:
-# In file.remove(vec.path_file[length(vec.path_file)]) :
-#   cannot remove file 'C:\Users\mkim0\AppData\Local\R\win-library\4.3\cli\libs\x64\cli.dll', reason 'Permission denied'
-
-vec.path
 
 
-vec.path_file[length(vec.path_file)] |> dirname() |> browseURL()
-vec.path_file[length(vec.path_file)] |> 
-# > vec.path_file[length(vec.path_file)] |> file.remove()
-# [1] FALSE
-# Warning message:
-# In file.remove(vec.path_file[length(vec.path_file)]) :
-#   cannot remove file 'C:\Users\mkim0\AppData\Local\R\win-library\4.3\cli\libs\x64\cli.dll', reason 'Permission denied'
 
-package_name
+
+## > vec.path_file[length(vec.path_file)] |> file.remove() ----
+# vec.path_file[length(vec.path_file)] |> file.remove()
+# # > vec.path_file[length(vec.path_file)] |> file.remove()
+# # [1] FALSE
+# # Warning message:
+# # In file.remove(vec.path_file[length(vec.path_file)]) :
+# #   cannot remove file 'C:\Users\mkim0\AppData\Local\R\win-library\4.3\cli\libs\x64\cli.dll', reason 'Permission denied'
+
+
+
+
+## system("openfiles /query /v") ----
+# system("openfiles /local on")
+# system("openfiles /query /v")
+
+
+
+
+
+
+
+## > paths2open[length(paths2open)] |> browseURL() ----
+vec.path_file |> dirname() |> deparse(width.cutoff = 500) |> cat("\n")
+# > vec.path_file |> dirname() |> deparse(width.cutoff = 500) |> cat("\n")
+# c("C:/Users/mkim0/AppData/Local/R/win-library/4.3/00LOCK/cli/libs/x64", "C:/Users/mkim0/AppData/Local/R/win-library/4.3/cli/libs/x64") 
+
+
+paths2open = vec.path_file |> (function(vec) gsub(paste0(package_name, ".*$"), "", vec))() 
+paths2open |> deparse(width.cutoff = 500) |> cat("\n")
+# > paths2open |> deparse(width.cutoff = 500) |> cat("\n")
+# c("C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\", "C:\\Users\\mkim0\\AppData\\Local\\R\\win-library\\4.3\\") 
+
+paths2open[length(paths2open)] |> browseURL()
+
+
+
+
 
