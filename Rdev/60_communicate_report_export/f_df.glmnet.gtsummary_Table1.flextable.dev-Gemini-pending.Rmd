@@ -373,9 +373,18 @@ create_summary_table <- function(dataset, byVar, alpha = 1) {
   x <- model.matrix(as.formula(paste("~ . -", byVar)), data = dataset)
   y <- dataset[[byVar]]
   
+  # Print intermediate values for debugging
+  print("x:")
+  print(head(x)) # Print the first few rows of x
+  print("y:")
+  print(head(y)) # Print the first few values of y
+  
   # Perform lasso/elastic net regression
   # Force lambda to be numeric to avoid potential issues
-  model <- glmnet(x, y, alpha = alpha, lambda = as.numeric(seq(0.01, 1, by = 0.01))) 
+  lambda_seq <- as.numeric(seq(0.01, 1, by = 0.01))
+  print("lambda sequence:")
+  print(head(lambda_seq)) # Print the first few lambda values
+  model <- glmnet(x, y, alpha = alpha, lambda = lambda_seq) 
   
   # Extract coefficients and other statistics (example)
   coefficients <- coef(model, s = "lambda.min")
