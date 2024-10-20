@@ -595,12 +595,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     if(is.null(.path_file))             .path_file = paste0(.path4write,"/",.filename.ext4write)
 
     if(createBackup) cat('env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
-    cat(.objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time()', "  \n", sep="")
+    cat(.objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")', "  \n", sep="")
     if(path.size_files) cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
     if(Execute) {
         if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
-        system.time(write_rds( get(.objectname), .path_file, compress = CompressionMethod, compression = 9L ))
+        get(.objectname) |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
         if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
     }
     
