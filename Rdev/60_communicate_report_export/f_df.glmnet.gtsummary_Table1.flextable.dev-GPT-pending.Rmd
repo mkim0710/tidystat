@@ -235,7 +235,7 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
 ```
 
   
-### sample(c("Group1", "Group2"), num_obs, replace = TRUE) ----  
+### :: df_50vars_100obs = sample(c("Group1", "Group2"), num_obs, replace = TRUE) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
@@ -254,8 +254,8 @@ options(width=120)
 # group_var <- sample(c("Group1", "Group2"), num_obs, replace = TRUE)
 # 
 # # Combine into a single dataset
-# my_data <- data.frame(Group = group_var, numeric_vars)
-# my_data %>% env1$f$f_df.tribble_construct()
+# df_50vars_100obs <- data.frame(Group = group_var, numeric_vars)
+# df_50vars_100obs %>% env1$f$f_df.tribble_construct()
 ```
   
     
@@ -365,11 +365,11 @@ options(width=120)
   
   
   
-### my_data ----  
+### :: df_5vars_10obs ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Manually create a dataset
-my_data <- data.frame(
+df_5vars_10obs <- data.frame(
   Group = rep(c("Group1", "Group2"), each = 5),
   Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
   Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
@@ -379,26 +379,26 @@ my_data <- data.frame(
 )
 
 # Display the dataset
-print(my_data)
+print(df_5vars_10obs)
 ```
   
   
-###### ECHO \% |> () ----  
+### :: mtcars_5vars =  ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Load the mtcars dataset
 data("mtcars")
 
-mtcars2 = mtcars
+mtcars_5vars = mtcars
 # Create a binary grouping variable based on the number of cylinders
-mtcars2$Group <- ifelse(mtcars$cyl == 4, "Group1", "Group2")
+mtcars_5vars$Group <- ifelse(mtcars$cyl == 4, "Group1", "Group2")
 
 # Select relevant variables
-mtcars2 <- mtcars2 %>%
+mtcars_5vars <- mtcars_5vars %>%
   select(Group, mpg, disp, hp, wt, qsec)
 
 # Display the dataset
-print(mtcars2)
+print(mtcars_5vars)
 
 ```
   
@@ -411,15 +411,184 @@ env0 = env1
 ```
   
   
-## \% analyticDF_time2event |>  
+### df_5vars_10obs |> group_by(Group) |> summarise_all() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
+
+library(glmnet)
+library(flextable)
+library(dplyr)
+library(tidyr)
+
+
+input_data = df_5vars_10obs
+
+# Prepare the predictor matrix X and response vector y
+X <- input_data %>%
+  select(-Group) %>%
+  select_if(is.numeric) %>%
+  drop_na()
+
+# Extract y
+y <- input_data$Group[complete.cases(input_data[, c("Group", names(X))])]
+
+# Convert y to a factor and then to numeric
+y_numeric <- as.numeric(factor(y)) - 1  # Now y_numeric contains 0s and 1s
+
+# Standardize predictors
+X_scaled <- scale(X)
+
+# Perform Elastic Net regression with cross-validation
+cv_model <- cv.glmnet(
+  x = as.matrix(X_scaled),
+  y = y_numeric,
+  family = "binomial",
+  alpha = 0.5,
+  standardize = FALSE
+)
+
+# Extract coefficients at the lambda that gives minimum cross-validated error
+coef_min <- coef(cv_model, s = "lambda.min")
+coef_min_matrix <- as.matrix(coef_min)
+
+# Print the coefficient matrix
+print(coef_min_matrix)
+
+# # Identify selected variables (non-zero coefficients excluding intercept)
+# selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
+# selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+
+# Define a threshold for considering coefficients as zero
+threshold <- 1e-6
+
+# Identify selected variables (non-zero coefficients excluding intercept)
+selected_vars <- rownames(coef_min_matrix)[abs(coef_min_matrix[, 1]) > threshold]
+selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+
+
+# Print selected variables
+print(selected_vars)
+
+if (length(selected_vars) == 0) {
+  stop("No variables were selected by the model.")
+}
+
+# Prepare the summary statistics table
+summary_table <- input_data %>%
+  select(Group, all_of(selected_vars)) %>%
+  group_by(Group) %>%
+  summarise_all(
+    list(
+      Mean = ~ mean(., na.rm = TRUE),
+      SD = ~ sd(., na.rm = TRUE),
+      Median = ~ median(., na.rm = TRUE),
+      Min = ~ min(., na.rm = TRUE),
+      Max = ~ max(., na.rm = TRUE)
+    )
+  ) %>%
+  pivot_longer(
+    -Group,
+    names_to = c("Variable", "Statistic"),
+    names_sep = "_"
+  ) %>%
+  pivot_wider(
+    names_from = "Statistic",
+    values_from = "value"
+  )
+
+# Display the summary table
+print(summary_table)
 
 ```
-  
-  
 
 
+### df_5vars_10obs |> group_by(Group) |> summarise_all() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+
+library(glmnet)
+library(flextable)
+library(dplyr)
+library(tidyr)
+
+
+input_data = mtcars_5vars
+
+# Prepare the predictor matrix X and response vector y
+X <- input_data %>%
+  select(-Group) %>%
+  select_if(is.numeric) %>%
+  drop_na()
+
+# Extract y
+y <- input_data$Group[complete.cases(input_data[, c("Group", names(X))])]
+
+# Convert y to a factor and then to numeric
+y_numeric <- as.numeric(factor(y)) - 1  # Now y_numeric contains 0s and 1s
+
+# Standardize predictors
+X_scaled <- scale(X)
+
+# Perform Elastic Net regression with cross-validation
+cv_model <- cv.glmnet(
+  x = as.matrix(X_scaled),
+  y = y_numeric,
+  family = "binomial",
+  alpha = 0.5,
+  standardize = FALSE
+)
+
+# Extract coefficients at the lambda that gives minimum cross-validated error
+coef_min <- coef(cv_model, s = "lambda.min")
+coef_min_matrix <- as.matrix(coef_min)
+
+# Print the coefficient matrix
+print(coef_min_matrix)
+
+# # Identify selected variables (non-zero coefficients excluding intercept)
+# selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
+# selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+
+# Define a threshold for considering coefficients as zero
+threshold <- 1e-6
+
+# Identify selected variables (non-zero coefficients excluding intercept)
+selected_vars <- rownames(coef_min_matrix)[abs(coef_min_matrix[, 1]) > threshold]
+selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+
+
+# Print selected variables
+print(selected_vars)
+
+if (length(selected_vars) == 0) {
+  stop("No variables were selected by the model.")
+}
+
+# Prepare the summary statistics table
+summary_table <- input_data %>%
+  select(Group, all_of(selected_vars)) %>%
+  group_by(Group) %>%
+  summarise_all(
+    list(
+      Mean = ~ mean(., na.rm = TRUE),
+      SD = ~ sd(., na.rm = TRUE),
+      Median = ~ median(., na.rm = TRUE),
+      Min = ~ min(., na.rm = TRUE),
+      Max = ~ max(., na.rm = TRUE)
+    )
+  ) %>%
+  pivot_longer(
+    -Group,
+    names_to = c("Variable", "Statistic"),
+    names_sep = "_"
+  ) %>%
+  pivot_wider(
+    names_from = "Statistic",
+    values_from = "value"
+  )
+
+# Display the summary table
+print(summary_table)
+
+```
   
   
 ###### ECHO \% |> () ----  
@@ -484,19 +653,10 @@ library(flextable)
 library(dplyr)
 library(tidyr)
 
-create_table1 <- function(dataset, byVar, alpha = 1) {
-  # Check if byVar exists in the dataset
-  if (!(byVar %in% names(dataset))) {
-    stop("The byVar is not present in the dataset.")
-  }
-  
-  # Convert byVar to factor if it's not already
+# Define the create_table1 function with corrected logic
+create_table1 <- function(dataset, byVar, alpha = 1, output_as_flextable = FALSE) {
+  # Ensure byVar is a factor
   dataset[[byVar]] <- as.factor(dataset[[byVar]])
-  
-  # Ensure byVar has exactly two levels for binary classification
-  if (nlevels(dataset[[byVar]]) != 2) {
-    stop("The byVar must be a binary factor with exactly two levels.")
-  }
   
   # Prepare the predictor matrix X and response vector y
   X <- dataset %>%
@@ -506,31 +666,30 @@ create_table1 <- function(dataset, byVar, alpha = 1) {
   
   y <- dataset[[byVar]][complete.cases(dataset[, c(byVar, names(X))])]
   
+  # Convert y to numeric codes
+  y_numeric <- as.numeric(factor(y)) - 1
+  
   # Standardize predictors
   X_scaled <- scale(X)
   
-  # Encode y as binary (0 and 1)
-  y_numeric <- as.numeric(y) - 1
-  
-  # Adjust nfolds based on sample size
-  nfolds <- min(5, length(y_numeric))
-  
-  # Perform LASSO or Elastic Net regression with cross-validation
+  # Perform Elastic Net regression with cross-validation
   cv_model <- cv.glmnet(
     x = as.matrix(X_scaled),
     y = y_numeric,
     family = "binomial",
     alpha = alpha,
-    standardize = FALSE,
-    nfolds = nfolds
+    standardize = FALSE
   )
   
   # Extract coefficients at the lambda that gives minimum cross-validated error
   coef_min <- coef(cv_model, s = "lambda.min")
   coef_min_matrix <- as.matrix(coef_min)
   
+  # Define a threshold for considering coefficients as zero
+  threshold <- 1e-6
+  
   # Identify selected variables (non-zero coefficients excluding intercept)
-  selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
+  selected_vars <- rownames(coef_min_matrix)[abs(coef_min_matrix[, 1]) > threshold]
   selected_vars <- selected_vars[selected_vars != "(Intercept)"]
   
   # Check if any variables were selected
@@ -561,98 +720,48 @@ create_table1 <- function(dataset, byVar, alpha = 1) {
       values_from = "value"
     )
   
-  # Create a flextable object
-  ft <- flextable(summary_table)
   
-  # Format the flextable
-  ft <- autofit(ft)
-  
-  return(ft)
+  if (output_as_flextable) {
+      # Create a flextable object
+      ft <- flextable(summary_table)
+      
+      # Format the flextable
+      ft <- autofit(ft)
+      
+      return(ft)
+      
+  } else {
+      return(summary_table)
+  }
 }
 
 
 ```
   
   
-### ECHO my_data |> create_table1() ----  
+### df_5vars_10obs |> create_table1() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 # Run the function with alpha = 0.5 for Elastic Net regression
-table1 <- create_table1(dataset = my_data, byVar = "Group", alpha = 0.5)
+df_5vars_10obs.table1 <- create_table1(dataset = df_5vars_10obs, byVar = "Group", alpha = 0.5)
 
-table1
+df_5vars_10obs.table1
 # Since we might not be able to display flextable here, let's extract and display the summary table
 # Rewriting the part of the function to extract summary_table
 ```
 
 
-### ECHO \% |> group_by(Group) |> summarise_all() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# Prepare the predictor matrix X and response vector y
-# Prepare the predictor matrix X and response vector y
-X <- my_data %>%
-  select(-Group) %>%
-  select_if(is.numeric) %>%
-  drop_na()
 
-# Extract y
-y <- my_data$Group[complete.cases(my_data[, c("Group", names(X))])]
-
-# Convert y to a factor and then to numeric
-y_numeric <- as.numeric(factor(y)) - 1  # Now y_numeric contains 0s and 1s
-
-# Standardize predictors
-X_scaled <- scale(X)
-
-# Perform Elastic Net regression with cross-validation
-cv_model <- cv.glmnet(
-  x = as.matrix(X_scaled),
-  y = y_numeric,
-  family = "binomial",
-  alpha = 0.5,
-  standardize = FALSE
-)
-
-# Extract coefficients at the lambda that gives minimum cross-validated error
-coef_min <- coef(cv_model, s = "lambda.min")
-coef_min_matrix <- as.matrix(coef_min)
-
-# Identify selected variables (non-zero coefficients excluding intercept)
-selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
-selected_vars <- selected_vars[selected_vars != "(Intercept)"]
-
-# Prepare the summary statistics table
-summary_table <- my_data %>%
-  select(Group, all_of(selected_vars)) %>%
-  group_by(Group) %>%
-  summarise_all(
-    list(
-      Mean = ~ mean(., na.rm = TRUE),
-      SD = ~ sd(., na.rm = TRUE),
-      Median = ~ median(., na.rm = TRUE),
-      Min = ~ min(., na.rm = TRUE),
-      Max = ~ max(., na.rm = TRUE)
-    )
-  ) %>%
-  pivot_longer(
-    -Group,
-    names_to = c("Variable", "Statistic"),
-    names_sep = "_"
-  ) %>%
-  pivot_wider(
-    names_from = "Statistic",
-    values_from = "value"
-  )
-
-# Display the summary table
-print(summary_table)
-
-```
   
   
-###### ECHO \% |> () ----  
+###  mtcars_5vars |> create_table1() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
+# Run the function
+mtcars_5vars.table1 <- mtcars_5vars %>% create_table1(byVar = "Group", alpha = 0.5)
+
+# Display the flextable
+print(mtcars_5vars.table1)
 
 ```
   
