@@ -568,6 +568,111 @@ print(pi_result)
 ```
   
   
+### library(boot) ----  
+#### ECHO \% |> boot() |> boot.ci() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+library(boot)
+
+# Define a function to calculate the coefficients for bootstrapping
+boot_fn <- function(data, indices) {
+  d <- data[indices, ]  # Resample the data
+  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)
+  return(coef(fit))  # Return the model coefficients
+}
+
+# Perform bootstrapping with 1000 resamples
+set.seed(123)
+boot_results <- boot(data = titanic_data, statistic = boot_fn, R = 1000)
+
+# View bootstrapped estimates
+print(boot_results)
+
+# Calculate bootstrap confidence intervals for each coefficient
+boot_ci_pclass <- boot.ci(boot_results, type = "perc", index = 2)  # Pclass
+boot_ci_sex <- boot.ci(boot_results, type = "perc", index = 3)  # Sex
+boot_ci_age <- boot.ci(boot_results, type = "perc", index = 4)  # Age
+boot_ci_fare <- boot.ci(boot_results, type = "perc", index = 5)  # Fare
+
+# Print bootstrap confidence intervals
+print(boot_ci_pclass)
+print(boot_ci_sex)
+print(boot_ci_age)
+print(boot_ci_fare)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+library(boot)
+library(MASS)
+
+# Function to calculate predicted probabilities for bootstrap samples
+boot_pred_fn <- function(data, indices, newdata) {
+  d <- data[indices, ]  # Resample the data
+  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)  # Fit the model
+  
+  # Create design matrix for the new observation
+  newdata_matrix <- model.matrix(~ Pclass + Sex + Age + Fare, data = newdata)
+  
+  # Predicted probabilities
+  eta <- newdata_matrix %*% coef(fit)  # Linear predictor
+  pred_prob <- 1 / (1 + exp(-eta))  # Logistic function for probabilities
+  return(pred_prob)  # Return predicted probabilities
+}
+
+# Example new observation for prediction
+new_obs <- data.frame(Pclass = 3, Sex = "male", Age = 25, Fare = 7.25)
+new_obs$Sex <- factor(new_obs$Sex, levels = levels(titanic_data$Sex))
+
+# Perform bootstrapping to generate predicted probabilities
+set.seed(123)
+boot_pred_results <- boot(data = titanic_data, statistic = boot_pred_fn, R = 1000, newdata = new_obs)
+
+# Extract predicted probabilities from the bootstrap results
+pred_probs <- boot_pred_results$t  # Each row represents one bootstrap sample's prediction
+
+# Calculate prediction intervals (e.g., 95% interval)
+lower <- quantile(pred_probs, probs = 0.025)  # 2.5th percentile
+upper <- quantile(pred_probs, probs = 0.975)  # 97.5th percentile
+
+# Display the prediction interval
+pred_interval <- data.frame(Lower = lower, Upper = upper)
+print(pred_interval)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
