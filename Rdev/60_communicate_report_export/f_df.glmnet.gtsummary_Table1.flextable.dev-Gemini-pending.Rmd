@@ -235,15 +235,6 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
 ```
   
   
-###### :: df_numeric5_categorical2 ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-df_numeric5_categorical2 = 
-    structure(list(group_variable = c("A", "A", "A", "B", "B", "B", "C", "C", "C"), numeric_var1 = c(10L, 12L, 11L, 20L, 22L, 21L, 30L, 32L, 31L), numeric_var2 = c(100L, 102L, 101L, 200L, 202L, 201L, 300L, 302L, 301L), numeric_var3 = c(5, 6, 5.5, 10, 11, 10.5, 15, 16, 15.5), numeric_var4 = c(25, 26, 25.5, 50, 51, 50.5, 75, 76, 75.5), numeric_var5 = c(2, 2.2, 2.1, 4, 4.2, 4.1, 6, 6.2, 6.1), categorical_var1 = c("X", "Y", "X", "Y", "Z", "Y", "Z", "X", "Z"), categorical_var2 = c("M", "N", "M", "N", "O",  "N", "O", "M", "O")), class = "data.frame", row.names = c(NA, -9L))
-df_numeric5_categorical2
-```
-  
-  
 ### :: df_5vars_10obs ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -261,6 +252,16 @@ df_5vars_10obs <- data.frame(
 print(df_5vars_10obs)
 ```
 
+  
+### :: df_numeric5_categorical2 ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+df_numeric5_categorical2 = 
+    structure(list(group_variable = c("A", "A", "A", "B", "B", "B", "C", "C", "C"), numeric_var1 = c(10L, 12L, 11L, 20L, 22L, 21L, 30L, 32L, 31L), numeric_var2 = c(100L, 102L, 101L, 200L, 202L, 201L, 300L, 302L, 301L), numeric_var3 = c(5, 6, 5.5, 10, 11, 10.5, 15, 16, 15.5), numeric_var4 = c(25, 26, 25.5, 50, 51, 50.5, 75, 76, 75.5), numeric_var5 = c(2, 2.2, 2.1, 4, 4.2, 4.1, 6, 6.2, 6.1), categorical_var1 = c("X", "Y", "X", "Y", "Z", "Y", "Z", "X", "Z"), categorical_var2 = c("M", "N", "M", "N", "O",  "N", "O", "M", "O")), class = "data.frame", row.names = c(NA, -9L))
+df_numeric5_categorical2
+```
+  
+  
   
 # __________|------  
 # @@ START) dev ----  
