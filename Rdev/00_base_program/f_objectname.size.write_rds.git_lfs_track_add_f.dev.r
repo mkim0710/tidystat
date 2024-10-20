@@ -261,15 +261,20 @@ tmp.object = f_objectsize_in_bytes.create(100 * 2^20); tmp.object |> env1$f$f_ob
 # 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rds', compress = 'gz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
 # 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rds'" |> system(intern=TRUE)  
 # > tmp.object = f_objectsize_in_bytes.create(2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
-# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rds.xz', compress = 'xz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rds.xz'" |> system(intern=TRUE)  
+# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rdsNA', compress = 'xz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rdsNA'" |> system(intern=TRUE)  
 # > tmp.object = f_objectsize_in_bytes.create(10 * 2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
-# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rds.xz', compress = 'xz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
-# 	"git lfs track '/home/rstudio/github_tidystat/tmp.object.rds.xz'" |> system(intern=TRUE)  
-# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rds.xz'" |> system(intern=TRUE)  
-# Warning message:
-# In env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = Execute) :
-#   git lfs is not available 
+# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rdsNA', compress = 'xz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	"git lfs track '/home/rstudio/github_tidystat/tmp.object.rdsNA'" |> system(intern=TRUE)  
+# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rdsNA'" |> system(intern=TRUE)  
+# > tmp.object = f_objectsize_in_bytes.create(100 * 2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# Warning: object.size(get(.objectname)) >= 1e8 --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file.
+# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rds', compress = '', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	"git lfs track '/home/rstudio/github_tidystat/tmp.object.rds'" |> system(intern=TRUE)  
+# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rds'" |> system(intern=TRUE)  
+
+
+
 
 
 
