@@ -502,7 +502,7 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 ## :: f_file.git_lfs_track_add_f ====  
 # Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
 env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
-    git_lfs_available = try(system2("git", args = "lfs version", stdout = TRUE, stderr = TRUE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
+    git_lfs_available = try(system2("git", args = "lfs version", stdout = FALSE, stderr = FALSE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
     
     # if(git_lfs_available) {
     #     invisible(
@@ -537,7 +537,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
 # Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path_file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6, ".xz", "")), createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL, VERBOSE = options()$verbose) {
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path_file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL, VERBOSE = options()$verbose) {
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
@@ -589,8 +589,14 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
             }
         } 
     }
-    if(is.null(CompressionMethod))      CompressionMethod = ifelse(object.size(get(.objectname)) > 1e6, "xz", "gz")
-    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6, ".xz", ""))
+    if (object.size(get(.objectname)) >= 1e8) {
+        "object.size(get(.objectname)) >= 1e8 --> The object is too large to compress in R. Consider compressing the file in a dedicated compression software after saving an uncompressed rds file." |> warning(call. = FALSE, immediate. = TRUE)
+    }
+    if(is.null(.filename.ext4write))    .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) >= 1e6 && object.size(get(.objectname)) < 1e8, ".xz", ""))
+    if(is.null(CompressionMethod))      CompressionMethod = case_when(.filename.ext4write == "xz" ~ "xz", 
+                                                                      object.size(get(.objectname)) >= 1e8 ~ "",
+                                                                      object.size(get(.objectname)) >= 1e6 ~ "xz",
+                                                                      TRUE ~ "gz")  
     if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path_file))             .path_file = paste0(.path4write,"/",.filename.ext4write)
 
@@ -600,8 +606,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     
     if(Execute) {
         if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
-        get(.objectname) |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-        if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
+        if (object.size(get(.objectname)) >= 1e8) {
+            "object.size(get(.objectname)) >= 1e8 --> No Auto-execution." |> warning(call. = FALSE, immediate. = TRUE)
+        } else { 
+            get(.objectname) |> write_rds( .path_file, compress = CompressionMethod, compression = 9L ) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+            if(path.size_files) env1$f$f_path.size_files(.path4read = .path4write, regex4filename = .objectname)
+        }
     }
     
     if(git_add_f) {
