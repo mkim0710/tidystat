@@ -187,30 +187,28 @@ get(.objectname) %>% str(max.level = 2)
 MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # > MetaData %>% env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # Warning in env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.) :
-#   .objectname == "."   #@ sys.nframe() == 2
+#   .objectname == "."   #@ sys.nframe() == 2  
+# 
 # -> Trying: ls(envir = .GlobalEnv, all.names = TRUE) %>% set_names %>% map(get) %>% keep(function(object) identical(object, .object)) %>% names
-# Warning in env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.) :
-#   length(.objectname) > 1
-# c(".object", "MetaData")
-# MetaData |> write_rds('Rdev/00_base_program/MetaData.rds', compress = 'gz', compression = 9L) |> system.time()  
-# env1$f$f_path.size_files(.path4read = 'Rdev/00_base_program', regex4filename = 'MetaData')  
-# "git add -f 'Rdev/00_base_program/MetaData.rds'" |> system(intern=TRUE)  
+# 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
+# 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(createBackup = TRUE)
 MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
-# MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9L) |> system.time()  
-# env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
-# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
+# 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
+# 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(createBackup = TRUE)
-# env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = "/home/rstudio/github_tidystat/MetaData.rds", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
-# MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9L) |> system.time()  
-# env1$f$f_path.size_files(.path4read = '/home/rstudio/github_tidystat', regex4filename = 'MetaData')  
-# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
+# 	env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = "Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds", .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  
+# 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	env1$f$f_path.size_files(.path4read = 'Rdev/10_import_clean_datatype/16_categorical_labelled', regex4filename = 'MetaData')  
+# 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 # > MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
-# MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9L) |> system.time()  
-# "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
+# 	MetaData |> write_rds('Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds', compress = 'gz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	"git add -f 'Rdev/10_import_clean_datatype/16_categorical_labelled/MetaData.rds'" |> system(intern=TRUE)  
 
 .objectname |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()
 # > .objectname |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f()

@@ -1,7 +1,8 @@
-# f_objectsize.create.dev.r
+# Rdev/00_base_program/f_objectsize.create.dev.r
+# f_objectname.size.write_rds.git_lfs_track_add_f.dev.r
 
 
-
+# Rdev/00_base_program/f_objectsize.create.dev.r
 f_objectsize.create = function(objectsize = 1 * 1024^2) {
         .object = numeric(objectsize/8)
 }
@@ -31,7 +32,7 @@ f_objectsize.create = function(objectsize = 1 * 1024^2) {
 # [1] 4800
 
 
-
+# Rdev/00_base_program/f_objectsize.create.dev.r
 f_objectsize.create = function(objectsize = 1 * 1024^2, createRandomNumbers = FALSE, objectname = NULL) {
     
     if (createRandomNumbers) {
@@ -47,4 +48,15 @@ f_objectsize.create = function(objectsize = 1 * 1024^2, createRandomNumbers = FA
     }
 }
 
+
+100*1024^2 |> f_objectsize.create(createRandomNumbers = TRUE) %>% str  # str() buggy when object is too large? 
+100*1024^2 |> f_objectsize.create(createRandomNumbers = TRUE) %>% length
+100*1024^2 |> f_objectsize.create(createRandomNumbers = TRUE) |> object.size() 
+# > 100*1024^2 |> f_objectsize.create(createRandomNumbers = TRUE) %>% str  # str() buggy when object is too large? 
+#  num [1:131072] 0.741 0.72 0.925 0.559 0.554 ...
+# numeric(0)
+# > 100*1024^2 |> f_objectsize.create(createRandomNumbers = TRUE) %>% length
+# [1] 13107200
+# > 100*1024^2 |> f_objectsize.create(createRandomNumbers = TRUE) |> object.size() 
+# 104862400 bytes
 
