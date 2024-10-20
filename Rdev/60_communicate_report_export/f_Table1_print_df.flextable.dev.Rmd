@@ -185,10 +185,10 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd()) #----   
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$CurrentSource.path.filename.ext ====  
+### env1\$path\$CurrentSource.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+# env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
@@ -210,7 +210,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -541,14 +541,14 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
         .wb <- .wb %>% flexlsx::wb_add_flextable(.objectname, get(.objectname), start_col = 2, start_row = 3)    # offset the table to cell 'C2'
     }
 
-    # .path.file <- tempfile(fileext = ".xlsx")
+    # .path_file <- tempfile(fileext = ".xlsx")
     .path4write = env1$path$path1
-    .CurrentSource.path.filename = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$","")
-    .path.file = paste0(.path4write,"/",.CurrentSource.path.filename,".xlsx")
-    .wb$save(.path.file)
-    cat(".path.file == ", deparse(.path.file), "  \n", sep="")
-    if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.file)
-    env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE)
+    .CurrentSource.path_filename = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$","")
+    .path_file = paste0(.path4write,"/",.CurrentSource.path_filename,".xlsx")
+    .wb$save(.path_file)
+    cat(".path_file == ", deparse(.path_file), "  \n", sep="")
+    if(Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_file)
+    env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE)
 }
 ```
 
@@ -649,7 +649,7 @@ options(width=120)
 
 ```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # __________|------  
-## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
+## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() ----  
 if(exists("MetaData")) {
     # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
     cat("    ________________________________________________________________________    \n")
@@ -660,17 +660,17 @@ if(exists("MetaData")) {
     }
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
-# system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
+# .path_filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# system.time(openxlsx2::write_xlsx(get(.objectname), file=.path_filename.xlsx, as_table=TRUE))
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
 ```
   
   
 ```{r createBackup, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
 ```
@@ -678,15 +678,15 @@ if (Sys.getenv("PARENT_RENDERING") != "YES") {
   
 ```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
-env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
-if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+env1$path$CurrentSource.path_filename.nb.html = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path_filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   

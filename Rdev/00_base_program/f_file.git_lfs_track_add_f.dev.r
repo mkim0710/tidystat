@@ -11,10 +11,10 @@
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-# f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
+# f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
 #     list_TerminalCodeText = list(
-#         paste0( "git lfs track ",shQuote(.path.file) )
-#         , paste0( "git add -f ",shQuote(.path.file) )
+#         paste0( "git lfs track ",shQuote(.path_file) )
+#         , paste0( "git add -f ",shQuote(.path_file) )
 #     )
 # 
 #     list_TerminalCodeText |> 
@@ -40,10 +40,10 @@
 #     )
 # }
 
-# f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
+# f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
 #     list_TerminalCodeText = list(
-#         paste0( "git lfs track ",shQuote(.path.file) )
-#         , paste0( "git add -f ",shQuote(.path.file) )
+#         paste0( "git lfs track ",shQuote(.path_file) )
+#         , paste0( "git add -f ",shQuote(.path_file) )
 #     )
 #     invisible(        
 #         list_TerminalCodeText |> map(f_TerminalFromRCodeText.echo, Execute)
@@ -71,20 +71,20 @@ env1$f$f_TerminalFromRCodeText.echo = function(.TerminalCodeText, Execute = FALS
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_file.git_lfs_track_add_f ====  
 # Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
-env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
+env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
     git_lfs_available = try(system2("git", args = "lfs version", stdout = TRUE, stderr = TRUE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
     
     # if(git_lfs_available) {
     #     invisible(
     #         list(
-    #             paste0( "git lfs track ",shQuote(.path.file) )
-    #             , paste0( "git add -f ",shQuote(.path.file) )
+    #             paste0( "git lfs track ",shQuote(.path_file) )
+    #             , paste0( "git add -f ",shQuote(.path_file) )
     #         ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
     #     )
     # } else {
     #     warning("git lfs is not available  \n")
     #     invisible(
-    #         paste0( "git add -f ",shQuote(.path.file) ) |> env1$f$f_TerminalFromRCodeText.echo(Execute = Execute)
+    #         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.echo(Execute = Execute)
     #     )
     # }
     
@@ -92,17 +92,17 @@ env1$f$f_file.git_lfs_track_add_f = function(.path.file, Execute = FALSE) {
     
     invisible(
         list(
-            paste0( "git lfs track ",shQuote(.path.file) )
-            , paste0( "git add -f ",shQuote(.path.file) )
+            paste0( "git lfs track ",shQuote(.path_file) )
+            , paste0( "git add -f ",shQuote(.path_file) )
         ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
     )
 }
 
 # ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # ## \$f_file.git_add_f ====  
-# env1$f$f_file.git_add_f = function(.path.file, Execute = FALSE) {
+# env1$f$f_file.git_add_f = function(.path_file, Execute = FALSE) {
 #     invisible(
-#         paste0( "git add -f ",shQuote(.path.file) ) |> env1$f$f_TerminalFromRCodeText.echo(Execute = Execute)
+#         paste0( "git add -f ",shQuote(.path_file) ) |> env1$f$f_TerminalFromRCodeText.echo(Execute = Execute)
 #     )
 # }
 
