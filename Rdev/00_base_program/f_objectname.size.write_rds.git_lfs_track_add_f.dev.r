@@ -224,3 +224,46 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData",
 # MetaData |> write_rds('/home/rstudio/github_tidystat/MetaData.rds', compress = 'gz', compression = 9L) |> system.time()  
 # "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
 
+
+#@ Rdev/00_base_program/f_objectsize_unit.create.dev.r ----
+## f_objectsize_in_bytes.create = function(objectsize_in_bytes = 1 * 1024^2) ----
+f_objectsize_in_bytes.create = function(objectsize_in_bytes = 1 * 1024^2) { 
+    .object = numeric(objectsize_in_bytes/8) 
+}
+2^20
+f_objectsize_in_bytes.create(2^20) |> object.size()
+# > 2^20
+# [1] 1048576
+# > f_objectsize_in_bytes.create(2^20) |> object.size()
+# 1048624 bytes
+
+
+# f_objectsize_in_bytes.create(2^20) |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# # > f_objectsize_in_bytes.create(2^20) |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# # Error in get(.objectname) : 
+# #   object 'f_objectsize_in_bytes.create(2^20)' not found
+# # Called from: get(.objectname)
+
+
+
+tmp.object = f_objectsize_in_bytes.create(2^19); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+tmp.object = f_objectsize_in_bytes.create(2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+tmp.object = f_objectsize_in_bytes.create(10 * 2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+tmp.object = f_objectsize_in_bytes.create(100 * 2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# > tmp.object = f_objectsize_in_bytes.create(2^19); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rds', compress = 'gz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rds'" |> system(intern=TRUE)  
+# > tmp.object = f_objectsize_in_bytes.create(2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rds.xz', compress = 'xz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rds.xz'" |> system(intern=TRUE)  
+# > tmp.object = f_objectsize_in_bytes.create(10 * 2^20); tmp.object |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(path.size_files = FALSE)
+# 	tmp.object |> write_rds('/home/rstudio/github_tidystat/tmp.object.rds.xz', compress = 'xz', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")  
+# 	"git lfs track '/home/rstudio/github_tidystat/tmp.object.rds.xz'" |> system(intern=TRUE)  
+# 	"git add -f '/home/rstudio/github_tidystat/tmp.object.rds.xz'" |> system(intern=TRUE)  
+# Warning message:
+# In env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = Execute) :
+#   git lfs is not available 
+
+
+
+
