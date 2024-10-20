@@ -483,6 +483,7 @@ library(glmnet)
 library(flextable)
 library(dplyr)
 library(tidyr)
+
 create_table1 <- function(dataset, byVar, alpha = 1) {
   # Check if byVar exists in the dataset
   if (!(byVar %in% names(dataset))) {
@@ -511,20 +512,25 @@ create_table1 <- function(dataset, byVar, alpha = 1) {
   # Encode y as binary (0 and 1)
   y_numeric <- as.numeric(y) - 1
   
+  # Adjust nfolds based on sample size
+  nfolds <- min(5, length(y_numeric))
+  
   # Perform LASSO or Elastic Net regression with cross-validation
   cv_model <- cv.glmnet(
     x = as.matrix(X_scaled),
     y = y_numeric,
     family = "binomial",
     alpha = alpha,
-    standardize = FALSE
+    standardize = FALSE,
+    nfolds = nfolds
   )
   
   # Extract coefficients at the lambda that gives minimum cross-validated error
   coef_min <- coef(cv_model, s = "lambda.min")
+  coef_min_matrix <- as.matrix(coef_min)
   
   # Identify selected variables (non-zero coefficients excluding intercept)
-  selected_vars <- rownames(coef_min)[coef_min != 0]
+  selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
   selected_vars <- selected_vars[selected_vars != "(Intercept)"]
   
   # Check if any variables were selected
@@ -564,6 +570,7 @@ create_table1 <- function(dataset, byVar, alpha = 1) {
   return(ft)
 }
 
+
 ```
   
   
@@ -579,20 +586,23 @@ table1
 ```
 
 
+### ECHO \% |> group_by(Group) |> summarise_all() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# Prepare the predictor matrix X and response vector y
 # Prepare the predictor matrix X and response vector y
 X <- my_data %>%
   select(-Group) %>%
   select_if(is.numeric) %>%
   drop_na()
 
+# Extract y
 y <- my_data$Group[complete.cases(my_data[, c("Group", names(X))])]
+
+# Convert y to a factor and then to numeric
+y_numeric <- as.numeric(factor(y)) - 1  # Now y_numeric contains 0s and 1s
 
 # Standardize predictors
 X_scaled <- scale(X)
-
-# Encode y as binary (0 and 1)
-y_numeric <- as.numeric(y) - 1
 
 # Perform Elastic Net regression with cross-validation
 cv_model <- cv.glmnet(
@@ -605,9 +615,10 @@ cv_model <- cv.glmnet(
 
 # Extract coefficients at the lambda that gives minimum cross-validated error
 coef_min <- coef(cv_model, s = "lambda.min")
+coef_min_matrix <- as.matrix(coef_min)
 
 # Identify selected variables (non-zero coefficients excluding intercept)
-selected_vars <- rownames(coef_min)[coef_min != 0]
+selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
 selected_vars <- selected_vars[selected_vars != "(Intercept)"]
 
 # Prepare the summary statistics table
