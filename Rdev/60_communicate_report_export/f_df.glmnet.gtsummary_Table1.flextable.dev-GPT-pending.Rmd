@@ -769,7 +769,7 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
   
 # __________|------  
 # @@ START) function ----  
-### ECHO :: extract_coefficients() = f_df.glmnet.coef.pivot_longer() ----  
+### :: extract_coefficients() = f_df.glmnet.coef.pivot_longer() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(glmnet)
@@ -1127,7 +1127,7 @@ ggplot(coefficients_filtered, aes(x = lambda, y = Coefficient, color = Variable)
 ```
 
   
-## create_table1 = f_df.cv.glmnet.selectVars.summarise_byVar() ----  
+## :: create_table1() = f_df.cv.glmnet.selectVars.summarise_byVar() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 library(glmnet)
