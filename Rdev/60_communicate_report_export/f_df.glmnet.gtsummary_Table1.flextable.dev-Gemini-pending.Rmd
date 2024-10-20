@@ -368,7 +368,7 @@ library(glmnet)
 library(flextable)
 
 # Define the function
-create_summary_table <- function(dataset, byVar, alpha = 1) {
+create_summary_table <- function(dataset, byVar, alpha = 1, create_flextable = FALSE) {
   # Prepare data
   x <- model.matrix(as.formula(paste("~ . -", byVar)), data = dataset)
   y <- dataset[[byVar]]
@@ -385,11 +385,14 @@ create_summary_table <- function(dataset, byVar, alpha = 1) {
   print("lambda sequence:")
   print(head(lambda_seq)) # Print the first few lambda values
   model <- glmnet(x, y, alpha = alpha, lambda = lambda_seq) 
-  
-  # Extract coefficients and other statistics (example)
+
+  # Extract lambda.min from the model object
+  lambda.min <- model$lambda.min
   print("lambda.min:")
   print(lambda.min) # Print the value of lambda.min
-  coefficients <- coef(model, s = "lambda.min")
+
+  # Extract coefficients and other statistics (example)
+  coefficients <- coef(model, s = lambda.min)
   # ... extract other statistics as needed ...
   
   # Create a data frame for the table
@@ -399,12 +402,18 @@ create_summary_table <- function(dataset, byVar, alpha = 1) {
     # ... add other statistics to the data frame ...
   )
   
-  # Create and format the flextable
-  ft <- flextable(table_data)
-  ft <- set_header_labels(ft, Variable = "Variable", Coefficient = "Coefficient")
-  # ... add other formatting options as desired ...
-  return(ft)
+  if (create_flextable) {
+      # Create and format the flextable
+      ft <- flextable(table_data)
+      ft <- set_header_labels(ft, Variable = "Variable", Coefficient = "Coefficient")
+      # ... add other formatting options as desired ...
+      return(ft)
+  } else {
+      return(table_data)
+  }
 }
+
+
 
 ```
   
