@@ -961,6 +961,16 @@ if(exists("MetaData")) {
 .path4write = env1$path$path1
 .objectname = "gtsummary_Table1"
 write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time()
+
+library(flextable)
+.flextable = get(.objectname) %>% as_flex_table() 
+.flextable %>% save_as_docx(path = paste0(.path4write,"/",.objectname,".docx"))
+
+for(.packagename in c("remotes", "flexlsx")) {if(!require(.packagename,character.only=TRUE)) remotes::install_github("pteridin/flexlsx")  ;  library(.packagename,character.only=TRUE)}
+.wb <- openxlsx2::wb_workbook()
+.wb$add_worksheet(.objectname)
+.wb <- .wb %>% flexlsx::wb_add_flextable(.objectname, .flextable, start_col = 2, start_row = 3)    # offset the table to cell 'C2'
+.wb$save("gtsummary_Table1.flextable.xlsx")
 ```
   
   
