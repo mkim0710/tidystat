@@ -225,6 +225,13 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = "MetaData",
 # "git add -f '/home/rstudio/github_tidystat/MetaData.rds'" |> system(intern=TRUE)  
 
 
+
+
+
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #@ Rdev/00_base_program/f_objectsize_unit.create.dev.r ----
 ## f_objectsize_in_bytes.create = function(objectsize_in_bytes = 1 * 1024^2) ----
 f_objectsize_in_bytes.create = function(objectsize_in_bytes = 1 * 1024^2) { 
