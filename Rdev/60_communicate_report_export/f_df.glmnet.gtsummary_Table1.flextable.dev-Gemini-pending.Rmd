@@ -387,6 +387,8 @@ create_summary_table <- function(dataset, byVar, alpha = 1) {
   model <- glmnet(x, y, alpha = alpha, lambda = lambda_seq) 
   
   # Extract coefficients and other statistics (example)
+  print("lambda.min:")
+  print(lambda.min) # Print the value of lambda.min
   coefficients <- coef(model, s = "lambda.min")
   # ... extract other statistics as needed ...
   
