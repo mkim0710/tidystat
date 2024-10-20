@@ -437,29 +437,44 @@ y_numeric <- as.numeric(factor(y)) - 1  # Now y_numeric contains 0s and 1s
 # Standardize predictors
 X_scaled <- scale(X)
 
-# Perform Elastic Net regression with cross-validation
+# Define a lambda sequence with larger values
+# lambda_seq <- 10^seq(2, -2, by = -0.1)
+lambda_seq <- 10^seq(4, -2, by = -0.1)
+
+# cv_model <- cv.glmnet(
+#   x = as.matrix(X_scaled),
+#   y = y_numeric,
+#   family = "binomial",
+#   alpha = 0.5,
+#   lambda = lambda_seq,
+#   standardize = FALSE
+# )
 cv_model <- cv.glmnet(
   x = as.matrix(X_scaled),
   y = y_numeric,
   family = "binomial",
-  alpha = 0.5,
+  alpha = 1,
+  lambda = lambda_seq,
   standardize = FALSE
 )
 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cv_model$lambda %>% deparse(width.cutoff = 500) %>% cat("\n")
+plot(cv_model$glmnet.fit, xvar = "lambda", label = TRUE)
+
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# Use the largest lambda that results in a model with desired sparsity
+best_lambda <- cv_model$lambda[which.min(cv_model$cvm)]
+best_lambda
+
+
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 # Extract coefficients at the lambda that gives minimum cross-validated error
 coef_min <- coef(cv_model, s = "lambda.min")
 coef_min_matrix <- as.matrix(coef_min)
 
 # Print the coefficient matrix
 print(coef_min_matrix)
-
-# Extract coefficients at lambda.1se
-coef_1se <- coef(cv_model, s = "lambda.1se")
-coef_1se_matrix <- as.matrix(coef_1se)
-
-# Print the coefficient matrix
-print(coef_1se_matrix)
-
 
 # # Identify selected variables (non-zero coefficients excluding intercept)
 # selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
@@ -468,20 +483,48 @@ print(coef_1se_matrix)
 # Define a threshold for considering coefficients as zero
 threshold <- 1e-6
 
-# # Identify selected variables (non-zero coefficients excluding intercept)
-# selected_vars <- rownames(coef_min_matrix)[abs(coef_min_matrix[, 1]) > threshold]
-# selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+# Identify selected variables (non-zero coefficients excluding intercept)
+selected_vars <- rownames(coef_min_matrix)[abs(coef_min_matrix[, 1]) > threshold]
+selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+selected_vars %>% deparse(width.cutoff = 500) %>% cat("\n")
+
+
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# Extract coefficients at lambda.1se
+coef_1se <- coef(cv_model, s = "lambda.1se")
+coef_1se_matrix <- as.matrix(coef_1se)
+
+# Print the coefficient matrix
+print(coef_1se_matrix)
+
+# Define a threshold for considering coefficients as zero
+threshold <- 1e-6
 
 selected_vars <- rownames(coef_1se_matrix)[abs(coef_1se_matrix[, 1]) > threshold]
 selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+selected_vars %>% deparse(width.cutoff = 500) %>% cat("\n")
 
-# Print selected variables
-print(selected_vars)
 
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# Choose a lambda value
+custom_lambda <- cv_model$lambda[50]  # Adjust the index as needed
+
+# Extract coefficients at the chosen lambda
+coef_custom <- coef(cv_model, s = custom_lambda)
+coef_custom_matrix <- as.matrix(coef_custom)
+print(coef_custom_matrix)
+
+selected_vars <- rownames(coef_custom_matrix)[abs(coef_custom_matrix[, 1]) > threshold]
+selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+selected_vars %>% deparse(width.cutoff = 500) %>% cat("\n")
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 if (length(selected_vars) == 0) {
   stop("No variables were selected by the model.")
 }
 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # Prepare the summary statistics table
 summary_table <- input_data %>%
   select(Group, all_of(selected_vars)) %>%
@@ -508,10 +551,11 @@ summary_table <- input_data %>%
 # Display the summary table
 print(summary_table)
 
+
 ```
 
 
-### df_5vars_10obs |> group_by(Group) |> summarise_all() ----  
+### mtcars_5vars |> group_by(Group) |> summarise_all() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 
 library(glmnet)
@@ -537,29 +581,44 @@ y_numeric <- as.numeric(factor(y)) - 1  # Now y_numeric contains 0s and 1s
 # Standardize predictors
 X_scaled <- scale(X)
 
-# Perform Elastic Net regression with cross-validation
+# Define a lambda sequence with larger values
+# lambda_seq <- 10^seq(2, -2, by = -0.1)
+lambda_seq <- 10^seq(4, -2, by = -0.1)
+
+# cv_model <- cv.glmnet(
+#   x = as.matrix(X_scaled),
+#   y = y_numeric,
+#   family = "binomial",
+#   alpha = 0.5,
+#   lambda = lambda_seq,
+#   standardize = FALSE
+# )
 cv_model <- cv.glmnet(
   x = as.matrix(X_scaled),
   y = y_numeric,
   family = "binomial",
-  alpha = 0.5,
+  alpha = 1,
+  lambda = lambda_seq,
   standardize = FALSE
 )
 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cv_model$lambda %>% deparse(width.cutoff = 500) %>% cat("\n")
+plot(cv_model$glmnet.fit, xvar = "lambda", label = TRUE)
+
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# Use the largest lambda that results in a model with desired sparsity
+best_lambda <- cv_model$lambda[which.min(cv_model$cvm)]
+best_lambda
+
+
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 # Extract coefficients at the lambda that gives minimum cross-validated error
 coef_min <- coef(cv_model, s = "lambda.min")
 coef_min_matrix <- as.matrix(coef_min)
 
 # Print the coefficient matrix
 print(coef_min_matrix)
-
-# Extract coefficients at lambda.1se
-coef_1se <- coef(cv_model, s = "lambda.1se")
-coef_1se_matrix <- as.matrix(coef_1se)
-
-# Print the coefficient matrix
-print(coef_1se_matrix)
-
 
 # # Identify selected variables (non-zero coefficients excluding intercept)
 # selected_vars <- rownames(coef_min_matrix)[coef_min_matrix[, 1] != 0]
@@ -568,20 +627,48 @@ print(coef_1se_matrix)
 # Define a threshold for considering coefficients as zero
 threshold <- 1e-6
 
-# # Identify selected variables (non-zero coefficients excluding intercept)
-# selected_vars <- rownames(coef_min_matrix)[abs(coef_min_matrix[, 1]) > threshold]
-# selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+# Identify selected variables (non-zero coefficients excluding intercept)
+selected_vars <- rownames(coef_min_matrix)[abs(coef_min_matrix[, 1]) > threshold]
+selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+selected_vars %>% deparse(width.cutoff = 500) %>% cat("\n")
+
+
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# Extract coefficients at lambda.1se
+coef_1se <- coef(cv_model, s = "lambda.1se")
+coef_1se_matrix <- as.matrix(coef_1se)
+
+# Print the coefficient matrix
+print(coef_1se_matrix)
+
+# Define a threshold for considering coefficients as zero
+threshold <- 1e-6
 
 selected_vars <- rownames(coef_1se_matrix)[abs(coef_1se_matrix[, 1]) > threshold]
 selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+selected_vars %>% deparse(width.cutoff = 500) %>% cat("\n")
 
-# Print selected variables
-print(selected_vars)
 
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# Choose a lambda value
+custom_lambda <- cv_model$lambda[50]  # Adjust the index as needed
+
+# Extract coefficients at the chosen lambda
+coef_custom <- coef(cv_model, s = custom_lambda)
+coef_custom_matrix <- as.matrix(coef_custom)
+print(coef_custom_matrix)
+
+selected_vars <- rownames(coef_custom_matrix)[abs(coef_custom_matrix[, 1]) > threshold]
+selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+selected_vars %>% deparse(width.cutoff = 500) %>% cat("\n")
+
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 if (length(selected_vars) == 0) {
   stop("No variables were selected by the model.")
 }
 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # Prepare the summary statistics table
 summary_table <- input_data %>%
   select(Group, all_of(selected_vars)) %>%
@@ -611,6 +698,9 @@ print(summary_table)
 ```
   
   
+
+
+
 #### lambda_seq <- 10^seq(2, -2, by = -0.1) ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -631,13 +721,7 @@ cv_model <- cv.glmnet(
 best_lambda <- cv_model$lambda[which.min(cv_model$cvm)]
 best_lambda
 ```
-  
-  
-###### ECHO \% |> () ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
 
-```
   
   
 # __________|------  
@@ -688,47 +772,53 @@ library(flextable)
 library(dplyr)
 library(tidyr)
 
-create_table1 <- function(dataset, byVar, alpha = 1, output_as_flextable = FALSE) {
+create_table1 <- function(dataset, byVar, alpha = 1, lambda = NULL, output_as_flextable = FALSE) {
   # Convert byVar to factor
   dataset[[byVar]] <- as.factor(dataset[[byVar]])
-  
+
   # Prepare predictor matrix X and response y
   X <- dataset %>%
     select(-all_of(byVar)) %>%
     select_if(is.numeric) %>%
     drop_na()
-  
+
   y <- dataset[[byVar]][complete.cases(dataset[, c(byVar, names(X))])]
   y_numeric <- as.numeric(factor(y)) - 1
-  
+
   # Standardize predictors
   X_scaled <- scale(X)
-  
+
+  # Define lambda sequence if not provided
+  if (is.null(lambda)) {
+    lambda <- 10^seq(4, -2, by = -0.1)
+  }
+
   # Perform Elastic Net regression
   cv_model <- cv.glmnet(
     x = as.matrix(X_scaled),
     y = y_numeric,
     family = "binomial",
     alpha = alpha,
+    lambda = lambda,
     standardize = FALSE
   )
-  
+
   # Extract coefficients at lambda.1se
   coef_1se <- coef(cv_model, s = "lambda.1se")
   coef_1se_matrix <- as.matrix(coef_1se)
-  
+
   # Define threshold
   threshold <- 1e-6
-  
+
   # Identify selected variables
   selected_vars <- rownames(coef_1se_matrix)[abs(coef_1se_matrix[, 1]) > threshold]
   selected_vars <- selected_vars[selected_vars != "(Intercept)"]
-  
+
   # Check if any variables were selected
   if (length(selected_vars) == 0) {
     stop("No variables were selected by the model.")
   }
-  
+
   # Prepare summary table
   summary_table <- dataset %>%
     select(all_of(byVar), all_of(selected_vars)) %>%
@@ -751,7 +841,7 @@ create_table1 <- function(dataset, byVar, alpha = 1, output_as_flextable = FALSE
       names_from = "Statistic",
       values_from = "value"
     )
-  
+
   if (output_as_flextable) {
     # Create flextable
     ft <- flextable(summary_table)
@@ -761,7 +851,6 @@ create_table1 <- function(dataset, byVar, alpha = 1, output_as_flextable = FALSE
     return(summary_table)
   }
 }
-
 
 ```
   
