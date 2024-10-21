@@ -262,31 +262,11 @@ df_numeric5_categorical2
 ```
   
   
-
-# __________|------  
-# @@ START) dev ----  
-# https://gemini.google.com/app/f47a57ed798a76cb
-# https://chatgpt.com/c/67153dee-3214-800e-ab61-db0a7ac38510?model=o1-preview
-```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
-env0 = env1
-```
-  
-  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-for(.packagename in c("titanic", "boot", "caret", "dplyr")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-```
-  
-  
 ## :: titanic_train() ----  
 ### :: titanic_data() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# Load necessary libraries
-library(titanic)
-library(boot)
-library(caret)
-library(dplyr)
+for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
 # Load the Titanic dataset
 data("titanic_train")
@@ -308,6 +288,24 @@ titanic_data$Sex <- factor(titanic_data$Sex)
 titanic_data %>% str
 titanic_data %>% as_tibble
 ```
+  
+  
+# __________|------  
+# @@ START) dev ----  
+# https://gemini.google.com/app/f47a57ed798a76cb
+# https://chatgpt.com/c/67153dee-3214-800e-ab61-db0a7ac38510?model=o1-preview
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+  
+  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+for(.packagename in c("boot", "caret", "dplyr")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+```
+  
+  
+
   
   
 ### titanic_data |> glm() ----  
