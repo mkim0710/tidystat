@@ -297,12 +297,22 @@ for(.packagename in c("stats")) {if(!require(.packagename,character.only=TRUE)) 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
+data = df_2vars
+
 # Fit logistic regression using glm() with the 'binomial' family
-df_2vars.glm <- glm(y ~ x1 + x2, data = df_2vars, family = binomial())
+data.glm <- glm(y ~ ., data = data, family = binomial())
 
 # Display model summary (coefficients, log-likelihood, etc.)
-summary(df_2vars.glm)
+summary(data.glm)
+data.glm |> coef() |> round(3) |> deparse() |> cat("\n")
 
+
+# Extract log-likelihood from glm()
+logLik(data.glm)  # This gives the log-likelihood of the model
+
+# Calculate negative log-likelihood (cost)
+data.glm.neg_logLik <- -logLik(data.glm)
+cat("Negative log-likelihood from glm():", data.glm.neg_logLik, "\n")
 ```
   
   
@@ -336,13 +346,34 @@ gradient_descent <- function(X, y, w, learning_rate, num_iterations) {
   for (i in 1:num_iterations) {
     w <- w - learning_rate * gradient(X, y, w)
     costs[i] <- cost_function(X, y, w)
-    if (i %% 100 == 0) {
+    if (i %% 10^5 == 0) {
       cat("Iteration", i, "Cost:", costs[i], "\n")
     }
   }
   return(list(weights = w, costs = costs))
 }
 
+# Gradient Descent function with early stopping
+gradient_descent <- function(X, y, w, learning_rate, num_iterations, early_stop_threshold = 1e-6) {
+  costs <- numeric(num_iterations)
+  for (i in 1:num_iterations) {
+    w <- w - learning_rate * gradient(X, y, w)
+    costs[i] <- cost_function(X, y, w)
+    
+    # Print cost every 100 iterations
+    if (i %% 10^5 == 0) {
+      cat("Iteration", i, "Cost:", costs[i], "\n")
+    }
+    
+    # Early stopping condition
+    if (i > 1 && abs(costs[i] - costs[i - 1]) < early_stop_threshold) {
+      cat("Early stopping at iteration", i, "due to small cost change:", abs(costs[i] - costs[i - 1]), "\n")
+      costs <- costs[1:i]  # Truncate the cost history
+      break
+    }
+  }
+  return(list(weights = w, costs = costs))
+}
 
 ```
   
@@ -359,8 +390,9 @@ y <- as.matrix(data$y)
 initial_w <- matrix(0, nrow = ncol(X), ncol = 1) # Initialize weights to 0
 
 # Hyperparameters
-learning_rate <- 0.01
-num_iterations <- 1000
+# learning_rate <- 0.01  # A typical range to try would be between 0.1 and 0.001.
+learning_rate <- 0.1  # A typical range to try would be between 0.1 and 0.001.
+num_iterations <- 10^7
 
 # Run gradient descent
 (gd_result <- gradient_descent(X, y, initial_w, learning_rate, num_iterations)) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
@@ -368,12 +400,34 @@ num_iterations <- 1000
 # Final weights after gradient descent
 final_weights <- gd_result$weights
 cat("Final weights:\n")
-print(final_weights)
+final_weights |> round(3) |> deparse() |> cat("\n")
+## Cf) coef() from glm(): c("(Intercept)" = -141.292, x1 = 44.943, x2 = 12.365)  
 
-# Plot cost over iterations
-plot(gd_result$costs, type = 'l', col = 'blue', lwd = 2, 
-     main = 'Cost Function Convergence', xlab = 'Iterations', ylab = 'Cost')
+# Apply gradient descent and observe cost
+final_cost <- cost_function(X, y, gd_result$weights)
+cat("Final cost after gradient descent:", final_cost, "\n")
+## Cf) Negative log-likelihood from glm(): 1.830736e-10 
 ```
+
+    > learning_rate <- 0.01
+    > num_iterations <- 10^7
+    c(user.self = 61.274, sys.self = 0.031, elapsed = 61.243, user.child = 0,  sys.child = 0) 
+    ## structure(c(-42.126, 13.519, 3.582), dim = c(3L, 1L))
+    ## Final cost after gradient descent: 0.000383159 
+
+
+#### gd_result$costs |> plot() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+
+# plot(gd_result$costs, type = 'l', col = 'blue', lwd = 2, 
+#      main = 'Cost Function Convergence', xlab = 'Iterations', ylab = 'Cost')
+# Plot cost over iterations with log scale on y-axis
+plot(gd_result$costs, type = 'l', col = 'blue', lwd = 2, 
+     main = 'Cost Function Convergence (Log Scale)', xlab = 'Iterations', ylab = 'Cost (Log Scale)', 
+     log = 'y')
+
+```
+  
   
   
 ###### ECHO \% |> () ----  
