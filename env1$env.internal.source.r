@@ -93,6 +93,60 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##________________________________________________________________________________  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ get_info ----  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: get_system_info ====  
+# Rdev/00_base_program/get_system_info.source.r
+.tmp$objectname = "get_system_info"
+.tmp$object = function() {
+    summary_list = list(
+        GUI = .Platform$GUI,
+        os_type = .Platform$OS.type,
+        os_sysname = as.character(Sys.info()["sysname"]),
+        os_version = as.character(Sys.info()["version"]),
+        machine_type = as.character(Sys.info()["machine"]),
+        machine_nodename = as.character(Sys.info()["nodename"]),
+        machine_cpu = if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Darwin") 
+            trimws(system("sysctl -n machdep.cpu.brand_string", intern=TRUE))
+        else if (.Platform$OS.type == "unix" & Sys.info()["sysname"] == "Linux") 
+            trimws(system("awk '/model name/' /proc/cpuinfo | uniq | awk -F': ' '{print $2}'", intern=TRUE))
+        else if (Sys.info()["sysname"] == "Windows") 
+            trimws(system("wmic cpu get name", intern=TRUE)[2])
+        else NA,
+        Sys.getlocale = list(
+            LC_COLLATE = Sys.getlocale(category = "LC_COLLATE"), 
+            LC_CTYPE = Sys.getlocale(category = "LC_CTYPE"), 
+            LC_locale_NUMERIC = Sys.getlocale(category = "LC_NUMERIC"), 
+            LC_locale_TIME = Sys.getlocale(category = "LC_TIME")
+        ), 
+        l10n_info = list(
+            localization_UTF8 = l10n_info()$`UTF-8`,
+            localization_Latin1 = l10n_info()$`Latin-1`,  
+            localization_codeset = l10n_info()$codeset,
+            localization_codepage = l10n_info()$codepage,
+            localization_system.codepage = l10n_info()$system.codepage
+        )
+    )
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: get_software_versions ====  
+.tmp$objectname = "get_software_versions"
+.tmp$object = function(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr")) {
+  version_list <- list(OS.type = .Platform$OS.type, R.version = R.version$version.string)
+  version_list$RStudio_version <- ifelse(!is.null(.Platform$GUI) && .Platform$GUI == "RStudio" && exists("RStudio.Version"), paste(unlist(RStudio.Version()$version), collapse = "."), NA)
+  version_list$library_versions <- setNames(map(library_names, function(lib) {
+    if (!requireNamespace(lib, quietly = TRUE)) return(paste(lib, "not installed"))
+    paste(unlist(packageVersion(lib)), collapse = ".")
+  }), library_names)
+  return(version_list)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+#_________________________________________________________________________________|----  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ f_CodeText, f_function ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_CodeText.echo ====
@@ -284,7 +338,54 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 env1$env.internal$f_path.CurrentSource.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.size_files =  ----  
+# Rdev/00_base_program/f_path.size_files.source.r
+.tmp$objectname = "f_path.size_files"
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = options()$verbose) {
+    
+    for (.dependancy in c("f_df.t.tribble_construct")) {
+        if(!.dependancy %in% names(.GlobalEnv$env1)) {
+            if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+            .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+        }
+    }
+    
+    if (is.na(literal_filename)) {
+        # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = TRUE, value = TRUE)}
+        filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = TRUE)
+        if (length(filenames) == 0) {
+            cat("No files found matching the regex4filename: ", regex4filename, "\n")
+            return()
+        }
+    } else {
+        # # filenames = list.files(path = .path4read) %>% {grep(literal_filename, .,  ignore.case = TRUE, value = TRUE, fixed = TRUE)}
+        # filenames = list.files(path = .path4read) %>% {grep(literal_filename, ., value = TRUE, fixed = TRUE)}
+        filenames = list.files(path = .path4read) |> str_subset(fixed(literal_filename))
+        if (length(filenames) == 0) {
+            cat("No files found matching the literal_filename: ", literal_filename, "\n")
+            return()
+        }
+    }
+    if(VERBOSE) filenames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
+    if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
+    out = filenames %>% {file.info(file.path(.path4read,.))} %>%
+        rownames_to_column("filename") %>% select(filename, size) %>%
+        mutate(bytes = format(size, digits = 3, big.mark=","), 
+               KB = format(size/2^10, digits = 3, big.mark=","), 
+               MB = format(size/2^20, digits = 3, big.mark=","), 
+               GB = format(size/2^30, digits = 3, big.mark=","))
+    # out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = TRUE) %>% {sub("^/", "", .)})
+    out = out %>% mutate(filename = filename |> env1$f$f_path.relative()) 
+    if(print2console) env1$f$f_df.tribble_construct(out)
+    if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
+    return(out %>% select(filename, size))
+} 
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path0.list_path_hierarchy =  ----  
+# Rdev/00_base_program/internal.f_path0.list_path_hierarchy.source.r
 .tmp$objectname = "f_path0.list_path_hierarchy"
 .tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = options()$verbose) {
     # Initialize a list to hold the path hierarchy
