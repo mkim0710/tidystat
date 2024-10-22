@@ -149,8 +149,8 @@ knitr::opts_knit$set(global.par = TRUE)
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -217,386 +217,317 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # __________|------  
 # @@ START) data example ----  
-## \$ analyticDF_time2event =  ----  
+  
+## :: JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1 = ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-# suppressPackageStartupMessages(library(survival))
-for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-# ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
-assign(
-    DataSetName, 
-    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
-        # dplyr::select(-status, -sex)
-        dplyr::select(-status)
+# # Define variable names
+# varnames <- c(
+#   "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",
+#   "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",
+#   "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",
+#   "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",
+#   "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",
+#   "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",
+#   "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",
+#   "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",
+#   "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",
+#   "CancerSurvivors"
+# )
+# 
+# # Function to load and preprocess data
+# load_preprocess_data <- function(file_path, varnames, is_test = FALSE) {
+#   data <- readRDS(file_path)[varnames] %>%
+#     mutate(EndTime = as.numeric(EndTime))
+#   
+#   if (is_test) {
+#     data <- data %>% mutate(testset = TRUE)
+#   }
+#   
+#   return(as_tibble(data))
+# }
+# 
+# # Load training and testing datasets
+# train_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+# test_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4test.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+# 
+# TheTrainSet <- load_preprocess_data(train_file, varnames, is_test = FALSE)
+# TheTestSet  <- load_preprocess_data(test_file, varnames, is_test = TRUE)
+```
+  
+  
+## :: example_train_data() ----  
+### :: example_test_data() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Load necessary libraries
+library(tidyverse)
+library(survival)
+
+# Create non-random example dataset
+example_train_data <- tibble(
+  EndTime.is.Case.confirm.365 = c(1, 1, 0, 0, 1, 0),
+  EndTime = c(2, 3, 5, 10, 7, 8),
+  AgeDecade = factor(c(5, 5, 4, 4, 3, 3)),  # Age in decades (3 = 30s, 4 = 40s, 5 = 50s)
+  Female = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  Income = factor(c(3, 2, 1, 3, 2, 1)),  # Income levels (1 = low, 2 = medium, 3 = high)
+  DisabilityGrade = factor(c("Mild", "Severe", "Mild", "Severe", "Mild", "Severe")),
+  Anxiety = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
 )
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
-```
-  
-  
-### :: df_5vars_10obs ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Manually create a dataset
-df_5vars_10obs <- data.frame(
-  Group = rep(c("Group1", "Group2"), each = 5),
-  Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
-  Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
-  Var3 = c(15, 16, 15, 14, 15, 18, 17, 19, 18, 17),
-  Var4 = c(0.5, 0.6, 0.55, 0.58, 0.57, 0.65, 0.66, 0.64, 0.67, 0.68),
-  Var5 = c(100, 105, 102, 101, 103, 110, 112, 111, 113, 114)
+
+example_test_data <- tibble(
+  EndTime.is.Case.confirm.365 = c(1, 0, 1),
+  EndTime = c(4, 12, 9),
+  AgeDecade = factor(c(5, 3, 4)),
+  Female = c(TRUE, FALSE, TRUE),
+  Income = factor(c(3, 1, 2)),
+  DisabilityGrade = factor(c("Severe", "Mild", "Severe")),
+  Anxiety = c(FALSE, TRUE, FALSE)
 )
 
-# Display the dataset
-print(df_5vars_10obs)
-```
+# Ensure no randomness is used in creating the data
+example_train_data
+example_test_data
 
-  
-### :: df_numeric5_categorical2 ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-df_numeric5_categorical2 = 
-    structure(list(group_variable = c("A", "A", "A", "B", "B", "B", "C", "C", "C"), numeric_var1 = c(10L, 12L, 11L, 20L, 22L, 21L, 30L, 32L, 31L), numeric_var2 = c(100L, 102L, 101L, 200L, 202L, 201L, 300L, 302L, 301L), numeric_var3 = c(5, 6, 5.5, 10, 11, 10.5, 15, 16, 15.5), numeric_var4 = c(25, 26, 25.5, 50, 51, 50.5, 75, 76, 75.5), numeric_var5 = c(2, 2.2, 2.1, 4, 4.2, 4.1, 6, 6.2, 6.1), categorical_var1 = c("X", "Y", "X", "Y", "Z", "Y", "Z", "X", "Z"), categorical_var2 = c("M", "N", "M", "N", "O",  "N", "O", "M", "O")), class = "data.frame", row.names = c(NA, -9L))
-df_numeric5_categorical2
 ```
   
   
-## :: titanic_train() ----  
-### :: titanic_data() ----  
+## :: TheTrainSet() ----  
+### :: TheTestSet() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
-# Load the Titanic dataset
-data("titanic_train")
+# Define variable names
+varnames <- c(
+  "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",
+  "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",
+  "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",
+  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",
+  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",
+  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",
+  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",
+  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",
+  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",
+  "CancerSurvivors"
+)
 
-# View the first few rows
-titanic_train %>% str
-titanic_train %>% as_tibble
+# Create Training Dataset
+TheTrainSet <- tibble(
+  EndTime.is.Case.confirm.365 = c(0, 1, 0, 1, 0),
+  EndTime = c(100, 200, 150, 300, 250),
+  AgeDecade = c(5, 6, 5, 7, 6),
+  Female = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Income = c(3, 5, 2, 4, 3),
+  DisabilityGrade = factor(c("None", "Severe", "Mild", "None", "Severe")),
+  AcquiredHypothyroidism = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  AdjustmentDisorder = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Anemia = c(TRUE, FALSE, FALSE, TRUE, FALSE),
+  Anxiety = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  Arthritis = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  AtrialFibrillation = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  BenignProstatic = c(FALSE, FALSE, FALSE, FALSE, FALSE),
+  BrainInjury = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  Cataract = c(FALSE, FALSE, TRUE, FALSE, TRUE),
+  ChronicKidney = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  Diabetes = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Dysthymia = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  Epilepsy = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Fibromyalgia_Pain_Fatigue = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Glaucoma = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  HearingImpairment = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  HeartFailure = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  Hyperlipidemia = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Hypertension = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  IschemicHeart = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Migraine_ChronicHeadache = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  MobilityImpairments = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Osteoporosis = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  PelvicFx = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  PersonalityDisorders = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  SpinalCordInjury = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  StrokeTIA = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  AlzheimerDementia = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  LiverDisease = c(FALSE, TRUE, FALSE, FALSE, TRUE),
+  ObstructiveLungDisease = c(FALSE, TRUE, FALSE, FALSE, TRUE),
+  CancerSurvivors = c(FALSE, TRUE, FALSE, FALSE, FALSE)
+)
 
-# Select relevant variables
-titanic_data <- titanic_train %>%
-  select(Survived, Pclass, Sex, Age, Fare) %>% as_tibble
+# Create Test Dataset
+TheTestSet <- tibble(
+  EndTime.is.Case.confirm.365 = c(0, 1, 0),
+  EndTime = c(120, 220, 180),
+  AgeDecade = c(5, 7, 6),
+  Female = c(FALSE, TRUE, FALSE),
+  Income = c(4, 3, 5),
+  DisabilityGrade = factor(c("Mild", "None", "Severe")),
+  AcquiredHypothyroidism = c(TRUE, FALSE, TRUE),
+  AdjustmentDisorder = c(FALSE, TRUE, FALSE),
+  Anemia = c(FALSE, TRUE, FALSE),
+  Anxiety = c(TRUE, FALSE, TRUE),
+  Arthritis = c(FALSE, TRUE, FALSE),
+  AtrialFibrillation = c(TRUE, FALSE, FALSE),
+  BenignProstatic = c(FALSE, FALSE, FALSE),
+  BrainInjury = c(TRUE, FALSE, FALSE),
+  Cataract = c(FALSE, TRUE, FALSE),
+  ChronicKidney = c(TRUE, FALSE, TRUE),
+  Diabetes = c(FALSE, TRUE, FALSE),
+  Dysthymia = c(TRUE, FALSE, TRUE),
+  Epilepsy = c(FALSE, TRUE, FALSE),
+  Fibromyalgia_Pain_Fatigue = c(FALSE, TRUE, FALSE),
+  Glaucoma = c(TRUE, FALSE, TRUE),
+  HearingImpairment = c(TRUE, FALSE, TRUE),
+  HeartFailure = c(TRUE, FALSE, TRUE),
+  Hyperlipidemia = c(FALSE, TRUE, FALSE),
+  Hypertension = c(TRUE, FALSE, TRUE),
+  IschemicHeart = c(FALSE, TRUE, FALSE),
+  Migraine_ChronicHeadache = c(TRUE, FALSE, TRUE),
+  MobilityImpairments = c(TRUE, FALSE, TRUE),
+  Osteoporosis = c(FALSE, TRUE, FALSE),
+  PelvicFx = c(TRUE, FALSE, TRUE),
+  PersonalityDisorders = c(TRUE, FALSE, TRUE),
+  SpinalCordInjury = c(TRUE, FALSE, TRUE),
+  StrokeTIA = c(FALSE, TRUE, FALSE),
+  AlzheimerDementia = c(TRUE, FALSE, TRUE),
+  LiverDisease = c(TRUE, FALSE, TRUE),
+  ObstructiveLungDisease = c(TRUE, FALSE, TRUE),
+  CancerSurvivors = c(TRUE, FALSE, TRUE)
+) %>%
+  mutate(testset = TRUE)
 
-# Handle missing values by removing rows with NA
-titanic_data <- na.omit(titanic_data)
+TheTrainSet
+TheTestSet
+```
+  
+  
+### |> augment_with_bootstrap() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+set.seed(123)
+augment_with_bootstrap <- function(data, n = 500) {
+  # Random sampling with replacement
+  bootstrapped_data <- data[sample(nrow(data), size = n, replace = TRUE), ]
+  return(bootstrapped_data)
+}
 
-# Convert 'Survived' and 'Sex' to factors
-titanic_data$Survived <- factor(titanic_data$Survived)
-titanic_data$Sex <- factor(titanic_data$Sex)
-titanic_data %>% str
-titanic_data %>% as_tibble
+# Example: augment TheTrainSet by increasing to 500 observations
+TrainSet.augment_with_bootstrap <- augment_with_bootstrap(TheTrainSet, n = 500)
+TrainSet.augment_with_bootstrap %>% as_tibble()
+```
+  
+  
+### |> augment_with_noise() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+augment_with_noise <- function(data, noise_level = 0.01, n = 500) {
+  augmented_data <- data[sample(nrow(data), size = n, replace = TRUE), ]
+  
+  # Add noise to continuous variables (e.g., AgeDecade, Income)
+  augmented_data$AgeDecade <- augmented_data$AgeDecade + rnorm(n, mean = 0, sd = noise_level)
+  augmented_data$Income <- augmented_data$Income + rnorm(n, mean = 0, sd = noise_level)
+  
+  return(augmented_data)
+}
+
+# Example: augment TheTrainSet with noise
+TheTrainSet.augment_with_noise <- augment_with_noise(TheTrainSet, noise_level = 0.1, n = 500)
+TheTrainSet.augment_with_noise %>% as_tibble()
+```
+  
+  
+### |> augment_with_smote() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# SMOTE can be used for balancing event/censored classes
+# Please note, SMOTE is typically used for classification and not survival analysis
+
+for(.packagename in c("smotefamily")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+
+augment_with_smote <- function(data, target_var = "EndTime.is.Case.confirm.365", dup_size = 2) {
+  # Convert non-numeric columns to numeric (factors to dummies, logical to binary)
+  data_numeric <- data %>%
+    select(-all_of(target_var)) %>%
+    mutate(across(where(is.factor), ~ as.numeric(as.factor(.))),  # Convert factor to numeric
+           across(where(is.logical), ~ as.numeric(.)))            # Convert logical to 0/1
+  
+  # Count the number of minority class instances
+  minority_class_size <- sum(data[[target_var]] == 1)
+  
+  # Ensure K is less than the number of minority class samples
+  K <- min(5, minority_class_size - 1)  # K must be at least 1 less than the minority class size
+  
+  # Apply SMOTE to the binary event indicator to balance the classes
+  smote_result <- SMOTE(
+    X = data_numeric, 
+    target = data[[target_var]], 
+    K = K, 
+    dup_size = dup_size
+  )
+  
+  # Return the augmented dataset
+  augmented_data <- cbind(smote_result$data[, -ncol(smote_result$data)], EndTime.is.Case.confirm.365 = smote_result$data[, ncol(smote_result$data)])
+  return(augmented_data)
+}
+
+# Example: augment TheTrainSet using SMOTE (over-sampling event cases)
+TheTrainSet.augment_with_smote <- augment_with_smote(TheTrainSet)
+TheTrainSet.augment_with_smote
+```
+  
+  
+### |> mice::mice() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+for(.packagename in c("mice")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+
+# Perform multiple imputation on the dataset
+imputed_data <- mice(TheTrainSet, m = 1, maxit = 50, method = 'pmm', seed = 500)
+
+# Extract the imputed dataset
+complete_data <- complete(imputed_data, 1)
+complete_data %>% as_tibble()
+```
+  
+  
+### |> augment_with_synthetic_data() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+augment_with_synthetic_data <- function(data, n = 500) {
+  # Sample continuous variables from the observed distributions
+  synthetic_data <- data[sample(nrow(data), size = n, replace = TRUE), ]
+  
+  # Generate synthetic times based on existing time distribution
+  synthetic_data$EndTime <- sample(data$EndTime, n, replace = TRUE)
+  
+  # Generate synthetic events (same proportion of events)
+  synthetic_data$EndTime.is.Case.confirm.365 <- sample(data$EndTime.is.Case.confirm.365, n, replace = TRUE)
+  
+  return(synthetic_data)
+}
+
+# Example: augment TheTrainSet with synthetic data
+augmented_synthetic_data <- augment_with_synthetic_data(TheTrainSet, n = 500)
+augmented_synthetic_data %>% as_tibble()
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
 ```
   
   
 # __________|------  
 # @@ START) dev ----  
-# https://gemini.google.com/app/f47a57ed798a76cb
-# https://chatgpt.com/c/67153dee-3214-800e-ab61-db0a7ac38510?model=o1-preview
+# https://chatgpt.com/c/671605d9-92ac-800e-86da-6a01437532e9?model=gpt-4o
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
   
   
+###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-for(.packagename in c("boot", "caret", "dplyr")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-```
-  
-  
-
-  
-  
-### titanic_data |> glm() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-# Fit logistic regression model
-model_full <- glm(Survived ~ Pclass + Sex + Age + Fare, data = titanic_data, family = binomial)
-
-# Summarize the model
-summary(model_full)
-
-```
-  
-  
-####  \% |> residuals() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Calculate residuals
-residuals_deviance <- residuals(model_full, type = "deviance")
-
-# Plot residuals
-plot(predict(model_full, type = "link"), residuals_deviance,
-     xlab = "Linear Predictor", ylab = "Deviance Residuals",
-     main = "Residual Plot")
-abline(h = 0, lty = 2)
-
-
-```
-  
-  
-### library(ResourceSelection) ----  
-#### \% |> hoslem.test() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-for(.packagename in c("ResourceSelection")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-
-# Hosmer-Lemeshow Test
-library(ResourceSelection)
-hoslem.test(as.numeric(titanic_data$Survived)-1, fitted(model_full))
-
-```
-  
-  
-### \% |> caret::createFolds() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Set seed for reproducibility
-set.seed(123)
-
-# Define number of folds
-k <- 5
-
-# Create folds
-folds <- createFolds(titanic_data$Survived, k = k, list = TRUE, returnTrain = FALSE)
-
-# Initialize a data frame to store coefficients
-coefficients_cv <- data.frame()
-
-# Perform cross-validation
-for(i in 1:k) {
-  # Split data into training and validation sets
-  validation_indices <- folds[[i]]
-  training_data <- titanic_data[-validation_indices, ]
-  validation_data <- titanic_data[validation_indices, ]
-  
-  # Fit model on training data
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  
-  # Store coefficients
-  coeffs <- coef(model_cv)
-  coefficients_cv <- rbind(coefficients_cv, coeffs)
-}
-
-# Add fold numbers
-coefficients_cv$Fold <- 1:k
-
-# View coefficient estimates across folds
-print(coefficients_cv)
-
-# Reshape data for plotting
-library(tidyr)
-coefficients_long <- coefficients_cv %>%
-  gather(key = "Coefficient", value = "Estimate", -Fold)
-
-# Plot coefficient estimates across folds
-library(ggplot2)
-ggplot(coefficients_long, aes(x = as.factor(Fold), y = Estimate, group = Coefficient, color = Coefficient)) +
-  geom_line() +
-  geom_point() +
-  labs(title = "Coefficient Estimates Across Folds",
-       x = "Fold",
-       y = "Coefficient Estimate") +
-  theme_minimal()
-
-```
-  
-  
-### library(pROC) ----  
-#### \% |> roc() |> plot() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Initialize vector to store predicted probabilities
-predicted_probs <- rep(NA, nrow(titanic_data))
-
-# Perform cross-validation
-for(i in 1:k) {
-  # Split data into training and validation sets
-  validation_indices <- folds[[i]]
-  training_data <- titanic_data[-validation_indices, ]
-  validation_data <- titanic_data[validation_indices, ]
-  
-  # Fit model on training data
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  
-  # Predict on validation data
-  predicted_probs[validation_indices] <- predict(model_cv, newdata = validation_data, type = "response")
-}
-
-# Add predicted probabilities to the dataset
-titanic_data$Predicted_Prob <- predicted_probs
-
-# Evaluate model performance
-library(pROC)
-roc_curve <- roc(titanic_data$Survived, titanic_data$Predicted_Prob)
-auc_value <- auc(roc_curve)
-
-# Plot ROC curve
-plot(roc_curve, main = paste("ROC Curve (AUC =", round(auc_value, 2), ")"))
-
-```
-  
-  
-### library(boot) ----  
-#### ECHO \% |> boot() |> boot.ci() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Define a function to fit the model and return coefficients
-boot_fn <- function(data, indices) {
-  d <- data[indices, ]  # Allows boot to select sample
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)
-  return(coef(fit))
-}
-
-# Perform bootstrapping
-set.seed(123)
-boot_results <- boot(data = titanic_data, statistic = boot_fn, R = 1000)
-
-# View bootstrapped coefficient estimates
-print(boot_results)
-
-# Calculate bootstrapped confidence intervals
-boot.ci(boot_results, type = "perc", index = 2)  # For Pclass
-boot.ci(boot_results, type = "perc", index = 3)  # For Sex
-boot.ci(boot_results, type = "perc", index = 4)  # For Age
-boot.ci(boot_results, type = "perc", index = 5)  # For Fare
-
-```
-  
-  
-### ECHO \% |> stats::influence.measures() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Calculate influence measures
-influence_measures <- influence.measures(model_full)
-
-# Summary of influence measures
-summary(influence_measures)
-
-# Identify observations with high Cook's distance
-cook_threshold <- 4 / nrow(titanic_data)
-high_cook <- which(influence_measures$cook.d > cook_threshold)
-
-# Print influential observations
-print(high_cook)
-
-```
-  
-  
-### \% |> caret::createFolds() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Assume titanic_data is already prepared as in previous examples
-library(caret)
-
-set.seed(123)
-k <- 5
-folds <- createFolds(titanic_data$Survived, k = k, list = TRUE)
-
-coefficients_cv <- data.frame()
-
-for(i in 1:k) {
-  training_data <- titanic_data[-folds[[i]], ]
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  coeffs <- coef(model_cv)
-  coefficients_cv <- rbind(coefficients_cv, coeffs)
-}
-
-coefficients_cv$Fold <- 1:k
-print(coefficients_cv)
-
-```
-  
-  
-### ECHO \% |> confint() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Fit the model on the full dataset
-model_full <- glm(Survived ~ Pclass + Sex + Age + Fare, data = titanic_data, family = binomial)
-
-# Extract confidence intervals
-conf_intervals <- confint(model_full)
-print(conf_intervals)
-
-```
-  
-  
-### \% |> MASS::mvrnorm() ----  
-#### \% |> predict_interval() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-library(MASS)
-
-# Revised function to calculate prediction intervals
-predict_interval <- function(model, newdata, level = 0.95, nsim = 1000) {
-  # Simulate coefficient estimates
-  sim_coeffs <- mvrnorm(nsim, coef(model), vcov(model))
-  
-  # Create design matrix (including intercept)
-  newdata_matrix <- model.matrix(~ Pclass + Sex + Age + Fare, data = newdata)
-  
-  # Predict probabilities using simulated coefficients
-  pred_probs <- apply(sim_coeffs, 1, function(beta) {
-    eta <- newdata_matrix %*% beta
-    1 / (1 + exp(-eta))  # Logistic function for probabilities
-  })
-  
-  # Convert the predicted probabilities to a matrix (if it's a vector)
-  pred_probs <- matrix(pred_probs, nrow = nsim)
-  
-  # Calculate prediction intervals
-  lower <- quantile(pred_probs, probs = (1 - level) / 2)
-  upper <- quantile(pred_probs, probs = 1 - (1 - level) / 2)
-  
-  data.frame(Lower = lower, Upper = upper)
-}
-
-# Example for a new observation
-new_obs <- data.frame(Pclass = 3, Sex = "male", Age = 25, Fare = 7.25)
-new_obs$Sex <- factor(new_obs$Sex, levels = levels(titanic_data$Sex))
-
-# Calculate prediction interval
-pi_result <- predict_interval(model_full, new_obs)
-print(pi_result)
-
-
-```
-  
-  
-### library(boot) ----  
-#### ECHO \% |> boot() |> boot.ci() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-library(boot)
-
-# Define a function to calculate the coefficients for bootstrapping
-boot_fn <- function(data, indices) {
-  d <- data[indices, ]  # Resample the data
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)
-  return(coef(fit))  # Return the model coefficients
-}
-
-# Perform bootstrapping with 1000 resamples
-set.seed(123)
-boot_results <- boot(data = titanic_data, statistic = boot_fn, R = 1000)
-
-# View bootstrapped estimates
-print(boot_results)
-
-# Calculate bootstrap confidence intervals for each coefficient
-boot_ci_pclass <- boot.ci(boot_results, type = "perc", index = 2)  # Pclass
-boot_ci_sex <- boot.ci(boot_results, type = "perc", index = 3)  # Sex
-boot_ci_age <- boot.ci(boot_results, type = "perc", index = 4)  # Age
-boot_ci_fare <- boot.ci(boot_results, type = "perc", index = 5)  # Fare
-
-# Print bootstrap confidence intervals
-print(boot_ci_pclass)
-print(boot_ci_sex)
-print(boot_ci_age)
-print(boot_ci_fare)
 
 ```
   
@@ -604,41 +535,13 @@ print(boot_ci_fare)
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(boot)
-library(MASS)
 
-# Function to calculate predicted probabilities for bootstrap samples
-boot_pred_fn <- function(data, indices, newdata) {
-  d <- data[indices, ]  # Resample the data
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)  # Fit the model
+```
   
-  # Create design matrix for the new observation
-  newdata_matrix <- model.matrix(~ Pclass + Sex + Age + Fare, data = newdata)
   
-  # Predicted probabilities
-  eta <- newdata_matrix %*% coef(fit)  # Linear predictor
-  pred_prob <- 1 / (1 + exp(-eta))  # Logistic function for probabilities
-  return(pred_prob)  # Return predicted probabilities
-}
-
-# Example new observation for prediction
-new_obs <- data.frame(Pclass = 3, Sex = "male", Age = 25, Fare = 7.25)
-new_obs$Sex <- factor(new_obs$Sex, levels = levels(titanic_data$Sex))
-
-# Perform bootstrapping to generate predicted probabilities
-set.seed(123)
-boot_pred_results <- boot(data = titanic_data, statistic = boot_pred_fn, R = 1000, newdata = new_obs)
-
-# Extract predicted probabilities from the bootstrap results
-pred_probs <- boot_pred_results$t  # Each row represents one bootstrap sample's prediction
-
-# Calculate prediction intervals (e.g., 95% interval)
-lower <- quantile(pred_probs, probs = 0.025)  # 2.5th percentile
-upper <- quantile(pred_probs, probs = 0.975)  # 97.5th percentile
-
-# Display the prediction interval
-pred_interval <- data.frame(Lower = lower, Upper = upper)
-print(pred_interval)
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
 
 ```
   
@@ -979,19 +882,8 @@ if(exists("MetaData")) {
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # .path_filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
-# openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table = TRUE) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
+# system.time(openxlsx2::write_xlsx(get(.objectname), file=.path_filename.xlsx, as_table=TRUE))
 # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8BOM.csv = paste0(.path4write,"/",.objectname,".UTF8BOM.csv")
-# if (Sys.info()["sysname"] == "Windows") {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-#     openxlsx2::xl_open(.path_filename.xlsx)
-# } else {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-# }
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8.csv.xz = paste0(.path4write,"/",.objectname,".UTF8.csv.xz")
-# readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 ```
   
   

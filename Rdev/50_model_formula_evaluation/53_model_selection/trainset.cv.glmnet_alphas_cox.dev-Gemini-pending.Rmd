@@ -149,8 +149,8 @@ knitr::opts_knit$set(global.par = TRUE)
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -240,18 +240,18 @@ analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> 
 options(width=120)
 # Manually create a dataset
 df_5vars_10obs <- data.frame(
-  Group = rep(c("Group1", "Group2"), each = 5),
-  Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
-  Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
-  Var3 = c(15, 16, 15, 14, 15, 18, 17, 19, 18, 17),
-  Var4 = c(0.5, 0.6, 0.55, 0.58, 0.57, 0.65, 0.66, 0.64, 0.67, 0.68),
-  Var5 = c(100, 105, 102, 101, 103, 110, 112, 111, 113, 114)
+    Group = rep(c("Group1", "Group2"), each = 5),
+    Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
+    Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
+    Var3 = c(15, 16, 15, 14, 15, 18, 17, 19, 18, 17),
+    Var4 = c(0.5, 0.6, 0.55, 0.58, 0.57, 0.65, 0.66, 0.64, 0.67, 0.68),
+    Var5 = c(100, 105, 102, 101, 103, 110, 112, 111, 113, 114)
 )
 
 # Display the dataset
 print(df_5vars_10obs)
 ```
-
+  
   
 ### :: df_numeric5_categorical2 ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -277,7 +277,7 @@ titanic_train %>% as_tibble
 
 # Select relevant variables
 titanic_data <- titanic_train %>%
-  select(Survived, Pclass, Sex, Age, Fare) %>% as_tibble
+    select(Survived, Pclass, Sex, Age, Fare) %>% as_tibble
 
 # Handle missing values by removing rows with NA
 titanic_data <- na.omit(titanic_data)
@@ -290,313 +290,681 @@ titanic_data %>% as_tibble
 ```
   
   
+## :: JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1 = ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# # Define variable names
+# varnames <- c(
+#   "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",
+#   "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",
+#   "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",
+#   "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",
+#   "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",
+#   "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",
+#   "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",
+#   "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",
+#   "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",
+#   "CancerSurvivors"
+# )
+# 
+# # Function to load and preprocess data
+# load_preprocess_data <- function(file_path, varnames, is_test = FALSE) {
+#   data <- readRDS(file_path)[varnames] %>%
+#     mutate(EndTime = as.numeric(EndTime))
+#   
+#   if (is_test) {
+#     data <- data %>% mutate(testset = TRUE)
+#   }
+#   
+#   return(as_tibble(data))
+# }
+# 
+# # Load training and testing datasets
+# train_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+# test_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4test.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+# 
+# TheTrainSet <- load_preprocess_data(train_file, varnames, is_test = FALSE)
+# TheTestSet  <- load_preprocess_data(test_file, varnames, is_test = TRUE)
+```
+  
+  
+## :: example_train_data() ----  
+### :: example_test_data() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Load necessary libraries
+library(tidyverse)
+library(survival)
+
+# Create non-random example dataset
+example_train_data <- tibble(
+  EndTime.is.Case.confirm.365 = c(1, 1, 0, 0, 1, 0),
+  EndTime = c(2, 3, 5, 10, 7, 8),
+  AgeDecade = factor(c(5, 5, 4, 4, 3, 3)),  # Age in decades (3 = 30s, 4 = 40s, 5 = 50s)
+  Female = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  Income = factor(c(3, 2, 1, 3, 2, 1)),  # Income levels (1 = low, 2 = medium, 3 = high)
+  DisabilityGrade = factor(c("Mild", "Severe", "Mild", "Severe", "Mild", "Severe")),
+  Anxiety = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+)
+
+example_test_data <- tibble(
+  EndTime.is.Case.confirm.365 = c(1, 0, 1),
+  EndTime = c(4, 12, 9),
+  AgeDecade = factor(c(5, 3, 4)),
+  Female = c(TRUE, FALSE, TRUE),
+  Income = factor(c(3, 1, 2)),
+  DisabilityGrade = factor(c("Severe", "Mild", "Severe")),
+  Anxiety = c(FALSE, TRUE, FALSE)
+)
+
+# Ensure no randomness is used in creating the data
+example_train_data
+example_test_data
+
+```
+  
+  
+## :: TheTrainSet() ----  
+### :: TheTestSet() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+# Define variable names
+varnames <- c(
+  "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",
+  "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",
+  "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",
+  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",
+  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",
+  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",
+  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",
+  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",
+  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",
+  "CancerSurvivors"
+)
+
+# Create Training Dataset
+TheTrainSet <- tibble(
+  EndTime.is.Case.confirm.365 = c(0, 1, 0, 1, 0),
+  EndTime = c(100, 200, 150, 300, 250),
+  AgeDecade = c(5, 6, 5, 7, 6),
+  Female = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Income = c(3, 5, 2, 4, 3),
+  DisabilityGrade = factor(c("None", "Severe", "Mild", "None", "Severe")),
+  AcquiredHypothyroidism = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  AdjustmentDisorder = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Anemia = c(TRUE, FALSE, FALSE, TRUE, FALSE),
+  Anxiety = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  Arthritis = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  AtrialFibrillation = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  BenignProstatic = c(FALSE, FALSE, FALSE, FALSE, FALSE),
+  BrainInjury = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  Cataract = c(FALSE, FALSE, TRUE, FALSE, TRUE),
+  ChronicKidney = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  Diabetes = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Dysthymia = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  Epilepsy = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Fibromyalgia_Pain_Fatigue = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Glaucoma = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  HearingImpairment = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  HeartFailure = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  Hyperlipidemia = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Hypertension = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  IschemicHeart = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Migraine_ChronicHeadache = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  MobilityImpairments = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Osteoporosis = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  PelvicFx = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  PersonalityDisorders = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  SpinalCordInjury = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  StrokeTIA = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  AlzheimerDementia = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  LiverDisease = c(FALSE, TRUE, FALSE, FALSE, TRUE),
+  ObstructiveLungDisease = c(FALSE, TRUE, FALSE, FALSE, TRUE),
+  CancerSurvivors = c(FALSE, TRUE, FALSE, FALSE, FALSE)
+)
+
+# Create Test Dataset
+TheTestSet <- tibble(
+  EndTime.is.Case.confirm.365 = c(0, 1, 0),
+  EndTime = c(120, 220, 180),
+  AgeDecade = c(5, 7, 6),
+  Female = c(FALSE, TRUE, FALSE),
+  Income = c(4, 3, 5),
+  DisabilityGrade = factor(c("Mild", "None", "Severe")),
+  AcquiredHypothyroidism = c(TRUE, FALSE, TRUE),
+  AdjustmentDisorder = c(FALSE, TRUE, FALSE),
+  Anemia = c(FALSE, TRUE, FALSE),
+  Anxiety = c(TRUE, FALSE, TRUE),
+  Arthritis = c(FALSE, TRUE, FALSE),
+  AtrialFibrillation = c(TRUE, FALSE, FALSE),
+  BenignProstatic = c(FALSE, FALSE, FALSE),
+  BrainInjury = c(TRUE, FALSE, FALSE),
+  Cataract = c(FALSE, TRUE, FALSE),
+  ChronicKidney = c(TRUE, FALSE, TRUE),
+  Diabetes = c(FALSE, TRUE, FALSE),
+  Dysthymia = c(TRUE, FALSE, TRUE),
+  Epilepsy = c(FALSE, TRUE, FALSE),
+  Fibromyalgia_Pain_Fatigue = c(FALSE, TRUE, FALSE),
+  Glaucoma = c(TRUE, FALSE, TRUE),
+  HearingImpairment = c(TRUE, FALSE, TRUE),
+  HeartFailure = c(TRUE, FALSE, TRUE),
+  Hyperlipidemia = c(FALSE, TRUE, FALSE),
+  Hypertension = c(TRUE, FALSE, TRUE),
+  IschemicHeart = c(FALSE, TRUE, FALSE),
+  Migraine_ChronicHeadache = c(TRUE, FALSE, TRUE),
+  MobilityImpairments = c(TRUE, FALSE, TRUE),
+  Osteoporosis = c(FALSE, TRUE, FALSE),
+  PelvicFx = c(TRUE, FALSE, TRUE),
+  PersonalityDisorders = c(TRUE, FALSE, TRUE),
+  SpinalCordInjury = c(TRUE, FALSE, TRUE),
+  StrokeTIA = c(FALSE, TRUE, FALSE),
+  AlzheimerDementia = c(TRUE, FALSE, TRUE),
+  LiverDisease = c(TRUE, FALSE, TRUE),
+  ObstructiveLungDisease = c(TRUE, FALSE, TRUE),
+  CancerSurvivors = c(TRUE, FALSE, TRUE)
+) %>%
+  mutate(testset = TRUE)
+
+TheTrainSet
+TheTestSet
+```
+  
+  
+## glmnet::CoxExample ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# system.file("data", "CoxExample.rda", package = "glmnet")
+# # > system.file("data", "CoxExample.rda", package = "glmnet")
+# # [1] "/usr/local/lib/R/site-library/glmnet/data/CoxExample.rda"
+# 
+# library(glmnet)
+# # load(system.file("data", "CoxExample.rda", package = "glmnet"))
+# data(CoxExample)
+# CoxExample %>% str
+# # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
+
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_CoxExample_tibble.rda"))
+CoxExample_tibble
+CoxExample_tibble.round3 = CoxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+CoxExample_tibble.round3
+# CoxExample_tibble %>% write_csv(paste0(env1$path$path1,"/data/", "CoxExample_tibble", ".csv"))
+# CoxExample_tibble.round3 %>% write_csv(paste0(env1$path$path1,"/data/", "CoxExample_tibble.round3", ".csv"))
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
 # __________|------  
 # @@ START) dev ----  
-# https://gemini.google.com/app/f47a57ed798a76cb
-# https://chatgpt.com/c/67153dee-3214-800e-ab61-db0a7ac38510?model=o1-preview
+# https://chatgpt.com/c/671605d9-92ac-800e-86da-6a01437532e9?model=gpt-4o
 ```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
 env0 = env1
 ```
   
   
+    trainset.cv.glmnet_alphas_cox <- function(
+        trainset, 
+        myFormula, 
+        alphas = c(1, 0.5),
+        glmnet.family = "cox", 
+        my.type.measure = "deviance", 
+        na.omit.needed = FALSE,
+        return.glmnet.objects = TRUE, 
+        saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha = FALSE,
+        return_name = NULL, 
+        itrainset = NULL, 
+        imyFormula = NULL, 
+        save.png = FALSE,
+        png.size = 1280, 
+        seed = 1, 
+        nfolds = 5
+    ) { 
+        # ... (rest of the function) ...
+    
+        # Helper function to prepare data for glmnet
+        prepare_data_for_glmnet <- function(trainset, myFormula) {
+            # ... (code to create design matrices and handle missing data) ...
+        }
+    
+        # Helper function to fit glmnet model
+        fit_glmnet_model <- function(x, y, alpha, glmnet.family, my.type.measure, nfolds) {
+            # ... (code to fit cv.glmnet) ...
+        }
+    
+        # ... (rest of the function) ...
+    
+        # Prepare data
+        x <- prepare_data_for_glmnet(trainset, myFormula)
+    
+        # Fit models for each alpha
+        return_list <- lapply(seq_along(alphas), function(i_alpha) {
+            # ... (use fit_glmnet_model() here) ...
+        })
+    
+        # ... (rest of the function) ...
+    }
+  
+  
+  
+## trainset.cv.glmnet_alphas_cox() ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-for(.packagename in c("boot", "caret", "dplyr")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-```
-  
-  
+#' Perform Cross-Validated Cox Regression with glmnet
+#'
+#' This function performs cross-validated Cox regression using the glmnet package, 
+#' allowing for different alpha values (elastic net mixing parameter). It provides
+#' options for data preprocessing, model fitting, result saving, and plotting.
+#'
+#' @param trainset A data frame containing the training data.
+#' @param myFormula A formula object specifying the model.
+#' @param alphas A numeric vector of alpha values (mixing parameter for elastic net). 
+#'   Default is c(1, 0.5) which corresponds to lasso and elastic net penalties.
+#' @param glmnet.family A character string specifying the glmnet family. 
+#'   Default is "cox".
+#' @param my.type.measure A character string specifying the type of measure for 
+#'   cross-validation. Default is "deviance", which represents the partial 
+#'   likelihood deviance.  Other options include "C" for Harrell's concordance 
+#'   index.
+#' @param na.omit.needed Logical. Should missing values be removed? Default is FALSE.
+#'   If TRUE, rows with any missing values in the predictors or outcome variables 
+#'   will be removed.
+#' @param return.glmnet.objects Logical. Should the cv.glmnet objects be returned? 
+#'   Default is TRUE. If FALSE, only the file paths to the saved RDS files and plots
+#'   will be returned.
+#' @param saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha Logical. 
+#'   Should the results be saved as RDS files? Default is FALSE. If TRUE, each 
+#'   cv.glmnet object will be saved as an RDS file with a filename based on the 
+#'   `return_name`, `itrainset`, `imyFormula`, and the corresponding alpha value.
+#' @param return_name Optional character string to specify the base name for 
+#'   returned objects and saved files. If NULL (default), the function will attempt 
+#'   to extract a name from the `trainset` argument.
+#' @param itrainset Optional character string to further identify the training set.
+#'   This string is used in constructing filenames for saved objects and plots.
+#' @param imyFormula Optional character string to identify the formula used.
+#'   This string is used in constructing filenames for saved objects and plots.
+#' @param save.png Logical. Should cross-validation plots be saved as PNG files? 
+#'   Default is FALSE. If TRUE, a plot for each cv.glmnet object will be saved 
+#'   as a PNG file.
+#' @param png.size Numeric. Width and height of PNG plots in pixels. Default is 1280.
+#' @param seed Numeric. Random seed for reproducibility. Default is 1. This seed 
+#'   is used for splitting the data into folds during cross-validation, ensuring 
+#'   that the results are consistent across different runs.
+#' @param nfolds Numeric. Number of folds for cross-validation. Default is 5.
+#' @param lambda  Optional numeric vector of lambda values to use for fitting the 
+#'   model. If NULL (default), the lambda sequence is generated automatically by 
+#'   `glmnet`. Providing a specific lambda sequence can be useful for fine-tuning
+#'   the model or comparing results with different lambda values.
+#'
+#' @return A list of cv.glmnet objects (if `return.glmnet.objects` is TRUE) or 
+#'   a list of file paths to the saved RDS files and plots (if 
+#'   `return.glmnet.objects` is FALSE). Each element in the list corresponds to a 
+#'   different alpha value.
+#'
+#' @details 
+#' This function streamlines the process of fitting regularized Cox proportional 
+#' hazards models using the `glmnet` package. The elastic net penalty, controlled 
+#' by the `alphas` parameter, allows for a combination of L1 (lasso) and L2 
+#' (ridge) regularization, which can be helpful for variable selection and 
+#' dealing with correlated predictors.
+#' 
+#' The function includes features for handling missing data, removing 
+#' zero-variance predictors, and generating cross-validation plots. It also provides
+#' options for saving the fitted models and plots to files, enhancing 
+#' reproducibility and facilitating further analysis.
+#'
+#' @seealso 
+#' \code{\link[glmnet]{cv.glmnet}}, \code{\link[glmnet]{glmnet}}, 
+#' \code{\link[survival]{coxph}}, \code{\link[survival]{Surv}}
+#'
+#' @examples
+#' library(survival)
+#' 
+#' # Load example data (lung cancer data)
+#' data(lung)
+#' 
+#' # Fit models with different alpha values
+#' model_results <- trainset.cv.glmnet_alphas_cox(
+#'   trainset = lung, 
+#'   myFormula = Surv(time, status) ~ ., 
+#'   alphas = c(1, 0.5, 0), 
+#'   save.png = TRUE,
+#'   return_name = "lung_model"
+#' )
+#' 
+#' # Access the model for alpha = 1
+#' lasso_model <- model_results$alpha1
+#' 
+#' # Print the cross-validation results
+#' print(lasso_model)
+#' 
+#' # Plot the cross-validation results
+#' plot(lasso_model)
+#' 
+#' # Get the coefficients for the model with minimum cross-validation error
+#' coef(lasso_model, s = "lambda.min") 
+#'
+#' @export
+trainset.cv.glmnet_alphas_cox <- function(
+    trainset, 
+    myFormula, 
+    alphas = c(1, 0.5),
+    glmnet.family = "cox", 
+    my.type.measure = "deviance", 
+    na.omit.needed = FALSE,
+    return.glmnet.objects = TRUE, 
+    saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha = FALSE,
+    return_name = NULL, 
+    itrainset = NULL, 
+    imyFormula = NULL, 
+    save.png = FALSE,
+    png.size = 1280, 
+    seed = 1, 
+    nfolds = 5,
+    lambda = NULL  # Add lambda argument
+) { 
+  # Input validation
+  if (!is.data.frame(trainset)) {
+    stop("`trainset` must be a data frame.")
+  }
+  if (!inherits(myFormula, "formula")) {
+    stop("`myFormula` must be a formula object.")
+  }
+  if (!is.numeric(alphas) || any(alphas < 0) || any(alphas > 1)) {
+    stop("`alphas` must be a numeric vector with values between 0 and 1.")
+  }
+  if (!is.character(glmnet.family) || length(glmnet.family) != 1 || 
+      !glmnet.family %in% c("cox", "binomial", "gaussian", "poisson", 
+                           "multinomial", "mgaussian")) {
+    stop("Invalid `glmnet.family` specified.")
+  }
+  if (!is.character(my.type.measure) || length(my.type.measure) != 1 || 
+      !my.type.measure %in% c("deviance", "class", "auc", "mse", "mae")) {
+    stop("Invalid `my.type.measure` specified.")
+  }
+  if (!is.logical(na.omit.needed) || length(na.omit.needed) != 1) {
+    stop("`na.omit.needed` must be a logical value (TRUE or FALSE).")
+  }
+  if (!is.logical(return.glmnet.objects) || length(return.glmnet.objects) != 1) {
+    stop("`return.glmnet.objects` must be a logical value (TRUE or FALSE).")
+  }
+  if (!is.logical(saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha) || 
+      length(saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha) != 1) {
+    stop("`saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha` must be a logical value (TRUE or FALSE).")
+  }
+  if (!is.null(return_name) && 
+      (!is.character(return_name) || length(return_name) != 1)) {
+    stop("`return_name` must be a character string or NULL.")
+  }
+  if (!is.null(itrainset) && 
+      (!is.character(itrainset) || length(itrainset) != 1)) {
+    stop("`itrainset` must be a character string or NULL.")
+  }
+  if (!is.null(imyFormula) && 
+      (!is.character(imyFormula) || length(imyFormula) != 1)) {
+    stop("`imyFormula` must be a character string or NULL.")
+  }
+  if (!is.logical(save.png) || length(save.png) != 1) {
+    stop("`save.png` must be a logical value (TRUE or FALSE).")
+  }
+  if (!is.numeric(png.size) || length(png.size) != 1 || png.size <= 0) {
+    stop("`png.size` must be a positive numeric value.")
+  }
+  if (!is.numeric(seed) || length(seed) != 1) {
+    stop("`seed` must be a numeric value.")
+  }
+  if (!is.numeric(nfolds) || length(nfolds) != 1 || nfolds <= 1) {
+    stop("`nfolds` must be a numeric value greater than 1.")
+  }
+  if (!is.null(lambda) && !is.numeric(lambda)) {
+    stop("`lambda` must be a numeric vector or NULL.")
+  }
 
-  
-  
-### titanic_data |> glm() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
 
-# Fit logistic regression model
-model_full <- glm(Survived ~ Pclass + Sex + Age + Fare, data = titanic_data, family = binomial)
+  # Load required libraries
+  library(glmnet)
+  library(useful) 
+  library(survival)
+  library(tidyverse)
 
-# Summarize the model
-summary(model_full)
+  # Set seed for reproducibility
+  set.seed(seed)
 
-```
-  
-  
-####  \% |> residuals() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Calculate residuals
-residuals_deviance <- residuals(model_full, type = "deviance")
+  # Store original dimensions of the trainset
+  trainset_dim <- dim(trainset)
+  trainset_dimnames <- dimnames(trainset)
 
-# Plot residuals
-plot(predict(model_full, type = "link"), residuals_deviance,
-     xlab = "Linear Predictor", ylab = "Deviance Residuals",
-     main = "Residual Plot")
-abline(h = 0, lty = 2)
+  # Get information about the variables in the trainset
+  trainset_colnames_levels <- tibble(
+    colNum_original = 1:ncol(trainset),
+    colnames = colnames(trainset),
+    colnames_levels = colnames(trainset),
+    col_class = map_chr(trainset, class),
+    col_Nlevels = map_int(trainset, ~ max(1, length(levels(.x))))
+  ) %>%
+    filter(col_Nlevels > 1) %>%  # Keep only factor or logical variables
+    mutate(
+      colnames_levels = paste0(
+        colnames, 
+        map_chr(trainset, function(x) {
+          if (is.factor(x)) { 
+            paste0(levels(x), collapse = "") 
+          } else if (is.logical(x)) { 
+            "TRUE" 
+          } else { 
+            "" 
+          }
+        })
+      )
+    )
 
+  # Handle return_name
+  if (is.null(return_name)) {
+    return_name <- deparse(substitute(trainset))
+  }
 
-```
-  
-  
-### library(ResourceSelection) ----  
-#### \% |> hoslem.test() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
+  # Create strings for filename construction
+  paste_itrainset <- ifelse(!is.null(itrainset), paste0("_", itrainset), "")
+  paste_imyFormula <- ifelse(!is.null(imyFormula), paste0("_", imyFormula), "")
 
-for(.packagename in c("ResourceSelection")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+  # Check for conflicting arguments
+  if (!return.glmnet.objects && !saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha) {
+    stop(
+      "At least one of `return.glmnet.objects` or ",
+      "`saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha` must be TRUE."
+    )
+  }
 
-# Hosmer-Lemeshow Test
-library(ResourceSelection)
-hoslem.test(as.numeric(titanic_data$Survived)-1, fitted(model_full))
+  # Remove missing values if requested
+  if (na.omit.needed) {
+    nrow1 <- nrow(trainset)
+    trainset <- na.omit(trainset)
+    nrow2 <- nrow(trainset)
+    message(
+      "na.omit.needed == TRUE: removing ", nrow1 - nrow2, " rows - ",
+      "from ", nrow1, " rows to ", nrow2, " rows"
+    )
+  }
 
-```
-  
-  
-### \% |> caret::createFolds() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Set seed for reproducibility
-set.seed(123)
+  # Convert trainset to data frame (in case it's a tibble)
+  trainset <- as.data.frame(trainset)
 
-# Define number of folds
-k <- 5
+  # Create design matrix
+  x <- model.matrix(myFormula, data = trainset, contrasts.arg = lapply(trainset[, sapply(trainset, is.factor)], contrasts, contrasts = FALSE))[,-1]
+  build.x.colnames_levels <- colnames(x)
 
-# Create folds
-folds <- createFolds(titanic_data$Survived, k = k, list = TRUE, returnTrain = FALSE)
+  # Update trainset_colnames_levels with design matrix information
+  trainset_colnames_levels <- trainset_colnames_levels %>%
+    mutate(
+      build.x.colnames_levels = colnames_levels %in% build.x.colnames_levels,
+      colnames_levels.colSums0 = colnames_levels %in% 
+                                   colnames(x)[which(colSums(x) == 0)]
+    )
 
-# Initialize a data frame to store coefficients
-coefficients_cv <- data.frame()
+  # Remove zero-variance predictors
+  if (any(trainset_colnames_levels$colnames_levels.colSums0)) {
+    cols_to_remove <- trainset_colnames_levels %>%
+      filter(colnames_levels.colSums0) %>%
+      pull(colnames)
 
-# Perform cross-validation
-for(i in 1:k) {
-  # Split data into training and validation sets
-  validation_indices <- folds[[i]]
-  training_data <- titanic_data[-validation_indices, ]
-  validation_data <- titanic_data[validation_indices, ]
-  
-  # Fit model on training data
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  
-  # Store coefficients
-  coeffs <- coef(model_cv)
-  coefficients_cv <- rbind(coefficients_cv, coeffs)
-}
+    x <- x[, !colnames(x) %in% cols_to_remove]
+    trainset <- trainset[, !colnames(trainset) %in% cols_to_remove]
+    message(
+      "Removing zero-variance predictors: ", paste(cols_to_remove, collapse = ", ")
+    )
+  }
 
-# Add fold numbers
-coefficients_cv$Fold <- 1:k
+  # Check for large design matrices
+  if (nrow(x) * ncol(x) > 2^31) {
+    stop("Error: model.matrix size should be less than 2^31")
+  }
 
-# View coefficient estimates across folds
-print(coefficients_cv)
+  # Extract response variable (time and event)
+  mf <- model.frame(myFormula, data = trainset)
+  y <- model.extract(mf, "response")
+  if (!inherits(y, "Surv")) stop("Response must be a survival object")
 
-# Reshape data for plotting
-library(tidyr)
-coefficients_long <- coefficients_cv %>%
-  gather(key = "Coefficient", value = "Estimate", -Fold)
+  # Extract terms from the formula
+  Terms <- terms(mf)
+  trainset_colnames_levels <- trainset_colnames_levels %>%
+    mutate(
+      Terms.term.labels = colnames %in% attr(Terms, "term.labels")
+    )
 
-# Plot coefficient estimates across folds
-library(ggplot2)
-ggplot(coefficients_long, aes(x = as.factor(Fold), y = Estimate, group = Coefficient, color = Coefficient)) +
-  geom_line() +
-  geom_point() +
-  labs(title = "Coefficient Estimates Across Folds",
-       x = "Fold",
-       y = "Coefficient Estimate") +
-  theme_minimal()
+  # Helper function to extract variable names from the formula
+  terms.inner <- function(x) {
+    if (inherits(x, "formula")) {
+      if (length(x) == 3) {
+        c(terms.inner(x[[2]]), terms.inner(x[[3]]))
+      } else {
+        terms.inner(x[[2]])
+      }
+    } else if (is.call(x) && (x[[1]] != as.name("$") && x[[1]] != as.name("["))) {
+      if (x[[1]] == '+' || x[[1]] == '*' || x[[1]] == '-') {
+        if (length(x) == 3) {
+          c(terms.inner(x[[2]]), terms.inner(x[[3]]))
+        } else {
+          terms.inner(x[[2]])
+        }
+      } else if (x[[1]] == as.name("Surv")) {
+        unlist(lapply(x[-1], terms.inner))
+      } else {
+        terms.inner(x[[2]])
+      }
+    } else {
+      deparse(x)
+    }
+  }
 
-```
-  
-  
-### library(pROC) ----  
-#### \% |> roc() |> plot() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Initialize vector to store predicted probabilities
-predicted_probs <- rep(NA, nrow(titanic_data))
+  # Extract variable names for response and predictors
+  if (length(attr(Terms, 'variables')) > 2) { 
+    varname4y <- terms.inner(myFormula[1:2])
+    varname4x <- terms.inner(myFormula[c(1,3)])
+    if (any(!is.na(match(varname4y, varname4x)))) {
+      warning("A variable appears on both sides of the formula")
+    }
+  }
 
-# Perform cross-validation
-for(i in 1:k) {
-  # Split data into training and validation sets
-  validation_indices <- folds[[i]]
-  training_data <- titanic_data[-validation_indices, ]
-  validation_data <- titanic_data[validation_indices, ]
-  
-  # Fit model on training data
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  
-  # Predict on validation data
-  predicted_probs[validation_indices] <- predict(model_cv, newdata = validation_data, type = "response")
-}
+  # Update trainset_colnames_levels with extracted variable names
+  trainset_colnames_levels <- trainset_colnames_levels %>%
+    mutate(
+      terms.inner = case_when(
+        colnames %in% varname4x ~ "varname4x",
+        colnames %in% varname4y ~ "varname4y",
+        TRUE ~ NA_character_
+      )
+    )
 
-# Add predicted probabilities to the dataset
-titanic_data$Predicted_Prob <- predicted_probs
+  # Fit glmnet models for each alpha
+  model_list <- lapply(seq_along(alphas), function(i_alpha) {
+    message("Fitting model with alpha = ", alphas[i_alpha])
 
-# Evaluate model performance
-library(pROC)
-roc_curve <- roc(titanic_data$Survived, titanic_data$Predicted_Prob)
-auc_value <- auc(roc_curve)
+    # Construct filename for saving
+    return_name.i.tmp <- paste0(
+      return_name, paste_itrainset, ".cv.glmnet", paste_imyFormula, "_a", 
+      alphas[i_alpha]
+    )
 
-# Plot ROC curve
-plot(roc_curve, main = paste("ROC Curve (AUC =", round(auc_value, 2), ")"))
+    # Fit cv.glmnet model
+    model <- cv.glmnet(
+      x, y, 
+      alpha = alphas[i_alpha], 
+      family = glmnet.family, 
+      type.measure = my.type.measure, 
+      nfolds = nfolds,
+      lambda = lambda  # Use provided lambda sequence if available
+    )
 
-```
-  
-  
-### library(boot) ----  
-#### ECHO \% |> boot() |> boot.ci() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Define a function to fit the model and return coefficients
-boot_fn <- function(data, indices) {
-  d <- data[indices, ]  # Allows boot to select sample
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)
-  return(coef(fit))
-}
+    # Save model as RDS file
+    if (saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha) {
+      saveRDS(model, paste0(return_name.i.tmp, ".rds"))
+      message("Saved model to: ", paste0(return_name.i.tmp, ".rds"))
+    }
 
-# Perform bootstrapping
-set.seed(123)
-boot_results <- boot(data = titanic_data, statistic = boot_fn, R = 1000)
+    # Save cross-validation plot
+    if (save.png) {
+      png(
+        paste0(return_name.i.tmp, "_plot.png"), 
+        width = png.size, height = png.size, units = "px", bg = "transparent"
+      )
+      plot(model, main = paste0(return_name.i.tmp, "_plot"), cex.main = 0.5)
+      dev.off()
+      message("Saved plot to: ", paste0(return_name.i.tmp, "_plot.png"))
+    }
 
-# View bootstrapped coefficient estimates
-print(boot_results)
-
-# Calculate bootstrapped confidence intervals
-boot.ci(boot_results, type = "perc", index = 2)  # For Pclass
-boot.ci(boot_results, type = "perc", index = 3)  # For Sex
-boot.ci(boot_results, type = "perc", index = 4)  # For Age
-boot.ci(boot_results, type = "perc", index = 5)  # For Fare
-
-```
-  
-  
-### ECHO \% |> stats::influence.measures() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Calculate influence measures
-influence_measures <- influence.measures(model_full)
-
-# Summary of influence measures
-summary(influence_measures)
-
-# Identify observations with high Cook's distance
-cook_threshold <- 4 / nrow(titanic_data)
-high_cook <- which(influence_measures$cook.d > cook_threshold)
-
-# Print influential observations
-print(high_cook)
-
-```
-  
-  
-### \% |> caret::createFolds() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Assume titanic_data is already prepared as in previous examples
-library(caret)
-
-set.seed(123)
-k <- 5
-folds <- createFolds(titanic_data$Survived, k = k, list = TRUE)
-
-coefficients_cv <- data.frame()
-
-for(i in 1:k) {
-  training_data <- titanic_data[-folds[[i]], ]
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  coeffs <- coef(model_cv)
-  coefficients_cv <- rbind(coefficients_cv, coeffs)
-}
-
-coefficients_cv$Fold <- 1:k
-print(coefficients_cv)
-
-```
-  
-  
-### ECHO \% |> confint() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Fit the model on the full dataset
-model_full <- glm(Survived ~ Pclass + Sex + Age + Fare, data = titanic_data, family = binomial)
-
-# Extract confidence intervals
-conf_intervals <- confint(model_full)
-print(conf_intervals)
-
-```
-  
-  
-### \% |> MASS::mvrnorm() ----  
-#### \% |> predict_interval() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-library(MASS)
-
-# Revised function to calculate prediction intervals
-predict_interval <- function(model, newdata, level = 0.95, nsim = 1000) {
-  # Simulate coefficient estimates
-  sim_coeffs <- mvrnorm(nsim, coef(model), vcov(model))
-  
-  # Create design matrix (including intercept)
-  newdata_matrix <- model.matrix(~ Pclass + Sex + Age + Fare, data = newdata)
-  
-  # Predict probabilities using simulated coefficients
-  pred_probs <- apply(sim_coeffs, 1, function(beta) {
-    eta <- newdata_matrix %*% beta
-    1 / (1 + exp(-eta))  # Logistic function for probabilities
+    # Return model object or file paths
+    if (return.glmnet.objects) {
+      return(model)
+    } else {
+      return(list(
+        saveRDS = paste0(return_name.i.tmp, ".rds"), 
+        png = paste0(return_name.i.tmp, "_plot.png")
+      ))
+    }
   })
-  
-  # Convert the predicted probabilities to a matrix (if it's a vector)
-  pred_probs <- matrix(pred_probs, nrow = nsim)
-  
-  # Calculate prediction intervals
-  lower <- quantile(pred_probs, probs = (1 - level) / 2)
-  upper <- quantile(pred_probs, probs = 1 - (1 - level) / 2)
-  
-  data.frame(Lower = lower, Upper = upper)
+
+  # Name the list elements according to alpha values
+  names(model_list) <- paste0("alpha", alphas)
+
+  # Add function input and metadata as attributes
+  attr(model_list, "function.input") <- list(
+    Call = match.call(expand.dots = TRUE),
+    CreatedDate = Sys.time(),
+    functionUsed = trainset.cv.glmnet_alphas_cox,
+    trainset_name = deparse(substitute(trainset)),
+    trainset_dim = trainset_dim,
+    trainset_dimnames = trainset_dimnames,
+    trainset_colnames_levels = trainset_colnames_levels,
+    alphas = alphas,
+    glmnet.family = glmnet.family, 
+    my.type.measure = my.type.measure,
+    na.omit.needed = na.omit.needed,
+    return.glmnet.objects = return.glmnet.objects,
+    saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha = 
+      saveRDS_return_name_itrainset.cv.glmnet_imyFormula_ialpha,
+    return_name = return_name,
+    itrainset = itrainset,
+    imyFormula = imyFormula,
+    save.png = save.png,
+    png.size = png.size, 
+    seed = seed, 
+    nfolds = nfolds,
+    lambda = lambda  # Include lambda in the attributes
+  )
+
+  return(model_list)
 }
-
-# Example for a new observation
-new_obs <- data.frame(Pclass = 3, Sex = "male", Age = 25, Fare = 7.25)
-new_obs$Sex <- factor(new_obs$Sex, levels = levels(titanic_data$Sex))
-
-# Calculate prediction interval
-pi_result <- predict_interval(model_full, new_obs)
-print(pi_result)
-
-
 ```
   
   
-### library(boot) ----  
-#### ECHO \% |> boot() |> boot.ci() ----  
+###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(boot)
-
-# Define a function to calculate the coefficients for bootstrapping
-boot_fn <- function(data, indices) {
-  d <- data[indices, ]  # Resample the data
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)
-  return(coef(fit))  # Return the model coefficients
-}
-
-# Perform bootstrapping with 1000 resamples
-set.seed(123)
-boot_results <- boot(data = titanic_data, statistic = boot_fn, R = 1000)
-
-# View bootstrapped estimates
-print(boot_results)
-
-# Calculate bootstrap confidence intervals for each coefficient
-boot_ci_pclass <- boot.ci(boot_results, type = "perc", index = 2)  # Pclass
-boot_ci_sex <- boot.ci(boot_results, type = "perc", index = 3)  # Sex
-boot_ci_age <- boot.ci(boot_results, type = "perc", index = 4)  # Age
-boot_ci_fare <- boot.ci(boot_results, type = "perc", index = 5)  # Fare
-
-# Print bootstrap confidence intervals
-print(boot_ci_pclass)
-print(boot_ci_sex)
-print(boot_ci_age)
-print(boot_ci_fare)
 
 ```
   
@@ -604,41 +972,13 @@ print(boot_ci_fare)
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(boot)
-library(MASS)
 
-# Function to calculate predicted probabilities for bootstrap samples
-boot_pred_fn <- function(data, indices, newdata) {
-  d <- data[indices, ]  # Resample the data
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)  # Fit the model
+```
   
-  # Create design matrix for the new observation
-  newdata_matrix <- model.matrix(~ Pclass + Sex + Age + Fare, data = newdata)
   
-  # Predicted probabilities
-  eta <- newdata_matrix %*% coef(fit)  # Linear predictor
-  pred_prob <- 1 / (1 + exp(-eta))  # Logistic function for probabilities
-  return(pred_prob)  # Return predicted probabilities
-}
-
-# Example new observation for prediction
-new_obs <- data.frame(Pclass = 3, Sex = "male", Age = 25, Fare = 7.25)
-new_obs$Sex <- factor(new_obs$Sex, levels = levels(titanic_data$Sex))
-
-# Perform bootstrapping to generate predicted probabilities
-set.seed(123)
-boot_pred_results <- boot(data = titanic_data, statistic = boot_pred_fn, R = 1000, newdata = new_obs)
-
-# Extract predicted probabilities from the bootstrap results
-pred_probs <- boot_pred_results$t  # Each row represents one bootstrap sample's prediction
-
-# Calculate prediction intervals (e.g., 95% interval)
-lower <- quantile(pred_probs, probs = 0.025)  # 2.5th percentile
-upper <- quantile(pred_probs, probs = 0.975)  # 97.5th percentile
-
-# Display the prediction interval
-pred_interval <- data.frame(Lower = lower, Upper = upper)
-print(pred_interval)
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
 
 ```
   
@@ -979,19 +1319,8 @@ if(exists("MetaData")) {
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # .path_filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
-# openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table = TRUE) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
+# system.time(openxlsx2::write_xlsx(get(.objectname), file=.path_filename.xlsx, as_table=TRUE))
 # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8BOM.csv = paste0(.path4write,"/",.objectname,".UTF8BOM.csv")
-# if (Sys.info()["sysname"] == "Windows") {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-#     openxlsx2::xl_open(.path_filename.xlsx)
-# } else {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-# }
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8.csv.xz = paste0(.path4write,"/",.objectname,".UTF8.csv.xz")
-# readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 ```
   
   

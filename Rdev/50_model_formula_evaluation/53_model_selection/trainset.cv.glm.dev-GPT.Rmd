@@ -149,8 +149,8 @@ knitr::opts_knit$set(global.par = TRUE)
 
 # ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
@@ -185,10 +185,10 @@ cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n",
 ###### env1\$path ----  
 # cat(" getwd() == "); dput(getwd()) #----   
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$CurrentSource.path_filename.ext ====  
+### env1\$path\$CurrentSource.path.filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+# env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path.filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # env1$path$project_base = "Rproject_HEALS0215"
 # env1$path$data_suffix = "_01"
@@ -210,7 +210,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 "env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
 # if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
 ```
   
@@ -262,34 +262,7 @@ df_numeric5_categorical2
 ```
   
   
-## :: titanic_train() ----  
-### :: titanic_data() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 
-# Load the Titanic dataset
-data("titanic_train")
-
-# View the first few rows
-titanic_train %>% str
-titanic_train %>% as_tibble
-
-# Select relevant variables
-titanic_data <- titanic_train %>%
-  select(Survived, Pclass, Sex, Age, Fare) %>% as_tibble
-
-# Handle missing values by removing rows with NA
-titanic_data <- na.omit(titanic_data)
-
-# Convert 'Survived' and 'Sex' to factors
-titanic_data$Survived <- factor(titanic_data$Survived)
-titanic_data$Sex <- factor(titanic_data$Sex)
-titanic_data %>% str
-titanic_data %>% as_tibble
-```
-  
-  
 # __________|------  
 # @@ START) dev ----  
 # https://gemini.google.com/app/f47a57ed798a76cb
@@ -301,344 +274,13 @@ env0 = env1
   
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-for(.packagename in c("boot", "caret", "dplyr")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-```
-  
-  
-
-  
-  
-### titanic_data |> glm() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-# Fit logistic regression model
-model_full <- glm(Survived ~ Pclass + Sex + Age + Fare, data = titanic_data, family = binomial)
-
-# Summarize the model
-summary(model_full)
-
-```
-  
-  
-####  \% |> residuals() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Calculate residuals
-residuals_deviance <- residuals(model_full, type = "deviance")
-
-# Plot residuals
-plot(predict(model_full, type = "link"), residuals_deviance,
-     xlab = "Linear Predictor", ylab = "Deviance Residuals",
-     main = "Residual Plot")
-abline(h = 0, lty = 2)
-
-
-```
-  
-  
-### library(ResourceSelection) ----  
-#### \% |> hoslem.test() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-
-for(.packagename in c("ResourceSelection")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-
-# Hosmer-Lemeshow Test
-library(ResourceSelection)
-hoslem.test(as.numeric(titanic_data$Survived)-1, fitted(model_full))
-
-```
-  
-  
-### \% |> caret::createFolds() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Set seed for reproducibility
-set.seed(123)
-
-# Define number of folds
-k <- 5
-
-# Create folds
-folds <- createFolds(titanic_data$Survived, k = k, list = TRUE, returnTrain = FALSE)
-
-# Initialize a data frame to store coefficients
-coefficients_cv <- data.frame()
-
-# Perform cross-validation
-for(i in 1:k) {
-  # Split data into training and validation sets
-  validation_indices <- folds[[i]]
-  training_data <- titanic_data[-validation_indices, ]
-  validation_data <- titanic_data[validation_indices, ]
-  
-  # Fit model on training data
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  
-  # Store coefficients
-  coeffs <- coef(model_cv)
-  coefficients_cv <- rbind(coefficients_cv, coeffs)
-}
-
-# Add fold numbers
-coefficients_cv$Fold <- 1:k
-
-# View coefficient estimates across folds
-print(coefficients_cv)
-
-# Reshape data for plotting
-library(tidyr)
-coefficients_long <- coefficients_cv %>%
-  gather(key = "Coefficient", value = "Estimate", -Fold)
-
-# Plot coefficient estimates across folds
-library(ggplot2)
-ggplot(coefficients_long, aes(x = as.factor(Fold), y = Estimate, group = Coefficient, color = Coefficient)) +
-  geom_line() +
-  geom_point() +
-  labs(title = "Coefficient Estimates Across Folds",
-       x = "Fold",
-       y = "Coefficient Estimate") +
-  theme_minimal()
-
-```
-  
-  
-### library(pROC) ----  
-#### \% |> roc() |> plot() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Initialize vector to store predicted probabilities
-predicted_probs <- rep(NA, nrow(titanic_data))
-
-# Perform cross-validation
-for(i in 1:k) {
-  # Split data into training and validation sets
-  validation_indices <- folds[[i]]
-  training_data <- titanic_data[-validation_indices, ]
-  validation_data <- titanic_data[validation_indices, ]
-  
-  # Fit model on training data
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  
-  # Predict on validation data
-  predicted_probs[validation_indices] <- predict(model_cv, newdata = validation_data, type = "response")
-}
-
-# Add predicted probabilities to the dataset
-titanic_data$Predicted_Prob <- predicted_probs
-
-# Evaluate model performance
-library(pROC)
-roc_curve <- roc(titanic_data$Survived, titanic_data$Predicted_Prob)
-auc_value <- auc(roc_curve)
-
-# Plot ROC curve
-plot(roc_curve, main = paste("ROC Curve (AUC =", round(auc_value, 2), ")"))
-
-```
-  
-  
-### library(boot) ----  
-#### ECHO \% |> boot() |> boot.ci() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Define a function to fit the model and return coefficients
-boot_fn <- function(data, indices) {
-  d <- data[indices, ]  # Allows boot to select sample
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)
-  return(coef(fit))
-}
-
-# Perform bootstrapping
-set.seed(123)
-boot_results <- boot(data = titanic_data, statistic = boot_fn, R = 1000)
-
-# View bootstrapped coefficient estimates
-print(boot_results)
-
-# Calculate bootstrapped confidence intervals
-boot.ci(boot_results, type = "perc", index = 2)  # For Pclass
-boot.ci(boot_results, type = "perc", index = 3)  # For Sex
-boot.ci(boot_results, type = "perc", index = 4)  # For Age
-boot.ci(boot_results, type = "perc", index = 5)  # For Fare
-
-```
-  
-  
-### ECHO \% |> stats::influence.measures() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Calculate influence measures
-influence_measures <- influence.measures(model_full)
-
-# Summary of influence measures
-summary(influence_measures)
-
-# Identify observations with high Cook's distance
-cook_threshold <- 4 / nrow(titanic_data)
-high_cook <- which(influence_measures$cook.d > cook_threshold)
-
-# Print influential observations
-print(high_cook)
-
-```
-  
-  
-### \% |> caret::createFolds() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Assume titanic_data is already prepared as in previous examples
-library(caret)
-
-set.seed(123)
-k <- 5
-folds <- createFolds(titanic_data$Survived, k = k, list = TRUE)
-
-coefficients_cv <- data.frame()
-
-for(i in 1:k) {
-  training_data <- titanic_data[-folds[[i]], ]
-  model_cv <- glm(Survived ~ Pclass + Sex + Age + Fare, data = training_data, family = binomial)
-  coeffs <- coef(model_cv)
-  coefficients_cv <- rbind(coefficients_cv, coeffs)
-}
-
-coefficients_cv$Fold <- 1:k
-print(coefficients_cv)
-
-```
-  
-  
-### ECHO \% |> confint() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Fit the model on the full dataset
-model_full <- glm(Survived ~ Pclass + Sex + Age + Fare, data = titanic_data, family = binomial)
-
-# Extract confidence intervals
-conf_intervals <- confint(model_full)
-print(conf_intervals)
-
-```
-  
-  
-### \% |> MASS::mvrnorm() ----  
-#### \% |> predict_interval() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-library(MASS)
-
-# Revised function to calculate prediction intervals
-predict_interval <- function(model, newdata, level = 0.95, nsim = 1000) {
-  # Simulate coefficient estimates
-  sim_coeffs <- mvrnorm(nsim, coef(model), vcov(model))
-  
-  # Create design matrix (including intercept)
-  newdata_matrix <- model.matrix(~ Pclass + Sex + Age + Fare, data = newdata)
-  
-  # Predict probabilities using simulated coefficients
-  pred_probs <- apply(sim_coeffs, 1, function(beta) {
-    eta <- newdata_matrix %*% beta
-    1 / (1 + exp(-eta))  # Logistic function for probabilities
-  })
-  
-  # Convert the predicted probabilities to a matrix (if it's a vector)
-  pred_probs <- matrix(pred_probs, nrow = nsim)
-  
-  # Calculate prediction intervals
-  lower <- quantile(pred_probs, probs = (1 - level) / 2)
-  upper <- quantile(pred_probs, probs = 1 - (1 - level) / 2)
-  
-  data.frame(Lower = lower, Upper = upper)
-}
-
-# Example for a new observation
-new_obs <- data.frame(Pclass = 3, Sex = "male", Age = 25, Fare = 7.25)
-new_obs$Sex <- factor(new_obs$Sex, levels = levels(titanic_data$Sex))
-
-# Calculate prediction interval
-pi_result <- predict_interval(model_full, new_obs)
-print(pi_result)
-
-
-```
-  
-  
-### library(boot) ----  
-#### ECHO \% |> boot() |> boot.ci() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-library(boot)
-
-# Define a function to calculate the coefficients for bootstrapping
-boot_fn <- function(data, indices) {
-  d <- data[indices, ]  # Resample the data
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)
-  return(coef(fit))  # Return the model coefficients
-}
-
-# Perform bootstrapping with 1000 resamples
-set.seed(123)
-boot_results <- boot(data = titanic_data, statistic = boot_fn, R = 1000)
-
-# View bootstrapped estimates
-print(boot_results)
-
-# Calculate bootstrap confidence intervals for each coefficient
-boot_ci_pclass <- boot.ci(boot_results, type = "perc", index = 2)  # Pclass
-boot_ci_sex <- boot.ci(boot_results, type = "perc", index = 3)  # Sex
-boot_ci_age <- boot.ci(boot_results, type = "perc", index = 4)  # Age
-boot_ci_fare <- boot.ci(boot_results, type = "perc", index = 5)  # Fare
-
-# Print bootstrap confidence intervals
-print(boot_ci_pclass)
-print(boot_ci_sex)
-print(boot_ci_age)
-print(boot_ci_fare)
-
+for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
 ```
   
   
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-library(boot)
-library(MASS)
-
-# Function to calculate predicted probabilities for bootstrap samples
-boot_pred_fn <- function(data, indices, newdata) {
-  d <- data[indices, ]  # Resample the data
-  fit <- glm(Survived ~ Pclass + Sex + Age + Fare, data = d, family = binomial)  # Fit the model
-  
-  # Create design matrix for the new observation
-  newdata_matrix <- model.matrix(~ Pclass + Sex + Age + Fare, data = newdata)
-  
-  # Predicted probabilities
-  eta <- newdata_matrix %*% coef(fit)  # Linear predictor
-  pred_prob <- 1 / (1 + exp(-eta))  # Logistic function for probabilities
-  return(pred_prob)  # Return predicted probabilities
-}
-
-# Example new observation for prediction
-new_obs <- data.frame(Pclass = 3, Sex = "male", Age = 25, Fare = 7.25)
-new_obs$Sex <- factor(new_obs$Sex, levels = levels(titanic_data$Sex))
-
-# Perform bootstrapping to generate predicted probabilities
-set.seed(123)
-boot_pred_results <- boot(data = titanic_data, statistic = boot_pred_fn, R = 1000, newdata = new_obs)
-
-# Extract predicted probabilities from the bootstrap results
-pred_probs <- boot_pred_results$t  # Each row represents one bootstrap sample's prediction
-
-# Calculate prediction intervals (e.g., 95% interval)
-lower <- quantile(pred_probs, probs = 0.025)  # 2.5th percentile
-upper <- quantile(pred_probs, probs = 0.975)  # 97.5th percentile
-
-# Display the prediction interval
-pred_interval <- data.frame(Lower = lower, Upper = upper)
-print(pred_interval)
 
 ```
   
@@ -680,39 +322,39 @@ options(width=120)
   
 # __________|------  
 # @@ START) source ----  
-```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+```{r .subpath.filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 options(function.reload = TRUE);  # getOption("function.reload")
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") {.subpath = env1$path$CurrentSource.path_filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.subpath = env1$path$CurrentSource.path.filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # .sourcename = "default.template" |> paste0(".source.r")
-if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") {.sourcename_root = env1$path$CurrentSource.path_filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") {.sourcename_root = env1$path$CurrentSource.path.filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 env1$path$.subpath = .subpath
 if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
 .sourcename = .sourcename_root |> paste0(".source.r")
 env1$path$.sourcename_root = .sourcename_root
-env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
+env1$path$.subpath.filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
+env1$path$.subpath.filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
+env1$path$.subpath.filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
 cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-    "#### ",env1$path$.subpath_filename.dev.r, "----  \n",
-    "#### ",env1$path$.subpath_filename.dev.Rmd, "----  \n",
-    "#### ",env1$path$.subpath_filename.source.r, "----  \n",
-    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext));', "  \n",
+    "#### ",env1$path$.subpath.filename.dev.r, "----  \n",
+    "#### ",env1$path$.subpath.filename.dev.Rmd, "----  \n",
+    "#### ",env1$path$.subpath.filename.source.r, "----  \n",
+    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath.filename.source.r,'"))', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'")', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath.filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path.filename.ext)) if(env1$path$CurrentSource.path.filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext));', "  \n",
     sep="")
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-# # \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
-# .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+# # \% source( file.path(env1$path$source_base,.subpath.filename.source.r) ) ----  
+# .subpath.filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath.filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath.filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 ```
   
   
@@ -958,8 +600,8 @@ if(exists("MetaData")) {
     "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
     if(!identical(.MetaData0, MetaData)) {
         cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-        .path_file = ifelse(is.null(env1$path$CurrentSource.path_filename.MetaData.rds), NULL, env1$path$CurrentSource.path_filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)})
-        MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBackup = TRUE, Execute = TRUE)
+        .path.file = ifelse(is.null(env1$path$CurrentSource.path.filename.MetaData.rds), NULL, env1$path$CurrentSource.path.filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)})
+        MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.path.file = .path.file, createBackup = TRUE, Execute = TRUE)
     }
 } else {warning("> !exists(MetaData)  \n")}
 ```
@@ -978,66 +620,55 @@ if(exists("MetaData")) {
     }
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
-# openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table = TRUE) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
-# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8BOM.csv = paste0(.path4write,"/",.objectname,".UTF8BOM.csv")
-# if (Sys.info()["sysname"] == "Windows") {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-#     openxlsx2::xl_open(.path_filename.xlsx)
-# } else {
-#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
-# }
-# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8.csv.xz = paste0(.path4write,"/",.objectname,".UTF8.csv.xz")
-# readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+# .path.filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# system.time(openxlsx2::write_xlsx(get(.objectname), file=.path.filename.xlsx, as_table=TRUE))
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path.filename.xlsx)
 ```
   
   
 ```{r createBackup, eval=TRUE, include=FALSE}
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     # if (Sys.info()["sysname"] == "Windows") {
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        # env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
     # }
 }
 ```
   
   
 ```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
-env1$path$CurrentSource.path_filename.pdf = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
-env1$path$CurrentSource.path_filename.html = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+env1$path$CurrentSource.path.filename.pdf = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+env1$path$CurrentSource.path.filename.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     if (Sys.info()["sysname"] == "Windows") {
         .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
         for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
 
-        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$CurrentSource.path_filename.ext)),', output_format = "pdf_document")  \n')
-        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
-        .path_file = env1$path$CurrentSource.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
-        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE)
-        env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
-        try(env1$env.internal$f_file_PDF.sumatra(.path_file))
+        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$CurrentSource.path.filename.ext)),', output_format = "pdf_document")  \n')
+        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
+        .path.file = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}
+        env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE)
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = .path.file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        try(env1$env.internal$f_file_PDF.sumatra(.path.file))
     }
 }
-# env1$path$CurrentSource.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$CurrentSource.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
+# env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal$f_file_PDF.sumatra(',deparse(.path.file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path.file),')  \n', sep="") }
 # cat("    ________________________________________________________________________    \n")
-env1$path$CurrentSource.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$CurrentSource.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal$f_URL.open_in_edge_app(',deparse(.path_file),')  \n', sep="")
+env1$path$CurrentSource.path.filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path.file = env1$path$CurrentSource.path.filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path.file = .path.file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path.filename.ext = ',deparse(.path.file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal$f_URL.open_in_edge_app(',deparse(.path.file),')  \n', sep="")
 ```
   
   
 ```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
-env1$path$CurrentSource.path_filename.nb.html = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
-if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
-# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
-paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path_filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+env1$path$CurrentSource.path.filename.nb.html = env1$path$CurrentSource.path.filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path.filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path.filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
 cat("* To revert to the last commited file, run the following terminal command:  \n")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
-paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path.filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
 ```
   
   
