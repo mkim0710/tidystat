@@ -284,6 +284,51 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 env1$env.internal$f_path.CurrentSource.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path.size_files =  ----  
+.tmp$objectname = "f_path.size_files"
+.tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = options()$verbose) {
+    
+    for (.dependancy in c("f_df.t.tribble_construct")) {
+        if(!.dependancy %in% names(.GlobalEnv$env1)) {
+            if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+            .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+        }
+    }
+    
+    if (is.na(literal_filename)) {
+        # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = TRUE, value = TRUE)}
+        filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = TRUE)
+        if (length(filenames) == 0) {
+            cat("No files found matching the regex4filename: ", regex4filename, "\n")
+            return()
+        }
+    } else {
+        # # filenames = list.files(path = .path4read) %>% {grep(literal_filename, .,  ignore.case = TRUE, value = TRUE, fixed = TRUE)}
+        # filenames = list.files(path = .path4read) %>% {grep(literal_filename, ., value = TRUE, fixed = TRUE)}
+        filenames = list.files(path = .path4read) |> str_subset(fixed(literal_filename))
+        if (length(filenames) == 0) {
+            cat("No files found matching the literal_filename: ", literal_filename, "\n")
+            return()
+        }
+    }
+    if(VERBOSE) filenames |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # dput(); |> deparse(width.cutoff=120-15) |> paste0(collapse="  \n") |> cat("  \n", sep=""); # width.cutoff=500 is the max ---  
+    if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
+    out = filenames %>% {file.info(file.path(.path4read,.))} %>%
+        rownames_to_column("filename") %>% select(filename, size) %>%
+        mutate(bytes = format(size, digits = 3, big.mark=","), 
+               KB = format(size/2^10, digits = 3, big.mark=","), 
+               MB = format(size/2^20, digits = 3, big.mark=","), 
+               GB = format(size/2^30, digits = 3, big.mark=","))
+    # out = out %>% mutate(filename = sub(.path4read, "", filename, fixed = TRUE) %>% {sub("^/", "", .)})
+    out = out %>% mutate(filename = filename |> env1$f$f_path.relative()) 
+    if(print2console) env1$f$f_df.tribble_construct(out)
+    if(print2console) cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n"); #----
+    return(out %>% select(filename, size))
+} 
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path0.list_path_hierarchy =  ----  
 .tmp$objectname = "f_path0.list_path_hierarchy"
 .tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = options()$verbose) {
