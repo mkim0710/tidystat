@@ -96,6 +96,14 @@ for (.dependancy in c("f_df.t.tribble_construct")) {
 
 .tmp$objectname = "f_path.size_files"
 .tmp$object = function(.path4read = getwd(), literal_filename = NA, regex4filename = "\\.(rdata|rda|rds|csv|sas7bdat)(\\.[gx]z)?$", print2console = TRUE, VERBOSE = options()$verbose) {
+
+    for (.dependancy in c("f_df.t.tribble_construct")) {
+        if(!.dependancy %in% names(.GlobalEnv$env1)) {
+            if(Sys.getenv("VERBOSE")==TRUE) { print(paste0("sys.nframe() = ", sys.nframe())) }
+            .sourcename = .dependancy |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+        }
+    }
+    
     if (is.na(literal_filename)) {
         # filenames = list.files(path = .path4read) %>% {grep(regex4filename, .,  ignore.case = TRUE, value = TRUE)}
         filenames = list.files(path = .path4read, pattern = regex4filename, ignore.case = TRUE)
