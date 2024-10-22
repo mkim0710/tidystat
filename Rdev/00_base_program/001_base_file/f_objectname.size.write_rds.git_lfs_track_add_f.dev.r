@@ -179,7 +179,7 @@ get(.objectname) %>% str(max.level = 2)
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## \$f_objectname.size.write_rds.git_lfs_track_add_f ====  
-# Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
+# Rdev/00_base_terminal/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 

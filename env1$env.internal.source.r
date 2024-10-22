@@ -500,7 +500,7 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.git_lfs_track_add_f ====  
-# Rdev/00_base_program/f_file.git_lfs_track_add_f.dev.r
+# Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
 env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
     git_lfs_available = try(system2("git", args = "lfs version", stdout = FALSE, stderr = FALSE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
     
@@ -534,7 +534,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_objectname.size.write_rds.git_lfs_track_add_f ====  
-# Rdev/00_base_program/f_objectname.size.write_rds.git_lfs_track_add_f
+# Rdev/00_base_terminal/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
 env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path_file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL, VERBOSE = options()$verbose) {
