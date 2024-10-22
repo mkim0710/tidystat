@@ -638,7 +638,7 @@ options(width=120)
   
 # __________|------  
 # @@ START) source ----  
-```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 ```

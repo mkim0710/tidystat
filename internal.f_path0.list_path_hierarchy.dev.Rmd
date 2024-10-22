@@ -225,7 +225,7 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # __________|------  
 # @@ START) problem ----  
 ### \$ rstudioapi::getSourceEditorContext()\$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "") ----  
-```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 #| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # https://chatgpt.com/c/828c4e1f-d439-4c50-8a35-4cbea4f713fe
