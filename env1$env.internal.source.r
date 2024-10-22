@@ -283,7 +283,45 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 # env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 env1$env.internal$f_path.CurrentSource.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path0.list_path_hierarchy =  ----  
+.tmp$objectname = "f_path0.list_path_hierarchy"
+.tmp$object <- function(path0, path_last = getwd(), .max_hierarchy = 5, VERBOSE = options()$verbose) {
+    # Initialize a list to hold the path hierarchy
+    list_path = list()
+    
+    # Initialize a variable to keep track of the previous directory
+    prev_dir <- ""
+    
+    # Loop to dynamically check the relationship between path_last and path0
+    while (TRUE) {
+        list_path <- c(list(path_last), list_path)  # Prepend the current path to the hierarchy
+        if (VERBOSE) {
+            cat("> # Current path: ", path_last, "\n")
+            # cat("Current list_path: ", toString(list_path), "\n\n")
+            cat("> str(list_path)\n"); str(list_path)
+        }
+        
+        # Check if we have reached path0 or if path_last does not change (indicating the root directory)
+        if (path_last == path0 || path_last == prev_dir) {
+            break
+        }
 
+        # Update prev_dir to the current directory before changing path_last
+        prev_dir <- path_last
+        path_last <- dirname(path_last)  # Update path_last to its parent directory
+    }
+    
+    # Ensure the list is of length .max_hierarchy, filling excess with NA
+    list_path_hierarchy <- list_path[seq_len(min(.max_hierarchy+1, length(list_path)))]
+    if (length(list_path_hierarchy) < .max_hierarchy+1) {
+        list_path_hierarchy <- c(list_path_hierarchy, rep(NA, .max_hierarchy+1 - length(list_path_hierarchy)))
+    }
+    
+    return(list_path_hierarchy)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
