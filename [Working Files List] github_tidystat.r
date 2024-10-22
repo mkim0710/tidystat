@@ -52,12 +52,16 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # # Rdev
 # # Rdev/-dev
 # # Rdev/00_base_program
+# # Rdev/00_base_program/001_base_file
+# # Rdev/00_base_program/002_base_encoding_RegEx
+# # Rdev/00_base_program/004_base_environment
+# # Rdev/00_base_program/005_base_object
+# # Rdev/00_base_program/007_base_expression
+# # Rdev/00_base_program/009_base_computation
 # # Rdev/00_protocol
 # # Rdev/00_protocol/01_sample_size
-# # Rdev/00_protocol/05_count_eligible
-# # Rdev/00_protocol/06_count_exposure
-# # Rdev/00_protocol/07_count_outcome
 # # Rdev/10_import_clean_datatype
+# # Rdev/10_import_clean_datatype/11_literature
 # # Rdev/10_import_clean_datatype/11_metadata
 # # Rdev/10_import_clean_datatype/12_import_files
 # # Rdev/10_import_clean_datatype/12_import_sqlite
@@ -68,6 +72,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # # Rdev/10_import_clean_datatype/15_cleaning_text
 # # Rdev/10_import_clean_datatype/15_cleaning_time
 # # Rdev/10_import_clean_datatype/16_categorical_factor
+# # Rdev/10_import_clean_datatype/16_categorical_labelled
 # # Rdev/10_import_clean_datatype/17_categorical_indicators
 # # Rdev/10_import_clean_datatype/18_dichotomous_logical
 # # Rdev/10_import_clean_datatype/19_datetime
@@ -83,8 +88,10 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # # Rdev/40_visualize_explore_bivariate_stratified/44_map
 # # Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
 # # Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
+# # Rdev/40_visualize_explore_bivariate_stratified/49_time
 # # Rdev/50_model_formula_evaluation
 # # Rdev/50_model_formula_evaluation/51_model_formula
+# # Rdev/50_model_formula_evaluation/52_model_estimation
 # # Rdev/50_model_formula_evaluation/53_model_selection
 # # Rdev/50_model_formula_evaluation/55_model_weighted
 # # Rdev/50_model_formula_evaluation/56_model_bootstrap
@@ -92,6 +99,22 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # # Rdev/50_model_formula_evaluation/57_model_trajectory
 # # Rdev/50_model_formula_evaluation/59_model_evaluation
 # # Rdev/60_communicate_report_export
+# # Rdev/Rmd
+# # Rdev/examples
+# # Rdev/others
+# # Rdev/others/Batch
+# # Rdev/others/VBA
+# # data
+# # git
+# # git/hooks
+# # git/hooks/sample
+# # rstudio-prefs
+# # rstudio-prefs/Rocker
+# # rstudio-prefs/VScode-R
+# # rstudio-prefs/fonts
+# # rstudio-prefs/templates
+# # rstudio-prefs/themes
+# # rstudio-prefs/themes/GitHub 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
