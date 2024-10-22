@@ -266,6 +266,157 @@ env1$f$f_path.size_files(.path4read = .path4read)
 ```
   
   
+### :: files.selected ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+path.size_files = env1$f$f_path.size_files(.path4read = .path4read)
+
+files.selected = 
+    path.size_files %>% 
+    filter(filename %>% str_detect("\\.sas7bdat$") %>% `!`) %>% 
+    filter(filename %>% str_detect("MetaData") %>% `!`) %>% 
+    filter(filename %>% str_detect("tblVarName.rds") %>% `!`) %>% 
+    filter(filename %>% str_detect("CODEBOOK") %>% `!`) %>% 
+    pull(filename) 
+files.selected %>% dput
+
+
+```
+  
+  
+# __________|------  
+# @@ MetaData ----  
+```{r MetaData0-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+## .GlobalEnv$MetaData = list() ====  
+env1$path$CurrentSource.path_filename.MetaData.rds = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
+if(file.exists(env1$path$CurrentSource.path_filename.MetaData.rds)) { 
+    MetaData = env1$path$CurrentSource.path_filename.MetaData.rds |> read_rds() 
+} else {
+    if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
+}
+.parentname = "MetaData"
+# for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "VarNames.filter", "VarNames.recode", "ModelList")) {
+for (.sublistname in c("tblVarName", "DataSetNames", "VarNames", "VarNames.select", "ModelList")) {
+    if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+}
+
+### @ MetaData\$ModelList  ====   
+.parentname = "MetaData"; 
+.sublistname = "ModelList"; 
+for (.sub2listname in c("time2DM", "time2HTN", "time2DL", "time2MetS")) {
+    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
+}
+
+### @ MetaData\$VarNames  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+for (.sub2listname in c("Event", "Mediator", "Exposure", "PMHx", "Tx", "FHx", "Exam", "Social", "Behavioral", "Unclassified", "Calculated")) {
+    if(!.sub2listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Event  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Event"; 
+for (.sub3listname in c("DM", "HTN", "DL", "MetS")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Mediator  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Mediator"; 
+for (.sub3listname in c("BMI", "Waist")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Exposure  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Exposure"; 
+for (.sub3listname in c("Exercise", "Diet", "Alcohol", "Smoking")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+#### @ MetaData\$VarNames\$Demographic  ====   
+.parentname = "MetaData"; 
+.sublistname = "VarNames"; 
+.sub2listname = "Social"; 
+for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marriage")) {
+    if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
+}
+
+MetaData %>% str
+## @ .MetaData0 ====
+.MetaData0 = MetaData
+```
+  
+  
+# __________|------  
+# @@ START) Data ----  
+```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
+```
+
+
+##@ for (i.file in files.selected[1]) { ----
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+files.selected %>% dput
+
+function4files.selected = function(df) {
+    stop()
+}
+##@ for (i.file in files.selected) { ----
+.t0 = Sys.time()
+(for (i.file in files.selected[1]) {
+    i.objectname.labelled.fct = i.file %>% str_replace("\\.xz$", "") %>% str_replace("\\.rds$", "") %>% 
+        paste0(".labelled.fct")
+    assign(i.objectname.labelled.fct, 
+           readRDS(i.file) |> function4files.selected()
+    )
+
+    i.objectname.labelled.fct |> print()
+    paste0("object.size(get(i.objectname.labelled.fct))", " == ", object.size(get(i.objectname.labelled.fct))) |> print()
+    
+    .filename.ext4write = i.objectname.labelled.fct %>% paste0(".rds.xz")
+    .path4write = env1$path$path1
+    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = NULL, .objectname = i.objectname.labelled.fct, .path_file = NULL, .path4write = NULL, .filename.ext4write = .filename.ext4write, createBackup = TRUE, .backup_to_path="-backup", Execute = TRUE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz", VERBOSE = options()$verbose)
+    (Sys.time() - .t0) |> print()
+}) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+```
+
+
+##@ for (i.file in files.selected) { ----
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+files.selected %>% dput
+
+function4files.selected = function(df) {
+    stop()
+}
+##@ for (i.file in files.selected) { ----
+.t0 = Sys.time()
+(for (i.file in files.selected) {
+    i.objectname.labelled.fct = i.file %>% str_replace("\\.xz$", "") %>% str_replace("\\.rds$", "") %>% 
+        paste0(".labelled.fct")
+    assign(i.objectname.labelled.fct, 
+           readRDS(i.file) |> function4files.selected()
+    )
+
+    i.objectname.labelled.fct |> print()
+    paste0("object.size(get(i.objectname.labelled.fct))", " == ", object.size(get(i.objectname.labelled.fct))) |> print()
+    
+    .filename.ext4write = i.objectname.labelled.fct %>% paste0(".rds.xz")
+    .path4write = env1$path$path1
+    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = NULL, .objectname = i.objectname.labelled.fct, .path_file = NULL, .path4write = NULL, .filename.ext4write = .filename.ext4write, createBackup = TRUE, .backup_to_path="-backup", Execute = TRUE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz", VERBOSE = options()$verbose)
+    (Sys.time() - .t0) |> print()
+}) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+```
+  
+  
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
