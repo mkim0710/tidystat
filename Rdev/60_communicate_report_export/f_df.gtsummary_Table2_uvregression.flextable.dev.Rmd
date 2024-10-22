@@ -638,10 +638,15 @@ options(width=120)
   
 # __________|------  
 # @@ START) source ----  
+```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
+```
+
+
 ```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 options(width=120)
 options(function.reload = TRUE);  # getOption("function.reload")
-#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
 # .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
 if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") {.subpath = env1$path$CurrentSource.path_filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
 # if(.subpath!="") utils::browseURL(normalizePath(.subpath))
