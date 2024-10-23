@@ -1,4 +1,4 @@
-# f_vec_labelled_sex.as_character.dev.r
+# f_vec_lbl_sex.as_character.dev.r
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # #@ The templates at source_base_github (default.R, templates-00env1.minimum.Rmd) ++++++++++++   
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
@@ -620,101 +620,101 @@ labelled:::recode.haven_labelled(y, `2` = 1L, `4` = 3L, .combine_value_labels = 
 # [1] FALSE
 
 
-## \$ vec_labelled_sex ====
-vec_labelled_sex = structure(c(1, 2, 2, 1, 2), label = "성별", labels = c(남자 = 1, 여자 = 2), class = c("haven_labelled", "vctrs_vctr", "double"))
+## \$ vec_lbl_sex ====
+vec_lbl_sex = structure(c(1, 2, 2, 1, 2), label = "성별", labels = c(남자 = 1, 여자 = 2), class = c("haven_labelled", "vctrs_vctr", "double"))
 
-vec_labelled_sex %>% str
-#' > vec_labelled_sex %>% str
+vec_lbl_sex %>% str
+#' > vec_lbl_sex %>% str
 #'  dbl+lbl [1:5] 1, 2, 2, 1, 2
 #'  @ label : chr "성별"
 #'  @ labels: Named num [1:2] 1 2
 #'   ..- attr(*, "names")= chr [1:2] "남자" "여자"
 
-vec_labelled_sex %>% is.numeric
-vec_labelled_sex %>% is.factor
-# > vec_labelled_sex %>% is.numeric
+vec_lbl_sex %>% is.numeric
+vec_lbl_sex %>% is.factor
+# > vec_lbl_sex %>% is.numeric
 # [1] TRUE
-# > vec_labelled_sex %>% is.factor
+# > vec_lbl_sex %>% is.factor
 # [1] FALSE
 
 
 
 ### \% haven::labelled() |> as.factor() ----
-# vec_labelled_sex %>% as.numeric
-# vec_labelled_sex %>% as.character
-# vec_labelled_sex %>% as.factor
-# # > vec_labelled_sex %>% as.numeric
+# vec_lbl_sex %>% as.numeric
+# vec_lbl_sex %>% as.character
+# vec_lbl_sex %>% as.factor
+# # > vec_lbl_sex %>% as.numeric
 # # Error in `as.numeric()`:
 # # ! Can't convert `x` <haven_labelled> to <double>.
 # # Run `rlang::last_trace()` to see where the error occurred.
-# # > vec_labelled_sex %>% as.character
+# # > vec_lbl_sex %>% as.character
 # # Error in `as.character()`:
 # # ! Can't convert `x` <haven_labelled> to <character>.
 # # Run `rlang::last_trace()` to see where the error occurred.
-# # > vec_labelled_sex %>% as.factor
+# # > vec_lbl_sex %>% as.factor
 # # Error in `as.character()`:
 # # ! Can't convert `x` <haven_labelled> to <character>.
 # # Run `rlang::last_trace()` to see where the error occurred.
 
 
 ### \% haven::labelled() |> as_factor() ----
-# vec_labelled_sex %>% as_numeric
-# vec_labelled_sex %>% as_character
-vec_labelled_sex %>% as_factor
-# > vec_labelled_sex %>% as_numeric
+# vec_lbl_sex %>% as_numeric
+# vec_lbl_sex %>% as_character
+vec_lbl_sex %>% as_factor
+# > vec_lbl_sex %>% as_numeric
 # Error in as_numeric(.) : could not find function "as_numeric"
-# > vec_labelled_sex %>% as_character
+# > vec_lbl_sex %>% as_character
 # Error in as_character(.) : could not find function "as_character"
-# > vec_labelled_sex %>% as_factor
+# > vec_lbl_sex %>% as_factor
 # [1] 남자 여자 여자 남자 여자
 # attr(,"label")
 # [1] 성별
 # Levels: 남자 여자
 
 
-vec_labelled_sex %>% haven::zap_label() %>% str
-vec_labelled_sex %>% haven::zap_labels() %>% str
-#' > vec_labelled_sex %>% haven::zap_label() %>% str
+vec_lbl_sex %>% haven::zap_label() %>% str
+vec_lbl_sex %>% haven::zap_labels() %>% str
+#' > vec_lbl_sex %>% haven::zap_label() %>% str
 #'  dbl+lbl [1:5] 1, 2, 2, 1, 2
 #'  @ labels: Named num [1:2] 1 2
 #'   ..- attr(*, "names")= chr [1:2] "남자" "여자"
-#' > vec_labelled_sex %>% haven::zap_labels() %>% str
+#' > vec_lbl_sex %>% haven::zap_labels() %>% str
 #'  num [1:5] 1 2 2 1 2
 #'  - attr(*, "label")= chr "성별"
 
 
 
-## \$ vec_labelled_age ====
-vec_labelled_age = structure(c(22, 43, 42, 41, 41), label = "나이")
+## \$ vec_lbl_age ====
+vec_lbl_age = structure(c(22, 43, 42, 41, 41), label = "나이")
 
-vec_labelled_age %>% str
-# > vec_labelled_age %>% str
+vec_lbl_age %>% str
+# > vec_lbl_age %>% str
 #  num [1:5] 22 43 42 41 41
 #  - attr(*, "label")= chr "나이"
 
 
 ### \% haven::labelled() |> as.factor() ----
-vec_labelled_age %>% as.numeric
-vec_labelled_age %>% as.character
-vec_labelled_age %>% as.factor
-# > vec_labelled_age %>% as.numeric
+vec_lbl_age %>% as.numeric
+vec_lbl_age %>% as.character
+vec_lbl_age %>% as.factor
+# > vec_lbl_age %>% as.numeric
 # [1] 22 43 42 41 41
-# > vec_labelled_age %>% as.character
+# > vec_lbl_age %>% as.character
 # [1] "22" "43" "42" "41" "41"
-# > vec_labelled_age %>% as.factor
+# > vec_lbl_age %>% as.factor
 # [1] 22 43 42 41 41
 # Levels: 22 41 42 43
 
 
 ### \% haven::labelled() |> as_factor() ----
-# vec_labelled_age %>% as_numeric
-# vec_labelled_age %>% as_character
-vec_labelled_age %>% as_factor
-# > vec_labelled_age %>% as_numeric
+# vec_lbl_age %>% as_numeric
+# vec_lbl_age %>% as_character
+vec_lbl_age %>% as_factor
+# > vec_lbl_age %>% as_numeric
 # Error in as_numeric(.) : could not find function "as_numeric"
-# > vec_labelled_age %>% as_character
+# > vec_lbl_age %>% as_character
 # Error in as_character(.) : could not find function "as_character"
-# > vec_labelled_age %>% as_factor
+# > vec_lbl_age %>% as_factor
 # [1] 22 43 42 41 41
 # Levels: 22 41 42 43
 
