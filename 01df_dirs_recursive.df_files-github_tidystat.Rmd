@@ -373,18 +373,18 @@ function4files.selected = function(df) {
 ##@ for (i.file in files.selected) { ----
 .t0 = Sys.time()
 (for (i.file in files.selected[1]) {
-    i.objectname.labelled.fct = i.file %>% str_replace("\\.xz$", "") %>% str_replace("\\.rds$", "") %>% 
-        paste0(".labelled.fct")
-    assign(i.objectname.labelled.fct, 
+    i.objectname.lbl.fct = i.file %>% str_replace("\\.xz$", "") %>% str_replace("\\.rds$", "") %>% 
+        paste0(".lbl.fct")
+    assign(i.objectname.lbl.fct, 
            readRDS(i.file) |> function4files.selected()
     )
 
-    i.objectname.labelled.fct |> print()
-    paste0("object.size(get(i.objectname.labelled.fct))", " == ", object.size(get(i.objectname.labelled.fct))) |> print()
+    i.objectname.lbl.fct |> print()
+    paste0("object.size(get(i.objectname.lbl.fct))", " == ", object.size(get(i.objectname.lbl.fct))) |> print()
     
-    .filename.ext4write = i.objectname.labelled.fct %>% paste0(".rds.xz")
+    .filename.ext4write = i.objectname.lbl.fct %>% paste0(".rds.xz")
     .path4write = env1$path$path1
-    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = NULL, .objectname = i.objectname.labelled.fct, .path_file = NULL, .path4write = NULL, .filename.ext4write = .filename.ext4write, createBackup = TRUE, .backup_to_path="-backup", Execute = TRUE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz", VERBOSE = options()$verbose)
+    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = NULL, .objectname = i.objectname.lbl.fct, .path_file = NULL, .path4write = NULL, .filename.ext4write = .filename.ext4write, createBackup = TRUE, .backup_to_path="-backup", Execute = TRUE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz", VERBOSE = options()$verbose)
     (Sys.time() - .t0) |> print()
 }) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 ```
@@ -401,18 +401,18 @@ function4files.selected = function(df) {
 ##@ for (i.file in files.selected) { ----
 .t0 = Sys.time()
 (for (i.file in files.selected) {
-    i.objectname.labelled.fct = i.file %>% str_replace("\\.xz$", "") %>% str_replace("\\.rds$", "") %>% 
-        paste0(".labelled.fct")
-    assign(i.objectname.labelled.fct, 
+    i.objectname.lbl.fct = i.file %>% str_replace("\\.xz$", "") %>% str_replace("\\.rds$", "") %>% 
+        paste0(".lbl.fct")
+    assign(i.objectname.lbl.fct, 
            readRDS(i.file) |> function4files.selected()
     )
 
-    i.objectname.labelled.fct |> print()
-    paste0("object.size(get(i.objectname.labelled.fct))", " == ", object.size(get(i.objectname.labelled.fct))) |> print()
+    i.objectname.lbl.fct |> print()
+    paste0("object.size(get(i.objectname.lbl.fct))", " == ", object.size(get(i.objectname.lbl.fct))) |> print()
     
-    .filename.ext4write = i.objectname.labelled.fct %>% paste0(".rds.xz")
+    .filename.ext4write = i.objectname.lbl.fct %>% paste0(".rds.xz")
     .path4write = env1$path$path1
-    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = NULL, .objectname = i.objectname.labelled.fct, .path_file = NULL, .path4write = NULL, .filename.ext4write = .filename.ext4write, createBackup = TRUE, .backup_to_path="-backup", Execute = TRUE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz", VERBOSE = options()$verbose)
+    env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.object = NULL, .objectname = i.objectname.lbl.fct, .path_file = NULL, .path4write = NULL, .filename.ext4write = .filename.ext4write, createBackup = TRUE, .backup_to_path="-backup", Execute = TRUE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz", VERBOSE = options()$verbose)
     (Sys.time() - .t0) |> print()
 }) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 ```
