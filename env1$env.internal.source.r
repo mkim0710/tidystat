@@ -482,7 +482,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
             # Handle renaming errors (due to file system issues, permissions, etc.)
             warning("Some files could not be renamed, likely due to file system limitations or permissions:  \n", deparse(old_path_files[!renamed]), "\n")
         }
-        return(data.frame(old_path_files, new_path_files, renamed))
+        return(data.frame(old_path_files, new_path_files, renamed) |> t())
 
     }
 
