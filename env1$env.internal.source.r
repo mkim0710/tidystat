@@ -417,6 +417,78 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_path_fileRegEX.rename =  ----  
+# Rdev/00_base_program/001_base_file/f_path_fileRegEX.rename.dev.Rmd
+.tmp$objectname = "f_path_fileRegEX.rename"
+.tmp$object <- function(path = ".", gsub.pattern_from, gsub.replacement_to, full.names = TRUE, recursive = FALSE, move_to_renamed_path = FALSE, execute = FALSE) {
+
+    if(move_to_renamed_path) stop("move_to_renamed_path not yet implemented.")
+
+    cat("path == ", deparse(path), "\n", sep="")
+    cat("path |> normalizePath() == ", deparse(path |> normalizePath()), "\n", sep="")
+
+    # path.normalizePath = path |> normalizePath()
+
+    # Get a list of files that match the old pattern, recursively if specified
+    old_path_files <- list.files(path, pattern = gsub.pattern_from, full.names = full.names, recursive = recursive)
+
+    # Check if there are any files to rename
+    if (length(old_path_files) == 0) {
+        message("No files found to rename.")
+        return(NULL)
+    }
+
+    # Generate the new filenames by replacing the pattern in the old filenames
+    old_filename.ext = basename(old_path_files)
+    old_path = ifelse(old_path_files == basename(old_path_files), "", dirname(old_path_files))
+    new_filename.ext = gsub(gsub.pattern_from, gsub.replacement_to, old_filename.ext)
+    new_path_files <- ifelse(old_path == "", "", paste0(old_path, "/")) |> paste0(new_filename.ext)
+
+    # Check if any directories are involved, warn user if necessary
+    old_dirs <- old_path_files[file.info(old_path_files)$isdir]
+    if (length(old_dirs) > 0) {
+        warning("The following directories are being renamed. Be cautious, especially if they are not empty:  \n", deparse(old_dirs), "\n")
+    }
+
+
+    # Normalize paths only if full.names is TRUE
+    if (full.names) {
+        old_path_files <- old_path_files |> normalizePath(mustWork = TRUE)
+        new_path_files <- new_path_files |> normalizePath(mustWork = FALSE)
+    }
+
+    # Check if the old files exist before renaming
+    files_exist <- file.exists(old_path_files)
+    if (!all(files_exist)) {
+        warning("Some files do not exist or cannot be accessed:  \n", deparse(old_path_files[!files_exist]),  "\n")
+        # return(NULL)
+    }
+
+    # If preview is requested, just return the proposed changes without executing
+    if (!execute) {
+        message("\n  *** Preview mode: No paths or files have been renamed. ***  ")
+        # return(data.frame(old_path_files, new_path_files))
+        # return(set_names(old_path_files, new_path_files))
+        return(data.frame(old_path_files, new_path_files) |> t())
+    } else {
+        # If execute is TRUE, perform the renaming (after normalizing paths)
+        renamed <- file.rename(from = old_path_files, to = new_path_files)
+
+        # Check the result and provide feedback
+        if (all(renamed)) {
+            message("All paths and files renamed successfully.")
+        } else {
+            # Handle renaming errors (due to file system issues, permissions, etc.)
+            warning("Some files could not be renamed, likely due to file system limitations or permissions:  \n", deparse(old_path_files[!renamed]), "\n")
+        }
+        return(data.frame(old_path_files, new_path_files, renamed))
+
+    }
+
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
