@@ -349,9 +349,9 @@ options(width=120)
 gsub.pattern_from = "source"
 gsub.replacement_to = "dev"
 
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
 
 
 ```
@@ -363,11 +363,11 @@ options(width=120)
 gsub.pattern_from = "data"
 gsub.replacement_to = "DataSet"
 
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = FALSE)
 
 
 ```
@@ -380,13 +380,13 @@ options(width=120)
 gsub.pattern_from = "labelled"
 gsub.replacement_to = "lbl"
 
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = FALSE, recursive = FALSE, execute = FALSE)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = FALSE, execute = FALSE)
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = FALSE)
+env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = FALSE)
 cat("    ________________________________________________________________________    \n")
-# env1$path$path1 %>% f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = TRUE)
+# env1$path$path1 %>% env1$env.internal$f_path_fileRegEX.rename(gsub.pattern_from = gsub.pattern_from, gsub.replacement_to = gsub.replacement_to, full.names = TRUE, recursive = TRUE, execute = TRUE)
 
 ```
   
