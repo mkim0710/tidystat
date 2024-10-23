@@ -265,9 +265,9 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-f_path_filenameRegEX.rename <- function(directory, old_pattern, new_pattern, recursive = FALSE, execute = FALSE) {
+f_path_filenameRegEX.rename <- function(path, old_pattern, new_pattern, recursive = FALSE, execute = FALSE) {
   # Get a list of files that match the old pattern, recursively if specified
-  old_files <- list.files(directory, pattern = old_pattern, full.names = TRUE, recursive = recursive)
+  old_files <- list.files(path, pattern = old_pattern, full.names = TRUE, recursive = recursive)
   
   # Check if there are any files to rename
   if (length(old_files) == 0) {
