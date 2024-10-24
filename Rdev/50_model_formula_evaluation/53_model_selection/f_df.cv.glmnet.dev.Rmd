@@ -1,0 +1,2232 @@
+---
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+title: "`r params$doc_title`"
+author: "MHKim"
+date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_notebook:  
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    code_folding: none
+    df_print: tibble
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: false
+    df_print: tibble
+    code_folding: none
+    highlight: textmate
+    fig_width: 10
+    fig_height: 6
+  pdf_document: 
+    toc: yes
+    toc_depth: 6
+    fig_width: 10
+    fig_height: 6
+    latex_engine: xelatex  # mainfont, sansfont, monofont, mathfont works only with xelatex and lualatex, but not pdflatex
+    keep_tex: true
+  word_document:
+    toc: yes
+    toc_depth: 6
+    fig_width: 9
+    fig_height: 6
+# documentclass: scrartcl  # https://pandoc.org/MANUAL.html#variables-for-latex
+# classoption: fontsize=9pt 
+geometry: portrait, a3paper, margin=20mm # https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options
+# fontsize: 12pt
+header-includes: 
+  - \usepackage{fontspec}
+  - \newcommand{\setfallbackfont}[4]{
+      \IfFontExistsTF{#2}
+        {#1{#2}}
+        {\IfFontExistsTF{#3}
+          {#1{#3}}
+          {#1{#4}}}}
+  # - \setfallbackfont{\setmainfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  # - \setfallbackfont{\setsansfont}{Roboto Condensed}{Noto Sans Condensed}{Arial Narrow}
+  - \setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+  - \setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+  - \usepackage[hangul]{kotex}
+  - \setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+  - \setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+params:
+  doc_title: !r basename(rstudioapi::getSourceEditorContext()$path)
+# https://stackoverflow.com/questions/55751815/r-markdown-difference-between-parameters-and-variables
+# ?rmarkdown::html_document
+---
+<!-- https://stackoverflow.com/questions/28480625/r-knitr-markown-setting-html-page-width -->
+<style type="text/css">
+.main-content, .toc {max-width: 785px; margin: 0 auto; font-size: 1rem;} /* A4: 21cm x 29.7cm = 8.27in x 11.69in; 8.27in x 96px/in ≈ 793px */
+html { font-size: 12px; }
+body { font-size: 12px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; }
+h1.title { font-size: 28px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 14px; margin-bottom: 0; color: Navy; }
+h1 { font-size: 24px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 12px; margin-bottom: 0; color: Navy; }
+h2 { font-size: 21px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 11px; margin-bottom: 0; color: Navy; }
+h3 { font-size: 18px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 9px; margin-bottom: 0; color: Navy; }
+h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 8px; margin-bottom: 0; color: Navy; }
+h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
+h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
+table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
+code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+</style>
+  
+<!-- font-size: 0.9em; /* 90% of inherited font size */ -->
+  
+<!-- Body text (body): The default font size is typically 16 pixels. -->
+<!-- Paragraphs (p): Inherit the body's font size, so also typically 16 pixels. -->
+<!-- List items (li): Inherit the body's font size, generally 16 pixels. -->
+<!-- Headings (h1 to h6): The default sizes decrease with each level. For example: -->
+<!-- h1: Typically around 32 pixels. -->
+<!-- h2: Often around 24 pixels. -->
+<!-- h3: Commonly around 18.72 pixels. -->
+<!-- h4: Usually about 16 pixels. -->
+<!-- h5: Generally around 13.28 pixels. -->
+<!-- h6: Often about 10.72 pixels. -->
+<!-- Blockquotes (blockquote): Usually inherit the body's font size, around 16 pixels. -->
+<!-- Tables (table), table cells (td, th): Typically inherit the body's font size, so around 16 pixels. -->
+<!-- Figures (figure) and figure captions (figcaption): Generally inherit the body's font size, so about 16 pixels. -->
+<!-- 1: Approximately 8 pixels. -->
+<!-- 2: Approximately 10 pixels. -->
+<!-- 3: Approximately 12 pixels (this was often considered the default size). -->
+<!-- 4: Approximately 14 pixels. -->
+<!-- 5: Approximately 18 pixels. -->
+<!-- 6: Approximately 24 pixels. -->
+# __________|------  
+<!-- {r Rstudio-RMarkDown-Shortcuts, eval=FALSE, include=FALSE} -->
+<!-- ##### Rstudio RMarkDown Shortcuts -->
+<!-- https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE   -->
+<!-- https://bookdown.org/yihui/rmarkdown-cookbook/rstudio-shortcuts.html   -->
+<!-- Insert R chunk	Ctrl+Alt+I	Command+Option+I   -->
+<!-- Preview HTML	Ctrl+Shift+K	Command+Shift+K   -->
+<!-- Run all chunks above	Ctrl+Alt+P	Command+Option+P   -->
+<!-- Run current chunk	Ctrl+Alt+C	Command+Option+C   -->
+<!-- Run current chunk	Ctrl+Shift+Enter	Command+Shift+Enter   -->
+<!-- Run next chunk	Ctrl+Alt+N	Command+Option+N   -->
+<!-- Run all chunks	Ctrl+Alt+R	Command+Option+R   -->
+<!-- Go to next chunk/title	Ctrl+PgDown	Command+PgDown   -->
+<!-- Go to previous chunk/title	Ctrl+PgUp	Command+PgUp   -->
+<!-- Show/hide document outline	Ctrl+Shift+O	Command+Shift+O   -->
+<!-- F7 spell-check your document.   -->
+<!-- Restart the R session   Ctrl + Alt + F10 (or Command + Option + F10 on macOS).   -->
+<!--    -->
+<!-- *** Caution: @ # \$ \% * \\ ***  -->
+
+  
+```{r setup, echo=FALSE, results="hide"}
+# ```{r setup, eval=TRUE, include=FALSE}
+if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.utf8")  # Note that setting category "LC_ALL" sets only categories "LC_COLLATE", "LC_CTYPE", "LC_MONETARY" and "LC_TIME".
+# Sys.setlocale("LC_MESSAGES", "en_US.utf8")  # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.  # LC_MESSAGES does not exist in Windows
+Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");    # Note that the LANGUAGE environment variable has precedence over "LC_MESSAGES" in selecting the language for message translation on most R platforms.
+# str(knitr::opts_chunk$get())
+# cat(deparse(knitr::opts_chunk$get(), width.cutoff=120), "  \n", sep="")
+# list(eval=TRUE, echo=TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = "##",     highlight = TRUE, size = "normalsize", background = "#F7F7F7", strip.white = structure(TRUE, class = "AsIs"), cache = FALSE,     cache.path = "cache/", cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, cache.rebuild = FALSE,     fig.keep = "high", fig.show = "asis", fig.align = "default", fig.path = "figure/", dev = NULL, dev.args = NULL, dpi = 72,     fig.ext = NULL, fig.width=7, fig.height=7, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:",     fig.subcap = NULL, fig.pos = "", out.width=NULL, out.height=NULL, out.extra = NULL, fig.retina = 1, external = TRUE,     sanitize = FALSE, interval = 1, aniopts = "controls,loop", warning = TRUE, error = TRUE, message = TRUE, render = NULL,     ref.label = NULL, child = NULL, engine = "R", split = FALSE, include = TRUE, purl = TRUE)
+knitr::opts_chunk$set(
+    eval=TRUE, echo=FALSE, results="markup", collapse=TRUE, # In Rstudio Notebook Source Pane & nb.HTML, results="hold" does not work
+    comment="#", fig.width=10, fig.height=6, # In Rstudio Notebook Source Pane & nb.HTML, comment="##" does not work?
+    warning=TRUE, message=TRUE, include=TRUE, 
+    error=FALSE,  # error=TRUE: show the errors without stopping R; error=FALSE: stop on error
+    tidy.opts=list(width.cutoff=120), tidy=FALSE, 
+    R.options = list(width=120), paged.print=FALSE
+) 
+# knitr::opts_chunk$set(message=TRUE) & {r, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# knitr::opts_chunk$set(message=FALSE) & {r, message=TRUE, results="hide"} -> message shown in Rstudio Notebook Source Pane & knitted HTML, but not in Preview nb.HTML?!
+# *** results="hide": results shown only on Rstudio Notebook Source Pane, but not in nb.HTML nor knitted HTML
+knitr::opts_knit$set(global.par = TRUE)
+
+
+# ```{r loadPackages-NoEchoHideResults, echo=FALSE, results="hide"}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+#| ------------------------- < To be covered at .Rprofile > --------------------- |#  
+if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+env1$info$options.width = options()$width; cat(options()$width, "  \n", sep="")
+# ```
+#   
+# <font size="3">\% env1</font>  
+#   
+# ```{r env1-Info-NoEchoHideResults, echo=FALSE, results="hide"}
+# https://yihui.org/knitr/options/#package-options
+env1$info$info_software_versions = env1$env.internal$get_software_versions(library_names = c("tidyverse", "dplyr", "ggplot2", "purrr", "stringr", "stats","survival"))
+# str(env1$info$info_software_versions)
+
+
+###### env1\$info\$DocumentTitle1 ----  
+# ```{r env1-DocumentTitle1-NoEchoHideResults, echo=FALSE, results="hide"}
+env1$info$DocumentTitle0 = paste0("00env1.minimum","-",basename(getwd()))
+env1$info$DocumentTitle1 = paste0(env1$info$DocumentTitle0,"@", ifelse(grepl("MacBook-Pro", Sys.info()["nodename"]), "MBP", Sys.info()["nodename"]))
+cat(env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"), "\n", 
+    env1$info$DocumentTitle0,"-",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-dev",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    env1$info$DocumentTitle0,"-clean",format(Sys.time(),"%y%m%d"),".Rmd", "\n", 
+    sep="")
+```
+  
+  
+```{r env1-Path-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+###### env1\$path ----  
+# cat(" getwd() == "); dput(getwd()) #----   
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+### env1\$path\$CurrentSource.path_filename.ext ====  
+# *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
+# env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# env1$path$project_base = "Rproject_HEALS0215"
+# env1$path$data_suffix = "_01"
+# # env1$path$data_suffix = ""
+# env1$path$project_suffix = "GJ3"
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# env1$path$.path4read = file.path(env1$path$path0, paste0(env1$path$project_base, env1$path$data_suffix))
+# env1$path$.path4write = file.path(env1$path$.path4read, paste0(env1$path$project_base, env1$path$data_suffix, env1$path$project_suffix))
+env1$path$.path4read = ifelse(is.na(env1$path$path1), getwd(), env1$path$path1)
+env1$path$.path4write = getwd()
+.path4read  = env1$path$.path4read
+.path4write = env1$path$.path4write
+# cat(" > str(env1$path)\n"); str(env1$path, max.level = 1, give.attr = F)  
+
+## @ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE) ----  
+"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+"env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# .sourcename = "f_DataSetName.Search.read.checkEntity" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {  message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); suppressPackageStartupMessages(source(.GlobalEnv$env1$source[[.sourcename]]))  }
+# if (getwd() != .path4write) warning("getwd() != .path4write  == ") else cat(" getwd() == .path4write == "); dput(.path4write)  #----  
+```
+  
+  
+Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glmnet_alphas_cox.dev.Rmd
+Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-Gemini-pending.Rmd
+Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-GPT-pending.Rmd
+
+
+# __________|------  
+# @@ START) data example ----  
+## \$ analyticDF_time2event =  ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
+# suppressPackageStartupMessages(library(survival))
+for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+# ?survival::lung
+.objectname = DataSetName = "analyticDF_time2event"
+assign(
+    DataSetName, 
+    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
+        # dplyr::select(-status, -sex)
+        dplyr::select(-status)
+)
+analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
+```
+  
+  
+### :: df_5vars_10obs ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Manually create a dataset
+df_5vars_10obs <- data.frame(
+    Group = rep(c("Group1", "Group2"), each = 5),
+    Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
+    Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
+    Var3 = c(15, 16, 15, 14, 15, 18, 17, 19, 18, 17),
+    Var4 = c(0.5, 0.6, 0.55, 0.58, 0.57, 0.65, 0.66, 0.64, 0.67, 0.68),
+    Var5 = c(100, 105, 102, 101, 103, 110, 112, 111, 113, 114)
+)
+
+# Display the dataset
+print(df_5vars_10obs)
+```
+  
+  
+### :: df_numeric5_categorical2 ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+df_numeric5_categorical2 = 
+    structure(list(group_variable = c("A", "A", "A", "B", "B", "B", "C", "C", "C"), numeric_var1 = c(10L, 12L, 11L, 20L, 22L, 21L, 30L, 32L, 31L), numeric_var2 = c(100L, 102L, 101L, 200L, 202L, 201L, 300L, 302L, 301L), numeric_var3 = c(5, 6, 5.5, 10, 11, 10.5, 15, 16, 15.5), numeric_var4 = c(25, 26, 25.5, 50, 51, 50.5, 75, 76, 75.5), numeric_var5 = c(2, 2.2, 2.1, 4, 4.2, 4.1, 6, 6.2, 6.1), categorical_var1 = c("X", "Y", "X", "Y", "Z", "Y", "Z", "X", "Z"), categorical_var2 = c("M", "N", "M", "N", "O",  "N", "O", "M", "O")), class = "data.frame", row.names = c(NA, -9L))
+df_numeric5_categorical2
+```
+  
+  
+## :: titanic_train() ----  
+### :: titanic_data() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+
+# Load the Titanic dataset
+data("titanic_train")
+
+# View the first few rows
+titanic_train %>% str
+titanic_train %>% as_tibble
+
+# Select relevant variables
+titanic_data <- titanic_train %>%
+    select(Survived, Pclass, Sex, Age, Fare) %>% as_tibble
+
+# Handle missing values by removing rows with NA
+titanic_data <- na.omit(titanic_data)
+
+# Convert 'Survived' and 'Sex' to factors
+titanic_data$Survived <- factor(titanic_data$Survived)
+titanic_data$Sex <- factor(titanic_data$Sex)
+titanic_data %>% str
+titanic_data %>% as_tibble
+```
+  
+  
+## :: JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1 = ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# # Define variable names
+# varnames <- c(
+#   "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",
+#   "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",
+#   "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",
+#   "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",
+#   "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",
+#   "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",
+#   "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",
+#   "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",
+#   "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",
+#   "CancerSurvivors"
+# )
+# 
+# # Function to load and preprocess data
+# load_preprocess_data <- function(file_path, varnames, is_test = FALSE) {
+#   data <- readRDS(file_path)[varnames] %>%
+#     mutate(EndTime = as.numeric(EndTime))
+#   
+#   if (is_test) {
+#     data <- data %>% mutate(testset = TRUE)
+#   }
+#   
+#   return(as_tibble(data))
+# }
+# 
+# # Load training and testing datasets
+# train_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+# test_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4test.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+# 
+# TheTrainSet <- load_preprocess_data(train_file, varnames, is_test = FALSE)
+# TheTestSet  <- load_preprocess_data(test_file, varnames, is_test = TRUE)
+```
+  
+  
+## :: example_train_data() ----  
+### :: example_test_data() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Load necessary libraries
+library(tidyverse)
+library(survival)
+
+# Create non-random example dataset
+example_train_data <- tibble(
+  EndTime.is.Case.confirm.365 = c(1, 1, 0, 0, 1, 0),
+  EndTime = c(2, 3, 5, 10, 7, 8),
+  AgeDecade = factor(c(5, 5, 4, 4, 3, 3)),  # Age in decades (3 = 30s, 4 = 40s, 5 = 50s)
+  Female = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  Income = factor(c(3, 2, 1, 3, 2, 1)),  # Income levels (1 = low, 2 = medium, 3 = high)
+  DisabilityGrade = factor(c("Mild", "Severe", "Mild", "Severe", "Mild", "Severe")),
+  Anxiety = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+)
+
+example_test_data <- tibble(
+  EndTime.is.Case.confirm.365 = c(1, 0, 1),
+  EndTime = c(4, 12, 9),
+  AgeDecade = factor(c(5, 3, 4)),
+  Female = c(TRUE, FALSE, TRUE),
+  Income = factor(c(3, 1, 2)),
+  DisabilityGrade = factor(c("Severe", "Mild", "Severe")),
+  Anxiety = c(FALSE, TRUE, FALSE)
+)
+
+# Ensure no randomness is used in creating the data
+example_train_data
+example_test_data
+
+```
+  
+  
+## :: TheTrainSet() ----  
+### :: TheTestSet() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+# Define variable names
+varnames <- c(
+  "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",
+  "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",
+  "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",
+  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",
+  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",
+  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",
+  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",
+  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",
+  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",
+  "CancerSurvivors"
+)
+
+# Create Training Dataset
+TheTrainSet <- tibble(
+  EndTime.is.Case.confirm.365 = c(0, 1, 0, 1, 0),
+  EndTime = c(100, 200, 150, 300, 250),
+  AgeDecade = c(5, 6, 5, 7, 6),
+  Female = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Income = c(3, 5, 2, 4, 3),
+  DisabilityGrade = factor(c("None", "Severe", "Mild", "None", "Severe")),
+  AcquiredHypothyroidism = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  AdjustmentDisorder = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Anemia = c(TRUE, FALSE, FALSE, TRUE, FALSE),
+  Anxiety = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  Arthritis = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  AtrialFibrillation = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  BenignProstatic = c(FALSE, FALSE, FALSE, FALSE, FALSE),
+  BrainInjury = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  Cataract = c(FALSE, FALSE, TRUE, FALSE, TRUE),
+  ChronicKidney = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  Diabetes = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Dysthymia = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  Epilepsy = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Fibromyalgia_Pain_Fatigue = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Glaucoma = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  HearingImpairment = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  HeartFailure = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  Hyperlipidemia = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Hypertension = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  IschemicHeart = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  Migraine_ChronicHeadache = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  MobilityImpairments = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  Osteoporosis = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+  PelvicFx = c(FALSE, TRUE, FALSE, TRUE, FALSE),
+  PersonalityDisorders = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  SpinalCordInjury = c(FALSE, FALSE, TRUE, FALSE, FALSE),
+  StrokeTIA = c(FALSE, TRUE, FALSE, FALSE, FALSE),
+  AlzheimerDementia = c(FALSE, FALSE, FALSE, TRUE, FALSE),
+  LiverDisease = c(FALSE, TRUE, FALSE, FALSE, TRUE),
+  ObstructiveLungDisease = c(FALSE, TRUE, FALSE, FALSE, TRUE),
+  CancerSurvivors = c(FALSE, TRUE, FALSE, FALSE, FALSE)
+)
+
+# Create Test Dataset
+TheTestSet <- tibble(
+  EndTime.is.Case.confirm.365 = c(0, 1, 0),
+  EndTime = c(120, 220, 180),
+  AgeDecade = c(5, 7, 6),
+  Female = c(FALSE, TRUE, FALSE),
+  Income = c(4, 3, 5),
+  DisabilityGrade = factor(c("Mild", "None", "Severe")),
+  AcquiredHypothyroidism = c(TRUE, FALSE, TRUE),
+  AdjustmentDisorder = c(FALSE, TRUE, FALSE),
+  Anemia = c(FALSE, TRUE, FALSE),
+  Anxiety = c(TRUE, FALSE, TRUE),
+  Arthritis = c(FALSE, TRUE, FALSE),
+  AtrialFibrillation = c(TRUE, FALSE, FALSE),
+  BenignProstatic = c(FALSE, FALSE, FALSE),
+  BrainInjury = c(TRUE, FALSE, FALSE),
+  Cataract = c(FALSE, TRUE, FALSE),
+  ChronicKidney = c(TRUE, FALSE, TRUE),
+  Diabetes = c(FALSE, TRUE, FALSE),
+  Dysthymia = c(TRUE, FALSE, TRUE),
+  Epilepsy = c(FALSE, TRUE, FALSE),
+  Fibromyalgia_Pain_Fatigue = c(FALSE, TRUE, FALSE),
+  Glaucoma = c(TRUE, FALSE, TRUE),
+  HearingImpairment = c(TRUE, FALSE, TRUE),
+  HeartFailure = c(TRUE, FALSE, TRUE),
+  Hyperlipidemia = c(FALSE, TRUE, FALSE),
+  Hypertension = c(TRUE, FALSE, TRUE),
+  IschemicHeart = c(FALSE, TRUE, FALSE),
+  Migraine_ChronicHeadache = c(TRUE, FALSE, TRUE),
+  MobilityImpairments = c(TRUE, FALSE, TRUE),
+  Osteoporosis = c(FALSE, TRUE, FALSE),
+  PelvicFx = c(TRUE, FALSE, TRUE),
+  PersonalityDisorders = c(TRUE, FALSE, TRUE),
+  SpinalCordInjury = c(TRUE, FALSE, TRUE),
+  StrokeTIA = c(FALSE, TRUE, FALSE),
+  AlzheimerDementia = c(TRUE, FALSE, TRUE),
+  LiverDisease = c(TRUE, FALSE, TRUE),
+  ObstructiveLungDisease = c(TRUE, FALSE, TRUE),
+  CancerSurvivors = c(TRUE, FALSE, TRUE)
+) %>%
+  mutate(testset = TRUE)
+
+TheTrainSet
+TheTestSet
+```
+  
+  
+
+
+## glmnet::CoxExample ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# system.file("data", "CoxExample.rda", package = "glmnet")
+# # > system.file("data", "CoxExample.rda", package = "glmnet")
+# # [1] "/usr/local/lib/R/site-library/glmnet/data/CoxExample.rda"
+# 
+# library(glmnet)
+# # load(system.file("data", "CoxExample.rda", package = "glmnet"))
+# data(CoxExample)
+# CoxExample %>% str
+# # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
+
+# .objectname = "glmnet_coxExample_tibble"
+# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# save(list = .objectname, file = .path_file)
+# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_coxExample_tibble.rda"))
+glmnet_coxExample_tibble
+glmnet_coxExample_tibble.round3 = glmnet_coxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+glmnet_coxExample_tibble.round3
+# glmnet_coxExample_tibble %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble", ".csv"))
+# glmnet_coxExample_tibble.round3 %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble.round3", ".csv"))
+```
+  
+  
+    > glmnet_coxExample_tibble %>% str()
+    tibble [1,000 × 32] (S3: tbl_df/tbl/data.frame)
+     $ time  : num [1:1000] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
+     $ status: num [1:1000] 1 1 0 0 1 0 0 1 1 0 ...
+     $ V1    : num [1:1000] -0.877 -0.746 1.376 0.238 0.109 ...
+     $ V2    : num [1:1000] -0.614 -1.752 -0.264 0.786 0.467 ...
+     $ V3    : num [1:1000] -0.568 0.285 0.887 -0.897 -0.576 ...
+     $ V4    : num [1:1000] 0.662 1.139 0.384 -0.834 1.704 ...
+     $ V5    : num [1:1000] 1.8222 0.8018 0.0575 -0.5824 0.3275 ...
+     $ V6    : num [1:1000] -1.091 1.85 -1.092 0.187 -0.121 ...
+     $ V7    : num [1:1000] -0.332 0.307 0.821 -0.586 0.885 ...
+     $ V8    : num [1:1000] 3.675 -1.373 2.296 0.476 0.451 ...
+     $ V9    : num [1:1000] 0.2458 -0.0325 -0.4477 -0.6058 0.5888 ...
+     $ V10   : num [1:1000] 1.138 0.748 -0.305 -1.27 0.55 ...
+     $ V11   : num [1:1000] -0.46 -0.899 -3.682 0.868 0.552 ...
+     $ V12   : num [1:1000] -0.618 0.282 1.313 -0.483 -1.105 ...
+     $ V13   : num [1:1000] 0.365 1.542 -1.864 -0.101 1.598 ...
+     $ V14   : num [1:1000] -1.365 0.222 -0.204 0.942 -0.339 ...
+     $ V15   : num [1:1000] 1.79 -0.447 0.889 -0.235 -0.501 ...
+     $ V16   : num [1:1000] -0.6 1.808 -0.396 0.262 -1.205 ...
+     $ V17   : num [1:1000] 0.0712 1.541 0.5496 0.4586 -1.9601 ...
+     $ V18   : num [1:1000] -1.107 1.762 0.163 0.389 -0.769 ...
+     $ V19   : num [1:1000] 1.047 -0.911 -2.45 -1.539 0.714 ...
+     $ V20   : num [1:1000] 0.0847 0.1854 -1.3069 -0.5914 1.2637 ...
+     $ V21   : num [1:1000] 0.87 -0.443 0.393 -0.814 0.16 ...
+     $ V22   : num [1:1000] -0.486 -0.136 1.112 -1.198 -1.063 ...
+     $ V23   : num [1:1000] 0.23314 0.17755 0.00555 0.74975 1.7165 ...
+     $ V24   : num [1:1000] -0.89 -0.121 -1.462 -0.983 -0.222 ...
+     $ V25   : num [1:1000] 1.537 1.011 -1.3 2.005 0.785 ...
+     $ V26   : num [1:1000] 0.362 0.978 -2.768 -0.571 -0.613 ...
+     $ V27   : num [1:1000] -0.0518 0.9053 -0.1672 -0.2355 1.2637 ...
+     $ V28   : num [1:1000] -0.178 -1.424 -0.7 0.939 -1.801 ...
+     $ V29   : num [1:1000] 0.945 -0.733 0.929 0.363 -1.588 ...
+     $ V30   : num [1:1000] 1.775 -0.0569 -1.5611 0.5486 1.0087 ...
+ 
+  
+## glmnet::QuickStartExample ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# # system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # # > system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # # [1] "/usr/local/lib/R/site-library/glmnet/data/QuickStartExample.rda"
+# #
+# library(glmnet)
+# # load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
+# data(QuickStartExample)
+# QuickStartExample %>% str
+# glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
+# glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
+# glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
+# 
+# .objectname = "glmnet_gaussianExample_tibble"
+# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# save(list = .objectname, file = .path_file)
+# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
+
+glmnet_gaussianExample_tibble %>% str
+glmnet_gaussianExample_tibble
+# glmnet_gaussianExample_tibble.round3 = glmnet_gaussianExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+# glmnet_gaussianExample_tibble.round3
+# # for (.objectname in c("glmnet_gaussianExample_tibble", "glmnet_gaussianExample_tibble.round3")) {
+# #     .path_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")
+# #     get(.objectname) %>% write_csv(.path_file)
+# #     paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# # }
+```
+
+
+    tibble [100 × 21] (S3: tbl_df/tbl/data.frame)
+     $ y  : num [1:100] -1.275 1.843 0.459 0.564 1.873 ...
+     $ V1 : num [1:100] 0.274 2.245 -0.125 -0.544 -1.459 ...
+     $ V2 : num [1:100] -0.0367 -0.546 -0.6069 1.1084 -0.2745 ...
+     $ V3 : num [1:100] 0.855 0.234 -0.854 -0.104 0.112 ...
+     $ V4 : num [1:100] 0.968 -1.335 -0.149 1.017 -0.852 ...
+     $ V5 : num [1:100] 1.415 1.313 -0.665 0.7 0.315 ...
+     $ V6 : num [1:100] 0.523 0.521 0.607 1.655 1.051 ...
+     $ V7 : num [1:100] 0.563 -0.61 0.162 0.49 1.386 ...
+     $ V8 : num [1:100] 1.1112 -0.8614 -0.8627 0.0234 0.2845 ...
+     $ V9 : num [1:100] 1.641 -0.27 0.604 0.256 1.14 ...
+     $ V10: num [1:100] 0.619 0.23 1.194 -0.127 2.681 ...
+     $ V11: num [1:100] 0.9999 -0.1057 0.5013 -0.0626 -1.0147 ...
+     $ V12: num [1:100] -0.0784 0.1631 -0.9452 0.642 0.367 ...
+     $ V13: num [1:100] -0.6033 0.7621 0.3989 0.0755 1.7376 ...
+     $ V14: num [1:100] 0.0332 0.6781 -0.7648 -1.3785 -1.2661 ...
+     $ V15: num [1:100] -0.701 -0.528 1.285 -1.025 1.452 ...
+     $ V16: num [1:100] 1.158 -0.879 0.645 -2.118 -0.789 ...
+     $ V17: num [1:100] 1.458 -0.473 0.179 -0.47 -0.984 ...
+     $ V18: num [1:100] 0.7749 -1.1172 0.0447 0.6978 -1.637 ...
+     $ V19: num [1:100] -1.269 -0.738 1.105 0.866 -0.583 ...
+     $ V20: num [1:100] 1.994 -1.079 0.304 -0.789 -1.529 ...
+    # A tibble: 100 × 21
+            y      V1      V2     V3      V4      V5      V6      V7      V8     V9    V10     V11     V12     V13     V14
+        <dbl>   <dbl>   <dbl>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+     1 -1.27   0.274  -0.0367  0.855  0.968   1.42    0.523   0.563   1.11    1.64   0.619  1.00   -0.0784 -0.603   0.0332
+     2  1.84   2.24   -0.546   0.234 -1.34    1.31    0.521  -0.610  -0.861  -0.270  0.230 -0.106   0.163   0.762   0.678 
+     3  0.459 -0.125  -0.607  -0.854 -0.149  -0.665   0.607   0.162  -0.863   0.604  1.19   0.501  -0.945   0.399  -0.765 
+     4  0.564 -0.544   1.11   -0.104  1.02    0.700   1.66    0.490   0.0234  0.256 -0.127 -0.0626  0.642   0.0755 -1.38  
+     5  1.87  -1.46   -0.274   0.112 -0.852   0.315   1.05    1.39    0.285   1.14   2.68  -1.01    0.367   1.74   -1.27  
+     6  0.528  1.06   -0.754  -1.38   1.08    0.370   1.50   -0.360  -0.214   1.83   0.871 -0.0637  1.01    0.315   0.537 
+     7  2.43   0.116  -0.966   0.274  0.0185 -0.210   0.544  -2.51    2.20    0.593 -1.09  -1.46    0.573  -0.621  -0.645 
+     8 -0.895  0.390   0.400  -0.467  0.478   0.848   0.257  -0.0995  0.999  -0.193 -0.404  2.21   -1.06    0.0957  0.661 
+     9 -0.206  0.193   0.197  -1.24   1.91    0.115   0.452  -0.267  -0.273  -1.61  -0.326 -0.679  -0.479   0.408   0.276 
+    10  3.11  -0.0964  1.18    2.55   0.956   0.0256 -0.0456 -0.659   0.0392  0.172  0.643 -1.24    2.18   -0.526  -0.319 
+    # ℹ 90 more rows
+    # ℹ 6 more variables: V15 <dbl>, V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>
+    # ℹ Use `print(n = ...)` to see more rows
+    ```
+
+## glmnet::BinomialExample ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# # system.file("data", "BinomialExample.rda", package = "glmnet")
+# # # > system.file("data", "BinomialExample.rda", package = "glmnet")
+# # # [1] "/usr/local/lib/R/site-library/glmnet/data/BinomialExample.rda"
+# #
+# library(glmnet)
+# # load(system.file("data", "BinomialExample.rda", package = "glmnet"))
+# data(BinomialExample)
+# BinomialExample %>% str
+# glmnet_binomialExample_tibble = BinomialExample$x %>% as.data.frame()%>% as.tibble()
+# glmnet_binomialExample_tibble$y = BinomialExample$y
+# glmnet_binomialExample_tibble = glmnet_binomialExample_tibble %>% select(y, everything())
+# 
+# .objectname = "glmnet_binomialExample_tibble"
+# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# save(list = .objectname, file = .path_file)
+# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_binomialExample_tibble.rda"))
+
+glmnet_binomialExample_tibble %>% str
+glmnet_binomialExample_tibble
+# glmnet_binomialExample_tibble.round3 = glmnet_binomialExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+# glmnet_binomialExample_tibble.round3
+# # for (.objectname in c("glmnet_binomialExample_tibble", "glmnet_binomialExample_tibble.round3")) {
+# #     .path_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")
+# #     get(.objectname) %>% write_csv(.path_file)
+# #     paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# # }
+```
+
+
+    tibble [100 × 31] (S3: tbl_df/tbl/data.frame)
+     $ y  : int [1:100] 0 1 1 0 1 0 0 0 1 1 ...
+     $ V1 : num [1:100] -0.619 1.094 -0.357 -2.469 0.567 ...
+     $ V2 : num [1:100] 0.0162 0.4726 0.3012 2.8477 0.8889 ...
+     $ V3 : num [1:100] -0.6261 -1.3371 0.1906 1.6602 -0.0116 ...
+     $ V4 : num [1:100] 0.413 -0.641 0.234 1.569 0.576 ...
+     $ V5 : num [1:100] 0.494 0.282 0.17 -0.833 -0.869 ...
+     $ V6 : num [1:100] -0.449 -0.609 1.229 -0.562 -0.313 ...
+     $ V7 : num [1:100] 0.676 0.355 1.163 -0.614 0.69 ...
+     $ V8 : num [1:100] -0.0677 -0.6269 0.8802 -1.7653 -1.2996 ...
+     $ V9 : num [1:100] -1.475 -0.116 0.762 0.39 -0.967 ...
+     $ V10: num [1:100] 1.076 -0.313 -1.181 1.794 -0.273 ...
+     $ V11: num [1:100] 0.571 0.414 -0.488 0.464 -0.524 ...
+     $ V12: num [1:100] -0.0986 -1.8717 0.4565 0.5168 -0.8216 ...
+     $ V13: num [1:100] 1.21 0.164 0.645 -1.081 0.546 ...
+     $ V14: num [1:100] -1.067 0.772 1.753 -0.298 -0.515 ...
+     $ V15: num [1:100] 0.343 -0.863 0.49 -0.585 -0.136 ...
+     $ V16: num [1:100] -0.0226 1.4621 2.2715 -1.3589 -1.1113 ...
+     $ V17: num [1:100] -0.102 -0.437 -0.734 -0.659 -0.978 ...
+     $ V18: num [1:100] 0.141 -1.041 0.977 -1.199 -1.378 ...
+     $ V19: num [1:100] -0.549 -0.603 -0.358 0.202 -1.352 ...
+     $ V20: num [1:100] -0.2017 -0.3206 -0.0801 0.5071 0.9593 ...
+     $ V21: num [1:100] 0.457 0.212 1.245 0.673 0.492 ...
+     $ V22: num [1:100] 0.807 0.613 1.012 -0.425 -1.34 ...
+     $ V23: num [1:100] 0.0147 -0.819 0.0393 -0.9873 -0.1329 ...
+     $ V24: num [1:100] -1.116 2.904 1.017 -0.401 0.22 ...
+     $ V25: num [1:100] -0.0159 -0.1578 0.2971 -2.0662 0.7897 ...
+     $ V26: num [1:100] 1.145 -2.105 0.402 -0.552 -0.147 ...
+     $ V27: num [1:100] 0.942 0.641 1.925 -1.379 -0.802 ...
+     $ V28: num [1:100] 1.4372 0.0124 0.3111 0.0952 0.7756 ...
+     $ V29: num [1:100] -0.928 0.481 0.898 -0.39 1.118 ...
+     $ V30: num [1:100] 0.908 -2.049 -1.209 1.78 -1.197 ...
+    # A tibble: 100 × 31
+           y      V1      V2      V3      V4     V5     V6     V7      V8     V9     V10    V11     V12    V13    V14    V15
+       <int>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>  <dbl>   <dbl>  <dbl>   <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>
+     1     0 -0.619   0.0162 -0.626   0.413   0.494 -0.449  0.676 -0.0677 -1.47   1.08    0.571 -0.0986  1.21  -1.07   0.343
+     2     1  1.09    0.473  -1.34   -0.641   0.282 -0.609  0.355 -0.627  -0.116 -0.313   0.414 -1.87    0.164  0.772 -0.863
+     3     1 -0.357   0.301   0.191   0.234   0.170  1.23   1.16   0.880   0.762 -1.18   -0.488  0.457   0.645  1.75   0.490
+     4     0 -2.47    2.85    1.66    1.57   -0.833 -0.562 -0.614 -1.77    0.390  1.79    0.464  0.517  -1.08  -0.298 -0.585
+     5     1  0.567   0.889  -0.0116  0.576  -0.869 -0.313  0.690 -1.30   -0.967 -0.273  -0.524 -0.822   0.546 -0.515 -0.136
+     6     0  0.913   0.774   0.558  -0.535   0.351 -0.576 -0.388  0.555   0.357  1.36   -0.782  0.605  -0.472  1.26  -1.19 
+     7     0  0.0957  0.140  -0.760  -0.0494  1.57  -0.124 -1.11   1.73   -1.25  -0.444   0.360 -1.93   -0.579  0.425 -1.60 
+     8     0  1.93   -0.711  -0.274   1.00    1.04   0.803 -0.604 -0.511   0.429  0.519   0.955  0.594  -0.550 -0.117 -1.14 
+     9     1  0.283   1.06   -0.0394  0.303  -0.916  0.691  0.609  0.309   1.03  -0.0309  0.128 -1.61    0.202 -0.721 -0.860
+    10     1  0.801   1.54   -1.01   -0.385  -2.03   0.224 -1.16  -0.527  -0.724 -0.0437  0.277 -0.210  -0.664  0.173  0.504
+    # ℹ 90 more rows
+    # ℹ 15 more variables: V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>, V21 <dbl>, V22 <dbl>, V23 <dbl>,
+    #   V24 <dbl>, V25 <dbl>, V26 <dbl>, V27 <dbl>, V28 <dbl>, V29 <dbl>, V30 <dbl>
+    # ℹ Use `print(n = ...)` to see more rows
+
+
+
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+# @@ START) dev ----  
+# https://chatgpt.com/c/671605d9-92ac-800e-86da-6a01437532e9?model=gpt-4o
+```{r env0-NoEchoNoResults, echo=FALSE, results="hide"}
+env0 = env1
+```
+  
+  
+## bind_rows(train_data, test_data) |> create_and_export_table1() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Load and install required packages using pacman
+# if (!require("pacman")) install.packages("pacman")
+# library(pacman)
+
+for(.packagename in c("tidyverse", "glmnet", "useful", "survival", "tableone", "openxlsx", "broom")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+
+TheTrainSet = TheTrainSet
+TheTestSet = TheTestSet
+
+# Function to create and export Table One
+create_and_export_table1 <- function(train_data, test_data, strata, write_xlsx = FALSE, output_path_file) {
+  combined_data <- bind_rows(train_data, test_data)
+  
+  table1 <- CreateTableOne(
+    strata = strata,
+    data = as.data.frame(combined_data),
+    test = FALSE,
+    includeNA = TRUE
+  )
+  
+  # Print table with standardized mean differences (SMD)
+  print_table <- print(table1, smd = TRUE, nonnormal = c("AgeDecade", "Income"))
+  
+  # Export table to Excel
+  table_df <- as.data.frame(print_table) %>%
+    rownames_to_column(var = "Variable")
+  
+  if (write_xlsx) {
+      write.xlsx(table_df, output_path_file, asTable = TRUE)
+      
+      # Open the Excel file (optional)
+      openXL(output_path_file)
+  }
+  
+  return(table1)
+}
+
+# Create and export Table One
+TheTable1byCase <- create_and_export_table1(
+  train_data = TheTrainSet,
+  test_data = TheTestSet,
+  strata = "EndTime.is.Case.confirm.365",
+  write_xlsx = FALSE
+)
+```
+
+                                             Stratified by EndTime.is.Case.confirm.365
+                                              0                   1                   SMD   
+      n                                            5                   3                    
+      EndTime.is.Case.confirm.365 (mean (SD))   0.00 (0.00)         1.00 (0.00)          Inf
+      EndTime (mean (SD))                     160.00 (58.74)      240.00 (52.92)       1.431
+      AgeDecade (median [IQR])                  5.00 [5.00, 6.00]   7.00 [6.50, 7.00]  2.251
+      Female = TRUE (%)                            3 ( 60.0)           1 ( 33.3)       0.555
+      Income (median [IQR])                     3.00 [3.00, 4.00]   4.00 [3.50, 4.50]  0.560
+      DisabilityGrade (%)                                                              1.399
+         Mild                                      2 ( 40.0)           0 (  0.0)            
+         None                                      1 ( 20.0)           2 ( 66.7)            
+         Severe                                    2 ( 40.0)           1 ( 33.3)            
+      AcquiredHypothyroidism = TRUE (%)            2 ( 40.0)           2 ( 66.7)       0.555
+      AdjustmentDisorder = TRUE (%)                1 ( 20.0)           1 ( 33.3)       0.305
+      Anemia = TRUE (%)                            1 ( 20.0)           2 ( 66.7)       1.067
+      Anxiety = TRUE (%)                           2 ( 40.0)           2 ( 66.7)       0.555
+      Arthritis = TRUE (%)                         3 ( 60.0)           1 ( 33.3)       0.555
+      AtrialFibrillation = TRUE (%)                2 ( 40.0)           0 (  0.0)       1.155
+      BenignProstatic = FALSE (%)                  5 (100.0)           3 (100.0)      <0.001
+      BrainInjury = TRUE (%)                       1 ( 20.0)           1 ( 33.3)       0.305
+      Cataract = TRUE (%)                          2 ( 40.0)           1 ( 33.3)       0.139
+      ChronicKidney = TRUE (%)                     2 ( 40.0)           1 ( 33.3)       0.139
+      Diabetes = TRUE (%)                          3 ( 60.0)           1 ( 33.3)       0.555
+      Dysthymia = TRUE (%)                         2 ( 40.0)           2 ( 66.7)       0.555
+      Epilepsy = TRUE (%)                          1 ( 20.0)           1 ( 33.3)       0.305
+      Fibromyalgia_Pain_Fatigue = TRUE (%)         3 ( 60.0)           1 ( 33.3)       0.555
+      Glaucoma = TRUE (%)                          2 ( 40.0)           2 ( 66.7)       0.555
+      HearingImpairment = TRUE (%)                 2 ( 40.0)           1 ( 33.3)       0.139
+      HeartFailure = TRUE (%)                      2 ( 40.0)           1 ( 33.3)       0.139
+      Hyperlipidemia = TRUE (%)                    3 ( 60.0)           1 ( 33.3)       0.555
+      Hypertension = TRUE (%)                      2 ( 40.0)           2 ( 66.7)       0.555
+      IschemicHeart = TRUE (%)                     3 ( 60.0)           1 ( 33.3)       0.555
+      Migraine_ChronicHeadache = TRUE (%)          2 ( 40.0)           2 ( 66.7)       0.555
+      MobilityImpairments = TRUE (%)               3 ( 60.0)           0 (  0.0)       1.732
+      Osteoporosis = TRUE (%)                      3 ( 60.0)           1 ( 33.3)       0.555
+      PelvicFx = TRUE (%)                          2 ( 40.0)           2 ( 66.7)       0.555
+      PersonalityDisorders = TRUE (%)              2 ( 40.0)           1 ( 33.3)       0.139
+      SpinalCordInjury = TRUE (%)                  3 ( 60.0)           0 (  0.0)       1.732
+      StrokeTIA = TRUE (%)                         0 (  0.0)           2 ( 66.7)       2.000
+      AlzheimerDementia = TRUE (%)                 2 ( 40.0)           1 ( 33.3)       0.139
+      LiverDisease = TRUE (%)                      3 ( 60.0)           1 ( 33.3)       0.555
+      ObstructiveLungDisease = TRUE (%)            3 ( 60.0)           1 ( 33.3)       0.555
+      CancerSurvivors = TRUE (%)                   2 ( 40.0)           1 ( 33.3)       0.139
+      testset = NA (%)                             3 ( 60.0)           2 ( 66.7)       0.139
+
+
+
+## *** :: f_df.cv.glmnet = function()
+### *** :: f_cv_glmnet_object.mat_coef = function()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# Function to train cross-validated glmnet models
+
+# f_df.cv.glmnet <- function(
+#         train_data,
+#         formula,
+#         i.alpha = 1,
+#         family = "cox",
+#         type_measure = "deviance",
+#         nfolds = 5,
+#         seed = 1,
+#         save_models = FALSE,
+#         save_plots = FALSE,
+#         plot_size = 1280,
+#         output_dir = "glmnet_outputs"
+f_df.cv.glmnet <- function(
+        train_data,
+        formula,
+        i.alpha = 1,
+        family = "binomial",
+        type_measure = "auc",
+        nfolds = 5,
+        seed = 1,
+        save_models = FALSE,
+        save_plots = FALSE,
+        plot_size = 1280,
+        output_dir = "glmnet_outputs"
+) {
+    # Ensure output directory exists
+    if (!dir.exists(output_dir)) {
+        dir.create(output_dir, recursive = TRUE)
+    }
+    
+    set.seed(seed)
+    
+    # Prepare model matrix
+    x <- model.matrix(formula, data = train_data)[, -1]  # Remove intercept
+    
+    # Extract response variable
+    y <- model.response(model.frame(formula, data = train_data))
+    
+    
+    message(paste("Training glmnet model with alpha =", i.alpha))
+    
+    # Train cross-validated glmnet model
+    cv_glmnet_object <- cv.glmnet(
+        x = x,
+        y = y,
+        alpha = i.alpha,
+        family = family,
+        type.measure = type_measure,
+        nfolds = nfolds
+    )
+    
+    # Save model if required
+    if (save_models) {
+        model_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), ".rds"))
+        saveRDS(cv_glmnet_object, model_filename)
+        message(paste("Saved model to", model_filename))
+    }
+    
+    # Plot cross-validation results if required
+    if (save_plots) {
+        plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
+        png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
+        plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
+        dev.off()
+        message(paste("Saved plot to", plot_filename))
+    }
+    
+    attributes(cv_glmnet_object)$mat_coef = cv_glmnet_object %>% f_cv_glmnet_object.mat_coef
+    
+    return(cv_glmnet_object)
+}
+
+f_cv_glmnet_object.mat_coef = function(cv_glmnet_object) {
+    cv_glmnet_object.list_coef = list()
+    cv_glmnet_object.list_coef[["min"]] = cv_glmnet_object %>% coef(s = "lambda.min")
+    cv_glmnet_object.list_coef[["1se"]] = cv_glmnet_object %>% coef(s = "lambda.1se")
+
+    cv_glmnet_object.mat_coef = cv_glmnet_object.list_coef %>% (function(ls) {
+        out = ls %>% reduce(cbind); 
+        colnames(out) = names(ls); 
+        out
+    })()
+    cv_glmnet_object.mat_coef
+}
+```
+
+
+## :: TheTrainSet = glmnet_binomialExample_tibble
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# # TheTrainSet = glmnet_coxExample_tibble
+# # formula <- as.formula(Surv(time, status) ~ .)
+# TheTrainSet = glmnet_coxExample_tibble %>% select(-time)
+# formula <- as.formula(status ~ .)
+TheTrainSet = glmnet_binomialExample_tibble
+formula <- as.formula(y ~ .)
+```
+
+
+### TheTrainSet |> **f_df.cv.glmnet**() ----
+#### :: TheTrainSet.cv.glmnet.a00
+##### :: TheTrainSet.cv.glmnet.a00.coef = TheTrainSet.cv.glmnet.a00 |> 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+
+alpha = 1
+# Train glmnet Cox models
+TheTrainSet.cv.glmnet.a00 <- f_df.cv.glmnet(
+  train_data = TheTrainSet,
+  formula = formula,
+  i.alpha = 1,
+  family = "binomial",
+  type_measure = "auc",
+  nfolds = 5,
+  seed = 123,  # Changed seed for reproducibility
+  save_models = FALSE,
+  save_plots = FALSE,
+  plot_size = 1280,
+  output_dir = "glmnet_outputs"
+)
+
+# # Save all glmnet models for future use
+# saveRDS(TheTrainSet.cv.glmnet.alphas, file = "TheTrainSet.cv.glmnet.alphas.rds")
+
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+cv_glmnet_object <- TheTrainSet.cv.glmnet.a00
+f_cv_glmnet_object.mat_coef(cv_glmnet_object)
+
+```
+
+
+    31 x 2 sparse Matrix of class "dgCMatrix"
+                        min         1se
+    (Intercept)  0.15392481  0.20681215
+    V1           0.38984097  .         
+    V2           1.19658700  0.25072633
+    V3          -0.83549656 -0.13487795
+    V4          -1.65363658 -0.66347294
+    V5          -0.31476542 -0.07743873
+    V6          -1.58001396 -0.37910034
+    V7           0.13005473  .         
+    V8          -0.92363301 -0.20352436
+    V9           1.29683366  0.18360414
+    V10         -2.33806433 -0.68997655
+    V11         -0.18236433  .         
+    V12         -0.27599408  .         
+    V13         -0.22515259  .         
+    V14          0.09917457  .         
+    V15          .           .         
+    V16          0.86589735  .         
+    V17          .           .         
+    V18         -0.44235665  .         
+    V19         -0.23929034  .         
+    V20         -0.23710262  .         
+    V21          .           .         
+    V22          0.37236576  0.08939127
+    V23          0.69982126  0.05705106
+    V24         -0.27342879  .         
+    V25          0.95445518  0.24085312
+    V26         -0.48401883 -0.14483104
+    V27         -0.40579571  .         
+    V28          0.63613548  .         
+    V29         -0.35710442 -0.01301320
+    V30          0.30254589  .         
+
+
+
+
+## *** :: f_df.cv.glmnet.alphas = function()
+### *** :: f_list_cv_glmnet_object.mat_coef = function()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# Function to train cross-validated glmnet Cox models
+f_df.cv.glmnet.alphas <- function(
+  train_data,
+  formula,
+  alphas = c(1, 0.5),
+  family = "binomial",
+  type_measure = "auc",
+  nfolds = 5,
+  seed = 1,
+  save_models = TRUE,
+  save_plots = TRUE,
+  plot_size = 1280,
+  output_dir = "glmnet_outputs"
+) {
+    list_cv_glmnet_object = 
+        alphas %>% map(function(i.alpha) {
+            f_df.cv.glmnet(
+                train_data = train_data,
+                formula = formula,
+                i.alpha = i.alpha,
+                family = family,
+                type_measure = type_measure,
+                nfolds = nfolds,
+                seed = seed,
+                save_models = save_models,
+                save_plots = save_plots,
+                plot_size = plot_size,
+                output_dir = output_dir
+            )
+        }) %>% set_names(paste0("a", sprintf("%02d", alphas * 10)))
+    
+    attributes(list_cv_glmnet_object)$mat_coef = list_cv_glmnet_object %>% f_list_cv_glmnet_object.mat_coef
+    
+    return(list_cv_glmnet_object)
+}
+
+f_list_cv_glmnet_object.mat_coef = function(list_cv_glmnet_object) {
+    list_cv_glmnet_object.mat_coef = list_cv_glmnet_object %>% 
+        map(f_cv_glmnet_object.mat_coef) %>% 
+        reduce(cbind)
+    colnames(list_cv_glmnet_object.mat_coef) = names(list_cv_glmnet_object) %>% rep(each = 2) %>% 
+        paste0(".") %>% 
+        paste0(colnames(list_cv_glmnet_object.mat_coef))
+    list_cv_glmnet_object.mat_coef
+}
+
+
+```
+
+
+
+
+
+### TheTrainSet |> **f_df.cv.glmnet.alphas**() ----
+#### :: TheTrainSet.cv.glmnet.alphas
+##### :: TheTrainSet.cv.glmnet.alphas.coef = TheTrainSet.cv.glmnet.alphas |> 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# Train glmnet Cox models
+TheTrainSet.cv.glmnet.alphas <- f_df.cv.glmnet.alphas(
+  train_data = TheTrainSet,
+  formula = formula,
+  alphas = c(1, 0.5),
+  family = "binomial",
+  type_measure = "auc",
+  nfolds = 5,
+  seed = 123,  # Changed seed for reproducibility
+  save_models = FALSE,
+  save_plots = FALSE,
+  plot_size = 1280,
+  output_dir = "glmnet_outputs"
+)
+
+# # Save all glmnet models for future use
+# saveRDS(TheTrainSet.cv.glmnet.alphas, file = "TheTrainSet.cv.glmnet.alphas.rds")
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+TheTrainSet.cv.glmnet.alphas %>% str(max.level = 1)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet.alphas[[1]] %>% str(max.level = 1)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet.alphas[[1]]$glmnet.fit %>% str(max.level = 1)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+
+# TheTrainSet.cv.glmnet.alphas.coef_list_list = list()
+# TheTrainSet.cv.glmnet.alphas.coef_list_list[["min"]] = TheTrainSet.cv.glmnet.alphas %>% map(coef, s = "lambda.min")
+# TheTrainSet.cv.glmnet.alphas.coef_list_list[["1se"]] = TheTrainSet.cv.glmnet.alphas %>% map(coef, s = "lambda.1se")
+# TheTrainSet.cv.glmnet.alphas.coef_list_list %>% str
+# 
+# cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# TheTrainSet.cv.glmnet.alphas.coef = TheTrainSet.cv.glmnet.alphas.coef_list_list %>% (function(ls_ls) { 
+#     ls = ls_ls %>% map(function(ls) {
+#         out = ls %>% reduce(cbind); 
+#         colnames(out) = names(ls); 
+#         out
+#     }) ; 
+#     out2 = ls %>% reduce(cbind);
+#     colnames(out2) = ls %>% map(colnames) %>% reduce(c) %>% paste0(".") %>% paste0(rep(names(ls), each = 2)) ;
+#     out2
+# })()
+# 
+# TheTrainSet.cv.glmnet.alphas.coef %>% str()
+# TheTrainSet.cv.glmnet.alphas.coef %>% print()
+# 
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+list_cv_glmnet_object = TheTrainSet.cv.glmnet.alphas
+list_cv_glmnet_object %>% f_list_cv_glmnet_object.mat_coef
+
+```
+
+
+    Training glmnet model with alpha = 1
+    Training glmnet model with alpha = 0.5
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    List of 2
+     $ a10:List of 12
+      ..- attr(*, "class")= chr "cv.glmnet"
+      ..- attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+     $ a05:List of 12
+      ..- attr(*, "class")= chr "cv.glmnet"
+      ..- attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+     - attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    List of 12
+     $ lambda    : num [1:98] 0.24 0.219 0.2 0.182 0.166 ...
+     $ cvm       : num [1:98] 0.522 0.633 0.734 0.736 0.734 ...
+     $ cvsd      : num [1:98] 0.0524 0.0824 0.1015 0.1016 0.1021 ...
+     $ cvup      : num [1:98] 0.574 0.715 0.836 0.838 0.836 ...
+     $ cvlo      : num [1:98] 0.469 0.55 0.633 0.634 0.632 ...
+     $ nzero     : Named int [1:98] 0 1 1 2 2 2 2 3 7 8 ...
+      ..- attr(*, "names")= chr [1:98] "s0" "s1" "s2" "s3" ...
+     $ call      : language cv.glmnet(x = x, y = y, type.measure = type_measure, nfolds = nfolds, alpha = i.alpha,      family = family)
+     $ name      : Named chr "AUC"
+      ..- attr(*, "names")= chr "auc"
+     $ glmnet.fit:List of 13
+      ..- attr(*, "class")= chr [1:2] "lognet" "glmnet"
+     $ lambda.min: num 0.0053
+     $ lambda.1se: num 0.0543
+     $ index     : int [1:2, 1] 42 17
+      ..- attr(*, "dimnames")=List of 2
+     - attr(*, "class")= chr "cv.glmnet"
+     - attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    List of 13
+     $ a0        : Named num [1:98] 0.241 0.236 0.232 0.233 0.236 ...
+      ..- attr(*, "names")= chr [1:98] "s0" "s1" "s2" "s3" ...
+     $ beta      :Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+     $ df        : int [1:98] 0 1 1 2 2 2 2 3 7 8 ...
+     $ dim       : int [1:2] 30 98
+     $ lambda    : num [1:98] 0.24 0.219 0.2 0.182 0.166 ...
+     $ dev.ratio : num [1:98] 1.78e-15 2.90e-02 5.34e-02 8.86e-02 1.19e-01 ...
+     $ nulldev   : num 137
+     $ npasses   : int 2148
+     $ jerr      : int 0
+     $ offset    : logi FALSE
+     $ classnames: chr [1:2] "0" "1"
+     $ call      : language glmnet(x = x, y = y, alpha = i.alpha, family = family)
+     $ nobs      : int 100
+     - attr(*, "class")= chr [1:2] "lognet" "glmnet"
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+        ________________________________________________________________________    
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+        ************************************************************************    
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    31 x 4 sparse Matrix of class "dgCMatrix"
+                    a10.min     a10.1se       a05.min     a05.1se
+    (Intercept)  0.15392481  0.20681215  0.2462602031  0.21761976
+    V1           0.38984097  .           0.0195074762  .         
+    V2           1.19658700  0.25072633  0.4473828140  0.23197054
+    V3          -0.83549656 -0.13487795 -0.3574837608 -0.14687290
+    V4          -1.65363658 -0.66347294 -0.8495951223 -0.57638880
+    V5          -0.31476542 -0.07743873 -0.2081618744 -0.12814636
+    V6          -1.58001396 -0.37910034 -0.6595852272 -0.35708736
+    V7           0.13005473  .           .             .         
+    V8          -0.92363301 -0.20352436 -0.4194783601 -0.23035089
+    V9           1.29683366  0.18360414  0.4883396891  0.18775784
+    V10         -2.33806433 -0.68997655 -1.0004491977 -0.59843316
+    V11         -0.18236433  .          -0.0910865462 -0.02438931
+    V12         -0.27599408  .          -0.0600688629  .         
+    V13         -0.22515259  .           .             .         
+    V14          0.09917457  .           .             .         
+    V15          .           .           .             .         
+    V16          0.86589735  .           0.2214306896  .         
+    V17          .           .          -0.0008639231  .         
+    V18         -0.44235665  .          -0.0039892319  .         
+    V19         -0.23929034  .           .             .         
+    V20         -0.23710262  .          -0.0244007148  .         
+    V21          .           .           .             .         
+    V22          0.37236576  0.08939127  0.1810191104  0.11456583
+    V23          0.69982126  0.05705106  0.2884704562  0.12185195
+    V24         -0.27342879  .          -0.0128971183  .         
+    V25          0.95445518  0.24085312  0.4943444697  0.24704904
+    V26         -0.48401883 -0.14483104 -0.3039094908 -0.17985803
+    V27         -0.40579571  .          -0.0664700202  .         
+    V28          0.63613548  .           0.1935422320  0.03816934
+    V29         -0.35710442 -0.01301320 -0.2010811977 -0.07019016
+    V30          0.30254589  .           0.0551123528  .         
+
+
+## :: extract_selected_variables = function()
+### |> extract_selected_variables()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
+  # Extract coefficients at specified lambda
+  coef_matrix <- coef(cv_glmnet_model, s = lambda)
+  
+  # Identify non-zero coefficients
+  selected_vars <- rownames(coef_matrix)[which(coef_matrix != 0)]
+  
+  # Check if any variables were selected
+  if (length(selected_vars) == 0) {
+    message("No variables were selected at the specified lambda.")
+    return(NULL)
+  }
+  
+  # Remove the intercept if present
+  selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+  
+  return(selected_vars)
+}
+
+# Extract variables for alpha = 1
+selected_vars_a1 <- extract_selected_variables(TheTrainSet.cv.glmnet.alphas$a1)
+selected_vars_a1 %>% dput
+
+# Extract variables for alpha = 0.5
+selected_vars_a0_5 <- extract_selected_variables(TheTrainSet.cv.glmnet.alphas$a0.5)
+selected_vars_a0_5 %>% dput
+
+
+```
+
+
+### runph_on_test() ----
+### summarizeph_model() ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# Function to create and run Cox PH model on test set
+runph_on_test <- function(cv_glmnet_model, train_formula, test_data, lambda = "lambda.min") {
+  selected_vars <- extract_selected_variables(cv_glmnet_model, lambda = lambda)
+  
+  # Construct new formula
+  response_vars <- all.vars(train_formula)[1:2]  # Extract response variables
+  new_formula <- as.formula(
+    paste(response_vars, "~", paste(selected_vars, collapse = " + "))
+  )
+  
+  # Fit Cox PH model on test set
+  cox_model <- coxph(new_formula, data = test_data)
+  
+  return(cox_model)
+}
+
+# Function to summarize Cox PH model with exponentiated coefficients
+summarizeph_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
+  if (!inherits(cox_model, "coxph")) {
+    stop("Model is not a coxph object.")
+  }
+  
+  # Extract summary
+  summary <- summary(cox_model)
+  
+  # Create a tidy dataframe using broom
+  summary_df <- tidy(summary, exponentiate = TRUE, conf.int = TRUE) %>%
+    rename(
+      Variable = term,
+      Hazard_Ratio = estimate,
+      CI_lower = conf.low,
+      CI_upper = conf.high,
+      p_value = p.value
+    )
+  
+  # Adjust p-values
+  for (method in adjust_p) {
+    adj_col <- paste0("p.adjust.", method)
+    summary_df[[adj_col]] <- p.adjust(summary_df$p_value, method = method)
+  }
+  
+  # Add significance stars based on raw p-values
+  summary_df <- summary_df %>%
+    mutate(
+      star = case_when(
+        p_value <= 0.001 ~ "***",
+        p_value <= 0.01 ~ "** ",
+        p_value <= 0.05 ~ "*  ",
+        TRUE ~ "   "
+      )
+    )
+  
+  # Format the confidence intervals
+  summary_df <- summary_df %>%
+    mutate(
+      CI = paste0("(", round(CI_lower, 2), " ~ ", round(CI_upper, 2), ")"),
+      Hazard_Ratio = round(Hazard_Ratio, 2),
+      p_value = ifelse(p_value <= 0.001, "<0.001", sprintf("%.3f", p_value))
+    )
+  
+  # Select and arrange columns
+  summary_df <- summary_df %>%
+    select(Variable, Hazard_Ratio, CI, p_value, star, starts_with("p.adjust."), everything())
+  
+  return(summary_df)
+}
+
+# Function to generate Cox PH summaries for all model combinations
+generateph_summaries <- function(glmnet_models, train_formula, test_data, lambdas = c("lambda.min", "lambda.1se")) {
+  model_combinations <- expand.grid(
+    alpha = c(1, 0.5),
+    lambda = lambdas,
+    stringsAsFactors = FALSE
+  )
+  
+  coxph_summaries <- list()
+  
+  for (i in 1:nrow(model_combinations)) {
+    i.alpha <- model_combinations$alpha[i]
+    lambda_val <- model_combinations$lambda[i]
+    
+    model_name <- paste0("alpha", i.alpha, "_", lambda_val)
+    
+    # Retrieve the glmnet model
+    glmnet_model <- glmnet_models[[paste0("a", i.alpha)]]
+    
+    # Run Cox PH model on test set
+    cox_model <- runph_on_test(
+      cv_glmnet_model = glmnet_model,
+      train_formula = train_formula,
+      test_data = test_data,
+      lambda = lambda_val
+    )
+    
+    # Summarize the model
+    summary_df <- summarizeph_model(cox_model, adjust_p = c("fdr", "bonferroni"))
+    
+    # Store the summary with a descriptive name
+    coxph_summaries[[model_name]] <- summary_df
+  }
+  
+  return(coxph_summaries)
+}
+
+# Generate Cox PH summaries
+coxph_summaries <- generateph_summaries(
+  glmnet_models = TheTrainSet.cv.glmnet.alphas,
+  train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
+  test_data = TheTestSet,
+  lambdas = c("lambda.min", "lambda.1se")
+)
+
+# # Save Cox PH summaries to Excel
+# write.xlsx(coxph_summaries, "CoxPH_Summaries.xlsx", asTable = TRUE)
+# 
+# # Open the Excel file (optional)
+# openXL("CoxPH_Summaries.xlsx")
+
+```
+  
+  
+
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+## pacman::p_load() ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# #' Load and install required packages using pacman
+# #'
+# #' This function checks if the 'pacman' package is installed, installs it if 
+# #' necessary, and then uses \code{pacman::p_load()} to efficiently load or 
+# #' install a list of required packages.
+# #'
+# #' @param required_packages A character vector of package names to be loaded or
+# #'   installed.
+# #'
+# #' @examples
+# #' required_packages <- c("tidyverse", "glmnet", "useful", "survival")
+# #' load_packages(required_packages)
+# load_packages <- function(required_packages) {
+#   if (!require("pacman")) install.packages("pacman")
+#   library(pacman)
+#   p_load(char = required_packages, install = TRUE)
+# }
+# 
+# # Load necessary packages
+# required_packages <- c(
+#   "tidyverse", "glmnet", "useful", "survival", "tableone", 
+#   "openxlsx", "broom"
+# )
+# load_packages(required_packages)
+
+
+
+for(.packagename in c("tidyverse", "glmnet", "useful", "survival", "tableone", "openxlsx", "broom")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
+
+#' Load and Preprocess Data
+#'
+#' This function loads data from an RDS file, selects specific variables,
+#' converts the 'EndTime' variable to numeric, and optionally adds a 'testset'
+#' indicator if the data is from a test set.
+#'
+#' @param file_path The path to the RDS file.
+#' @param varnames A character vector of variable names to select.
+#' @param is_test Logical indicating whether the data is a test set (default:
+#'   FALSE).
+#'
+#' @return A tibble containing the loaded and preprocessed data.
+#'
+#' @examples
+#' train_data <- load_preprocess_data("train_data.rds", varnames)
+#' test_data <- load_preprocess_data("test_data.rds", varnames, is_test = TRUE)
+load_preprocess_data <- function(file_path, varnames, is_test = FALSE) {
+  data <- readRDS(file_path)[varnames] %>%
+    mutate(EndTime = as.numeric(EndTime))
+  
+  if (is_test) {
+    data <- data %>% mutate(testset = TRUE)
+  }
+  
+  return(as_tibble(data))
+}
+
+# Define variable names
+varnames <- c(
+  "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",
+  "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",
+  "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",
+  "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",
+  "Epilepsy", "Fibromyalgia_Pain_Fatigue", "Glaucoma", "HearingImpairment",
+  "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",
+  "Migraine_ChronicHeadache", "MobilityImpairments", "Osteoporosis",
+  "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",
+  "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",
+  "CancerSurvivors"
+)
+
+# Load training and testing datasets
+train_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+test_file <- "JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4test.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"
+
+TheTrainSet <- load_preprocess_data(train_file, varnames)
+TheTestSet  <- load_preprocess_data(test_file, varnames, is_test = TRUE)
+
+#' Create and Export Table One
+#'
+#' This function creates a Table One summarizing patient characteristics 
+#' stratified by a specified variable. It uses the \code{tableone} package to 
+#' generate the table and the \code{openxlsx} package to export it to an Excel 
+#' file.
+#'
+#' @param train_data A tibble or data frame containing the training data.
+#' @param test_data A tibble or data frame containing the test data.
+#' @param strata The variable to stratify by.
+#' @param output_file The name of the output Excel file.
+#' @param open_file Logical. Should the Excel file be opened after creation? 
+#'   Defaults to FALSE.
+#'
+#' @return A tableone object.
+#'
+#' @examples
+#' create_and_export_table1(
+#'   train_data, 
+#'   test_data, 
+#'   "Treatment", 
+#'   "table_one.xlsx", 
+#'   open_file = FALSE
+#' )
+create_and_export_table1 <- function(train_data, test_data, 
+                                     strata, output_file, open_file = FALSE) {
+  combined_data <- bind_rows(train_data, test_data)
+  
+  table1 <- CreateTableOne(
+    strata = strata,
+    data = as.data.frame(combined_data),
+    test = FALSE,
+    includeNA = TRUE
+  )
+  
+  # Print table with standardized mean differences (SMD)
+  print(table1, smd = TRUE, nonnormal = c("AgeDecade", "Income"))
+  
+  # Export table to Excel
+  table_df <- as.data.frame(print(table1, printToggle = FALSE)) %>%
+    rownames_to_column(var = "Variable")
+  
+  write.xlsx(table_df, output_file, asTable = TRUE)
+  
+  # Open the Excel file (optional)
+  if (open_file) {
+    openXL(output_file) 
+  }
+  
+  return(invisible(table1))  # Return invisibly
+}
+
+# Create and export Table One
+create_and_export_table1(
+  train_data = TheTrainSet,
+  test_data = TheTestSet,
+  strata = "EndTime.is.Case.confirm.365",
+  output_file = "TheTable1byCase.xlsx"
+)
+
+#' Train Cross-Validated glmnet Cox Models
+#'
+#' This function trains a series of cross-validated Cox proportional hazards 
+#' models using \code{glmnet} for a specified range of alpha (elastic net 
+#' mixing parameter) values. It provides options for saving the trained models,
+#' generating cross-validation plots, and customizing the output directory.
+#'
+#' @param train_data A tibble or data frame containing the training data.
+#' @param formula A formula object specifying the model.
+#' @param alphas A numeric vector of alpha values (mixing parameter for elastic
+#'   net). Default is \code{c(1, 0.5)}.
+#' @param family A character string specifying the glmnet family. 
+#'   Default is \code{"binomial"}.
+#' @param type_measure A character string specifying the type of measure for
+#'   cross-validation. Default is \code{"auc"}.
+#' @param nfolds The number of folds for cross-validation. Default is 5.
+#' @param seed An integer seed for reproducibility. Default is 1.
+#' @param save_models Logical indicating whether to save the trained models as
+#'   RDS files (default: TRUE).
+#' @param save_plots Logical indicating whether to save cross-validation plots
+#'   (default: TRUE).
+#' @param plot_size The size of the plots in pixels (default: 1280).
+#' @param output_dir The directory to save the models and plots (default:
+#'   "glmnet_outputs").
+#'
+#' @return A named list of trained \code{cv.glmnet} models, where each element's 
+#'   name corresponds to the alpha value used for training.
+#'
+#' @examples
+#' glmnet_models <- f_df.cv.glmnet(
+#'   train_data = train_data,
+#'   formula = Surv(time, status) ~ .,
+#'   alphas = c(1, 0.5),
+#'   nfolds = 10,
+#'   seed = 123
+#' )
+f_df.cv.glmnet <- function(
+  train_data,
+  formula,
+  alphas = c(1, 0.5),
+  family = "binomial",
+  type_measure = "auc",
+  nfolds = 5,
+  seed = 1,
+  save_models = TRUE,
+  save_plots = TRUE,
+  plot_size = 1280,
+  output_dir = "glmnet_outputs"
+) {
+  # Ensure output directory exists
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)
+  }
+  
+  set.seed(seed)
+  
+  # Prepare model matrix
+  x <- model.matrix(formula, data = train_data)[, -1]  # Remove intercept
+  
+  # Extract response variable
+  y <- model.response(model.frame(formula, data = train_data))
+  
+  # Initialize list to store models
+  glmnet_models <- list()
+  
+  # Iterate over each alpha
+  for (i.alpha in alphas) {
+    message(paste("Training glmnet model with alpha =", i.alpha))
+    
+    # Train cross-validated glmnet model
+    cv_glmnet_object <- cv.glmnet(
+      x = x,
+      y = y,
+      alpha = i.alpha,
+      family = family,
+      type.measure = type_measure,
+      nfolds = nfolds
+    )
+    
+    # Save model if required
+    if (save_models) {
+      model_filename <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, ".rds"))
+      saveRDS(cv_glmnet_object, model_filename)
+      message(paste("Saved model to", model_filename))
+    }
+    
+    # Plot cross-validation results if required
+    if (save_plots) {
+      plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, "_plot.png"))
+      png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
+      plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
+      dev.off()
+      message(paste("Saved plot to", plot_filename))
+    }
+    
+    # Store the model in the list
+    glmnet_models[[paste0("a", i.alpha)]] <- cv_glmnet_object
+  }
+  
+  return(glmnet_models)
+}
+
+# Train glmnet Cox models
+TheTrainSet.cv.glmnet.alphas <- f_df.cv.glmnet(
+  train_data = TheTrainSet,
+  formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
+  alphas = c(1, 0.5),
+  seed = 123  # Changed seed for reproducibility
+)
+
+# Save all glmnet models for future use
+saveRDS(TheTrainSet.cv.glmnet.alphas, file = "TheTrainSet.cv.glmnet.alphas.rds")
+
+#' Extract Selected Variables
+#'
+#' This function extracts the names of variables with non-zero coefficients from
+#' a \code{cv.glmnet} model at a specified lambda value.
+#'
+#' @param cv_glmnet_model A \code{cv.glmnet} model object.
+#' @param lambda A character string specifying the lambda value to use 
+#'   (e.g., "lambda.min", "lambda.1se"). Default is "lambda.min".
+#'
+#' @return A character vector of selected variable names.
+#'
+#' @examples
+#' selected_vars <- extract_selected_variables(cv_glmnet_object, lambda = "lambda.1se")
+extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
+  # Extract coefficients at specified lambda
+  coef_matrix <- coef(cv_glmnet_model, s = lambda)
+  
+  # Identify non-zero coefficients
+  selected_vars <- rownames(coef_matrix)[which(coef_matrix != 0)]
+  
+  # Remove the intercept if present
+  selected_vars <- selected_vars[selected_vars != "(Intercept)"]
+  
+  return(selected_vars)
+}
+
+#' Run Cox PH Model on Test Set
+#'
+#' This function takes a trained \code{cv.glmnet} model, extracts the selected
+#' variables (those with non-zero coefficients), constructs a new formula with
+#' these variables, and fits a Cox proportional hazards model (\code{coxph}) on
+#' a test dataset.
+#'
+#' @param cv_glmnet_model A \code{cv.glmnet} model object.
+#' @param train_formula The formula used to train the \code{cv.glmnet} model.
+#' @param test_data A tibble or data frame containing the test data.
+#' @param lambda A character string specifying the lambda value to use for
+#'   variable selection (e.g., "lambda.min", "lambda.1se"). Default is
+#'   "lambda.min".
+#'
+#' @return A \code{coxph} model object fit on the test data using the selected
+#'   variables.
+#'
+#' @examples
+#' cox_model <- runph_on_test(cv_glmnet_object, Surv(time, status) ~ ., test_data)
+runph_on_test <- function(cv_glmnet_model, train_formula, test_data, lambda = "lambda.min") {
+  selected_vars <- extract_selected_variables(cv_glmnet_model, lambda = lambda)
+  
+  # Construct new formula
+  response_vars <- all.vars(train_formula)[1:2]  # Extract response variables
+  new_formula <- as.formula(
+    paste(response_vars, "~", paste(selected_vars, collapse = " + "))
+  )
+  
+  # Fit Cox PH model on test set
+  cox_model <- coxph(new_formula, data = test_data)
+  
+  return(cox_model)
+}
+
+#' Summarize Cox PH Model
+#'
+#' This function summarizes a fitted Cox proportional hazards model 
+#' (\code{coxph}) and formats the output into a tidy data frame. It includes 
+#' options for adjusting p-values and adding significance stars.
+#'
+#' @param cox_model A \code{coxph} model object.
+#' @param adjust_p A character vector of methods for adjusting p-values 
+#'   (e.g., "fdr", "bonferroni"). Default is \code{c("fdr", "bonferroni")}.
+#'
+#' @return A tibble containing the summarized model results with exponentiated
+#'   coefficients (hazard ratios), confidence intervals, p-values, adjusted
+#'   p-values, and significance stars.
+#'
+#' @examples
+#' summary_df <- summarizeph_model(cox_model)
+summarizeph_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
+  if (!inherits(cox_model, "coxph")) {
+    stop("Model is not a coxph object.")
+  }
+  
+  # Extract summary
+  summary <- summary(cox_model)
+  
+  # Create a tidy dataframe using broom
+  summary_df <- tidy(summary, exponentiate = TRUE, conf.int = TRUE) %>%
+    rename(
+      Variable = term,
+      Hazard_Ratio = estimate,
+      CI_lower = conf.low,
+      CI_upper = conf.high,
+      p_value = p.value
+    )
+  
+  # Adjust p-values
+  for (method in adjust_p) {
+    adj_col <- paste0("p.adjust.", method)
+    summary_df[[adj_col]] <- p.adjust(summary_df$p_value, method = method)
+  }
+  
+  # Add significance stars based on raw p-values
+  summary_df <- summary_df %>%
+    mutate(
+      star = case_when(
+        p_value <= 0.001 ~ "***",
+        p_value <= 0.01 ~ "** ",
+        p_value <= 0.05 ~ "*  ",
+        TRUE ~ "   "
+      )
+    )
+  
+  # Format the confidence intervals
+  summary_df <- summary_df %>%
+    mutate(
+      CI = paste0("(", round(CI_lower, 2), " ~ ", round(CI_upper, 2), ")"),
+      Hazard_Ratio = round(Hazard_Ratio, 2),
+      p_value = ifelse(p_value <= 0.001, "<0.001", sprintf("%.3f", p_value))
+    )
+  
+  # Select and arrange columns
+  summary_df <- summary_df %>%
+    select(Variable, Hazard_Ratio, CI, p_value, star, starts_with("p.adjust."), everything())
+  
+  return(summary_df)
+}
+
+#' Generate Cox PH Summaries
+#'
+#' This function generates summaries for Cox proportional hazards models fit on
+#' a test dataset using variables selected from trained \code{cv.glmnet} models.
+#' It iterates through combinations of alpha and lambda values, extracts
+#' selected variables, fits \code{coxph} models, and summarizes the results.
+#'
+#' @param glmnet_models A named list of \code{cv.glmnet} model objects, where
+#'   names correspond to alpha values.
+#' @param train_formula The formula used to train the \code{cv.glmnet} models.
+#' @param test_data A tibble or data frame containing the test data.
+#' @param lambdas A character vector of lambda values to use for variable
+#'   selection (e.g., "lambda.min", "lambda.1se"). Default is
+#'   \code{c("lambda.min", "lambda.1se")}.
+#'
+#' @return A named list of tibbles, where each tibble contains a summarized
+#'   \code{coxph} model for a specific combination of alpha and lambda.
+#'
+#' @examples
+#' coxph_summaries <- generateph_summaries(
+#'   glmnet_models, 
+#'   Surv(time, status) ~ ., 
+#'   test_data
+#' )
+generateph_summaries <- function(
+  glmnet_models, 
+  train_formula, 
+  test_data, 
+  lambdas = c("lambda.min", "lambda.1se")
+) {
+  model_combinations <- expand.grid(
+    alpha = names(glmnet_models),
+    lambda = lambdas,
+    stringsAsFactors = FALSE
+  )
+  
+  coxph_summaries <- list()
+  
+  for (i in 1:nrow(model_combinations)) {
+    i.alpha <- model_combinations$alpha[i]
+    lambda_val <- model_combinations$lambda[i]
+    
+    model_name <- paste0(i.alpha, "_", lambda_val)
+    
+    # Retrieve the glmnet model
+    glmnet_model <- glmnet_models[[i.alpha]]
+    
+    # Run Cox PH model on test set
+    cox_model <- runph_on_test(
+      cv_glmnet_model = glmnet_model,
+      train_formula = train_formula,
+      test_data = test_data,
+      lambda = lambda_val
+    )
+    
+    # Summarize the model
+    summary_df <- summarizeph_model(cox_model)
+    
+    # Store the summary with a descriptive name
+    coxph_summaries[[model_name]] <- summary_df
+  }
+  
+  return(coxph_summaries)
+}
+
+# Generate Cox PH summaries
+coxph_summaries <- generateph_summaries(
+  glmnet_models = TheTrainSet.cv.glmnet.alphas,
+  train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
+  test_data = TheTestSet
+)
+
+# # Save Cox PH summaries to Excel
+# write.xlsx(coxph_summaries, "CoxPH_Summaries.xlsx", asTable = TRUE)
+
+# Open the Excel file (optional)
+# openXL("CoxPH_Summaries.xlsx")
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+# __________|------  
+# @@ START) source ----  
+```{r RUN-ALL-CHUNKS-ABOVE, echo=FALSE, results="hide", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+#| RUN ALL CHUNKS ABOVE: CTRL+ALT+SHIFT+P |#
+```
+
+
+```{r .subpath_filename.source.r-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+options(width=120)
+options(function.reload = TRUE);  # getOption("function.reload")
+# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
+if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") {.subpath = env1$path$CurrentSource.path_filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
+# .sourcename = "default.template" |> paste0(".source.r")
+if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") {.sourcename_root = env1$path$CurrentSource.path_filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+env1$path$.subpath = .subpath
+if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
+.sourcename = .sourcename_root |> paste0(".source.r")
+env1$path$.sourcename_root = .sourcename_root
+env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
+env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
+env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
+cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
+    "#### ",env1$path$.subpath_filename.dev.r, "----  \n",
+    "#### ",env1$path$.subpath_filename.dev.Rmd, "----  \n",
+    "#### ",env1$path$.subpath_filename.source.r, "----  \n",
+    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
+    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext));', "  \n",
+    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$CurrentSource.path_filename.ext)) if(env1$path$CurrentSource.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext));', "  \n",
+    sep="")
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+# # \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
+# .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
+# if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
+```
+  
+  
+# __________|------  
+# @@ START) function ----  
+## \% |> create_summary_table()  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# Install and load required libraries
+if (!require("glmnet")) install.packages("glmnet")
+if (!require("flextable")) install.packages("flextable")
+library(glmnet)
+library(flextable)
+
+# Define the function
+create_summary_table <- function(dataset, byVar, alpha = 1, create_flextable = FALSE) {
+  # Prepare data
+  x <- model.matrix(as.formula(paste("~ . -", byVar)), data = dataset)
+  y <- dataset[[byVar]]
+  
+  # Print intermediate values for debugging
+  print("x:")
+  print(head(x)) # Print the first few rows of x
+  print("y:")
+  print(head(y)) # Print the first few values of y
+  
+  # Perform lasso/elastic net regression
+  # Force lambda to be numeric to avoid potential issues
+  lambda_seq <- as.numeric(seq(0.01, 1, by = 0.01))
+  print("lambda sequence:")
+  print(head(lambda_seq)) # Print the first few lambda values
+  model <- glmnet(x, y, alpha = alpha, lambda = lambda_seq) 
+
+  # Extract lambda.min from the model object
+  lambda.min <- model$lambda.min
+  print("lambda.min:")
+  print(lambda.min) # Print the value of lambda.min
+
+  # Extract coefficients and other statistics (example)
+  coefficients <- coef(model, s = lambda.min)
+  # ... extract other statistics as needed ...
+  
+  # Create a data frame for the table
+  table_data <- data.frame(
+    Variable = rownames(coefficients),
+    Coefficient = coefficients[, 1]
+    # ... add other statistics to the data frame ...
+  )
+  
+  if (create_flextable) {
+      # Create and format the flextable
+      ft <- flextable(table_data)
+      ft <- set_header_labels(ft, Variable = "Variable", Coefficient = "Coefficient")
+      # ... add other formatting options as desired ...
+      return(ft)
+  } else {
+      return(table_data)
+  }
+}
+
+
+
+```
+  
+  
+###### \% df_5vars_10obs |> create_summary_table() ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+# Use the provided dataset (same as before)
+df_5vars_10obs <- data.frame(
+  Group = rep(c("Group1", "Group2"), each = 5),
+  Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
+  Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
+  Var3 = c(15, 16, 15, 14, 15, 18, 17, 19, 18, 17),
+  Var4 = c(0.5, 0.6, 0.55, 0.58, 0.57, 0.65, 0.66, 0.64, 0.67, 0.68),
+  Var5 = c(100, 105, 102, 101, 103, 110, 112, 111, 113, 114)
+)
+
+# Apply the create_summary_table function
+lasso_table <- create_summary_table(dataset = df_5vars_10obs, byVar = "Var1", alpha = 1)
+
+# Print the table
+print(lasso_table)
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+library(reticulate)
+system("python2 --version")
+system("python3 --version")
+```
+
+
+```{py, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+import pandas as pd
+from sklearn.linear_model import Lasso
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+
+# Define the function
+def create_summary_table(dataset, byVar, alpha=1):
+    # Prepare data
+    X = dataset.drop(byVar, axis=1)
+    if 'Group' in X:
+      X = pd.get_dummies(X, columns=['Group'], drop_first=True)
+    y = dataset[byVar]
+
+    # Perform lasso/elastic net regression
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # Generate a lambda sequence
+    lambdas = np.logspace(-4, 4, 100)
+
+    model = Lasso(alpha=alpha)
+    model.fit(X_scaled, y)
+
+    # Extract coefficients and other statistics (example)
+    coefficients = model.coef_
+    intercept = model.intercept_
+
+    # Create a data frame for the table
+    table_data = pd.DataFrame({
+        'Variable': X.columns,
+        'Coefficient': coefficients
+    })
+
+    # Add intercept to table_data
+    table_data.loc[len(table_data)] = ['Intercept', intercept]
+
+    return table_data
+
+# Use the provided dataset
+df_5vars_10obs = pd.DataFrame({
+    'Group': ['Group1'] * 5 + ['Group2'] * 5,
+    'Var1': [2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9],
+    'Var2': [7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6],
+    'Var3': [15, 16, 15, 14, 15, 18, 17, 19, 18, 17],
+    'Var4': [0.5, 0.6, 0.55, 0.58, 0.57, 0.65, 0.66, 0.64, 0.67, 0.68],
+    'Var5': [100, 105, 102, 101, 103, 110, 112, 111, 113, 114]
+})
+
+# Apply the create_summary_table function
+lasso_table = create_summary_table(dataset=df_5vars_10obs, byVar='Var1', alpha=1)
+
+# Print the table
+print(lasso_table.to_markdown(index=False, numalign="left", stralign="left"))
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+  
+# __________|------  
+# @@ END ----  
+```{r END-NoEvalNoEchoNoMsgNoResults, eval=FALSE, echo=FALSE, warning=TRUE, message=NA, results="hide", collapse=TRUE, paged.print=FALSE}
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+# @@ END ----  
+cat("    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    \n")
+cat("    [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]    \n")
+cat("    {}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}    \n")
+cat("    ()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()    \n")
+cat("    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>    \n")
+cat("    HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH    \n")
+cat("    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    \n")
+cat("    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    \n")
+cat("    VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV    \n")
+cat("    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW    \n")
+cat("    -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|    \n")
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+```
+  
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+
+  
+###### ECHO \% |> () ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+
+```
+
+  
+  
+```{r MetaData99-NoEcho, eval=TRUE, echo=FALSE, warning=TRUE, message=TRUE, results="markdown", collapse=TRUE, paged.print=FALSE}
+if(exists("MetaData")) {
+    "MetaData |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    # "MetaData$tblVarName |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    # "MetaData$DataSetNames |> str(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+    # cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    "MetaData$VarNames |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    "MetaData$VarNames.select |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    "MetaData$ModelList |> str(max.level = 3, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+    cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    
+    "all.equal(.MetaData0, MetaData)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
+    if(!identical(.MetaData0, MetaData)) {
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+        .path_file = ifelse(is.null(env1$path$CurrentSource.path_filename.MetaData.rds), NULL, env1$path$CurrentSource.path_filename.MetaData.rds %>% {paste0(env1$path$path1,"/",.)})
+        MetaData |> env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.path_file = .path_file, createBackup = TRUE, Execute = TRUE)
+    }
+} else {warning("> !exists(MetaData)  \n")}
+```
+
+
+```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+# __________|------  
+## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
+if(exists("MetaData")) {
+    # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
+    cat("    ________________________________________________________________________    \n")
+    for (.objectname in names(MetaData$DataSetNames)) {
+        assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+        env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
+        cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+    }
+}
+# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
+# openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table = TRUE) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
+# if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
+# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# .path_filename.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv")
+# if (Sys.info()["sysname"] == "Windows") {
+#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+#     openxlsx2::xl_open(.path_filename.xlsx)
+# } else {
+#     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+# }
+# #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# .path_filename.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
+# readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+```
+  
+  
+```{r createBackup, eval=TRUE, include=FALSE}
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    # if (Sys.info()["sysname"] == "Windows") {
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".Rmd"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        # env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = rstudioapi::getSourceEditorContext()$path|>str_replace("\\.([[:alnum:]]+)$",".nb.html"), .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+    # }
+}
+```
+  
+  
+```{r Render-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$path$CurrentSource.path_filename.pdf = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".pdf") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+env1$path$CurrentSource.path_filename.html = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".html") |> str_replace_all('[ <>()|\\:&;#?*\']', "-")
+if (Sys.getenv("PARENT_RENDERING") != "YES") {
+    if (Sys.info()["sysname"] == "Windows") {
+        .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
+        for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+
+        cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$CurrentSource.path_filename.ext)),', output_format = "pdf_document")  \n')
+        Sys.setenv(PARENT_RENDERING = "YES"); env1$path$CurrentSource.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")
+        .path_file = env1$path$CurrentSource.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}
+        env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE)
+        env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)
+        try(env1$env.internal$f_file_PDF.sumatra(.path_file))
+    }
+}
+# env1$path$CurrentSource.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "pdf_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$CurrentSource.path_filename.pdf %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); if (Sys.info()["sysname"] == "Windows") { cat('  env1$env.internal$f_file_PDF.sumatra(',deparse(.path_file),')  \n', sep="") } else { cat('  browseURL(',deparse(.path_file),')  \n', sep="") }
+# cat("    ________________________________________________________________________    \n")
+env1$path$CurrentSource.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {cat('  Sys.setenv(PARENT_RENDERING = "YES"); rmarkdown::render(input = ',deparse(.),', output_dir = ',deparse(dirname(.)),', output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO")  \n', sep="")}; .path_file = env1$path$CurrentSource.path_filename.html %>% {paste0(env1$path$path1,"/",.)}; env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); cat('  env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path="-backup", timeFormat="%y%m%d_%H", overwrite=TRUE)  \n', sep=""); cat('  env1$env.internal$f_URL.open_in_edge_app(',deparse(.path_file),')  \n', sep="")
+```
+  
+  
+```{r gitCheckout-NoEchoNoMsgNoResults, echo=FALSE, warning=TRUE, message=NA, results="hide"}
+env1$source[[basename(rstudioapi::getSourceEditorContext()$path)]] = rstudioapi::getSourceEditorContext()$path
+env1$path$CurrentSource.path_filename.nb.html = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".nb.html")
+if (Sys.info()["sysname"] == "Windows" && Sys.getenv("PARENT_RENDERING") != "YES") { paste0('ping -n 5 127.0.0.1 > nul & "C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',env1$path$CurrentSource.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}|>normalizePath(winslash="/"),'"') |> shell(wait=FALSE) } # else { browseURL(env1$path$CurrentSource.path_filename.nb.html %>% {paste0(env1$path$path1,"/",.)}) }
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/blob/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+# paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path_filename.ext) %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') |> system(intern=TRUE)
+paste0("https://github.com/mkim0710/",basename(getwd()),"/commits/main/",env1$path$CurrentSource.path_filename.ext)  %>% paste0('"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',.,'"') %>% paste0("'",.,"' |> system(intern=TRUE)") |> cat("  \n", sep="")
+cat("* To revert to the last commited file, run the following terminal command:  \n")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.ext)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+paste0( "git checkout -- ",shQuote(paste0(env1$path$path1,"/",env1$path$CurrentSource.path_filename.nb.html)) ) |> deparse() |> cat(" |> system(intern=TRUE)  \n", sep="")
+```
+  
+  
