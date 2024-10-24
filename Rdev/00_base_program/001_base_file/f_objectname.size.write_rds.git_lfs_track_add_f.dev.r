@@ -146,13 +146,13 @@ env0 = env1
 # ```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # ##________________________________________________________________________________  
 # ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# ## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+# ## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 # .path4write = env1$path$.path4write
 # # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
 # cat("    ________________________________________________________________________    \n")
 # for (.objectname in names(MetaData$DataSetNames)) {
 #     assign(.objectname, structure(get(.objectname), MetaData = MetaData))
-#     .path_file = paste0(.path4write,"/",.objectname,".rds",".xz")
+#     .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz")
 #     cat(.objectname, ' |> write_rds(',shQuote(.path_file),', compress = "xz", compression = 9L) |> system.time()', "  \n", sep="")
 #     # system.time(write_rds( get(.objectname), .path_file, compress = "xz", compression = 9L ))
 #     cat('env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
@@ -160,7 +160,7 @@ env0 = env1
 #     cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 # }
 # # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# # .path_filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# # .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
 # # openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table = TRUE) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
 # # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
 # ```

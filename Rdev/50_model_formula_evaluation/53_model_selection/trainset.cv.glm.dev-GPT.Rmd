@@ -609,7 +609,7 @@ if(exists("MetaData")) {
 
 ```{r writeRDS-EvalNoEchoNoMsgNoResults, eval=TRUE, echo=FALSE, warning=TRUE, message=NA, results="hide"}
 # __________|------  
-## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
+## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) ----  
 if(exists("MetaData")) {
     # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
     cat("    ________________________________________________________________________    \n")
@@ -620,7 +620,7 @@ if(exists("MetaData")) {
     }
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
 # system.time(openxlsx2::write_xlsx(get(.objectname), file=.path_filename.xlsx, as_table=TRUE))
 # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
 ```

@@ -381,7 +381,7 @@ head(detailed_pubmed_data)
 
 
 # __________|------  
-## @ write_rds( get(.objectname), paste0(.path4write,"/",.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
+## @ write_rds( get(.objectname), paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".rds",".xz"), compress = "xz", compression = 9L) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 if(exists("MetaData")) {
     # MetaData$DataSetNames |> names() |> paste0(collapse = "\n") |> cat("\n", sep="")
     cat("    ________________________________________________________________________    \n")
@@ -392,11 +392,11 @@ if(exists("MetaData")) {
     }
 }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.xlsx = paste0(.path4write,"/",.objectname,".xlsx")
+# .path_filename.xlsx = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".xlsx")
 # openxlsx2::write_xlsx(get(.objectname), file = .path_filename.xlsx, as_table = TRUE) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n") 
 # if (Sys.info()["sysname"] == "Windows") openxlsx2::xl_open(.path_filename.xlsx)
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8BOM.csv = paste0(.path4write,"/",.objectname,".UTF8BOM.csv")
+# .path_filename.UTF8BOM.csv = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8BOM.csv")
 # if (Sys.info()["sysname"] == "Windows") {
 #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 #     openxlsx2::xl_open(.path_filename.xlsx)
@@ -404,7 +404,7 @@ if(exists("MetaData")) {
 #     readr::write_excel_csv(get(.objectname), file = .path_filename.UTF8BOM.csv|>paste0(".xz")) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 # }
 # #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# .path_filename.UTF8.csv.xz = paste0(.path4write,"/",.objectname,".UTF8.csv.xz")
+# .path_filename.UTF8.csv.xz = paste0(.path4write,ifelse(.path4write=="","","/"),.objectname,".UTF8.csv.xz")
 # readr::write_csv(get(.objectname), file = .path_filename.UTF8.csv.xz) |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\n")
 ##////////////////////////////////////////////////////////////////////////////////  
 ##::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::  
