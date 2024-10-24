@@ -835,12 +835,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     if(git_add_f) {
         if (git_lfs_track == "determine based on object size") {
             if(object.size(get(.objectname)) > 1e7) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = Execute) 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
             } else {
                 env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
             }
         } else if (git_lfs_track == TRUE) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = Execute) 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
         } else {
             env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
         }
