@@ -278,13 +278,13 @@ data <- data.frame(
 # Calculate cumulative visits
 data <- data %>%
   mutate(
-    A01_VISIT.cum = ifelse(A01_VISIT == 1, 1, 0),
-    A02_VISIT.cum = A01_VISIT.cum + ifelse(A02_VISIT == 1, 1, 0),
-    A03_VISIT.cum = A02_VISIT.cum + ifelse(A03_VISIT == 1, 1, 0),
-    A04_VISIT.cum = A03_VISIT.cum + ifelse(A04_VISIT == 1, 1, 0),
-    A05_VISIT.cum = A04_VISIT.cum + ifelse(A05_VISIT == 1, 1, 0),
-    A06_VISIT.cum = A05_VISIT.cum + ifelse(A06_VISIT == 1, 1, 0),
-    A07_VISIT.cum = A06_VISIT.cum + ifelse(A07_VISIT == 1, 1, 0)
+    A01_VISIT.cum = ifelse(A01_VISIT == "참여", 1, 0),
+    A02_VISIT.cum = A01_VISIT.cum + ifelse(A02_VISIT == "참여", 1, 0),
+    A03_VISIT.cum = A02_VISIT.cum + ifelse(A03_VISIT == "참여", 1, 0),
+    A04_VISIT.cum = A03_VISIT.cum + ifelse(A04_VISIT == "참여", 1, 0),
+    A05_VISIT.cum = A04_VISIT.cum + ifelse(A05_VISIT == "참여", 1, 0),
+    A06_VISIT.cum = A05_VISIT.cum + ifelse(A06_VISIT == "참여", 1, 0),
+    A07_VISIT.cum = A06_VISIT.cum + ifelse(A07_VISIT == "참여", 1, 0)
   )
 data = data %>% as_tibble
 data
