@@ -476,6 +476,8 @@ TheTestSet
 ```
   
   
+
+
 ## glmnet::CoxExample ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -488,6 +490,12 @@ options(width=120)
 # data(CoxExample)
 # CoxExample %>% str
 # # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
+
+.objectname = "glmnet_coxExample_tibble"
+.path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+save(list = .objectname, file = .path_file)
+paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+
 
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_CoxExample_tibble.rda"))
 CoxExample_tibble
@@ -534,6 +542,73 @@ CoxExample_tibble.round3
      $ V30   : num [1:1000] 1.775 -0.0569 -1.5611 0.5486 1.0087 ...
  
   
+## glmnet::QuickStartExample ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # > system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # [1] "/usr/local/lib/R/site-library/glmnet/data/QuickStartExample.rda"
+#
+library(glmnet)
+# load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
+data(QuickStartExample)
+QuickStartExample %>% str
+glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
+glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
+glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
+
+.objectname = "glmnet_gaussianExample_tibble"
+.path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+save(list = .objectname, file = .path_file)
+paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
+
+glmnet_gaussianExample_tibble %>% str
+glmnet_gaussianExample_tibble
+# glmnet_gaussianExample_tibble.round3 = glmnet_gaussianExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+# glmnet_gaussianExample_tibble.round3
+# # for (.objectname in c("glmnet_gaussianExample_tibble", "glmnet_gaussianExample_tibble.round3")) {
+# #     .path_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")
+# #     get(.objectname) %>% write_csv(.path_file)
+# #     paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# # }
+```
+
+
+## glmnet::BinomialExample ----  
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+options(width=120)
+# system.file("data", "BinomialExample.rda", package = "glmnet")
+# # > system.file("data", "BinomialExample.rda", package = "glmnet")
+# # [1] "/usr/local/lib/R/site-library/glmnet/data/BinomialExample.rda"
+#
+library(glmnet)
+# load(system.file("data", "BinomialExample.rda", package = "glmnet"))
+data(BinomialExample)
+BinomialExample %>% str
+glmnet_binomialExample_tibble = BinomialExample$x %>% as.data.frame()%>% as.tibble()
+glmnet_binomialExample_tibble$y = BinomialExample$y
+glmnet_binomialExample_tibble = glmnet_binomialExample_tibble %>% select(y, everything())
+
+.objectname = "glmnet_binomialExample_tibble"
+.path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+save(list = .objectname, file = .path_file)
+paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_binomialExample_tibble.rda"))
+
+glmnet_binomialExample_tibble %>% str
+glmnet_binomialExample_tibble
+# glmnet_binomialExample_tibble.round3 = glmnet_binomialExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+# glmnet_binomialExample_tibble.round3
+# # for (.objectname in c("glmnet_binomialExample_tibble", "glmnet_binomialExample_tibble.round3")) {
+# #     .path_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")
+# #     get(.objectname) %>% write_csv(.path_file)
+# #     paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# # }
+```
+
+
+
 ###### ECHO \% |> () ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -737,15 +812,22 @@ f_cv_glmnet_object.mat_coef = function(cv_glmnet_object) {
 ```
 
 
+## :: TheTrainSet = glmnet_binomialExample_tibble
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# # TheTrainSet = CoxExample_tibble
+# # formula <- as.formula(Surv(time, status) ~ .)
+# TheTrainSet = CoxExample_tibble %>% select(-time)
+# formula <- as.formula(status ~ .)
+TheTrainSet = glmnet_binomialExample_tibble
+formula <- as.formula(y ~ .)
+```
 
-### CoxExample_tibble |> **f_df.cv.glmnet**() ----
+
+### TheTrainSet |> **f_df.cv.glmnet**() ----
 #### :: TheTrainSet.cv.glmnet.a00
 ##### :: TheTrainSet.cv.glmnet.a00.coef = TheTrainSet.cv.glmnet.a00 |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# TheTrainSet = CoxExample_tibble
-# formula <- as.formula(Surv(time, status) ~ .)
-TheTrainSet = CoxExample_tibble %>% select(-time)
-formula <- as.formula(status ~ .)
+
 alpha = 1
 # Train glmnet Cox models
 TheTrainSet.cv.glmnet.a00 <- f_df.cv.glmnet(
@@ -940,15 +1022,10 @@ f_list_cv_glmnet_object.mat_coef = function(list_cv_glmnet_object) {
 
 
 
-### CoxExample_tibble |> **f_df.cv.glmnet.alphas**() ----
+### TheTrainSet |> **f_df.cv.glmnet.alphas**() ----
 #### :: TheTrainSet.cv.glmnet.alphas
 ##### :: TheTrainSet.cv.glmnet.alphas.coef = TheTrainSet.cv.glmnet.alphas |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# TheTrainSet = CoxExample_tibble
-# formula <- as.formula(Surv(time, status) ~ .)
-TheTrainSet = CoxExample_tibble %>% select(-time)
-formula <- as.formula(status ~ .)
-
 # Train glmnet Cox models
 TheTrainSet.cv.glmnet.alphas <- f_df.cv.glmnet.alphas(
   train_data = TheTrainSet,
