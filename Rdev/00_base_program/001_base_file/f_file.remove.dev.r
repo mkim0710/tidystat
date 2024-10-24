@@ -61,7 +61,7 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 # # > pdf_files |> dput()
 # # c("/home/rstudio/Rproject_KoGES_AA10030/00env1-Rproject_KoGES_AA10030.pdf", 
 # # "/home/rstudio/Rproject_KoGES_AA10030/01df_dirs_recursive.df_files-Rproject_KoGES_AA10030.pdf", 
-# # "/home/rstudio/Rproject_KoGES_AA10030/10CodeBook-Rproject_KoGES_AA10030.pdf", 
+# # "/home/rstudio/Rproject_KoGES_AA10030/05CodeBook-Rproject_KoGES_AA10030.pdf", 
 # # "/home/rstudio/Rproject_KoGES_AA10030/220DataSet.na.Date.fct-as1_7.na.Date.fct.select971.pdf", 
 # # "/home/rstudio/Rproject_KoGES_AA10030/320DataSet.CensorEND.n-df_NewDMv3.CensorEND.n8845.select971.pdf", 
 # # "/home/rstudio/Rproject_KoGES_AA10030/df_NewDMv3.CensorEND.n8845.select218/df_NewDMv3.CensorEND.n8845.select218 from as1.na.Date.fct.select218.Rmd.pdf", 
