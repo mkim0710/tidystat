@@ -491,12 +491,12 @@ options(width=120)
 # CoxExample %>% str
 # # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
 
-.objectname = "glmnet_coxExample_tibble"
-.path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
-save(list = .objectname, file = .path_file)
-paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# .objectname = "glmnet_coxExample_tibble"
+# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# save(list = .objectname, file = .path_file)
+# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_glmnet_coxExample_tibble.rda"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_coxExample_tibble.rda"))
 glmnet_coxExample_tibble
 glmnet_coxExample_tibble.round3 = glmnet_coxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
 glmnet_coxExample_tibble.round3
@@ -544,22 +544,22 @@ glmnet_coxExample_tibble.round3
 ## glmnet::QuickStartExample ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# system.file("data", "QuickStartExample.rda", package = "glmnet")
-# # > system.file("data", "QuickStartExample.rda", package = "glmnet")
-# # [1] "/usr/local/lib/R/site-library/glmnet/data/QuickStartExample.rda"
-#
-library(glmnet)
-# load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
-data(QuickStartExample)
-QuickStartExample %>% str
-glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
-glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
-glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
-
-.objectname = "glmnet_gaussianExample_tibble"
-.path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
-save(list = .objectname, file = .path_file)
-paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# # system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # # > system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # # [1] "/usr/local/lib/R/site-library/glmnet/data/QuickStartExample.rda"
+# #
+# library(glmnet)
+# # load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
+# data(QuickStartExample)
+# QuickStartExample %>% str
+# glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
+# glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
+# glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
+# 
+# .objectname = "glmnet_gaussianExample_tibble"
+# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# save(list = .objectname, file = .path_file)
+# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
 
 glmnet_gaussianExample_tibble %>% str
@@ -574,25 +574,65 @@ glmnet_gaussianExample_tibble
 ```
 
 
+    tibble [100 × 21] (S3: tbl_df/tbl/data.frame)
+     $ y  : num [1:100] -1.275 1.843 0.459 0.564 1.873 ...
+     $ V1 : num [1:100] 0.274 2.245 -0.125 -0.544 -1.459 ...
+     $ V2 : num [1:100] -0.0367 -0.546 -0.6069 1.1084 -0.2745 ...
+     $ V3 : num [1:100] 0.855 0.234 -0.854 -0.104 0.112 ...
+     $ V4 : num [1:100] 0.968 -1.335 -0.149 1.017 -0.852 ...
+     $ V5 : num [1:100] 1.415 1.313 -0.665 0.7 0.315 ...
+     $ V6 : num [1:100] 0.523 0.521 0.607 1.655 1.051 ...
+     $ V7 : num [1:100] 0.563 -0.61 0.162 0.49 1.386 ...
+     $ V8 : num [1:100] 1.1112 -0.8614 -0.8627 0.0234 0.2845 ...
+     $ V9 : num [1:100] 1.641 -0.27 0.604 0.256 1.14 ...
+     $ V10: num [1:100] 0.619 0.23 1.194 -0.127 2.681 ...
+     $ V11: num [1:100] 0.9999 -0.1057 0.5013 -0.0626 -1.0147 ...
+     $ V12: num [1:100] -0.0784 0.1631 -0.9452 0.642 0.367 ...
+     $ V13: num [1:100] -0.6033 0.7621 0.3989 0.0755 1.7376 ...
+     $ V14: num [1:100] 0.0332 0.6781 -0.7648 -1.3785 -1.2661 ...
+     $ V15: num [1:100] -0.701 -0.528 1.285 -1.025 1.452 ...
+     $ V16: num [1:100] 1.158 -0.879 0.645 -2.118 -0.789 ...
+     $ V17: num [1:100] 1.458 -0.473 0.179 -0.47 -0.984 ...
+     $ V18: num [1:100] 0.7749 -1.1172 0.0447 0.6978 -1.637 ...
+     $ V19: num [1:100] -1.269 -0.738 1.105 0.866 -0.583 ...
+     $ V20: num [1:100] 1.994 -1.079 0.304 -0.789 -1.529 ...
+    # A tibble: 100 × 21
+            y      V1      V2     V3      V4      V5      V6      V7      V8     V9    V10     V11     V12     V13     V14
+        <dbl>   <dbl>   <dbl>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+     1 -1.27   0.274  -0.0367  0.855  0.968   1.42    0.523   0.563   1.11    1.64   0.619  1.00   -0.0784 -0.603   0.0332
+     2  1.84   2.24   -0.546   0.234 -1.34    1.31    0.521  -0.610  -0.861  -0.270  0.230 -0.106   0.163   0.762   0.678 
+     3  0.459 -0.125  -0.607  -0.854 -0.149  -0.665   0.607   0.162  -0.863   0.604  1.19   0.501  -0.945   0.399  -0.765 
+     4  0.564 -0.544   1.11   -0.104  1.02    0.700   1.66    0.490   0.0234  0.256 -0.127 -0.0626  0.642   0.0755 -1.38  
+     5  1.87  -1.46   -0.274   0.112 -0.852   0.315   1.05    1.39    0.285   1.14   2.68  -1.01    0.367   1.74   -1.27  
+     6  0.528  1.06   -0.754  -1.38   1.08    0.370   1.50   -0.360  -0.214   1.83   0.871 -0.0637  1.01    0.315   0.537 
+     7  2.43   0.116  -0.966   0.274  0.0185 -0.210   0.544  -2.51    2.20    0.593 -1.09  -1.46    0.573  -0.621  -0.645 
+     8 -0.895  0.390   0.400  -0.467  0.478   0.848   0.257  -0.0995  0.999  -0.193 -0.404  2.21   -1.06    0.0957  0.661 
+     9 -0.206  0.193   0.197  -1.24   1.91    0.115   0.452  -0.267  -0.273  -1.61  -0.326 -0.679  -0.479   0.408   0.276 
+    10  3.11  -0.0964  1.18    2.55   0.956   0.0256 -0.0456 -0.659   0.0392  0.172  0.643 -1.24    2.18   -0.526  -0.319 
+    # ℹ 90 more rows
+    # ℹ 6 more variables: V15 <dbl>, V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>
+    # ℹ Use `print(n = ...)` to see more rows
+    ```
+
 ## glmnet::BinomialExample ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# system.file("data", "BinomialExample.rda", package = "glmnet")
-# # > system.file("data", "BinomialExample.rda", package = "glmnet")
-# # [1] "/usr/local/lib/R/site-library/glmnet/data/BinomialExample.rda"
-#
-library(glmnet)
-# load(system.file("data", "BinomialExample.rda", package = "glmnet"))
-data(BinomialExample)
-BinomialExample %>% str
-glmnet_binomialExample_tibble = BinomialExample$x %>% as.data.frame()%>% as.tibble()
-glmnet_binomialExample_tibble$y = BinomialExample$y
-glmnet_binomialExample_tibble = glmnet_binomialExample_tibble %>% select(y, everything())
-
-.objectname = "glmnet_binomialExample_tibble"
-.path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
-save(list = .objectname, file = .path_file)
-paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# # system.file("data", "BinomialExample.rda", package = "glmnet")
+# # # > system.file("data", "BinomialExample.rda", package = "glmnet")
+# # # [1] "/usr/local/lib/R/site-library/glmnet/data/BinomialExample.rda"
+# #
+# library(glmnet)
+# # load(system.file("data", "BinomialExample.rda", package = "glmnet"))
+# data(BinomialExample)
+# BinomialExample %>% str
+# glmnet_binomialExample_tibble = BinomialExample$x %>% as.data.frame()%>% as.tibble()
+# glmnet_binomialExample_tibble$y = BinomialExample$y
+# glmnet_binomialExample_tibble = glmnet_binomialExample_tibble %>% select(y, everything())
+# 
+# .objectname = "glmnet_binomialExample_tibble"
+# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# save(list = .objectname, file = .path_file)
+# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_binomialExample_tibble.rda"))
 
 glmnet_binomialExample_tibble %>% str
@@ -605,6 +645,57 @@ glmnet_binomialExample_tibble
 # #     paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 # # }
 ```
+
+
+    tibble [100 × 31] (S3: tbl_df/tbl/data.frame)
+     $ y  : int [1:100] 0 1 1 0 1 0 0 0 1 1 ...
+     $ V1 : num [1:100] -0.619 1.094 -0.357 -2.469 0.567 ...
+     $ V2 : num [1:100] 0.0162 0.4726 0.3012 2.8477 0.8889 ...
+     $ V3 : num [1:100] -0.6261 -1.3371 0.1906 1.6602 -0.0116 ...
+     $ V4 : num [1:100] 0.413 -0.641 0.234 1.569 0.576 ...
+     $ V5 : num [1:100] 0.494 0.282 0.17 -0.833 -0.869 ...
+     $ V6 : num [1:100] -0.449 -0.609 1.229 -0.562 -0.313 ...
+     $ V7 : num [1:100] 0.676 0.355 1.163 -0.614 0.69 ...
+     $ V8 : num [1:100] -0.0677 -0.6269 0.8802 -1.7653 -1.2996 ...
+     $ V9 : num [1:100] -1.475 -0.116 0.762 0.39 -0.967 ...
+     $ V10: num [1:100] 1.076 -0.313 -1.181 1.794 -0.273 ...
+     $ V11: num [1:100] 0.571 0.414 -0.488 0.464 -0.524 ...
+     $ V12: num [1:100] -0.0986 -1.8717 0.4565 0.5168 -0.8216 ...
+     $ V13: num [1:100] 1.21 0.164 0.645 -1.081 0.546 ...
+     $ V14: num [1:100] -1.067 0.772 1.753 -0.298 -0.515 ...
+     $ V15: num [1:100] 0.343 -0.863 0.49 -0.585 -0.136 ...
+     $ V16: num [1:100] -0.0226 1.4621 2.2715 -1.3589 -1.1113 ...
+     $ V17: num [1:100] -0.102 -0.437 -0.734 -0.659 -0.978 ...
+     $ V18: num [1:100] 0.141 -1.041 0.977 -1.199 -1.378 ...
+     $ V19: num [1:100] -0.549 -0.603 -0.358 0.202 -1.352 ...
+     $ V20: num [1:100] -0.2017 -0.3206 -0.0801 0.5071 0.9593 ...
+     $ V21: num [1:100] 0.457 0.212 1.245 0.673 0.492 ...
+     $ V22: num [1:100] 0.807 0.613 1.012 -0.425 -1.34 ...
+     $ V23: num [1:100] 0.0147 -0.819 0.0393 -0.9873 -0.1329 ...
+     $ V24: num [1:100] -1.116 2.904 1.017 -0.401 0.22 ...
+     $ V25: num [1:100] -0.0159 -0.1578 0.2971 -2.0662 0.7897 ...
+     $ V26: num [1:100] 1.145 -2.105 0.402 -0.552 -0.147 ...
+     $ V27: num [1:100] 0.942 0.641 1.925 -1.379 -0.802 ...
+     $ V28: num [1:100] 1.4372 0.0124 0.3111 0.0952 0.7756 ...
+     $ V29: num [1:100] -0.928 0.481 0.898 -0.39 1.118 ...
+     $ V30: num [1:100] 0.908 -2.049 -1.209 1.78 -1.197 ...
+    # A tibble: 100 × 31
+           y      V1      V2      V3      V4     V5     V6     V7      V8     V9     V10    V11     V12    V13    V14    V15
+       <int>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>  <dbl>   <dbl>  <dbl>   <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>
+     1     0 -0.619   0.0162 -0.626   0.413   0.494 -0.449  0.676 -0.0677 -1.47   1.08    0.571 -0.0986  1.21  -1.07   0.343
+     2     1  1.09    0.473  -1.34   -0.641   0.282 -0.609  0.355 -0.627  -0.116 -0.313   0.414 -1.87    0.164  0.772 -0.863
+     3     1 -0.357   0.301   0.191   0.234   0.170  1.23   1.16   0.880   0.762 -1.18   -0.488  0.457   0.645  1.75   0.490
+     4     0 -2.47    2.85    1.66    1.57   -0.833 -0.562 -0.614 -1.77    0.390  1.79    0.464  0.517  -1.08  -0.298 -0.585
+     5     1  0.567   0.889  -0.0116  0.576  -0.869 -0.313  0.690 -1.30   -0.967 -0.273  -0.524 -0.822   0.546 -0.515 -0.136
+     6     0  0.913   0.774   0.558  -0.535   0.351 -0.576 -0.388  0.555   0.357  1.36   -0.782  0.605  -0.472  1.26  -1.19 
+     7     0  0.0957  0.140  -0.760  -0.0494  1.57  -0.124 -1.11   1.73   -1.25  -0.444   0.360 -1.93   -0.579  0.425 -1.60 
+     8     0  1.93   -0.711  -0.274   1.00    1.04   0.803 -0.604 -0.511   0.429  0.519   0.955  0.594  -0.550 -0.117 -1.14 
+     9     1  0.283   1.06   -0.0394  0.303  -0.916  0.691  0.609  0.309   1.03  -0.0309  0.128 -1.61    0.202 -0.721 -0.860
+    10     1  0.801   1.54   -1.01   -0.385  -2.03   0.224 -1.16  -0.527  -0.724 -0.0437  0.277 -0.210  -0.664  0.173  0.504
+    # ℹ 90 more rows
+    # ℹ 15 more variables: V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>, V21 <dbl>, V22 <dbl>, V23 <dbl>,
+    #   V24 <dbl>, V25 <dbl>, V26 <dbl>, V27 <dbl>, V28 <dbl>, V29 <dbl>, V30 <dbl>
+    # ℹ Use `print(n = ...)` to see more rows
 
 
 
