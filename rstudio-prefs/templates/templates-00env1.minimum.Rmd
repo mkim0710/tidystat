@@ -420,8 +420,10 @@ for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marri
     if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
 }
 
-".MetaData0 %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
-.MetaData0 %>% str(max.level = 2)
+if(exists(".MetaData0", envir=.GlobalEnv)) { 
+    ".MetaData0 %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
+    .MetaData0 %>% str(max.level = 2)
+} else { .MetaData = MetaData }
 "MetaData %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
 MetaData %>% str(max.level = 2)
 ```
