@@ -267,6 +267,7 @@ env1$f$f_path.size_files(.path4read = .path4read)
 ```
   
   
+## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!! ---- 
 ### :: files.selected ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
