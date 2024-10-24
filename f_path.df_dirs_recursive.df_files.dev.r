@@ -703,7 +703,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 	CDMv5_CONCEPT.rda
 #' 	CMS_SynPUF_CDMv5.rda
 #' 	CMS_SynPUF_CDMv5_YZ.json
-#' 	CoxExample_tibble.cv.glmnet_alphas_cox.rda
+#' 	glmnet_coxExample_tibble.cv.glmnet_alphas_cox.rda
 #' 	data.SSQ_5_6.rda
 #' 	ExampleData4defineDate.MDD.csv
 #' 	ExampleData4defineDate.MDD.Time2Censor.csv
@@ -764,7 +764,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 	library_CrossScreening_nhanes.fish.match.rda
 #' 	library_CrossScreening_nhanes.fish.rda
 #' 	library_Epi_diet.rda
-#' 	library_glmnet_CoxExample_tibble.rda
+#' 	library_glmnet_glmnet_coxExample_tibble.rda
 #' 	library(icd) icd_is_valid().r
 #' 	library_Matching_lalonde.rda
 #' 	library_mice_nhanes_mice.rda

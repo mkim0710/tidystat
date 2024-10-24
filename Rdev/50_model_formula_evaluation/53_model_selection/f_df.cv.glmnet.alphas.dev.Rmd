@@ -496,17 +496,16 @@ options(width=120)
 save(list = .objectname, file = .path_file)
 paste0( "git add -f ",shQuote(.path_file) ) %>% system()
 
-
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_CoxExample_tibble.rda"))
-CoxExample_tibble
-CoxExample_tibble.round3 = CoxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
-CoxExample_tibble.round3
-# CoxExample_tibble %>% write_csv(paste0(env1$path$path1,"/data/", "CoxExample_tibble", ".csv"))
-# CoxExample_tibble.round3 %>% write_csv(paste0(env1$path$path1,"/data/", "CoxExample_tibble.round3", ".csv"))
+load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_glmnet_coxExample_tibble.rda"))
+glmnet_coxExample_tibble
+glmnet_coxExample_tibble.round3 = glmnet_coxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+glmnet_coxExample_tibble.round3
+# glmnet_coxExample_tibble %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble", ".csv"))
+# glmnet_coxExample_tibble.round3 %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble.round3", ".csv"))
 ```
   
   
-    > CoxExample_tibble %>% str()
+    > glmnet_coxExample_tibble %>% str()
     tibble [1,000 × 32] (S3: tbl_df/tbl/data.frame)
      $ time  : num [1:1000] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
      $ status: num [1:1000] 1 1 0 0 1 0 0 1 1 0 ...
@@ -814,9 +813,9 @@ f_cv_glmnet_object.mat_coef = function(cv_glmnet_object) {
 
 ## :: TheTrainSet = glmnet_binomialExample_tibble
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# # TheTrainSet = CoxExample_tibble
+# # TheTrainSet = glmnet_coxExample_tibble
 # # formula <- as.formula(Surv(time, status) ~ .)
-# TheTrainSet = CoxExample_tibble %>% select(-time)
+# TheTrainSet = glmnet_coxExample_tibble %>% select(-time)
 # formula <- as.formula(status ~ .)
 TheTrainSet = glmnet_binomialExample_tibble
 formula <- as.formula(y ~ .)

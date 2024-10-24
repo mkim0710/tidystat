@@ -269,15 +269,15 @@ trainset.cv.glmnet_alphas_cox = function(
     # print( paste0( return_name , ".cv.glmnet_alphas" ) ); # assign( paste0( return_name, ".cv.glmnet_alphas" ) , return_list , envir=.GlobalEnv) 
     out}  ;   # save.image() # update 170509
 
-## @ test) trainset.cv.glmnet_alphas_cox() CoxExample_tibble ----  
+## @ test) trainset.cv.glmnet_alphas_cox() glmnet_coxExample_tibble ----  
 # library(glmnet)
 # data(CoxExample)
-# CoxExample_tibble = bind_cols(as_tibble(y), as_tibble(x))
-# save(CoxExample_tibble, file = "library_glmnet_CoxExample_tibble.rda")
+# glmnet_coxExample_tibble = bind_cols(as_tibble(y), as_tibble(x))
+# save(glmnet_coxExample_tibble, file = "library_glmnet_glmnet_coxExample_tibble.rda")
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-load("library_glmnet_CoxExample_tibble.rda")
-CoxExample_tibble |> as_tibble()
-# > CoxExample_tibble |> as_tibble()
+load("library_glmnet_glmnet_coxExample_tibble.rda")
+glmnet_coxExample_tibble |> as_tibble()
+# > glmnet_coxExample_tibble |> as_tibble()
 # # A tibble: 1,000 x 32
 #           time status         V1         V2          V3          V4          V5         V6          V7
 #          <dbl>  <dbl>      <dbl>      <dbl>       <dbl>       <dbl>       <dbl>      <dbl>       <dbl>
@@ -296,19 +296,19 @@ CoxExample_tibble |> as_tibble()
 # #   V22 <dbl>, V23 <dbl>, V24 <dbl>, V25 <dbl>, V26 <dbl>, V27 <dbl>, V28 <dbl>, V29 <dbl>, V30 <dbl>
 
 # debug(trainset.cv.glmnet_alphas_cox)
-CoxExample_tibble.cv.glmnet_alphas_cox =
-    CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = NULL, imyFormula = NULL,save.png = F)
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox =
+    glmnet_coxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = NULL, imyFormula = NULL,save.png = F)
 # undebug(trainset.cv.glmnet_alphas_cox)
-save(CoxExample_tibble.cv.glmnet_alphas_cox, file = "CoxExample_tibble.cv.glmnet_alphas_cox.rda")
-CoxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
-CoxExample_tibble.cv.glmnet_alphas_cox =
-    CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time = time, event = status)~., itrainset = "itrainset", imyFormula = "imyFormula",save.png = T)
-CoxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") |> str(max.level = 1)
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels} %>% dplyr::filter(colnames_levels.colSums0 == T)
-# > CoxExample_tibble.cv.glmnet_alphas_cox =
-# +     CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = NULL, imyFormula = NULL,save.png = F)
+save(glmnet_coxExample_tibble.cv.glmnet_alphas_cox, file = "glmnet_coxExample_tibble.cv.glmnet_alphas_cox.rda")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox =
+    glmnet_coxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time = time, event = status)~., itrainset = "itrainset", imyFormula = "imyFormula",save.png = T)
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") |> str(max.level = 1)
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels} %>% dplyr::filter(colnames_levels.colSums0 == T)
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox =
+# +     glmnet_coxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time, status)~., itrainset = NULL, imyFormula = NULL,save.png = F)
 # [1] "Beginning .f() map from alphas [1] valued : 1"
 # [1] "Sys.time_1 : 2017-12-30 19:03:28"
 # [1] "Sys.time_2 - Sys.time_1 : structure(0.799239873886108, units = \"secs\", class = \"difftime\")"
@@ -316,7 +316,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 # [1] "Sys.time_1 : 2017-12-30 19:03:30"
 # [1] "Sys.time_2 - Sys.time_1 : structure(0.80761981010437, units = \"secs\", class = \"difftime\")"
 # > # undebug(trainset.cv.glmnet_alphas_cox)
-# > CoxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
 # List of 2
 #  $ alpha1  :List of 10
 #   ..- attr(*, "class")= chr "cv.glmnet"
@@ -327,8 +327,8 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 #   ..- attr(*, "alphas[i_alpha]")= num 0.5
 #   ..- attr(*, "function.input")=List of 28
 #  - attr(*, "function.input")=List of 28
-# > CoxExample_tibble.cv.glmnet_alphas_cox =
-# +     CoxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time = time, event = status)~., itrainset = "itrainset", imyFormula = "imyFormula",save.png = T)
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox =
+# +     glmnet_coxExample_tibble %>% trainset.cv.glmnet_alphas_cox(myFormula = Surv(time = time, event = status)~., itrainset = "itrainset", imyFormula = "imyFormula",save.png = T)
 # [1] "Beginning .f() map from alphas [1] valued : 1"
 # [1] "Sys.time_1 : 2017-12-30 19:03:31"
 # [1] "plot(object_cvglmnet) : trainset_itrainset.cv.glmnet_imyFormula_a1_plot.png"
@@ -337,7 +337,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 # [1] "Sys.time_1 : 2017-12-30 19:03:33"
 # [1] "plot(object_cvglmnet) : trainset_itrainset.cv.glmnet_imyFormula_a0.5_plot.png"
 # [1] "Sys.time_2 - Sys.time_1 : structure(1.00568795204163, units = \"secs\", class = \"difftime\")"
-# > CoxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox |> str(max.level = 1)
 # List of 2
 #  $ alpha1  :List of 10
 #   ..- attr(*, "class")= chr "cv.glmnet"
@@ -348,7 +348,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 #   ..- attr(*, "alphas[i_alpha]")= num 0.5
 #   ..- attr(*, "function.input")=List of 28
 #  - attr(*, "function.input")=List of 28
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") |> str(max.level = 1)
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") |> str(max.level = 1)
 # List of 28
 #  $ Call                                                     : language trainset.cv.glmnet_alphas_cox(trainset = ., myFormula = Surv(time = time, event = status) ~ ., itrainset = "itrai| __truncated__
 #  $ CreatedDate                                              : POSIXct[1:1], format: "2017-12-30 19:03:34"
@@ -394,7 +394,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 #  $ png.size                                                 : num 1280
 #  $ seed                                                     : num 1
 #  $ nfolds                                                   : num 5
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
 # # A tibble: 32 x 9
 #    colNum_original colnames colnames_levels col_class col_Nlevels build.x.colnames_levels colnames_levels.colSums0 Terms.term.labels terms.inner
 #              <int>    <chr>           <chr>     <chr>       <chr>                   <lgl>                    <lgl>             <lgl>      <fctr>
@@ -409,7 +409,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 #  9               9       V7              V7   numeric           1                    TRUE                       NA              TRUE        <NA>
 # 10              10       V8              V8   numeric           1                    TRUE                       NA              TRUE        <NA>
 # # ... with 22 more rows
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels} %>% dplyr::filter(colnames_levels.colSums0 == T)
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels} %>% dplyr::filter(colnames_levels.colSums0 == T)
 # # A tibble: 0 x 9
 # # ... with 9 variables: colNum_original <int>, colnames <chr>, colnames_levels <chr>, col_class <chr>, col_Nlevels <chr>, build.x.colnames_levels <lgl>,
 # #   colnames_levels.colSums0 <lgl>, Terms.term.labels <lgl>, terms.inner <fctr>
@@ -608,10 +608,10 @@ object_list_cvglmnet.coefexp = function(object_list_cvglmnet, i_names = NULL) {
 }
 
 
-## @ test) object_list_cvglmnet.coefexp() CoxExample_tibble.cv.glmnet_alphas_cox -----  
-object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----
-object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
-# > object_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----  
+## @ test) object_list_cvglmnet.coefexp() glmnet_coxExample_tibble.cv.glmnet_alphas_cox -----  
+object_cvglmnet.coefexp(glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----
+object_list_cvglmnet.coefexp(glmnet_coxExample_tibble.cv.glmnet_alphas_cox) #----
+# > object_cvglmnet.coefexp(glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1) #----  
 #    rownum rowname expB.min expB.1se    coef.min     coef.1se
 # 1       1      V1     1.62     1.39  0.47972069  0.332155771
 # 2       2      V2     0.85     0.94 -0.16674492 -0.063825745
@@ -643,7 +643,7 @@ object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----
 # 28     28     V28       NA       NA          NA           NA
 # 29     29     V29       NA       NA          NA           NA
 # 30     30     V30     1.00       NA -0.00301953           NA
-# > object_list_cvglmnet.coefexp(CoxExample_tibble.cv.glmnet_alphas_cox) #----  
+# > object_list_cvglmnet.coefexp(glmnet_coxExample_tibble.cv.glmnet_alphas_cox) #----  
 #    rownum rowname a1expB.min a1expB.1se a.5expB.min a.5expB.1se  a1coef.min   a1coef.1se   a.5coef.min a.5coef.1se
 # 1       1      V1       1.62       1.39        1.60        1.38  0.47972069  0.332155771  0.4702664543  0.32244534
 # 2       2      V2       0.85       0.94        0.85        0.93 -0.16674492 -0.063825745 -0.1662272351 -0.07327914
@@ -755,7 +755,7 @@ trainsetCC69agg4i07_829.cv.glmnet_alphas_cox %>% object_list_cvglmnet.coefexp #-
 
 # @@@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambda.min") { ======  
 object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambda.min") {
-    # object_cvglmnet = CoxExample_tibble.cv.glmnet_alphas_cox$alpha1
+    # object_cvglmnet = glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1
     # object_cvglmnet = trainsetCC69agg4i07_829.cv.glmnet_alphas_cox$alpha1
     # coef.cv.glmnet.s = "lambda.min"
 
@@ -771,7 +771,7 @@ object_cvglmnet.newFormula = function(object_cvglmnet, coef.cv.glmnet.s = "lambd
     rownames(trainset_colnames_levels.df) = trainset_colnames_levels.df$colnames_levels
     colnames.select = trainset_colnames_levels.df[colnames_levels.select, "colnames"]
     
-    # varname4y = CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y}
+    # varname4y = glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y}
     # if (identical(names(varname4y), c("event", "time"))) {
     #     warning("identical(names(varname4y), c(\"event\", \"time\") - flipped")
     #     varname4y = varname4y[2:1]
@@ -807,34 +807,34 @@ object_list_cvglmnet.newFormula = function(object_list_cvglmnet, coef.cv.glmnet.
     out
 }
     
-## @ test) object_cvglmnet.newFormula() CoxExample_tibble.cv.glmnet_alphas_cox -----  
+## @ test) object_cvglmnet.newFormula() glmnet_coxExample_tibble.cv.glmnet_alphas_cox -----  
 .packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
-CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_dimnames[[2]]} |> deparse() |> cat("  \n", sep="")
 # c("time", "status", "V1", "V2", "V3", "V4", "V5", "V6", "V7", 
 # "V8", "V9", "V10", "V11", "V12", "V13", "V14", "V15", "V16", 
 # "V17", "V18", "V19", "V20", "V21", "V22", "V23", "V24", "V25", 
 # "V26", "V27", "V28", "V29", "V30")
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "variables") |> str()
 #  language list(Surv(time = time, event = status), V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V13, V14, V15, V16, V1| __truncated__
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "predvars") |> str()
 #  language list(Surv(time = time, event = status), V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V13, V14, V15, V16, V1| __truncated__
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$Terms} %>% attr(., "term.labels") |> deparse() |> cat("  \n", sep="")
 # c("V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9", "V10", 
 # "V11", "V12", "V13", "V14", "V15", "V16", "V17", "V18", "V19", 
 # "V20", "V21", "V22", "V23", "V24", "V25", "V26", "V27", "V28", 
 # "V29", "V30")
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4y} |> deparse() |> cat("  \n", sep="")
 # structure(c("time", "status"), .Names = c("time", "event"))
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$varname4x} |> deparse() |> cat("  \n", sep="")
 # "."
-# > CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trainset_colnames_levels}
 # # A tibble: 32 x 9
 #    colNum_original colnames colnames_levels col_class col_Nlevels build.x.colnames_levels colnames_levels.colSums0 Terms.term.labels terms.inner
 #              <int>    <chr>           <chr>     <chr>       <chr>                   <lgl>                    <lgl>             <lgl>      <fctr>
@@ -850,24 +850,24 @@ CoxExample_tibble.cv.glmnet_alphas_cox %>% attr(., "function.input") %>% {.$trai
 # 10              10       V8              V8   numeric           1                    TRUE                       NA              TRUE        <NA>
 # # ... with 22 more rows
 
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.min") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
 # +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "V6"  "V1"  "V9"  "V7"  "V3"  "V5"  "V4"  "V2"  "V10" "V8"  "V25" "V17" "V13" "V30"
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% coef.cv.glmnet(s = "lambda.1se") |> as.matrix() |> as.data.frame() |> rownames_to_column() %>% 
 # +     mutate(coef.abs = abs(`1`)) %>% arrange(desc(coef.abs)) %>% dplyr::filter(`1` != 0) %>% select(rowname) |> unlist() |> unname()
 #  [1] "V6"  "V1"  "V9"  "V7"  "V3"  "V5"  "V4"  "V2"  "V8"  "V10"
 
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.min")
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.1se")
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.min")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.min")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.1se")
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.min")
 # Surv(time = time, event = status) ~ V6 + V1 + V9 + V7 + V3 + 
 #     V5 + V4 + V2 + V10 + V8 + V25 + V17 + V13 + V30
 # <environment: 0x000000000628a288>
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.1se")
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula(coef.cv.glmnet.s = "lambda.1se")
 # Surv(time = time, event = status) ~ V6 + V1 + V9 + V7 + V3 + 
 #     V5 + V4 + V2 + V8 + V10
 # <environment: 0x000000002695bba8>
@@ -1108,10 +1108,10 @@ object_list_cvglmnet.newFormula_coxph = function(object_list_cvglmnet, testset, 
     out
 }
 
-## @ test) object_cvglmnet.newFormula_coxph() CoxExample_tibble.cv.glmnet_alphas_cox ------  
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = CoxExample_tibble, coef.cv.glmnet.s = "lambda.min")
-CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = CoxExample_tibble, coef.cv.glmnet.s = "lambda.min") %>% function.coxph_object.summary.exp
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = CoxExample_tibble, coef.cv.glmnet.s = "lambda.min")
+## @ test) object_cvglmnet.newFormula_coxph() glmnet_coxExample_tibble.cv.glmnet_alphas_cox ------  
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = glmnet_coxExample_tibble, coef.cv.glmnet.s = "lambda.min")
+glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = glmnet_coxExample_tibble, coef.cv.glmnet.s = "lambda.min") %>% function.coxph_object.summary.exp
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = glmnet_coxExample_tibble, coef.cv.glmnet.s = "lambda.min")
 # Call:
 # coxph(formula = object_cvglmnet.newFormula(object_cvglmnet = object_cvglmnet, 
 #     coef.cv.glmnet.s = coef.cv.glmnet.s), data = testset)
@@ -1134,7 +1134,7 @@ CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_cox
 # 
 # Likelihood ratio test=478  on 14 df, p=0
 # n= 1000, number of events= 692 
-# > CoxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = CoxExample_tibble, coef.cv.glmnet.s = "lambda.min") %>% function.coxph_object.summary.exp
+# > glmnet_coxExample_tibble.cv.glmnet_alphas_cox$alpha1 %>% object_cvglmnet.newFormula_coxph(testset = glmnet_coxExample_tibble, coef.cv.glmnet.s = "lambda.min") %>% function.coxph_object.summary.exp
 #    rowname               HRCI p_value star  p.fdr *fdr  p.bon *bon exp(coef) exp(2.5 %) exp(97.5 %)   se(coef)           z     Pr(>|z|)
 # 1       V6 0.58 (0.54 ~ 0.63)  <0.001  *** <0.001  *** <0.001  *** 0.5828975  0.5365219   0.6332816 0.04229871 -12.7602935 0.000000e+00
 # 2       V1 1.73 (1.60 ~ 1.88)  <0.001  *** <0.001  *** <0.001  *** 1.7347332  1.5979384   1.8832384 0.04190856  13.1441780 0.000000e+00
