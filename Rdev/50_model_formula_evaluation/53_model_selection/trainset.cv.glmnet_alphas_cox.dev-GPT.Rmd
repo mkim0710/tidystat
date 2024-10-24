@@ -608,10 +608,256 @@ TheTable1byCase <- create_and_export_table1(
       testset = NA (%)                             3 ( 60.0)           2 ( 66.7)       0.139
 
 
+
 ## *** :: f_df.cv.glmnet_cox = function()
+### *** :: f_cv_glmnet_object.mat_coef = function()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to train cross-validated glmnet Cox models
 f_df.cv.glmnet_cox <- function(
+        train_data,
+        formula,
+        i.alpha = 1,
+        family = "cox",
+        type_measure = "deviance",
+        nfolds = 5,
+        seed = 1,
+        save_models = TRUE,
+        save_plots = TRUE,
+        plot_size = 1280,
+        output_dir = "glmnet_outputs"
+) {
+    # Ensure output directory exists
+    if (!dir.exists(output_dir)) {
+        dir.create(output_dir, recursive = TRUE)
+    }
+    
+    set.seed(seed)
+    
+    # Prepare model matrix
+    x <- model.matrix(formula, data = train_data)[, -1]  # Remove intercept
+    
+    # Extract response variable
+    y <- model.response(model.frame(formula, data = train_data))
+    
+    
+    message(paste("Training glmnet model with alpha =", i.alpha))
+    
+    # Train cross-validated glmnet model
+    cv_glmnet_object <- cv.glmnet(
+        x = x,
+        y = y,
+        alpha = i.alpha,
+        family = family,
+        type.measure = type_measure,
+        nfolds = nfolds
+    )
+    
+    # Save model if required
+    if (save_models) {
+        model_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), ".rds"))
+        saveRDS(cv_glmnet_object, model_filename)
+        message(paste("Saved model to", model_filename))
+    }
+    
+    # Plot cross-validation results if required
+    if (save_plots) {
+        plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
+        png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
+        plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
+        dev.off()
+        message(paste("Saved plot to", plot_filename))
+    }
+    
+    cv_glmnet_object$mat_coef = cv_glmnet_object %>% f_cv_glmnet_object.mat_coef
+    
+    return(cv_glmnet_object)
+}
+
+f_cv_glmnet_object.mat_coef = function(cv_glmnet_object) {
+    cv_glmnet_object.list_coef = list()
+    cv_glmnet_object.list_coef[["min"]] = cv_glmnet_object %>% coef(s = "lambda.min")
+    cv_glmnet_object.list_coef[["1se"]] = cv_glmnet_object %>% coef(s = "lambda.1se")
+
+    cv_glmnet_object.mat_coef = cv_glmnet_object.list_coef %>% (function(ls) {
+        out = ls %>% reduce(cbind); 
+        colnames(out) = names(ls); 
+        out
+    })()
+    cv_glmnet_object.mat_coef
+}
+```
+
+
+
+### CoxExample_tibble |> **f_df.cv.glmnet_cox**() ----
+#### :: TheTrainSet.cv.glmnet_cox.a00
+##### :: TheTrainSet.cv.glmnet_cox.a00.coef = TheTrainSet.cv.glmnet_cox.a00 |> 
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+TheTrainSet = CoxExample_tibble
+cox_formula <- as.formula(Surv(time, status) ~ .)
+alpha = 1
+# Train glmnet Cox models
+TheTrainSet.cv.glmnet_cox.a00 <- f_df.cv.glmnet_cox(
+  train_data = TheTrainSet,
+  formula = cox_formula,
+  i.alpha = 1,
+  family = "cox",
+  type_measure = "deviance",
+  nfolds = 5,
+  seed = 123,  # Changed seed for reproducibility
+  save_models = FALSE,
+  save_plots = FALSE,
+  plot_size = 1280,
+  output_dir = "glmnet_outputs"
+)
+
+# # Save all glmnet models for future use
+# saveRDS(TheTrainSet.cv.glmnet_cox.alphas, file = "TheTrainSet.cv.glmnet_cox.alphas.rds")
+
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+TheTrainSet.cv.glmnet_cox.a00 %>% str(max.level = 1)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet_cox.a00$glmnet.fit %>% str(max.level = 1)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+
+TheTrainSet.cv.glmnet_cox.a00.list_coef = list()
+TheTrainSet.cv.glmnet_cox.a00.list_coef[["min"]] = TheTrainSet.cv.glmnet_cox.a00 %>% coef(s = "lambda.min")
+TheTrainSet.cv.glmnet_cox.a00.list_coef[["1se"]] = TheTrainSet.cv.glmnet_cox.a00 %>% coef(s = "lambda.1se")
+TheTrainSet.cv.glmnet_cox.a00.list_coef %>% str
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet_cox.a00.mat_coef = TheTrainSet.cv.glmnet_cox.a00.list_coef %>% (function(ls) {
+    out = ls %>% reduce(cbind); 
+    colnames(out) = names(ls); 
+    out
+})()
+
+TheTrainSet.cv.glmnet_cox.a00.mat_coef %>% str()
+TheTrainSet.cv.glmnet_cox.a00.mat_coef %>% print()
+
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+cv_glmnet_object <- TheTrainSet.cv.glmnet_cox.a00
+f_cv_glmnet_object.mat_coef(cv_glmnet_object)
+
+```
+
+
+    Training glmnet model with alpha = 1
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    List of 12
+     $ lambda    : num [1:49] 0.237 0.216 0.197 0.179 0.163 ...
+     $ cvm       : num [1:49] 13.6 13.6 13.5 13.5 13.4 ...
+     $ cvsd      : num [1:49] 0.0606 0.0615 0.0581 0.0554 0.0535 ...
+     $ cvup      : num [1:49] 13.6 13.6 13.6 13.5 13.5 ...
+     $ cvlo      : num [1:49] 13.5 13.5 13.5 13.4 13.4 ...
+     $ nzero     : Named int [1:49] 0 1 3 3 4 4 4 4 5 6 ...
+      ..- attr(*, "names")= chr [1:49] "s0" "s1" "s2" "s3" ...
+     $ call      : language cv.glmnet(x = x, y = y, type.measure = type_measure, nfolds = nfolds, alpha = i.alpha, family = family)
+     $ name      : Named chr "Partial Likelihood Deviance"
+      ..- attr(*, "names")= chr "deviance"
+     $ glmnet.fit:List of 12
+      ..- attr(*, "class")= chr [1:2] "coxnet" "glmnet"
+     $ lambda.min: num 0.0175
+     $ lambda.1se: num 0.0487
+     $ index     : int [1:2, 1] 29 18
+      ..- attr(*, "dimnames")=List of 2
+     - attr(*, "class")= chr "cv.glmnet"
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    List of 12
+     $ a0       : NULL
+     $ beta     :Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+     $ df       : int [1:49] 0 1 3 3 4 4 4 4 5 6 ...
+     $ dim      : int [1:2] 30 49
+     $ lambda   : num [1:49] 0.237 0.216 0.197 0.179 0.163 ...
+     $ dev.ratio: num [1:49] 0 0.0018 0.00596 0.01049 0.01438 ...
+     $ nulldev  : num 8177
+     $ npasses  : int 453
+     $ jerr     : int 0
+     $ offset   : logi FALSE
+     $ call     : language glmnet(x = x, y = y, alpha = i.alpha, family = family)
+     $ nobs     : int 1000
+     - attr(*, "class")= chr [1:2] "coxnet" "glmnet"
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    List of 2
+     $ min:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      .. ..@ i       : int [1:15] 0 1 2 3 4 5 6 7 8 9 ...
+      .. ..@ p       : int [1:2] 0 15
+      .. ..@ Dim     : int [1:2] 30 1
+      .. ..@ Dimnames:List of 2
+      .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. .. ..$ : chr "1"
+      .. ..@ x       : num [1:15] 0.486 -0.171 -0.215 0.172 -0.183 ...
+      .. ..@ factors : list()
+     $ 1se:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      .. ..@ i       : int [1:10] 0 1 2 3 4 5 6 7 8 9
+      .. ..@ p       : int [1:2] 0 10
+      .. ..@ Dim     : int [1:2] 30 1
+      .. ..@ Dimnames:List of 2
+      .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. .. ..$ : chr "1"
+      .. ..@ x       : num [1:10] 0.3811 -0.0984 -0.139 0.1011 -0.117 ...
+      .. ..@ factors : list()
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      ..@ i       : int [1:25] 0 1 2 3 4 5 6 7 8 9 ...
+      ..@ p       : int [1:3] 0 15 25
+      ..@ Dim     : int [1:2] 30 2
+      ..@ Dimnames:List of 2
+      .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. ..$ : chr [1:2] "min" "1se"
+      ..@ x       : num [1:25] 0.486 -0.171 -0.215 0.172 -0.183 ...
+      ..@ factors : list()
+    30 x 2 sparse Matrix of class "dgCMatrix"
+                 min         1se
+    V1   0.485893233  0.38108115
+    V2  -0.170984544 -0.09838545
+    V3  -0.214678273 -0.13898708
+    V4   0.171590155  0.10107014
+    V5  -0.183226956 -0.11703684
+    V6  -0.485720457 -0.39278773
+    V7   0.330857020  0.24631270
+    V8   0.089241603  0.03861551
+    V9   0.445547954  0.35114295
+    V10  0.112475686  0.04167588
+    V11  .            .         
+    V12  .            .         
+    V13  0.015366488  .         
+    V14  .            .         
+    V15  .            .         
+    V16  .            .         
+    V17 -0.016244341  .         
+    V18  .            .         
+    V19  .            .         
+    V20  .            .         
+    V21 -0.000624133  .         
+    V22  .            .         
+    V23  .            .         
+    V24  .            .         
+    V25 -0.020923039  .         
+    V26  .            .         
+    V27  .            .         
+    V28  .            .         
+    V29  .            .         
+    V30 -0.005784334  .         
+        ________________________________________________________________________    
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+        ************************************************************************    
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+## *** :: f_df.cv.glmnet_cox.alphas = function()
+### *** :: f_list_cv_glmnet_object.mat_coef = function()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+# Function to train cross-validated glmnet Cox models
+f_df.cv.glmnet_cox.alphas <- function(
   train_data,
   formula,
   alphas = c(1, 0.5),
@@ -624,62 +870,40 @@ f_df.cv.glmnet_cox <- function(
   plot_size = 1280,
   output_dir = "glmnet_outputs"
 ) {
-  # Ensure output directory exists
-  if (!dir.exists(output_dir)) {
-    dir.create(output_dir, recursive = TRUE)
-  }
-  
-  set.seed(seed)
-  
-  # Prepare model matrix
-  x <- model.matrix(formula, data = train_data)[, -1]  # Remove intercept
-  
-  # Extract response variable
-  y <- model.response(model.frame(formula, data = train_data))
-  
-  # Initialize list to store models
-  glmnet_models <- list()
-  
-  # Iterate over each alpha
-  for (i.alpha in alphas) {
-    message(paste("Training glmnet model with alpha =", i.alpha))
+    list_cv_glmnet_object = 
+        alphas %>% map(function(i.alpha) {
+            f_df.cv.glmnet_cox(
+                train_data = train_data,
+                formula = formula,
+                i.alpha = i.alpha,
+                family = family,
+                type_measure = type_measure,
+                nfolds = nfolds,
+                seed = seed,
+                save_models = save_models,
+                save_plots = save_plots,
+                plot_size = plot_size,
+                output_dir = output_dir
+            )
+        }) %>% set_names(paste0("a", sprintf("%02d", alphas * 10)))
     
-    # Train cross-validated glmnet model
-    cv_model <- cv.glmnet(
-      x = x,
-      y = y,
-      alpha = i.alpha,
-      family = family,
-      type.measure = type_measure,
-      nfolds = nfolds
-    )
-    
-    # Save model if required
-    if (save_models) {
-      model_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), ".rds"))
-      saveRDS(cv_model, model_filename)
-      message(paste("Saved model to", model_filename))
-    }
-    
-    # Plot cross-validation results if required
-    if (save_plots) {
-      plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
-      png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
-      plot(cv_model, main = paste("Alpha =", i.alpha))
-      dev.off()
-      message(paste("Saved plot to", plot_filename))
-    }
-    
-    # Store the model in the list
-    glmnet_models[[paste0("a", sprintf("%02d", i.alpha * 10))]] <- cv_model
-  }
-  
-  return(glmnet_models)
+  return(list_cv_glmnet_object)
 }
+
+f_list_cv_glmnet_object.mat_coef = function(list_cv_glmnet_object) {
+    list_cv_glmnet_object.mat_coef = list_cv_glmnet_object %>% 
+        map(f_cv_glmnet_object.mat_coef) %>% 
+        reduce(cbind)
+}
+
+
 ```
 
 
-### CoxExample_tibble |> **f_df.cv.glmnet_cox**() ----
+
+
+
+### CoxExample_tibble |> **f_df.cv.glmnet_cox.alphas**() ----
 #### :: TheTrainSet.cv.glmnet_cox.alphas
 ##### :: TheTrainSet.cv.glmnet_cox.alphas.coef = TheTrainSet.cv.glmnet_cox.alphas |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
@@ -687,7 +911,7 @@ TheTrainSet = CoxExample_tibble
 cox_formula <- as.formula(Surv(time, status) ~ .)
 
 # Train glmnet Cox models
-TheTrainSet.cv.glmnet_cox.alphas <- f_df.cv.glmnet_cox(
+TheTrainSet.cv.glmnet_cox.alphas <- f_df.cv.glmnet_cox.alphas(
   train_data = TheTrainSet,
   formula = cox_formula,
   alphas = c(1, 0.5),
@@ -1250,7 +1474,7 @@ f_df.cv.glmnet_cox <- function(
     message(paste("Training glmnet model with alpha =", i.alpha))
     
     # Train cross-validated glmnet model
-    cv_model <- cv.glmnet(
+    cv_glmnet_object <- cv.glmnet(
       x = x,
       y = y,
       alpha = i.alpha,
@@ -1262,7 +1486,7 @@ f_df.cv.glmnet_cox <- function(
     # Save model if required
     if (save_models) {
       model_filename <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, ".rds"))
-      saveRDS(cv_model, model_filename)
+      saveRDS(cv_glmnet_object, model_filename)
       message(paste("Saved model to", model_filename))
     }
     
@@ -1270,13 +1494,13 @@ f_df.cv.glmnet_cox <- function(
     if (save_plots) {
       plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, "_plot.png"))
       png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
-      plot(cv_model, main = paste("Alpha =", i.alpha))
+      plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
       dev.off()
       message(paste("Saved plot to", plot_filename))
     }
     
     # Store the model in the list
-    glmnet_models[[paste0("a", i.alpha)]] <- cv_model
+    glmnet_models[[paste0("a", i.alpha)]] <- cv_glmnet_object
   }
   
   return(glmnet_models)
@@ -1305,7 +1529,7 @@ saveRDS(TheTrainSet.cv.glmnet_cox.alphas, file = "TheTrainSet.cv.glmnet_cox.alph
 #' @return A character vector of selected variable names.
 #'
 #' @examples
-#' selected_vars <- extract_selected_variables(cv_model, lambda = "lambda.1se")
+#' selected_vars <- extract_selected_variables(cv_glmnet_object, lambda = "lambda.1se")
 extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
   # Extract coefficients at specified lambda
   coef_matrix <- coef(cv_glmnet_model, s = lambda)
@@ -1337,7 +1561,7 @@ extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
 #'   variables.
 #'
 #' @examples
-#' cox_model <- run_coxph_on_test(cv_model, Surv(time, status) ~ ., test_data)
+#' cox_model <- run_coxph_on_test(cv_glmnet_object, Surv(time, status) ~ ., test_data)
 run_coxph_on_test <- function(cv_glmnet_model, train_formula, test_data, lambda = "lambda.min") {
   selected_vars <- extract_selected_variables(cv_glmnet_model, lambda = lambda)
   
