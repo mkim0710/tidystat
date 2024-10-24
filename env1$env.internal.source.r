@@ -705,8 +705,11 @@ env1$path$git_path = env1$env.internal$f_path.is_git_tracked()
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.git_lfs_track_add_f ====  
+
 # Rdev/00_base_terminal/f_file.git_lfs_track_add_f.dev.r
-env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
+# https://chatgpt.com/c/6719a3d0-9a2c-800e-8651-2ae6901ae573
+# https://gemini.google.com/app/c1606939ea272140
+env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIfAlreadyAdded = TRUE) {
     git_lfs_available = try(system2("git", args = "lfs version", stdout = FALSE, stderr = FALSE) == 0, silent = TRUE)    # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a  # https://gemini.google.com/app/6d9de55c5c7085c6
     
     # if(git_lfs_available) {
@@ -725,12 +728,22 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE) {
     
     if(!git_lfs_available) warning("git lfs is not available  \n")
     
-    invisible(
-        list(
-            paste0( "git lfs track ",shQuote(.path_file) )
-            , paste0( "git add -f ",shQuote(.path_file) )
-        ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
-    )
+    # Check if the file is already tracked by git without lfs
+    git_ls_files_output = system2("git", args = c("ls-files", shQuote(.path_file)), stdout = TRUE, stderr = TRUE)
+
+    is.AlreadyAdded = length(git_ls_files_output) > 0
+
+    if (SkipIfAlreadyAdded && is.AlreadyAdded) {
+        message(paste(.path_file, "is already added to git. Skipping git lfs track."))
+        return(invisible())
+    } else {
+        return(invisible(
+            list(
+                paste0( "git lfs track ",shQuote(.path_file) )
+                , paste0( "git add -f ",shQuote(.path_file) )
+            ) |> map(env1$f$f_TerminalFromRCodeText.echo, Execute)
+        ))
+    }
 }
 
 #_________________________________________________________________________________|----  
