@@ -222,77 +222,7 @@ Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-GPT
 
 # __________|------  
 # @@ START) data example ----  
-## \$ analyticDF_time2event =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-# suppressPackageStartupMessages(library(survival))
-for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-# ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
-assign(
-    DataSetName, 
-    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
-        # dplyr::select(-status, -sex)
-        dplyr::select(-status)
-)
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
-```
-  
-  
-### :: df_5vars_10obs ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Manually create a dataset
-df_5vars_10obs <- data.frame(
-    Group = rep(c("Group1", "Group2"), each = 5),
-    Var1 = c(2.5, 3.0, 2.8, 2.9, 3.1, 3.6, 3.7, 3.5, 3.8, 3.9),
-    Var2 = c(7.1, 7.3, 7.2, 7.4, 7.5, 6.8, 6.9, 7.0, 6.7, 6.6),
-    Var3 = c(15, 16, 15, 14, 15, 18, 17, 19, 18, 17),
-    Var4 = c(0.5, 0.6, 0.55, 0.58, 0.57, 0.65, 0.66, 0.64, 0.67, 0.68),
-    Var5 = c(100, 105, 102, 101, 103, 110, 112, 111, 113, 114)
-)
 
-# Display the dataset
-print(df_5vars_10obs)
-```
-  
-  
-### :: df_numeric5_categorical2 ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-df_numeric5_categorical2 = 
-    structure(list(group_variable = c("A", "A", "A", "B", "B", "B", "C", "C", "C"), numeric_var1 = c(10L, 12L, 11L, 20L, 22L, 21L, 30L, 32L, 31L), numeric_var2 = c(100L, 102L, 101L, 200L, 202L, 201L, 300L, 302L, 301L), numeric_var3 = c(5, 6, 5.5, 10, 11, 10.5, 15, 16, 15.5), numeric_var4 = c(25, 26, 25.5, 50, 51, 50.5, 75, 76, 75.5), numeric_var5 = c(2, 2.2, 2.1, 4, 4.2, 4.1, 6, 6.2, 6.1), categorical_var1 = c("X", "Y", "X", "Y", "Z", "Y", "Z", "X", "Z"), categorical_var2 = c("M", "N", "M", "N", "O",  "N", "O", "M", "O")), class = "data.frame", row.names = c(NA, -9L))
-df_numeric5_categorical2
-```
-  
-  
-## :: titanic_train() ----  
-### :: titanic_data() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-for(.packagename in c("titanic")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-
-# Load the Titanic dataset
-data("titanic_train")
-
-# View the first few rows
-titanic_train %>% str
-titanic_train %>% as_tibble
-
-# Select relevant variables
-titanic_data <- titanic_train %>%
-    select(Survived, Pclass, Sex, Age, Fare) %>% as_tibble
-
-# Handle missing values by removing rows with NA
-titanic_data <- na.omit(titanic_data)
-
-# Convert 'Survived' and 'Sex' to factors
-titanic_data$Survived <- factor(titanic_data$Survived)
-titanic_data$Sex <- factor(titanic_data$Sex)
-titanic_data %>% str
-titanic_data %>% as_tibble
-```
   
   
 ## :: JK02ID.CCW.MIN_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA_rm.CC69.agg4.4069AgeNum.i2007.1.1 = ----  
@@ -330,42 +260,6 @@ options(width=120)
 # 
 # TheTrainSet <- load_preprocess_data(train_file, varnames, is_test = FALSE)
 # TheTestSet  <- load_preprocess_data(test_file, varnames, is_test = TRUE)
-```
-  
-  
-## :: example_train_data() ----  
-### :: example_test_data() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Load necessary libraries
-library(tidyverse)
-library(survival)
-
-# Create non-random example dataset
-example_train_data <- tibble(
-  EndTime.is.Case.confirm.365 = c(1, 1, 0, 0, 1, 0),
-  EndTime = c(2, 3, 5, 10, 7, 8),
-  AgeDecade = factor(c(5, 5, 4, 4, 3, 3)),  # Age in decades (3 = 30s, 4 = 40s, 5 = 50s)
-  Female = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
-  Income = factor(c(3, 2, 1, 3, 2, 1)),  # Income levels (1 = low, 2 = medium, 3 = high)
-  DisabilityGrade = factor(c("Mild", "Severe", "Mild", "Severe", "Mild", "Severe")),
-  Anxiety = c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
-)
-
-example_test_data <- tibble(
-  EndTime.is.Case.confirm.365 = c(1, 0, 1),
-  EndTime = c(4, 12, 9),
-  AgeDecade = factor(c(5, 3, 4)),
-  Female = c(TRUE, FALSE, TRUE),
-  Income = factor(c(3, 1, 2)),
-  DisabilityGrade = factor(c("Severe", "Mild", "Severe")),
-  Anxiety = c(FALSE, TRUE, FALSE)
-)
-
-# Ensure no randomness is used in creating the data
-example_train_data
-example_test_data
-
 ```
   
   
@@ -474,7 +368,6 @@ TheTestSet <- tibble(
 TheTrainSet
 TheTestSet
 ```
-  
   
 
 
@@ -714,100 +607,6 @@ env0 = env1
 ```
   
   
-## bind_rows(train_data, test_data) |> create_and_export_table1() ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-options(width=120)
-# Load and install required packages using pacman
-# if (!require("pacman")) install.packages("pacman")
-# library(pacman)
-
-for(.packagename in c("tidyverse", "glmnet", "useful", "survival", "tableone", "openxlsx", "broom")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-
-TheTrainSet = TheTrainSet
-TheTestSet = TheTestSet
-
-# Function to create and export Table One
-create_and_export_table1 <- function(train_data, test_data, strata, write_xlsx = FALSE, output_path_file) {
-  combined_data <- bind_rows(train_data, test_data)
-  
-  table1 <- CreateTableOne(
-    strata = strata,
-    data = as.data.frame(combined_data),
-    test = FALSE,
-    includeNA = TRUE
-  )
-  
-  # Print table with standardized mean differences (SMD)
-  print_table <- print(table1, smd = TRUE, nonnormal = c("AgeDecade", "Income"))
-  
-  # Export table to Excel
-  table_df <- as.data.frame(print_table) %>%
-    rownames_to_column(var = "Variable")
-  
-  if (write_xlsx) {
-      write.xlsx(table_df, output_path_file, asTable = TRUE)
-      
-      # Open the Excel file (optional)
-      openXL(output_path_file)
-  }
-  
-  return(table1)
-}
-
-# Create and export Table One
-TheTable1byCase <- create_and_export_table1(
-  train_data = TheTrainSet,
-  test_data = TheTestSet,
-  strata = "EndTime.is.Case.confirm.365",
-  write_xlsx = FALSE
-)
-```
-
-                                             Stratified by EndTime.is.Case.confirm.365
-                                              0                   1                   SMD   
-      n                                            5                   3                    
-      EndTime.is.Case.confirm.365 (mean (SD))   0.00 (0.00)         1.00 (0.00)          Inf
-      EndTime (mean (SD))                     160.00 (58.74)      240.00 (52.92)       1.431
-      AgeDecade (median [IQR])                  5.00 [5.00, 6.00]   7.00 [6.50, 7.00]  2.251
-      Female = TRUE (%)                            3 ( 60.0)           1 ( 33.3)       0.555
-      Income (median [IQR])                     3.00 [3.00, 4.00]   4.00 [3.50, 4.50]  0.560
-      DisabilityGrade (%)                                                              1.399
-         Mild                                      2 ( 40.0)           0 (  0.0)            
-         None                                      1 ( 20.0)           2 ( 66.7)            
-         Severe                                    2 ( 40.0)           1 ( 33.3)            
-      AcquiredHypothyroidism = TRUE (%)            2 ( 40.0)           2 ( 66.7)       0.555
-      AdjustmentDisorder = TRUE (%)                1 ( 20.0)           1 ( 33.3)       0.305
-      Anemia = TRUE (%)                            1 ( 20.0)           2 ( 66.7)       1.067
-      Anxiety = TRUE (%)                           2 ( 40.0)           2 ( 66.7)       0.555
-      Arthritis = TRUE (%)                         3 ( 60.0)           1 ( 33.3)       0.555
-      AtrialFibrillation = TRUE (%)                2 ( 40.0)           0 (  0.0)       1.155
-      BenignProstatic = FALSE (%)                  5 (100.0)           3 (100.0)      <0.001
-      BrainInjury = TRUE (%)                       1 ( 20.0)           1 ( 33.3)       0.305
-      Cataract = TRUE (%)                          2 ( 40.0)           1 ( 33.3)       0.139
-      ChronicKidney = TRUE (%)                     2 ( 40.0)           1 ( 33.3)       0.139
-      Diabetes = TRUE (%)                          3 ( 60.0)           1 ( 33.3)       0.555
-      Dysthymia = TRUE (%)                         2 ( 40.0)           2 ( 66.7)       0.555
-      Epilepsy = TRUE (%)                          1 ( 20.0)           1 ( 33.3)       0.305
-      Fibromyalgia_Pain_Fatigue = TRUE (%)         3 ( 60.0)           1 ( 33.3)       0.555
-      Glaucoma = TRUE (%)                          2 ( 40.0)           2 ( 66.7)       0.555
-      HearingImpairment = TRUE (%)                 2 ( 40.0)           1 ( 33.3)       0.139
-      HeartFailure = TRUE (%)                      2 ( 40.0)           1 ( 33.3)       0.139
-      Hyperlipidemia = TRUE (%)                    3 ( 60.0)           1 ( 33.3)       0.555
-      Hypertension = TRUE (%)                      2 ( 40.0)           2 ( 66.7)       0.555
-      IschemicHeart = TRUE (%)                     3 ( 60.0)           1 ( 33.3)       0.555
-      Migraine_ChronicHeadache = TRUE (%)          2 ( 40.0)           2 ( 66.7)       0.555
-      MobilityImpairments = TRUE (%)               3 ( 60.0)           0 (  0.0)       1.732
-      Osteoporosis = TRUE (%)                      3 ( 60.0)           1 ( 33.3)       0.555
-      PelvicFx = TRUE (%)                          2 ( 40.0)           2 ( 66.7)       0.555
-      PersonalityDisorders = TRUE (%)              2 ( 40.0)           1 ( 33.3)       0.139
-      SpinalCordInjury = TRUE (%)                  3 ( 60.0)           0 (  0.0)       1.732
-      StrokeTIA = TRUE (%)                         0 (  0.0)           2 ( 66.7)       2.000
-      AlzheimerDementia = TRUE (%)                 2 ( 40.0)           1 ( 33.3)       0.139
-      LiverDisease = TRUE (%)                      3 ( 60.0)           1 ( 33.3)       0.555
-      ObstructiveLungDisease = TRUE (%)            3 ( 60.0)           1 ( 33.3)       0.555
-      CancerSurvivors = TRUE (%)                   2 ( 40.0)           1 ( 33.3)       0.139
-      testset = NA (%)                             3 ( 60.0)           2 ( 66.7)       0.139
-
 
 
 ## *** :: f_df.cv.glmnet = function()
