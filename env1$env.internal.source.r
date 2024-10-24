@@ -755,7 +755,7 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 # Rdev/00_base_terminal/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path_file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, CompressionMethod = NULL, VERBOSE = options()$verbose) {
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path_file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, SkipIfAlreadyAdded = TRUE, CompressionMethod = NULL, VERBOSE = options()$verbose) {
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
@@ -835,12 +835,12 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     if(git_add_f) {
         if (git_lfs_track == "determine based on object size") {
             if(object.size(get(.objectname)) > 1e7) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
             } else {
                 env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
             }
         } else if (git_lfs_track == TRUE) {
-                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
+                env1$f$f_file.git_lfs_track_add_f(.path_file = .path_file, SkipIfAlreadyAdded = SkipIfAlreadyAdded, Execute = FALSE); if(Execute) warning("Caution: halting auto-execution of glt lfs track.  \n") 
         } else {
             env1$f$f_TerminalFromRCodeText.echo(.TerminalCodeText = paste0( "git add -f ",shQuote(.path_file) ), Execute = Execute)
         }
