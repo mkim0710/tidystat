@@ -274,7 +274,7 @@ options(width=120)
 ## .GlobalEnv$MetaData = list() ====  
 env1$path$CurrentSource.path_filename.MetaData.rds = env1$path$CurrentSource.path_filename.ext |> str_replace("\\.([[:alnum:]]+)$",".MetaData.rds")
 if(file.exists(env1$path$CurrentSource.path_filename.MetaData.rds)) { 
-    MetaData0 = env1$path$CurrentSource.path_filename.MetaData.rds |> read_rds() 
+    .MetaData0 = env1$path$CurrentSource.path_filename.MetaData.rds |> read_rds() 
 }
 if(!exists("MetaData", envir=.GlobalEnv)) { assign("MetaData", list(), envir=.GlobalEnv) }  
 .parentname = "MetaData"
@@ -329,8 +329,8 @@ for (.sub3listname in c("Age", "Sex", "Income", "Education", "Residence", "Marri
     if(!.sub3listname %in% names(.GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]]) ) { .GlobalEnv[[.parentname]][[.sublistname]][[.sub2listname]][[.sub3listname]] = list() }
 }
 
-"MetaData0 %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
-MetaData0 %>% str(max.level = 2)
+".MetaData0 %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
+.MetaData0 %>% str(max.level = 2)
 "MetaData %>% str(max.level = 2)" %>% {cat("> ", ., "  \n", sep = "")}
 MetaData %>% str(max.level = 2)
 ```
