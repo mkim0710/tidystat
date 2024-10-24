@@ -816,7 +816,7 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
                                                                       object.size(get(.objectname)) >= 1e6 ~ "xz",
                                                                       TRUE ~ "gz")  
     if(is.null(.path4write))            .path4write = env1$path$.path4write
-    if(is.null(.path_file))             .path_file = paste0(.path4write,"/",.filename.ext4write)
+    if(is.null(.path_file))             .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)
 
     if(createBackup) cat("\t", 'env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
