@@ -668,7 +668,7 @@ f_df.cv.glmnet_cox <- function(
         message(paste("Saved plot to", plot_filename))
     }
     
-    cv_glmnet_object$mat_coef = cv_glmnet_object %>% f_cv_glmnet_object.mat_coef
+    attributes(cv_glmnet_object)$mat_coef = cv_glmnet_object %>% f_cv_glmnet_object.mat_coef
     
     return(cv_glmnet_object)
 }
@@ -767,6 +767,7 @@ f_cv_glmnet_object.mat_coef(cv_glmnet_object)
      $ index     : int [1:2, 1] 29 18
       ..- attr(*, "dimnames")=List of 2
      - attr(*, "class")= chr "cv.glmnet"
+     - attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
     List of 12
      $ a0       : NULL
@@ -887,13 +888,19 @@ f_df.cv.glmnet_cox.alphas <- function(
             )
         }) %>% set_names(paste0("a", sprintf("%02d", alphas * 10)))
     
-  return(list_cv_glmnet_object)
+    attributes(list_cv_glmnet_object)$mat_coef = list_cv_glmnet_object %>% f_list_cv_glmnet_object.mat_coef
+    
+    return(list_cv_glmnet_object)
 }
 
 f_list_cv_glmnet_object.mat_coef = function(list_cv_glmnet_object) {
     list_cv_glmnet_object.mat_coef = list_cv_glmnet_object %>% 
         map(f_cv_glmnet_object.mat_coef) %>% 
         reduce(cbind)
+    colnames(list_cv_glmnet_object.mat_coef) = names(list_cv_glmnet_object) %>% rep(each = 2) %>% 
+        paste0(".") %>% 
+        paste0(colnames(list_cv_glmnet_object.mat_coef))
+    list_cv_glmnet_object.mat_coef
 }
 
 
@@ -936,31 +943,34 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 TheTrainSet.cv.glmnet_cox.alphas[[1]]$glmnet.fit %>% str(max.level = 1)
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 
-TheTrainSet.cv.glmnet_cox.alphas.coef_list_list = list()
-TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["min"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.min")
-TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["1se"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.1se")
-TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% str
-
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet_cox.alphas.coef = TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% (function(ls_ls) { 
-    ls = ls_ls %>% map(function(ls) {
-        out = ls %>% reduce(cbind); 
-        colnames(out) = names(ls); 
-        out
-    }) ; 
-    out2 = ls %>% reduce(cbind);
-    colnames(out2) = ls %>% map(colnames) %>% reduce(c) %>% paste0(".") %>% paste0(rep(names(ls), each = 2)) ;
-    out2
-})()
-
-TheTrainSet.cv.glmnet_cox.alphas.coef %>% str()
-TheTrainSet.cv.glmnet_cox.alphas.coef %>% print()
-
+# TheTrainSet.cv.glmnet_cox.alphas.coef_list_list = list()
+# TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["min"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.min")
+# TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["1se"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.1se")
+# TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% str
+# 
+# cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+# TheTrainSet.cv.glmnet_cox.alphas.coef = TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% (function(ls_ls) { 
+#     ls = ls_ls %>% map(function(ls) {
+#         out = ls %>% reduce(cbind); 
+#         colnames(out) = names(ls); 
+#         out
+#     }) ; 
+#     out2 = ls %>% reduce(cbind);
+#     colnames(out2) = ls %>% map(colnames) %>% reduce(c) %>% paste0(".") %>% paste0(rep(names(ls), each = 2)) ;
+#     out2
+# })()
+# 
+# TheTrainSet.cv.glmnet_cox.alphas.coef %>% str()
+# TheTrainSet.cv.glmnet_cox.alphas.coef %>% print()
+# 
 cat("    ________________________________________________________________________    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat("    ************************************************************************    \n")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+list_cv_glmnet_object = TheTrainSet.cv.glmnet_cox.alphas
+list_cv_glmnet_object %>% f_list_cv_glmnet_object.mat_coef
 
 ```
 
@@ -971,8 +981,11 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     List of 2
      $ a10:List of 12
       ..- attr(*, "class")= chr "cv.glmnet"
+      ..- attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
      $ a05:List of 12
       ..- attr(*, "class")= chr "cv.glmnet"
+      ..- attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+     - attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
     List of 12
      $ lambda    : num [1:49] 0.237 0.216 0.197 0.179 0.163 ...
@@ -992,6 +1005,7 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      $ index     : int [1:2, 1] 29 18
       ..- attr(*, "dimnames")=List of 2
      - attr(*, "class")= chr "cv.glmnet"
+     - attr(*, "mat_coef")=Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
     List of 12
      $ a0       : NULL
@@ -1008,92 +1022,43 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      $ nobs     : int 1000
      - attr(*, "class")= chr [1:2] "coxnet" "glmnet"
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-    List of 2
-     $ min:List of 2
-      ..$ a10:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
-      .. .. ..@ i       : int [1:15] 0 1 2 3 4 5 6 7 8 9 ...
-      .. .. ..@ p       : int [1:2] 0 15
-      .. .. ..@ Dim     : int [1:2] 30 1
-      .. .. ..@ Dimnames:List of 2
-      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
-      .. .. .. ..$ : chr "1"
-      .. .. ..@ x       : num [1:15] 0.486 -0.171 -0.215 0.172 -0.183 ...
-      .. .. ..@ factors : list()
-      ..$ a05:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
-      .. .. ..@ i       : int [1:17] 0 1 2 3 4 5 6 7 8 9 ...
-      .. .. ..@ p       : int [1:2] 0 17
-      .. .. ..@ Dim     : int [1:2] 30 1
-      .. .. ..@ Dimnames:List of 2
-      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
-      .. .. .. ..$ : chr "1"
-      .. .. ..@ x       : num [1:17] 0.477 -0.17 -0.213 0.171 -0.183 ...
-      .. .. ..@ factors : list()
-     $ 1se:List of 2
-      ..$ a10:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
-      .. .. ..@ i       : int [1:10] 0 1 2 3 4 5 6 7 8 9
-      .. .. ..@ p       : int [1:2] 0 10
-      .. .. ..@ Dim     : int [1:2] 30 1
-      .. .. ..@ Dimnames:List of 2
-      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
-      .. .. .. ..$ : chr "1"
-      .. .. ..@ x       : num [1:10] 0.3811 -0.0984 -0.139 0.1011 -0.117 ...
-      .. .. ..@ factors : list()
-      ..$ a05:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
-      .. .. ..@ i       : int [1:10] 0 1 2 3 4 5 6 7 8 9
-      .. .. ..@ p       : int [1:2] 0 10
-      .. .. ..@ Dim     : int [1:2] 30 1
-      .. .. ..@ Dimnames:List of 2
-      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
-      .. .. .. ..$ : chr "1"
-      .. .. ..@ x       : num [1:10] 0.354 -0.0935 -0.1315 0.097 -0.1133 ...
-      .. .. ..@ factors : list()
-        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-    Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
-      ..@ i       : int [1:52] 0 1 2 3 4 5 6 7 8 9 ...
-      ..@ p       : int [1:5] 0 15 32 42 52
-      ..@ Dim     : int [1:2] 30 4
-      ..@ Dimnames:List of 2
-      .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
-      .. ..$ : chr [1:4] "a10.min" "a05.1se" "a10.min" "a05.1se"
-      ..@ x       : num [1:52] 0.486 -0.171 -0.215 0.172 -0.183 ...
-      ..@ factors : list()
-    30 x 4 sparse Matrix of class "dgCMatrix"
-             a10.min      a05.1se     a10.min     a05.1se
-    V1   0.485893233  0.477164043  0.38108115  0.35404276
-    V2  -0.170984544 -0.170150003 -0.09838545 -0.09350382
-    V3  -0.214678273 -0.213308605 -0.13898708 -0.13153692
-    V4   0.171590155  0.170690050  0.10107014  0.09701310
-    V5  -0.183226956 -0.182938873 -0.11703684 -0.11333646
-    V6  -0.485720457 -0.476812068 -0.39278773 -0.36694824
-    V7   0.330857020  0.326603008  0.24631270  0.23124714
-    V8   0.089241603  0.090303550  0.03861551  0.03956292
-    V9   0.445547954  0.437766240  0.35114295  0.32779914
-    V10  0.112475686  0.113026043  0.04167588  0.04168093
-    V11  .            .            .           .         
-    V12  .            .            .           .         
-    V13  0.015366488  0.019780962  .           .         
-    V14  .            .            .           .         
-    V15  .            .            .           .         
-    V16  .            .            .           .         
-    V17 -0.016244341 -0.019298765  .           .         
-    V18  .            .            .           .         
-    V19  .            .            .           .         
-    V20  .            .            .           .         
-    V21 -0.000624133 -0.004383282  .           .         
-    V22  .           -0.002035236  .           .         
-    V23  .            .            .           .         
-    V24  .            .            .           .         
-    V25 -0.020923039 -0.024429532  .           .         
-    V26  .            .            .           .         
-    V27  .            0.003319417  .           .         
-    V28  .            .            .           .         
-    V29  .            .            .           .         
-    V30 -0.005784334 -0.010267049  .           .         
         ________________________________________________________________________    
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
         ************************************************************************    
         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    30 x 4 sparse Matrix of class "dgCMatrix"
+             a10.min     a10.1se      a05.min     a05.1se
+    V1   0.485893233  0.38108115  0.477164043  0.36843231
+    V2  -0.170984544 -0.09838545 -0.170150003 -0.10261307
+    V3  -0.214678273 -0.13898708 -0.213308605 -0.14116848
+    V4   0.171590155  0.10107014  0.170690050  0.10609169
+    V5  -0.183226956 -0.11703684 -0.182938873 -0.12166498
+    V6  -0.485720457 -0.39278773 -0.476812068 -0.38030840
+    V7   0.330857020  0.24631270  0.326603008  0.24257717
+    V8   0.089241603  0.03861551  0.090303550  0.04599669
+    V9   0.445547954  0.35114295  0.437766240  0.34078534
+    V10  0.112475686  0.04167588  0.113026043  0.05070948
+    V11  .            .           .            .         
+    V12  .            .           .            .         
+    V13  0.015366488  .           0.019780962  .         
+    V14  .            .           .            .         
+    V15  .            .           .            .         
+    V16  .            .           .            .         
+    V17 -0.016244341  .          -0.019298765  .         
+    V18  .            .           .            .         
+    V19  .            .           .            .         
+    V20  .            .           .            .         
+    V21 -0.000624133  .          -0.004383282  .         
+    V22  .            .          -0.002035236  .         
+    V23  .            .           .            .         
+    V24  .            .           .            .         
+    V25 -0.020923039  .          -0.024429532  .         
+    V26  .            .           .            .         
+    V27  .            .           0.003319417  .         
+    V28  .            .           .            .         
+    V29  .            .           .            .         
+    V30 -0.005784334  .          -0.010267049  .         
 
 
 ## :: extract_selected_variables = function()
