@@ -753,7 +753,8 @@ if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$
   
 # __________|------  
 # @@ START) function ----  
-## \% |> env1$env.internal$f_CodeBook_DataSet_VarName.lbl()  
+## *** Caution) convert lbl to fct (quite deterministic step) before select or recode or filter_n ~!!! ----  ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: env1$env.internal$f_CodeBook_DataSet_VarName.lbl()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
@@ -768,7 +769,7 @@ env1$env.internal$f_CodeBook_DataSet_VarName.lbl(DataSet, paste0("A0", 1:2, "_AG
 ```
 
 
-## \% |> env1$f$f_CodeBook_DataSet.lbl()  
+## :: env1$f$f_CodeBook_DataSet.lbl()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
@@ -788,7 +789,7 @@ DataSet.lbl.fct %>% select(matches("^A0[0-1]")) %>% {attributes(.)$MetaData = NU
 ```
   
   
-## \% DataSet.fct |> env1$f$f_CodeBook_DataSet.lbl()  
+### DataSet.fct |> env1$f$f_CodeBook_DataSet.lbl()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
