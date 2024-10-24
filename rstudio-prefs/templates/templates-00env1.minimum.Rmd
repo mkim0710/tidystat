@@ -556,7 +556,7 @@ if(exists(paste0(DataSetName,".Date"))) DataSetName2 = paste0(DataSetName,".Date
 .vec_nlevel_lt20.value_number.unique %>% str
 intersect(outer(5:9, 3:5, function(x, y) strrep(x, y)), .vec_nlevel_lt20.value_number.unique) %>% dput
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
-DataSetName2.NA = DataSetName2 |> paste0(".NA"); assign( DataSetName2.NA, get(DataSetName2) |> mutate_if(is.factor, as.character) ); MetaData$DataSetNames[[DataSetName2.NA]] = list(DataSetName = DataSetName2.NA)
+DataSetName2.NA = DataSetName2 |> paste0(".NA"); assign( DataSetName2.NA, get(DataSetName2) ); MetaData$DataSetNames[[DataSetName2.NA]] = list(DataSetName = DataSetName2.NA)
 .vec_value4NA = c( "", "N/A", "NA"); cat("    ",".vec_value4NA == ",deparse(.vec_value4NA),"  \n", sep="")
 for (.value4NA in .vec_value4NA) {
     DataSetName2.NA = DataSetName2 |> paste0(".NA"); assign( DataSetName2.NA, get(DataSetName2.NA) |> mutate_if(is.character, na_if, .value4NA) )
