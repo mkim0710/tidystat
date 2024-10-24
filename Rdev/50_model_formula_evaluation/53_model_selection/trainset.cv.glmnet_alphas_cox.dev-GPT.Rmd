@@ -562,12 +562,56 @@ TheTable1byCase <- create_and_export_table1(
 )
 ```
 
+                                             Stratified by EndTime.is.Case.confirm.365
+                                              0                   1                   SMD   
+      n                                            5                   3                    
+      EndTime.is.Case.confirm.365 (mean (SD))   0.00 (0.00)         1.00 (0.00)          Inf
+      EndTime (mean (SD))                     160.00 (58.74)      240.00 (52.92)       1.431
+      AgeDecade (median [IQR])                  5.00 [5.00, 6.00]   7.00 [6.50, 7.00]  2.251
+      Female = TRUE (%)                            3 ( 60.0)           1 ( 33.3)       0.555
+      Income (median [IQR])                     3.00 [3.00, 4.00]   4.00 [3.50, 4.50]  0.560
+      DisabilityGrade (%)                                                              1.399
+         Mild                                      2 ( 40.0)           0 (  0.0)            
+         None                                      1 ( 20.0)           2 ( 66.7)            
+         Severe                                    2 ( 40.0)           1 ( 33.3)            
+      AcquiredHypothyroidism = TRUE (%)            2 ( 40.0)           2 ( 66.7)       0.555
+      AdjustmentDisorder = TRUE (%)                1 ( 20.0)           1 ( 33.3)       0.305
+      Anemia = TRUE (%)                            1 ( 20.0)           2 ( 66.7)       1.067
+      Anxiety = TRUE (%)                           2 ( 40.0)           2 ( 66.7)       0.555
+      Arthritis = TRUE (%)                         3 ( 60.0)           1 ( 33.3)       0.555
+      AtrialFibrillation = TRUE (%)                2 ( 40.0)           0 (  0.0)       1.155
+      BenignProstatic = FALSE (%)                  5 (100.0)           3 (100.0)      <0.001
+      BrainInjury = TRUE (%)                       1 ( 20.0)           1 ( 33.3)       0.305
+      Cataract = TRUE (%)                          2 ( 40.0)           1 ( 33.3)       0.139
+      ChronicKidney = TRUE (%)                     2 ( 40.0)           1 ( 33.3)       0.139
+      Diabetes = TRUE (%)                          3 ( 60.0)           1 ( 33.3)       0.555
+      Dysthymia = TRUE (%)                         2 ( 40.0)           2 ( 66.7)       0.555
+      Epilepsy = TRUE (%)                          1 ( 20.0)           1 ( 33.3)       0.305
+      Fibromyalgia_Pain_Fatigue = TRUE (%)         3 ( 60.0)           1 ( 33.3)       0.555
+      Glaucoma = TRUE (%)                          2 ( 40.0)           2 ( 66.7)       0.555
+      HearingImpairment = TRUE (%)                 2 ( 40.0)           1 ( 33.3)       0.139
+      HeartFailure = TRUE (%)                      2 ( 40.0)           1 ( 33.3)       0.139
+      Hyperlipidemia = TRUE (%)                    3 ( 60.0)           1 ( 33.3)       0.555
+      Hypertension = TRUE (%)                      2 ( 40.0)           2 ( 66.7)       0.555
+      IschemicHeart = TRUE (%)                     3 ( 60.0)           1 ( 33.3)       0.555
+      Migraine_ChronicHeadache = TRUE (%)          2 ( 40.0)           2 ( 66.7)       0.555
+      MobilityImpairments = TRUE (%)               3 ( 60.0)           0 (  0.0)       1.732
+      Osteoporosis = TRUE (%)                      3 ( 60.0)           1 ( 33.3)       0.555
+      PelvicFx = TRUE (%)                          2 ( 40.0)           2 ( 66.7)       0.555
+      PersonalityDisorders = TRUE (%)              2 ( 40.0)           1 ( 33.3)       0.139
+      SpinalCordInjury = TRUE (%)                  3 ( 60.0)           0 (  0.0)       1.732
+      StrokeTIA = TRUE (%)                         0 (  0.0)           2 ( 66.7)       2.000
+      AlzheimerDementia = TRUE (%)                 2 ( 40.0)           1 ( 33.3)       0.139
+      LiverDisease = TRUE (%)                      3 ( 60.0)           1 ( 33.3)       0.555
+      ObstructiveLungDisease = TRUE (%)            3 ( 60.0)           1 ( 33.3)       0.555
+      CancerSurvivors = TRUE (%)                   2 ( 40.0)           1 ( 33.3)       0.139
+      testset = NA (%)                             3 ( 60.0)           2 ( 66.7)       0.139
 
-## *** train_cv_glmnet_cox()
-### extract_selected_variables()
+
+## *** :: f_df.cv.glmnet_cox = function()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to train cross-validated glmnet Cox models
-train_cv_glmnet_cox <- function(
+f_df.cv.glmnet_cox <- function(
   train_data,
   formula,
   alphas = c(1, 0.5),
@@ -597,14 +641,14 @@ train_cv_glmnet_cox <- function(
   glmnet_models <- list()
   
   # Iterate over each alpha
-  for (alpha_val in alphas) {
-    message(paste("Training glmnet model with alpha =", alpha_val))
+  for (i.alpha in alphas) {
+    message(paste("Training glmnet model with alpha =", i.alpha))
     
     # Train cross-validated glmnet model
     cv_model <- cv.glmnet(
       x = x,
       y = y,
-      alpha = alpha_val,
+      alpha = i.alpha,
       family = family,
       type.measure = type_measure,
       nfolds = nfolds
@@ -612,22 +656,22 @@ train_cv_glmnet_cox <- function(
     
     # Save model if required
     if (save_models) {
-      model_filename <- file.path(output_dir, paste0("cv_glmnet_alpha_", alpha_val, ".rds"))
+      model_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), ".rds"))
       saveRDS(cv_model, model_filename)
       message(paste("Saved model to", model_filename))
     }
     
     # Plot cross-validation results if required
     if (save_plots) {
-      plot_filename <- file.path(output_dir, paste0("cv_glmnet_alpha_", alpha_val, "_plot.png"))
+      plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
       png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
-      plot(cv_model, main = paste("Alpha =", alpha_val))
+      plot(cv_model, main = paste("Alpha =", i.alpha))
       dev.off()
       message(paste("Saved plot to", plot_filename))
     }
     
     # Store the model in the list
-    glmnet_models[[paste0("alpha_", alpha_val)]] <- cv_model
+    glmnet_models[[paste0("a", sprintf("%02d", i.alpha * 10))]] <- cv_model
   }
   
   return(glmnet_models)
@@ -635,13 +679,15 @@ train_cv_glmnet_cox <- function(
 ```
 
 
-### CoxExample_tibble |> **train_cv_glmnet_cox**() ----
+### CoxExample_tibble |> **f_df.cv.glmnet_cox**() ----
+#### :: TheTrainSet.cv.glmnet_cox.alphas
+##### :: TheTrainSet.cv.glmnet_cox.alphas.coef = TheTrainSet.cv.glmnet_cox.alphas |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 TheTrainSet = CoxExample_tibble
 cox_formula <- as.formula(Surv(time, status) ~ .)
 
 # Train glmnet Cox models
-TheTrainSet_cv_glmnet_cox <- train_cv_glmnet_cox(
+TheTrainSet.cv.glmnet_cox.alphas <- f_df.cv.glmnet_cox(
   train_data = TheTrainSet,
   formula = cox_formula,
   alphas = c(1, 0.5),
@@ -656,20 +702,178 @@ TheTrainSet_cv_glmnet_cox <- train_cv_glmnet_cox(
 )
 
 # # Save all glmnet models for future use
-# saveRDS(TheTrainSet_cv_glmnet_cox, file = "TheTrainSet_cv_glmnet_cox.rds")
+# saveRDS(TheTrainSet.cv.glmnet_cox.alphas, file = "TheTrainSet.cv.glmnet_cox.alphas.rds")
 
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+TheTrainSet.cv.glmnet_cox.alphas %>% str(max.level = 1)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet_cox.alphas[[1]] %>% str(max.level = 1)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet_cox.alphas[[1]]$glmnet.fit %>% str(max.level = 1)
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 
-# Extract coefficients at lambda.min for alpha = 1
-coef_matrix_alpha_1 <- coef(TheTrainSet_cv_glmnet_cox$alpha_1, s = "lambda.min")
-print(coef_matrix_alpha_1)
+TheTrainSet.cv.glmnet_cox.alphas.coef_list_list = list()
+TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["min"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.min")
+TheTrainSet.cv.glmnet_cox.alphas.coef_list_list[["1se"]] = TheTrainSet.cv.glmnet_cox.alphas %>% map(coef, s = "lambda.1se")
+TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% str
 
-# Extract coefficients at lambda.min for alpha = 0.5
-coef_matrix_alpha_0_5 <- coef(TheTrainSet_cv_glmnet_cox$alpha_0.5, s = "lambda.min")
-print(coef_matrix_alpha_0_5)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet_cox.alphas.coef = TheTrainSet.cv.glmnet_cox.alphas.coef_list_list %>% (function(ls_ls) { 
+    ls = ls_ls %>% map(function(ls) {
+        out = ls %>% reduce(cbind); 
+        colnames(out) = names(ls); 
+        out
+    }) ; 
+    out2 = ls %>% reduce(cbind);
+    colnames(out2) = ls %>% map(colnames) %>% reduce(c) %>% paste0(".") %>% paste0(rep(names(ls), each = 2)) ;
+    out2
+})()
+
+TheTrainSet.cv.glmnet_cox.alphas.coef %>% str()
+TheTrainSet.cv.glmnet_cox.alphas.coef %>% print()
+
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 
 ```
 
 
+    Training glmnet model with alpha = 1
+    Training glmnet model with alpha = 0.5
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    List of 2
+     $ a10:List of 12
+      ..- attr(*, "class")= chr "cv.glmnet"
+     $ a05:List of 12
+      ..- attr(*, "class")= chr "cv.glmnet"
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    List of 12
+     $ lambda    : num [1:49] 0.237 0.216 0.197 0.179 0.163 ...
+     $ cvm       : num [1:49] 13.6 13.6 13.5 13.5 13.4 ...
+     $ cvsd      : num [1:49] 0.0606 0.0615 0.0581 0.0554 0.0535 ...
+     $ cvup      : num [1:49] 13.6 13.6 13.6 13.5 13.5 ...
+     $ cvlo      : num [1:49] 13.5 13.5 13.5 13.4 13.4 ...
+     $ nzero     : Named int [1:49] 0 1 3 3 4 4 4 4 5 6 ...
+      ..- attr(*, "names")= chr [1:49] "s0" "s1" "s2" "s3" ...
+     $ call      : language cv.glmnet(x = x, y = y, type.measure = type_measure, nfolds = nfolds, alpha = i.alpha, family = family)
+     $ name      : Named chr "Partial Likelihood Deviance"
+      ..- attr(*, "names")= chr "deviance"
+     $ glmnet.fit:List of 12
+      ..- attr(*, "class")= chr [1:2] "coxnet" "glmnet"
+     $ lambda.min: num 0.0175
+     $ lambda.1se: num 0.0487
+     $ index     : int [1:2, 1] 29 18
+      ..- attr(*, "dimnames")=List of 2
+     - attr(*, "class")= chr "cv.glmnet"
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    List of 12
+     $ a0       : NULL
+     $ beta     :Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+     $ df       : int [1:49] 0 1 3 3 4 4 4 4 5 6 ...
+     $ dim      : int [1:2] 30 49
+     $ lambda   : num [1:49] 0.237 0.216 0.197 0.179 0.163 ...
+     $ dev.ratio: num [1:49] 0 0.0018 0.00596 0.01049 0.01438 ...
+     $ nulldev  : num 8177
+     $ npasses  : int 453
+     $ jerr     : int 0
+     $ offset   : logi FALSE
+     $ call     : language glmnet(x = x, y = y, alpha = i.alpha, family = family)
+     $ nobs     : int 1000
+     - attr(*, "class")= chr [1:2] "coxnet" "glmnet"
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    List of 2
+     $ min:List of 2
+      ..$ a10:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      .. .. ..@ i       : int [1:15] 0 1 2 3 4 5 6 7 8 9 ...
+      .. .. ..@ p       : int [1:2] 0 15
+      .. .. ..@ Dim     : int [1:2] 30 1
+      .. .. ..@ Dimnames:List of 2
+      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. .. .. ..$ : chr "1"
+      .. .. ..@ x       : num [1:15] 0.486 -0.171 -0.215 0.172 -0.183 ...
+      .. .. ..@ factors : list()
+      ..$ a05:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      .. .. ..@ i       : int [1:17] 0 1 2 3 4 5 6 7 8 9 ...
+      .. .. ..@ p       : int [1:2] 0 17
+      .. .. ..@ Dim     : int [1:2] 30 1
+      .. .. ..@ Dimnames:List of 2
+      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. .. .. ..$ : chr "1"
+      .. .. ..@ x       : num [1:17] 0.477 -0.17 -0.213 0.171 -0.183 ...
+      .. .. ..@ factors : list()
+     $ 1se:List of 2
+      ..$ a10:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      .. .. ..@ i       : int [1:10] 0 1 2 3 4 5 6 7 8 9
+      .. .. ..@ p       : int [1:2] 0 10
+      .. .. ..@ Dim     : int [1:2] 30 1
+      .. .. ..@ Dimnames:List of 2
+      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. .. .. ..$ : chr "1"
+      .. .. ..@ x       : num [1:10] 0.3811 -0.0984 -0.139 0.1011 -0.117 ...
+      .. .. ..@ factors : list()
+      ..$ a05:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      .. .. ..@ i       : int [1:10] 0 1 2 3 4 5 6 7 8 9
+      .. .. ..@ p       : int [1:2] 0 10
+      .. .. ..@ Dim     : int [1:2] 30 1
+      .. .. ..@ Dimnames:List of 2
+      .. .. .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. .. .. ..$ : chr "1"
+      .. .. ..@ x       : num [1:10] 0.354 -0.0935 -0.1315 0.097 -0.1133 ...
+      .. .. ..@ factors : list()
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+      ..@ i       : int [1:52] 0 1 2 3 4 5 6 7 8 9 ...
+      ..@ p       : int [1:5] 0 15 32 42 52
+      ..@ Dim     : int [1:2] 30 4
+      ..@ Dimnames:List of 2
+      .. ..$ : chr [1:30] "V1" "V2" "V3" "V4" ...
+      .. ..$ : chr [1:4] "a10.min" "a05.1se" "a10.min" "a05.1se"
+      ..@ x       : num [1:52] 0.486 -0.171 -0.215 0.172 -0.183 ...
+      ..@ factors : list()
+    30 x 4 sparse Matrix of class "dgCMatrix"
+             a10.min      a05.1se     a10.min     a05.1se
+    V1   0.485893233  0.477164043  0.38108115  0.35404276
+    V2  -0.170984544 -0.170150003 -0.09838545 -0.09350382
+    V3  -0.214678273 -0.213308605 -0.13898708 -0.13153692
+    V4   0.171590155  0.170690050  0.10107014  0.09701310
+    V5  -0.183226956 -0.182938873 -0.11703684 -0.11333646
+    V6  -0.485720457 -0.476812068 -0.39278773 -0.36694824
+    V7   0.330857020  0.326603008  0.24631270  0.23124714
+    V8   0.089241603  0.090303550  0.03861551  0.03956292
+    V9   0.445547954  0.437766240  0.35114295  0.32779914
+    V10  0.112475686  0.113026043  0.04167588  0.04168093
+    V11  .            .            .           .         
+    V12  .            .            .           .         
+    V13  0.015366488  0.019780962  .           .         
+    V14  .            .            .           .         
+    V15  .            .            .           .         
+    V16  .            .            .           .         
+    V17 -0.016244341 -0.019298765  .           .         
+    V18  .            .            .           .         
+    V19  .            .            .           .         
+    V20  .            .            .           .         
+    V21 -0.000624133 -0.004383282  .           .         
+    V22  .           -0.002035236  .           .         
+    V23  .            .            .           .         
+    V24  .            .            .           .         
+    V25 -0.020923039 -0.024429532  .           .         
+    V26  .            .            .           .         
+    V27  .            0.003319417  .           .         
+    V28  .            .            .           .         
+    V29  .            .            .           .         
+    V30 -0.005784334 -0.010267049  .           .         
+        ________________________________________________________________________    
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+        ************************************************************************    
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+## :: extract_selected_variables = function()
+### |> extract_selected_variables()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
   # Extract coefficients at specified lambda
@@ -691,12 +895,13 @@ extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
 }
 
 # Extract variables for alpha = 1
-selected_vars_alpha_1 <- extract_selected_variables(TheTrainSet_cv_glmnet_cox$alpha_1)
-print(selected_vars_alpha_1)
+selected_vars_a1 <- extract_selected_variables(TheTrainSet.cv.glmnet_cox.alphas$a1)
+selected_vars_a1 %>% dput
 
 # Extract variables for alpha = 0.5
-selected_vars_alpha_0_5 <- extract_selected_variables(TheTrainSet_cv_glmnet_cox$alpha_0.5)
-print(selected_vars_alpha_0_5)
+selected_vars_a0_5 <- extract_selected_variables(TheTrainSet.cv.glmnet_cox.alphas$a0.5)
+selected_vars_a0_5 %>% dput
+
 
 ```
 
@@ -782,13 +987,13 @@ generate_coxph_summaries <- function(glmnet_models, train_formula, test_data, la
   coxph_summaries <- list()
   
   for (i in 1:nrow(model_combinations)) {
-    alpha_val <- model_combinations$alpha[i]
+    i.alpha <- model_combinations$alpha[i]
     lambda_val <- model_combinations$lambda[i]
     
-    model_name <- paste0("alpha", alpha_val, "_", lambda_val)
+    model_name <- paste0("alpha", i.alpha, "_", lambda_val)
     
     # Retrieve the glmnet model
-    glmnet_model <- glmnet_models[[paste0("alpha_", alpha_val)]]
+    glmnet_model <- glmnet_models[[paste0("a", i.alpha)]]
     
     # Run Cox PH model on test set
     cox_model <- run_coxph_on_test(
@@ -810,7 +1015,7 @@ generate_coxph_summaries <- function(glmnet_models, train_formula, test_data, la
 
 # Generate Cox PH summaries
 coxph_summaries <- generate_coxph_summaries(
-  glmnet_models = TheTrainSet_cv_glmnet_cox,
+  glmnet_models = TheTrainSet.cv.glmnet_cox.alphas,
   train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
   test_data = TheTestSet,
   lambdas = c("lambda.min", "lambda.1se")
@@ -1004,14 +1209,14 @@ create_and_export_table1(
 #'   name corresponds to the alpha value used for training.
 #'
 #' @examples
-#' glmnet_models <- train_cv_glmnet_cox(
+#' glmnet_models <- f_df.cv.glmnet_cox(
 #'   train_data = train_data,
 #'   formula = Surv(time, status) ~ .,
 #'   alphas = c(1, 0.5),
 #'   nfolds = 10,
 #'   seed = 123
 #' )
-train_cv_glmnet_cox <- function(
+f_df.cv.glmnet_cox <- function(
   train_data,
   formula,
   alphas = c(1, 0.5),
@@ -1041,14 +1246,14 @@ train_cv_glmnet_cox <- function(
   glmnet_models <- list()
   
   # Iterate over each alpha
-  for (alpha_val in alphas) {
-    message(paste("Training glmnet model with alpha =", alpha_val))
+  for (i.alpha in alphas) {
+    message(paste("Training glmnet model with alpha =", i.alpha))
     
     # Train cross-validated glmnet model
     cv_model <- cv.glmnet(
       x = x,
       y = y,
-      alpha = alpha_val,
+      alpha = i.alpha,
       family = family,
       type.measure = type_measure,
       nfolds = nfolds
@@ -1056,29 +1261,29 @@ train_cv_glmnet_cox <- function(
     
     # Save model if required
     if (save_models) {
-      model_filename <- file.path(output_dir, paste0("cv_glmnet_alpha_", alpha_val, ".rds"))
+      model_filename <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, ".rds"))
       saveRDS(cv_model, model_filename)
       message(paste("Saved model to", model_filename))
     }
     
     # Plot cross-validation results if required
     if (save_plots) {
-      plot_filename <- file.path(output_dir, paste0("cv_glmnet_alpha_", alpha_val, "_plot.png"))
+      plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", i.alpha, "_plot.png"))
       png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
-      plot(cv_model, main = paste("Alpha =", alpha_val))
+      plot(cv_model, main = paste("Alpha =", i.alpha))
       dev.off()
       message(paste("Saved plot to", plot_filename))
     }
     
     # Store the model in the list
-    glmnet_models[[paste0("alpha_", alpha_val)]] <- cv_model
+    glmnet_models[[paste0("a", i.alpha)]] <- cv_model
   }
   
   return(glmnet_models)
 }
 
 # Train glmnet Cox models
-TheTrainSet_cv_glmnet_cox <- train_cv_glmnet_cox(
+TheTrainSet.cv.glmnet_cox.alphas <- f_df.cv.glmnet_cox(
   train_data = TheTrainSet,
   formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
   alphas = c(1, 0.5),
@@ -1086,7 +1291,7 @@ TheTrainSet_cv_glmnet_cox <- train_cv_glmnet_cox(
 )
 
 # Save all glmnet models for future use
-saveRDS(TheTrainSet_cv_glmnet_cox, file = "TheTrainSet_cv_glmnet_cox.rds")
+saveRDS(TheTrainSet.cv.glmnet_cox.alphas, file = "TheTrainSet.cv.glmnet_cox.alphas.rds")
 
 #' Extract Selected Variables
 #'
@@ -1253,13 +1458,13 @@ generate_coxph_summaries <- function(
   coxph_summaries <- list()
   
   for (i in 1:nrow(model_combinations)) {
-    alpha_val <- model_combinations$alpha[i]
+    i.alpha <- model_combinations$alpha[i]
     lambda_val <- model_combinations$lambda[i]
     
-    model_name <- paste0(alpha_val, "_", lambda_val)
+    model_name <- paste0(i.alpha, "_", lambda_val)
     
     # Retrieve the glmnet model
-    glmnet_model <- glmnet_models[[alpha_val]]
+    glmnet_model <- glmnet_models[[i.alpha]]
     
     # Run Cox PH model on test set
     cox_model <- run_coxph_on_test(
@@ -1281,7 +1486,7 @@ generate_coxph_summaries <- function(
 
 # Generate Cox PH summaries
 coxph_summaries <- generate_coxph_summaries(
-  glmnet_models = TheTrainSet_cv_glmnet_cox,
+  glmnet_models = TheTrainSet.cv.glmnet_cox.alphas,
   train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
   test_data = TheTestSet
 )
