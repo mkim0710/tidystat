@@ -541,6 +541,12 @@ options(width=120)
 ```
   
   
+# @@ RENDER) Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
+# @@ RENDER) Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet_alphas.dev.Rmd
+# @@ RENDER) Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glmnet_alphas_cox.dev.Rmd
+# @@ RENDER) Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-GPT-pending.Rmd
+# @@ RENDER) Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-Gemini-pending.Rmd
+
 # __________|------  
 # @@ START) dev ----  
 # https://chatgpt.com/c/671605d9-92ac-800e-86da-6a01437532e9?model=gpt-4o
