@@ -26,6 +26,7 @@
             <Item>*\thumbs.db</Item>
             <Item>\.git\</Item>
             <Item>\.Rproj.user\</Item>
+            <Item>*\*-Min-Hyung’s MacBook Pro.*</Item>
         </Exclude>
         <SizeMin Unit="None">0</SizeMin>
         <SizeMax Unit="None">0</SizeMax>
