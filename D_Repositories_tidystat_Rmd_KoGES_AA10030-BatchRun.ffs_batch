@@ -53,7 +53,7 @@
     <EmailNotification Condition="Always"/>
     <GridViewType>Action</GridViewType>
     <Batch>
-        <ProgressDialog Minimized="false" AutoClose="true"/>
+        <ProgressDialog Minimized="false" AutoClose="false"/>
         <ErrorDialog>Show</ErrorDialog>
         <PostSyncAction>None</PostSyncAction>
     </Batch>
