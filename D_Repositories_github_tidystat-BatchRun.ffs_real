@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FreeFileSync XmlType="REAL" XmlFormat="2">
-    <Directories>
-        <Item>D:\D_Repositories\github_tidystat</Item>
-        <Item>D:\OneDrive\[][Rproject]\github_tidystat</Item>
-    </Directories>
-    <Delay>600</Delay>
-    <Commandline>"C:\Program Files\FreeFileSync\FreeFileSync.exe" D:\D_Repositories\github_tidystat\D_Repositories_github_tidystat-BatchRun.ffs_batch</Commandline>
-</FreeFileSync>

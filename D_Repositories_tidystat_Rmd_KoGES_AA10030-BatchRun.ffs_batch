@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FreeFileSync XmlType="GUI" XmlFormat="23">
+<FreeFileSync XmlType="BATCH" XmlFormat="23">
     <Notes/>
     <Compare>
         <Variant>TimeAndSize</Variant>
@@ -35,6 +35,14 @@
     </Filter>
     <FolderPairs>
         <Pair>
+            <Left>D:\OneDrive\[][Rproject]\Rproject_KoGES_AA10030</Left>
+            <Right>D:\D_Repositories\Rproject_KoGES_AA10030</Right>
+        </Pair>
+        <Pair>
+            <Left>D:\OneDrive\[][Rproject]\Rproject_Rmd</Left>
+            <Right>D:\D_Repositories\Rproject_Rmd</Right>
+        </Pair>
+        <Pair>
             <Left>D:\OneDrive\[][Rproject]\github_tidystat</Left>
             <Right>D:\D_Repositories\github_tidystat</Right>
         </Pair>
@@ -44,4 +52,9 @@
     <LogFolder/>
     <EmailNotification Condition="Always"/>
     <GridViewType>Action</GridViewType>
+    <Batch>
+        <ProgressDialog Minimized="true" AutoClose="true"/>
+        <ErrorDialog>Show</ErrorDialog>
+        <PostSyncAction>None</PostSyncAction>
+    </Batch>
 </FreeFileSync>

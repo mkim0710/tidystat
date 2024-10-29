@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FreeFileSync XmlType="REAL" XmlFormat="2">
+    <Directories>
+        <Item>D:\D_Repositories\github_tidystat</Item>
+        <Item>D:\D_Repositories\Rproject_KoGES_AA10030</Item>
+        <Item>D:\D_Repositories\Rproject_Rmd</Item>
+        <Item>D:\OneDrive\[][Rproject]\github_tidystat</Item>
+        <Item>D:\OneDrive\[][Rproject]\Rproject_KoGES_AA10030</Item>
+        <Item>D:\OneDrive\[][Rproject]\Rproject_Rmd</Item>
+    </Directories>
+    <Delay>600</Delay>
+    <Commandline>"C:\Program Files\FreeFileSync\FreeFileSync.exe" D:\D_Repositories\github_tidystat\D_Repositories_tidystat_Rmd_KoGES_AA10030-BatchRun.ffs_batch</Commandline>
+</FreeFileSync>
