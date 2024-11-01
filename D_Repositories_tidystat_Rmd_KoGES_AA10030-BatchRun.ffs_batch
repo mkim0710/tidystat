@@ -49,11 +49,11 @@
     </FolderPairs>
     <Errors Ignore="false" Retry="0" Delay="5"/>
     <PostSyncCommand Condition="Completion"/>
-    <LogFolder/>
+    <LogFolder>D:\OneDrive\MHShell\FreeFileSync_Logs</LogFolder>
     <EmailNotification Condition="Always"/>
     <GridViewType>Action</GridViewType>
     <Batch>
-        <ProgressDialog Minimized="false" AutoClose="false"/>
+        <ProgressDialog Minimized="true" AutoClose="false"/>
         <ErrorDialog>Show</ErrorDialog>
         <PostSyncAction>None</PostSyncAction>
     </Batch>
