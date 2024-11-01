@@ -8,6 +8,6 @@
         <Item>D:\OneDrive\[][Rproject]\Rproject_KoGES_AA10030</Item>
         <Item>D:\OneDrive\[][Rproject]\Rproject_Rmd</Item>
     </Directories>
-    <Delay>600</Delay>
+    <Delay>60</Delay>
     <Commandline>"C:\Program Files\FreeFileSync\FreeFileSync.exe" D:\D_Repositories\github_tidystat\D_Repositories_tidystat_Rmd_KoGES_AA10030-BatchRun.ffs_batch</Commandline>
 </FreeFileSync>
