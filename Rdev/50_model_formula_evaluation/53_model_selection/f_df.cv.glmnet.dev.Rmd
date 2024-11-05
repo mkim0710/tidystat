@@ -373,27 +373,27 @@ TheTestSet
 ## glmnet::CoxExample ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# system.file("data", "CoxExample.rda", package = "glmnet")
-# # > system.file("data", "CoxExample.rda", package = "glmnet")
-# # [1] "/usr/local/lib/R/site-library/glmnet/data/CoxExample.rda"
+# # system.file("data", "CoxExample.rda", package = "glmnet")
+# # # > system.file("data", "CoxExample.rda", package = "glmnet")
+# # # [1] "/usr/local/lib/R/site-library/glmnet/data/CoxExample.rda"
+# # 
+# # library(glmnet)
+# # # load(system.file("data", "CoxExample.rda", package = "glmnet"))
+# # data(CoxExample)
+# # CoxExample %>% str
+# # # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
 # 
-# library(glmnet)
-# # load(system.file("data", "CoxExample.rda", package = "glmnet"))
-# data(CoxExample)
-# CoxExample %>% str
-# # CoxExample %>% map(function(mat) mat %>% round(3)) %>% deparse(width.cutoff = 500) %>% cat("\n")
-
-# .objectname = "glmnet_coxExample_tibble"
-# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
-# save(list = .objectname, file = .path_file)
-# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
-
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_coxExample_tibble.rda"))
-glmnet_coxExample_tibble
-glmnet_coxExample_tibble.round3 = glmnet_coxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
-glmnet_coxExample_tibble.round3
-# glmnet_coxExample_tibble %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble", ".csv"))
-# glmnet_coxExample_tibble.round3 %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble.round3", ".csv"))
+# # .objectname = "glmnet_coxExample_tibble"
+# # .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# # save(list = .objectname, file = .path_file)
+# # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# 
+# load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_coxExample_tibble.rda"))
+# glmnet_coxExample_tibble
+# glmnet_coxExample_tibble.round3 = glmnet_coxExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+# glmnet_coxExample_tibble.round3
+# # glmnet_coxExample_tibble %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble", ".csv"))
+# # glmnet_coxExample_tibble.round3 %>% write_csv(paste0(env1$path$path1,"/data/", "glmnet_coxExample_tibble.round3", ".csv"))
 ```
   
   
@@ -436,33 +436,33 @@ glmnet_coxExample_tibble.round3
 ## glmnet::QuickStartExample ----  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-# # system.file("data", "QuickStartExample.rda", package = "glmnet")
-# # # > system.file("data", "QuickStartExample.rda", package = "glmnet")
-# # # [1] "/usr/local/lib/R/site-library/glmnet/data/QuickStartExample.rda"
-# #
-# library(glmnet)
-# # load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
-# data(QuickStartExample)
-# QuickStartExample %>% str
-# glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
-# glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
-# glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
+# # # system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # # # > system.file("data", "QuickStartExample.rda", package = "glmnet")
+# # # # [1] "/usr/local/lib/R/site-library/glmnet/data/QuickStartExample.rda"
+# # #
+# # library(glmnet)
+# # # load(system.file("data", "QuickStartExample.rda", package = "glmnet"))
+# # data(QuickStartExample)
+# # QuickStartExample %>% str
+# # glmnet_gaussianExample_tibble = QuickStartExample$x %>% as.data.frame()%>% as.tibble()
+# # glmnet_gaussianExample_tibble$y = QuickStartExample$y[,1]
+# # glmnet_gaussianExample_tibble = glmnet_gaussianExample_tibble %>% select(y, everything())
+# # 
+# # .objectname = "glmnet_gaussianExample_tibble"
+# # .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
+# # save(list = .objectname, file = .path_file)
+# # paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
 # 
-# .objectname = "glmnet_gaussianExample_tibble"
-# .path_file = paste0(env1$path$path1,"/data/", "library_", .objectname, ".rda")
-# save(list = .objectname, file = .path_file)
-# paste0( "git add -f ",shQuote(.path_file) ) %>% system()
-load(url("https://github.com/mkim0710/tidystat/raw/master/data/library_glmnet_gaussianExample_tibble.rda"))
-
-glmnet_gaussianExample_tibble %>% str
-glmnet_gaussianExample_tibble
-# glmnet_gaussianExample_tibble.round3 = glmnet_gaussianExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
-# glmnet_gaussianExample_tibble.round3
-# # for (.objectname in c("glmnet_gaussianExample_tibble", "glmnet_gaussianExample_tibble.round3")) {
-# #     .path_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")
-# #     get(.objectname) %>% write_csv(.path_file)
-# #     paste0( "git add -f ",shQuote(.path_file) ) %>% system()
-# # }
+# glmnet_gaussianExample_tibble %>% str
+# glmnet_gaussianExample_tibble
+# # glmnet_gaussianExample_tibble.round3 = glmnet_gaussianExample_tibble %>% mutate(across(matches("V"), function(vec) round(vec, 3)))
+# # glmnet_gaussianExample_tibble.round3
+# # # for (.objectname in c("glmnet_gaussianExample_tibble", "glmnet_gaussianExample_tibble.round3")) {
+# # #     .path_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")
+# # #     get(.objectname) %>% write_csv(.path_file)
+# # #     paste0( "git add -f ",shQuote(.path_file) ) %>% system()
+# # # }
 ```
 
 
@@ -741,7 +741,9 @@ TheTrainSet.cv.glmnet.a10 <- f_df.cv.glmnet(
 )
 
 # # Save all glmnet models for future use
-# saveRDS(TheTrainSet.cv.glmnet.alphas, file = "TheTrainSet.cv.glmnet.alphas.rds")
+# .objectname = "TheTrainSet.cv.glmnet.a10"
+# assign(.objectname, structure(get(.objectname), MetaData = MetaData))
+# env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
 
 cat("    ________________________________________________________________________    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
@@ -791,35 +793,35 @@ f_cv_glmnet_object.mat_coef(cv_glmnet_object)
 
 
 
-## :: extract_selected_variables = function()
-### |> extract_selected_variables()
+## :: f_cv_glmnet_object.vec_VarName.select = function()
+### |> f_cv_glmnet_object.vec_VarName.select()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
-  # Extract coefficients at specified lambda
-  coef_matrix <- coef(cv_glmnet_model, s = lambda)
-  
-  # Identify non-zero coefficients
-  selected_vars <- rownames(coef_matrix)[which(coef_matrix != 0)]
-  
-  # Check if any variables were selected
-  if (length(selected_vars) == 0) {
-    message("No variables were selected at the specified lambda.")
-    return(NULL)
-  }
-  
-  # Remove the intercept if present
-  selected_vars <- selected_vars[selected_vars != "(Intercept)"]
-  
-  return(selected_vars)
+f_cv_glmnet_object.vec_VarName.select <- function(cv_glmnet_object, lambda = "lambda.min") {
+    # Extract coefficients at specified lambda
+    coef_matrix <- coef(cv_glmnet_object, s = lambda)
+    
+    # Identify non-zero coefficients
+    vec_VarName.select <- rownames(coef_matrix)[which(coef_matrix != 0)]
+    
+    # Check if any variables were selected
+    if (length(vec_VarName.select) == 0) {
+        message("No variables were selected at the specified lambda.")
+        return(NULL)
+    }
+    
+    # Remove the intercept if present
+    vec_VarName.select <- vec_VarName.select[vec_VarName.select != "(Intercept)"]
+    
+    return(vec_VarName.select)
 }
 
 # Extract variables for alpha = 1
-selected_vars_a1 <- extract_selected_variables(TheTrainSet.cv.glmnet.a10)
-selected_vars_a1 %>% dput
+vec_VarName.select_a1 <- f_cv_glmnet_object.vec_VarName.select(TheTrainSet.cv.glmnet.a10)
+vec_VarName.select_a1 %>% dput
 
 # # Extract variables for alpha = 0.5
-# selected_vars_a0_5 <- extract_selected_variables(TheTrainSet.cv.glmnet.a05)
-# selected_vars_a0_5 %>% dput
+# vec_VarName.select_a0_5 <- f_cv_glmnet_object.vec_VarName.select(TheTrainSet.cv.glmnet.a05)
+# vec_VarName.select_a0_5 %>% dput
 
 
 ```
@@ -829,13 +831,13 @@ selected_vars_a1 %>% dput
 ### summarizeph_model() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to create and run Cox PH model on test set
-runph_on_test <- function(cv_glmnet_model, train_formula, test_data, lambda = "lambda.min") {
-  selected_vars <- extract_selected_variables(cv_glmnet_model, lambda = lambda)
+runph_on_test <- function(cv_glmnet_object, train_formula, test_data, lambda = "lambda.min") {
+  vec_VarName.select <- f_cv_glmnet_object.vec_VarName.select(cv_glmnet_object, lambda = lambda)
   
   # Construct new formula
   response_vars <- all.vars(train_formula)[1:2]  # Extract response variables
   new_formula <- as.formula(
-    paste(response_vars, "~", paste(selected_vars, collapse = " + "))
+    paste(response_vars, "~", paste(vec_VarName.select, collapse = " + "))
   )
   
   # Fit Cox PH model on test set
@@ -916,7 +918,7 @@ generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas 
     
     # Run Cox PH model on test set
     cox_model <- runph_on_test(
-      cv_glmnet_model = glmnet_model,
+      cv_glmnet_object = glmnet_model,
       train_formula = train_formula,
       test_data = test_data,
       lambda = lambda_val
@@ -934,7 +936,7 @@ generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas 
 
 # Generate Cox PH summaries
 coxph_summaries <- generate_summaries(
-  glmnet_models = TheTrainSet.cv.glmnet.alphas,
+  glmnet_models = TheTrainSet.cv.glmnet.a10,
   train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
   test_data = TheTestSet,
   lambdas = c("lambda.min", "lambda.1se")
