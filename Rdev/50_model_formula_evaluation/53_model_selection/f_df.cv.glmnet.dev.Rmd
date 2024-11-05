@@ -720,13 +720,13 @@ formula <- as.formula(y ~ .)
 
 
 ### TheTrainSet |> **f_df.cv.glmnet**() ----
-#### :: TheTrainSet.cv.glmnet.a10
-##### :: TheTrainSet.cv.glmnet.a10.coef = TheTrainSet.cv.glmnet.a10 |> 
+#### :: TheTrainSet.cv.glmnet_a10
+##### :: TheTrainSet.cv.glmnet_a10.coef = TheTrainSet.cv.glmnet_a10 |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 
 alpha = 1
 # Train glmnet Cox models
-TheTrainSet.cv.glmnet.a10 <- f_df.cv.glmnet(
+TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
   train_data = TheTrainSet,
   formula = formula,
   i.alpha = 1,
@@ -741,7 +741,7 @@ TheTrainSet.cv.glmnet.a10 <- f_df.cv.glmnet(
 )
 
 # # Save all glmnet models for future use
-# .objectname = "TheTrainSet.cv.glmnet.a10"
+# .objectname = "TheTrainSet.cv.glmnet_a10"
 # assign(.objectname, structure(get(.objectname), MetaData = MetaData))
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
 
@@ -751,11 +751,11 @@ cat("    ***********************************************************************
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 
-TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.mat_coef()
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.mat_coef() %>% str()
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% str()
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% as.data.frame() %>% str()
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% as.data.frame() %>% str()
 ```
 
 
@@ -795,10 +795,10 @@ TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% 
 
 
 
-## :: f_cv_glmnet_object.vec_VarName_lamda = function()
-### :: f_cv_glmnet_object.list_VarName_lamda = function()
+## :: f_cv_glmnet_object.lamda.vec_VarName = function()
+### :: f_cv_glmnet_object.lamda_list.vec_VarName = function()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-f_cv_glmnet_object.vec_VarName_lamda <- function(cv_glmnet_object, lambda = "lambda.min") {
+f_cv_glmnet_object.lamda.vec_VarName <- function(cv_glmnet_object, lambda = "lambda.min") {
     # Extract coefficients at specified lambda
     coef_matrix <- coef(cv_glmnet_object, s = lambda)
     
@@ -817,8 +817,8 @@ f_cv_glmnet_object.vec_VarName_lamda <- function(cv_glmnet_object, lambda = "lam
     return(vec_VarName_lamda)
 }
 
-f_cv_glmnet_object.list_VarName_lamda = function(cv_glmnet_object, vec_lambda = c("lambda.min", "lambda.1se")) {
-    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.vec_VarName_lamda(lambda = .x))
+f_cv_glmnet_object.lamda_list.vec_VarName = function(cv_glmnet_object, vec_lambda = c("lambda.min", "lambda.1se")) {
+    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.lamda.vec_VarName(lambda = .x))
     return(list_VarName_lamda)
 }
 
@@ -829,35 +829,40 @@ cat("    ***********************************************************************
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 
-TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.vec_VarName_lamda(lambda = "lambda.min") %>% dput
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda.vec_VarName(lambda = "lambda.min") %>% dput
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.vec_VarName_lamda(lambda = "lambda.1se") %>% dput
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda.vec_VarName(lambda = "lambda.1se") %>% dput
 
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.list_VarName_lamda() %>% str()
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.vec_VarName() %>% str()
 
 ```
 
 
-### runph_on_test() ----
-### summarizeph_model() ----
+
+### :: f_cv_glmnet_object.lamda.coxph() ----
+### :: runph_on_test() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to create and run Cox PH model on test set
-runph_on_test <- function(cv_glmnet_object, train_formula, test_data, lambda = "lambda.min") {
-  vec_VarName_lamda <- f_cv_glmnet_object.vec_VarName_lamda(cv_glmnet_object, lambda = lambda)
-  
-  # Construct new formula
-  response_vars <- all.vars(train_formula)[1:2]  # Extract response variables
-  new_formula <- as.formula(
-    paste(response_vars, "~", paste(vec_VarName_lamda, collapse = " + "))
-  )
-  
-  # Fit Cox PH model on test set
-  cox_model <- coxph(new_formula, data = test_data)
-  
-  return(cox_model)
+f_cv_glmnet_object.lamda.coxph <- function(cv_glmnet_object, train_formula, test_data, lambda = "lambda.min") {
+    vec_VarName_lamda <- f_cv_glmnet_object.lamda.vec_VarName(cv_glmnet_object, lambda = lambda)
+    
+    # Construct new formula
+    response_vars <- all.vars(train_formula)[1:2]  # Extract response variables
+    new_formula <- as.formula(
+        paste(response_vars, "~", paste(vec_VarName_lamda, collapse = " + "))
+    )
+    
+    # Fit Cox PH model on test set
+    cox_model <- coxph(new_formula, data = test_data)
+    
+    return(cox_model)
 }
+```
 
+
+### :: summarizeph_model() ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to summarize Cox PH model with exponentiated coefficients
 summarizeph_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
   if (!inherits(cox_model, "coxph")) {
@@ -908,7 +913,11 @@ summarizeph_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
   
   return(summary_df)
 }
+```
 
+
+### :: generate_summaries() ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to generate Cox PH summaries for all model combinations
 generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas = c("lambda.min", "lambda.1se")) {
   model_combinations <- expand.grid(
@@ -945,10 +954,14 @@ generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas 
   
   return(coxph_summaries)
 }
+```
 
+
+### :: coxph_summaries() ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Generate Cox PH summaries
 coxph_summaries <- generate_summaries(
-  glmnet_models = TheTrainSet.cv.glmnet.a10,
+  glmnet_models = TheTrainSet.cv.glmnet_a10,
   train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
   test_data = TheTestSet,
   lambdas = c("lambda.min", "lambda.1se")
