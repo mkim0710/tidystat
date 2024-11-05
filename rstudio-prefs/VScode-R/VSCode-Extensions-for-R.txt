@@ -11,10 +11,11 @@
     "files.associations": {
         "*.rmd": "rmd"
     },
+(rmd outline 잘 나옴?! by which extension?)
 ##->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->
     "files.associations": {
         "*.rmd": "quarto"
-    },
+    }, 
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 @ VS Code Insider
     "files.associations": {
@@ -44,6 +45,9 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=REditor
 *** Downloads: 2,097,068
 *** Stars: 5/5(41)
 https://github.com/REditorSupport/vscode-R/wiki/R-Markdown#editing-r-markdown-documents
+    "files.associations": {
+        "*.rmd": "rmarkdown",
+    },???
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 Name: Markdown All in One
@@ -78,6 +82,7 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=quarto.
 *** Official by Quarto.org?!
 -> Associate `Rmd` with `Quarto`?!
 -> But not specific for R Markdown?
+-> Not good: shows YAML, (code cell) etc. 
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 Name: R Markdown All in One
