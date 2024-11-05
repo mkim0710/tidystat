@@ -751,9 +751,11 @@ cat("    ***********************************************************************
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 
-cv_glmnet_object <- TheTrainSet.cv.glmnet.a10
-f_cv_glmnet_object.mat_coef(cv_glmnet_object)
-
+TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.mat_coef()
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.mat_coef() %>% str()
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% as.data.frame() %>% str()
 ```
 
 
@@ -793,36 +795,46 @@ f_cv_glmnet_object.mat_coef(cv_glmnet_object)
 
 
 
-## :: f_cv_glmnet_object.vec_VarName.select = function()
-### |> f_cv_glmnet_object.vec_VarName.select()
+## :: f_cv_glmnet_object.vec_VarName_lamda = function()
+### :: f_cv_glmnet_object.list_VarName_lamda = function()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-f_cv_glmnet_object.vec_VarName.select <- function(cv_glmnet_object, lambda = "lambda.min") {
+f_cv_glmnet_object.vec_VarName_lamda <- function(cv_glmnet_object, lambda = "lambda.min") {
     # Extract coefficients at specified lambda
     coef_matrix <- coef(cv_glmnet_object, s = lambda)
     
     # Identify non-zero coefficients
-    vec_VarName.select <- rownames(coef_matrix)[which(coef_matrix != 0)]
+    vec_VarName_lamda <- rownames(coef_matrix)[which(coef_matrix != 0)]
     
     # Check if any variables were selected
-    if (length(vec_VarName.select) == 0) {
+    if (length(vec_VarName_lamda) == 0) {
         message("No variables were selected at the specified lambda.")
         return(NULL)
     }
     
     # Remove the intercept if present
-    vec_VarName.select <- vec_VarName.select[vec_VarName.select != "(Intercept)"]
+    vec_VarName_lamda <- vec_VarName_lamda[vec_VarName_lamda != "(Intercept)"]
     
-    return(vec_VarName.select)
+    return(vec_VarName_lamda)
 }
 
-# Extract variables for alpha = 1
-vec_VarName.select_a1 <- f_cv_glmnet_object.vec_VarName.select(TheTrainSet.cv.glmnet.a10)
-vec_VarName.select_a1 %>% dput
+f_cv_glmnet_object.list_VarName_lamda = function(cv_glmnet_object, vec_lambda = c("lambda.min", "lambda.1se")) {
+    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.vec_VarName_lamda(lambda = .x))
+    return(list_VarName_lamda)
+}
 
-# # Extract variables for alpha = 0.5
-# vec_VarName.select_a0_5 <- f_cv_glmnet_object.vec_VarName.select(TheTrainSet.cv.glmnet.a05)
-# vec_VarName.select_a0_5 %>% dput
 
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.vec_VarName_lamda(lambda = "lambda.min") %>% dput
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.vec_VarName_lamda(lambda = "lambda.1se") %>% dput
+
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet.a10 %>% f_cv_glmnet_object.list_VarName_lamda() %>% str()
 
 ```
 
@@ -832,12 +844,12 @@ vec_VarName.select_a1 %>% dput
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to create and run Cox PH model on test set
 runph_on_test <- function(cv_glmnet_object, train_formula, test_data, lambda = "lambda.min") {
-  vec_VarName.select <- f_cv_glmnet_object.vec_VarName.select(cv_glmnet_object, lambda = lambda)
+  vec_VarName_lamda <- f_cv_glmnet_object.vec_VarName_lamda(cv_glmnet_object, lambda = lambda)
   
   # Construct new formula
   response_vars <- all.vars(train_formula)[1:2]  # Extract response variables
   new_formula <- as.formula(
-    paste(response_vars, "~", paste(vec_VarName.select, collapse = " + "))
+    paste(response_vars, "~", paste(vec_VarName_lamda, collapse = " + "))
   )
   
   # Fit Cox PH model on test set
