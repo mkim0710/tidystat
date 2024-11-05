@@ -720,13 +720,13 @@ formula <- as.formula(y ~ .)
 
 
 ### TheTrainSet |> **f_df.cv.glmnet**() ----
-#### :: TheTrainSet.cv.glmnet.a00
-##### :: TheTrainSet.cv.glmnet.a00.coef = TheTrainSet.cv.glmnet.a00 |> 
+#### :: TheTrainSet.cv.glmnet.a10
+##### :: TheTrainSet.cv.glmnet.a10.coef = TheTrainSet.cv.glmnet.a10 |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 
 alpha = 1
 # Train glmnet Cox models
-TheTrainSet.cv.glmnet.a00 <- f_df.cv.glmnet(
+TheTrainSet.cv.glmnet.a10 <- f_df.cv.glmnet(
   train_data = TheTrainSet,
   formula = formula,
   i.alpha = 1,
@@ -749,7 +749,7 @@ cat("    ***********************************************************************
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 
-cv_glmnet_object <- TheTrainSet.cv.glmnet.a00
+cv_glmnet_object <- TheTrainSet.cv.glmnet.a10
 f_cv_glmnet_object.mat_coef(cv_glmnet_object)
 
 ```
@@ -814,12 +814,12 @@ extract_selected_variables <- function(cv_glmnet_model, lambda = "lambda.min") {
 }
 
 # Extract variables for alpha = 1
-selected_vars_a1 <- extract_selected_variables(TheTrainSet.cv.glmnet.alphas$a1)
+selected_vars_a1 <- extract_selected_variables(TheTrainSet.cv.glmnet.a10)
 selected_vars_a1 %>% dput
 
-# Extract variables for alpha = 0.5
-selected_vars_a0_5 <- extract_selected_variables(TheTrainSet.cv.glmnet.alphas$a0.5)
-selected_vars_a0_5 %>% dput
+# # Extract variables for alpha = 0.5
+# selected_vars_a0_5 <- extract_selected_variables(TheTrainSet.cv.glmnet.a05)
+# selected_vars_a0_5 %>% dput
 
 
 ```
@@ -896,7 +896,7 @@ summarizeph_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
 }
 
 # Function to generate Cox PH summaries for all model combinations
-generateph_summaries <- function(glmnet_models, train_formula, test_data, lambdas = c("lambda.min", "lambda.1se")) {
+generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas = c("lambda.min", "lambda.1se")) {
   model_combinations <- expand.grid(
     alpha = c(1, 0.5),
     lambda = lambdas,
@@ -933,7 +933,7 @@ generateph_summaries <- function(glmnet_models, train_formula, test_data, lambda
 }
 
 # Generate Cox PH summaries
-coxph_summaries <- generateph_summaries(
+coxph_summaries <- generate_summaries(
   glmnet_models = TheTrainSet.cv.glmnet.alphas,
   train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
   test_data = TheTestSet,
