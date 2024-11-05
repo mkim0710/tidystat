@@ -160,6 +160,7 @@ archive/
 *.rda
 *.rds
 # *.csv # -> use pre-commit hook to block commit based on the size limit
+*.ffs_db
 
 # Executable files & Binary files
 *.exe

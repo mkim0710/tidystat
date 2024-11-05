@@ -1,0 +1,121 @@
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+@ VS Code
+    "files.associations": {
+        "*.rmd": "rmd"
+    },
+(rmd outline 잘 나옴?! by which extension?)
+##->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->
+    "files.associations": {
+        "*.rmd": "quarto"
+    }, 
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+@ VS Code Insider
+    "files.associations": {
+        "*.rmd": "rmd",
+        "*.Rmd": "quarto"
+    },
+##->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->->
+    "files.associations": {
+        "*.rmd": "rmd"
+    },
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## Need to install in Container
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+Name: R
+Id: REditorSupport.r
+Description: R Extension for Visual Studio Code
+Version: 2.8.4
+Publisher: REditorSupport
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=REditorSupport.r
+*** Downloads: 2,097,068
+*** Stars: 5/5(41)
+https://github.com/REditorSupport/vscode-R/wiki/R-Markdown#editing-r-markdown-documents
+    "files.associations": {
+        "*.rmd": "rmarkdown",
+    },???
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+Name: Markdown All in One
+Id: yzhang.markdown-all-in-one
+Description: All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)
+Version: 3.6.2
+Publisher: Yu Zhang
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one
+*** Downloads: 9,645,224
+*** Stars: 4.5/5(155)
+-> But not specific for R Markdown?
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+Name: R Tools
+Id: Mikhail-Arkhipov.r
+Description: R Tools (IntelliSense, signature help, tooltips and more)
+Version: 0.0.32
+Publisher: Mikhail Arkhipov
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=Mikhail-Arkhipov.r
+*** Downloads: 315,683
+*** Stars: 4/5(3)
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+Name: Quarto
+Id: quarto.quarto
+Description: Extension for the Quarto scientific and technical publishing system.
+Version: 1.116.0
+Publisher: Quarto
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=quarto.quarto
+*** Downloads: 150,202
+*** Stars: 5/5(18)
+*** Official by Quarto.org?!
+-> Associate `Rmd` with `Quarto`?!
+-> But not specific for R Markdown?
+-> Not good: shows YAML, (code cell) etc. 
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+Name: R Markdown All in One
+Id: TianyiShi.rmarkdown
+Description: R Markdown, Bookdown and Blogdown Support
+Version: 0.0.14
+Publisher: Tianyi Shi
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=TianyiShi.rmarkdown
+*** Downloads: 69,364
+*** Stars: 5/5(4)
+
+*** Syntax highlights for R markdown
+Associate `.Rmd` with `rmarkdown`
+However, OUTLINE is not available?? -_-
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+Name: R Extension Pack
+Id: Ikuyadeu.r-pack
+Description: Popular Visual Studio Code extensions for R
+Version: 0.0.2
+Publisher: Yuki Ueda
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=Ikuyadeu.r-pack
+*** Downloads: 55,699
+*** Stars: 5/5(1)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+
+
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
