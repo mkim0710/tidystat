@@ -1,0 +1,9 @@
+Extensions installed on Container rocker/verse:4.3.3 (rv433-github_tidystat2-58723-restart) @ desktop-linux:
+github.copilot@1.243.1195
+github.copilot-chat@0.23.2024110501
+mikhail-arkhipov.r@0.0.32
+ms-ceintl.vscode-language-pack-ko@1.95.2024103009
+quarto.quarto@1.116.0
+reditorsupport.r@2.8.4
+tianyishi.rmarkdown@0.0.14
+yzhang.markdown-all-in-one@3.6.2
