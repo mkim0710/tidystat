@@ -95,6 +95,8 @@ if(.subpath!="") utils::browseURL(normalizePath(.subpath))
 # env1 = as.environment(env1)
 ### .GlobalEnv$env1$env.internal = new.env() ====  
 .subenvname = "env.internal"; .parentname = "env1"; if(!.subenvname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.subenvname]] = new.env() }
+### .GlobalEnv$env1$env.internal.attach = new.env() ====  
+.subenvname = "env.internal.attach"; .parentname = "env1"; if(!.subenvname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.subenvname]] = new.env() }
 ### .GlobalEnv$env1$f = list() ====  
 .sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 

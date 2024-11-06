@@ -117,6 +117,8 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 .envname = "env1"; if(!exists(.envname, envir=.GlobalEnv)) { assign(.envname, new.env(), envir=.GlobalEnv) }
 ### .GlobalEnv$env1$env.internal = new.env() ====  
 .subenvname = "env.internal"; .parentname = "env1"; if(!.subenvname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.subenvname]] = new.env() }
+### .GlobalEnv$env1$env.internal.attach = new.env() ====  
+.subenvname = "env.internal.attach"; .parentname = "env1"; if(!.subenvname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.subenvname]] = new.env() }
 ### .GlobalEnv$env1$f = list() ====  
 .sublistname = "f"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
 

@@ -728,7 +728,7 @@ alpha = 1
 # Train glmnet Cox models
 TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
   train_data = TheTrainSet,
-  formula = formula,
+  formula = as.formula(y ~ .),
   i.alpha = 1,
   family = "binomial",
   type_measure = "auc",
@@ -739,6 +739,8 @@ TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
   plot_size = 1280,
   output_dir = "glmnet_outputs"
 )
+
+cv_glmnet_object = TheTrainSet.cv.glmnet_a10
 
 # # Save all glmnet models for future use
 # .objectname = "TheTrainSet.cv.glmnet_a10"
@@ -840,33 +842,49 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.vec_VarName() %>% st
 
 
 
-### :: f_cv_glmnet_object.lamda.coxph() ----
-### :: runph_on_test() ----
+### :: f_cv_glmnet_object.lamda.glm() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to create and run Cox PH model on test set
-f_cv_glmnet_object.lamda.coxph <- function(cv_glmnet_object, train_formula, test_data, lambda = "lambda.min") {
+f_cv_glmnet_object.lamda.glm <- function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se") {
     vec_VarName_lamda <- f_cv_glmnet_object.lamda.vec_VarName(cv_glmnet_object, lambda = lambda)
     
     # Construct new formula
-    response_vars <- all.vars(train_formula)[1:2]  # Extract response variables
-    new_formula <- as.formula(
-        paste(response_vars, "~", paste(vec_VarName_lamda, collapse = " + "))
+    formula.lhs <- formula[[2]]  # Extract response variables
+    formula_new <- as.formula(
+        paste(formula.lhs, "~", paste(vec_VarName_lamda, collapse = " + "))
     )
     
     # Fit Cox PH model on test set
-    cox_model <- coxph(new_formula, data = test_data)
+    glm_object <- glm(formula_new, family = family, data = test_data)
     
-    return(cox_model)
+    return(glm_object)
 }
+
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+TheTrainSet.cv.glmnet_a10.lambda.1se.glm <- 
+    TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda.glm(
+        formula = as.formula(y ~ .),
+        family = "binomial", 
+        test_data = TheTrainSet,
+        lambda = "lambda.1se"
+    )
+TheTrainSet.cv.glmnet_a10.lambda.1se.glm %>% coef %>% exp %>% round(3) %>% dput
+library(gtsummary)
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+TheTrainSet.cv.glmnet_a10.lambda.1se.glm %>% tbl_regression(exponentiate = TRUE) %>% as_tibble()
 ```
 
 
-### :: summarizeph_model() ----
+### :: summarize_model() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to summarize Cox PH model with exponentiated coefficients
-summarizeph_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
-  if (!inherits(cox_model, "coxph")) {
-    stop("Model is not a coxph object.")
+summarize_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
+  if (!inherits(cox_model, "glm")) {
+    stop("Model is not a glm object.")
   }
   
   # Extract summary
@@ -926,7 +944,7 @@ generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas 
     stringsAsFactors = FALSE
   )
   
-  coxph_summaries <- list()
+  glm_summaries <- list()
   
   for (i in 1:nrow(model_combinations)) {
     i.alpha <- model_combinations$alpha[i]
@@ -938,7 +956,7 @@ generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas 
     glmnet_model <- glmnet_models[[paste0("a", i.alpha)]]
     
     # Run Cox PH model on test set
-    cox_model <- runph_on_test(
+    cox_model <- f_cv_glmnet_object.lamda.glm(
       cv_glmnet_object = glmnet_model,
       train_formula = train_formula,
       test_data = test_data,
@@ -946,21 +964,21 @@ generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas 
     )
     
     # Summarize the model
-    summary_df <- summarizeph_model(cox_model, adjust_p = c("fdr", "bonferroni"))
+    summary_df <- summarize_model(cox_model, adjust_p = c("fdr", "bonferroni"))
     
     # Store the summary with a descriptive name
-    coxph_summaries[[model_name]] <- summary_df
+    glm_summaries[[model_name]] <- summary_df
   }
   
-  return(coxph_summaries)
+  return(glm_summaries)
 }
 ```
 
 
-### :: coxph_summaries() ----
+### :: glm_summaries() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Generate Cox PH summaries
-coxph_summaries <- generate_summaries(
+glm_summaries <- generate_summaries(
   glmnet_models = TheTrainSet.cv.glmnet_a10,
   train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
   test_data = TheTestSet,
@@ -968,10 +986,10 @@ coxph_summaries <- generate_summaries(
 )
 
 # # Save Cox PH summaries to Excel
-# write.xlsx(coxph_summaries, "CoxPH_Summaries.xlsx", asTable = TRUE)
+# write.xlsx(glm_summaries, "glm_Summaries.xlsx", asTable = TRUE)
 # 
 # # Open the Excel file (optional)
-# openXL("CoxPH_Summaries.xlsx")
+# openXL("glm_Summaries.xlsx")
 
 ```
   
