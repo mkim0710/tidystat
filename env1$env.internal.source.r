@@ -153,6 +153,33 @@ env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ f_CodeText, f_function ----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_function.load2env.internal ====  
+env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE) {
+    if(is.null(function.reload)) function.reload = FALSE 
+        
+    if(is.null(env1_subenv_name)) {
+        if(function.reload || !function_name %in% names(.GlobalEnv$env1)) {
+            .GlobalEnv$env1[[function_name]] = function_object
+            if(runLoadedFunction) {
+                cat("> .GlobalEnv$env1$",function_name,"()\n",sep=""); get(.GlobalEnv$env1[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
+            }
+            if(show_packageStartupMessage) packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",function_name))
+        }
+    } else {
+        if(function.reload || !function_name %in% names(.GlobalEnv$env1[[env1_subenv_name]])) {
+            .GlobalEnv$env1[[env1_subenv_name]][[function_name]] = function_object
+            if(runLoadedFunction) {
+                if(is.environment(.GlobalEnv$env1[[env1_subenv_name]])) {
+                    cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(function_name, envir=.GlobalEnv$env1[[env1_subenv_name]])() # Run the loaded function by default
+                } else {
+                    cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(env1_subenv_name[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
+                }
+            }
+            if(show_packageStartupMessage) packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",env1_subenv_name,"$", function_name))
+        }
+    }
+}
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_CodeText.echo ====
 # Rdev/00_base_program/f_CodeText.echo.dev.r
 .tmp$objectname = "f_CodeText.echo"
@@ -297,35 +324,6 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
-
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_function.load2env.internal ====  
-env1$env.internal$f_function.load2env.internal = function(function_object, function_name, env1_subenv_name = "env.internal", show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE) {
-    if(is.null(function.reload)) function.reload = FALSE 
-        
-    if(is.null(env1_subenv_name)) {
-        if(function.reload || !function_name %in% names(.GlobalEnv$env1)) {
-            .GlobalEnv$env1[[function_name]] = function_object
-            if(runLoadedFunction) {
-                cat("> .GlobalEnv$env1$",function_name,"()\n",sep=""); get(.GlobalEnv$env1[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
-            }
-            if(show_packageStartupMessage) packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",function_name))
-        }
-    } else {
-        if(function.reload || !function_name %in% names(.GlobalEnv$env1[[env1_subenv_name]])) {
-            .GlobalEnv$env1[[env1_subenv_name]][[function_name]] = function_object
-            if(runLoadedFunction) {
-                if(is.environment(.GlobalEnv$env1[[env1_subenv_name]])) {
-                    cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(function_name, envir=.GlobalEnv$env1[[env1_subenv_name]])() # Run the loaded function by default
-                } else {
-                    cat("> .GlobalEnv$env1$",env1_subenv_name,"$",function_name,"()\n",sep=""); get(env1_subenv_name[[function_name]], envir=.GlobalEnv$env1)() # Run the loaded function by default
-                }
-            }
-            if(show_packageStartupMessage) packageStartupMessage(paste0("Loading: ", ".GlobalEnv$env1$",env1_subenv_name,"$", function_name))
-        }
-    }
-}
-
 
 
 #_________________________________________________________________________________|----  
@@ -568,7 +566,7 @@ env1$env.internal$f_URL.open_in_edge_app <- function(URL) {
 .tmp$object = env1$env.internal[[.tmp$objectname]]
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # # "https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd" %>% cat('if (Sys.info()["sysname"] == "Windows") { \'"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe" --app="',., '"\' |> system(intern=TRUE) } else { utils::browseURL("',.,'") }', sep="")
 env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
     # URL %>% cat("if (.Platform$OS.type == 'windows') { '\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge_proxy.exe\" --app=\"",.,"\"' |> system(intern=TRUE) } else { utils::browseURL('",.,"') }", sep="")
@@ -576,8 +574,7 @@ env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
 }
 # env1$env.internal$f_URL.open_in_edge_app.printRCode <- function(URL) {
 #     URL %>% cat('env1$env.internal$f_URL.open_in_edge_app("',.,'")  \n', sep="")
-# }
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
 env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
     URL %>% cat('cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="',.,'"  \n', sep="")
@@ -590,11 +587,20 @@ env1$env.internal$f_URL.open_in_edge_app.printPowerShellCode <- function(URL) {
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### :: f_file.systemStart ====  
 # Function to open files with the system's default application (fallback)
-env1$env.internal$f_file.systemStart <- function(file) {
+.tmp$objectname = "f_file.systemStart"
+.tmp$object = function(file) {
     system(paste("start", shQuote(file)), wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
     # file |> shQuote() %>% paste0("start ",.) |> system(wait = FALSE, ignore.stdout = TRUE, ignore.stderr = TRUE)
 }
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+### :: alias = file.open.systemStart  ----  
+.tmp$aliasname = "file.open.systemStart"
+attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
+env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 #### :: f_file_PDF.sumatra ====  
 # file.edit("D:/OneDrive/[][Rproject]/github_tidystat/Rdev/00_base_program/f_file_PDF.sumatra.dev.r")
 # Function to open PDF with Sumatra PDF
