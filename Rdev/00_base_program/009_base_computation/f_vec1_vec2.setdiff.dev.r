@@ -2,7 +2,7 @@
 
 
 
-f_vec1_vec2.setdiff = function(vec1, vec2) {
+f_vec1_vec2.setdiff_list = function(vec1, vec2) {
     out = list()
     out$vec1.character = vec1 = as.character(vec1)
     out$vec2.character = vec2 = as.character(vec2)
@@ -13,7 +13,7 @@ f_vec1_vec2.setdiff = function(vec1, vec2) {
     out$identical = all.equal(vec1, vec2)
     out
 }
-f_vec1_vec2.setdiff(
+f_vec1_vec2.setdiff_list(
     NHID_JK_GJ_0213.bind_rows.integer.by.PERSON_ID.min.HCHK_YEAR %>% dplyr::filter(AGE_GROUP %in% 5:17) %>% {.$PERSON_ID}
     , 
     NHID_GY40_0213.bind_rows.factor.PERSON_ID.SICK_SYM_3char.by.PERSON_ID.hyperG.FastingGlucose.Metformin %>% {.$PERSON_ID}

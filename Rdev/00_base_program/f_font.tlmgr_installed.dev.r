@@ -375,10 +375,10 @@ c("i amscls: AMS document classes for LaTeX",
   "i zapfding: URW 'Base 35' font pack for LaTeX")
 .tlmgr_installed_packages.MAGB760M13700KF |> all.equal(.tlmgr_installed_packages)
 .tlmgr_installed_packages.MAGB760M13700KF |> str()  ###----
-.tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+.tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff_list(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
 ### > .tlmgr_installed_packages.MAGB760M13700KF %>% str  ###----  
 #  chr [1:138] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
-### > .tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
+### > .tlmgr_installed_packages.MAGB760M13700KF |> env1$f$f_vec1_vec2.setdiff_list(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
 # List of 7
 #  $ vec1.character: chr [1:138] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i arphic: Arphic (Chinese) font packages" ...
 #  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
@@ -523,10 +523,10 @@ c("i arphic: Arphic (Chinese) font packages",
   "i zapfding: URW 'Base 35' font pack for LaTeX")
 .tlmgr_installed_packages.RockerVerse |> all.equal(.tlmgr_installed_packages)
 .tlmgr_installed_packages.RockerVerse |> str()  ###----
-.tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
+.tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff_list(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----
 ### > .tlmgr_installed_packages.RockerVerse |> str()  ###----  
 #  chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" ...
-### > .tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
+### > .tlmgr_installed_packages.RockerVerse |> env1$f$f_vec1_vec2.setdiff_list(.tlmgr_installed_packages.ASRockX300Ryzen5600G) |> str()  ### ----  
 # List of 7
 #  $ vec1.character: chr [1:115] "i ae: Virtual fonts for T1 encoded CMR-fonts" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...
 #  $ vec2.character: chr [1:126] "i amscls: AMS document classes for LaTeX" "i amsfonts: TeX fonts from the American Mathematical Society" "i amsmath: AMS mathematical facilities for LaTeX" "i atbegshi: Execute stuff at \\shipout time" ...

@@ -63,7 +63,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_vec.dput_line_by_line                     :function (vec, space_between_vec_elements = "  \n  ", sep_parentheses = FALSE, end_of_text = "  \n")  
 #   ..$ f_list.dput_line_by_line                    :function (list_vec, space_between_vec_elements = "\n         ", space_between_list_elements = "\n     ", 
 #     sep_parentheses = FALSE, end_of_text = "\n")  
-#   ..$ f_vec1_vec2.setdiff                         :function (vec1, vec2)  
+#   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
 #   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0")  
@@ -141,7 +141,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     end_of_text = "  \n")  
 #   ..$ f_list.dput_line_by_line                    :function (list_vec, space_between_vec_elements = "\n         ", space_between_list_elements = "\n     ", 
 #     sep_parentheses = FALSE, end_of_text = "\n")  
-#   ..$ f_vec1_vec2.setdiff                         :function (vec1, vec2)  
+#   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
 #   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0")  
@@ -221,7 +221,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #   ..$ f_vec.dput_line_by_line                     :function (vec, space_between_vec_elements = "  \n  ", sep"..
 #   ..$ f_list.dput_line_by_line                    :function (list_vec, space_between_vec_elements = "\n     "..
 #     sep_parentheses = FALSE, end_of_text = "\n")  
-#   ..$ f_vec1_vec2.setdiff                         :function (vec1, vec2)  
+#   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, pr"..
 #   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, pr"..
@@ -299,7 +299,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 #     end_of_text = "  \n")  
 #   ..$ f_list.dput_line_by_line                    :function (list_vec, space_"..
 #     sep_parentheses = FALSE, end_of_text = "\n")  
-#   ..$ f_vec1_vec2.setdiff                         :function (vec1, vec2)  
+#   ..$ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 #   ..$ f_df.print_byVar                            :function (df, byVar, n = NU..
 #   ..$ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA."..
 #   ..$ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA."..
@@ -383,7 +383,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_list.dput_line_by_line :function (list_vec, space_between_vec_elements = "\n ",
 #    space_between_list_elements = "\n ",
 # sep_parentheses = FALSE, end_of_text = "\n")
-# ..$ f_vec1_vec2.setdiff :function (vec1, vec2)
+# ..$ f_vec1_vec2.setdiff_list :function (vec1, vec2)
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
 # ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix =
 #    ".deltaT0")
@@ -482,7 +482,7 @@ env1 |> as.list() |> str(max.level = 2, give.attr = FALSE, strict.width = "wrap"
 # ..$ f_list.dput_line_by_line :function (list_vec, space_between_vec_elements =
 #    "\n ", space_between_list_elements = "\n ",
 # sep_parentheses = FALSE, end_of_text = "\n")
-# ..$ f_vec1_vec2.setdiff :function (vec1, vec2)
+# ..$ f_vec1_vec2.setdiff_list :function (vec1, vec2)
 # ..$ f_df.print_byVar :function (df, byVar, n = NULL)
 # ..$ f_df.add_VarNameT.deltaT0 :function (DataSet.Date.NA.rmAllNA, VarName0,
 #    VarNameT, prefix = "", suffix = ".deltaT0")
@@ -608,7 +608,7 @@ env1 |> as.list() |> env1$f$f_list.str_by_element()
 ## $ f_vec.dput_line_by_line                     :function (vec, space_between_vec_elements = "  \n  ", sep_parentheses = FALSE, end_of_text = "  \n")  
 ## $ f_list.dput_line_by_line                    :function (list_vec, space_between_vec_elements = "\n         ", space_between_list_elements = "\n     ", 
 ##    sep_parentheses = FALSE, end_of_text = "\n")  
-## $ f_vec1_vec2.setdiff                         :function (vec1, vec2)  
+## $ f_vec1_vec2.setdiff_list                         :function (vec1, vec2)  
 ## $ f_df.print_byVar                            :function (df, byVar, n = NULL)  
 ## $ f_df.add_VarNameT.deltaT0                   :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".deltaT0")  
 ## $ f_df.add_VarNameT.pdT0                      :function (DataSet.Date.NA.rmAllNA, VarName0, VarNameT, prefix = "", suffix = ".pdT0")  
