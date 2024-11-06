@@ -797,10 +797,10 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% 
 
 
 
-## :: f_cv_glmnet_object.lamda.vec_VarName = function()
-### :: f_cv_glmnet_object.lamda_list.vec_VarName = function()
+### :: f_cv_glmnet_object.lamda_1se.vec_VarName = function()
+#### :: f_cv_glmnet_object.lamda_list.vec_VarName = function()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-f_cv_glmnet_object.lamda.vec_VarName <- function(cv_glmnet_object, lambda = "lambda.min") {
+f_cv_glmnet_object.lamda_1se.vec_VarName <- function(cv_glmnet_object, lambda = "lambda.1se") {
     # Extract coefficients at specified lambda
     coef_matrix <- coef(cv_glmnet_object, s = lambda)
     
@@ -820,7 +820,7 @@ f_cv_glmnet_object.lamda.vec_VarName <- function(cv_glmnet_object, lambda = "lam
 }
 
 f_cv_glmnet_object.lamda_list.vec_VarName = function(cv_glmnet_object, vec_lambda = c("lambda.min", "lambda.1se")) {
-    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.lamda.vec_VarName(lambda = .x))
+    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.lamda_1se.vec_VarName(lambda = .x))
     return(list_VarName_lamda)
 }
 
@@ -831,9 +831,9 @@ cat("    ***********************************************************************
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 
-TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda.vec_VarName(lambda = "lambda.min") %>% dput
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_1se.vec_VarName(lambda = "lambda.min") %>% dput
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda.vec_VarName(lambda = "lambda.1se") %>% dput
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_1se.vec_VarName(lambda = "lambda.1se") %>% dput
 
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.vec_VarName() %>% str()
@@ -842,11 +842,12 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.vec_VarName() %>% st
 
 
 
-### :: f_cv_glmnet_object.lamda.glm() ----
+### :: f_cv_glmnet_object.lamda_1se.glm() ----
+### :: f_cv_glmnet_object.lamda_list.glm() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to create and run Cox PH model on test set
-f_cv_glmnet_object.lamda.glm <- function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se") {
-    vec_VarName_lamda <- f_cv_glmnet_object.lamda.vec_VarName(cv_glmnet_object, lambda = lambda)
+f_cv_glmnet_object.lamda_1se.glm <- function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se") {
+    vec_VarName_lamda <- f_cv_glmnet_object.lamda_1se.vec_VarName(cv_glmnet_object, lambda = lambda)
     
     # Construct new formula
     formula.lhs <- formula[[2]]  # Extract response variables
@@ -854,28 +855,44 @@ f_cv_glmnet_object.lamda.glm <- function(cv_glmnet_object, formula = as.formula(
         paste(formula.lhs, "~", paste(vec_VarName_lamda, collapse = " + "))
     )
     
-    # Fit Cox PH model on test set
+    # Fit glm model on test set
     glm_object <- glm(formula_new, family = family, data = test_data)
     
     return(glm_object)
 }
+
+
+f_cv_glmnet_object.lamda_list.glm = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, vec_lambda = c("lambda.min", "lambda.1se")) {
+    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.lamda_1se.glm(formula = formula, family = family, test_data = test_data, lambda = .x))
+    return(list_VarName_lamda)
+}
+
 
 cat("    ________________________________________________________________________    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat("    ************************************************************************    \n")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
-TheTrainSet.cv.glmnet_a10.lambda.1se.glm <- 
-    TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda.glm(
+TheTrainSet.cv.glmnet_a10.lambda_1se.glm <- 
+    TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_1se.glm(
         formula = as.formula(y ~ .),
         family = "binomial", 
         test_data = TheTrainSet,
         lambda = "lambda.1se"
     )
-TheTrainSet.cv.glmnet_a10.lambda.1se.glm %>% coef %>% exp %>% round(3) %>% dput
-library(gtsummary)
+TheTrainSet.cv.glmnet_a10.lambda_1se.glm %>% coef %>% exp %>% round(3) %>% dput
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-TheTrainSet.cv.glmnet_a10.lambda.1se.glm %>% tbl_regression(exponentiate = TRUE) %>% as_tibble()
+library(gtsummary)
+TheTrainSet.cv.glmnet_a10.lambda_1se.glm %>% tbl_regression(exponentiate = TRUE) %>% as_tibble()
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+TheTrainSet.cv.glmnet_a10.lambda_list.glm <- 
+    TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.glm(
+        formula = as.formula(y ~ .),
+        family = "binomial", 
+        test_data = TheTrainSet
+    )
+TheTrainSet.cv.glmnet_a10.lambda_list.glm %>% str(max.level = 2, give.attr = FALSE)
+TheTrainSet.cv.glmnet_a10.lambda_list.glm %>% map(function(ob) ob %>% tbl_regression(exponentiate = TRUE) %>% as_tibble() )
 ```
 
 
@@ -956,7 +973,7 @@ generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas 
     glmnet_model <- glmnet_models[[paste0("a", i.alpha)]]
     
     # Run Cox PH model on test set
-    cox_model <- f_cv_glmnet_object.lamda.glm(
+    cox_model <- f_cv_glmnet_object.lamda_1se.glm(
       cv_glmnet_object = glmnet_model,
       train_formula = train_formula,
       test_data = test_data,
