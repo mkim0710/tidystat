@@ -93,7 +93,7 @@ if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = 
 ##________________________________________________________________________________  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ get_info ----  
+# @@ system ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: get_system_info ====  
@@ -139,6 +139,14 @@ env1$env.internal$get_software_versions = function(library_names = c("tidyverse"
   }), library_names)
   return(version_list)
 }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: warnings.summary ====  
+## :: warnings.last ====  
+## :: warnings.last10 ====  
+env1$env.internal.attach$warnings.summary = function() {summary(warnings())}
+env1$env.internal.attach$warnings.last = function() {last.warning}
+env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ f_CodeText, f_function ----  
