@@ -757,9 +757,9 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_vec1_vec2.setdiff =  ----  
-# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff.dev.r
-.tmp$objectname = "f_vec1_vec2.setdiff"
+## :: f_vec1_vec2.setdiff_list =  ----  
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/f_vec1_vec2.setdiff_list.dev.r
+.tmp$objectname = "f_vec1_vec2.setdiff_list"
 .tmp$object = function(vec1, vec2) {
     out = list()
     out$vec1.character = vec1 = as.character(vec1)
