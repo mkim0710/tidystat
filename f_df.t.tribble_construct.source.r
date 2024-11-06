@@ -663,6 +663,7 @@ env1$env.internal$f_vec.format_line_by_line <- function(vec, space_between_vec_e
 ### :: alias = dput.vec.line_by_line  ----  
 .tmp$aliasname = "dput.vec.line_by_line"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.dput_line_by_line.dev.r
@@ -693,6 +694,7 @@ env1$env.internal$f_list.format_line_by_line <- function(list_vec, space_between
 ### :: alias = dput.list.line_by_line  ----  
 .tmp$aliasname = "dput.list.line_by_line"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 
@@ -719,6 +721,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### :: alias = str.list_by_element  ----  
 .tmp$aliasname = "str.list_by_element"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -741,6 +744,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### :: alias = print.list_tibble  ----  
 .tmp$aliasname = "print.list_tibble"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -777,6 +781,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### :: alias = setdiff_list.vec1_vec2  ----  
 .tmp$aliasname = "setdiff_list.vec1_vec2"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 

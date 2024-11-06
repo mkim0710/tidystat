@@ -263,12 +263,14 @@ env1$env.internal.attach$warnings.last10 = function() {tail(warnings(), 10)}
 ### :: alias = eval.parse.CodeText.echo  ----  
 .tmp$aliasname = "eval.parse.CodeText.echo"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### :: alias = echo.eval.parse.CodeText  ----  
 .tmp$aliasname = "echo.eval.parse.CodeText"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 
@@ -292,6 +294,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### :: alias = system.TerminalFromRCodeText.echo  ----  
 .tmp$aliasname = "system.TerminalFromRCodeText.echo"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 
@@ -414,12 +417,14 @@ if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write =
 ### :: alias = list.files.size  ----  
 .tmp$aliasname = "list.files.size"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ### :: alias = dir.size  ----  
 .tmp$aliasname = "dir.size"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 
