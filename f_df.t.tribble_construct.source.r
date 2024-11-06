@@ -620,6 +620,7 @@ env1$env.internal$custom_context <- function(output_mode = "console", nspc = 2, 
 .tmp$object = function(object, ...) {  str(object, max.level = 2, ...)  }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal.attach"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## :: str_give_attr_F =  ----  
 .tmp$objectname = "str_give_attr_F"
 .tmp$object = function(object, ...) {  str(object, give.attr = FALSE, ...)  }
@@ -701,6 +702,10 @@ env1$f$f_list.str_by_element = function(ls, max.level = 2, give.attr = FALSE, ta
         cat("# ________________________________________________________________________________    \n")
     }
 }
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+### alias = str.list_by_element  ----  
+attributes(env1$f$f_list.str_by_element)$alias = c("env1$env.internal.attach$str.list_by_element = env1$f$f_list.str_by_element")
+env1$env.internal.attach$str.list_by_element = env1$f$f_list.str_by_element
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_chrNameValuePairs2vector =  ----  
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/11_metadata/f_chrNameValuePairs2vector.dev.Rmd
