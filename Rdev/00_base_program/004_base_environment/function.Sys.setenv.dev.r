@@ -86,13 +86,13 @@ Sys.getenv("LANGUAGE")
 # https://stackoverflow.com/questions/12760491/the-r-console-is-in-my-native-language-how-can-i-set-r-to-english
     
 Sys.setenv(LANG = "en")
-Sys.setenv(LANGUAGE="en");  # Sys.getenv("LANGUAGE");  
+Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");  
 
 # https://stackoverflow.com/questions/12642651/in-r-how-to-get-error-messages-in-english
 Sys.setenv(LANGUAGE='en')
 Sys.setenv(lang = "en_US")
 
-if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.utf8")
+if(Sys.info()["sysname"] == "Windows") Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
 Sys.setlocale("LC_MESSAGES", "en_US.utf8")
 Sys.setlocale("LC_MESSAGES", "C")
