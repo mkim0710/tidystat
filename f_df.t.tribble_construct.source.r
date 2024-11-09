@@ -864,7 +864,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ## :: f_list_list.to_matrix =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_list_list.to_data_frame.dev.r
 .tmp$objectname = "f_list_list.to_matrix"
-.tmp$object = function(list_list, type = "list_list[[indexColumn]][[indexRow]]") {
+.tmp$object = function(list_list = paste0("C",1:3) %>% set_names() %>% map(function(chr) paste0("R",1:2) %>% set_names() %>% map(paste0, chr)), type = "list_list[[indexColumn]][[indexRow]]") {
     if (type == "list_list[[indexColumn]][[indexRow]]") {
         out = simplify2array(list_list)
     } else if (type == "list_list[[indexRow]][[indexColumn]]") {
@@ -883,7 +883,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ## :: f_list_list.to_matrix =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_list_list.to_data_frame.dev.r
 .tmp$objectname = "f_list_list.to_data_frame"
-.tmp$object = function(list_list, type = "list_list[[indexColumn]][[indexRow]]") {
+.tmp$object = function(list_list = paste0("C",1:3) %>% set_names() %>% map(function(chr) paste0("R",1:2) %>% set_names() %>% map(paste0, chr)), type = "list_list[[indexColumn]][[indexRow]]") {
     if (type == "list_list[[indexColumn]][[indexRow]]") {
         out = simplify2array(list_list)
     } else if (type == "list_list[[indexRow]][[indexColumn]]") {
