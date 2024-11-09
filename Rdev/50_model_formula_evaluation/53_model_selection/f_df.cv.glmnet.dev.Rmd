@@ -598,7 +598,9 @@ options(width=120)
 ```
   
   
+# @@ SOURCE) Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
 # @@ RENDER) Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
+# @@ RENDER) Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.plot.dev.Rmd
 # @@ RENDER) Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet_alphas.dev.Rmd
 # @@ RENDER) Rdev/50_model_formula_evaluation/53_model_selection/trainset.cv.glmnet_alphas_cox.dev.Rmd
 # @@ RENDER) Rdev/60_communicate_report_export/f_df.glmnet.gtsummary_Table1.flextable.dev-GPT-pending.Rmd
@@ -676,7 +678,7 @@ f_df.cv.glmnet <- function(
     if (save_models) {
         model_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), ".rds"))
         saveRDS(cv_glmnet_object, model_filename)
-        message(paste("Saved model to", model_filename))
+        message(paste0("Saved model to: ", model_filename))
     }
     
     # Plot cross-validation results if required
@@ -796,6 +798,48 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% 
     V30          0.30254589  .         
 
 
+### :: |> plot()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+TheTrainSet.cv.glmnet_a10 %>% plot
+```
+
+
+
+### :: f_cv_glmnet_object.plot = function()
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+f_cv_glmnet_object.plot <- function(
+        cv_glmnet_object, 
+        lambda = "lambda.1se", 
+        i.alpha = 1,
+        family = "binomial",
+        type_measure = "auc",
+        save_plots = TRUE, 
+        plot_size = 1280,
+        output_dir = "glmnet_outputs"
+) {
+    plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
+        
+    if (save_plots) {
+        plot_filename <- file.path(output_dir, paste0("cv_glmnet_a", sprintf("%02d", i.alpha * 10), "_plot.png"))
+        png(plot_filename, width = plot_size, height = plot_size, units = "px", bg = "transparent")
+        plot(cv_glmnet_object, main = paste("Alpha =", i.alpha))
+        dev.off()
+        message(paste("Saved plot to", plot_filename))
+    }
+}
+
+
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+
+TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.plot(save_plots = FALSE)
+
+```
+
+
 
 ### :: f_cv_glmnet_object.lamda_1se.vec_VarName = function()
 #### :: f_cv_glmnet_object.lamda_list.vec_VarName = function()
@@ -843,7 +887,6 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.vec_VarName() %>% st
 
 
 ### :: f_cv_glmnet_object.lamda_1se.glm() ----
-### :: f_cv_glmnet_object.lamda_list.glm() ----
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 # Function to create and run Cox PH model on test set
 f_cv_glmnet_object.lamda_1se.glm <- function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se") {
@@ -861,13 +904,6 @@ f_cv_glmnet_object.lamda_1se.glm <- function(cv_glmnet_object, formula = as.form
     return(glm_object)
 }
 
-
-f_cv_glmnet_object.lamda_list.glm = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, vec_lambda = c("lambda.min", "lambda.1se")) {
-    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.lamda_1se.glm(formula = formula, family = family, test_data = test_data, lambda = .x))
-    return(list_VarName_lamda)
-}
-
-
 cat("    ________________________________________________________________________    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat("    ************************************************************************    \n")
@@ -884,7 +920,23 @@ TheTrainSet.cv.glmnet_a10.lambda_1se.glm %>% coef %>% exp %>% round(3) %>% dput
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 library(gtsummary)
 TheTrainSet.cv.glmnet_a10.lambda_1se.glm %>% tbl_regression(exponentiate = TRUE) %>% as_tibble()
+```
+
+
+### :: f_cv_glmnet_object.lamda_list.glm() ----
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+
+f_cv_glmnet_object.lamda_list.glm = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, vec_lambda = c("lambda.min", "lambda.1se")) {
+    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.lamda_1se.glm(formula = formula, family = family, test_data = test_data, lambda = .x))
+    return(list_VarName_lamda)
+}
+
+
+cat("    ________________________________________________________________________    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
+cat("    ************************************************************************    \n")
+cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
+cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
 TheTrainSet.cv.glmnet_a10.lambda_list.glm <- 
     TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.lamda_list.glm(
         formula = as.formula(y ~ .),
@@ -892,124 +944,11 @@ TheTrainSet.cv.glmnet_a10.lambda_list.glm <-
         test_data = TheTrainSet
     )
 TheTrainSet.cv.glmnet_a10.lambda_list.glm %>% str(max.level = 2, give.attr = FALSE)
-TheTrainSet.cv.glmnet_a10.lambda_list.glm %>% map(function(ob) ob %>% tbl_regression(exponentiate = TRUE) %>% as_tibble() )
+TheTrainSet.cv.glmnet_a10.lambda_list.glm %>% map(function(ob) ob %>% tbl_regression(exponentiate = TRUE) %>% as_tibble() ) %>% f_list_tibble.print_by_element()
 ```
 
 
-### :: summarize_model() ----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# Function to summarize Cox PH model with exponentiated coefficients
-summarize_model <- function(cox_model, adjust_p = c("fdr", "bonferroni")) {
-  if (!inherits(cox_model, "glm")) {
-    stop("Model is not a glm object.")
-  }
-  
-  # Extract summary
-  summary <- summary(cox_model)
-  
-  # Create a tidy dataframe using broom
-  summary_df <- tidy(summary, exponentiate = TRUE, conf.int = TRUE) %>%
-    rename(
-      Variable = term,
-      Hazard_Ratio = estimate,
-      CI_lower = conf.low,
-      CI_upper = conf.high,
-      p_value = p.value
-    )
-  
-  # Adjust p-values
-  for (method in adjust_p) {
-    adj_col <- paste0("p.adjust.", method)
-    summary_df[[adj_col]] <- p.adjust(summary_df$p_value, method = method)
-  }
-  
-  # Add significance stars based on raw p-values
-  summary_df <- summary_df %>%
-    mutate(
-      star = case_when(
-        p_value <= 0.001 ~ "***",
-        p_value <= 0.01 ~ "** ",
-        p_value <= 0.05 ~ "*  ",
-        TRUE ~ "   "
-      )
-    )
-  
-  # Format the confidence intervals
-  summary_df <- summary_df %>%
-    mutate(
-      CI = paste0("(", round(CI_lower, 2), " ~ ", round(CI_upper, 2), ")"),
-      Hazard_Ratio = round(Hazard_Ratio, 2),
-      p_value = ifelse(p_value <= 0.001, "<0.001", sprintf("%.3f", p_value))
-    )
-  
-  # Select and arrange columns
-  summary_df <- summary_df %>%
-    select(Variable, Hazard_Ratio, CI, p_value, star, starts_with("p.adjust."), everything())
-  
-  return(summary_df)
-}
-```
 
-
-### :: generate_summaries() ----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# Function to generate Cox PH summaries for all model combinations
-generate_summaries <- function(glmnet_models, train_formula, test_data, lambdas = c("lambda.min", "lambda.1se")) {
-  model_combinations <- expand.grid(
-    alpha = c(1, 0.5),
-    lambda = lambdas,
-    stringsAsFactors = FALSE
-  )
-  
-  glm_summaries <- list()
-  
-  for (i in 1:nrow(model_combinations)) {
-    i.alpha <- model_combinations$alpha[i]
-    lambda_val <- model_combinations$lambda[i]
-    
-    model_name <- paste0("alpha", i.alpha, "_", lambda_val)
-    
-    # Retrieve the glmnet model
-    glmnet_model <- glmnet_models[[paste0("a", i.alpha)]]
-    
-    # Run Cox PH model on test set
-    cox_model <- f_cv_glmnet_object.lamda_1se.glm(
-      cv_glmnet_object = glmnet_model,
-      train_formula = train_formula,
-      test_data = test_data,
-      lambda = lambda_val
-    )
-    
-    # Summarize the model
-    summary_df <- summarize_model(cox_model, adjust_p = c("fdr", "bonferroni"))
-    
-    # Store the summary with a descriptive name
-    glm_summaries[[model_name]] <- summary_df
-  }
-  
-  return(glm_summaries)
-}
-```
-
-
-### :: glm_summaries() ----
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
-# Generate Cox PH summaries
-glm_summaries <- generate_summaries(
-  glmnet_models = TheTrainSet.cv.glmnet_a10,
-  train_formula = Surv(time = EndTime, event = EndTime.is.Case.confirm.365) ~ .,
-  test_data = TheTestSet,
-  lambdas = c("lambda.min", "lambda.1se")
-)
-
-# # Save Cox PH summaries to Excel
-# write.xlsx(glm_summaries, "glm_Summaries.xlsx", asTable = TRUE)
-# 
-# # Open the Excel file (optional)
-# openXL("glm_Summaries.xlsx")
-
-```
-  
   
 
   
