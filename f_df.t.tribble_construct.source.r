@@ -930,7 +930,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ## :: f_matrix.set_names.to_vector =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_matrix.set_names.to_vector.dev.r
 .tmp$objectname = "f_matrix.set_names.to_vector"
-.tmp$object = function(input_matrix) {
+.tmp$object = function(input_matrix = matrix(0, nrow = 2, ncol = 3)) {
     if (is.null(rownames(input_matrix))) {
         rownames(input_matrix) = paste0("R", 1:nrow(input_matrix))
     }
