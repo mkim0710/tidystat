@@ -1206,8 +1206,6 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.plot(save_plots = FALSE)
 
 ```
 
-
-
   
 ### :: f_cv_glmnet_object.ggplot = function()
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
@@ -1321,6 +1319,137 @@ f_cv_glmnet_object.ggplot(cv_fit, xvar = "lambda", label = TRUE)
 f_cv_glmnet_object.ggplot(cv_fit, xvar = "dev", label = TRUE)
 
 f_cv_glmnet_object.ggplot(cv_fit, xvar = "norm", label = TRUE)
+```
+  
+  
+### :: f_cv_glmnet_object.ggplot = function()
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
+    xvar <- match.arg(xvar)
+
+    # Extract data
+    coefs <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
+    lambdas <- cv_glmnet_object$lambda
+    norm_values <- apply(abs(coefs[-1, ]), 2, sum)  # Exclude intercept
+    deviance_explained <- cv_glmnet_object$glmnet.fit$dev.ratio
+
+    # Create tidy data frame
+    coef_df <- coefs[-1, ] %>%
+        t() %>%
+        as.data.frame() %>%
+        as_tibble(rownames = NA) %>%
+        add_column(lambda = lambdas, norm = norm_values, dev = deviance_explained, .before = 1) %>%
+        pivot_longer(-c(lambda, norm, dev), names_to = "variable", values_to = "coefficient")
+
+    # Calculate label positions
+    label_data <- coef_df %>%
+        group_by(variable) %>%
+        filter(.data[[xvar]] == max(.data[[xvar]])) %>%
+        ungroup()
+
+    # Calculate the number of non-zero variables
+    non_zero_counts <- coef_df %>%
+        group_by(.data[[xvar]]) %>%
+        summarize(non_zero_count = sum(coefficient != 0), .groups = "drop") %>%
+        filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count))) %>%
+        bind_rows(tibble(!!xvar := min(coef_df[[xvar]]), non_zero_count = 0)) %>%
+        arrange(.data[[xvar]])
+
+    # Define axis labels
+    xvar_label <- switch(
+        xvar,
+        norm = "L1 Norm",
+        lambda = expression(lambda~(log[e]~scale)),
+        dev = "Proportion Deviance Explained"
+    )
+
+    # Determine axis transformation for lambda
+    x_trans <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
+    x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", function(x) exp(x)) else waiver()
+    x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
+
+    # Plot
+    ggplot(coef_df, aes_string(x = xvar, y = "coefficient", color = "variable", group = "variable")) +
+        geom_line() +
+        scale_x_continuous(
+            name = xvar_label,
+            trans = x_trans,
+            breaks = x_breaks,
+            labels = x_labels,
+            sec.axis = sec_axis(
+                trans = ~ .,  # Identity transformation
+                breaks = non_zero_counts[[xvar]],
+                labels = non_zero_counts$non_zero_count,
+                name = "Number of Non-Zero Variables"
+            )
+        ) +
+        labs(
+            title = "Coefficient Paths Across Regularization",
+            y = "Coefficient Value"
+        ) +
+        theme_minimal() +
+        theme(legend.position = "none") +
+        { if (label) geom_text(
+            data = label_data,
+            aes(label = variable),
+            hjust = if (xvar == "norm") -0.1 else 1.1,
+            size = 3
+        ) else NULL }
+}
+
+# Simulate data
+library(glmnet)
+set.seed(123)
+x <- matrix(rnorm(100 * 20), 100, 20)
+y <- rnorm(100)
+
+cv_fit <- cv.glmnet(x, y)
+
+# Example: Using "lambda" as x-axis
+f_cv_glmnet_object.ggplot(cv_fit, xvar = "lambda", label = TRUE)
+
+# Example: Using "norm" as x-axis
+f_cv_glmnet_object.ggplot(cv_fit, xvar = "norm", label = TRUE)
+
+# Example: Using "dev" as x-axis
+f_cv_glmnet_object.ggplot(cv_fit, xvar = "dev", label = TRUE)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
+```
+  
+  
+###### \% |> () ----  
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
+options(width=120)
+
 ```
   
   
