@@ -880,7 +880,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_list_list.to_matrix =  ----
+## :: f_list_list.to_data_frame =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_list_list.to_data_frame.dev.r
 .tmp$objectname = "f_list_list.to_data_frame"
 .tmp$object = function(list_list = paste0("C",1:3) %>% set_names() %>% map(function(chr) paste0("R",1:2) %>% set_names() %>% map(paste0, chr)), type = "list_list[[indexColumn]][[indexRow]]") {
@@ -899,8 +899,8 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## :: f_list_list.to_matrix =  ----
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_matrix.to_list_list =  ----
 # https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_matrix.to_list_list.dev.r
 .tmp$objectname = "f_matrix.to_list_list"
 .tmp$object = function(input_matrix = outer(1:2, 1:3, function(i, j) {paste0("R", i, "C", j)}), type = "list_list[[indexColumn]][[indexRow]]") {
@@ -926,6 +926,23 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 }
 ### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## :: f_matrix.set_names.to_vector =  ----
+# https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_matrix.set_names.to_vector.dev.r
+.tmp$objectname = "f_matrix.set_names.to_vector"
+.tmp$object = function(input_matrix) {
+    if (is.null(rownames(input_matrix))) {
+        rownames(input_matrix) = paste0("R", 1:nrow(input_matrix))
+    }
+    if (is.null(colnames(input_matrix))) {
+        colnames(input_matrix) = paste0("C", 1:ncol(input_matrix))
+    }
+    # input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0)) %>% as.vector()
+    input_matrix %>% set_names(outer(rownames(.), colnames(.), paste0)) %>% c()
+}
+### \% |> f_function.load2env.internal(.tmp$object, .tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
 
 
 ##________________________________________________________________________________  
