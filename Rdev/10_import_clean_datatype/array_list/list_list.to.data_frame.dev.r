@@ -1,11 +1,10 @@
-# list_list.to.data_frame.dev.r
+# f_list_list.to_data_frame.dev.r
 
 # cf) https://github.com/mkim0710/tidystat/blob/master/R/function.pairwise.data_frame.dev.r
-# cf) https://github.com/mkim0710/tidystat/blob/master/R/list_list.to.data_frame.dev.r
+# cf) https://github.com/mkim0710/tidystat/blob/master/Rdev/10_import_clean_datatype/array_list/f_list_list.to_data_frame.dev.r
 
 
-list_list.to.matrix = function(list_list, type = "list_list[[Col.index]][[Row.index]]") {
-    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/list_list.to.data_frame.dev.r")
+f_list_list.to_matrix = function(list_list, type = "list_list[[Col.index]][[Row.index]]") {
     if (type == "list_list[[Col.index]][[Row.index]]") {
         out = simplify2array(list_list)
     } else if (type == "list_list[[Row.index]][[Col.index]]") {
@@ -20,7 +19,7 @@ list_list.to.matrix = function(list_list, type = "list_list[[Col.index]][[Row.in
 }
 
 
-# #@ test) list_list.to.matrix() ----------  
+# #@ test) f_list_list.to_matrix() ----------  
 # list_list = map(1:3, function(j) {
 #     out = map(1:2, function(i) {
 #         paste0("R", i, "C", j)
@@ -57,21 +56,20 @@ list_list.to.matrix = function(list_list, type = "list_list[[Col.index]][[Row.in
 # # [1] "R2C3"
 # 
 # 
-# list_list.to.matrix(list_list)
-# list_list.to.matrix(list_list, type = "list_list[[Row.index]][[Col.index]]")
-# # > list_list.to.matrix(list_list)
+# f_list_list.to_matrix(list_list)
+# f_list_list.to_matrix(list_list, type = "list_list[[Row.index]][[Col.index]]")
+# # > f_list_list.to_matrix(list_list)
 # #        Parent1 Parent2 Parent3
 # # Child1 "R1C1"  "R1C2"  "R1C3" 
 # # Child2 "R2C1"  "R2C2"  "R2C3" 
-# # > list_list.to.matrix(list_list, type = "list_list[[Row.index]][[Col.index]]")
+# # > f_list_list.to_matrix(list_list, type = "list_list[[Row.index]][[Col.index]]")
 # #         Child1 Child2
 # # Parent1 "R1C1" "R2C1"
 # # Parent2 "R1C2" "R2C2"
 # # Parent3 "R1C3" "R2C3"
 
 
-list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Row.index]]") {
-    # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/list_list.to.data_frame.dev.r")
+f_list_list.to_data_frame = function(list_list, type = "list_list[[Col.index]][[Row.index]]") {
     if (type == "list_list[[Col.index]][[Row.index]]") {
         out = simplify2array(list_list)
     } else if (type == "list_list[[Row.index]][[Col.index]]") {
@@ -86,16 +84,16 @@ list_list.to.data_frame = function(list_list, type = "list_list[[Col.index]][[Ro
     out2
 }
 
-# #@ test) list_list.to.data_frame() ----------  
-# list_list.to.data_frame(list_list)
-# list_list.to.data_frame(list_list, type = "list_list[[Row.index]][[Col.index]]")
-# # > list_list.to.data_frame(list_list)
+# #@ test) f_list_list.to_data_frame() ----------  
+# f_list_list.to_data_frame(list_list)
+# f_list_list.to_data_frame(list_list, type = "list_list[[Row.index]][[Col.index]]")
+# # > f_list_list.to_data_frame(list_list)
 # # # A tibble: 2 x 4
 # #   rowname Parent1 Parent2 Parent3
 # #     <chr>  <fctr>  <fctr>  <fctr>
 # # 1  Child1    R1C1    R1C2    R1C3
 # # 2  Child2    R2C1    R2C2    R2C3
-# # > list_list.to.data_frame(list_list, type = "list_list[[Row.index]][[Col.index]]")
+# # > f_list_list.to_data_frame(list_list, type = "list_list[[Row.index]][[Col.index]]")
 # # # A tibble: 3 x 3
 # #   rowname Child1 Child2
 # #     <chr> <fctr> <fctr>
