@@ -1423,6 +1423,7 @@ f_cv_glmnet_object.ggplot(cv_fit, xvar = "dev", label = TRUE)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
+    # Load necessary libraries
     library(ggplot2)
     library(dplyr)
     library(tidyr)
@@ -1464,8 +1465,8 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
             non_zero_count = sum(coefficient != 0),
             .groups = "drop"
         ) %>%
-        distinct() %>%
-        arrange(.data[[xvar]])
+        arrange(.data[[xvar]]) %>%
+        filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
     
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
@@ -1474,6 +1475,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
             non_zero_count = 0
         )
         non_zero_counts <- bind_rows(initial_row, non_zero_counts)
+        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar]])
     }
     
     # Axis labels and transformations
@@ -1523,6 +1525,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     
     return(plot)
 }
+
 
 
 # Load necessary libraries
