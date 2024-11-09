@@ -1345,7 +1345,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Calculate label positions
     label_data <- coef_df %>%
         group_by(variable) %>%
-        filter(.data[[xvar]] == max(.data[[xvar]])) %>%
+        filter(.data[[xvar]] == if (xvar == "lambda") min(.data[[xvar]]) else max(.data[[xvar]])) %>%
         ungroup()
 
     # Calculate the number of non-zero variables
@@ -1393,10 +1393,11 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
         { if (label) geom_text(
             data = label_data,
             aes(label = variable),
-            hjust = if (xvar == "norm") -0.1 else 1.1,
+            hjust = if (xvar == "lambda") 1.1 else -0.1,  # Adjust based on xvar
             size = 3
         ) else NULL }
 }
+
 
 # Simulate data
 library(glmnet)
@@ -1418,9 +1419,144 @@ f_cv_glmnet_object.ggplot(cv_fit, xvar = "dev", label = TRUE)
 ```
   
   
-###### \% |> () ----  
+### :: f_cv_glmnet_object.ggplot = function()
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
+    library(ggplot2)
+    library(dplyr)
+    library(tidyr)
+    library(scales)
+    
+    xvar <- match.arg(xvar)
+    
+    # Extract data from cv.glmnet object
+    glmnet_fit <- cv_glmnet_object$glmnet.fit
+    coefs <- as.matrix(coef(glmnet_fit))
+    lambdas <- glmnet_fit$lambda
+    variables <- rownames(coefs)[-1]  # Exclude intercept
+    
+    # Calculate measures for x-axis
+    coef_matrix <- coefs[-1, ]  # Remove intercept
+    norm_values <- apply(abs(coef_matrix), 2, sum)
+    deviance_explained <- glmnet_fit$dev.ratio  # Proportion of deviance explained
+    
+    # Prepare data frame
+    coef_df <- as.data.frame(t(coef_matrix))
+    coef_df$lambda <- lambdas
+    coef_df$norm <- norm_values
+    coef_df$dev <- deviance_explained
+    coef_df <- coef_df %>%
+        pivot_longer(cols = all_of(variables), names_to = "variable", values_to = "coefficient")
+    
+    # Calculate label positions
+    label_positions <- coef_df %>%
+        group_by(variable) %>%
+        filter(
+            .data[[xvar]] == if (xvar == "lambda") min(.data[[xvar]]) else max(.data[[xvar]])
+        ) %>%
+        ungroup()
+    
+    # Calculate number of non-zero coefficients at each xvar
+    non_zero_counts <- coef_df %>%
+        group_by(.data[[xvar]]) %>%
+        summarize(
+            non_zero_count = sum(coefficient != 0),
+            .groups = "drop"
+        ) %>%
+        distinct() %>%
+        arrange(.data[[xvar]])
+    
+    # Ensure initial zero count is included
+    if (!any(non_zero_counts$non_zero_count == 0)) {
+        initial_row <- tibble(
+            !!xvar := min(coef_df[[xvar]]),
+            non_zero_count = 0
+        )
+        non_zero_counts <- bind_rows(initial_row, non_zero_counts)
+    }
+    
+    # Axis labels and transformations
+    xvar_labels <- list(
+        norm = "L1 Norm",
+        lambda = expression(lambda~(log[e]~scale)),
+        dev = "Proportion Deviance Explained"
+    )
+    x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
+    x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
+    x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
+    hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
+    
+    # Create the plot
+    plot <- ggplot(coef_df, aes(x = .data[[xvar]], y = coefficient, color = variable, group = variable)) +
+        geom_line() +
+        scale_x_continuous(
+            name = xvar_labels[[xvar]],
+            trans = x_transformation,
+            breaks = x_breaks,
+            labels = x_labels,
+            sec.axis = sec_axis(
+                trans = ~ .,
+                breaks = non_zero_counts[[xvar]],
+                labels = non_zero_counts$non_zero_count,
+                name = "Number of Non-Zero Coefficients"
+            )
+        ) +
+        labs(
+            title = "Coefficient Paths from Cross-Validated glmnet Model",
+            y = "Coefficient Value"
+        ) +
+        theme_minimal() +
+        theme(legend.position = "none")
+    
+    # Add labels if requested
+    if (label) {
+        plot <- plot +
+            geom_text(
+                data = label_positions,
+                aes(label = variable),
+                hjust = hjust_value,
+                size = 3,
+                check_overlap = TRUE  # Avoid overlapping labels
+            )
+    }
+    
+    return(plot)
+}
+
+
+# Load necessary libraries
+library(glmnet)
+library(ggplot2)
+
+# Simulate data
+set.seed(123)
+x <- matrix(rnorm(100 * 20), 100, 20)
+y <- rnorm(100)
+
+# Fit cross-validated glmnet model
+cv_fit <- cv.glmnet(x, y)
+
+# Plot with lambda as x-axis
+f_cv_glmnet_object.ggplot(cv_fit, xvar = "lambda", label = TRUE)
+
+# Plot with L1 Norm as x-axis
+f_cv_glmnet_object.ggplot(cv_fit, xvar = "norm", label = TRUE)
+
+# Plot with Proportion Deviance Explained as x-axis
+f_cv_glmnet_object.ggplot(cv_fit, xvar = "dev", label = TRUE)
+
+
+# Save the plot object
+plot_obj <- f_cv_glmnet_object.ggplot(cv_fit, xvar = "norm", label = TRUE)
+
+# Customize the plot
+plot_obj +
+    theme(
+        text = element_text(size = 12),
+        plot.title = element_text(hjust = 0.5)
+    ) +
+    scale_color_brewer(palette = "Set1")
 
 ```
   
