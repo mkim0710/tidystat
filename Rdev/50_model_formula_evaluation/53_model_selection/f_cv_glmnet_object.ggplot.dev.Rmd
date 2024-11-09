@@ -1223,7 +1223,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Extract coefficients for all lambda values
     coefs <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
     lambdas <- cv_glmnet_object$lambda
-    l1_norm <- apply(abs(coefs[-1, ]), 2, sum)  # Exclude intercept
+    norm_values <- apply(abs(coefs[-1, ]), 2, sum)  # Exclude intercept
 
     # Calculate proportion deviance explained if xvar == "dev"
     deviance_explained <- NULL
@@ -1237,17 +1237,22 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
         as.data.frame() %>%
         as_tibble(rownames = NA) %>%
         add_column(lambda = lambdas, .before = 1) %>%
-        add_column(l1_norm = l1_norm, .before = 2) %>%
-        pivot_longer(-c(lambda, l1_norm), names_to = "variable", values_to = "coefficient")
+        add_column(norm = norm_values, .before = 2) %>%  # Rename l1_norm to norm
+        pivot_longer(-c(lambda, norm), names_to = "variable", values_to = "coefficient")
 
     if (xvar == "dev") {
-        coef_df <- coef_df %>% mutate(dev = rep(deviance_explained, each = nrow(coefs) - 1))
+        coef_df <- coef_df %>%
+            mutate(dev = rep(deviance_explained, each = nrow(coefs) - 1))
     }
 
     # Calculate label positions
     label_data <- coef_df %>%
         group_by(variable) %>%
-        filter(if (xvar == "norm") l1_norm == max(l1_norm) else if (xvar == "lambda") lambda == min(lambda) else dev == max(dev)) %>%
+        filter(
+            if (xvar == "norm") norm == max(norm) else 
+            if (xvar == "lambda") lambda == min(lambda) else 
+            dev == max(dev)
+        ) %>%
         ungroup()
 
     # Calculate the number of non-zero variables
@@ -1258,7 +1263,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
 
     # Ensure initial zero count is included
-    if (xvar == "dev" && !any(non_zero_counts$non_zero_count == 0)) {
+    if (!any(non_zero_counts$non_zero_count == 0)) {
         non_zero_counts <- bind_rows(
             tibble(!!xvar := min(coef_df[[xvar]]), non_zero_count = 0),
             non_zero_counts
@@ -1273,10 +1278,12 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
         dev = "Proportion Deviance Explained"
     )
 
+    # Plotting
     ggplot(coef_df, aes_string(x = xvar, y = "coefficient", color = "variable", group = "variable")) +
         geom_line() +
         scale_x_continuous(
             name = xvar_label,
+            trans = if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity",
             breaks = if (xvar == "lambda") scales::trans_breaks("log", function(x) exp(x)) else waiver(),
             labels = if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver(),
             sec.axis = sec_axis(
@@ -1292,7 +1299,12 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
         ) +
         theme_minimal() +
         theme(legend.position = "none") +
-        { if (label) geom_text(data = label_data, aes(label = variable), hjust = if (xvar == "norm") -0.1 else 1.1, size = 3) else NULL }
+        { if (label) geom_text(
+            data = label_data,
+            aes(label = variable),
+            hjust = if (xvar == "norm") -0.1 else 1.1,
+            size = 3
+        ) else NULL }
 }
 
 # Example usage:
