@@ -22,7 +22,7 @@
     "console_double_click_select": true,
     "server_editor_font_enabled": true,
     "server_editor_font": "Cascadia Code",
-    "editor_theme": "Twilight",
+    "editor_theme": "VScodeTheme",
     "show_doc_outline_rmd": true,
     "doc_outline_show": "sections_and_chunks",
     "visual_markdown_editing_show_margin": true,
@@ -33,5 +33,6 @@
     "source_with_echo": true,
     "copilot_enabled": true,
     "copilot_indexing_enabled": true,
-    "jobs_tab_visibility": "shown"
+    "jobs_tab_visibility": "shown",
+    "show_panel_focus_rectangle": true
 }
