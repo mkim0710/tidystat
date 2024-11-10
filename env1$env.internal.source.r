@@ -588,6 +588,41 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_filename.ext.append_suffix =  ----  
+# Rdev/00_base_program/002_base_encoding_RegEx/f_filename.ext.append_suffix.dev.r
+.tmp$objectname = "f_filename.ext.append_suffix"
+.tmp$object <- function(path_filename.ext, append_suffix, compression = TRUE, VERBOSE = getOption("verbose")) {
+    # Extract the path, filename, and extension
+    if(VERBOSE) "path_filename.ext" %>% echo.dput_get_ObjectName()
+    
+    path = path_filename.ext |> dirname()
+    if(VERBOSE) "path" %>% echo.dput_get_ObjectName()
+    filename.ext = path_filename.ext |> basename()
+    if(VERBOSE) "filename.ext" %>% echo.dput_get_ObjectName()
+    if(compression) {
+        filename = filename.ext |> str_remove("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$")
+        ext = filename.ext |> str_extract("\\.([[:alnum:]]+)(\\.(gz|bz2|xz))?$") |> str_remove("^\\.")
+    } else {
+        filename = filename.ext |> str_remove("\\.([[:alnum:]]+)$")
+        ext = filename.ext |> str_extract("\\.([[:alnum:]]+)$") |> str_remove("^\\.")
+    }
+    if(VERBOSE) "filename" %>% echo.dput_get_ObjectName()
+    if(VERBOSE) "ext" %>% echo.dput_get_ObjectName()
+    
+    # Construct the new filename with appended text
+    filename.ext2 = paste0(filename, append_suffix, ".", ext)
+    if(VERBOSE) "filename.ext2" %>% echo.dput_get_ObjectName()
+    
+    # Construct the new path with the updated filename
+    path_filename.ext2 = file.path(path, filename.ext2)
+    
+    return(path_filename.ext2)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.edit, f_file.open ====  
