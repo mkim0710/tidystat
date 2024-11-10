@@ -624,7 +624,7 @@ x <- matrix(rnorm(100 * 20), 100, 20)
 y <- rnorm(100)
 
 # Fit glmnet model
-fit <- glmnet(x, y)
+glmnet.fit <- glmnet(x, y)
 
 
 ?plot.glmnet
@@ -632,10 +632,10 @@ fit <- glmnet(x, y)
 # plot(x, xvar = c("norm", "lambda", "dev"), label = FALSE, ...)
 
 
-# fit |> plot(label = TRUE, type.coef = "2norm")
-fit |> plot(label = TRUE, xvar = "lambda")
-fit |> plot(label = TRUE, xvar = "dev")
-fit |> plot(label = TRUE, xvar = "norm")
+# glmnet.fit |> plot(label = TRUE, type.coef = "2norm")
+glmnet.fit |> plot(label = TRUE, xvar = "lambda")
+glmnet.fit |> plot(label = TRUE, xvar = "dev")
+glmnet.fit |> plot(label = TRUE, xvar = "norm")
 ```
 
 ```{r}
@@ -645,7 +645,7 @@ matrix(1:6, nrow = 2) %>% f_matrix.set_names.to_vector()
 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Extract coefficients for all lambda values
-coefs <- as.matrix(coef(fit))
+coefs <- as.matrix(coef(glmnet.fit))
 coefs[1:9, 1:9]
 coefs %>% str
 coefs[-1, ] %>% str
@@ -655,7 +655,7 @@ coefs[-1, ] %>% as.vector() %>% str
 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Extract lambda values
-lambdas <- fit$lambda
+lambdas <- glmnet.fit$lambda
 lambdas %>% str
 ```
 
