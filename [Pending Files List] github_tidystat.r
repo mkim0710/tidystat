@@ -114,7 +114,7 @@ ensure_package("tidyverse")
 ##@ function.calculate_mode.dev.r ----
 ##@ function.convert_to_standard_name.dev.r ----
 ##@ function.deparse.cat.width.dev.r ----
-##@ function.eval.parse.Vectorize.dev.r ----
+##@ function.parse.eval.Vectorize.dev.r ----
 ##@ function.frequencyDF.dev.r ----
 ##@ function.hangul.dev -tmp.r ----
 ##@ function.iconv.dev.r ----

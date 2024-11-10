@@ -3,17 +3,17 @@
 
 
 
-function.eval.parse.Vectorize = Vectorize(function(.CodeText) {eval(parse(text=.CodeText))}) 
-function.eval.parse.Vectorize(paste(c(2,1,1.1), ">1")) |> str()
+function.parse.eval.Vectorize = Vectorize(function(.CodeText) {eval(parse(text=.CodeText))}) 
+function.parse.eval.Vectorize(paste(c(2,1,1.1), ">1")) |> str()
  # Named logi [1:3] TRUE FALSE TRUE
  # - attr(*, "names")= chr [1:3] "2 >1" "1 >1" "1.1 >1"
 
 
 #---------------  
-function.eval.parse.Vectorize_old = function(.CodeText) {
+function.parse.eval.Vectorize_old = function(.CodeText) {
     Vectorize(function(x) {eval(parse(text = x))}) (.CodeText)
 }
-function.eval.parse.Vectorize_old(paste(c(2,1,1.1), ">1")) |> str()
+function.parse.eval.Vectorize_old(paste(c(2,1,1.1), ">1")) |> str()
  # Named logi [1:3] TRUE FALSE TRUE
  # - attr(*, "names")= chr [1:3] "2 >1" "1 >1" "1.1 >1"
 
@@ -54,8 +54,8 @@ eval(parse(text = paste(c(2,2,1.1), ">1")))
 
 #................................................................................
 apply_ExpressionText <- function(input_vector, ExpressionText, VERBOSE = TRUE) {
-    function.eval.parse.Vectorize = Vectorize(function(.CodeText) {eval(parse(text=.CodeText))}) 
-    out_vector = function.eval.parse.Vectorize(paste(input_vector, ExpressionText))
+    function.parse.eval.Vectorize = Vectorize(function(.CodeText) {eval(parse(text=.CodeText))}) 
+    out_vector = function.parse.eval.Vectorize(paste(input_vector, ExpressionText))
     out_vector
 }
 

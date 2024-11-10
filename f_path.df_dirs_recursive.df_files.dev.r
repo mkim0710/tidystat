@@ -397,7 +397,7 @@ df_dirs_recursive %>% select(print_tree_path_files.codes) |> unlist() |> paste(c
 #' 		function.convert_to_standard_name.dev.r
 #' 		function.deparse.cat.width.dev.r
 #' 		function.dput.dev.r
-#' 		function.eval.parse.Vectorize.dev.r
+#' 		function.parse.eval.Vectorize.dev.r
 #' 		function.file.path.dev.r
 #' 		function.FindDuplicateFiles.dev.r
 #' 		function.frequencyDF.dev.r
