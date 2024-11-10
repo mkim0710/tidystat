@@ -623,6 +623,39 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 
 
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+
+.tmp$objectname = "f_file.str_replace_all.old.ObjectName"
+.tmp$object <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL) {
+    # Construct the regex pattern for word boundary including dot and underscore
+    regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
+    
+    # Read the file content
+    file_content <- readLines(input_path_file, warn = FALSE)
+    
+    # Replace occurrences of old.ObjectName with new.ObjectName using the regex pattern
+    updated_content <- str_replace_all(
+        string = file_content,
+        pattern = regex_pattern,
+        replacement = new.ObjectName
+    )
+    
+    # Determine the output path (overwrite or save to new file)
+    if (is.null(output_path_file)) {
+        # output_path_file <- input_path_file # Overwrite the original file
+        output_path_file = f_filename.ext.append_suffix(input_path_file, ".", "new.ObjectName")
+    }
+    
+    # Write the updated content back to the file
+    writeLines(updated_content, con = output_path_file)
+    
+    # Return a message
+    message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## @ f_file.edit, f_file.open ====  
