@@ -614,7 +614,7 @@ env0 = env1
 
   
 # https://chatgpt.com/c/672f1a80-34c8-800e-9d67-0c694bab56c7
-### :: f_glmnet_object.plot = function()
+## :: glmnet_object = glmnet(x, y)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(glmnet)
 
@@ -623,10 +623,13 @@ set.seed(123)
 x <- matrix(rnorm(100 * 20), 100, 20)
 y <- rnorm(100)
 
+?glmnet
 # Fit glmnet model
-glmnet_object <- glmnet(x, y)
+glmnet_object = glmnet(x, y)
+```
 
-
+### :: f_glmnet_object.plot = function()
+```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ?plot.glmnet
 # ## S3 method for class 'glmnet'
 # plot(x, xvar = c("norm", "lambda", "dev"), label = FALSE, ...)
