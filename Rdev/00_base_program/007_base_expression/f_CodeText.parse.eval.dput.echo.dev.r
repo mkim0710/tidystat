@@ -794,7 +794,45 @@ DataSetName2 = "analyticDF_time2event"
 
 
 
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+##________________________________________________________________________________  
+# @@ START) function v3 (.objectname) -----  
 
+'get(".objectname")' |> env1$f$f_CodeText.echo()
+'get(".objectname")' |> env1$f$f_CodeText.echo(Execute = TRUE)
+# > 'get(".objectname")' |> env1$f$f_CodeText.echo()
+# 	get(""analyticDF_time2event"")  
+# > 'get(".objectname")' |> env1$f$f_CodeText.echo(Execute = TRUE)
+# 	get(""analyticDF_time2event"") == 
+# Error in parse(text = .CodeText.split_LF.split_semicolon[i]) : 
+#   <text>:1:7: unexpected symbol
+# 1: get(""analyticDF_time2event
+#           ^
+
+'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
+# > 'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+# 	get(".objectname")  
+# > 'get(".objectname")' |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
+# 	get(".objectname") == "analyticDF_time2event"  
+
+
+".objectname" |> env1$f$f_CodeText.echo()
+".objectname" |> env1$f$f_CodeText.echo(Execute = TRUE)
+".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
+# > ".objectname" |> env1$f$f_CodeText.echo()
+# 	"analyticDF_time2event"  
+# > ".objectname" |> env1$f$f_CodeText.echo(Execute = TRUE)
+# 	"analyticDF_time2event" == "analyticDF_time2event"  
+# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE)
+# 	.objectname  
+# > ".objectname" |> env1$f$f_CodeText.echo(substitute_ObjectNames = FALSE, Execute = TRUE)
+# 	.objectname == "analyticDF_time2event" 
 
 
 
