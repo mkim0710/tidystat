@@ -627,7 +627,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 
 
 .tmp$objectname = "f_file.str_replace_all.old.ObjectName"
-.tmp$object <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL) {
+.tmp$object <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE) {
     # Construct the regex pattern for word boundary including dot and underscore
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
@@ -643,15 +643,18 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     
     # Determine the output path (overwrite or save to new file)
     if (is.null(output_path_file)) {
-        # output_path_file <- input_path_file # Overwrite the original file
-        output_path_file = f_filename.ext.append_suffix(input_path_file, ".", "new.ObjectName")
+        if(replace_input_path_file) {
+            output_path_file <- input_path_file # Overwrite the original file
+        } else {
+            output_path_file = input_path_file %>% f_filename.ext.append_suffix(paste0(".", new.ObjectName))
+        }
     }
     
     # Write the updated content back to the file
     writeLines(updated_content, con = output_path_file)
     
-    # Return a message
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
+    return(output_path_file)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)

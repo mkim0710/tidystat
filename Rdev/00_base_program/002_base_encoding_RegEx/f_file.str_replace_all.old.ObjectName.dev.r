@@ -28,7 +28,7 @@ input_path_file %>% file.edit_if_exists()
 
 
 # Define the function
-f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL) {
+f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE) {
     # Construct the regex pattern for word boundary including dot and underscore
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
@@ -45,15 +45,18 @@ f_file.gsub.old.ObjectName <- function(input_path_file, old.ObjectName, new.Obje
     
     # Determine the output path (overwrite or save to new file)
     if (is.null(output_path_file)) {
-        # output_path_file <- input_path_file # Overwrite the original file
-        output_path_file = f_filename.ext.append_suffix(input_path_file, ".", "new.ObjectName")
+        if(replace_input_path_file) {
+            output_path_file <- input_path_file # Overwrite the original file
+        } else {
+            output_path_file = input_path_file %>% f_filename.ext.append_suffix(paste0(".", new.ObjectName))
+        }
     }
     
     # Write the updated content back to the file
     writeLines(updated_content, con = output_path_file)
     
-    # Return a message
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
+    return(output_path_file)
 }
 
 # Usage example
@@ -74,7 +77,7 @@ output_path_file %>% file.remove()
 library(stringr)
 
 # Define the function
-f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL) {
+f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE) {
     # Construct the regex pattern for word boundary including dot and underscore
     regex_pattern <- sprintf("(?<![\\w_.])%s(?![\\w_.])", gsub("\\.", "\\\\.", old.ObjectName)) # Escape the dot in old.ObjectName
     
@@ -90,15 +93,18 @@ f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectNam
     
     # Determine the output path (overwrite or save to new file)
     if (is.null(output_path_file)) {
-        # output_path_file <- input_path_file # Overwrite the original file
-        output_path_file = f_filename.ext.append_suffix(input_path_file, ".", "new.ObjectName")
+        if(replace_input_path_file) {
+            output_path_file <- input_path_file # Overwrite the original file
+        } else {
+            output_path_file = input_path_file %>% f_filename.ext.append_suffix(paste0(".", new.ObjectName))
+        }
     }
     
     # Write the updated content back to the file
     writeLines(updated_content, con = output_path_file)
     
-    # Return a message
     message(sprintf("Replaced '%s' with '%s' in %s.", old.ObjectName, new.ObjectName, output_path_file))
+    return(output_path_file)
 }
 
 
@@ -108,11 +114,12 @@ new.ObjectName <- "new.ObjectName"
 output_path_file <- paste0(dirname(input_path_file), "/new.ObjectName.txt")
 
 # Call the function
-f_file.gsub.old.ObjectName(input_path_file, old.ObjectName, new.ObjectName, output_path_file)
+f_file.str_replace_all.old.ObjectName(input_path_file, old.ObjectName, new.ObjectName, output_path_file)
 
 output_path_file %>% file.edit_if_exists()
 # output_path_file %>% file.remove()
 
-
-
+output_path_file_auto = f_file.str_replace_all.old.ObjectName(input_path_file, old.ObjectName, new.ObjectName)
+output_path_file_auto
+output_path_file_auto %>% file.edit_if_exists()
 
