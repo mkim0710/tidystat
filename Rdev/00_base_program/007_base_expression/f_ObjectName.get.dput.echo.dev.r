@@ -51,13 +51,33 @@ myObject = LETTERS[1:5]
 # "Object.dput.echo"
 # "echo.Object.dput"
 
-
 f_ObjectName.get.dput.echo = function(ObjectName, LinePrefix4CodeText = "\t") {
     cat(LinePrefix4CodeText); cat(ObjectName); cat(" == "); 
     ObjectName |> get() |> deparse() |> cat(); cat("  \n")
+    invisible()
 }
+
+tmp_function = function(input) {
+    echo.dput_get_ObjectName("input")
+}
+tmp_function("test")
+
+
+f_ObjectName.get.dput.echo = function(ObjectName, envir = parent.frame(), LinePrefix4CodeText = "\t") {
+    if (!exists(ObjectName, envir)) stop(paste("Object", ObjectName, "does not exist in the calling environment"))
+    cat(LinePrefix4CodeText); cat(ObjectName); cat(" == "); 
+    ObjectName |> get(envir = envir) |> deparse() |> cat(); cat("  \n")
+    invisible()
+}
+
+tmp_function = function(input) {
+    echo.dput_get_ObjectName("input")
+}
+tmp_function("test")
+
     
 "myObject" |> f_ObjectName.get.dput.echo()
 # > "myObject" |> f_ObjectName.get.dput.echo()
 # 	myObject == c("A", "B", "C", "D", "E")  
+
 

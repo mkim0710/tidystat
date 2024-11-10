@@ -183,9 +183,11 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 ## :: f_ObjectName.get.dput.echo ====
 # Rdev/00_base_program/007_base_expression/f_ObjectName.get.dput.echo.dev.r
 .tmp$objectname = "f_ObjectName.get.dput.echo"
-.tmp$object = function(ObjectName, LinePrefix4CodeText = "\t") {
+.tmp$object = function(ObjectName, envir = parent.frame(), LinePrefix4CodeText = "\t") {
+    if (!exists(ObjectName, envir)) stop(paste("Object", ObjectName, "does not exist in the calling environment"))
     cat(LinePrefix4CodeText); cat(ObjectName); cat(" == "); 
-    ObjectName |> get() |> deparse() |> cat(); cat("  \n")
+    ObjectName |> get(envir = envir) |> deparse() |> cat(); cat("  \n")
+    invisible()
 }
 
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
