@@ -126,7 +126,7 @@ if(!"path" %in% names(.GlobalEnv$env1)) {
 
     .path4read = DataSet_path_filename_ext |> dirname() 
     filename.ext = DataSet_path_filename_ext |> basename()
-    DataSetName = filename.ext |> str_remove("\\.(gz|xz)$") |> str_remove("\\.([[:alnum:]]+)$")
+    DataSetName = filename.ext |> str_remove("\\.(gz|bz2|xz)$") |> str_remove("\\.([[:alnum:]]+)$")
     
     # filename.ext.regex = filename.ext %>%  
     #     str_replace_all("\\.", "\\\\.") %>%
