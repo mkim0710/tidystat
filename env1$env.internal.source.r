@@ -424,6 +424,27 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 # @@ f_file, f_URL, f_path ----  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: getSourceEditorContext.path_filename.ext ====  
+.tmp$objectname = "getSourceEditorContext.path_filename.ext"
+.tmp$object = function(relative_path = TRUE) {
+    SourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/")
+    if(relative_path) {
+        SourceEditorContext.path_filename.ext = SourceEditorContext.path_filename.ext |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+    }
+    return(SourceEditorContext.path_filename.ext)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = CurrentSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "CurrentSourceEditorContext.path_filename.ext"
+attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
+    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
+env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+
+##________________________________________________________________________________  
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.relative ====  
 env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
