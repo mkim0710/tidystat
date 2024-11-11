@@ -378,8 +378,8 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path.lastSourceEditorContext.path_filename.ext =  ----  
-.tmp$objectname = "f_path.lastSourceEditorContext.path_filename.ext"
+## :: f_path.set_lastSourceEditorContext.path_filename.ext =  ----  
+.tmp$objectname = "f_path.set_lastSourceEditorContext.path_filename.ext"
 .tmp$object = function(check_rstudioapi = TRUE, overwrite = FALSE, LinePrefix4CodeText = "\t", VERBOSE = Sys.getenv("VERBOSE")) {
     if(is.null(env1$path$lastSourceEditorContext.path_filename.ext) || is.na(env1$path$lastSourceEditorContext.path_filename.ext) || env1$path$lastSourceEditorContext.path_filename.ext == "") overwrite = TRUE
     
@@ -448,7 +448,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### env1\$path\$lastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
 # env1$path$lastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$f_path.lastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+env1$env.internal$f_path.set_lastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$lastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$lastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.size_files =  ----  
