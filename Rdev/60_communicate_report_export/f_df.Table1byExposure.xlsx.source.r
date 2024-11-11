@@ -43,11 +43,11 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 # tibble( symbol = c("/", "~", ".", "..")) |> mutate(normalizePath = symbol |> normalizePath(winslash="/") ) |> format() |> (\(vec) vec[c(-1,-3)])() |> cat("  ", sep="  \n") 
 # if (.Platform$OS.type == 'windows') { "." |> normalizePath(winslash="/") |> utils::browseURL() } else { "." |> dir(all.files=TRUE) %>% paste0('"',.,'"') |> paste(collapse = ", \n  ") %>% cat("c(",.,")", "  \n", sep="") }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### env1\$path\$CurrentSource.path_filename.ext ====  
+### env1\$path\$lastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$f_path.CurrentSource.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
-if(!is.null(env1$path$CurrentSource.path)) env1$path$.path4write = .path4write = env1$path$CurrentSource.path
+# env1$path$lastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$env.internal$f_path.lastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+if(!is.null(env1$path$lastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$lastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -156,13 +156,13 @@ env1$f$f_df.Table1byExposure.xlsx = function(DataSet.Date.NA.rmAllNA.select, Dat
     # get(DataSetName4output.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
 
     if(output.sink) {
-        sink(paste0(env1$path$CurrentSource.path,"/",DataSetName4output.Table1byExposure, " -AllLevels.txt"), append = FALSE)
+        sink(paste0(env1$path$lastSourceEditorContext.path,"/",DataSetName4output.Table1byExposure, " -AllLevels.txt"), append = FALSE)
         get(DataSetName4output.Table1byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
         sink()
-        sink(paste0(env1$path$CurrentSource.path,"/",DataSetName4output.Table1byExposure, " -AllLevels -IQR.txt"), append = FALSE)
+        sink(paste0(env1$path$lastSourceEditorContext.path,"/",DataSetName4output.Table1byExposure, " -AllLevels -IQR.txt"), append = FALSE)
         get(DataSetName4output.Table1byExposure) |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) # |> print(showAllLevels = F, smd = T, nonnormal = Vars4IQR) ----
         sink()
-        sink(paste0(env1$path$CurrentSource.path,"/",DataSetName4output.is.na.Table1byExposure, " -AllLevels(is.na).txt"), append = FALSE)
+        sink(paste0(env1$path$lastSourceEditorContext.path,"/",DataSetName4output.is.na.Table1byExposure, " -AllLevels(is.na).txt"), append = FALSE)
         get(DataSetName4output.is.na.Table1byExposure) |> print(showAllLevels = F, smd = T) # |> print(showAllLevels = F, smd = T) ----
         sink()
     }
