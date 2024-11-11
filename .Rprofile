@@ -116,6 +116,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     .sublistname = "source"; .parentname = "env1"; if(!.sublistname %in% names(.GlobalEnv[[.parentname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+
     # https://github.com/mkim0710/tidystat/blob/master/Rdev/00_base_program/f_list.case_when.benchmark.r
     .GlobalEnv$env1$source$.Rprofile = if (file.exists(".Rprofile")) {
         normalizePath(".Rprofile", winslash = "/")
@@ -124,6 +125,7 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     } else {
         NA_character_
     }  
+    attributes(.GlobalEnv$env1$source$.Rprofile)$complete = FALSE
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     ### env1\$env.internal ----  
     # cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app="https://github.com/mkim0710/tidystat/blob/master/env1%24env.internal.source.r"  
@@ -159,12 +161,16 @@ Sys.setenv(LANGUAGE="en_US");  # Sys.getenv("LANGUAGE");    # Note that the LANG
     ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
     cat("##________________________________________________________________________________", "  \n", sep="")
     cat("Loading time for .Rprofile: ", difftime(Sys.time(), .t0, units = "secs"), " secs \n", sep="")
-    cat("Loaded without error: ", .GlobalEnv$env1$info$.Rprofile, "  \n",
+    cat("Loaded without error: ", .GlobalEnv$env1$source$.Rprofile, "  \n",
         '    Sys.getlocale() == "', Sys.getlocale(), '"  \n',
         "    Today is: ", date(), "  \n", sep="")
+    
     attach(env1$f)
     # attach(env1$env.internal)
     attach(env1$env.internal.attach)
+
+    attributes(.GlobalEnv$env1$source$.Rprofile)$complete = TRUE
+
 }  }
 
 

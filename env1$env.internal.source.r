@@ -391,19 +391,21 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     if (check_rstudioapi) {
         if (requireNamespace("rstudioapi")) {
             if(VERBOSE) {  .CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))  }
-            .CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))
             
             if (rstudioapi::isAvailable()) {
                 # GO TO: if(overwrite)
             } else { 
-                # if(VERBOSE) print('!rstudioapi::isAvailable()');
+                if(VERBOSE) {
+                    print('!rstudioapi::isAvailable()');
+                } else if (!is.null(attributes(.GlobalEnv$env1$source$.Rprofile)$complete)) {
+                    if(attributes(.GlobalEnv$env1$source$.Rprofile)$complete) print('!rstudioapi::isAvailable()');
+                }
                 env1$path$lastSourceEditorContext.path_filename.ext = NA
-                print('!rstudioapi::isAvailable()');
                 return(invisible())
             }
             
         } else { 
-            if(!VERBOSE) print('!rstudioapi::isAvailable()');
+            if(!VERBOSE) if (!is.null(attributes(.GlobalEnv$env1$source$.Rprofile)$complete)) if(attributes(.GlobalEnv$env1$source$.Rprofile)$complete) print('!requireNamespace("rstudioapi")');
             return(invisible()) 
         }
     } 
