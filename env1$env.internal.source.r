@@ -86,7 +86,7 @@ if(!"source_base" %in% names(.GlobalEnv$env1$path)) { env1$path$source_base = if
 .tmp$objectname = "path1"; .tmp$object = paste0(env1$path$path0,"/",unlist(strsplit(sub(paste0("^",gsub("([][(){}+*^$|?\\])", "\\\\\\1", env1$path$path0),"/?"), "", env1$path$getwd), "/"))[1]); if(!.tmp$objectname %in% names(.GlobalEnv$env1$path)) {.GlobalEnv$env1$path[[.tmp$objectname]] = .tmp$object}  
 
 if(!".path4read" %in% names(env1$path)) {.path4read = env1$path$.path4read = env1$path$path1}  
-if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = ifelse("lastSourceEditorContext.path" %in% names(env1$path), env1$path$lastSourceEditorContext.path, env1$path$path1)}  
+if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = ifelse("LastSourceEditorContext.path" %in% names(env1$path), env1$path$LastSourceEditorContext.path, env1$path$path1)}  
 ##________________________________________________________________________________  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -450,15 +450,15 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     path |> normalizePath(winslash="/") |> str_replace(fixed(basepath|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_path.set_lastSourceEditorContext.path_filename.ext =  ----  
-.tmp$objectname = "f_path.set_lastSourceEditorContext.path_filename.ext"
+## :: setLastSourceEditorContext.path_filename.ext =  ----  
+.tmp$objectname = "setLastSourceEditorContext.path_filename.ext"
 .tmp$object = function(
         check_rstudioapi = TRUE, 
         overwrite = FALSE, 
         LinePrefix4CodeText = "\t",
         VERBOSE = ifelse(!is.null(Sys.getenv("VERBOSE")), ifelse(Sys.getenv("VERBOSE")!="", Sys.getenv("VERBOSE"), options()$verbose), options()$verbose)
 ) {
-    if(is.null(env1$path$lastSourceEditorContext.path_filename.ext) || is.na(env1$path$lastSourceEditorContext.path_filename.ext) || env1$path$lastSourceEditorContext.path_filename.ext == "") overwrite = TRUE
+    if(is.null(env1$path$LastSourceEditorContext.path_filename.ext) || is.na(env1$path$LastSourceEditorContext.path_filename.ext) || env1$path$LastSourceEditorContext.path_filename.ext == "") overwrite = TRUE
     
     if (check_rstudioapi) {
         if (requireNamespace("rstudioapi")) {
@@ -472,7 +472,7 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
                 } else if (!is.null(attributes(.GlobalEnv$env1$source$.Rprofile)$complete)) {
                     if(attributes(.GlobalEnv$env1$source$.Rprofile)$complete) print('!rstudioapi::isAvailable()');
                 }
-                env1$path$lastSourceEditorContext.path_filename.ext = NA
+                env1$path$LastSourceEditorContext.path_filename.ext = NA
                 return(invisible())
             }
             
@@ -483,19 +483,19 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     } 
     
     if(overwrite) {
-        # env1$path$lastSourceEditorContext.path_filename.ext = getwd() |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-        env1$path$lastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-        env1$path$lastSourceEditorContext.path = env1$path$lastSourceEditorContext.path_filename.ext |> dirname()
+        # env1$path$LastSourceEditorContext.path_filename.ext = getwd() |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+        env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+        env1$path$LastSourceEditorContext.path = env1$path$LastSourceEditorContext.path_filename.ext |> dirname()
         
-        # cat(LinePrefix4CodeText, "env1$path$lastSourceEditorContext.path_filename.ext == ", deparse(env1$path$lastSourceEditorContext.path_filename.ext), "  \n", sep="")
-        .CodeText2Print = 'env1$path$lastSourceEditorContext.path_filename.ext'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}
+        # cat(LinePrefix4CodeText, "env1$path$LastSourceEditorContext.path_filename.ext == ", deparse(env1$path$LastSourceEditorContext.path_filename.ext), "  \n", sep="")
+        .CodeText2Print = 'env1$path$LastSourceEditorContext.path_filename.ext'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}
         
         if(!".path4write" %in% names(env1$path)) {
-            .path4write = env1$path$.path4write = env1$path$lastSourceEditorContext.path
-            cat(LinePrefix4CodeText, ".path4write = env1$path$.path4write = env1$path$lastSourceEditorContext.path", "  \n", sep="")
+            .path4write = env1$path$.path4write = env1$path$LastSourceEditorContext.path
+            cat(LinePrefix4CodeText, ".path4write = env1$path$.path4write = env1$path$LastSourceEditorContext.path", "  \n", sep="")
         }  
     } else {
-        env1$f$f_CodeText2.is_equal("env1$path$lastSourceEditorContext.path_filename.ext", 'rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")')
+        env1$f$f_CodeText2.is_equal("env1$path$LastSourceEditorContext.path_filename.ext", 'rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")')
     }
     return(invisible())
 }
@@ -503,32 +503,32 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = set_lastSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "set_lastSourceEditorContext.path_filename.ext"
+### & alias = set_LastSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "set_LastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = update_lastSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "update_lastSourceEditorContext.path_filename.ext"
+### & alias = update_LastSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "update_LastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = getSourceEditorContext.update_lastSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "getSourceEditorContext.update_lastSourceEditorContext.path_filename.ext"
+### & alias = getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "getSourceEditorContext.update_LastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### env1\$path\$lastSourceEditorContext.path_filename.ext ====  
+### env1\$path\$LastSourceEditorContext.path_filename.ext ====  
 # *** Caution) In Rstudio Notebook, the path of the running Rmd file is set as the working directory~!!!
-# env1$path$lastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-env1$env.internal$f_path.set_lastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
-if(!is.null(env1$path$lastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$lastSourceEditorContext.path
+# env1$path$LastSourceEditorContext.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(getwd()|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
+if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.size_files =  ----  
 # Rdev/00_base_program/f_path.size_files.source.r
@@ -1365,8 +1365,8 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
     if(!dir.exists(file.path(.path4APPDATA_RStudio, "templates"))) dir.create(file.path(.path4APPDATA_RStudio, "templates"))
     
     # # \% Edit the templates of RStudio (default.R, notebook.Rmd) ~~~~~~~~~~~~
-    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$lastSourceEditorContext.path_filename.ext)) if(env1$path$lastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$lastSourceEditorContext.path_filename.ext))
-    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$lastSourceEditorContext.path_filename.ext)) if(env1$path$lastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$lastSourceEditorContext.path_filename.ext))
+    # "default.R" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
+    # "notebook.Rmd" %>% file.path(.path4APPDATA_RStudio, "templates", .) %>% {.[file.exists(.)]} |> file.edit(); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
     
     # \% Update the templates of RStudio (default.R, notebook.Rmd)  ~~~~~~~~~~~~
     for (.filename.ext in c("default.R", "templates-00env1.minimum.Rmd")) {
@@ -1380,7 +1380,7 @@ env1$f$f.updateTemplates = function(.path4APPDATA_RStudio = NULL) {
         
         if (Sys.info()["sysname"] == "Windows") {
             # "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/default.R" |> source()
-            # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$lastSourceEditorContext.path_filename.ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
+            # Sys.setenv(PARENT_RENDERING = "YES"); "D:/OneDrive/[][Rproject]/github_tidystat/rstudio-prefs/templates/templates-00env1.minimum.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename.ext), output_format = "html_notebook"); Sys.setenv(PARENT_RENDERING = "NO")
             
             .file.copy.to = paste0("D:/OneDrive/[][Rproject]/Rproject_Rmd/",.filename.ext)
             .backup_to_path = "D:/OneDrive/[][Rproject]/-backup"
