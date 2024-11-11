@@ -108,6 +108,13 @@ f_file.str_replace_all.old.ObjectName <- function(input_path_file, old.ObjectNam
 }
 
 
+
+f_CurrentSourceEditorContext.str_replace_all.old.ObjectName = function()
+
+f_CurrentSourceEditorContext.str_replace_all.old.ObjectName = function()
+
+
+
 # Usage example
 old.ObjectName <- "old.ObjectName"
 new.ObjectName <- "new.ObjectName"
