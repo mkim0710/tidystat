@@ -380,25 +380,32 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.set_lastSourceEditorContext.path_filename.ext =  ----  
 .tmp$objectname = "f_path.set_lastSourceEditorContext.path_filename.ext"
-.tmp$object = function(check_rstudioapi = TRUE, overwrite = FALSE, LinePrefix4CodeText = "\t", VERBOSE = Sys.getenv("VERBOSE")) {
+.tmp$object = function(
+        check_rstudioapi = TRUE, 
+        overwrite = FALSE, 
+        LinePrefix4CodeText = "\t",
+        VERBOSE = ifelse(!is.null(Sys.getenv("VERBOSE")), ifelse(Sys.getenv("VERBOSE")!="", Sys.getenv("VERBOSE"), options()$verbose), options()$verbose)
+) {
     if(is.null(env1$path$lastSourceEditorContext.path_filename.ext) || is.na(env1$path$lastSourceEditorContext.path_filename.ext) || env1$path$lastSourceEditorContext.path_filename.ext == "") overwrite = TRUE
     
     if (check_rstudioapi) {
         if (requireNamespace("rstudioapi")) {
             if(VERBOSE) {  .CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))  }
-            .CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))
             
             if (rstudioapi::isAvailable()) {
                 # GO TO: if(overwrite)
             } else { 
-                # if(VERBOSE) print('!rstudioapi::isAvailable()');
+                if(VERBOSE) {
+                    print('!rstudioapi::isAvailable()');
+                } else if (!is.null(attributes(.GlobalEnv$env1$source$.Rprofile)$complete)) {
+                    if(attributes(.GlobalEnv$env1$source$.Rprofile)$complete) print('!rstudioapi::isAvailable()');
+                }
                 env1$path$lastSourceEditorContext.path_filename.ext = NA
-                print('!rstudioapi::isAvailable()');
                 return(invisible())
             }
             
         } else { 
-            if(!VERBOSE) print('!rstudioapi::isAvailable()');
+            if(!VERBOSE) if (!is.null(attributes(.GlobalEnv$env1$source$.Rprofile)$complete)) if(attributes(.GlobalEnv$env1$source$.Rprofile)$complete) print('!requireNamespace("rstudioapi")');
             return(invisible()) 
         }
     } 
@@ -424,22 +431,22 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = getSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "getSourceEditorContext.path_filename.ext"
+### & alias = set_lastSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "set_lastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = getCurrentSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "getCurrentSourceEditorContext.path_filename.ext"
+### & alias = update_lastSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "update_lastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = CurrentSourceEditorContext.path_filename.ext  ----  
-.tmp$aliasname = "CurrentSourceEditorContext.path_filename.ext"
+### & alias = getSourceEditorContext.update_lastSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "getSourceEditorContext.update_lastSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
