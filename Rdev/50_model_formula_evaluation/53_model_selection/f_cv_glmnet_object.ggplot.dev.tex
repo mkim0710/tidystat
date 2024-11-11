@@ -1,0 +1,1200 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[portrait, a3paper, margin=20mm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fontspec}
+\newcommand{\setfallbackfont}[4]{ \IfFontExistsTF{#2} {#1{#2}} {\IfFontExistsTF{#3} {#1{#3}} {#1{#4}}}}
+\setfallbackfont{\setmainfont}{Roboto}{Noto Sans}{Arial}
+\setfallbackfont{\setsansfont}{Roboto}{Noto Sans}{Arial}
+\setfallbackfont{\setmonofont}{Cascadia Code SemiBold}{Cascadia Code}{Fira Code}
+\usepackage[hangul]{kotex}
+\setfallbackfont{\setmainhangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+\setfallbackfont{\setsanshangulfont}{NanumGothic}{HCR Dotum LVT}{Malgun Gothic}
+\setfallbackfont{\setmonohangulfont}{D2Coding}{NanumGothicCoding}{NanumGothic}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={f\_cv\_glmnet\_object.ggplot.dev.Rmd},
+  pdfauthor={MHKim},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{f\_cv\_glmnet\_object.ggplot.dev.Rmd}
+\author{MHKim}
+\date{November 11, 2024}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{6}
+\tableofcontents
+}
+\hypertarget{section}{%
+\section{\_\_\_\_\_\_\_\_\_\_\textbar------}\label{section}}
+
+Rdev/50\_model\_formula\_evaluation/53\_model\_selection/trainset.cv.glmnet\_alphas\_cox.dev.Rmd
+Rdev/60\_communicate\_report\_export/f\_df.glmnet.gtsummary\_Table1.flextable.dev-Gemini-pending.Rmd
+Rdev/60\_communicate\_report\_export/f\_df.glmnet.gtsummary\_Table1.flextable.dev-GPT-pending.Rmd
+
+\hypertarget{section-1}{%
+\section{\_\_\_\_\_\_\_\_\_\_\textbar------}\label{section-1}}
+
+\hypertarget{start-data-example--}{%
+\section{@@ START) data example ----}\label{start-data-example--}}
+
+\hypertarget{jk02id.ccw.min_date.ge365.mdd.endtime.i.recode.bin.4c.endtimep.na_rm.cc69.agg4.4069agenum.i2007.1.1--}{%
+\subsection{::
+JK02ID.CCW.MIN\_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA\_rm.CC69.agg4.4069AgeNum.i2007.1.1
+=
+----}\label{jk02id.ccw.min_date.ge365.mdd.endtime.i.recode.bin.4c.endtimep.na_rm.cc69.agg4.4069agenum.i2007.1.1--}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+\CommentTok{\# \# Define variable names}
+\CommentTok{\# varnames \textless{}{-} c(}
+\CommentTok{\#   "EndTime.is.Case.confirm.365", "EndTime", "AgeDecade", "Female", "Income",}
+\CommentTok{\#   "DisabilityGrade", "AcquiredHypothyroidism", "AdjustmentDisorder", "Anemia",}
+\CommentTok{\#   "Anxiety", "Arthritis", "AtrialFibrillation", "BenignProstatic",}
+\CommentTok{\#   "BrainInjury", "Cataract", "ChronicKidney", "Diabetes", "Dysthymia",}
+\CommentTok{\#   "Epilepsy", "Fibromyalgia\_Pain\_Fatigue", "Glaucoma", "HearingImpairment",}
+\CommentTok{\#   "HeartFailure", "Hyperlipidemia", "Hypertension", "IschemicHeart",}
+\CommentTok{\#   "Migraine\_ChronicHeadache", "MobilityImpairments", "Osteoporosis",}
+\CommentTok{\#   "PelvicFx", "PersonalityDisorders", "SpinalCordInjury", "StrokeTIA",}
+\CommentTok{\#   "AlzheimerDementia", "LiverDisease", "ObstructiveLungDisease",}
+\CommentTok{\#   "CancerSurvivors"}
+\CommentTok{\# )}
+\CommentTok{\# }
+\CommentTok{\# \# Function to load and preprocess data}
+\CommentTok{\# load\_preprocess\_data \textless{}{-} function(file\_path, varnames, is\_test = FALSE) \{}
+\CommentTok{\#   data \textless{}{-} readRDS(file\_path)[varnames] \%\textgreater{}\%}
+\CommentTok{\#     mutate(EndTime = as.numeric(EndTime))}
+\CommentTok{\#   }
+\CommentTok{\#   if (is\_test) \{}
+\CommentTok{\#     data \textless{}{-} data \%\textgreater{}\% mutate(testset = TRUE)}
+\CommentTok{\#   \}}
+\CommentTok{\#   }
+\CommentTok{\#   return(as\_tibble(data))}
+\CommentTok{\# \}}
+\CommentTok{\# }
+\CommentTok{\# \# Load training and testing datasets}
+\CommentTok{\# train\_file \textless{}{-} "JK02ID.CCW.MIN\_Date.ge365.MDD.EndTime.i.recode.bin.4c.EndTimeP.NA\_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"}
+\CommentTok{\# test\_file \textless{}{-} "JK02ID.CCW.MIN\_Date.ge365.MDD.EndTime.i.recode.bin.4test.EndTimeP.NA\_rm.CC69.agg4.4069AgeNum.i2007.1.1.rda"}
+\CommentTok{\# }
+\CommentTok{\# TheTrainSet \textless{}{-} load\_preprocess\_data(train\_file, varnames, is\_test = FALSE)}
+\CommentTok{\# TheTestSet  \textless{}{-} load\_preprocess\_data(test\_file, varnames, is\_test = TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{thetrainset--}{%
+\subsection{:: TheTrainSet() ----}\label{thetrainset--}}
+
+\hypertarget{thetestset--}{%
+\subsubsection{:: TheTestSet() ----}\label{thetestset--}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+
+\CommentTok{\# Define variable names}
+\NormalTok{varnames }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"EndTime.is.Case.confirm.365"}\NormalTok{, }\StringTok{"EndTime"}\NormalTok{, }\StringTok{"AgeDecade"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Income"}\NormalTok{,}
+  \StringTok{"DisabilityGrade"}\NormalTok{, }\StringTok{"AcquiredHypothyroidism"}\NormalTok{, }\StringTok{"AdjustmentDisorder"}\NormalTok{, }\StringTok{"Anemia"}\NormalTok{,}
+  \StringTok{"Anxiety"}\NormalTok{, }\StringTok{"Arthritis"}\NormalTok{, }\StringTok{"AtrialFibrillation"}\NormalTok{, }\StringTok{"BenignProstatic"}\NormalTok{,}
+  \StringTok{"BrainInjury"}\NormalTok{, }\StringTok{"Cataract"}\NormalTok{, }\StringTok{"ChronicKidney"}\NormalTok{, }\StringTok{"Diabetes"}\NormalTok{, }\StringTok{"Dysthymia"}\NormalTok{,}
+  \StringTok{"Epilepsy"}\NormalTok{, }\StringTok{"Fibromyalgia\_Pain\_Fatigue"}\NormalTok{, }\StringTok{"Glaucoma"}\NormalTok{, }\StringTok{"HearingImpairment"}\NormalTok{,}
+  \StringTok{"HeartFailure"}\NormalTok{, }\StringTok{"Hyperlipidemia"}\NormalTok{, }\StringTok{"Hypertension"}\NormalTok{, }\StringTok{"IschemicHeart"}\NormalTok{,}
+  \StringTok{"Migraine\_ChronicHeadache"}\NormalTok{, }\StringTok{"MobilityImpairments"}\NormalTok{, }\StringTok{"Osteoporosis"}\NormalTok{,}
+  \StringTok{"PelvicFx"}\NormalTok{, }\StringTok{"PersonalityDisorders"}\NormalTok{, }\StringTok{"SpinalCordInjury"}\NormalTok{, }\StringTok{"StrokeTIA"}\NormalTok{,}
+  \StringTok{"AlzheimerDementia"}\NormalTok{, }\StringTok{"LiverDisease"}\NormalTok{, }\StringTok{"ObstructiveLungDisease"}\NormalTok{,}
+  \StringTok{"CancerSurvivors"}
+\NormalTok{)}
+
+\CommentTok{\# Create Training Dataset}
+\NormalTok{TheTrainSet }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{EndTime.is.Case.confirm.365 =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+  \AttributeTok{EndTime =} \FunctionTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{150}\NormalTok{, }\DecValTok{300}\NormalTok{, }\DecValTok{250}\NormalTok{),}
+  \AttributeTok{AgeDecade =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{),}
+  \AttributeTok{Female =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Income =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+  \AttributeTok{DisabilityGrade =} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"None"}\NormalTok{, }\StringTok{"Severe"}\NormalTok{, }\StringTok{"Mild"}\NormalTok{, }\StringTok{"None"}\NormalTok{, }\StringTok{"Severe"}\NormalTok{)),}
+  \AttributeTok{AcquiredHypothyroidism =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{AdjustmentDisorder =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Anemia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Anxiety =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Arthritis =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{AtrialFibrillation =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{BenignProstatic =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{BrainInjury =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Cataract =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{ChronicKidney =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Diabetes =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Dysthymia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Epilepsy =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Fibromyalgia\_Pain\_Fatigue =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Glaucoma =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{HearingImpairment =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{HeartFailure =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Hyperlipidemia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Hypertension =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{IschemicHeart =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Migraine\_ChronicHeadache =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{MobilityImpairments =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Osteoporosis =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{PelvicFx =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{PersonalityDisorders =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{SpinalCordInjury =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{StrokeTIA =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{AlzheimerDementia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{LiverDisease =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{ObstructiveLungDisease =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{CancerSurvivors =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{\# Create Test Dataset}
+\NormalTok{TheTestSet }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{EndTime.is.Case.confirm.365 =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+  \AttributeTok{EndTime =} \FunctionTok{c}\NormalTok{(}\DecValTok{120}\NormalTok{, }\DecValTok{220}\NormalTok{, }\DecValTok{180}\NormalTok{),}
+  \AttributeTok{AgeDecade =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{),}
+  \AttributeTok{Female =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Income =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{),}
+  \AttributeTok{DisabilityGrade =} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Mild"}\NormalTok{, }\StringTok{"None"}\NormalTok{, }\StringTok{"Severe"}\NormalTok{)),}
+  \AttributeTok{AcquiredHypothyroidism =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{AdjustmentDisorder =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Anemia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Anxiety =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Arthritis =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{AtrialFibrillation =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{BenignProstatic =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{BrainInjury =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Cataract =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{ChronicKidney =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Diabetes =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Dysthymia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Epilepsy =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Fibromyalgia\_Pain\_Fatigue =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Glaucoma =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{HearingImpairment =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{HeartFailure =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Hyperlipidemia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Hypertension =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{IschemicHeart =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{Migraine\_ChronicHeadache =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{MobilityImpairments =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{Osteoporosis =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{PelvicFx =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{PersonalityDisorders =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{SpinalCordInjury =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{StrokeTIA =} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{),}
+  \AttributeTok{AlzheimerDementia =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{LiverDisease =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{ObstructiveLungDisease =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{CancerSurvivors =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{testset =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{TheTrainSet}
+\CommentTok{\# \# A tibble: 5 x 37}
+\CommentTok{\#   EndTime.is.Case.confirm.365 EndTime AgeDecade Female Income DisabilityGrade AcquiredHypothyroidism AdjustmentDisorder}
+\CommentTok{\#                         \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{} \textless{}lgl\textgreater{}   \textless{}dbl\textgreater{} \textless{}fct\textgreater{}           \textless{}lgl\textgreater{}                  \textless{}lgl\textgreater{}             }
+\CommentTok{\# 1                           0     100         5 TRUE        3 None            FALSE                  FALSE             }
+\CommentTok{\# 2                           1     200         6 FALSE       5 Severe          TRUE                   FALSE             }
+\CommentTok{\# 3                           0     150         5 TRUE        2 Mild            FALSE                  TRUE              }
+\CommentTok{\# 4                           1     300         7 FALSE       4 None            TRUE                   FALSE             }
+\CommentTok{\# 5                           0     250         6 TRUE        3 Severe          FALSE                  FALSE             }
+\CommentTok{\# \# i 29 more variables: Anemia \textless{}lgl\textgreater{}, Anxiety \textless{}lgl\textgreater{}, Arthritis \textless{}lgl\textgreater{}, AtrialFibrillation \textless{}lgl\textgreater{}, BenignProstatic \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   BrainInjury \textless{}lgl\textgreater{}, Cataract \textless{}lgl\textgreater{}, ChronicKidney \textless{}lgl\textgreater{}, Diabetes \textless{}lgl\textgreater{}, Dysthymia \textless{}lgl\textgreater{}, Epilepsy \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   Fibromyalgia\_Pain\_Fatigue \textless{}lgl\textgreater{}, Glaucoma \textless{}lgl\textgreater{}, HearingImpairment \textless{}lgl\textgreater{}, HeartFailure \textless{}lgl\textgreater{}, Hyperlipidemia \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   Hypertension \textless{}lgl\textgreater{}, IschemicHeart \textless{}lgl\textgreater{}, Migraine\_ChronicHeadache \textless{}lgl\textgreater{}, MobilityImpairments \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   Osteoporosis \textless{}lgl\textgreater{}, PelvicFx \textless{}lgl\textgreater{}, PersonalityDisorders \textless{}lgl\textgreater{}, SpinalCordInjury \textless{}lgl\textgreater{}, StrokeTIA \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   AlzheimerDementia \textless{}lgl\textgreater{}, LiverDisease \textless{}lgl\textgreater{}, ObstructiveLungDisease \textless{}lgl\textgreater{}, CancerSurvivors \textless{}lgl\textgreater{}}
+\NormalTok{TheTestSet}
+\CommentTok{\# \# A tibble: 3 x 38}
+\CommentTok{\#   EndTime.is.Case.confirm.365 EndTime AgeDecade Female Income DisabilityGrade AcquiredHypothyroidism AdjustmentDisorder}
+\CommentTok{\#                         \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{} \textless{}lgl\textgreater{}   \textless{}dbl\textgreater{} \textless{}fct\textgreater{}           \textless{}lgl\textgreater{}                  \textless{}lgl\textgreater{}             }
+\CommentTok{\# 1                           0     120         5 FALSE       4 Mild            TRUE                   FALSE             }
+\CommentTok{\# 2                           1     220         7 TRUE        3 None            FALSE                  TRUE              }
+\CommentTok{\# 3                           0     180         6 FALSE       5 Severe          TRUE                   FALSE             }
+\CommentTok{\# \# i 30 more variables: Anemia \textless{}lgl\textgreater{}, Anxiety \textless{}lgl\textgreater{}, Arthritis \textless{}lgl\textgreater{}, AtrialFibrillation \textless{}lgl\textgreater{}, BenignProstatic \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   BrainInjury \textless{}lgl\textgreater{}, Cataract \textless{}lgl\textgreater{}, ChronicKidney \textless{}lgl\textgreater{}, Diabetes \textless{}lgl\textgreater{}, Dysthymia \textless{}lgl\textgreater{}, Epilepsy \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   Fibromyalgia\_Pain\_Fatigue \textless{}lgl\textgreater{}, Glaucoma \textless{}lgl\textgreater{}, HearingImpairment \textless{}lgl\textgreater{}, HeartFailure \textless{}lgl\textgreater{}, Hyperlipidemia \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   Hypertension \textless{}lgl\textgreater{}, IschemicHeart \textless{}lgl\textgreater{}, Migraine\_ChronicHeadache \textless{}lgl\textgreater{}, MobilityImpairments \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   Osteoporosis \textless{}lgl\textgreater{}, PelvicFx \textless{}lgl\textgreater{}, PersonalityDisorders \textless{}lgl\textgreater{}, SpinalCordInjury \textless{}lgl\textgreater{}, StrokeTIA \textless{}lgl\textgreater{},}
+\CommentTok{\# \#   AlzheimerDementia \textless{}lgl\textgreater{}, LiverDisease \textless{}lgl\textgreater{}, ObstructiveLungDisease \textless{}lgl\textgreater{}, CancerSurvivors \textless{}lgl\textgreater{}, testset \textless{}lgl\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{glmnetcoxexample--}{%
+\subsection{glmnet::CoxExample ----}\label{glmnetcoxexample--}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+\CommentTok{\# \# system.file("data", "CoxExample.rda", package = "glmnet")}
+\CommentTok{\# \# \# \textgreater{} system.file("data", "CoxExample.rda", package = "glmnet")}
+\CommentTok{\# \# \# [1] "/usr/local/lib/R/site{-}library/glmnet/data/CoxExample.rda"}
+\CommentTok{\# \# }
+\CommentTok{\# \# library(glmnet)}
+\CommentTok{\# \# \# load(system.file("data", "CoxExample.rda", package = "glmnet"))}
+\CommentTok{\# \# data(CoxExample)}
+\CommentTok{\# \# CoxExample \%\textgreater{}\% str}
+\CommentTok{\# \# \# CoxExample \%\textgreater{}\% map(function(mat) mat \%\textgreater{}\% round(3)) \%\textgreater{}\% deparse(width.cutoff = 500) \%\textgreater{}\% cat("\textbackslash{}n")}
+\CommentTok{\# }
+\CommentTok{\# \# .objectname = "glmnet\_coxExample\_tibble"}
+\CommentTok{\# \# .path\_file = paste0(env1$path$path1,"/data/", "library\_", .objectname, ".rda")}
+\CommentTok{\# \# save(list = .objectname, file = .path\_file)}
+\CommentTok{\# \# paste0( "git add {-}f ",shQuote(.path\_file) ) \%\textgreater{}\% system()}
+\CommentTok{\# }
+\CommentTok{\# load(url("https://github.com/mkim0710/tidystat/raw/master/data/library\_glmnet\_coxExample\_tibble.rda"))}
+\CommentTok{\# glmnet\_coxExample\_tibble}
+\CommentTok{\# glmnet\_coxExample\_tibble.round3 = glmnet\_coxExample\_tibble \%\textgreater{}\% mutate(across(matches("V"), function(vec) round(vec, 3)))}
+\CommentTok{\# glmnet\_coxExample\_tibble.round3}
+\CommentTok{\# \# glmnet\_coxExample\_tibble \%\textgreater{}\% write\_csv(paste0(env1$path$path1,"/data/", "glmnet\_coxExample\_tibble", ".csv"))}
+\CommentTok{\# \# glmnet\_coxExample\_tibble.round3 \%\textgreater{}\% write\_csv(paste0(env1$path$path1,"/data/", "glmnet\_coxExample\_tibble.round3", ".csv"))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+> glmnet_coxExample_tibble %>% str()
+tibble [1,000 × 32] (S3: tbl_df/tbl/data.frame)
+ $ time  : num [1:1000] 1.7688 0.5453 0.0449 0.8503 0.6149 ...
+ $ status: num [1:1000] 1 1 0 0 1 0 0 1 1 0 ...
+ $ V1    : num [1:1000] -0.877 -0.746 1.376 0.238 0.109 ...
+ $ V2    : num [1:1000] -0.614 -1.752 -0.264 0.786 0.467 ...
+ $ V3    : num [1:1000] -0.568 0.285 0.887 -0.897 -0.576 ...
+ $ V4    : num [1:1000] 0.662 1.139 0.384 -0.834 1.704 ...
+ $ V5    : num [1:1000] 1.8222 0.8018 0.0575 -0.5824 0.3275 ...
+ $ V6    : num [1:1000] -1.091 1.85 -1.092 0.187 -0.121 ...
+ $ V7    : num [1:1000] -0.332 0.307 0.821 -0.586 0.885 ...
+ $ V8    : num [1:1000] 3.675 -1.373 2.296 0.476 0.451 ...
+ $ V9    : num [1:1000] 0.2458 -0.0325 -0.4477 -0.6058 0.5888 ...
+ $ V10   : num [1:1000] 1.138 0.748 -0.305 -1.27 0.55 ...
+ $ V11   : num [1:1000] -0.46 -0.899 -3.682 0.868 0.552 ...
+ $ V12   : num [1:1000] -0.618 0.282 1.313 -0.483 -1.105 ...
+ $ V13   : num [1:1000] 0.365 1.542 -1.864 -0.101 1.598 ...
+ $ V14   : num [1:1000] -1.365 0.222 -0.204 0.942 -0.339 ...
+ $ V15   : num [1:1000] 1.79 -0.447 0.889 -0.235 -0.501 ...
+ $ V16   : num [1:1000] -0.6 1.808 -0.396 0.262 -1.205 ...
+ $ V17   : num [1:1000] 0.0712 1.541 0.5496 0.4586 -1.9601 ...
+ $ V18   : num [1:1000] -1.107 1.762 0.163 0.389 -0.769 ...
+ $ V19   : num [1:1000] 1.047 -0.911 -2.45 -1.539 0.714 ...
+ $ V20   : num [1:1000] 0.0847 0.1854 -1.3069 -0.5914 1.2637 ...
+ $ V21   : num [1:1000] 0.87 -0.443 0.393 -0.814 0.16 ...
+ $ V22   : num [1:1000] -0.486 -0.136 1.112 -1.198 -1.063 ...
+ $ V23   : num [1:1000] 0.23314 0.17755 0.00555 0.74975 1.7165 ...
+ $ V24   : num [1:1000] -0.89 -0.121 -1.462 -0.983 -0.222 ...
+ $ V25   : num [1:1000] 1.537 1.011 -1.3 2.005 0.785 ...
+ $ V26   : num [1:1000] 0.362 0.978 -2.768 -0.571 -0.613 ...
+ $ V27   : num [1:1000] -0.0518 0.9053 -0.1672 -0.2355 1.2637 ...
+ $ V28   : num [1:1000] -0.178 -1.424 -0.7 0.939 -1.801 ...
+ $ V29   : num [1:1000] 0.945 -0.733 0.929 0.363 -1.588 ...
+ $ V30   : num [1:1000] 1.775 -0.0569 -1.5611 0.5486 1.0087 ...
+\end{verbatim}
+
+\hypertarget{glmnetquickstartexample--}{%
+\subsection{glmnet::QuickStartExample
+----}\label{glmnetquickstartexample--}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+\CommentTok{\# \# \# system.file("data", "QuickStartExample.rda", package = "glmnet")}
+\CommentTok{\# \# \# \# \textgreater{} system.file("data", "QuickStartExample.rda", package = "glmnet")}
+\CommentTok{\# \# \# \# [1] "/usr/local/lib/R/site{-}library/glmnet/data/QuickStartExample.rda"}
+\CommentTok{\# \# \#}
+\CommentTok{\# \# library(glmnet)}
+\CommentTok{\# \# \# load(system.file("data", "QuickStartExample.rda", package = "glmnet"))}
+\CommentTok{\# \# data(QuickStartExample)}
+\CommentTok{\# \# QuickStartExample \%\textgreater{}\% str}
+\CommentTok{\# \# glmnet\_gaussianExample\_tibble = QuickStartExample$x \%\textgreater{}\% as.data.frame()\%\textgreater{}\% as.tibble()}
+\CommentTok{\# \# glmnet\_gaussianExample\_tibble$y = QuickStartExample$y[,1]}
+\CommentTok{\# \# glmnet\_gaussianExample\_tibble = glmnet\_gaussianExample\_tibble \%\textgreater{}\% select(y, everything())}
+\CommentTok{\# \# }
+\CommentTok{\# \# .objectname = "glmnet\_gaussianExample\_tibble"}
+\CommentTok{\# \# .path\_file = paste0(env1$path$path1,"/data/", "library\_", .objectname, ".rda")}
+\CommentTok{\# \# save(list = .objectname, file = .path\_file)}
+\CommentTok{\# \# paste0( "git add {-}f ",shQuote(.path\_file) ) \%\textgreater{}\% system()}
+\CommentTok{\# load(url("https://github.com/mkim0710/tidystat/raw/master/data/library\_glmnet\_gaussianExample\_tibble.rda"))}
+\CommentTok{\# }
+\CommentTok{\# glmnet\_gaussianExample\_tibble \%\textgreater{}\% str}
+\CommentTok{\# glmnet\_gaussianExample\_tibble}
+\CommentTok{\# \# glmnet\_gaussianExample\_tibble.round3 = glmnet\_gaussianExample\_tibble \%\textgreater{}\% mutate(across(matches("V"), function(vec) round(vec, 3)))}
+\CommentTok{\# \# glmnet\_gaussianExample\_tibble.round3}
+\CommentTok{\# \# \# for (.objectname in c("glmnet\_gaussianExample\_tibble", "glmnet\_gaussianExample\_tibble.round3")) \{}
+\CommentTok{\# \# \#     .path\_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")}
+\CommentTok{\# \# \#     get(.objectname) \%\textgreater{}\% write\_csv(.path\_file)}
+\CommentTok{\# \# \#     paste0( "git add {-}f ",shQuote(.path\_file) ) \%\textgreater{}\% system()}
+\CommentTok{\# \# \# \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+tibble [100 × 21] (S3: tbl_df/tbl/data.frame)
+ $ y  : num [1:100] -1.275 1.843 0.459 0.564 1.873 ...
+ $ V1 : num [1:100] 0.274 2.245 -0.125 -0.544 -1.459 ...
+ $ V2 : num [1:100] -0.0367 -0.546 -0.6069 1.1084 -0.2745 ...
+ $ V3 : num [1:100] 0.855 0.234 -0.854 -0.104 0.112 ...
+ $ V4 : num [1:100] 0.968 -1.335 -0.149 1.017 -0.852 ...
+ $ V5 : num [1:100] 1.415 1.313 -0.665 0.7 0.315 ...
+ $ V6 : num [1:100] 0.523 0.521 0.607 1.655 1.051 ...
+ $ V7 : num [1:100] 0.563 -0.61 0.162 0.49 1.386 ...
+ $ V8 : num [1:100] 1.1112 -0.8614 -0.8627 0.0234 0.2845 ...
+ $ V9 : num [1:100] 1.641 -0.27 0.604 0.256 1.14 ...
+ $ V10: num [1:100] 0.619 0.23 1.194 -0.127 2.681 ...
+ $ V11: num [1:100] 0.9999 -0.1057 0.5013 -0.0626 -1.0147 ...
+ $ V12: num [1:100] -0.0784 0.1631 -0.9452 0.642 0.367 ...
+ $ V13: num [1:100] -0.6033 0.7621 0.3989 0.0755 1.7376 ...
+ $ V14: num [1:100] 0.0332 0.6781 -0.7648 -1.3785 -1.2661 ...
+ $ V15: num [1:100] -0.701 -0.528 1.285 -1.025 1.452 ...
+ $ V16: num [1:100] 1.158 -0.879 0.645 -2.118 -0.789 ...
+ $ V17: num [1:100] 1.458 -0.473 0.179 -0.47 -0.984 ...
+ $ V18: num [1:100] 0.7749 -1.1172 0.0447 0.6978 -1.637 ...
+ $ V19: num [1:100] -1.269 -0.738 1.105 0.866 -0.583 ...
+ $ V20: num [1:100] 1.994 -1.079 0.304 -0.789 -1.529 ...
+# A tibble: 100 × 21
+        y      V1      V2     V3      V4      V5      V6      V7      V8     V9    V10     V11     V12     V13     V14
+    <dbl>   <dbl>   <dbl>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+ 1 -1.27   0.274  -0.0367  0.855  0.968   1.42    0.523   0.563   1.11    1.64   0.619  1.00   -0.0784 -0.603   0.0332
+ 2  1.84   2.24   -0.546   0.234 -1.34    1.31    0.521  -0.610  -0.861  -0.270  0.230 -0.106   0.163   0.762   0.678 
+ 3  0.459 -0.125  -0.607  -0.854 -0.149  -0.665   0.607   0.162  -0.863   0.604  1.19   0.501  -0.945   0.399  -0.765 
+ 4  0.564 -0.544   1.11   -0.104  1.02    0.700   1.66    0.490   0.0234  0.256 -0.127 -0.0626  0.642   0.0755 -1.38  
+ 5  1.87  -1.46   -0.274   0.112 -0.852   0.315   1.05    1.39    0.285   1.14   2.68  -1.01    0.367   1.74   -1.27  
+ 6  0.528  1.06   -0.754  -1.38   1.08    0.370   1.50   -0.360  -0.214   1.83   0.871 -0.0637  1.01    0.315   0.537 
+ 7  2.43   0.116  -0.966   0.274  0.0185 -0.210   0.544  -2.51    2.20    0.593 -1.09  -1.46    0.573  -0.621  -0.645 
+ 8 -0.895  0.390   0.400  -0.467  0.478   0.848   0.257  -0.0995  0.999  -0.193 -0.404  2.21   -1.06    0.0957  0.661 
+ 9 -0.206  0.193   0.197  -1.24   1.91    0.115   0.452  -0.267  -0.273  -1.61  -0.326 -0.679  -0.479   0.408   0.276 
+10  3.11  -0.0964  1.18    2.55   0.956   0.0256 -0.0456 -0.659   0.0392  0.172  0.643 -1.24    2.18   -0.526  -0.319 
+# ℹ 90 more rows
+# ℹ 6 more variables: V15 <dbl>, V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+```
+\end{verbatim}
+
+\hypertarget{glmnetbinomialexample--}{%
+\subsection{glmnet::BinomialExample
+----}\label{glmnetbinomialexample--}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+\CommentTok{\# \# system.file("data", "BinomialExample.rda", package = "glmnet")}
+\CommentTok{\# \# \# \textgreater{} system.file("data", "BinomialExample.rda", package = "glmnet")}
+\CommentTok{\# \# \# [1] "/usr/local/lib/R/site{-}library/glmnet/data/BinomialExample.rda"}
+\CommentTok{\# \#}
+\CommentTok{\# library(glmnet)}
+\CommentTok{\# \# load(system.file("data", "BinomialExample.rda", package = "glmnet"))}
+\CommentTok{\# data(BinomialExample)}
+\CommentTok{\# BinomialExample \%\textgreater{}\% str}
+\CommentTok{\# glmnet\_binomialExample\_tibble = BinomialExample$x \%\textgreater{}\% as.data.frame()\%\textgreater{}\% as.tibble()}
+\CommentTok{\# glmnet\_binomialExample\_tibble$y = BinomialExample$y}
+\CommentTok{\# glmnet\_binomialExample\_tibble = glmnet\_binomialExample\_tibble \%\textgreater{}\% select(y, everything())}
+\CommentTok{\# }
+\CommentTok{\# .objectname = "glmnet\_binomialExample\_tibble"}
+\CommentTok{\# .path\_file = paste0(env1$path$path1,"/data/", "library\_", .objectname, ".rda")}
+\CommentTok{\# save(list = .objectname, file = .path\_file)}
+\CommentTok{\# paste0( "git add {-}f ",shQuote(.path\_file) ) \%\textgreater{}\% system()}
+\FunctionTok{load}\NormalTok{(}\FunctionTok{url}\NormalTok{(}\StringTok{"https://github.com/mkim0710/tidystat/raw/master/data/library\_glmnet\_binomialExample\_tibble.rda"}\NormalTok{))}
+
+\NormalTok{glmnet\_binomialExample\_tibble }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ str}
+\CommentTok{\# tibble [100 x 31] (S3: tbl\_df/tbl/data.frame)}
+\CommentTok{\#  $ y  : int [1:100] 0 1 1 0 1 0 0 0 1 1 ...}
+\CommentTok{\#  $ V1 : num [1:100] {-}0.619 1.094 {-}0.357 {-}2.469 0.567 ...}
+\CommentTok{\#  $ V2 : num [1:100] 0.0162 0.4726 0.3012 2.8477 0.8889 ...}
+\CommentTok{\#  $ V3 : num [1:100] {-}0.6261 {-}1.3371 0.1906 1.6602 {-}0.0116 ...}
+\CommentTok{\#  $ V4 : num [1:100] 0.413 {-}0.641 0.234 1.569 0.576 ...}
+\CommentTok{\#  $ V5 : num [1:100] 0.494 0.282 0.17 {-}0.833 {-}0.869 ...}
+\CommentTok{\#  $ V6 : num [1:100] {-}0.449 {-}0.609 1.229 {-}0.562 {-}0.313 ...}
+\CommentTok{\#  $ V7 : num [1:100] 0.676 0.355 1.163 {-}0.614 0.69 ...}
+\CommentTok{\#  $ V8 : num [1:100] {-}0.0677 {-}0.6269 0.8802 {-}1.7653 {-}1.2996 ...}
+\CommentTok{\#  $ V9 : num [1:100] {-}1.475 {-}0.116 0.762 0.39 {-}0.967 ...}
+\CommentTok{\#  $ V10: num [1:100] 1.076 {-}0.313 {-}1.181 1.794 {-}0.273 ...}
+\CommentTok{\#  $ V11: num [1:100] 0.571 0.414 {-}0.488 0.464 {-}0.524 ...}
+\CommentTok{\#  $ V12: num [1:100] {-}0.0986 {-}1.8717 0.4565 0.5168 {-}0.8216 ...}
+\CommentTok{\#  $ V13: num [1:100] 1.21 0.164 0.645 {-}1.081 0.546 ...}
+\CommentTok{\#  $ V14: num [1:100] {-}1.067 0.772 1.753 {-}0.298 {-}0.515 ...}
+\CommentTok{\#  $ V15: num [1:100] 0.343 {-}0.863 0.49 {-}0.585 {-}0.136 ...}
+\CommentTok{\#  $ V16: num [1:100] {-}0.0226 1.4621 2.2715 {-}1.3589 {-}1.1113 ...}
+\CommentTok{\#  $ V17: num [1:100] {-}0.102 {-}0.437 {-}0.734 {-}0.659 {-}0.978 ...}
+\CommentTok{\#  $ V18: num [1:100] 0.141 {-}1.041 0.977 {-}1.199 {-}1.378 ...}
+\CommentTok{\#  $ V19: num [1:100] {-}0.549 {-}0.603 {-}0.358 0.202 {-}1.352 ...}
+\CommentTok{\#  $ V20: num [1:100] {-}0.2017 {-}0.3206 {-}0.0801 0.5071 0.9593 ...}
+\CommentTok{\#  $ V21: num [1:100] 0.457 0.212 1.245 0.673 0.492 ...}
+\CommentTok{\#  $ V22: num [1:100] 0.807 0.613 1.012 {-}0.425 {-}1.34 ...}
+\CommentTok{\#  $ V23: num [1:100] 0.0147 {-}0.819 0.0393 {-}0.9873 {-}0.1329 ...}
+\CommentTok{\#  $ V24: num [1:100] {-}1.116 2.904 1.017 {-}0.401 0.22 ...}
+\CommentTok{\#  $ V25: num [1:100] {-}0.0159 {-}0.1578 0.2971 {-}2.0662 0.7897 ...}
+\CommentTok{\#  $ V26: num [1:100] 1.145 {-}2.105 0.402 {-}0.552 {-}0.147 ...}
+\CommentTok{\#  $ V27: num [1:100] 0.942 0.641 1.925 {-}1.379 {-}0.802 ...}
+\CommentTok{\#  $ V28: num [1:100] 1.4372 0.0124 0.3111 0.0952 0.7756 ...}
+\CommentTok{\#  $ V29: num [1:100] {-}0.928 0.481 0.898 {-}0.39 1.118 ...}
+\CommentTok{\#  $ V30: num [1:100] 0.908 {-}2.049 {-}1.209 1.78 {-}1.197 ...}
+\NormalTok{glmnet\_binomialExample\_tibble}
+\CommentTok{\# \# A tibble: 100 x 31}
+\CommentTok{\#        y      V1      V2      V3      V4     V5     V6     V7      V8     V9     V10    V11     V12    V13    V14    V15}
+\CommentTok{\#    \textless{}int\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}}
+\CommentTok{\#  1     0 {-}0.619   0.0162 {-}0.626   0.413   0.494 {-}0.449  0.676 {-}0.0677 {-}1.47   1.08    0.571 {-}0.0986  1.21  {-}1.07   0.343}
+\CommentTok{\#  2     1  1.09    0.473  {-}1.34   {-}0.641   0.282 {-}0.609  0.355 {-}0.627  {-}0.116 {-}0.313   0.414 {-}1.87    0.164  0.772 {-}0.863}
+\CommentTok{\#  3     1 {-}0.357   0.301   0.191   0.234   0.170  1.23   1.16   0.880   0.762 {-}1.18   {-}0.488  0.457   0.645  1.75   0.490}
+\CommentTok{\#  4     0 {-}2.47    2.85    1.66    1.57   {-}0.833 {-}0.562 {-}0.614 {-}1.77    0.390  1.79    0.464  0.517  {-}1.08  {-}0.298 {-}0.585}
+\CommentTok{\#  5     1  0.567   0.889  {-}0.0116  0.576  {-}0.869 {-}0.313  0.690 {-}1.30   {-}0.967 {-}0.273  {-}0.524 {-}0.822   0.546 {-}0.515 {-}0.136}
+\CommentTok{\#  6     0  0.913   0.774   0.558  {-}0.535   0.351 {-}0.576 {-}0.388  0.555   0.357  1.36   {-}0.782  0.605  {-}0.472  1.26  {-}1.19 }
+\CommentTok{\#  7     0  0.0957  0.140  {-}0.760  {-}0.0494  1.57  {-}0.124 {-}1.11   1.73   {-}1.25  {-}0.444   0.360 {-}1.93   {-}0.579  0.425 {-}1.60 }
+\CommentTok{\#  8     0  1.93   {-}0.711  {-}0.274   1.00    1.04   0.803 {-}0.604 {-}0.511   0.429  0.519   0.955  0.594  {-}0.550 {-}0.117 {-}1.14 }
+\CommentTok{\#  9     1  0.283   1.06   {-}0.0394  0.303  {-}0.916  0.691  0.609  0.309   1.03  {-}0.0309  0.128 {-}1.61    0.202 {-}0.721 {-}0.860}
+\CommentTok{\# 10     1  0.801   1.54   {-}1.01   {-}0.385  {-}2.03   0.224 {-}1.16  {-}0.527  {-}0.724 {-}0.0437  0.277 {-}0.210  {-}0.664  0.173  0.504}
+\CommentTok{\# \# i 90 more rows}
+\CommentTok{\# \# i 15 more variables: V16 \textless{}dbl\textgreater{}, V17 \textless{}dbl\textgreater{}, V18 \textless{}dbl\textgreater{}, V19 \textless{}dbl\textgreater{}, V20 \textless{}dbl\textgreater{}, V21 \textless{}dbl\textgreater{}, V22 \textless{}dbl\textgreater{}, V23 \textless{}dbl\textgreater{},}
+\CommentTok{\# \#   V24 \textless{}dbl\textgreater{}, V25 \textless{}dbl\textgreater{}, V26 \textless{}dbl\textgreater{}, V27 \textless{}dbl\textgreater{}, V28 \textless{}dbl\textgreater{}, V29 \textless{}dbl\textgreater{}, V30 \textless{}dbl\textgreater{}}
+\CommentTok{\# glmnet\_binomialExample\_tibble.round3 = glmnet\_binomialExample\_tibble \%\textgreater{}\% mutate(across(matches("V"), function(vec) round(vec, 3)))}
+\CommentTok{\# glmnet\_binomialExample\_tibble.round3}
+\CommentTok{\# \# for (.objectname in c("glmnet\_binomialExample\_tibble", "glmnet\_binomialExample\_tibble.round3")) \{}
+\CommentTok{\# \#     .path\_file = paste0(env1$path$path1,"/data/", .objectname, ".csv")}
+\CommentTok{\# \#     get(.objectname) \%\textgreater{}\% write\_csv(.path\_file)}
+\CommentTok{\# \#     paste0( "git add {-}f ",shQuote(.path\_file) ) \%\textgreater{}\% system()}
+\CommentTok{\# \# \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+tibble [100 × 31] (S3: tbl_df/tbl/data.frame)
+ $ y  : int [1:100] 0 1 1 0 1 0 0 0 1 1 ...
+ $ V1 : num [1:100] -0.619 1.094 -0.357 -2.469 0.567 ...
+ $ V2 : num [1:100] 0.0162 0.4726 0.3012 2.8477 0.8889 ...
+ $ V3 : num [1:100] -0.6261 -1.3371 0.1906 1.6602 -0.0116 ...
+ $ V4 : num [1:100] 0.413 -0.641 0.234 1.569 0.576 ...
+ $ V5 : num [1:100] 0.494 0.282 0.17 -0.833 -0.869 ...
+ $ V6 : num [1:100] -0.449 -0.609 1.229 -0.562 -0.313 ...
+ $ V7 : num [1:100] 0.676 0.355 1.163 -0.614 0.69 ...
+ $ V8 : num [1:100] -0.0677 -0.6269 0.8802 -1.7653 -1.2996 ...
+ $ V9 : num [1:100] -1.475 -0.116 0.762 0.39 -0.967 ...
+ $ V10: num [1:100] 1.076 -0.313 -1.181 1.794 -0.273 ...
+ $ V11: num [1:100] 0.571 0.414 -0.488 0.464 -0.524 ...
+ $ V12: num [1:100] -0.0986 -1.8717 0.4565 0.5168 -0.8216 ...
+ $ V13: num [1:100] 1.21 0.164 0.645 -1.081 0.546 ...
+ $ V14: num [1:100] -1.067 0.772 1.753 -0.298 -0.515 ...
+ $ V15: num [1:100] 0.343 -0.863 0.49 -0.585 -0.136 ...
+ $ V16: num [1:100] -0.0226 1.4621 2.2715 -1.3589 -1.1113 ...
+ $ V17: num [1:100] -0.102 -0.437 -0.734 -0.659 -0.978 ...
+ $ V18: num [1:100] 0.141 -1.041 0.977 -1.199 -1.378 ...
+ $ V19: num [1:100] -0.549 -0.603 -0.358 0.202 -1.352 ...
+ $ V20: num [1:100] -0.2017 -0.3206 -0.0801 0.5071 0.9593 ...
+ $ V21: num [1:100] 0.457 0.212 1.245 0.673 0.492 ...
+ $ V22: num [1:100] 0.807 0.613 1.012 -0.425 -1.34 ...
+ $ V23: num [1:100] 0.0147 -0.819 0.0393 -0.9873 -0.1329 ...
+ $ V24: num [1:100] -1.116 2.904 1.017 -0.401 0.22 ...
+ $ V25: num [1:100] -0.0159 -0.1578 0.2971 -2.0662 0.7897 ...
+ $ V26: num [1:100] 1.145 -2.105 0.402 -0.552 -0.147 ...
+ $ V27: num [1:100] 0.942 0.641 1.925 -1.379 -0.802 ...
+ $ V28: num [1:100] 1.4372 0.0124 0.3111 0.0952 0.7756 ...
+ $ V29: num [1:100] -0.928 0.481 0.898 -0.39 1.118 ...
+ $ V30: num [1:100] 0.908 -2.049 -1.209 1.78 -1.197 ...
+# A tibble: 100 × 31
+       y      V1      V2      V3      V4     V5     V6     V7      V8     V9     V10    V11     V12    V13    V14    V15
+   <int>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>  <dbl>   <dbl>  <dbl>   <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>
+ 1     0 -0.619   0.0162 -0.626   0.413   0.494 -0.449  0.676 -0.0677 -1.47   1.08    0.571 -0.0986  1.21  -1.07   0.343
+ 2     1  1.09    0.473  -1.34   -0.641   0.282 -0.609  0.355 -0.627  -0.116 -0.313   0.414 -1.87    0.164  0.772 -0.863
+ 3     1 -0.357   0.301   0.191   0.234   0.170  1.23   1.16   0.880   0.762 -1.18   -0.488  0.457   0.645  1.75   0.490
+ 4     0 -2.47    2.85    1.66    1.57   -0.833 -0.562 -0.614 -1.77    0.390  1.79    0.464  0.517  -1.08  -0.298 -0.585
+ 5     1  0.567   0.889  -0.0116  0.576  -0.869 -0.313  0.690 -1.30   -0.967 -0.273  -0.524 -0.822   0.546 -0.515 -0.136
+ 6     0  0.913   0.774   0.558  -0.535   0.351 -0.576 -0.388  0.555   0.357  1.36   -0.782  0.605  -0.472  1.26  -1.19 
+ 7     0  0.0957  0.140  -0.760  -0.0494  1.57  -0.124 -1.11   1.73   -1.25  -0.444   0.360 -1.93   -0.579  0.425 -1.60 
+ 8     0  1.93   -0.711  -0.274   1.00    1.04   0.803 -0.604 -0.511   0.429  0.519   0.955  0.594  -0.550 -0.117 -1.14 
+ 9     1  0.283   1.06   -0.0394  0.303  -0.916  0.691  0.609  0.309   1.03  -0.0309  0.128 -1.61    0.202 -0.721 -0.860
+10     1  0.801   1.54   -1.01   -0.385  -2.03   0.224 -1.16  -0.527  -0.724 -0.0437  0.277 -0.210  -0.664  0.173  0.504
+# ℹ 90 more rows
+# ℹ 15 more variables: V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>, V21 <dbl>, V22 <dbl>, V23 <dbl>,
+#   V24 <dbl>, V25 <dbl>, V26 <dbl>, V27 <dbl>, V28 <dbl>, V29 <dbl>, V30 <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+\end{verbatim}
+
+ECHO \% \textbar\textgreater{} () ----
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{source-rdev50_model_formula_evaluation53_model_selectionf_df.cv.glmnet.source.r}{%
+\section{@@ SOURCE)
+Rdev/50\_model\_formula\_evaluation/53\_model\_selection/f\_df.cv.glmnet.source.r}\label{source-rdev50_model_formula_evaluation53_model_selectionf_df.cv.glmnet.source.r}}
+
+\hypertarget{render-rdev50_model_formula_evaluation53_model_selectionf_df.cv.glmnet.dev.rmd}{%
+\section{@@ RENDER)
+Rdev/50\_model\_formula\_evaluation/53\_model\_selection/f\_df.cv.glmnet.dev.Rmd}\label{render-rdev50_model_formula_evaluation53_model_selectionf_df.cv.glmnet.dev.rmd}}
+
+\hypertarget{render-rdev50_model_formula_evaluation53_model_selectionf_cv_glmnet_object.plot.dev.rmd}{%
+\section{@@ RENDER)
+Rdev/50\_model\_formula\_evaluation/53\_model\_selection/f\_cv\_glmnet\_object.plot.dev.Rmd}\label{render-rdev50_model_formula_evaluation53_model_selectionf_cv_glmnet_object.plot.dev.rmd}}
+
+\hypertarget{render-rdev50_model_formula_evaluation53_model_selectionf_df.cv.glmnet_alphas.dev.rmd}{%
+\section{@@ RENDER)
+Rdev/50\_model\_formula\_evaluation/53\_model\_selection/f\_df.cv.glmnet\_alphas.dev.Rmd}\label{render-rdev50_model_formula_evaluation53_model_selectionf_df.cv.glmnet_alphas.dev.rmd}}
+
+\hypertarget{render-rdev50_model_formula_evaluation53_model_selectiontrainset.cv.glmnet_alphas_cox.dev.rmd}{%
+\section{@@ RENDER)
+Rdev/50\_model\_formula\_evaluation/53\_model\_selection/trainset.cv.glmnet\_alphas\_cox.dev.Rmd}\label{render-rdev50_model_formula_evaluation53_model_selectiontrainset.cv.glmnet_alphas_cox.dev.rmd}}
+
+\hypertarget{render-rdev60_communicate_report_exportf_df.glmnet.gtsummary_table1.flextable.dev-gpt-pending.rmd}{%
+\section{@@ RENDER)
+Rdev/60\_communicate\_report\_export/f\_df.glmnet.gtsummary\_Table1.flextable.dev-GPT-pending.Rmd}\label{render-rdev60_communicate_report_exportf_df.glmnet.gtsummary_table1.flextable.dev-gpt-pending.rmd}}
+
+\hypertarget{render-rdev60_communicate_report_exportf_df.glmnet.gtsummary_table1.flextable.dev-gemini-pending.rmd}{%
+\section{@@ RENDER)
+Rdev/60\_communicate\_report\_export/f\_df.glmnet.gtsummary\_Table1.flextable.dev-Gemini-pending.Rmd}\label{render-rdev60_communicate_report_exportf_df.glmnet.gtsummary_table1.flextable.dev-gemini-pending.rmd}}
+
+\hypertarget{section-2}{%
+\section{\_\_\_\_\_\_\_\_\_\_\textbar------}\label{section-2}}
+
+\hypertarget{start-dev-f_glmnet_object.ggplot--}{%
+\section{@@ START) dev) f\_glmnet\_object.ggplot
+----}\label{start-dev-f_glmnet_object.ggplot--}}
+
+\hypertarget{httpschatgpt.comc672f1a80-34c8-800e-9d67-0c694bab56c7}{%
+\section{\texorpdfstring{\url{https://chatgpt.com/c/672f1a80-34c8-800e-9d67-0c694bab56c7}}{https://chatgpt.com/c/672f1a80-34c8-800e-9d67-0c694bab56c7}}\label{httpschatgpt.comc672f1a80-34c8-800e-9d67-0c694bab56c7}}
+
+\hypertarget{glmnet_object-glmnetx-y}{%
+\subsection{:: glmnet\_object = glmnet(x,
+y)}\label{glmnet_object-glmnetx-y}}
+
+\hypertarget{f_glmnet_object.plot-function}{%
+\subsubsection{:: f\_glmnet\_object.plot =
+function()}\label{f_glmnet_object.plot-function}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-8-1.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-8-2.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-8-3.pdf}
+
+\begin{verbatim}
+# R1C1 R2C1 R1C2 R2C2 R1C3 R2C3 
+#    1    2    3    4    5    6
+\end{verbatim}
+
+\begin{verbatim}
+                    s0          s1           s2          s3          s4          s5          s6          s7          s8
+(Intercept) -0.1184286 -0.11703883 -0.116802073 -0.11796488 -0.11918714 -0.12068265 -0.12204512 -0.12293742 -0.12359530
+V1           0.0000000  0.00000000  0.000000000  0.00000000  0.00000000  0.00000000  0.00000000 -0.00451381 -0.01068775
+V2           0.0000000  0.00000000  0.000000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000
+V3           0.0000000  0.00000000  0.005042359  0.01901132  0.03223212  0.04543432  0.05746221  0.06798421  0.07739612
+V4           0.0000000  0.00000000  0.000000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000
+V5           0.0000000  0.00000000  0.000000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000
+V6           0.0000000  0.00000000  0.000000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000
+V7           0.0000000  0.00000000  0.000000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000
+V8           0.0000000 -0.01284546 -0.026697987 -0.03869429 -0.04910857 -0.05738653 -0.06492913 -0.07107136 -0.07632794
+ num [1:21, 1:62] -0.118 0 0 0 0 ...
+ - attr(*, "dimnames")=List of 2
+  ..$ : chr [1:21] "(Intercept)" "V1" "V2" "V3" ...
+  ..$ : chr [1:62] "s0" "s1" "s2" "s3" ...
+ num [1:20, 1:62] 0 0 0 0 0 0 0 0 0 0 ...
+ - attr(*, "dimnames")=List of 2
+  ..$ : chr [1:20] "V1" "V2" "V3" "V4" ...
+  ..$ : chr [1:62] "s0" "s1" "s2" "s3" ...
+ num [1:1240] 0 0 0 0 0 0 0 0 0 0 ...
+\end{verbatim}
+
+\begin{verbatim}
+ num [1:62] 0.145 0.1321 0.1203 0.1097 0.0999 ...
+\end{verbatim}
+
+\begin{verbatim}
+ Named num [1:62] 0 0.0133 0.0559 0.1066 0.156 ...
+ - attr(*, "names")= chr [1:62] "s0" "s1" "s2" "s3" ...
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 1,240 x 5
+   lambda l1norm coefficient variable log_lambda
+    <dbl>  <dbl>       <dbl> <chr>         <dbl>
+ 1  0.145      0           0 V1            -1.93
+ 2  0.145      0           0 V2            -1.93
+ 3  0.145      0           0 V3            -1.93
+ 4  0.145      0           0 V4            -1.93
+ 5  0.145      0           0 V5            -1.93
+ 6  0.145      0           0 V6            -1.93
+ 7  0.145      0           0 V7            -1.93
+ 8  0.145      0           0 V8            -1.93
+ 9  0.145      0           0 V9            -1.93
+10  0.145      0           0 V10           -1.93
+# i 1,230 more rows
+     lambda              l1norm        coefficient          variable           log_lambda    
+ Min.   :0.0004973   Min.   :0.0000   Min.   :-0.146151   Length:1240        Min.   :-7.606  
+ 1st Qu.:0.0020075   1st Qu.:0.6130   1st Qu.:-0.038213   Class :character   1st Qu.:-6.211  
+ Median :0.0084994   Median :1.0254   Median : 0.000000   Mode  :character   Median :-4.769  
+ Mean   :0.0262360   Mean   :0.8545   Mean   :-0.005712                      Mean   :-4.769  
+ 3rd Qu.:0.0359074   3rd Qu.:1.1532   3rd Qu.: 0.014581                      3rd Qu.:-3.327  
+ Max.   :0.1449586   Max.   :1.1837   Max.   : 0.175720                      Max.   :-1.931  
+\end{verbatim}
+
+\hypertarget{f_glmnet_object.tbl_lambda_coefs.pivot_longer-function}{%
+\subsubsection{:: f\_glmnet\_object.tbl\_lambda\_coefs.pivot\_longer =
+function()}\label{f_glmnet_object.tbl_lambda_coefs.pivot_longer-function}}
+
+\begin{verbatim}
+# # A tibble: 62 x 22
+#    lambda l1norm       V1    V2      V3    V4    V5    V6    V7      V8    V9   V10    V11   V12      V13   V14   V15
+#     <dbl>  <dbl>    <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl> <dbl> <dbl>
+#  1 0.145  0       0           0 0           0     0     0     0  0          0     0 0          0  0           0     0
+#  2 0.132  0.0133  0           0 0           0     0     0     0 -0.0128     0     0 0          0  0           0     0
+#  3 0.120  0.0559  0           0 0.00504     0     0     0     0 -0.0267     0     0 0.0122     0  0           0     0
+#  4 0.110  0.107   0           0 0.0190      0     0     0     0 -0.0387     0     0 0.0255     0  0           0     0
+#  5 0.0999 0.156   0           0 0.0322      0     0     0     0 -0.0491     0     0 0.0377     0 -0.00316     0     0
+#  6 0.0910 0.208   0           0 0.0454      0     0     0     0 -0.0574     0     0 0.0495     0 -0.0134      0     0
+#  7 0.0830 0.256   0           0 0.0575      0     0     0     0 -0.0649     0     0 0.0602     0 -0.0228      0     0
+#  8 0.0756 0.303  -0.00451     0 0.0680      0     0     0     0 -0.0711     0     0 0.0701     0 -0.0316      0     0
+#  9 0.0689 0.348  -0.0107      0 0.0774      0     0     0     0 -0.0763     0     0 0.0792     0 -0.0398      0     0
+# 10 0.0627 0.389  -0.0163      0 0.0860      0     0     0     0 -0.0811     0     0 0.0875     0 -0.0473      0     0
+# # i 52 more rows
+# # i 5 more variables: V16 <dbl>, V17 <dbl>, V18 <dbl>, V19 <dbl>, V20 <dbl>
+# # A tibble: 1,240 x 4
+#    lambda l1norm variable coefficient
+#     <dbl>  <dbl> <chr>          <dbl>
+#  1  0.145      0 V1                 0
+#  2  0.145      0 V2                 0
+#  3  0.145      0 V3                 0
+#  4  0.145      0 V4                 0
+#  5  0.145      0 V5                 0
+#  6  0.145      0 V6                 0
+#  7  0.145      0 V7                 0
+#  8  0.145      0 V8                 0
+#  9  0.145      0 V9                 0
+# 10  0.145      0 V10                0
+# # i 1,230 more rows
+\end{verbatim}
+
+\hypertarget{ggplot_log_lambda-function}{%
+\subsubsection{:: \ldots ggplot\_log\_lambda =
+function()}\label{ggplot_log_lambda-function}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-15-2.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-15-3.pdf}
+
+\hypertarget{ggplot_log_lambda-function-1}{%
+\subsubsection{:: \ldots ggplot\_log\_lambda =
+function()}\label{ggplot_log_lambda-function-1}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\hypertarget{ggplot_log_lambda-function-2}{%
+\subsubsection{:: \ldots ggplot\_log\_lambda =
+function()}\label{ggplot_log_lambda-function-2}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\hypertarget{ggplot_log_lambda-function-3}{%
+\subsubsection{:: \ldots ggplot\_log\_lambda =
+function()}\label{ggplot_log_lambda-function-3}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\hypertarget{ggplot_l1norm-function}{%
+\subsubsection{:: \ldots ggplot\_l1norm =
+function()}\label{ggplot_l1norm-function}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\hypertarget{ggplot_l1norm-function-1}{%
+\subsubsection{:: \ldots ggplot\_l1norm =
+function()}\label{ggplot_l1norm-function-1}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\hypertarget{ggplot_l1norm-function-2}{%
+\subsubsection{:: \ldots ggplot\_l1norm =
+function()}\label{ggplot_l1norm-function-2}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\hypertarget{section-3}{%
+\section{\_\_\_\_\_\_\_\_\_\_\textbar------}\label{section-3}}
+
+\hypertarget{start-dev-f_cv_glmnet_object.ggplot--}{%
+\section{@@ START) dev) f\_cv\_glmnet\_object.ggplot
+----}\label{start-dev-f_cv_glmnet_object.ggplot--}}
+
+\hypertarget{httpschatgpt.comc671605d9-92ac-800e-86da-6a01437532e9modelgpt-4o}{%
+\section{\texorpdfstring{\url{https://chatgpt.com/c/671605d9-92ac-800e-86da-6a01437532e9?model=gpt-4o}}{https://chatgpt.com/c/671605d9-92ac-800e-86da-6a01437532e9?model=gpt-4o}}\label{httpschatgpt.comc671605d9-92ac-800e-86da-6a01437532e9modelgpt-4o}}
+
+\hypertarget{f_df.cv.glmnet-function}{%
+\subsection{*** :: f\_df.cv.glmnet =
+function()}\label{f_df.cv.glmnet-function}}
+
+\hypertarget{f_cv_glmnet_object.mat_coef-function}{%
+\subsubsection{*** :: f\_cv\_glmnet\_object.mat\_coef =
+function()}\label{f_cv_glmnet_object.mat_coef-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Function to train cross{-}validated glmnet models}
+
+\FunctionTok{library}\NormalTok{(glmnet)}
+
+\CommentTok{\# f\_df.cv.glmnet \textless{}{-} function(}
+\CommentTok{\#         train\_data,}
+\CommentTok{\#         formula,}
+\CommentTok{\#         i.alpha = 1,}
+\CommentTok{\#         family = "cox",}
+\CommentTok{\#         type\_measure = "deviance",}
+\CommentTok{\#         nfolds = 5,}
+\CommentTok{\#         seed = 1,}
+\CommentTok{\#         save\_models = FALSE,}
+\CommentTok{\#         save\_plots = FALSE,}
+\CommentTok{\#         plot\_size = 1280,}
+\CommentTok{\#         output\_dir = "glmnet\_outputs"}
+\NormalTok{f\_df.cv.glmnet }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}
+\NormalTok{        train\_data,}
+\NormalTok{        formula,}
+        \AttributeTok{i.alpha =} \DecValTok{1}\NormalTok{,}
+        \AttributeTok{family =} \StringTok{"binomial"}\NormalTok{,}
+        \AttributeTok{type\_measure =} \StringTok{"auc"}\NormalTok{,}
+        \AttributeTok{nfolds =} \DecValTok{5}\NormalTok{,}
+        \AttributeTok{seed =} \DecValTok{1}\NormalTok{,}
+        \AttributeTok{save\_models =} \ConstantTok{FALSE}\NormalTok{,}
+        \AttributeTok{save\_plots =} \ConstantTok{FALSE}\NormalTok{,}
+        \AttributeTok{plot\_size =} \DecValTok{1280}\NormalTok{,}
+        \AttributeTok{output\_dir =} \StringTok{"glmnet\_outputs"}
+\NormalTok{) \{}
+    \CommentTok{\# Ensure output directory exists}
+    \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{dir.exists}\NormalTok{(output\_dir)) \{}
+        \FunctionTok{dir.create}\NormalTok{(output\_dir, }\AttributeTok{recursive =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    \}}
+    
+    \FunctionTok{set.seed}\NormalTok{(seed)}
+    
+    \CommentTok{\# Prepare model matrix}
+\NormalTok{    x }\OtherTok{\textless{}{-}} \FunctionTok{model.matrix}\NormalTok{(formula, }\AttributeTok{data =}\NormalTok{ train\_data)[, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]  }\CommentTok{\# Remove intercept}
+    
+    \CommentTok{\# Extract response variable}
+\NormalTok{    y }\OtherTok{\textless{}{-}} \FunctionTok{model.response}\NormalTok{(}\FunctionTok{model.frame}\NormalTok{(formula, }\AttributeTok{data =}\NormalTok{ train\_data))}
+    
+    
+    \FunctionTok{message}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Training glmnet model with alpha ="}\NormalTok{, i.alpha))}
+    
+    \CommentTok{\# Train cross{-}validated glmnet model}
+\NormalTok{    cv\_glmnet\_object }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(}
+        \AttributeTok{x =}\NormalTok{ x,}
+        \AttributeTok{y =}\NormalTok{ y,}
+        \AttributeTok{alpha =}\NormalTok{ i.alpha,}
+        \AttributeTok{family =}\NormalTok{ family,}
+        \AttributeTok{type.measure =}\NormalTok{ type\_measure,}
+        \AttributeTok{nfolds =}\NormalTok{ nfolds}
+\NormalTok{    )}
+    
+    \CommentTok{\# Save model if required}
+    \ControlFlowTok{if}\NormalTok{ (save\_models) \{}
+\NormalTok{        model\_filename }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(output\_dir, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"cv\_glmnet\_a"}\NormalTok{, }\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%02d"}\NormalTok{, i.alpha }\SpecialCharTok{*} \DecValTok{10}\NormalTok{), }\StringTok{".rds"}\NormalTok{))}
+        \FunctionTok{saveRDS}\NormalTok{(cv\_glmnet\_object, model\_filename)}
+        \FunctionTok{message}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Saved model to: "}\NormalTok{, model\_filename))}
+\NormalTok{    \}}
+    
+    \CommentTok{\# Plot cross{-}validation results if required}
+    \ControlFlowTok{if}\NormalTok{ (save\_plots) \{}
+\NormalTok{        plot\_filename }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(output\_dir, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"cv\_glmnet\_a"}\NormalTok{, }\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%02d"}\NormalTok{, i.alpha }\SpecialCharTok{*} \DecValTok{10}\NormalTok{), }\StringTok{"\_plot.png"}\NormalTok{))}
+        \FunctionTok{png}\NormalTok{(plot\_filename, }\AttributeTok{width =}\NormalTok{ plot\_size, }\AttributeTok{height =}\NormalTok{ plot\_size, }\AttributeTok{units =} \StringTok{"px"}\NormalTok{, }\AttributeTok{bg =} \StringTok{"transparent"}\NormalTok{)}
+        \FunctionTok{plot}\NormalTok{(cv\_glmnet\_object, }\AttributeTok{main =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Alpha ="}\NormalTok{, i.alpha))}
+        \FunctionTok{dev.off}\NormalTok{()}
+        \FunctionTok{message}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Saved plot to"}\NormalTok{, plot\_filename))}
+\NormalTok{    \}}
+    
+    \FunctionTok{attributes}\NormalTok{(cv\_glmnet\_object)}\SpecialCharTok{$}\NormalTok{mat\_coef }\OtherTok{=}\NormalTok{ cv\_glmnet\_object }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ f\_cv\_glmnet\_object.mat\_coef}
+    
+    \FunctionTok{return}\NormalTok{(cv\_glmnet\_object)}
+\NormalTok{\}}
+
+\NormalTok{f\_cv\_glmnet\_object.mat\_coef }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(cv\_glmnet\_object) \{}
+\NormalTok{    cv\_glmnet\_object.list\_coef }\OtherTok{=} \FunctionTok{list}\NormalTok{()}
+\NormalTok{    cv\_glmnet\_object.list\_coef[[}\StringTok{"min"}\NormalTok{]] }\OtherTok{=}\NormalTok{ cv\_glmnet\_object }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{coef}\NormalTok{(}\AttributeTok{s =} \StringTok{"lambda.min"}\NormalTok{)}
+\NormalTok{    cv\_glmnet\_object.list\_coef[[}\StringTok{"1se"}\NormalTok{]] }\OtherTok{=}\NormalTok{ cv\_glmnet\_object }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{coef}\NormalTok{(}\AttributeTok{s =} \StringTok{"lambda.1se"}\NormalTok{)}
+
+\NormalTok{    cv\_glmnet\_object.mat\_coef }\OtherTok{=}\NormalTok{ cv\_glmnet\_object.list\_coef }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ (}\ControlFlowTok{function}\NormalTok{(ls) \{}
+\NormalTok{        out }\OtherTok{=}\NormalTok{ ls }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{reduce}\NormalTok{(cbind); }
+        \FunctionTok{colnames}\NormalTok{(out) }\OtherTok{=} \FunctionTok{names}\NormalTok{(ls); }
+\NormalTok{        out}
+\NormalTok{    \})()}
+\NormalTok{    cv\_glmnet\_object.mat\_coef}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{thetrainset-glmnet_binomialexample_tibble}{%
+\subsection{:: TheTrainSet =
+glmnet\_binomialExample\_tibble}\label{thetrainset-glmnet_binomialexample_tibble}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \# TheTrainSet = glmnet\_coxExample\_tibble}
+\CommentTok{\# \# formula \textless{}{-} as.formula(Surv(time, status) \textasciitilde{} .)}
+\CommentTok{\# TheTrainSet = glmnet\_coxExample\_tibble \%\textgreater{}\% select({-}time)}
+\CommentTok{\# formula \textless{}{-} as.formula(status \textasciitilde{} .)}
+\NormalTok{TheTrainSet }\OtherTok{=}\NormalTok{ glmnet\_binomialExample\_tibble}
+\NormalTok{formula }\OtherTok{\textless{}{-}} \FunctionTok{as.formula}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{thetrainset-f_df.cv.glmnet--}{%
+\subsubsection{\texorpdfstring{TheTrainSet \textbar\textgreater{}
+\textbf{f\_df.cv.glmnet}()
+----}{TheTrainSet \textbar\textgreater{} f\_df.cv.glmnet() ----}}\label{thetrainset-f_df.cv.glmnet--}}
+
+\hypertarget{thetrainset.cv.glmnet_a10}{%
+\paragraph{::
+TheTrainSet.cv.glmnet\_a10}\label{thetrainset.cv.glmnet_a10}}
+
+\hypertarget{thetrainset.cv.glmnet_a10.coef-thetrainset.cv.glmnet_a10}{%
+\subparagraph{:: TheTrainSet.cv.glmnet\_a10.coef =
+TheTrainSet.cv.glmnet\_a10
+\textbar\textgreater{}}\label{thetrainset.cv.glmnet_a10.coef-thetrainset.cv.glmnet_a10}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{alpha }\OtherTok{=} \DecValTok{1}
+\CommentTok{\# Train glmnet Cox models}
+\NormalTok{TheTrainSet.cv.glmnet\_a10 }\OtherTok{\textless{}{-}} \FunctionTok{f\_df.cv.glmnet}\NormalTok{(}
+  \AttributeTok{train\_data =}\NormalTok{ TheTrainSet,}
+  \AttributeTok{formula =} \FunctionTok{as.formula}\NormalTok{(y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .),}
+  \AttributeTok{i.alpha =} \DecValTok{1}\NormalTok{,}
+  \AttributeTok{family =} \StringTok{"binomial"}\NormalTok{,}
+  \AttributeTok{type\_measure =} \StringTok{"auc"}\NormalTok{,}
+  \AttributeTok{nfolds =} \DecValTok{5}\NormalTok{,}
+  \AttributeTok{seed =} \DecValTok{123}\NormalTok{,  }\CommentTok{\# Changed seed for reproducibility}
+  \AttributeTok{save\_models =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{save\_plots =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{plot\_size =} \DecValTok{1280}\NormalTok{,}
+  \AttributeTok{output\_dir =} \StringTok{"glmnet\_outputs"}
+\NormalTok{)}
+\CommentTok{\# Training glmnet model with alpha = 1}
+
+\NormalTok{cv\_glmnet\_object }\OtherTok{=}\NormalTok{ TheTrainSet.cv.glmnet\_a10}
+
+\CommentTok{\# \# Save all glmnet models for future use}
+\CommentTok{\# .objectname = "TheTrainSet.cv.glmnet\_a10"}
+\CommentTok{\# assign(.objectname, structure(get(.objectname), MetaData = MetaData))}
+\CommentTok{\# env1$f$f\_objectname.size.write\_rds.git\_lfs\_track\_add\_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size\_files = TRUE, git\_lfs\_track = TRUE, git\_add\_f = TRUE, CompressionMethod = "xz")}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    ************************************************************************    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     ************************************************************************}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}}
+
+\NormalTok{TheTrainSet.cv.glmnet\_a10 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{f\_cv\_glmnet\_object.mat\_coef}\NormalTok{()}
+\CommentTok{\# 31 x 2 sparse Matrix of class "dgCMatrix"}
+\CommentTok{\#                     min         1se}
+\CommentTok{\# (Intercept)  0.15392481  0.20681215}
+\CommentTok{\# V1           0.38984097  .         }
+\CommentTok{\# V2           1.19658700  0.25072633}
+\CommentTok{\# V3          {-}0.83549656 {-}0.13487795}
+\CommentTok{\# V4          {-}1.65363658 {-}0.66347294}
+\CommentTok{\# V5          {-}0.31476542 {-}0.07743873}
+\CommentTok{\# V6          {-}1.58001396 {-}0.37910034}
+\CommentTok{\# V7           0.13005473  .         }
+\CommentTok{\# V8          {-}0.92363301 {-}0.20352436}
+\CommentTok{\# V9           1.29683366  0.18360414}
+\CommentTok{\# V10         {-}2.33806433 {-}0.68997655}
+\CommentTok{\# V11         {-}0.18236433  .         }
+\CommentTok{\# V12         {-}0.27599408  .         }
+\CommentTok{\# V13         {-}0.22515259  .         }
+\CommentTok{\# V14          0.09917457  .         }
+\CommentTok{\# V15          .           .         }
+\CommentTok{\# V16          0.86589735  .         }
+\CommentTok{\# V17          .           .         }
+\CommentTok{\# V18         {-}0.44235665  .         }
+\CommentTok{\# V19         {-}0.23929034  .         }
+\CommentTok{\# V20         {-}0.23710262  .         }
+\CommentTok{\# V21          .           .         }
+\CommentTok{\# V22          0.37236576  0.08939127}
+\CommentTok{\# V23          0.69982126  0.05705106}
+\CommentTok{\# V24         {-}0.27342879  .         }
+\CommentTok{\# V25          0.95445518  0.24085312}
+\CommentTok{\# V26         {-}0.48401883 {-}0.14483104}
+\CommentTok{\# V27         {-}0.40579571  .         }
+\CommentTok{\# V28          0.63613548  .         }
+\CommentTok{\# V29         {-}0.35710442 {-}0.01301320}
+\CommentTok{\# V30          0.30254589  .}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}}
+\NormalTok{TheTrainSet.cv.glmnet\_a10 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{f\_cv\_glmnet\_object.mat\_coef}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{str}\NormalTok{()}
+\CommentTok{\# Formal class \textquotesingle{}dgCMatrix\textquotesingle{} [package "Matrix"] with 6 slots}
+\CommentTok{\#   ..@ i       : int [1:42] 0 1 2 3 4 5 6 7 8 9 ...}
+\CommentTok{\#   ..@ p       : int [1:3] 0 28 42}
+\CommentTok{\#   ..@ Dim     : int [1:2] 31 2}
+\CommentTok{\#   ..@ Dimnames:List of 2}
+\CommentTok{\#   .. ..$ : chr [1:31] "(Intercept)" "V1" "V2" "V3" ...}
+\CommentTok{\#   .. ..$ : chr [1:2] "min" "1se"}
+\CommentTok{\#   ..@ x       : num [1:42] 0.154 0.39 1.197 {-}0.835 {-}1.654 ...}
+\CommentTok{\#   ..@ factors : list()}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}}
+\NormalTok{TheTrainSet.cv.glmnet\_a10 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{f\_cv\_glmnet\_object.mat\_coef}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.matrix}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{str}\NormalTok{()}
+\CommentTok{\# \textquotesingle{}data.frame\textquotesingle{}: 31 obs. of  2 variables:}
+\CommentTok{\#  $ min: num  0.154 0.39 1.197 {-}0.835 {-}1.654 ...}
+\CommentTok{\#  $ 1se: num  0.207 0 0.251 {-}0.135 {-}0.663 ...}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+31 x 2 sparse Matrix of class "dgCMatrix"
+                    min         1se
+(Intercept)  0.15392481  0.20681215
+V1           0.38984097  .         
+V2           1.19658700  0.25072633
+V3          -0.83549656 -0.13487795
+V4          -1.65363658 -0.66347294
+V5          -0.31476542 -0.07743873
+V6          -1.58001396 -0.37910034
+V7           0.13005473  .         
+V8          -0.92363301 -0.20352436
+V9           1.29683366  0.18360414
+V10         -2.33806433 -0.68997655
+V11         -0.18236433  .         
+V12         -0.27599408  .         
+V13         -0.22515259  .         
+V14          0.09917457  .         
+V15          .           .         
+V16          0.86589735  .         
+V17          .           .         
+V18         -0.44235665  .         
+V19         -0.23929034  .         
+V20         -0.23710262  .         
+V21          .           .         
+V22          0.37236576  0.08939127
+V23          0.69982126  0.05705106
+V24         -0.27342879  .         
+V25          0.95445518  0.24085312
+V26         -0.48401883 -0.14483104
+V27         -0.40579571  .         
+V28          0.63613548  .         
+V29         -0.35710442 -0.01301320
+V30          0.30254589  .         
+\end{verbatim}
+
+\hypertarget{plot}{%
+\subsubsection{:: \textbar\textgreater{} plot()}\label{plot}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TheTrainSet.cv.glmnet\_a10 }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+\hypertarget{f_cv_glmnet_object.plot-function}{%
+\subsubsection{:: f\_cv\_glmnet\_object.plot =
+function()}\label{f_cv_glmnet_object.plot-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f\_cv\_glmnet\_object.plot }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}
+\NormalTok{        cv\_glmnet\_object, }
+        \AttributeTok{lambda =} \StringTok{"lambda.1se"}\NormalTok{, }
+        \AttributeTok{i.alpha =} \DecValTok{1}\NormalTok{,}
+        \AttributeTok{family =} \StringTok{"binomial"}\NormalTok{,}
+        \AttributeTok{type\_measure =} \StringTok{"auc"}\NormalTok{,}
+        \AttributeTok{save\_plots =} \ConstantTok{TRUE}\NormalTok{, }
+        \AttributeTok{plot\_size =} \DecValTok{1280}\NormalTok{,}
+        \AttributeTok{output\_dir =} \StringTok{"glmnet\_outputs"}
+\NormalTok{) \{}
+    \FunctionTok{plot}\NormalTok{(cv\_glmnet\_object, }\AttributeTok{main =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Alpha ="}\NormalTok{, i.alpha))}
+        
+    \ControlFlowTok{if}\NormalTok{ (save\_plots) \{}
+\NormalTok{        plot\_filename }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(output\_dir, }\FunctionTok{paste0}\NormalTok{(}\StringTok{"cv\_glmnet\_a"}\NormalTok{, }\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%02d"}\NormalTok{, i.alpha }\SpecialCharTok{*} \DecValTok{10}\NormalTok{), }\StringTok{"\_plot.png"}\NormalTok{))}
+        \FunctionTok{png}\NormalTok{(plot\_filename, }\AttributeTok{width =}\NormalTok{ plot\_size, }\AttributeTok{height =}\NormalTok{ plot\_size, }\AttributeTok{units =} \StringTok{"px"}\NormalTok{, }\AttributeTok{bg =} \StringTok{"transparent"}\NormalTok{)}
+        \FunctionTok{plot}\NormalTok{(cv\_glmnet\_object, }\AttributeTok{main =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Alpha ="}\NormalTok{, i.alpha))}
+        \FunctionTok{dev.off}\NormalTok{()}
+        \FunctionTok{message}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Saved plot to"}\NormalTok{, plot\_filename))}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    ************************************************************************    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     ************************************************************************}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"    \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}    }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\CommentTok{\#     \textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}}
+
+\NormalTok{TheTrainSet.cv.glmnet\_a10 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{f\_cv\_glmnet\_object.plot}\NormalTok{(}\AttributeTok{save\_plots =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\hypertarget{f_cv_glmnet_object.ggplot-function}{%
+\subsubsection{:: f\_cv\_glmnet\_object.ggplot =
+function()}\label{f_cv_glmnet_object.ggplot-function}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-27-1.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-27-2.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-27-3.pdf}
+
+\hypertarget{f_cv_glmnet_object.ggplot-function-1}{%
+\subsubsection{:: f\_cv\_glmnet\_object.ggplot =
+function()}\label{f_cv_glmnet_object.ggplot-function-1}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-28-2.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-28-3.pdf}
+
+\hypertarget{f_cv_glmnet_object.ggplot-function-2}{%
+\subsubsection{:: f\_cv\_glmnet\_object.ggplot =
+function()}\label{f_cv_glmnet_object.ggplot-function-2}}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-29-1.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-29-2.pdf}
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-29-3.pdf}
+
+\begin{verbatim}
+Warning in RColorBrewer::brewer.pal(n, pal): n too large, allowed maximum for palette Set1 is 9
+Returning the palette you asked for with that many colors
+Warning: Removed 682 rows containing missing values or values outside the scale range (`geom_line()`).
+\end{verbatim}
+
+\includegraphics{D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev_files/figure-latex/unnamed-chunk-29-4.pdf}
+
+\% \textbar\textgreater{} () ----
+
+\% \textbar\textgreater{} () ----
+
+\% \textbar\textgreater{} () ----
+
+\% \textbar\textgreater{} () ----
+
+\% \textbar\textgreater{} () ----
+
+\% \textbar\textgreater{} () ----
+
+\hypertarget{section-10}{%
+\section{\_\_\_\_\_\_\_\_\_\_\textbar------}\label{section-10}}
+
+\hypertarget{end--}{%
+\section{@@ END ----}\label{end--}}
+
+ECHO \% \textbar\textgreater{} () ----
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+ECHO \% \textbar\textgreater{} () ----
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{width=}\DecValTok{120}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# Warning: > !exists(MetaData)
+\end{verbatim}
+
+\end{document}
