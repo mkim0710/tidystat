@@ -625,7 +625,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_file.str_replace_all.old.ObjectName =  ----  
-# Rdev/00_base_program/002_base_encoding_RegEx/f_filename.ext.append_suffix.dev.r
+# Rdev/00_base_program/002_base_encoding_RegEx/f_file.str_replace_all.old.ObjectName.dev.r
 .tmp$objectname = "f_file.str_replace_all.old.ObjectName"
 .tmp$object <- function(input_path_file, old.ObjectName, new.ObjectName, output_path_file = NULL, replace_input_path_file = FALSE) {
     # Construct the regex pattern for word boundary including dot and underscore
