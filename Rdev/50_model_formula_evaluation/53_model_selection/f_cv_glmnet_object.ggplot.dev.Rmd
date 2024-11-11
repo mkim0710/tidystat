@@ -626,6 +626,7 @@ y <- rnorm(100)
 ?glmnet
 # Fit glmnet model
 glmnet_object = glmnet(x, y)
+glmnet_object_enet = glmnet(x, y, alpha = 0.5)  # Elastic net
 ```
 
 ### :: f_glmnet_object.plot = function()
@@ -639,6 +640,7 @@ glmnet_object = glmnet(x, y)
 glmnet_object |> plot(label = TRUE, xvar = "lambda")
 glmnet_object |> plot(label = TRUE, xvar = "dev")
 glmnet_object |> plot(label = TRUE, xvar = "norm")
+glmnet_object_enet |> plot(label = TRUE, xvar = "norm")
 ```
 
 ```{r}
@@ -648,38 +650,38 @@ matrix(1:6, nrow = 2) %>% f_matrix.set_names.to_vector()
 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Extract coefficients for all lambda values
-coefs <- as.matrix(coef(glmnet_object))
-coefs[1:9, 1:9]
-coefs %>% str
-coefs[-1, ] %>% str
-coefs[-1, ] %>% as.vector() %>% str
+mat_coef <- as.matrix(coef(glmnet_object))
+mat_coef[1:9, 1:9]
+mat_coef %>% str
+mat_coef[-1, ] %>% str
+mat_coef[-1, ] %>% as.vector() %>% str
 ```
 
 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Extract lambda values
-lambdas <- glmnet_object$lambda
-lambdas %>% str
+vec_lambda <- glmnet_object$lambda
+vec_lambda %>% str
 ```
 
 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
-# Calculate L1-norm for each lambda
-l1norm <- apply(abs(coefs[-1, ]), 2, sum)  # Exclude intercept
-l1norm %>% str
+# Calculate L1-l1norm for each lambda
+vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)  # Exclude intercept
+vec_l1norm %>% str
 ```
 
 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Total number of variables (excluding intercept)
-nvars <- nrow(coefs) - 1
+nvars <- nrow(mat_coef) - 1
 
 # Create a data frame for plotting
 coef_df <- data.frame(
-  lambda = rep(lambdas, each = nvars),
-  l1norm = rep(l1norm, each = nvars),
-  coefficient = as.vector(coefs[-1, ]),
-  variable = rep(rownames(coefs)[-1], times = length(lambdas))
+  lambda = rep(vec_lambda, each = nvars),
+  l1norm = rep(vec_l1norm, each = nvars),
+  coefficient = as.vector(mat_coef[-1, ]),
+  variable = rep(rownames(mat_coef)[-1], times = length(vec_lambda))
 )
 
 coef_df = coef_df %>% mutate(log_lambda = log(lambda)) 
@@ -690,7 +692,7 @@ coef_df %>% summary
 ### :: f_glmnet_object.tbl_lambda_coefs.pivot_longer = function()
 
 ```{r}
-tbl_lambda_coefs = coefs[-1, ] %>% t %>% as.data.frame %>% as_tibble(rownames = NA) %>% add_column(lambda = lambdas, .before = 1) %>% add_column(l1norm = l1norm, .before = 2)
+tbl_lambda_coefs = mat_coef[-1, ] %>% t %>% as.data.frame %>% as_tibble(rownames = NA) %>% add_column(lambda = vec_lambda, .before = 1) %>% add_column(l1norm = vec_l1norm, .before = 2)
 tbl_lambda_coefs 
 tbl_lambda_coefs.pivot_longer = tbl_lambda_coefs %>% pivot_longer(-c(lambda, l1norm), names_to = "variable", values_to = "coefficient")
 tbl_lambda_coefs.pivot_longer
@@ -1112,8 +1114,6 @@ TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
   output_dir = "glmnet_outputs"
 )
 
-cv_glmnet_object = TheTrainSet.cv.glmnet_a10
-
 # # Save all glmnet models for future use
 # .objectname = "TheTrainSet.cv.glmnet_a10"
 # assign(.objectname, structure(get(.objectname), MetaData = MetaData))
@@ -1166,6 +1166,14 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.mat_coef() %>% as.matrix() %>% 
     V28          0.63613548  .         
     V29         -0.35710442 -0.01301320
     V30          0.30254589  .         
+
+
+### :: cv_glmnet_object = TheTrainSet.cv.glmnet_a10
+```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+cv_glmnet_object = TheTrainSet.cv.glmnet_a10
+cv_glmnet_object %>% str(max.level = 2)
+```
+
 
 
 ### :: |> plot()
@@ -1222,35 +1230,35 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     xvar <- match.arg(xvar)
 
     # Extract coefficients for all lambda values
-    coefs <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
-    lambdas <- cv_glmnet_object$lambda
-    norm_values <- apply(abs(coefs[-1, ]), 2, sum)  # Exclude intercept
+    mat_coef <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
+    vec_lambda <- cv_glmnet_object$lambda
+    vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)  # Exclude intercept
 
     # Calculate proportion deviance explained if xvar == "dev"
-    deviance_explained <- NULL
+    vec_dev.ratio <- NULL
     if (xvar == "dev") {
-        deviance_explained <- cv_glmnet_object$glmnet.fit$dev.ratio
+        vec_dev.ratio <- cv_glmnet_object$glmnet.fit$dev.ratio
     }
 
     # Create a tidy data frame
-    coef_df <- coefs[-1, ] %>%
+    coef_df <- mat_coef[-1, ] %>%
         t() %>%
         as.data.frame() %>%
         as_tibble(rownames = NA) %>%
-        add_column(lambda = lambdas, .before = 1) %>%
-        add_column(norm = norm_values, .before = 2) %>%  # Rename l1_norm to norm
-        pivot_longer(-c(lambda, norm), names_to = "variable", values_to = "coefficient")
+        add_column(lambda = vec_lambda, .before = 1) %>%
+        add_column(l1norm = vec_l1norm, .before = 2) %>%  # Rename l1_norm to l1norm
+        pivot_longer(-c(lambda, l1norm), names_to = "variable", values_to = "coefficient")
 
     if (xvar == "dev") {
         coef_df <- coef_df %>%
-            mutate(dev = rep(deviance_explained, each = nrow(coefs) - 1))
+            mutate(dev = rep(vec_dev.ratio, each = nrow(mat_coef) - 1))
     }
 
     # Calculate label positions
     label_data <- coef_df %>%
         group_by(variable) %>%
         filter(
-            if (xvar == "norm") norm == max(norm) else 
+            if (xvar == "norm") l1norm == max(l1norm) else 
             if (xvar == "lambda") lambda == min(lambda) else 
             dev == max(dev)
         ) %>%
@@ -1274,7 +1282,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Choose xvar label
     xvar_label <- switch(
         xvar,
-        norm = "L1 Norm",
+        l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         dev = "Proportion Deviance Explained"
     )
@@ -1332,18 +1340,18 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     xvar <- match.arg(xvar)
 
     # Extract data
-    coefs <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
-    lambdas <- cv_glmnet_object$lambda
-    norm_values <- apply(abs(coefs[-1, ]), 2, sum)  # Exclude intercept
-    deviance_explained <- cv_glmnet_object$glmnet.fit$dev.ratio
+    mat_coef <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
+    vec_lambda <- cv_glmnet_object$lambda
+    vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)  # Exclude intercept
+    vec_dev.ratio <- cv_glmnet_object$glmnet.fit$dev.ratio
 
     # Create tidy data frame
-    coef_df <- coefs[-1, ] %>%
+    coef_df <- mat_coef[-1, ] %>%
         t() %>%
         as.data.frame() %>%
         as_tibble(rownames = NA) %>%
-        add_column(lambda = lambdas, norm = norm_values, dev = deviance_explained, .before = 1) %>%
-        pivot_longer(-c(lambda, norm, dev), names_to = "variable", values_to = "coefficient")
+        add_column(lambda = vec_lambda, l1norm = vec_l1norm, dev = vec_dev.ratio, .before = 1) %>%
+        pivot_longer(-c(lambda, l1norm, dev), names_to = "variable", values_to = "coefficient")
 
     # Calculate label positions
     label_data <- coef_df %>%
@@ -1362,7 +1370,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Define axis labels
     xvar_label <- switch(
         xvar,
-        norm = "L1 Norm",
+        l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         dev = "Proportion Deviance Explained"
     )
@@ -1435,21 +1443,21 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     xvar <- match.arg(xvar)
     
     # Extract data from cv.glmnet object
-    glmnet_fit <- cv_glmnet_object$glmnet.fit
-    coefs <- as.matrix(coef(glmnet_fit))
-    lambdas <- glmnet_fit$lambda
-    variables <- rownames(coefs)[-1]  # Exclude intercept
+    glmnet_object <- cv_glmnet_object$glmnet.fit
+    mat_coef <- as.matrix(coef(glmnet_object))
+    vec_lambda <- glmnet_object$lambda
+    variables <- rownames(mat_coef)[-1]  # Exclude intercept
     
     # Calculate measures for x-axis
-    coef_matrix <- coefs[-1, ]  # Remove intercept
-    norm_values <- apply(abs(coef_matrix), 2, sum)
-    deviance_explained <- glmnet_fit$dev.ratio  # Proportion of deviance explained
+    # mat_coef[-1, ]  # Remove intercept
+    vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)
+    vec_dev.ratio <- glmnet_object$dev.ratio  # Proportion of deviance explained
     
     # Prepare data frame
-    coef_df <- as.data.frame(t(coef_matrix))
-    coef_df$lambda <- lambdas
-    coef_df$norm <- norm_values
-    coef_df$dev <- deviance_explained
+    coef_df <- as.data.frame(t(mat_coef[-1, ]))
+    coef_df$lambda <- vec_lambda
+    coef_df$l1norm <- vec_l1norm
+    coef_df$dev <- vec_dev.ratio
     coef_df <- coef_df %>%
         pivot_longer(cols = all_of(variables), names_to = "variable", values_to = "coefficient")
     
@@ -1483,7 +1491,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     
     # Axis labels and transformations
     xvar_labels <- list(
-        norm = "L1 Norm",
+        l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         dev = "Proportion Deviance Explained"
     )
@@ -1567,9 +1575,141 @@ plot_obj +
 ```
   
   
-###### \% |> () ----  
+### :: f_cv_glmnet_object_enet.ggplot = function()
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE) {
+    # Load necessary libraries
+    library(ggplot2)
+    library(dplyr)
+    library(tidyr)
+    library(scales)
+    
+    xvar <- match.arg(xvar)
+    
+    # Extract data from cv.glmnet object
+    glmnet_object <- cv_glmnet_object$glmnet.fit
+    mat_coef <- as.matrix(coef(glmnet_object))
+    vec_lambda <- glmnet_object$lambda
+    variables <- rownames(mat_coef)[-1]  # Exclude intercept
+    
+    # Retrieve alpha parameter
+    alpha <- glmnet_object$call$alpha
+    if (is.null(alpha)) alpha <- 1  # Default to Lasso if alpha is not specified
+    
+    # Calculate measures for x-axis
+    # mat_coef[-1, ]  # Remove intercept
+    
+    # Compute L1 and L2 norms
+    l1_norm <- apply(abs(mat_coef[-1, ]), 2, sum)
+    l2_norm <- apply(mat_coef[-1, ]^2, 2, sum)
+    
+    # Compute Elastic Net penalty
+    penalty_values <- (1 - alpha) * 0.5 * l2_norm + alpha * l1_norm
+    
+    # Proportion of deviance explained
+    vec_dev.ratio <- glmnet_object$dev.ratio
+    
+    # Prepare data frame
+    coef_df <- as.data.frame(t(mat_coef[-1, ]))
+    coef_df$lambda <- vec_lambda
+    coef_df$norm <- l1_norm  # For compatibility
+    coef_df$dev <- vec_dev.ratio
+    coef_df$penalty <- penalty_values
+    coef_df <- coef_df %>%
+        pivot_longer(cols = all_of(variables), names_to = "variable", values_to = "coefficient")
+    
+    # Calculate label positions
+    label_positions <- coef_df %>%
+        group_by(variable) %>%
+        filter(
+            .data[[xvar]] == if (xvar == "lambda") min(.data[[xvar]]) else max(.data[[xvar]])
+        ) %>%
+        ungroup()
+    
+    # Calculate number of non-zero coefficients at each xvar
+    non_zero_counts <- coef_df %>%
+        group_by(.data[[xvar]]) %>%
+        summarize(
+            non_zero_count = sum(coefficient != 0),
+            .groups = "drop"
+        ) %>%
+        arrange(.data[[xvar]]) %>%
+        filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
+    
+    # Ensure initial zero count is included
+    if (!any(non_zero_counts$non_zero_count == 0)) {
+        initial_row <- tibble(
+            !!xvar := min(coef_df[[xvar]]),
+            non_zero_count = 0
+        )
+        non_zero_counts <- bind_rows(initial_row, non_zero_counts)
+        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar]])
+    }
+    
+    # Axis labels and transformations
+    xvar_labels <- list(
+        norm = "L1 Norm",
+        lambda = expression(lambda~(log[e]~scale)),
+        dev = "Proportion Deviance Explained",
+        penalty = "Elastic Net Penalty"
+    )
+    x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
+    x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
+    x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
+    hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
+    
+    # Create the plot
+    plot <- ggplot(coef_df, aes(x = .data[[xvar]], y = coefficient, color = variable, group = variable)) +
+        geom_line() +
+        scale_x_continuous(
+            name = xvar_labels[[xvar]],
+            trans = x_transformation,
+            breaks = x_breaks,
+            labels = x_labels,
+            sec.axis = sec_axis(
+                trans = ~ .,
+                breaks = non_zero_counts[[xvar]],
+                labels = non_zero_counts$non_zero_count,
+                name = "Number of Non-Zero Coefficients"
+            )
+        ) +
+        labs(
+            title = "Coefficient Paths from Cross-Validated glmnet Model",
+            y = "Coefficient Value"
+        ) +
+        theme_minimal() +
+        theme(legend.position = "none")
+    
+    # Add labels if requested
+    if (label) {
+        plot <- plot +
+            geom_text(
+                data = label_positions,
+                aes(label = variable),
+                hjust = hjust_value,
+                size = 3,
+                check_overlap = TRUE  # Avoid overlapping labels
+            )
+    }
+    
+    return(plot)
+}
+
+# Load necessary libraries
+library(glmnet)
+library(ggplot2)
+
+# Simulate data
+set.seed(123)
+x <- matrix(rnorm(100 * 20), 100, 20)
+y <- rnorm(100)
+
+# Fit cross-validated Elastic Net model with alpha = 0.5
+glmnet_object_enet <- cv.glmnet(x, y, alpha = 0.5)
+
+# Plot with Elastic Net penalty as x-axis
+f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "penalty", label = TRUE)
 
 ```
   

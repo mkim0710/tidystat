@@ -1086,7 +1086,20 @@ env1$f$f_file.git_lfs_track_add_f = function(.path_file, Execute = FALSE, SkipIf
 # Rdev/00_base_terminal/f_objectname.size.write_rds.git_lfs_track_add_f
 # https://chatgpt.com/c/670e6d4b-ea28-800e-87fe-85897601601a 
 # https://gemini.google.com/app/6d9de55c5c7085c6 
-env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL, .objectname = NULL, .path_file = NULL, .path4write = env1$path$.path4write, .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), createBackup = FALSE, .backup_to_path="-backup", Execute = FALSE, path.size_files = TRUE, git_lfs_track = "determine based on object size", git_add_f = TRUE, SkipIfAlreadyAdded = TRUE, CompressionMethod = NULL, VERBOSE = options()$verbose) {
+env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(
+        .object = NULL, .objectname = NULL, .path_file = NULL, 
+        .path4write = env1$path$.path4write, 
+        .filename.ext4write = paste0(.objectname,".rds",ifelse(CompressionMethod == "xz" && object.size(get(.objectname)) > 1e6 && object.size(get(.objectname)) < 1e8, ".xz", "")), 
+        createBackup = FALSE, 
+        .backup_to_path="-backup", 
+        Execute = FALSE, 
+        path.size_files = TRUE, 
+        git_lfs_track = "determine based on object size", 
+        git_add_f = TRUE, 
+        SkipIfAlreadyAdded = TRUE, 
+        CompressionMethod = NULL, 
+        LinePrefix4CodeText = "\t", 
+        VERBOSE = options()$verbose) {
     
     if(!is.null(.object)) {
         if(is.character(.object) && length(.object) == 1) {
@@ -1149,9 +1162,9 @@ env1$f$f_objectname.size.write_rds.git_lfs_track_add_f = function(.object = NULL
     if(is.null(.path4write))            .path4write = env1$path$.path4write
     if(is.null(.path_file))             .path_file = paste0(.path4write,ifelse(.path4write=="","","/"),.filename.ext4write)
 
-    if(createBackup) cat("\t", 'env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
+    if(createBackup) cat(LinePrefix4CodeText, 'env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = ',deparse(.path_file),', .backup_to_path=',deparse(.backup_to_path),', timeFormat="%y%m%d_%H", overwrite=TRUE)', "  \n", sep="")
     cat("\t", .objectname, ' |> write_rds(',shQuote(.path_file),', compress = ',shQuote(CompressionMethod),', compression = 9L) |> system.time() |> system.time() |> round(3) |> unclass() |> deparse() |> cat("\\n")', "  \n", sep="")
-    if(path.size_files) cat("\t", 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
+    if(path.size_files) cat(LinePrefix4CodeText, 'env1$f$f_path.size_files(.path4read = ',shQuote(.path4write),', regex4filename = ',shQuote(.objectname),")  \n", sep="")
     
     if(Execute) {
         if(createBackup) env1$env.internal$f_filename.ext.createBackup(backup_from_path_filename.ext = .path_file, .backup_to_path=.backup_to_path, timeFormat="%y%m%d_%H", overwrite=TRUE) 
