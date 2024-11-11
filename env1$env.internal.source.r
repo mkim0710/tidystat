@@ -380,7 +380,12 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.lastSourceEditorContext.path_filename.ext =  ----  
 .tmp$objectname = "f_path.lastSourceEditorContext.path_filename.ext"
-.tmp$object = function(check_rstudioapi = TRUE, overwrite = FALSE, LinePrefix4CodeText = "\t", VERBOSE = Sys.getenv("VERBOSE")) {
+.tmp$object = function(
+        check_rstudioapi = TRUE, 
+        overwrite = FALSE, 
+        LinePrefix4CodeText = "\t",
+        VERBOSE = ifelse(!is.null(Sys.getenv("VERBOSE")), ifelse(Sys.getenv("VERBOSE")!="", Sys.getenv("VERBOSE"), options()$verbose), options()$verbose)
+) {
     if(is.null(env1$path$lastSourceEditorContext.path_filename.ext) || is.na(env1$path$lastSourceEditorContext.path_filename.ext) || env1$path$lastSourceEditorContext.path_filename.ext == "") overwrite = TRUE
     
     if (check_rstudioapi) {
