@@ -380,31 +380,66 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_path.CurrentSource.path_filename.ext =  ----  
 .tmp$objectname = "f_path.CurrentSource.path_filename.ext"
-.tmp$object = function(check_rstudioapi = TRUE, overwrite = FALSE) {
-    if(overwrite || is.null(env1$path$CurrentSource.path_filename.ext) || env1$path$CurrentSource.path_filename.ext == "") {
-        if (check_rstudioapi) {
-            if (requireNamespace("rstudioapi")) {
-                if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
-                if (rstudioapi::isAvailable()) {
-                    env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-                    env1$path$CurrentSource.path = env1$path$CurrentSource.path_filename.ext |> dirname()
-                    if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = env1$path$CurrentSource.path}  
-                } else { if(Sys.getenv("VERBOSE")==TRUE) print('rstudioapi::isAvailable() == FALSE') }
-                if(Sys.getenv("VERBOSE")==TRUE) {.CodeText2Print = 'env1$path$CurrentSource.path_filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))}  
-            } else { if(Sys.getenv("VERBOSE")==TRUE) print('requireNamespace("rstudioapi") == FALSE') }
-        } else {
-            # env1$path$CurrentSource.path_filename.ext = getwd() |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-            env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
-            env1$path$CurrentSource.path = env1$path$CurrentSource.path_filename.ext |> dirname()
-            if(!".path4write" %in% names(env1$path)) {.path4write = env1$path$.path4write = env1$path$CurrentSource.path}  
+.tmp$object = function(check_rstudioapi = TRUE, overwrite = FALSE, LinePrefix4CodeText = "\t", VERBOSE = Sys.getenv("VERBOSE")) {
+    if(is.null(env1$path$CurrentSource.path_filename.ext) || is.na(env1$path$CurrentSource.path_filename.ext) || env1$path$CurrentSource.path_filename.ext == "") overwrite = TRUE
+    
+    if (check_rstudioapi) {
+        if (requireNamespace("rstudioapi")) {
+            if(VERBOSE) {  .CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))  }
+            .CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))
+            
+            if (rstudioapi::isAvailable()) {
+                # GO TO: if(overwrite)
+            } else { 
+                # if(VERBOSE) print('!rstudioapi::isAvailable()');
+                env1$path$CurrentSource.path_filename.ext = NA
+                print('!rstudioapi::isAvailable()');
+                return(invisible())
+            }
+            
+        } else { 
+            if(!VERBOSE) print('!rstudioapi::isAvailable()');
+            return(invisible()) 
         }
+    } 
+    
+    if(overwrite) {
+        # env1$path$CurrentSource.path_filename.ext = getwd() |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+        env1$path$CurrentSource.path_filename.ext = rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")
+        env1$path$CurrentSource.path = env1$path$CurrentSource.path_filename.ext |> dirname()
+        
+        # cat(LinePrefix4CodeText, "env1$path$CurrentSource.path_filename.ext == ", deparse(env1$path$CurrentSource.path_filename.ext), "  \n", sep="")
+        .CodeText2Print = 'env1$path$CurrentSource.path_filename.ext'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))
+        
+        if(!".path4write" %in% names(env1$path)) {
+            .path4write = env1$path$.path4write = env1$path$CurrentSource.path
+            cat(LinePrefix4CodeText, ".path4write = env1$path$.path4write = env1$path$CurrentSource.path", "  \n", sep="")
+        }  
+    } else {
+        env1$f$f_CodeText2.is_equal("env1$path$CurrentSource.path_filename.ext", 'rstudioapi::getSourceEditorContext()$path |> normalizePath(winslash="/") |> str_replace(fixed(env1$path$path1|>normalizePath(winslash="/")), "") |> str_replace("^/", "")')
     }
+    return(invisible())
 }
+
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "env.internal"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = FALSE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
 ### & alias = getSourceEditorContext.path_filename.ext  ----  
 .tmp$aliasname = "getSourceEditorContext.path_filename.ext"
+attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
+    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
+env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = getCurrentSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "getCurrentSourceEditorContext.path_filename.ext"
+attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
+    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
+env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = CurrentSourceEditorContext.path_filename.ext  ----  
+.tmp$aliasname = "CurrentSourceEditorContext.path_filename.ext"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
