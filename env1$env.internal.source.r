@@ -367,6 +367,33 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 
+
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_CodeTexts.parse.eval.identical ====  
+# Rdev/00_base_program/007_base_expression/f_CodeTexts.parse.eval.identical.dev.r
+.tmp$objectname = "f_CodeTexts.parse.eval.identical"
+.tmp$object = function(CodeText1, CodeText2, show_CodeTexts.parse.eval = TRUE, show_in_one_line = FALSE, LinePrefix4CodeText = "\t") {
+    CodeText1.parse.eval = eval(parse(text = CodeText1))
+    CodeText2.parse.eval = eval(parse(text = CodeText2))
+    CodeTexts.parse.eval.identical = identical(CodeText1.parse.eval, CodeText2.parse.eval) 
+
+    if(show_CodeTexts.parse.eval) {
+        if (show_in_one_line) {
+            cat(LinePrefix4CodeText, CodeText1, ifelse(CodeTexts.parse.eval.identical, " == ", " != "), CodeText2, " == ", deparse(CodeText2.parse.eval), "  \n", sep = "")
+        } else {
+            cat(LinePrefix4CodeText);   cat(CodeText1, "  \n", sep = "")
+            cat(LinePrefix4CodeText);   cat(LinePrefix4CodeText);   cat(" == ", deparse(CodeText1.parse.eval), "  \n", sep = "")
+            cat(LinePrefix4CodeText);   cat(LinePrefix4CodeText);   cat(ifelse(CodeTexts.parse.eval.identical, " == ", " != "), "  \n", sep = "")
+            cat(LinePrefix4CodeText);   cat(CodeText2, "  \n", sep = "")
+            cat(LinePrefix4CodeText);   cat(LinePrefix4CodeText);   cat(" == ", deparse(CodeText2.parse.eval), "  \n", sep = "")
+        }
+    }
+    invisible(CodeTexts.parse.eval.identical)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
+
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 ## :: f_TerminalFromRCodeText.echo ====  
 # Rdev/00_base_program/f_TerminalFromRCodeText.echo.dev.r
