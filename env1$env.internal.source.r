@@ -186,7 +186,12 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 .tmp$object = function(ObjectName, envir = parent.frame(), LinePrefix4CodeText = "\t") {
     if (!exists(ObjectName, envir)) stop(paste("Object", ObjectName, "does not exist in the calling environment"))
     cat(LinePrefix4CodeText); cat(ObjectName); cat(" == "); 
-    ObjectName |> get(envir = envir) |> deparse() |> cat(); cat("  \n")
+    ObjectName.get = ObjectName |> get(envir = envir)
+    if(is.null(ObjectName.get)) {
+        cat("NULL  \n")  # Actually, should be paste0("is.null(",.CodeText2Print,") == TRUE")
+    } else {
+        ObjectName.get |> deparse() |> cat(); cat("  \n")
+    }
     invisible()
 }
 
@@ -301,7 +306,13 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
                 # if(CodeEqualsOutput && .CodeText.split_LF.split_semicolon.i.parse.eval.deparse != "NULL") {
                 if(CodeEqualsOutput && identical(.CodeText.split_LF, .CodeText.split_LF.split_semicolon) && ! .CodeText.split_LF.split_semicolon[i] |> str_detect(r"((^|[^\w_.])str($|[^\w_.]))")) {
                     cat(" == ")
-                    eval(parse(text = .CodeText.split_LF.split_semicolon[i])) |> deparse() %>% cat(sep="")
+                    .CodeText.split_LF.split_semicolon.i.parse.eval = eval(parse(text = .CodeText.split_LF.split_semicolon[i])) 
+                    if(is.null(.CodeText.split_LF.split_semicolon.i.parse.eval)) {
+                        cat("NULL  \n")  # Actually, should be paste0("is.null(",.CodeText2Print,") == TRUE")
+                    } else {
+                        .CodeText.split_LF.split_semicolon.i.parse.eval |> deparse() |> cat(); cat("  \n")
+                    }
+                    
                     # .CodeText.split_LF.split_semicolon.i.parse.eval.deparse %>% cat(., "  \n", sep="")
                 } else {
                     cat("  \n")
@@ -390,7 +401,7 @@ env1$f$f_path.relative = function(path, basepath = env1$path$path1) {
     
     if (check_rstudioapi) {
         if (requireNamespace("rstudioapi")) {
-            if(VERBOSE) {  .CodeText2Print = 'requireNamespace("rstudioapi")'; print(ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print)))))  }
+            if(VERBOSE) {  .CodeText2Print = 'requireNamespace("rstudioapi")'; (ifelse(is.null(eval(parse(text=.CodeText2Print))), paste0("is.null(",.CodeText2Print,") == TRUE"), paste0(.CodeText2Print," == ",eval(parse(text=.CodeText2Print))))) %>% {cat(LinePrefix4CodeText, ., "  \n", sep = "")}  }
             
             if (rstudioapi::isAvailable()) {
                 # GO TO: if(overwrite)
