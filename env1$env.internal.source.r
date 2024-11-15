@@ -347,8 +347,9 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_CodeText.parse.eval.dput.echo  ----  
 .tmp$objectname = "f_CodeText.parse.eval.dput.echo"
-.tmp$object = function(.CodeText, substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, CodeEqualsOutput = TRUE,...) {
-    env1$f$f_CodeText.echo(.CodeText, Execute = TRUE, ...)
+.tmp$object = function(.CodeText, Execute = TRUE, substitute_ObjectNames = TRUE, ObjectNames4substitute = NULL, CodeEqualsOutput = TRUE,...) {
+    args <- as.list(environment())  # Capture all arguments in the current environment
+    do.call(env1$f$f_CodeText.echo, args)   # Dynamically pass the args to another function
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
@@ -796,8 +797,9 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 ## ::OPTION:: f_CurrentSourceEditorContext.str_replace_all.old.ObjectName  ----  
 .tmp$objectname = "f_CurrentSourceEditorContext.str_replace_all.old.ObjectName"
-.tmp$object = function(old.ObjectName, new.ObjectName, input_path_file = rstudioapi::getSourceEditorContext()$path, replace_input_path_file = TRUE, output_path_file = NULL) {
-    env1$f$f_file.str_replace_all.old.ObjectName(old.ObjectName = old.ObjectName, new.ObjectName = new.ObjectName, ...)
+.tmp$object = function(old.ObjectName, new.ObjectName, input_path_file = rstudioapi::getSourceEditorContext()$path, replace_input_path_file = TRUE, output_path_file = NULL, ...) {
+    args <- as.list(environment())  # Capture all arguments in the current environment
+    do.call(env1$f$f_file.str_replace_all.old.ObjectName, args)   # Dynamically pass the args to another function
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
