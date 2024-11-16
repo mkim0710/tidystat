@@ -629,7 +629,7 @@ glmnet_object = glmnet(x, y)
 glmnet_object_enet = glmnet(x, y, alpha = 0.5)  # Elastic net
 ```
 
-### :: f_glmnet_object.plot = function()
+### :: f_glmnet_object.plot = function() -dev -tmp(xvar)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 ?plot.glmnet
 # ## S3 method for class 'glmnet'
@@ -643,11 +643,13 @@ glmnet_object |> plot(label = TRUE, xvar = "norm")
 glmnet_object_enet |> plot(label = TRUE, xvar = "norm")
 ```
 
+
+#### matrix(1:6, nrow = 2) |> f_matrix.set_names.to_vector()
 ```{r}
-matrix(1:6, nrow = 2) %>% f_matrix.set_names.to_vector()
+matrix(1:6, nrow = 2) |> f_matrix.set_names.to_vector()
 ```
 
-
+#### mat_coef <- as.matrix(coef(glmnet_object))
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Extract coefficients for all lambda values
 mat_coef <- as.matrix(coef(glmnet_object))
@@ -657,21 +659,21 @@ mat_coef[-1, ] %>% str
 mat_coef[-1, ] %>% as.vector() %>% str
 ```
 
-
+#### vec_lambda <- glmnet_object$lambda
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Extract lambda values
 vec_lambda <- glmnet_object$lambda
 vec_lambda %>% str
 ```
 
-
+#### vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)  # Exclude intercept
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Calculate L1-l1norm for each lambda
 vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)  # Exclude intercept
 vec_l1norm %>% str
 ```
 
-
+#### :: coef_df = 
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 # Total number of variables (excluding intercept)
 nvars <- nrow(mat_coef) - 1
@@ -690,7 +692,7 @@ coef_df %>% summary
 ```
 
 ### :: f_glmnet_object.tbl_lambda_coefs.pivot_longer = function()
-
+#### :: tbl_lambda_coefs.pivot_longer ====
 ```{r}
 tbl_lambda_coefs = mat_coef[-1, ] %>% t %>% as.data.frame %>% as_tibble(rownames = NA) %>% add_column(lambda = vec_lambda, .before = 1) %>% add_column(l1norm = vec_l1norm, .before = 2)
 tbl_lambda_coefs 
@@ -699,7 +701,7 @@ tbl_lambda_coefs.pivot_longer
 ```
 
 
-### :: ...ggplot_log_lambda = function()
+### :: ...ggplot_log_lambda = function() -dev -temp(scales)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(ggplot2)
 
@@ -736,7 +738,7 @@ tbl_lambda_coefs.pivot_longer %>%
 ```
 
 
-### :: ...ggplot_log_lambda = function()
+### :: ...ggplot_log_lambda = function() -dev -succeed(line labels) -pending(non-zero vars)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(ggplot2)
 library(dplyr)
@@ -778,7 +780,7 @@ tbl_lambda_coefs.pivot_longer %>%
 
 
 
-### :: ...ggplot_log_lambda = function()
+### :: ...ggplot_log_lambda = function() -dev -succeed(line labels) -void(non-zero vars)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(ggplot2)
 library(dplyr)
@@ -836,7 +838,7 @@ tbl_lambda_coefs.pivot_longer %>%
 
 
 
-### :: ...ggplot_log_lambda = function()
+### :: ...ggplot_log_lambda = function() -dev -succeed(line labels) -succeed(non-zero vars)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(ggplot2)
 library(dplyr)
@@ -898,7 +900,7 @@ tbl_lambda_coefs.pivot_longer %>%
 
 
 
-### :: ...ggplot_l1norm = function()
+### :: ...ggplot_l1norm = function() -dev -pending(line labels) -pending(non-zero vars)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(ggplot2)
 
@@ -911,7 +913,7 @@ tbl_lambda_coefs.pivot_longer %>%
 
 ```
 
-### :: ...ggplot_l1norm = function()
+### :: ...ggplot_l1norm = function() -dev -succeed(line labels) -pending(non-zero vars)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(ggplot2)
 
@@ -938,7 +940,7 @@ tbl_lambda_coefs.pivot_longer %>%
 ```
 
 
-### :: ...ggplot_l1norm = function()
+### :: ...ggplot_l1norm = function() -dev -succeed(line labels) -succeed(non-zero vars)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 library(ggplot2)
 
