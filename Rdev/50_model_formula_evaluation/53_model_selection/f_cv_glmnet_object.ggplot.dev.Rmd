@@ -1230,9 +1230,16 @@ library(scales)
 
 f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
     xvar <- match.arg(xvar)
-    names(xvar) = xvar
-    if (xvar == "dev") names(xvar) = "DevianceExplained"
-    if (xvar == "norm") names(xvar) = "l1norm"
+    # xvar_name = xvar
+    # if (xvar == "dev") xvar_name = "DevianceExplained"
+    # if (xvar == "norm") xvar_name = "l1norm"
+    xvar_name <- switch(
+        xvar,
+        "norm" = "l1norm",
+        "lambda" = "lambda",
+        "dev" = "DevianceExplained",
+        "penalty" = "penalty"
+    )
 
     # Extract coefficients for all lambda values
     mat_coef <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
@@ -1271,7 +1278,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
 
     # Calculate the number of non-zero variables
     non_zero_counts <- coef_df %>%
-        group_by(.data[[names(xvar)]]) %>%
+        group_by(.data[[xvar_name]]) %>%
         summarize(non_zero_count = sum(coefficient != 0)) %>%
         ungroup() %>%
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
@@ -1279,21 +1286,21 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
         non_zero_counts <- bind_rows(
-            tibble(!!names(xvar) := min(coef_df[[names(xvar)]]), non_zero_count = 0),
+            tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0),
             non_zero_counts
         )
     }
 
     # Choose xvar label
     xvar_label <- switch(
-        names(xvar),
+        xvar_name,
         l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         DevianceExplained = "Proportion Deviance Explained"
     )
 
     # Plotting
-    ggplot(coef_df, aes_string(x = names(xvar), y = "coefficient", color = "variable", group = "variable")) +
+    ggplot(coef_df, aes_string(x = xvar_name, y = "coefficient", color = "variable", group = "variable")) +
         geom_line() +
         scale_x_continuous(
             name = xvar_label,
@@ -1302,7 +1309,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
             labels = if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver(),
             sec.axis = sec_axis(
                 trans = ~ .,  # Identity transformation
-                breaks = non_zero_counts[[names(xvar)]],
+                breaks = non_zero_counts[[xvar_name]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Variables"
             )
@@ -1343,9 +1350,16 @@ f_cv_glmnet_object.ggplot(cv_fit, xvar = "norm", label = TRUE)
 options(width=120)
 f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
     xvar <- match.arg(xvar)
-    names(xvar) = xvar
-    if (xvar == "dev") names(xvar) = "DevianceExplained"
-    if (xvar == "norm") names(xvar) = "l1norm"
+    # xvar_name = xvar
+    # if (xvar == "dev") xvar_name = "DevianceExplained"
+    # if (xvar == "norm") xvar_name = "l1norm"
+    xvar_name <- switch(
+        xvar,
+        "norm" = "l1norm",
+        "lambda" = "lambda",
+        "dev" = "DevianceExplained",
+        "penalty" = "penalty"
+    )
     
     # Extract data
     mat_coef <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
@@ -1364,20 +1378,20 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Calculate label positions
     label_data <- coef_df %>%
         group_by(variable) %>%
-        filter(.data[[names(xvar)]] == if (xvar == "lambda") min(.data[[names(xvar)]]) else max(.data[[names(xvar)]])) %>%
+        filter(.data[[xvar_name]] == if (xvar == "lambda") min(.data[[xvar_name]]) else max(.data[[xvar_name]])) %>%
         ungroup()
 
     # Calculate the number of non-zero variables
     non_zero_counts <- coef_df %>%
-        group_by(.data[[names(xvar)]]) %>%
+        group_by(.data[[xvar_name]]) %>%
         summarize(non_zero_count = sum(coefficient != 0), .groups = "drop") %>%
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count))) %>%
-        bind_rows(tibble(!!names(xvar) := min(coef_df[[names(xvar)]]), non_zero_count = 0)) %>%
-        arrange(.data[[names(xvar)]])
+        bind_rows(tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0)) %>%
+        arrange(.data[[xvar_name]])
 
     # Define axis labels
     xvar_label <- switch(
-        names(xvar),
+        xvar_name,
         l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         DevianceExplained = "Proportion Deviance Explained"
@@ -1389,7 +1403,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
 
     # Plot
-    ggplot(coef_df, aes_string(x = names(xvar), y = "coefficient", color = "variable", group = "variable")) +
+    ggplot(coef_df, aes_string(x = xvar_name, y = "coefficient", color = "variable", group = "variable")) +
         geom_line() +
         scale_x_continuous(
             name = xvar_label,
@@ -1398,7 +1412,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
             labels = x_labels,
             sec.axis = sec_axis(
                 trans = ~ .,  # Identity transformation
-                breaks = non_zero_counts[[names(xvar)]],
+                breaks = non_zero_counts[[xvar_name]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Variables"
             )
@@ -1449,9 +1463,16 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     library(scales)
     
     xvar <- match.arg(xvar)
-    names(xvar) = xvar
-    if (xvar == "dev") names(xvar) = "DevianceExplained"
-    if (xvar == "norm") names(xvar) = "l1norm"
+    # xvar_name = xvar
+    # if (xvar == "dev") xvar_name = "DevianceExplained"
+    # if (xvar == "norm") xvar_name = "l1norm"
+    xvar_name <- switch(
+        xvar,
+        "norm" = "l1norm",
+        "lambda" = "lambda",
+        "dev" = "DevianceExplained",
+        "penalty" = "penalty"
+    )
     
     # Extract data from cv.glmnet object
     glmnet_object <- cv_glmnet_object$glmnet.fit
@@ -1476,28 +1497,28 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     label_positions <- coef_df %>%
         group_by(variable) %>%
         filter(
-            .data[[names(xvar)]] == if (xvar == "lambda") min(.data[[names(xvar)]]) else max(.data[[names(xvar)]])
+            .data[[xvar_name]] == if (xvar == "lambda") min(.data[[xvar_name]]) else max(.data[[xvar_name]])
         ) %>%
         ungroup()
     
     # Calculate number of non-zero coefficients at each xvar
     non_zero_counts <- coef_df %>%
-        group_by(.data[[names(xvar)]]) %>%
+        group_by(.data[[xvar_name]]) %>%
         summarize(
             non_zero_count = sum(coefficient != 0),
             .groups = "drop"
         ) %>%
-        arrange(.data[[names(xvar)]]) %>%
+        arrange(.data[[xvar_name]]) %>%
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
     
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
         initial_row <- tibble(
-            !!names(xvar) := min(coef_df[[names(xvar)]]),
+            !!xvar_name := min(coef_df[[xvar_name]]),
             non_zero_count = 0
         )
         non_zero_counts <- bind_rows(initial_row, non_zero_counts)
-        non_zero_counts <- non_zero_counts %>% arrange(.data[[names(xvar)]])
+        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar_name]])
     }
     
     # Axis labels and transformations
@@ -1512,16 +1533,16 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
     
     # Create the plot
-    plot <- ggplot(coef_df, aes(x = .data[[names(xvar)]], y = coefficient, color = variable, group = variable)) +
+    plot <- ggplot(coef_df, aes(x = .data[[xvar_name]], y = coefficient, color = variable, group = variable)) +
         geom_line() +
         scale_x_continuous(
-            name = xvar_labels[[names(xvar)]],
+            name = xvar_labels[[xvar_name]],
             trans = x_transformation,
             breaks = x_breaks,
             labels = x_labels,
             sec.axis = sec_axis(
                 trans = ~ .,
-                breaks = non_zero_counts[[names(xvar)]],
+                breaks = non_zero_counts[[xvar_name]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Coefficients"
             )
@@ -1597,9 +1618,16 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     library(scales)
     
     xvar <- match.arg(xvar)
-    names(xvar) = xvar
-    if (xvar == "dev") names(xvar) = "DevianceExplained"
-    if (xvar == "norm") names(xvar) = "l1norm"
+    # xvar_name = xvar
+    # if (xvar == "dev") xvar_name = "DevianceExplained"
+    # if (xvar == "norm") xvar_name = "l1norm"
+    xvar_name <- switch(
+        xvar,
+        "norm" = "l1norm",
+        "lambda" = "lambda",
+        "dev" = "DevianceExplained",
+        "penalty" = "penalty"
+    )
         
     # Extract data from cv.glmnet object
     glmnet_object <- cv_glmnet_object$glmnet.fit
@@ -1638,33 +1666,33 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     label_positions <- coef_df %>%
         group_by(variable) %>%
         filter(
-            .data[[names(xvar)]] == if (xvar == "lambda") min(.data[[names(xvar)]]) else max(.data[[names(xvar)]])
+            .data[[xvar_name]] == if (xvar == "lambda") min(.data[[xvar_name]]) else max(.data[[xvar_name]])
         ) %>%
         ungroup()
     
     # Calculate number of non-zero coefficients at each xvar
     non_zero_counts <- coef_df %>%
-        group_by(.data[[names(xvar)]]) %>%
+        group_by(.data[[xvar_name]]) %>%
         summarize(
             non_zero_count = sum(coefficient != 0),
             .groups = "drop"
         ) %>%
-        arrange(.data[[names(xvar)]]) %>%
+        arrange(.data[[xvar_name]]) %>%
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
     
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
         initial_row <- tibble(
-            !!names(xvar) := min(coef_df[[names(xvar)]]),
+            !!xvar_name := min(coef_df[[xvar_name]]),
             non_zero_count = 0
         )
         non_zero_counts <- bind_rows(initial_row, non_zero_counts)
-        non_zero_counts <- non_zero_counts %>% arrange(.data[[names(xvar)]])
+        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar_name]])
     }
     
     # # Axis labels and transformations
     # xvar_labels <- switch(
-    #     names(xvar),
+    #     xvar_name,
     #     l1norm = "L1 Norm",
     #     lambda = expression(lambda~(log[e]~scale)),
     #     DevianceExplained = "Proportion Deviance Explained",
@@ -1684,16 +1712,16 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
     
     # Create the plot
-    plot <- ggplot(coef_df, aes(x = .data[[names(xvar)]], y = coefficient, color = variable, group = variable)) +
+    plot <- ggplot(coef_df, aes(x = .data[[xvar_name]], y = coefficient, color = variable, group = variable)) +
         geom_line() +
         scale_x_continuous(
-            name = xvar_labels[[names(xvar)]],
+            name = xvar_labels[[xvar_name]],
             trans = x_transformation,
             breaks = x_breaks,
             labels = x_labels,
             sec.axis = sec_axis(
                 trans = ~ .,
-                breaks = non_zero_counts[[names(xvar)]],
+                breaks = non_zero_counts[[xvar_name]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Coefficients"
             )
