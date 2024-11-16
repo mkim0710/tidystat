@@ -1185,7 +1185,7 @@ TheTrainSet.cv.glmnet_a10 %>% plot
 
 
 
-### :: f_cv_glmnet_object.plot = function()
+### :: f_cv_glmnet_object.plot = function() -old -pending
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 f_cv_glmnet_object.plot <- function(
         cv_glmnet_object, 
@@ -1220,7 +1220,7 @@ TheTrainSet.cv.glmnet_a10 %>% f_cv_glmnet_object.plot(save_plots = FALSE)
 ```
 
   
-### :: f_cv_glmnet_object.ggplot = function()
+### :: f_cv_glmnet_object.ggplot = function() -succeed(lambda) -pending(dev: line labels) -succeed(norm)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 library(ggplot2)
@@ -1232,6 +1232,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     xvar <- match.arg(xvar)
     names(xvar) = xvar
     if (xvar == "dev") names(xvar) = "DevianceExplained"
+    if (xvar == "norm") names(xvar) = "l1norm"
 
     # Extract coefficients for all lambda values
     mat_coef <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
@@ -1285,7 +1286,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
 
     # Choose xvar label
     xvar_label <- switch(
-        xvar,
+        names(xvar),
         l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         DevianceExplained = "Proportion Deviance Explained"
@@ -1337,12 +1338,15 @@ f_cv_glmnet_object.ggplot(cv_fit, xvar = "norm", label = TRUE)
 ```
   
   
-### :: f_cv_glmnet_object.ggplot = function()
+### :: f_cv_glmnet_object.ggplot = function() -succeed(lambda) -succeed(dev) -succeed(norm)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
     xvar <- match.arg(xvar)
-
+    names(xvar) = xvar
+    if (xvar == "dev") names(xvar) = "DevianceExplained"
+    if (xvar == "norm") names(xvar) = "l1norm"
+    
     # Extract data
     mat_coef <- as.matrix(coef(cv_glmnet_object$glmnet.fit))
     vec_lambda <- cv_glmnet_object$lambda
@@ -1373,7 +1377,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
 
     # Define axis labels
     xvar_label <- switch(
-        xvar,
+        names(xvar),
         l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         DevianceExplained = "Proportion Deviance Explained"
@@ -1434,7 +1438,7 @@ f_cv_glmnet_object.ggplot(cv_fit, xvar = "dev", label = TRUE)
 ```
   
   
-### :: f_cv_glmnet_object.ggplot = function()
+### :: f_cv_glmnet_object.ggplot = function() -succeed(lambda) -succeed(dev) -succeed(norm)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
@@ -1445,6 +1449,9 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     library(scales)
     
     xvar <- match.arg(xvar)
+    names(xvar) = xvar
+    if (xvar == "dev") names(xvar) = "DevianceExplained"
+    if (xvar == "norm") names(xvar) = "l1norm"
     
     # Extract data from cv.glmnet object
     glmnet_object <- cv_glmnet_object$glmnet.fit
@@ -1579,7 +1586,7 @@ plot_obj +
 ```
   
   
-### :: f_cv_glmnet_object_enet.ggplot = function()
+### :: f_cv_glmnet_object_enet.ggplot = function() pending
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE) {
@@ -1590,7 +1597,10 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     library(scales)
     
     xvar <- match.arg(xvar)
-    
+    names(xvar) = xvar
+    if (xvar == "dev") names(xvar) = "DevianceExplained"
+    if (xvar == "norm") names(xvar) = "l1norm"
+        
     # Extract data from cv.glmnet object
     glmnet_object <- cv_glmnet_object$glmnet.fit
     mat_coef <- as.matrix(coef(glmnet_object))
