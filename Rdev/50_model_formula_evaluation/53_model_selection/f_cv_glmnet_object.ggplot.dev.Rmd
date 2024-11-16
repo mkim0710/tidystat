@@ -950,7 +950,7 @@ label_data <- tbl_lambda_coefs.pivot_longer %>%
     filter(l1norm == max(l1norm)) %>%
     ungroup()
 
-# Calculate the number of non-zero variables for each l1_norm
+# Calculate the number of non-zero variables for each vec_l1norm
 non_zero_counts_l1 <- tbl_lambda_coefs.pivot_longer %>%
     group_by(l1norm) %>%
     summarize(non_zero_count = sum(coefficient != 0)) %>%
@@ -1251,7 +1251,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
         as.data.frame() %>%
         as_tibble(rownames = NA) %>%
         add_column(lambda = vec_lambda, .before = 1) %>%
-        add_column(l1norm = vec_l1norm, .before = 2) %>%  # Rename l1_norm to l1norm
+        add_column(l1norm = vec_l1norm, .before = 2) %>%  # Rename vec_l1norm to l1norm
         pivot_longer(-c(lambda, l1norm), names_to = "variable", values_to = "coefficient")
 
     if (xvar == "dev") {
@@ -1615,11 +1615,11 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     # mat_coef[-1, ]  # Remove intercept
     
     # Compute L1 and L2 norms
-    l1_norm <- apply(abs(mat_coef[-1, ]), 2, sum)
-    l2_norm <- apply(mat_coef[-1, ]^2, 2, sum)
+    vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)
+    vec_l2norm <- apply(mat_coef[-1, ]^2, 2, sum)
     
     # Compute Elastic Net penalty
-    penalty_values <- (1 - alpha) * 0.5 * l2_norm + alpha * l1_norm
+    vec_penalty <- (1 - alpha) * 0.5 * vec_l2norm + alpha * vec_l1norm
     
     # Proportion of deviance explained
     vec_dev.ratio <- glmnet_object$dev.ratio
@@ -1627,9 +1627,9 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     # Prepare data frame
     coef_df <- as.data.frame(t(mat_coef[-1, ]))
     coef_df$lambda <- vec_lambda
-    coef_df$norm <- l1_norm  # For compatibility
+    coef_df$norm <- vec_l1norm  # For compatibility
     coef_df$DevianceExplained <- vec_dev.ratio
-    coef_df$penalty <- penalty_values
+    coef_df$penalty <- vec_penalty
     coef_df <- coef_df %>%
         pivot_longer(cols = all_of(variables), names_to = "variable", values_to = "coefficient")
     
@@ -1661,13 +1661,22 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
         non_zero_counts <- non_zero_counts %>% arrange(.data[[names(xvar)]])
     }
     
+    # # Axis labels and transformations
+    # xvar_labels <- switch(
+    #     names(xvar),
+    #     l1norm = "L1 Norm",
+    #     lambda = expression(lambda~(log[e]~scale)),
+    #     DevianceExplained = "Proportion Deviance Explained",
+    #     penalty = "Elastic Net Penalty"
+    # )
     # Axis labels and transformations
     xvar_labels <- list(
-        norm = "L1 Norm",
+        l1norm = "L1 Norm",
         lambda = expression(lambda~(log[e]~scale)),
         DevianceExplained = "Proportion Deviance Explained",
         penalty = "Elastic Net Penalty"
     )
+    
     x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
     x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
     x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
@@ -1724,6 +1733,7 @@ glmnet_object_enet <- cv.glmnet(x, y, alpha = 0.5)
 
 # Plot with Elastic Net penalty as x-axis
 f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "penalty", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "norm", label = TRUE)
 
 ```
   
