@@ -1278,7 +1278,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
         non_zero_counts <- bind_rows(
-            tibble(!!xvar := min(coef_df[[xvar]]), non_zero_count = 0),
+            tibble(!!names(xvar) := min(coef_df[[names(xvar)]]), non_zero_count = 0),
             non_zero_counts
         )
     }
@@ -1301,7 +1301,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
             labels = if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver(),
             sec.axis = sec_axis(
                 trans = ~ .,  # Identity transformation
-                breaks = non_zero_counts[[xvar]],
+                breaks = non_zero_counts[[names(xvar)]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Variables"
             )
@@ -1360,16 +1360,16 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     # Calculate label positions
     label_data <- coef_df %>%
         group_by(variable) %>%
-        filter(.data[[xvar]] == if (xvar == "lambda") min(.data[[xvar]]) else max(.data[[xvar]])) %>%
+        filter(.data[[names(xvar)]] == if (xvar == "lambda") min(.data[[names(xvar)]]) else max(.data[[names(xvar)]])) %>%
         ungroup()
 
     # Calculate the number of non-zero variables
     non_zero_counts <- coef_df %>%
-        group_by(.data[[xvar]]) %>%
+        group_by(.data[[names(xvar)]]) %>%
         summarize(non_zero_count = sum(coefficient != 0), .groups = "drop") %>%
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count))) %>%
-        bind_rows(tibble(!!names(xvar) := min(coef_df[[xvar]]), non_zero_count = 0)) %>%
-        arrange(.data[[xvar]])
+        bind_rows(tibble(!!names(xvar) := min(coef_df[[names(xvar)]]), non_zero_count = 0)) %>%
+        arrange(.data[[names(xvar)]])
 
     # Define axis labels
     xvar_label <- switch(
@@ -1394,7 +1394,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
             labels = x_labels,
             sec.axis = sec_axis(
                 trans = ~ .,  # Identity transformation
-                breaks = non_zero_counts[[xvar]],
+                breaks = non_zero_counts[[names(xvar)]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Variables"
             )
@@ -1469,28 +1469,28 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     label_positions <- coef_df %>%
         group_by(variable) %>%
         filter(
-            .data[[xvar]] == if (xvar == "lambda") min(.data[[xvar]]) else max(.data[[xvar]])
+            .data[[names(xvar)]] == if (xvar == "lambda") min(.data[[names(xvar)]]) else max(.data[[names(xvar)]])
         ) %>%
         ungroup()
     
     # Calculate number of non-zero coefficients at each xvar
     non_zero_counts <- coef_df %>%
-        group_by(.data[[xvar]]) %>%
+        group_by(.data[[names(xvar)]]) %>%
         summarize(
             non_zero_count = sum(coefficient != 0),
             .groups = "drop"
         ) %>%
-        arrange(.data[[xvar]]) %>%
+        arrange(.data[[names(xvar)]]) %>%
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
     
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
         initial_row <- tibble(
-            !!xvar := min(coef_df[[xvar]]),
+            !!names(xvar) := min(coef_df[[names(xvar)]]),
             non_zero_count = 0
         )
         non_zero_counts <- bind_rows(initial_row, non_zero_counts)
-        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar]])
+        non_zero_counts <- non_zero_counts %>% arrange(.data[[names(xvar)]])
     }
     
     # Axis labels and transformations
@@ -1505,16 +1505,16 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
     
     # Create the plot
-    plot <- ggplot(coef_df, aes(x = .data[[xvar]], y = coefficient, color = variable, group = variable)) +
+    plot <- ggplot(coef_df, aes(x = .data[[names(xvar)]], y = coefficient, color = variable, group = variable)) +
         geom_line() +
         scale_x_continuous(
-            name = xvar_labels[[xvar]],
+            name = xvar_labels[[names(xvar)]],
             trans = x_transformation,
             breaks = x_breaks,
             labels = x_labels,
             sec.axis = sec_axis(
                 trans = ~ .,
-                breaks = non_zero_counts[[xvar]],
+                breaks = non_zero_counts[[names(xvar)]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Coefficients"
             )
@@ -1627,28 +1627,28 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     label_positions <- coef_df %>%
         group_by(variable) %>%
         filter(
-            .data[[xvar]] == if (xvar == "lambda") min(.data[[xvar]]) else max(.data[[xvar]])
+            .data[[names(xvar)]] == if (xvar == "lambda") min(.data[[names(xvar)]]) else max(.data[[names(xvar)]])
         ) %>%
         ungroup()
     
     # Calculate number of non-zero coefficients at each xvar
     non_zero_counts <- coef_df %>%
-        group_by(.data[[xvar]]) %>%
+        group_by(.data[[names(xvar)]]) %>%
         summarize(
             non_zero_count = sum(coefficient != 0),
             .groups = "drop"
         ) %>%
-        arrange(.data[[xvar]]) %>%
+        arrange(.data[[names(xvar)]]) %>%
         filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
     
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
         initial_row <- tibble(
-            !!xvar := min(coef_df[[xvar]]),
+            !!names(xvar) := min(coef_df[[names(xvar)]]),
             non_zero_count = 0
         )
         non_zero_counts <- bind_rows(initial_row, non_zero_counts)
-        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar]])
+        non_zero_counts <- non_zero_counts %>% arrange(.data[[names(xvar)]])
     }
     
     # Axis labels and transformations
@@ -1664,16 +1664,16 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
     
     # Create the plot
-    plot <- ggplot(coef_df, aes(x = .data[[xvar]], y = coefficient, color = variable, group = variable)) +
+    plot <- ggplot(coef_df, aes(x = .data[[names(xvar)]], y = coefficient, color = variable, group = variable)) +
         geom_line() +
         scale_x_continuous(
-            name = xvar_labels[[xvar]],
+            name = xvar_labels[[names(xvar)]],
             trans = x_transformation,
             breaks = x_breaks,
             labels = x_labels,
             sec.axis = sec_axis(
                 trans = ~ .,
-                breaks = non_zero_counts[[xvar]],
+                breaks = non_zero_counts[[names(xvar)]],
                 labels = non_zero_counts$non_zero_count,
                 name = "Number of Non-Zero Coefficients"
             )
