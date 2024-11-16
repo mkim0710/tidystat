@@ -1627,7 +1627,7 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     # Prepare data frame
     coef_df <- as.data.frame(t(mat_coef[-1, ]))
     coef_df$lambda <- vec_lambda
-    coef_df$norm <- vec_l1norm  # For compatibility
+    coef_df$l1norm <- vec_l1norm  # For compatibility
     coef_df$DevianceExplained <- vec_dev.ratio
     coef_df$penalty <- vec_penalty
     coef_df <- coef_df %>%
@@ -1732,8 +1732,10 @@ y <- rnorm(100)
 glmnet_object_enet <- cv.glmnet(x, y, alpha = 0.5)
 
 # Plot with Elastic Net penalty as x-axis
-f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "penalty", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "lambda", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "dev", label = TRUE)
 f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "norm", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(glmnet_object_enet, xvar = "penalty", label = TRUE)
 
 ```
   
