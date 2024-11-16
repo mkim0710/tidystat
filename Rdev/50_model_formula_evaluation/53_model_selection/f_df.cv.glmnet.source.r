@@ -1,43 +1,14 @@
-# default.R
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-# #@ The templates at source_base_github (default.R, templates-00env1.minimum.Rmd) ++++++++++++   
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
-# # \% Source the source_base_github templates & check if there is no error  ~~~~~~~~~~~~  
-# if (Sys.getenv("PARENT_RENDERING") != "YES") {  Sys.setenv(PARENT_RENDERING = "YES"); options(expressions = 500); "default.R" %>% paste0(env1$path$source_base,"/rstudio-prefs/templates/",.) |> source(); Sys.setenv(PARENT_RENDERING = "NO")  }
-if (Sys.getenv("PARENT_RENDERING") != "YES") {  Sys.setenv(PARENT_RENDERING = "YES"); options(expressions = 500); "default.R" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> source(); Sys.setenv(PARENT_RENDERING = "NO")  }
-# if (Sys.getenv("PARENT_RENDERING") != "YES") {  Sys.setenv(PARENT_RENDERING = "YES"); options(expressions = 500); "templates-00env1.minimum.Rmd" %>% paste0("https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/",.) |> download.file("templates-00env1.minimum-test.Rmd") ; "templates-00env1.minimum-test.Rmd" |> rmarkdown::render(output_dir = dirname(env1$path$LastSourceEditorContext.path_filename.ext), output_format = "html_document"); Sys.setenv(PARENT_RENDERING = "NO"); "templates-00env1.minimum-test.html" |> browseURL()  }
-
-##________________________________________________________________________________  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-##________________________________________________________________________________  
-#|________________________________________________________________________________|#  ----  
-#| Ctrl(+Shift)+1: Move focus (zoom) to Source Editor 
-#| Ctrl+Shift+.[period]: Switch to tab (Show List of Open Tabs~!!!)
-#| Ctrl+Alt+Shift+Left/Right: First/Last tab
-#| Ctrl+Alt+D: Show diff between current and last commit
-#| Ctrl+Alt+M: Commit changes to Git
-#| Ctrl+Shift+O: Show/Hide Document Outline
-#| Alt+Shift+Drag: Multiline Cursor
-#| Ctrl+Shift+F10: Restart R Session 
-#| Ctrl+Alt+B: Run from start to current line 
-#| Shift+F9: Toggle Breakpoint 
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# file.edit( paste0("[Working Files List] ",basename(getwd()),".r") )  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/default.R
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# rm(list=ls())
-# rstudioapi::restartSession()  # ctrl+shift+f10
-# https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
-# .sourcename = "function.detachAllPackages" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# cmd /C C:/PROGRA~2/MICROS~1/Edge/APPLIC~1/msedge_proxy.exe --app=https://github.com/mkim0710/tidystat/blob/master/.Rprofile    
+# .sourcename_root = "f_cv_glmnet_object.ggplot"  
+#### Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r----  
+#### Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd----  
+#### Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r----  
+# # source(paste0(env1$path$source_base,"/","Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r"))  
+# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r")  
+# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd")  
+# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r")  
+# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
+# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
+# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
@@ -53,143 +24,9 @@ if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https:
 env1$env.internal$setLastSourceEditorContext.path_filename.ext(check_rstudioapi = TRUE, overwrite = TRUE)
 if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .path4write = env1$path$LastSourceEditorContext.path
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# file.edit(paste0("[Working Files List] ",basename(getwd()),".r")); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext))
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### env1\$env.internal\$f_path.df_dirs_recursive.df_files() ----  
-# .sourcename = "f_path.df_dirs_recursive.df_files" |> paste0(".source.r"); .subpath=r"()"|>str_replace_all("\\\\","/"); .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.); if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
-# env1$path$df_dirs_recursive.df_files = env1$env.internal$f_path.df_dirs_recursive.df_files(input_path=env1$path$path1, print.message=FALSE)
-# env1$path$df_dirs_recursive.df_files$path |> unique() |> paste0(collapse = "\n") |> cat("  \n", sep="")
-# env1$path$df_dirs_recursive.df_files |> dplyr::filter(path.level <= 2) |> dplyr::select(print_tree_path_files.codes) |> unlist() |> paste(collapse="") |> cat("  \n", sep="")
-# # Rdev
-# # Rdev/-dev
-# # Rdev/00_base_program
-# # Rdev/00_base_program/001_base_file
-# # Rdev/00_base_program/002_base_encoding_RegEx
-# # Rdev/00_base_program/004_base_environment
-# # Rdev/00_base_program/005_base_object
-# # Rdev/00_base_program/007_base_expression
-# # Rdev/00_base_program/009_base_computation
-# # Rdev/00_protocol
-# # Rdev/00_protocol/01_sample_size
-# # Rdev/10_import_clean_datatype
-# # Rdev/10_import_clean_datatype/11_literature
-# # Rdev/10_import_clean_datatype/11_metadata
-# # Rdev/10_import_clean_datatype/12_import_files
-# # Rdev/10_import_clean_datatype/12_import_sqlite
-# # Rdev/10_import_clean_datatype/12_import_vocabulary
-# # Rdev/10_import_clean_datatype/13_duplicated
-# # Rdev/10_import_clean_datatype/13_missing_value
-# # Rdev/10_import_clean_datatype/13_split_fold
-# # Rdev/10_import_clean_datatype/15_cleaning_text
-# # Rdev/10_import_clean_datatype/15_cleaning_time
-# # Rdev/10_import_clean_datatype/16_categorical_factor
-# # Rdev/10_import_clean_datatype/16_categorical_labelled
-# # Rdev/10_import_clean_datatype/17_categorical_indicators
-# # Rdev/10_import_clean_datatype/18_dichotomous_logical
-# # Rdev/10_import_clean_datatype/19_datetime
-# # Rdev/10_import_clean_datatype/19_numeric_integer
-# # Rdev/10_import_clean_datatype/array_list
-# # Rdev/20_tidy_group_by_match
-# # Rdev/20_tidy_group_by_match/23_group_by_PersonID
-# # Rdev/20_tidy_group_by_match/25_study_population
-# # Rdev/20_tidy_group_by_match/27_match
-# # Rdev/30_transform_scale_categorical
-# # Rdev/40_visualize_explore_bivariate_stratified
-# # Rdev/40_visualize_explore_bivariate_stratified/43_network
-# # Rdev/40_visualize_explore_bivariate_stratified/44_map
-# # Rdev/40_visualize_explore_bivariate_stratified/45_bivariate_measures
-# # Rdev/40_visualize_explore_bivariate_stratified/47_bivariate_partial_stratified
-# # Rdev/40_visualize_explore_bivariate_stratified/49_time
-# # Rdev/50_model_formula_evaluation
-# # Rdev/50_model_formula_evaluation/51_model_formula
-# # Rdev/50_model_formula_evaluation/52_model_estimation
-# # Rdev/50_model_formula_evaluation/53_model_selection
-# # Rdev/50_model_formula_evaluation/55_model_weighted
-# # Rdev/50_model_formula_evaluation/56_model_bootstrap
-# # Rdev/50_model_formula_evaluation/57_model_time2event
-# # Rdev/50_model_formula_evaluation/57_model_trajectory
-# # Rdev/50_model_formula_evaluation/59_model_evaluation
-# # Rdev/60_communicate_report_export
-# # Rdev/Rmd
-# # Rdev/examples
-# # Rdev/others
-# # Rdev/others/Batch
-# # Rdev/others/VBA
-# # data
-# # git
-# # git/hooks
-# # git/hooks/sample
-# # rstudio-prefs
-# # rstudio-prefs/Rocker
-# # rstudio-prefs/VScode-R
-# # rstudio-prefs/fonts
-# # rstudio-prefs/templates
-# # rstudio-prefs/themes
-# # rstudio-prefs/themes/GitHub 
-##________________________________________________________________________________  
-"ls(all.names = TRUE, envir = .GlobalEnv) |> set_names() |> map(get) |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-".tmp |> str(max.level = 1, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-"env1 |> as.list() |> env1$f$f_list.str_by_element(max.level = 2, give.attr = FALSE)" |> env1$f$f_CodeText.echo(Execute = TRUE, deparse_cat = FALSE, LinePrefix4CodeText = "> ", LinePrefix4Output = "")
-#_________________________________________________________________________________|----  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) data example ----  
-## \$ analyticDF_time2event =  ----  
-.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-# suppressPackageStartupMessages(library(survival))
-for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-# ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
-assign(
-    DataSetName, 
-    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
-        # dplyr::select(-status, -sex)
-        dplyr::select(-status)
-)
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
-#_________________________________________________________________________________|----  
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-# @@ START) dev -----  
-## env0 = env1 ----
-env0 = env1
-
-
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 # @@ START) source -----  
-## @ .subpath, .sourcename ======  
-#### env1$path$.subpath_filename.source.r ----  
-# .subpath=r"(rstudio-prefs\templates)"|>str_replace_all("\\\\","/")  # Using Raw Strings in R 4.0.0 and Later: The raw string literal, denoted by r"(...)", will not process \ as an escape character.
-if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") {.subpath = env1$path$LastSourceEditorContext.path_filename.ext |> dirname(); ".subpath" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-# if(.subpath!="") utils::browseURL(normalizePath(.subpath))
-# .sourcename = "default.template" |> paste0(".source.r")
-if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") {.sourcename_root = env1$path$LastSourceEditorContext.path_filename.ext |> basename() |> str_replace("\\.(dev|source)\\.(r|Rmd)$"|>regex(ignore_case=TRUE), "") |> str_replace("\\.(r|Rmd)$"|>regex(ignore_case=TRUE),""); ".sourcename_root" %>% {cat(.,' = "',get(.),'"  \n', sep="")} }
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-env1$path$.subpath = .subpath
-if(!exists(".sourcename_root") && exists(".sourcename")) .sourcename_root = .sourcename |> str_replace("\\.source\\.r$", "")
-.sourcename = .sourcename_root |> paste0(".source.r")
-env1$path$.sourcename_root = .sourcename_root
-env1$path$.subpath_filename.dev.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.r")
-env1$path$.subpath_filename.dev.Rmd = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".dev.Rmd")
-env1$path$.subpath_filename.source.r = paste0(.subpath,ifelse(.subpath=="","","/"),.sourcename_root,".source.r")
-cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
-    "#### ",env1$path$.subpath_filename.dev.r, "----  \n",
-    "#### ",env1$path$.subpath_filename.dev.Rmd, "----  \n",
-    "#### ",env1$path$.subpath_filename.source.r, "----  \n",
-    '# # source(paste0(env1$path$source_base,"/","',env1$path$.subpath_filename.source.r,'"))', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'")', "  \n",
-    '# # if(!file.exists("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'")', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.dev.Rmd,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
-    '# file.edit("',env1$path$source_base_local,"/",env1$path$.subpath_filename.source.r,'"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));', "  \n",
-    sep="")
-##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-### \% source( file.path(env1$path$source_base,.subpath_filename.source.r) ) ----  
-# .subpath_filename.source.r = .sourcename %>% paste0(.subpath,ifelse(.subpath=="","","/"),.)
-# # message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])
-# if(isTRUE(options()$function.reload) || !.sourcename %in% names(.GlobalEnv$env1$source)) {message('> source("',file.path(env1$path$source_base,.subpath_filename.source.r),'")'); .GlobalEnv$env1$source[[.sourcename]] = file.path(env1$path$source_base,.subpath_filename.source.r); source(.GlobalEnv$env1$source[[.sourcename]])}
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
@@ -200,40 +37,290 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_formula.lhs_rhs_vars =  ----
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/f_formula.lhs_rhs_vars.dev.Rmd
-.tmp$objectname = "f_formula.lhs_rhs_vars"
+## \$ f_df.cv.glmnet =  ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.dev.Rmd
+.tmp$objectname = "f_df.cv.glmnet"
 .tmp$object = function(formula, include_input_in_output = TRUE) {
-    return.list = list()
-    if(include_input_in_output) return.list$formula = formula
-    return.list$terms = formula |> terms()
-    return.list$all.vars = formula |> all.vars()
-    return.list$lhs = formula[[2]]
-    return.list$lhs.vars = formula[[2]] |> all.vars()
-    return.list$rhs = formula[[3]]
-    return.list$rhs.vars = formula[[3]] |> all.vars()
-    return(return.list)
 
-    # ## \% \%>\% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-    # .subsublistname = "time2event"; .sublistname = "ModelList"; .parentname = "MetaData"; if(!.subsublistname %in% names(.GlobalEnv[[.parentname]][[.sublistname]])) { .GlobalEnv[[.parentname]][[.sublistname]] = list() }
-    #
-    # .packagename = "survival"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-    # MetaData$ModelList$time2event = NULL
-    # MetaData$ModelList$time2event$formula = Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-    #
-    # MetaData$ModelList$time2event = MetaData$ModelList$time2event %>% c(.$formula |> env1$f$f_formula.lhs_rhs_vars(include_input_in_output = FALSE))
-    # MetaData$ModelList$time2event %>% str(max.level = 1, give.attr = F)
-    # # List of 7
-    # #  $ formula :Class 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-    # #  $ terms   :Classes 'terms', 'formula'  language Surv(time = time2event, event = event) ~ Group + StudyPopulation + A00_SEX + A01_AGE
-    # #  $ all.vars: chr [1:6] "time2event" "event" "Group" "StudyPopulation" ...
-    # #  $ lhs     : language Surv(time = time2event, event = event)
-    # #  $ lhs.vars: chr [1:2] "time2event" "event"
-    # #  $ rhs     : language Group + StudyPopulation + A00_SEX + A01_AGE
-    # #  $ rhs.vars: chr [1:4] "Group" "StudyPopulation" "A00_SEX" "A01_AGE"
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## \$ f_cv_glmnet_object.ggplot =  ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd
+.tmp$objectname = "f_cv_glmnet_object.ggplot"
+.tmp$object = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
+    # Load necessary libraries
+    library(ggplot2)
+    library(dplyr)
+    library(tidyr)
+    library(scales)
+    
+    xvar <- match.arg(xvar)
+    # xvar_name = xvar
+    # if (xvar == "dev") xvar_name = "DevianceExplained"
+    # if (xvar == "norm") xvar_name = "l1norm"
+    xvar_name <- switch(
+        xvar,
+        "norm" = "l1norm",
+        "lambda" = "lambda",
+        "dev" = "DevianceExplained",
+        "penalty" = "penalty"
+    )
+    
+    # Extract data from cv.glmnet object
+    glmnet_object <- cv_glmnet_object$glmnet.fit
+    mat_coef <- as.matrix(coef(glmnet_object))
+    vec_lambda <- glmnet_object$lambda
+    variables <- rownames(mat_coef)[-1]  # Exclude intercept
+    
+    # Calculate measures for x-axis
+    # mat_coef[-1, ]  # Remove intercept
+    vec_l1norm <- apply(abs(mat_coef[-1, ]), 2, sum)
+    vec_dev.ratio <- glmnet_object$dev.ratio  # Proportion of deviance explained
+    
+    # Prepare data frame
+    coef_df <- as.data.frame(t(mat_coef[-1, ]))
+    coef_df$lambda <- vec_lambda
+    coef_df$l1norm <- vec_l1norm
+    coef_df$DevianceExplained <- vec_dev.ratio
+    coef_df <- coef_df %>%
+        pivot_longer(cols = all_of(variables), names_to = "variable", values_to = "coefficient")
+    
+    # Calculate label positions
+    label_positions <- coef_df %>%
+        group_by(variable) %>%
+        filter(
+            .data[[xvar_name]] == if (xvar == "lambda") min(.data[[xvar_name]]) else max(.data[[xvar_name]])
+        ) %>%
+        ungroup()
+    
+    # Calculate number of non-zero coefficients at each xvar
+    non_zero_counts <- coef_df %>%
+        group_by(.data[[xvar_name]]) %>%
+        summarize(
+            non_zero_count = sum(coefficient != 0),
+            .groups = "drop"
+        ) %>%
+        arrange(.data[[xvar_name]]) %>%
+        filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
+    
+    # Ensure initial zero count is included
+    if (!any(non_zero_counts$non_zero_count == 0)) {
+        non_zero_counts <- bind_rows(
+            tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0),
+            non_zero_counts
+        ) %>%
+            arrange(.data[[xvar_name]])
+    }
+
+    # Axis labels and transformations
+    xvar_labels <- list(
+        l1norm = "L1 Norm",
+        lambda = expression(lambda~(log[e]~scale)),
+        DevianceExplained = "Proportion Deviance Explained"
+    )
+    x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
+    x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
+    x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
+    hjust_value <- if (xvar == "lambda") 1.1 else -0.2  # Adjust label position
+    
+    # Create the plot
+    plot <- ggplot(coef_df, aes(x = .data[[xvar_name]], y = coefficient, color = variable, group = variable)) +
+        geom_line() +
+        scale_x_continuous(
+            name = xvar_labels[[xvar_name]],
+            trans = x_transformation,
+            breaks = x_breaks,
+            labels = x_labels,
+            sec.axis = sec_axis(
+                trans = ~ .,
+                breaks = non_zero_counts[[xvar_name]],
+                labels = non_zero_counts$non_zero_count,
+                name = "Number of Non-Zero Coefficients"
+            )
+        ) +
+        labs(
+            title = "Coefficient Paths from Cross-Validated glmnet Model",
+            y = "Coefficient Value"
+        ) +
+        theme_minimal() +
+        theme(legend.position = "none")
+    
+    # Add labels if requested
+    if (label) {
+        plot <- plot +
+            geom_text(
+                data = label_positions,
+                aes(label = variable),
+                hjust = hjust_value,
+                size = 3,
+                check_overlap = TRUE  # Avoid overlapping labels
+            )
+    }
+    
+    return(plot)
+}
+
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+## \$ f_cv_glmnet_object_enet.ggplot =  ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd
+.tmp$objectname = "f_cv_glmnet_object_enet.ggplot"
+.tmp$object = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE, alpha = NULL) {
+    # Load necessary libraries
+    library(ggplot2)
+    library(dplyr)
+    library(tidyr)
+    library(scales)
+    
+    xvar <- match.arg(xvar)
+    xvar_name <- switch(
+        xvar,
+        "norm" = "l1norm",
+        "lambda" = "lambda",
+        "dev" = "DevianceExplained",
+        "penalty" = "penalty"
+    )
+        
+    # Extract data from cv.glmnet object
+    glmnet_object <- cv_glmnet_object$glmnet.fit
+    mat_coef <- as.matrix(coef(glmnet_object))
+    vec_lambda <- glmnet_object$lambda
+    variables <- rownames(mat_coef)[-1]  # Exclude intercept
+    
+    # Retrieve alpha parameter
+    if (is.null(alpha)) {
+        # Attempt to retrieve alpha from glmnet_object$call$alpha
+        alpha_call <- glmnet_object$call$alpha
+        if (is.numeric(alpha_call)) {
+            alpha <- alpha_call
+        } else {
+            # alpha is a symbol or expression, attempt to evaluate it
+            alpha_env <- environment(glmnet_object$call)
+            if (is.null(alpha_env)) {
+                alpha_env <- parent.frame()
+            }
+            alpha_value <- try(eval(alpha_call, envir = alpha_env), silent = TRUE)
+            if (inherits(alpha_value, "try-error") || !is.numeric(alpha_value)) {
+                warning("Alpha parameter is not specified or could not be retrieved from the glmnet object. Defaulting to alpha = 1 (Lasso). Please provide 'alpha' as an argument if using Elastic Net.")
+                alpha <- 1
+            } else {
+                alpha <- alpha_value
+            }
+        }
+    }
+
+    # Calculate measures for x-axis
+    mat_coef_no_intercept <- mat_coef[-1, ]  # Remove intercept
+
+    # Compute L1 and L2 norms
+    vec_l1norm <- apply(abs(mat_coef_no_intercept), 2, sum)
+    vec_l2norm <- apply(mat_coef_no_intercept^2, 2, sum)
+
+    # Compute Elastic Net penalty
+    vec_penalty <- (1 - alpha) * 0.5 * vec_l2norm + alpha * vec_l1norm
+
+    # Proportion of deviance explained
+    vec_dev_ratio <- glmnet_object$dev.ratio
+
+    # Prepare data frame
+    coef_df <- as.data.frame(t(mat_coef_no_intercept))
+    coef_df$lambda <- vec_lambda
+    coef_df$l1norm <- vec_l1norm  # For compatibility
+    coef_df$DevianceExplained <- vec_dev_ratio
+    coef_df$penalty <- vec_penalty
+    coef_df <- coef_df %>%
+        pivot_longer(
+            cols = all_of(variables),
+            names_to = "variable",
+            values_to = "coefficient"
+        )
+
+    # Calculate label positions
+    label_positions <- coef_df %>%
+        group_by(variable) %>%
+        filter(
+            .data[[xvar_name]] == if (xvar == "lambda") min(.data[[xvar_name]]) else max(.data[[xvar_name]])
+        ) %>%
+        ungroup()
+
+    # Calculate number of non-zero coefficients at each xvar
+    non_zero_counts <- coef_df %>%
+        group_by(.data[[xvar_name]]) %>%
+        summarize(
+            non_zero_count = sum(coefficient != 0),
+            .groups = "drop"
+        ) %>%
+        arrange(.data[[xvar_name]]) %>%
+        filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
+
+    # Ensure initial zero count is included
+    if (!any(non_zero_counts$non_zero_count == 0)) {
+        non_zero_counts <- bind_rows(
+            tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0),
+            non_zero_counts
+        ) %>%
+            arrange(.data[[xvar_name]])
+    }
+
+    # Axis labels and transformations
+    xvar_labels <- list(
+        l1norm = "L1 Norm",
+        lambda = expression(lambda~(log[e]~scale)),
+        DevianceExplained = "Proportion Deviance Explained",
+        penalty = "Elastic Net Penalty"
+    )
+    
+    x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
+    x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
+    x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
+    hjust_value <- if (xvar == "lambda") 1.1 else -0.2  # Adjust label position
+
+    # Create the plot
+    plot <- ggplot(coef_df, aes(x = .data[[xvar_name]], y = coefficient, color = variable, group = variable)) +
+        geom_line() +
+        scale_x_continuous(
+            name = xvar_labels[[xvar_name]],
+            trans = x_transformation,
+            breaks = x_breaks,
+            labels = x_labels,
+            sec.axis = sec_axis(
+                trans = ~ .,
+                breaks = non_zero_counts[[xvar_name]],
+                labels = non_zero_counts$non_zero_count,
+                name = "Number of Non-Zero Coefficients"
+            )
+        ) +
+        labs(
+            title = "Coefficient Paths from Cross-Validated glmnet Model",
+            y = "Coefficient Value"
+        ) +
+        theme_minimal() +
+        theme(legend.position = "none")
+
+    # Add labels if requested
+    if (label) {
+        plot <- plot +
+            geom_text(
+                data = label_positions,
+                aes(label = variable),
+                hjust = hjust_value,
+                size = 3,
+                check_overlap = TRUE  # Avoid overlapping labels
+            )
+    }
+
+    return(plot)
+}
+
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+
 
 #_________________________________________________________________________________|----  
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  

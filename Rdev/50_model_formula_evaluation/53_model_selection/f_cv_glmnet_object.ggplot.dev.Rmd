@@ -1530,7 +1530,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
     x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
     x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
-    hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
+    hjust_value <- if (xvar == "lambda") 1.1 else -0.2  # Adjust label position
     
     # Create the plot
     plot <- ggplot(coef_df, aes(x = .data[[xvar_name]], y = coefficient, color = variable, group = variable)) +
@@ -1607,7 +1607,7 @@ plot_obj +
 ```
   
   
-### :: f_cv_glmnet_object_enet.ggplot = function() pending
+### :: f_cv_glmnet_object_enet.ggplot = function() -pending(i.alpha)
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
 f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE) {
@@ -1636,10 +1636,12 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     variables <- rownames(mat_coef)[-1]  # Exclude intercept
     
     # Retrieve alpha parameter
-    alpha <- glmnet_object$call$alpha
-    if (!is.numeric(alpha)) alpha = get(alpha)
+    alpha <- tryCatch(
+        eval(glmnet_object$call$alpha, envir = environment(cv_glmnet_object$glmnet.fit$call)),
+        error = function(e) NULL
+    )
     if (is.null(alpha)) alpha <- 1  # Default to Lasso if alpha is not specified
-    
+
     # Calculate measures for x-axis
     # mat_coef[-1, ]  # Remove intercept
     
@@ -1708,7 +1710,7 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
     x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
     x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
-    hjust_value <- if (xvar == "lambda") 1.1 else -0.1  # Adjust label position
+    hjust_value <- if (xvar == "lambda") 1.1 else -0.2  # Adjust label position
     
     # Create the plot
     plot <- ggplot(coef_df, aes(x = .data[[xvar_name]], y = coefficient, color = variable, group = variable)) +
@@ -1772,9 +1774,195 @@ f_cv_glmnet_object_enet.ggplot(cv_glmnet_object, xvar = "penalty", label = TRUE)
 ```
   
   
+### :: f_cv_glmnet_object_enet.ggplot = function() -pending(i.alpha)
 ###### \% |> () ----  
 ```{r, echo=FALSE, results="markup", collapse=TRUE, paged.print=FALSE, comment="", R.options=list(width=120)}
 options(width=120)
+f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE, alpha = NULL) {
+    # Load necessary libraries
+    library(ggplot2)
+    library(dplyr)
+    library(tidyr)
+    library(scales)
+    
+    xvar <- match.arg(xvar)
+    xvar_name <- switch(
+        xvar,
+        "norm" = "l1norm",
+        "lambda" = "lambda",
+        "dev" = "DevianceExplained",
+        "penalty" = "penalty"
+    )
+        
+    # Extract data from cv.glmnet object
+    glmnet_object <- cv_glmnet_object$glmnet.fit
+    mat_coef <- as.matrix(coef(glmnet_object))
+    vec_lambda <- glmnet_object$lambda
+    variables <- rownames(mat_coef)[-1]  # Exclude intercept
+    
+    # Retrieve alpha parameter
+    if (is.null(alpha)) {
+        # Attempt to retrieve alpha from glmnet_object$call$alpha
+        alpha_call <- glmnet_object$call$alpha
+        if (is.numeric(alpha_call)) {
+            alpha <- alpha_call
+        } else {
+            # alpha is a symbol or expression, attempt to evaluate it
+            alpha_env <- environment(glmnet_object$call)
+            if (is.null(alpha_env)) {
+                alpha_env <- parent.frame()
+            }
+            alpha_value <- try(eval(alpha_call, envir = alpha_env), silent = TRUE)
+            if (inherits(alpha_value, "try-error") || !is.numeric(alpha_value)) {
+                warning("Alpha parameter is not specified or could not be retrieved from the glmnet object. Defaulting to alpha = 1 (Lasso). Please provide 'alpha' as an argument if using Elastic Net.")
+                alpha <- 1
+            } else {
+                alpha <- alpha_value
+            }
+        }
+    }
+
+    # Calculate measures for x-axis
+    mat_coef_no_intercept <- mat_coef[-1, ]  # Remove intercept
+
+    # Compute L1 and L2 norms
+    vec_l1norm <- apply(abs(mat_coef_no_intercept), 2, sum)
+    vec_l2norm <- apply(mat_coef_no_intercept^2, 2, sum)
+
+    # Compute Elastic Net penalty
+    vec_penalty <- (1 - alpha) * 0.5 * vec_l2norm + alpha * vec_l1norm
+
+    # Proportion of deviance explained
+    vec_dev_ratio <- glmnet_object$dev.ratio
+
+    # Prepare data frame
+    coef_df <- as.data.frame(t(mat_coef_no_intercept))
+    coef_df$lambda <- vec_lambda
+    coef_df$l1norm <- vec_l1norm  # For compatibility
+    coef_df$DevianceExplained <- vec_dev_ratio
+    coef_df$penalty <- vec_penalty
+    coef_df <- coef_df %>%
+        pivot_longer(
+            cols = all_of(variables),
+            names_to = "variable",
+            values_to = "coefficient"
+        )
+
+    # Calculate label positions
+    label_positions <- coef_df %>%
+        group_by(variable) %>%
+        filter(
+            .data[[xvar_name]] == if (xvar == "lambda") min(.data[[xvar_name]]) else max(.data[[xvar_name]])
+        ) %>%
+        ungroup()
+
+    # Calculate number of non-zero coefficients at each xvar
+    non_zero_counts <- coef_df %>%
+        group_by(.data[[xvar_name]]) %>%
+        summarize(
+            non_zero_count = sum(coefficient != 0),
+            .groups = "drop"
+        ) %>%
+        arrange(.data[[xvar_name]]) %>%
+        filter(row_number() == 1 | non_zero_count != lag(non_zero_count, default = first(non_zero_count)))
+
+    # Ensure initial zero count is included
+    if (!any(non_zero_counts$non_zero_count == 0)) {
+        non_zero_counts <- bind_rows(
+            tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0),
+            non_zero_counts
+        ) %>%
+            arrange(.data[[xvar_name]])
+    }
+
+    # Axis labels and transformations
+    xvar_labels <- list(
+        l1norm = "L1 Norm",
+        lambda = expression(lambda~(log[e]~scale)),
+        DevianceExplained = "Proportion Deviance Explained",
+        penalty = "Elastic Net Penalty"
+    )
+    
+    x_transformation <- if (xvar == "lambda") scales::log_trans(base = exp(1)) else "identity"
+    x_breaks <- if (xvar == "lambda") scales::trans_breaks("log", exp) else waiver()
+    x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
+    hjust_value <- if (xvar == "lambda") 1.1 else -0.2  # Adjust label position
+
+    # Create the plot
+    plot <- ggplot(coef_df, aes(x = .data[[xvar_name]], y = coefficient, color = variable, group = variable)) +
+        geom_line() +
+        scale_x_continuous(
+            name = xvar_labels[[xvar_name]],
+            trans = x_transformation,
+            breaks = x_breaks,
+            labels = x_labels,
+            sec.axis = sec_axis(
+                trans = ~ .,
+                breaks = non_zero_counts[[xvar_name]],
+                labels = non_zero_counts$non_zero_count,
+                name = "Number of Non-Zero Coefficients"
+            )
+        ) +
+        labs(
+            title = "Coefficient Paths from Cross-Validated glmnet Model",
+            y = "Coefficient Value"
+        ) +
+        theme_minimal() +
+        theme(legend.position = "none")
+
+    # Add labels if requested
+    if (label) {
+        plot <- plot +
+            geom_text(
+                data = label_positions,
+                aes(label = variable),
+                hjust = hjust_value,
+                size = 3,
+                check_overlap = TRUE  # Avoid overlapping labels
+            )
+    }
+
+    return(plot)
+}
+
+
+# Load necessary libraries
+library(glmnet)
+library(ggplot2)
+
+# Simulate data
+set.seed(123)
+x <- matrix(rnorm(100 * 20), 100, 20)
+y <- rnorm(100)
+
+# Alpha supplied as a variable
+i.alpha <- 0.5
+cv_glmnet_object_enet <- cv.glmnet(x, y, alpha = i.alpha)
+
+# Plot with Elastic Net penalty as x-axis
+# Provide 'alpha' explicitly
+# f_cv_glmnet_object_enet.ggplot(cv_glmnet_object_enet, xvar = "penalty", label = TRUE, alpha = i.alpha)
+
+# Alternatively, if 'alpha' is not provided, the function attempts to retrieve it
+# If 'alpha' cannot be retrieved, it defaults to 'alpha = 1' and issues a warning
+f_cv_glmnet_object_enet.ggplot(cv_glmnet_object_enet, xvar = "lambda", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(cv_glmnet_object_enet, xvar = "dev", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(cv_glmnet_object_enet, xvar = "norm", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(cv_glmnet_object_enet, xvar = "penalty", label = TRUE)
+
+
+
+library(glmnet)
+set.seed(123)
+x <- matrix(rnorm(100 * 20), 100, 20)
+y <- rnorm(100)
+
+cv_glmnet_object <- cv.glmnet(x, y)
+
+f_cv_glmnet_object_enet.ggplot(cv_glmnet_object, xvar = "norm", label = TRUE)
+f_cv_glmnet_object_enet.ggplot(cv_glmnet_object, xvar = "penalty", label = TRUE)
+f_cv_glmnet_object.ggplot(cv_glmnet_object, xvar = "norm", label = TRUE)
+
 
 ```
   
