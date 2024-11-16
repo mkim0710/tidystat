@@ -1288,7 +1288,8 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
         non_zero_counts <- bind_rows(
             tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0),
             non_zero_counts
-        )
+        ) %>%
+            arrange(.data[[xvar_name]])
     }
 
     # Choose xvar label
@@ -1513,14 +1514,13 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
-        initial_row <- tibble(
-            !!xvar_name := min(coef_df[[xvar_name]]),
-            non_zero_count = 0
-        )
-        non_zero_counts <- bind_rows(initial_row, non_zero_counts)
-        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar_name]])
+        non_zero_counts <- bind_rows(
+            tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0),
+            non_zero_counts
+        ) %>%
+            arrange(.data[[xvar_name]])
     }
-    
+
     # Axis labels and transformations
     xvar_labels <- list(
         l1norm = "L1 Norm",
@@ -1682,14 +1682,13 @@ f_cv_glmnet_object_enet.ggplot <- function(cv_glmnet_object, xvar = c("norm", "l
     
     # Ensure initial zero count is included
     if (!any(non_zero_counts$non_zero_count == 0)) {
-        initial_row <- tibble(
-            !!xvar_name := min(coef_df[[xvar_name]]),
-            non_zero_count = 0
-        )
-        non_zero_counts <- bind_rows(initial_row, non_zero_counts)
-        non_zero_counts <- non_zero_counts %>% arrange(.data[[xvar_name]])
+        non_zero_counts <- bind_rows(
+            tibble(!!xvar_name := min(coef_df[[xvar_name]]), non_zero_count = 0),
+            non_zero_counts
+        ) %>%
+            arrange(.data[[xvar_name]])
     }
-    
+
     # # Axis labels and transformations
     # xvar_labels <- switch(
     #     xvar_name,
