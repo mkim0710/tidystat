@@ -1292,7 +1292,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     )
 
     # Plotting
-    ggplot(coef_df, aes_string(x = xvar, y = "coefficient", color = "variable", group = "variable")) +
+    ggplot(coef_df, aes_string(x = names(xvar), y = "coefficient", color = "variable", group = "variable")) +
         geom_line() +
         scale_x_continuous(
             name = xvar_label,
@@ -1385,7 +1385,7 @@ f_cv_glmnet_object.ggplot <- function(cv_glmnet_object, xvar = c("norm", "lambda
     x_labels <- if (xvar == "lambda") scales::trans_format("log", scales::math_format(e^.x)) else waiver()
 
     # Plot
-    ggplot(coef_df, aes_string(x = xvar, y = "coefficient", color = "variable", group = "variable")) +
+    ggplot(coef_df, aes_string(x = names(xvar), y = "coefficient", color = "variable", group = "variable")) +
         geom_line() +
         scale_x_continuous(
             name = xvar_label,
