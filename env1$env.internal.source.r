@@ -183,7 +183,7 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 ## :: f_expression.eval.withCallingHandlers.attr_warnings.summary ====
 # Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warnings.summary.dev.Rmd
 .tmp$objectname = "f_expression.eval.withCallingHandlers.attr_warnings.summary"
-.tmp$object = function(expression.eval, warnings.summary_only = TRUE) {
+.tmp$object = function(expression.eval, warnings.summary_only = TRUE, warnings.summary.print = TRUE) {
     options_warn_original <- getOption("warn")  # Save the current 'warn' option
     options(warn = 0)  # Set 'warn' to 0 to collect warnings
     list_warning <- list()  # Initialize an empty list to store warnings
@@ -218,6 +218,9 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     attributes(expression.eval.output)$expression.eval.deparse <- deparse(expression.eval)
     if(!warnings.summary_only) attributes(expression.eval.output)$warnings <- list_warning
     attributes(expression.eval.output)$warnings.summary <- list_warning %>% summary
+    
+    # if(warnings.summary.print) list_warning %>% summary %>% print
+    if(warnings.summary.print) list_warning %>% summary %>% capture.output() %>% paste(collapse = "\n") %>% warning(call. = TRUE, immediate. = TRUE)
     
     expression.eval.output
 }
