@@ -1,11 +1,11 @@
 "Rdev/00_base_program/004_base_environment/warnings.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.list_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warning.summary.dev.Rmd"
-# f_expression.eval.withCallingHandlers.list_warning.summary
-# f_expression.eval.withCallingHandlers.attr_warning.summary
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.list_warnings.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warnings.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warnings.summary.dev.Rmd"
+# f_expression.eval.withCallingHandlers.list_warnings.summary
+# f_expression.eval.withCallingHandlers.attr_warnings.summary
 
-f_expression.eval.withCallingHandlers.list_warning.summary <- function(expression.eval) {
+f_expression.eval.withCallingHandlers.list_warnings.summary <- function(expression.eval) {
   # Save the current 'warn' option
   options_warn_original <- getOption("warn")
   
@@ -43,10 +43,10 @@ f_expression.eval.withCallingHandlers.list_warning.summary <- function(expressio
   class(list_warning) <- "warnings"
   
   # Use the 'summary' function to summarize warnings
-  list_warning.summary <- summary(list_warning)
+  list_warnings.summary <- summary(list_warning)
   
   # Return the result and captured warnings
-  list(result = result, warnings = list_warning, summary.warnings = list_warning.summary)
+  list(result = result, warnings = list_warning, summary.warnings = list_warnings.summary)
 }
 
 
@@ -77,7 +77,7 @@ example_function <- function() {
 }
 
 # Run the example function with suppressed warnings
-output <- f_expression.eval.withCallingHandlers.list_warning.summary(example_function())
+output <- f_expression.eval.withCallingHandlers.list_warnings.summary(example_function())
 
 # Inspect the results
 output$result      # The return value of the function

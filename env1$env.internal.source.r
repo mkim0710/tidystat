@@ -180,9 +180,9 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     }
 }
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_expression.eval.withCallingHandlers.attr_warning.summary ====
-# Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warning.summary.dev.Rmd
-.tmp$objectname = "f_expression.eval.withCallingHandlers.attr_warning.summary"
+## :: f_expression.eval.withCallingHandlers.attr_warnings.summary ====
+# Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warnings.summary.dev.Rmd
+.tmp$objectname = "f_expression.eval.withCallingHandlers.attr_warnings.summary"
 .tmp$object = function(expression.eval, warnings.summary_only = TRUE) {
   # Save the current 'warn' option
   options_warn_original <- getOption("warn")
@@ -221,10 +221,10 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
   class(list_warning) <- "warnings"
   
   # # Use the 'summary' function to summarize warnings
-  # list_warning.summary <- summary(list_warning)
+  # list_warnings.summary <- summary(list_warning)
   
   # # Return the expression.eval.output and captured warnings
-  # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warning.summary)
+  # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warnings.summary)
   
   
   attributes(expression.eval.output)$expression <- substitute(expression.eval)
@@ -238,22 +238,22 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = eval.attr_warning.summary  ----  
-.tmp$aliasname = "eval.attr_warning.summary"
+### & alias = eval.attr_warnings.summary  ----  
+.tmp$aliasname = "eval.attr_warnings.summary"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = attr_warning.summary  ----  
-.tmp$aliasname = "attr_warning.summary"
+### & alias = attr_warnings.summary  ----  
+.tmp$aliasname = "attr_warnings.summary"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = warning.summary.expression_attr  ----  
-.tmp$aliasname = "warning.summary.expression_attr"
+### & alias = warnings.summary.expression_attr  ----  
+.tmp$aliasname = "warnings.summary.expression_attr"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
