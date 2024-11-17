@@ -41,18 +41,58 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
 .tmp$objectname = "f_df.cv.glmnet"
-.tmp$object = function(formula, include_input_in_output = TRUE) {
-
+.tmp$object = function(
+        train_data,
+        formula,
+        i.alpha = 1,
+        family = "binomial",
+        type_measure = "auc",
+        nfolds = 5,
+        seed = 1,
+        ...
+) {
+    set.seed(seed)
+    
+    # Prepare model matrix
+    x <- model.matrix(formula, data = train_data)[, -1]  # Remove intercept
+    
+    # Extract response variable
+    y <- model.response(model.frame(formula, data = train_data))
+    
+    message(paste("Training glmnet model with alpha =", i.alpha))
+    
+    # Train cross-validated glmnet model
+    cv_glmnet_object <- cv.glmnet(
+        x = x,
+        y = y,
+        alpha = i.alpha,
+        family = family,
+        type.measure = type_measure,
+        nfolds = nfolds
+    )
+    
+    attributes(cv_glmnet_object)$mat_coef = cv_glmnet_object %>% f_cv_glmnet_object.mat_coef
+    
+    return(cv_glmnet_object)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-### ::: f_df.cv.glmnet =  ----
+### ::: f_cv_glmnet_object.mat_coef =  ----
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
 # https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
-.tmp$objectname = "f_df.cv.glmnet"
-.tmp$object = function(formula, include_input_in_output = TRUE) {
+.tmp$objectname = "f_cv_glmnet_object.mat_coef"
+.tmp$object = function(cv_glmnet_object) {
+    cv_glmnet_object.list_coef = list()
+    cv_glmnet_object.list_coef[["min"]] = cv_glmnet_object %>% coef(s = "lambda.min")
+    cv_glmnet_object.list_coef[["1se"]] = cv_glmnet_object %>% coef(s = "lambda.1se")
 
+    cv_glmnet_object.mat_coef = cv_glmnet_object.list_coef %>% (function(ls) {
+        out = ls %>% reduce(cbind); 
+        colnames(out) = names(ls); 
+        out
+    })()
+    cv_glmnet_object.mat_coef
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
