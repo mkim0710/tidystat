@@ -1,6 +1,7 @@
 "Rdev/00_base_program/004_base_environment/warnings.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/warnings.suppress.print_summary.dev.r"
-"Rdev/00_base_program/004_base_environment/warnings.suppress.print_summary.dev.Rmd"
+"Rdev/00_base_program/004_base_environment/f_CodeText.withCallingHandlers.list_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_CodeText.withCallingHandlers.attr_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_CodeText.withCallingHandlers.attr_warning.summary.dev.Rmd"
 # f_CodeText.withCallingHandlers.list_warning.summary
 # f_CodeText.withCallingHandlers.attr_warning.summary
 
