@@ -1,11 +1,11 @@
 "Rdev/00_base_program/004_base_environment/warnings.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.list_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.Rmd"
-# f_expression.withCallingHandlers.list_warning.summary
-# f_expression.withCallingHandlers.attr_warning.summary
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.list_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warning.summary.dev.Rmd"
+# f_expression.eval.withCallingHandlers.list_warning.summary
+# f_expression.eval.withCallingHandlers.attr_warning.summary
 
-f_expression.withCallingHandlers.attr_warning.summary <- function(expression, warnings.summary_only = TRUE) {
+f_expression.eval.withCallingHandlers.attr_warning.summary <- function(expression.eval, warnings.summary_only = TRUE) {
   # Save the current 'warn' option
   options_warn_original <- getOption("warn")
   
@@ -15,9 +15,9 @@ f_expression.withCallingHandlers.attr_warning.summary <- function(expression, wa
   # Initialize an empty list to store warnings
   list_warning <- list()
   
-  # Execute the expression and capture warnings
-  result <- withCallingHandlers(
-    expr = expression,
+  # Execute the expression.eval and capture warnings
+  expression.eval.eval <- withCallingHandlers(
+    expr = expression.eval,
     warning = function(w) {
       # Capture the call that generated the warning
       warning.conditionCall <- conditionCall(w)
@@ -45,13 +45,15 @@ f_expression.withCallingHandlers.attr_warning.summary <- function(expression, wa
   # # Use the 'summary' function to summarize warnings
   # list_warning.summary <- summary(list_warning)
   
-  # # Return the result and captured warnings
-  # list(result = result, warnings = list_warning, summary = list_warning.summary)
+  # # Return the expression.eval.eval and captured warnings
+  # list(expression.eval.eval = expression.eval.eval, warnings = list_warning, summary = list_warning.summary)
   
-  if(!warnings.summary_only) attributes(result)$warnings <- list_warning
-  attributes(result)$warnings.summary <- list_warning %>% summary
   
-  result
+  attributes(expression.eval.eval)$expression.eval <- as.expression.eval()
+  if(!warnings.summary_only) attributes(expression.eval.eval)$warnings <- list_warning
+  attributes(expression.eval.eval)$warnings.summary <- list_warning %>% summary
+  
+  expression.eval.eval
 }
 
 
@@ -89,7 +91,7 @@ example_function <- function() {
 }
 
 # Run the example function with suppressed warnings
-output <- f_expression.withCallingHandlers.attr_warning.summary(example_function(), warnings.summary_only = TRUE)
+output <- f_expression.eval.withCallingHandlers.attr_warning.summary(example_function(), warnings.summary_only = FALSE)
 
 # Inspect the results
 output
@@ -126,13 +128,7 @@ output %>% str     # The return value of the function
 
 attributes(output)$warnings
 attributes(output)$warnings %>% str             # Stored warnings
-
-
-attributes(output)$warnings.summary
-attributes(output)$warnings.summary %>% str     # Summary of unique warnings
-# > output$result      # The return value of the function
-# [1] "Example function completed."
-# > output$warnings    # Stored warnings
+# > attributes(output)$warnings
 # Warning messages:
 # 1: In matrix(1:7, 3, 4) :
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
@@ -140,12 +136,24 @@ attributes(output)$warnings.summary %>% str     # Summary of unique warnings
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
 # 3: In matrix(1:7, 3, 4) :
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
-# > output$summary     # Summary of unique warnings
+# > attributes(output)$warnings %>% str             # Stored warnings
+# List of 3
+#  $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#  $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#  $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#  - attr(*, "class")= chr "warnings"
+
+
+attributes(output)$warnings.summary
+attributes(output)$warnings.summary %>% str     # Summary of unique warnings
+# > attributes(output)$warnings.summary
 # 3 identical warnings:
 # In matrix(1:7, 3, 4) :
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
-
-
-
+# > attributes(output)$warnings.summary %>% str     # Summary of unique warnings
+# List of 1
+#  $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#  - attr(*, "class")= chr "summary.warnings"
+#  - attr(*, "counts")= int 3
 
 

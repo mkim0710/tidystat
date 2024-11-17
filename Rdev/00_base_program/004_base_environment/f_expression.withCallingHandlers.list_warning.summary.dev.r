@@ -1,11 +1,11 @@
 "Rdev/00_base_program/004_base_environment/warnings.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.list_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.Rmd"
-# f_expression.withCallingHandlers.list_warning.summary
-# f_expression.withCallingHandlers.attr_warning.summary
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.list_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warning.summary.dev.Rmd"
+# f_expression.eval.withCallingHandlers.list_warning.summary
+# f_expression.eval.withCallingHandlers.attr_warning.summary
 
-f_expression.withCallingHandlers.list_warning.summary <- function(expression) {
+f_expression.eval.withCallingHandlers.list_warning.summary <- function(expression.eval) {
   # Save the current 'warn' option
   options_warn_original <- getOption("warn")
   
@@ -15,9 +15,9 @@ f_expression.withCallingHandlers.list_warning.summary <- function(expression) {
   # Initialize an empty list to store warnings
   list_warning <- list()
   
-  # Execute the expression and capture warnings
+  # Execute the expression.eval and capture warnings
   result <- withCallingHandlers(
-    expr = expression,
+    expr = expression.eval,
     warning = function(w) {
       # Capture the call that generated the warning
       warning.conditionCall <- conditionCall(w)
@@ -45,13 +45,8 @@ f_expression.withCallingHandlers.list_warning.summary <- function(expression) {
   # # Use the 'summary' function to summarize warnings
   # list_warning.summary <- summary(list_warning)
   
-  # # Return the result and captured warnings
-  # list(result = result, warnings = list_warning, summary = list_warning.summary)
-  
-  attributes(result)$warnings <- list_warning
-  attributes(result)$warnings.summary <- list_warning %>% summary
-  
-  result
+  # Return the result and captured warnings
+  list(result = result, warnings = list_warning, summary = list_warning.summary)
 }
 
 
@@ -82,7 +77,7 @@ example_function <- function() {
 }
 
 # Run the example function with suppressed warnings
-output <- f_expression.withCallingHandlers.list_warning.summary(example_function())
+output <- f_expression.eval.withCallingHandlers.list_warning.summary(example_function())
 
 # Inspect the results
 output$result      # The return value of the function
