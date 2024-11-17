@@ -184,42 +184,42 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 # Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warnings.summary.dev.Rmd
 .tmp$objectname = "f_expression.eval.withCallingHandlers.attr_warnings.summary"
 .tmp$object = function(expression.eval, warnings.summary_only = TRUE) {
-  options_warn_original <- getOption("warn")  # Save the current 'warn' option
-  options(warn = 0)  # Set 'warn' to 0 to collect warnings
-  list_warning <- list()  # Initialize an empty list to store warnings
-  
-  # Execute the expression.eval and capture warnings
-  expression.eval.output <- withCallingHandlers(
-    expr = expression.eval,
-    warning = function(w) {
-      # Capture the call that generated the warning
-      warning.conditionCall <- conditionCall(w)
-      if (is.null(warning.conditionCall)) {
-        warning.conditionCall <- "NULL"
-      }
-      
-      # Capture the warning message
-      warning.conditionMessage <- conditionMessage(w)
-      
-      # Append the call to the list, with the message as the name
-      list_warning[[length(list_warning) + 1]] <<- warning.conditionCall
-      names(list_warning)[length(list_warning)] <<- warning.conditionMessage
-      
-      invokeRestart("muffleWarning")
-    }
-  )
-  
-  options(warn = options_warn_original)  # Restore the original 'warn' option
-  class(list_warning) <- "warnings"  # Assign the 'warnings' class to the list_warning
-  # list_warnings.summary <- summary(list_warning)  # Use the 'summary' function to summarize warnings
-  # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warnings.summary)  # Return the expression.eval.output and captured warnings
-
-  attributes(expression.eval.output)$expression <- substitute(expression.eval)
-  attributes(expression.eval.output)$expression.eval.deparse <- deparse(expression.eval)
-  if(!warnings.summary_only) attributes(expression.eval.output)$warnings <- list_warning
-  attributes(expression.eval.output)$warnings.summary <- list_warning %>% summary
-  
-  expression.eval.output
+    options_warn_original <- getOption("warn")  # Save the current 'warn' option
+    options(warn = 0)  # Set 'warn' to 0 to collect warnings
+    list_warning <- list()  # Initialize an empty list to store warnings
+    
+    # Execute the expression.eval and capture warnings
+    expression.eval.output <- withCallingHandlers(
+        expr = expression.eval,
+        warning = function(w) {
+            # Capture the call that generated the warning
+            warning.conditionCall <- conditionCall(w)
+            if (is.null(warning.conditionCall)) {
+                warning.conditionCall <- "NULL"
+            }
+            
+            # Capture the warning message
+            warning.conditionMessage <- conditionMessage(w)
+            
+            # Append the call to the list, with the message as the name
+            list_warning[[length(list_warning) + 1]] <<- warning.conditionCall
+            names(list_warning)[length(list_warning)] <<- warning.conditionMessage
+            
+            invokeRestart("muffleWarning")
+        }
+    )
+    
+    options(warn = options_warn_original)  # Restore the original 'warn' option
+    class(list_warning) <- "warnings"  # Assign the 'warnings' class to the list_warning
+    # list_warnings.summary <- summary(list_warning)  # Use the 'summary' function to summarize warnings
+    # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warnings.summary)  # Return the expression.eval.output and captured warnings
+    
+    attributes(expression.eval.output)$expression <- substitute(expression.eval)
+    attributes(expression.eval.output)$expression.eval.deparse <- deparse(expression.eval)
+    if(!warnings.summary_only) attributes(expression.eval.output)$warnings <- list_warning
+    attributes(expression.eval.output)$warnings.summary <- list_warning %>% summary
+    
+    expression.eval.output
 }
 
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
