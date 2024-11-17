@@ -1,7 +1,7 @@
 # .sourcename_root = "f_cv_glmnet_object.ggplot"  
-#### Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r----  
-#### Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd----  
-#### Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r----  
+## Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r----  
+## Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd----  
+## Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r----  
 # # source(paste0(env1$path$source_base,"/","Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r"))  
 # # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r")  
 # # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd")  
@@ -36,10 +36,10 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 # source("https://raw.githubusercontent.com/mkim0710/tidystat/master/Rdev/10_import_clean_datatype/13_missing_value/f_df.NotNA_p_df.source.r")
 # --> Now included in "f_df.t.tribble_construct.source.r"
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_df.cv.glmnet =  ----
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.source.r
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.dev.Rmd
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_df.cv.glmnet =  ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
 .tmp$objectname = "f_df.cv.glmnet"
 .tmp$object = function(formula, include_input_in_output = TRUE) {
 
@@ -47,9 +47,92 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_cv_glmnet_object.ggplot =  ----
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.source.r
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd
+### ::: f_df.cv.glmnet =  ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
+.tmp$objectname = "f_df.cv.glmnet"
+.tmp$object = function(formula, include_input_in_output = TRUE) {
+
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_cv_glmnet_object.lamda_1se.vec_VarName = function(cv_glmnet_object, lambda = "lambda.1se") ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
+.tmp$objectname = "f_cv_glmnet_object.lamda_1se.vec_VarName"
+.tmp$object = function(cv_glmnet_object, lambda = "lambda.1se") {
+    # Extract coefficients at specified lambda
+    coef_matrix <- coef(cv_glmnet_object, s = lambda)
+    
+    # Identify non-zero coefficients
+    vec_VarName_lamda <- rownames(coef_matrix)[which(coef_matrix != 0)]
+    
+    # Check if any variables were selected
+    if (length(vec_VarName_lamda) == 0) {
+        message("No variables were selected at the specified lambda.")
+        return(NULL)
+    }
+    
+    # Remove the intercept if present
+    vec_VarName_lamda <- vec_VarName_lamda[vec_VarName_lamda != "(Intercept)"]
+    
+    return(vec_VarName_lamda)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+### ::: f_cv_glmnet_object.lamda_list.vec_VarName =  ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
+.tmp$objectname = "f_cv_glmnet_object.lamda_list.vec_VarName"
+.tmp$object = function(cv_glmnet_object, vec_lambda = c("lambda.min", "lambda.1se")) {
+    list_VarName_lamda = vec_lambda %>% set_names() %>% map(~ cv_glmnet_object %>% f_cv_glmnet_object.lamda_1se.vec_VarName(lambda = .x))
+    return(list_VarName_lamda)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_cv_glmnet_object.lamda_1se.glm = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se", attr_warnings.summary = TRUE) ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
+.tmp$objectname = "f_cv_glmnet_object.lamda_1se.glm"
+.tmp$object = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, lambda = "lambda.1se", attr_warnings.summary = TRUE) {
+
+    vec_VarName_lamda <- f_cv_glmnet_object.lamda_1se.vec_VarName(cv_glmnet_object, lambda = lambda)
+    
+    # Construct new formula
+    formula.lhs <- formula[[2]]  # Extract response variables
+    formula_new <- as.formula(
+        paste(formula.lhs, "~", paste(vec_VarName_lamda, collapse = " + "))
+    )
+    
+    # Fit glm model on test set
+    if (attr_warnings.summary) {
+        glm_object <- env1$f$f_expression.eval.withCallingHandlers.attr_warnings.summary(glm(formula_new, family = family, data = test_data))
+        # print(attributes(glm_object)$warnings.summary)
+    } else {
+        glm_object <- glm(formula_new, family = family, data = test_data)
+    }
+    return(glm_object)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+### ::: f_cv_glmnet_object.lamda_list.glm = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, vec_lambda = c("lambda.min", "lambda.1se")) ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd
+.tmp$objectname = "f_cv_glmnet_object.lamda_list.glm"
+.tmp$object = function(cv_glmnet_object, formula = as.formula(y ~ .), family = "binomial", test_data, vec_lambda = c("lambda.min", "lambda.1se")) {
+    list_VarName_lamda = vec_lambda %>% set_names() %>% imap(\(x, idx) {message(paste0(" $ ", idx)); cv_glmnet_object %>% f_cv_glmnet_object.lamda_1se.glm(formula = formula, family = family, test_data = test_data, lambda = x)})
+    return(list_VarName_lamda)
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_cv_glmnet_object.ggplot = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd
 .tmp$objectname = "f_cv_glmnet_object.ggplot"
 .tmp$object = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev"), label = TRUE) {
     # Load necessary libraries
@@ -167,9 +250,9 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-## \$ f_cv_glmnet_object_enet.ggplot =  ----
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_df.cv.glmnet.source.r
-# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/51_model_formula/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd
+### ::: f_cv_glmnet_object_enet.ggplot = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE, alpha = NULL) ----
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r
+# https://github.com/mkim0710/blob/main/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd
 .tmp$objectname = "f_cv_glmnet_object_enet.ggplot"
 .tmp$object = function(cv_glmnet_object, xvar = c("norm", "lambda", "dev", "penalty"), label = TRUE, alpha = NULL) {
     # Load necessary libraries
