@@ -44,7 +44,7 @@ f_expression.eval.withCallingHandlers.attr_warnings.summary <- function(expressi
     # if(warnings.summary.print) list_warning %>% summary %>% print
     if(warnings.summary.print) list_warning %>% summary %>% capture.output() %>% paste0(collapse = "\n") %>% warning(call. = TRUE, immediate. = TRUE); cat("\n")
     
-    expression.eval.output
+    invisible(expression.eval.output)
 }
 
 
