@@ -6,24 +6,24 @@ suppress_and_store_warnings <- function(CodeText) {
   options(warn = 0)
   
   # Initialize an empty list to store warnings
-  warnings_list <- list()
+  list_warning <- list()
   
   # Execute the CodeText and capture warnings
   result <- withCallingHandlers(
     expr = CodeText,
     warning = function(w) {
       # Capture the call that generated the warning
-      w_call <- conditionCall(w)
-      if (is.null(w_call)) {
-        w_call <- "NULL"
+      warning.conditionCall <- conditionCall(w)
+      if (is.null(warning.conditionCall)) {
+        warning.conditionCall <- "NULL"
       }
       
       # Capture the warning message
-      w_message <- conditionMessage(w)
+      warning.conditionMessage <- conditionMessage(w)
       
       # Append the call to the list, with the message as the name
-      warnings_list[[length(warnings_list) + 1]] <<- w_call
-      names(warnings_list)[length(warnings_list)] <<- w_message
+      list_warning[[length(list_warning) + 1]] <<- warning.conditionCall
+      names(list_warning)[length(list_warning)] <<- warning.conditionMessage
       
       invokeRestart("muffleWarning")
     }
@@ -32,14 +32,14 @@ suppress_and_store_warnings <- function(CodeText) {
   # Restore the original 'warn' option
   options(warn = options_warn_original)
   
-  # Assign the 'warnings' class to the warnings_list
-  class(warnings_list) <- "warnings"
+  # Assign the 'warnings' class to the list_warning
+  class(list_warning) <- "warnings"
   
   # Use the 'summary' function to summarize warnings
-  summary_warnings <- summary(warnings_list)
+  list_warning.summary <- summary(list_warning)
   
   # Return the result and captured warnings
-  list(result = result, warnings = warnings_list, summary = summary_warnings)
+  list(result = result, warnings = list_warning, summary = list_warning.summary)
 }
 
 
@@ -66,7 +66,7 @@ example_function <- function() {
   for (i in 1:3) {
     mat <- matrix(1:7, 3, 4)  # Generates warnings due to recycling
   }
-  return("Example function completed.")
+  return(mat)
 }
 
 # Run the example function with suppressed warnings
