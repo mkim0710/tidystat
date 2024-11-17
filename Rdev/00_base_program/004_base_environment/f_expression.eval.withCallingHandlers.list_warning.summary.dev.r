@@ -42,11 +42,11 @@ f_expression.eval.withCallingHandlers.list_warning.summary <- function(expressio
   # Assign the 'warnings' class to the list_warning
   class(list_warning) <- "warnings"
   
-  # # Use the 'summary' function to summarize warnings
-  # list_warning.summary <- summary(list_warning)
+  # Use the 'summary' function to summarize warnings
+  list_warning.summary <- summary(list_warning)
   
   # Return the result and captured warnings
-  list(result = result, warnings = list_warning, summary = list_warning.summary)
+  list(result = result, warnings = list_warning, summary.warnings = list_warning.summary)
 }
 
 
@@ -82,7 +82,7 @@ output <- f_expression.eval.withCallingHandlers.list_warning.summary(example_fun
 # Inspect the results
 output$result      # The return value of the function
 output$warnings    # Stored warnings
-output$summary     # Summary of unique warnings
+output$summary.warnings     # Summary of unique warnings
 # > output$result      # The return value of the function
 # [1] "Example function completed."
 # > output$warnings    # Stored warnings
