@@ -510,56 +510,46 @@ output %>% f_list.print_by_element()
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 
-f_expression.eval.withCallingHandlers.attr_warnings.summary <- function(expression.eval, warnings.summary_only = TRUE) {
-  # Save the current 'warn' option
-  options_warn_original <- getOption("warn")
-  
-  # Set 'warn' to 0 to collect warnings
-  options(warn = 0)
-  
-  # Initialize an empty list to store warnings
-  list_warning <- list()
-  
-  # Execute the expression.eval and capture warnings
-  expression.eval.output <- withCallingHandlers(
-    expr = expression.eval,
-    warning = function(w) {
-      # Capture the call that generated the warning
-      warning.conditionCall <- conditionCall(w)
-      if (is.null(warning.conditionCall)) {
-        warning.conditionCall <- "NULL"
-      }
-      
-      # Capture the warning message
-      warning.conditionMessage <- conditionMessage(w)
-      
-      # Append the call to the list, with the message as the name
-      list_warning[[length(list_warning) + 1]] <<- warning.conditionCall
-      names(list_warning)[length(list_warning)] <<- warning.conditionMessage
-      
-      invokeRestart("muffleWarning")
-    }
-  )
-  
-  # Restore the original 'warn' option
-  options(warn = options_warn_original)
-  
-  # Assign the 'warnings' class to the list_warning
-  class(list_warning) <- "warnings"
-  
-  # # Use the 'summary' function to summarize warnings
-  # list_warnings.summary <- summary(list_warning)
-  
-  # # Return the expression.eval.output and captured warnings
-  # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warnings.summary)
-  
-  
-  attributes(expression.eval.output)$expression <- substitute(expression.eval)
-  attributes(expression.eval.output)$expression.eval.deparse <- deparse(expression.eval)
-  if(!warnings.summary_only) attributes(expression.eval.output)$warnings <- list_warning
-  attributes(expression.eval.output)$warnings.summary <- list_warning %>% summary
-  
-  expression.eval.output
+f_expression.eval.withCallingHandlers.attr_warnings.summary <- function(expression.eval, warnings.summary_only = TRUE, warnings.summary.print = TRUE) {
+    options_warn_original <- getOption("warn")  # Save the current 'warn' option
+    options(warn = 0)  # Set 'warn' to 0 to collect warnings
+    list_warning <- list()  # Initialize an empty list to store warnings
+    
+    # Execute the expression.eval and capture warnings
+    expression.eval.output <- withCallingHandlers(
+        expr = expression.eval,
+        warning = function(w) {
+            # Capture the call that generated the warning
+            warning.conditionCall <- conditionCall(w)
+            if (is.null(warning.conditionCall)) {
+                warning.conditionCall <- "NULL"
+            }
+            
+            # Capture the warning message
+            warning.conditionMessage <- conditionMessage(w)
+            
+            # Append the call to the list, with the message as the name
+            list_warning[[length(list_warning) + 1]] <<- warning.conditionCall
+            names(list_warning)[length(list_warning)] <<- warning.conditionMessage
+            
+            invokeRestart("muffleWarning")
+        }
+    )
+    
+    options(warn = options_warn_original)  # Restore the original 'warn' option
+    class(list_warning) <- "warnings"  # Assign the 'warnings' class to the list_warning
+    # list_warnings.summary <- summary(list_warning)  # Use the 'summary' function to summarize warnings
+    # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warnings.summary)  # Return the expression.eval.output and captured warnings
+    
+    attributes(expression.eval.output)$expression <- substitute(expression.eval)
+    attributes(expression.eval.output)$expression.eval.deparse <- deparse(expression.eval)
+    if(!warnings.summary_only) attributes(expression.eval.output)$warnings <- list_warning
+    attributes(expression.eval.output)$warnings.summary <- list_warning %>% summary
+    
+    # if(warnings.summary.print) list_warning %>% summary %>% print
+    if(warnings.summary.print) list_warning %>% summary %>% capture.output() %>% paste(collapse = "\n") %>% warning(call. = TRUE, immediate. = TRUE)
+    
+    expression.eval.output
 }
 
 
@@ -597,7 +587,7 @@ example_function <- function() {
 }
 
 # Run the example function with suppressed warnings
-output <- f_expression.eval.withCallingHandlers.attr_warnings.summary(example_function(), warnings.summary_only = FALSE)
+output <- f_expression.eval.withCallingHandlers.attr_warnings.summary(example_function(), warnings.summary_only = FALSE, warnings.summary.print = TRUE)
 
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 # Inspect the results
