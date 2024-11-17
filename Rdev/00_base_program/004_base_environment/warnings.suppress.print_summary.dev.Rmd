@@ -1,5 +1,5 @@
 ---
-# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-code-chunk/56169/
+# https://forum.posit.co/t/when-to-use-yaml-vs-when-to-use-setup-CodeText-chunk/56169/
 title: "`r params$doc_title`"
 author: "MHKim"
 date: "`r Sys.setlocale('LC_ALL', 'en_US.utf8'); format(Sys.time(), '%B %d, %Y')`"
@@ -79,7 +79,7 @@ h4 { font-size: 16px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4
 h5 { font-size: 14px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 7px; margin-bottom: 0; color: Navy; }
 h6 { font-size: 12px; font-family: 'Roboto Serif', 'Noto Serif', 'Source Serif 4', serif; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: Navy; }
 table, td, th, figure, figcaption { font-size: 10px; font-family: 'Roboto Condensed', 'Noto Sans Condensed', 'Open Sans Condensed', 'Source Sans 3', 'Arial Narrow', Helvetica, sans-serif; line-height: 1.1; margin-top: 5px; margin-bottom: 0; }
-code { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
+CodeText { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 pre { font-size: 11px; font-family: 'Cascadia Code SemiBold', 'Cascadia Code', 'Fira Code', Consolas, 'Source Code Pro', monospace; line-height: 1.1; margin-top: 6px; margin-bottom: 0; color: DimGray; background-color: Snow; }
 </style>
   
@@ -335,9 +335,9 @@ cat("# ",'.sourcename_root = "',.sourcename_root,'"  \n',
 ## :: suppress_and_store_warnings = function() -dev  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-suppress_and_store_warnings <- function(code) {
+suppress_and_store_warnings <- function(CodeText) {
   # Save the current warn option
-  original_warn <- getOption("warn")
+  options_warn_original <- getOption("warn")
   
   # Suppress warnings temporarily
   options(warn = -1)
@@ -347,7 +347,7 @@ suppress_and_store_warnings <- function(code) {
   result <- tryCatch(
     {
       withCallingHandlers(
-        { code }, # Run the code provided as an argument
+        { CodeText }, # Run the CodeText provided as an argument
         warning = function(w) {
           # Capture warnings
           warnings_list <<- c(warnings_list, conditionMessage(w))
@@ -363,7 +363,7 @@ suppress_and_store_warnings <- function(code) {
   )
   
   # Restore the original warn option
-  options(warn = original_warn)
+  options(warn = options_warn_original)
   
   # Return the result and captured warnings
   # list(result = result, warnings = warnings_list, summary = summary(warnings_list))
@@ -414,9 +414,9 @@ output %>% f_list.print_by_element()
 ## :: suppress_and_store_warnings = function() -dev -success  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-suppress_and_store_warnings <- function(code) {
+suppress_and_store_warnings <- function(CodeText) {
   # Save the current 'warn' option
-  original_warn <- getOption("warn")
+  options_warn_original <- getOption("warn")
   
   # Set 'warn' to 0 to collect warnings
   options(warn = 0)
@@ -424,9 +424,9 @@ suppress_and_store_warnings <- function(code) {
   # Initialize an empty list to store warnings
   warnings_list <- list()
   
-  # Execute the code and capture warnings
+  # Execute the CodeText and capture warnings
   result <- withCallingHandlers(
-    expr = code,
+    expr = CodeText,
     warning = function(w) {
       # Capture the call that generated the warning
       w_call <- conditionCall(w)
@@ -446,7 +446,7 @@ suppress_and_store_warnings <- function(code) {
   )
   
   # Restore the original 'warn' option
-  options(warn = original_warn)
+  options(warn = options_warn_original)
   
   # Assign the 'warnings' class to the warnings_list
   class(warnings_list) <- "warnings"
@@ -653,7 +653,7 @@ env1$path$LastSourceEditorContext.path_filename.html = env1$path$LastSourceEdito
 if (Sys.getenv("PARENT_RENDERING") != "YES") {
     if (Sys.info()["sysname"] == "Windows") {
         .tlmgr_installed_packages <- system2("tlmgr", args = c("info", "--list", "--only-installed"), stdout = TRUE)
-        for (.font_name in c("roboto", "cascadia-code")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
+        for (.font_name in c("roboto", "cascadia-CodeText")) if(.tlmgr_installed_packages |> str_subset(.font_name) |> length() == 0) tinytex::tlmgr_install(.font_name)
 
         cat('Starting: rstudioapi::getSourceEditorContext()$path |> rmarkdown::render(output_dir = ',deparse(dirname(env1$path$LastSourceEditorContext.path_filename.ext)),', output_format = "pdf_document")  \n')
         Sys.setenv(PARENT_RENDERING = "YES"); env1$path$LastSourceEditorContext.path_filename.ext %>% {paste0(env1$path$path1,"/",.)} %>% {rmarkdown::render(input = .,output_dir = dirname(.), output_format = "pdf_document")}; Sys.setenv(PARENT_RENDERING = "NO")

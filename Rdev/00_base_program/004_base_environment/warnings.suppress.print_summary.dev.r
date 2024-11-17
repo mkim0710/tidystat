@@ -1,6 +1,6 @@
-suppress_and_store_warnings <- function(code) {
+suppress_and_store_warnings <- function(CodeText) {
   # Save the current 'warn' option
-  original_warn <- getOption("warn")
+  options_warn_original <- getOption("warn")
   
   # Set 'warn' to 0 to collect warnings
   options(warn = 0)
@@ -8,9 +8,9 @@ suppress_and_store_warnings <- function(code) {
   # Initialize an empty list to store warnings
   warnings_list <- list()
   
-  # Execute the code and capture warnings
+  # Execute the CodeText and capture warnings
   result <- withCallingHandlers(
-    expr = code,
+    expr = CodeText,
     warning = function(w) {
       # Capture the call that generated the warning
       w_call <- conditionCall(w)
@@ -30,7 +30,7 @@ suppress_and_store_warnings <- function(code) {
   )
   
   # Restore the original 'warn' option
-  options(warn = original_warn)
+  options(warn = options_warn_original)
   
   # Assign the 'warnings' class to the warnings_list
   class(warnings_list) <- "warnings"
