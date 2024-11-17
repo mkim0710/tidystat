@@ -16,7 +16,7 @@ f_expression.eval.withCallingHandlers.attr_warning.summary <- function(expressio
   list_warning <- list()
   
   # Execute the expression.eval and capture warnings
-  expression.eval.eval <- withCallingHandlers(
+  expression.eval.output <- withCallingHandlers(
     expr = expression.eval,
     warning = function(w) {
       # Capture the call that generated the warning
@@ -45,15 +45,16 @@ f_expression.eval.withCallingHandlers.attr_warning.summary <- function(expressio
   # # Use the 'summary' function to summarize warnings
   # list_warning.summary <- summary(list_warning)
   
-  # # Return the expression.eval.eval and captured warnings
-  # list(expression.eval.eval = expression.eval.eval, warnings = list_warning, summary = list_warning.summary)
+  # # Return the expression.eval.output and captured warnings
+  # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warning.summary)
   
   
-  attributes(expression.eval.eval)$expression.eval <- as.expression.eval()
-  if(!warnings.summary_only) attributes(expression.eval.eval)$warnings <- list_warning
-  attributes(expression.eval.eval)$warnings.summary <- list_warning %>% summary
+  attributes(expression.eval.output)$expression <- substitute(expression.eval)
+  attributes(expression.eval.output)$expression.eval.deparse <- deparse(expression.eval)
+  if(!warnings.summary_only) attributes(expression.eval.output)$warnings <- list_warning
+  attributes(expression.eval.output)$warnings.summary <- list_warning %>% summary
   
-  expression.eval.eval
+  expression.eval.output
 }
 
 
@@ -101,6 +102,10 @@ output %>% str     # The return value of the function
 # [1,]    1    4    7    3
 # [2,]    2    5    1    4
 # [3,]    3    6    2    5
+# attr(,"expression")
+# example_function()
+# attr(,"expression.eval.deparse")
+# [1] "structure(c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 1L, 2L, 3L, 4L, 5L), dim = 3:4)"
 # attr(,"warnings")
 # Warning messages:
 # 1: In matrix(1:7, 3, 4) :
@@ -115,6 +120,8 @@ output %>% str     # The return value of the function
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
 # > output %>% str     # The return value of the function
 #  int [1:3, 1:4] 1 2 3 4 5 6 7 1 2 3 ...
+#  - attr(*, "expression")= language example_function()
+#  - attr(*, "expression.eval.deparse")= chr "structure(c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 1L, 2L, 3L, 4L, 5L), dim = 3:4)"
 #  - attr(*, "warnings")=List of 3
 #   ..$ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
 #   ..$ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
