@@ -249,8 +249,8 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = suppress_warnings.summary.as_attributes  ----  
-.tmp$aliasname = "suppress_warnings.summary.as_attributes"
+### & alias = suppressWarnings.summary.as_attributes  ----  
+.tmp$aliasname = "suppressWarnings.summary.as_attributes"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
