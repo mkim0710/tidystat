@@ -1,5 +1,13 @@
+"Rdev/00_base_program/004_base_environment/warnings.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.list_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.Rmd"
+# f_expression.withCallingHandlers.list_warning.summary
+# f_expression.withCallingHandlers.attr_warning.summary
+
 
 # https://chatgpt.com/c/672ab3e9-0e90-800e-b768-f39f29e22b6f
+
 
 assign("warnings.summary", function() {summary(warnings())}, envir = baseenv())
 # > assign("warnings.summary", function() {summary(warnings())}, envir = baseenv())

@@ -1,11 +1,11 @@
 "Rdev/00_base_program/004_base_environment/warnings.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_CodeText.withCallingHandlers.list_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_CodeText.withCallingHandlers.attr_warning.summary.dev.r"
-"Rdev/00_base_program/004_base_environment/f_CodeText.withCallingHandlers.attr_warning.summary.dev.Rmd"
-# f_CodeText.withCallingHandlers.list_warning.summary
-# f_CodeText.withCallingHandlers.attr_warning.summary
+"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.list_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/f_expression.withCallingHandlers.attr_warning.summary.dev.Rmd"
+# f_expression.withCallingHandlers.list_warning.summary
+# f_expression.withCallingHandlers.attr_warning.summary
 
-f_CodeText.withCallingHandlers.list_warning.summary <- function(CodeText) {
+f_expression.withCallingHandlers.attr_warning.summary <- function(expression, warnings.summary_only = TRUE) {
   # Save the current 'warn' option
   options_warn_original <- getOption("warn")
   
@@ -15,9 +15,9 @@ f_CodeText.withCallingHandlers.list_warning.summary <- function(CodeText) {
   # Initialize an empty list to store warnings
   list_warning <- list()
   
-  # Execute the CodeText and capture warnings
+  # Execute the expression and capture warnings
   result <- withCallingHandlers(
-    expr = CodeText,
+    expr = expression,
     warning = function(w) {
       # Capture the call that generated the warning
       warning.conditionCall <- conditionCall(w)
@@ -48,7 +48,7 @@ f_CodeText.withCallingHandlers.list_warning.summary <- function(CodeText) {
   # # Return the result and captured warnings
   # list(result = result, warnings = list_warning, summary = list_warning.summary)
   
-  attributes(result)$warnings <- list_warning
+  if(!warnings.summary_only) attributes(result)$warnings <- list_warning
   attributes(result)$warnings.summary <- list_warning %>% summary
   
   result
@@ -64,6 +64,13 @@ cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 for (i in 1:3) {
   mat <- matrix(1:7, 3, 4)
 }
+# Warning messages:
+# 1: In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+# 2: In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+# 3: In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
 
 # Get the summary of warnings
 summary(warnings())
@@ -82,12 +89,47 @@ example_function <- function() {
 }
 
 # Run the example function with suppressed warnings
-output <- f_CodeText.withCallingHandlers.list_warning.summary(example_function())
+output <- f_expression.withCallingHandlers.attr_warning.summary(example_function(), warnings.summary_only = TRUE)
 
 # Inspect the results
-output$result      # The return value of the function
-output$warnings    # Stored warnings
-output$summary     # Summary of unique warnings
+output
+output %>% str     # The return value of the function
+# > output
+#      [,1] [,2] [,3] [,4]
+# [1,]    1    4    7    3
+# [2,]    2    5    1    4
+# [3,]    3    6    2    5
+# attr(,"warnings")
+# Warning messages:
+# 1: In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+# 2: In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+# 3: In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+# attr(,"warnings.summary")
+# 3 identical warnings:
+# In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+# > output %>% str     # The return value of the function
+#  int [1:3, 1:4] 1 2 3 4 5 6 7 1 2 3 ...
+#  - attr(*, "warnings")=List of 3
+#   ..$ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#   ..$ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#   ..$ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#   ..- attr(*, "class")= chr "warnings"
+#  - attr(*, "warnings.summary")=List of 1
+#   ..$ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
+#   ..- attr(*, "class")= chr "summary.warnings"
+#   ..- attr(*, "counts")= int 3
+
+
+attributes(output)$warnings
+attributes(output)$warnings %>% str             # Stored warnings
+
+
+attributes(output)$warnings.summary
+attributes(output)$warnings.summary %>% str     # Summary of unique warnings
 # > output$result      # The return value of the function
 # [1] "Example function completed."
 # > output$warnings    # Stored warnings
@@ -103,41 +145,7 @@ output$summary     # Summary of unique warnings
 # In matrix(1:7, 3, 4) :
 #   data length [7] is not a sub-multiple or multiple of the number of rows [3]
 
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-output %>% f_list.str_by_element(max.level = 2, give.attr = FALSE)
-cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-output %>% f_list.print_by_element()
-# > output %>% f_list.str_by_element(max.level = 2, give.attr = FALSE)
-# # List of 3  
-# # $ result		: chr "Example function completed."
-# # ________________________________________________________________________________    
-# # $ warnings		:List of 3
-# ## $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
-# ## $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
-# ## $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
-# # ________________________________________________________________________________    
-# # $ summary		:List of 1
-# ## $ data length [7] is not a sub-multiple or multiple of the number of rows [3]: language matrix(1:7, 3, 4)
-# # ________________________________________________________________________________    
-# > cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
-#     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# > output %>% f_list.print_by_element()
-# # List of 3  
-# # print(. $ result)
-# ##[1] "Example function completed."
-# # ________________________________________________________________________________    
-# # print(. $ warnings)
-# ##Warning messages:
-# ##1: In matrix(1:7, 3, 4) :
-# ##  data length [7] is not a sub-multiple or multiple of the number of rows [3]
-# ##2: In matrix(1:7, 3, 4) :
-# ##  data length [7] is not a sub-multiple or multiple of the number of rows [3]
-# ##3: In matrix(1:7, 3, 4) :
-# ##  data length [7] is not a sub-multiple or multiple of the number of rows [3]
-# # ________________________________________________________________________________    
-# # print(. $ summary)
-# ##3 identical warnings:
-# ##In matrix(1:7, 3, 4) :
-# ##  data length [7] is not a sub-multiple or multiple of the number of rows [3]
-# # ________________________________________________________________________________ 
+
+
+
 
