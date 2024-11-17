@@ -217,21 +217,20 @@ cat("    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
 # __________|------  
 # @@ START) data example ----  
-## \$ analyticDF_time2event =  ----  
-```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
+## \% summary(warnings())  ----  
+```{r, echo=TRUE, results="as is", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
-.packagename = "tidyverse"; if (!paste0("package:",.packagename) %in% search()) {library(.packagename, character.only = TRUE)}
-# suppressPackageStartupMessages(library(survival))
-for(.packagename in c("survminer")) {if(!require(.packagename,character.only=TRUE)) install.packages(.packagename)  ;  library(.packagename,character.only=TRUE)}  
-# ?survival::lung
-.objectname = DataSetName = "analyticDF_time2event"
-assign(
-    DataSetName, 
-    survival::lung |> as_tibble() |> mutate(event = as.logical(status-1), Group = c("Male", "Female")[sex] |> as.factor(), StudyPopulation = time >= 30) |>
-        # dplyr::select(-status, -sex)
-        dplyr::select(-status)
-)
-analyticDF_time2event %>% {cat(" > ",deparse(substitute(.))," |> as_tibble() |> print()","  \n", sep=""); print(as_tibble(.))}
+# Generate warnings without suppression
+for (i in 1:3) {
+  mat <- matrix(1:7, 3, 4)
+}
+
+# Get the summary of warnings
+summary(warnings())
+# 3 identical warnings:
+# In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+
 ```
   
   
@@ -341,6 +340,19 @@ cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cat("    ************************************************************************    \n")
 cat("    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    \n")
 cat("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    \n")
+# Generate warnings without suppression
+for (i in 1:3) {
+  mat <- matrix(1:7, 3, 4)
+}
+
+# Get the summary of warnings
+summary(warnings())
+# 3 identical warnings:
+# In matrix(1:7, 3, 4) :
+#   data length [7] is not a sub-multiple or multiple of the number of rows [3]
+
+cat("    ________________________________________________________________________    \n")
+cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 # Example usage of the custom function
 example_function <- function() {
   for (i in 1:3) {
