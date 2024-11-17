@@ -222,7 +222,7 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     # if(warnings.summary.print) list_warning %>% summary %>% print
     if(warnings.summary.print) list_warning %>% summary %>% capture.output() %>% paste0(collapse = "\n") %>% warning(call. = TRUE, immediate. = TRUE); cat("\n")
     
-    expression.eval.output
+    invisible(expression.eval.output)
 }
 
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
