@@ -1,4 +1,10 @@
-suppress_and_store_warnings <- function(CodeText) {
+"Rdev/00_base_program/004_base_environment/warnings.summary.dev.r"
+"Rdev/00_base_program/004_base_environment/warnings.suppress.print_summary.dev.r"
+"Rdev/00_base_program/004_base_environment/warnings.suppress.print_summary.dev.Rmd"
+# f_CodeText.withCallingHandlers.list_warning.summary
+# f_CodeText.withCallingHandlers.attr_warning.summary
+
+f_CodeText.withCallingHandlers.list_warning.summary <- function(CodeText) {
   # Save the current 'warn' option
   options_warn_original <- getOption("warn")
   
@@ -35,11 +41,16 @@ suppress_and_store_warnings <- function(CodeText) {
   # Assign the 'warnings' class to the list_warning
   class(list_warning) <- "warnings"
   
-  # Use the 'summary' function to summarize warnings
-  list_warning.summary <- summary(list_warning)
+  # # Use the 'summary' function to summarize warnings
+  # list_warning.summary <- summary(list_warning)
   
-  # Return the result and captured warnings
-  list(result = result, warnings = list_warning, summary = list_warning.summary)
+  # # Return the result and captured warnings
+  # list(result = result, warnings = list_warning, summary = list_warning.summary)
+  
+  attributes(result)$warnings <- list_warning
+  attributes(result)$warnings.summary <- list_warning %>% summary
+  
+  result
 }
 
 
@@ -70,7 +81,7 @@ example_function <- function() {
 }
 
 # Run the example function with suppressed warnings
-output <- suppress_and_store_warnings(example_function())
+output <- f_CodeText.withCallingHandlers.list_warning.summary(example_function())
 
 # Inspect the results
 output$result      # The return value of the function
