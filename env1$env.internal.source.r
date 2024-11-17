@@ -184,14 +184,9 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
 # Rdev/00_base_program/004_base_environment/f_expression.eval.withCallingHandlers.attr_warnings.summary.dev.Rmd
 .tmp$objectname = "f_expression.eval.withCallingHandlers.attr_warnings.summary"
 .tmp$object = function(expression.eval, warnings.summary_only = TRUE) {
-  # Save the current 'warn' option
-  options_warn_original <- getOption("warn")
-  
-  # Set 'warn' to 0 to collect warnings
-  options(warn = 0)
-  
-  # Initialize an empty list to store warnings
-  list_warning <- list()
+  options_warn_original <- getOption("warn")  # Save the current 'warn' option
+  options(warn = 0)  # Set 'warn' to 0 to collect warnings
+  list_warning <- list()  # Initialize an empty list to store warnings
   
   # Execute the expression.eval and capture warnings
   expression.eval.output <- withCallingHandlers(
@@ -214,19 +209,11 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     }
   )
   
-  # Restore the original 'warn' option
-  options(warn = options_warn_original)
-  
-  # Assign the 'warnings' class to the list_warning
-  class(list_warning) <- "warnings"
-  
-  # # Use the 'summary' function to summarize warnings
-  # list_warnings.summary <- summary(list_warning)
-  
-  # # Return the expression.eval.output and captured warnings
-  # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warnings.summary)
-  
-  
+  options(warn = options_warn_original)  # Restore the original 'warn' option
+  class(list_warning) <- "warnings"  # Assign the 'warnings' class to the list_warning
+  # list_warnings.summary <- summary(list_warning)  # Use the 'summary' function to summarize warnings
+  # list(expression.eval.output = expression.eval.output, warnings = list_warning, summary = list_warnings.summary)  # Return the expression.eval.output and captured warnings
+
   attributes(expression.eval.output)$expression <- substitute(expression.eval)
   attributes(expression.eval.output)$expression.eval.deparse <- deparse(expression.eval)
   if(!warnings.summary_only) attributes(expression.eval.output)$warnings <- list_warning
