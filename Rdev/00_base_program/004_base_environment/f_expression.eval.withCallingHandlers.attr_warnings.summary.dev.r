@@ -42,7 +42,7 @@ f_expression.eval.withCallingHandlers.attr_warnings.summary <- function(expressi
     attributes(expression.eval.output)$warnings.summary <- list_warning %>% summary
     
     # if(warnings.summary.print) list_warning %>% summary %>% print
-    if(warnings.summary.print) list_warning %>% summary %>% capture.output() %>% paste(collapse = "\n") %>% warning(call. = TRUE, immediate. = TRUE)
+    if(warnings.summary.print) list_warning %>% summary %>% capture.output() %>% paste0(collapse = "\n") %>% paste0("\n") %>% warning(call. = TRUE, immediate. = TRUE)
     
     expression.eval.output
 }
