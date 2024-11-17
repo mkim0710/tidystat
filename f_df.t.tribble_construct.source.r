@@ -793,15 +793,17 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-## :: f_list_tibble.print_by_element =  ----  
-.tmp$objectname = "f_list_tibble.print_by_element"
-.tmp$object = function(ls, n = 99, tabInsteadOfSpace = FALSE, width = getOption("width") - 4, strict.width = strO$strict.width, ...) {
+## :: f_list.print_by_element =  ----  
+.tmp$objectname = "f_list.print_by_element"
+.tmp$object = function(ls, tabInsteadOfSpace = FALSE, width = getOption("width") - 4, strict.width = strO$strict.width, ...) {
     cat("# List of ",length(ls),"  \n", sep="")
     for(i in names(ls)) {
+        cat("# print(. $ ",i,")", sep=""); cat("\n")
+        cat("##")
         if (tabInsteadOfSpace) {
-            as_tibble(ls[[i]]) |> print(n = n, ...) |> capture.output() |> str_replace_all(" {4,}","\t") |> cat(sep="\n##") # ; cat("\n")
+            ls[[i]] |> print(...) |> capture.output() |> str_replace_all(" {4,}","\t") |> cat(sep="\n##") # ; cat("\n")
         } else {
-            as_tibble(ls[[i]]) |> print(n = n, ...) |> capture.output() |> capture.output() |> cat(sep="\n##") # ; cat("\n")
+            ls[[i]] |> print(...) |> capture.output() |> cat(sep="\n##") # ; cat("\n")
         }
         cat("# ________________________________________________________________________________    \n")
     }
@@ -809,8 +811,33 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
 .tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = print.list_tibble  ----  
-.tmp$aliasname = "print.list_tibble"
+### & alias = print.list.by_element  ----  
+.tmp$aliasname = "print.list.by_element"
+attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
+    attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
+    c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
+env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
+##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+## :: f_list_tibble.print_by_element =  ----  
+.tmp$objectname = "f_list_tibble.print_by_element"
+.tmp$object = function(ls, n = 99, tabInsteadOfSpace = FALSE, width = getOption("width") - 4, strict.width = strO$strict.width, ...) {
+    cat("# List of ",length(ls),"  \n", sep="")
+    for(i in names(ls)) {
+        cat("# print(. $ ",i,")", sep=""); cat("\n")
+        cat("##")
+        if (tabInsteadOfSpace) {
+            as_tibble(ls[[i]]) |> print(n = n, ...) |> capture.output() |> str_replace_all(" {4,}","\t") |> cat(sep="\n##") # ; cat("\n")
+        } else {
+            as_tibble(ls[[i]]) |> print(n = n, ...) |> capture.output() |> cat(sep="\n##") # ; cat("\n")
+        }
+        cat("# ________________________________________________________________________________    \n")
+    }
+}
+### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
+.tmp$env1_subenv_name = "f"; env1$env.internal$f_function.load2env.internal(function_object = .tmp$object, function_name = .tmp$objectname, env1_subenv_name = .tmp$env1_subenv_name, show_packageStartupMessage = TRUE, function.reload = options()$function.reload, runLoadedFunction = FALSE)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+### & alias = print.list_tibble.by_element  ----  
+.tmp$aliasname = "print.list_tibble.by_element"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
