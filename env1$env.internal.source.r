@@ -222,7 +222,7 @@ env1$env.internal$f_function.load2env.internal = function(function_object, funct
     # if(warnings.summary.print) list_warning %>% summary %>% print
     if(warnings.summary.print) list_warning %>% summary %>% capture.output() %>% paste0(collapse = "\n") %>% warning(call. = TRUE, immediate. = TRUE); cat("\n")
     
-    expression.eval.output
+    invisible(expression.eval.output)
 }
 
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
@@ -249,8 +249,8 @@ attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias =
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
 env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp$objectname]]
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-### & alias = suppress_warnings.summary.as_attributes  ----  
-.tmp$aliasname = "suppress_warnings.summary.as_attributes"
+### & alias = suppressWarnings.summary.as_attributes  ----  
+.tmp$aliasname = "suppressWarnings.summary.as_attributes"
 attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias = 
     attributes(env1[[.tmp$env1_subenv_name]][[.tmp$objectname]])$alias |>
     c(  paste0("env1$env.internal.attach$",.tmp$aliasname," = env1$",.tmp$env1_subenv_name,"$",.tmp$objectname)  )
