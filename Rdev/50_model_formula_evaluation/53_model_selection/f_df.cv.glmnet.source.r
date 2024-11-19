@@ -1,14 +1,18 @@
+# .sourcename_root = "f_df.cv.glmnet"  
+## Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.r----  
+## Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd----  
+## Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r----  
 # .sourcename_root = "f_cv_glmnet_object.ggplot"  
 ## Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r----  
 ## Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd----  
 ## Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r----  
-# # source(paste0(env1$path$source_base,"/","Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r"))  
-# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r")  
-# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd")  
-# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r")  
-# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
-# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
-# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_cv_glmnet_object.ggplot.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
+# # source(paste0(env1$path$source_base,"/","Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r"))  
+# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.r")  
+# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/templates-00env1.minimum.Rmd", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd")  
+# # if(!file.exists("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r")) download.file(url = "https://raw.githubusercontent.com/mkim0710/tidystat/master/rstudio-prefs/templates/default.R", destfile = "D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r")  
+# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
+# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.dev.Rmd"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
+# file.edit("D:/D_Repositories/github_tidystat/Rdev/50_model_formula_evaluation/53_model_selection/f_df.cv.glmnet.source.r"); if(!is.null(env1$path$LastSourceEditorContext.path_filename.ext)) if(env1$path$LastSourceEditorContext.path_filename.ext != "") file.edit(paste0(env1$path$path1,"/",env1$path$LastSourceEditorContext.path_filename.ext));  
 #| ------------------------- < To be covered at .Rprofile > --------------------- |#  
 if(!exists("env1", envir=.GlobalEnv)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
 if(!".Rprofile" %in% names(.GlobalEnv$env1$source)) {  message('> source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")')  ;  source("https://raw.githubusercontent.com/mkim0710/tidystat/master/.Rprofile")  ;  .First()  }  
@@ -73,6 +77,9 @@ if(!is.null(env1$path$LastSourceEditorContext.path)) env1$path$.path4write = .pa
     
     attributes(cv_glmnet_object)$mat_coef = cv_glmnet_object %>% f_cv_glmnet_object.mat_coef
     
+    # The purpose of cross-validation in cv.glmnet is to determine the optimal lambda value based on the cross-validated error.
+    # The cross-validation metrics (e.g., mean error, standard deviation) are stored in the $cvm and $cvsd components of the cv.glmnet object for each lambda in $lambda. The cv.glmnet object does not store the individual models fitted for each fold.
+    # After determining the optimal lambda value, the entire dataset is used to fit a single glmnet model, which is stored in $glmnet.fit. 
     return(cv_glmnet_object)
 }
 ### \% |> f_function.load2env.internal(.tmp$objectname, env1_subenv_name) ---
