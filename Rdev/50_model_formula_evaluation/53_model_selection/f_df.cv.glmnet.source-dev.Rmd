@@ -776,7 +776,7 @@ env0 = env1
 # TheTrainSet = glmnet_coxExample_tibble %>% select(-time)
 # formula <- as.formula(status ~ .)
 TheTrainSet = glmnet_binomialExample_tibble
-formula <- as.formula(y ~ .)
+formula4glmnet <- as.formula(y ~ .)
 ```
 
 
@@ -785,29 +785,39 @@ formula <- as.formula(y ~ .)
 ##### :: TheTrainSet.cv.glmnet_a10.coef = TheTrainSet.cv.glmnet_a10 |> 
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 
-alpha = 1
-# Train glmnet Cox models
-TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
-  train_data = TheTrainSet,
-  formula = as.formula(y ~ .),
-  i.alpha = 1,
-  family = "binomial",
-  type_measure = "auc",
-  nfolds = 5,
-  seed = 123,  # Changed seed for reproducibility
-  save_models = FALSE,
-  save_plots = FALSE,
-  plot_size = 1280,
-  output_dir = "glmnet_outputs"
-)
-
-cv_glmnet_object = TheTrainSet.cv.glmnet_a10
+# i.alpha = 1
+# Train glmnet models
+# TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
+#   train_data = TheTrainSet,
+#   formula = formula4glmnet,
+#   i.alpha = i.alpha,
+#   family = "binomial",
+#   type_measure = "auc",
+#   nfolds = 5,
+#   seed = 123,  # Changed seed for reproducibility
+#   save_models = FALSE,
+#   save_plots = FALSE,
+#   plot_size = 1280,
+#   output_dir = "glmnet_outputs"
+# )
 
 # # Save all glmnet models for future use
 # .objectname = "TheTrainSet.cv.glmnet_a10"
 # assign(.objectname, structure(get(.objectname), MetaData = MetaData))
 # env1$f$f_objectname.size.write_rds.git_lfs_track_add_f(.objectname = .objectname, .path4write = env1$path$.path4write, createBackup = FALSE, Execute = FALSE, path.size_files = TRUE, git_lfs_track = TRUE, git_add_f = TRUE, CompressionMethod = "xz")
 
+TheTrainSet = glmnet_binomialExample_tibble
+formula4glmnet <- as.formula(y ~ .)
+i.alpha = 1
+TheTrainSet.cv.glmnet_a10 <- f_df.cv.glmnet(
+  train_data = TheTrainSet,
+  formula = formula4glmnet,
+  i.alpha = i.alpha,
+  family = "binomial",
+  type_measure = "auc"
+)
+
+cv_glmnet_object = TheTrainSet.cv.glmnet_a10
 cat("    ________________________________________________________________________    \n")
 cat("    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    \n")
 cat("    ************************************************************************    \n")
