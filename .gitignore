@@ -221,3 +221,4 @@ bin/
 !*.js.html
 !*.js-call.html
 !*-edit.md
+sync.ffs_lock
