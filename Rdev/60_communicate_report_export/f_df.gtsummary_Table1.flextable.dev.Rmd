@@ -591,7 +591,7 @@ VarName.suffix.regex =
         paste0("A02_", ".*",
                c("delta", "pd"),
                "1"),
-        paste0("A02_", ".*",
+        paste0("A03_", ".*",
                c("delta", "pd"),
                "1"),
         paste0("A03_", ".*",
