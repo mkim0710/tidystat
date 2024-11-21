@@ -264,7 +264,7 @@ env1$env.internal.attach[[.tmp$aliasname]] = env1[[.tmp$env1_subenv_name]][[.tmp
     t0 <- proc.time()
     out <- withCallingHandlers(
         {
-            output <- capture.output(eval(expr, envir = parent.frame()))
+            output <- capture.output(eval(expression, envir = parent.frame()))
             if (length(output) > 0) {
                 cat(output, sep = "\n")
             }
