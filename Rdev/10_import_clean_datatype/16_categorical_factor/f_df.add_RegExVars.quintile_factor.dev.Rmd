@@ -299,7 +299,7 @@ DataSet.Date.NA.rmAllNA %>% select(matches("BMI")) %>% select(matches("A07")) |>
 ```
 
 
-#### \$ A0{1+j}_BMI.pdj, A0{1+j}_WEIGHT.pdj =  
+#### \$ A0{1+j}_BMI.pdj =  
 ##### \% f_df.add_VarNameT.dpT0()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -356,7 +356,7 @@ for (j in 1:(7-1)) {
 ```
   
   
-#### \$ A0{1+j}_BMI.pdj.cut5, A0{1+j}_WEIGHT.pdj.cut5 =  
+#### \$ A0{1+j}_BMI.pdj.cut5 =  
 ##### \% f_df.add_RegExVars.cut()  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
@@ -374,7 +374,7 @@ options(width=120)
 ```
   
   
-#### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
+#### \$ A0{1+j}_BMI.pdj.quintile =  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
 ## \$ f_df.add_VarNameT.dpT0 =  ----  
@@ -410,7 +410,7 @@ options(width=120)
 ```
   
 
-#### \$ A0{1+j}_BMI.pdj.quintile, A0{1+j}_WEIGHT.pdj.quintile =  
+#### \$ A0{1+j}_BMI.pdj.quintile =  
 ##### \% f_df.add_RegExVars.quintile_factor ====  
 ```{r, echo=TRUE, results="markup", collapse=TRUE, paged.print=FALSE, comment="#", R.options=list(width=120)}
 options(width=120)
